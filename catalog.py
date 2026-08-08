@@ -1322,6 +1322,22 @@ def cmd_validate(_args) -> int:
               f"run `python3 book-models/industry_cases_model.py verify` (does not gate):")
         for f in ic_findings:
             print(f"             {f}")
+    # WORKED-EXAMPLES-JOIN — AUDIT-ONLY (rule #55 first landing). A significant section closes with a GoF
+    # "Known Uses" gallery (`<!-- worked-examples: <construct-key> -->` … `<!-- worked-examples-end -->`)
+    # whose ROSTER projects from the industry-cases matrix and whose PROSE stays hand-authored. This band
+    # holds the weld: every `industry-case` slot must clear >= partial on its construct-key (WE1, the
+    # anti-fabrication gate), every key resolves (WE2), and it reports the running book-aggregate 50/30/20
+    # source mix. Wave-0 lands the DIRECTIVE INERT — no section declares a gallery yet — so this finds 0
+    # galleries; the band PRINTS but does NOT increment n_issues. A later wave flips WE1/WE2 BLOCKING once
+    # galleries are authored and a clean session confirms the drain. See book-models/lint_worked_examples_join.py.
+    import lint_worked_examples_join as lwej  # noqa: E402 — audit-only gallery-join model
+    wej_out, wej_tally, wej_galleries = lwej.findings()
+    print(f"  [worked-ex] AUDIT-ONLY: {len(wej_galleries)} gallery/galleries · {lwej._ratio_line(wej_tally)}")
+    if wej_out:
+        print(f"  [worked-ex] AUDIT-ONLY: {len(wej_out)} join finding(s) — "
+              f"run `python3 book-models/lint_worked_examples_join.py` (does not gate):")
+        for f in wej_out:
+            print(f"              {f}")
     # SUPPORTING-SOURCES MODEL — AUDIT-ONLY (rule #55 first landing). The book's Tier-2 corroboration corpus
     # (book-models/supporting_sources_declared.json) is a queryable, drift-gated SIBLING of the Tier-1
     # industry-cases model: 19 records (18 engineering reports; Stripe split into two) each naming the single
