@@ -1322,21 +1322,35 @@ def cmd_validate(_args) -> int:
               f"run `python3 book-models/industry_cases_model.py verify` (does not gate):")
         for f in ic_findings:
             print(f"             {f}")
-    # WORKED-EXAMPLES-JOIN — AUDIT-ONLY (rule #55 first landing). A significant section closes with a GoF
+    # WORKED-EXAMPLES-JOIN — WE1 BLOCKING, WE2 + ratio AUDIT-ONLY. A significant section closes with a GoF
     # "Known Uses" gallery (`<!-- worked-examples: <construct-key> -->` … `<!-- worked-examples-end -->`)
     # whose ROSTER projects from the industry-cases matrix and whose PROSE stays hand-authored. This band
     # holds the weld: every `industry-case` slot must clear >= partial on its construct-key (WE1, the
     # anti-fabrication gate), every key resolves (WE2), and it reports the running book-aggregate 50/30/20
-    # source mix. Wave-0 lands the DIRECTIVE INERT — no section declares a gallery yet — so this finds 0
-    # galleries; the band PRINTS but does NOT increment n_issues. A later wave flips WE1/WE2 BLOCKING once
-    # galleries are authored and a clean session confirms the drain. See book-models/lint_worked_examples_join.py.
-    import lint_worked_examples_join as lwej  # noqa: E402 — audit-only gallery-join model
+    # source mix. All 10 landed galleries are WE1-clean, so per the repo's blocking-lint discipline (land
+    # audit-only, drain to 0, THEN flip) WE1 is now BLOCKING — it increments n_issues, forward-policing
+    # future galleries (the Part-3 refactor) against fabricating an industry example the matrix does not
+    # support. WE2 STAYS AUDIT-ONLY: it carries one SANCTIONED finding — book/part2/2.5-metrics.md's
+    # `coverage-model-mapping` gallery resolves to no matrix construct because it is legitimately a
+    # DocAble/other-only gallery (no industry slot to verify), so WE2 must not gate. The ratio is a taste
+    # target, never a correctness invariant, so it stays audit-only too. See book-models/lint_worked_examples_join.py.
+    import lint_worked_examples_join as lwej  # noqa: E402 — WE1 blocking join model (WE2 + ratio audit-only)
     wej_out, wej_tally, wej_galleries = lwej.findings()
-    print(f"  [worked-ex] AUDIT-ONLY: {len(wej_galleries)} gallery/galleries · {lwej._ratio_line(wej_tally)}")
-    if wej_out:
-        print(f"  [worked-ex] AUDIT-ONLY: {len(wej_out)} join finding(s) — "
+    wej_we1 = [f for f in wej_out if f.startswith("WE1 ")]
+    wej_we2 = [f for f in wej_out if not f.startswith("WE1 ")]
+    print(f"  [worked-ex] {len(wej_galleries)} gallery/galleries · {lwej._ratio_line(wej_tally)} (ratio AUDIT-ONLY)")
+    if wej_we1:
+        print(f"  [worked-ex] BLOCKING: {len(wej_we1)} WE1 anti-fabrication finding(s) — a gallery names an "
+              f"industry example the matrix does not support:")
+        for f in wej_we1:
+            print(f"              {f}")
+        n_issues += len(wej_we1)
+    if wej_we2:
+        # AUDIT-ONLY. The 2.5-metrics `coverage-model-mapping` gallery is the sanctioned DocAble/other-only
+        # case (see the band comment above) — it lives here so it never reddens validate.
+        print(f"  [worked-ex] AUDIT-ONLY: {len(wej_we2)} WE2 finding(s) — "
               f"run `python3 book-models/lint_worked_examples_join.py` (does not gate):")
-        for f in wej_out:
+        for f in wej_we2:
             print(f"              {f}")
     # SUPPORTING-SOURCES MODEL — AUDIT-ONLY (rule #55 first landing). The book's Tier-2 corroboration corpus
     # (book-models/supporting_sources_declared.json) is a queryable, drift-gated SIBLING of the Tier-1

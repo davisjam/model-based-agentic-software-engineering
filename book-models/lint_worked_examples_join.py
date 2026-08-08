@@ -17,10 +17,13 @@ WHAT IS MECHANICAL, WHAT IS AUDIT.  Two jobs:
   * RATIO — the running book-aggregate source mix (industry / DocAble / other) against the 50/30/20 taste
     target. A ratio is a taste target, not a correctness invariant, so it PRINTS and never gates.
 
-LANDING: AUDIT-ONLY-first (the repo's blocking-lint discipline).  Wave-0 lands the directive INERT — no real
-section declares a gallery yet — so this lint finds 0 galleries today; `catalog.py validate` PRINTS the band
-but does NOT increment its issue count. A later wave, after galleries are authored and a clean session
-confirms the drain, flips WE1/WE2 to BLOCKING.
+LANDING: AUDIT-ONLY-first (the repo's blocking-lint discipline), now PARTIALLY PROMOTED.  Wave-0 landed the
+directive inert; the galleries are now authored and WE1-clean, so `catalog.py validate` GATES on WE1 (the
+anti-fabrication weld — a fabricated industry slot reddens validate) while WE2 + the ratio stay AUDIT-ONLY.
+WE2 carries one sanctioned finding: `book/part2/2.5-metrics.md`'s `coverage-model-mapping` gallery resolves
+to no matrix construct because it is legitimately a DocAble/other-only gallery, so WE2 must not gate.
+The severity split lives in `catalog.py`'s `[worked-ex]` band; this module only produces the `WE1 …`/`WE2 …`
+findings. Its own `--strict` flag stays a manual "show me everything" mode (exits 1 on ANY finding).
 
 The lint imports nothing beyond the standard library and the sibling `industry_cases_model` — the same
 clone-and-run posture as `catalog.py`.  Run `python3 book-models/lint_worked_examples_join.py` for the report
