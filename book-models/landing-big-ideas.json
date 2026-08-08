@@ -67,7 +67,7 @@
     "figure": "constraint-vs-sensor.svg",
     "book_home": "the-governed-environment",
     "claim": "Enforced mechanisms hold work to intent across later changes. Constrain first so the wrong move is unavailable; where prevention falls short, a sensor catches the drift.",
-    "more": "A type the compiler checks, a lint that blocks the commit, a gate that refuses the deploy: each holds a policy decided once against every later change. Costly goals earn both a constraint and a sensor; what neither reaches stays a human job.",
+    "more": "A type the compiler checks, a validator that weighs an artifact against its obligation, a gate that consumes the verdict and refuses the deploy: each holds a policy decided once against every later change. A sensor reports what prevention misses; costly goals earn several of these roles at once, and what none of them reaches stays a human job.",
     "mechanisms": ["typed-categories", "semantic-lints", "content-validator", "f10-wiring-lint"],
     "related_ideas": [],
     "entry_figures": []

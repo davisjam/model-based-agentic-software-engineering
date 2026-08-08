@@ -3,7 +3,7 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1507,
+    "total_sites": 1508,
     "by_projection": {
       "book-pdf": 26,
       "book-web": 1084,
@@ -12,7 +12,7 @@
       "website-industry-cases": 45,
       "website-landing": 13,
       "website-misc": 52,
-      "website-theory": 10
+      "website-theory": 11
     }
   },
   "index": {
@@ -2019,7 +2019,7 @@
         "website-theory": [
           {
             "file": "theory.html",
-            "occ": 25
+            "occ": 28
           }
         ],
         "website-industry-cases": [
@@ -5565,6 +5565,12 @@
           },
           {
             "file": "quick-start.html",
+            "occ": 1
+          }
+        ],
+        "website-theory": [
+          {
+            "file": "theory.html",
             "occ": 1
           }
         ]

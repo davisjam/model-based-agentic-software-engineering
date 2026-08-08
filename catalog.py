@@ -2992,7 +2992,8 @@ def _theory_body() -> str:
                "A drifted model fails the build.")
     md2.append("## Bind policy into mechanisms — the alignment thesis")
     md2.append("Each obligation the environment must hold becomes a mechanism that enforces it. A type the "
-               "compiler checks, a lint that blocks the commit, a gate that refuses the deploy: every one "
+               "compiler checks, a validator that weighs an artifact against its obligation, a gate that "
+               "consumes that verdict and refuses the deploy: every one "
                "holds a single decision against every later change, whether the agent cooperates or not. "
                "Prevent first, so the wrong move is simply unavailable. Where prevention cannot reach, a "
                "sensor catches the drift after the fact. What neither reaches stays a human’s call, and "
@@ -3003,6 +3004,15 @@ def _theory_body() -> str:
                "produce.")
     p.append(render_md("\n\n".join(md2)))
     p.append(_theory_svg_figure("theory-of-mage-card.svg", "thy-card"))
+    p.append(render_md(
+        "## The broader claim\n\n"
+        "MAGE is less a new bundle of software practices than an old engineering move arriving late "
+        "in software. Mature disciplines reason through explicit models and win reliability from the "
+        "environment work passes through, not from watching every hand. Software leaned on source code "
+        "instead, because keeping higher-level models current cost more than it returned. Commodity "
+        "intelligence changes that price. When implementation turns cheap next to judgment, software "
+        "engineering can finally adopt the architecture those disciplines converged on long ago — and "
+        "begins to read like a mature engineering discipline again."))
     return "\n".join(p)
 
 
