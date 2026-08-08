@@ -73,6 +73,13 @@
       "chapter_slug": "implications-for-se",
       "backs_claims": ["H3-mechanized-assurance", "H5-local-model-deficiency"],
       "limitation": "A single incident, single operator; illustrative of a seam-blindness class rather than a measured miss-rate. 'Prefer one end-to-end seam pin over N isolated-unit pins' holds for behavior whose value is an integration outcome; it is not a claim that unit pins are generally inferior."
+    },
+    {
+      "id": "content-free-heuristic-vs-modern-art-260808",
+      "incident": "A ContentFreeImageDetector — skip the GenAI alt-text call when an image's decoded pixels are near-uniform (composite standard deviation <= 3.0 on a 0-255 scale) — would mark a monochrome painting (a Malevich Black Square, a Rothko color field, an International Klein Blue) as decorative and skip it, dropping content that IS there and inverting the accessibility-fidelity mission. The detector's docstring asserted, confidently, that a false-decorative on a real image was 'not possible' because its guard set (photos, charts) measured stddev >= 64, a 20x margin over the gate. The margin was real and irrelevant: it was measured on the wrong population. A blank spacer and a Malevich are pixel-identical in variance because the difference is not in the pixels. 'Content-free' is not a property of an image but of an image in a context of use; a strong model produced locally-excellent, typed, fail-safe code that optimized a pixel property while the load-bearing predicate was a contextual judgment — the thing a domain-aware engineer supplies in one second and commodity intelligence still missed.",
+      "chapter_slug": "implications-for-se",
+      "backs_claims": ["abundant-implementation", "seat-moves"],
+      "limitation": "A single caught-in-design incident, one operator, one product: the false-decorative was reasoned to and routed for a contextual-gate fix (a cheap thumbnail-to-VLM 'spacer vs artwork' gate plus a fidelity default of describe-when-uncertain), not observed harming a live user — a located capability-boundary, not a measured escape rate. The confident 'not possible' is the tell, not a metric."
     }
   ]
 }

@@ -3914,12 +3914,12 @@
             {
               "slug": "build-tests-for-agent-failure-modes-pin-the-class",
               "text": "Build tests for the agent's failure modes; pin the class.",
-              "block_index": 55
+              "block_index": 56
             },
             {
               "slug": "property-testing-heads-the-generative-family",
               "text": "Property testing heads a family of generative validation.",
-              "block_index": 57
+              "block_index": 58
             }
           ]
         },
@@ -3929,17 +3929,17 @@
           "heading_text": "Vibe coding treats the program as an I/O device; engineering treats it as a system",
           "topic_sentence": "When you vibe-code, you ask the agent to produce something that appears to satisfy the requested behavior, and the evidence you use is all external: does the demo run, does the output look right?",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 61,
           "points": [
             {
               "slug": "vibe-coding-trusts-io-engineering-checks-structure",
               "text": "Vibe-coding trusts external evidence; engineering checks structure.",
-              "block_index": 62
+              "block_index": 63
             },
             {
               "slug": "the-difference-is-what-counts-as-proof",
               "text": "The difference is what counts as proof.",
-              "block_index": 64
+              "block_index": 65
             }
           ]
         },
@@ -3949,17 +3949,17 @@
           "heading_text": "Explicitness is essential",
           "topic_sentence": "A normal codebase keeps most of its conceptual structure in human memory.",
           "id_source": "derived",
-          "block_index": 68,
+          "block_index": 69,
           "points": [
             {
               "slug": "agents-cant-hold-tacit-structure",
               "text": "Agents can't hold the tacit structure humans keep.",
-              "block_index": 70
+              "block_index": 71
             },
             {
               "slug": "explicit-artifacts-make-the-system-agent-legible",
               "text": "Explicit, queryable artifacts make the system agent-legible.",
-              "block_index": 73
+              "block_index": 74
             }
           ]
         },
@@ -3969,7 +3969,7 @@
           "heading_text": "The MAGE discipline",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 75,
+          "block_index": 76,
           "points": []
         },
         {
@@ -3978,17 +3978,17 @@
           "heading_text": "Governance is a spectrum from soft to hard",
           "topic_sentence": "The mechanisms I ended up with sorted along the axis Part 2 named: soft governance *aims* the agent, hard governance *holds* regardless of cooperation.",
           "id_source": "derived",
-          "block_index": 76,
+          "block_index": 77,
           "points": [
             {
               "slug": "soft-aims-hard-holds",
               "text": "Soft governance aims the agent; hard governance holds.",
-              "block_index": 78
+              "block_index": 79
             },
             {
               "slug": "second-occurrence-turns-an-audit-into-a-lint",
               "text": "The second occurrence of a failure earns a lint.",
-              "block_index": 81
+              "block_index": 82
             }
           ]
         },
@@ -3998,17 +3998,17 @@
           "heading_text": "AI is an autonomy amplifier",
           "topic_sentence": "The thing agents amplify is your autonomy — your capacity to turn intent into a working system without waiting on anyone.",
           "id_source": "derived",
-          "block_index": 85,
+          "block_index": 86,
           "points": [
             {
               "slug": "agents-amplify-autonomy-not-typing",
               "text": "Agents amplify autonomy, not typing speed.",
-              "block_index": 87
+              "block_index": 88
             },
             {
               "slug": "amplification-is-neutral-judgment-is-scarce",
               "text": "Amplification is neutral; judgment is now the scarce resource.",
-              "block_index": 89
+              "block_index": 90
             }
           ]
         },
@@ -4018,27 +4018,27 @@
           "heading_text": "What this means for the job",
           "topic_sentence": "Watching my own experience of software engineering get compressed, I expected to feel the role shrinking.",
           "id_source": "derived",
-          "block_index": 93,
+          "block_index": 94,
           "points": [
             {
               "slug": "experience-compresses-the-role-expands",
               "text": "The experience compresses; the role expands.",
-              "block_index": 95
+              "block_index": 96
             },
             {
               "slug": "converting-failures-needs-org-authority",
               "text": "Converting failures into practice requires organizational authority.",
-              "block_index": 98
+              "block_index": 99
             },
             {
               "slug": "future-is-converting-judgment-into-infrastructure",
               "text": "Engineering's future is converting judgment into infrastructure.",
-              "block_index": 100
+              "block_index": 101
             },
             {
               "slug": "solo-field-report-shape-feels-durable",
               "text": "A solo field report; the shape still feels durable.",
-              "block_index": 102
+              "block_index": 103
             }
           ]
         }
