@@ -69,6 +69,17 @@ before"). The em-dash is a *tool he varies with*, not a reflex — note in the e
 period, a colon, or a plain comma does the work instead. He avoids flowery flourish, passive-voice
 drift, performative hedging, and abstraction untethered from an example.
 
+## State the abstraction once. Vary the evidence.
+
+The theory is canonical. Examples are supporting evidence. As the book progresses, readers should
+encounter the same abstraction instantiated in different systems rather than repeatedly explained through
+the same system. Familiarity should come from repeated concepts, not repeated anecdotes.
+
+This captures the identity of the finished book, not just a structural convention. The manuscript is no
+longer "a book about DocAble." It is a textbook whose claims are substantiated by multiple worked
+examples, with DocAble as the deepest and most complete case study. That is a shift in authorial stance.
+The voice and prose style are unchanged.
+
 ## Teach the curious engineer, not the specialist
 
 Write formal material for the curious engineer, not for the specialist guarding the boundary of a field.
@@ -111,6 +122,11 @@ that don't.
   technical weight" characteristic, stated as a rule: reach for the common word ("pickle", "silver bullet")
   when it will carry the idea, and the exact technical term only when the plain word won't. An inflated word
   doing a plain word's job is the failure this catches.
+- **Economy of examples.** Prefer the smallest example that demonstrates the point. Across a chapter, vary
+  the examples so the reader sees the abstraction recurring across different engineering domains rather than
+  repeatedly through one implementation. This is the word-economy rule one level up: as the sentence rule
+  strips the word that carries no idea, economy of examples strips the redundant instance and rotates in a
+  fresh domain in its place. It is Tufte's data-ink principle for pedagogy.
 
 - **≤50 words per sentence — prose and captions alike.** No sentence exceeds roughly fifty words. A
   caption or accessible-description sentence is not exempt: a 100-word caption is as much a wall as a
@@ -144,17 +160,38 @@ the result; cut the warm-up and cut the recap.
 - **Definition first, motivation second.** Open with the result, the definition, the claim; let a
   sentence of motivation follow only where it earns its place. This is the principle behind the glossary's
   definition-first entries and the warm-up-deletion pass across the prose.
-- **Organize exposition by the engineering system, not the project timeline.** When a mechanism was
-  discovered "because this happened next," present it "because it logically follows." The case study
-  *motivates* a mechanism; the exposition is organized around the engineered system it belongs to. A lived
-  incident may open a section as motivation, but the section's spine is the architecture, and the reader
-  should be able to follow the mechanism without the chronology. (As-built status notes are the sanctioned
-  exception — mark them as divergence, do not let them structure the argument.)
+- **Organize exposition by the engineering system, not the project timeline.** Historical incidents
+  motivate the theory; they do not determine the structure of the chapter. Examples are evidence for the
+  abstraction, not the spine of the exposition. When a mechanism was discovered "because this happened
+  next," present it "because it logically follows." The case study *motivates* a mechanism; the exposition
+  is organized around the engineered system it belongs to. A lived incident may open a section as
+  motivation, but the section's spine is the architecture, and the reader should be able to follow the
+  mechanism without the chronology. (As-built status notes are the sanctioned exception — mark them as
+  divergence, do not let them structure the argument.)
 - **Present clinically: problem, structure, trade-offs, failure modes, consequences — not exhortation.**
   Describe the mechanism and the failure it kills; do not crown it, do not tell the reader every project
   should adopt it, do not comment on the idea's own importance. Confidence paired with an explicit caveat,
   never absolutism. This governs *structure and stance*; the sanctioned lived-detail / field-note asides
   (the first-person incidents that carry the book's warmth) stay intact.
+
+Worked examples strengthen this rule rather than relax it. When convergence across several systems shows a
+mechanism matters, the section no longer needs rhetorical motivation to persuade the reader that it does.
+You show Cloudflare, Docker, Siemens, and DocAble arriving at the same shape, and the evidence carries what
+the warm-up used to.
+
+## Section rhythm — the default template for Parts 2–4
+
+Sections in the argument Parts follow one rhythm: **Theory → Design space → Tradeoffs → Worked Examples →
+Takeaways → Transition.** This is house law, not advice. It is the book's pedagogy, and the default template
+a section reaches for unless it has a named reason to depart. State the theory, open the space of designs it
+admits, name the tradeoffs among them, ground them in worked examples, compress to takeaways, then hand off
+to the next section.
+
+### Worked Examples
+
+Present 2–4 concise examples from different domains whenever possible. Rotate sources across the book. End
+with a "Common Pattern" or "Takeaway" that names the abstraction illustrated by the examples rather than
+summarizing the implementations.
 
 ## Progressive density — let the book's language do more work over time
 
@@ -179,6 +216,10 @@ get conflated here; hold them apart.
   rule for how much to repeat. Within a **page**: do not restate. Within a **chapter**: repeat only in
   compressed or applied form. Across **Parts**: reuse the canonical NAME, not the full explanation. At the
   **conclusion**: invoke the idea, do not re-teach it.
+- **Do not repeat an example merely because it is familiar.** Once a concept has been established using
+  DocAble, later invocations should preferentially rotate to another example unless the unique details of
+  DocAble are essential. This is the four-scales rule applied to *evidence*: reuse the canonical name, and
+  rotate the instance.
 - **Progressive density applies to the mainline, not to optional primers.** The rule compresses the book's
   *own* vocabulary: the mainline should increasingly invoke an established MAGE concept without
   re-explaining it. It does not forbid a later inset from teaching an *external* concept from first
