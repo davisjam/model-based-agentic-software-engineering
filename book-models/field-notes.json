@@ -52,6 +52,27 @@
       "chapter_slug": "the-executable-zoo",
       "backs_claims": ["modeling-thesis"],
       "limitation": "Still a field note by A.24 (trigger on the trait, not the mere possibility): fired on three of six model Epics, not yet a formalized query surface — floated as the larger scheme, deliberately not built until the yield stabilizes. Registered here by content from the Epic-dir note; the parent-repo promotion into docs/field-notes/ is a separate step."
+    },
+    {
+      "id": "architectural-drift-open-loop-no-sensor-260807",
+      "incident": "A remediation pass-pipeline that was genuinely clean — one driver, one phase taxonomy, one typed pass-metadata contract, a topological sort validating pass order at type-init — had nonetheless drifted at seven sites where the declared order no longer matched what actually executed. The accidental divergences were not scattered: they clustered exactly where the accessibility-GenAI remediation loop iterated hardest (the PowerPoint and PDF runners), because each new generation bet was wired inline 'for now' outside the pass registry, and the one in-code guard — the topo-sort — quantified only over REGISTERED passes, so every inline addition was invisible to it. The formats carrying little GenAI surface (the spreadsheet and document runners) stayed clean. The lesson: an open loop — an iteratively capability-adding subsystem — with neither a constraint that forbids the wrong shape nor a sensor that makes drift visible will decay a clean architecture, and it decays fastest exactly where iteration is most active. The fix pairs re-absorbing the inline work into the model with a live-parity sensor that compares the passes actually executed against the declared graph.",
+      "chapter_slug": "keeping-models-in-sync",
+      "backs_claims": ["alignment-thesis", "H5-local-model-deficiency"],
+      "limitation": "One pipeline in one product, single operator; the seven-site drift count and its concentration where iteration is hottest are one project's lived observation, not a measured rate across systems. The distinction the note leans on — corrosion (accidental inline drift a sensor must catch) versus library-forced essential divergence (correctly allowlisted) — is a judgment call, not a mechanical signal."
+    },
+    {
+      "id": "chunk-fanout-stall-managed-plane-260807",
+      "incident": "A multi-chunk document job hung for nearly an hour on staging — never completing, never failing — because the newer serverless fan-out published each chunk in a non-atomic per-chunk loop, and a created-but-undelivered task stranded the remaining chunks with no exception raised. Two model invariants formally declared this state impossible, but their satisfaction anchor covered only the older enqueue plane; a second backend had been added without re-anchoring them, so the new loop was invisible to the model. The exhaustive-state check compounded the blindness by stubbing the publish step (one chunk, always delivered), leaving the lost-subset state structurally unreachable in its search — a strong but static model suite that could never surface the class. It was found live, under load, by a warm-performance sweep, not by any single-call test; the fix re-anchored both invariants to the new plane, made the publish re-drivable, added a completeness sweep, and de-stubbed the search so the bug became reachable and a witness could go red then green.",
+      "chapter_slug": "generative-validation",
+      "backs_claims": ["modeling-thesis", "alignment-thesis"],
+      "limitation": "One incident in one product; a lived find under a specific staging load, not a measured detection rate. The two lessons it grounds — a satisfaction anchor that covers one plane while the code runs two, and a stubbed validation step that makes an invariant unfalsifiable — are cautions on WHEN a model's defense holds, not evidence that modeling generally fails; the note is the honest limit-case of the 'modeling catches real bugs' record."
+    },
+    {
+      "id": "reap-unit-pins-green-live-fails-pin-the-seam-260807",
+      "incident": "A worktree-reap fix landed with fifteen green unit pins and a clean self-report, and it did not work: every run still reaped nothing, and the operator kept force-cleaning landed worktrees by hand for the rest of the session. The pins exercised the reap wrapper in isolation — they built the completion marker themselves and asserted the wrapper's return value — while the real defect lived one layer down, in a second guard INSIDE the subprocess the wrapper shells out to. A green unit suite over the unit-in-isolation is silent about the seam the unit crosses. The remedy was one honest end-to-end pin that drives the real land-then-clean path, faking only the leaf subprocesses with a faithful contract; it goes red on the bug and green with the fix. The operator's own repeated manual toil was the ground-truth signal that 'passed its pins' did not mean 'works' — operator friction is a symptom worth root-causing, not just working around.",
+      "chapter_slug": "implications-for-se",
+      "backs_claims": ["H3-mechanized-assurance", "H5-local-model-deficiency"],
+      "limitation": "A single incident, single operator; illustrative of a seam-blindness class rather than a measured miss-rate. 'Prefer one end-to-end seam pin over N isolated-unit pins' holds for behavior whose value is an integration outcome; it is not a claim that unit pins are generally inferior."
     }
   ]
 }
