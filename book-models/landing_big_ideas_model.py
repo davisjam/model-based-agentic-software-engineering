@@ -45,6 +45,7 @@ import sys
 from dataclasses import dataclass, field
 
 from _projection_parity import (
+    catalogue_entry_paths,
     catalogue_entry_slugs,
     page_block_parity,
     require_fields,
@@ -165,8 +166,54 @@ def concept_figures(c: Concept) -> "list[tuple[str, str]]":
     return figs
 
 
+# ---- human-readable names for the Mechanisms + Related card cells -----------------------------------
+# The card is reader-facing, so it shows names a person reads, never the kebab slugs that key the model.
+# A mechanism's name is its catalogue ENTRY title (the authoritative human name), minus the parenthetical
+# gloss and any code-span backticks; a related concept's name is that concept's own title, cut at its
+# em-dash subtitle so the cell stays a short noun phrase.
+
+_MECH_NAME_CACHE: "dict[str, str] | None" = None
+
+
+def _dekebab(slug: str) -> str:
+    """Fallback human name when an entry title cannot be read: hyphens to spaces, first letter capital."""
+    s = slug.replace("-", " ").strip()
+    return s[:1].upper() + s[1:] if s else s
+
+
+def mechanism_display_name(slug: str) -> str:
+    """The mechanism's reader-facing name — its catalogue entry's `# <title>` with the trailing
+    `(qualifier)` gloss and any `code` backticks stripped, so the concept card reads 'Self-governance', not
+    the `self-governance` slug. Falls back to a de-kebabbed slug if the entry title cannot be read."""
+    global _MECH_NAME_CACHE
+    if _MECH_NAME_CACHE is None:
+        _MECH_NAME_CACHE = {}
+        for s, html in catalogue_entry_paths().items():
+            md_path = os.path.join(_ROOT, html[:-5] + ".md")  # <role>/<family>/<slug>.html -> .md
+            try:
+                first = open(md_path, encoding="utf-8").readline().strip()
+            except OSError:
+                continue
+            if first.startswith("# "):
+                title = first[2:].split(" (", 1)[0].replace("`", "").strip()
+                if title:
+                    _MECH_NAME_CACHE[s] = title
+    return _MECH_NAME_CACHE.get(slug) or _dekebab(slug)
+
+
+def concept_display_name(slug: str, model: ConceptModel) -> str:
+    """The related concept's reader-facing name — its `title`, cut at the ' — ' subtitle so a long
+    two-part title ('Engineering Capital — Churn vs. Compounding') shows its short head in the card."""
+    for c in model.concepts:
+        if c.slug == slug:
+            return c.title.split(" — ", 1)[0].strip()
+    return _dekebab(slug)
+
+
 def _card_mechanisms_cell(c: Concept) -> str:
-    return f"{len(c.mechanisms)} — " + ", ".join(c.mechanisms) if c.mechanisms else "— none yet"
+    if not c.mechanisms:
+        return "— none yet"
+    return " · ".join(mechanism_display_name(s) for s in c.mechanisms)
 
 
 def concept_card_lines(c: Concept, model: ConceptModel) -> "list[str]":
@@ -178,7 +225,7 @@ def concept_card_lines(c: Concept, model: ConceptModel) -> "list[str]":
         "| --- | --- |",
         f"| Claim | {c.claim} |",
         f"| Mechanisms | {_card_mechanisms_cell(c)} |",
-        f"| Related | {' · '.join(_related_slugs(model, c)) or '—'} |",
+        f"| Related | {' · '.join(concept_display_name(s, model) for s in _related_slugs(model, c)) or '—'} |",
         f"| In the book | {_book_home_href(c.book_home)} |",
     ]
 

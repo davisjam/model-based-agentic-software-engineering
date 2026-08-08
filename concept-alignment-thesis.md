@@ -5,8 +5,8 @@
 | Concept | Big idea 3 · Thesis 2 |
 | --- | --- |
 | Claim | Enforced mechanisms hold work to intent across later changes. Constrain first so the wrong move is unavailable; where prevention falls short, a sensor catches the drift. |
-| Mechanisms | 4 — typed-categories, semantic-lints, content-validator, f10-wiring-lint |
-| Related | modeling-thesis · convert-failures |
+| Mechanisms | Typed ViolationCategory / FailureCategory enums · The Audit-to-Lint mechanism · ContentValidator · F10 mutator-stamp-wiring lint |
+| Related | Documentation, taken to its limit, is a structured model · Convert recurring failures into controls |
 | In the book | book/2.3-the-governed-environment.html |
 
 ## The idea
@@ -46,10 +46,10 @@ case that may never be written.
 
 ## The mechanisms that instantiate it
 
-- [typed-categories](product/repair-vocabulary/typed-categories.md)
-- [semantic-lints](product/validation-and-conformance/semantic-lints.md)
-- [content-validator](product/validation-and-conformance/content-validator.md)
-- [f10-wiring-lint](product/provenance-and-attribution/f10-wiring-lint.md)
+- [Typed ViolationCategory / FailureCategory enums](product/repair-vocabulary/typed-categories.md)
+- [The Audit-to-Lint mechanism](product/validation-and-conformance/semantic-lints.md)
+- [ContentValidator](product/validation-and-conformance/content-validator.md)
+- [F10 mutator-stamp-wiring lint](product/provenance-and-attribution/f10-wiring-lint.md)
 
 ## Related concepts
 

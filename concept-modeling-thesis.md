@@ -5,8 +5,8 @@
 | Concept | Big idea 3 · Thesis 1 |
 | --- | --- |
 | Claim | A context-bounded agent cannot hold the whole system. Give it a structured, drift-checked model to reason through, and the work fits in the window. |
-| Mechanisms | 5 — executable-source-of-truth, drift-parity-gates, component-zone-model, pdf-model, office-models |
-| Related | governance-centric · alignment-thesis |
+| Mechanisms | Executable source-of-truth models · Drift & parity gates · Component & zone model · PdfModel · Office Models |
+| Related | The Engineered Environment · Hold intent with a mechanism: prevent first, sense the rest |
 | In the book | book/1.3-loops-and-models.html |
 
 ## The idea
@@ -79,11 +79,11 @@ lives in markdown; the structure lives in the model; the gate keeps the two from
 
 ## The mechanisms that instantiate it
 
-- [executable-source-of-truth](models-bridge/system-models/executable-source-of-truth.md)
-- [drift-parity-gates](models-bridge/system-models/drift-parity-gates.md)
-- [component-zone-model](models-bridge/system-models/component-zone-model.md)
-- [pdf-model](product/canonical-models-and-seams/pdf-model.md)
-- [office-models](product/canonical-models-and-seams/office-models.md)
+- [Executable source-of-truth models](models-bridge/system-models/executable-source-of-truth.md)
+- [Drift & parity gates](models-bridge/system-models/drift-parity-gates.md)
+- [Component & zone model](models-bridge/system-models/component-zone-model.md)
+- [PdfModel](product/canonical-models-and-seams/pdf-model.md)
+- [Office Models](product/canonical-models-and-seams/office-models.md)
 
 ## Related concepts
 

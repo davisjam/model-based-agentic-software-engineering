@@ -5,8 +5,8 @@
 | Concept | Big idea 6 · the seat |
 | --- | --- |
 | Claim | SDLC becomes SELC: one seat reassigned, the lifecycle otherwise intact. The fleet writes the code; the engineer keeps the seats that were always the engineering. |
-| Mechanisms | 3 — independent-design-review, epic-and-design-templates, epic-definition-of-done |
-| Related | convert-failures |
+| Mechanisms | Independent pre-implementation design review · Epic & design-doc templates · Epic Definition-of-Done |
+| Related | Convert recurring failures into controls |
 | In the book | book/1.5-the-engineers-seat.html |
 
 ## The idea
@@ -44,9 +44,9 @@ needs someone who can specify and judge, not someone who types a little faster.
 
 ## The mechanisms that instantiate it
 
-- [independent-design-review](agent/governance-doc-controls/independent-design-review.md)
-- [epic-and-design-templates](agent/governance-doc-controls/epic-and-design-templates.md)
-- [epic-definition-of-done](agent/governance-doc-controls/epic-definition-of-done.md)
+- [Independent pre-implementation design review](agent/governance-doc-controls/independent-design-review.md)
+- [Epic & design-doc templates](agent/governance-doc-controls/epic-and-design-templates.md)
+- [Epic Definition-of-Done](agent/governance-doc-controls/epic-definition-of-done.md)
 
 ## Related concepts
 

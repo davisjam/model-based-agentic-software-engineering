@@ -5,8 +5,8 @@
 | Concept | Big idea 4 · the object |
 | --- | --- |
 | Claim | The environment is the object of engineering. Encode each obligation as a mechanism it enforces, so quality is a property of the ground agents stand on. |
-| Mechanisms | 3 — pre-commit-hook, staged-deploy-gates, cron-alerts-gate |
-| Related | churn · modeling-thesis |
+| Mechanisms | Pre-commit hook · Staged deploy gates · Cron-alerts gate |
+| Related | Engineering Capital · Documentation, taken to its limit, is a structured model |
 | In the book | book/2.3-the-governed-environment.html |
 
 ## The idea
@@ -47,9 +47,9 @@ commit without getting tired. Reviewers watch the work; the environment holds th
 
 ## The mechanisms that instantiate it
 
-- [pre-commit-hook](agent/gates-and-merge-train/pre-commit-hook.md)
-- [staged-deploy-gates](agent/gates-and-merge-train/staged-deploy-gates.md)
-- [cron-alerts-gate](agent/lifecycle-and-observability/cron-alerts-gate.md)
+- [Pre-commit hook](agent/gates-and-merge-train/pre-commit-hook.md)
+- [Staged deploy gates](agent/gates-and-merge-train/staged-deploy-gates.md)
+- [Cron-alerts gate](agent/lifecycle-and-observability/cron-alerts-gate.md)
 
 ## Related concepts
 

@@ -6,7 +6,7 @@
 | --- | --- |
 | Claim | One environment, two fates. Ungoverned, effort dissipates as churn — rediscovering, undoing, reconciling. Governed and converting, it accrues as engineering capital: the same effort compounds. |
 | Mechanisms | — none yet |
-| Related | governance-centric |
+| Related | The Engineered Environment |
 | In the book | book/1.1-the-printer.html |
 
 ## The idea

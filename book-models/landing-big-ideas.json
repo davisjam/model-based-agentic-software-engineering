@@ -116,7 +116,7 @@
     "figure": "new-engineering-problem.svg",
     "book_home": "why-mage-follows-from-the-machine",
     "claim": "When intelligence becomes a commodity, implementation stops being scarce. What is scarce is trust — so the engineer's object of work shifts from code to environment.",
-    "more": "Coding used to be the bottleneck. Once agents can build almost anything you can describe, the bottleneck moves: the hard part is governing the conditions under which fast code can be trusted. That shift changes the engineer's job — from writing the code to engineering the environment the agents write it in. Everything that follows answers the problem this idea names.",
+    "more": "The shift is recent and mechanical. Generative models did not make software easier to write so much as cheap to write, at a volume no reviewer can keep pace with. Writing became abundant while reading stayed human-slow — and everything that is hard now follows from that one inversion.",
     "mechanisms": ["self-governance", "content-validator", "staged-deploy-gates"],
     "related_ideas": ["churn", "governance-centric"],
     "entry_figures": [
@@ -133,7 +133,7 @@
     "figure": "six-company-map.svg",
     "book_home": "where-mage-fits",
     "claim": "Six industrial systems, engineered independently, land on one set of principles. None generalizes the whole theory, yet each instantiates a distinct arm — convergence, not derivation.",
-    "more": "The theory was developed on one deeply studied system, so the question is whether it travels. Reconstructed against six independent industrial systems — Cloudflare, Docker, Shopify, Spotify, Siemens, Zenseact — the same constructs recur: models, enforced mechanisms, failures converted into durable structure. Each system leans on a different arm, and MAGE names the fit, supplies the vocabulary, and marks what none of them generalizes.",
+    "more": "One system, however deeply studied, could always be the special case that flatters its own method. The test that carries weight is whether the constructs hold where no one had heard of the method — so the theory was read against six industrial systems built for entirely different reasons.",
     "mechanisms": ["executable-source-of-truth", "pre-commit-hook", "self-governance"],
     "related_ideas": ["governance-centric", "convert-failures"],
     "entry_figures": []
@@ -148,7 +148,7 @@
     "figure": "determinization-frontier.svg",
     "book_home": "a-new-empirical-regime",
     "claim": "Three open frontiers: how far judgment can migrate into deterministic machinery, how to census a governed environment's coverage and gaps, and what stronger models unlock.",
-    "more": "A theory earns its keep by opening questions. **Determinization frontier:** each obligation migrates from prompt toward proof — skill, rule, lint, model-invariant, simulation — and how far it can go is an empirical question. **Governance census:** obligations, mechanisms, coverage, gaps, and orphans become measurable, so a governed environment can be audited rather than asserted. **Stronger models:** what each new tier of intelligence lets the environment stop enforcing by hand. This is the empirical regime the book opens, not closes.",
+    "more": "These frontiers are not loose ends; they are where the method turns testable. Each names something you could measure against real systems rather than assert — how far an obligation can be pushed toward proof, what a governed environment's coverage actually is, and what the next tier of models makes cheap enough to retire by hand.",
     "mechanisms": ["control-coverage-census", "governance-graph", "formal-invariant-verification"],
     "related_ideas": ["convert-failures", "modeling-thesis"],
     "entry_figures": [

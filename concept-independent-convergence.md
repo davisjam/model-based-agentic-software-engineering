@@ -5,8 +5,8 @@
 | Concept | Big idea 5 · the corroboration |
 | --- | --- |
 | Claim | Six industrial systems, engineered independently, land on one set of principles. None generalizes the whole theory, yet each instantiates a distinct arm — convergence, not derivation. |
-| Mechanisms | 3 — executable-source-of-truth, pre-commit-hook, self-governance |
-| Related | governance-centric · convert-failures |
+| Mechanisms | Executable source-of-truth models · Pre-commit hook · Self-governance |
+| Related | The Engineered Environment · Convert recurring failures into controls |
 | In the book | book/6.5-where-mage-fits.html |
 
 ## The idea
@@ -32,11 +32,10 @@ whole theory. Each leans hard on one arm and barely touches the others: Cloudfla
 governance, Spotify on fleet-scale verification, Siemens on models as the engineering surface. Read any one
 alone and you would reconstruct a fragment.
 
-That is why this is convergence and not derivation. The theory is not squeezed out of the six cases; it was
-built elsewhere, and the six independently arrive at pieces of it. Independent arrival at a shared
-destination is corroboration of a different and stronger kind than a proof drawn from the same examples that
-inspired it. MAGE's job across the six is to name the fit, supply the shared vocabulary, and mark plainly
-what none of them reaches.
+The distinction earns the claim. The theory was not squeezed out of these six cases; it was built
+elsewhere, and the six arrive at pieces of it on their own. Independent arrival at a shared destination
+corroborates in a stronger way than a proof drawn from the very examples that inspired it — and MAGE's job
+across the six is to name the fit, supply the vocabulary, and mark plainly what none of them reaches.
 
 ## What recurs across the six
 
@@ -45,15 +44,14 @@ built structured models its agents reason through, mechanisms the environment en
 a habit of turning a failure it hit into durable structure so the failure would not return. The names
 differ; the shapes do not.
 
-That recurrence is the corroboration. Six groups facing the trust problem from six starting points reached
-for the same primitives — evidence the primitives answer something real about governing autonomous work,
-not something local to one codebase.
+That recurrence is the evidence: six groups, six starting points, the same primitives — a sign they answer
+something real about governing autonomous work, not something local to one codebase.
 
 ## The mechanisms that instantiate it
 
-- [executable-source-of-truth](models-bridge/system-models/executable-source-of-truth.md)
-- [pre-commit-hook](agent/gates-and-merge-train/pre-commit-hook.md)
-- [self-governance](agent/governance-doc-controls/self-governance.md)
+- [Executable source-of-truth models](models-bridge/system-models/executable-source-of-truth.md)
+- [Pre-commit hook](agent/gates-and-merge-train/pre-commit-hook.md)
+- [Self-governance](agent/governance-doc-controls/self-governance.md)
 
 Each construct that recurs across the six has a worked instance in this catalogue. A structured model the
 fleet reasons through appears as the executable source of truth that fails the build when it drifts from the

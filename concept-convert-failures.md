@@ -5,8 +5,8 @@
 | Concept | Big idea 5 · the practice |
 | --- | --- |
 | Claim | Velocity surfaces the failures you could not foresee. Convert each recurring one into a mechanism, pushed as far toward hard enforcement as it will go. |
-| Mechanisms | 4 — self-governance, semantic-lints, coherence-lints, ddt-pin-trailers |
-| Related | alignment-thesis · seat-moves |
+| Mechanisms | Self-governance · The Audit-to-Lint mechanism · Cross-source coherence lints · DDT pin-trailers |
+| Related | Hold intent with a mechanism: prevent first, sense the rest · The lifecycle stays, but now agents sit in the developer's seat |
 | In the book | book/2.3-the-governed-environment.html |
 
 ## The idea
@@ -45,10 +45,10 @@ one spot; a control is a property of the whole environment.
 
 ## The mechanisms that instantiate it
 
-- [self-governance](agent/governance-doc-controls/self-governance.md)
-- [semantic-lints](product/validation-and-conformance/semantic-lints.md)
-- [coherence-lints](product/validation-and-conformance/coherence-lints.md)
-- [ddt-pin-trailers](product/regression-tests/ddt-pin-trailers.md)
+- [Self-governance](agent/governance-doc-controls/self-governance.md)
+- [The Audit-to-Lint mechanism](product/validation-and-conformance/semantic-lints.md)
+- [Cross-source coherence lints](product/validation-and-conformance/coherence-lints.md)
+- [DDT pin-trailers](product/regression-tests/ddt-pin-trailers.md)
 
 ## Related concepts
 

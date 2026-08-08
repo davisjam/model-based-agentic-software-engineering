@@ -5,8 +5,8 @@
 | Concept | Big idea 1 · the problem |
 | --- | --- |
 | Claim | When intelligence becomes a commodity, implementation stops being scarce. What is scarce is trust — so the engineer's object of work shifts from code to environment. |
-| Mechanisms | 3 — self-governance, content-validator, staged-deploy-gates |
-| Related | churn · governance-centric |
+| Mechanisms | Self-governance · ContentValidator · Staged deploy gates |
+| Related | Engineering Capital · The Engineered Environment |
 | In the book | book/1.4-why-mage-follows-from-the-machine.html |
 
 ## The idea
@@ -35,32 +35,26 @@ environment rather than of any one author's care.
 
 ## What actually got scarce
 
-Name the scarce thing precisely, because the whole method follows from it. It is not intelligence, which is
-now cheap and getting cheaper. It is not implementation, which the fleet supplies faster than we can read
-it. What is scarce is a warranted reason to believe fast-written code is correct, faithful to intent, and
-safe to ship.
-
-That reason cannot come from reading everything. A fleet outproduces every human reviewer, so trust that
-depends on a person inspecting each change does not scale with the velocity the fleet brings. Trust has to
-be manufactured by the environment — earned once, per class of failure, and then held automatically on
-every change after.
+You cannot review your way back to trust. A fleet outproduces every human reviewer, so trust that leans on a
+person inspecting each change never keeps pace with the volume the fleet brings. What is scarce, then, is not
+intelligence or implementation but a warranted reason to believe fast-written code is correct, faithful to
+intent, and safe to ship — and that reason has to be manufactured by the environment, earned once per class
+of failure and then held automatically on every change after.
 
 ## Why this is a new problem, not faster coding
 
-Treat this as a speedup and you draw the wrong plan. A faster typist writes the same program sooner; a fleet
-crossing the trust barrier writes ten times the program and asks you to believe all of it. The work that
-grows is not writing but governing: deciding what must be true, encoding those obligations where the fleet
-cannot route around them, and sensing the drift that prevention misses.
-
-The lever of quality moved. It used to sit in the code and the discipline of the person writing it. It now
-sits in the environment the agents work inside. Everything else in this argument — the models, the enforced
-mechanisms, the practice of converting failures into controls — is an answer to the problem this idea names.
+This is not the same job done faster. A quicker typist writes the same program sooner; a fleet across the
+trust barrier writes ten times the program and asks you to believe all of it. So the work that grows is not
+writing but governing — deciding what must be true, encoding those obligations where the fleet cannot route
+around them, and sensing the drift that prevention misses. That governing work is what the rest of this
+argument builds: the models the fleet reasons through, the mechanisms that hold intent, the practice of
+converting failures into controls.
 
 ## The mechanisms that instantiate it
 
-- [self-governance](agent/governance-doc-controls/self-governance.md)
-- [content-validator](product/validation-and-conformance/content-validator.md)
-- [staged-deploy-gates](agent/gates-and-merge-train/staged-deploy-gates.md)
+- [Self-governance](agent/governance-doc-controls/self-governance.md)
+- [ContentValidator](product/validation-and-conformance/content-validator.md)
+- [Staged deploy gates](agent/gates-and-merge-train/staged-deploy-gates.md)
 
 The environment earns trust the way an engineer earns it: by construction, not by promise. It converts each
 recurring failure into a durable control so the class cannot return. It validates that the output still

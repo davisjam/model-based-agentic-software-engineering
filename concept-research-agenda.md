@@ -5,8 +5,8 @@
 | Concept | Big idea 6 · the frontier |
 | --- | --- |
 | Claim | Three open frontiers: how far judgment can migrate into deterministic machinery, how to census a governed environment's coverage and gaps, and what stronger models unlock. |
-| Mechanisms | 3 — control-coverage-census, governance-graph, formal-invariant-verification |
-| Related | convert-failures · modeling-thesis |
+| Mechanisms | Control-coverage census · Governance graph · Formal invariant verification |
+| Related | Convert recurring failures into controls · Documentation, taken to its limit, is a structured model |
 | In the book | book/6.3-a-new-empirical-regime.html |
 
 ## The idea
@@ -59,9 +59,9 @@ regime rather than settling it.
 
 ## The mechanisms that instantiate it
 
-- [control-coverage-census](models-bridge/system-models/control-coverage-census.md)
-- [governance-graph](models-bridge/system-models/governance-graph.md)
-- [formal-invariant-verification](models-bridge/system-models/formal-invariant-verification.md)
+- [Control-coverage census](models-bridge/system-models/control-coverage-census.md)
+- [Governance graph](models-bridge/system-models/governance-graph.md)
+- [Formal invariant verification](models-bridge/system-models/formal-invariant-verification.md)
 
 The frontiers are not only future work; the catalogue already reaches toward them. A coverage census bins
 the controls by what they guard and surfaces the targets left uncovered. A governance graph makes the
