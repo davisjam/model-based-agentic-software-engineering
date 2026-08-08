@@ -99,6 +99,82 @@ def _parse_point(arg: str) -> "tuple[str, str, list[str]] | None":
     return slug, claim, terms
 
 
+# ── Worked-Examples gallery (the GoF "Known Uses" directive) ─────────────────────────────────────────
+# A significant section closes with a gallery bracketed by `<!-- worked-examples: <construct-key> -->` …
+# `<!-- worked-examples-end -->`. Inside, each `### Example — <Source>` heads a 2-4-sentence HAND-AUTHORED
+# gloss; a `<!-- takeaway -->` marker introduces the closing Takeaway line that names the shared abstraction.
+# The ROSTER (which sources, in what order) PROJECTS from the industry-cases matrix; the PROSE stays authored
+# (never machine-composed). Both render targets collect the bracketed span and hand its raw inner markdown to
+# `parse_worked_examples`, so an author's blank-line placement inside the block never matters — the parser
+# line-scans for the `### Example` heads and the takeaway divider. These regexes are the SSOT; the join lint
+# (book-models/lint_worked_examples_join.py) mirrors them for its stdlib-standalone scan.
+WEX_OPEN_RE = re.compile(r"^<!--\s*worked-examples:\s*(?P<key>[a-z0-9-]+)\s*-->\s*$", re.I)
+WEX_END_RE = re.compile(r"^<!--\s*worked-examples-end\s*-->\s*$", re.I)
+_WEX_TAKEAWAY_RE = re.compile(r"^<!--\s*takeaway\s*-->\s*$", re.I)
+#: `### Example — <Source>` (em-dash house style; hyphen/en-dash accepted). An optional trailing `{other}` /
+#: `{counter-example}` brace tag types the slot explicitly — the join lint checks `industry-case` slots
+#: against the matrix (WE1) and EXEMPTS `other`; `counter-example` is the sanctioned below-partial opt-in.
+WEX_EXAMPLE_RE = re.compile(r"^#{3,4}\s+Example\s*[—–-]\s*(?P<label>.+?)\s*$", re.I)
+_WEX_TAG_RE = re.compile(r"^(?P<label>.*?)\s*\{(?P<tag>other|counter-example)\}\s*$", re.I)
+
+
+@dataclass
+class WexCase:
+    """One gallery slot — a named source, an optional explicit type tag, and the hand-authored gloss. A
+    projected stub carries an empty `prose_md` for the author to fill; `explicit_tag` is None unless the
+    author braces the head `{other}`/`{counter-example}` (else the join lint resolves the type by name)."""
+    source: str                    # display label, any `{tag}` stripped ("Cloudflare", "Siemens (near-miss)")
+    explicit_tag: "str | None"     # "other" | "counter-example" | None
+    prose_md: str                  # the authored gloss (empty in a projected stub)
+
+
+@dataclass
+class WorkedExamples:
+    """A parsed Worked-Examples gallery — the construct-key weld, the ordered source slots, and the Takeaway."""
+    construct_key: str
+    cases: "list[WexCase]"
+    takeaway_md: str
+
+
+def _split_wex_example_head(label_raw: str) -> "tuple[str, str | None]":
+    """Split a `### Example — <Source> {tag}` head's label from its optional `{other}`/`{counter-example}`
+    brace tag. Returns (display-label, tag|None)."""
+    m = _WEX_TAG_RE.match(label_raw)
+    if m:
+        return m.group("label").strip(), m.group("tag").lower()
+    return label_raw.strip(), None
+
+
+def parse_worked_examples(construct_key: str, inner_md: str) -> WorkedExamples:
+    """Parse the raw markdown BETWEEN `<!-- worked-examples: KEY -->` and `<!-- worked-examples-end -->`
+    (both markers excluded) into the typed gallery. Line-scans for `### Example — <Source>` heads and the
+    `<!-- takeaway -->` divider, so blank-line placement inside the block does not matter. Prose under a head
+    is that slot's authored gloss; prose after the takeaway divider is the Takeaway line."""
+    cases: "list[WexCase]" = []
+    takeaway_lines: "list[str]" = []
+    cur_prose: "list[str]" = []
+    in_takeaway = False
+    for raw in inner_md.splitlines():
+        s = raw.strip()
+        if _WEX_TAKEAWAY_RE.match(s):
+            in_takeaway = True
+            continue
+        if in_takeaway:
+            takeaway_lines.append(raw)
+            continue
+        me = WEX_EXAMPLE_RE.match(s)
+        if me:
+            label, tag = _split_wex_example_head(me.group("label"))
+            cur_prose = []
+            cases.append(WexCase(source=label, explicit_tag=tag, prose_md=""))
+            continue
+        if cases:
+            cur_prose.append(raw)
+            cases[-1].prose_md = "\n".join(cur_prose).strip()
+    return WorkedExamples(construct_key=construct_key.strip(), cases=cases,
+                          takeaway_md="\n".join(takeaway_lines).strip())
+
+
 @dataclass
 class Ref:
     """A `[ref:key]` cross-reference found in prose, with where it sits (for the before-its-float rule)."""

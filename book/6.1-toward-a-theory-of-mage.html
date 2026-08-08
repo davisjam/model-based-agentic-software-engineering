@@ -232,6 +232,24 @@ table.book-table.meta-card tr + tr td { border-top: 1px solid var(--rule, rgba(1
 table.book-table.convergence-key .pat-name { display: block; font-weight: 600; }
 table.book-table.convergence-key .pat-construct { display: block; margin-top: 0.1rem;
     font-variant: small-caps; letter-spacing: 0.02em; font-size: 0.82em; color: var(--muted); }
+/* Worked-Examples gallery (`.worked-examples`, the GoF "Known Uses" block that closes a significant section):
+   a titled, scannable set of 2-4 mini-cases + an accent-ruled Takeaway naming the shared abstraction. Shares
+   the accent left-rule idiom with `.case-onepager`, but sets the whole block apart as a mode-shift from body
+   prose so a reader reads the shape once and scans on reflex (B3 gallery-format-spec). */
+.worked-examples { margin: 1.6rem 0; padding: 0.2rem 0 0.2rem 1.1rem;
+    border-left: 3px solid var(--accent); }
+.worked-examples .wex-title { margin: 0 0 0.7rem; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+.worked-examples .wex-case { margin: 0 0 0.7rem; }
+.worked-examples .wex-case p { margin: 0; }
+.worked-examples .wex-src { font-weight: 700; }
+/* The Takeaway reads as a DIFFERENT kind of statement than the examples — its own top rule + accent label —
+   so it forces the reader to compare abstractions, not implementations (B3 R4). */
+.worked-examples .wex-takeaway { margin: 0.9rem 0 0; padding-top: 0.7rem;
+    border-top: 1px solid var(--rule, rgba(120,113,108,0.28)); }
+.worked-examples .wex-takeaway p { margin: 0; }
+.worked-examples .wex-tk-label { font-weight: 700; font-variant: small-caps; letter-spacing: 0.03em;
+    color: var(--accent); }
 blockquote table.book-table { background: transparent; }
 blockquote .inset-title { font-style: normal; font-weight: 700; margin: 0 0 0.4rem; }
 blockquote pre.mermaid { font-style: normal; }

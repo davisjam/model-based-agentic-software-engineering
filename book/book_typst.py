@@ -879,6 +879,26 @@ def _onepager_card_typst(body: str) -> str:
             f"width: 100%, breakable: true)[\n{body}\n]")
 
 
+def _render_worked_examples_typst(we) -> str:
+    """The Typst twin of the web `.worked-examples` gallery — a titled block holding 2-4 mini-cases (a bold
+    source lead-in + the authored gloss, each `breakable: false` so an example never splits across a page,
+    B3 §3) closed by the accent left-ruled Takeaway card (reuses `_onepager_card_typst`). The block sits set
+    apart on the accent left-rule so it reads as a mode-shift from body prose. Roster projects; prose authored."""
+    parts: list[str] = [
+        '#text(size: 7.5pt, weight: "bold", tracking: 0.09em, fill: dt.accent)[WORKED EXAMPLES]',
+    ]
+    for c in we.cases:
+        src = inline_typst(c.source)
+        prose = inline_typst(" ".join(c.prose_md.split()))
+        parts.append(f"#block(breakable: false, above: 0.65em, below: 0.2em)[#strong[{src}.] {prose}]")
+    if we.takeaway_md:
+        tk = inline_typst(" ".join(we.takeaway_md.split()))
+        parts.append(_onepager_card_typst(f"#strong[Takeaway.] {tk}"))
+    body = "\n".join(parts)
+    return ("#block(stroke: (left: 3pt + dt.accent), inset: (left: 12pt, top: 6pt, bottom: 6pt), "
+            f"width: 100%, above: 1em, below: 1em, breakable: true)[\n{_indent(body)}\n]")
+
+
 def _frame_apparatus_typst(body: str, breakable: bool = False) -> str:
     """Wrap a rendered apparatus chapter in a bordered `#block` — a hairline box on the panel tint with an
     accent top-rule, mirroring the web `.apparatus-page`. `breakable: false` (the default) keeps the whole
@@ -1026,6 +1046,35 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
             if b.directive == "case-onepager":
                 pending_onepager = True    # arm the one-pager card wrap for the next TABLE block
                 continue
+            if b.directive == "worked-examples":
+                # A Worked-Examples gallery: collect forward to `worked-examples-end`, join the bracketed
+                # blocks' raw markdown (the `### Example` heads, their gloss, and the `<!-- takeaway -->`
+                # divider all survive in `.raw`), hand it to the shared parser, and emit ONE titled block.
+                # Mirrors the convergence-spread collector; the HTML twin is `md_to_html`'s intercept.
+                key_m = ir.WEX_OPEN_RE.match(b.raw.strip())
+                inner_chunks: list[str] = []
+                ended = False
+                j = i + 1
+                while not ended and j < len(blocks):
+                    skip.add(j)
+                    # Line-scan the block's raw for the end marker — the marker may be GLUED inside a prose
+                    # block (no blank line before it), so block-granular detection misses it (the takeaway
+                    # prose + end marker land in one PARA block). Mirrors the HTML collector's `_take_until_end`.
+                    kept: list[str] = []
+                    for ln in blocks[j].raw.splitlines():
+                        if ir.WEX_END_RE.match(ln.strip()):
+                            ended = True
+                            break
+                        kept.append(ln)
+                    if kept:
+                        inner_chunks.append("\n".join(kept))
+                    j += 1
+                we = ir.parse_worked_examples(key_m.group("key") if key_m else "",
+                                              "\n\n".join(inner_chunks))
+                out.append(_render_worked_examples_typst(we))
+                continue
+            if b.directive and b.directive.startswith("worked-examples"):
+                continue                             # a stray end marker outside a bracket — inert
             if b.directive == "convergence-spread":
                 # A convergence spread: collect forward to `convergence-spread-end`, splitting at
                 # `convergence-spread-key` into the LEFT panel (glyph matrix + legend) and the RIGHT panel

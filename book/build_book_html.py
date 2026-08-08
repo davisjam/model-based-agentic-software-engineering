@@ -338,6 +338,13 @@ MARKER_KEYWORDS = (
     #   column folds to a small-caps subtitle beneath each pattern name. HTML wraps the pair in a responsive
     #   `.convergence-spread` two-column block; Typst drops them onto one landscape page. Consumed + stripped.
     "convergence-spread", "convergence-spread-key", "convergence-spread-end",
+    # `<!-- worked-examples: <construct-key> -->` … `### Example — <Source>` … `<!-- takeaway -->` …
+    #   `<!-- worked-examples-end -->` — the GoF "Known Uses" gallery that closes a significant section (2-4
+    #   hand-authored mini-cases + a typographically-distinct Takeaway naming the shared abstraction). The
+    #   render loop collects the bracketed span and emits ONE `.worked-examples` section (HTML) / titled block
+    #   (Typst); the ROSTER projects from the industry-cases matrix, the PROSE stays authored. Consumed +
+    #   stripped, so the leak gate covers the three markers by construction. Parser SSOT: book_ir.WEX_*.
+    "worked-examples", "worked-examples-end", "takeaway",
 )
 # `<!-- web-only: <inline markdown> -->` — a line that belongs in the WEB book but NOT the print PDF (e.g.
 # a "download the PDF" call-to-action, which would be absurd inside the PDF itself). The HTML build renders
@@ -1410,6 +1417,38 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         block = block.strip("\n")
         if not block.strip():
             continue
+        # ── Worked-Examples gallery (`<!-- worked-examples: KEY -->` … `<!-- worked-examples-end -->`).
+        # Collect the bracketed span (this block's remainder + following blocks, added to `skip_blocks`) up to
+        # the end marker, hand the raw inner markdown to the shared parser, and emit ONE `.worked-examples`
+        # section. Intercepted HERE — before the marker-peel + mid-block-marker guard below — so the inner
+        # `<!-- takeaway -->` divider is never mistaken for a leaked/mis-placed marker (the whole gallery is
+        # one authored unit). Mirrors the Typst emitter's `worked-examples` directive collector.
+        _wex_lines = block.splitlines()
+        _wex_open = _ir.WEX_OPEN_RE.match(_wex_lines[0].strip())
+        if _wex_open:
+            inner_chunks: list[str] = []
+            ended = False
+
+            def _take_until_end(src_lines: list[str]) -> None:
+                nonlocal ended
+                kept: list[str] = []
+                for ln in src_lines:
+                    if _ir.WEX_END_RE.match(ln.strip()):
+                        ended = True
+                        break
+                    kept.append(ln)
+                if kept:
+                    inner_chunks.append("\n".join(kept))
+
+            _take_until_end(_wex_lines[1:])
+            j = _bi + 1
+            while not ended and j < len(blocks):
+                skip_blocks.add(j)
+                _take_until_end(blocks[j].strip("\n").splitlines())
+                j += 1
+            we = _ir.parse_worked_examples(_wex_open.group("key"), "\n\n".join(inner_chunks))
+            _emit(_render_worked_examples_html(we))
+            continue
         # Peel every leading marker comment off the block (placement-robust — a marker may sit glued to the
         # prose it heads, NO blank line between). `_consume_leading_marker` acts on each (index tag → arm
         # anchor; gloss → emit sidenote; gloss-only / glossary-auto → harvest/render) and returns True so it
@@ -1618,6 +1657,28 @@ def _render_convergence_key_table(block: str) -> str:
     thead = "<th>#</th><th>Pattern</th><th>What the source establishes</th>"
     return ('<table class="book-table convergence-key"><thead><tr>'
             f"{thead}</tr></thead><tbody>{''.join(trs)}</tbody></table>")
+
+
+def _render_worked_examples_html(we) -> str:
+    """Render a parsed Worked-Examples gallery (`book_ir.WorkedExamples`) into one `.worked-examples` section:
+    a fixed "Worked Examples" title, one `.wex-case` per source (a bold source lead-in + the authored gloss),
+    and the accent-ruled `.wex-takeaway` that names the shared abstraction. The gloss + Takeaway are authored
+    prose passed through `inline` (their sentences are collapsed to one paragraph); only the source labels and
+    the block shape are structural. The `data-construct` attribute records the matrix weld for the join lint."""
+    cases_html: list[str] = []
+    for c in we.cases:
+        src = html.escape(c.source)
+        prose = inline(" ".join(c.prose_md.split()))
+        cases_html.append(
+            f'<div class="wex-case"><p><span class="wex-src">{src}.</span> {prose}</p></div>')
+    takeaway = ""
+    if we.takeaway_md:
+        takeaway = ('<div class="wex-takeaway"><p><span class="wex-tk-label">Takeaway.</span> '
+                    f'{inline(" ".join(we.takeaway_md.split()))}</p></div>')
+    key = html.escape(we.construct_key, quote=True)
+    return (f'<section class="worked-examples" data-construct="{key}">'
+            '<h4 class="wex-title">Worked Examples</h4>'
+            f'{"".join(cases_html)}{takeaway}</section>')
 
 
 # ── Per-block-kind content renderers ──────────────────────────────────────────────────────────────
@@ -1949,6 +2010,24 @@ table.book-table.meta-card tr + tr td {{ border-top: 1px solid var(--rule, rgba(
 table.book-table.convergence-key .pat-name {{ display: block; font-weight: 600; }}
 table.book-table.convergence-key .pat-construct {{ display: block; margin-top: 0.1rem;
     font-variant: small-caps; letter-spacing: 0.02em; font-size: 0.82em; color: var(--muted); }}
+/* Worked-Examples gallery (`.worked-examples`, the GoF "Known Uses" block that closes a significant section):
+   a titled, scannable set of 2-4 mini-cases + an accent-ruled Takeaway naming the shared abstraction. Shares
+   the accent left-rule idiom with `.case-onepager`, but sets the whole block apart as a mode-shift from body
+   prose so a reader reads the shape once and scans on reflex (B3 gallery-format-spec). */
+.worked-examples {{ margin: 1.6rem 0; padding: 0.2rem 0 0.2rem 1.1rem;
+    border-left: 3px solid var(--accent); }}
+.worked-examples .wex-title {{ margin: 0 0 0.7rem; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }}
+.worked-examples .wex-case {{ margin: 0 0 0.7rem; }}
+.worked-examples .wex-case p {{ margin: 0; }}
+.worked-examples .wex-src {{ font-weight: 700; }}
+/* The Takeaway reads as a DIFFERENT kind of statement than the examples — its own top rule + accent label —
+   so it forces the reader to compare abstractions, not implementations (B3 R4). */
+.worked-examples .wex-takeaway {{ margin: 0.9rem 0 0; padding-top: 0.7rem;
+    border-top: 1px solid var(--rule, rgba(120,113,108,0.28)); }}
+.worked-examples .wex-takeaway p {{ margin: 0; }}
+.worked-examples .wex-tk-label {{ font-weight: 700; font-variant: small-caps; letter-spacing: 0.03em;
+    color: var(--accent); }}
 blockquote table.book-table {{ background: transparent; }}
 blockquote .inset-title {{ font-style: normal; font-weight: 700; margin: 0 0 0.4rem; }}
 blockquote pre.mermaid {{ font-style: normal; }}
