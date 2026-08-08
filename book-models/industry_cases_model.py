@@ -694,6 +694,127 @@ def query_pattern_constructs(model: "IndustryCasesModel | None" = None) -> "dict
     return out
 
 
+# ---- projection: the Worked-Examples gallery roster (B2 §7.4 / B3 §4) --------------------------------
+# A section's `<!-- worked-examples: <construct-key> -->` gallery PROJECTS its roster from this matrix: the
+# helper resolves the construct-key (a construct column / a cross-case pattern / a ceiling rung / an unscored
+# flagship) and lists the industry cases that clear >= partial on it (industry-first), then appends DocAble as
+# the unconditional deepest slot. The PROSE stays hand-authored; only the roster projects. Because the helper
+# emits ONLY clearing cases, the stub it prints is WE1-clean by construction (the anti-fabrication property).
+
+#: The >= partial floor per key-kind (WE1). A construct cell clears at strong/partial; a pattern support at
+#: yes/partial; a ceiling rung at yes/some. DocAble is the unconditional deepest slot (never WE1-checked).
+_WE_CONSTRUCT_REACH = ("strong", "partial")
+_WE_SUPPORT_REACH = ("yes", "partial")
+_WE_CEILING_REACH = ("yes", "some")
+#: The industry/DocAble/other source mix the book aggregate steers toward (a taste target, report-only).
+WE_RATIO_TARGET = {"industry-case": 0.50, "docable": 0.30, "other": 0.20}
+
+
+@dataclass
+class WexSlot:
+    """One projected gallery slot — an industry case that clears the key, or the DocAble deepest slot."""
+    organization: str
+    ref: str            # the industry_cases id, or "docable"
+    source_type: str    # "industry-case" | "docable"
+    strength: str       # the clearing strength/level label (empty for the docable slot)
+
+
+def worked_example_key_kind(key: str, model: "IndustryCasesModel | None" = None) -> str:
+    """Resolve a gallery construct-key to how it welds to the matrix: `construct` (a construct-universe
+    column), `pattern` (a cross-case pattern id), `rung` (a modeling-ceiling rung), or `none` (an unscored
+    flagship the corpus cannot rate — a DocAble-led gallery, no industry slot the gate can verify)."""
+    if model is None:
+        model = derive_model()
+    if key in set(model.column_ids()):
+        return "construct"
+    if any(p.id == key for p in model.patterns):
+        return "pattern"
+    if key in set(model.rung_ids()):
+        return "rung"
+    return "none"
+
+
+def worked_example_clears(key: str, case_id: str, model: "IndustryCasesModel | None" = None) -> bool:
+    """WE1 for the join lint: does industry case `case_id` clear the gallery key at >= partial? A construct
+    cell clears at strong/partial, a pattern support at yes/partial, a ceiling rung at yes/some. An unscored
+    (`none`) key clears nothing — its galleries carry no industry slot (only DocAble + `other`)."""
+    if model is None:
+        model = derive_model()
+    kind = worked_example_key_kind(key, model)
+    case = _case_by_id(case_id, model)
+    if kind == "construct":
+        return case is not None and case.strength_of(key) in _WE_CONSTRUCT_REACH
+    if kind == "pattern":
+        pat = next((p for p in model.patterns if p.id == key), None)
+        return pat is not None and pat.support.get(case_id, "") in _WE_SUPPORT_REACH
+    if kind == "rung":
+        return case is not None and case.level_of(key) in _WE_CEILING_REACH
+    return False
+
+
+def worked_example_roster(key: str, model: "IndustryCasesModel | None" = None) -> "tuple[str, list[WexSlot]]":
+    """Project the >=partial industry roster for a gallery key, industry-first (strongest-clearing first, then
+    declared order) and DocAble appended as the deepest slot. Returns (key-kind, slots). WE1-clean by
+    construction — only clearing cases become industry slots."""
+    if model is None:
+        model = derive_model()
+    kind = worked_example_key_kind(key, model)
+    slots: "list[WexSlot]" = []
+    if kind == "construct":
+        rank = {"strong": 0, "partial": 1}
+        cand = [(i, c, c.strength_of(key)) for i, c in enumerate(model.authored())
+                if c.strength_of(key) in _WE_CONSTRUCT_REACH]
+        cand.sort(key=lambda t: (rank.get(t[2], 9), t[0]))
+        slots = [WexSlot(c.organization, c.id, "industry-case", s) for _i, c, s in cand]
+    elif kind == "pattern":
+        pat = next((p for p in model.patterns if p.id == key), None)
+        rank = {"yes": 0, "partial": 1}
+        if pat is not None:
+            cand = [(i, r, pat.support.get(r.id, "")) for i, r in enumerate(model.roster)
+                    if pat.support.get(r.id, "") in _WE_SUPPORT_REACH]
+            cand.sort(key=lambda t: (rank.get(t[2], 9), t[0]))
+            slots = [WexSlot(r.organization, r.id, "industry-case", s) for _i, r, s in cand]
+    elif kind == "rung":
+        rank = {"yes": 0, "some": 1}
+        cand = [(i, c, c.level_of(key)) for i, c in enumerate(model.authored())
+                if c.level_of(key) in _WE_CEILING_REACH]
+        cand.sort(key=lambda t: (rank.get(t[2], 9), t[0]))
+        slots = [WexSlot(c.organization, c.id, "industry-case", s) for _i, c, s in cand]
+    # DocAble — the unconditional deepest slot (strong across the construct universe; the flagship reading).
+    docable_strength = model.docable_cells.get(key, "") if kind == "construct" else ""
+    slots.append(WexSlot(model.docable_org, "docable", "docable", docable_strength))
+    return kind, slots
+
+
+def render_worked_examples_stub(key: str, model: "IndustryCasesModel | None" = None) -> str:
+    """The paste-ready gallery STUB an author fills — the `<!-- worked-examples: KEY -->` bracket, one
+    `### Example — <Source>` head per clearing slot (industry-first, DocAble-last) with a TODO gloss line
+    naming the clearing strength, the `<!-- takeaway -->` divider, and the end marker. The ROSTER is
+    projected (WE1-clean); the author writes the sentences + the Takeaway. Prints a one-line kind/mix banner
+    above the stub (the `#`-comment banner is authoring context, not part of the gallery)."""
+    if model is None:
+        model = derive_model()
+    kind, slots = worked_example_roster(key, model)
+    n_ind = sum(1 for s in slots if s.source_type == "industry-case")
+    banner = (f"# worked-examples key {key!r} — kind: {kind} · {n_ind} industry slot(s) clear >=partial "
+              f"+ DocAble (deepest). Trim to 2-4; author each gloss + the Takeaway. Roster is WE1-clean.")
+    if kind == "none":
+        banner += ("\n# NOTE: unscored flagship — the corpus cannot rate an industry example here; this is a "
+                   "DocAble-led gallery. Add an `### Example — <label> {other}` thought-experiment if wanted.")
+    lines = [banner, f"<!-- worked-examples: {key} -->"]
+    for s in slots:
+        lines.append(f"### Example — {s.organization}")
+        if s.source_type == "docable":
+            lines.append("TODO — the deepest instantiation; may name a DocAble-unique mechanism. [docable]")
+        else:
+            lines.append(f"TODO — 2-4 sentences: how {key} ({kind}) appears at {s.organization}. "
+                         f"[clears: {s.strength}]")
+    lines.append("<!-- takeaway -->")
+    lines.append("TODO — one sentence naming the shared abstraction (the Takeaway).")
+    lines.append("<!-- worked-examples-end -->")
+    return "\n".join(lines)
+
+
 # ---- invariants (IC1-IC7; status-aware) -------------------------------------------------------------
 
 def structural_findings(model: "IndustryCasesModel | None" = None) -> "list[str]":
@@ -1124,6 +1245,11 @@ def _cmd_onepager(case_id: str) -> int:
     return 0
 
 
+def _cmd_worked_examples(key: str) -> int:
+    print(render_worked_examples_stub(key))
+    return 0
+
+
 def _cmd_ceiling_gaps() -> int:
     model = derive_model()
     labels = {r.id: r.label for r in model.ceiling_rungs}
@@ -1211,9 +1337,15 @@ def main(argv: "list[str]") -> int:
         return _cmd_ceiling_gaps()
     if cmd == "pattern-constructs":
         return _cmd_pattern_constructs()
+    if cmd == "worked-examples":
+        if len(argv) < 3:
+            print("usage: industry_cases_model.py worked-examples <construct-key> "
+                  "(a construct column / cross-case pattern id / ceiling rung)")
+            return 2
+        return _cmd_worked_examples(argv[2])
     print(f"usage: {argv[0]} [verify|matrix|constructs|bears-on <H>|only-docable|coverage|roster|show|"
           f"ceiling|convergence <bucket>|convergence-key <bucket>|onepager <case-id>|ceiling-gaps|"
-          f"pattern-constructs]")
+          f"pattern-constructs|worked-examples <construct-key>]")
     return 2
 
 
