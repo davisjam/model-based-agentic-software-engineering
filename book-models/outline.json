@@ -1803,22 +1803,22 @@
           "heading_text": "The model runs the machinery",
           "topic_sentence": "The hard end and the flagship follow the same pattern.",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 80,
           "points": [
             {
               "slug": "the-model-is-not-a-picture-of-the-machinery-it-is-the-machinery",
               "text": "The model runs the machinery, rather than picturing it.",
-              "block_index": 76
+              "block_index": 83
             },
             {
               "slug": "a-component-distance-grade-is-a-metric-that-drives-a-gate-three-ways",
               "text": "A component-distance grade drives a gate three ways.",
-              "block_index": 78
+              "block_index": 85
             },
             {
               "slug": "the-grade-is-a-metric-read-from-the-model-that-drives-a-sensors-decision",
               "text": "The grade is a model-read metric driving a sensor.",
-              "block_index": 82
+              "block_index": 89
             }
           ]
         },
@@ -1828,12 +1828,12 @@
           "heading_text": "A compact reference",
           "topic_sentence": "[ref:metrics-table] collects every metric — the decision each drives, where it sits on the hard-soft axis, and who reads it.",
           "id_source": "derived",
-          "block_index": 84,
+          "block_index": 91,
           "points": [
             {
               "slug": "every-row-names-a-decision-because-a-metric-that-names-none-was-measured-too-shallow",
               "text": "Every row names a decision, or was measured too shallow.",
-              "block_index": 88
+              "block_index": 95
             }
           ]
         }
