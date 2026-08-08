@@ -134,11 +134,25 @@ def heading_rows(include_appendices: bool = False) -> list[HeadingRow]:
     """Every narrative heading (H2–H4; the H1 chapter title is rendered separately by the build and is not a
     block) as a typed row with its stable id, id-source, topic sentence, and — for a DRAINED section — the
     canonical points its `<!-- point: … -->` decorators induce. The outline view's raw material. Derived
-    fresh from `book_ir.parse_book()` on every call — never snapshotted (DESIGN §4)."""
+    fresh from `book_ir.parse_book()` on every call — never snapshotted (DESIGN §4).
+
+    A worked-examples gallery's `### Example — <name>` heads are DIRECTIVE SYNTAX, not narrative L3 sections:
+    the block between a `<!-- worked-examples: KEY -->` open marker and the `<!-- worked-examples-end -->`
+    close marker is skipped whole, so the gallery's example-heads never become sections (and so never draw a
+    spurious O2 'no topic sentence' / O3 / O4 finding). The close marker glues into the takeaway paragraph,
+    so we detect it by raw-substring on any block, not by a standalone directive."""
     doc = book_ir.parse_book(include_appendices=include_appendices)
     rows: list[HeadingRow] = []
     for c in doc.chapters:
+        in_worked_examples = False
         for i, b in enumerate(c.blocks):
+            if b.kind is book_ir.BlockKind.DIRECTIVE and b.directive == "worked-examples":
+                in_worked_examples = True
+            if in_worked_examples:
+                # The close marker glues onto the takeaway PARA's raw, so key off the substring, not a block.
+                if b.raw and "worked-examples-end" in b.raw:
+                    in_worked_examples = False
+                continue  # everything from the open marker through the close marker is directive syntax
             if b.kind is not book_ir.BlockKind.HEADING:
                 continue
             explicit_id, text = heading_id_and_text(b)
