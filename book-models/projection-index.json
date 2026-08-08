@@ -3,13 +3,13 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1511,
+    "total_sites": 1507,
     "by_projection": {
       "book-pdf": 26,
       "book-web": 1084,
       "website-catalogue": 221,
       "website-concepts": 56,
-      "website-industry-cases": 49,
+      "website-industry-cases": 45,
       "website-landing": 13,
       "website-misc": 52,
       "website-theory": 10
@@ -861,7 +861,7 @@
           },
           {
             "file": "industry-case-studies.html",
-            "occ": 4
+            "occ": 2
           },
           {
             "file": "industry-case-zenseact.html",
@@ -1037,10 +1037,6 @@
           },
           {
             "file": "industry-case-cloudflare-codex.html",
-            "occ": 1
-          },
-          {
-            "file": "industry-case-studies.html",
             "occ": 1
           }
         ]
@@ -1246,10 +1242,6 @@
         ],
         "website-industry-cases": [
           {
-            "file": "industry-case-studies.html",
-            "occ": 1
-          },
-          {
             "file": "industry-case-zenseact.html",
             "occ": 1
           }
@@ -1403,10 +1395,6 @@
           },
           {
             "file": "industry-case-shopify.html",
-            "occ": 1
-          },
-          {
-            "file": "industry-case-studies.html",
             "occ": 1
           }
         ]
@@ -2061,7 +2049,7 @@
           },
           {
             "file": "industry-case-studies.html",
-            "occ": 8
+            "occ": 4
           },
           {
             "file": "industry-case-zenseact.html",
@@ -2565,10 +2553,6 @@
           },
           {
             "file": "industry-case-shopify.html",
-            "occ": 1
-          },
-          {
-            "file": "industry-case-studies.html",
             "occ": 1
           },
           {

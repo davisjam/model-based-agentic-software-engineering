@@ -81,6 +81,19 @@
                   font-size:var(--fs-micro); letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
   .concept-chip .cc-ico { width:1.1em; height:1.1em; flex:0 0 auto; }
   .concept-kicker { font-size:var(--fs-meta); color:var(--muted); }
+  /* Industry-case pillar index — "The six" as a scannable card grid. Each card is a link, but only its
+     "Read the reconstruction" affordance underlines; the org/domain/blurb stay plain so the grid reads as
+     cards, not as one run-together underlined block. */
+  .ic-cards { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:13px; margin:16px 0 8px; }
+  .ic-card { display:flex; flex-direction:column; border:1.4px solid var(--rule); border-radius:10px;
+             background:var(--panel); padding:14px 16px; text-decoration:none; color:var(--ink); }
+  .ic-card:hover { border-color:var(--accent); background:var(--accent-tint); }
+  .ic-card .ic-org { font-family:var(--font-display); font-weight:700; font-size:1.06rem; color:var(--ink); }
+  .ic-card .ic-dom { font-size:var(--fs-micro); text-transform:uppercase; letter-spacing:.05em;
+                     color:var(--muted); margin-top:3px; }
+  .ic-card .ic-blurb { font-size:var(--fs-meta); color:var(--ink); line-height:1.45; margin-top:9px; }
+  .ic-card .ic-more { font-size:var(--fs-meta); font-weight:600; color:var(--accent); margin-top:11px; }
+  .ic-card:hover .ic-more { text-decoration:underline; }
   figure.cc-fig { margin:20px 0; max-width:660px; }
   figure.cc-fig svg { width:100%; height:auto; }
   section.cc-rel, section.cc-mech, section.cc-intuition, section.cc-read { margin-top:8px; }
