@@ -1438,22 +1438,22 @@
             {
               "slug": "form-and-move-are-two-independent-axes",
               "text": "Form and move are two independent axes.",
-              "block_index": 53
+              "block_index": 54
             },
             {
               "slug": "most-real-mechanisms-are-a-package-so-tag-the-primary-move",
               "text": "Most mechanisms are a package; tag the primary move.",
-              "block_index": 61
+              "block_index": 62
             },
             {
               "slug": "a-purely-organizational-answer-is-all-sensors-and-never-removes-a-failure-class",
               "text": "A purely organizational answer is all sensors, removing no class.",
-              "block_index": 63
+              "block_index": 64
             },
             {
               "slug": "the-constraint-is-poka-yoke-the-sensors-stop-is-jidoka",
               "text": "The constraint is poka-yoke; the sensor's stop is jidoka.",
-              "block_index": 65
+              "block_index": 66
             }
           ]
         },
@@ -1463,22 +1463,22 @@
           "heading_text": "Two axes, one bounded term",
           "topic_sentence": "One boundary before moving on, because without it the word swells.",
           "id_source": "explicit",
-          "block_index": 67,
+          "block_index": 68,
           "points": [
             {
               "slug": "governance-mechanism-needs-a-boundary",
               "text": "Without a boundary, the word mechanism swells.",
-              "block_index": 69
+              "block_index": 70
             },
             {
               "slug": "four-classes-prevention-detection-evidence-admission",
               "text": "Two questions cross: how it treats failure, where it acts.",
-              "block_index": 73
+              "block_index": 74
             },
             {
               "slug": "a-model-is-not-a-mechanism-until-something-enforces-it",
               "text": "A model joins governance only when something enforces it.",
-              "block_index": 77
+              "block_index": 78
             }
           ]
         },
@@ -1488,17 +1488,17 @@
           "heading_text": "What it adds up to",
           "topic_sentence": "Step back and this is what you are really doing: describing policies for how the engineering work should proceed, and letting those policies produce a **governed engineering environment** — the rules of the road the agents operate within.",
           "id_source": "derived",
-          "block_index": 79,
+          "block_index": 80,
           "points": [
             {
               "slug": "the-governed-environment-is-determinize-what-you-can-then-convert-every-surprise-into-a-constraint-or-sensor",
               "text": "Determinize what you can; convert every surprise into a mechanism.",
-              "block_index": 80
+              "block_index": 81
             },
             {
               "slug": "governance-extends-the-reasoning-horizon-by-holding-the-obligation-in-the-environment",
               "text": "Governance extends the reasoning horizon: the environment holds the obligation.",
-              "block_index": 83
+              "block_index": 84
             }
           ]
         },
@@ -1508,32 +1508,32 @@
           "heading_text": "The residual: goals no mechanism reaches",
           "topic_sentence": "That closing line reads as if it settles everything.",
           "id_source": "derived",
-          "block_index": 86,
+          "block_index": 87,
           "points": [
             {
               "slug": "some-goals-split-into-neither-because-the-failure-is-an-absence-nobody-specified",
               "text": "Some goals split into neither, being an absence nobody specified.",
-              "block_index": 88
+              "block_index": 89
             },
             {
               "slug": "the-residual-is-a-human-job-that-sets-the-throughput-ceiling",
               "text": "The residual is a human job setting the throughput ceiling.",
-              "block_index": 91
+              "block_index": 92
             },
             {
               "slug": "the-residual-is-the-complement-of-the-two-moves-not-a-third-value-on-the-soft-hard-axis",
               "text": "The residual is the complement of both moves, not soft.",
-              "block_index": 93
+              "block_index": 94
             },
             {
               "slug": "naming-the-residual-is-the-honest-edge-that-makes-the-mechanized-core-credible",
               "text": "Naming the residual is the honest edge that earns trust.",
-              "block_index": 95
+              "block_index": 96
             },
             {
               "slug": "the-residual-is-not-a-fixed-wall-authoring-the-missing-spec-pulls-a-goal-out",
               "text": "The residual is not fixed; authoring the spec shrinks it.",
-              "block_index": 97
+              "block_index": 98
             }
           ]
         }
