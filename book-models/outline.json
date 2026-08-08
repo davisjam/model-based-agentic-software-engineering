@@ -1231,22 +1231,22 @@
           "heading_text": "A drift check proves agreement, not correctness",
           "topic_sentence": "The claim I just made hides a trap, and the book's enthusiasm for drift gates can be misread into a dangerous half-truth.",
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 57,
           "points": [
             {
               "slug": "a-drift-gate-proves-agreement-not-that-either-side-is-right",
               "text": "A drift gate proves agreement, not correctness.",
-              "block_index": 52
+              "block_index": 59
             },
             {
               "slug": "a-mirror-model-reflects-the-code-only-a-spec-authored-from-intent-catches-a-wrong-is",
               "text": "A mirror reflects code; only a spec catches wrong.",
-              "block_index": 56
+              "block_index": 63
             },
             {
               "slug": "what-belongs-in-the-model-is-the-essential-residual-that-does-not-automate",
               "text": "Deciding what belongs in the model is the essential residual.",
-              "block_index": 59
+              "block_index": 66
             }
           ]
         },
@@ -1256,7 +1256,7 @@
           "heading_text": "A model is a convenience, not a second copy of the truth",
           "topic_sentence": "The other side of the mirror carries an over-reach.",
           "id_source": "derived",
-          "block_index": 62,
+          "block_index": 75,
           "points": []
         },
         {
@@ -1265,12 +1265,12 @@
           "heading_text": "Execute the model directly? A spectrum, not a verdict",
           "topic_sentence": "One old idea says that if the structured model is where you now start, you should finish there too — skip the code and *execute the model directly*.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 79,
           "points": [
             {
               "slug": "executable-modeling-is-a-spectrum-agents-shift-the-optimum-outward",
               "text": "Executable modeling is a spectrum; agents shift the optimum outward.",
-              "block_index": 68
+              "block_index": 81
             }
           ]
         },
@@ -1280,27 +1280,27 @@
           "heading_text": "The semantic gap",
           "topic_sentence": "Enforce a property at the wrong level and it slips through; [ref:semantic-gap] shows the fix — lift the check to where the meaning is legible.",
           "id_source": "derived",
-          "block_index": 70,
+          "block_index": 83,
           "points": [
             {
               "slug": "enforce-at-the-wrong-level-and-the-property-slips-through",
               "text": "Enforce a property at the wrong level; it slips through.",
-              "block_index": 72
+              "block_index": 85
             },
             {
               "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
               "text": "Checking model drift at the commit is the wrong granularity.",
-              "block_index": 75
+              "block_index": 88
             },
             {
               "slug": "the-semantic-gap-is-enforcing-a-property-at-the-wrong-level-of-abstraction",
               "text": "The semantic gap is enforcing at the wrong level.",
-              "block_index": 77
+              "block_index": 90
             },
             {
               "slug": "enforce-at-the-level-where-the-property-is-legible-agent-return-for-model-drift",
               "text": "Enforce where the property is legible: at agent-return.",
-              "block_index": 81
+              "block_index": 94
             }
           ]
         },
@@ -1310,22 +1310,22 @@
           "heading_text": "A second worked example: the context-fullness bank-hook",
           "topic_sentence": "The semantic gap shows up in the operator's own loop, not just the product.",
           "id_source": "derived",
-          "block_index": 88,
+          "block_index": 101,
           "points": [
             {
               "slug": "compaction-guesses-below-meaning-so-it-can-only-approximate",
               "text": "Compaction guesses below meaning; it can only approximate.",
-              "block_index": 90
+              "block_index": 103
             },
             {
               "slug": "fire-the-bank-hook-on-fullness-and-staleness-together",
               "text": "Fire the bank-hook on fullness and staleness together.",
-              "block_index": 92
+              "block_index": 105
             },
             {
               "slug": "with-no-clean-rung-a-roughly-right-hook-beats-the-perfect-one",
               "text": "With no clean rung, roughly-right beats the perfect hook.",
-              "block_index": 96
+              "block_index": 109
             }
           ]
         }
