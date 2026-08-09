@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1548,
+    "total_sites": 1549,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1121,
+      "book-web": 1122,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -469,7 +469,7 @@
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 3
+            "occ": 6
           },
           {
             "file": "book/part-5-intro.html",
@@ -1623,7 +1623,7 @@
           },
           {
             "file": "book/4.1-brownfield.html",
-            "occ": 16
+            "occ": 17
           },
           {
             "file": "book/4.2-the-skills.html",
@@ -2989,7 +2989,7 @@
           },
           {
             "file": "book/4.1-brownfield.html",
-            "occ": 98
+            "occ": 100
           },
           {
             "file": "book/4.2-the-skills.html",
@@ -3321,7 +3321,7 @@
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 12
+            "occ": 14
           },
           {
             "file": "book/part-5-intro.html",
@@ -5839,7 +5839,7 @@
           },
           {
             "file": "book/4.1-brownfield.html",
-            "occ": 13
+            "occ": 15
           },
           {
             "file": "book/4.2-the-skills.html",
@@ -6167,7 +6167,7 @@
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/part-5-intro.html",
@@ -6566,12 +6566,16 @@
           {
             "file": "book/figures.html",
             "occ": 13
+          },
+          {
+            "file": "book/part-4-intro.html",
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 29
+            "occ": 30
           }
         ]
       },
