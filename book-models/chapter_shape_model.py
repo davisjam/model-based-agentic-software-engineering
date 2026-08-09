@@ -221,10 +221,18 @@ def chapter_prose_anchors(ch: "book_ir.Chapter") -> "tuple[str, str]":
     untitled lead). A chapter with no lead (it opens straight into its first section) anchors on the
     first section's prose instead — the assessment covered that prose, so the anchor must too.
     Closing prose = the chapter's last prose block, skipping `Learn more` cross-reference blockquotes
-    (boilerplate, not an ending — an ending rewrite behind one must still trip the anchor)."""
+    (boilerplate, not an ending — an ending rewrite behind one must still trip the anchor).
+
+    A worked-examples gallery is a directive-managed unit (its example-heads, `<!-- takeaway -->` divider,
+    and `<!-- worked-examples-end -->` close marker are directive syntax, not chapter narrative), so the whole
+    span is skipped via `book_ir.blocks_outside_worked_examples`. Without this a gallery-terminal chapter's
+    closing anchor would be the takeaway PARA, whose raw glues the close marker onto its tail — leaking a raw
+    `<!-- worked-examples-end -->` into the anchor. The chapter's real closing narrative is the prose that
+    precedes the gallery."""
+    blocks = list(book_ir.blocks_outside_worked_examples(ch.blocks))
     lead: "list[str]" = []
     seen_h1 = False
-    for b in ch.blocks:
+    for b in blocks:
         if b.kind == book_ir.BlockKind.HEADING:
             if b.heading_level == 1 and not seen_h1:
                 seen_h1 = True
@@ -235,7 +243,7 @@ def chapter_prose_anchors(ch: "book_ir.Chapter") -> "tuple[str, str]":
             lead.append(b.raw.strip())
     if not lead:  # no untitled lead — anchor the first section's prose
         past_first_heading = False
-        for b in ch.blocks:
+        for b in blocks:
             if b.kind == book_ir.BlockKind.HEADING and b.heading_level >= 2:
                 if past_first_heading:
                     break
@@ -246,7 +254,7 @@ def chapter_prose_anchors(ch: "book_ir.Chapter") -> "tuple[str, str]":
     opening_words = " ".join(lead).split()
 
     closing_words: "list[str]" = []
-    for b in reversed(ch.blocks):
+    for b in reversed(blocks):
         if b.kind in _PROSE_KINDS and not b.raw.strip().startswith(_LEARN_MORE):
             closing_words = b.raw.strip().split()
             break
