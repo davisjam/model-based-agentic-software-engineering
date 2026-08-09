@@ -1322,6 +1322,27 @@ def cmd_validate(_args) -> int:
               f"run `python3 book-models/industry_cases_model.py verify` (does not gate):")
         for f in ic_findings:
             print(f"             {f}")
+    # CAPABILITY-LADDER MODEL — AUDIT-ONLY (rule #55 first landing). The book's ONE canonical 8-rung
+    # Representation Capability Ladder (book-models/capability_ladder_declared.json) is a queryable,
+    # drift-gated model: the TEACHING abstraction the opening figure / new Part 2 / Part 4 adoption path /
+    # Appendix-A stacks / Appendix-E skill rung / Part 6 comparative all project. This band reports the
+    # structural invariants CL1 (rung id + order 1..8 contiguous + non-empty text + closed lean enum) / CL2
+    # (the modeling_ceiling_map is a TOTAL 12->8 join to the Part-6 empirical matrix — the ladder TEACHES, the
+    # matrix MEASURES, the map keeps them from diverging) / CL3 (the closed anti-CMM guard is present) — but
+    # does NOT increment n_issues on first landing. A follow-up flips CL1-CL3 to BLOCKING once a clean session
+    # confirms the drain. CL0-drift is walked by the tests/book_models.py check + the model's `verify` CLI.
+    # See book-models/capability_ladder_model.py.
+    import capability_ladder_model as clm  # noqa: E402 — audit-only teaching-ladder model
+    cl_findings = clm.structural_findings()
+    cl_counts = clm.to_jsonable()["_counts"]
+    print(f"  [ladder] AUDIT-ONLY: {cl_counts['rungs']} rungs "
+          f"({cl_counts['modeling_leaning']} modeling-leaning, {cl_counts['alignment_leaning']} alignment-leaning); "
+          f"{cl_counts['map_entries']} modeling_ceiling_map entries (12->8 join)")
+    if cl_findings:
+        print(f"  [ladder] AUDIT-ONLY: {len(cl_findings)} capability-ladder finding(s) — "
+              f"run `python3 book-models/capability_ladder_model.py verify` (does not gate):")
+        for f in cl_findings:
+            print(f"           {f}")
     # WORKED-EXAMPLES-JOIN — WE1 BLOCKING, WE2 + ratio AUDIT-ONLY. A significant section closes with a GoF
     # "Known Uses" gallery (`<!-- worked-examples: <construct-key> -->` … `<!-- worked-examples-end -->`)
     # whose ROSTER projects from the industry-cases matrix and whose PROSE stays hand-authored. This band

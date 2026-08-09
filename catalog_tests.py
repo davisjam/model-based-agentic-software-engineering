@@ -45,6 +45,7 @@ from tests.book import (
 )
 from tests.book_models import (
     check_argument_spine,
+    check_capability_ladder,
     check_chapter_identity,
     check_chapter_identity_conformance,
     check_chapter_shape,
@@ -376,6 +377,16 @@ CHECKS = [
     # flips IC1-IC6 to blocking once a clean session confirms the drain. See tests/book_models.py.
     Check("book-models: industry-cases schema + joins (industry_cases_declared.json)", 1,
           lambda strict: check_industry_cases(), audit_only=True),
+    # AUDIT-ONLY (rule #55 first landing): the CAPABILITY-LADDER model — the book's ONE canonical 8-rung
+    # Representation Capability Ladder as a queryable, drift-gated model. The TEACHING abstraction projected
+    # into the opening figure, the new Part 2 explanatory ladder, the Part 4 adoption path, the Appendix-A
+    # stacks, the Appendix-E skill rung, and the Part 6 comparative. Reports CL0-drift + CL1 (rung id + order
+    # 1..8 contiguous + non-empty text + closed lean enum) / CL2 (the modeling_ceiling_map is a TOTAL 12->8
+    # join to the Part-6 empirical matrix — the ladder TEACHES, the matrix MEASURES, the map keeps them from
+    # diverging) / CL3 (the closed anti-CMM guard is present). Lands audit-only-first (CL1-3 green from birth);
+    # a follow-up flips CL1-CL3 to blocking once a clean session confirms the drain. See tests/book_models.py.
+    Check("book-models: capability-ladder drift + structure (capability_ladder_declared.json)", 1,
+          lambda strict: check_capability_ladder(), audit_only=True),
     # AUDIT-ONLY (rule #55 first landing): the SUPPORTING-SOURCES model — the book's Tier-2 corroboration corpus
     # as a queryable, drift-gated SIBLING of the industry-cases model. 19 records (18 engineering reports; Stripe
     # split into two sharing one citation_key), each naming the single claim it reinforces + the manuscript

@@ -415,6 +415,39 @@ def check_industry_cases():
     return (FAIL if issues else PASS), issues
 
 
+def check_capability_ladder():
+    """The capability-ladder model's drift + structural check (audit-only first landing, rule-#55 discipline).
+    The book's ONE canonical 8-rung Representation Capability Ladder — the TEACHING abstraction projected into
+    the opening figure, the new Part 2 explanatory ladder, the Part 4 adoption path, the Appendix-A stacks,
+    the Appendix-E skill rung, and the Part 6 comparative. Re-derives the model from the hand-authored
+    `capability_ladder_declared.json` (joined against the 12-rung modeling_ceiling_ladder in
+    industry_cases_declared.json) and reports: CL0-drift against the on-disk artifact; CL1 (rung id + order
+    1..N contiguous with N==8 + non-empty text + closed lean enum), CL2 (the modeling_ceiling_map is a TOTAL
+    12->8 join — covers every empirical rung and every value resolves to a teaching rung, so the ladder that
+    TEACHES and the matrix that MEASURES cannot diverge), CL3 (the closed anti-CMM guard is present). Keyed
+    off `book-models/capability-ladder.json` + `capability_ladder_declared.json` + industry_cases_declared.json."""
+    import capability_ladder_model as clm  # noqa: E402 — path set above; the book-model package
+
+    issues: list[str] = []
+
+    # CL0-drift — the stored artifact equals a fresh derivation.
+    fresh = clm.to_jsonable()
+    stored = clm.load_artifact()
+    if stored is None:
+        issues.append(f"{rel(clm._ARTIFACT)} missing — run "
+                      f"`python3 book-models/capability_ladder_model.py regenerate`")
+    elif any(stored.get(k) != fresh[k] for k in ("guard", "gradient", "rungs", "modeling_ceiling_map", "_counts")):
+        issues.append(f"DRIFT: {rel(clm._ARTIFACT)} disagrees with a fresh derivation — regenerate "
+                      f"with `python3 book-models/capability_ladder_model.py regenerate`")
+
+    # CL1–CL3 — structural / schema invariants (rung shape + total 12->8 join + anti-CMM guard).
+    issues.extend(clm.structural_findings())
+
+    # Audit-only: same non-gating contract as the sibling first landings — surfaced as [audt], excluded from
+    # the fail tally. A follow-up promotes CL1–CL3 to blocking once a clean session confirms the drain.
+    return (FAIL if issues else PASS), issues
+
+
 def check_supporting_sources():
     """The supporting-sources model's schema + join check (audit-only first landing, rule-#55 discipline). The
     book's Tier-2 corroboration corpus (`supporting_sources_declared.json`) is a queryable SIBLING of the Tier-1

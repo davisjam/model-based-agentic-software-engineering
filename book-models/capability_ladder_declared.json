@@ -1,0 +1,54 @@
+{
+  "_note": "HAND-AUTHORED SSOT for the 8-rung Representation Capability Ladder — the TEACHING abstraction the book projects into the opening figure, the new Part 2 (Modeling) explanatory ladder, the Part 4 brownfield adoption path, the Appendix-A stack min-representation, the Appendix-E skill-graduation, and the Part 6 comparative mapping. ONE canonical ladder, used many times; never invent a second (rewrite.md :1208). This module derives a typed model over it, projects the ladder table markdown, and holds CL1-CL3. Sibling of the other declared->generated book models (argument_spine / industry_cases): the hand-authored source of truth is this file; capability-ladder.json is generated (`python3 book-models/capability_ladder_model.py regenerate`). GENRE CHECK (rule #22): the genre is a maturity/capability model — ADOPT the rung-list schema, REJECT the maturity runtime. There are NO levels, scores, badges, or monotonic-ascent claim; the `guard` field carries the closed anti-CMM value so a projection can never render it as a maturity model. A CAPABILITY ladder orders representational CAPABILITIES, not organizations; higher rungs make additional engineering questions possible, they do not imply every system should climb every rung (Docker sits low despite strong Alignment — the visible proof). The 8 teaching rungs relate to the 12-rung Part-6 `modeling_ceiling_ladder` (in industry_cases_declared.json) through `modeling_ceiling_map`, a TOTAL join (every 12 fine rungs -> one of the 8 teaching rungs) so the teaching ladder and the empirical matrix can never diverge (CL2). The ladder TEACHES; the matrix MEASURES. The two-axis gradient (bottom = better context for the reasoner; top = stronger control over the artifact) is the standing reading, with the `lean` field naming each rung's side and the turn falling between rungs 4 and 5.",
+
+  "guard": "capability-not-maturity",
+
+  "gradient": {
+    "bottom": "better context for reasoning",
+    "top": "stronger control over the artifact",
+    "turn_between": [4, 5],
+    "turn_note": "Moving up does both at once — the Modeling Thesis gradually turns into the Alignment Thesis. The turn is a dotted annotation between rungs 4 and 5, never a wall; render as a continuous vertical gradient, not two hard-partitioned blocks."
+  },
+
+  "rungs": [
+    {"id": "context-selection", "order": 1, "label": "Context selection", "lean": "modeling",
+     "capability": "Choose which knowledge enters this reasoning episode — reason over a task-relevant slice, not the whole estate.",
+     "capability_question": "What knowledge should enter this reasoning episode?"},
+    {"id": "externalized-knowledge", "order": 2, "label": "Externalized knowledge", "lean": "modeling",
+     "capability": "Put durable knowledge outside transient memory — catalogs, corpora, skills, registries — so no agent rediscovers it.",
+     "capability_question": "What should no agent have to rediscover?"},
+    {"id": "structured-relationships", "order": 3, "label": "Structured relationships", "lean": "modeling",
+     "capability": "Typed entities and typed edges — dependencies, ownership, lineage — so relevance follows relationships and tools traverse it.",
+     "capability_question": "What entities and typed relations form this system?"},
+    {"id": "system-models", "order": 4, "label": "System models", "lean": "modeling",
+     "capability": "Add semantics — behavioral, process, physical, scenario — so the representation says what shape the system should have.",
+     "capability_question": "What shape is the system meant to have?"},
+    {"id": "explicit-invariants", "order": 5, "label": "Explicit properties (invariants)", "lean": "alignment",
+     "capability": "State invariants and obligations over the model — what must be true — so intent stops being implicit.",
+     "capability_question": "What must be true over the model?"},
+    {"id": "model-derived-analysis", "order": 6, "label": "Model-derived analysis", "lean": "alignment",
+     "capability": "Query, target, generate, predict, and verify from the model — it settles engineering questions, not just describes them.",
+     "capability_question": "What can tools derive, query, predict, or check?"},
+    {"id": "traceability", "order": 7, "label": "Traceability", "lean": "alignment",
+     "capability": "Join model elements bidirectionally to the implementation — a claim points at the code that realizes it and back.",
+     "capability_question": "Are model elements joined to implementation both ways?"},
+    {"id": "drift-enforcement", "order": 8, "label": "Drift enforcement", "lean": "alignment",
+     "capability": "The environment refuses to let model and territory silently diverge — a gate blocks the edit until they agree.",
+     "capability_question": "What divergence will the environment refuse?"}
+  ],
+
+  "modeling_ceiling_map": {
+    "topology": "structured-relationships",
+    "ownership-deps": "structured-relationships",
+    "data-lineage": "structured-relationships",
+    "infra-as-code": "externalized-knowledge",
+    "structured-policy": "explicit-invariants",
+    "invariant-registry": "explicit-invariants",
+    "behavioral-state": "system-models",
+    "process-concurrency": "system-models",
+    "scenario": "system-models",
+    "model-derived-verification": "model-derived-analysis",
+    "bidirectional-traceability": "traceability",
+    "drift-gate": "drift-enforcement"
+  }
+}
