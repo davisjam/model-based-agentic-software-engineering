@@ -1,135 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: mage-overview). The whole MAGE method in one picture, tuned to the
-     Preface's reasoning-problem-before-control-problem frame. Commodity intelligence is cheap
-     implementation with two fates: left ungoverned it drifts into churn as its work outruns the window;
-     run through the governed environment it converges on trustworthy software. The governed environment
-     now reads as ONE connective spine, not two divided halves — the Modeling Thesis gives the intelligence
-     a world to reason through (the capability ladder folded inline: context -> knowledge -> structure ->
-     model -> invariant), and a HEAVY "creates surfaces for" arrow carries those models into the Alignment
-     Thesis, which gives that intent authority (constrain · sense · validate · gate). A dashed governance-
-     conversion loop climbs back up: a failure enriches representation OR control.
-     Palette: Umber Monograph tokens (churn-red #b23b3b, fleet #2f5169 the commodity-intelligence source,
-     governed green #1f7a4d/#155c38 the environment + Modeling + outcome, accent #9a3f12 the Alignment band
-     + the causal arrow, muted #57534e connectors + the loop, page #fdfcf9). -->
+<!-- Hand-authored SVG (label: mage-overview). ROUND-2 CONVERSION: this figure used to be a third
+     whole-MAGE system diagram (redundant with the 0.1-1 causal descent and the 0.1-2 theory card). It is
+     now the genuinely-different missing figure — THE MAGE CYCLE / METHOD: the practitioner's operating
+     loop, which tells you how to PRACTISE MAGE rather than why it holds. Four stations run down a column
+     and a return arm closes the loop:
+        MODEL (make intent explicit) -> ALIGN (give intent authority) -> WORK (grant autonomy) ->
+        [failure / evidence] -> CONVERT (representation or control) -> repeat (back up to MODEL).
+     WORK is the governed work between ALIGN and CONVERT; the three prose beats of the pinned method map to
+     MODEL / ALIGN / CONVERT. Subtitle underneath: "Each pass leaves the environment more capable than the
+     one before." Station names agree with the Part IV opener box (MODEL / ALIGN / WORK / CONVERT).
+     Palette: Umber Monograph tokens (green #1f7a4d/#155c38 MODEL + modeling, accent #9a3f12 ALIGN +
+     CONVERT + governance, fleet #2f5169 WORK + the fleet's governed work, churn-red #b23b3b the failure
+     the pass surfaces, muted #57534e connectors, page #fdfcf9). -->
 <!-- semantic-families: agent, failure, governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 640" width="1120" height="640"
-     role="group" aria-labelledby="mg-title mg-desc"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" width="900" height="640"
+     role="group" aria-labelledby="mc-title mc-desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mg-title">The MAGE method in one picture — a reasoning problem before a control problem</title>
-  <desc id="mg-desc">Commodity intelligence is cheap implementation with two fates. Left ungoverned it
-    drifts into churn as its work outruns the context window. Run through the governed environment it
-    converges on trustworthy software. The governed environment is one connective spine, not two divided
-    halves. The Modeling Thesis gives the intelligence a world to reason through — the capability ladder
-    folded inline, from context to knowledge to structure to model to invariant. A heavy arrow, creates
-    surfaces for, carries those models into the Alignment Thesis, which gives that intent authority by
-    constraining, sensing, validating, and gating. A dashed governance-conversion loop climbs back up: a
-    failure enriches either the representation or the control. Commodity intelligence creates a reasoning
-    problem before it creates a control problem; Modeling answers the first, and in doing so builds the
-    surfaces on which Alignment answers the second.</desc>
+  <title id="mc-title">The MAGE cycle — how to practise the method, one pass then repeat</title>
+  <desc id="mc-desc">The MAGE method as one repeating cycle. Four stations run down a column, and a return
+    arm on the right closes the loop back to the top. MODEL: make intent explicit. An arrow down to ALIGN:
+    give intent authority. An arrow down to WORK: grant autonomy. The next arrow is labelled failure and
+    evidence — where autonomy still fails, and what the pass surfaces. It leads to CONVERT: turn that
+    failure into representation or control. From CONVERT a long return arrow sweeps up the right side back
+    to MODEL, labelled repeat. The condensed method reads: model the intent, give it authority, convert
+    failures into capital, repeat. Each pass leaves the environment more capable than the one before.</desc>
 
   <defs>
-    <marker id="mg-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#b23b3b"/>
+    <marker id="mc-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
-    <marker id="mg-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/>
+    <marker id="mc-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
     </marker>
-    <marker id="mg-ah-navy" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="mg-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-    <marker id="mg-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    <marker id="mc-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#155c38"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1120" height="640" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="900" height="640" fill="#fdfcf9"/>
 
-  <!-- Churn: the ungoverned fate, parked top-left -->
-  <rect x="40" y="150" width="240" height="96" rx="12" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
-  <text x="160" y="188" text-anchor="middle" font-size="22" font-weight="700" fill="#b23b3b">Churn</text>
-  <text x="160" y="213" text-anchor="middle" font-size="15" fill="#b23b3b">work outgrows the window;</text>
-  <text x="160" y="233" text-anchor="middle" font-size="16" fill="#b23b3b">drift, confidently-wrong</text>
+  <text x="420" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The MAGE cycle</text>
+  <text x="420" y="74" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Model the intent · give it authority · convert failures into capital · repeat.</text>
 
-  <!-- bad path: a short fray up out of the source to Churn -->
-  <path d="M150 306 L134 292 L166 278 L132 262 L164 250"
-        fill="none" stroke="#b23b3b" stroke-width="3" stroke-linejoin="round" opacity="0.95"/>
-  <path d="M164 250 L142 240 L158 232 L160 246"
-        fill="none" stroke="#b23b3b" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round"
-        marker-end="url(#mg-ah-red)" opacity="0.9"/>
-  <text x="250" y="272" text-anchor="middle" font-size="16" font-style="italic" fill="#b23b3b" font-weight="600">left ungoverned</text>
+  <!-- Station 1: MODEL (green) -->
+  <rect x="290" y="100" width="260" height="76" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="420" y="134" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#1f7a4d">MODEL</text>
+  <text x="420" y="159" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">make intent explicit</text>
+  <path d="M420,176 L420,206" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#mc-ah-mut)"/>
 
-  <!-- Commodity intelligence: the source, one input two fates -->
-  <rect x="40" y="306" width="216" height="112" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="148" y="344" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">Commodity intelligence</text>
-  <text x="148" y="370" text-anchor="middle" font-size="15" fill="#2f5169">cheap implementation</text>
-  <text x="148" y="393" text-anchor="middle" font-size="15" fill="#57534e">one input, two fates</text>
+  <!-- Station 2: ALIGN (rust) -->
+  <rect x="290" y="208" width="260" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="420" y="242" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#9a3f12">ALIGN</text>
+  <text x="420" y="267" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">give intent authority</text>
+  <path d="M420,284 L420,314" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#mc-ah-mut)"/>
 
-  <!-- reasoning horizon becomes binding, then into the governed spine -->
-  <text x="286" y="352" text-anchor="middle" font-size="13" font-style="italic" fill="#2f5169">reasoning horizon</text>
-  <text x="286" y="368" text-anchor="middle" font-size="13" font-style="italic" fill="#2f5169">becomes binding</text>
-  <path d="M256 388 L300 388" fill="none" stroke="#2f5169" stroke-width="3" marker-end="url(#mg-ah-navy)"/>
+  <!-- Station 3: WORK (fleet blue) -->
+  <rect x="290" y="316" width="260" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="420" y="350" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#2f5169">WORK</text>
+  <text x="420" y="375" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">grant autonomy</text>
 
-  <!-- THE GOVERNED ENVIRONMENT: one connective spine -->
-  <rect x="302" y="150" width="512" height="430" rx="16" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <path d="M302 166 a16 16 0 0 1 16 -16 h480 a16 16 0 0 1 16 16 v24 h-512 z" fill="#1f7a4d"/>
-  <text x="558" y="180" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff" letter-spacing="0.3">The governed environment</text>
+  <!-- the pass surfaces a failure -->
+  <path d="M420,392 L420,444" fill="none" stroke="#b23b3b" stroke-width="2.2" marker-end="url(#mc-ah-red)"/>
+  <text x="436" y="416" text-anchor="start" font-size="14" font-weight="700" fill="#b23b3b">failure / evidence</text>
+  <text x="436" y="433" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">where autonomy still fails</text>
 
-  <!-- MODELING THESIS panel with the capability ladder folded inline -->
-  <rect x="326" y="210" width="464" height="132" rx="10" fill="#ffffff" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="558" y="238" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">Modeling Thesis — give it a world to reason through</text>
-  <!-- inline ladder: five cells with arrows -->
-  <g>
-    <rect x="338" y="256" width="80" height="44" rx="6" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.6"/>
-    <text x="378" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">context</text>
-    <rect x="432" y="256" width="80" height="44" rx="6" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.6"/>
-    <text x="472" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">knowledge</text>
-    <rect x="526" y="256" width="80" height="44" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="566" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">structure</text>
-    <rect x="620" y="256" width="80" height="44" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="660" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">model</text>
-    <rect x="714" y="256" width="80" height="44" rx="6" fill="#e3f0e7" stroke="#155c38" stroke-width="2"/>
-    <text x="754" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#155c38">invariant</text>
-    <g stroke="#57534e" stroke-width="1.8" fill="none">
-      <path d="M420 278 L430 278" marker-end="url(#mg-ah-mut)"/>
-      <path d="M514 278 L524 278" marker-end="url(#mg-ah-mut)"/>
-      <path d="M608 278 L618 278" marker-end="url(#mg-ah-mut)"/>
-      <path d="M702 278 L712 278" marker-end="url(#mg-ah-mut)"/>
-    </g>
-    <text x="558" y="326" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the capability ladder, folded inline</text>
-  </g>
+  <!-- Station 4: CONVERT (rust / governance) -->
+  <rect x="290" y="446" width="260" height="84" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="420" y="482" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#9a3f12">CONVERT</text>
+  <text x="420" y="507" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">representation or control</text>
 
-  <!-- THE causal arrow: creates surfaces for -->
-  <path d="M558 342 L558 384" fill="none" stroke="#9a3f12" stroke-width="5" marker-end="url(#mg-ah-rust)"/>
-  <text x="574" y="368" text-anchor="start" font-size="15" font-weight="700" fill="#9a3f12">creates surfaces for</text>
-
-  <!-- ALIGNMENT THESIS panel -->
-  <rect x="326" y="386" width="464" height="104" rx="10" fill="#ffffff" stroke="#9a3f12" stroke-width="2"/>
-  <text x="558" y="414" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Alignment Thesis — give that intent authority</text>
-  <text x="558" y="442" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">constrain · sense · validate · gate</text>
-  <text x="558" y="468" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the represented intent becomes binding on what the fleet can do</text>
-
-  <!-- governance-conversion loop: climbs back up the left inner gutter -->
-  <path d="M336 528 C304 512 304 244 334 232" fill="none" stroke="#57534e" stroke-width="2"
-        stroke-dasharray="6 4" marker-end="url(#mg-ah-mut)"/>
-  <text x="558" y="524" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Governance conversion enriches representation or control.</text>
-  <text x="558" y="556" text-anchor="middle" font-size="13" font-style="italic" fill="#155c38">a reasoning problem before a control problem.</text>
-
-  <!-- spine out to Trustworthy software -->
-  <path d="M814 364 L866 364" fill="none" stroke="#1f7a4d" stroke-width="3" marker-end="url(#mg-ah-green)"/>
-
-  <!-- Trustworthy software: the converged fate -->
-  <rect x="868" y="296" width="212" height="140" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="974" y="332" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Trustworthy</text>
-  <text x="974" y="354" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">software</text>
-  <text x="974" y="381" text-anchor="middle" font-size="15" fill="#155c38">high quality · auditable</text>
-  <text x="974" y="401" text-anchor="middle" font-size="15" font-style="italic" fill="#1f7a4d">at velocity</text>
-  <rect x="892" y="411" width="164" height="20" rx="10" fill="#ffffff" stroke="#1f7a4d" stroke-width="1.2"/>
-  <path d="M903 421 l3 3 l5.5 -6.5" fill="none" stroke="#1f7a4d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="980" y="426" text-anchor="middle" font-size="14" fill="#155c38" letter-spacing="0.2">traces to the models</text>
+  <!-- the return arm: CONVERT climbs back up to MODEL — this closes the cycle -->
+  <path d="M550,488 C712,470 712,148 552,138" fill="none" stroke="#155c38" stroke-width="2.6"
+        marker-end="url(#mc-ah-green)"/>
+  <text transform="rotate(-90 726 316)" x="726" y="316" text-anchor="middle" font-size="17"
+        font-weight="700" fill="#155c38">repeat</text>
+  <text transform="rotate(-90 752 316)" x="752" y="316" text-anchor="middle" font-size="12.5"
+        font-style="italic" fill="#57534e">each pass compounds</text>
 
   <!-- takeaway caption -->
-  <text x="560" y="612" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">MAGE is the governed path: Modeling makes intent explicit, and Alignment gives it authority — one spine, not two divided halves.</text>
+  <text x="420" y="588" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Each pass leaves the environment more capable than the one before.</text>
 </svg>

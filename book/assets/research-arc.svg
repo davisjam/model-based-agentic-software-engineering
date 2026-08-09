@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Authored for the figure-wiring wave per integration-prose-preface3-conclusion-260807.md Block 3
-     (research-arc SPEC). The book's METHOD, not its theory: a single vertical inference chain read top to
-     bottom — DocAble (one deep case) -> Induced MAGE (the theory proposed from it) -> Industry reports
-     (six independent organizations) -> Comparison (each reconstructed in MAGE terms) -> Refinement (the
-     theory tested and changed) -> Theory (the refined MAGE theory the closing chapters carry). One thin
-     dashed green feedback edge returns Refinement -> Induced MAGE, "the theory changed," so the flat chain
-     does not hide that the comparison altered the constructs. Two colour families only: green #1f7a4d/#155c38
-     modeling (the theory nodes) and neutral #57534e (the evidence/procedure nodes + the inference spine), so
-     the figure reads in grayscale and every node also carries a title. Coordinate-authored (no invisible
-     anchors). Palette: Umber Monograph tokens (ink #1c1917, paper #fdfcf9, muted/neutral #57534e, green
-     #1f7a4d + emphasis #155c38, modeling tint #e3f0e7, neutral tint #f6f4ef, rule #e4e0d8). Fonts in the
-     13-26 band at the 1000px reference. -->
+     (research-arc SPEC). ROUND-2: the title is relabelled to name the figure explicitly as research
+     PROVENANCE — "Where the theory came from" — while the TRUE chronological order is preserved (do NOT
+     rearrange to chapter order; that would falsify the research story — scholarly-hygiene invariant). The
+     disclaimer sentence ("The order in which the evidence produced the theory is not the order in which
+     the book teaches the resulting method") lives in the prose caption, not in the SVG.
+     The book's METHOD, not its theory: a single vertical inference chain read top to bottom — DocAble
+     (one deep case) -> Induced MAGE (the theory proposed from it) -> Industry reports (six independent
+     organizations) -> Comparison (each reconstructed in MAGE terms) -> Refinement (the theory tested and
+     changed) -> Theory (the refined MAGE theory the closing chapters carry). One thin dashed green
+     feedback edge returns Refinement -> Induced MAGE, "the theory changed," so the flat chain does not
+     hide that the comparison altered the constructs. Two colour families only: green #1f7a4d/#155c38
+     modeling (the theory nodes) and neutral #57534e (the evidence/procedure nodes + the inference spine),
+     so the figure reads in grayscale and every node also carries a title. Coordinate-authored (no
+     invisible anchors). Palette: Umber Monograph tokens (ink #1c1917, paper #fdfcf9, muted/neutral
+     #57534e, green #1f7a4d + emphasis #155c38, modeling tint #e3f0e7, neutral tint #f6f4ef, rule
+     #e4e0d8). Fonts in the 13-26 band at the 1000px reference. -->
 <!-- semantic-families: modeling, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700"
      role="group" aria-labelledby="raTitle raDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="raTitle">The research arc: how the book knows what it claims, one procedure read top to bottom</title>
+  <title id="raTitle">Where the theory came from: the research provenance, one procedure read top to bottom</title>
   <desc id="raDesc">A single vertical chain of six stages, read from top to bottom, each a titled box joined to
-    the next by a downward arrow. Stage one, DocAble — one production system, studied deeply over months.
+    the next by a downward arrow. This is where the theory came from — its research provenance, in the true
+    order the evidence produced it, which is not the order in which the book later teaches the method.
+    Stage one, DocAble — one production system, studied deeply over months.
     Stage two, Induced MAGE — the theory proposed from that one case: the two theses, governance conversion,
     engineering capital. Stage three, Industry reports — six independent organizations. Stage four,
     Comparison — each system reconstructed in MAGE's vocabulary and put to three questions. Stage five,
@@ -38,7 +45,7 @@
   </defs>
 
   <rect x="0" y="0" width="1000" height="700" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The research arc</text>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where the theory came from</text>
   <text x="500" y="68" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">How the book knows what it claims — one procedure, read top to bottom.</text>
 
   <!-- spine arrows (neutral) + edge labels naming the inference -->

@@ -11,30 +11,37 @@
      the Modeling Thesis: models fail only for lack of Alignment, not for being modelled): without
      Alignment the models never become authoritative, so they accrue no capital and dissipate into
      Engineering Churn. Routed down the right margin to land parallel to Engineering Capital, it draws the
-     Capital ↔ Churn mirror — same models, two fates. A frontispiece for the glossary.
+     Capital <-> Churn mirror — same models, two fates.
+     ROUND-2 ADDITION (the governance-conversion RETURN LOOP, left margin): the governed work fails, that
+     failure enters a GOVERNANCE CONVERSION hub, and the hub forks BACK UP into the pair — "enrich model"
+     lands on the Modeling Thesis node, "enrich control" lands on the Alignment Thesis node — then the
+     descent repeats. Governance conversion is thus promoted from a downstream annotation to an explicit
+     feedback operation that re-enriches either side of the Modeling/Alignment pair.
      Palette: Umber Monograph tokens (fleet #2f5169 the commodity-intelligence source, churn-red #b23b3b
      the reasoning-horizon problem, thesis-green #15803d + governed green #1f7a4d/#155c38 the Modeling band
      + environment + capital, accent #9a3f12 the Alignment band + the "creates surfaces for" arrow + the
-     Autonomy outcome, muted #57534e connectors + gloss + the dashed failure branch, neutral #f6f4ef the
-     Engineering-Churn box). -->
+     Autonomy outcome + the conversion hub, muted #57534e connectors + gloss + the dashed failure branch,
+     neutral #f6f4ef the Engineering-Churn box + the conversion hub). -->
 <!-- semantic-families: agent, failure, governance, modeling, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 946" width="840" height="946"
      role="group" aria-labelledby="mmTitle mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mmTitle">The MAGE method at a glance — one causal descent</title>
-  <desc id="mmDesc">A single causal descent with one failure branch. Commodity intelligence — broad,
+  <title id="mmTitle">The MAGE method at a glance — one causal descent with a governance-conversion return loop</title>
+  <desc id="mmDesc">A single causal descent with two branches. Commodity intelligence — broad,
     cheap, probabilistic — meets a reasoning-horizon problem: the system will not fit the context window.
     The Modeling Thesis answers it by externalizing engineering knowledge and intent; a short branch
     splits into better context for reasoning and stronger semantics for engineering, then rejoins into
     structured and executable models — what is, what ought to be, and the invariants over them. A heavy
     labelled arrow, creates surfaces for, carries those models into the Alignment Thesis, which gives
     engineering intent authority through constraints, sensors, validators, and gates. The column continues
-    into the Governed Engineering Environment, then governance conversion grows it, effort compounds as
-    Engineering Capital, and the result is trustworthy autonomy. A dashed grey branch peels off the
-    structured-and-executable-models node: without Alignment those models never become authoritative, so
-    they dissipate into Engineering Churn — repeated rediscovery, inspection, and correction, with no
-    capital formation. Same models, two fates: with Alignment they compound as engineering capital;
-    without it they churn. Modeling makes intent explicit; Alignment gives it authority.</desc>
+    into the Governed Engineering Environment, then effort compounds as Engineering Capital, and the result
+    is trustworthy autonomy. A dashed grey branch peels off the structured-and-executable-models node:
+    without Alignment those models never become authoritative, so they dissipate into Engineering Churn —
+    repeated rediscovery, inspection, and correction, with no capital formation. Same models, two fates.
+    A second loop climbs back up the left margin: the governed work fails, and that failure enters a
+    Governance Conversion hub, which forks back into the pair — enrich model lands on the Modeling Thesis,
+    enrich control lands on the Alignment Thesis — and the descent repeats. Governance conversion reaches
+    into BOTH sides. Modeling makes intent explicit; Alignment gives it authority.</desc>
 
   <defs>
     <marker id="mm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -42,6 +49,9 @@
     </marker>
     <marker id="mm-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="mm-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15803d"/>
     </marker>
   </defs>
 
@@ -110,10 +120,8 @@
   <text x="360" y="884" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">Trustworthy autonomy</text>
 
   <!-- FAILURE BRANCH: dashed + grey, from the structured/executable-models node (D), down the right
-       margin to Engineering Churn. Origin at D — NOT the Modeling Thesis: models without Alignment simply
-       never become authoritative, so no capital forms. The grey dashed line is the "if you stop here"
-       fate, contrasting the thick rust "creates surfaces for" path. Lands parallel to Engineering Capital
-       — the Capital ↔ Churn mirror, same models, two fates. -->
+       margin to Engineering Churn. The grey dashed line is the "if you stop here" fate; lands parallel to
+       Engineering Capital — the Capital <-> Churn mirror, same models, two fates. -->
   <path d="M508,449 L715,449 L715,752" fill="none" stroke="#57534e" stroke-width="2.4"
         stroke-dasharray="6 4" marker-end="url(#mm-ah)"/>
   <text x="634" y="556" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">without Alignment</text>
@@ -126,4 +134,34 @@
   <text x="715" y="799" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">dissipates</text>
   <text x="715" y="819" text-anchor="middle" font-size="11" fill="#57534e">repeated rediscovery, inspection,</text>
   <text x="715" y="835" text-anchor="middle" font-size="11" fill="#57534e">correction — no capital formation</text>
+
+  <!-- ============================================================================
+       GOVERNANCE-CONVERSION RETURN LOOP (left margin). The productive response to a
+       failure in the governed work: convert it, and enrich BOTH sides of the pair.
+       A hub with one input (failure, from the governed environment) and two outputs
+       (enrich model -> Modeling node; enrich control -> Alignment node), then repeat.
+       ============================================================================ -->
+  <!-- the conversion hub -->
+  <rect x="6" y="386" width="156" height="100" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="84" y="416" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#9a3f12">GOVERNANCE</text>
+  <text x="84" y="434" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#9a3f12">CONVERSION</text>
+  <text x="84" y="458" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">turn a failure</text>
+  <text x="84" y="473" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">into structure</text>
+
+  <!-- input: governed work fails -> into the hub's right edge -->
+  <path d="M168,694 C120,650 130,470 164,450" fill="none" stroke="#9a3f12" stroke-width="2.2"
+        stroke-dasharray="5 4" marker-end="url(#mm-ah-rust)"/>
+  <text x="100" y="598" text-anchor="middle" font-size="12" font-weight="600" fill="#57534e">governed work</text>
+  <text x="100" y="616" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b23b3b">→ failure</text>
+
+  <!-- fork 1: enrich model -> up onto the Modeling Thesis node (C) -->
+  <path d="M60,386 L60,246 L212,246" fill="none" stroke="#15803d" stroke-width="2.2" marker-end="url(#mm-ah-green)"/>
+  <text x="136" y="238" text-anchor="middle" font-size="13" font-weight="700" fill="#15803d">enrich model</text>
+
+  <!-- fork 2: enrich control -> down onto the Alignment Thesis node (E) -->
+  <path d="M100,486 L100,570 L236,570" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#mm-ah-rust)"/>
+  <text x="168" y="558" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12">enrich control</text>
+
+  <!-- the loop repeats -->
+  <text x="66" y="506" text-anchor="middle" font-size="12" font-style="italic" fill="#9a3f12">↻ repeat</text>
 </svg>

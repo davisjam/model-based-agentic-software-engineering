@@ -701,20 +701,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li></ol></details></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 91 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 946"
      role="group" aria-labelledby="fig-0-1-1-mmTitle fig-0-1-1-mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-0-1-1-mmTitle">The MAGE method at a glance — one causal descent</title>
-  <desc id="fig-0-1-1-mmDesc">A single causal descent with one failure branch. Commodity intelligence — broad,
+  <title id="fig-0-1-1-mmTitle">The MAGE method at a glance — one causal descent with a governance-conversion return loop</title>
+  <desc id="fig-0-1-1-mmDesc">A single causal descent with two branches. Commodity intelligence — broad,
     cheap, probabilistic — meets a reasoning-horizon problem: the system will not fit the context window.
     The Modeling Thesis answers it by externalizing engineering knowledge and intent; a short branch
     splits into better context for reasoning and stronger semantics for engineering, then rejoins into
     structured and executable models — what is, what ought to be, and the invariants over them. A heavy
     labelled arrow, creates surfaces for, carries those models into the Alignment Thesis, which gives
     engineering intent authority through constraints, sensors, validators, and gates. The column continues
-    into the Governed Engineering Environment, then governance conversion grows it, effort compounds as
-    Engineering Capital, and the result is trustworthy autonomy. A dashed grey branch peels off the
-    structured-and-executable-models node: without Alignment those models never become authoritative, so
-    they dissipate into Engineering Churn — repeated rediscovery, inspection, and correction, with no
-    capital formation. Same models, two fates: with Alignment they compound as engineering capital;
-    without it they churn. Modeling makes intent explicit; Alignment gives it authority.</desc>
+    into the Governed Engineering Environment, then effort compounds as Engineering Capital, and the result
+    is trustworthy autonomy. A dashed grey branch peels off the structured-and-executable-models node:
+    without Alignment those models never become authoritative, so they dissipate into Engineering Churn —
+    repeated rediscovery, inspection, and correction, with no capital formation. Same models, two fates.
+    A second loop climbs back up the left margin: the governed work fails, and that failure enters a
+    Governance Conversion hub, which forks back into the pair — enrich model lands on the Modeling Thesis,
+    enrich control lands on the Alignment Thesis — and the descent repeats. Governance conversion reaches
+    into BOTH sides. Modeling makes intent explicit; Alignment gives it authority.</desc>
 
   <defs>
     <marker id="fig-0-1-1-mm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -722,6 +724,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
     <marker id="fig-0-1-1-mm-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="fig-0-1-1-mm-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15803d"/>
     </marker>
   </defs>
 
@@ -790,10 +795,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="360" y="884" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">Trustworthy autonomy</text>
 
   <!-- FAILURE BRANCH: dashed + grey, from the structured/executable-models node (D), down the right
-       margin to Engineering Churn. Origin at D — NOT the Modeling Thesis: models without Alignment simply
-       never become authoritative, so no capital forms. The grey dashed line is the "if you stop here"
-       fate, contrasting the thick rust "creates surfaces for" path. Lands parallel to Engineering Capital
-       — the Capital ↔ Churn mirror, same models, two fates. -->
+       margin to Engineering Churn. The grey dashed line is the "if you stop here" fate; lands parallel to
+       Engineering Capital — the Capital <-> Churn mirror, same models, two fates. -->
   <path d="M508,449 L715,449 L715,752" fill="none" stroke="#57534e" stroke-width="2.4"
         stroke-dasharray="6 4" marker-end="url(#fig-0-1-1-mm-ah)"/>
   <text x="634" y="556" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">without Alignment</text>
@@ -806,6 +809,36 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="715" y="799" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">dissipates</text>
   <text x="715" y="819" text-anchor="middle" font-size="11" fill="#57534e">repeated rediscovery, inspection,</text>
   <text x="715" y="835" text-anchor="middle" font-size="11" fill="#57534e">correction — no capital formation</text>
+
+  <!-- ============================================================================
+       GOVERNANCE-CONVERSION RETURN LOOP (left margin). The productive response to a
+       failure in the governed work: convert it, and enrich BOTH sides of the pair.
+       A hub with one input (failure, from the governed environment) and two outputs
+       (enrich model -> Modeling node; enrich control -> Alignment node), then repeat.
+       ============================================================================ -->
+  <!-- the conversion hub -->
+  <rect x="6" y="386" width="156" height="100" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="84" y="416" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#9a3f12">GOVERNANCE</text>
+  <text x="84" y="434" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#9a3f12">CONVERSION</text>
+  <text x="84" y="458" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">turn a failure</text>
+  <text x="84" y="473" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">into structure</text>
+
+  <!-- input: governed work fails -> into the hub's right edge -->
+  <path d="M168,694 C120,650 130,470 164,450" fill="none" stroke="#9a3f12" stroke-width="2.2"
+        stroke-dasharray="5 4" marker-end="url(#fig-0-1-1-mm-ah-rust)"/>
+  <text x="100" y="598" text-anchor="middle" font-size="12" font-weight="600" fill="#57534e">governed work</text>
+  <text x="100" y="616" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b23b3b">→ failure</text>
+
+  <!-- fork 1: enrich model -> up onto the Modeling Thesis node (C) -->
+  <path d="M60,386 L60,246 L212,246" fill="none" stroke="#15803d" stroke-width="2.2" marker-end="url(#fig-0-1-1-mm-ah-green)"/>
+  <text x="136" y="238" text-anchor="middle" font-size="13" font-weight="700" fill="#15803d">enrich model</text>
+
+  <!-- fork 2: enrich control -> down onto the Alignment Thesis node (E) -->
+  <path d="M100,486 L100,570 L236,570" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-0-1-1-mm-ah-rust)"/>
+  <text x="168" y="558" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12">enrich control</text>
+
+  <!-- the loop repeats -->
+  <text x="66" y="506" text-anchor="middle" font-size="12" font-style="italic" fill="#9a3f12">↻ repeat</text>
 </svg><figcaption data-short="The whole method as one descent"><span class="fig-label">Figure 0.1-1.</span> The whole method as one descent. Commodity intelligence — broad, cheap, probabilistic — meets a reasoning-horizon problem: the system won't fit the window. The Modeling Thesis answers it, externalizing engineering knowledge and intent into structured, executable models. A heavy arrow, <em>creates surfaces for</em>, carries those models into the Alignment Thesis, which gives that intent authority through constraints, sensors, validators, and gates, on into the Governed Engineering Environment, where effort compounds as engineering capital. Stop at the models, though, and a dashed grey branch tells the other fate: without Alignment they never become authoritative, and dissipate into engineering churn — repeated rediscovery, no capital formed. Same models, two fates: capital compounds, churn dissipates.</figcaption></figure><p class="gallery-source">From <a href="0.1-the-mage-method-at-a-glance.html#fig-0-1-1">The MAGE Method at a Glance</a></p></section><hr><section class="gallery-item"><figure id="fig-0-1-2-fig-0-1-2" class="book-figure" data-label="mage-theory-card"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 830"
      role="group" aria-labelledby="fig-0-1-2-cardTitle fig-0-1-2-cardDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -815,10 +848,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     resource. The two theses form a causal pair, stacked not side by side — the Modeling Thesis, make
     knowledge and intent explicit, sits above the Alignment Thesis, make obligations binding, joined by an
     arrow reading richer representations make more obligations enforceable. Beside them, Governance
-    Conversion reaches into both thesis boxes: convert recurring failures into durable mechanisms, and it
-    enriches either side — a model fact or an invariant, a sensor or a gate. Below, Engineering Capital:
-    mechanisms compound as engineering capital. Outcome: Governed engineering environments safely scale
-    autonomy.</desc>
+    Conversion: convert recurring failures into durable mechanisms. Two bold return connectors fork from
+    the Governance Conversion panel and loop back into BOTH thesis boxes at once — a green connector into
+    the Modeling Thesis above, a rust connector into the Alignment Thesis below — because a converted
+    failure enriches either side, a model fact or an invariant, a sensor or a gate. Below, Engineering
+    Capital: mechanisms compound as engineering capital. Outcome: Governed engineering environments safely
+    scale autonomy.</desc>
 
   <defs>
     <marker id="fig-0-1-2-card-chev" viewBox="0 0 12 12" refX="6" refY="9" markerWidth="14" markerHeight="14" orient="auto">
@@ -827,8 +862,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <marker id="fig-0-1-2-card-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
-    <marker id="fig-0-1-2-card-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    <marker id="fig-0-1-2-card-ret-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
+    </marker>
+    <marker id="fig-0-1-2-card-ret-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
   </defs>
 
@@ -859,6 +897,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="70" y="334" width="544" height="96" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="96" y="364" font-size="16" font-weight="700" letter-spacing="2" fill="#1f7a4d">MODELING THESIS</text>
   <text x="342" y="404" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Make knowledge and intent explicit.</text>
+  <text x="598" y="356" text-anchor="end" font-size="12.5" font-style="italic" fill="#1f7a4d">← governance enriches this</text>
 
   <!-- the causal join — the load-bearing new content of this card -->
   <path d="M342,432 L342,486" fill="none" stroke="#9a3f12" stroke-width="4.5" marker-end="url(#fig-0-1-2-card-ah-rust)"/>
@@ -868,18 +907,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="70" y="488" width="544" height="96" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="96" y="518" font-size="16" font-weight="700" letter-spacing="2" fill="#9a3f12">ALIGNMENT THESIS</text>
   <text x="342" y="558" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Make obligations binding.</text>
+  <text x="598" y="510" text-anchor="end" font-size="12.5" font-style="italic" fill="#9a3f12">← governance enriches this</text>
 
   <!-- GOVERNANCE CONVERSION — beside the pair, reaching into BOTH boxes -->
   <rect x="634" y="334" width="296" height="250" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.2"/>
   <text x="782" y="366" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.5" fill="#9a3f12">GOVERNANCE CONVERSION</text>
   <text x="782" y="404" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Convert recurring failures</text>
   <text x="782" y="426" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">into durable mechanisms.</text>
-  <text x="782" y="474" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">It enriches BOTH sides —</text>
-  <text x="782" y="496" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a model fact or an invariant,</text>
-  <text x="782" y="518" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a sensor or a gate.</text>
-  <!-- arrows from the conversion panel into each thesis box -->
-  <path d="M634,382 L616,382" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-0-1-2-card-ah-mut)"/>
-  <path d="M634,536 L616,536" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-0-1-2-card-ah-mut)"/>
+  <text x="782" y="474" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">a model fact or an invariant,</text>
+  <text x="782" y="495" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">a sensor or a gate</text>
+  <text x="782" y="556" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">loops back into BOTH</text>
+
+  <!-- TWO BOLD RETURN CONNECTORS: one origin on the panel, forking into BOTH thesis boxes.
+       Impossible to miss — thick, coloured, big arrowheads landing on each box. -->
+  <circle cx="634" cy="459" r="4" fill="#57534e"/>
+  <path d="M634,459 C620,452 622,398 615,390" fill="none" stroke="#1f7a4d" stroke-width="4" marker-end="url(#fig-0-1-2-card-ret-green)"/>
+  <path d="M634,459 C620,466 622,528 615,536" fill="none" stroke="#9a3f12" stroke-width="4" marker-end="url(#fig-0-1-2-card-ret-rust)"/>
 
   <!-- ENGINEERING CAPITAL (full width, rust) -->
   <rect x="70" y="602" width="860" height="78" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
@@ -893,9 +936,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="The Theory of MAGE — a reference card"><span class="fig-label">Figure 0.1-2.</span> <em>The Theory of MAGE — a reference card.</em> The whole theory on one page. The problem is churn: an ungoverned fleet outruns the context it can hold. The two theses form a causal pair, not siblings — the Modeling Thesis, make knowledge and intent explicit, sits above the Alignment Thesis, make obligations binding, joined by a single claim: richer representations make more obligations enforceable. Governance conversion reaches into both, since a failure can enrich either side — a model fact, an invariant, a sensor, or a gate — and the mechanisms compound as engineering capital. Read the card as the destination the rest of the book earns, each panel naming an idea a later chapter expands.</figcaption></figure><p class="gallery-source">From <a href="0.1-the-mage-method-at-a-glance.html#fig-0-1-2">The MAGE Method at a Glance</a></p></section><hr><section class="gallery-item"><figure id="fig-0-4-1-fig-0-4-1" class="book-figure" data-label="research-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700"
      role="group" aria-labelledby="fig-0-4-1-raTitle fig-0-4-1-raDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-0-4-1-raTitle">The research arc: how the book knows what it claims, one procedure read top to bottom</title>
+  <title id="fig-0-4-1-raTitle">Where the theory came from: the research provenance, one procedure read top to bottom</title>
   <desc id="fig-0-4-1-raDesc">A single vertical chain of six stages, read from top to bottom, each a titled box joined to
-    the next by a downward arrow. Stage one, DocAble — one production system, studied deeply over months.
+    the next by a downward arrow. This is where the theory came from — its research provenance, in the true
+    order the evidence produced it, which is not the order in which the book later teaches the method.
+    Stage one, DocAble — one production system, studied deeply over months.
     Stage two, Induced MAGE — the theory proposed from that one case: the two theses, governance conversion,
     engineering capital. Stage three, Industry reports — six independent organizations. Stage four,
     Comparison — each system reconstructed in MAGE's vocabulary and put to three questions. Stage five,
@@ -916,7 +961,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <rect x="0" y="0" width="1000" height="700" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The research arc</text>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where the theory came from</text>
   <text x="500" y="68" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">How the book knows what it claims — one procedure, read top to bottom.</text>
 
   <!-- spine arrows (neutral) + edge labels naming the inference -->
@@ -972,126 +1017,72 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
         font-style="italic" fill="#1f7a4d" paint-order="stroke" stroke="#ffffff" stroke-width="3">the theory changed</text>
 
   <text x="500" y="668" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">One deep case supplies mechanism; the independent cases supply variation — together they reach further than either alone.</text>
-</svg><figcaption data-short="The Research Arc"><span class="fig-label">Figure 0.4-1.</span> <em>The Research Arc.</em> The book's claims come from one procedure, read top to bottom. A single production system, DocAble, studied over months, induces the MAGE theory, which is then turned outward against six independent industrial reports, each reconstructed in the MAGE vocabulary and put to the same three questions. The comparison does not merely illustrate the theory; it tests it, refines it where the outside cases press, and occasionally extends it, before the refined theory is carried into the closing chapters. One deep case supplies mechanism; the independent cases supply variation; together they reach further than either could alone.</figcaption></figure><p class="gallery-source">From <a href="0.4-preface.html#fig-0-4-1">Preface</a></p></section><hr><section class="gallery-item"><figure id="fig-0-4-2-fig-0-4-2" class="book-figure" data-label="mage-overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 640"
-     role="group" aria-labelledby="fig-0-4-2-mg-title fig-0-4-2-mg-desc"
+</svg><figcaption data-short="The Research Arc"><span class="fig-label">Figure 0.4-1.</span> <em>The Research Arc.</em> The book's claims come from one procedure, read top to bottom. A single production system, DocAble, studied over months, induces the MAGE theory, which is then turned outward against six independent industrial reports, each reconstructed in the MAGE vocabulary and put to the same three questions. The comparison does not merely illustrate the theory; it tests it, refines it where the outside cases press, and occasionally extends it, before the refined theory is carried into the closing chapters. One deep case supplies mechanism; the independent cases supply variation; together they reach further than either could alone.</figcaption></figure><p class="gallery-source">From <a href="0.4-preface.html#fig-0-4-1">Preface</a></p></section><hr><section class="gallery-item"><figure id="fig-0-4-2-fig-0-4-2" class="book-figure" data-label="mage-overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640"
+     role="group" aria-labelledby="fig-0-4-2-mc-title fig-0-4-2-mc-desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-0-4-2-mg-title">The MAGE method in one picture — a reasoning problem before a control problem</title>
-  <desc id="fig-0-4-2-mg-desc">Commodity intelligence is cheap implementation with two fates. Left ungoverned it
-    drifts into churn as its work outruns the context window. Run through the governed environment it
-    converges on trustworthy software. The governed environment is one connective spine, not two divided
-    halves. The Modeling Thesis gives the intelligence a world to reason through — the capability ladder
-    folded inline, from context to knowledge to structure to model to invariant. A heavy arrow, creates
-    surfaces for, carries those models into the Alignment Thesis, which gives that intent authority by
-    constraining, sensing, validating, and gating. A dashed governance-conversion loop climbs back up: a
-    failure enriches either the representation or the control. Commodity intelligence creates a reasoning
-    problem before it creates a control problem; Modeling answers the first, and in doing so builds the
-    surfaces on which Alignment answers the second.</desc>
+  <title id="fig-0-4-2-mc-title">The MAGE cycle — how to practise the method, one pass then repeat</title>
+  <desc id="fig-0-4-2-mc-desc">The MAGE method as one repeating cycle. Four stations run down a column, and a return
+    arm on the right closes the loop back to the top. MODEL: make intent explicit. An arrow down to ALIGN:
+    give intent authority. An arrow down to WORK: grant autonomy. The next arrow is labelled failure and
+    evidence — where autonomy still fails, and what the pass surfaces. It leads to CONVERT: turn that
+    failure into representation or control. From CONVERT a long return arrow sweeps up the right side back
+    to MODEL, labelled repeat. The condensed method reads: model the intent, give it authority, convert
+    failures into capital, repeat. Each pass leaves the environment more capable than the one before.</desc>
 
   <defs>
-    <marker id="fig-0-4-2-mg-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#b23b3b"/>
+    <marker id="fig-0-4-2-mc-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
-    <marker id="fig-0-4-2-mg-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/>
+    <marker id="fig-0-4-2-mc-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
     </marker>
-    <marker id="fig-0-4-2-mg-ah-navy" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="fig-0-4-2-mg-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-    <marker id="fig-0-4-2-mg-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    <marker id="fig-0-4-2-mc-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#155c38"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1120" height="640" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="900" height="640" fill="#fdfcf9"/>
 
-  <!-- Churn: the ungoverned fate, parked top-left -->
-  <rect x="40" y="150" width="240" height="96" rx="12" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
-  <text x="160" y="188" text-anchor="middle" font-size="22" font-weight="700" fill="#b23b3b">Churn</text>
-  <text x="160" y="213" text-anchor="middle" font-size="15" fill="#b23b3b">work outgrows the window;</text>
-  <text x="160" y="233" text-anchor="middle" font-size="16" fill="#b23b3b">drift, confidently-wrong</text>
+  <text x="420" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The MAGE cycle</text>
+  <text x="420" y="74" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Model the intent · give it authority · convert failures into capital · repeat.</text>
 
-  <!-- bad path: a short fray up out of the source to Churn -->
-  <path d="M150 306 L134 292 L166 278 L132 262 L164 250"
-        fill="none" stroke="#b23b3b" stroke-width="3" stroke-linejoin="round" opacity="0.95"/>
-  <path d="M164 250 L142 240 L158 232 L160 246"
-        fill="none" stroke="#b23b3b" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round"
-        marker-end="url(#fig-0-4-2-mg-ah-red)" opacity="0.9"/>
-  <text x="250" y="272" text-anchor="middle" font-size="16" font-style="italic" fill="#b23b3b" font-weight="600">left ungoverned</text>
+  <!-- Station 1: MODEL (green) -->
+  <rect x="290" y="100" width="260" height="76" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="420" y="134" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#1f7a4d">MODEL</text>
+  <text x="420" y="159" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">make intent explicit</text>
+  <path d="M420,176 L420,206" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-0-4-2-mc-ah-mut)"/>
 
-  <!-- Commodity intelligence: the source, one input two fates -->
-  <rect x="40" y="306" width="216" height="112" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="148" y="344" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">Commodity intelligence</text>
-  <text x="148" y="370" text-anchor="middle" font-size="15" fill="#2f5169">cheap implementation</text>
-  <text x="148" y="393" text-anchor="middle" font-size="15" fill="#57534e">one input, two fates</text>
+  <!-- Station 2: ALIGN (rust) -->
+  <rect x="290" y="208" width="260" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="420" y="242" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#9a3f12">ALIGN</text>
+  <text x="420" y="267" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">give intent authority</text>
+  <path d="M420,284 L420,314" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-0-4-2-mc-ah-mut)"/>
 
-  <!-- reasoning horizon becomes binding, then into the governed spine -->
-  <text x="286" y="352" text-anchor="middle" font-size="13" font-style="italic" fill="#2f5169">reasoning horizon</text>
-  <text x="286" y="368" text-anchor="middle" font-size="13" font-style="italic" fill="#2f5169">becomes binding</text>
-  <path d="M256 388 L300 388" fill="none" stroke="#2f5169" stroke-width="3" marker-end="url(#fig-0-4-2-mg-ah-navy)"/>
+  <!-- Station 3: WORK (fleet blue) -->
+  <rect x="290" y="316" width="260" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="420" y="350" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#2f5169">WORK</text>
+  <text x="420" y="375" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">grant autonomy</text>
 
-  <!-- THE GOVERNED ENVIRONMENT: one connective spine -->
-  <rect x="302" y="150" width="512" height="430" rx="16" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <path d="M302 166 a16 16 0 0 1 16 -16 h480 a16 16 0 0 1 16 16 v24 h-512 z" fill="#1f7a4d"/>
-  <text x="558" y="180" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff" letter-spacing="0.3">The governed environment</text>
+  <!-- the pass surfaces a failure -->
+  <path d="M420,392 L420,444" fill="none" stroke="#b23b3b" stroke-width="2.2" marker-end="url(#fig-0-4-2-mc-ah-red)"/>
+  <text x="436" y="416" text-anchor="start" font-size="14" font-weight="700" fill="#b23b3b">failure / evidence</text>
+  <text x="436" y="433" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">where autonomy still fails</text>
 
-  <!-- MODELING THESIS panel with the capability ladder folded inline -->
-  <rect x="326" y="210" width="464" height="132" rx="10" fill="#ffffff" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="558" y="238" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">Modeling Thesis — give it a world to reason through</text>
-  <!-- inline ladder: five cells with arrows -->
-  <g>
-    <rect x="338" y="256" width="80" height="44" rx="6" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.6"/>
-    <text x="378" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">context</text>
-    <rect x="432" y="256" width="80" height="44" rx="6" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.6"/>
-    <text x="472" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">knowledge</text>
-    <rect x="526" y="256" width="80" height="44" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="566" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">structure</text>
-    <rect x="620" y="256" width="80" height="44" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="660" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">model</text>
-    <rect x="714" y="256" width="80" height="44" rx="6" fill="#e3f0e7" stroke="#155c38" stroke-width="2"/>
-    <text x="754" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#155c38">invariant</text>
-    <g stroke="#57534e" stroke-width="1.8" fill="none">
-      <path d="M420 278 L430 278" marker-end="url(#fig-0-4-2-mg-ah-mut)"/>
-      <path d="M514 278 L524 278" marker-end="url(#fig-0-4-2-mg-ah-mut)"/>
-      <path d="M608 278 L618 278" marker-end="url(#fig-0-4-2-mg-ah-mut)"/>
-      <path d="M702 278 L712 278" marker-end="url(#fig-0-4-2-mg-ah-mut)"/>
-    </g>
-    <text x="558" y="326" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the capability ladder, folded inline</text>
-  </g>
+  <!-- Station 4: CONVERT (rust / governance) -->
+  <rect x="290" y="446" width="260" height="84" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="420" y="482" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#9a3f12">CONVERT</text>
+  <text x="420" y="507" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">representation or control</text>
 
-  <!-- THE causal arrow: creates surfaces for -->
-  <path d="M558 342 L558 384" fill="none" stroke="#9a3f12" stroke-width="5" marker-end="url(#fig-0-4-2-mg-ah-rust)"/>
-  <text x="574" y="368" text-anchor="start" font-size="15" font-weight="700" fill="#9a3f12">creates surfaces for</text>
-
-  <!-- ALIGNMENT THESIS panel -->
-  <rect x="326" y="386" width="464" height="104" rx="10" fill="#ffffff" stroke="#9a3f12" stroke-width="2"/>
-  <text x="558" y="414" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Alignment Thesis — give that intent authority</text>
-  <text x="558" y="442" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">constrain · sense · validate · gate</text>
-  <text x="558" y="468" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the represented intent becomes binding on what the fleet can do</text>
-
-  <!-- governance-conversion loop: climbs back up the left inner gutter -->
-  <path d="M336 528 C304 512 304 244 334 232" fill="none" stroke="#57534e" stroke-width="2"
-        stroke-dasharray="6 4" marker-end="url(#fig-0-4-2-mg-ah-mut)"/>
-  <text x="558" y="524" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Governance conversion enriches representation or control.</text>
-  <text x="558" y="556" text-anchor="middle" font-size="13" font-style="italic" fill="#155c38">a reasoning problem before a control problem.</text>
-
-  <!-- spine out to Trustworthy software -->
-  <path d="M814 364 L866 364" fill="none" stroke="#1f7a4d" stroke-width="3" marker-end="url(#fig-0-4-2-mg-ah-green)"/>
-
-  <!-- Trustworthy software: the converged fate -->
-  <rect x="868" y="296" width="212" height="140" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="974" y="332" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Trustworthy</text>
-  <text x="974" y="354" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">software</text>
-  <text x="974" y="381" text-anchor="middle" font-size="15" fill="#155c38">high quality · auditable</text>
-  <text x="974" y="401" text-anchor="middle" font-size="15" font-style="italic" fill="#1f7a4d">at velocity</text>
-  <rect x="892" y="411" width="164" height="20" rx="10" fill="#ffffff" stroke="#1f7a4d" stroke-width="1.2"/>
-  <path d="M903 421 l3 3 l5.5 -6.5" fill="none" stroke="#1f7a4d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="980" y="426" text-anchor="middle" font-size="14" fill="#155c38" letter-spacing="0.2">traces to the models</text>
+  <!-- the return arm: CONVERT climbs back up to MODEL — this closes the cycle -->
+  <path d="M550,488 C712,470 712,148 552,138" fill="none" stroke="#155c38" stroke-width="2.6"
+        marker-end="url(#fig-0-4-2-mc-ah-green)"/>
+  <text transform="rotate(-90 726 316)" x="726" y="316" text-anchor="middle" font-size="17"
+        font-weight="700" fill="#155c38">repeat</text>
+  <text transform="rotate(-90 752 316)" x="752" y="316" text-anchor="middle" font-size="12.5"
+        font-style="italic" fill="#57534e">each pass compounds</text>
 
   <!-- takeaway caption -->
-  <text x="560" y="612" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">MAGE is the governed path: Modeling makes intent explicit, and Alignment gives it authority — one spine, not two divided halves.</text>
+  <text x="420" y="588" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Each pass leaves the environment more capable than the one before.</text>
 </svg><figcaption data-short="The MAGE method in one picture"><span class="fig-label">Figure 0.4-2.</span> The MAGE method in one picture. A cheap agent fleet, left ungoverned, drifts into churn as its work outruns the window. Run through the governed environment, it converges on trustworthy software at velocity. Read the environment as one spine, not two divided halves: the Modeling Thesis gives the intelligence a world to reason through — the capability ladder folded inline, context through invariant — and <em>creates surfaces for</em> the Alignment Thesis, which gives that intent authority by constraining, sensing, validating, and gating. A governance-conversion loop climbs back up, enriching representation or control. Commodity intelligence creates a reasoning problem before a control problem; Modeling answers the first and builds the surfaces on which Alignment answers the second.</figcaption></figure><p class="gallery-source">From <a href="0.4-preface.html#fig-0-4-2">Preface</a></p></section><hr><section class="gallery-item"><figure id="fig-0-4-3-fig-0-4-3" class="book-figure" data-label="oversight-modes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 820"
      role="group" aria-labelledby="fig-0-4-3-omTitle fig-0-4-3-omDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -1178,18 +1169,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="460" y="770" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">policies</text>
   </g>
   <text x="590" y="806" text-anchor="middle" font-size="24" font-style="italic" fill="#2f5169">Known policies become controls</text>
-</svg><figcaption data-short="Three process models for agentic software engineering"><span class="fig-label">Figure 0.4-3.</span> Three process models for agentic software engineering. Velocity-centric rings job titles around the work — planner, developer, tester, reviewer — while the quality mechanism stays implicit, and implicit quality does not survive volume. Oversight-centric straddles a human over each bounded piece of work; it is honest about the failure mode, but human attention does not scale with the fleet, so the reviewer becomes the bottleneck. Governance-centric is the synthesis and the book's choice: agents work fast inside mechanisms the environment enforces, set up once, so reliability becomes a property of the ground they stand on rather than a toll paid per change. The first two are the two ends of one dial; governance steps off the dial entirely.</figcaption></figure><p class="gallery-source">From <a href="0.4-preface.html#fig-0-4-3">Preface</a></p></section><hr><section class="gallery-item"><figure id="fig-0-5-1-fig-0-5-1" class="book-figure" data-label="book-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 890"
+</svg><figcaption data-short="Three process models for agentic software engineering"><span class="fig-label">Figure 0.4-3.</span> Three process models for agentic software engineering. Velocity-centric rings job titles around the work — planner, developer, tester, reviewer — while the quality mechanism stays implicit, and implicit quality does not survive volume. Oversight-centric straddles a human over each bounded piece of work; it is honest about the failure mode, but human attention does not scale with the fleet, so the reviewer becomes the bottleneck. Governance-centric is the synthesis and the book's choice: agents work fast inside mechanisms the environment enforces, set up once, so reliability becomes a property of the ground they stand on rather than a toll paid per change. The first two are the two ends of one dial; governance steps off the dial entirely.</figcaption></figure><p class="gallery-source">From <a href="0.4-preface.html#fig-0-4-3">Preface</a></p></section><hr><section class="gallery-item"><figure id="fig-0-5-1-fig-0-5-1" class="book-figure" data-label="book-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 850"
      role="group" aria-labelledby="fig-0-5-1-bmTitle fig-0-5-1-bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-0-5-1-bmTitle">A map of the book — the parts and how they compose</title>
-  <desc id="fig-0-5-1-bmDesc">Part 1, The Mindset, sits at the top and introduces the two theses. It
-    branches to two parts that work each thesis out: Part 2, The Governed Environment,
-    develops the Alignment Thesis as the controls that govern the fleet; Part 3, The Model
-    Zoo, develops the Modeling Thesis as the models the fleet reasons through. Both feed
-    Part 4, Putting It to Work, the method in daily practice, which leads to Part 5, a MAGE
-    case study of DocAble that the book's claims rest on, and then to Part 6, The Profession —
-    the theory, implications for software engineering, and conclusion. Below it sits the back
-    matter (Part 7: about the author, the colophon, and the reference appendices).</desc>
+  <title id="fig-0-5-1-bmTitle">A map of the book — a single linear descent through six parts</title>
+  <desc id="fig-0-5-1-bmDesc">The book is one straight descent, not a fork. Part I, The Mindset, sets the frame and
+    the two theses — why engineering changes. It leads down to Part II, Modeling, which develops the
+    Modeling Thesis: make intent explicit. That leads to Part III, Alignment,
+    which develops the Alignment Thesis: give intent authority — Alignment depends on Modeling, so it comes
+    after, not beside it. That leads to Part IV, The MAGE Method, which joins the two
+    theses — model, align, convert, repeat — and tests its portability through comparative industrial
+    demonstrations. That leads to Part V, The Evidence: DocAble end to end, where the method came from.
+    That leads to Part VI, The Profession: theory, scope, the engineering generalization, the profession,
+    and open problems. Off to the side sits the reference back matter — appendices, about the author,
+    colophon — an aside beside the argument, not a stage in it.</desc>
 
   <defs>
     <marker id="fig-0-5-1-bm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -1197,66 +1190,55 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- Part 1: the frame -->
-  <g id="fig-0-5-1-bm-part-1" class="bm-part">
-  <rect x="270" y="30" width="420" height="88" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-  <text x="480" y="66" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 1 · The Mindset</text>
-  <text x="480" y="96" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the frame, and the two theses</text>
-  </g>
+  <rect x="0" y="0" width="980" height="850" fill="#fdfcf9"/>
 
-  <!-- the fork: one thesis each -->
-  <path d="M370,118 C320,140 280,155 250,174" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-0-5-1-bm-ah)"/>
-  <path d="M590,118 C640,140 680,155 710,174" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-0-5-1-bm-ah)"/>
+  <!-- PART I — The Mindset (ink frame) -->
+  <rect x="200" y="40" width="520" height="90" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="460" y="80" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part I · The Mindset</text>
+  <text x="460" y="108" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">why engineering changes — the frame and the two theses</text>
+  <line x1="460" y1="130" x2="460" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-0-5-1-bm-ah)"/>
 
-  <!-- Part 2: the Alignment Thesis -->
-  <g id="fig-0-5-1-bm-part-2" class="bm-part">
-  <rect x="20" y="180" width="440" height="88" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="240" y="216" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 2 · The Governed Environment</text>
-  <text x="240" y="246" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Alignment Thesis: controls that govern</text>
-  </g>
+  <!-- PART II — The Model Zoo · Modeling Thesis (green) -->
+  <rect x="200" y="160" width="520" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="460" y="200" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
+  <text x="460" y="228" text-anchor="middle" font-size="16" font-style="italic" fill="#1f7a4d">Modeling Thesis · make intent explicit</text>
+  <line x1="460" y1="256" x2="460" y2="284" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-0-5-1-bm-ah)"/>
 
-  <!-- Part 3: the Modeling Thesis -->
-  <g id="fig-0-5-1-bm-part-3" class="bm-part">
-  <rect x="500" y="180" width="440" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="720" y="216" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 3 · The Model Zoo</text>
-  <text x="720" y="246" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Modeling Thesis: models the fleet reasons through</text>
-  </g>
+  <!-- PART III — The Governed Engineering Environment · Alignment Thesis (rust) -->
+  <rect x="200" y="286" width="520" height="96" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="460" y="326" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
+  <text x="460" y="354" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Alignment Thesis · give intent authority</text>
+  <line x1="460" y1="382" x2="460" y2="410" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-0-5-1-bm-ah)"/>
 
-  <!-- both theses meet in practice -->
-  <path d="M250,268 C290,290 330,305 372,324" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-0-5-1-bm-ah)"/>
-  <path d="M710,268 C670,290 630,305 588,324" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-0-5-1-bm-ah)"/>
+  <!-- PART IV — Putting It to Work · the MAGE method (neutral: joins the two) -->
+  <rect x="200" y="412" width="520" height="114" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="460" y="450" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
+  <text x="460" y="476" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the MAGE method · join the theses</text>
+  <text x="460" y="498" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">model → align → convert → repeat</text>
+  <text x="460" y="518" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">comparative industrial demonstrations</text>
+  <line x1="460" y1="526" x2="460" y2="554" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-0-5-1-bm-ah)"/>
 
-  <!-- Part 4: the practice -->
-  <g id="fig-0-5-1-bm-part-4" class="bm-part">
-  <rect x="270" y="330" width="420" height="88" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-  <text x="480" y="366" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 4 · Putting It to Work</text>
-  <text x="480" y="396" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the method in daily practice</text>
-  </g>
+  <!-- PART V — A MAGE Case Study (fleet blue) -->
+  <rect x="200" y="556" width="520" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="460" y="596" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
+  <text x="460" y="624" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">DocAble, end to end · where the method came from</text>
+  <line x1="460" y1="652" x2="460" y2="680" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-0-5-1-bm-ah)"/>
 
-  <line x1="480" y1="418" x2="480" y2="474" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-0-5-1-bm-ah)"/>
+  <!-- PART VI — The Profession (purple) -->
+  <rect x="200" y="682" width="520" height="104" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <text x="460" y="720" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
+  <text x="460" y="746" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">theory · scope · engineering generalization</text>
+  <text x="460" y="768" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">profession · open problems</text>
 
-  <!-- Part 5: the grounding case -->
-  <g id="fig-0-5-1-bm-part-5" class="bm-part">
-  <rect x="270" y="480" width="420" height="88" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="480" y="516" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 5 · A MAGE Case Study</text>
-  <text x="480" y="546" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">DocAble, end to end: the grounding case</text>
-  </g>
-
-  <line x1="480" y1="568" x2="480" y2="624" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-0-5-1-bm-ah)"/>
-
-  <!-- Part 6: reflections (a numbered Part, peer to 1-5) -->
-  <g id="fig-0-5-1-bm-part-6" class="bm-part">
-  <rect x="270" y="630" width="420" height="88" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2"/>
-  <text x="480" y="666" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 6 · The Profession</text>
-  <text x="480" y="696" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">theory, implications, conclusion</text>
-  </g>
-
-  <line x1="480" y1="718" x2="480" y2="774" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-0-5-1-bm-ah)"/>
-
-  <!-- Part 7: back matter (apparatus — muted, not a numbered Part) -->
-  <rect x="270" y="780" width="420" height="88" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="816" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 7 · Back matter</text>
-  <text x="480" y="846" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">about the author, colophon, appendices</text>
+  <!-- BACK MATTER — off to the side (an aside, not a numbered stage) -->
+  <path d="M720,616 C752,616 758,624 786,624" fill="none" stroke="#57534e" stroke-width="1.8"
+        stroke-dasharray="5 4"/>
+  <rect x="788" y="586" width="176" height="104" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8"
+        stroke-dasharray="5 4"/>
+  <text x="876" y="616" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">Back matter</text>
+  <text x="876" y="640" text-anchor="middle" font-size="12.5" fill="#57534e">appendices · about the</text>
+  <text x="876" y="657" text-anchor="middle" font-size="12.5" fill="#57534e">author · colophon</text>
+  <text x="876" y="679" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">an aside, not a stage</text>
 </svg><figcaption data-short="The book in one map"><span class="fig-label">Figure 0.5-1.</span> The book in one map. Part 1 sets the frame — why code got cheap, and the two theses everything rests on. The next two parts take one thesis each: Part 2 works the Modeling Thesis into the executable, drift-gated models the fleet reasons through, Part 3 the Alignment Thesis into the controls that govern a fleet. Both feed Part 4, where the method becomes daily practice, and Part 5, the DocAble case study the whole argument rests on. The closing Theory of MAGE, its implications, and the reference appendices follow. Read it straight for the argument in order, or jump the faster routes the chapter marks.</figcaption></figure><p class="gallery-source">From <a href="0.5-how-to-read-this-book.html#fig-0-5-1">How to read this book</a></p></section><hr><section class="gallery-item"><figure id="fig-1-1-1-fig-1-1-1" class="book-figure" data-label="new-engineering-problem"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660"
      role="group" aria-labelledby="fig-1-1-1-nepTitle fig-1-1-1-nepDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -7531,18 +7513,20 @@ z
   </g>
 
   <text x="500" y="552" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The second time a soft rule fails, move it one rung toward machinery the agent cannot talk past.</text>
-</svg><figcaption data-short="The Determinization Frontier"><span class="fig-label">Figure 6.6-1.</span> <em>The Determinization Frontier.</em> Eight rungs climb from a probabilistic judgment toward fully deterministic machinery. The first rungs are gray and probabilistic — an LLM weighing a semantic question — and the last are rust and deterministic, where a checked predicate over a model settles it by machine. The frontier is the line between them, and the book's claim is that it moves: richer representation turns judged questions into decided ones. Agents change its economics on both sides, raising the value of a deterministic control and lowering the cost of building one. The top rungs stay open on purpose, since the forms not yet discovered are the invitation the method ends on.</figcaption></figure><p class="gallery-source">From <a href="6.6-conclusion.html#fig-6-6-1">41 · Conclusion</a></p></section><hr><section class="gallery-item"><figure id="fig-8-0-1-fig-8-0-1" class="book-figure" data-label="book-map-appendix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 890"
+</svg><figcaption data-short="The Determinization Frontier"><span class="fig-label">Figure 6.6-1.</span> <em>The Determinization Frontier.</em> Eight rungs climb from a probabilistic judgment toward fully deterministic machinery. The first rungs are gray and probabilistic — an LLM weighing a semantic question — and the last are rust and deterministic, where a checked predicate over a model settles it by machine. The frontier is the line between them, and the book's claim is that it moves: richer representation turns judged questions into decided ones. Agents change its economics on both sides, raising the value of a deterministic control and lowering the cost of building one. The top rungs stay open on purpose, since the forms not yet discovered are the invitation the method ends on.</figcaption></figure><p class="gallery-source">From <a href="6.6-conclusion.html#fig-6-6-1">41 · Conclusion</a></p></section><hr><section class="gallery-item"><figure id="fig-8-0-1-fig-8-0-1" class="book-figure" data-label="book-map-appendix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 850"
      role="group" aria-labelledby="fig-8-0-1-bmTitle fig-8-0-1-bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-8-0-1-bmTitle">A map of the book — the parts and how they compose</title>
-  <desc id="fig-8-0-1-bmDesc">Part 1, The Mindset, sits at the top and introduces the two theses. It
-    branches to two parts that work each thesis out: Part 2, The Governed Environment,
-    develops the Alignment Thesis as the controls that govern the fleet; Part 3, The Model
-    Zoo, develops the Modeling Thesis as the models the fleet reasons through. Both feed
-    Part 4, Putting It to Work, the method in daily practice, which leads to Part 5, a MAGE
-    case study of DocAble that the book's claims rest on, and then to Part 6, The Profession —
-    the theory, implications for software engineering, and conclusion. Below it sits the back
-    matter (Part 7: about the author, the colophon, and the reference appendices).</desc>
+  <title id="fig-8-0-1-bmTitle">A map of the book — a single linear descent through six parts</title>
+  <desc id="fig-8-0-1-bmDesc">The book is one straight descent, not a fork. Part I, The Mindset, sets the frame and
+    the two theses — why engineering changes. It leads down to Part II, Modeling, which develops the
+    Modeling Thesis: make intent explicit. That leads to Part III, Alignment,
+    which develops the Alignment Thesis: give intent authority — Alignment depends on Modeling, so it comes
+    after, not beside it. That leads to Part IV, The MAGE Method, which joins the two
+    theses — model, align, convert, repeat — and tests its portability through comparative industrial
+    demonstrations. That leads to Part V, The Evidence: DocAble end to end, where the method came from.
+    That leads to Part VI, The Profession: theory, scope, the engineering generalization, the profession,
+    and open problems. Off to the side sits the reference back matter — appendices, about the author,
+    colophon — an aside beside the argument, not a stage in it.</desc>
 
   <defs>
     <marker id="fig-8-0-1-bm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -7550,66 +7534,55 @@ z
     </marker>
   </defs>
 
-  <!-- Part 1: the frame -->
-  <g id="fig-8-0-1-bm-part-1" class="bm-part">
-  <rect x="270" y="30" width="420" height="88" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-  <text x="480" y="66" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 1 · The Mindset</text>
-  <text x="480" y="96" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the frame, and the two theses</text>
-  </g>
+  <rect x="0" y="0" width="980" height="850" fill="#fdfcf9"/>
 
-  <!-- the fork: one thesis each -->
-  <path d="M370,118 C320,140 280,155 250,174" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-8-0-1-bm-ah)"/>
-  <path d="M590,118 C640,140 680,155 710,174" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-8-0-1-bm-ah)"/>
+  <!-- PART I — The Mindset (ink frame) -->
+  <rect x="200" y="40" width="520" height="90" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="460" y="80" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part I · The Mindset</text>
+  <text x="460" y="108" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">why engineering changes — the frame and the two theses</text>
+  <line x1="460" y1="130" x2="460" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-8-0-1-bm-ah)"/>
 
-  <!-- Part 2: the Alignment Thesis -->
-  <g id="fig-8-0-1-bm-part-2" class="bm-part">
-  <rect x="20" y="180" width="440" height="88" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="240" y="216" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 2 · The Governed Environment</text>
-  <text x="240" y="246" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Alignment Thesis: controls that govern</text>
-  </g>
+  <!-- PART II — The Model Zoo · Modeling Thesis (green) -->
+  <rect x="200" y="160" width="520" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="460" y="200" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
+  <text x="460" y="228" text-anchor="middle" font-size="16" font-style="italic" fill="#1f7a4d">Modeling Thesis · make intent explicit</text>
+  <line x1="460" y1="256" x2="460" y2="284" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-8-0-1-bm-ah)"/>
 
-  <!-- Part 3: the Modeling Thesis -->
-  <g id="fig-8-0-1-bm-part-3" class="bm-part">
-  <rect x="500" y="180" width="440" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="720" y="216" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 3 · The Model Zoo</text>
-  <text x="720" y="246" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Modeling Thesis: models the fleet reasons through</text>
-  </g>
+  <!-- PART III — The Governed Engineering Environment · Alignment Thesis (rust) -->
+  <rect x="200" y="286" width="520" height="96" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="460" y="326" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
+  <text x="460" y="354" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Alignment Thesis · give intent authority</text>
+  <line x1="460" y1="382" x2="460" y2="410" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-8-0-1-bm-ah)"/>
 
-  <!-- both theses meet in practice -->
-  <path d="M250,268 C290,290 330,305 372,324" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-8-0-1-bm-ah)"/>
-  <path d="M710,268 C670,290 630,305 588,324" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-8-0-1-bm-ah)"/>
+  <!-- PART IV — Putting It to Work · the MAGE method (neutral: joins the two) -->
+  <rect x="200" y="412" width="520" height="114" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="460" y="450" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
+  <text x="460" y="476" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the MAGE method · join the theses</text>
+  <text x="460" y="498" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">model → align → convert → repeat</text>
+  <text x="460" y="518" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">comparative industrial demonstrations</text>
+  <line x1="460" y1="526" x2="460" y2="554" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-8-0-1-bm-ah)"/>
 
-  <!-- Part 4: the practice -->
-  <g id="fig-8-0-1-bm-part-4" class="bm-part">
-  <rect x="270" y="330" width="420" height="88" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-  <text x="480" y="366" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 4 · Putting It to Work</text>
-  <text x="480" y="396" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the method in daily practice</text>
-  </g>
+  <!-- PART V — A MAGE Case Study (fleet blue) -->
+  <rect x="200" y="556" width="520" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="460" y="596" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
+  <text x="460" y="624" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">DocAble, end to end · where the method came from</text>
+  <line x1="460" y1="652" x2="460" y2="680" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-8-0-1-bm-ah)"/>
 
-  <line x1="480" y1="418" x2="480" y2="474" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-8-0-1-bm-ah)"/>
+  <!-- PART VI — The Profession (purple) -->
+  <rect x="200" y="682" width="520" height="104" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <text x="460" y="720" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
+  <text x="460" y="746" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">theory · scope · engineering generalization</text>
+  <text x="460" y="768" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">profession · open problems</text>
 
-  <!-- Part 5: the grounding case -->
-  <g id="fig-8-0-1-bm-part-5" class="bm-part">
-  <rect x="270" y="480" width="420" height="88" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="480" y="516" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 5 · A MAGE Case Study</text>
-  <text x="480" y="546" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">DocAble, end to end: the grounding case</text>
-  </g>
-
-  <line x1="480" y1="568" x2="480" y2="624" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-8-0-1-bm-ah)"/>
-
-  <!-- Part 6: reflections (a numbered Part, peer to 1-5) -->
-  <g id="fig-8-0-1-bm-part-6" class="bm-part">
-  <rect x="270" y="630" width="420" height="88" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2"/>
-  <text x="480" y="666" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 6 · The Profession</text>
-  <text x="480" y="696" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">theory, implications, conclusion</text>
-  </g>
-
-  <line x1="480" y1="718" x2="480" y2="774" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-8-0-1-bm-ah)"/>
-
-  <!-- Part 7: back matter (apparatus — muted, not a numbered Part) -->
-  <rect x="270" y="780" width="420" height="88" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="816" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 7 · Back matter</text>
-  <text x="480" y="846" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">about the author, colophon, appendices</text>
+  <!-- BACK MATTER — off to the side (an aside, not a numbered stage) -->
+  <path d="M720,616 C752,616 758,624 786,624" fill="none" stroke="#57534e" stroke-width="1.8"
+        stroke-dasharray="5 4"/>
+  <rect x="788" y="586" width="176" height="104" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8"
+        stroke-dasharray="5 4"/>
+  <text x="876" y="616" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">Back matter</text>
+  <text x="876" y="640" text-anchor="middle" font-size="12.5" fill="#57534e">appendices · about the</text>
+  <text x="876" y="657" text-anchor="middle" font-size="12.5" fill="#57534e">author · colophon</text>
+  <text x="876" y="679" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">an aside, not a stage</text>
 </svg><figcaption data-short="A map of the book"><span class="fig-label">Figure 8.0-1.</span> A map of the book. The appendices are the working surface at the foot of it — return here while building.</figcaption></figure><p class="gallery-source">From <a href="appendices-front-door.html#fig-8-0-1">Appendices</a></p></section></div></section><section class="gallery-group"><h2>Appendix schematics</h2><p class="gallery-group-note">Diagrams from the pattern-catalogue appendix, drawn in a lighter reference style.</p><div class="gallery"><section class="gallery-item"><figure id="fig-A-1-fig-A-1" class="book-figure" data-label="stack-dependency-graph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 700"
      role="group" aria-labelledby="fig-A-1-sdgTitle fig-A-1-sdgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

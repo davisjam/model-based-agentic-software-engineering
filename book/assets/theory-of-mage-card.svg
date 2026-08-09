@@ -4,14 +4,16 @@
      theses are no longer adjacent equal boxes — they are a STACKED CAUSAL PAIR. Modeling sits above
      Alignment, joined by a labelled vertical arrow "richer representations make more obligations
      enforceable." Governance Conversion sits beside the pair and reaches into BOTH thesis boxes, because
-     a failure can enrich either side (a model fact, an invariant, a sensor, or a gate). The other panels —
-     Problem, Premise, Engineering Capital, Outcome — carry over unchanged. Colour carries the semantic
-     axes used across every MAGE figure: green is modeling / knowledge / environment (the Modeling Thesis +
-     the green Outcome), rust is governance / policy / mechanisms (the Alignment Thesis + Governance
-     Conversion + the mechanisms that become Engineering Capital), blue frames the driving Problem.
+     a failure can enrich either side (a model fact, an invariant, a sensor, or a gate).
+     ROUND-2 CHANGE: the both-sides claim was prose-only. It is now GRAPHICAL and impossible to miss —
+     two bold coloured return connectors fork from a single origin on the Governance Conversion panel and
+     land squarely on BOTH thesis boxes (green into MODELING above, rust into ALIGNMENT below), each box
+     tagged "governance enriches this," and the panel states "loops back into BOTH."
+     Colour carries the semantic axes used across every MAGE figure: green is modeling / knowledge /
+     environment, rust is governance / policy / mechanisms, blue frames the driving Problem.
      Palette: Umber Monograph tokens (fleet #2f5169 problem, muted #57534e premise + connectors, governed
      green #1f7a4d/#155c38 modeling + outcome, accent #9a3f12 alignment + conversion + capital + the causal
-     arrow, ink #1c1917 statements, rule #e4e0d8 flow chevrons, page #fdfcf9). Fonts >= 15u. -->
+     arrow, ink #1c1917 statements, rule #e4e0d8 flow chevrons, page #fdfcf9). Fonts >= 13u. -->
 <!-- semantic-families: agent, governance, modeling, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 830" width="1000" height="830"
      role="group" aria-labelledby="cardTitle cardDesc"
@@ -22,10 +24,12 @@
     resource. The two theses form a causal pair, stacked not side by side — the Modeling Thesis, make
     knowledge and intent explicit, sits above the Alignment Thesis, make obligations binding, joined by an
     arrow reading richer representations make more obligations enforceable. Beside them, Governance
-    Conversion reaches into both thesis boxes: convert recurring failures into durable mechanisms, and it
-    enriches either side — a model fact or an invariant, a sensor or a gate. Below, Engineering Capital:
-    mechanisms compound as engineering capital. Outcome: Governed engineering environments safely scale
-    autonomy.</desc>
+    Conversion: convert recurring failures into durable mechanisms. Two bold return connectors fork from
+    the Governance Conversion panel and loop back into BOTH thesis boxes at once — a green connector into
+    the Modeling Thesis above, a rust connector into the Alignment Thesis below — because a converted
+    failure enriches either side, a model fact or an invariant, a sensor or a gate. Below, Engineering
+    Capital: mechanisms compound as engineering capital. Outcome: Governed engineering environments safely
+    scale autonomy.</desc>
 
   <defs>
     <marker id="card-chev" viewBox="0 0 12 12" refX="6" refY="9" markerWidth="14" markerHeight="14" orient="auto">
@@ -34,8 +38,11 @@
     <marker id="card-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
-    <marker id="card-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    <marker id="card-ret-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
+    </marker>
+    <marker id="card-ret-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
   </defs>
 
@@ -66,6 +73,7 @@
   <rect x="70" y="334" width="544" height="96" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="96" y="364" font-size="16" font-weight="700" letter-spacing="2" fill="#1f7a4d">MODELING THESIS</text>
   <text x="342" y="404" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Make knowledge and intent explicit.</text>
+  <text x="598" y="356" text-anchor="end" font-size="12.5" font-style="italic" fill="#1f7a4d">← governance enriches this</text>
 
   <!-- the causal join — the load-bearing new content of this card -->
   <path d="M342,432 L342,486" fill="none" stroke="#9a3f12" stroke-width="4.5" marker-end="url(#card-ah-rust)"/>
@@ -75,18 +83,22 @@
   <rect x="70" y="488" width="544" height="96" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="96" y="518" font-size="16" font-weight="700" letter-spacing="2" fill="#9a3f12">ALIGNMENT THESIS</text>
   <text x="342" y="558" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Make obligations binding.</text>
+  <text x="598" y="510" text-anchor="end" font-size="12.5" font-style="italic" fill="#9a3f12">← governance enriches this</text>
 
   <!-- GOVERNANCE CONVERSION — beside the pair, reaching into BOTH boxes -->
   <rect x="634" y="334" width="296" height="250" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.2"/>
   <text x="782" y="366" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.5" fill="#9a3f12">GOVERNANCE CONVERSION</text>
   <text x="782" y="404" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Convert recurring failures</text>
   <text x="782" y="426" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">into durable mechanisms.</text>
-  <text x="782" y="474" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">It enriches BOTH sides —</text>
-  <text x="782" y="496" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a model fact or an invariant,</text>
-  <text x="782" y="518" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a sensor or a gate.</text>
-  <!-- arrows from the conversion panel into each thesis box -->
-  <path d="M634,382 L616,382" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#card-ah-mut)"/>
-  <path d="M634,536 L616,536" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#card-ah-mut)"/>
+  <text x="782" y="474" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">a model fact or an invariant,</text>
+  <text x="782" y="495" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">a sensor or a gate</text>
+  <text x="782" y="556" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">loops back into BOTH</text>
+
+  <!-- TWO BOLD RETURN CONNECTORS: one origin on the panel, forking into BOTH thesis boxes.
+       Impossible to miss — thick, coloured, big arrowheads landing on each box. -->
+  <circle cx="634" cy="459" r="4" fill="#57534e"/>
+  <path d="M634,459 C620,452 622,398 615,390" fill="none" stroke="#1f7a4d" stroke-width="4" marker-end="url(#card-ret-green)"/>
+  <path d="M634,459 C620,466 622,528 615,536" fill="none" stroke="#9a3f12" stroke-width="4" marker-end="url(#card-ret-rust)"/>
 
   <!-- ENGINEERING CAPITAL (full width, rust) -->
   <rect x="70" y="602" width="860" height="78" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>

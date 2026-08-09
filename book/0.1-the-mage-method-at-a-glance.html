@@ -702,20 +702,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <figure id="fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 946"
      role="group" aria-labelledby="mmTitle mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mmTitle">The MAGE method at a glance — one causal descent</title>
-  <desc id="mmDesc">A single causal descent with one failure branch. Commodity intelligence — broad,
+  <title id="mmTitle">The MAGE method at a glance — one causal descent with a governance-conversion return loop</title>
+  <desc id="mmDesc">A single causal descent with two branches. Commodity intelligence — broad,
     cheap, probabilistic — meets a reasoning-horizon problem: the system will not fit the context window.
     The Modeling Thesis answers it by externalizing engineering knowledge and intent; a short branch
     splits into better context for reasoning and stronger semantics for engineering, then rejoins into
     structured and executable models — what is, what ought to be, and the invariants over them. A heavy
     labelled arrow, creates surfaces for, carries those models into the Alignment Thesis, which gives
     engineering intent authority through constraints, sensors, validators, and gates. The column continues
-    into the Governed Engineering Environment, then governance conversion grows it, effort compounds as
-    Engineering Capital, and the result is trustworthy autonomy. A dashed grey branch peels off the
-    structured-and-executable-models node: without Alignment those models never become authoritative, so
-    they dissipate into Engineering Churn — repeated rediscovery, inspection, and correction, with no
-    capital formation. Same models, two fates: with Alignment they compound as engineering capital;
-    without it they churn. Modeling makes intent explicit; Alignment gives it authority.</desc>
+    into the Governed Engineering Environment, then effort compounds as Engineering Capital, and the result
+    is trustworthy autonomy. A dashed grey branch peels off the structured-and-executable-models node:
+    without Alignment those models never become authoritative, so they dissipate into Engineering Churn —
+    repeated rediscovery, inspection, and correction, with no capital formation. Same models, two fates.
+    A second loop climbs back up the left margin: the governed work fails, and that failure enters a
+    Governance Conversion hub, which forks back into the pair — enrich model lands on the Modeling Thesis,
+    enrich control lands on the Alignment Thesis — and the descent repeats. Governance conversion reaches
+    into BOTH sides. Modeling makes intent explicit; Alignment gives it authority.</desc>
 
   <defs>
     <marker id="mm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -723,6 +725,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
     <marker id="mm-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="mm-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15803d"/>
     </marker>
   </defs>
 
@@ -791,10 +796,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="360" y="884" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">Trustworthy autonomy</text>
 
   <!-- FAILURE BRANCH: dashed + grey, from the structured/executable-models node (D), down the right
-       margin to Engineering Churn. Origin at D — NOT the Modeling Thesis: models without Alignment simply
-       never become authoritative, so no capital forms. The grey dashed line is the "if you stop here"
-       fate, contrasting the thick rust "creates surfaces for" path. Lands parallel to Engineering Capital
-       — the Capital ↔ Churn mirror, same models, two fates. -->
+       margin to Engineering Churn. The grey dashed line is the "if you stop here" fate; lands parallel to
+       Engineering Capital — the Capital <-> Churn mirror, same models, two fates. -->
   <path d="M508,449 L715,449 L715,752" fill="none" stroke="#57534e" stroke-width="2.4"
         stroke-dasharray="6 4" marker-end="url(#mm-ah)"/>
   <text x="634" y="556" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">without Alignment</text>
@@ -807,6 +810,36 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="715" y="799" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">dissipates</text>
   <text x="715" y="819" text-anchor="middle" font-size="11" fill="#57534e">repeated rediscovery, inspection,</text>
   <text x="715" y="835" text-anchor="middle" font-size="11" fill="#57534e">correction — no capital formation</text>
+
+  <!-- ============================================================================
+       GOVERNANCE-CONVERSION RETURN LOOP (left margin). The productive response to a
+       failure in the governed work: convert it, and enrich BOTH sides of the pair.
+       A hub with one input (failure, from the governed environment) and two outputs
+       (enrich model -> Modeling node; enrich control -> Alignment node), then repeat.
+       ============================================================================ -->
+  <!-- the conversion hub -->
+  <rect x="6" y="386" width="156" height="100" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="84" y="416" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#9a3f12">GOVERNANCE</text>
+  <text x="84" y="434" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#9a3f12">CONVERSION</text>
+  <text x="84" y="458" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">turn a failure</text>
+  <text x="84" y="473" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">into structure</text>
+
+  <!-- input: governed work fails -> into the hub's right edge -->
+  <path d="M168,694 C120,650 130,470 164,450" fill="none" stroke="#9a3f12" stroke-width="2.2"
+        stroke-dasharray="5 4" marker-end="url(#mm-ah-rust)"/>
+  <text x="100" y="598" text-anchor="middle" font-size="12" font-weight="600" fill="#57534e">governed work</text>
+  <text x="100" y="616" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b23b3b">→ failure</text>
+
+  <!-- fork 1: enrich model -> up onto the Modeling Thesis node (C) -->
+  <path d="M60,386 L60,246 L212,246" fill="none" stroke="#15803d" stroke-width="2.2" marker-end="url(#mm-ah-green)"/>
+  <text x="136" y="238" text-anchor="middle" font-size="13" font-weight="700" fill="#15803d">enrich model</text>
+
+  <!-- fork 2: enrich control -> down onto the Alignment Thesis node (E) -->
+  <path d="M100,486 L100,570 L236,570" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#mm-ah-rust)"/>
+  <text x="168" y="558" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12">enrich control</text>
+
+  <!-- the loop repeats -->
+  <text x="66" y="506" text-anchor="middle" font-size="12" font-style="italic" fill="#9a3f12">↻ repeat</text>
 </svg><figcaption data-short="The whole method as one descent"><span class="fig-label">Figure 0.1-1.</span> The whole method as one descent. Commodity intelligence — broad, cheap, probabilistic — meets a reasoning-horizon problem: the system won't fit the window. The Modeling Thesis answers it, externalizing engineering knowledge and intent into structured, executable models. A heavy arrow, <em>creates surfaces for</em>, carries those models into the Alignment Thesis, which gives that intent authority through constraints, sensors, validators, and gates, on into the Governed Engineering Environment, where effort compounds as engineering capital. Stop at the models, though, and a dashed grey branch tells the other fate: without Alignment they never become authoritative, and dissipate into engineering churn — repeated rediscovery, no capital formed. Same models, two fates: capital compounds, churn dissipates.</figcaption></figure>
 <p>The Alignment Thesis fills the environment with governance mechanisms of four archetypes, each named for the role it plays rather than the outcome it serves. <a class="xref" href="0.1-the-mage-method-at-a-glance.html#tbl-0-1-1">Table&nbsp;0.1-1</a> names the four and the role that distinguishes each.</p>
 <table id="tbl-0-1-1" class="book-table" data-label="mechanism-archetypes"><caption class="tbl-label-only"><span class="tbl-label">Table 0.1-1.</span></caption><thead><tr><th>Mechanism</th><th>Role</th></tr></thead><tbody><tr><td><strong>Constraint</strong></td><td>restricts actions</td></tr><tr><td><strong>Sensor</strong></td><td>observes violations</td></tr><tr><td><strong>Validator</strong></td><td>evaluates evidence</td></tr><tr><td><strong>Gate</strong></td><td>controls admission</td></tr></tbody></table>
@@ -820,10 +853,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     resource. The two theses form a causal pair, stacked not side by side — the Modeling Thesis, make
     knowledge and intent explicit, sits above the Alignment Thesis, make obligations binding, joined by an
     arrow reading richer representations make more obligations enforceable. Beside them, Governance
-    Conversion reaches into both thesis boxes: convert recurring failures into durable mechanisms, and it
-    enriches either side — a model fact or an invariant, a sensor or a gate. Below, Engineering Capital:
-    mechanisms compound as engineering capital. Outcome: Governed engineering environments safely scale
-    autonomy.</desc>
+    Conversion: convert recurring failures into durable mechanisms. Two bold return connectors fork from
+    the Governance Conversion panel and loop back into BOTH thesis boxes at once — a green connector into
+    the Modeling Thesis above, a rust connector into the Alignment Thesis below — because a converted
+    failure enriches either side, a model fact or an invariant, a sensor or a gate. Below, Engineering
+    Capital: mechanisms compound as engineering capital. Outcome: Governed engineering environments safely
+    scale autonomy.</desc>
 
   <defs>
     <marker id="card-chev" viewBox="0 0 12 12" refX="6" refY="9" markerWidth="14" markerHeight="14" orient="auto">
@@ -832,8 +867,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <marker id="card-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
-    <marker id="card-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    <marker id="card-ret-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
+    </marker>
+    <marker id="card-ret-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
   </defs>
 
@@ -864,6 +902,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="70" y="334" width="544" height="96" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="96" y="364" font-size="16" font-weight="700" letter-spacing="2" fill="#1f7a4d">MODELING THESIS</text>
   <text x="342" y="404" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Make knowledge and intent explicit.</text>
+  <text x="598" y="356" text-anchor="end" font-size="12.5" font-style="italic" fill="#1f7a4d">← governance enriches this</text>
 
   <!-- the causal join — the load-bearing new content of this card -->
   <path d="M342,432 L342,486" fill="none" stroke="#9a3f12" stroke-width="4.5" marker-end="url(#card-ah-rust)"/>
@@ -873,18 +912,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="70" y="488" width="544" height="96" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="96" y="518" font-size="16" font-weight="700" letter-spacing="2" fill="#9a3f12">ALIGNMENT THESIS</text>
   <text x="342" y="558" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Make obligations binding.</text>
+  <text x="598" y="510" text-anchor="end" font-size="12.5" font-style="italic" fill="#9a3f12">← governance enriches this</text>
 
   <!-- GOVERNANCE CONVERSION — beside the pair, reaching into BOTH boxes -->
   <rect x="634" y="334" width="296" height="250" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.2"/>
   <text x="782" y="366" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.5" fill="#9a3f12">GOVERNANCE CONVERSION</text>
   <text x="782" y="404" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Convert recurring failures</text>
   <text x="782" y="426" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">into durable mechanisms.</text>
-  <text x="782" y="474" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">It enriches BOTH sides —</text>
-  <text x="782" y="496" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a model fact or an invariant,</text>
-  <text x="782" y="518" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a sensor or a gate.</text>
-  <!-- arrows from the conversion panel into each thesis box -->
-  <path d="M634,382 L616,382" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#card-ah-mut)"/>
-  <path d="M634,536 L616,536" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#card-ah-mut)"/>
+  <text x="782" y="474" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">a model fact or an invariant,</text>
+  <text x="782" y="495" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">a sensor or a gate</text>
+  <text x="782" y="556" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">loops back into BOTH</text>
+
+  <!-- TWO BOLD RETURN CONNECTORS: one origin on the panel, forking into BOTH thesis boxes.
+       Impossible to miss — thick, coloured, big arrowheads landing on each box. -->
+  <circle cx="634" cy="459" r="4" fill="#57534e"/>
+  <path d="M634,459 C620,452 622,398 615,390" fill="none" stroke="#1f7a4d" stroke-width="4" marker-end="url(#card-ret-green)"/>
+  <path d="M634,459 C620,466 622,528 615,536" fill="none" stroke="#9a3f12" stroke-width="4" marker-end="url(#card-ret-rust)"/>
 
   <!-- ENGINEERING CAPITAL (full width, rust) -->
   <rect x="70" y="602" width="860" height="78" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>

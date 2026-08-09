@@ -701,18 +701,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li></ol></details></div></nav><main class="wrap part-page" aria-label="Part 3 · Alignment — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 3</a></div><h1>Alignment</h1></header><p>Part 1 argued that reliability should come from the environment rather than from repeatedly reading code. This Part builds that environment. The question this Part answers is how an engineering environment becomes trustworthy — trustworthy enough that reliability comes from it rather than from a human re-reading the code.</p>
 <p>The last Part made engineering intent explicit; this Part makes it binding. <strong>Modeling makes intent explicit; Alignment makes it binding.</strong> <em>In other words:</em> the last Part wrote the system down in a form both people and machines could read; this Part teaches the engineering environment to insist on it. That is the turn the whole Part performs — a represented intent stops being advice and acquires authority. <strong>Represented intent becomes authority.</strong> <em>In other words:</em> the build, the deployment pipeline, and the runtime start refusing to violate what the models say, instead of merely documenting it. On the capability ladder this is the top half: rungs 1–4 mostly help the reasoner, and rungs 5–8 give the environment authority over the artifact.</p>
 <p>Reliability is not one mechanism but a collection of them. Some obligations are known before the first line of code is written. Others surface only when a fast-moving agent makes a new mistake. This Part develops the environment that captures both: the policies you encode from the start, and the mechanisms that grow later, as governance conversion turns experience into infrastructure. Along the way you assemble a working vocabulary of constraints, sensors, validators, gates, runbooks, metrics, and control graphs. None of these is an isolated tool; each is a piece of one governed engineering environment. What you are building is not the software but the machinery that builds trustworthy software.</p>
-<p>By the end you will see that environment not as a collection of tools but as an engineered system in its own right — one you finally turn the method back onto, governing the governance, and one that increasingly carries the judgment that would otherwise have stayed in people's heads.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 890"
+<p>By the end you will see that environment not as a collection of tools but as an engineered system in its own right — one you finally turn the method back onto, governing the governance, and one that increasingly carries the judgment that would otherwise have stayed in people's heads.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 850"
      role="group" aria-labelledby="bmTitle-nav bmDesc-nav"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bmTitle-nav">A map of the book — the parts and how they compose</title>
-  <desc id="bmDesc-nav">Part 1, The Mindset, sits at the top and introduces the two theses. It
-    branches to two parts that work each thesis out: Part 2, The Governed Environment,
-    develops the Alignment Thesis as the controls that govern the fleet; Part 3, The Model
-    Zoo, develops the Modeling Thesis as the models the fleet reasons through. Both feed
-    Part 4, Putting It to Work, the method in daily practice, which leads to Part 5, a MAGE
-    case study of DocAble that the book's claims rest on, and then to Part 6, The Profession —
-    the theory, implications for software engineering, and conclusion. Below it sits the back
-    matter (Part 7: about the author, the colophon, and the reference appendices).</desc>
+  <title id="bmTitle-nav">A map of the book — a single linear descent through six parts</title>
+  <desc id="bmDesc-nav">The book is one straight descent, not a fork. Part I, The Mindset, sets the frame and
+    the two theses — why engineering changes. It leads down to Part II, Modeling, which develops the
+    Modeling Thesis: make intent explicit. That leads to Part III, Alignment,
+    which develops the Alignment Thesis: give intent authority — Alignment depends on Modeling, so it comes
+    after, not beside it. That leads to Part IV, The MAGE Method, which joins the two
+    theses — model, align, convert, repeat — and tests its portability through comparative industrial
+    demonstrations. That leads to Part V, The Evidence: DocAble end to end, where the method came from.
+    That leads to Part VI, The Profession: theory, scope, the engineering generalization, the profession,
+    and open problems. Off to the side sits the reference back matter — appendices, about the author,
+    colophon — an aside beside the argument, not a stage in it.</desc>
 
   <defs>
     <marker id="bm-ah-nav" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -720,64 +722,53 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- Part 1: the frame -->
-  <a href="part-1-intro.html" class="bm-part-link" role="link" aria-label="Part 1 — The Mindset"><g id="bm-part-1" class="bm-part">
-  <rect x="270" y="30" width="420" height="88" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-  <text x="480" y="66" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 1 · The Mindset</text>
-  <text x="480" y="96" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the frame, and the two theses</text>
-  </g></a>
+  <rect x="0" y="0" width="980" height="850" fill="#fdfcf9"/>
 
-  <!-- the fork: one thesis each -->
-  <path d="M370,118 C320,140 280,155 250,174" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#bm-ah-nav)"/>
-  <path d="M590,118 C640,140 680,155 710,174" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#bm-ah-nav)"/>
+  <!-- PART I — The Mindset (ink frame) -->
+  <rect x="200" y="40" width="520" height="90" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="460" y="80" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part I · The Mindset</text>
+  <text x="460" y="108" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">why engineering changes — the frame and the two theses</text>
+  <line x1="460" y1="130" x2="460" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
 
-  <!-- Part 2: the Alignment Thesis -->
-  <a href="part-2-intro.html" class="bm-part-link" role="link" aria-label="Part 2 — Modeling"><g id="bm-part-2" class="bm-part">
-  <rect x="20" y="180" width="440" height="88" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="240" y="216" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 2 · The Governed Environment</text>
-  <text x="240" y="246" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Alignment Thesis: controls that govern</text>
-  </g></a>
+  <!-- PART II — The Model Zoo · Modeling Thesis (green) -->
+  <rect x="200" y="160" width="520" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="460" y="200" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
+  <text x="460" y="228" text-anchor="middle" font-size="16" font-style="italic" fill="#1f7a4d">Modeling Thesis · make intent explicit</text>
+  <line x1="460" y1="256" x2="460" y2="284" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
 
-  <!-- Part 3: the Modeling Thesis -->
-  <g id="bm-part-3" class="bm-part current" role="img" aria-current="page" aria-label="Part 3 — Alignment (current part)">
-  <rect x="500" y="180" width="440" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="720" y="216" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 3 · The Model Zoo</text>
-  <text x="720" y="246" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Modeling Thesis: models the fleet reasons through</text>
-  </g>
+  <!-- PART III — The Governed Engineering Environment · Alignment Thesis (rust) -->
+  <rect x="200" y="286" width="520" height="96" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="460" y="326" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
+  <text x="460" y="354" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Alignment Thesis · give intent authority</text>
+  <line x1="460" y1="382" x2="460" y2="410" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
 
-  <!-- both theses meet in practice -->
-  <path d="M250,268 C290,290 330,305 372,324" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#bm-ah-nav)"/>
-  <path d="M710,268 C670,290 630,305 588,324" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#bm-ah-nav)"/>
+  <!-- PART IV — Putting It to Work · the MAGE method (neutral: joins the two) -->
+  <rect x="200" y="412" width="520" height="114" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="460" y="450" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
+  <text x="460" y="476" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the MAGE method · join the theses</text>
+  <text x="460" y="498" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">model → align → convert → repeat</text>
+  <text x="460" y="518" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">comparative industrial demonstrations</text>
+  <line x1="460" y1="526" x2="460" y2="554" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
 
-  <!-- Part 4: the practice -->
-  <a href="part-4-intro.html" class="bm-part-link" role="link" aria-label="Part 4 — The MAGE Method"><g id="bm-part-4" class="bm-part">
-  <rect x="270" y="330" width="420" height="88" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-  <text x="480" y="366" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 4 · Putting It to Work</text>
-  <text x="480" y="396" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the method in daily practice</text>
-  </g></a>
+  <!-- PART V — A MAGE Case Study (fleet blue) -->
+  <rect x="200" y="556" width="520" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="460" y="596" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
+  <text x="460" y="624" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">DocAble, end to end · where the method came from</text>
+  <line x1="460" y1="652" x2="460" y2="680" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
 
-  <line x1="480" y1="418" x2="480" y2="474" stroke="#1c1917" stroke-width="2" marker-end="url(#bm-ah-nav)"/>
+  <!-- PART VI — The Profession (purple) -->
+  <rect x="200" y="682" width="520" height="104" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <text x="460" y="720" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
+  <text x="460" y="746" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">theory · scope · engineering generalization</text>
+  <text x="460" y="768" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">profession · open problems</text>
 
-  <!-- Part 5: the grounding case -->
-  <a href="part-5-intro.html" class="bm-part-link" role="link" aria-label="Part 5 — The Evidence"><g id="bm-part-5" class="bm-part">
-  <rect x="270" y="480" width="420" height="88" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="480" y="516" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 5 · A MAGE Case Study</text>
-  <text x="480" y="546" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">DocAble, end to end: the grounding case</text>
-  </g></a>
-
-  <line x1="480" y1="568" x2="480" y2="624" stroke="#1c1917" stroke-width="2" marker-end="url(#bm-ah-nav)"/>
-
-  <!-- Part 6: reflections (a numbered Part, peer to 1-5) -->
-  <a href="part-6-intro.html" class="bm-part-link" role="link" aria-label="Part 6 — The Profession"><g id="bm-part-6" class="bm-part">
-  <rect x="270" y="630" width="420" height="88" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2"/>
-  <text x="480" y="666" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 6 · The Profession</text>
-  <text x="480" y="696" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">theory, implications, conclusion</text>
-  </g></a>
-
-  <line x1="480" y1="718" x2="480" y2="774" stroke="#1c1917" stroke-width="2" marker-end="url(#bm-ah-nav)"/>
-
-  <!-- Part 7: back matter (apparatus — muted, not a numbered Part) -->
-  <rect x="270" y="780" width="420" height="88" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="816" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Part 7 · Back matter</text>
-  <text x="480" y="846" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">about the author, colophon, appendices</text>
+  <!-- BACK MATTER — off to the side (an aside, not a numbered stage) -->
+  <path d="M720,616 C752,616 758,624 786,624" fill="none" stroke="#57534e" stroke-width="1.8"
+        stroke-dasharray="5 4"/>
+  <rect x="788" y="586" width="176" height="104" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8"
+        stroke-dasharray="5 4"/>
+  <text x="876" y="616" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">Back matter</text>
+  <text x="876" y="640" text-anchor="middle" font-size="12.5" fill="#57534e">appendices · about the</text>
+  <text x="876" y="657" text-anchor="middle" font-size="12.5" fill="#57534e">author · colophon</text>
+  <text x="876" y="679" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">an aside, not a stage</text>
 </svg><ul class="visually-hidden roadmap-fallback"><li>Part 1 — The Mindset: <a href="part-1-intro.html">go to Part 1</a></li><li>Part 2 — Modeling: <a href="part-2-intro.html">go to Part 2</a></li><li aria-current="page">Part 3 — Alignment (current part)</li><li>Part 4 — The MAGE Method: <a href="part-4-intro.html">go to Part 4</a></li><li>Part 5 — The Evidence: <a href="part-5-intro.html">go to Part 5</a></li><li>Part 6 — The Profession: <a href="part-6-intro.html">go to Part 6</a></li></ul></nav><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="2.12-keeping-models-in-sync.html" aria-label="Previous chapter — 17 · Keeping the Models in Sync — A Measurement">« Previous chapter</a></div><span class="chapnav-here" title="Alignment">Alignment</span><div class="chapnav-fwd"><a href="3.1-the-agent-stack.html" aria-label="Next chapter — 18 · The Agent Stack">Next chapter »</a><a href="part-4-intro.html" aria-label="Next part — Part 4 — The MAGE Method">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

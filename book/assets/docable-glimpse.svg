@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (NEW, label: docable-glimpse). The Part-1 running glimpse of DocAble (Fork C1): a
+     single input->output panel that grounds the abstractions without explaining them. It pictures only the
+     OBJECT — what goes in and what comes back — with ZERO internal architecture (the six-part pipeline and
+     the case relocate to Part V). An inaccessible source document enters DocAble, a remediated document
+     plus an evidence record comes back. DocAble is drawn as a closed box on purpose: what it does, not yet
+     how. This must NOT reuse the DocAble pipeline figure.
+     Palette: Umber Monograph tokens — churn-red #b23b3b the inaccessible input, fleet #2f5169 DocAble the
+     production system, governed green #1f7a4d the accessible output + evidence, ink #1c1917 statements,
+     muted #57534e captions, neutral #cfc9c0 the illegible/legible text bars, page #fdfcf9. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 430" width="980" height="430"
+     role="group" aria-labelledby="dgTitle dgDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="dgTitle">A running glimpse of DocAble — one object in, one object back</title>
+  <desc id="dgDesc">A single input-to-output panel with no internal structure. On the left, an inaccessible
+    document: a page with unlabeled images, no reading order, and no tags, marked not accessible. An arrow
+    labelled the upload leads into DocAble, drawn as one closed box — the production system at
+    scholaccess.com — with a note that this shows what it does, not yet how. An arrow labelled the file,
+    remediated leads out to the right, to an accessible document with described images, reading order, and
+    tags, carrying an evidence record in which every fix is explained. The caption reads: here is the kind
+    of production system these ideas govern — what it does, not yet how.</desc>
+
+  <defs>
+    <marker id="dg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="980" height="430" fill="#fdfcf9"/>
+
+  <text x="490" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">A running glimpse of DocAble</text>
+  <text x="490" y="70" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">One object in, one object back — the kind of production system these ideas govern.</text>
+
+  <!-- ================= INPUT: an inaccessible document ================= -->
+  <rect x="110" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#b23b3b" stroke-width="2.5"/>
+  <path d="M244,140 L260,156 L244,156 Z" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
+  <!-- illegible text bars -->
+  <rect x="126" y="166" width="92" height="7" rx="2" fill="#cfc9c0"/>
+  <rect x="126" y="182" width="118" height="7" rx="2" fill="#cfc9c0"/>
+  <rect x="126" y="198" width="70" height="7" rx="2" fill="#cfc9c0"/>
+  <!-- image placeholder, no alt -->
+  <rect x="126" y="214" width="118" height="46" rx="3" fill="#f6f4ef" stroke="#b23b3b" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text x="185" y="242" text-anchor="middle" font-size="11.5" font-style="italic" fill="#b23b3b">image — no alt text</text>
+  <!-- status pill -->
+  <rect x="126" y="278" width="118" height="20" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.4"/>
+  <text x="185" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#b23b3b">not accessible</text>
+  <!-- warning badge -->
+  <circle cx="250" cy="140" r="13" fill="#b23b3b"/>
+  <text x="250" y="145" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">!</text>
+  <!-- label -->
+  <text x="185" y="336" text-anchor="middle" font-size="16" font-weight="700" fill="#b23b3b">an inaccessible document</text>
+  <text x="185" y="357" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">unlabeled images · untagged · no reading order</text>
+
+  <!-- ================= DocAble: the closed box ================= -->
+  <rect x="380" y="195" width="200" height="96" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <text x="480" y="235" text-anchor="middle" font-size="26" font-weight="700" fill="#2f5169">DocAble</text>
+  <text x="480" y="260" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">the production system</text>
+  <text x="480" y="279" text-anchor="middle" font-size="12" fill="#57534e">scholaccess.com</text>
+  <text x="480" y="312" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">what it does — not yet how</text>
+
+  <!-- arrows in / out -->
+  <path d="M262,243 L376,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
+  <text x="319" y="233" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the upload</text>
+  <path d="M584,243 L716,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
+  <text x="650" y="233" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the file, remediated</text>
+
+  <!-- ================= OUTPUT: an accessible document + evidence ================= -->
+  <rect x="720" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#1f7a4d" stroke-width="2.5"/>
+  <path d="M854,140 L870,156 L854,156 Z" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.5"/>
+  <!-- legible text bars -->
+  <rect x="736" y="166" width="92" height="7" rx="2" fill="#57534e"/>
+  <rect x="736" y="182" width="118" height="7" rx="2" fill="#57534e"/>
+  <rect x="736" y="198" width="70" height="7" rx="2" fill="#57534e"/>
+  <!-- image placeholder, described -->
+  <rect x="736" y="214" width="118" height="46" rx="3" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.4"/>
+  <text x="795" y="242" text-anchor="middle" font-size="11.5" font-style="italic" fill="#1f7a4d">image — described</text>
+  <!-- evidence pill -->
+  <rect x="736" y="278" width="118" height="20" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.4"/>
+  <text x="795" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#1f7a4d">✓ evidence record</text>
+  <!-- check badge -->
+  <circle cx="860" cy="140" r="13" fill="#1f7a4d"/>
+  <path d="M853,140 l4,4 l7,-8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- label -->
+  <text x="795" y="336" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">an accessible document + evidence</text>
+  <text x="795" y="357" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">tagged · reading order · every fix explained</text>
+
+  <!-- caption -->
+  <text x="490" y="400" text-anchor="middle" font-size="15.5" font-style="italic" fill="#57534e">Here is the kind of production system these ideas govern — what it does, not yet how.</text>
+</svg>
