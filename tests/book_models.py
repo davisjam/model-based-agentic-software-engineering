@@ -679,3 +679,83 @@ def check_part_title_parity():
                 f"outcomes_model.PART_TITLES = {outcome_titles[part]!r} — rename both, or import one SSOT")
 
     return (FAIL if issues else PASS), issues
+
+
+# The bold-lead that opens the WHOLE canon statement of a thesis in a body chapter (`**The Modeling
+# Thesis.**` / `**The Alignment Thesis:**`) — the shape the Preface and 3.1 both use. Case-insensitive; the
+# trailing `.`/`:` tolerates either house punctuation.
+def _thesis_stated_whole(part_dir: str, thesis_name: str) -> bool:
+    """True when SOME chapter file under book/<part_dir>/ states the named thesis WHOLE — a
+    `**The <Name> Thesis.**` bold-lead AND an `In other words` in the same file (the canon §1.1/§1.2 shape:
+    Definition + In other words). Excludes the opener file (00-part-intro.md) — the whole statement must live
+    in a BODY chapter, not only the opener box."""
+    lead = re.compile(rf"\*\*\s*The\s+{re.escape(thesis_name)}\s+Thesis\s*[.:]\s*\*\*", re.I)
+    d = os.path.join(ROOT, "book", part_dir)
+    if not os.path.isdir(d):
+        return False
+    for fn in os.listdir(d):
+        if not fn.endswith(".md") or fn.startswith("00-"):
+            continue
+        text = open(os.path.join(d, fn), encoding="utf-8").read()
+        if lead.search(text) and re.search(r"in other words", text, re.I):
+            return True
+    return False
+
+
+def check_canon_pins():
+    """R3 canon-fidelity guard + R5 cycle pin (rule-#33 parity; AUDIT-ONLY-first, rule #55).
+
+    R3 — the Preface Modeling-box cut must not lose the canon. The FULL canon Modeling Thesis (Definition +
+    `In other words`) currently lives ONLY in the Preface, which the restructure cuts. Part 3 states the
+    Alignment Thesis whole in a body chapter (3.1); Part 2 does NOT yet state the Modeling Thesis whole. This
+    guard asserts each thesis is stated whole in a BODY chapter of its Part (Modeling → Part 2, Alignment →
+    Part 3), pinning the statement text to `argument_spine_declared.json` (the SSOT — Modeling/Alignment
+    claims). It reports the Modeling gap AUDIT-ONLY this wave; a follow-up promotes it BLOCKING once a Part-2
+    body chapter states it whole, at which point cutting the Preface box before Part 2 carries the canon fires
+    the gate.
+
+    R5 — INV-3 (one backbone, many resolutions): the ONE 3-line-method wording (`canon_cycle_declared.json`)
+    must be reused VERBATIM by every surface that states the MAGE cycle (the Part-IV opener box, the Preface
+    cycle paragraph, the cycle figure), each carrying the `mage-cycle` anchor. Any anchored surface whose text
+    omits the pinned wording is a drift finding. Vacuous until the surfaces land in W2/W3 — registered now so
+    the drafters inherit the guard."""
+    import json as _json
+
+    issues: list[str] = []
+
+    # R3 — pin the whole-statement presence to the argument-spine SSOT (rule #33).
+    spine_path = os.path.join(_BOOK_MODELS, "argument_spine_declared.json")
+    spine = _json.load(open(spine_path, encoding="utf-8"))
+    by_id = {c["id"]: c for c in spine.get("spine", spine.get("claims", []))}
+    for thesis_id, thesis_name, part_dir in (
+        ("modeling-thesis", "Modeling", "part2"),
+        ("alignment-thesis", "Alignment", "part3"),
+    ):
+        if thesis_id not in by_id:
+            issues.append(f"R3: argument_spine_declared.json carries no {thesis_id!r} claim to pin against")
+            continue
+        if not _thesis_stated_whole(part_dir, thesis_name):
+            issues.append(
+                f"R3 canon guard: the whole {thesis_name} Thesis (bold-lead + 'In other words', pinned to "
+                f"argument-spine {thesis_id!r}) is not stated in any {part_dir}/ body chapter — it must be "
+                f"before the Preface {thesis_name}-box is cut, or the canon statement is lost")
+
+    # R5 — the 3-line-method cycle pin. Any `mage-cycle`-anchored surface must carry the pinned wording.
+    cycle = _json.load(open(os.path.join(_BOOK_MODELS, "canon_cycle_declared.json"), encoding="utf-8"))
+    pinned = cycle["three_line_method"]
+    anchor = cycle.get("anchor", "mage-cycle")
+    if not pinned.strip():
+        issues.append("R5: canon_cycle_declared.json three_line_method is empty — the pin has no SSOT")
+    anchor_re = re.compile(rf"\{{#\s*{re.escape(anchor)}\s*\}}|<!--\s*{re.escape(anchor)}\s*-->", re.I)
+    book_dir = os.path.join(ROOT, "book")
+    for root_, _dirs, files in os.walk(book_dir):
+        for fn in files:
+            if not fn.endswith(".md"):
+                continue
+            text = open(os.path.join(root_, fn), encoding="utf-8").read()
+            if anchor_re.search(text) and pinned not in text:
+                issues.append(
+                    f"R5 cycle pin: {rel(os.path.join(root_, fn))} carries the {anchor!r} anchor but does "
+                    f"not state the pinned 3-line method verbatim — reuse canon_cycle_declared.json wording")
+
+    return (FAIL if issues else PASS), issues
