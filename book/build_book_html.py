@@ -323,6 +323,12 @@ MARKER_KEYWORDS = (
     # `<!-- pullquote -->` — arms the NEXT blockquote as a label-less pull-quote (large centered
     #   emphasis, no fill/border box). [INFRA-1], part6-apply-SPEC-260807.md §C-1/§F.
     "pullquote",
+    # `<!-- thesisbox -->` — arms the NEXT blockquote as a part-opener THESIS box: the green
+    #   `thesis-box` panel with a full 4-side frame and, when the block leads with a `### TITLE`
+    #   heading, a centered ALLCAPS title-bar reusing the green thesis tokens. Mirrors `pullquote`
+    #   (author declaration; classified BEFORE the concept-inset title check so a TITLED box is never
+    #   mis-read as a concept-inset). In-prose `> **The … Thesis.**` boxes keep the lead-text path.
+    "thesisbox",
     # `<!-- table-landscape -->` — a Typst-only per-table directive: the Typst emitter drops the NEXT table
     #   onto a flipped/landscape page (a wide matrix that cramps in portrait). INERT in HTML (the pipe table
     #   renders through the ordinary table path; web width relies on CSS overflow), like note-spread: consumed
@@ -1219,6 +1225,7 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
     pending_label: list[str] = []           # a `<!-- label: … -->` cross-ref key armed for the next float
     pending_def: list[str] = []             # a core-term `index-def` armed for the next block (→ def-box)
     pending_pullquote: list[bool] = []      # a `<!-- pullquote -->` marker armed for the next blockquote
+    pending_thesisbox: list[bool] = []      # a `<!-- thesisbox -->` marker armed for the next blockquote (part-opener box)
     pending_onepager: list[bool] = []       # a `<!-- case-onepager -->` marker armed for the next table (card)
     pending_convergence_key: list[bool] = []  # a `<!-- convergence-spread-key -->` marker → next table is the slim key
     spread_state: list[dict] = []           # open convergence spread(s): {start, split} indices into `out`
@@ -1338,6 +1345,12 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
                 # `pending_def` for def-box, in the same dispatch family). Full-string match (the bare
                 # no-arg idiom used by `glossary-auto` above), since `inner` still carries the trailing `-->`.
                 pending_pullquote.append(True)
+                return True
+            if s == "<!-- thesisbox -->":
+                # `<!-- thesisbox -->` — arms the NEXT blockquote as a part-opener thesis box. Consumed
+                # here so the marker never reaches reader-visible output (mirrors the `pullquote` arming
+                # just above, same dispatch family). Full-string match — the bare no-arg idiom.
+                pending_thesisbox.append(True)
                 return True
             if inner.startswith("case-onepager"):
                 # `<!-- case-onepager -->` — arms the NEXT table as a per-case one-pager CARD (a light
@@ -1474,6 +1487,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         pending_def.clear()
         pullquote_armed = bool(pending_pullquote)
         pending_pullquote.clear()
+        thesisbox_armed = bool(pending_thesisbox)
+        pending_thesisbox.clear()
         stripped = block.strip()
         # ── The A-flip: one classifier, one renderer per node kind. ────────────────────────────────
         # Classification is single-sourced through the typed IR (`book_ir.classify_render_block`, which
@@ -1508,7 +1523,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         # that strip, a legitimate directive living inside the quote (an inline `> <!-- figure: … -->` inset
         # diagram) is deleted as if it were a stray authoring comment, silently dropping the figure.
         if kind is _ir.BlockKind.BLOCKQUOTE:
-            _emit(_render_blockquote(block, is_def=def_armed, is_pullquote=pullquote_armed))
+            _emit(_render_blockquote(block, is_def=def_armed, is_pullquote=pullquote_armed,
+                                     is_thesisbox=thesisbox_armed))
             continue
         # Gap-marker callouts (`[FILL IN: …]` / `[MORE CHAPTERS FOLLOW: …]`) — the IR classifies these as
         # PARA (they are prose-shaped), so the renderer keeps the shape test for them just ahead of prose.
@@ -1764,14 +1780,17 @@ def _render_heading(block: str, section_no: str | None = None) -> str:
     return f"<h1{anc}>{inline(txt)}</h1>"
 
 
-def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = False) -> str:
+def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = False,
+                       is_thesisbox: bool = False) -> str:
     """A blockquote (every line starts with `>`) → a classified `<blockquote>`. Its inner content is itself
     markdown (heading + prose + a `> ```mermaid ``` fence), rendered recursively; an inner heading is demoted
     to a styled `inset-title` paragraph (no document-outline break). The class is picked by shape: an explicit
     `<!-- pullquote -->` marker (`is_pullquote`) → the label-less `pull-quote` (checked first — an author
-    declaration outranks lead-text inference); a demoted label → `concept-inset`; a `**The … Thesis.**` lead →
-    `thesis-box`; a `**Term.**` lead armed by a core-term `index-def` (`is_def`) → the blue `def-box`; else a
-    light `aside-sidenote`."""
+    declaration outranks lead-text inference); an explicit `<!-- thesisbox -->` marker (`is_thesisbox`) → the
+    green `thesis-box` panel, checked BEFORE the concept-inset title test so a TITLED part-opener box (whose
+    `### TITLE` demotes to an `inset-title`) is not mis-read as a concept-inset; a demoted label →
+    `concept-inset`; a `**The … Thesis.**` lead → `thesis-box`; a `**Term.**` lead armed by a core-term
+    `index-def` (`is_def`) → the blue `def-box`; else a light `aside-sidenote`."""
     inner_md = "\n".join(_strip_blockquote_prefix(ln) for ln in block.splitlines())
     inner_html = md_to_html(inner_md)
     inner_html = re.sub(r"<h[1-6]([^>]*)>(.*?)</h[1-6]>", r'<p class="inset-title"\1>\2</p>', inner_html, flags=re.S)
@@ -1782,6 +1801,8 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
     inner_html = re.sub(r'(<p class="inset-title"[^>]*>)\s*Inset\s+I\d+\s*—\s*', r'\1', inner_html)
     if is_pullquote:
         klass = "pull-quote"
+    elif is_thesisbox:
+        klass = "thesis-box"
     elif 'class="inset-title"' in inner_html:
         klass = "concept-inset"
     elif _IS_THESIS_LEAD_RE.search(inner_html):
@@ -2116,7 +2137,7 @@ figure.code-inset .inset-title::before {{
   background: var(--inset-accent); border-radius: 2px; vertical-align: middle;
 }}
 figure.code-inset pre {{ margin: 0; padding: 0.9rem var(--inset-pad-x); background: transparent; border: 0; }}
-/* THESIS box — a chapter's load-bearing claim, lifted out of the reading column as a light lavender panel.
+/* THESIS box — a chapter's load-bearing claim, lifted out of the reading column as a light green panel.
    Un-italic (a thesis is a statement, not an aside); dark ink var(--ink) on var(--box-thesis-fill) clears WCAG AA (~13.8:1).
    Taxonomy + spec: book/_design/callout-typography.md. */
 blockquote.thesis-box {{ background: var(--box-thesis-fill); border: 1px solid var(--rule); border-left: 4px solid var(--box-thesis-rule);
@@ -2125,6 +2146,19 @@ blockquote.thesis-box {{ background: var(--box-thesis-fill); border: 1px solid v
 blockquote.thesis-box p {{ margin: 0 0 0.6rem; }}
 blockquote.thesis-box p:last-child {{ margin-bottom: 0; }}
 blockquote.thesis-box strong {{ color: var(--box-thesis-rule); }}
+/* Part-opener THESIS box title-bar — a `<!-- thesisbox -->` box whose first line is a `### TITLE` heading
+   (demoted to `p.inset-title`) renders that title as a centered ALLCAPS bar in the green family, flush to
+   the panel edges (negative margins cancel the 1rem/1.3rem panel padding), a hairline green rule under it.
+   In-prose `**The … Thesis.**` boxes carry no `.inset-title`, so they are untouched (Fork 6a). */
+blockquote.thesis-box .inset-title {{
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--box-thesis-rule); background: var(--box-thesis-fill);
+  font-family: var(--font-display); font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 4px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--box-thesis-rule);
+  border-radius: 5px 5px 0 0;
+}}
+blockquote.thesis-box .inset-title::before {{ content: none; }}
 /* DEFINITION box — a core-term definition (an index-def marker on a bold-lead Term blockquote), lifted
    into a blue panel that mirrors the thesis box's shape but carries the definition-azure anchor. Blue on
    every surface, distinct from the umber chrome accent and the green thesis claim. */

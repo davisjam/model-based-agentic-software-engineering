@@ -338,7 +338,7 @@ figure.code-inset .inset-title::before {
   background: var(--inset-accent); border-radius: 2px; vertical-align: middle;
 }
 figure.code-inset pre { margin: 0; padding: 0.9rem var(--inset-pad-x); background: transparent; border: 0; }
-/* THESIS box — a chapter's load-bearing claim, lifted out of the reading column as a light lavender panel.
+/* THESIS box — a chapter's load-bearing claim, lifted out of the reading column as a light green panel.
    Un-italic (a thesis is a statement, not an aside); dark ink var(--ink) on var(--box-thesis-fill) clears WCAG AA (~13.8:1).
    Taxonomy + spec: book/_design/callout-typography.md. */
 blockquote.thesis-box { background: var(--box-thesis-fill); border: 1px solid var(--rule); border-left: 4px solid var(--box-thesis-rule);
@@ -347,6 +347,19 @@ blockquote.thesis-box { background: var(--box-thesis-fill); border: 1px solid va
 blockquote.thesis-box p { margin: 0 0 0.6rem; }
 blockquote.thesis-box p:last-child { margin-bottom: 0; }
 blockquote.thesis-box strong { color: var(--box-thesis-rule); }
+/* Part-opener THESIS box title-bar — a `<!-- thesisbox -->` box whose first line is a `### TITLE` heading
+   (demoted to `p.inset-title`) renders that title as a centered ALLCAPS bar in the green family, flush to
+   the panel edges (negative margins cancel the 1rem/1.3rem panel padding), a hairline green rule under it.
+   In-prose `**The … Thesis.**` boxes carry no `.inset-title`, so they are untouched (Fork 6a). */
+blockquote.thesis-box .inset-title {
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--box-thesis-rule); background: var(--box-thesis-fill);
+  font-family: var(--font-display); font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 4px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--box-thesis-rule);
+  border-radius: 5px 5px 0 0;
+}
+blockquote.thesis-box .inset-title::before { content: none; }
 /* DEFINITION box — a core-term definition (an index-def marker on a bold-lead Term blockquote), lifted
    into a blue panel that mirrors the thesis box's shape but carries the definition-azure anchor. Blue on
    every surface, distinct from the umber chrome accent and the green thesis claim. */

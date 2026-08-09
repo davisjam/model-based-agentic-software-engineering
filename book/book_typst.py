@@ -440,18 +440,42 @@ _EMLED_RE = re.compile(r"^\*[^*].*?\*")
 # selector.) Mirrors `blockquote.def-inset`/`.def-box` typography in the web stylesheet.
 _DEFN_ITALIC_PRELUDE = '#show strong: set text(style: "normal")\n  #set text(style: "italic")\n  '
 
-def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = False) -> str:
+def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = False,
+                       is_thesisbox: bool = False) -> str:
     """A `>`-prefixed blockquote → a Typst block. An explicit `<!-- pullquote -->` marker (`is_pullquote`)
     becomes a label-less pull-quote — large centered italic display type, a thin accent rule above and below,
-    NO fill (checked first, since an author declaration outranks lead-text-shape inference). A thesis
-    blockquote (`> **The … Thesis.** …`) becomes a GREEN boxed callout; a core-term definition blockquote
-    (armed by a preceding index-def, `is_def`) a BLUE def-box; any other blockquote stays a plain
-    `#quote(block: true)[…]`. All mirror the web book's constructs and draw their colours from the shared
-    `dt` tokens. Inner content is itself markdown; we recurse the whole emitter over it so an inner
-    heading/list/mermaid renders."""
+    NO fill (checked first, since an author declaration outranks lead-text-shape inference). An explicit
+    `<!-- thesisbox -->` marker (`is_thesisbox`) becomes a part-opener GREEN box with a full 4-side frame and,
+    when the block leads with a `### TITLE` heading, a centered ALLCAPS title-bar in the green family (the
+    print twin of the web `blockquote.thesis-box .inset-title`); checked before the lead-text thesis test so a
+    TITLED box is boxed, not typeset as a plain heading. A thesis blockquote (`> **The … Thesis.** …`) becomes
+    a GREEN boxed callout; a core-term definition blockquote (armed by a preceding index-def, `is_def`) a BLUE
+    def-box; any other blockquote stays a plain `#quote(block: true)[…]`. All mirror the web book's constructs
+    and draw their colours from the shared `dt` tokens. Inner content is itself markdown; we recurse the whole
+    emitter over it so an inner heading/list/mermaid renders."""
     inner_md = "\n".join(bb._strip_blockquote_prefix(ln) for ln in raw.splitlines())
     inner = _render_markdown_body(inner_md, _EmitCtx.inert())
     stripped = inner_md.strip()
+    if is_thesisbox:
+        # A part-opener thesis box: full 4-side green frame. A leading `### TITLE` line becomes a centered
+        # ALLCAPS title-bar (green rule/ink); the rest renders as the box body. Mirrors the web title-bar.
+        lines = inner_md.splitlines()
+        title = None
+        body_md = inner_md
+        if lines and lines[0].lstrip().startswith("#"):
+            title = re.sub(r"^\s*#+\s*", "", lines[0]).strip()
+            body_md = "\n".join(lines[1:]).strip()
+        body = _render_markdown_body(body_md, _EmitCtx.inert())
+        title_bar = ""
+        if title:
+            title_bar = (
+                "#align(center)[#text(font: dt.font-display, weight: 700, size: dt.fs-card-title, "
+                "fill: dt.box-thesis-rule, tracking: 0.08em)[#upper[" + inline_typst(title) + "]]]\n"
+                "  #v(2pt)\n  #line(length: 100%, stroke: dt.border-hairline + dt.box-thesis-rule)\n"
+                "  #v(8pt)\n  "
+            )
+        return (f'#block(fill: dt.box-thesis-fill, stroke: dt.border-hairline + dt.box-thesis-rule, '
+                f"inset: 12pt, radius: 4pt, width: 100%)[\n  {title_bar}{_indent(body).lstrip()}\n]")
     if is_pullquote:
         # An explicit-marker pull-quote — mirrors the web `.pull-quote` CSS token-for-token: display serif,
         # italic, thesis-title size, umber hairline rule top+bottom, centered, NO fill (absence of a fill is
@@ -640,6 +664,7 @@ class _EmitCtx:
         self.metadata_emitted = 0
         self.pending_def: list[str] = []   # a core-term index-def armed for the next block (→ blue def-box)
         self.pending_pullquote = False     # a `<!-- pullquote -->` marker armed for the next block
+        self.pending_thesisbox = False     # a `<!-- thesisbox -->` marker armed for the next block (part-opener box)
 
     @classmethod
     def inert(cls) -> "_EmitCtx":
@@ -649,6 +674,7 @@ class _EmitCtx:
         c.metadata_emitted = 0
         c.pending_def = []
         c.pending_pullquote = False
+        c.pending_thesisbox = False
         return c
 
 
@@ -666,7 +692,8 @@ _POINT_RE = re.compile(r"^<!--\s*point:\s*(?P<slug>[a-z0-9-]+)\s*\|\s*(?P<text>.
 
 
 def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = False,
-                 is_pullquote: bool = False, section_no: str | None = None) -> str:
+                 is_pullquote: bool = False, is_thesisbox: bool = False,
+                 section_no: str | None = None) -> str:
     """Render ONE IR block to Typst markup — the sibling to `Block.render_html()`, reusing the SAME
     `book_ir.BlockKind` taxonomy and `classify_render_block` classification (the blocks arrive already
     classified from the IR parse). `caption_md` is the folded mermaid caption when the driving walk detects a
@@ -687,7 +714,8 @@ def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = F
     if k is K.CODE_INSET:
         return _render_inset(block.raw)
     if k is K.BLOCKQUOTE:
-        return _render_blockquote(block.raw, is_def=is_def, is_pullquote=is_pullquote)
+        return _render_blockquote(block.raw, is_def=is_def, is_pullquote=is_pullquote,
+                                  is_thesisbox=is_thesisbox)
     if k is K.TABLE:
         return _render_table(block)
     if k is K.FIGURE:
@@ -755,6 +783,8 @@ def _peel_metadata_marker(line: str, ctx: _EmitCtx) -> "str | None":
     if mline:
         if mline.group(1).lower() == "pullquote":
             ctx.pending_pullquote = True   # arm the pull-quote render for the block this marker heads
+        if mline.group(1).lower() == "thesisbox":
+            ctx.pending_thesisbox = True   # arm the part-opener thesis-box render for the next block
         return ""                                        # a consumed notation marker with no print output
     return None
 
@@ -1157,6 +1187,8 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         ctx.pending_def.clear()
         is_pullquote = ctx.pending_pullquote
         ctx.pending_pullquote = False
+        is_thesisbox = ctx.pending_thesisbox
+        ctx.pending_thesisbox = False
         # A top-level `## ` section heading advances the per-chapter counter → `part.chapter.N` (mirrors the
         # web build's `section_no`; `###`/`####` subsections do not advance it). Only when the chapter is numbered.
         sec = None
@@ -1169,7 +1201,8 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         if bb._stem_to_label(chapter.slug) == bb._WHAT_THIS_BOOK_ARGUES_LABEL and b.kind is ir.BlockKind.ORDERED_LIST:
             frag = _render_argues_claims(b.raw)
         else:
-            frag = render_typst(b, caption_md, is_def=is_def, is_pullquote=is_pullquote, section_no=sec)
+            frag = render_typst(b, caption_md, is_def=is_def, is_pullquote=is_pullquote,
+                                is_thesisbox=is_thesisbox, section_no=sec)
         # D71(a) keep-with-next: a paragraph that immediately introduces a figure/table/diagram sticks to it,
         # so the introducing sentence ("… in Table 4.2-1.", "… shown below.") is never split from its float
         # across a page break. Systematic — every paragraph that directly precedes a float, not one-off.
