@@ -7,17 +7,22 @@
      for" arrow — the load-bearing new content — carries the models into the Alignment Thesis, which gives
      that intent authority through constraints · sensors · validators · gates; the column continues into
      the Governed Engineering Environment, then governance conversion, Engineering Capital, and Trustworthy
-     Autonomy. A frontispiece for the glossary.
+     Autonomy. A FAILURE BRANCH — dashed and grey — peels off the structured/executable-models node (NOT
+     the Modeling Thesis: models fail only for lack of Alignment, not for being modelled): without
+     Alignment the models never become authoritative, so they accrue no capital and dissipate into
+     Engineering Churn. Routed down the right margin to land parallel to Engineering Capital, it draws the
+     Capital ↔ Churn mirror — same models, two fates. A frontispiece for the glossary.
      Palette: Umber Monograph tokens (fleet #2f5169 the commodity-intelligence source, churn-red #b23b3b
      the reasoning-horizon problem, thesis-green #15803d + governed green #1f7a4d/#155c38 the Modeling band
      + environment + capital, accent #9a3f12 the Alignment band + the "creates surfaces for" arrow + the
-     Autonomy outcome, muted #57534e connectors + gloss). -->
+     Autonomy outcome, muted #57534e connectors + gloss + the dashed failure branch, neutral #f6f4ef the
+     Engineering-Churn box). -->
 <!-- semantic-families: agent, failure, governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 946" width="720" height="946"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 946" width="840" height="946"
      role="group" aria-labelledby="mmTitle mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="mmTitle">The MAGE method at a glance — one causal descent</title>
-  <desc id="mmDesc">A single vertical progression, not two branches. Commodity intelligence — broad,
+  <desc id="mmDesc">A single causal descent with one failure branch. Commodity intelligence — broad,
     cheap, probabilistic — meets a reasoning-horizon problem: the system will not fit the context window.
     The Modeling Thesis answers it by externalizing engineering knowledge and intent; a short branch
     splits into better context for reasoning and stronger semantics for engineering, then rejoins into
@@ -25,8 +30,11 @@
     labelled arrow, creates surfaces for, carries those models into the Alignment Thesis, which gives
     engineering intent authority through constraints, sensors, validators, and gates. The column continues
     into the Governed Engineering Environment, then governance conversion grows it, effort compounds as
-    Engineering Capital, and the result is trustworthy autonomy. Modeling makes intent explicit; Alignment
-    gives it authority — one progression, not two siblings.</desc>
+    Engineering Capital, and the result is trustworthy autonomy. A dashed grey branch peels off the
+    structured-and-executable-models node: without Alignment those models never become authoritative, so
+    they dissipate into Engineering Churn — repeated rediscovery, inspection, and correction, with no
+    capital formation. Same models, two fates: with Alignment they compound as engineering capital;
+    without it they churn. Modeling makes intent explicit; Alignment gives it authority.</desc>
 
   <defs>
     <marker id="mm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -37,7 +45,7 @@
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="720" height="946" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="840" height="946" fill="#fdfcf9"/>
 
   <!-- A. Commodity intelligence — the source (fleet blue) -->
   <rect x="235" y="30" width="250" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
@@ -91,12 +99,31 @@
   <path d="M360,722 L360,758" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
   <text x="372" y="744" text-anchor="start" font-size="14" font-style="italic" fill="#57534e">governance conversion grows it</text>
 
-  <!-- G. Engineering Capital (compounding green) -->
+  <!-- G. Engineering Capital (compounding green) — the main path's fate -->
   <rect x="250" y="760" width="220" height="56" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
-  <text x="360" y="794" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Engineering Capital</text>
+  <text x="360" y="788" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Engineering Capital</text>
+  <text x="360" y="807" text-anchor="middle" font-size="12" font-style="italic" fill="#155c38">compounds</text>
   <path d="M360,816 L360,844" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
 
   <!-- H. Trustworthy Autonomy — the outcome (accent rust) -->
   <rect x="232" y="846" width="256" height="62" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="360" y="884" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">Trustworthy autonomy</text>
+
+  <!-- FAILURE BRANCH: dashed + grey, from the structured/executable-models node (D), down the right
+       margin to Engineering Churn. Origin at D — NOT the Modeling Thesis: models without Alignment simply
+       never become authoritative, so no capital forms. The grey dashed line is the "if you stop here"
+       fate, contrasting the thick rust "creates surfaces for" path. Lands parallel to Engineering Capital
+       — the Capital ↔ Churn mirror, same models, two fates. -->
+  <path d="M508,449 L715,449 L715,752" fill="none" stroke="#57534e" stroke-width="2.4"
+        stroke-dasharray="6 4" marker-end="url(#mm-ah)"/>
+  <text x="634" y="556" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">without Alignment</text>
+  <text x="634" y="574" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">models never become</text>
+  <text x="634" y="590" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">authoritative</text>
+
+  <!-- Engineering Churn — the grey mirror of Engineering Capital (dissipates, no capital formation) -->
+  <rect x="600" y="754" width="230" height="88" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="715" y="780" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">Engineering Churn</text>
+  <text x="715" y="799" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">dissipates</text>
+  <text x="715" y="819" text-anchor="middle" font-size="11" fill="#57534e">repeated rediscovery, inspection,</text>
+  <text x="715" y="835" text-anchor="middle" font-size="11" fill="#57534e">correction — no capital formation</text>
 </svg>

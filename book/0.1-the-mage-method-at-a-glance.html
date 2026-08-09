@@ -677,11 +677,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-skill-recipe.html">Appendix E — How to Write a Skill</a></li>
 <li><a class="" href="appendix-e-theory.html">Appendix E - 1. Theory</a></li>
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li></ol></details></div></nav><main class="wrap" aria-label="The MAGE Method at a Glance — MAGE"><header class="chap"><div class="kicker"><a href="0.1-the-mage-method-at-a-glance.html" aria-label="Beginning of Front Matter">Front Matter</a></div><h1>The MAGE Method at a Glance</h1></header><p>MAGE is one method with two theses and a conversion that grows an environment around them. To help you understand the full argument, <a class="xref" href="0.1-the-mage-method-at-a-glance.html#fig-0-1-1">Figure&nbsp;0.1-1</a> shows the whole of it on a single page and how the parts relate to each other — the vocabulary this book builds, laid out in the order the method runs.</p>
-<figure id="fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 946"
+<figure id="fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 946"
      role="group" aria-labelledby="mmTitle mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="mmTitle">The MAGE method at a glance — one causal descent</title>
-  <desc id="mmDesc">A single vertical progression, not two branches. Commodity intelligence — broad,
+  <desc id="mmDesc">A single causal descent with one failure branch. Commodity intelligence — broad,
     cheap, probabilistic — meets a reasoning-horizon problem: the system will not fit the context window.
     The Modeling Thesis answers it by externalizing engineering knowledge and intent; a short branch
     splits into better context for reasoning and stronger semantics for engineering, then rejoins into
@@ -689,8 +689,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     labelled arrow, creates surfaces for, carries those models into the Alignment Thesis, which gives
     engineering intent authority through constraints, sensors, validators, and gates. The column continues
     into the Governed Engineering Environment, then governance conversion grows it, effort compounds as
-    Engineering Capital, and the result is trustworthy autonomy. Modeling makes intent explicit; Alignment
-    gives it authority — one progression, not two siblings.</desc>
+    Engineering Capital, and the result is trustworthy autonomy. A dashed grey branch peels off the
+    structured-and-executable-models node: without Alignment those models never become authoritative, so
+    they dissipate into Engineering Churn — repeated rediscovery, inspection, and correction, with no
+    capital formation. Same models, two fates: with Alignment they compound as engineering capital;
+    without it they churn. Modeling makes intent explicit; Alignment gives it authority.</desc>
 
   <defs>
     <marker id="mm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -701,7 +704,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="720" height="946" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="840" height="946" fill="#fdfcf9"/>
 
   <!-- A. Commodity intelligence — the source (fleet blue) -->
   <rect x="235" y="30" width="250" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
@@ -755,15 +758,34 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M360,722 L360,758" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
   <text x="372" y="744" text-anchor="start" font-size="14" font-style="italic" fill="#57534e">governance conversion grows it</text>
 
-  <!-- G. Engineering Capital (compounding green) -->
+  <!-- G. Engineering Capital (compounding green) — the main path's fate -->
   <rect x="250" y="760" width="220" height="56" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
-  <text x="360" y="794" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Engineering Capital</text>
+  <text x="360" y="788" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Engineering Capital</text>
+  <text x="360" y="807" text-anchor="middle" font-size="12" font-style="italic" fill="#155c38">compounds</text>
   <path d="M360,816 L360,844" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
 
   <!-- H. Trustworthy Autonomy — the outcome (accent rust) -->
   <rect x="232" y="846" width="256" height="62" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="360" y="884" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">Trustworthy autonomy</text>
-</svg><figcaption data-short="The whole method as one descent"><span class="fig-label">Figure 0.1-1.</span> The whole method as one descent. Commodity intelligence — broad, cheap, probabilistic — meets a reasoning-horizon problem: the system won't fit the window. The Modeling Thesis answers it, externalizing engineering knowledge and intent into structured, executable models. A heavy arrow, <em>creates surfaces for</em>, carries those models into the Alignment Thesis, which gives that intent authority through constraints, sensors, validators, and gates. The column runs on into the Governed Engineering Environment; governance conversion grows it, effort compounds as engineering capital, and the end is trustworthy autonomy. Modeling makes intent explicit; Alignment gives it authority — one progression, not two branches.</figcaption></figure>
+
+  <!-- FAILURE BRANCH: dashed + grey, from the structured/executable-models node (D), down the right
+       margin to Engineering Churn. Origin at D — NOT the Modeling Thesis: models without Alignment simply
+       never become authoritative, so no capital forms. The grey dashed line is the "if you stop here"
+       fate, contrasting the thick rust "creates surfaces for" path. Lands parallel to Engineering Capital
+       — the Capital ↔ Churn mirror, same models, two fates. -->
+  <path d="M508,449 L715,449 L715,752" fill="none" stroke="#57534e" stroke-width="2.4"
+        stroke-dasharray="6 4" marker-end="url(#mm-ah)"/>
+  <text x="634" y="556" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">without Alignment</text>
+  <text x="634" y="574" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">models never become</text>
+  <text x="634" y="590" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">authoritative</text>
+
+  <!-- Engineering Churn — the grey mirror of Engineering Capital (dissipates, no capital formation) -->
+  <rect x="600" y="754" width="230" height="88" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="715" y="780" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">Engineering Churn</text>
+  <text x="715" y="799" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">dissipates</text>
+  <text x="715" y="819" text-anchor="middle" font-size="11" fill="#57534e">repeated rediscovery, inspection,</text>
+  <text x="715" y="835" text-anchor="middle" font-size="11" fill="#57534e">correction — no capital formation</text>
+</svg><figcaption data-short="The whole method as one descent"><span class="fig-label">Figure 0.1-1.</span> The whole method as one descent. Commodity intelligence — broad, cheap, probabilistic — meets a reasoning-horizon problem: the system won't fit the window. The Modeling Thesis answers it, externalizing engineering knowledge and intent into structured, executable models. A heavy arrow, <em>creates surfaces for</em>, carries those models into the Alignment Thesis, which gives that intent authority through constraints, sensors, validators, and gates, on into the Governed Engineering Environment, where effort compounds as engineering capital. Stop at the models, though, and a dashed grey branch tells the other fate: without Alignment they never become authoritative, and dissipate into engineering churn — repeated rediscovery, no capital formed. Same models, two fates: capital compounds, churn dissipates.</figcaption></figure>
 <p>The Alignment Thesis fills the environment with governance mechanisms of four archetypes, each named for the role it plays rather than the outcome it serves. <a class="xref" href="0.1-the-mage-method-at-a-glance.html#tbl-0-1-1">Table&nbsp;0.1-1</a> names the four and the role that distinguishes each.</p>
 <table id="tbl-0-1-1" class="book-table" data-label="mechanism-archetypes"><caption class="tbl-label-only"><span class="tbl-label">Table 0.1-1.</span></caption><thead><tr><th>Mechanism</th><th>Role</th></tr></thead><tbody><tr><td><strong>Constraint</strong></td><td>restricts actions</td></tr><tr><td><strong>Sensor</strong></td><td>observes violations</td></tr><tr><td><strong>Validator</strong></td><td>evaluates evidence</td></tr><tr><td><strong>Gate</strong></td><td>controls admission</td></tr></tbody></table>
 <p>The method above runs on a theory the closing chapters develop in full; here it is as a one-page reference you can return to. <a class="xref" href="0.1-the-mage-method-at-a-glance.html#fig-0-1-2">Figure&nbsp;0.1-2</a> states it as a card — the problem, the two theses, the conversion, and what compounds. The same theory also has a dynamics view, drawn as two intersecting loops (<a class="xref" href="6.1-toward-a-theory-of-mage.html#fig-6-1-6">Figure&nbsp;6.1-6</a>) once the theses and what compounds have been earned; it lands in the opening chapter of the closing part.</p>
