@@ -3,9 +3,9 @@
   "_note": "The argument-spine model holds the book's linear argument as an ordered run of claims, each reconciling the author's seed statements, the claims model, and the Big-Ideas model into one step — plus the per-chapter labeling of which steps each chapter advances. The `flags` block is DERIVED editorial signal and never gates: CHAPTER-side (a non-exempt chapter advancing 0 steps is suspect; one advancing more than the focus cap is probably unfocused — the directive's Phase-1c worklist) AND CLAIM-side health (a non-exempt claim advanced by 0 chapters is a gap; one advanced only within Part 0/1 is front-loaded/shallow; one advanced by more than the overmap cap is an overmapping-audit surface). Per-claim `reviewed_hash` seeds the AS8 freshness sensor: a statement edited without a re-review reddens its advancing chapters. Exempt chapters (preface / conclusion / discussion / end-of-part synthesis / apparatus) and exempt claims (genuine front-loaded-by-design premises) are the ones whose breadth, silence, or shallow reach is their job.",
   "_counts": {
     "spine_claims": 15,
-    "chapters_labeled": 35,
+    "chapters_labeled": 39,
     "chapters_exempt": 11,
-    "advancement_edges": 91,
+    "advancement_edges": 95,
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
@@ -273,14 +273,18 @@
         "0.4-preface",
         "1.3-loops-and-models",
         "1.4-why-mage-follows-from-the-machine",
-        "2.1-the-executable-zoo",
-        "2.2-the-logical-view",
-        "2.3-the-process-view",
-        "2.4-the-development-view",
-        "2.5-the-physical-view",
-        "2.6-the-scenarios-view",
-        "2.7-the-scope-of-modeling",
-        "2.8-keeping-models-in-sync",
+        "2.1-context-is-the-first-modeling-problem",
+        "2.2-from-context-to-control",
+        "2.3-the-executable-zoo",
+        "2.4-views-are-projections",
+        "2.5-the-logical-view",
+        "2.6-the-process-view",
+        "2.7-the-development-view",
+        "2.8-the-physical-view",
+        "2.9-the-scenarios-view",
+        "2.10-the-joined-model",
+        "2.11-the-scope-of-modeling",
+        "2.12-keeping-models-in-sync",
         "3.1-the-agent-stack",
         "3.2-models-and-the-semantic-gap",
         "3.5-metrics",
@@ -290,7 +294,7 @@
         "4.6-generative-validation",
         "5.3-the-built-system"
       ],
-      "body_depth": 16,
+      "body_depth": 20,
       "front_loaded": false,
       "overmapped": true,
       "fresh": true
@@ -322,7 +326,7 @@
       "advanced_by": [
         "0.4-preface",
         "1.4-why-mage-follows-from-the-machine",
-        "2.1-the-executable-zoo",
+        "2.3-the-executable-zoo",
         "3.2-models-and-the-semantic-gap",
         "3.3-the-governed-environment",
         "3.5-metrics",
@@ -423,8 +427,8 @@
       "statement_hash": "681d832a8c6d",
       "advanced_by": [
         "0.4-preface",
-        "2.1-the-executable-zoo",
-        "2.8-keeping-models-in-sync",
+        "2.3-the-executable-zoo",
+        "2.12-keeping-models-in-sync",
         "3.2-models-and-the-semantic-gap"
       ],
       "body_depth": 3,
@@ -456,7 +460,7 @@
       "statement_hash": "09abeb08db9f",
       "advanced_by": [
         "0.4-preface",
-        "2.7-the-scope-of-modeling",
+        "2.11-the-scope-of-modeling",
         "4.4-training-data",
         "6.2-implications-for-se",
         "6.3-a-new-empirical-regime",
@@ -641,7 +645,21 @@
       "exempt": null
     },
     {
-      "slug": "2.1-the-executable-zoo",
+      "slug": "2.1-context-is-the-first-modeling-problem",
+      "advances": [
+        "modeling-thesis"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "2.2-from-context-to-control",
+      "advances": [
+        "modeling-thesis"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "2.3-the-executable-zoo",
       "advances": [
         "modeling-thesis",
         "alignment-thesis",
@@ -650,42 +668,56 @@
       "exempt": null
     },
     {
-      "slug": "2.2-the-logical-view",
+      "slug": "2.4-views-are-projections",
       "advances": [
         "modeling-thesis"
       ],
       "exempt": null
     },
     {
-      "slug": "2.3-the-process-view",
+      "slug": "2.5-the-logical-view",
       "advances": [
         "modeling-thesis"
       ],
       "exempt": null
     },
     {
-      "slug": "2.4-the-development-view",
+      "slug": "2.6-the-process-view",
       "advances": [
         "modeling-thesis"
       ],
       "exempt": null
     },
     {
-      "slug": "2.5-the-physical-view",
+      "slug": "2.7-the-development-view",
       "advances": [
         "modeling-thesis"
       ],
       "exempt": null
     },
     {
-      "slug": "2.6-the-scenarios-view",
+      "slug": "2.8-the-physical-view",
       "advances": [
         "modeling-thesis"
       ],
       "exempt": null
     },
     {
-      "slug": "2.7-the-scope-of-modeling",
+      "slug": "2.9-the-scenarios-view",
+      "advances": [
+        "modeling-thesis"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "2.10-the-joined-model",
+      "advances": [
+        "modeling-thesis"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "2.11-the-scope-of-modeling",
       "advances": [
         "modeling-thesis",
         "mage-becomes-practical"
@@ -693,7 +725,7 @@
       "exempt": "end-of-part-synthesis"
     },
     {
-      "slug": "2.8-keeping-models-in-sync",
+      "slug": "2.12-keeping-models-in-sync",
       "advances": [
         "modeling-thesis",
         "sync-cost-reduced"
@@ -923,19 +955,23 @@
       },
       {
         "claim": "modeling-thesis",
-        "advanced_by": 19,
+        "advanced_by": 23,
         "chapters": [
           "0.4-preface",
           "1.3-loops-and-models",
           "1.4-why-mage-follows-from-the-machine",
-          "2.1-the-executable-zoo",
-          "2.2-the-logical-view",
-          "2.3-the-process-view",
-          "2.4-the-development-view",
-          "2.5-the-physical-view",
-          "2.6-the-scenarios-view",
-          "2.7-the-scope-of-modeling",
-          "2.8-keeping-models-in-sync",
+          "2.1-context-is-the-first-modeling-problem",
+          "2.2-from-context-to-control",
+          "2.3-the-executable-zoo",
+          "2.4-views-are-projections",
+          "2.5-the-logical-view",
+          "2.6-the-process-view",
+          "2.7-the-development-view",
+          "2.8-the-physical-view",
+          "2.9-the-scenarios-view",
+          "2.10-the-joined-model",
+          "2.11-the-scope-of-modeling",
+          "2.12-keeping-models-in-sync",
           "3.1-the-agent-stack",
           "3.2-models-and-the-semantic-gap",
           "3.5-metrics",

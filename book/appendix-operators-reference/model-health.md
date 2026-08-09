@@ -43,4 +43,4 @@ one window stale, red never regenerated since a source edit. No invented freshne
 
 Model-sync efficacy (drift) and the Missing-Model Metric (coverage) from the dashboard; the symbol-anchored
 traceability graph, the drift-and-parity gates, and the executable-source-of-truth mechanisms (traceability);
-the keeping-models-in-sync discipline of [Chapter 2.8](2.8-keeping-models-in-sync.html) (freshness).
+the keeping-models-in-sync discipline of [Chapter 2.12](2.12-keeping-models-in-sync.html) (freshness).

@@ -218,6 +218,12 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: rubric | Rubric
 - concept: pre-canned-brief | The pre-canned brief
 - concept: model-zoo | The model zoo
+- concept: system-knowledge-graph | The system knowledge graph
+- concept: context-engineering | Context engineering
+- concept: knowledge-representation | Knowledge representation
+- concept: externalized-knowledge | Externalized knowledge
+- concept: structured-relationships | Structured relationships
+- concept: capability-ladder | The capability ladder
 - concept: four-plus-one-views | The 4+1 views
 - concept: logical-view | The Logical view
 - concept: process-view | The Process view

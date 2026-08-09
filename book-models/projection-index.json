@@ -3,15 +3,15 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1511,
+    "total_sites": 1548,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1085,
+      "book-web": 1121,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
       "website-landing": 13,
-      "website-misc": 52,
+      "website-misc": 53,
       "website-theory": 10
     }
   },
@@ -64,36 +64,52 @@
             "occ": 9
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
+            "occ": 19
+          },
+          {
+            "file": "book/2.10-the-joined-model.html",
+            "occ": 4
+          },
+          {
+            "file": "book/2.11-the-scope-of-modeling.html",
+            "occ": 4
+          },
+          {
+            "file": "book/2.12-keeping-models-in-sync.html",
+            "occ": 8
+          },
+          {
+            "file": "book/2.2-from-context-to-control.html",
+            "occ": 10
+          },
+          {
+            "file": "book/2.3-the-executable-zoo.html",
             "occ": 30
           },
           {
-            "file": "book/2.2-the-logical-view.html",
+            "file": "book/2.4-views-are-projections.html",
             "occ": 4
           },
           {
-            "file": "book/2.3-the-process-view.html",
+            "file": "book/2.5-the-logical-view.html",
+            "occ": 4
+          },
+          {
+            "file": "book/2.6-the-process-view.html",
             "occ": 3
           },
           {
-            "file": "book/2.4-the-development-view.html",
+            "file": "book/2.7-the-development-view.html",
             "occ": 8
           },
           {
-            "file": "book/2.5-the-physical-view.html",
+            "file": "book/2.8-the-physical-view.html",
             "occ": 4
           },
           {
-            "file": "book/2.6-the-scenarios-view.html",
+            "file": "book/2.9-the-scenarios-view.html",
             "occ": 7
-          },
-          {
-            "file": "book/2.7-the-scope-of-modeling.html",
-            "occ": 4
-          },
-          {
-            "file": "book/2.8-keeping-models-in-sync.html",
-            "occ": 8
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -467,7 +483,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 111
+            "occ": 115
           }
         ]
       },
@@ -902,20 +918,24 @@
             "occ": 5
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
+            "file": "book/2.10-the-joined-model.html",
             "occ": 1
           },
           {
-            "file": "book/2.3-the-process-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.6-the-scenarios-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.8-keeping-models-in-sync.html",
+            "file": "book/2.2-from-context-to-control.html",
             "occ": 2
+          },
+          {
+            "file": "book/2.3-the-executable-zoo.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.6-the-process-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.9-the-scenarios-view.html",
+            "occ": 1
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -1005,7 +1025,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 32
+            "occ": 33
           }
         ]
       },
@@ -1027,6 +1047,10 @@
           }
         ],
         "website-misc": [
+          {
+            "file": "book-models/models-view.html",
+            "occ": 1
+          },
           {
             "file": "constructing-the-gee.html",
             "occ": 1
@@ -1074,12 +1098,12 @@
             "occ": 5
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
-            "occ": 2
+            "file": "book/2.12-keeping-models-in-sync.html",
+            "occ": 3
           },
           {
-            "file": "book/2.8-keeping-models-in-sync.html",
-            "occ": 3
+            "file": "book/2.3-the-executable-zoo.html",
+            "occ": 2
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
@@ -1410,7 +1434,7 @@
             "occ": 1
           },
           {
-            "file": "book/2.8-keeping-models-in-sync.html",
+            "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 1
           }
         ],
@@ -1522,36 +1546,52 @@
             "occ": 22
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
-            "occ": 16
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
+            "occ": 15
           },
           {
-            "file": "book/2.2-the-logical-view.html",
+            "file": "book/2.10-the-joined-model.html",
+            "occ": 10
+          },
+          {
+            "file": "book/2.11-the-scope-of-modeling.html",
+            "occ": 10
+          },
+          {
+            "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 9
           },
           {
-            "file": "book/2.3-the-process-view.html",
+            "file": "book/2.2-from-context-to-control.html",
+            "occ": 22
+          },
+          {
+            "file": "book/2.3-the-executable-zoo.html",
+            "occ": 18
+          },
+          {
+            "file": "book/2.4-views-are-projections.html",
+            "occ": 14
+          },
+          {
+            "file": "book/2.5-the-logical-view.html",
+            "occ": 10
+          },
+          {
+            "file": "book/2.6-the-process-view.html",
             "occ": 8
           },
           {
-            "file": "book/2.4-the-development-view.html",
+            "file": "book/2.7-the-development-view.html",
             "occ": 8
           },
           {
-            "file": "book/2.5-the-physical-view.html",
+            "file": "book/2.8-the-physical-view.html",
             "occ": 8
           },
           {
-            "file": "book/2.6-the-scenarios-view.html",
+            "file": "book/2.9-the-scenarios-view.html",
             "occ": 9
-          },
-          {
-            "file": "book/2.7-the-scope-of-modeling.html",
-            "occ": 9
-          },
-          {
-            "file": "book/2.8-keeping-models-in-sync.html",
-            "occ": 11
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -1879,7 +1919,7 @@
           },
           {
             "file": "book/book-index.html",
-            "occ": 16
+            "occ": 17
           },
           {
             "file": "book/catalogue-figure.html",
@@ -1887,7 +1927,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 130
+            "occ": 131
           },
           {
             "file": "book/index.html",
@@ -1903,7 +1943,7 @@
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 13
+            "occ": 16
           },
           {
             "file": "book/part-3-intro.html",
@@ -1925,7 +1965,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 111
+            "occ": 115
           }
         ]
       },
@@ -2108,35 +2148,51 @@
             "occ": 1
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 1
           },
           {
-            "file": "book/2.2-the-logical-view.html",
+            "file": "book/2.10-the-joined-model.html",
             "occ": 1
           },
           {
-            "file": "book/2.3-the-process-view.html",
+            "file": "book/2.11-the-scope-of-modeling.html",
             "occ": 1
           },
           {
-            "file": "book/2.4-the-development-view.html",
+            "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 1
           },
           {
-            "file": "book/2.5-the-physical-view.html",
+            "file": "book/2.2-from-context-to-control.html",
             "occ": 1
           },
           {
-            "file": "book/2.6-the-scenarios-view.html",
+            "file": "book/2.3-the-executable-zoo.html",
             "occ": 1
           },
           {
-            "file": "book/2.7-the-scope-of-modeling.html",
+            "file": "book/2.4-views-are-projections.html",
             "occ": 1
           },
           {
-            "file": "book/2.8-keeping-models-in-sync.html",
+            "file": "book/2.5-the-logical-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.6-the-process-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.7-the-development-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.8-the-physical-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.9-the-scenarios-view.html",
             "occ": 1
           },
           {
@@ -2507,7 +2563,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 110
+            "occ": 114
           }
         ]
       },
@@ -2610,27 +2666,27 @@
             "occ": 1
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
+            "file": "book/2.3-the-executable-zoo.html",
             "occ": 5
           },
           {
-            "file": "book/2.2-the-logical-view.html",
+            "file": "book/2.5-the-logical-view.html",
             "occ": 2
           },
           {
-            "file": "book/2.3-the-process-view.html",
+            "file": "book/2.6-the-process-view.html",
             "occ": 3
           },
           {
-            "file": "book/2.4-the-development-view.html",
+            "file": "book/2.7-the-development-view.html",
             "occ": 2
           },
           {
-            "file": "book/2.5-the-physical-view.html",
+            "file": "book/2.8-the-physical-view.html",
             "occ": 4
           },
           {
-            "file": "book/2.6-the-scenarios-view.html",
+            "file": "book/2.9-the-scenarios-view.html",
             "occ": 5
           },
           {
@@ -2817,407 +2873,423 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
-            "occ": 8
+            "occ": 9
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 27
+            "occ": 28
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 23
+            "occ": 24
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 9
-          },
-          {
-            "file": "book/0.6-acknowledgments.html",
-            "occ": 7
-          },
-          {
-            "file": "book/1.1-the-printer.html",
-            "occ": 21
-          },
-          {
-            "file": "book/1.2-mage-by-example.html",
-            "occ": 21
-          },
-          {
-            "file": "book/1.3-loops-and-models.html",
-            "occ": 32
-          },
-          {
-            "file": "book/1.4-why-mage-follows-from-the-machine.html",
-            "occ": 44
-          },
-          {
-            "file": "book/1.5-the-engineers-seat.html",
-            "occ": 20
-          },
-          {
-            "file": "book/2.1-the-executable-zoo.html",
-            "occ": 156
-          },
-          {
-            "file": "book/2.2-the-logical-view.html",
-            "occ": 45
-          },
-          {
-            "file": "book/2.3-the-process-view.html",
-            "occ": 40
-          },
-          {
-            "file": "book/2.4-the-development-view.html",
-            "occ": 26
-          },
-          {
-            "file": "book/2.5-the-physical-view.html",
-            "occ": 59
-          },
-          {
-            "file": "book/2.6-the-scenarios-view.html",
-            "occ": 29
-          },
-          {
-            "file": "book/2.7-the-scope-of-modeling.html",
-            "occ": 30
-          },
-          {
-            "file": "book/2.8-keeping-models-in-sync.html",
-            "occ": 75
-          },
-          {
-            "file": "book/3.1-the-agent-stack.html",
-            "occ": 84
-          },
-          {
-            "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 111
-          },
-          {
-            "file": "book/3.3-the-governed-environment.html",
-            "occ": 25
-          },
-          {
-            "file": "book/3.4-lifecycles-and-runbooks.html",
-            "occ": 11
-          },
-          {
-            "file": "book/3.5-metrics.html",
-            "occ": 58
-          },
-          {
-            "file": "book/3.6-when-guardrails-collide.html",
-            "occ": 17
-          },
-          {
-            "file": "book/4.1-brownfield.html",
-            "occ": 97
-          },
-          {
-            "file": "book/4.2-the-skills.html",
-            "occ": 25
-          },
-          {
-            "file": "book/4.3-transformations.html",
-            "occ": 32
-          },
-          {
-            "file": "book/4.4-training-data.html",
-            "occ": 28
-          },
-          {
-            "file": "book/4.5-lessons-learned.html",
-            "occ": 16
-          },
-          {
-            "file": "book/4.6-generative-validation.html",
-            "occ": 74
-          },
-          {
-            "file": "book/5.1-the-ada-context.html",
             "occ": 10
           },
           {
-            "file": "book/5.2-the-timeline-and-the-work.html",
-            "occ": 20
+            "file": "book/0.6-acknowledgments.html",
+            "occ": 8
           },
           {
-            "file": "book/5.3-the-built-system.html",
-            "occ": 85
+            "file": "book/1.1-the-printer.html",
+            "occ": 22
           },
           {
-            "file": "book/5.4-the-road-to-mage.html",
-            "occ": 49
+            "file": "book/1.2-mage-by-example.html",
+            "occ": 22
           },
           {
-            "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 84
-          },
-          {
-            "file": "book/6.2-implications-for-se.html",
-            "occ": 55
-          },
-          {
-            "file": "book/6.3-a-new-empirical-regime.html",
-            "occ": 52
-          },
-          {
-            "file": "book/6.4-limitations.html",
-            "occ": 9
-          },
-          {
-            "file": "book/6.5-where-mage-fits.html",
-            "occ": 60
-          },
-          {
-            "file": "book/6.6-conclusion.html",
-            "occ": 21
-          },
-          {
-            "file": "book/7.1-about-the-author.html",
-            "occ": 7
-          },
-          {
-            "file": "book/7.2-colophon.html",
+            "file": "book/1.3-loops-and-models.html",
             "occ": 33
           },
           {
-            "file": "book/appendices-front-door.html",
-            "occ": 9
+            "file": "book/1.4-why-mage-follows-from-the-machine.html",
+            "occ": 45
           },
           {
-            "file": "book/appendix-a-context-management-stack.html",
-            "occ": 16
+            "file": "book/1.5-the-engineers-seat.html",
+            "occ": 21
           },
           {
-            "file": "book/appendix-a-governance-of-governance-stack.html",
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
+            "occ": 15
+          },
+          {
+            "file": "book/2.10-the-joined-model.html",
+            "occ": 18
+          },
+          {
+            "file": "book/2.11-the-scope-of-modeling.html",
+            "occ": 33
+          },
+          {
+            "file": "book/2.12-keeping-models-in-sync.html",
+            "occ": 71
+          },
+          {
+            "file": "book/2.2-from-context-to-control.html",
+            "occ": 40
+          },
+          {
+            "file": "book/2.3-the-executable-zoo.html",
+            "occ": 157
+          },
+          {
+            "file": "book/2.4-views-are-projections.html",
+            "occ": 32
+          },
+          {
+            "file": "book/2.5-the-logical-view.html",
+            "occ": 48
+          },
+          {
+            "file": "book/2.6-the-process-view.html",
+            "occ": 42
+          },
+          {
+            "file": "book/2.7-the-development-view.html",
             "occ": 28
           },
           {
+            "file": "book/2.8-the-physical-view.html",
+            "occ": 61
+          },
+          {
+            "file": "book/2.9-the-scenarios-view.html",
+            "occ": 33
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
+            "occ": 85
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 112
+          },
+          {
+            "file": "book/3.3-the-governed-environment.html",
+            "occ": 26
+          },
+          {
+            "file": "book/3.4-lifecycles-and-runbooks.html",
+            "occ": 12
+          },
+          {
+            "file": "book/3.5-metrics.html",
+            "occ": 59
+          },
+          {
+            "file": "book/3.6-when-guardrails-collide.html",
+            "occ": 18
+          },
+          {
+            "file": "book/4.1-brownfield.html",
+            "occ": 98
+          },
+          {
+            "file": "book/4.2-the-skills.html",
+            "occ": 26
+          },
+          {
+            "file": "book/4.3-transformations.html",
+            "occ": 33
+          },
+          {
+            "file": "book/4.4-training-data.html",
+            "occ": 29
+          },
+          {
+            "file": "book/4.5-lessons-learned.html",
+            "occ": 17
+          },
+          {
+            "file": "book/4.6-generative-validation.html",
+            "occ": 75
+          },
+          {
+            "file": "book/5.1-the-ada-context.html",
+            "occ": 11
+          },
+          {
+            "file": "book/5.2-the-timeline-and-the-work.html",
+            "occ": 21
+          },
+          {
+            "file": "book/5.3-the-built-system.html",
+            "occ": 86
+          },
+          {
+            "file": "book/5.4-the-road-to-mage.html",
+            "occ": 50
+          },
+          {
+            "file": "book/6.1-toward-a-theory-of-mage.html",
+            "occ": 85
+          },
+          {
+            "file": "book/6.2-implications-for-se.html",
+            "occ": 56
+          },
+          {
+            "file": "book/6.3-a-new-empirical-regime.html",
+            "occ": 53
+          },
+          {
+            "file": "book/6.4-limitations.html",
+            "occ": 10
+          },
+          {
+            "file": "book/6.5-where-mage-fits.html",
+            "occ": 61
+          },
+          {
+            "file": "book/6.6-conclusion.html",
+            "occ": 22
+          },
+          {
+            "file": "book/7.1-about-the-author.html",
+            "occ": 8
+          },
+          {
+            "file": "book/7.2-colophon.html",
+            "occ": 34
+          },
+          {
+            "file": "book/appendices-front-door.html",
+            "occ": 10
+          },
+          {
+            "file": "book/appendix-a-context-management-stack.html",
+            "occ": 17
+          },
+          {
+            "file": "book/appendix-a-governance-of-governance-stack.html",
+            "occ": 29
+          },
+          {
             "file": "book/appendix-a-model-coherence-stack.html",
-            "occ": 68
+            "occ": 69
           },
           {
             "file": "book/appendix-a-observe-react-stack.html",
-            "occ": 13
+            "occ": 14
           },
           {
             "file": "book/appendix-a-provenance-fidelity-stack.html",
-            "occ": 8
+            "occ": 9
           },
           {
             "file": "book/appendix-a-resource-mediation-stack.html",
-            "occ": 9
+            "occ": 10
           },
           {
             "file": "book/appendix-a-specification-verification-stack.html",
-            "occ": 31
+            "occ": 32
           },
           {
             "file": "book/appendix-b-agent-registry.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/appendix-b-brief-linting.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/appendix-b-claude-md-rule-index.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/appendix-b-composed-state-machine-model.html",
-            "occ": 25
+            "occ": 26
           },
           {
             "file": "book/appendix-b-content-validator.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/appendix-b-control-substrate-dependency.html",
-            "occ": 17
+            "occ": 18
           },
           {
             "file": "book/appendix-b-coverage-model-mapping.html",
-            "occ": 13
+            "occ": 14
           },
           {
             "file": "book/appendix-b-drift-parity-gates.html",
-            "occ": 35
+            "occ": 36
           },
           {
             "file": "book/appendix-b-dynamic-context-injection.html",
-            "occ": 8
+            "occ": 9
           },
           {
             "file": "book/appendix-b-epic-definition-of-done.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/appendix-b-executable-source-of-truth.html",
-            "occ": 23
+            "occ": 24
           },
           {
             "file": "book/appendix-b-flagship-mechanisms.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/appendix-b-formal-invariant-verification.html",
-            "occ": 23
+            "occ": 24
           },
           {
             "file": "book/appendix-b-fuzz-campaigns.html",
-            "occ": 17
+            "occ": 18
           },
           {
             "file": "book/appendix-b-governance-graph.html",
-            "occ": 25
+            "occ": 26
           },
           {
             "file": "book/appendix-b-lifecycle-hooks.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/appendix-b-meta-model-consumption.html",
-            "occ": 19
-          },
-          {
-            "file": "book/appendix-b-model-derived-test-obligation-census.html",
-            "occ": 12
-          },
-          {
-            "file": "book/appendix-b-mutator-stamps.html",
-            "occ": 8
-          },
-          {
-            "file": "book/appendix-b-operational-playbooks.html",
-            "occ": 7
-          },
-          {
-            "file": "book/appendix-b-pdf-model.html",
-            "occ": 14
-          },
-          {
-            "file": "book/appendix-b-remediation-verbs.html",
-            "occ": 7
-          },
-          {
-            "file": "book/appendix-b-resource-pressure-gating.html",
-            "occ": 7
-          },
-          {
-            "file": "book/appendix-b-self-governance.html",
-            "occ": 8
-          },
-          {
-            "file": "book/appendix-b-semantic-lints.html",
-            "occ": 7
-          },
-          {
-            "file": "book/appendix-b-staged-deploy-gates.html",
-            "occ": 7
-          },
-          {
-            "file": "book/appendix-b-symbol-anchored-traceability-graph.html",
-            "occ": 21
-          },
-          {
-            "file": "book/appendix-b-synchronization-model.html",
-            "occ": 16
-          },
-          {
-            "file": "book/appendix-b-test-serializer.html",
-            "occ": 7
-          },
-          {
-            "file": "book/appendix-b-typed-event-bus.html",
-            "occ": 8
-          },
-          {
-            "file": "book/appendix-c-mechanism-catalog.html",
-            "occ": 101
-          },
-          {
-            "file": "book/appendix-d-brownfield-progress.html",
-            "occ": 9
-          },
-          {
-            "file": "book/appendix-d-daily-review.html",
-            "occ": 9
-          },
-          {
-            "file": "book/appendix-d-engineering-capital.html",
-            "occ": 7
-          },
-          {
-            "file": "book/appendix-d-evidence-quality.html",
-            "occ": 7
-          },
-          {
-            "file": "book/appendix-d-from-drifted-wiki-to-trusted-model.html",
-            "occ": 12
-          },
-          {
-            "file": "book/appendix-d-governance-conversion.html",
-            "occ": 7
-          },
-          {
-            "file": "book/appendix-d-human-judgment.html",
-            "occ": 9
-          },
-          {
-            "file": "book/appendix-d-model-health.html",
-            "occ": 21
-          },
-          {
-            "file": "book/appendix-d-operating-doctrine.html",
-            "occ": 7
-          },
-          {
-            "file": "book/appendix-d-operators-dashboard.html",
-            "occ": 13
-          },
-          {
-            "file": "book/appendix-d-release-readiness.html",
-            "occ": 9
-          },
-          {
-            "file": "book/appendix-d-system-health.html",
-            "occ": 8
-          },
-          {
-            "file": "book/appendix-e-applying-the-recipe.html",
             "occ": 20
           },
           {
-            "file": "book/appendix-e-theory.html",
-            "occ": 21
+            "file": "book/appendix-b-model-derived-test-obligation-census.html",
+            "occ": 13
           },
           {
-            "file": "book/appendix-operators-reference.html",
+            "file": "book/appendix-b-mutator-stamps.html",
             "occ": 9
           },
           {
-            "file": "book/appendix-skill-recipe.html",
+            "file": "book/appendix-b-operational-playbooks.html",
+            "occ": 8
+          },
+          {
+            "file": "book/appendix-b-pdf-model.html",
+            "occ": 15
+          },
+          {
+            "file": "book/appendix-b-remediation-verbs.html",
+            "occ": 8
+          },
+          {
+            "file": "book/appendix-b-resource-pressure-gating.html",
+            "occ": 8
+          },
+          {
+            "file": "book/appendix-b-self-governance.html",
             "occ": 9
           },
           {
-            "file": "book/appendix-stacks.html",
+            "file": "book/appendix-b-semantic-lints.html",
+            "occ": 8
+          },
+          {
+            "file": "book/appendix-b-staged-deploy-gates.html",
+            "occ": 8
+          },
+          {
+            "file": "book/appendix-b-symbol-anchored-traceability-graph.html",
+            "occ": 22
+          },
+          {
+            "file": "book/appendix-b-synchronization-model.html",
+            "occ": 17
+          },
+          {
+            "file": "book/appendix-b-test-serializer.html",
+            "occ": 8
+          },
+          {
+            "file": "book/appendix-b-typed-event-bus.html",
+            "occ": 9
+          },
+          {
+            "file": "book/appendix-c-mechanism-catalog.html",
+            "occ": 102
+          },
+          {
+            "file": "book/appendix-d-brownfield-progress.html",
+            "occ": 10
+          },
+          {
+            "file": "book/appendix-d-daily-review.html",
+            "occ": 10
+          },
+          {
+            "file": "book/appendix-d-engineering-capital.html",
+            "occ": 8
+          },
+          {
+            "file": "book/appendix-d-evidence-quality.html",
+            "occ": 8
+          },
+          {
+            "file": "book/appendix-d-from-drifted-wiki-to-trusted-model.html",
+            "occ": 13
+          },
+          {
+            "file": "book/appendix-d-governance-conversion.html",
+            "occ": 8
+          },
+          {
+            "file": "book/appendix-d-human-judgment.html",
+            "occ": 10
+          },
+          {
+            "file": "book/appendix-d-model-health.html",
+            "occ": 22
+          },
+          {
+            "file": "book/appendix-d-operating-doctrine.html",
+            "occ": 8
+          },
+          {
+            "file": "book/appendix-d-operators-dashboard.html",
             "occ": 14
           },
           {
+            "file": "book/appendix-d-release-readiness.html",
+            "occ": 10
+          },
+          {
+            "file": "book/appendix-d-system-health.html",
+            "occ": 9
+          },
+          {
+            "file": "book/appendix-e-applying-the-recipe.html",
+            "occ": 21
+          },
+          {
+            "file": "book/appendix-e-theory.html",
+            "occ": 22
+          },
+          {
+            "file": "book/appendix-operators-reference.html",
+            "occ": 10
+          },
+          {
+            "file": "book/appendix-skill-recipe.html",
+            "occ": 10
+          },
+          {
+            "file": "book/appendix-stacks.html",
+            "occ": 15
+          },
+          {
             "file": "book/bibliography.html",
-            "occ": 19
+            "occ": 20
           },
           {
             "file": "book/book-index.html",
-            "occ": 29
+            "occ": 30
           },
           {
             "file": "book/catalogue-figure.html",
@@ -3229,41 +3301,41 @@
           },
           {
             "file": "book/index.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 16
-          },
-          {
-            "file": "book/part-1-intro.html",
-            "occ": 13
-          },
-          {
-            "file": "book/part-2-intro.html",
             "occ": 17
           },
           {
+            "file": "book/part-1-intro.html",
+            "occ": 14
+          },
+          {
+            "file": "book/part-2-intro.html",
+            "occ": 19
+          },
+          {
             "file": "book/part-3-intro.html",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 11
+            "occ": 12
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 111
+            "occ": 115
           }
         ]
       },
@@ -3685,7 +3757,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 102
+            "occ": 103
           },
           {
             "file": "catalogue-figure.html",
@@ -3822,35 +3894,51 @@
             "occ": 5
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 6
           },
           {
-            "file": "book/2.2-the-logical-view.html",
+            "file": "book/2.10-the-joined-model.html",
             "occ": 5
           },
           {
-            "file": "book/2.3-the-process-view.html",
+            "file": "book/2.11-the-scope-of-modeling.html",
             "occ": 5
           },
           {
-            "file": "book/2.4-the-development-view.html",
+            "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 5
           },
           {
-            "file": "book/2.5-the-physical-view.html",
+            "file": "book/2.2-from-context-to-control.html",
             "occ": 5
           },
           {
-            "file": "book/2.6-the-scenarios-view.html",
+            "file": "book/2.3-the-executable-zoo.html",
             "occ": 5
           },
           {
-            "file": "book/2.7-the-scope-of-modeling.html",
+            "file": "book/2.4-views-are-projections.html",
             "occ": 5
           },
           {
-            "file": "book/2.8-keeping-models-in-sync.html",
+            "file": "book/2.5-the-logical-view.html",
+            "occ": 5
+          },
+          {
+            "file": "book/2.6-the-process-view.html",
+            "occ": 5
+          },
+          {
+            "file": "book/2.7-the-development-view.html",
+            "occ": 5
+          },
+          {
+            "file": "book/2.8-the-physical-view.html",
+            "occ": 5
+          },
+          {
+            "file": "book/2.9-the-scenarios-view.html",
             "occ": 5
           },
           {
@@ -4221,7 +4309,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 110
+            "occ": 114
           }
         ]
       },
@@ -4272,16 +4360,28 @@
             "occ": 4
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
-            "occ": 3
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
+            "occ": 2
           },
           {
-            "file": "book/2.2-the-logical-view.html",
+            "file": "book/2.10-the-joined-model.html",
             "occ": 1
           },
           {
-            "file": "book/2.8-keeping-models-in-sync.html",
+            "file": "book/2.12-keeping-models-in-sync.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.2-from-context-to-control.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.3-the-executable-zoo.html",
             "occ": 3
+          },
+          {
+            "file": "book/2.5-the-logical-view.html",
+            "occ": 1
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -4367,7 +4467,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 30
+            "occ": 33
           }
         ]
       },
@@ -4395,7 +4495,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 1
+            "occ": 3
           },
           {
             "file": "constructing-the-gee.html",
@@ -4474,35 +4574,51 @@
             "occ": 3
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 1
           },
           {
-            "file": "book/2.2-the-logical-view.html",
+            "file": "book/2.10-the-joined-model.html",
             "occ": 1
           },
           {
-            "file": "book/2.3-the-process-view.html",
+            "file": "book/2.11-the-scope-of-modeling.html",
             "occ": 1
           },
           {
-            "file": "book/2.4-the-development-view.html",
+            "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 1
           },
           {
-            "file": "book/2.5-the-physical-view.html",
+            "file": "book/2.2-from-context-to-control.html",
             "occ": 1
           },
           {
-            "file": "book/2.6-the-scenarios-view.html",
+            "file": "book/2.3-the-executable-zoo.html",
             "occ": 1
           },
           {
-            "file": "book/2.7-the-scope-of-modeling.html",
+            "file": "book/2.4-views-are-projections.html",
             "occ": 1
           },
           {
-            "file": "book/2.8-keeping-models-in-sync.html",
+            "file": "book/2.5-the-logical-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.6-the-process-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.7-the-development-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.8-the-physical-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.9-the-scenarios-view.html",
             "occ": 1
           },
           {
@@ -4873,7 +4989,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 110
+            "occ": 114
           }
         ]
       },
@@ -4916,7 +5032,7 @@
             "occ": 5
           },
           {
-            "file": "book/2.7-the-scope-of-modeling.html",
+            "file": "book/2.11-the-scope-of-modeling.html",
             "occ": 1
           },
           {
@@ -5140,35 +5256,51 @@
             "occ": 7
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.10-the-joined-model.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.11-the-scope-of-modeling.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.12-keeping-models-in-sync.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.2-from-context-to-control.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.3-the-executable-zoo.html",
             "occ": 5
           },
           {
-            "file": "book/2.2-the-logical-view.html",
+            "file": "book/2.4-views-are-projections.html",
             "occ": 2
           },
           {
-            "file": "book/2.3-the-process-view.html",
+            "file": "book/2.5-the-logical-view.html",
             "occ": 2
           },
           {
-            "file": "book/2.4-the-development-view.html",
+            "file": "book/2.6-the-process-view.html",
             "occ": 2
           },
           {
-            "file": "book/2.5-the-physical-view.html",
+            "file": "book/2.7-the-development-view.html",
             "occ": 2
           },
           {
-            "file": "book/2.6-the-scenarios-view.html",
+            "file": "book/2.8-the-physical-view.html",
             "occ": 2
           },
           {
-            "file": "book/2.7-the-scope-of-modeling.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.8-keeping-models-in-sync.html",
+            "file": "book/2.9-the-scenarios-view.html",
             "occ": 2
           },
           {
@@ -5539,7 +5671,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 110
+            "occ": 114
           }
         ]
       },
@@ -5634,36 +5766,52 @@
             "occ": 3
           },
           {
-            "file": "book/2.1-the-executable-zoo.html",
-            "occ": 16
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
+            "occ": 2
           },
           {
-            "file": "book/2.2-the-logical-view.html",
+            "file": "book/2.10-the-joined-model.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.11-the-scope-of-modeling.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.12-keeping-models-in-sync.html",
+            "occ": 4
+          },
+          {
+            "file": "book/2.2-from-context-to-control.html",
+            "occ": 8
+          },
+          {
+            "file": "book/2.3-the-executable-zoo.html",
+            "occ": 13
+          },
+          {
+            "file": "book/2.4-views-are-projections.html",
+            "occ": 3
+          },
+          {
+            "file": "book/2.5-the-logical-view.html",
             "occ": 5
           },
           {
-            "file": "book/2.3-the-process-view.html",
+            "file": "book/2.6-the-process-view.html",
             "occ": 1
           },
           {
-            "file": "book/2.4-the-development-view.html",
+            "file": "book/2.7-the-development-view.html",
             "occ": 1
           },
           {
-            "file": "book/2.5-the-physical-view.html",
+            "file": "book/2.8-the-physical-view.html",
             "occ": 1
           },
           {
-            "file": "book/2.6-the-scenarios-view.html",
+            "file": "book/2.9-the-scenarios-view.html",
             "occ": 1
-          },
-          {
-            "file": "book/2.7-the-scope-of-modeling.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.8-keeping-models-in-sync.html",
-            "occ": 8
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -5991,11 +6139,11 @@
           },
           {
             "file": "book/book-index.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/figures.html",
-            "occ": 48
+            "occ": 47
           },
           {
             "file": "book/index.html",
@@ -6033,7 +6181,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 110
+            "occ": 114
           }
         ]
       },
@@ -6263,7 +6411,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 12
+            "occ": 11
           },
           {
             "file": "constructing-the-gee.html",
@@ -6316,7 +6464,7 @@
             "occ": 1
           },
           {
-            "file": "book/2.8-keeping-models-in-sync.html",
+            "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 1
           },
           {

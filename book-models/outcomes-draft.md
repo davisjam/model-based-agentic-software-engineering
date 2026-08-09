@@ -51,30 +51,42 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 - **[DECLARED]** (create) After Part 2, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper. — _anchor: Part 2 chapter arc: agent-stack -> semantic-gap -> ex-ante/ex-post -> lifecycles/runbooks -> metrics -> guardrails-collide._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
 
-### Lesson 2.1-the-executable-zoo
+### Lesson 2.1-context-is-the-first-modeling-problem
 
-  - **[DERIVED]** (understand) After this section, the reader can explain how 4+1 organizes the whole Part into five views over one core. — _anchor: Heading text: 'Kruchten's 4+1 views organize the Part'; ts: 'The last chapter named Kruchten's 4+1 views as the reason one model is never enough.'_
+
+### Lesson 2.2-from-context-to-control
+
+
+### Lesson 2.3-the-executable-zoo
+
   - **[GAP-REC]** (analyze) After this section, the reader can analyze the two decisions that make a governance graph resist rot. — _gap: O2 finding: opens on a non-paragraph block (no topic sentence). The two decisions are named in the heading but the section does not open by stating them; recommend a topic sentence enumerating them._
 
-### Lesson 2.2-the-logical-view
+### Lesson 2.4-views-are-projections
 
 
-### Lesson 2.3-the-process-view
+### Lesson 2.5-the-logical-view
 
 
-### Lesson 2.4-the-development-view
+### Lesson 2.6-the-process-view
 
 
-### Lesson 2.5-the-physical-view
+### Lesson 2.7-the-development-view
 
 
-### Lesson 2.6-the-scenarios-view
+### Lesson 2.8-the-physical-view
 
 
-### Lesson 2.7-the-scope-of-modeling
+### Lesson 2.9-the-scenarios-view
 
 
-### Lesson 2.8-keeping-models-in-sync
+### Lesson 2.10-the-joined-model
+
+  - **[DERIVED]** (analyze) After this section, the reader can trace a single request. — _anchor: ts: Trace a single request._
+
+### Lesson 2.11-the-scope-of-modeling
+
+
+### Lesson 2.12-keeping-models-in-sync
 
 
 ## Module 3 — The Model Zoo

@@ -333,6 +333,75 @@
       "closing_anchor": "is the model, and the next Part opens the zoo of them."
     },
     {
+      "slug": "context-is-the-first-modeling-problem",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "On-ramp chapter. Opening states the failure (a commodity reasoner arrives knowing almost nothing about your system) and its answer (externalize the system's entities and relations into a durable, retrievable artifact); the Modeling-Thesis link is explicit — externalized knowledge is its first rung. Closes by handing forward: legibility is only the first rung, and structured knowledge begins to turn modeling into control.",
+      "opening_anchor": "A commodity reasoner arrives knowing almost nothing about your system. Its training",
+      "closing_anchor": "next step, and it is where modeling begins to turn into control."
+    },
+    {
+      "slug": "from-context-to-control",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "The capability-ladder chapter. Opening takes a single edge and asks how it gains authority — type, invariant, derivation, gate — and answers with the eight-rung ladder from context to control. Modeling-Thesis link explicit; the turn at rung five is where modeling becomes alignment. Closes by handing to the zoo: the next chapter defines the executable-model pattern and asks the first question of every model.",
+      "opening_anchor": "Suppose the graph records that a worker consumes a queue. As context,",
+      "closing_anchor": "first question of every model: what entities and relations does it represent?"
+    },
+    {
+      "slug": "views-are-projections",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "Opening states the question the executable trunk raises — if the whole system is one connected model, why a zoo of views? — and answers it: a view is a projection over the one representation, not a second model to maintain. Modeling-Thesis link explicit. Closes by handing to the first view, the Logical view, in Kruchten's order.",
+      "opening_anchor": "One connected representation does not imply one view. The last chapter built",
+      "closing_anchor": "what the system is made of, and what may depend on what."
+    },
+    {
+      "slug": "the-joined-model",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "synthesis"
+      },
+      "delivers": {
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the five views joined on one identity spine"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "note": "End-of-views synthesis. Opening shows each view earns its keep separately, then joins them: the five project from one identity spine, so a change traced in one view resolves in the others. Modeling-Thesis link explicit. Closes the Part's build — this Part supplied the world the fleet reasons through; the next Part gives that world authority.",
+      "opening_anchor": "The five views earn their keep separately. The Logical view answers a",
+      "closing_anchor": "this Part made explicit and teaches the environment to insist on them."
+    },
+    {
       "slug": "the-executable-zoo",
       "opening": {
         "failure_question": "explicit",

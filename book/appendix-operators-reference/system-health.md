@@ -40,5 +40,5 @@ in the card's footer. Do not invent a number for it.
 ### What this projects
 
 The Churn metric (see [Chapter 5.2](5.2-the-timeline-and-the-work.html)), carried by the *churn* concept and
-the churn feedback relation; drift from Model-sync efficacy ([Chapter 2.8](2.8-keeping-models-in-sync.html));
+the churn feedback relation; drift from Model-sync efficacy ([Chapter 2.12](2.12-keeping-models-in-sync.html));
 validation from Grammar coverage and Model-claim coverage ([Chapter 4.6](4.6-generative-validation.html)).
