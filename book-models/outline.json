@@ -6,8 +6,8 @@
     "explicit_ids": 30,
     "derived_ids": 257,
     "missing_topic_sentence": 8,
-    "sections_drained": 179,
-    "paragraph_points": 571
+    "sections_drained": 180,
+    "paragraph_points": 581
   },
   "chapters": [
     {
@@ -4607,19 +4607,29 @@
               "block_index": 44
             },
             {
+              "slug": "spine-ascent-commodity-intelligence",
+              "text": "The frontier vision-language model is the spine's commodity intelligence.",
+              "block_index": 46
+            },
+            {
               "slug": "vlms-recover-document-meaning",
               "text": "Vision-language models now recover a slide's semantic content.",
-              "block_index": 46
+              "block_index": 47
+            },
+            {
+              "slug": "spine-ascent-context-problem",
+              "text": "The model's missing situated judgment is the context problem.",
+              "block_index": 49
             },
             {
               "slug": "capability-is-not-a-system",
               "text": "Raw model capability is not a compliance strategy.",
-              "block_index": 48
+              "block_index": 50
             },
             {
               "slug": "context-is-law-deadline-cost-and-gap",
               "text": "The context: real law, deadline, cost, bridgeable gap.",
-              "block_index": 50
+              "block_index": 52
             }
           ]
         }
@@ -4723,7 +4733,13 @@
           "topic_sentence": "The apparatus outgrowing the product is not a one-time fact; it is a curve.",
           "id_source": "explicit",
           "block_index": 36,
-          "points": []
+          "points": [
+            {
+              "slug": "spine-ascent-engineering-capital",
+              "text": "The support ratio is the environment banked as capital.",
+              "block_index": 43
+            }
+          ]
         },
         {
           "section_id": "churn",
@@ -4731,7 +4747,7 @@
           "heading_text": "The shape of the churn",
           "topic_sentence": "Under the ratio sits the raw motion of the code: lines added and lines deleted, week over week, on the two paths that carry the product — `web/`, the Python service and worker, and `backend/`, the C# tool and rule engine.",
           "id_source": "explicit",
-          "block_index": 46,
+          "block_index": 47,
           "points": []
         },
         {
@@ -4740,22 +4756,27 @@
           "heading_text": "The kinds of work it required",
           "topic_sentence": "Read this timeline as a catalog of the *kinds of work* agentic development turned out to need — a more useful reading than any feature list.",
           "id_source": "derived",
-          "block_index": 56,
+          "block_index": 57,
           "points": [
             {
               "slug": "read-it-as-a-catalog-of-work-kinds",
               "text": "The timeline is a catalog of work agentic development needs.",
-              "block_index": 58
+              "block_index": 59
+            },
+            {
+              "slug": "spine-ascent-governance-conversion",
+              "text": "Velocity surfaces failure; judgment converts structural ones to mechanism.",
+              "block_index": 67
             },
             {
               "slug": "the-recurring-move-classify-then-convert",
               "text": "Velocity surfaces failure; judgment converts structural ones to mechanism.",
-              "block_index": 66
+              "block_index": 68
             },
             {
               "slug": "the-system-reached-production-for-a-few-dollars-a-deck",
               "text": "By the end the system remediated a deck for dollars.",
-              "block_index": 68
+              "block_index": 70
             }
           ]
         }
@@ -4846,14 +4867,19 @@
               "block_index": 30
             },
             {
+              "slug": "spine-ascent-alignment-mechanisms",
+              "text": "A validator at the trust boundary gives intent authority.",
+              "block_index": 36
+            },
+            {
               "slug": "defensible-claim-on-an-unreliable-model",
               "text": "The function-call shape defends a claim on an unreliable model.",
-              "block_index": 36
+              "block_index": 37
             },
             {
               "slug": "discipline-earned-the-hard-way",
               "text": "Skip the wrapper and the model finds the unguarded exception.",
-              "block_index": 38
+              "block_index": 39
             }
           ]
         },
@@ -4863,12 +4889,12 @@
           "heading_text": "Three views of the same system",
           "topic_sentence": "A model shows a view.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 41,
           "points": [
             {
               "slug": "three-views-from-real-models",
               "text": "Three architectural views, each from a real system model.",
-              "block_index": 42
+              "block_index": 43
             }
           ]
         },
@@ -4878,37 +4904,37 @@
           "heading_text": "View 1 — a reactive service seam, and how it made serverless natural",
           "topic_sentence": "The back end is a set of small services wired to react to events.",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 46,
           "points": [
             {
               "slug": "reactive-stateless-service-seam",
               "text": "Small services react to events over a communication-truth split.",
-              "block_index": 47
+              "block_index": 48
             },
             {
               "slug": "reactive-shape-made-serverless-migration-easy",
               "text": "The reactive shape turned a hard serverless migration easy.",
-              "block_index": 51
+              "block_index": 52
             },
             {
               "slug": "the-seam-is-the-serverless-model",
               "text": "A reactive, stateless, modeled seam is already the serverless model.",
-              "block_index": 53
+              "block_index": 54
             },
             {
               "slug": "convergence-not-aim-is-the-lesson",
               "text": "Built reactive and stateless for other reasons, it ran serverless.",
-              "block_index": 55
+              "block_index": 56
             },
             {
               "slug": "architectural-optionality-names-the-recurring-pattern",
               "text": "A local decision quietly banks a future option.",
-              "block_index": 57
+              "block_index": 58
             },
             {
               "slug": "the-operating-loop-in-one-migration",
               "text": "The agent phases a design, surfaces judgment calls, then executes.",
-              "block_index": 59
+              "block_index": 60
             }
           ]
         },
@@ -4918,22 +4944,22 @@
           "heading_text": "View 2 — the front end as model-view-controller over a shared edit language",
           "topic_sentence": "The front end is a small single-page application plus a set of supporting surfaces — an account view, a job history, an operator dashboard, and the editor.",
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 62,
           "points": [
             {
               "slug": "the-editor-is-an-mvc-loop",
               "text": "The editor is an MVC loop over one document.",
-              "block_index": 63
+              "block_index": 64
             },
             {
               "slug": "a-closed-edit-vocabulary",
               "text": "A closed edit vocabulary is the one way to change.",
-              "block_index": 67
+              "block_index": 68
             },
             {
               "slug": "one-language-many-formats-is-modeling-thesis",
               "text": "One edit language across formats is the Modeling Thesis miniature.",
-              "block_index": 71
+              "block_index": 72
             }
           ]
         },
@@ -4943,37 +4969,37 @@
           "heading_text": "View 3 — the edit language as the target of automated remediation",
           "topic_sentence": "Here the two halves of the system join, and the join is the function-call pattern from earlier in the chapter, seen once more.",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 74,
           "points": [
             {
               "slug": "the-two-halves-join-here",
               "text": "The two halves join here through the function-call pattern.",
-              "block_index": 75
+              "block_index": 76
             },
             {
               "slug": "two-producers-of-one-language",
               "text": "Human and automated paths produce one edit language.",
-              "block_index": 77
+              "block_index": 78
             },
             {
               "slug": "task-to-operation-is-a-function-call",
               "text": "The task-to-edit mapping is an LLM-as-function-call instance.",
-              "block_index": 79
+              "block_index": 80
             },
             {
               "slug": "route-through-the-language-buys-audit-and-trust",
               "text": "Routing through one validated language buys audit and trust.",
-              "block_index": 84
+              "block_index": 85
             },
             {
               "slug": "scoping-the-call-scopes-the-reasoning",
               "text": "Scoping each call to one task scopes reasoning and cost.",
-              "block_index": 86
+              "block_index": 87
             },
             {
               "slug": "views-rendered-from-models-kept-honest",
               "text": "The views render from real models kept honest by traceability.",
-              "block_index": 89
+              "block_index": 90
             }
           ]
         },
@@ -4983,17 +5009,17 @@
           "heading_text": "Same song, second verse",
           "topic_sentence": "Notice the shape of the argument, because the book made it again at a larger scale.",
           "id_source": "derived",
-          "block_index": 91,
+          "block_index": 92,
           "points": [
             {
               "slug": "wrap-the-unreliable-part",
               "text": "Wrap the unreliable part: bound, type, validate.",
-              "block_index": 93
+              "block_index": 94
             },
             {
               "slug": "agents-are-the-same-component",
               "text": "The agents are the same component, wrapped the same way.",
-              "block_index": 95
+              "block_index": 96
             }
           ]
         }
@@ -5074,9 +5100,14 @@
               "block_index": 25
             },
             {
+              "slug": "spine-ascent-externalized-knowledge",
+              "text": "The written architecture rules externalize knowledge past memory.",
+              "block_index": 27
+            },
+            {
               "slug": "audit-to-lint-at-fleet-scale",
               "text": "Deterministic checks moved down to cheap lints.",
-              "block_index": 30
+              "block_index": 31
             }
           ]
         },
@@ -5086,27 +5117,37 @@
           "heading_text": "[role: Tech Lead] Step four — zones, so an agent can reason locally",
           "topic_sentence": "A crew that coordinates is still a crew of agents each of whom has to understand the code it touches.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 33,
           "points": [
             {
               "slug": "cold-start-agent-lacks-tacit-knowledge",
               "text": "A finite-context agent cannot hold a team's tacit knowledge.",
-              "block_index": 34
+              "block_index": 35
+            },
+            {
+              "slug": "spine-ascent-context-selection",
+              "text": "A zone selects which knowledge enters the agent's reasoning.",
+              "block_index": 37
             },
             {
               "slug": "named-zones-enable-local-reasoning",
               "text": "Named zones let an agent reason inside one, fenced.",
-              "block_index": 36
+              "block_index": 38
+            },
+            {
+              "slug": "spine-ascent-the-turn",
+              "text": "The seams field gains a boundary lint: the turn.",
+              "block_index": 42
             },
             {
               "slug": "a-boundary-lint-enforces-the-seam",
               "text": "A boundary lint reads the zone field and reddens.",
-              "block_index": 40
+              "block_index": 43
             },
             {
               "slug": "zone-model-is-first-mage-model",
               "text": "The zone model is MAGE's first explicit model, for agents.",
-              "block_index": 42
+              "block_index": 45
             }
           ]
         },
@@ -5116,37 +5157,42 @@
           "heading_text": "[role: Architect] Step five — the codebase modeled, from components.py to MAGE",
           "topic_sentence": "By this step I never looked at code at all.",
           "id_source": "explicit",
-          "block_index": 44,
+          "block_index": 47,
           "points": [
             {
               "slug": "commit-the-system-to-explicit-models",
               "text": "I stopped holding the system and committed it to models.",
-              "block_index": 46
+              "block_index": 49
             },
             {
               "slug": "zone-model-becomes-executable",
               "text": "The zone model becomes a file the fleet executes.",
-              "block_index": 48
+              "block_index": 51
             },
             {
               "slug": "registry-is-the-architecture",
               "text": "The typed registry is the architecture, queryable by tools.",
-              "block_index": 50
+              "block_index": 53
+            },
+            {
+              "slug": "spine-ascent-structured-relationships",
+              "text": "Typed fields make dependencies and seams queryable edges.",
+              "block_index": 56
             },
             {
               "slug": "each-field-answers-an-agents-question",
               "text": "Each typed field answers a question an agent would guess.",
-              "block_index": 53
+              "block_index": 57
             },
             {
               "slug": "one-field-unlocked-many-lints",
               "text": "One typed field replaced allowlists and unlocked three lints.",
-              "block_index": 55
+              "block_index": 59
             },
             {
               "slug": "cheap-refactoring-inverts-economics",
               "text": "Cheap refactoring inverts architecture's economics; postponing becomes expensive.",
-              "block_index": 57
+              "block_index": 61
             }
           ]
         },
@@ -5156,17 +5202,22 @@
           "heading_text": "A view per property I had to guarantee",
           "topic_sentence": "Once that first model paid off, the others followed — but the right way to see the set is not \"more models.\" Each model is a **view** of the system, and each view exists to answer for one **property or quality attribute** I had to guarantee: a property like *deployability*, a quality attribute like *security*.",
           "id_source": "derived",
-          "block_index": 59,
+          "block_index": 63,
           "points": [
+            {
+              "slug": "spine-ascent-system-models",
+              "text": "Each view adds semantics guarding one system property.",
+              "block_index": 65
+            },
             {
               "slug": "a-view-per-guaranteed-property",
               "text": "Each model is a view guarding one rising property.",
-              "block_index": 61
+              "block_index": 66
             },
             {
               "slug": "a-stack-of-views-drifts",
               "text": "A stack of views drifts into stale ghosts.",
-              "block_index": 64
+              "block_index": 69
             }
           ]
         },
@@ -5176,47 +5227,47 @@
           "heading_text": "The substrate that keeps the models honest",
           "topic_sentence": "So the models grew a nervous system.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 71,
           "points": [
             {
               "slug": "traceability-graph-of-derived-edges",
               "text": "A traceability graph links models by derived edges.",
-              "block_index": 68
+              "block_index": 73
             },
             {
               "slug": "two-kinds-of-drift-two-catches",
               "text": "Deterministic drift is a lint; semantic drift a gate.",
-              "block_index": 70
+              "block_index": 75
             },
             {
               "slug": "the-graph-equals-map-to-territory",
               "text": "The graph keeps the map equal to the territory.",
-              "block_index": 72
+              "block_index": 77
             },
             {
               "slug": "turn-brownfield-inward",
               "text": "Turn the brownfield problem inward: what is still unmodeled?",
-              "block_index": 76
+              "block_index": 81
             },
             {
               "slug": "missing-model-metric-walks-code-to-model",
               "text": "The Missing Model Metric finds tests reaching no model.",
-              "block_index": 78
+              "block_index": 83
             },
             {
               "slug": "a-loop-drives-orphans-down",
               "text": "A loop lowers the orphan rate by adding models.",
-              "block_index": 80
+              "block_index": 85
             },
             {
               "slug": "modeling-found-real-shipping-bugs",
               "text": "Modeling found real shipping bugs the green tests missed.",
-              "block_index": 83
+              "block_index": 88
             },
             {
               "slug": "mage-was-demanded-not-designed",
               "text": "MAGE was demanded step by step, never designed.",
-              "block_index": 85
+              "block_index": 90
             }
           ]
         },
@@ -5226,12 +5277,12 @@
           "heading_text": "The whole method, made real",
           "topic_sentence": "This book opened on one diagram — [The MAGE Method at a Glance](0.1-the-mage-method-at-a-glance.html) — that named every part before the argument had earned it.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 92,
           "points": [
             {
               "slug": "the-frontispiece-boxes-are-now-real",
               "text": "Every box in the opening diagram is now real.",
-              "block_index": 89
+              "block_index": 94
             }
           ]
         }
