@@ -38,7 +38,7 @@
           "heading_text": "How coding agents work (and fail)",
           "topic_sentence": "What a fleet of coding agents is, and the ways it comes apart.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 21,
           "points": []
         },
         {
@@ -47,7 +47,7 @@
           "heading_text": "The Governed Engineering Environment",
           "topic_sentence": "The environment that holds the fleet to a standard, and the mechanisms it is built from.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 35,
           "points": []
         },
         {
@@ -56,7 +56,7 @@
           "heading_text": "DocAble specifics",
           "topic_sentence": "Two mechanisms from the book's running example, DocAble.",
           "id_source": "derived",
-          "block_index": 55,
+          "block_index": 56,
           "points": []
         }
       ],
@@ -919,1075 +919,14 @@
       ]
     },
     {
-      "slug": "2.1-the-agent-stack",
+      "slug": "2.1-the-executable-zoo",
       "part": 2,
-      "sections": [
-        {
-          "section_id": "first-three-definitions",
-          "level": 2,
-          "heading_text": "First, three definitions",
-          "topic_sentence": "Before the walk, three definitions — *agent*, *model*, and the adjective the second leans on, *structured*.",
-          "id_source": "derived",
-          "block_index": 11,
-          "points": [
-            {
-              "slug": "definitions-carry-the-books-argument",
-              "text": "Three definitions carry the stack; engineering motivates them.",
-              "block_index": 13
-            },
-            {
-              "slug": "intelligence-devises-means-within-constraints",
-              "text": "Intelligence devises means to goals within constraints.",
-              "block_index": 21
-            },
-            {
-              "slug": "controllable-not-controlled-is-why-governance-exists",
-              "text": "Controllable, not controlled, is why governance exists.",
-              "block_index": 23
-            },
-            {
-              "slug": "models-are-the-agents-knowledge-base",
-              "text": "The models are the agent's knowledge base.",
-              "block_index": 25
-            },
-            {
-              "slug": "perceive-act-builds-agents-controllability-governs-them",
-              "text": "Perceive-and-act builds agents; controllability governs them.",
-              "block_index": 27
-            },
-            {
-              "slug": "model-fidelity-trades-against-cost",
-              "text": "Model fidelity trades against reasoning cost.",
-              "block_index": 30
-            },
-            {
-              "slug": "blueprint-models-specify-rather-than-approximate",
-              "text": "A blueprint model specifies; the build may not diverge.",
-              "block_index": 32
-            },
-            {
-              "slug": "model-is-constraint-blueprint-and-knowledge-base",
-              "text": "A model is constraint, blueprint, and knowledge base.",
-              "block_index": 34
-            },
-            {
-              "slug": "model-does-double-duty-in-this-trade",
-              "text": "The word model does double duty; context disambiguates.",
-              "block_index": 36
-            },
-            {
-              "slug": "structured-is-the-broad-sense-a-declared-verifiable-shape",
-              "text": "Structured means a declared, verifiable shape, not a variable's type.",
-              "block_index": 38
-            },
-            {
-              "slug": "structured-is-what-admits-the-machine",
-              "text": "The structure is what admits the machine.",
-              "block_index": 43
-            },
-            {
-              "slug": "formal-model-definition-assembles-the-pieces",
-              "text": "The formal definition assembles approximation, blueprint, and structure.",
-              "block_index": 46
-            },
-            {
-              "slug": "five-load-bearing-terms-do-the-gatekeeping",
-              "text": "Five load-bearing clauses gatekeep what counts as a model.",
-              "block_index": 50
-            },
-            {
-              "slug": "definition-relations-tell-the-book-in-a-nutshell",
-              "text": "The definitions' relations summarize the whole book.",
-              "block_index": 52
-            }
-          ]
-        },
-        {
-          "section_id": "the-four-layers",
-          "level": 2,
-          "heading_text": "The four layers",
-          "topic_sentence": "**At the bottom sits the foundation model.** It comes from a commercial vendor or an open-weight release, and it is a general language reasoner, able to *induce* an understanding of your environment — though that induction is expensive, and it happens fresh every time.",
-          "id_source": "derived",
-          "block_index": 54,
-          "points": [
-            {
-              "slug": "foundation-layer-spares-the-model-reasoning-cost",
-              "text": "Tell the model where to look; spare its reasoning.",
-              "block_index": 56
-            },
-            {
-              "slug": "model-constituents-are-a-control-surface",
-              "text": "The model's three parts steer differently.",
-              "block_index": 61
-            },
-            {
-              "slug": "models-pack-the-window-denser",
-              "text": "You cannot widen the window; pack it denser.",
-              "block_index": 64
-            },
-            {
-              "slug": "window-control-is-the-books-bet",
-              "text": "Model choice is yours; the book bets on the window.",
-              "block_index": 66
-            },
-            {
-              "slug": "the-model-reasons-over-a-world-representation",
-              "text": "The model reasons over a world representation, so equip it.",
-              "block_index": 68
-            },
-            {
-              "slug": "harness-manages-the-context-window-and-holds-two-mechanism-points",
-              "text": "The harness manages the context window and holds two mechanisms.",
-              "block_index": 71
-            },
-            {
-              "slug": "the-harness-layer-has-a-named-taxonomy",
-              "text": "The field names a framework, harness, and agent-OS taxonomy.",
-              "block_index": 75
-            },
-            {
-              "slug": "skills-are-soft-hooks-are-hard-tools-are-deterministic",
-              "text": "Skills are soft, hooks are hard, tools take deterministic action.",
-              "block_index": 77
-            },
-            {
-              "slug": "engineering-environment-must-be-written-down-and-offers-git-and-ci-hooks",
-              "text": "Write down the engineering environment; it offers git hooks.",
-              "block_index": 83
-            },
-            {
-              "slug": "application-layer-makes-mistakes-structurally-impossible-via-static-analysis",
-              "text": "Static analysis makes a mistake class structurally impossible.",
-              "block_index": 87
-            }
-          ]
-        },
-        {
-          "section_id": "every-layer-is-a-place-to-steer",
-          "level": 2,
-          "heading_text": "Every layer is a place to steer",
-          "topic_sentence": "Read the stack as a list of opportunities, because that is what it is.",
-          "id_source": "derived",
-          "block_index": 90,
-          "points": [
-            {
-              "slug": "read-each-layer-as-an-injection-opportunity",
-              "text": "Read each layer as an injection opportunity.",
-              "block_index": 92
-            },
-            {
-              "slug": "every-layer-serves-one-goal-narrow-the-search",
-              "text": "Every layer serves one goal: narrow the agent's search.",
-              "block_index": 95
-            },
-            {
-              "slug": "mechanisms-interact-and-the-interplay-is-its-own-problem",
-              "text": "Mechanisms interact; the interplay is its own problem.",
-              "block_index": 98
-            },
-            {
-              "slug": "the-stack-grounds-both-theses",
-              "text": "The stack grounds both the Modeling and Alignment theses.",
-              "block_index": 101
-            }
-          ]
-        }
-      ],
-      "preamble_points": [
-        {
-          "slug": "the-environment-interposes-between-capability-and-consequence",
-          "text": "The governed environment interposes between capability and consequence.",
-          "block_index": 2
-        },
-        {
-          "slug": "governance-material-is-soft-conditioning-hard-authority-feedback",
-          "text": "The material: soft conditioning, hard authority, feedback.",
-          "block_index": 4
-        },
-        {
-          "slug": "agent-stack-has-four-injection-layers",
-          "text": "The agent stack has four layers, each an injection point.",
-          "block_index": 7
-        }
-      ]
-    },
-    {
-      "slug": "2.2-models-and-the-semantic-gap",
-      "part": 2,
-      "sections": [
-        {
-          "section_id": "words-are-soft-code-is-verbose-a-model-is-the-sweet-spot",
-          "level": 2,
-          "heading_text": "Words are soft, code is verbose, a model is the sweet spot",
-          "topic_sentence": "Your first governance mechanism is the prompt, because the agent is a language model and words are how you talk to it.",
-          "id_source": "derived",
-          "block_index": 2,
-          "points": [
-            {
-              "slug": "words-are-soft-and-agents-need-precision-humans-do-not",
-              "text": "Words are soft; agents need precision that humans do not.",
-              "block_index": 4
-            },
-            {
-              "slug": "code-is-precise-but-too-verbose-so-a-model-is-the-sweet-spot",
-              "text": "Code is precise but too verbose; a model is between.",
-              "block_index": 7
-            },
-            {
-              "slug": "a-model-is-a-cheap-honest-approximation-you-can-reason-over",
-              "text": "A model is a cheap, honest approximation you reason over.",
-              "block_index": 10
-            }
-          ]
-        },
-        {
-          "section_id": "why-the-models-drifted-and-why-that-changes-now",
-          "level": 2,
-          "heading_text": "Why the models drifted — and why that changes now",
-          "topic_sentence": "The models are the map; the code is the territory.",
-          "id_source": "derived",
-          "block_index": 13,
-          "points": [
-            {
-              "slug": "models-are-the-map-code-the-territory-and-hand-maintenance-drifts",
-              "text": "Model is map, code is territory; hand-sync drifts.",
-              "block_index": 15
-            },
-            {
-              "slug": "keeping-the-map-equal-is-an-old-research-program",
-              "text": "Keeping map equal to territory is a decades-old research program.",
-              "block_index": 18
-            },
-            {
-              "slug": "the-book-measures-the-changed-sync-economics-rather-than-asserting-it",
-              "text": "The book measures the changed sync economics, not asserts it.",
-              "block_index": 20
-            },
-            {
-              "slug": "hand-maintained-models-rot-when-the-maintainer-stops",
-              "text": "A hand-maintained model rots the moment its maintainer stops.",
-              "block_index": 22
-            },
-            {
-              "slug": "agents-flip-the-calculation-they-reason-over-models-not-code",
-              "text": "Agents flip it: they reason over models, not the code.",
-              "block_index": 24
-            },
-            {
-              "slug": "the-model-reached-for-shifts-with-the-move-so-you-need-a-linked-set",
-              "text": "The model shifts with the move; keep a linked set.",
-              "block_index": 26
-            },
-            {
-              "slug": "a-model-lets-the-agent-check-work-and-a-drift-gate-makes-map-equals-territory-checked",
-              "text": "A drift gate makes \"map equals territory\" a checked property.",
-              "block_index": 28
-            },
-            {
-              "slug": "agents-reluctance-to-model-is-a-conjectured-echo-of-the-corpus-not-evidence-against-models",
-              "text": "The agent's reluctance to model echoes its corpus, not merit.",
-              "block_index": 34
-            }
-          ]
-        },
-        {
-          "section_id": "the-apex-of-the-documentation-hierarchy-is-a-typed-model",
-          "level": 2,
-          "heading_text": "A structured model layer binds the islands",
-          "topic_sentence": "Step back from drift for a moment and look at what you actually hand an agent to work from.",
-          "id_source": "explicit",
-          "block_index": 37,
-          "points": [
-            {
-              "slug": "what-you-hand-an-agent-is-a-hierarchy-of-partial-drifting-descriptions",
-              "text": "You hand an agent a hierarchy of partial, drifting descriptions.",
-              "block_index": 39
-            },
-            {
-              "slug": "the-usual-recipe-leaves-docs-code-tests-as-unbound-islands-so-drift-is-the-default",
-              "text": "Nothing binds docs, code, and tests, so drift is default.",
-              "block_index": 41
-            },
-            {
-              "slug": "the-apex-of-the-hierarchy-is-a-typed-model-that-binds-the-islands",
-              "text": "A structured model layer binds docs, code, and tests.",
-              "block_index": 44
-            },
-            {
-              "slug": "modeling-thesis-at-full-strength-the-model-is-the-one-description-that-cannot-silently-lie",
-              "text": "The structured model is the one description that cannot lie.",
-              "block_index": 46
-            },
-            {
-              "slug": "structured-english-stops-one-rung-short-because-a-checker-cannot-act-on-its-words",
-              "text": "Structured English stops one rung short; a checker cannot act.",
-              "block_index": 48
-            }
-          ]
-        },
-        {
-          "section_id": "a-drift-check-proves-agreement-not-correctness",
-          "level": 2,
-          "heading_text": "A drift check proves agreement, not correctness",
-          "topic_sentence": "The claim I just made hides a trap, and the book's enthusiasm for drift gates can be misread into a dangerous half-truth.",
-          "id_source": "derived",
-          "block_index": 57,
-          "points": [
-            {
-              "slug": "a-drift-gate-proves-agreement-not-that-either-side-is-right",
-              "text": "A drift gate proves agreement, not correctness.",
-              "block_index": 59
-            },
-            {
-              "slug": "a-mirror-model-reflects-the-code-only-a-spec-authored-from-intent-catches-a-wrong-is",
-              "text": "A mirror reflects code; only a spec catches wrong.",
-              "block_index": 63
-            },
-            {
-              "slug": "what-belongs-in-the-model-is-the-essential-residual-that-does-not-automate",
-              "text": "Deciding what belongs in the model is the essential residual.",
-              "block_index": 66
-            }
-          ]
-        },
-        {
-          "section_id": "a-model-is-a-convenience-not-a-second-copy-of-the-truth",
-          "level": 2,
-          "heading_text": "A model is a convenience, not a second copy of the truth",
-          "topic_sentence": "The other side of the mirror carries an over-reach.",
-          "id_source": "derived",
-          "block_index": 75,
-          "points": []
-        },
-        {
-          "section_id": "execute-the-model-directly-a-spectrum-not-a-verdict",
-          "level": 2,
-          "heading_text": "Execute the model directly? A spectrum, not a verdict",
-          "topic_sentence": "One old idea says that if the structured model is where you now start, you should finish there too — skip the code and *execute the model directly*.",
-          "id_source": "derived",
-          "block_index": 79,
-          "points": [
-            {
-              "slug": "executable-modeling-is-a-spectrum-agents-shift-the-optimum-outward",
-              "text": "Executable modeling is a spectrum; agents shift the optimum outward.",
-              "block_index": 81
-            }
-          ]
-        },
-        {
-          "section_id": "the-semantic-gap",
-          "level": 2,
-          "heading_text": "The semantic gap",
-          "topic_sentence": "Enforce a property at the wrong level and it slips through; [ref:semantic-gap] shows the fix — lift the check to where the meaning is legible.",
-          "id_source": "derived",
-          "block_index": 83,
-          "points": [
-            {
-              "slug": "enforce-at-the-wrong-level-and-the-property-slips-through",
-              "text": "Enforce a property at the wrong level; it slips through.",
-              "block_index": 85
-            },
-            {
-              "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
-              "text": "Checking model drift at the commit is the wrong granularity.",
-              "block_index": 88
-            },
-            {
-              "slug": "the-semantic-gap-is-enforcing-a-property-at-the-wrong-level-of-abstraction",
-              "text": "The semantic gap is enforcing at the wrong level.",
-              "block_index": 90
-            },
-            {
-              "slug": "enforce-at-the-level-where-the-property-is-legible-agent-return-for-model-drift",
-              "text": "Enforce where the property is legible: at agent-return.",
-              "block_index": 94
-            }
-          ]
-        },
-        {
-          "section_id": "a-second-worked-example-the-context-fullness-bank-hook",
-          "level": 2,
-          "heading_text": "A second worked example: the context-fullness bank-hook",
-          "topic_sentence": "The semantic gap shows up in the operator's own loop, not just the product.",
-          "id_source": "derived",
-          "block_index": 101,
-          "points": [
-            {
-              "slug": "compaction-guesses-below-meaning-so-it-can-only-approximate",
-              "text": "Compaction guesses below meaning; it can only approximate.",
-              "block_index": 103
-            },
-            {
-              "slug": "fire-the-bank-hook-on-fullness-and-staleness-together",
-              "text": "Fire the bank-hook on fullness and staleness together.",
-              "block_index": 105
-            },
-            {
-              "slug": "with-no-clean-rung-a-roughly-right-hook-beats-the-perfect-one",
-              "text": "With no clean rung, roughly-right beats the perfect hook.",
-              "block_index": 109
-            }
-          ]
-        }
-      ],
-      "preamble_points": [
-        {
-          "slug": "model-is-the-most-valuable-thing-to-inject-but-must-be-checked-at-the-right-level",
-          "text": "Inject a model, but check it at the right level.",
-          "block_index": 0
-        }
-      ]
-    },
-    {
-      "slug": "2.3-the-governed-environment",
-      "part": 2,
-      "sections": [
-        {
-          "section_id": "ex-ante-everything-you-can-decide-up-front",
-          "level": 2,
-          "heading_text": "Ex-ante: everything you can decide up front",
-          "topic_sentence": "Some things you genuinely know from the beginning, and you should write every one of them down.",
-          "id_source": "derived",
-          "block_index": 4,
-          "points": [
-            {
-              "slug": "ex-ante-write-down-what-you-know-and-determinize-it-with-cheap-checks",
-              "text": "Write down what you know; determinize it with cheap checks.",
-              "block_index": 6
-            }
-          ]
-        },
-        {
-          "section_id": "ex-post-everything-you-learn-by-building",
-          "level": 2,
-          "heading_text": "Ex-post: everything you learn by building",
-          "topic_sentence": "But you will not know everything, and pretending otherwise is the mistake.",
-          "id_source": "derived",
-          "block_index": 10,
-          "points": [
-            {
-              "slug": "ex-post-you-build-governance-as-failures-reveal-themselves",
-              "text": "You build governance ex-post, as failures reveal themselves.",
-              "block_index": 12
-            },
-            {
-              "slug": "ex-post-is-where-most-real-mechanisms-come-from-not-a-fallback",
-              "text": "Ex-post is where most real mechanisms come from.",
-              "block_index": 15
-            },
-            {
-              "slug": "the-engine-is-to-hold-a-quality-goal-with-a-mechanism-placed-up-front-or-after-a-failure-seen-twice",
-              "text": "Hold a quality goal with a mechanism that keeps it.",
-              "block_index": 17
-            }
-          ]
-        },
-        {
-          "section_id": "control-growth",
-          "level": 2,
-          "heading_text": "The controls accumulate",
-          "topic_sentence": "Run the promotion rule for a season and the environment fills with controls — nearly all discovered ex-post, the obligations no up-front specification would have named.",
-          "id_source": "explicit",
-          "block_index": 23,
-          "points": [
-            {
-              "slug": "the-control-substrate-grew-from-zero",
-              "text": "The control substrate grew from zero.",
-              "block_index": 25
-            }
-          ]
-        },
-        {
-          "section_id": "constraints-and-sensors",
-          "level": 2,
-          "heading_text": "Constraints and sensors",
-          "topic_sentence": "A mechanism is one of two moves — prevent the mistake, or catch it — and [ref:constraint-vs-sensor] draws the split.",
-          "id_source": "derived",
-          "block_index": 30,
-          "points": [
-            {
-              "slug": "a-mechanism-is-one-of-two-moves-prevent-or-catch",
-              "text": "A mechanism is one of two moves: prevent, or catch.",
-              "block_index": 32
-            },
-            {
-              "slug": "words-alone-are-a-probability-flip-so-determinize-them-into-a-gate",
-              "text": "Words are a probability flip; determinize them into a gate.",
-              "block_index": 35
-            },
-            {
-              "slug": "a-sensor-detects-drift-after-the-fact-and-costs-iterations",
-              "text": "A sensor detects drift after the fact and costs iterations.",
-              "block_index": 38
-            },
-            {
-              "slug": "a-sensor-is-only-as-good-as-its-observability",
-              "text": "A sensor is only as good as its observability.",
-              "block_index": 42
-            },
-            {
-              "slug": "a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration",
-              "text": "A constraint prevents drift within the iteration, costing none.",
-              "block_index": 45
-            },
-            {
-              "slug": "constraint-and-sensor-are-control-engineerings-working-terms",
-              "text": "Constraint and sensor come from control engineering.",
-              "block_index": 49
-            },
-            {
-              "slug": "form-and-move-are-two-independent-axes",
-              "text": "Form and move are two independent axes.",
-              "block_index": 52
-            },
-            {
-              "slug": "most-real-mechanisms-are-a-package-so-tag-the-primary-move",
-              "text": "Most mechanisms are a package; tag the primary move.",
-              "block_index": 60
-            },
-            {
-              "slug": "a-purely-organizational-answer-is-all-sensors-and-never-removes-a-failure-class",
-              "text": "A purely organizational answer is all sensors, removing no class.",
-              "block_index": 62
-            },
-            {
-              "slug": "the-constraint-is-poka-yoke-the-sensors-stop-is-jidoka",
-              "text": "The constraint is poka-yoke; the sensor's stop is jidoka.",
-              "block_index": 64
-            }
-          ]
-        },
-        {
-          "section_id": "four-classes-one-bounded-term",
-          "level": 3,
-          "heading_text": "Two axes, one bounded term",
-          "topic_sentence": "One boundary before moving on, because without it the word swells.",
-          "id_source": "explicit",
-          "block_index": 66,
-          "points": [
-            {
-              "slug": "governance-mechanism-needs-a-boundary",
-              "text": "Without a boundary, the word mechanism swells.",
-              "block_index": 68
-            },
-            {
-              "slug": "four-classes-prevention-detection-evidence-admission",
-              "text": "Two questions cross: how it treats failure, where it acts.",
-              "block_index": 72
-            },
-            {
-              "slug": "a-model-is-not-a-mechanism-until-something-enforces-it",
-              "text": "A model joins governance only when something enforces it.",
-              "block_index": 76
-            }
-          ]
-        },
-        {
-          "section_id": "what-it-adds-up-to",
-          "level": 3,
-          "heading_text": "What it adds up to",
-          "topic_sentence": "Step back and this is what you are really doing: describing policies for how the engineering work should proceed, and letting those policies produce the rules of the road the agents operate within.",
-          "id_source": "derived",
-          "block_index": 87,
-          "points": [
-            {
-              "slug": "the-governed-environment-is-determinize-what-you-can-then-convert-every-surprise-into-a-constraint-or-sensor",
-              "text": "Determinize what you can; convert every surprise into a mechanism.",
-              "block_index": 88
-            },
-            {
-              "slug": "governance-extends-the-reasoning-horizon-by-holding-the-obligation-in-the-environment",
-              "text": "Governance extends the reasoning horizon: the environment holds the obligation.",
-              "block_index": 91
-            }
-          ]
-        },
-        {
-          "section_id": "the-residual-goals-no-mechanism-reaches",
-          "level": 2,
-          "heading_text": "The residual: goals no mechanism reaches",
-          "topic_sentence": "The synthesis reads as if it settles everything.",
-          "id_source": "derived",
-          "block_index": 94,
-          "points": [
-            {
-              "slug": "some-goals-split-into-neither-because-the-failure-is-an-absence-nobody-specified",
-              "text": "Some goals split into neither, being an absence nobody specified.",
-              "block_index": 96
-            },
-            {
-              "slug": "the-residual-is-a-human-job-that-sets-the-throughput-ceiling",
-              "text": "The residual is a human job setting the throughput ceiling.",
-              "block_index": 99
-            },
-            {
-              "slug": "the-residual-is-the-complement-of-the-two-moves-not-a-third-value-on-the-soft-hard-axis",
-              "text": "The residual is the complement of both moves, not soft.",
-              "block_index": 101
-            },
-            {
-              "slug": "naming-the-residual-is-the-honest-edge-that-makes-the-mechanized-core-credible",
-              "text": "Naming the residual is the honest edge that earns trust.",
-              "block_index": 103
-            },
-            {
-              "slug": "the-residual-is-not-a-fixed-wall-authoring-the-missing-spec-pulls-a-goal-out",
-              "text": "The residual is not fixed; authoring the spec shrinks it.",
-              "block_index": 105
-            }
-          ]
-        }
-      ],
-      "preamble_points": [
-        {
-          "slug": "a-governed-environment-has-an-ex-ante-and-an-ex-post-half",
-          "text": "A governed environment has an ex-ante and ex-post half.",
-          "block_index": 0
-        }
-      ]
-    },
-    {
-      "slug": "2.4-lifecycles-and-runbooks",
-      "part": 2,
-      "sections": [
-        {
-          "section_id": "lifecycles-first-then-the-failure-map",
-          "level": 2,
-          "heading_text": "Lifecycles first, then the failure map",
-          "topic_sentence": "Start with the lifecycles, because everything else hangs off them.",
-          "id_source": "derived",
-          "block_index": 2,
-          "points": [
-            {
-              "slug": "a-lifecycle-is-the-healthy-path-then-a-failure-map-off-each-node",
-              "text": "A lifecycle: write the healthy path, then map failures.",
-              "block_index": 4
-            },
-            {
-              "slug": "fmea-names-the-way-out-and-the-prohibition-because-the-agent-knows-neither",
-              "text": "FMEA-inspired: name each failure's way out and prohibition.",
-              "block_index": 7
-            },
-            {
-              "slug": "name-the-sin-and-the-way-out-not-the-prohibition-alone",
-              "text": "Pair each prohibition with its sanctioned way out.",
-              "block_index": 11
-            }
-          ]
-        },
-        {
-          "section_id": "runbooks-split-the-deterministic-from-the-judgment",
-          "level": 2,
-          "heading_text": "Runbooks: split the deterministic from the judgment",
-          "topic_sentence": "Once the healthy path and the failure map are written, the thing you hand the agent is a **runbook** (or playbook): the steps to take, whether recovering from a failure or working a fresh ticket.",
-          "id_source": "derived",
-          "block_index": 13,
-          "points": [
-            {
-              "slug": "a-runbook-splits-into-deterministic-and-judgment-steps-governed-differently",
-              "text": "A runbook splits into deterministic and judgment steps.",
-              "block_index": 15
-            }
-          ]
-        },
-        {
-          "section_id": "the-deterministic-parts-get-tools",
-          "level": 3,
-          "heading_text": "The deterministic parts get tools",
-          "topic_sentence": "Anything that has a single correct outcome should be an executable script the agent runs, not a procedure it improvises.",
-          "id_source": "derived",
-          "block_index": 20,
-          "points": [
-            {
-              "slug": "deterministic-parts-get-tools-not-improvisation",
-              "text": "Deterministic steps get executable tools, not improvisation.",
-              "block_index": 21
-            },
-            {
-              "slug": "determinizing-a-step-buys-a-trace-with-two-consumers",
-              "text": "Determinizing buys a trace with two consumers.",
-              "block_index": 24
-            }
-          ]
-        },
-        {
-          "section_id": "the-judgment-parts-the-roughest-algorithm-that-still-fits",
-          "level": 3,
-          "heading_text": "The judgment parts: the roughest algorithm that still fits",
-          "topic_sentence": "**The judgment parts get the roughest algorithm that still fits.** For a well-constrained decision, write the algorithm down and let the agent do the glue.",
-          "id_source": "derived",
-          "block_index": 28,
-          "points": [
-            {
-              "slug": "judgment-parts-get-the-roughest-algorithm-that-still-fits",
-              "text": "Judgment steps get the roughest algorithm that fits.",
-              "block_index": 30
-            },
-            {
-              "slug": "a-judgment-that-is-a-measurement-gets-a-rubric",
-              "text": "A judgment that is a measurement gets a rubric.",
-              "block_index": 32
-            },
-            {
-              "slug": "the-pre-canned-brief-is-the-strongest-form-templating-delegation-itself",
-              "text": "The pre-canned brief templates delegation itself.",
-              "block_index": 35
-            },
-            {
-              "slug": "typing-each-runbook-step-makes-the-deterministic-judgment-split-mechanical",
-              "text": "Typing each step makes the deterministic-judgment split mechanical.",
-              "block_index": 39
-            }
-          ]
-        }
-      ],
-      "preamble_points": [
-        {
-          "slug": "agent-knows-git-not-your-environments-lifecycles-so-write-them-down",
-          "text": "The agent lacks your operating context; write it down.",
-          "block_index": 0
-        }
-      ]
-    },
-    {
-      "slug": "2.5-metrics",
-      "part": 2,
-      "sections": [
-        {
-          "section_id": "measure-one-level-deeper",
-          "level": 2,
-          "heading_text": "Measure one level deeper",
-          "topic_sentence": "John Ousterhout names the rule [cite: ousterhout2018]: **always measure one level deeper** — one level, not as deep as you can go.",
-          "id_source": "derived",
-          "block_index": 4,
-          "points": [
-            {
-              "slug": "measure-one-level-deeper-because-the-surface-number-cannot-act",
-              "text": "Measure one level deeper; the surface number cannot act.",
-              "block_index": 6
-            },
-            {
-              "slug": "a-cloud-bill-reports-but-splitting-it-by-service-acts",
-              "text": "A cloud bill reports; splitting it by service acts.",
-              "block_index": 9
-            },
-            {
-              "slug": "line-coverage-is-the-invoice-level-number-and-the-flagship-is-coverage-one-level-deeper",
-              "text": "Line coverage is the invoice number; go deeper.",
-              "block_index": 11
-            },
-            {
-              "slug": "metrics-run-a-hard-to-soft-spectrum-and-the-mistake-is-treating-one-as-the-other",
-              "text": "Metrics run hard to soft; don't confuse the two.",
-              "block_index": 14
-            }
-          ]
-        },
-        {
-          "section_id": "the-hard-end-cold-start-latency-machine-read-and-model-fed",
-          "level": 2,
-          "heading_text": "The hard end: cold-start latency, machine-read and model-fed",
-          "topic_sentence": "Start at the deterministic end, where a metric is a deterministic quantity with a defined measurement procedure.",
-          "id_source": "derived",
-          "block_index": 17,
-          "points": [
-            {
-              "slug": "cold-start-latency-reads-obviously-as-the-scale-from-zero-penalty",
-              "text": "Cold-start latency reads obviously as the scale-from-zero penalty.",
-              "block_index": 20
-            },
-            {
-              "slug": "the-deeper-cold-start-number-named-runtime-init-not-scale-from-zero-or-image-size",
-              "text": "The deeper number named runtime init, not scale-from-zero.",
-              "block_index": 22
-            },
-            {
-              "slug": "spot-checking-doesnt-scale-so-a-model-reasons-over-the-chain-as-a-longest-path-sum",
-              "text": "Spot-checking fails; a model sums the longest cold-start path.",
-              "block_index": 27
-            },
-            {
-              "slug": "the-hard-ends-defining-move-is-the-number-feeds-the-model",
-              "text": "The hard end's defining move: the number feeds the model.",
-              "block_index": 29
-            },
-            {
-              "slug": "automate-the-map-upkeep-into-the-machine-rather-than-a-runbook-reminder",
-              "text": "Automate map upkeep into the machine, not a reminder.",
-              "block_index": 32
-            },
-            {
-              "slug": "as-built-the-seam-is-in-and-the-data-catches-up",
-              "text": "As-built: the seam is in, the data catches up.",
-              "block_index": 34
-            }
-          ]
-        },
-        {
-          "section_id": "the-flagship-coverage-measured-one-level-deeper",
-          "level": 2,
-          "heading_text": "The flagship: coverage measured one level deeper",
-          "topic_sentence": "Now the middle of the spectrum: the \"measure one level deeper\" rule applied to the number that most often gets it wrong.",
-          "id_source": "derived",
-          "block_index": 36,
-          "points": [
-            {
-              "slug": "line-coverage-answers-a-syntactic-question-not-the-semantic-one",
-              "text": "Line coverage answers a syntactic question, not the semantic one.",
-              "block_index": 39
-            },
-            {
-              "slug": "the-fix-joins-a-traceability-graph-to-the-coverage-oracle",
-              "text": "The fix joins a traceability graph to the coverage oracle.",
-              "block_index": 41
-            },
-            {
-              "slug": "the-composition-counts-model-claims-and-reports-a-named-verdict",
-              "text": "The composition counts model claims and reports a named verdict.",
-              "block_index": 44
-            },
-            {
-              "slug": "the-genre-check-names-this-requirements-based-coverage",
-              "text": "The genre check names this requirements-based coverage.",
-              "block_index": 46
-            },
-            {
-              "slug": "one-primitive-supports-several-aggregations-each-a-different-decision",
-              "text": "One primitive supports several aggregations, each a different decision.",
-              "block_index": 49
-            },
-            {
-              "slug": "the-honesty-layer-reports-a-breakdown-so-the-number-affords-engineering",
-              "text": "The honesty layer reports a breakdown, not a percentage.",
-              "block_index": 52
-            },
-            {
-              "slug": "measuring-one-level-deeper-cost-a-join-not-a-rebuild",
-              "text": "Measuring one level deeper cost a join, not a rebuild.",
-              "block_index": 54
-            }
-          ]
-        },
-        {
-          "section_id": "mmm-drain",
-          "level": 2,
-          "heading_text": "The dual: draining unmodelled code",
-          "topic_sentence": "The flagship metric had a blind spot: it measured model→code, so code with no model at all stayed invisible to it — and this dual is what finds it.",
-          "id_source": "explicit",
-          "block_index": 56,
-          "points": []
-        },
-        {
-          "section_id": "the-soft-end-doc-derived-tests",
-          "level": 2,
-          "heading_text": "The soft end: doc-derived tests",
-          "topic_sentence": "Slide to the far end of the spectrum, where the metric stops being a number a threshold can act on and becomes a judgment a human has to make.",
-          "id_source": "derived",
-          "block_index": 64,
-          "points": [
-            {
-              "slug": "a-doc-derived-test-pins-a-doc-claim-and-its-metric-is-genuinely-soft",
-              "text": "A doc-derived test pins a doc-claim; its metric is soft.",
-              "block_index": 67
-            },
-            {
-              "slug": "the-soft-metric-is-inseparable-from-a-readiness-judgment-so-a-gate-would-manufacture-hollow-tests",
-              "text": "Gating this soft signal manufactures hollow tests.",
-              "block_index": 70
-            }
-          ]
-        },
-        {
-          "section_id": "the-model-runs-the-machinery",
-          "level": 2,
-          "heading_text": "The model runs the machinery",
-          "topic_sentence": "The hard end and the flagship follow the same pattern.",
-          "id_source": "derived",
-          "block_index": 80,
-          "points": [
-            {
-              "slug": "the-model-is-not-a-picture-of-the-machinery-it-is-the-machinery",
-              "text": "The model runs the machinery, rather than picturing it.",
-              "block_index": 83
-            },
-            {
-              "slug": "a-component-distance-grade-is-a-metric-that-drives-a-gate-three-ways",
-              "text": "A component-distance grade drives a gate three ways.",
-              "block_index": 85
-            },
-            {
-              "slug": "the-grade-is-a-metric-read-from-the-model-that-drives-a-sensors-decision",
-              "text": "The grade is a model-read metric driving a sensor.",
-              "block_index": 89
-            }
-          ]
-        },
-        {
-          "section_id": "a-compact-reference",
-          "level": 2,
-          "heading_text": "A compact reference",
-          "topic_sentence": "[ref:metrics-table] collects every metric — the decision each drives, where it sits on the hard-soft axis, and who reads it.",
-          "id_source": "derived",
-          "block_index": 91,
-          "points": [
-            {
-              "slug": "every-row-names-a-decision-because-a-metric-that-names-none-was-measured-too-shallow",
-              "text": "Every row names a decision, or was measured too shallow.",
-              "block_index": 95
-            }
-          ]
-        }
-      ],
-      "preamble_points": [
-        {
-          "slug": "a-metric-is-the-sensing-half-of-the-agent-loop",
-          "text": "A metric is the sensing half of the agent loop.",
-          "block_index": 0
-        },
-        {
-          "slug": "the-metric-comes-first-and-must-drive-a-decision",
-          "text": "The metric comes first; it must drive a decision.",
-          "block_index": 2
-        }
-      ]
-    },
-    {
-      "slug": "2.6-when-guardrails-collide",
-      "part": 2,
-      "sections": [
-        {
-          "section_id": "drawing-what-lies-between-the-controls",
-          "level": 2,
-          "heading_text": "Drawing what lies between the controls",
-          "topic_sentence": "The Governance Graph draws it.",
-          "id_source": "derived",
-          "block_index": 7,
-          "points": [
-            {
-              "slug": "the-governance-graph-nodes-are-mechanisms-edges-are-conflicts-joined-by-shared-resource",
-              "text": "Nodes are mechanisms; edges are conflicts over a shared resource.",
-              "block_index": 9
-            },
-            {
-              "slug": "the-shared-resource-is-the-only-cross-lifecycle-coupling-surface-and-keeps-the-graph-sparse",
-              "text": "The shared resource is the only cross-lifecycle coupling surface.",
-              "block_index": 11
-            },
-            {
-              "slug": "the-graph-is-the-catalogues-dynamic-dual-splitting-decidable-edges-from-judgment-ones",
-              "text": "The graph is the catalogue's dynamic dual.",
-              "block_index": 14
-            },
-            {
-              "slug": "the-graph-makes-the-implicit-claim-that-mechanisms-compose-explicit-and-checkable",
-              "text": "The graph makes \"mechanisms compose\" explicit and checkable.",
-              "block_index": 16
-            }
-          ]
-        },
-        {
-          "section_id": "the-other-question-a-list-can-t-answer",
-          "level": 2,
-          "heading_text": "The other question a list can't answer",
-          "topic_sentence": "The graph settled one question a flat list could not: which two controls collide.",
-          "id_source": "derived",
-          "block_index": 18,
-          "points": [
-            {
-              "slug": "a-list-shows-what-exists-the-graph-what-collides-neither-shows-the-un-watched",
-              "text": "A list shows what exists; neither shows what is un-watched.",
-              "block_index": 20
-            },
-            {
-              "slug": "the-census-is-a-third-view-of-one-graph-coverage-per-target",
-              "text": "The census is a third view: coverage per target.",
-              "block_index": 22
-            },
-            {
-              "slug": "the-census-is-a-model-whose-instances-are-the-controls",
-              "text": "The census is a model whose instances are the controls.",
-              "block_index": 25
-            }
-          ]
-        },
-        {
-          "section_id": "growing-controls-and-auditing-the-growth",
-          "level": 2,
-          "heading_text": "Growing controls, and auditing the growth",
-          "topic_sentence": "The census has a counterpart, and the two are true opposites over one graph.",
-          "id_source": "derived",
-          "block_index": 28,
-          "points": [
-            {
-              "slug": "the-fleet-grows-controls-reactively-and-that-growth-is-biased",
-              "text": "The fleet grows controls reactively, and that growth is biased.",
-              "block_index": 30
-            },
-            {
-              "slug": "the-census-is-the-proactive-audit-that-corrects-the-bias",
-              "text": "The census is the proactive audit that corrects the bias.",
-              "block_index": 32
-            },
-            {
-              "slug": "static-analyses-keep-the-census-equal-to-the-territory",
-              "text": "Static analyses keep the census equal to the territory.",
-              "block_index": 34
-            }
-          ]
-        },
-        {
-          "section_id": "when-the-hooks-aren-t-yours",
-          "level": 2,
-          "heading_text": "When the hooks aren't yours",
-          "topic_sentence": "**An implication, looking ahead.** Every mechanism so far was one you wrote — but some hooks arrive from outside: a plugin registers one, a teammate adds a personal one, and, plausibly soon, a regulator or model vendor mandates one.",
-          "id_source": "derived",
-          "block_index": 36,
-          "points": [
-            {
-              "slug": "outside-governance-extends-the-graph-without-changing-shape",
-              "text": "Outside-authored hooks extend the graph without changing its shape.",
-              "block_index": 38
-            }
-          ]
-        },
-        {
-          "section_id": "keeping-the-model-honest",
-          "level": 2,
-          "heading_text": "Keeping the model honest",
-          "topic_sentence": "Two disciplines keep the model honest, and both are the book's.",
-          "id_source": "derived",
-          "block_index": 40,
-          "points": [
-            {
-              "slug": "keep-the-graph-honest-by-symbol-anchoring-and-a-descriptive-not-aspirational-model",
-              "text": "Keep the graph symbol-anchored and descriptive, not aspirational.",
-              "block_index": 42
-            }
-          ]
-        }
-      ],
-      "preamble_points": [
-        {
-          "slug": "a-system-of-controls-has-the-one-failure-a-list-cannot-show",
-          "text": "Every control correct, the system of controls still wrong.",
-          "block_index": 1
-        },
-        {
-          "slug": "each-collision-lives-in-the-space-between-two-controls-drawn-nowhere",
-          "text": "A collision lives between two controls, drawn nowhere.",
-          "block_index": 3
-        }
-      ]
-    },
-    {
-      "slug": "3.1-the-executable-zoo",
-      "part": 3,
       "sections": [
         {
           "section_id": "why-models-are-newly-central",
           "level": 2,
           "heading_text": "Why models are newly central",
-          "topic_sentence": "Part 1 derived the Modeling Thesis from the machine; Part 2 built the executable-model architecture that earns it.",
+          "topic_sentence": "Part 1 derived the Modeling Thesis from the machine; this Part builds the executable-model architecture that earns it, then tests it across five views.",
           "id_source": "derived",
           "block_index": 9,
           "points": [
@@ -2346,15 +1285,15 @@
           "block_index": 4
         },
         {
-          "slug": "every-model-in-part-3-is-one-executable-schema",
-          "text": "Every Part-3 model is one executable schema, worn five ways.",
+          "slug": "every-model-in-part-2-is-one-executable-schema",
+          "text": "Every Part-2 model is one executable schema, worn five ways.",
           "block_index": 6
         }
       ]
     },
     {
-      "slug": "3.2-the-logical-view",
-      "part": 3,
+      "slug": "2.2-the-logical-view",
+      "part": 2,
       "sections": [
         {
           "section_id": "service-flow-model",
@@ -2421,8 +1360,8 @@
       ]
     },
     {
-      "slug": "3.3-the-process-view",
-      "part": 3,
+      "slug": "2.3-the-process-view",
+      "part": 2,
       "sections": [
         {
           "section_id": "formal-invariant-verification",
@@ -2544,8 +1483,8 @@
       ]
     },
     {
-      "slug": "3.4-the-development-view",
-      "part": 3,
+      "slug": "2.4-the-development-view",
+      "part": 2,
       "sections": [
         {
           "section_id": "component-zone-model",
@@ -2607,8 +1546,8 @@
       ]
     },
     {
-      "slug": "3.5-the-physical-view",
-      "part": 3,
+      "slug": "2.5-the-physical-view",
+      "part": 2,
       "sections": [
         {
           "section_id": "the-performance-cost-view-mostly-embodied-one-honest-gap",
@@ -2725,8 +1664,8 @@
       ]
     },
     {
-      "slug": "3.6-the-scenarios-view",
-      "part": 3,
+      "slug": "2.6-the-scenarios-view",
+      "part": 2,
       "sections": [
         {
           "section_id": "user-journey-model",
@@ -2777,7 +1716,7 @@
           "section_id": "coverage-model-mapping",
           "level": 2,
           "heading_text": "Coverage → model-node mapping",
-          "topic_sentence": "Coverage-to-node mapping projects the test suite's coverage onto the model's *nodes* — states, seams, invariants, journey endpoints — instead of its lines (node coverage over line coverage, as [Metrics](2.5-metrics.html) laid out).",
+          "topic_sentence": "Coverage-to-node mapping projects the test suite's coverage onto the model's *nodes* — states, seams, invariants, journey endpoints — instead of its lines (node coverage over line coverage, as [Metrics](3.5-metrics.html) laid out).",
           "id_source": "explicit",
           "block_index": 25,
           "points": [
@@ -2889,8 +1828,8 @@
       ]
     },
     {
-      "slug": "3.7-the-scope-of-modeling",
-      "part": 3,
+      "slug": "2.7-the-scope-of-modeling",
+      "part": 2,
       "sections": [
         {
           "section_id": "this-book-s-boundary",
@@ -2976,8 +1915,8 @@
       "preamble_points": []
     },
     {
-      "slug": "3.8-keeping-models-in-sync",
-      "part": 3,
+      "slug": "2.8-keeping-models-in-sync",
+      "part": 2,
       "sections": [
         {
           "section_id": "the-question-the-map-must-equal-the-territory-or-the-bridge-lies",
@@ -3060,14 +1999,1075 @@
           "block_index": 41,
           "points": [
             {
-              "slug": "part-3-closed-the-zoo-part-4-starts-from-spaghetti",
-              "text": "The zoo is complete; the next Part starts from spaghetti.",
+              "slug": "part-2-closed-the-zoo-part-3-gives-authority",
+              "text": "The models are built; the next Part gives them authority.",
               "block_index": 46
             }
           ]
         }
       ],
       "preamble_points": []
+    },
+    {
+      "slug": "3.1-the-agent-stack",
+      "part": 3,
+      "sections": [
+        {
+          "section_id": "first-three-definitions",
+          "level": 2,
+          "heading_text": "First, three definitions",
+          "topic_sentence": "Before the walk, three definitions — *agent*, *model*, and the adjective the second leans on, *structured*.",
+          "id_source": "derived",
+          "block_index": 11,
+          "points": [
+            {
+              "slug": "definitions-carry-the-books-argument",
+              "text": "Three definitions carry the stack; engineering motivates them.",
+              "block_index": 13
+            },
+            {
+              "slug": "intelligence-devises-means-within-constraints",
+              "text": "Intelligence devises means to goals within constraints.",
+              "block_index": 21
+            },
+            {
+              "slug": "controllable-not-controlled-is-why-governance-exists",
+              "text": "Controllable, not controlled, is why governance exists.",
+              "block_index": 23
+            },
+            {
+              "slug": "models-are-the-agents-knowledge-base",
+              "text": "The models are the agent's knowledge base.",
+              "block_index": 25
+            },
+            {
+              "slug": "perceive-act-builds-agents-controllability-governs-them",
+              "text": "Perceive-and-act builds agents; controllability governs them.",
+              "block_index": 27
+            },
+            {
+              "slug": "model-fidelity-trades-against-cost",
+              "text": "Model fidelity trades against reasoning cost.",
+              "block_index": 30
+            },
+            {
+              "slug": "blueprint-models-specify-rather-than-approximate",
+              "text": "A blueprint model specifies; the build may not diverge.",
+              "block_index": 32
+            },
+            {
+              "slug": "model-is-constraint-blueprint-and-knowledge-base",
+              "text": "A model is constraint, blueprint, and knowledge base.",
+              "block_index": 34
+            },
+            {
+              "slug": "model-does-double-duty-in-this-trade",
+              "text": "The word model does double duty; context disambiguates.",
+              "block_index": 36
+            },
+            {
+              "slug": "structured-is-the-broad-sense-a-declared-verifiable-shape",
+              "text": "Structured means a declared, verifiable shape, not a variable's type.",
+              "block_index": 38
+            },
+            {
+              "slug": "structured-is-what-admits-the-machine",
+              "text": "The structure is what admits the machine.",
+              "block_index": 43
+            },
+            {
+              "slug": "formal-model-definition-assembles-the-pieces",
+              "text": "The formal definition assembles approximation, blueprint, and structure.",
+              "block_index": 46
+            },
+            {
+              "slug": "five-load-bearing-terms-do-the-gatekeeping",
+              "text": "Five load-bearing clauses gatekeep what counts as a model.",
+              "block_index": 50
+            },
+            {
+              "slug": "definition-relations-tell-the-book-in-a-nutshell",
+              "text": "The definitions' relations summarize the whole book.",
+              "block_index": 52
+            }
+          ]
+        },
+        {
+          "section_id": "the-four-layers",
+          "level": 2,
+          "heading_text": "The four layers",
+          "topic_sentence": "**At the bottom sits the foundation model.** It comes from a commercial vendor or an open-weight release, and it is a general language reasoner, able to *induce* an understanding of your environment — though that induction is expensive, and it happens fresh every time.",
+          "id_source": "derived",
+          "block_index": 54,
+          "points": [
+            {
+              "slug": "foundation-layer-spares-the-model-reasoning-cost",
+              "text": "Tell the model where to look; spare its reasoning.",
+              "block_index": 56
+            },
+            {
+              "slug": "model-constituents-are-a-control-surface",
+              "text": "The model's three parts steer differently.",
+              "block_index": 61
+            },
+            {
+              "slug": "models-pack-the-window-denser",
+              "text": "You cannot widen the window; pack it denser.",
+              "block_index": 64
+            },
+            {
+              "slug": "window-control-is-the-books-bet",
+              "text": "Model choice is yours; the book bets on the window.",
+              "block_index": 66
+            },
+            {
+              "slug": "the-model-reasons-over-a-world-representation",
+              "text": "The model reasons over a world representation, so equip it.",
+              "block_index": 68
+            },
+            {
+              "slug": "harness-manages-the-context-window-and-holds-two-mechanism-points",
+              "text": "The harness manages the context window and holds two mechanisms.",
+              "block_index": 71
+            },
+            {
+              "slug": "the-harness-layer-has-a-named-taxonomy",
+              "text": "The field names a framework, harness, and agent-OS taxonomy.",
+              "block_index": 75
+            },
+            {
+              "slug": "skills-are-soft-hooks-are-hard-tools-are-deterministic",
+              "text": "Skills are soft, hooks are hard, tools take deterministic action.",
+              "block_index": 77
+            },
+            {
+              "slug": "engineering-environment-must-be-written-down-and-offers-git-and-ci-hooks",
+              "text": "Write down the engineering environment; it offers git hooks.",
+              "block_index": 83
+            },
+            {
+              "slug": "application-layer-makes-mistakes-structurally-impossible-via-static-analysis",
+              "text": "Static analysis makes a mistake class structurally impossible.",
+              "block_index": 87
+            }
+          ]
+        },
+        {
+          "section_id": "every-layer-is-a-place-to-steer",
+          "level": 2,
+          "heading_text": "Every layer is a place to steer",
+          "topic_sentence": "Read the stack as a list of opportunities, because that is what it is.",
+          "id_source": "derived",
+          "block_index": 90,
+          "points": [
+            {
+              "slug": "read-each-layer-as-an-injection-opportunity",
+              "text": "Read each layer as an injection opportunity.",
+              "block_index": 92
+            },
+            {
+              "slug": "every-layer-serves-one-goal-narrow-the-search",
+              "text": "Every layer serves one goal: narrow the agent's search.",
+              "block_index": 95
+            },
+            {
+              "slug": "mechanisms-interact-and-the-interplay-is-its-own-problem",
+              "text": "Mechanisms interact; the interplay is its own problem.",
+              "block_index": 98
+            },
+            {
+              "slug": "the-stack-grounds-both-theses",
+              "text": "The stack grounds both the Modeling and Alignment theses.",
+              "block_index": 101
+            }
+          ]
+        }
+      ],
+      "preamble_points": [
+        {
+          "slug": "the-environment-interposes-between-capability-and-consequence",
+          "text": "The governed environment interposes between capability and consequence.",
+          "block_index": 2
+        },
+        {
+          "slug": "governance-material-is-soft-conditioning-hard-authority-feedback",
+          "text": "The material: soft conditioning, hard authority, feedback.",
+          "block_index": 4
+        },
+        {
+          "slug": "agent-stack-has-four-injection-layers",
+          "text": "The agent stack has four layers, each an injection point.",
+          "block_index": 7
+        }
+      ]
+    },
+    {
+      "slug": "3.2-models-and-the-semantic-gap",
+      "part": 3,
+      "sections": [
+        {
+          "section_id": "words-are-soft-code-is-verbose-a-model-is-the-sweet-spot",
+          "level": 2,
+          "heading_text": "Words are soft, code is verbose, a model is the sweet spot",
+          "topic_sentence": "Your first governance mechanism is the prompt, because the agent is a language model and words are how you talk to it.",
+          "id_source": "derived",
+          "block_index": 2,
+          "points": [
+            {
+              "slug": "words-are-soft-and-agents-need-precision-humans-do-not",
+              "text": "Words are soft; agents need precision that humans do not.",
+              "block_index": 4
+            },
+            {
+              "slug": "code-is-precise-but-too-verbose-so-a-model-is-the-sweet-spot",
+              "text": "Code is precise but too verbose; a model is between.",
+              "block_index": 7
+            },
+            {
+              "slug": "a-model-is-a-cheap-honest-approximation-you-can-reason-over",
+              "text": "A model is a cheap, honest approximation you reason over.",
+              "block_index": 10
+            }
+          ]
+        },
+        {
+          "section_id": "why-the-models-drifted-and-why-that-changes-now",
+          "level": 2,
+          "heading_text": "Why the models drifted — and why that changes now",
+          "topic_sentence": "The models are the map; the code is the territory.",
+          "id_source": "derived",
+          "block_index": 13,
+          "points": [
+            {
+              "slug": "models-are-the-map-code-the-territory-and-hand-maintenance-drifts",
+              "text": "Model is map, code is territory; hand-sync drifts.",
+              "block_index": 15
+            },
+            {
+              "slug": "keeping-the-map-equal-is-an-old-research-program",
+              "text": "Keeping map equal to territory is a decades-old research program.",
+              "block_index": 18
+            },
+            {
+              "slug": "the-book-measures-the-changed-sync-economics-rather-than-asserting-it",
+              "text": "The book measures the changed sync economics, not asserts it.",
+              "block_index": 20
+            },
+            {
+              "slug": "hand-maintained-models-rot-when-the-maintainer-stops",
+              "text": "A hand-maintained model rots the moment its maintainer stops.",
+              "block_index": 22
+            },
+            {
+              "slug": "agents-flip-the-calculation-they-reason-over-models-not-code",
+              "text": "Agents flip it: they reason over models, not the code.",
+              "block_index": 24
+            },
+            {
+              "slug": "the-model-reached-for-shifts-with-the-move-so-you-need-a-linked-set",
+              "text": "The model shifts with the move; keep a linked set.",
+              "block_index": 26
+            },
+            {
+              "slug": "a-model-lets-the-agent-check-work-and-a-drift-gate-makes-map-equals-territory-checked",
+              "text": "A drift gate makes \"map equals territory\" a checked property.",
+              "block_index": 28
+            },
+            {
+              "slug": "agents-reluctance-to-model-is-a-conjectured-echo-of-the-corpus-not-evidence-against-models",
+              "text": "The agent's reluctance to model echoes its corpus, not merit.",
+              "block_index": 34
+            }
+          ]
+        },
+        {
+          "section_id": "the-apex-of-the-documentation-hierarchy-is-a-typed-model",
+          "level": 2,
+          "heading_text": "A structured model layer binds the islands",
+          "topic_sentence": "Step back from drift for a moment and look at what you actually hand an agent to work from.",
+          "id_source": "explicit",
+          "block_index": 37,
+          "points": [
+            {
+              "slug": "what-you-hand-an-agent-is-a-hierarchy-of-partial-drifting-descriptions",
+              "text": "You hand an agent a hierarchy of partial, drifting descriptions.",
+              "block_index": 39
+            },
+            {
+              "slug": "the-usual-recipe-leaves-docs-code-tests-as-unbound-islands-so-drift-is-the-default",
+              "text": "Nothing binds docs, code, and tests, so drift is default.",
+              "block_index": 41
+            },
+            {
+              "slug": "the-apex-of-the-hierarchy-is-a-typed-model-that-binds-the-islands",
+              "text": "A structured model layer binds docs, code, and tests.",
+              "block_index": 44
+            },
+            {
+              "slug": "modeling-thesis-at-full-strength-the-model-is-the-one-description-that-cannot-silently-lie",
+              "text": "The structured model is the one description that cannot lie.",
+              "block_index": 46
+            },
+            {
+              "slug": "structured-english-stops-one-rung-short-because-a-checker-cannot-act-on-its-words",
+              "text": "Structured English stops one rung short; a checker cannot act.",
+              "block_index": 48
+            }
+          ]
+        },
+        {
+          "section_id": "a-drift-check-proves-agreement-not-correctness",
+          "level": 2,
+          "heading_text": "A drift check proves agreement, not correctness",
+          "topic_sentence": "The claim I just made hides a trap, and the book's enthusiasm for drift gates can be misread into a dangerous half-truth.",
+          "id_source": "derived",
+          "block_index": 57,
+          "points": [
+            {
+              "slug": "a-drift-gate-proves-agreement-not-that-either-side-is-right",
+              "text": "A drift gate proves agreement, not correctness.",
+              "block_index": 59
+            },
+            {
+              "slug": "a-mirror-model-reflects-the-code-only-a-spec-authored-from-intent-catches-a-wrong-is",
+              "text": "A mirror reflects code; only a spec catches wrong.",
+              "block_index": 63
+            },
+            {
+              "slug": "what-belongs-in-the-model-is-the-essential-residual-that-does-not-automate",
+              "text": "Deciding what belongs in the model is the essential residual.",
+              "block_index": 66
+            }
+          ]
+        },
+        {
+          "section_id": "a-model-is-a-convenience-not-a-second-copy-of-the-truth",
+          "level": 2,
+          "heading_text": "A model is a convenience, not a second copy of the truth",
+          "topic_sentence": "The other side of the mirror carries an over-reach.",
+          "id_source": "derived",
+          "block_index": 75,
+          "points": []
+        },
+        {
+          "section_id": "execute-the-model-directly-a-spectrum-not-a-verdict",
+          "level": 2,
+          "heading_text": "Execute the model directly? A spectrum, not a verdict",
+          "topic_sentence": "One old idea says that if the structured model is where you now start, you should finish there too — skip the code and *execute the model directly*.",
+          "id_source": "derived",
+          "block_index": 79,
+          "points": [
+            {
+              "slug": "executable-modeling-is-a-spectrum-agents-shift-the-optimum-outward",
+              "text": "Executable modeling is a spectrum; agents shift the optimum outward.",
+              "block_index": 81
+            }
+          ]
+        },
+        {
+          "section_id": "the-semantic-gap",
+          "level": 2,
+          "heading_text": "The semantic gap",
+          "topic_sentence": "Enforce a property at the wrong level and it slips through; [ref:semantic-gap] shows the fix — lift the check to where the meaning is legible.",
+          "id_source": "derived",
+          "block_index": 83,
+          "points": [
+            {
+              "slug": "enforce-at-the-wrong-level-and-the-property-slips-through",
+              "text": "Enforce a property at the wrong level; it slips through.",
+              "block_index": 85
+            },
+            {
+              "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
+              "text": "Checking model drift at the commit is the wrong granularity.",
+              "block_index": 88
+            },
+            {
+              "slug": "the-semantic-gap-is-enforcing-a-property-at-the-wrong-level-of-abstraction",
+              "text": "The semantic gap is enforcing at the wrong level.",
+              "block_index": 90
+            },
+            {
+              "slug": "enforce-at-the-level-where-the-property-is-legible-agent-return-for-model-drift",
+              "text": "Enforce where the property is legible: at agent-return.",
+              "block_index": 94
+            }
+          ]
+        },
+        {
+          "section_id": "a-second-worked-example-the-context-fullness-bank-hook",
+          "level": 2,
+          "heading_text": "A second worked example: the context-fullness bank-hook",
+          "topic_sentence": "The semantic gap shows up in the operator's own loop, not just the product.",
+          "id_source": "derived",
+          "block_index": 101,
+          "points": [
+            {
+              "slug": "compaction-guesses-below-meaning-so-it-can-only-approximate",
+              "text": "Compaction guesses below meaning; it can only approximate.",
+              "block_index": 103
+            },
+            {
+              "slug": "fire-the-bank-hook-on-fullness-and-staleness-together",
+              "text": "Fire the bank-hook on fullness and staleness together.",
+              "block_index": 105
+            },
+            {
+              "slug": "with-no-clean-rung-a-roughly-right-hook-beats-the-perfect-one",
+              "text": "With no clean rung, roughly-right beats the perfect hook.",
+              "block_index": 109
+            }
+          ]
+        }
+      ],
+      "preamble_points": [
+        {
+          "slug": "model-is-the-most-valuable-thing-to-inject-but-must-be-checked-at-the-right-level",
+          "text": "Inject a model, but check it at the right level.",
+          "block_index": 0
+        }
+      ]
+    },
+    {
+      "slug": "3.3-the-governed-environment",
+      "part": 3,
+      "sections": [
+        {
+          "section_id": "ex-ante-everything-you-can-decide-up-front",
+          "level": 2,
+          "heading_text": "Ex-ante: everything you can decide up front",
+          "topic_sentence": "Some things you genuinely know from the beginning, and you should write every one of them down.",
+          "id_source": "derived",
+          "block_index": 4,
+          "points": [
+            {
+              "slug": "ex-ante-write-down-what-you-know-and-determinize-it-with-cheap-checks",
+              "text": "Write down what you know; determinize it with cheap checks.",
+              "block_index": 6
+            }
+          ]
+        },
+        {
+          "section_id": "ex-post-everything-you-learn-by-building",
+          "level": 2,
+          "heading_text": "Ex-post: everything you learn by building",
+          "topic_sentence": "But you will not know everything, and pretending otherwise is the mistake.",
+          "id_source": "derived",
+          "block_index": 10,
+          "points": [
+            {
+              "slug": "ex-post-you-build-governance-as-failures-reveal-themselves",
+              "text": "You build governance ex-post, as failures reveal themselves.",
+              "block_index": 12
+            },
+            {
+              "slug": "ex-post-is-where-most-real-mechanisms-come-from-not-a-fallback",
+              "text": "Ex-post is where most real mechanisms come from.",
+              "block_index": 15
+            },
+            {
+              "slug": "the-engine-is-to-hold-a-quality-goal-with-a-mechanism-placed-up-front-or-after-a-failure-seen-twice",
+              "text": "Hold a quality goal with a mechanism that keeps it.",
+              "block_index": 17
+            }
+          ]
+        },
+        {
+          "section_id": "control-growth",
+          "level": 2,
+          "heading_text": "The controls accumulate",
+          "topic_sentence": "Run the promotion rule for a season and the environment fills with controls — nearly all discovered ex-post, the obligations no up-front specification would have named.",
+          "id_source": "explicit",
+          "block_index": 23,
+          "points": [
+            {
+              "slug": "the-control-substrate-grew-from-zero",
+              "text": "The control substrate grew from zero.",
+              "block_index": 25
+            }
+          ]
+        },
+        {
+          "section_id": "constraints-and-sensors",
+          "level": 2,
+          "heading_text": "Constraints and sensors",
+          "topic_sentence": "A mechanism is one of two moves — prevent the mistake, or catch it — and [ref:constraint-vs-sensor] draws the split.",
+          "id_source": "derived",
+          "block_index": 30,
+          "points": [
+            {
+              "slug": "a-mechanism-is-one-of-two-moves-prevent-or-catch",
+              "text": "A mechanism is one of two moves: prevent, or catch.",
+              "block_index": 32
+            },
+            {
+              "slug": "words-alone-are-a-probability-flip-so-determinize-them-into-a-gate",
+              "text": "Words are a probability flip; determinize them into a gate.",
+              "block_index": 35
+            },
+            {
+              "slug": "a-sensor-detects-drift-after-the-fact-and-costs-iterations",
+              "text": "A sensor detects drift after the fact and costs iterations.",
+              "block_index": 38
+            },
+            {
+              "slug": "a-sensor-is-only-as-good-as-its-observability",
+              "text": "A sensor is only as good as its observability.",
+              "block_index": 42
+            },
+            {
+              "slug": "a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration",
+              "text": "A constraint prevents drift within the iteration, costing none.",
+              "block_index": 45
+            },
+            {
+              "slug": "constraint-and-sensor-are-control-engineerings-working-terms",
+              "text": "Constraint and sensor come from control engineering.",
+              "block_index": 49
+            },
+            {
+              "slug": "form-and-move-are-two-independent-axes",
+              "text": "Form and move are two independent axes.",
+              "block_index": 52
+            },
+            {
+              "slug": "most-real-mechanisms-are-a-package-so-tag-the-primary-move",
+              "text": "Most mechanisms are a package; tag the primary move.",
+              "block_index": 60
+            },
+            {
+              "slug": "a-purely-organizational-answer-is-all-sensors-and-never-removes-a-failure-class",
+              "text": "A purely organizational answer is all sensors, removing no class.",
+              "block_index": 62
+            },
+            {
+              "slug": "the-constraint-is-poka-yoke-the-sensors-stop-is-jidoka",
+              "text": "The constraint is poka-yoke; the sensor's stop is jidoka.",
+              "block_index": 64
+            }
+          ]
+        },
+        {
+          "section_id": "four-classes-one-bounded-term",
+          "level": 3,
+          "heading_text": "Two axes, one bounded term",
+          "topic_sentence": "One boundary before moving on, because without it the word swells.",
+          "id_source": "explicit",
+          "block_index": 66,
+          "points": [
+            {
+              "slug": "governance-mechanism-needs-a-boundary",
+              "text": "Without a boundary, the word mechanism swells.",
+              "block_index": 68
+            },
+            {
+              "slug": "four-classes-prevention-detection-evidence-admission",
+              "text": "Two questions cross: how it treats failure, where it acts.",
+              "block_index": 72
+            },
+            {
+              "slug": "a-model-is-not-a-mechanism-until-something-enforces-it",
+              "text": "A model joins governance only when something enforces it.",
+              "block_index": 76
+            }
+          ]
+        },
+        {
+          "section_id": "what-it-adds-up-to",
+          "level": 3,
+          "heading_text": "What it adds up to",
+          "topic_sentence": "Step back and this is what you are really doing: describing policies for how the engineering work should proceed, and letting those policies produce the rules of the road the agents operate within.",
+          "id_source": "derived",
+          "block_index": 87,
+          "points": [
+            {
+              "slug": "the-governed-environment-is-determinize-what-you-can-then-convert-every-surprise-into-a-constraint-or-sensor",
+              "text": "Determinize what you can; convert every surprise into a mechanism.",
+              "block_index": 88
+            },
+            {
+              "slug": "governance-extends-the-reasoning-horizon-by-holding-the-obligation-in-the-environment",
+              "text": "Governance extends the reasoning horizon: the environment holds the obligation.",
+              "block_index": 91
+            }
+          ]
+        },
+        {
+          "section_id": "the-residual-goals-no-mechanism-reaches",
+          "level": 2,
+          "heading_text": "The residual: goals no mechanism reaches",
+          "topic_sentence": "The synthesis reads as if it settles everything.",
+          "id_source": "derived",
+          "block_index": 94,
+          "points": [
+            {
+              "slug": "some-goals-split-into-neither-because-the-failure-is-an-absence-nobody-specified",
+              "text": "Some goals split into neither, being an absence nobody specified.",
+              "block_index": 96
+            },
+            {
+              "slug": "the-residual-is-a-human-job-that-sets-the-throughput-ceiling",
+              "text": "The residual is a human job setting the throughput ceiling.",
+              "block_index": 99
+            },
+            {
+              "slug": "the-residual-is-the-complement-of-the-two-moves-not-a-third-value-on-the-soft-hard-axis",
+              "text": "The residual is the complement of both moves, not soft.",
+              "block_index": 101
+            },
+            {
+              "slug": "naming-the-residual-is-the-honest-edge-that-makes-the-mechanized-core-credible",
+              "text": "Naming the residual is the honest edge that earns trust.",
+              "block_index": 103
+            },
+            {
+              "slug": "the-residual-is-not-a-fixed-wall-authoring-the-missing-spec-pulls-a-goal-out",
+              "text": "The residual is not fixed; authoring the spec shrinks it.",
+              "block_index": 105
+            }
+          ]
+        }
+      ],
+      "preamble_points": [
+        {
+          "slug": "a-governed-environment-has-an-ex-ante-and-an-ex-post-half",
+          "text": "A governed environment has an ex-ante and ex-post half.",
+          "block_index": 0
+        }
+      ]
+    },
+    {
+      "slug": "3.4-lifecycles-and-runbooks",
+      "part": 3,
+      "sections": [
+        {
+          "section_id": "lifecycles-first-then-the-failure-map",
+          "level": 2,
+          "heading_text": "Lifecycles first, then the failure map",
+          "topic_sentence": "Start with the lifecycles, because everything else hangs off them.",
+          "id_source": "derived",
+          "block_index": 2,
+          "points": [
+            {
+              "slug": "a-lifecycle-is-the-healthy-path-then-a-failure-map-off-each-node",
+              "text": "A lifecycle: write the healthy path, then map failures.",
+              "block_index": 4
+            },
+            {
+              "slug": "fmea-names-the-way-out-and-the-prohibition-because-the-agent-knows-neither",
+              "text": "FMEA-inspired: name each failure's way out and prohibition.",
+              "block_index": 7
+            },
+            {
+              "slug": "name-the-sin-and-the-way-out-not-the-prohibition-alone",
+              "text": "Pair each prohibition with its sanctioned way out.",
+              "block_index": 11
+            }
+          ]
+        },
+        {
+          "section_id": "runbooks-split-the-deterministic-from-the-judgment",
+          "level": 2,
+          "heading_text": "Runbooks: split the deterministic from the judgment",
+          "topic_sentence": "Once the healthy path and the failure map are written, the thing you hand the agent is a **runbook** (or playbook): the steps to take, whether recovering from a failure or working a fresh ticket.",
+          "id_source": "derived",
+          "block_index": 13,
+          "points": [
+            {
+              "slug": "a-runbook-splits-into-deterministic-and-judgment-steps-governed-differently",
+              "text": "A runbook splits into deterministic and judgment steps.",
+              "block_index": 15
+            }
+          ]
+        },
+        {
+          "section_id": "the-deterministic-parts-get-tools",
+          "level": 3,
+          "heading_text": "The deterministic parts get tools",
+          "topic_sentence": "Anything that has a single correct outcome should be an executable script the agent runs, not a procedure it improvises.",
+          "id_source": "derived",
+          "block_index": 20,
+          "points": [
+            {
+              "slug": "deterministic-parts-get-tools-not-improvisation",
+              "text": "Deterministic steps get executable tools, not improvisation.",
+              "block_index": 21
+            },
+            {
+              "slug": "determinizing-a-step-buys-a-trace-with-two-consumers",
+              "text": "Determinizing buys a trace with two consumers.",
+              "block_index": 24
+            }
+          ]
+        },
+        {
+          "section_id": "the-judgment-parts-the-roughest-algorithm-that-still-fits",
+          "level": 3,
+          "heading_text": "The judgment parts: the roughest algorithm that still fits",
+          "topic_sentence": "**The judgment parts get the roughest algorithm that still fits.** For a well-constrained decision, write the algorithm down and let the agent do the glue.",
+          "id_source": "derived",
+          "block_index": 28,
+          "points": [
+            {
+              "slug": "judgment-parts-get-the-roughest-algorithm-that-still-fits",
+              "text": "Judgment steps get the roughest algorithm that fits.",
+              "block_index": 30
+            },
+            {
+              "slug": "a-judgment-that-is-a-measurement-gets-a-rubric",
+              "text": "A judgment that is a measurement gets a rubric.",
+              "block_index": 32
+            },
+            {
+              "slug": "the-pre-canned-brief-is-the-strongest-form-templating-delegation-itself",
+              "text": "The pre-canned brief templates delegation itself.",
+              "block_index": 35
+            },
+            {
+              "slug": "typing-each-runbook-step-makes-the-deterministic-judgment-split-mechanical",
+              "text": "Typing each step makes the deterministic-judgment split mechanical.",
+              "block_index": 39
+            }
+          ]
+        }
+      ],
+      "preamble_points": [
+        {
+          "slug": "agent-knows-git-not-your-environments-lifecycles-so-write-them-down",
+          "text": "The agent lacks your operating context; write it down.",
+          "block_index": 0
+        }
+      ]
+    },
+    {
+      "slug": "3.5-metrics",
+      "part": 3,
+      "sections": [
+        {
+          "section_id": "measure-one-level-deeper",
+          "level": 2,
+          "heading_text": "Measure one level deeper",
+          "topic_sentence": "John Ousterhout names the rule [cite: ousterhout2018]: **always measure one level deeper** — one level, not as deep as you can go.",
+          "id_source": "derived",
+          "block_index": 4,
+          "points": [
+            {
+              "slug": "measure-one-level-deeper-because-the-surface-number-cannot-act",
+              "text": "Measure one level deeper; the surface number cannot act.",
+              "block_index": 6
+            },
+            {
+              "slug": "a-cloud-bill-reports-but-splitting-it-by-service-acts",
+              "text": "A cloud bill reports; splitting it by service acts.",
+              "block_index": 9
+            },
+            {
+              "slug": "line-coverage-is-the-invoice-level-number-and-the-flagship-is-coverage-one-level-deeper",
+              "text": "Line coverage is the invoice number; go deeper.",
+              "block_index": 11
+            },
+            {
+              "slug": "metrics-run-a-hard-to-soft-spectrum-and-the-mistake-is-treating-one-as-the-other",
+              "text": "Metrics run hard to soft; don't confuse the two.",
+              "block_index": 14
+            }
+          ]
+        },
+        {
+          "section_id": "the-hard-end-cold-start-latency-machine-read-and-model-fed",
+          "level": 2,
+          "heading_text": "The hard end: cold-start latency, machine-read and model-fed",
+          "topic_sentence": "Start at the deterministic end, where a metric is a deterministic quantity with a defined measurement procedure.",
+          "id_source": "derived",
+          "block_index": 17,
+          "points": [
+            {
+              "slug": "cold-start-latency-reads-obviously-as-the-scale-from-zero-penalty",
+              "text": "Cold-start latency reads obviously as the scale-from-zero penalty.",
+              "block_index": 20
+            },
+            {
+              "slug": "the-deeper-cold-start-number-named-runtime-init-not-scale-from-zero-or-image-size",
+              "text": "The deeper number named runtime init, not scale-from-zero.",
+              "block_index": 22
+            },
+            {
+              "slug": "spot-checking-doesnt-scale-so-a-model-reasons-over-the-chain-as-a-longest-path-sum",
+              "text": "Spot-checking fails; a model sums the longest cold-start path.",
+              "block_index": 27
+            },
+            {
+              "slug": "the-hard-ends-defining-move-is-the-number-feeds-the-model",
+              "text": "The hard end's defining move: the number feeds the model.",
+              "block_index": 29
+            },
+            {
+              "slug": "automate-the-map-upkeep-into-the-machine-rather-than-a-runbook-reminder",
+              "text": "Automate map upkeep into the machine, not a reminder.",
+              "block_index": 32
+            },
+            {
+              "slug": "as-built-the-seam-is-in-and-the-data-catches-up",
+              "text": "As-built: the seam is in, the data catches up.",
+              "block_index": 34
+            }
+          ]
+        },
+        {
+          "section_id": "the-flagship-coverage-measured-one-level-deeper",
+          "level": 2,
+          "heading_text": "The flagship: coverage measured one level deeper",
+          "topic_sentence": "Now the middle of the spectrum: the \"measure one level deeper\" rule applied to the number that most often gets it wrong.",
+          "id_source": "derived",
+          "block_index": 36,
+          "points": [
+            {
+              "slug": "line-coverage-answers-a-syntactic-question-not-the-semantic-one",
+              "text": "Line coverage answers a syntactic question, not the semantic one.",
+              "block_index": 39
+            },
+            {
+              "slug": "the-fix-joins-a-traceability-graph-to-the-coverage-oracle",
+              "text": "The fix joins a traceability graph to the coverage oracle.",
+              "block_index": 41
+            },
+            {
+              "slug": "the-composition-counts-model-claims-and-reports-a-named-verdict",
+              "text": "The composition counts model claims and reports a named verdict.",
+              "block_index": 44
+            },
+            {
+              "slug": "the-genre-check-names-this-requirements-based-coverage",
+              "text": "The genre check names this requirements-based coverage.",
+              "block_index": 46
+            },
+            {
+              "slug": "one-primitive-supports-several-aggregations-each-a-different-decision",
+              "text": "One primitive supports several aggregations, each a different decision.",
+              "block_index": 49
+            },
+            {
+              "slug": "the-honesty-layer-reports-a-breakdown-so-the-number-affords-engineering",
+              "text": "The honesty layer reports a breakdown, not a percentage.",
+              "block_index": 52
+            },
+            {
+              "slug": "measuring-one-level-deeper-cost-a-join-not-a-rebuild",
+              "text": "Measuring one level deeper cost a join, not a rebuild.",
+              "block_index": 54
+            }
+          ]
+        },
+        {
+          "section_id": "mmm-drain",
+          "level": 2,
+          "heading_text": "The dual: draining unmodelled code",
+          "topic_sentence": "The flagship metric had a blind spot: it measured model→code, so code with no model at all stayed invisible to it — and this dual is what finds it.",
+          "id_source": "explicit",
+          "block_index": 56,
+          "points": []
+        },
+        {
+          "section_id": "the-soft-end-doc-derived-tests",
+          "level": 2,
+          "heading_text": "The soft end: doc-derived tests",
+          "topic_sentence": "Slide to the far end of the spectrum, where the metric stops being a number a threshold can act on and becomes a judgment a human has to make.",
+          "id_source": "derived",
+          "block_index": 64,
+          "points": [
+            {
+              "slug": "a-doc-derived-test-pins-a-doc-claim-and-its-metric-is-genuinely-soft",
+              "text": "A doc-derived test pins a doc-claim; its metric is soft.",
+              "block_index": 67
+            },
+            {
+              "slug": "the-soft-metric-is-inseparable-from-a-readiness-judgment-so-a-gate-would-manufacture-hollow-tests",
+              "text": "Gating this soft signal manufactures hollow tests.",
+              "block_index": 70
+            }
+          ]
+        },
+        {
+          "section_id": "the-model-runs-the-machinery",
+          "level": 2,
+          "heading_text": "The model runs the machinery",
+          "topic_sentence": "The hard end and the flagship follow the same pattern.",
+          "id_source": "derived",
+          "block_index": 80,
+          "points": [
+            {
+              "slug": "the-model-is-not-a-picture-of-the-machinery-it-is-the-machinery",
+              "text": "The model runs the machinery, rather than picturing it.",
+              "block_index": 83
+            },
+            {
+              "slug": "a-component-distance-grade-is-a-metric-that-drives-a-gate-three-ways",
+              "text": "A component-distance grade drives a gate three ways.",
+              "block_index": 85
+            },
+            {
+              "slug": "the-grade-is-a-metric-read-from-the-model-that-drives-a-sensors-decision",
+              "text": "The grade is a model-read metric driving a sensor.",
+              "block_index": 89
+            }
+          ]
+        },
+        {
+          "section_id": "a-compact-reference",
+          "level": 2,
+          "heading_text": "A compact reference",
+          "topic_sentence": "[ref:metrics-table] collects every metric — the decision each drives, where it sits on the hard-soft axis, and who reads it.",
+          "id_source": "derived",
+          "block_index": 91,
+          "points": [
+            {
+              "slug": "every-row-names-a-decision-because-a-metric-that-names-none-was-measured-too-shallow",
+              "text": "Every row names a decision, or was measured too shallow.",
+              "block_index": 95
+            }
+          ]
+        }
+      ],
+      "preamble_points": [
+        {
+          "slug": "a-metric-is-the-sensing-half-of-the-agent-loop",
+          "text": "A metric is the sensing half of the agent loop.",
+          "block_index": 0
+        },
+        {
+          "slug": "the-metric-comes-first-and-must-drive-a-decision",
+          "text": "The metric comes first; it must drive a decision.",
+          "block_index": 2
+        }
+      ]
+    },
+    {
+      "slug": "3.6-when-guardrails-collide",
+      "part": 3,
+      "sections": [
+        {
+          "section_id": "drawing-what-lies-between-the-controls",
+          "level": 2,
+          "heading_text": "Drawing what lies between the controls",
+          "topic_sentence": "The Governance Graph draws it.",
+          "id_source": "derived",
+          "block_index": 7,
+          "points": [
+            {
+              "slug": "the-governance-graph-nodes-are-mechanisms-edges-are-conflicts-joined-by-shared-resource",
+              "text": "Nodes are mechanisms; edges are conflicts over a shared resource.",
+              "block_index": 9
+            },
+            {
+              "slug": "the-shared-resource-is-the-only-cross-lifecycle-coupling-surface-and-keeps-the-graph-sparse",
+              "text": "The shared resource is the only cross-lifecycle coupling surface.",
+              "block_index": 11
+            },
+            {
+              "slug": "the-graph-is-the-catalogues-dynamic-dual-splitting-decidable-edges-from-judgment-ones",
+              "text": "The graph is the catalogue's dynamic dual.",
+              "block_index": 14
+            },
+            {
+              "slug": "the-graph-makes-the-implicit-claim-that-mechanisms-compose-explicit-and-checkable",
+              "text": "The graph makes \"mechanisms compose\" explicit and checkable.",
+              "block_index": 16
+            }
+          ]
+        },
+        {
+          "section_id": "the-other-question-a-list-can-t-answer",
+          "level": 2,
+          "heading_text": "The other question a list can't answer",
+          "topic_sentence": "The graph settled one question a flat list could not: which two controls collide.",
+          "id_source": "derived",
+          "block_index": 18,
+          "points": [
+            {
+              "slug": "a-list-shows-what-exists-the-graph-what-collides-neither-shows-the-un-watched",
+              "text": "A list shows what exists; neither shows what is un-watched.",
+              "block_index": 20
+            },
+            {
+              "slug": "the-census-is-a-third-view-of-one-graph-coverage-per-target",
+              "text": "The census is a third view: coverage per target.",
+              "block_index": 22
+            },
+            {
+              "slug": "the-census-is-a-model-whose-instances-are-the-controls",
+              "text": "The census is a model whose instances are the controls.",
+              "block_index": 25
+            }
+          ]
+        },
+        {
+          "section_id": "growing-controls-and-auditing-the-growth",
+          "level": 2,
+          "heading_text": "Growing controls, and auditing the growth",
+          "topic_sentence": "The census has a counterpart, and the two are true opposites over one graph.",
+          "id_source": "derived",
+          "block_index": 28,
+          "points": [
+            {
+              "slug": "the-fleet-grows-controls-reactively-and-that-growth-is-biased",
+              "text": "The fleet grows controls reactively, and that growth is biased.",
+              "block_index": 30
+            },
+            {
+              "slug": "the-census-is-the-proactive-audit-that-corrects-the-bias",
+              "text": "The census is the proactive audit that corrects the bias.",
+              "block_index": 32
+            },
+            {
+              "slug": "static-analyses-keep-the-census-equal-to-the-territory",
+              "text": "Static analyses keep the census equal to the territory.",
+              "block_index": 34
+            }
+          ]
+        },
+        {
+          "section_id": "when-the-hooks-aren-t-yours",
+          "level": 2,
+          "heading_text": "When the hooks aren't yours",
+          "topic_sentence": "**An implication, looking ahead.** Every mechanism so far was one you wrote — but some hooks arrive from outside: a plugin registers one, a teammate adds a personal one, and, plausibly soon, a regulator or model vendor mandates one.",
+          "id_source": "derived",
+          "block_index": 36,
+          "points": [
+            {
+              "slug": "outside-governance-extends-the-graph-without-changing-shape",
+              "text": "Outside-authored hooks extend the graph without changing its shape.",
+              "block_index": 38
+            }
+          ]
+        },
+        {
+          "section_id": "keeping-the-model-honest",
+          "level": 2,
+          "heading_text": "Keeping the model honest",
+          "topic_sentence": "Two disciplines keep the model honest, and both are the book's.",
+          "id_source": "derived",
+          "block_index": 40,
+          "points": [
+            {
+              "slug": "keep-the-graph-honest-by-symbol-anchoring-and-a-descriptive-not-aspirational-model",
+              "text": "Keep the graph symbol-anchored and descriptive, not aspirational.",
+              "block_index": 42
+            }
+          ]
+        }
+      ],
+      "preamble_points": [
+        {
+          "slug": "a-system-of-controls-has-the-one-failure-a-list-cannot-show",
+          "text": "Every control correct, the system of controls still wrong.",
+          "block_index": 1
+        },
+        {
+          "slug": "each-collision-lives-in-the-space-between-two-controls-drawn-nowhere",
+          "text": "A collision lives between two controls, drawn nowhere.",
+          "block_index": 3
+        }
+      ]
     },
     {
       "slug": "4.1-brownfield",
@@ -3979,7 +3979,7 @@
           "section_id": "governance-is-a-spectrum-from-soft-to-hard",
           "level": 3,
           "heading_text": "Governance is a spectrum from soft to hard",
-          "topic_sentence": "The mechanisms I ended up with sorted along the axis Part 2 named: soft governance *aims* the agent, hard governance *holds* regardless of cooperation.",
+          "topic_sentence": "The mechanisms I ended up with sorted along the axis Part 3 named: soft governance *aims* the agent, hard governance *holds* regardless of cooperation.",
           "id_source": "derived",
           "block_index": 77,
           "points": [
@@ -4187,7 +4187,7 @@
           "section_id": "coverage-did-we-explore-the-spec-relevant-space",
           "level": 2,
           "heading_text": "Coverage: did we explore the spec-relevant space?",
-          "topic_sentence": "Once you have a generator, a new question appears that example tests never had to ask: *did the campaign explore the space that matters, or did it just spin?* The book already owns coverage — the [metrics chapter](2.5-metrics.html) develops it as a flagship, with the rule to measure one level deeper than the raw percentage — so this section adds only the one cut that is genuinely native to generation and hands the rest back.",
+          "topic_sentence": "Once you have a generator, a new question appears that example tests never had to ask: *did the campaign explore the space that matters, or did it just spin?* The book already owns coverage — the [metrics chapter](3.5-metrics.html) develops it as a flagship, with the rule to measure one level deeper than the raw percentage — so this section adds only the one cut that is genuinely native to generation and hands the rest back.",
           "id_source": "derived",
           "block_index": 59,
           "points": [

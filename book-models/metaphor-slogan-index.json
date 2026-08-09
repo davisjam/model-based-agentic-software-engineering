@@ -215,14 +215,14 @@
       },
       "sites": [
         {
-          "file": "book/3.1-the-executable-zoo.html",
+          "file": "book/2.1-the-executable-zoo.html",
           "anchor": "tvUp",
           "occ": 1,
           "variant": "canonical"
         },
         {
           "file": "book/figures.html",
-          "anchor": "fig-3-1-1-tvUp",
+          "anchor": "fig-2-1-1-tvUp",
           "occ": 1,
           "variant": "canonical"
         },
@@ -249,20 +249,20 @@
           "variant": "image"
         },
         {
-          "file": "book/2.3-the-governed-environment.html",
+          "file": "book/3.3-the-governed-environment.html",
           "anchor": "gc-ah-mut",
           "occ": 1,
           "variant": "image"
         },
         {
-          "file": "book/2.3-the-governed-environment.html",
+          "file": "book/3.3-the-governed-environment.html",
           "anchor": "fmDesc",
           "occ": 1,
           "variant": "image"
         },
         {
-          "file": "book/2.3-the-governed-environment.html",
-          "anchor": "wc-2-3-the-governed-environment-4",
+          "file": "book/3.3-the-governed-environment.html",
+          "anchor": "wc-3-3-the-governed-environment-4",
           "occ": 1,
           "variant": "image"
         },
@@ -305,20 +305,20 @@
       },
       "sites": [
         {
-          "file": "book/3.5-the-physical-view.html",
+          "file": "book/2.5-the-physical-view.html",
           "anchor": "idx-def-invariant-dag-execution-policy",
           "occ": 1,
           "variant": "canonical"
         },
         {
-          "file": "book/3.5-the-physical-view.html",
+          "file": "book/2.5-the-physical-view.html",
           "anchor": "dp-thick",
           "occ": 1,
           "variant": "canonical"
         },
         {
           "file": "book/figures.html",
-          "anchor": "fig-3-5-2-dp-thick",
+          "anchor": "fig-2-5-2-dp-thick",
           "occ": 1,
           "variant": "canonical"
         },

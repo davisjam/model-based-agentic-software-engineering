@@ -7,7 +7,7 @@
 | Claim | Velocity surfaces the failures you could not foresee. Convert each recurring one into a mechanism, pushed as far toward hard enforcement as it will go. |
 | Mechanisms | Self-governance · The Audit-to-Lint mechanism · Cross-source coherence lints · DDT pin-trailers |
 | Related | Hold intent with a mechanism: prevent first, sense the rest · The lifecycle stays, but now agents sit in the developer's seat |
-| In the book | book/2.3-the-governed-environment.html |
+| In the book | book/3.3-the-governed-environment.html |
 
 ## The idea
 
@@ -57,4 +57,4 @@ one spot; a control is a property of the whole environment.
 
 ## Read in the book →
 
-[Read in the book →](book/2.3-the-governed-environment.html)
+[Read in the book →](book/3.3-the-governed-environment.html)

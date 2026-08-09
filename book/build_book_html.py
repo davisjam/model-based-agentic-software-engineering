@@ -424,8 +424,8 @@ _PART_DIRS = {
 _PART_TITLES = {
     0: "Front Matter",
     1: "The Mindset",
-    2: "The Governed Engineering Environment",
-    3: "The Model Zoo",
+    2: "The Model Zoo",
+    3: "The Governed Engineering Environment",
     4: "Putting It to Work",
     5: "A MAGE Case Study",
     6: "The Profession",

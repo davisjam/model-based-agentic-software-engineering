@@ -572,24 +572,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="1.3-loops-and-models.html">3&nbsp; Loops and Models</a></li>
 <li><a class="" href="1.4-why-mage-follows-from-the-machine.html">4&nbsp; Why MAGE Follows from the Machine</a></li>
 <li><a class="" href="1.5-the-engineers-seat.html">5&nbsp; The Engineer's Seat</a></li>
-<li class="part">Part 2 — The Governed Engineering Environment</li>
-<li><a class="" href="part-2-intro.html">The Governed Engineering Environment</a></li>
-<li><a class="" href="2.1-the-agent-stack.html">6&nbsp; The Agent Stack</a></li>
-<li><a class="" href="2.2-models-and-the-semantic-gap.html">7&nbsp; Models and the Semantic Gap</a></li>
-<li><a class="" href="2.3-the-governed-environment.html">8&nbsp; The Governed Environment: Ex-Ante and Ex-Post</a></li>
-<li><a class="" href="2.4-lifecycles-and-runbooks.html">9&nbsp; Lifecycles and Runbooks</a></li>
-<li><a class="" href="2.5-metrics.html">10&nbsp; Metrics</a></li>
-<li><a class="" href="2.6-when-guardrails-collide.html">11&nbsp; When Guardrails Collide</a></li>
-<li class="part">Part 3 — The Model Zoo</li>
-<li><a class="" href="part-3-intro.html">The Model Zoo</a></li>
-<li><a class="" href="3.1-the-executable-zoo.html">12&nbsp; The Executable Zoo</a></li>
-<li><a class="" href="3.2-the-logical-view.html">13&nbsp; The Logical View</a></li>
-<li><a class="" href="3.3-the-process-view.html">14&nbsp; The Process View</a></li>
-<li><a class="" href="3.4-the-development-view.html">15&nbsp; The Development View</a></li>
-<li><a class="" href="3.5-the-physical-view.html">16&nbsp; The Physical View</a></li>
-<li><a class="" href="3.6-the-scenarios-view.html">17&nbsp; The Scenarios View</a></li>
-<li><a class="" href="3.7-the-scope-of-modeling.html">18&nbsp; The Scope of Modeling</a></li>
-<li><a class="" href="3.8-keeping-models-in-sync.html">19&nbsp; Keeping the Models in Sync with the Code — A Measurement</a></li>
+<li class="part">Part 2 — The Model Zoo</li>
+<li><a class="" href="part-2-intro.html">The Model Zoo</a></li>
+<li><a class="" href="2.1-the-executable-zoo.html">6&nbsp; The Executable Zoo</a></li>
+<li><a class="" href="2.2-the-logical-view.html">7&nbsp; The Logical View</a></li>
+<li><a class="" href="2.3-the-process-view.html">8&nbsp; The Process View</a></li>
+<li><a class="" href="2.4-the-development-view.html">9&nbsp; The Development View</a></li>
+<li><a class="" href="2.5-the-physical-view.html">10&nbsp; The Physical View</a></li>
+<li><a class="" href="2.6-the-scenarios-view.html">11&nbsp; The Scenarios View</a></li>
+<li><a class="" href="2.7-the-scope-of-modeling.html">12&nbsp; The Scope of Modeling</a></li>
+<li><a class="" href="2.8-keeping-models-in-sync.html">13&nbsp; Keeping the Models in Sync with the Code — A Measurement</a></li>
+<li class="part">Part 3 — The Governed Engineering Environment</li>
+<li><a class="" href="part-3-intro.html">The Governed Engineering Environment</a></li>
+<li><a class="" href="3.1-the-agent-stack.html">14&nbsp; The Agent Stack</a></li>
+<li><a class="" href="3.2-models-and-the-semantic-gap.html">15&nbsp; Models and the Semantic Gap</a></li>
+<li><a class="" href="3.3-the-governed-environment.html">16&nbsp; The Governed Environment: Ex-Ante and Ex-Post</a></li>
+<li><a class="" href="3.4-lifecycles-and-runbooks.html">17&nbsp; Lifecycles and Runbooks</a></li>
+<li><a class="" href="3.5-metrics.html">18&nbsp; Metrics</a></li>
+<li><a class="" href="3.6-when-guardrails-collide.html">19&nbsp; When Guardrails Collide</a></li>
 <li class="part">Part 4 — Putting It to Work</li>
 <li><a class="" href="part-4-intro.html">Putting It to Work</a></li>
 <li><a class="" href="4.1-brownfield.html">20&nbsp; Brownfield</a></li>
@@ -691,7 +691,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">6.5.3</span> The modeling tradition: Model-Driven Software Engineering</h2>
 <p>The third book is <strong>Model-Driven Software Engineering in Practice</strong> (Brambilla, Cabot, and Wimmer, 2017) <sup class="cite-ref"><a href="#wc-6-5-where-mage-fits-3" aria-label="citation 3">3</a></sup><span class="cite-note"><span class="cn-mark">3.</span> Marco Brambilla et al., <em>Model-Driven Software Engineering in Practice</em>, 2nd ed. (Morgan &amp; Claypool, 2017).</span>, the standard concise statement of the modeling tradition: treat models as first-class engineering artifacts, structured representations with defined semantics a tool can check, not pictures pinned beside the code. That tradition is the lineage MAGE descends from — the <em>M</em> in its name.</p>
 <p>MAGE inherits it whole, minus two prescriptions. Classical model-driven engineering fixes an authoring direction, write the model and generate the code, and leans on a heavyweight tool stack to make the generation work. MAGE needs neither. Its claim is about maintenance, not authorship: model and code must stay equal, and agents keep them equal under drift gates, whichever came first — model authored and code derived, model induced from existing code, or the two co-evolved.</p>
-<p>The tradition's moment arrives now because one model does two jobs at once. It solves the agent's context problem, since the fleet reasons over a compact picture instead of the whole subsystem. And it holds quality, since the gates keep the map equal to the territory. <a href="3.1-the-executable-zoo.html">The executable zoo</a> makes the full inheritance argument. <a href="6.2-implications-for-se.html">Earlier in this part</a> traced why the field's last run at central models — CASE and Model-Driven Architecture — stalled, with maintenance cost one barrier among several; agents change that price, and changing it is what reopens the question.</p>
+<p>The tradition's moment arrives now because one model does two jobs at once. It solves the agent's context problem, since the fleet reasons over a compact picture instead of the whole subsystem. And it holds quality, since the gates keep the map equal to the territory. <a href="2.1-the-executable-zoo.html">The executable zoo</a> makes the full inheritance argument. <a href="6.2-implications-for-se.html">Earlier in this part</a> traced why the field's last run at central models — CASE and Model-Driven Architecture — stalled, with maintenance cost one barrier among several; agents change that price, and changing it is what reopens the question.</p>
 <h2><span class="sec-num">6.5.4</span> Older aspirations, new economics</h2>
 <p>Step back from the three books and a longer pattern shows. The aspiration MAGE serves is old.</p>
 <p>Royce argued in 1970 for building the system twice and writing down what it does — for iteration and documentation, not the rigid waterfall his paper is so often blamed for. Brooks named the essential difficulty of software and the disciplined process it demands. Parnas showed how to hide each decision behind an interface, so a system could change without unravelling. Sommerville's textbooks taught a generation that engineering software means systematic process, not heroics. Different authors, one recurring conviction: engineering should rest on disciplined process, explicit structure, and knowledge encoded into the work rather than carried in a head.</p>

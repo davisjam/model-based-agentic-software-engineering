@@ -66,7 +66,7 @@
         "CAT:models-bridge/system-models/symbol-anchored-traceability-graph",
         "CAT:models-bridge/system-models/drift-parity-gates",
         "CAT:models-bridge/system-models/executable-source-of-truth",
-        "CH:3.8-keeping-models-in-sync"
+        "CH:2.8-keeping-models-in-sync"
       ],
       "assessment_signals": ["model-freshness"],
       "page_geometry": "portrait",
@@ -124,7 +124,7 @@
         "THEORY:H1-failure-class-exposure",
         "THEORY:H7-conversion-conditions",
         "DASH:control-growth",
-        "CH:2.3-the-governed-environment"
+        "CH:3.3-the-governed-environment"
       ],
       "assessment_signals": ["governance-conversion-rate"],
       "page_geometry": "portrait",

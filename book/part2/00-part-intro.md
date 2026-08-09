@@ -1,19 +1,10 @@
-<!-- part-foreshadows: govern-the-environment, alignment-thesis, failures-become-machinery -->
-Part 1 argued that reliability should come from the environment rather than from repeatedly
-reading code. This Part builds that environment. The question this Part answers is how an
-engineering environment becomes trustworthy — trustworthy enough that reliability comes from
-it rather than from a human re-reading the code.
-
-Reliability is not one mechanism but a collection of them. Some obligations are known before
-the first line of code is written. Others surface only when a fast-moving agent makes a new
-mistake. This Part develops the environment that captures both: the policies you encode from
-the start, and the mechanisms that grow later, as governance conversion turns experience into
-infrastructure. Along the way you assemble a working vocabulary of constraints, sensors,
-validators, gates, runbooks, metrics, and control graphs. None of these is an isolated tool;
-each is a piece of one governed engineering environment. What you are building is not the
-software but the machinery that builds trustworthy software.
-
-By the end you will see that environment not as a collection of tools but as an engineered
-system in its own right — one you finally turn the method back onto, governing the governance,
-and one that increasingly carries the judgment that would otherwise have stayed in people's
-heads.
+<!-- part-foreshadows: sync-cost-reduced, modeling-thesis, mage-becomes-practical -->
+Model-based engineering never failed on its ideas. It failed on the cost of keeping models
+equal to rapidly changing code. Coding agents change that equation. This Part argues that
+models can once again become first-class engineering artifacts: not documentation that slowly
+rots, but executable representations the fleet reasons through and the environment
+continuously keeps true. This Part shows the cost has moved: agents can perform the recurring
+derivation and reconciliation that once made models too expensive to keep. Kruchten's
+four-plus-one views supply the test cases. The goal is not to teach one
+modeling framework. It is to show why models have become practical again. The time for
+models has come.

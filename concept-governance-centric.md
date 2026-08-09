@@ -7,7 +7,7 @@
 | Claim | The environment is the object of engineering. Encode each obligation as a mechanism it enforces, so quality is a property of the ground agents stand on. |
 | Mechanisms | Pre-commit hook · Staged deploy gates · Cron-alerts gate |
 | Related | Engineering Capital · Documentation, taken to its limit, is a structured model |
-| In the book | book/2.3-the-governed-environment.html |
+| In the book | book/3.3-the-governed-environment.html |
 
 ## The idea
 
@@ -58,4 +58,4 @@ commit without getting tired. Reviewers watch the work; the environment holds th
 
 ## Read in the book →
 
-[Read in the book →](book/2.3-the-governed-environment.html)
+[Read in the book →](book/3.3-the-governed-environment.html)

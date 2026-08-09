@@ -572,24 +572,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="1.3-loops-and-models.html">3&nbsp; Loops and Models</a></li>
 <li><a class="" href="1.4-why-mage-follows-from-the-machine.html">4&nbsp; Why MAGE Follows from the Machine</a></li>
 <li><a class="" href="1.5-the-engineers-seat.html">5&nbsp; The Engineer's Seat</a></li>
-<li class="part">Part 2 — The Governed Engineering Environment</li>
-<li><a class="" href="part-2-intro.html">The Governed Engineering Environment</a></li>
-<li><a class="" href="2.1-the-agent-stack.html">6&nbsp; The Agent Stack</a></li>
-<li><a class="" href="2.2-models-and-the-semantic-gap.html">7&nbsp; Models and the Semantic Gap</a></li>
-<li><a class="" href="2.3-the-governed-environment.html">8&nbsp; The Governed Environment: Ex-Ante and Ex-Post</a></li>
-<li><a class="" href="2.4-lifecycles-and-runbooks.html">9&nbsp; Lifecycles and Runbooks</a></li>
-<li><a class="" href="2.5-metrics.html">10&nbsp; Metrics</a></li>
-<li><a class="" href="2.6-when-guardrails-collide.html">11&nbsp; When Guardrails Collide</a></li>
-<li class="part">Part 3 — The Model Zoo</li>
-<li><a class="" href="part-3-intro.html">The Model Zoo</a></li>
-<li><a class="" href="3.1-the-executable-zoo.html">12&nbsp; The Executable Zoo</a></li>
-<li><a class="" href="3.2-the-logical-view.html">13&nbsp; The Logical View</a></li>
-<li><a class="" href="3.3-the-process-view.html">14&nbsp; The Process View</a></li>
-<li><a class="" href="3.4-the-development-view.html">15&nbsp; The Development View</a></li>
-<li><a class="" href="3.5-the-physical-view.html">16&nbsp; The Physical View</a></li>
-<li><a class="" href="3.6-the-scenarios-view.html">17&nbsp; The Scenarios View</a></li>
-<li><a class="" href="3.7-the-scope-of-modeling.html">18&nbsp; The Scope of Modeling</a></li>
-<li><a class="" href="3.8-keeping-models-in-sync.html">19&nbsp; Keeping the Models in Sync with the Code — A Measurement</a></li>
+<li class="part">Part 2 — The Model Zoo</li>
+<li><a class="" href="part-2-intro.html">The Model Zoo</a></li>
+<li><a class="" href="2.1-the-executable-zoo.html">6&nbsp; The Executable Zoo</a></li>
+<li><a class="" href="2.2-the-logical-view.html">7&nbsp; The Logical View</a></li>
+<li><a class="" href="2.3-the-process-view.html">8&nbsp; The Process View</a></li>
+<li><a class="" href="2.4-the-development-view.html">9&nbsp; The Development View</a></li>
+<li><a class="" href="2.5-the-physical-view.html">10&nbsp; The Physical View</a></li>
+<li><a class="" href="2.6-the-scenarios-view.html">11&nbsp; The Scenarios View</a></li>
+<li><a class="" href="2.7-the-scope-of-modeling.html">12&nbsp; The Scope of Modeling</a></li>
+<li><a class="" href="2.8-keeping-models-in-sync.html">13&nbsp; Keeping the Models in Sync with the Code — A Measurement</a></li>
+<li class="part">Part 3 — The Governed Engineering Environment</li>
+<li><a class="" href="part-3-intro.html">The Governed Engineering Environment</a></li>
+<li><a class="" href="3.1-the-agent-stack.html">14&nbsp; The Agent Stack</a></li>
+<li><a class="" href="3.2-models-and-the-semantic-gap.html">15&nbsp; Models and the Semantic Gap</a></li>
+<li><a class="" href="3.3-the-governed-environment.html">16&nbsp; The Governed Environment: Ex-Ante and Ex-Post</a></li>
+<li><a class="" href="3.4-lifecycles-and-runbooks.html">17&nbsp; Lifecycles and Runbooks</a></li>
+<li><a class="" href="3.5-metrics.html">18&nbsp; Metrics</a></li>
+<li><a class="" href="3.6-when-guardrails-collide.html">19&nbsp; When Guardrails Collide</a></li>
 <li class="part">Part 4 — Putting It to Work</li>
 <li><a class="" href="part-4-intro.html">Putting It to Work</a></li>
 <li><a class="" href="4.1-brownfield.html">20&nbsp; Brownfield</a></li>
@@ -875,7 +875,7 @@ class Component:
 </svg><figcaption data-short="The MAGE Staircase"><span class="fig-label">Figure 5.4-1.</span> <em>The MAGE Staircase.</em> Five rungs, each a job the one below could no longer do, and each safe to climb only because the step under it first minted the control the next would need. Co-coder: one human reviews every line, until volume outruns him. QA: an agent audits the work, until one generalist reviewer cannot rank or localize. Review lead: a crew of specialists runs per zone. Tech lead: named zones let an agent reason locally, fenced by a boundary lint. Architect: the system is committed to explicit models the fleet reasons through, held honest by a traceability substrate — that is MAGE. The ladder runs in reverse the moment governance misses what a delegation dropped.</figcaption></figure>
 <p>The Architect rung is where the ladder ends, but the work on it does not. Every model so far was built the same way: I noticed a load and modeled it. That is a <em>supply-side</em> method — it models what I happen to see. Once there are a dozen models and a traceability graph, the obvious question is the one I could not answer by looking harder: <strong>what is still unmodeled?</strong> That is the <a href="4.1-brownfield.html">Brownfield</a> problem, turned inward on my own system. A greenfield method invents the models it wants up front; a brownfield method inherits a large, already-built system and has to <em>discover</em> the models the system already implies but nobody has drawn yet. That is the situation I was actually in, and it needed a different instrument.</p>
 <p>The instrument is the <strong>Missing Model Metric</strong>, the dual of test coverage. Ordinary coverage walks model-to-code — for each model, is it tested? This one walks <strong>code-to-model</strong>: start from a test, follow the production code it exercises, and ask whether any of that code carries a model anchor. A test that reaches <em>no</em> anchor is an <strong>orphan</strong>; clustered by the unmodeled code they run through, the orphans are a candidate list of <em>missing models</em>. (The mechanics are laid out in full in <a href="4.1-brownfield.html">the Brownfield chapter</a>; here what matters is what the metric revealed.) On its first run over the dispatch subsystem — the <em>most</em> heavily modeled corner of the codebase, where orphans should have been rare — more than half the tests came back orphaned (the pilot rate, 56%). A sharpening pass turned that scolding into a map: every orphan reached code the model already knew at the coarse structural level, but that carried no fine behavioral model. The structural map was complete; the behavioral map covered the concurrency-critical spine and stopped. The metric had found a <em>granularity gap</em>, and it named exactly where to close it — three genuine candidate models: the durable-state persistence layer, the cost-and-subprocess pipeline, and the chunking-merge-and-validation path.</p>
-<p>That map drove a loop, and the loop has run. Measure the orphan rate; rank the biggest clusters; for the largest, found a modeling Epic and drive it to a strong structured model under a real design review; re-measure; take the next cluster. The key property is the one that makes it a <em>modeling</em> instrument rather than a testing one: you do not move the number by adding a test — you move it by adding a <em>model</em>. Wave by wave, the loop worked as designed. The three seed models drove the dispatch subsystem's orphan rate down from its 56% pilot to 39%, and the next cluster — the sidecar persistence seams — carried it lower still along the drain series (For the data, see <a href="2.5-metrics.html#mmm-drain">Metrics →</a>). Each closed model converted exactly the tests that reach its new anchors from orphan to modeled — the expected directional response, which supports that the metric is tracking its declared relation.</p>
+<p>That map drove a loop, and the loop has run. Measure the orphan rate; rank the biggest clusters; for the largest, found a modeling Epic and drive it to a strong structured model under a real design review; re-measure; take the next cluster. The key property is the one that makes it a <em>modeling</em> instrument rather than a testing one: you do not move the number by adding a test — you move it by adding a <em>model</em>. Wave by wave, the loop worked as designed. The three seed models drove the dispatch subsystem's orphan rate down from its 56% pilot to 39%, and the next cluster — the sidecar persistence seams — carried it lower still along the drain series (For the data, see <a href="3.5-metrics.html#mmm-drain">Metrics →</a>). Each closed model converted exactly the tests that reach its new anchors from orphan to modeled — the expected directional response, which supports that the metric is tracking its declared relation.</p>
 <p><strong>What modeling found that green tests missed</strong></p>
 <p>The loop was not bookkeeping. Building those models found real, shipping bugs the green tests had missed — the payoff that justifies the whole method. Modeling the cross-language pipeline seam caught a subprocess exit code that one runtime emitted and the other had never enumerated, so a "the service should have worked" failure was being silently misfiled as a generic error. Anchoring the chunking model to its one canonical cleanup seam exposed a failure path that purged a job's database rows and blobs but skipped the queue structures its sibling path always cleaned — a chunk leak on a rare redelivery edge. And modeling the interactive editor's save round-trip surfaced an unfenced last-write-wins race in which two concurrent edits silently discarded one's work. None of these was a hypothetical the model raised; each was a live defect the act of modeling forced into view.</p>
 <p>So the method that began with a human reviewing every line arrived at a system that measures its own modeling completeness and dispatches work to close the gap it finds — a codebase modeling <em>itself</em>, brownfield, in a loop. The metric and the orchestration loop identify candidate modeling work; the engineer still decides what model should exist. MAGE was never designed. It was demanded, step by step, by a system that kept growing and a bar that kept rising — and the last thing it demanded was that the method turn its own instruments back on the parts of itself it had not yet named.</p>

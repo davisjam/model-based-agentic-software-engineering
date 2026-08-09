@@ -64,59 +64,59 @@
             "occ": 9
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
-            "occ": 52
-          },
-          {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
-            "occ": 26
-          },
-          {
-            "file": "book/2.3-the-governed-environment.html",
-            "occ": 29
-          },
-          {
-            "file": "book/2.4-lifecycles-and-runbooks.html",
-            "occ": 27
-          },
-          {
-            "file": "book/2.5-metrics.html",
-            "occ": 11
-          },
-          {
-            "file": "book/2.6-when-guardrails-collide.html",
-            "occ": 8
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
+            "file": "book/2.1-the-executable-zoo.html",
             "occ": 30
           },
           {
-            "file": "book/3.2-the-logical-view.html",
+            "file": "book/2.2-the-logical-view.html",
             "occ": 4
           },
           {
-            "file": "book/3.3-the-process-view.html",
+            "file": "book/2.3-the-process-view.html",
             "occ": 3
           },
           {
-            "file": "book/3.4-the-development-view.html",
+            "file": "book/2.4-the-development-view.html",
             "occ": 8
           },
           {
-            "file": "book/3.5-the-physical-view.html",
+            "file": "book/2.5-the-physical-view.html",
             "occ": 4
           },
           {
-            "file": "book/3.6-the-scenarios-view.html",
+            "file": "book/2.6-the-scenarios-view.html",
             "occ": 7
           },
           {
-            "file": "book/3.7-the-scope-of-modeling.html",
+            "file": "book/2.7-the-scope-of-modeling.html",
             "occ": 4
           },
           {
-            "file": "book/3.8-keeping-models-in-sync.html",
+            "file": "book/2.8-keeping-models-in-sync.html",
+            "occ": 8
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
+            "occ": 52
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 26
+          },
+          {
+            "file": "book/3.3-the-governed-environment.html",
+            "occ": 29
+          },
+          {
+            "file": "book/3.4-lifecycles-and-runbooks.html",
+            "occ": 27
+          },
+          {
+            "file": "book/3.5-metrics.html",
+            "occ": 11
+          },
+          {
+            "file": "book/3.6-when-guardrails-collide.html",
             "occ": 8
           },
           {
@@ -445,11 +445,11 @@
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 5
+            "occ": 3
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 3
+            "occ": 5
           },
           {
             "file": "book/part-4-intro.html",
@@ -902,24 +902,24 @@
             "occ": 5
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
-            "occ": 4
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
+            "file": "book/2.1-the-executable-zoo.html",
             "occ": 1
           },
           {
-            "file": "book/3.3-the-process-view.html",
+            "file": "book/2.3-the-process-view.html",
             "occ": 1
           },
           {
-            "file": "book/3.6-the-scenarios-view.html",
+            "file": "book/2.6-the-scenarios-view.html",
             "occ": 1
           },
           {
-            "file": "book/3.8-keeping-models-in-sync.html",
+            "file": "book/2.8-keeping-models-in-sync.html",
             "occ": 2
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
+            "occ": 4
           },
           {
             "file": "book/4.1-brownfield.html",
@@ -1074,20 +1074,20 @@
             "occ": 5
           },
           {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
+            "file": "book/2.1-the-executable-zoo.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.8-keeping-models-in-sync.html",
+            "occ": 3
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
             "occ": 1
           },
           {
-            "file": "book/2.3-the-governed-environment.html",
+            "file": "book/3.3-the-governed-environment.html",
             "occ": 2
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
-            "occ": 2
-          },
-          {
-            "file": "book/3.8-keeping-models-in-sync.html",
-            "occ": 3
           },
           {
             "file": "book/4.1-brownfield.html",
@@ -1410,7 +1410,7 @@
             "occ": 1
           },
           {
-            "file": "book/3.8-keeping-models-in-sync.html",
+            "file": "book/2.8-keeping-models-in-sync.html",
             "occ": 1
           }
         ],
@@ -1503,79 +1503,79 @@
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 30
+            "occ": 29
           },
           {
             "file": "book/1.2-mage-by-example.html",
-            "occ": 10
+            "occ": 9
           },
           {
             "file": "book/1.3-loops-and-models.html",
-            "occ": 15
+            "occ": 14
           },
           {
             "file": "book/1.4-why-mage-follows-from-the-machine.html",
-            "occ": 30
+            "occ": 29
           },
           {
             "file": "book/1.5-the-engineers-seat.html",
-            "occ": 24
+            "occ": 22
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
+            "file": "book/2.1-the-executable-zoo.html",
+            "occ": 16
+          },
+          {
+            "file": "book/2.2-the-logical-view.html",
+            "occ": 9
+          },
+          {
+            "file": "book/2.3-the-process-view.html",
+            "occ": 8
+          },
+          {
+            "file": "book/2.4-the-development-view.html",
+            "occ": 8
+          },
+          {
+            "file": "book/2.5-the-physical-view.html",
+            "occ": 8
+          },
+          {
+            "file": "book/2.6-the-scenarios-view.html",
+            "occ": 9
+          },
+          {
+            "file": "book/2.7-the-scope-of-modeling.html",
+            "occ": 9
+          },
+          {
+            "file": "book/2.8-keeping-models-in-sync.html",
+            "occ": 11
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
             "occ": 42
           },
           {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
+            "file": "book/3.2-models-and-the-semantic-gap.html",
             "occ": 18
           },
           {
-            "file": "book/2.3-the-governed-environment.html",
+            "file": "book/3.3-the-governed-environment.html",
             "occ": 32
           },
           {
-            "file": "book/2.4-lifecycles-and-runbooks.html",
+            "file": "book/3.4-lifecycles-and-runbooks.html",
             "occ": 10
           },
           {
-            "file": "book/2.5-metrics.html",
+            "file": "book/3.5-metrics.html",
             "occ": 13
           },
           {
-            "file": "book/2.6-when-guardrails-collide.html",
+            "file": "book/3.6-when-guardrails-collide.html",
             "occ": 10
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
-            "occ": 15
-          },
-          {
-            "file": "book/3.2-the-logical-view.html",
-            "occ": 8
-          },
-          {
-            "file": "book/3.3-the-process-view.html",
-            "occ": 7
-          },
-          {
-            "file": "book/3.4-the-development-view.html",
-            "occ": 7
-          },
-          {
-            "file": "book/3.5-the-physical-view.html",
-            "occ": 7
-          },
-          {
-            "file": "book/3.6-the-scenarios-view.html",
-            "occ": 8
-          },
-          {
-            "file": "book/3.7-the-scope-of-modeling.html",
-            "occ": 8
-          },
-          {
-            "file": "book/3.8-keeping-models-in-sync.html",
-            "occ": 9
           },
           {
             "file": "book/4.1-brownfield.html",
@@ -1899,15 +1899,15 @@
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 12
+            "occ": 11
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 18
+            "occ": 13
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 12
+            "occ": 18
           },
           {
             "file": "book/part-4-intro.html",
@@ -2108,59 +2108,59 @@
             "occ": 1
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
+            "file": "book/2.1-the-executable-zoo.html",
             "occ": 1
           },
           {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
+            "file": "book/2.2-the-logical-view.html",
             "occ": 1
           },
           {
-            "file": "book/2.3-the-governed-environment.html",
+            "file": "book/2.3-the-process-view.html",
             "occ": 1
           },
           {
-            "file": "book/2.4-lifecycles-and-runbooks.html",
+            "file": "book/2.4-the-development-view.html",
             "occ": 1
           },
           {
-            "file": "book/2.5-metrics.html",
+            "file": "book/2.5-the-physical-view.html",
             "occ": 1
           },
           {
-            "file": "book/2.6-when-guardrails-collide.html",
+            "file": "book/2.6-the-scenarios-view.html",
             "occ": 1
           },
           {
-            "file": "book/3.1-the-executable-zoo.html",
+            "file": "book/2.7-the-scope-of-modeling.html",
             "occ": 1
           },
           {
-            "file": "book/3.2-the-logical-view.html",
+            "file": "book/2.8-keeping-models-in-sync.html",
             "occ": 1
           },
           {
-            "file": "book/3.3-the-process-view.html",
+            "file": "book/3.1-the-agent-stack.html",
             "occ": 1
           },
           {
-            "file": "book/3.4-the-development-view.html",
+            "file": "book/3.2-models-and-the-semantic-gap.html",
             "occ": 1
           },
           {
-            "file": "book/3.5-the-physical-view.html",
+            "file": "book/3.3-the-governed-environment.html",
             "occ": 1
           },
           {
-            "file": "book/3.6-the-scenarios-view.html",
+            "file": "book/3.4-lifecycles-and-runbooks.html",
             "occ": 1
           },
           {
-            "file": "book/3.7-the-scope-of-modeling.html",
+            "file": "book/3.5-metrics.html",
             "occ": 1
           },
           {
-            "file": "book/3.8-keeping-models-in-sync.html",
+            "file": "book/3.6-when-guardrails-collide.html",
             "occ": 1
           },
           {
@@ -2610,52 +2610,52 @@
             "occ": 1
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
-            "occ": 4
-          },
-          {
-            "file": "book/2.3-the-governed-environment.html",
-            "occ": 3
-          },
-          {
-            "file": "book/2.4-lifecycles-and-runbooks.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.5-metrics.html",
-            "occ": 4
-          },
-          {
-            "file": "book/2.6-when-guardrails-collide.html",
-            "occ": 4
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
+            "file": "book/2.1-the-executable-zoo.html",
             "occ": 5
           },
           {
-            "file": "book/3.2-the-logical-view.html",
+            "file": "book/2.2-the-logical-view.html",
             "occ": 2
           },
           {
-            "file": "book/3.3-the-process-view.html",
+            "file": "book/2.3-the-process-view.html",
             "occ": 3
           },
           {
-            "file": "book/3.4-the-development-view.html",
+            "file": "book/2.4-the-development-view.html",
             "occ": 2
           },
           {
-            "file": "book/3.5-the-physical-view.html",
+            "file": "book/2.5-the-physical-view.html",
             "occ": 4
           },
           {
-            "file": "book/3.6-the-scenarios-view.html",
+            "file": "book/2.6-the-scenarios-view.html",
             "occ": 5
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 4
+          },
+          {
+            "file": "book/3.3-the-governed-environment.html",
+            "occ": 3
+          },
+          {
+            "file": "book/3.4-lifecycles-and-runbooks.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.5-metrics.html",
+            "occ": 4
+          },
+          {
+            "file": "book/3.6-when-guardrails-collide.html",
+            "occ": 4
           },
           {
             "file": "book/4.1-brownfield.html",
@@ -2841,79 +2841,79 @@
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 20
+            "occ": 21
           },
           {
             "file": "book/1.2-mage-by-example.html",
-            "occ": 20
+            "occ": 21
           },
           {
             "file": "book/1.3-loops-and-models.html",
-            "occ": 31
+            "occ": 32
           },
           {
             "file": "book/1.4-why-mage-follows-from-the-machine.html",
-            "occ": 43
+            "occ": 44
           },
           {
             "file": "book/1.5-the-engineers-seat.html",
-            "occ": 18
+            "occ": 20
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
-            "occ": 85
-          },
-          {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
-            "occ": 112
-          },
-          {
-            "file": "book/2.3-the-governed-environment.html",
-            "occ": 26
-          },
-          {
-            "file": "book/2.4-lifecycles-and-runbooks.html",
-            "occ": 12
-          },
-          {
-            "file": "book/2.5-metrics.html",
-            "occ": 59
-          },
-          {
-            "file": "book/2.6-when-guardrails-collide.html",
-            "occ": 19
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
+            "file": "book/2.1-the-executable-zoo.html",
             "occ": 156
           },
           {
-            "file": "book/3.2-the-logical-view.html",
+            "file": "book/2.2-the-logical-view.html",
             "occ": 45
           },
           {
-            "file": "book/3.3-the-process-view.html",
+            "file": "book/2.3-the-process-view.html",
             "occ": 40
           },
           {
-            "file": "book/3.4-the-development-view.html",
+            "file": "book/2.4-the-development-view.html",
             "occ": 26
           },
           {
-            "file": "book/3.5-the-physical-view.html",
+            "file": "book/2.5-the-physical-view.html",
             "occ": 59
           },
           {
-            "file": "book/3.6-the-scenarios-view.html",
+            "file": "book/2.6-the-scenarios-view.html",
             "occ": 29
           },
           {
-            "file": "book/3.7-the-scope-of-modeling.html",
+            "file": "book/2.7-the-scope-of-modeling.html",
             "occ": 30
           },
           {
-            "file": "book/3.8-keeping-models-in-sync.html",
+            "file": "book/2.8-keeping-models-in-sync.html",
             "occ": 75
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
+            "occ": 84
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 111
+          },
+          {
+            "file": "book/3.3-the-governed-environment.html",
+            "occ": 25
+          },
+          {
+            "file": "book/3.4-lifecycles-and-runbooks.html",
+            "occ": 11
+          },
+          {
+            "file": "book/3.5-metrics.html",
+            "occ": 58
+          },
+          {
+            "file": "book/3.6-when-guardrails-collide.html",
+            "occ": 17
           },
           {
             "file": "book/4.1-brownfield.html",
@@ -3237,15 +3237,15 @@
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 12
+            "occ": 13
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 12
+            "occ": 17
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 17
+            "occ": 11
           },
           {
             "file": "book/part-4-intro.html",
@@ -3803,79 +3803,79 @@
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/1.2-mage-by-example.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/1.3-loops-and-models.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/1.4-why-mage-follows-from-the-machine.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/1.5-the-engineers-seat.html",
-            "occ": 3
-          },
-          {
-            "file": "book/2.1-the-agent-stack.html",
-            "occ": 3
-          },
-          {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
             "occ": 5
           },
           {
-            "file": "book/2.3-the-governed-environment.html",
-            "occ": 3
-          },
-          {
-            "file": "book/2.4-lifecycles-and-runbooks.html",
-            "occ": 3
-          },
-          {
-            "file": "book/2.5-metrics.html",
-            "occ": 3
-          },
-          {
-            "file": "book/2.6-when-guardrails-collide.html",
-            "occ": 4
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
+            "file": "book/2.1-the-executable-zoo.html",
             "occ": 6
           },
           {
-            "file": "book/3.2-the-logical-view.html",
+            "file": "book/2.2-the-logical-view.html",
             "occ": 5
           },
           {
-            "file": "book/3.3-the-process-view.html",
+            "file": "book/2.3-the-process-view.html",
             "occ": 5
           },
           {
-            "file": "book/3.4-the-development-view.html",
+            "file": "book/2.4-the-development-view.html",
             "occ": 5
           },
           {
-            "file": "book/3.5-the-physical-view.html",
+            "file": "book/2.5-the-physical-view.html",
             "occ": 5
           },
           {
-            "file": "book/3.6-the-scenarios-view.html",
+            "file": "book/2.6-the-scenarios-view.html",
             "occ": 5
           },
           {
-            "file": "book/3.7-the-scope-of-modeling.html",
+            "file": "book/2.7-the-scope-of-modeling.html",
             "occ": 5
           },
           {
-            "file": "book/3.8-keeping-models-in-sync.html",
+            "file": "book/2.8-keeping-models-in-sync.html",
             "occ": 5
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 4
+          },
+          {
+            "file": "book/3.3-the-governed-environment.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.4-lifecycles-and-runbooks.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.5-metrics.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.6-when-guardrails-collide.html",
+            "occ": 2
           },
           {
             "file": "book/4.1-brownfield.html",
@@ -4195,15 +4195,15 @@
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 5
-          },
-          {
-            "file": "book/part-2-intro.html",
             "occ": 6
           },
           {
-            "file": "book/part-3-intro.html",
+            "file": "book/part-2-intro.html",
             "occ": 11
+          },
+          {
+            "file": "book/part-3-intro.html",
+            "occ": 5
           },
           {
             "file": "book/part-4-intro.html",
@@ -4272,24 +4272,24 @@
             "occ": 4
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
-            "occ": 2
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
+            "file": "book/2.1-the-executable-zoo.html",
             "occ": 3
           },
           {
-            "file": "book/3.2-the-logical-view.html",
+            "file": "book/2.2-the-logical-view.html",
             "occ": 1
           },
           {
-            "file": "book/3.8-keeping-models-in-sync.html",
+            "file": "book/2.8-keeping-models-in-sync.html",
             "occ": 3
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 2
           },
           {
             "file": "book/4.6-generative-validation.html",
@@ -4474,59 +4474,59 @@
             "occ": 3
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
+            "file": "book/2.1-the-executable-zoo.html",
             "occ": 1
           },
           {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
+            "file": "book/2.2-the-logical-view.html",
             "occ": 1
           },
           {
-            "file": "book/2.3-the-governed-environment.html",
+            "file": "book/2.3-the-process-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.4-the-development-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.5-the-physical-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.6-the-scenarios-view.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.7-the-scope-of-modeling.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.8-keeping-models-in-sync.html",
+            "occ": 1
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
+            "occ": 1
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 1
+          },
+          {
+            "file": "book/3.3-the-governed-environment.html",
             "occ": 6
           },
           {
-            "file": "book/2.4-lifecycles-and-runbooks.html",
+            "file": "book/3.4-lifecycles-and-runbooks.html",
             "occ": 1
           },
           {
-            "file": "book/2.5-metrics.html",
+            "file": "book/3.5-metrics.html",
             "occ": 1
           },
           {
-            "file": "book/2.6-when-guardrails-collide.html",
-            "occ": 1
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
-            "occ": 1
-          },
-          {
-            "file": "book/3.2-the-logical-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/3.3-the-process-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/3.4-the-development-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/3.5-the-physical-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/3.6-the-scenarios-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/3.7-the-scope-of-modeling.html",
-            "occ": 1
-          },
-          {
-            "file": "book/3.8-keeping-models-in-sync.html",
+            "file": "book/3.6-when-guardrails-collide.html",
             "occ": 1
           },
           {
@@ -4916,11 +4916,11 @@
             "occ": 5
           },
           {
-            "file": "book/2.3-the-governed-environment.html",
+            "file": "book/2.7-the-scope-of-modeling.html",
             "occ": 1
           },
           {
-            "file": "book/3.7-the-scope-of-modeling.html",
+            "file": "book/3.3-the-governed-environment.html",
             "occ": 1
           },
           {
@@ -5140,59 +5140,59 @@
             "occ": 7
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
-            "occ": 4
-          },
-          {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
-            "occ": 10
-          },
-          {
-            "file": "book/2.3-the-governed-environment.html",
-            "occ": 6
-          },
-          {
-            "file": "book/2.4-lifecycles-and-runbooks.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.5-metrics.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.6-when-guardrails-collide.html",
-            "occ": 2
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
+            "file": "book/2.1-the-executable-zoo.html",
             "occ": 5
           },
           {
-            "file": "book/3.2-the-logical-view.html",
+            "file": "book/2.2-the-logical-view.html",
             "occ": 2
           },
           {
-            "file": "book/3.3-the-process-view.html",
+            "file": "book/2.3-the-process-view.html",
             "occ": 2
           },
           {
-            "file": "book/3.4-the-development-view.html",
+            "file": "book/2.4-the-development-view.html",
             "occ": 2
           },
           {
-            "file": "book/3.5-the-physical-view.html",
+            "file": "book/2.5-the-physical-view.html",
             "occ": 2
           },
           {
-            "file": "book/3.6-the-scenarios-view.html",
+            "file": "book/2.6-the-scenarios-view.html",
             "occ": 2
           },
           {
-            "file": "book/3.7-the-scope-of-modeling.html",
+            "file": "book/2.7-the-scope-of-modeling.html",
             "occ": 2
           },
           {
-            "file": "book/3.8-keeping-models-in-sync.html",
+            "file": "book/2.8-keeping-models-in-sync.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
+            "occ": 4
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 10
+          },
+          {
+            "file": "book/3.3-the-governed-environment.html",
+            "occ": 6
+          },
+          {
+            "file": "book/3.4-lifecycles-and-runbooks.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.5-metrics.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.6-when-guardrails-collide.html",
             "occ": 2
           },
           {
@@ -5634,60 +5634,60 @@
             "occ": 3
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
-            "occ": 14
-          },
-          {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
-            "occ": 17
-          },
-          {
-            "file": "book/2.3-the-governed-environment.html",
-            "occ": 8
-          },
-          {
-            "file": "book/2.4-lifecycles-and-runbooks.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.5-metrics.html",
-            "occ": 5
-          },
-          {
-            "file": "book/2.6-when-guardrails-collide.html",
-            "occ": 1
-          },
-          {
-            "file": "book/3.1-the-executable-zoo.html",
+            "file": "book/2.1-the-executable-zoo.html",
             "occ": 16
           },
           {
-            "file": "book/3.2-the-logical-view.html",
+            "file": "book/2.2-the-logical-view.html",
             "occ": 5
           },
           {
-            "file": "book/3.3-the-process-view.html",
+            "file": "book/2.3-the-process-view.html",
             "occ": 1
           },
           {
-            "file": "book/3.4-the-development-view.html",
+            "file": "book/2.4-the-development-view.html",
             "occ": 1
           },
           {
-            "file": "book/3.5-the-physical-view.html",
+            "file": "book/2.5-the-physical-view.html",
             "occ": 1
           },
           {
-            "file": "book/3.6-the-scenarios-view.html",
+            "file": "book/2.6-the-scenarios-view.html",
             "occ": 1
           },
           {
-            "file": "book/3.7-the-scope-of-modeling.html",
+            "file": "book/2.7-the-scope-of-modeling.html",
             "occ": 1
           },
           {
-            "file": "book/3.8-keeping-models-in-sync.html",
+            "file": "book/2.8-keeping-models-in-sync.html",
             "occ": 8
+          },
+          {
+            "file": "book/3.1-the-agent-stack.html",
+            "occ": 14
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 17
+          },
+          {
+            "file": "book/3.3-the-governed-environment.html",
+            "occ": 8
+          },
+          {
+            "file": "book/3.4-lifecycles-and-runbooks.html",
+            "occ": 1
+          },
+          {
+            "file": "book/3.5-metrics.html",
+            "occ": 5
+          },
+          {
+            "file": "book/3.6-when-guardrails-collide.html",
+            "occ": 1
           },
           {
             "file": "book/4.1-brownfield.html",
@@ -6312,28 +6312,28 @@
             "occ": 1
           },
           {
-            "file": "book/2.1-the-agent-stack.html",
+            "file": "book/2.8-keeping-models-in-sync.html",
             "occ": 1
           },
           {
-            "file": "book/2.2-models-and-the-semantic-gap.html",
+            "file": "book/3.1-the-agent-stack.html",
             "occ": 1
           },
           {
-            "file": "book/2.3-the-governed-environment.html",
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 1
+          },
+          {
+            "file": "book/3.3-the-governed-environment.html",
             "occ": 10
           },
           {
-            "file": "book/2.4-lifecycles-and-runbooks.html",
+            "file": "book/3.4-lifecycles-and-runbooks.html",
             "occ": 2
           },
           {
-            "file": "book/2.5-metrics.html",
+            "file": "book/3.5-metrics.html",
             "occ": 5
-          },
-          {
-            "file": "book/3.8-keeping-models-in-sync.html",
-            "occ": 1
           },
           {
             "file": "book/4.1-brownfield.html",

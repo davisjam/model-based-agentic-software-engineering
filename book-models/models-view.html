@@ -267,182 +267,237 @@
 <h2>Module 2 — The Governed Engineering Environment</h2>
 <div class="outcomes"><div class="oc-h">After Module 2 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After Part 2, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper. <span class="prov">declared</span></span></li></ul></div>
 <div class="chapter">
-<h3 id="ch-2-1-the-agent-stack"><span class="tier-kick">Lesson</span><a href="../book/2.1-the-agent-stack.html" class="ch-link">2.1-the-agent-stack</a> <span class="ch-slug">2.1-the-agent-stack</span></h3>
-<div class="section s2" id="sec-2-1-the-agent-stack--first-three-definitions">
-<div class="sec-h"><a href="../book/2.1-the-agent-stack.html">First, three definitions</a></div>
-<p class="topic">Before the walk, three definitions — *agent*, *model*, and the adjective the second leans on, *structured*.</p>
+<h3 id="ch-2-1-the-executable-zoo"><span class="tier-kick">Lesson</span><a href="../book/2.1-the-executable-zoo.html" class="ch-link">2.1-the-executable-zoo</a> <span class="ch-slug">2.1-the-executable-zoo</span></h3>
+<div class="section s2" id="sec-2-1-the-executable-zoo--why-models-are-newly-central">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">Why models are newly central</a></div>
+<p class="topic">Part 1 derived the Modeling Thesis from the machine; this Part builds the executable-model architecture that earns it, then tests it across five views.</p>
 </div>
-<div class="section s2" id="sec-2-1-the-agent-stack--the-four-layers">
-<div class="sec-h"><a href="../book/2.1-the-agent-stack.html">The four layers</a></div>
-<p class="topic">**At the bottom sits the foundation model.** It comes from a commercial vendor or an open-weight release, and it is a general language reasoner, able to *induce* an understanding of your environment — though that induction is expensive, and it happens fresh every time.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify each of the four layers of the agent stack, from the foundation model up, and name the kind of governance grip each one gives. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify each of the four layers of the agent stack. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-2-1-the-executable-zoo--the-upkeep-that-constrained-mbse-a-fleet-now-pays-cheaply">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">The upkeep that constrained MBSE, a fleet now pays cheaply</a></div>
+<p class="topic">Model-based systems engineering did not fail on its ideas.</p>
 </div>
-<div class="section s2" id="sec-2-1-the-agent-stack--every-layer-is-a-place-to-steer">
-<div class="sec-h"><a href="../book/2.1-the-agent-stack.html">Every layer is a place to steer</a></div>
-<p class="topic">Read the stack as a list of opportunities, because that is what it is.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why each layer of the stack is an injection opportunity, all serving one goal — narrowing the agent&#x27;s search — and why the mechanisms placed there must themselves be governed for interplay. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-2-1-the-executable-zoo--kruchten-s-4-1-views-organize-the-part">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">Kruchten&#x27;s 4+1 views organize the Part</a></div>
+<p class="topic">The last chapter named Kruchten&#x27;s **4+1 views** as the reason one model is never enough.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain how 4+1 organizes the whole Part into five views over one core. <span class="prov">derived</span></span></li></ul></div>
 </div>
+<div class="section s3" id="sec-2-1-the-executable-zoo--what-this-book-adds-to-4-1-the-drift-gate">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">What this book adds to 4+1: the drift gate</a></div>
+<p class="topic">Kruchten, of course, described the views; he did not have a drift gate.</p>
 </div>
-<div class="chapter">
-<h3 id="ch-2-2-models-and-the-semantic-gap"><span class="tier-kick">Lesson</span><a href="../book/2.2-models-and-the-semantic-gap.html" class="ch-link">2.2-models-and-the-semantic-gap</a> <span class="ch-slug">2.2-models-and-the-semantic-gap</span></h3>
-<div class="section s2" id="sec-2-2-models-and-the-semantic-gap--words-are-soft-code-is-verbose-a-model-is-the-sweet-spot">
-<div class="sec-h"><a href="../book/2.2-models-and-the-semantic-gap.html">Words are soft, code is verbose, a model is the sweet spot</a></div>
-<p class="topic">Your first governance mechanism is the prompt, because the agent is a language model and words are how you talk to it.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can distinguish soft prose from verbose code and explain why a model — accurate, unambiguous, yet compact — is the sweet spot an agent can reason over. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s3" id="sec-2-1-the-executable-zoo--the-framework-is-a-choice-the-core-is-not">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">The framework is a choice; the core is not</a></div>
+<p class="topic">Making the model executable is why this Part is not really *about* 4+1.</p>
 </div>
-<div class="section s2" id="sec-2-2-models-and-the-semantic-gap--why-the-models-drifted-and-why-that-changes-now">
-<div class="sec-h"><a href="../book/2.2-models-and-the-semantic-gap.html">Why the models drifted — and why that changes now</a></div>
-<p class="topic">The models are the map; the code is the territory.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why hand-maintained models drifted and fell out of favor, and why agents — which reason over models, not code — flip that calculation when a linked set of models is kept in sync. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-2-1-the-executable-zoo--the-trunk-machinery-that-holds-any-view-true">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">The trunk: machinery that holds any view true</a></div>
+<p class="topic">Before the views, one chapter of framing.</p>
 </div>
-<div class="section s2" id="sec-2-2-models-and-the-semantic-gap--the-apex-of-the-documentation-hierarchy-is-a-typed-model">
-<div class="sec-h"><a href="../book/2.2-models-and-the-semantic-gap.html">A structured model layer binds the islands</a></div>
-<p class="topic">Step back from drift for a moment and look at what you actually hand an agent to work from.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why the apex of the documentation hierarchy is a structured model — the one description a machine can read and check the others against, binding docs, code, and tests where structured English stops one rung short. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s3" id="sec-2-1-the-executable-zoo--derive-and-join-do-not-repeat">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">Derive and join; do not repeat</a></div>
+<p class="topic">The last chapter warned against repetition: two models that say the same thing must now be kept in sync.</p>
 </div>
-<div class="section s2" id="sec-2-2-models-and-the-semantic-gap--a-drift-check-proves-agreement-not-correctness">
-<div class="sec-h"><a href="../book/2.2-models-and-the-semantic-gap.html">A drift check proves agreement, not correctness</a></div>
-<p class="topic">The claim I just made hides a trap, and the book&#x27;s enthusiasm for drift gates can be misread into a dangerous half-truth.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain the precise guarantee a drift check gives — agreement, not correctness — and why only a model authored from intent, not derived from code, catches a wrong &quot;is&quot;. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s3" id="sec-2-1-the-executable-zoo--state-the-derivation-direction">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">State the derivation direction</a></div>
+<p class="topic">A model and the code it concerns stay equal by derivation, and derivation runs in one of two directions.</p>
 </div>
-<div class="section s2" id="sec-2-2-models-and-the-semantic-gap--a-model-is-a-convenience-not-a-second-copy-of-the-truth">
-<div class="sec-h"><a href="../book/2.2-models-and-the-semantic-gap.html">A model is a convenience, not a second copy of the truth</a></div>
-<p class="topic">The other side of the mirror carries an over-reach.</p>
+<div class="section s3" id="sec-2-1-the-executable-zoo--extracted-code-graphs-and-intent-bearing-models">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">Extracted Code Graphs and Intent-Bearing Models</a></div>
+<p class="topic">The purest model-from-code artifact is not one of the zoo&#x27;s own views.</p>
 </div>
-<div class="section s2" id="sec-2-2-models-and-the-semantic-gap--execute-the-model-directly-a-spectrum-not-a-verdict">
-<div class="sec-h"><a href="../book/2.2-models-and-the-semantic-gap.html">Execute the model directly? A spectrum, not a verdict</a></div>
-<p class="topic">One old idea says that if the structured model is where you now start, you should finish there too — skip the code and *execute the model directly*.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can situate how far to model on a spectrum trading strength against changeability, and read the choice as an economic call whose sweet spot agents have moved outward. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s3" id="sec-2-1-the-executable-zoo--trace-every-model-element-to-code">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">Trace every model element to code</a></div>
+<p class="topic">A model earns trust only if you can get from a model element back to the lines that realize it, and forward from a line to the model element that governs it.</p>
 </div>
-<div class="section s2" id="sec-2-2-models-and-the-semantic-gap--the-semantic-gap">
-<div class="sec-h"><a href="../book/2.2-models-and-the-semantic-gap.html">The semantic gap</a></div>
-<p class="topic">Enforce a property at the wrong level and it slips through; [ref:semantic-gap] shows the fix — lift the check to where the meaning is legible.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can define the semantic gap — enforcing a property at the wrong level of abstraction — and identify the level where it becomes legible. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-2-1-the-executable-zoo--keeping-the-models-honest-the-traceability-substrate">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">Keeping the models honest — the traceability substrate</a></div>
+<p class="topic">DocAble did not design this up front.</p>
 </div>
-<div class="section s2" id="sec-2-2-models-and-the-semantic-gap--a-second-worked-example-the-context-fullness-bank-hook">
-<div class="sec-h"><a href="../book/2.2-models-and-the-semantic-gap.html">A second worked example: the context-fullness bank-hook</a></div>
-<p class="topic">The semantic gap shows up in the operator&#x27;s own loop, not just the product.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the semantic-gap fix to a second, operator-loop instance: a hook that fires on context-fullness and record-staleness together, and can name why even a roughly-right rung beats a hook that sits too late. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s3" id="sec-2-1-the-executable-zoo--reading-the-fix-off-real-drift">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">Reading the fix off real drift</a></div>
+<p class="topic">The right sensor was read off real drift rather than guessed.</p>
 </div>
+<div class="section s3" id="sec-2-1-the-executable-zoo--two-decisions-that-make-the-graph-resist-rot">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">Two decisions that make the graph resist rot</a></div>
+<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can analyze the two decisions that make a governance graph resist rot. <span class="prov-gap">gap-recommended</span><span class="gap-note">O2 finding: opens on a non-paragraph block (no topic sentence). The two decisions are named in the heading but the section does not open by stating them; recommend a topic sentence enumerating them.</span></span></li></ul></div>
 </div>
-<div class="chapter">
-<h3 id="ch-2-3-the-governed-environment"><span class="tier-kick">Lesson</span><a href="../book/2.3-the-governed-environment.html" class="ch-link">2.3-the-governed-environment</a> <span class="ch-slug">2.3-the-governed-environment</span></h3>
-<div class="section s2" id="sec-2-3-the-governed-environment--ex-ante-everything-you-can-decide-up-front">
-<div class="sec-h"><a href="../book/2.3-the-governed-environment.html">Ex-ante: everything you can decide up front</a></div>
-<p class="topic">Some things you genuinely know from the beginning, and you should write every one of them down.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply specification-driven development to what is knowable up front: write every known rule down and determinize it with a cheap deterministic check the agent itself writes. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-2-1-the-executable-zoo--how-to-read-a-model-page">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">How to read a model page</a></div>
+<p class="topic">Every model in this Part is rendered by filling the same five-field template.</p>
 </div>
-<div class="section s2" id="sec-2-3-the-governed-environment--ex-post-everything-you-learn-by-building">
-<div class="sec-h"><a href="../book/2.3-the-governed-environment.html">Ex-post: everything you learn by building</a></div>
-<p class="topic">But you will not know everything, and pretending otherwise is the mistake.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why governance is built ex-post — iteratively, as unforeseen failures reveal themselves — and why that is where most real mechanisms come from rather than a fallback for a weak plan. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-2-3-the-governed-environment--control-growth">
-<div class="sec-h"><a href="../book/2.3-the-governed-environment.html">The controls accumulate</a></div>
-<p class="topic">Run the promotion rule for a season and the environment fills with controls — nearly all discovered ex-post, the obligations no up-front specification would have named.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can run the promotion rule for a season and the environment fills with …. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-2-3-the-governed-environment--constraints-and-sensors">
-<div class="sec-h"><a href="../book/2.3-the-governed-environment.html">Constraints and sensors</a></div>
-<p class="topic">A mechanism is one of two moves — prevent the mistake, or catch it — and [ref:constraint-vs-sensor] draws the split.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can distinguish a constraint (prevent, costs no iteration) from a sensor (catch, costs iterations), place both on the independent soft-versus-hard axis, and tag most real mechanisms as a package by their primary move. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s3" id="sec-2-3-the-governed-environment--four-classes-one-bounded-term">
-<div class="sec-h"><a href="../book/2.3-the-governed-environment.html">Two axes, one bounded term</a></div>
-<p class="topic">One boundary before moving on, because without it the word swells.</p>
-</div>
-<div class="section s3" id="sec-2-3-the-governed-environment--what-it-adds-up-to">
-<div class="sec-h"><a href="../book/2.3-the-governed-environment.html">What it adds up to</a></div>
-<p class="topic">Step back and this is what you are really doing: describing policies for how the engineering work should proceed, and letting those policies produce the rules of the road the agents operate within.</p>
-</div>
-<div class="section s2" id="sec-2-3-the-governed-environment--the-residual-goals-no-mechanism-reaches">
-<div class="sec-h"><a href="../book/2.3-the-governed-environment.html">The residual: goals no mechanism reaches</a></div>
-<p class="topic">The synthesis reads as if it settles everything.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-2-1-the-executable-zoo--a-model-is-its-schema-plus-its-checked-predicates">
+<div class="sec-h"><a href="../book/2.1-the-executable-zoo.html">A model is its schema plus its checked predicates</a></div>
+<p class="topic">Every model page in this Part draws the same **coherence triangle**.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-2-4-lifecycles-and-runbooks"><span class="tier-kick">Lesson</span><a href="../book/2.4-lifecycles-and-runbooks.html" class="ch-link">2.4-lifecycles-and-runbooks</a> <span class="ch-slug">2.4-lifecycles-and-runbooks</span></h3>
-<div class="section s2" id="sec-2-4-lifecycles-and-runbooks--lifecycles-first-then-the-failure-map">
-<div class="sec-h"><a href="../book/2.4-lifecycles-and-runbooks.html">Lifecycles first, then the failure map</a></div>
-<p class="topic">Start with the lifecycles, because everything else hangs off them.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can map a lifecycle — the healthy path of a recurring activity plus, from each node, its failure states and the action for each — as a failure-mode-and-effects grid, and encode the way out and the prohibition an agent cannot supply on its own. <span class="prov">derived</span></span></li></ul></div>
+<h3 id="ch-2-2-the-logical-view"><span class="tier-kick">Lesson</span><a href="../book/2.2-the-logical-view.html" class="ch-link">2.2-the-logical-view</a> <span class="ch-slug">2.2-the-logical-view</span></h3>
+<div class="section s2" id="sec-2-2-the-logical-view--service-flow-model">
+<div class="sec-h"><a href="../book/2.2-the-logical-view.html">The service-flow / API model</a></div>
+<p class="topic">*The typed source-of-truth for a service-oriented architecture — its services, their endpoints, their authentication, and the wiring between them — from which the access policy and environment wiring are generated and against which the real call graph is checked.*</p>
 </div>
-<div class="section s2" id="sec-2-4-lifecycles-and-runbooks--runbooks-split-the-deterministic-from-the-judgment">
-<div class="sec-h"><a href="../book/2.4-lifecycles-and-runbooks.html">Runbooks: split the deterministic from the judgment</a></div>
-<p class="topic">Once the healthy path and the failure map are written, the thing you hand the agent is a **runbook** (or playbook): the steps to take, whether recovering from a failure or working a fresh ticket.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this section, the reader can author a runbook that separates deterministic steps from judgment ones — giving the deterministic parts an executable tool that also yields a reusable trace, and the judgment parts a rubric or the roughest algorithm that still fits, up to a pre-canned brief for delegation. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s3" id="sec-2-4-lifecycles-and-runbooks--the-deterministic-parts-get-tools">
-<div class="sec-h"><a href="../book/2.4-lifecycles-and-runbooks.html">The deterministic parts get tools</a></div>
-<p class="topic">Anything that has a single correct outcome should be an executable script the agent runs, not a procedure it improvises.</p>
-</div>
-<div class="section s3" id="sec-2-4-lifecycles-and-runbooks--the-judgment-parts-the-roughest-algorithm-that-still-fits">
-<div class="sec-h"><a href="../book/2.4-lifecycles-and-runbooks.html">The judgment parts: the roughest algorithm that still fits</a></div>
-<p class="topic">**The judgment parts get the roughest algorithm that still fits.** For a well-constrained decision, write the algorithm down and let the agent do the glue.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the roughest-algorithm-that-still-fits rule to a judgment step — giving a well-constrained decision an algorithm, an open-ended one only hints, a measurement a rubric, and a delegated task a pre-canned brief. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-2-2-the-logical-view--domain-registries">
+<div class="sec-h"><a href="../book/2.2-the-logical-view.html">The domain registries</a></div>
+<p class="topic">**Freeze engineering facts that change slowly but are consulted everywhere.** A fact read in many places and revised rarely is exactly the fact that drifts when each reader keeps its own copy; make it a registry every consumer joins to by key, and disagreement becomes a build failure instead of a latent inconsistency.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-2-5-metrics"><span class="tier-kick">Lesson</span><a href="../book/2.5-metrics.html" class="ch-link">2.5-metrics</a> <span class="ch-slug">2.5-metrics</span></h3>
-<div class="section s2" id="sec-2-5-metrics--measure-one-level-deeper">
-<div class="sec-h"><a href="../book/2.5-metrics.html">Measure one level deeper</a></div>
-<p class="topic">John Ousterhout names the rule [cite: ousterhout2018]: **always measure one level deeper** — one level, not as deep as you can go.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply Ousterhout&#x27;s rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. <span class="prov">derived</span></span></li></ul></div>
+<h3 id="ch-2-3-the-process-view"><span class="tier-kick">Lesson</span><a href="../book/2.3-the-process-view.html" class="ch-link">2.3-the-process-view</a> <span class="ch-slug">2.3-the-process-view</span></h3>
+<div class="section s2" id="sec-2-3-the-process-view--formal-invariant-verification">
+<div class="sec-h"><a href="../book/2.3-the-process-view.html">Formal invariant verification: the verification backbone</a></div>
+<p class="topic">Formal invariant verification is the backbone the three models hang their invariant tables on — a governance method over the models, not a model of the running system.</p>
 </div>
-<div class="section s2" id="sec-2-5-metrics--the-hard-end-cold-start-latency-machine-read-and-model-fed">
-<div class="sec-h"><a href="../book/2.5-metrics.html">The hard end: cold-start latency, machine-read and model-fed</a></div>
-<p class="topic">Start at the deterministic end, where a metric is a deterministic quantity with a defined measurement procedure.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can analyze a hard, deterministic metric at the level where the decision lives — reading cold-start latency one level deeper to name runtime initialization rather than scale-from-zero, computing a longest-path worst case over a service graph, and feeding the number into a structured deployment model a recompute tool consumes. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-2-3-the-process-view--synchronization-model">
+<div class="sec-h"><a href="../book/2.3-the-process-view.html">The synchronization model</a></div>
+<p class="topic">*A typed registry that models the system&#x27;s synchronization behavior — every OS-level lock, which shared resource it guards, and the required acquisition ordering — so concurrency contracts are declared and checkable, not tribal.*</p>
 </div>
-<div class="section s2" id="sec-2-5-metrics--the-flagship-coverage-measured-one-level-deeper">
-<div class="sec-h"><a href="../book/2.5-metrics.html">The flagship: coverage measured one level deeper</a></div>
-<p class="topic">Now the middle of the spectrum: the &quot;measure one level deeper&quot; rule applied to the number that most often gets it wrong.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can compute coverage measured one level deeper — joining a traceability graph&#x27;s claim-to-anchor edges with the coverage oracle so the metric counts model claims instead of lines, names an unexercised invariant instead of a percentage, and reports an honest exercised/unmeasurable/out-of-surface breakdown. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-2-3-the-process-view--two-ways-to-make-a-concurrent-write-safe-the-mediator-and-the-single-writer-registries">
+<div class="sec-h"><a href="../book/2.3-the-process-view.html">Two ways to make a concurrent write safe: the mediator and the single-writer registries</a></div>
+<p class="topic">The synchronization model catalogs the raw locks.</p>
 </div>
-<div class="section s2" id="sec-2-5-metrics--mmm-drain">
-<div class="sec-h"><a href="../book/2.5-metrics.html">The dual: draining unmodelled code</a></div>
-<p class="topic">The flagship metric had a blind spot: it measured model→code, so code with no model at all stayed invisible to it — and this dual is what finds it.</p>
+<div class="section s3" id="sec-2-3-the-process-view--mediator-registry">
+<div class="sec-h"><a href="../book/2.3-the-process-view.html">The mediator registry</a></div>
+<p class="topic">The mediator registry is the *how-many* half.</p>
 </div>
-<div class="section s2" id="sec-2-5-metrics--the-soft-end-doc-derived-tests">
-<div class="sec-h"><a href="../book/2.5-metrics.html">The soft end: doc-derived tests</a></div>
-<p class="topic">Slide to the far end of the spectrum, where the metric stops being a number a threshold can act on and becomes a judgment a human has to make.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can classify a soft metric — a doc-derived test&#x27;s coverage-of-doc-claims — as one that aims a reader rather than deciding, recognize why its softness is inseparable from a readiness judgment about the seam, and see why wiring it to a blocking gate manufactures hollow tests. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-2-5-metrics--the-model-runs-the-machinery">
-<div class="sec-h"><a href="../book/2.5-metrics.html">The model runs the machinery</a></div>
-<p class="topic">The hard end and the flagship follow the same pattern.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why the MBSE models are consumed at runtime to produce the metrics — the cold-start numbers and the coverage graph both read at check time — so a component-distance grade read from the model drives a pre-commit gate three ways, the model being the machinery rather than a picture of it. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-2-5-metrics--a-compact-reference">
-<div class="sec-h"><a href="../book/2.5-metrics.html">A compact reference</a></div>
-<p class="topic">[ref:metrics-table] collects every metric — the decision each drives, where it sits on the hard-soft axis, and who reads it.</p>
+<div class="section s3" id="sec-2-3-the-process-view--single-writer-registry">
+<div class="sec-h"><a href="../book/2.3-the-process-view.html">The single-writer registry</a></div>
+<p class="topic">The single-writer registry is the *exactly-one* half, and its failure mode is what makes it a separate model.</p>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-2-6-when-guardrails-collide"><span class="tier-kick">Lesson</span><a href="../book/2.6-when-guardrails-collide.html" class="ch-link">2.6-when-guardrails-collide</a> <span class="ch-slug">2.6-when-guardrails-collide</span></h3>
-<div class="section s2" id="sec-2-6-when-guardrails-collide--drawing-what-lies-between-the-controls">
-<div class="sec-h"><a href="../book/2.6-when-guardrails-collide.html">Drawing what lies between the controls</a></div>
-<p class="topic">The Governance Graph draws it.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can analyze the space between controls with a governance graph — mechanisms as nodes tagged by event and resource, conflicts as edges in a closed contradiction/contention/ordering/precedence taxonomy joined by the shared resource — and route each edge to a lint or a human prompt by its type before the control ships. <span class="prov">derived</span></span></li></ul></div>
+<h3 id="ch-2-4-the-development-view"><span class="tier-kick">Lesson</span><a href="../book/2.4-the-development-view.html" class="ch-link">2.4-the-development-view</a> <span class="ch-slug">2.4-the-development-view</span></h3>
+<div class="section s2" id="sec-2-4-the-development-view--component-zone-model">
+<div class="sec-h"><a href="../book/2.4-the-development-view.html">The component &amp; zone model</a></div>
+<p class="topic">*A typed catalog of every component&#x27;s code zone — its focus directories, its tags, its boundary kind, its external seams, its read surfaces — so &quot;which component owns this file, and what may touch it&quot; is a queried fact rather than a per-tool guess.*</p>
 </div>
-<div class="section s2" id="sec-2-6-when-guardrails-collide--the-other-question-a-list-can-t-answer">
-<div class="sec-h"><a href="../book/2.6-when-guardrails-collide.html">The other question a list can&#x27;t answer</a></div>
-<p class="topic">The graph settled one question a flat list could not: which two controls collide.</p>
+<div class="section s2" id="sec-2-4-the-development-view--rule-metadata-registry">
+<div class="sec-h"><a href="../book/2.4-the-development-view.html">The rule-metadata registry</a></div>
+<p class="topic">The rule-metadata registry is the self-referential slice of the domain registries: the governance rules&#x27; own metadata, and so a model the governance machinery — and this book — are partly governed by.</p>
 </div>
-<div class="section s2" id="sec-2-6-when-guardrails-collide--growing-controls-and-auditing-the-growth">
-<div class="sec-h"><a href="../book/2.6-when-guardrails-collide.html">Growing controls, and auditing the growth</a></div>
-<p class="topic">The census has a counterpart, and the two are true opposites over one graph.</p>
 </div>
-<div class="section s2" id="sec-2-6-when-guardrails-collide--when-the-hooks-aren-t-yours">
-<div class="sec-h"><a href="../book/2.6-when-guardrails-collide.html">When the hooks aren&#x27;t yours</a></div>
-<p class="topic">**An implication, looking ahead.** Every mechanism so far was one you wrote — but some hooks arrive from outside: a plugin registers one, a teammate adds a personal one, and, plausibly soon, a regulator or model vendor mandates one.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the governance graph to hooks they did not author — entering an outside hook as a node on a conservative possible-conflict edge against its whole slot until analyzed — and reduce satisfying one or several regulators to checking that the merged graph carries no unresolved contradiction, including that no required hard block is overridden by a soft aim. <span class="prov">derived</span></span></li></ul></div>
+<div class="chapter">
+<h3 id="ch-2-5-the-physical-view"><span class="tier-kick">Lesson</span><a href="../book/2.5-the-physical-view.html" class="ch-link">2.5-the-physical-view</a> <span class="ch-slug">2.5-the-physical-view</span></h3>
+<div class="section s2" id="sec-2-5-the-physical-view--the-performance-cost-view-mostly-embodied-one-honest-gap">
+<div class="sec-h"><a href="../book/2.5-the-physical-view.html">The performance/cost view: mostly embodied, one honest gap</a></div>
+<p class="topic">The zoo names a performance and cost model as a general type, and the framework supports it.</p>
 </div>
-<div class="section s2" id="sec-2-6-when-guardrails-collide--keeping-the-model-honest">
-<div class="sec-h"><a href="../book/2.6-when-guardrails-collide.html">Keeping the model honest</a></div>
-<p class="topic">Two disciplines keep the model honest, and both are the book&#x27;s.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-evaluate">evaluate</span><span class="oc-text">After this section, the reader can justify the two disciplines that keep a governance graph honest — anchoring each node to its control&#x27;s code by symbol so a drift lint reddens an unmodeled control, and keeping the model descriptive rather than inventing conflict-lints for collisions that never happened. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-2-5-the-physical-view--deployment-topology-model">
+<div class="sec-h"><a href="../book/2.5-the-physical-view.html">The deployment &amp; tier topology model</a></div>
+<p class="topic">*The typed statement of where things run — each service&#x27;s name, its layer, and its tier — from which the deploy scripts and layering lints reason about a declared topology rather than scattered constants, and against which the real deploy table is reconciled.*</p>
+</div>
+<div class="section s2" id="sec-2-5-the-physical-view--invariant-dag-execution-policy">
+<div class="sec-h"><a href="../book/2.5-the-physical-view.html">The invariant-DAG execution policy</a></div>
+<p class="topic">The insight is one sentence: **correctness dependencies stay in the graph; host-specific resource limits live in a scheduler profile.** What must be true on *every* host — B is wrong without A — belongs in the deploy graph.</p>
+</div>
+<div class="section s2" id="sec-2-5-the-physical-view--control-substrate-dependency">
+<div class="sec-h"><a href="../book/2.5-the-physical-view.html">The control↔substrate dependency model</a></div>
+<p class="topic">The substrate-dependency model makes each governance mechanism declare, as typed metadata, the substrate assumption it bakes in — bound to one substrate, substrate-aware, or substrate-agnostic.</p>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-2-6-the-scenarios-view"><span class="tier-kick">Lesson</span><a href="../book/2.6-the-scenarios-view.html" class="ch-link">2.6-the-scenarios-view</a> <span class="ch-slug">2.6-the-scenarios-view</span></h3>
+<div class="section s2" id="sec-2-6-the-scenarios-view--user-journey-model">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">The user-journey model</a></div>
+<p class="topic">The user-journey model makes the product&#x27;s journeys first-class typed entities — each an actor pursuing a goal through ordered steps, every boundary-crossing step joined to the endpoint it calls.</p>
+</div>
+<div class="section s2" id="sec-2-6-the-scenarios-view--agent-orchestration-model">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">The agent-orchestration model</a></div>
+<p class="topic">The agent-orchestration model is the developer-journey counterpart — the scenarios view pointed at the fleet rather than the user.</p>
+</div>
+<div class="section s2" id="sec-2-6-the-scenarios-view--journey-criticality-test-placement">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">Journey-criticality → test-placement</a></div>
+<p class="topic">This model — the **Selector** in the join below — derives which environment tier a journey&#x27;s tests run in from the journey&#x27;s criticality: a `MAJOR` part runs the fast local tier and the full staging matrix, a `MINOR` part runs staging only.</p>
+</div>
+<div class="section s2" id="sec-2-6-the-scenarios-view--coverage-model-mapping">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">Coverage → model-node mapping</a></div>
+<p class="topic">Coverage-to-node mapping projects the test suite&#x27;s coverage onto the model&#x27;s *nodes* — states, seams, invariants, journey endpoints — instead of its lines (node coverage over line coverage, as [Metrics](3.5-metrics.html) laid out).</p>
+</div>
+<div class="section s2" id="sec-2-6-the-scenarios-view--journey-task-closure">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">Journey task-closure — asserting the goal completed</a></div>
+<p class="topic">The three models above ask whether a journey&#x27;s test *exists*, *runs*, and runs *in which tier*.</p>
+</div>
+<div class="section s2" id="sec-2-6-the-scenarios-view--worked-join">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">Worked join — the journey↔coverage↔deploy-policy composition</a></div>
+<p class="topic">**The compositional question:** *watch one fact — a journey is* major — *travel through four models with nothing said twice, until a product goal reaches all the way to how the deploy rations its tests.* The other model pages each show a single model; this one shows them **joining, not repeating.** Four models compose on one shared key — the journey and its endpoints:</p>
+</div>
+<div class="section s3" id="sec-2-6-the-scenarios-view--the-three-questions-the-join-answers">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">The three questions the join answers</a></div>
+<p class="topic">Three questions the raw deploy scripts and test config cannot answer on their own.</p>
+</div>
+<div class="section s3" id="sec-2-6-the-scenarios-view--the-composite-picture">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">The composite picture</a></div>
+<p class="topic">Everything so far has examined models individually.</p>
+</div>
+<div class="section s3" id="sec-2-6-the-scenarios-view--the-invariants-the-join-spans">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">The invariants the join spans</a></div>
+<p class="topic">The join&#x27;s invariants span all four models, collected in [ref:scenarios-invariants].</p>
+</div>
+<div class="section s3" id="sec-2-6-the-scenarios-view--the-selector-and-scheduler-in-code">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">The Selector and Scheduler in code</a></div>
+<p class="topic">Two pieces of real policy code make the join concrete — the **Selector** derives a host&#x27;s test roster from the journey model, and the **Scheduler** rations that roster per host.</p>
+</div>
+<div class="section s3" id="sec-2-6-the-scenarios-view--tracing-one-fact-through-four-models">
+<div class="sec-h"><a href="../book/2.6-the-scenarios-view.html">Tracing one fact through four models</a></div>
+<p class="topic">The join keys chain, and a reader can walk them against the figure: the **endpoint** ties M13 to M5, the **criticality** ties M13 to M6, the **derived tier** ties M6 to M7&#x27;s roster, and the **host profile** ties the roster to the plan.</p>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-2-7-the-scope-of-modeling"><span class="tier-kick">Lesson</span><a href="../book/2.7-the-scope-of-modeling.html" class="ch-link">2.7-the-scope-of-modeling</a> <span class="ch-slug">2.7-the-scope-of-modeling</span></h3>
+<div class="section s2" id="sec-2-7-the-scope-of-modeling--this-book-s-boundary">
+<div class="sec-h"><a href="../book/2.7-the-scope-of-modeling.html">This book&#x27;s boundary</a></div>
+<p class="topic">This book is an introduction.</p>
+</div>
+<div class="section s2" id="sec-2-7-the-scope-of-modeling--when-a-sketch-graduates">
+<div class="sec-h"><a href="../book/2.7-the-scope-of-modeling.html">When a sketch graduates</a></div>
+<p class="topic">There is a moment when a working sketch stops carrying its weight, and it is worth learning to see it coming.</p>
+</div>
+<div class="section s2" id="sec-2-7-the-scope-of-modeling--where-each-view-sends-you">
+<div class="sec-h"><a href="../book/2.7-the-scope-of-modeling.html">Where each view sends you</a></div>
+<p class="topic">Each view here is deliberately lightweight relative to the full analytic traditions behind it — even the ones that are executable registries with gates carry a fraction of what their fields can say.</p>
+</div>
+<div class="section s2" id="sec-2-7-the-scope-of-modeling--models-tier-reasoning-descends">
+<div class="sec-h"><a href="../book/2.7-the-scope-of-modeling.html">Models tier; reasoning descends</a></div>
+<p class="topic">One scaling move underlies the whole zoo.</p>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-2-8-keeping-models-in-sync"><span class="tier-kick">Lesson</span><a href="../book/2.8-keeping-models-in-sync.html" class="ch-link">2.8-keeping-models-in-sync</a> <span class="ch-slug">2.8-keeping-models-in-sync</span></h3>
+<div class="section s2" id="sec-2-8-keeping-models-in-sync--the-question-the-map-must-equal-the-territory-or-the-bridge-lies">
+<div class="sec-h"><a href="../book/2.8-keeping-models-in-sync.html">The question: the map must equal the territory, or the bridge lies</a></div>
+<p class="topic">A context-bounded fleet governs a context-exceeding codebase *through* structured models.</p>
+</div>
+<div class="section s2" id="sec-2-8-keeping-models-in-sync--the-mechanism-a-two-layer-net-and-freshness-by-derivation">
+<div class="sec-h"><a href="../book/2.8-keeping-models-in-sync.html">The mechanism: a two-layer net, and freshness by derivation</a></div>
+<p class="topic">Sync holds through two layers stacked over the model↔code gap.</p>
+</div>
+<div class="section s2" id="sec-2-8-keeping-models-in-sync--the-model-grows-with-the-system-two-worked-examples">
+<div class="sec-h"><a href="../book/2.8-keeping-models-in-sync.html">The model grows with the system: two worked examples</a></div>
+<p class="topic">Sync is a living practice, not a one-time alignment.</p>
+</div>
+<div class="section s2" id="sec-2-8-keeping-models-in-sync--the-evidence">
+<div class="sec-h"><a href="../book/2.8-keeping-models-in-sync.html">The evidence</a></div>
+<p class="topic">The claim is a field-report result, so the numbers come with their provenance.</p>
+</div>
+<div class="section s3" id="sec-2-8-keeping-models-in-sync--model-sync-efficacy">
+<div class="sec-h"><a href="../book/2.8-keeping-models-in-sync.html">The derived floor under load</a></div>
+<p class="topic">Documentation drift is excluded here by construction; this table is model↔code sync only.</p>
+</div>
+<div class="section s3" id="sec-2-8-keeping-models-in-sync--documentation-hygiene-aside-not-model-sync">
+<div class="sec-h"><a href="../book/2.8-keeping-models-in-sync.html">Documentation-hygiene aside (NOT model sync)</a></div>
+<p class="topic">Stale headers and stale prose numbers are **documentation drift, not model drift.** They are the soft layer&#x27;s true positives, and they are cheap: a reader catches them, and the close tool heals them.</p>
+</div>
+<div class="section s3" id="sec-2-8-keeping-models-in-sync--mbse-nav-token">
+<div class="sec-h"><a href="../book/2.8-keeping-models-in-sync.html">The fewer-tokens leg — a navigation pilot</a></div>
+<p class="topic">The measurement above is the *quality* leg — the model stays true to the code.</p>
+</div>
+<div class="section s2" id="sec-2-8-keeping-models-in-sync--the-two-failure-modes-where-drift-still-escapes">
+<div class="sec-h"><a href="../book/2.8-keeping-models-in-sync.html">The two failure modes: where drift still escapes</a></div>
+<p class="topic">The net has two escape hatches.</p>
+</div>
+<div class="section s2" id="sec-2-8-keeping-models-in-sync--the-honest-reading">
+<div class="sec-h"><a href="../book/2.8-keeping-models-in-sync.html">The honest reading</a></div>
+<p class="topic">The result is narrow, and stating its limits is part of stating it.</p>
 </div>
 </div>
 </section>
@@ -450,237 +505,182 @@
 <h2>Module 3 — The Model Zoo</h2>
 <div class="outcomes"><div class="oc-h">After Module 3 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After Part 3, the reader can model a system as the executable 4+1 zoo — logical, process, development, physical, and scenario views — each a structured model kept honest by a drift check. <span class="prov">declared</span></span></li></ul></div>
 <div class="chapter">
-<h3 id="ch-3-1-the-executable-zoo"><span class="tier-kick">Lesson</span><a href="../book/3.1-the-executable-zoo.html" class="ch-link">3.1-the-executable-zoo</a> <span class="ch-slug">3.1-the-executable-zoo</span></h3>
-<div class="section s2" id="sec-3-1-the-executable-zoo--why-models-are-newly-central">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">Why models are newly central</a></div>
-<p class="topic">Part 1 derived the Modeling Thesis from the machine; Part 2 built the executable-model architecture that earns it.</p>
+<h3 id="ch-3-1-the-agent-stack"><span class="tier-kick">Lesson</span><a href="../book/3.1-the-agent-stack.html" class="ch-link">3.1-the-agent-stack</a> <span class="ch-slug">3.1-the-agent-stack</span></h3>
+<div class="section s2" id="sec-3-1-the-agent-stack--first-three-definitions">
+<div class="sec-h"><a href="../book/3.1-the-agent-stack.html">First, three definitions</a></div>
+<p class="topic">Before the walk, three definitions — *agent*, *model*, and the adjective the second leans on, *structured*.</p>
 </div>
-<div class="section s2" id="sec-3-1-the-executable-zoo--the-upkeep-that-constrained-mbse-a-fleet-now-pays-cheaply">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">The upkeep that constrained MBSE, a fleet now pays cheaply</a></div>
-<p class="topic">Model-based systems engineering did not fail on its ideas.</p>
+<div class="section s2" id="sec-3-1-the-agent-stack--the-four-layers">
+<div class="sec-h"><a href="../book/3.1-the-agent-stack.html">The four layers</a></div>
+<p class="topic">**At the bottom sits the foundation model.** It comes from a commercial vendor or an open-weight release, and it is a general language reasoner, able to *induce* an understanding of your environment — though that induction is expensive, and it happens fresh every time.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify each of the four layers of the agent stack, from the foundation model up, and name the kind of governance grip each one gives. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify each of the four layers of the agent stack. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-1-the-executable-zoo--kruchten-s-4-1-views-organize-the-part">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">Kruchten&#x27;s 4+1 views organize the Part</a></div>
-<p class="topic">The last chapter named Kruchten&#x27;s **4+1 views** as the reason one model is never enough.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain how 4+1 organizes the whole Part into five views over one core. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s3" id="sec-3-1-the-executable-zoo--what-this-book-adds-to-4-1-the-drift-gate">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">What this book adds to 4+1: the drift gate</a></div>
-<p class="topic">Kruchten, of course, described the views; he did not have a drift gate.</p>
-</div>
-<div class="section s3" id="sec-3-1-the-executable-zoo--the-framework-is-a-choice-the-core-is-not">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">The framework is a choice; the core is not</a></div>
-<p class="topic">Making the model executable is why this Part is not really *about* 4+1.</p>
-</div>
-<div class="section s2" id="sec-3-1-the-executable-zoo--the-trunk-machinery-that-holds-any-view-true">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">The trunk: machinery that holds any view true</a></div>
-<p class="topic">Before the views, one chapter of framing.</p>
-</div>
-<div class="section s3" id="sec-3-1-the-executable-zoo--derive-and-join-do-not-repeat">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">Derive and join; do not repeat</a></div>
-<p class="topic">The last chapter warned against repetition: two models that say the same thing must now be kept in sync.</p>
-</div>
-<div class="section s3" id="sec-3-1-the-executable-zoo--state-the-derivation-direction">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">State the derivation direction</a></div>
-<p class="topic">A model and the code it concerns stay equal by derivation, and derivation runs in one of two directions.</p>
-</div>
-<div class="section s3" id="sec-3-1-the-executable-zoo--extracted-code-graphs-and-intent-bearing-models">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">Extracted Code Graphs and Intent-Bearing Models</a></div>
-<p class="topic">The purest model-from-code artifact is not one of the zoo&#x27;s own views.</p>
-</div>
-<div class="section s3" id="sec-3-1-the-executable-zoo--trace-every-model-element-to-code">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">Trace every model element to code</a></div>
-<p class="topic">A model earns trust only if you can get from a model element back to the lines that realize it, and forward from a line to the model element that governs it.</p>
-</div>
-<div class="section s2" id="sec-3-1-the-executable-zoo--keeping-the-models-honest-the-traceability-substrate">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">Keeping the models honest — the traceability substrate</a></div>
-<p class="topic">DocAble did not design this up front.</p>
-</div>
-<div class="section s3" id="sec-3-1-the-executable-zoo--reading-the-fix-off-real-drift">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">Reading the fix off real drift</a></div>
-<p class="topic">The right sensor was read off real drift rather than guessed.</p>
-</div>
-<div class="section s3" id="sec-3-1-the-executable-zoo--two-decisions-that-make-the-graph-resist-rot">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">Two decisions that make the graph resist rot</a></div>
-<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can analyze the two decisions that make a governance graph resist rot. <span class="prov-gap">gap-recommended</span><span class="gap-note">O2 finding: opens on a non-paragraph block (no topic sentence). The two decisions are named in the heading but the section does not open by stating them; recommend a topic sentence enumerating them.</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-1-the-executable-zoo--how-to-read-a-model-page">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">How to read a model page</a></div>
-<p class="topic">Every model in this Part is rendered by filling the same five-field template.</p>
-</div>
-<div class="section s2" id="sec-3-1-the-executable-zoo--a-model-is-its-schema-plus-its-checked-predicates">
-<div class="sec-h"><a href="../book/3.1-the-executable-zoo.html">A model is its schema plus its checked predicates</a></div>
-<p class="topic">Every model page in this Part draws the same **coherence triangle**.</p>
+<div class="section s2" id="sec-3-1-the-agent-stack--every-layer-is-a-place-to-steer">
+<div class="sec-h"><a href="../book/3.1-the-agent-stack.html">Every layer is a place to steer</a></div>
+<p class="topic">Read the stack as a list of opportunities, because that is what it is.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why each layer of the stack is an injection opportunity, all serving one goal — narrowing the agent&#x27;s search — and why the mechanisms placed there must themselves be governed for interplay. <span class="prov">derived</span></span></li></ul></div>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-3-2-the-logical-view"><span class="tier-kick">Lesson</span><a href="../book/3.2-the-logical-view.html" class="ch-link">3.2-the-logical-view</a> <span class="ch-slug">3.2-the-logical-view</span></h3>
-<div class="section s2" id="sec-3-2-the-logical-view--service-flow-model">
-<div class="sec-h"><a href="../book/3.2-the-logical-view.html">The service-flow / API model</a></div>
-<p class="topic">*The typed source-of-truth for a service-oriented architecture — its services, their endpoints, their authentication, and the wiring between them — from which the access policy and environment wiring are generated and against which the real call graph is checked.*</p>
+<h3 id="ch-3-2-models-and-the-semantic-gap"><span class="tier-kick">Lesson</span><a href="../book/3.2-models-and-the-semantic-gap.html" class="ch-link">3.2-models-and-the-semantic-gap</a> <span class="ch-slug">3.2-models-and-the-semantic-gap</span></h3>
+<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--words-are-soft-code-is-verbose-a-model-is-the-sweet-spot">
+<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">Words are soft, code is verbose, a model is the sweet spot</a></div>
+<p class="topic">Your first governance mechanism is the prompt, because the agent is a language model and words are how you talk to it.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can distinguish soft prose from verbose code and explain why a model — accurate, unambiguous, yet compact — is the sweet spot an agent can reason over. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-2-the-logical-view--domain-registries">
-<div class="sec-h"><a href="../book/3.2-the-logical-view.html">The domain registries</a></div>
-<p class="topic">**Freeze engineering facts that change slowly but are consulted everywhere.** A fact read in many places and revised rarely is exactly the fact that drifts when each reader keeps its own copy; make it a registry every consumer joins to by key, and disagreement becomes a build failure instead of a latent inconsistency.</p>
+<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--why-the-models-drifted-and-why-that-changes-now">
+<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">Why the models drifted — and why that changes now</a></div>
+<p class="topic">The models are the map; the code is the territory.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why hand-maintained models drifted and fell out of favor, and why agents — which reason over models, not code — flip that calculation when a linked set of models is kept in sync. <span class="prov">derived</span></span></li></ul></div>
 </div>
+<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--the-apex-of-the-documentation-hierarchy-is-a-typed-model">
+<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">A structured model layer binds the islands</a></div>
+<p class="topic">Step back from drift for a moment and look at what you actually hand an agent to work from.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why the apex of the documentation hierarchy is a structured model — the one description a machine can read and check the others against, binding docs, code, and tests where structured English stops one rung short. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="chapter">
-<h3 id="ch-3-3-the-process-view"><span class="tier-kick">Lesson</span><a href="../book/3.3-the-process-view.html" class="ch-link">3.3-the-process-view</a> <span class="ch-slug">3.3-the-process-view</span></h3>
-<div class="section s2" id="sec-3-3-the-process-view--formal-invariant-verification">
-<div class="sec-h"><a href="../book/3.3-the-process-view.html">Formal invariant verification: the verification backbone</a></div>
-<p class="topic">Formal invariant verification is the backbone the three models hang their invariant tables on — a governance method over the models, not a model of the running system.</p>
+<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--a-drift-check-proves-agreement-not-correctness">
+<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">A drift check proves agreement, not correctness</a></div>
+<p class="topic">The claim I just made hides a trap, and the book&#x27;s enthusiasm for drift gates can be misread into a dangerous half-truth.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain the precise guarantee a drift check gives — agreement, not correctness — and why only a model authored from intent, not derived from code, catches a wrong &quot;is&quot;. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-3-the-process-view--synchronization-model">
-<div class="sec-h"><a href="../book/3.3-the-process-view.html">The synchronization model</a></div>
-<p class="topic">*A typed registry that models the system&#x27;s synchronization behavior — every OS-level lock, which shared resource it guards, and the required acquisition ordering — so concurrency contracts are declared and checkable, not tribal.*</p>
+<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--a-model-is-a-convenience-not-a-second-copy-of-the-truth">
+<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">A model is a convenience, not a second copy of the truth</a></div>
+<p class="topic">The other side of the mirror carries an over-reach.</p>
 </div>
-<div class="section s2" id="sec-3-3-the-process-view--two-ways-to-make-a-concurrent-write-safe-the-mediator-and-the-single-writer-registries">
-<div class="sec-h"><a href="../book/3.3-the-process-view.html">Two ways to make a concurrent write safe: the mediator and the single-writer registries</a></div>
-<p class="topic">The synchronization model catalogs the raw locks.</p>
+<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--execute-the-model-directly-a-spectrum-not-a-verdict">
+<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">Execute the model directly? A spectrum, not a verdict</a></div>
+<p class="topic">One old idea says that if the structured model is where you now start, you should finish there too — skip the code and *execute the model directly*.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can situate how far to model on a spectrum trading strength against changeability, and read the choice as an economic call whose sweet spot agents have moved outward. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s3" id="sec-3-3-the-process-view--mediator-registry">
-<div class="sec-h"><a href="../book/3.3-the-process-view.html">The mediator registry</a></div>
-<p class="topic">The mediator registry is the *how-many* half.</p>
+<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--the-semantic-gap">
+<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">The semantic gap</a></div>
+<p class="topic">Enforce a property at the wrong level and it slips through; [ref:semantic-gap] shows the fix — lift the check to where the meaning is legible.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can define the semantic gap — enforcing a property at the wrong level of abstraction — and identify the level where it becomes legible. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s3" id="sec-3-3-the-process-view--single-writer-registry">
-<div class="sec-h"><a href="../book/3.3-the-process-view.html">The single-writer registry</a></div>
-<p class="topic">The single-writer registry is the *exactly-one* half, and its failure mode is what makes it a separate model.</p>
-</div>
-</div>
-<div class="chapter">
-<h3 id="ch-3-4-the-development-view"><span class="tier-kick">Lesson</span><a href="../book/3.4-the-development-view.html" class="ch-link">3.4-the-development-view</a> <span class="ch-slug">3.4-the-development-view</span></h3>
-<div class="section s2" id="sec-3-4-the-development-view--component-zone-model">
-<div class="sec-h"><a href="../book/3.4-the-development-view.html">The component &amp; zone model</a></div>
-<p class="topic">*A typed catalog of every component&#x27;s code zone — its focus directories, its tags, its boundary kind, its external seams, its read surfaces — so &quot;which component owns this file, and what may touch it&quot; is a queried fact rather than a per-tool guess.*</p>
-</div>
-<div class="section s2" id="sec-3-4-the-development-view--rule-metadata-registry">
-<div class="sec-h"><a href="../book/3.4-the-development-view.html">The rule-metadata registry</a></div>
-<p class="topic">The rule-metadata registry is the self-referential slice of the domain registries: the governance rules&#x27; own metadata, and so a model the governance machinery — and this book — are partly governed by.</p>
+<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--a-second-worked-example-the-context-fullness-bank-hook">
+<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">A second worked example: the context-fullness bank-hook</a></div>
+<p class="topic">The semantic gap shows up in the operator&#x27;s own loop, not just the product.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the semantic-gap fix to a second, operator-loop instance: a hook that fires on context-fullness and record-staleness together, and can name why even a roughly-right rung beats a hook that sits too late. <span class="prov">derived</span></span></li></ul></div>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-3-5-the-physical-view"><span class="tier-kick">Lesson</span><a href="../book/3.5-the-physical-view.html" class="ch-link">3.5-the-physical-view</a> <span class="ch-slug">3.5-the-physical-view</span></h3>
-<div class="section s2" id="sec-3-5-the-physical-view--the-performance-cost-view-mostly-embodied-one-honest-gap">
-<div class="sec-h"><a href="../book/3.5-the-physical-view.html">The performance/cost view: mostly embodied, one honest gap</a></div>
-<p class="topic">The zoo names a performance and cost model as a general type, and the framework supports it.</p>
+<h3 id="ch-3-3-the-governed-environment"><span class="tier-kick">Lesson</span><a href="../book/3.3-the-governed-environment.html" class="ch-link">3.3-the-governed-environment</a> <span class="ch-slug">3.3-the-governed-environment</span></h3>
+<div class="section s2" id="sec-3-3-the-governed-environment--ex-ante-everything-you-can-decide-up-front">
+<div class="sec-h"><a href="../book/3.3-the-governed-environment.html">Ex-ante: everything you can decide up front</a></div>
+<p class="topic">Some things you genuinely know from the beginning, and you should write every one of them down.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply specification-driven development to what is knowable up front: write every known rule down and determinize it with a cheap deterministic check the agent itself writes. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-5-the-physical-view--deployment-topology-model">
-<div class="sec-h"><a href="../book/3.5-the-physical-view.html">The deployment &amp; tier topology model</a></div>
-<p class="topic">*The typed statement of where things run — each service&#x27;s name, its layer, and its tier — from which the deploy scripts and layering lints reason about a declared topology rather than scattered constants, and against which the real deploy table is reconciled.*</p>
+<div class="section s2" id="sec-3-3-the-governed-environment--ex-post-everything-you-learn-by-building">
+<div class="sec-h"><a href="../book/3.3-the-governed-environment.html">Ex-post: everything you learn by building</a></div>
+<p class="topic">But you will not know everything, and pretending otherwise is the mistake.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why governance is built ex-post — iteratively, as unforeseen failures reveal themselves — and why that is where most real mechanisms come from rather than a fallback for a weak plan. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-5-the-physical-view--invariant-dag-execution-policy">
-<div class="sec-h"><a href="../book/3.5-the-physical-view.html">The invariant-DAG execution policy</a></div>
-<p class="topic">The insight is one sentence: **correctness dependencies stay in the graph; host-specific resource limits live in a scheduler profile.** What must be true on *every* host — B is wrong without A — belongs in the deploy graph.</p>
+<div class="section s2" id="sec-3-3-the-governed-environment--control-growth">
+<div class="sec-h"><a href="../book/3.3-the-governed-environment.html">The controls accumulate</a></div>
+<p class="topic">Run the promotion rule for a season and the environment fills with controls — nearly all discovered ex-post, the obligations no up-front specification would have named.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can run the promotion rule for a season and the environment fills with …. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-5-the-physical-view--control-substrate-dependency">
-<div class="sec-h"><a href="../book/3.5-the-physical-view.html">The control↔substrate dependency model</a></div>
-<p class="topic">The substrate-dependency model makes each governance mechanism declare, as typed metadata, the substrate assumption it bakes in — bound to one substrate, substrate-aware, or substrate-agnostic.</p>
+<div class="section s2" id="sec-3-3-the-governed-environment--constraints-and-sensors">
+<div class="sec-h"><a href="../book/3.3-the-governed-environment.html">Constraints and sensors</a></div>
+<p class="topic">A mechanism is one of two moves — prevent the mistake, or catch it — and [ref:constraint-vs-sensor] draws the split.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can distinguish a constraint (prevent, costs no iteration) from a sensor (catch, costs iterations), place both on the independent soft-versus-hard axis, and tag most real mechanisms as a package by their primary move. <span class="prov">derived</span></span></li></ul></div>
 </div>
+<div class="section s3" id="sec-3-3-the-governed-environment--four-classes-one-bounded-term">
+<div class="sec-h"><a href="../book/3.3-the-governed-environment.html">Two axes, one bounded term</a></div>
+<p class="topic">One boundary before moving on, because without it the word swells.</p>
 </div>
-<div class="chapter">
-<h3 id="ch-3-6-the-scenarios-view"><span class="tier-kick">Lesson</span><a href="../book/3.6-the-scenarios-view.html" class="ch-link">3.6-the-scenarios-view</a> <span class="ch-slug">3.6-the-scenarios-view</span></h3>
-<div class="section s2" id="sec-3-6-the-scenarios-view--user-journey-model">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">The user-journey model</a></div>
-<p class="topic">The user-journey model makes the product&#x27;s journeys first-class typed entities — each an actor pursuing a goal through ordered steps, every boundary-crossing step joined to the endpoint it calls.</p>
+<div class="section s3" id="sec-3-3-the-governed-environment--what-it-adds-up-to">
+<div class="sec-h"><a href="../book/3.3-the-governed-environment.html">What it adds up to</a></div>
+<p class="topic">Step back and this is what you are really doing: describing policies for how the engineering work should proceed, and letting those policies produce the rules of the road the agents operate within.</p>
 </div>
-<div class="section s2" id="sec-3-6-the-scenarios-view--agent-orchestration-model">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">The agent-orchestration model</a></div>
-<p class="topic">The agent-orchestration model is the developer-journey counterpart — the scenarios view pointed at the fleet rather than the user.</p>
-</div>
-<div class="section s2" id="sec-3-6-the-scenarios-view--journey-criticality-test-placement">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">Journey-criticality → test-placement</a></div>
-<p class="topic">This model — the **Selector** in the join below — derives which environment tier a journey&#x27;s tests run in from the journey&#x27;s criticality: a `MAJOR` part runs the fast local tier and the full staging matrix, a `MINOR` part runs staging only.</p>
-</div>
-<div class="section s2" id="sec-3-6-the-scenarios-view--coverage-model-mapping">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">Coverage → model-node mapping</a></div>
-<p class="topic">Coverage-to-node mapping projects the test suite&#x27;s coverage onto the model&#x27;s *nodes* — states, seams, invariants, journey endpoints — instead of its lines (node coverage over line coverage, as [Metrics](2.5-metrics.html) laid out).</p>
-</div>
-<div class="section s2" id="sec-3-6-the-scenarios-view--journey-task-closure">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">Journey task-closure — asserting the goal completed</a></div>
-<p class="topic">The three models above ask whether a journey&#x27;s test *exists*, *runs*, and runs *in which tier*.</p>
-</div>
-<div class="section s2" id="sec-3-6-the-scenarios-view--worked-join">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">Worked join — the journey↔coverage↔deploy-policy composition</a></div>
-<p class="topic">**The compositional question:** *watch one fact — a journey is* major — *travel through four models with nothing said twice, until a product goal reaches all the way to how the deploy rations its tests.* The other model pages each show a single model; this one shows them **joining, not repeating.** Four models compose on one shared key — the journey and its endpoints:</p>
-</div>
-<div class="section s3" id="sec-3-6-the-scenarios-view--the-three-questions-the-join-answers">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">The three questions the join answers</a></div>
-<p class="topic">Three questions the raw deploy scripts and test config cannot answer on their own.</p>
-</div>
-<div class="section s3" id="sec-3-6-the-scenarios-view--the-composite-picture">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">The composite picture</a></div>
-<p class="topic">Everything so far has examined models individually.</p>
-</div>
-<div class="section s3" id="sec-3-6-the-scenarios-view--the-invariants-the-join-spans">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">The invariants the join spans</a></div>
-<p class="topic">The join&#x27;s invariants span all four models, collected in [ref:scenarios-invariants].</p>
-</div>
-<div class="section s3" id="sec-3-6-the-scenarios-view--the-selector-and-scheduler-in-code">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">The Selector and Scheduler in code</a></div>
-<p class="topic">Two pieces of real policy code make the join concrete — the **Selector** derives a host&#x27;s test roster from the journey model, and the **Scheduler** rations that roster per host.</p>
-</div>
-<div class="section s3" id="sec-3-6-the-scenarios-view--tracing-one-fact-through-four-models">
-<div class="sec-h"><a href="../book/3.6-the-scenarios-view.html">Tracing one fact through four models</a></div>
-<p class="topic">The join keys chain, and a reader can walk them against the figure: the **endpoint** ties M13 to M5, the **criticality** ties M13 to M6, the **derived tier** ties M6 to M7&#x27;s roster, and the **host profile** ties the roster to the plan.</p>
+<div class="section s2" id="sec-3-3-the-governed-environment--the-residual-goals-no-mechanism-reaches">
+<div class="sec-h"><a href="../book/3.3-the-governed-environment.html">The residual: goals no mechanism reaches</a></div>
+<p class="topic">The synthesis reads as if it settles everything.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it. <span class="prov">derived</span></span></li></ul></div>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-3-7-the-scope-of-modeling"><span class="tier-kick">Lesson</span><a href="../book/3.7-the-scope-of-modeling.html" class="ch-link">3.7-the-scope-of-modeling</a> <span class="ch-slug">3.7-the-scope-of-modeling</span></h3>
-<div class="section s2" id="sec-3-7-the-scope-of-modeling--this-book-s-boundary">
-<div class="sec-h"><a href="../book/3.7-the-scope-of-modeling.html">This book&#x27;s boundary</a></div>
-<p class="topic">This book is an introduction.</p>
+<h3 id="ch-3-4-lifecycles-and-runbooks"><span class="tier-kick">Lesson</span><a href="../book/3.4-lifecycles-and-runbooks.html" class="ch-link">3.4-lifecycles-and-runbooks</a> <span class="ch-slug">3.4-lifecycles-and-runbooks</span></h3>
+<div class="section s2" id="sec-3-4-lifecycles-and-runbooks--lifecycles-first-then-the-failure-map">
+<div class="sec-h"><a href="../book/3.4-lifecycles-and-runbooks.html">Lifecycles first, then the failure map</a></div>
+<p class="topic">Start with the lifecycles, because everything else hangs off them.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can map a lifecycle — the healthy path of a recurring activity plus, from each node, its failure states and the action for each — as a failure-mode-and-effects grid, and encode the way out and the prohibition an agent cannot supply on its own. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-7-the-scope-of-modeling--when-a-sketch-graduates">
-<div class="sec-h"><a href="../book/3.7-the-scope-of-modeling.html">When a sketch graduates</a></div>
-<p class="topic">There is a moment when a working sketch stops carrying its weight, and it is worth learning to see it coming.</p>
+<div class="section s2" id="sec-3-4-lifecycles-and-runbooks--runbooks-split-the-deterministic-from-the-judgment">
+<div class="sec-h"><a href="../book/3.4-lifecycles-and-runbooks.html">Runbooks: split the deterministic from the judgment</a></div>
+<p class="topic">Once the healthy path and the failure map are written, the thing you hand the agent is a **runbook** (or playbook): the steps to take, whether recovering from a failure or working a fresh ticket.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this section, the reader can author a runbook that separates deterministic steps from judgment ones — giving the deterministic parts an executable tool that also yields a reusable trace, and the judgment parts a rubric or the roughest algorithm that still fits, up to a pre-canned brief for delegation. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-7-the-scope-of-modeling--where-each-view-sends-you">
-<div class="sec-h"><a href="../book/3.7-the-scope-of-modeling.html">Where each view sends you</a></div>
-<p class="topic">Each view here is deliberately lightweight relative to the full analytic traditions behind it — even the ones that are executable registries with gates carry a fraction of what their fields can say.</p>
+<div class="section s3" id="sec-3-4-lifecycles-and-runbooks--the-deterministic-parts-get-tools">
+<div class="sec-h"><a href="../book/3.4-lifecycles-and-runbooks.html">The deterministic parts get tools</a></div>
+<p class="topic">Anything that has a single correct outcome should be an executable script the agent runs, not a procedure it improvises.</p>
 </div>
-<div class="section s2" id="sec-3-7-the-scope-of-modeling--models-tier-reasoning-descends">
-<div class="sec-h"><a href="../book/3.7-the-scope-of-modeling.html">Models tier; reasoning descends</a></div>
-<p class="topic">One scaling move underlies the whole zoo.</p>
+<div class="section s3" id="sec-3-4-lifecycles-and-runbooks--the-judgment-parts-the-roughest-algorithm-that-still-fits">
+<div class="sec-h"><a href="../book/3.4-lifecycles-and-runbooks.html">The judgment parts: the roughest algorithm that still fits</a></div>
+<p class="topic">**The judgment parts get the roughest algorithm that still fits.** For a well-constrained decision, write the algorithm down and let the agent do the glue.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the roughest-algorithm-that-still-fits rule to a judgment step — giving a well-constrained decision an algorithm, an open-ended one only hints, a measurement a rubric, and a delegated task a pre-canned brief. <span class="prov">derived</span></span></li></ul></div>
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-3-8-keeping-models-in-sync"><span class="tier-kick">Lesson</span><a href="../book/3.8-keeping-models-in-sync.html" class="ch-link">3.8-keeping-models-in-sync</a> <span class="ch-slug">3.8-keeping-models-in-sync</span></h3>
-<div class="section s2" id="sec-3-8-keeping-models-in-sync--the-question-the-map-must-equal-the-territory-or-the-bridge-lies">
-<div class="sec-h"><a href="../book/3.8-keeping-models-in-sync.html">The question: the map must equal the territory, or the bridge lies</a></div>
-<p class="topic">A context-bounded fleet governs a context-exceeding codebase *through* structured models.</p>
+<h3 id="ch-3-5-metrics"><span class="tier-kick">Lesson</span><a href="../book/3.5-metrics.html" class="ch-link">3.5-metrics</a> <span class="ch-slug">3.5-metrics</span></h3>
+<div class="section s2" id="sec-3-5-metrics--measure-one-level-deeper">
+<div class="sec-h"><a href="../book/3.5-metrics.html">Measure one level deeper</a></div>
+<p class="topic">John Ousterhout names the rule [cite: ousterhout2018]: **always measure one level deeper** — one level, not as deep as you can go.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply Ousterhout&#x27;s rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-8-keeping-models-in-sync--the-mechanism-a-two-layer-net-and-freshness-by-derivation">
-<div class="sec-h"><a href="../book/3.8-keeping-models-in-sync.html">The mechanism: a two-layer net, and freshness by derivation</a></div>
-<p class="topic">Sync holds through two layers stacked over the model↔code gap.</p>
+<div class="section s2" id="sec-3-5-metrics--the-hard-end-cold-start-latency-machine-read-and-model-fed">
+<div class="sec-h"><a href="../book/3.5-metrics.html">The hard end: cold-start latency, machine-read and model-fed</a></div>
+<p class="topic">Start at the deterministic end, where a metric is a deterministic quantity with a defined measurement procedure.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can analyze a hard, deterministic metric at the level where the decision lives — reading cold-start latency one level deeper to name runtime initialization rather than scale-from-zero, computing a longest-path worst case over a service graph, and feeding the number into a structured deployment model a recompute tool consumes. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-8-keeping-models-in-sync--the-model-grows-with-the-system-two-worked-examples">
-<div class="sec-h"><a href="../book/3.8-keeping-models-in-sync.html">The model grows with the system: two worked examples</a></div>
-<p class="topic">Sync is a living practice, not a one-time alignment.</p>
+<div class="section s2" id="sec-3-5-metrics--the-flagship-coverage-measured-one-level-deeper">
+<div class="sec-h"><a href="../book/3.5-metrics.html">The flagship: coverage measured one level deeper</a></div>
+<p class="topic">Now the middle of the spectrum: the &quot;measure one level deeper&quot; rule applied to the number that most often gets it wrong.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can compute coverage measured one level deeper — joining a traceability graph&#x27;s claim-to-anchor edges with the coverage oracle so the metric counts model claims instead of lines, names an unexercised invariant instead of a percentage, and reports an honest exercised/unmeasurable/out-of-surface breakdown. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-3-8-keeping-models-in-sync--the-evidence">
-<div class="sec-h"><a href="../book/3.8-keeping-models-in-sync.html">The evidence</a></div>
-<p class="topic">The claim is a field-report result, so the numbers come with their provenance.</p>
+<div class="section s2" id="sec-3-5-metrics--mmm-drain">
+<div class="sec-h"><a href="../book/3.5-metrics.html">The dual: draining unmodelled code</a></div>
+<p class="topic">The flagship metric had a blind spot: it measured model→code, so code with no model at all stayed invisible to it — and this dual is what finds it.</p>
 </div>
-<div class="section s3" id="sec-3-8-keeping-models-in-sync--model-sync-efficacy">
-<div class="sec-h"><a href="../book/3.8-keeping-models-in-sync.html">The derived floor under load</a></div>
-<p class="topic">Documentation drift is excluded here by construction; this table is model↔code sync only.</p>
+<div class="section s2" id="sec-3-5-metrics--the-soft-end-doc-derived-tests">
+<div class="sec-h"><a href="../book/3.5-metrics.html">The soft end: doc-derived tests</a></div>
+<p class="topic">Slide to the far end of the spectrum, where the metric stops being a number a threshold can act on and becomes a judgment a human has to make.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can classify a soft metric — a doc-derived test&#x27;s coverage-of-doc-claims — as one that aims a reader rather than deciding, recognize why its softness is inseparable from a readiness judgment about the seam, and see why wiring it to a blocking gate manufactures hollow tests. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s3" id="sec-3-8-keeping-models-in-sync--documentation-hygiene-aside-not-model-sync">
-<div class="sec-h"><a href="../book/3.8-keeping-models-in-sync.html">Documentation-hygiene aside (NOT model sync)</a></div>
-<p class="topic">Stale headers and stale prose numbers are **documentation drift, not model drift.** They are the soft layer&#x27;s true positives, and they are cheap: a reader catches them, and the close tool heals them.</p>
+<div class="section s2" id="sec-3-5-metrics--the-model-runs-the-machinery">
+<div class="sec-h"><a href="../book/3.5-metrics.html">The model runs the machinery</a></div>
+<p class="topic">The hard end and the flagship follow the same pattern.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why the MBSE models are consumed at runtime to produce the metrics — the cold-start numbers and the coverage graph both read at check time — so a component-distance grade read from the model drives a pre-commit gate three ways, the model being the machinery rather than a picture of it. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s3" id="sec-3-8-keeping-models-in-sync--mbse-nav-token">
-<div class="sec-h"><a href="../book/3.8-keeping-models-in-sync.html">The fewer-tokens leg — a navigation pilot</a></div>
-<p class="topic">The measurement above is the *quality* leg — the model stays true to the code.</p>
+<div class="section s2" id="sec-3-5-metrics--a-compact-reference">
+<div class="sec-h"><a href="../book/3.5-metrics.html">A compact reference</a></div>
+<p class="topic">[ref:metrics-table] collects every metric — the decision each drives, where it sits on the hard-soft axis, and who reads it.</p>
 </div>
-<div class="section s2" id="sec-3-8-keeping-models-in-sync--the-two-failure-modes-where-drift-still-escapes">
-<div class="sec-h"><a href="../book/3.8-keeping-models-in-sync.html">The two failure modes: where drift still escapes</a></div>
-<p class="topic">The net has two escape hatches.</p>
 </div>
-<div class="section s2" id="sec-3-8-keeping-models-in-sync--the-honest-reading">
-<div class="sec-h"><a href="../book/3.8-keeping-models-in-sync.html">The honest reading</a></div>
-<p class="topic">The result is narrow, and stating its limits is part of stating it.</p>
+<div class="chapter">
+<h3 id="ch-3-6-when-guardrails-collide"><span class="tier-kick">Lesson</span><a href="../book/3.6-when-guardrails-collide.html" class="ch-link">3.6-when-guardrails-collide</a> <span class="ch-slug">3.6-when-guardrails-collide</span></h3>
+<div class="section s2" id="sec-3-6-when-guardrails-collide--drawing-what-lies-between-the-controls">
+<div class="sec-h"><a href="../book/3.6-when-guardrails-collide.html">Drawing what lies between the controls</a></div>
+<p class="topic">The Governance Graph draws it.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can analyze the space between controls with a governance graph — mechanisms as nodes tagged by event and resource, conflicts as edges in a closed contradiction/contention/ordering/precedence taxonomy joined by the shared resource — and route each edge to a lint or a human prompt by its type before the control ships. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-3-6-when-guardrails-collide--the-other-question-a-list-can-t-answer">
+<div class="sec-h"><a href="../book/3.6-when-guardrails-collide.html">The other question a list can&#x27;t answer</a></div>
+<p class="topic">The graph settled one question a flat list could not: which two controls collide.</p>
+</div>
+<div class="section s2" id="sec-3-6-when-guardrails-collide--growing-controls-and-auditing-the-growth">
+<div class="sec-h"><a href="../book/3.6-when-guardrails-collide.html">Growing controls, and auditing the growth</a></div>
+<p class="topic">The census has a counterpart, and the two are true opposites over one graph.</p>
+</div>
+<div class="section s2" id="sec-3-6-when-guardrails-collide--when-the-hooks-aren-t-yours">
+<div class="sec-h"><a href="../book/3.6-when-guardrails-collide.html">When the hooks aren&#x27;t yours</a></div>
+<p class="topic">**An implication, looking ahead.** Every mechanism so far was one you wrote — but some hooks arrive from outside: a plugin registers one, a teammate adds a personal one, and, plausibly soon, a regulator or model vendor mandates one.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the governance graph to hooks they did not author — entering an outside hook as a node on a conservative possible-conflict edge against its whole slot until analyzed — and reduce satisfying one or several regulators to checking that the merged graph carries no unresolved contradiction, including that no required hard block is overridden by a soft aim. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-3-6-when-guardrails-collide--keeping-the-model-honest">
+<div class="sec-h"><a href="../book/3.6-when-guardrails-collide.html">Keeping the model honest</a></div>
+<p class="topic">Two disciplines keep the model honest, and both are the book&#x27;s.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-evaluate">evaluate</span><span class="oc-text">After this section, the reader can justify the two disciplines that keep a governance graph honest — anchoring each node to its control&#x27;s code by symbol so a drift lint reddens an unmodeled control, and keeping the model descriptive rather than inventing conflict-lints for collisions that never happened. <span class="prov">derived</span></span></li></ul></div>
 </div>
 </div>
 </section>
@@ -872,7 +872,7 @@
 </div>
 <div class="section s3" id="sec-4-5-lessons-learned--governance-is-a-spectrum-from-soft-to-hard">
 <div class="sec-h"><a href="../book/4.5-lessons-learned.html">Governance is a spectrum from soft to hard</a></div>
-<p class="topic">The mechanisms I ended up with sorted along the axis Part 2 named: soft governance *aims* the agent, hard governance *holds* regardless of cooperation.</p>
+<p class="topic">The mechanisms I ended up with sorted along the axis Part 3 named: soft governance *aims* the agent, hard governance *holds* regardless of cooperation.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds. <span class="prov">derived</span></span></li></ul></div>
 </div>
 <div class="section s3" id="sec-4-5-lessons-learned--ai-is-an-autonomy-amplifier">
@@ -909,7 +909,7 @@
 </div>
 <div class="section s2" id="sec-4-6-generative-validation--coverage-did-we-explore-the-spec-relevant-space">
 <div class="sec-h"><a href="../book/4.6-generative-validation.html">Coverage: did we explore the spec-relevant space?</a></div>
-<p class="topic">Once you have a generator, a new question appears that example tests never had to ask: *did the campaign explore the space that matters, or did it just spin?* The book already owns coverage — the [metrics chapter](2.5-metrics.html) develops it as a flagship, with the rule to measure one level deeper than the raw percentage — so this section adds only the one cut that is genuinely native to generation and hands the rest back.</p>
+<p class="topic">Once you have a generator, a new question appears that example tests never had to ask: *did the campaign explore the space that matters, or did it just spin?* The book already owns coverage — the [metrics chapter](3.5-metrics.html) develops it as a flagship, with the rule to measure one level deeper than the raw percentage — so this section adds only the one cut that is genuinely native to generation and hands the rest back.</p>
 </div>
 <div class="section s2" id="sec-4-6-generative-validation--when-to-reach-for-which">
 <div class="sec-h"><a href="../book/4.6-generative-validation.html">When to reach for which</a></div>

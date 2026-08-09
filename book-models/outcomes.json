@@ -164,66 +164,47 @@
         ],
         "lessons": [
           {
-            "lesson": "2.1-the-agent-stack",
+            "lesson": "2.1-the-executable-zoo",
             "own_outcomes": [],
             "section_outcomes": [
-              "the-four-layers::identify-the-four-layers-of-the-agent-stack-from",
-              "the-four-layers::identify-the-four-layers-of-the-agent-stack-found",
-              "every-layer-is-a-place-to-steer::explain-why-every-layer-of-the-stack-is-an-injec"
+              "kruchten-s-4-1-views-organize-the-part::explain-why-kruchten-s-4-1-becomes-the-spine-of",
+              "two-decisions-that-make-the-graph-resist-rot::analyze-the-two-design-decisions-that-keep-a-gov"
             ]
           },
           {
-            "lesson": "2.2-models-and-the-semantic-gap",
+            "lesson": "2.2-the-logical-view",
             "own_outcomes": [],
-            "section_outcomes": [
-              "words-are-soft-code-is-verbose-a-model-is-the-sweet-spot::distinguish-words-too-soft-from-code-too-verbose-and",
-              "why-the-models-drifted-and-why-that-changes-now::explain-why-hand-maintained-models-rotted-and-wh",
-              "the-apex-of-the-documentation-hierarchy-is-a-typed-model::explain-why-a-structured-model-at-the-apex-of-th",
-              "a-drift-check-proves-agreement-not-correctness::explain-why-a-drift-check-proves-agreement-betwe",
-              "execute-the-model-directly-a-spectrum-not-a-verdict::situate-the-modeling-choice-on-a-spectrum-from-n",
-              "the-semantic-gap::define-the-semantic-gap-between-a-model-and-the",
-              "a-second-worked-example-the-context-fullness-bank-hook::apply-the-semantic-gap-fix-to-the-operator-s-o"
-            ]
+            "section_outcomes": []
           },
           {
-            "lesson": "2.3-the-governed-environment",
+            "lesson": "2.3-the-process-view",
             "own_outcomes": [],
-            "section_outcomes": [
-              "ex-ante-everything-you-can-decide-up-front::apply-specification-driven-development-to-what",
-              "ex-post-everything-you-learn-by-building::explain-why-most-real-mechanisms-are-built-ex-po",
-              "control-growth::run-the-promotion-rule-for-a-season-and-the",
-              "constraints-and-sensors::distinguish-a-constraint-from-a-sensor-prevent-the-m",
-              "the-residual-goals-no-mechanism-reaches::identify-the-residual-goals-no-mechanism-reaches"
-            ]
+            "section_outcomes": []
           },
           {
-            "lesson": "2.4-lifecycles-and-runbooks",
+            "lesson": "2.4-the-development-view",
             "own_outcomes": [],
-            "section_outcomes": [
-              "lifecycles-first-then-the-failure-map::map-a-lifecycle-s-healthy-path-and-the-failu",
-              "runbooks-split-the-deterministic-from-the-judgment::author-a-runbook-that-gives-deterministic-steps",
-              "the-judgment-parts-the-roughest-algorithm-that-still-fits::apply-the-roughest-algorithm-rule-to-a-judgmen"
-            ]
+            "section_outcomes": []
           },
           {
-            "lesson": "2.5-metrics",
+            "lesson": "2.5-the-physical-view",
             "own_outcomes": [],
-            "section_outcomes": [
-              "measure-one-level-deeper::compute-a-metric-one-level-deeper-than-the-numbe",
-              "the-hard-end-cold-start-latency-machine-read-and-model-fed::analyze-a-hard-machine-read-metric-whose-definin",
-              "the-flagship-coverage-measured-one-level-deeper::compute-coverage-measured-one-level-deeper-model",
-              "the-soft-end-doc-derived-tests::classify-a-soft-judgment-laden-metric-that-aims-a",
-              "the-model-runs-the-machinery::explain-why-a-structured-model-is-not-a-picture"
-            ]
+            "section_outcomes": []
           },
           {
-            "lesson": "2.6-when-guardrails-collide",
+            "lesson": "2.6-the-scenarios-view",
             "own_outcomes": [],
-            "section_outcomes": [
-              "drawing-what-lies-between-the-controls::analyze-the-collisions-between-controls-as-edges",
-              "when-the-hooks-aren-t-yours::apply-the-governance-graph-to-hooks-you-did-no",
-              "keeping-the-model-honest::justify-the-two-disciplines-that-keep-a-governan"
-            ]
+            "section_outcomes": []
+          },
+          {
+            "lesson": "2.7-the-scope-of-modeling",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "2.8-keeping-models-in-sync",
+            "own_outcomes": [],
+            "section_outcomes": []
           }
         ]
       },
@@ -236,47 +217,66 @@
         ],
         "lessons": [
           {
-            "lesson": "3.1-the-executable-zoo",
+            "lesson": "3.1-the-agent-stack",
             "own_outcomes": [],
             "section_outcomes": [
-              "kruchten-s-4-1-views-organize-the-part::explain-why-kruchten-s-4-1-becomes-the-spine-of",
-              "two-decisions-that-make-the-graph-resist-rot::analyze-the-two-design-decisions-that-keep-a-gov"
+              "the-four-layers::identify-the-four-layers-of-the-agent-stack-from",
+              "the-four-layers::identify-the-four-layers-of-the-agent-stack-found",
+              "every-layer-is-a-place-to-steer::explain-why-every-layer-of-the-stack-is-an-injec"
             ]
           },
           {
-            "lesson": "3.2-the-logical-view",
+            "lesson": "3.2-models-and-the-semantic-gap",
             "own_outcomes": [],
-            "section_outcomes": []
+            "section_outcomes": [
+              "words-are-soft-code-is-verbose-a-model-is-the-sweet-spot::distinguish-words-too-soft-from-code-too-verbose-and",
+              "why-the-models-drifted-and-why-that-changes-now::explain-why-hand-maintained-models-rotted-and-wh",
+              "the-apex-of-the-documentation-hierarchy-is-a-typed-model::explain-why-a-structured-model-at-the-apex-of-th",
+              "a-drift-check-proves-agreement-not-correctness::explain-why-a-drift-check-proves-agreement-betwe",
+              "execute-the-model-directly-a-spectrum-not-a-verdict::situate-the-modeling-choice-on-a-spectrum-from-n",
+              "the-semantic-gap::define-the-semantic-gap-between-a-model-and-the",
+              "a-second-worked-example-the-context-fullness-bank-hook::apply-the-semantic-gap-fix-to-the-operator-s-o"
+            ]
           },
           {
-            "lesson": "3.3-the-process-view",
+            "lesson": "3.3-the-governed-environment",
             "own_outcomes": [],
-            "section_outcomes": []
+            "section_outcomes": [
+              "ex-ante-everything-you-can-decide-up-front::apply-specification-driven-development-to-what",
+              "ex-post-everything-you-learn-by-building::explain-why-most-real-mechanisms-are-built-ex-po",
+              "control-growth::run-the-promotion-rule-for-a-season-and-the",
+              "constraints-and-sensors::distinguish-a-constraint-from-a-sensor-prevent-the-m",
+              "the-residual-goals-no-mechanism-reaches::identify-the-residual-goals-no-mechanism-reaches"
+            ]
           },
           {
-            "lesson": "3.4-the-development-view",
+            "lesson": "3.4-lifecycles-and-runbooks",
             "own_outcomes": [],
-            "section_outcomes": []
+            "section_outcomes": [
+              "lifecycles-first-then-the-failure-map::map-a-lifecycle-s-healthy-path-and-the-failu",
+              "runbooks-split-the-deterministic-from-the-judgment::author-a-runbook-that-gives-deterministic-steps",
+              "the-judgment-parts-the-roughest-algorithm-that-still-fits::apply-the-roughest-algorithm-rule-to-a-judgmen"
+            ]
           },
           {
-            "lesson": "3.5-the-physical-view",
+            "lesson": "3.5-metrics",
             "own_outcomes": [],
-            "section_outcomes": []
+            "section_outcomes": [
+              "measure-one-level-deeper::compute-a-metric-one-level-deeper-than-the-numbe",
+              "the-hard-end-cold-start-latency-machine-read-and-model-fed::analyze-a-hard-machine-read-metric-whose-definin",
+              "the-flagship-coverage-measured-one-level-deeper::compute-coverage-measured-one-level-deeper-model",
+              "the-soft-end-doc-derived-tests::classify-a-soft-judgment-laden-metric-that-aims-a",
+              "the-model-runs-the-machinery::explain-why-a-structured-model-is-not-a-picture"
+            ]
           },
           {
-            "lesson": "3.6-the-scenarios-view",
+            "lesson": "3.6-when-guardrails-collide",
             "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "3.7-the-scope-of-modeling",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "3.8-keeping-models-in-sync",
-            "own_outcomes": [],
-            "section_outcomes": []
+            "section_outcomes": [
+              "drawing-what-lies-between-the-controls::analyze-the-collisions-between-controls-as-edges",
+              "when-the-hooks-aren-t-yours::apply-the-governance-graph-to-hooks-you-did-no",
+              "keeping-the-model-honest::justify-the-two-disciplines-that-keep-a-governan"
+            ]
           }
         ]
       },
