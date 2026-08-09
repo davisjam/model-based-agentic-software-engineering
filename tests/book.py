@@ -748,7 +748,11 @@ def check_ir_render_fidelity() -> "tuple[str, list[str]]":
     doc = _ir.parse_book()
     active: list[str] = []
     for ch in doc.chapters:
-        for b in ch.blocks:
+        # A worked-examples gallery renders as ONE directive-managed unit (the renderer intercepts the open
+        # marker and collects the bracketed span), so its inner blocks never render in isolation. Skipping the
+        # whole span keeps this net from feeding the takeaway PARA — whose raw glues the `<!-- worked-examples-end -->`
+        # close marker onto its tail — to `md_to_html`, where it would trip the renderer's mid-block-marker guard.
+        for b in _ir.blocks_outside_worked_examples(ch.blocks):
             if not b.is_render_complete:
                 continue
             # Citation rendering is chapter-scoped stateful (first-reference numbering + first-occurrence
@@ -838,7 +842,10 @@ def _build_only_child_forest() -> "tuple[list[_HNode], list[_HNode]]":
     for ch in doc.chapters:
         root = _HNode(1, ch.title, ch.slug)
         stack = [root]
-        for b in ch.blocks:
+        # A worked-examples gallery's `### Example` heads are directive syntax, not narrative H3 sections
+        # (same treatment as the outline's `heading_rows`), so the whole span is skipped — otherwise the
+        # gallery heads would enter the heading tree and could draw a spurious only-child finding.
+        for b in _ir.blocks_outside_worked_examples(ch.blocks):
             if b.kind is not _ir.BlockKind.HEADING:
                 continue
             anchor, text = _sym.heading_id_and_text(b)

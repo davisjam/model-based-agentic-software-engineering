@@ -24,6 +24,7 @@ TOKENIZER SSOT.  Block splitting, chapter discovery, and the marker regexes are 
 from __future__ import annotations
 
 import re
+from collections.abc import Iterator
 from dataclasses import dataclass, field
 from enum import Enum
 
@@ -288,6 +289,29 @@ class Document:
     def labels(self) -> "dict[str, tuple[Chapter, Block]]":
         """key → (chapter, float) for every labelled float — the resolve target set for `[ref:]`."""
         return {b.label: (c, b) for c in self.chapters for b in c.floats() if b.label}
+
+
+def blocks_outside_worked_examples(blocks: "list[Block]") -> "Iterator[Block]":
+    """Yield every block that is NOT inside a worked-examples gallery span — the span from a
+    `<!-- worked-examples: KEY -->` DIRECTIVE block through the `<!-- worked-examples-end -->` close marker
+    (inclusive). The gallery is a single directive-managed unit that both emitters collect and render whole
+    (`build_book_html.md_to_html` intercepts the open marker and hands the bracketed inner markdown to
+    `parse_worked_examples`); its inner `### Example` heads, `<!-- takeaway -->` divider, and close marker are
+    DIRECTIVE SYNTAX, not standalone narrative blocks. So per-block checks (O2 topic-sentence over headings,
+    the C→A isolated-render fidelity net) must skip the whole span — an inner block rendered in isolation
+    would mis-classify (a `### Example` head as an L3 section) or crash the renderer's mid-block-marker guard
+    (the close marker glues onto the takeaway PARA's raw). The close marker is detected by raw-substring on
+    any block, not a standalone directive, because it glues onto the takeaway paragraph. `WEX_OPEN_RE` /
+    `WEX_END_RE` are the SSOT for these markers."""
+    in_wex = False
+    for b in blocks:
+        if b.kind is BlockKind.DIRECTIVE and b.directive == "worked-examples":
+            in_wex = True
+        if in_wex:
+            if b.raw and "worked-examples-end" in b.raw:
+                in_wex = False
+            continue  # everything from the open marker through the close marker is directive syntax
+        yield b
 
 
 def _fig_caption(arg: str) -> "str | None":
