@@ -123,7 +123,9 @@ class SpineClaim:
     """One ordered step of the book's argument. `id` is the kebab join key; `order` its 1-based position;
     `seeds` the author seed-statement numbers it descends from; `reconciles_claims` / `reconciles_big_ideas`
     / `reconciles_argues_claims` the sibling-model entries it subsumes (discussion claims, landing Big Ideas,
-    and What-This-Book-Argues claims). `advanced_by` is DERIVED — the chapters labeled with this step."""
+    and What-This-Book-Argues claims). `feeds` the later spine ids this step creates the surface for (the
+    typed causal edge; AS10 holds it forward-pointing). `advanced_by` is DERIVED — the chapters labeled with
+    this step."""
     id: str
     order: int
     statement: str
@@ -131,6 +133,7 @@ class SpineClaim:
     reconciles_claims: list[str]
     reconciles_big_ideas: list[str]
     reconciles_argues_claims: list[str]
+    feeds: list[str] = field(default_factory=list)   # AS10: spine ids this step CREATES THE SURFACE FOR (must point forward)
     exempt: "str | None" = None                      # claim-depth exemption reason (front-loaded-by-design / bridge) or None
     reviewed_hash: str = ""                          # AS8 seed: the statement hash the chapter labels were reviewed against
     quantifiable: bool = False                       # W-LEDGER: is this the kind of claim a metric could bear weight for?
@@ -212,6 +215,7 @@ def derive_model() -> SpineModel:
         reconciles_claims=list(d.get("reconciles", {}).get("claims", [])),
         reconciles_big_ideas=list(d.get("reconciles", {}).get("big_ideas", [])),
         reconciles_argues_claims=list(d.get("reconciles", {}).get("argues_claims", [])),
+        feeds=list(d.get("feeds", [])),
         exempt=claim_exempt.get(d["id"]),
         reviewed_hash=d.get("reviewed_hash", ""),
         quantifiable=bool(d.get("quantifiable", False)),
@@ -308,6 +312,8 @@ def structural_findings(model: "SpineModel | None" = None) -> "list[str]":
     AS8 — freshness (the CS5 analogue): every claim carries a `reviewed_hash` equal to its current statement
           hash — a statement edited without a re-review reddens (its chapter labels may no longer hold).
     AS9 — claim exemptions: every reason ∈ CLAIM_EXEMPT_REASONS; every exemption key names a spine claim.
+    AS10 — every `feeds` target resolves to a later-ordered spine id (a forward causal edge; a backward
+          or self feed reddens).
 
     (AS1, drift — the artifact equals a fresh derivation — is walked by the tests/book_models.py check and
     the `verify` CLI, mirroring the siblings. The DEPTH and OVERMAPPING sensors are DERIVED report flags in
@@ -401,6 +407,17 @@ def structural_findings(model: "SpineModel | None" = None) -> "list[str]":
                             f"({', '.join(CLAIM_EXEMPT_REASONS)})")
         if cid not in spine_ids:
             findings.append(f"AS9 claim exemption for {cid!r} — no such spine claim")
+
+    # AS10 — every `feeds` target resolves to a later-ordered spine id (a causal edge points FORWARD;
+    # a backward or self feed inverts the modeling->alignment progression and reddens).
+    order_of = {s.id: s.order for s in model.spine}
+    for s in model.spine:
+        for tgt in s.feeds:
+            if tgt not in order_of:
+                findings.append(f"AS10 spine claim {s.id!r} feeds unknown spine id {tgt!r}")
+            elif order_of[tgt] <= s.order:
+                findings.append(f"AS10 spine claim {s.id!r} feeds {tgt!r} which is not later-ordered "
+                                f"(feed must point forward: {s.order} -> {order_of[tgt]})")
     return findings
 
 
@@ -418,6 +435,7 @@ def to_jsonable(model: "SpineModel | None" = None) -> dict:
             "chapters_labeled": sum(1 for c in model.chapters if c.advances),
             "chapters_exempt": sum(1 for c in model.chapters if c.exempt),
             "advancement_edges": sum(len(c.advances) for c in model.chapters),
+            "feeds_edges": sum(len(s.feeds) for s in model.spine),
             "reconciled_claims": len({cid for s in model.spine for cid in s.reconciles_claims}),
             "reconciled_big_ideas": len({b for s in model.spine for b in s.reconciles_big_ideas}),
             "zero_claim_suspects": len(flags["zero_claim_suspects"]),

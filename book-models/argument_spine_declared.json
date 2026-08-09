@@ -58,28 +58,29 @@
     {
       "id": "modeling-thesis",
       "order": 7,
-      "statement": "Binding intent and structure into explicit, drift-checked models gives agents a compact representation to reason through, and engineers a surface to specify, analyze, and predict.",
+      "statement": "Externalize engineering knowledge and intent into progressively richer representations: selected context, connected knowledge, invariant-bearing models, so commodity intelligence reasons through a compact world and engineers gain a surface to specify and predict.",
       "seeds": [4],
       "reconciles": {"claims": ["double-win", "ssot-not-snapshot", "direction-agnostic"], "big_ideas": ["modeling-thesis"]},
-      "reviewed_hash": "dc44bf4796ad",
+      "feeds": ["alignment-thesis"],
+      "reviewed_hash": "727472b9afa0",
       "quantifiable": true, "reality_claim": true, "measurand": "agent tokens-to-answer under model navigation; code-to-model coverage"
     },
     {
       "id": "alignment-thesis",
       "order": 8,
-      "statement": "Enforced mechanisms hold implementation to declared intent across later changes; where possible, constrain the action space so the wrong move is unavailable, and where prevention is incomplete, install sensors that detect divergence.",
+      "statement": "Give engineering intent authority over autonomous work by binding obligations to deterministic mechanisms — constrain, sense, validate, gate; where Modeling makes intent explicit, Alignment makes it binding.",
       "seeds": [5],
       "reconciles": {"claims": ["constraint-prevents-sensor-detects", "soft-to-hard-spectrum", "model-not-mechanism-until-enforced"], "big_ideas": ["alignment-thesis"]},
-      "reviewed_hash": "d4b36f18c7e9",
+      "reviewed_hash": "afa4edc8467f",
       "quantifiable": true, "reality_claim": true, "measurand": "drift-detection signal quality and reconciliation labor for models and implementation"
     },
     {
       "id": "theses-treat-the-causes",
       "order": 9,
-      "statement": "The two theses divide the not-knowings: modeling treats what-to-build and how-to-realize; alignment treats how-to-change-safely.",
+      "statement": "The theses are causally linked, not parallel: Modeling turns implicit knowledge into representation; Alignment attaches authority; the richer the model, the more obligations move from judgment into enforcement.",
       "seeds": [4, 5],
       "reconciles": {"claims": ["theses-divide-the-not-knowings"], "big_ideas": []},
-      "reviewed_hash": "7e245a8d064b",
+      "reviewed_hash": "6c23eca46ac4",
       "quantifiable": false, "reality_claim": false
     },
     {

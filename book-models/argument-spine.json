@@ -6,9 +6,10 @@
     "chapters_labeled": 35,
     "chapters_exempt": 11,
     "advancement_edges": 91,
+    "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 2,
+    "zero_claim_suspects": 1,
     "over_cap_unfocused": 0,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
@@ -57,6 +58,7 @@
       "reconciles_argues_claims": [
         "cheap-code-costly-judgment"
       ],
+      "feeds": [],
       "exempt": "front-loaded-by-design",
       "reviewed_hash": "36f4f3b40095",
       "quantifiable": true,
@@ -89,6 +91,7 @@
       ],
       "reconciles_big_ideas": [],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": "front-loaded-by-design",
       "reviewed_hash": "36e742ea3f72",
       "quantifiable": false,
@@ -119,6 +122,7 @@
       ],
       "reconciles_big_ideas": [],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": null,
       "reviewed_hash": "cf81b75e7fd6",
       "quantifiable": true,
@@ -151,6 +155,7 @@
         "churn"
       ],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": "front-loaded-by-design",
       "reviewed_hash": "d1e8982b2cc0",
       "quantifiable": true,
@@ -180,6 +185,7 @@
       ],
       "reconciles_big_ideas": [],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": "front-loaded-by-design",
       "reviewed_hash": "0723642b2b10",
       "quantifiable": false,
@@ -211,6 +217,7 @@
         "governance-centric"
       ],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": null,
       "reviewed_hash": "78b391707b50",
       "quantifiable": true,
@@ -239,7 +246,7 @@
     {
       "id": "modeling-thesis",
       "order": 7,
-      "statement": "Binding intent and structure into explicit, drift-checked models gives agents a compact representation to reason through, and engineers a surface to specify, analyze, and predict.",
+      "statement": "Externalize engineering knowledge and intent into progressively richer representations: selected context, connected knowledge, invariant-bearing models, so commodity intelligence reasons through a compact world and engineers gain a surface to specify and predict.",
       "seeds": [
         4
       ],
@@ -252,13 +259,16 @@
         "modeling-thesis"
       ],
       "reconciles_argues_claims": [],
+      "feeds": [
+        "alignment-thesis"
+      ],
       "exempt": null,
-      "reviewed_hash": "dc44bf4796ad",
+      "reviewed_hash": "727472b9afa0",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "agent tokens-to-answer under model navigation; code-to-model coverage",
-      "word_count": 25,
-      "statement_hash": "dc44bf4796ad",
+      "word_count": 32,
+      "statement_hash": "727472b9afa0",
       "advanced_by": [
         "0.4-preface",
         "1.3-loops-and-models",
@@ -288,7 +298,7 @@
     {
       "id": "alignment-thesis",
       "order": 8,
-      "statement": "Enforced mechanisms hold implementation to declared intent across later changes; where possible, constrain the action space so the wrong move is unavailable, and where prevention is incomplete, install sensors that detect divergence.",
+      "statement": "Give engineering intent authority over autonomous work by binding obligations to deterministic mechanisms — constrain, sense, validate, gate; where Modeling makes intent explicit, Alignment makes it binding.",
       "seeds": [
         5
       ],
@@ -301,13 +311,14 @@
         "alignment-thesis"
       ],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": null,
-      "reviewed_hash": "d4b36f18c7e9",
+      "reviewed_hash": "afa4edc8467f",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "drift-detection signal quality and reconciliation labor for models and implementation",
-      "word_count": 32,
-      "statement_hash": "d4b36f18c7e9",
+      "word_count": 27,
+      "statement_hash": "afa4edc8467f",
       "advanced_by": [
         "0.4-preface",
         "1.4-why-mage-follows-from-the-machine",
@@ -327,7 +338,7 @@
     {
       "id": "theses-treat-the-causes",
       "order": 9,
-      "statement": "The two theses divide the not-knowings: modeling treats what-to-build and how-to-realize; alignment treats how-to-change-safely.",
+      "statement": "The theses are causally linked, not parallel: Modeling turns implicit knowledge into representation; Alignment attaches authority; the richer the model, the more obligations move from judgment into enforcement.",
       "seeds": [
         4,
         5
@@ -337,13 +348,14 @@
       ],
       "reconciles_big_ideas": [],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": "bridge",
-      "reviewed_hash": "7e245a8d064b",
+      "reviewed_hash": "6c23eca46ac4",
       "quantifiable": false,
       "reality_claim": false,
       "measurand": "",
-      "word_count": 14,
-      "statement_hash": "7e245a8d064b",
+      "word_count": 28,
+      "statement_hash": "6c23eca46ac4",
       "advanced_by": [
         "0.4-preface",
         "1.3-loops-and-models"
@@ -368,6 +380,7 @@
         "convert-failures"
       ],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": null,
       "reviewed_hash": "d05da605e04d",
       "quantifiable": true,
@@ -400,6 +413,7 @@
       "reconciles_argues_claims": [
         "models-help-reason"
       ],
+      "feeds": [],
       "exempt": null,
       "reviewed_hash": "681d832a8c6d",
       "quantifiable": true,
@@ -432,6 +446,7 @@
       "reconciles_argues_claims": [
         "models-help-reason"
       ],
+      "feeds": [],
       "exempt": null,
       "reviewed_hash": "09abeb08db9f",
       "quantifiable": false,
@@ -464,6 +479,7 @@
         "seat-moves"
       ],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": null,
       "reviewed_hash": "6e678662a007",
       "quantifiable": true,
@@ -496,6 +512,7 @@
       ],
       "reconciles_big_ideas": [],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": null,
       "reviewed_hash": "d27760687c37",
       "quantifiable": false,
@@ -534,6 +551,7 @@
         "churn"
       ],
       "reconciles_argues_claims": [],
+      "feeds": [],
       "exempt": null,
       "reviewed_hash": "3d5cdcd1963c",
       "quantifiable": false,
@@ -576,16 +594,6 @@
         "grounded-in-one-case"
       ],
       "exempt": "preface"
-    },
-    {
-      "slug": "0.5-how-to-read-this-book",
-      "advances": [],
-      "exempt": null
-    },
-    {
-      "slug": "0.6-acknowledgments",
-      "advances": [],
-      "exempt": "apparatus"
     },
     {
       "slug": "1.1-the-printer",
@@ -873,6 +881,11 @@
       "exempt": null
     },
     {
+      "slug": "acknowledgments",
+      "advances": [],
+      "exempt": "apparatus"
+    },
+    {
       "slug": "limitations",
       "advances": [
         "grounded-in-one-case"
@@ -882,10 +895,6 @@
   ],
   "flags": {
     "zero_claim_suspects": [
-      {
-        "chapter": "0.5-how-to-read-this-book",
-        "advances": 0
-      },
       {
         "chapter": "7.2-colophon",
         "advances": 0
