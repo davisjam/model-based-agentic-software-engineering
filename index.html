@@ -228,6 +228,12 @@
   .pair .p-cell { border-top:3px solid var(--box-thesis-rule); padding-top:14px; scroll-margin-top:16px; }
   .pair .p-cell .s-kick { color:var(--box-thesis-rule); }
   .pair .p-cell .s-fig { margin:0 0 12px; }
+  /* The two theses are a CAUSAL pair, not equal columns: Modeling creates surfaces for Alignment. The
+     labeled connector between the cells carries that relationship; it is aria-hidden decorative (the prose
+     in the two cells carries the causal claim for a screen reader). */
+  .pair-causal { grid-template-columns:1fr auto 1fr; align-items:center; gap:1rem; }
+  .pair-causal .pair-arrow { align-self:center; text-align:center; font-variant:small-caps; letter-spacing:.04em;
+    font-size:.8rem; color:var(--muted); white-space:nowrap; }
 
   /* ---- the closing: conclusion + four ways in ----------------------------------------------- */
   /* A wide, fluid footer block (author feedback: the closing read too narrow on a wide display). It uses
@@ -292,6 +298,8 @@
     .slot.figright .s-fig { order:0; }
     .slot .s-fig { max-width:640px; margin:0 auto; }
     .pair { grid-template-columns:1fr; gap:22px; }
+    .pair-causal { grid-template-columns:1fr; }
+    .pair-causal .pair-arrow { transform:rotate(90deg); }
     .close-ways { grid-template-columns:1fr 1fr; }
   }
   @media (max-width:640px){
@@ -649,7 +657,7 @@
 
   <hr class="i-sep" />
 
-  <div class="pair">
+  <div class="pair pair-causal">
 <div class="p-cell" id="card-thesis-modeling">
   <figure class="s-fig" id="bi-modeling-thesis"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
      role="group" aria-labelledby="mlTitle mlDesc"
@@ -739,9 +747,10 @@
 </svg></figure>
   <p class="s-kick">Big idea 3 · Thesis 1</p>
   <h2 class="s-title">Documentation, taken to its limit, is a structured model</h2>
-  <p class="s-claim">A context-bounded agent cannot hold the whole system. Give it a structured, drift-checked model to reason through, and the work fits in the window.</p>
+  <p class="s-claim">A context-bounded agent can't hold the whole system. Externalize what it must know, from context to drift-checked models, and the reasoning fits the window.</p>
   <a class="s-concept" href="concept-modeling-thesis.html">→ read the concept</a>
 </div>
+  <div class="pair-arrow" aria-hidden="true">creates surfaces for &#8594;</div>
 <div class="p-cell" id="card-thesis-alignment">
   <figure class="s-fig" id="bi-alignment-thesis"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
      role="group" aria-labelledby="caTitle caDesc"
@@ -805,7 +814,7 @@
 </svg></figure>
   <p class="s-kick">Big idea 3 · Thesis 2</p>
   <h2 class="s-title">Hold intent with a mechanism: prevent first, sense the rest</h2>
-  <p class="s-claim">Enforced mechanisms hold work to intent across later changes. Constrain first so the wrong move is unavailable; where prevention falls short, a sensor catches the drift.</p>
+  <p class="s-claim">Give engineering intent authority over the fleet's work: constrain first so the wrong move is unavailable, and where prevention falls short, a sensor catches the drift.</p>
   <a class="s-concept" href="concept-alignment-thesis.html">→ read the concept</a>
 </div>
 </div>

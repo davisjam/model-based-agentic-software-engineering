@@ -49,8 +49,8 @@
     "title": "Documentation, taken to its limit, is a structured model",
     "figure": "model-ladder.svg",
     "book_home": "loops-and-models",
-    "claim": "A context-bounded agent cannot hold the whole system. Give it a structured, drift-checked model to reason through, and the work fits in the window.",
-    "more": "Models used to die because keeping them current was somebody's unpaid job; agents now do that job for cents, re-checking the map against the code on every change. A drifted prose doc lies quietly — a drifted model fails the build.",
+    "claim": "A context-bounded agent can't hold the whole system. Externalize what it must know, from context to drift-checked models, and the reasoning fits the window.",
+    "more": "The climb is gradual: select the right context, connect it into typed knowledge, then harden it into drift-checked models — each rung answers more engineering questions without reading raw code. *In other words:* move the knowledge out of people's heads and into representations the next agent can start from. Models used to die because keeping them current was somebody's unpaid job; agents now do it for cents, and a drifted model fails the build where a drifted prose doc only lies quietly.",
     "mechanisms": ["executable-source-of-truth", "drift-parity-gates", "component-zone-model", "pdf-model", "office-models"],
     "related_ideas": [],
     "entry_figures": [
@@ -66,8 +66,8 @@
     "title": "Hold intent with a mechanism: prevent first, sense the rest",
     "figure": "constraint-vs-sensor.svg",
     "book_home": "the-governed-environment",
-    "claim": "Enforced mechanisms hold work to intent across later changes. Constrain first so the wrong move is unavailable; where prevention falls short, a sensor catches the drift.",
-    "more": "A type the compiler checks, a validator that weighs an artifact against its obligation, a gate that consumes the verdict and refuses the deploy: each holds a policy decided once against every later change. A sensor reports what prevention misses; costly goals earn several of these roles at once, and what none of them reaches stays a human job.",
+    "claim": "Give engineering intent authority over the fleet's work: constrain first so the wrong move is unavailable, and where prevention falls short, a sensor catches the drift.",
+    "more": "A model by itself has no authority — it helps an engineer think and an agent navigate, but nothing forces the code to obey it. Alignment changes that: once intent is explicit enough to check, the environment can enforce it. **Represented intent becomes authority.** *In other words:* the model stops being advice and becomes something the build refuses to violate. A type the compiler checks, a validator weighing an artifact against its obligation, a gate that consumes the verdict — each holds a decision made once against every later change; costly goals earn several at once, and what none reaches stays a human job.",
     "mechanisms": ["typed-categories", "semantic-lints", "content-validator", "f10-wiring-lint"],
     "related_ideas": [],
     "entry_figures": []

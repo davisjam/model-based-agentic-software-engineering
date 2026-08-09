@@ -2166,6 +2166,12 @@ LANDING_CSS = """
   .pair .p-cell { border-top:3px solid var(--box-thesis-rule); padding-top:14px; scroll-margin-top:16px; }
   .pair .p-cell .s-kick { color:var(--box-thesis-rule); }
   .pair .p-cell .s-fig { margin:0 0 12px; }
+  /* The two theses are a CAUSAL pair, not equal columns: Modeling creates surfaces for Alignment. The
+     labeled connector between the cells carries that relationship; it is aria-hidden decorative (the prose
+     in the two cells carries the causal claim for a screen reader). */
+  .pair-causal { grid-template-columns:1fr auto 1fr; align-items:center; gap:1rem; }
+  .pair-causal .pair-arrow { align-self:center; text-align:center; font-variant:small-caps; letter-spacing:.04em;
+    font-size:.8rem; color:var(--muted); white-space:nowrap; }
 
   /* ---- the closing: conclusion + four ways in ----------------------------------------------- */
   /* A wide, fluid footer block (author feedback: the closing read too narrow on a wide display). It uses
@@ -2230,6 +2236,8 @@ LANDING_CSS = """
     .slot.figright .s-fig { order:0; }
     .slot .s-fig { max-width:640px; margin:0 auto; }
     .pair { grid-template-columns:1fr; gap:22px; }
+    .pair-causal { grid-template-columns:1fr; }
+    .pair-causal .pair-arrow { transform:rotate(90deg); }
     .close-ways { grid-template-columns:1fr 1fr; }
   }
   @media (max-width:640px){
@@ -2544,7 +2552,8 @@ def _thesis_cell(rec: dict, concept_id: str) -> str:
 def _landing_big_ideas() -> str:
     """The six Big Ideas of the website-v2 argument, rendered from problem to research frontier: idea 1
     (the New Engineering Problem) as the full-width lead band under the hero; Engineering Capital as one
-    band; the Two Theses as a matched PAIR (Thesis 1 / Thesis 2); the Engineered Environment as a band;
+    band; the Two Theses as a CAUSAL pair — Modeling *creates surfaces for* Alignment (the labeled connector
+    is the new intellectual content); the Engineered Environment as a band;
     then Independent Convergence and the Research Agenda. new-problem / independent-convergence /
     research-agenda render in bespoke band shapes fetched via `_big_idea_rec`; all nine ideas are now in
     `_order` with a concept-<slug>.html ENTRY, so every band — these three, churn, the Engineered
@@ -2572,8 +2581,9 @@ def _landing_big_ideas() -> str:
     parts.append('<hr class="i-sep" />')
     # Idea 3 — the Two Theses — a matched pair (the thesis concepts' site homes; both kickered "Big idea 3").
     parts.append(
-        '<div class="pair">\n'
+        '<div class="pair pair-causal">\n'
         + _thesis_cell(by_slug["modeling-thesis"], "card-thesis-modeling") + "\n"
+        + '  <div class="pair-arrow" aria-hidden="true">creates surfaces for &#8594;</div>\n'
         + _thesis_cell(by_slug["alignment-thesis"], "card-thesis-alignment") + "\n"
         + '</div>')
     parts.append('<hr class="i-sep" />')
