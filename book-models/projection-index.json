@@ -3,15 +3,15 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1448,
+    "total_sites": 1454,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1021,
+      "book-web": 1028,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
       "website-landing": 13,
-      "website-misc": 53,
+      "website-misc": 52,
       "website-theory": 10
     }
   },
@@ -158,6 +158,10 @@
           {
             "file": "book/4.6-generative-validation.html",
             "occ": 13
+          },
+          {
+            "file": "book/4.7-the-field-guide.html",
+            "occ": 3
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -483,7 +487,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 115
+            "occ": 116
           }
         ]
       },
@@ -1642,6 +1646,10 @@
             "occ": 6
           },
           {
+            "file": "book/4.7-the-field-guide.html",
+            "occ": 5
+          },
+          {
             "file": "book/5.1-the-ada-context.html",
             "occ": 13
           },
@@ -1965,7 +1973,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 115
+            "occ": 116
           }
         ]
       },
@@ -2039,7 +2047,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 37
+            "occ": 35
           },
           {
             "file": "catalogue-figure.html",
@@ -2241,6 +2249,10 @@
           },
           {
             "file": "book/4.6-generative-validation.html",
+            "occ": 1
+          },
+          {
+            "file": "book/4.7-the-field-guide.html",
             "occ": 1
           },
           {
@@ -2563,7 +2575,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 114
+            "occ": 115
           }
         ]
       },
@@ -3008,6 +3020,10 @@
             "occ": 73
           },
           {
+            "file": "book/4.7-the-field-guide.html",
+            "occ": 6
+          },
+          {
             "file": "book/5.1-the-ada-context.html",
             "occ": 9
           },
@@ -3331,7 +3347,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 115
+            "occ": 116
           }
         ]
       },
@@ -3753,7 +3769,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 103
+            "occ": 102
           },
           {
             "file": "catalogue-figure.html",
@@ -3914,12 +3930,6 @@
         ]
       },
       "website": {
-        "website-misc": [
-          {
-            "file": "book-models/models-view.html",
-            "occ": 1
-          }
-        ],
         "website-industry-cases": [
           {
             "file": "comparative-analysis.html",
@@ -4266,6 +4276,10 @@
             "occ": 1
           },
           {
+            "file": "book/4.7-the-field-guide.html",
+            "occ": 1
+          },
+          {
             "file": "book/5.1-the-ada-context.html",
             "occ": 1
           },
@@ -4585,7 +4599,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 114
+            "occ": 115
           }
         ]
       },
@@ -4948,6 +4962,10 @@
             "occ": 2
           },
           {
+            "file": "book/4.7-the-field-guide.html",
+            "occ": 2
+          },
+          {
             "file": "book/5.1-the-ada-context.html",
             "occ": 2
           },
@@ -5267,7 +5285,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 114
+            "occ": 115
           }
         ]
       },
@@ -5295,7 +5313,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "development-workflow.html",
@@ -5456,6 +5474,10 @@
           {
             "file": "book/4.6-generative-validation.html",
             "occ": 18
+          },
+          {
+            "file": "book/4.7-the-field-guide.html",
+            "occ": 1
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -5777,7 +5799,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 114
+            "occ": 115
           }
         ]
       },

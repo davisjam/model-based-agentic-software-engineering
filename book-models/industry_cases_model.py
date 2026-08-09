@@ -54,7 +54,17 @@ _THEORY_DECLARED = os.path.join(_HERE, "theory_of_mage_declared.json")
 #: The chapter the modeling-ceiling matrix + the two convergence tables are authored into — the MCL5/CCP4
 #: parity target. Resolved through the chapter-identity model, so a renumber of 6.5 updates the target
 #: automatically (the label is frozen; the filename is the one field a reorg edits).
+#: R1: the comparative TABLES (matrix + both convergence grids + their key-lists) STAY co-located on this
+#: one page — the single-page parity binding forbids scattering them across chapters.
 _PAGE_REL = chapter_identity.filename("where-mage-fits")
+
+#: The chapter the six "Meet the six" one-pager CARDS + the six-company-map gallery are authored into.
+#: R2: the cards RELOCATE VI->IV (the field-guide chapter, Part IV), so IC7 (case_onepager_coverage) traces
+#: to THIS page, split from `_PAGE_REL` — the tables do not move, the cards do. Resolved through the same
+#: chapter-identity model, so a renumber of the field-guide chapter updates the target automatically. Through
+#: W1 the cards have not yet physically moved (they still live on the where-mage-fits page); IC7 is AUDIT-ONLY
+#: this wave, so the transient "card not on the field-guide page" findings do not gate.
+_CARDS_PAGE_REL = chapter_identity.filename("the-field-guide")
 
 #: The status enum. A `pending-writeup` stub carries only the roster fields; `authored` records are checked
 #: fully (the status-aware schema split, IC1).
@@ -553,7 +563,7 @@ def case_onepager_coverage(case_id: str, page_path: str, model: "IndustryCasesMo
     case = _case_by_id(case_id, model)
     if case is None or not case.authored:
         return []
-    name = _PAGE_REL
+    name = os.path.relpath(page_path, _BOOK)   # name the page actually searched (R2: cards page != tables page)
     card = _onepager_card_lines(page_path, case_id)
     if card is None:
         return [f"IC7 trace: no `<!-- case-onepager: {case_id} -->` card marker in {name} "
@@ -1089,9 +1099,11 @@ def parity_findings(model: "IndustryCasesModel | None" = None) -> "list[str]":
             regen_hint=f"python3 book-models/industry_cases_model.py convergence-key {bucket}",
             occurrence=occurrence)
     # IC7 — the "Meet the six" gallery: COVERAGE + TRACE, not byte-parity. Each hand-authored card must trace
-    # to its record (the `<!-- case-onepager: <id> -->` marker) and cover the record's fields.
+    # to its record (the `<!-- case-onepager: <id> -->` marker) and cover the record's fields. R2: the cards
+    # trace to the field-guide page (`_CARDS_PAGE_REL`), split from the tables' page — audit-only this wave.
+    cards_page = os.path.join(_BOOK, _CARDS_PAGE_REL)
     for case_id in _ONEPAGER_GALLERY_IDS:
-        findings += case_onepager_coverage(case_id, page, model)
+        findings += case_onepager_coverage(case_id, cards_page, model)
     # IC5 — the correspondence matrix stays vacuous until it too is placed on a page.
     return findings
 
@@ -1235,7 +1247,8 @@ def _cmd_onepager(case_id: str) -> int:
         return 2
     # The card is hand-authored on the page; the model no longer renders it. Report the COVERAGE audit — the
     # trace marker + the record fields the hand-authored card must engage — so an author can check a card.
-    page = os.path.join(_BOOK, _PAGE_REL)
+    # R2: the cards live on the field-guide page (`_CARDS_PAGE_REL`), split from the tables' page.
+    page = os.path.join(_BOOK, _CARDS_PAGE_REL)
     findings = case_onepager_coverage(case_id, page)
     if findings:
         print(f"{case_id}: {len(findings)} IC7 coverage/trace finding(s):")
