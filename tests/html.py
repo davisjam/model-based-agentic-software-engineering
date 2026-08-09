@@ -378,6 +378,12 @@ def check_no_notation_leak():
     issues = []
     for f in files:
         text = open(f, encoding="utf-8").read()
+        # Strip inlined SVG first: figure SVGs carry legitimate structure comments (e.g.
+        # `<!-- takeaway strip -->`, `<!-- takeaway -->` labelling a figure's takeaway band) that collide
+        # with marker-vocabulary keywords once the vocabulary grows. Those are figure-authoring artifacts,
+        # NOT un-rendered PROSE notation — the class this gate guards. (Mirrors the SVG strip in
+        # check_summary_no_flow_content; safe because prose-notation leaks never live inside <svg>.)
+        text = re.sub(r"<svg\b.*?</svg>", "", text, flags=re.S | re.I)
         for m in marker_re.finditer(text):
             issues.append(f"{rel(f)}: leaked notation marker {text[m.start():m.start()+60]!r}")
         for m in token_re.finditer(text):
