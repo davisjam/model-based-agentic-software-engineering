@@ -3,13 +3,13 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1510,
+    "total_sites": 1511,
     "by_projection": {
       "book-pdf": 26,
       "book-web": 1085,
       "website-catalogue": 221,
       "website-concepts": 58,
-      "website-industry-cases": 45,
+      "website-industry-cases": 46,
       "website-landing": 13,
       "website-misc": 52,
       "website-theory": 10
@@ -3729,7 +3729,7 @@
           },
           {
             "file": "industry-case-spotify-honk.html",
-            "occ": 9
+            "occ": 10
           },
           {
             "file": "industry-case-studies.html",
@@ -6283,6 +6283,10 @@
           },
           {
             "file": "industry-case-cloudflare-codex.html",
+            "occ": 1
+          },
+          {
+            "file": "industry-case-shopify.html",
             "occ": 1
           },
           {

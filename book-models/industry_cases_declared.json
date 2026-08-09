@@ -36,6 +36,7 @@
     "columns": [
       {"id": "thesis-alignment", "label": "Alignment", "provenance": "thesis"},
       {"id": "thesis-modeling", "label": "Modeling", "provenance": "thesis"},
+      {"id": "externalized-knowledge", "label": "Knowledge rep", "provenance": "construct"},
       {"id": "bootstrap-governance", "label": "Bootstrap", "provenance": "construct"},
       {"id": "governance-conversion", "label": "Conversion", "provenance": "construct"},
       {"id": "determinization", "label": "Determinization", "provenance": "construct"},
@@ -81,6 +82,7 @@
     "cells": {
       "thesis-alignment": "strong",
       "thesis-modeling": "strong",
+      "externalized-knowledge": "strong",
       "bootstrap-governance": "strong",
       "governance-conversion": "strong",
       "determinization": "strong",
@@ -150,6 +152,7 @@
       "mage_constructs": [
         {"construct": "thesis-alignment",      "strength": "strong",        "note": "the book reads this as the Alignment behavior: a policy decided once acts against later changes without the author present"},
         {"construct": "thesis-modeling",       "strength": "partial",       "note": "the book reads the policy as structured while the governed SYSTEM is largely not modeled"},
+        {"construct": "externalized-knowledge", "strength": "strong",        "note": "the book reads the Codex — a curated, machine-readable RFC/policy corpus whose requirements carry stable identities that survive the edits around them — as strong knowledge externalization; the instructive LIMIT is that the obligations are externalized far more strongly than the governed SYSTEM, which stays largely unmodeled (thesis-modeling: partial)"},
         {"construct": "bootstrap-governance",  "strength": "strong",        "note": "the book reads Codex as accumulated institutional knowledge serving as an initial E(0)"},
         {"construct": "governance-conversion", "strength": "partial",       "note": "the book reads Cloudflare's described incident->RFC->Codex-rule->enforcement loop (source D, 'Code Orange: Fail Small is complete') as a partial governance-conversion: the failure->new-obligation->enforcement loop IS described, but no measured recurrence-drop / recurrence-retirement is evidenced"},
         {"construct": "determinization",       "strength": "strong",        "note": "the book reads mechanically-checkable requirements becoming custom linters as determinization"},
@@ -233,6 +236,7 @@
       "mage_constructs": [
         {"construct": "thesis-alignment",      "strength": "strong",   "note": "the book reads this as the sample's strongest Alignment instance: verifiers, linters, the pre-PR gate, the automerger, Soundcheck, and Firewatch act on later changes without the author present"},
         {"construct": "thesis-modeling",       "strength": "strong",   "note": "the book reads the System Model, the Backstage catalog, and dependency/endpoint lineage with metadata-synced diagrams as a deep, agent-facing model of the estate"},
+        {"construct": "externalized-knowledge", "strength": "strong",        "note": "the book reads the Backstage catalog + System Model — service/ownership/dependency/endpoint lineage with stable component identities — as strong externalization of the service estate as a retrievable graph, the first rung its deeper Modeling (strong) is built on"},
         {"construct": "bootstrap-governance",  "strength": "strong",   "note": "the book reads years of standards/platform/model infrastructure predating agents as a mature E(0) the agent dropped into"},
         {"construct": "governance-conversion", "strength": "partial",  "note": "the book reads Loop A (failure -> verifier abstraction + judge) as a completed conversion, while Loop B (standardize frameworks, require tests) is stated as strategy, not a measured failure->control->recurrence-drop"},
         {"construct": "determinization",       "strength": "strong",   "note": "the book reads decidable obligations (build/test/format, admission) landing on deterministic verifiers/gates while a probabilistic judge covers the residual semantic scope-check"},
@@ -312,6 +316,7 @@
       "mage_constructs": [
         {"construct": "thesis-alignment",      "strength": "strong",   "note": "the book reads sandbox policy in profiles, the harness-outside-sandbox split, disposable sandboxes, Nix reproducibility, and Roast's deterministic steps + tool restrictions as reasoning autonomy inside bounded execution"},
         {"construct": "thesis-modeling",       "strength": "partial",  "note": "the book reads a broad representation surface (skills, conventions, intent, Nix) spanning the ladder, but with no invariant-bearing system/process models - Nix and Roast are the executable exceptions"},
+        {"construct": "externalized-knowledge", "strength": "partial",       "note": "the book reads World + public-session mining into skills/conventions/defaults as real but SOFTER externalization — organizational knowledge retrieved on demand, mostly informal-knowledge rather than a structured system representation (a named piece missing -> partial)"},
         {"construct": "bootstrap-governance",  "strength": "strong",   "note": "the book reads the World monorepo + Nix + CI + merge queues stood up in 2024 (predating River, explicitly as an agent substrate) as an E(0) built ex-ante"},
         {"construct": "governance-conversion", "strength": "strong",   "note": "the book reads private-learning->public-only, free-roaming->Roast, proliferation->Aquifer, and misuse->rate-limit as repeated failure->structure loops (the converted artifact often soft) - a strong-vs-partial contrast with Cloudflare, whose incident->RFC->rule loop is described but shows no measured recurrence-drop (partial)"},
         {"construct": "determinization",       "strength": "strong",   "note": "the book reads Roast/Boba as putting deterministic machinery (sed cleanup, Sorbet autocorrect, tests) on the decidable residue and probabilistic judgment only on the rest"},

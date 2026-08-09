@@ -498,6 +498,7 @@ _CONSTRUCT_KEYWORD = {
     "reasoning-horizon": "horizon",
     "engineers-seat": "seat",
     "graduated-governance": "graduat",
+    "externalized-knowledge": "knowledge",
 }
 
 
