@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1547,
+    "total_sites": 1548,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1120,
+      "book-web": 1121,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -113,7 +113,7 @@
           },
           {
             "file": "book/3.1-the-agent-stack.html",
-            "occ": 52
+            "occ": 54
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
@@ -939,7 +939,11 @@
           },
           {
             "file": "book/3.1-the-agent-stack.html",
-            "occ": 4
+            "occ": 6
+          },
+          {
+            "file": "book/3.5-metrics.html",
+            "occ": 1
           },
           {
             "file": "book/4.1-brownfield.html",
@@ -1025,7 +1029,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 33
+            "occ": 34
           }
         ]
       },
@@ -1595,11 +1599,11 @@
           },
           {
             "file": "book/3.1-the-agent-stack.html",
-            "occ": 42
+            "occ": 43
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 18
+            "occ": 19
           },
           {
             "file": "book/3.3-the-governed-environment.html",
@@ -1947,7 +1951,7 @@
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 18
+            "occ": 20
           },
           {
             "file": "book/part-4-intro.html",
@@ -2961,11 +2965,11 @@
           },
           {
             "file": "book/3.1-the-agent-stack.html",
-            "occ": 85
+            "occ": 86
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 112
+            "occ": 120
           },
           {
             "file": "book/3.3-the-governed-environment.html",
@@ -2981,7 +2985,7 @@
           },
           {
             "file": "book/3.6-when-guardrails-collide.html",
-            "occ": 18
+            "occ": 19
           },
           {
             "file": "book/4.1-brownfield.html",
@@ -4381,11 +4385,11 @@
           },
           {
             "file": "book/3.1-the-agent-stack.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/4.6-generative-validation.html",
@@ -5815,7 +5819,7 @@
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 17
+            "occ": 18
           },
           {
             "file": "book/3.3-the-governed-environment.html",
@@ -6473,7 +6477,7 @@
           },
           {
             "file": "book/3.3-the-governed-environment.html",
-            "occ": 10
+            "occ": 11
           },
           {
             "file": "book/3.4-lifecycles-and-runbooks.html",
