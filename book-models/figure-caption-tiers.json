@@ -85,6 +85,12 @@
       "location": "frontmatter",
       "rationale": "the book's own map"
     },
+    "assets/docable-glimpse.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part1",
+      "rationale": "the running production-system glimpse — input to output; the object the book governs"
+    },
     "assets/one-shot-vs-supervised-autonomy.svg": {
       "tier": "B",
       "kind": "comparison",
