@@ -2146,10 +2146,10 @@ blockquote.thesis-box {{ background: var(--box-thesis-fill); border: 1px solid v
 blockquote.thesis-box p {{ margin: 0 0 0.6rem; }}
 blockquote.thesis-box p:last-child {{ margin-bottom: 0; }}
 blockquote.thesis-box strong {{ color: var(--box-thesis-rule); }}
-/* Part-opener THESIS box title-bar — a `<!-- thesisbox -->` box whose first line is a `### TITLE` heading
-   (demoted to `p.inset-title`) renders that title as a centered ALLCAPS bar in the green family, flush to
-   the panel edges (negative margins cancel the 1rem/1.3rem panel padding), a hairline green rule under it.
-   In-prose `**The … Thesis.**` boxes carry no `.inset-title`, so they are untouched (Fork 6a). */
+/* Part-opener THESIS box title-bar — a thesisbox-marker box whose first line is a demoted "### TITLE"
+   heading (rendered as p.inset-title) shows that title as a centered ALLCAPS bar in the green family, flush
+   to the panel edges (negative margins cancel the 1rem/1.3rem panel padding), a hairline green rule under it.
+   In-prose "The … Thesis." boxes carry no .inset-title, so they are untouched (Fork 6a). */
 blockquote.thesis-box .inset-title {{
   text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
   color: var(--box-thesis-rule); background: var(--box-thesis-fill);

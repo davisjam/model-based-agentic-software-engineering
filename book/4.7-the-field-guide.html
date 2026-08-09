@@ -347,10 +347,10 @@ blockquote.thesis-box { background: var(--box-thesis-fill); border: 1px solid va
 blockquote.thesis-box p { margin: 0 0 0.6rem; }
 blockquote.thesis-box p:last-child { margin-bottom: 0; }
 blockquote.thesis-box strong { color: var(--box-thesis-rule); }
-/* Part-opener THESIS box title-bar — a `<!-- thesisbox -->` box whose first line is a `### TITLE` heading
-   (demoted to `p.inset-title`) renders that title as a centered ALLCAPS bar in the green family, flush to
-   the panel edges (negative margins cancel the 1rem/1.3rem panel padding), a hairline green rule under it.
-   In-prose `**The … Thesis.**` boxes carry no `.inset-title`, so they are untouched (Fork 6a). */
+/* Part-opener THESIS box title-bar — a thesisbox-marker box whose first line is a demoted "### TITLE"
+   heading (rendered as p.inset-title) shows that title as a centered ALLCAPS bar in the green family, flush
+   to the panel edges (negative margins cancel the 1rem/1.3rem panel padding), a hairline green rule under it.
+   In-prose "The … Thesis." boxes carry no .inset-title, so they are untouched (Fork 6a). */
 blockquote.thesis-box .inset-title {
   text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
   color: var(--box-thesis-rule); background: var(--box-thesis-fill);
@@ -622,14 +622,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="5.2-the-timeline-and-the-work.html">32&nbsp; The Timeline and the Work</a></li>
 <li><a class="" href="5.3-the-built-system.html">33&nbsp; The Built System</a></li>
 <li><a class="" href="5.4-the-road-to-mage.html">34&nbsp; The Road to MAGE</a></li>
+<li><a class="" href="5.5-failures.html">35&nbsp; Failures</a></li>
 <li class="part">Part 6 — The Profession</li>
 <li><a class="" href="part-6-intro.html">The Profession</a></li>
-<li><a class="" href="6.1-toward-a-theory-of-mage.html">35&nbsp; Toward a Theory of MAGE</a></li>
-<li><a class="" href="6.2-implications-for-se.html">36&nbsp; What Changes in Software Engineering</a></li>
-<li><a class="" href="6.3-a-new-empirical-regime.html">37&nbsp; A New Empirical Regime</a></li>
-<li><a class="" href="6.4-limitations.html">38&nbsp; Limitations</a></li>
-<li><a class="" href="6.5-where-mage-fits.html">39&nbsp; Where MAGE Fits</a></li>
-<li><a class="" href="6.6-conclusion.html">40&nbsp; Conclusion</a></li>
+<li><a class="" href="6.1-toward-a-theory-of-mage.html">36&nbsp; Toward a Theory of MAGE</a></li>
+<li><a class="" href="6.2-implications-for-se.html">37&nbsp; What Changes in Software Engineering</a></li>
+<li><a class="" href="6.3-a-new-empirical-regime.html">38&nbsp; A New Empirical Regime</a></li>
+<li><a class="" href="6.4-limitations.html">39&nbsp; Limitations</a></li>
+<li><a class="" href="6.5-where-mage-fits.html">40&nbsp; Where MAGE Fits</a></li>
+<li><a class="" href="6.6-conclusion.html">41&nbsp; Conclusion</a></li>
+<li><a class="" href="6.7-scope-conditions.html">42&nbsp; Scope Conditions</a></li>
+<li><a class="" href="6.8-engineering-beyond-software.html">43&nbsp; Engineering Beyond Software</a></li>
+<li><a class="" href="6.9-open-problems.html">44&nbsp; Open Problems</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
 <li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
@@ -695,8 +699,4 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-skill-recipe.html">Appendix E — How to Write a Skill</a></li>
 <li><a class="" href="appendix-e-theory.html">Appendix E - 1. Theory</a></li>
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 30 · The Field Guide — MAGE"><header class="chap"><div class="kicker"><a href="part-4-intro.html" aria-label="Beginning of Part 4 — The MAGE Method">Part 4 — The MAGE Method</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 30</a></div><h1><span class="chap-num">4.7</span> The Field Guide</h1></header><p>The method lands differently in every environment. This chapter tours six governed environments — six teams who reached for the same moves under different constraints — so a reader can find the one that looks like their own and steal the practice that fits.</p>
-<div class="marker marker-fill"><span class="marker-tag">FILL IN</span> W2 drafter D1 — the six "Meet the six" one-pager cards reshaped to the 5-field
-structure (organization / environment / strength summary → reshape existing rows; practice
-to steal Monday / failure if copied blindly → net-new), the six-company-map figure, and the
-"Meet the six" intro prose. The <code>&lt;!-- case-onepager: X --&gt;</code> + <code>&lt;!-- label: op-X --&gt;</code> card
-markers and the six-company-map gallery move here from the where-mage-fits chapter in W2/W3.</div><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-4-intro.html" aria-label="Beginning of Part 4 — The MAGE Method">« Beginning of part</a><a href="4.6-generative-validation.html" aria-label="Previous chapter — 29 · Validation with Agents">« Previous chapter</a></div><span class="chapnav-here" title="30 · The Field Guide">30 · The Field Guide</span><div class="chapnav-fwd"><a href="part-5-intro.html" aria-label="Next chapter — The Evidence">Next chapter »</a><a href="part-5-intro.html" aria-label="Next part — Part 5 — The Evidence">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<p><em>Scaffold — W2 drafter D1 fills this chapter: the six "Meet the six" one-pager cards reshaped to the five-field structure (organization, environment, and strength summary reshape existing rows; practice to steal Monday and failure if copied blindly are net-new), the six-company-map figure, and the intro prose. The per-case card markers and the six-company-map gallery move here from the where-mage-fits chapter during W2 and W3.</em></p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-4-intro.html" aria-label="Beginning of Part 4 — The MAGE Method">« Beginning of part</a><a href="4.6-generative-validation.html" aria-label="Previous chapter — 29 · Validation with Agents">« Previous chapter</a></div><span class="chapnav-here" title="30 · The Field Guide">30 · The Field Guide</span><div class="chapnav-fwd"><a href="part-5-intro.html" aria-label="Next chapter — The Evidence">Next chapter »</a><a href="part-5-intro.html" aria-label="Next part — Part 5 — The Evidence">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

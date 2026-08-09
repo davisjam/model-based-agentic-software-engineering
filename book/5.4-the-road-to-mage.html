@@ -347,10 +347,10 @@ blockquote.thesis-box { background: var(--box-thesis-fill); border: 1px solid va
 blockquote.thesis-box p { margin: 0 0 0.6rem; }
 blockquote.thesis-box p:last-child { margin-bottom: 0; }
 blockquote.thesis-box strong { color: var(--box-thesis-rule); }
-/* Part-opener THESIS box title-bar — a `<!-- thesisbox -->` box whose first line is a `### TITLE` heading
-   (demoted to `p.inset-title`) renders that title as a centered ALLCAPS bar in the green family, flush to
-   the panel edges (negative margins cancel the 1rem/1.3rem panel padding), a hairline green rule under it.
-   In-prose `**The … Thesis.**` boxes carry no `.inset-title`, so they are untouched (Fork 6a). */
+/* Part-opener THESIS box title-bar — a thesisbox-marker box whose first line is a demoted "### TITLE"
+   heading (rendered as p.inset-title) shows that title as a centered ALLCAPS bar in the green family, flush
+   to the panel edges (negative margins cancel the 1rem/1.3rem panel padding), a hairline green rule under it.
+   In-prose "The … Thesis." boxes carry no .inset-title, so they are untouched (Fork 6a). */
 blockquote.thesis-box .inset-title {
   text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
   color: var(--box-thesis-rule); background: var(--box-thesis-fill);
@@ -622,14 +622,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="5.2-the-timeline-and-the-work.html">32&nbsp; The Timeline and the Work</a></li>
 <li><a class="" href="5.3-the-built-system.html">33&nbsp; The Built System</a></li>
 <li><a class="current" href="5.4-the-road-to-mage.html">34&nbsp; The Road to MAGE</a></li>
+<li><a class="" href="5.5-failures.html">35&nbsp; Failures</a></li>
 <li class="part">Part 6 — The Profession</li>
 <li><a class="" href="part-6-intro.html">The Profession</a></li>
-<li><a class="" href="6.1-toward-a-theory-of-mage.html">35&nbsp; Toward a Theory of MAGE</a></li>
-<li><a class="" href="6.2-implications-for-se.html">36&nbsp; What Changes in Software Engineering</a></li>
-<li><a class="" href="6.3-a-new-empirical-regime.html">37&nbsp; A New Empirical Regime</a></li>
-<li><a class="" href="6.4-limitations.html">38&nbsp; Limitations</a></li>
-<li><a class="" href="6.5-where-mage-fits.html">39&nbsp; Where MAGE Fits</a></li>
-<li><a class="" href="6.6-conclusion.html">40&nbsp; Conclusion</a></li>
+<li><a class="" href="6.1-toward-a-theory-of-mage.html">36&nbsp; Toward a Theory of MAGE</a></li>
+<li><a class="" href="6.2-implications-for-se.html">37&nbsp; What Changes in Software Engineering</a></li>
+<li><a class="" href="6.3-a-new-empirical-regime.html">38&nbsp; A New Empirical Regime</a></li>
+<li><a class="" href="6.4-limitations.html">39&nbsp; Limitations</a></li>
+<li><a class="" href="6.5-where-mage-fits.html">40&nbsp; Where MAGE Fits</a></li>
+<li><a class="" href="6.6-conclusion.html">41&nbsp; Conclusion</a></li>
+<li><a class="" href="6.7-scope-conditions.html">42&nbsp; Scope Conditions</a></li>
+<li><a class="" href="6.8-engineering-beyond-software.html">43&nbsp; Engineering Beyond Software</a></li>
+<li><a class="" href="6.9-open-problems.html">44&nbsp; Open Problems</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
 <li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
@@ -900,4 +904,4 @@ class Component:
 <h2><span class="sec-num">5.4.6</span> The whole method, made real</h2>
 <p>This book opened on one diagram — <a href="0.1-the-mage-method-at-a-glance.html">The MAGE Method at a Glance</a> — that named every part before the argument had earned it. Walk its boxes one last time, and each is now a real thing in a system that ships:</p>
 <ul><li><strong>The Printer ✓</strong> — a fleet of agents printing production code faster than any human could read the diffs.</li><li><strong>The Modeling Thesis ✓</strong> — the system committed to explicit models the fleet reasons through, from the zone registry to the view-per-property stack.</li><li><strong>The Alignment Thesis ✓</strong> — every probabilistic part, the vision model and the coding agents alike, sealed in a bounded, typed, validated call.</li><li><strong>The Governed Engineering Environment ✓</strong> — the models, the controls, and the query surface, grown until the apparatus outweighed the product it guards.</li><li><strong>Governance Conversion ✓</strong> — every control minted the moment a rising bar demanded it, one failure at a time.</li><li><strong>Trustworthiness claim exercised ✓</strong> — DocAble runs on a real university's documents, producing standards-grounded findings, fidelity evidence, and provenance stamps behind gated releases, for dollars a deck.</li></ul>
-<p>The case study was the evidence; the diagram was its table of contents. All six boxes now point to concrete artifacts and observations in the case — whether they transfer is the question <a href="6.1-toward-a-theory-of-mage.html">Part 6</a> takes up.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">« Beginning of part</a><a href="5.3-the-built-system.html" aria-label="Previous chapter — 33 · The Built System">« Previous chapter</a></div><span class="chapnav-here" title="34 · The Road to MAGE">34 · The Road to MAGE</span><div class="chapnav-fwd"><a href="part-6-intro.html" aria-label="Next chapter — The Profession">Next chapter »</a><a href="part-6-intro.html" aria-label="Next part — Part 6 — The Profession">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<p>The case study was the evidence; the diagram was its table of contents. All six boxes now point to concrete artifacts and observations in the case — whether they transfer is the question <a href="6.1-toward-a-theory-of-mage.html">Part 6</a> takes up.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">« Beginning of part</a><a href="5.3-the-built-system.html" aria-label="Previous chapter — 33 · The Built System">« Previous chapter</a></div><span class="chapnav-here" title="34 · The Road to MAGE">34 · The Road to MAGE</span><div class="chapnav-fwd"><a href="5.5-failures.html" aria-label="Next chapter — 35 · Failures">Next chapter »</a><a href="part-6-intro.html" aria-label="Next part — Part 6 — The Profession">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
