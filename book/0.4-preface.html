@@ -585,8 +585,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="1.3-loops-and-models.html">3&nbsp; Loops and Models</a></li>
 <li><a class="" href="1.4-why-mage-follows-from-the-machine.html">4&nbsp; Why MAGE Follows from the Machine</a></li>
 <li><a class="" href="1.5-the-engineers-seat.html">5&nbsp; The Engineer's Seat</a></li>
-<li class="part">Part 2 — The Model Zoo</li>
-<li><a class="" href="part-2-intro.html">The Model Zoo</a></li>
+<li class="part">Part 2 — Modeling</li>
+<li><a class="" href="part-2-intro.html">Modeling</a></li>
 <li><a class="" href="2.1-context-is-the-first-modeling-problem.html">6&nbsp; Context Is the First Modeling Problem</a></li>
 <li><a class="" href="2.2-from-context-to-control.html">7&nbsp; From Context to Control</a></li>
 <li><a class="" href="2.3-the-executable-zoo.html">8&nbsp; The Executable Zoo</a></li>
@@ -599,24 +599,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="2.10-the-joined-model.html">15&nbsp; The Joined Model</a></li>
 <li><a class="" href="2.11-the-scope-of-modeling.html">16&nbsp; The Scope of Modeling</a></li>
 <li><a class="" href="2.12-keeping-models-in-sync.html">17&nbsp; Keeping the Models in Sync — A Measurement</a></li>
-<li class="part">Part 3 — The Governed Engineering Environment</li>
-<li><a class="" href="part-3-intro.html">The Governed Engineering Environment</a></li>
+<li class="part">Part 3 — Alignment</li>
+<li><a class="" href="part-3-intro.html">Alignment</a></li>
 <li><a class="" href="3.1-the-agent-stack.html">18&nbsp; The Agent Stack</a></li>
 <li><a class="" href="3.2-models-and-the-semantic-gap.html">19&nbsp; Models and the Semantic Gap</a></li>
 <li><a class="" href="3.3-the-governed-environment.html">20&nbsp; The Governed Environment: Ex-Ante and Ex-Post</a></li>
 <li><a class="" href="3.4-lifecycles-and-runbooks.html">21&nbsp; Lifecycles and Runbooks</a></li>
 <li><a class="" href="3.5-metrics.html">22&nbsp; Metrics</a></li>
 <li><a class="" href="3.6-when-guardrails-collide.html">23&nbsp; When Guardrails Collide</a></li>
-<li class="part">Part 4 — Putting It to Work</li>
-<li><a class="" href="part-4-intro.html">Putting It to Work</a></li>
+<li class="part">Part 4 — The MAGE Method</li>
+<li><a class="" href="part-4-intro.html">The MAGE Method</a></li>
 <li><a class="" href="4.1-brownfield.html">24&nbsp; Brownfield</a></li>
 <li><a class="" href="4.2-the-skills.html">25&nbsp; The Skills</a></li>
 <li><a class="" href="4.3-transformations.html">26&nbsp; Everything Is a Transformation</a></li>
 <li><a class="" href="4.4-training-data.html">27&nbsp; Training Data and the Novelty Axis</a></li>
 <li><a class="" href="4.5-lessons-learned.html">28&nbsp; Lessons Learned</a></li>
 <li><a class="" href="4.6-generative-validation.html">29&nbsp; Validation with Agents</a></li>
-<li class="part">Part 5 — A MAGE Case Study</li>
-<li><a class="" href="part-5-intro.html">A MAGE Case Study</a></li>
+<li class="part">Part 5 — The Evidence</li>
+<li><a class="" href="part-5-intro.html">The Evidence</a></li>
 <li><a class="" href="5.1-the-ada-context.html">30&nbsp; The ADA Context</a></li>
 <li><a class="" href="5.2-the-timeline-and-the-work.html">31&nbsp; The Timeline and the Work</a></li>
 <li><a class="" href="5.3-the-built-system.html">32&nbsp; The Built System</a></li>
@@ -796,7 +796,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The stakes here are <strong>tokenomics</strong>, not just tidiness. Keeping a task inside the window is far cheaper than letting it spill, and the gap compounds: I once ran four Claude Max subscriptions flat out to keep the fleet fed, and the same velocity now barely fills two — because a model lets each agent find what it needs instead of re-deriving it, and keeps the work in-window, off the cliff where the token bill jumps. The point of MAGE is not only to spend less effort fighting churn; it is to make engineering effort <em>compound</em> — each conversion banked as capability the next task inherits, the positive dual of churn the closing theory names.</p>
 <blockquote class="aside-sidenote def-inset"><p><strong>Tokenomics.</strong> How many tokens it takes to get a task done — and it is not linear. Overflow the context window and the cost jumps: the harness compacts (a lossy save), and the agent then burns tokens rebuilding the context it lost. So keeping a task inside the window is not merely tidier, it is far cheaper — which is exactly what a model buys, by shrinking what the agent must hold.</p></blockquote>
 <h2>Why I built a production system to study this</h2>
-<p>My name is James Davis. I am a professor of software engineering in the Elmore Family School of Electrical and Computer Engineering at Purdue University. My job is to find out things other people do not know and write them down so they do. This book records one of those findings. Over a stretch of a few months I built a real production system — a document-accessibility service, <a href="https://scholaccess.com">DocAble</a> — almost entirely by dispatching AI coding agents rather than writing code myself. I watched what that mode of work demanded, and this book is what I learned about doing it well. DocAble is the running example throughout; the claims here rest on that real production system. A first concrete look at it comes early, in <a href="1.2-mage-by-example.html">MAGE by Example</a>; the full description lives at the back, in Part 5 (A MAGE Case Study).</p>
+<p>My name is James Davis. I am a professor of software engineering in the Elmore Family School of Electrical and Computer Engineering at Purdue University. My job is to find out things other people do not know and write them down so they do. This book records one of those findings. Over a stretch of a few months I built a real production system — a document-accessibility service, <a href="https://scholaccess.com">DocAble</a> — almost entirely by dispatching AI coding agents rather than writing code myself. I watched what that mode of work demanded, and this book is what I learned about doing it well. DocAble is the running example throughout; the claims here rest on that real production system. A first concrete look at it comes early, in <a href="1.2-mage-by-example.html">MAGE by Example</a>; the full description lives at the back, in Part 5 (The Evidence).</p>
 <p>Building DocAble was not only a way to ship a product. It was a way to ask a question that is hard to ask from the outside. Once agents write almost all of the code, what is the engineering that remains? The question is no longer whether they can produce useful code. They can. It is what is left for a human to do when they produce nearly all of it.</p>
 <p>That question resists the usual instruments. A benchmark isolates one capability and scores it. A build report tells you a fleet reproduced a framework, compiled a kernel, or migrated a codebase in a week. A set of interviews tells you how developers supervise the tools they were handed. Each is a real piece, and none of them shows how the pieces move together over the life of a new production system: how an architectural mistake hardens into a lint, how a failure seen twice becomes a gate, how one authored model changes what an agent can do, how the controls pile up until the environment can be trusted to run itself. You cannot watch that from a scorecard or a single interview. You have to build the system, hold it to a standard someone would actually rely on, and watch it over months.</p>
 <p>So that is the design of the study. I built something whose quality mattered, let the fleet do nearly all of the implementation, and treated every failure as evidence about the method rather than noise to clean up. The book's vocabulary — governance conversion, the Modeling and Alignment theses, constraints and sensors, the governed engineering environment — names structures that recurred often enough to earn names. I offer them as working concepts, precise enough to compare, argue with, and replace, not as the field's settled terms. Where my investigation extends the existing literature, I have tried to cite the work it stands on, so a reader can see where this case joins the conversation and where it departs.</p>

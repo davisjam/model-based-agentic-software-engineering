@@ -93,14 +93,17 @@ _TIER_OF_GRANULARITY = {"book": "program", "part": "module", "chapter": "lesson"
 #: (the reading-view reads these titles back out of the emitted `hierarchy`, not a second hand-kept copy).
 #: Part 0 is front matter (preface / acknowledgments) — not a teaching Module, so it is omitted from the
 #: module tier (matching the coverage invariants, which already skip it).
+#: These MUST agree, on every shared Part number, with `build_book_html._PART_TITLES` (the reader-facing
+#: SSOT the running-heads/openers render from) — a rule-#33 parity lint holds the two in step
+#: (check_part_title_parity, AUDIT-ONLY-first).
 PART_TITLES = {
     0: "Front Matter",
     1: "The Mindset",
-    2: "The Governed Engineering Environment",
-    3: "The Model Zoo",
-    4: "Putting It to Work",
-    5: "A MAGE Case Study",
-    6: "Implications for Software Engineering",
+    2: "Modeling",
+    3: "Alignment",
+    4: "The MAGE Method",
+    5: "The Evidence",
+    6: "The Profession",
 }
 
 

@@ -58,6 +58,7 @@ from tests.book_models import (
     check_metaphor_spans,
     check_outcomes_model,
     check_outline_model,
+    check_part_title_parity,
     check_print_appendix_projection,
     check_research_agenda,
     check_projection_index,
@@ -229,6 +230,13 @@ CHECKS = [
     # fill worklist (printed by `outcomes_model.py gaps`), not a gate finding. See tests/book_models.py.
     Check("book-models: outcomes view drift + coverage (outcomes.json)", 1,
           lambda strict: check_outcomes_model(), audit_only=True),
+    # AUDIT-ONLY-first (rule #55; rule-#33 parity): the two Part-title SSOTs — the reader-facing
+    # `build_book_html._PART_TITLES` and the pedagogy digest's `outcomes_model.PART_TITLES` — must name each
+    # shared Part identically, so a Part is never one title to the reader and another in the outcomes model.
+    # Landed with the Part-2/3/4/5 rename (Modeling / Alignment / The MAGE Method / The Evidence); green at
+    # landing, a follow-up promotes it to blocking after a clean session. See tests/book_models.py.
+    Check("book-models: Part-title parity — _PART_TITLES == outcomes_model.PART_TITLES on shared keys", 1,
+          lambda strict: check_part_title_parity(), audit_only=True),
     # AUDIT-ONLY (rule #55): the REVERSE INDEX — a derived inversion of every built view's forward
     # references into {md symbol -> [dependent view elements]} (DESIGN §8). Two mechanical drift kinds:
     # FRESHNESS (reverse_index.json equals a fresh inversion) + STRUCTURAL (every view->md reference

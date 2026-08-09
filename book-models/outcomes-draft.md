@@ -46,7 +46,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 1.5-the-engineers-seat
 
 
-## Module 2 — The Governed Engineering Environment
+## Module 2 — Modeling
 
 - **[DECLARED]** (create) After Part 2, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper. — _anchor: Part 2 chapter arc: agent-stack -> semantic-gap -> ex-ante/ex-post -> lifecycles/runbooks -> metrics -> guardrails-collide._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
@@ -89,7 +89,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 2.12-keeping-models-in-sync
 
 
-## Module 3 — The Model Zoo
+## Module 3 — Alignment
 
 - **[DECLARED]** (create) After Part 3, the reader can model a system as the executable 4+1 zoo — logical, process, development, physical, and scenario views — each a structured model kept honest by a drift check. — _anchor: Part 3 is the 4+1 views one chapter each (3.2 logical, 3.3 process, 3.4 development, 3.5 physical, 3.6 scenarios), spined by 3.1._
 - _elaborates (owned by the program):_ (create) After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human's head.
@@ -146,7 +146,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
   - **[DERIVED]** (apply) After this section, the reader can apply the governance graph to hooks they did not author — entering an outside hook as a node on a conservative possible-conflict edge against its whole slot until analyzed — and reduce satisfying one or several regulators to checking that the merged graph carries no unresolved contradiction, including that no required hard block is overridden by a soft aim. — _anchor: point: outside-governance-extends-the-graph-without-changing-shape_
   - **[DERIVED]** (evaluate) After this section, the reader can justify the two disciplines that keep a governance graph honest — anchoring each node to its control's code by symbol so a drift lint reddens an unmodeled control, and keeping the model descriptive rather than inventing conflict-lints for collisions that never happened. — _anchor: point: keep-the-graph-honest-by-symbol-anchoring-and-a-descriptive-not-aspirational-model_
 
-## Module 4 — Putting It to Work
+## Module 4 — The MAGE Method
 
 - **[DECLARED]** (apply) After Part 4, the reader can put the method to work: induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, size a transformation to its model and guarantee, and recognize the agent-shaped failure modes. _(primary: Module 4 · elaborated by: Module 5)_ — _anchor: Part 4 title 'Putting It to Work' + chapter arc: brownfield -> skills -> transformations -> training-data -> lessons-learned -> generative-validation._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
@@ -180,7 +180,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
   - **[DERIVED]** (evaluate) After this section, the reader can choose which validation strategy to reach for by the specification it attacks. — _anchor: Heading text: 'When to reach for which'._
   - _elaborates (owned by the-move-a-generator-hunts-a-counterexample-to-a-model):_ (apply) After this section, the reader can apply the one move behind property testing, fuzzing, and fuzz-MBSE: a generator hunting a counterexample to a stated model.
 
-## Module 5 — A MAGE Case Study
+## Module 5 — The Evidence
 
 - **[DECLARED]** (analyze) After Part 5, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it. — _anchor: Part 5 is the ADA/DocAble case study: context -> timeline/work -> built-system -> road-to-MAGE (role progression)._
 - _elaborates (owned by Module 4):_ (apply) After Part 4, the reader can put the method to work: induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, size a transformation to its model and guarantee, and recognize the agent-shaped failure modes.
@@ -197,7 +197,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 5.4-the-road-to-mage
 
 
-## Module 6 — Implications for Software Engineering
+## Module 6 — The Profession
 
 - **[DECLARED]** (evaluate) After Part 6, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become the universal language of engineering. _(primary: Module 6 · elaborated by: conclusion, where-mage-fits)_ — _anchor: 6.0 implications-for-se sections (the-judgment-moved, what-this-changes-for-how-we-measure-staff-and-teach, models-are-the-universal-language) + 6.1 the-part-that-stays-yours._
 

@@ -585,8 +585,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="1.3-loops-and-models.html">3&nbsp; Loops and Models</a></li>
 <li><a class="" href="1.4-why-mage-follows-from-the-machine.html">4&nbsp; Why MAGE Follows from the Machine</a></li>
 <li><a class="" href="1.5-the-engineers-seat.html">5&nbsp; The Engineer's Seat</a></li>
-<li class="part">Part 2 — The Model Zoo</li>
-<li><a class="" href="part-2-intro.html">The Model Zoo</a></li>
+<li class="part">Part 2 — Modeling</li>
+<li><a class="" href="part-2-intro.html">Modeling</a></li>
 <li><a class="" href="2.1-context-is-the-first-modeling-problem.html">6&nbsp; Context Is the First Modeling Problem</a></li>
 <li><a class="" href="2.2-from-context-to-control.html">7&nbsp; From Context to Control</a></li>
 <li><a class="" href="2.3-the-executable-zoo.html">8&nbsp; The Executable Zoo</a></li>
@@ -599,24 +599,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="2.10-the-joined-model.html">15&nbsp; The Joined Model</a></li>
 <li><a class="" href="2.11-the-scope-of-modeling.html">16&nbsp; The Scope of Modeling</a></li>
 <li><a class="" href="2.12-keeping-models-in-sync.html">17&nbsp; Keeping the Models in Sync — A Measurement</a></li>
-<li class="part">Part 3 — The Governed Engineering Environment</li>
-<li><a class="" href="part-3-intro.html">The Governed Engineering Environment</a></li>
+<li class="part">Part 3 — Alignment</li>
+<li><a class="" href="part-3-intro.html">Alignment</a></li>
 <li><a class="" href="3.1-the-agent-stack.html">18&nbsp; The Agent Stack</a></li>
 <li><a class="" href="3.2-models-and-the-semantic-gap.html">19&nbsp; Models and the Semantic Gap</a></li>
 <li><a class="" href="3.3-the-governed-environment.html">20&nbsp; The Governed Environment: Ex-Ante and Ex-Post</a></li>
 <li><a class="" href="3.4-lifecycles-and-runbooks.html">21&nbsp; Lifecycles and Runbooks</a></li>
 <li><a class="" href="3.5-metrics.html">22&nbsp; Metrics</a></li>
 <li><a class="" href="3.6-when-guardrails-collide.html">23&nbsp; When Guardrails Collide</a></li>
-<li class="part">Part 4 — Putting It to Work</li>
-<li><a class="" href="part-4-intro.html">Putting It to Work</a></li>
+<li class="part">Part 4 — The MAGE Method</li>
+<li><a class="" href="part-4-intro.html">The MAGE Method</a></li>
 <li><a class="" href="4.1-brownfield.html">24&nbsp; Brownfield</a></li>
 <li><a class="" href="4.2-the-skills.html">25&nbsp; The Skills</a></li>
 <li><a class="" href="4.3-transformations.html">26&nbsp; Everything Is a Transformation</a></li>
 <li><a class="" href="4.4-training-data.html">27&nbsp; Training Data and the Novelty Axis</a></li>
 <li><a class="" href="4.5-lessons-learned.html">28&nbsp; Lessons Learned</a></li>
 <li><a class="" href="4.6-generative-validation.html">29&nbsp; Validation with Agents</a></li>
-<li class="part">Part 5 — A MAGE Case Study</li>
-<li><a class="" href="part-5-intro.html">A MAGE Case Study</a></li>
+<li class="part">Part 5 — The Evidence</li>
+<li><a class="" href="part-5-intro.html">The Evidence</a></li>
 <li><a class="" href="5.1-the-ada-context.html">30&nbsp; The ADA Context</a></li>
 <li><a class="" href="5.2-the-timeline-and-the-work.html">31&nbsp; The Timeline and the Work</a></li>
 <li><a class="" href="5.3-the-built-system.html">32&nbsp; The Built System</a></li>
@@ -693,7 +693,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Appendix E — How to Write a Skill</li>
 <li><a class="" href="appendix-skill-recipe.html">Appendix E — How to Write a Skill</a></li>
 <li><a class="" href="appendix-e-theory.html">Appendix E - 1. Theory</a></li>
-<li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 9 · Views Are Projections — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — The Model Zoo">Part 2 — The Model Zoo</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 9</a></div><h1><span class="chap-num">2.4</span> Views Are Projections</h1></header><p>One connected representation does not imply one view. The last chapter built a single executable trunk — typed entities and relations, held equal to the code. This chapter answers the question that trunk raises: if the whole system is one connected model, why does the zoo hold many models at all?</p>
+<li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 9 · Views Are Projections — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 9</a></div><h1><span class="chap-num">2.4</span> Views Are Projections</h1></header><p>One connected representation does not imply one view. The last chapter built a single executable trunk — typed entities and relations, held equal to the code. This chapter answers the question that trunk raises: if the whole system is one connected model, why does the zoo hold many models at all?</p>
 <p>Because no one projection answers every engineering question. A service dependency useful during a migration tells you little about lock ordering. A deployment relation useful for capacity planning tells you little about a user's journey. The same system therefore needs several <strong>projections</strong>, each keeping the entities, relations, and properties one engineering question needs and suppressing the rest.</p>
 <p id="idx-def-four-plus-one-views">Kruchten's <strong>4+1 views</strong> supply a well-worn set of those projections. Kruchten observed that no single diagram captures a software architecture, and that four complementary views plus a fifth that ties them together cover what a working engineer needs to see. The last chapter named Kruchten as the reason one model is never enough; this chapter states the relationship exactly. The views do not organize the zoo — the connected representation does. The four-plus-one names the <em>questions</em> worth projecting for. The inset defines the five; <a class="xref" href="2.4-views-are-projections.html#fig-2-4-1">Figure&nbsp;2.4-1</a> draws the one trunk and the views projected from it, and marks what this book adds.</p>
 <blockquote class="concept-inset"><p class="inset-title" id="inset-kruchten">Inset — What are Kruchten's 4+1 views?</p>
@@ -879,4 +879,4 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>So keep the hierarchy explicit. The connected representation supplies <strong>identity and relations</strong> — the stable entities the views all join on. Each view supplies the <strong>semantics for one engineering question</strong> — the behavior, the concurrency, the placement, the journey that its projection is built to reason about. The graph is what lets the views meet; the view is what makes a projection worth drawing. Lose that split and the Part degenerates into graph universalism, where every model is "just a graph" and none of them answers anything.</p>
 <h2><span class="sec-num">2.4.4</span> Reading the five views</h2>
 <p>Because each view is a projection over the same connected representation, the chapters that follow need not re-teach <em>what a model is</em> five times. Each opens instead with its <strong>engineering question</strong>, then frames the view as the projection that answers it — which entities and relations it keeps, and which it drops. The reduction is the value: an agent planning a structural change should not have to carry every pod, lock, and user journey in its window.</p>
-<p>The five walk in Kruchten's order. The Logical view is first: what the system is made of, and what may depend on what.</p><section class="works-cited" aria-labelledby="wc-2-4-views-are-projections-h"><h2 id="wc-2-4-views-are-projections-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-2-4-views-are-projections-1">Foster, J. Nathan, Michael B. Greenwald, Jonathan T. Moore, Benjamin C. Pierce, and Alan Schmitt. “Combinators for Bidirectional Tree Transformations: A Linguistic Approach to the View-Update Problem.” <em>ACM Transactions on Programming Languages and Systems</em> 29, no. 3 (2007): 17:1–17:65.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — The Model Zoo">« Beginning of part</a><a href="2.3-the-executable-zoo.html" aria-label="Previous chapter — 8 · The Executable Zoo">« Previous chapter</a></div><span class="chapnav-here" title="9 · Views Are Projections">9 · Views Are Projections</span><div class="chapnav-fwd"><a href="2.5-the-logical-view.html" aria-label="Next chapter — 10 · The Logical View">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — The Governed Engineering Environment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<p>The five walk in Kruchten's order. The Logical view is first: what the system is made of, and what may depend on what.</p><section class="works-cited" aria-labelledby="wc-2-4-views-are-projections-h"><h2 id="wc-2-4-views-are-projections-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-2-4-views-are-projections-1">Foster, J. Nathan, Michael B. Greenwald, Jonathan T. Moore, Benjamin C. Pierce, and Alan Schmitt. “Combinators for Bidirectional Tree Transformations: A Linguistic Approach to the View-Update Problem.” <em>ACM Transactions on Programming Languages and Systems</em> 29, no. 3 (2007): 17:1–17:65.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">« Beginning of part</a><a href="2.3-the-executable-zoo.html" aria-label="Previous chapter — 8 · The Executable Zoo">« Previous chapter</a></div><span class="chapnav-here" title="9 · Views Are Projections">9 · Views Are Projections</span><div class="chapnav-fwd"><a href="2.5-the-logical-view.html" aria-label="Next chapter — 10 · The Logical View">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — Alignment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

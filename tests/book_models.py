@@ -653,3 +653,29 @@ def check_print_appendix_projection():
                       f"demoted / lifted entries)")
 
     return (FAIL if issues else PASS), issues
+
+
+def check_part_title_parity():
+    """Part-title parity (rule-#33; AUDIT-ONLY-first). Two SSOTs name each Part: the reader-facing
+    `build_book_html._PART_TITLES` (drives running-heads, openers, the `{{part:N}}` substitution, the
+    book-map) and the pedagogy digest's `outcomes_model.PART_TITLES` (drives the Module tier + reviewable
+    digest). They MUST agree on every Part number both define, or a Part is named one thing to the reader
+    and another in the learning-outcomes model. This holds them in step so a future rename of one is caught
+    against the other. Compares the shared keys (back matter part 7 lives only in the renderer; front matter
+    part 0 in both)."""
+    book_dir = os.path.join(ROOT, "book")
+    if book_dir not in sys.path:
+        sys.path.insert(0, book_dir)
+    import build_book_html as bb  # noqa: E402 — path set above; the book renderer
+    import outcomes_model as ocm  # noqa: E402 — path set above; the pedagogy-digest model
+
+    issues: list[str] = []
+    render_titles = bb._PART_TITLES
+    outcome_titles = ocm.PART_TITLES
+    for part in sorted(set(render_titles) & set(outcome_titles)):
+        if render_titles[part] != outcome_titles[part]:
+            issues.append(
+                f"Part {part} title drift: build_book_html._PART_TITLES = {render_titles[part]!r} but "
+                f"outcomes_model.PART_TITLES = {outcome_titles[part]!r} — rename both, or import one SSOT")
+
+    return (FAIL if issues else PASS), issues
