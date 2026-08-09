@@ -408,75 +408,90 @@
   </div>
 
   <aside class="theory-glance" aria-label="The theory at a glance">
-  <figure class="tg-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760"
+  <figure class="tg-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 830"
      role="group" aria-labelledby="cardTitle cardDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="tg-card-cardTitle">The Theory of MAGE — a one-page reference card</title>
-  <desc id="tg-card-cardDesc">A reference card titled The Theory of MAGE, with seven labelled panels. Problem:
-    How do we safely grant autonomy to commodity intelligence? Premise: Cheap implementation makes
-    engineering judgment the scarce resource. Two theses side by side — Modeling Thesis: Bind engineering
-    intent into structured models; Alignment Thesis: Bind engineering policy into deterministic
-    mechanisms. Below them, side by side — Governance Conversion: Convert recurring failures into
-    mechanisms; Engineering Capital: Mechanisms compound as engineering capital. Outcome: Governed
-    engineering environments safely scale autonomy. The green panels are the Modeling arm and the
-    compounding outcome; the rust panels are the Alignment arm and the mechanisms that compound as
-    capital.</desc>
+  <desc id="tg-card-cardDesc">A reference card titled The Theory of MAGE. Problem: How do we safely grant autonomy
+    to commodity intelligence? Premise: Cheap implementation makes engineering judgment the scarce
+    resource. The two theses form a causal pair, stacked not side by side — the Modeling Thesis, make
+    knowledge and intent explicit, sits above the Alignment Thesis, make obligations binding, joined by an
+    arrow reading richer representations make more obligations enforceable. Beside them, Governance
+    Conversion reaches into both thesis boxes: convert recurring failures into durable mechanisms, and it
+    enriches either side — a model fact or an invariant, a sensor or a gate. Below, Engineering Capital:
+    mechanisms compound as engineering capital. Outcome: Governed engineering environments safely scale
+    autonomy.</desc>
 
   <defs>
     <marker id="tg-card-card-chev" viewBox="0 0 12 12" refX="6" refY="9" markerWidth="14" markerHeight="14" orient="auto">
       <path d="M1,3 L6,8 L11,3" fill="none" stroke="#e4e0d8" stroke-width="2"/>
     </marker>
+    <marker id="tg-card-card-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="tg-card-card-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="760" fill="#fdfcf9"/>
-  <rect x="30" y="30" width="940" height="700" rx="16" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="0" y="0" width="1000" height="830" fill="#fdfcf9"/>
+  <rect x="30" y="30" width="940" height="770" rx="16" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
 
-  <text x="500" y="82" text-anchor="middle" font-size="28" font-weight="700" fill="#1c1917">The Theory of MAGE</text>
-  <text x="500" y="112" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">One page to point to — the theory at a glance.</text>
+  <text x="500" y="80" text-anchor="middle" font-size="28" font-weight="700" fill="#1c1917">The Theory of MAGE</text>
+  <text x="500" y="112" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Model the world the intelligence must reason about; align its actions to the engineering intent encoded there.</text>
 
-  <!-- flow chevrons down the spine (faint) -->
+  <!-- faint flow chevrons down the spine -->
   <g fill="none" stroke="none">
-    <line x1="500" y1="234" x2="500" y2="244" marker-end="url(#tg-card-card-chev)"/>
-    <line x1="500" y1="322" x2="500" y2="332" marker-end="url(#tg-card-card-chev)"/>
-    <line x1="500" y1="566" x2="500" y2="576" marker-end="url(#tg-card-card-chev)"/>
+    <line x1="500" y1="228" x2="500" y2="238" marker-end="url(#tg-card-card-chev)"/>
+    <line x1="342" y1="318" x2="342" y2="328" marker-end="url(#tg-card-card-chev)"/>
+    <line x1="500" y1="586" x2="500" y2="596" marker-end="url(#tg-card-card-chev)"/>
   </g>
 
   <!-- PROBLEM (full width, blue frame) -->
-  <rect x="70" y="140" width="860" height="92" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="96" y="171" font-size="16" font-weight="700" letter-spacing="2.5" fill="#2f5169">PROBLEM</text>
-  <text x="500" y="208" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">How do we safely grant autonomy to commodity intelligence?</text>
+  <rect x="70" y="140" width="860" height="86" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="96" y="170" font-size="16" font-weight="700" letter-spacing="2.5" fill="#2f5169">PROBLEM</text>
+  <text x="500" y="203" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">How do we safely grant autonomy to commodity intelligence?</text>
 
   <!-- PREMISE (full width, neutral) -->
-  <rect x="70" y="248" width="860" height="80" rx="10" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="96" y="277" font-size="16" font-weight="700" letter-spacing="2.5" fill="#57534e">PREMISE</text>
-  <text x="500" y="308" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Cheap implementation makes engineering judgment the scarce resource.</text>
+  <rect x="70" y="242" width="860" height="74" rx="10" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
+  <text x="96" y="271" font-size="16" font-weight="700" letter-spacing="2.5" fill="#57534e">PREMISE</text>
+  <text x="500" y="300" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Cheap implementation makes engineering judgment the scarce resource.</text>
 
-  <!-- TWO THESES (side by side) -->
-  <rect x="70" y="344" width="418" height="118" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="96" y="374" font-size="16" font-weight="700" letter-spacing="2" fill="#1f7a4d">MODELING THESIS</text>
-  <text x="279" y="410" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Bind engineering intent into</text>
-  <text x="279" y="436" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">structured models.</text>
+  <!-- THE CAUSAL PAIR: Modeling stacked ABOVE Alignment (left column) -->
+  <rect x="70" y="334" width="544" height="96" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="96" y="364" font-size="16" font-weight="700" letter-spacing="2" fill="#1f7a4d">MODELING THESIS</text>
+  <text x="342" y="404" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Make knowledge and intent explicit.</text>
 
-  <rect x="512" y="344" width="418" height="118" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="538" y="374" font-size="16" font-weight="700" letter-spacing="2" fill="#9a3f12">ALIGNMENT THESIS</text>
-  <text x="721" y="410" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Bind engineering policy into</text>
-  <text x="721" y="436" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">deterministic mechanisms.</text>
+  <!-- the causal join — the load-bearing new content of this card -->
+  <path d="M342,432 L342,486" fill="none" stroke="#9a3f12" stroke-width="4.5" marker-end="url(#tg-card-card-ah-rust)"/>
+  <text x="358" y="454" text-anchor="start" font-size="14" font-weight="700" fill="#9a3f12">richer representations make</text>
+  <text x="358" y="472" text-anchor="start" font-size="14" font-weight="700" fill="#9a3f12">more obligations enforceable</text>
 
-  <!-- CONVERSION + CAPITAL (side by side) — both the Alignment/governance arm, so both rust -->
-  <rect x="70" y="478" width="418" height="110" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="96" y="508" font-size="16" font-weight="700" letter-spacing="2" fill="#9a3f12">GOVERNANCE CONVERSION</text>
-  <text x="279" y="544" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Convert recurring</text>
-  <text x="279" y="570" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">failures into mechanisms.</text>
+  <rect x="70" y="488" width="544" height="96" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="96" y="518" font-size="16" font-weight="700" letter-spacing="2" fill="#9a3f12">ALIGNMENT THESIS</text>
+  <text x="342" y="558" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Make obligations binding.</text>
 
-  <rect x="512" y="478" width="418" height="110" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="538" y="508" font-size="16" font-weight="700" letter-spacing="2" fill="#9a3f12">ENGINEERING CAPITAL</text>
-  <text x="721" y="544" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Mechanisms compound</text>
-  <text x="721" y="570" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">as engineering capital.</text>
+  <!-- GOVERNANCE CONVERSION — beside the pair, reaching into BOTH boxes -->
+  <rect x="634" y="334" width="296" height="250" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="782" y="366" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.5" fill="#9a3f12">GOVERNANCE CONVERSION</text>
+  <text x="782" y="404" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Convert recurring failures</text>
+  <text x="782" y="426" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">into durable mechanisms.</text>
+  <text x="782" y="474" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">It enriches BOTH sides —</text>
+  <text x="782" y="496" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a model fact or an invariant,</text>
+  <text x="782" y="518" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a sensor or a gate.</text>
+  <!-- arrows from the conversion panel into each thesis box -->
+  <path d="M634,382 L616,382" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#tg-card-card-ah-mut)"/>
+  <path d="M634,536 L616,536" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#tg-card-card-ah-mut)"/>
+
+  <!-- ENGINEERING CAPITAL (full width, rust) -->
+  <rect x="70" y="602" width="860" height="78" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="96" y="631" font-size="16" font-weight="700" letter-spacing="2" fill="#9a3f12">ENGINEERING CAPITAL</text>
+  <text x="500" y="662" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Mechanisms compound as engineering capital — on either side of the pair.</text>
 
   <!-- OUTCOME (full width, emphasized green) -->
-  <rect x="70" y="604" width="860" height="96" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
-  <text x="96" y="635" font-size="16" font-weight="700" letter-spacing="2.5" fill="#155c38">OUTCOME</text>
-  <text x="500" y="672" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Governed engineering environments safely scale autonomy.</text>
+  <rect x="70" y="696" width="860" height="94" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
+  <text x="96" y="726" font-size="16" font-weight="700" letter-spacing="2.5" fill="#155c38">OUTCOME</text>
+  <text x="500" y="762" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Governed engineering environments safely scale autonomy.</text>
 </svg></figure>
   <p class="tg-line">The whole argument on one page: the problem, the premise, the two theses, the conversion that drives the loops, and the outcome they produce. <a href="theory.html">See the theory →</a></p>
 </aside>
@@ -659,91 +674,137 @@
 
   <div class="pair pair-causal">
 <div class="p-cell" id="card-thesis-modeling">
-  <figure class="s-fig" id="bi-modeling-thesis"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+  <figure class="s-fig" id="bi-modeling-thesis"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720"
      role="group" aria-labelledby="mlTitle mlDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bi-modeling-thesis-mlTitle">The representation ladder: how richer representation expands what a machine can reason about</title>
-  <desc id="bi-modeling-thesis-mlDesc">A six-rung ladder climbs from left to right over a green ramp whose axis runs from
-    human-readable on the left, through machine-understandable, to machine-executable on the right. Each
-    rung sits higher than the last and unlocks a stronger kind of computation. Rung one, Documentation —
-    prose a reader can read. Rung two, Knowledge graph — entities a tool can query. Rung three, Structured
-    model — typed records a tool can validate. Rung four, Behavior model — state machines a tool can
-    simulate. Rung five, Reasoning model — invariants a tool can prove. Rung six, Computable model — a model
-    a tool can execute and reason over. Climbing the ladder does not merely make the same intent more legible;
-    it expands the reasoning the machine can perform over it.</desc>
+  <title id="bi-modeling-thesis-mlTitle">The capability ladder: eight representational capabilities from context selection to drift enforcement</title>
+  <desc id="bi-modeling-thesis-mlDesc">One vertical ladder of eight rungs with a two-axis gradient. From the bottom up: rung
+    one, Context selection — choose the task-relevant slice of knowledge for this reasoning episode. Rung
+    two, Externalized knowledge — put durable knowledge outside memory: catalogs, skills, registries. Rung
+    three, Structured relationships — typed entities and edges, dependencies, ownership, lineage, that
+    tools traverse. Rung four, System models — add semantics: behavioral, process, scenario, the system's
+    intended shape. Between rungs four and five is the turn, where intent becomes explicit. Rung five,
+    Explicit properties (invariants) — state invariants and obligations over the model. Rung six,
+    Model-derived analysis — query, target, generate, predict, and verify from the model. Rung seven,
+    Traceability — join model elements bidirectionally to the implementation, and back. Rung eight, Drift
+    enforcement — the environment refuses to let model and territory silently diverge. The bottom rungs
+    lean Modeling: they help the reasoner with better context. The top rungs lean Alignment: they give the
+    environment stronger control over the artifact. Moving up does both at once — the Modeling Thesis
+    gradually turns into the Alignment Thesis. It is a capability ladder, not a maturity model: higher
+    rungs make more engineering questions possible; they do not imply every system should climb every
+    rung.</desc>
 
   <defs>
-    <marker id="bi-modeling-thesis-ml-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
+    <marker id="bi-modeling-thesis-ml-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
-    <linearGradient id="bi-modeling-thesis-mlRamp" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#eef7f0"/>
-      <stop offset="0.55" stop-color="#e3f0e7"/>
+    <!-- vertical axis gradient: rust (top, stronger control) -> neutral -> green (bottom, better context) -->
+    <linearGradient id="bi-modeling-thesis-mlAxis" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9a3f12"/>
+      <stop offset="0.5" stop-color="#f3efe7"/>
       <stop offset="1" stop-color="#1f7a4d"/>
     </linearGradient>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The representation ladder</text>
-  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">How representation expands reasoning.</text>
+  <rect x="0" y="0" width="1000" height="720" fill="#fdfcf9"/>
+  <text x="500" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The capability ladder</text>
+  <text x="500" y="68" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">One ladder — representational capabilities, ordered. Not a maturity model.</text>
 
-  <!-- human-readable -> machine-understandable -> machine-executable axis -->
-  <text x="90"  y="112" font-size="16" fill="#57534e">HUMAN-READABLE · a person can follow it</text>
-  <text x="500" y="112" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">machine-understandable</text>
-  <text x="910" y="112" text-anchor="end" font-size="16" fill="#1f7a4d">MACHINE-EXECUTABLE · a tool can run it</text>
+  <!-- top axis banner (stronger control) -->
+  <text x="420" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">▲ STRONGER CONTROL — representations govern the artifact</text>
 
-  <!-- connectors from each rung down to its ramp column -->
-  <g stroke="#e4e0d8" stroke-width="1.5">
-    <line x1="142" y1="416" x2="142" y2="452"/>
-    <line x1="285" y1="384" x2="285" y2="452"/>
-    <line x1="428" y1="352" x2="428" y2="452"/>
-    <line x1="572" y1="320" x2="572" y2="452"/>
-    <line x1="715" y1="288" x2="715" y2="452"/>
-    <line x1="858" y1="256" x2="858" y2="452"/>
-  </g>
+  <!-- left gradient strip carrying the two-axis reading -->
+  <rect x="118" y="120" width="16" height="494" rx="8" fill="url(#bi-modeling-thesis-mlAxis)" stroke="#e4e0d8" stroke-width="1"/>
+  <text x="126" y="114" text-anchor="middle" font-size="14" fill="#9a3f12">▲</text>
+  <text x="126" y="632" text-anchor="middle" font-size="14" fill="#1f7a4d">▼</text>
 
-  <!-- climbing arrows rung-to-rung -->
-  <g fill="none" stroke="#1f7a4d" stroke-width="2.2">
-    <path d="M206,372 C238,360 244,352 270,342" marker-end="url(#bi-modeling-thesis-ml-ah)"/>
-    <path d="M349,340 C381,328 387,320 413,310" marker-end="url(#bi-modeling-thesis-ml-ah)"/>
-    <path d="M492,308 C524,296 530,288 556,278" marker-end="url(#bi-modeling-thesis-ml-ah)"/>
-    <path d="M636,276 C668,264 673,256 699,246" marker-end="url(#bi-modeling-thesis-ml-ah)"/>
-    <path d="M779,244 C811,232 817,224 843,214" marker-end="url(#bi-modeling-thesis-ml-ah)"/>
-  </g>
+  <!-- ===================== THE EIGHT RUNGS (bottom = rung 1) ===================== -->
 
-  <!-- the six rungs (all green — the representation lobe) -->
-  <rect x="69" y="352" width="146" height="64" rx="8" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="142" y="390" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Documentation</text>
-  <rect x="221" y="320" width="128" height="64" rx="8" fill="#eef7ee" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="285" y="350" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Knowledge</text>
-  <text x="285" y="372" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">graph</text>
-  <rect x="364" y="288" width="128" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
-  <text x="428" y="318" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Structured</text>
-  <text x="428" y="340" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">model</text>
-  <rect x="508" y="256" width="128" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
-  <text x="572" y="286" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Behavior</text>
-  <text x="572" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">model</text>
-  <rect x="651" y="224" width="128" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="715" y="254" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Reasoning</text>
-  <text x="715" y="276" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">model</text>
-  <rect x="794" y="192" width="128" height="64" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
-  <text x="858" y="222" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Computable</text>
-  <text x="858" y="244" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">model</text>
+  <!-- rung 8 — Drift enforcement (top, Alignment lobe) -->
+  <rect x="150" y="120" width="540" height="54" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
+  <text x="176" y="153" font-size="20" font-weight="700" fill="#9a3f12">8</text>
+  <text x="206" y="144" font-size="17" font-weight="700" fill="#1c1917">Drift enforcement</text>
+  <text x="206" y="164" font-size="12.5" fill="#57534e">The environment refuses to let model and territory silently diverge.</text>
+  <rect x="694" y="131" width="76" height="22" rx="11" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/>
+  <text x="732" y="146" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3f12">gate</text>
 
-  <!-- the ramp -->
-  <rect x="70" y="452" width="860" height="26" rx="7" fill="url(#bi-modeling-thesis-mlRamp)" stroke="#e4e0d8" stroke-width="1.2"/>
+  <!-- rung 7 — Traceability -->
+  <rect x="150" y="182" width="540" height="54" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="176" y="215" font-size="20" font-weight="700" fill="#9a3f12">7</text>
+  <text x="206" y="206" font-size="17" font-weight="700" fill="#1c1917">Traceability</text>
+  <text x="206" y="226" font-size="12.5" fill="#57534e">Join model elements bidirectionally to the implementation, and back.</text>
+  <rect x="694" y="193" width="76" height="22" rx="11" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/>
+  <text x="732" y="208" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3f12">trace</text>
 
-  <!-- bottom labels: what computation each rung unlocks -->
-  <g font-size="16" fill="#57534e" text-anchor="middle">
-    <text x="142" y="502">read</text>
-    <text x="285" y="502">query</text>
-    <text x="428" y="502">validate</text>
-    <text x="572" y="502">simulate</text>
-    <text x="715" y="502">prove</text>
-    <text x="858" y="502">execute</text>
-  </g>
+  <!-- rung 6 — Model-derived analysis -->
+  <rect x="150" y="244" width="540" height="54" rx="8" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="176" y="277" font-size="20" font-weight="700" fill="#9a3f12">6</text>
+  <text x="206" y="268" font-size="17" font-weight="700" fill="#1c1917">Model-derived analysis</text>
+  <text x="206" y="288" font-size="12.5" fill="#57534e">Query, target, generate, predict, and verify from the model.</text>
+  <rect x="694" y="255" width="76" height="22" rx="11" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/>
+  <text x="732" y="270" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3f12">derive</text>
 
-  <text x="500" y="540" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Industry has converged on documentation and knowledge graphs; the opportunity lies further up — analyzable, executable models.</text>
+  <!-- rung 5 — Explicit properties (invariants) — first Alignment-leaning rung -->
+  <rect x="150" y="306" width="540" height="54" rx="8" fill="#f3efe7" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="176" y="339" font-size="20" font-weight="700" fill="#9a3f12">5</text>
+  <text x="206" y="330" font-size="17" font-weight="700" fill="#1c1917">Explicit properties (invariants)</text>
+  <text x="206" y="350" font-size="12.5" fill="#57534e">State invariants and obligations over the model — intent becomes explicit.</text>
+  <rect x="694" y="317" width="76" height="22" rx="11" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/>
+  <text x="732" y="332" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3f12">assert</text>
+
+  <!-- THE TURN — dotted line between rungs 4 and 5 (not a wall) -->
+  <line x1="150" y1="367" x2="690" y2="367" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="4 4"/>
+  <text x="694" y="371" text-anchor="start" font-size="12.5" font-style="italic" font-weight="700" fill="#9a3f12">the turn</text>
+
+  <!-- rung 4 — System models (top of the Modeling lobe) -->
+  <rect x="150" y="374" width="540" height="54" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="407" font-size="20" font-weight="700" fill="#1f7a4d">4</text>
+  <text x="206" y="398" font-size="17" font-weight="700" fill="#1c1917">System models</text>
+  <text x="206" y="418" font-size="12.5" fill="#57534e">Add semantics — behavioral, process, scenario — the system's intended shape.</text>
+  <rect x="694" y="385" width="76" height="22" rx="11" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.4"/>
+  <text x="732" y="400" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1f7a4d">model</text>
+
+  <!-- rung 3 — Structured relationships -->
+  <rect x="150" y="436" width="540" height="54" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="469" font-size="20" font-weight="700" fill="#1f7a4d">3</text>
+  <text x="206" y="460" font-size="17" font-weight="700" fill="#1c1917">Structured relationships</text>
+  <text x="206" y="480" font-size="12.5" fill="#57534e">Typed entities and edges — deps, ownership, lineage — tools traverse it.</text>
+  <rect x="694" y="447" width="76" height="22" rx="11" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.4"/>
+  <text x="732" y="462" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1f7a4d">relate</text>
+
+  <!-- rung 2 — Externalized knowledge -->
+  <rect x="150" y="498" width="540" height="54" rx="8" fill="#eef7ee" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="531" font-size="20" font-weight="700" fill="#1f7a4d">2</text>
+  <text x="206" y="522" font-size="17" font-weight="700" fill="#1c1917">Externalized knowledge</text>
+  <text x="206" y="542" font-size="12.5" fill="#57534e">Put durable knowledge outside memory — catalogs, skills, registries.</text>
+  <rect x="694" y="509" width="76" height="22" rx="11" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.4"/>
+  <text x="732" y="524" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1f7a4d">externalize</text>
+
+  <!-- rung 1 — Context selection (bottom, Modeling lobe) -->
+  <rect x="150" y="560" width="540" height="54" rx="8" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="593" font-size="20" font-weight="700" fill="#1f7a4d">1</text>
+  <text x="206" y="584" font-size="17" font-weight="700" fill="#1c1917">Context selection</text>
+  <text x="206" y="604" font-size="12.5" fill="#57534e">Choose the task-relevant slice of knowledge for this reasoning episode.</text>
+  <rect x="694" y="571" width="76" height="22" rx="11" fill="#eef7f0" stroke="#1f7a4d" stroke-width="1.4"/>
+  <text x="732" y="586" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1f7a4d">select</text>
+
+  <!-- ===================== RIGHT-MARGIN LOBE BRACKETS ===================== -->
+  <!-- Alignment-leaning: rungs 5-8 -->
+  <path d="M782,120 h10 v240 h-10" fill="none" stroke="#9a3f12" stroke-width="2"/>
+  <text x="800" y="234" font-size="14" font-weight="700" fill="#9a3f12">Alignment-leaning</text>
+  <text x="800" y="253" font-size="12.5" font-style="italic" fill="#57534e">authority over the artifact</text>
+
+  <!-- Modeling-leaning: rungs 1-4 -->
+  <path d="M782,374 h10 v240 h-10" fill="none" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="800" y="488" font-size="14" font-weight="700" fill="#1f7a4d">Modeling-leaning</text>
+  <text x="800" y="507" font-size="12.5" font-style="italic" fill="#57534e">help the reasoner</text>
+
+  <!-- bottom axis banner (better context) -->
+  <text x="420" y="642" text-anchor="middle" font-size="15" font-weight="700" fill="#1f7a4d">▼ BETTER CONTEXT — representations help the reasoner</text>
+
+  <!-- the transition sentence (canon, verbatim) + the maturity-model guard -->
+  <text x="500" y="676" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">Rungs 1–4 mostly help the reasoner; the turn at rung 5 makes intent explicit; rungs 5–8 give the environment authority over the artifact.</text>
+  <text x="500" y="700" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">Higher rungs make more engineering questions possible — they do not imply every system should climb every rung.</text>
 </svg></figure>
   <p class="s-kick">Big idea 3 · Thesis 1</p>
   <h2 class="s-title">Documentation, taken to its limit, is a structured model</h2>

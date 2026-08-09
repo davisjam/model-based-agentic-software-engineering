@@ -1,89 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: mage-method). The MAGE method at a glance, organizing the
-     book's core vocabulary into one flow: a coding agent — a reasoning engine paired with a
-     printer — generates code through an agent fleet; the two theses (Modeling → models;
-     Alignment → mechanisms) fill a Governed Engineering Environment; a dashed side inflow
-     bootstraps that environment from known constraints (ex-ante governance creation), and
-     governance conversion then grows it into trustworthy software. A frontispiece for the glossary.
-     Palette: Umber Monograph tokens (accent #9a3f12 the coding-agent source + the outcome,
-     thesis-green #15803d the two theses, fleet #2f5169 the fleet, governed #1f7a4d the
-     environment, muted #57534e connectors + gloss). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720" width="720" height="720"
+<!-- Hand-authored SVG (label: mage-method). The MAGE method as ONE causal descent — the connective
+     re-model: the two theses are not parallel siblings but a single vertical progression. Commodity
+     intelligence hits a reasoning-horizon problem; the Modeling Thesis externalizes knowledge + intent
+     (a short branch into "better context" and "stronger semantics" that REJOINS, the only place two
+     arrows appear); those rejoin into structured / executable models; a HEAVY LABELED "creates surfaces
+     for" arrow — the load-bearing new content — carries the models into the Alignment Thesis, which gives
+     that intent authority through constraints · sensors · validators · gates; the column continues into
+     the Governed Engineering Environment, then governance conversion, Engineering Capital, and Trustworthy
+     Autonomy. A frontispiece for the glossary.
+     Palette: Umber Monograph tokens (fleet #2f5169 the commodity-intelligence source, churn-red #b23b3b
+     the reasoning-horizon problem, thesis-green #15803d + governed green #1f7a4d/#155c38 the Modeling band
+     + environment + capital, accent #9a3f12 the Alignment band + the "creates surfaces for" arrow + the
+     Autonomy outcome, muted #57534e connectors + gloss). -->
+<!-- semantic-families: agent, failure, governance, modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 946" width="720" height="946"
      role="group" aria-labelledby="mmTitle mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mmTitle">The MAGE method at a glance</title>
-  <desc id="mmDesc">A single vertical flow. A coding agent — a reasoning engine paired with a
-    printer — generates code through an agent fleet. The fleet branches into the book's two theses: the Modeling Thesis,
-    which produces models (the Model Zoo), and the Alignment Thesis, which produces mechanisms
-    (constraints, sensors, validators, gates). The two converge into the Governed Engineering
-    Environment. A separate incoming arrow from the left feeds that environment from the start:
-    the known constraints you already have are converted into governance up front, bootstrapping
-    the environment before the loop runs. Then governance conversion grows that environment — turning
-    each recurring failure into a mechanism — and the result is trustworthy software.</desc>
+  <title id="mmTitle">The MAGE method at a glance — one causal descent</title>
+  <desc id="mmDesc">A single vertical progression, not two branches. Commodity intelligence — broad,
+    cheap, probabilistic — meets a reasoning-horizon problem: the system will not fit the context window.
+    The Modeling Thesis answers it by externalizing engineering knowledge and intent; a short branch
+    splits into better context for reasoning and stronger semantics for engineering, then rejoins into
+    structured and executable models — what is, what ought to be, and the invariants over them. A heavy
+    labelled arrow, creates surfaces for, carries those models into the Alignment Thesis, which gives
+    engineering intent authority through constraints, sensors, validators, and gates. The column continues
+    into the Governed Engineering Environment, then governance conversion grows it, effort compounds as
+    Engineering Capital, and the result is trustworthy autonomy. Modeling makes intent explicit; Alignment
+    gives it authority — one progression, not two siblings.</desc>
 
   <defs>
     <marker id="mm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
+    <marker id="mm-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
   </defs>
 
-  <!-- 1. the coding agent (a reasoning engine + a printer) -->
-  <rect x="255" y="20" width="210" height="68" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="360" y="50" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Coding agent</text>
-  <text x="360" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="#9a3f12">reasoning engine + printer</text>
+  <rect x="0" y="0" width="720" height="946" fill="#fdfcf9"/>
 
-  <path d="M360,88 L360,130" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
-  <text x="372" y="114" text-anchor="start" font-size="15" font-style="italic" fill="#57534e">generates code</text>
+  <!-- A. Commodity intelligence — the source (fleet blue) -->
+  <rect x="235" y="30" width="250" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="360" y="62" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">Commodity intelligence</text>
+  <text x="360" y="84" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">broad · cheap · probabilistic</text>
+  <path d="M360,96 L360,124" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
 
-  <!-- 2. the agent fleet -->
-  <rect x="255" y="138" width="210" height="46" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="360" y="167" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">The agent fleet</text>
+  <!-- B. Reasoning-horizon problem — the driving problem (churn red) -->
+  <rect x="228" y="126" width="264" height="60" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.2"/>
+  <text x="360" y="153" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">Reasoning-horizon problem</text>
+  <text x="360" y="175" text-anchor="middle" font-size="13" font-weight="600" fill="#b23b3b">the system won't fit the window</text>
+  <path d="M360,186 L360,214" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
 
-  <!-- branch: fleet -> two theses -->
-  <path d="M360,184 L360,208 M175,208 L545,208 M175,208 L175,236 M545,208 L545,236"
+  <!-- C. Modeling Thesis (green) -->
+  <rect x="214" y="216" width="292" height="60" rx="8" fill="#eef7ee" stroke="#15803d" stroke-width="2.2"/>
+  <text x="360" y="243" text-anchor="middle" font-size="19" font-weight="700" fill="#15803d">Modeling Thesis</text>
+  <text x="360" y="265" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">externalize knowledge + engineering intent</text>
+
+  <!-- the ONLY branch: better context / stronger semantics — it SPLITS then REJOINS -->
+  <path d="M360,276 L360,298 M180,298 L540,298 M180,298 L180,322 M540,298 L540,322"
         fill="none" stroke="#57534e" stroke-width="2"/>
-  <path d="M175,236 L175,242" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
-  <path d="M545,236 L545,242" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
-
-  <!-- 3a. Modeling Thesis -->
-  <rect x="88" y="244" width="174" height="46" rx="8" fill="#eef7ee" stroke="#15803d" stroke-width="2"/>
-  <text x="175" y="273" text-anchor="middle" font-size="18" font-weight="700" fill="#15803d">Modeling Thesis</text>
-  <path d="M175,290 L175,320" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
-  <text x="175" y="342" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Models</text>
-  <text x="175" y="366" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the Model Zoo</text>
-
-  <!-- 3b. Alignment Thesis -->
-  <rect x="458" y="244" width="174" height="46" rx="8" fill="#eef7ee" stroke="#15803d" stroke-width="2"/>
-  <text x="545" y="273" text-anchor="middle" font-size="18" font-weight="700" fill="#15803d">Alignment Thesis</text>
-  <path d="M545,290 L545,320" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
-  <text x="545" y="342" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Mechanisms</text>
-  <text x="545" y="366" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">constraints · sensors</text>
-  <text x="545" y="388" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">validators · gates</text>
-
-  <!-- converge: both columns -> GEE -->
-  <path d="M175,398 L175,424 M545,398 L545,424 M175,424 L545,424 M360,424 L360,448"
+  <path d="M180,318 L180,324" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <path d="M540,318 L540,324" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <text x="180" y="344" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">better context</text>
+  <text x="180" y="364" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">for reasoning</text>
+  <text x="540" y="344" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">stronger semantics</text>
+  <text x="540" y="364" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">for engineering</text>
+  <path d="M180,374 L180,394 M540,374 L540,394 M180,394 L540,394 M360,394 L360,414"
         fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
 
-  <!-- ex-ante governance CREATION: bootstrap the environment from known constraints. Distinct from the
-       governance-conversion flow below (which GROWS the environment from failures): a one-time inflow,
-       drawn DASHED and entering the environment from the SIDE, not the solid vertical growth arrow. -->
-  <text x="64" y="440" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">bootstrap</text>
-  <rect x="12" y="452" width="104" height="50" rx="8" fill="#f4efe9" stroke="#57534e" stroke-width="2"/>
-  <text x="64" y="473" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">Known</text>
-  <text x="64" y="491" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">constraints</text>
-  <path d="M116,477 L148,477" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#mm-ah)"/>
+  <!-- D. Structured / executable models (governed green) -->
+  <rect x="212" y="416" width="296" height="66" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="360" y="446" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">Structured / executable models</text>
+  <text x="360" y="469" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">what is · what ought to be · invariants</text>
 
-  <!-- 4. Governed Engineering Environment -->
-  <rect x="150" y="450" width="420" height="54" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="360" y="483" text-anchor="middle" font-size="19" font-weight="700" fill="#1f7a4d">The Governed Engineering Environment</text>
+  <!-- THE LOAD-BEARING NEW CONTENT: heavy, labelled "creates surfaces for" arrow, Modeling -> Alignment -->
+  <path d="M360,482 L360,538" fill="none" stroke="#9a3f12" stroke-width="5" marker-end="url(#mm-ah-rust)"/>
+  <text x="378" y="507" text-anchor="start" font-size="16" font-weight="700" fill="#9a3f12">creates surfaces for</text>
+  <text x="378" y="525" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">represented intent becomes authority</text>
 
-  <path d="M360,504 L360,532" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
-  <text x="360" y="554" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Governance conversion</text>
-  <text x="360" y="578" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">grows the environment</text>
+  <!-- E. Alignment Thesis (accent rust) -->
+  <rect x="238" y="540" width="244" height="60" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="360" y="567" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">Alignment Thesis</text>
+  <text x="360" y="589" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">give engineering intent authority</text>
+  <text x="360" y="626" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">constraints · sensors · validators · gates</text>
+  <path d="M360,636 L360,664" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
 
-  <path d="M360,592 L360,620" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <!-- F. Governed Engineering Environment (governed green) -->
+  <rect x="168" y="666" width="384" height="56" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.8"/>
+  <text x="360" y="700" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">The Governed Engineering Environment</text>
+  <path d="M360,722 L360,758" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <text x="372" y="744" text-anchor="start" font-size="14" font-style="italic" fill="#57534e">governance conversion grows it</text>
 
-  <!-- 5. Trustworthy software -->
-  <rect x="222" y="626" width="276" height="50" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="360" y="658" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">Trustworthy software</text>
+  <!-- G. Engineering Capital (compounding green) -->
+  <rect x="250" y="760" width="220" height="56" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
+  <text x="360" y="794" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Engineering Capital</text>
+  <path d="M360,816 L360,844" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+
+  <!-- H. Trustworthy Autonomy — the outcome (accent rust) -->
+  <rect x="232" y="846" width="256" height="62" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
+  <text x="360" y="884" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">Trustworthy autonomy</text>
 </svg>

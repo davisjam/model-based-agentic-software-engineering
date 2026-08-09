@@ -794,9 +794,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <blockquote id="idx-def-thesis-modeling" class="thesis-box"><p><strong>The Modeling Thesis.</strong> Binding intent and system structure into an explicit, structured model gives agents a compact, coherent representation to reason through, and gives engineers a surface on which to specify, analyze, and predict the system.</p></blockquote>
 <blockquote id="idx-def-thesis-alignment" class="thesis-box"><p><strong>The Alignment Thesis.</strong> A governance mechanism the environment enforces keeps implementation aligned with intent — a policy decided once holds against every later change — so confidently-wrong work is prevented, or made visible, instead of shipped.</p></blockquote>
 <p>The two theses divide the three not-knowings named above. The Modeling Thesis treats the first two — knowing what to build and how to realize it — by binding intent to a model compact enough to hold in-window; the Alignment Thesis treats the third, changing the system without breaking it, by catching the confidently-wrong edit before it compounds. A model chapter is the Modeling Thesis worked out; a lint, gate, or validator chapter is the Alignment Thesis. Hold those two in mind and the book stops being a list of tricks and becomes two ideas applied over and over. <a class="xref" href="0.4-preface.html#fig-0-4-2">Figure&nbsp;0.4-2</a> draws the whole method in one picture.</p>
-<figure id="fig-0-4-2" class="book-figure" data-label="mage-overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 90 1080 422" role="group" aria-labelledby="mg-title mg-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mg-title">The MAGE method: the two theses that hold off churn and earn trustworthy software</title>
-  <desc id="mg-desc">A cheap agent fleet is one input with two fates. Left ungoverned, it drifts into churn as its work outgrows the context window: drift, confidently-wrong. Run through the governed environment — which holds the Modeling Thesis (a typed model the fleet reasons through) and the Alignment Thesis (a mechanism that keeps output aligned with intent) — it converges on software that is high quality (correct), auditable (every change traces back to the models, so a result can be explained and reversed), and delivered at velocity. Model-Based Agentic Software Engineering is the governed path.</desc>
+<figure id="fig-0-4-2" class="book-figure" data-label="mage-overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 640"
+     role="group" aria-labelledby="mg-title mg-desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mg-title">The MAGE method in one picture — a reasoning problem before a control problem</title>
+  <desc id="mg-desc">Commodity intelligence is cheap implementation with two fates. Left ungoverned it
+    drifts into churn as its work outruns the context window. Run through the governed environment it
+    converges on trustworthy software. The governed environment is one connective spine, not two divided
+    halves. The Modeling Thesis gives the intelligence a world to reason through — the capability ladder
+    folded inline, from context to knowledge to structure to model to invariant. A heavy arrow, creates
+    surfaces for, carries those models into the Alignment Thesis, which gives that intent authority by
+    constraining, sensing, validating, and gating. A dashed governance-conversion loop climbs back up: a
+    failure enriches either the representation or the control. Commodity intelligence creates a reasoning
+    problem before it creates a control problem; Modeling answers the first, and in doing so builds the
+    surfaces on which Alignment answers the second.</desc>
+
   <defs>
     <marker id="mg-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#b23b3b"/>
@@ -807,67 +819,102 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <marker id="mg-ah-navy" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
+    <marker id="mg-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="mg-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="1080" height="512" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1120" height="640" fill="#fdfcf9"/>
 
-  <!-- Title block -->
+  <!-- Churn: the ungoverned fate, parked top-left -->
+  <rect x="40" y="150" width="240" height="96" rx="12" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
+  <text x="160" y="188" text-anchor="middle" font-size="22" font-weight="700" fill="#b23b3b">Churn</text>
+  <text x="160" y="213" text-anchor="middle" font-size="15" fill="#b23b3b">work outgrows the window;</text>
+  <text x="160" y="233" text-anchor="middle" font-size="16" fill="#b23b3b">drift, confidently-wrong</text>
 
-  <!-- Churn box: a short reject-branch, parked right above the fleet -->
-  <rect x="44" y="104" width="228" height="98" rx="12" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
-  <text x="158" y="140" text-anchor="middle" font-size="23" font-weight="700" fill="#b23b3b">Churn</text>
-  <text x="158" y="165" text-anchor="middle" font-size="16.41" fill="#b23b3b">work outgrows the window;</text>
-  <text x="158" y="185" text-anchor="middle" font-size="17.28" fill="#b23b3b">drift, confidently-wrong</text>
-
-  <!-- ================= BAD PATH: a short fray, straight up out of the fleet to Churn ================= -->
-  <!-- the reject-branch: ORIGINATES on the fleet top edge (y=293), frays up, TERMINATES on Churn's bottom edge (y=202) -->
-  <path d="M160 293 L144 280 L176 266 L142 250 L174 236"
+  <!-- bad path: a short fray up out of the source to Churn -->
+  <path d="M150 306 L134 292 L166 278 L132 262 L164 250"
         fill="none" stroke="#b23b3b" stroke-width="3" stroke-linejoin="round" opacity="0.95"/>
-  <path d="M174 236 L150 224 L166 214 L158 204"
+  <path d="M164 250 L142 240 L158 232 L160 246"
         fill="none" stroke="#b23b3b" stroke-width="2" stroke-dasharray="3 6" stroke-linecap="round"
         marker-end="url(#mg-ah-red)" opacity="0.9"/>
-  <text x="238" y="258" text-anchor="middle" font-size="17.28" font-style="italic" fill="#b23b3b" font-weight="600">left ungoverned</text>
+  <text x="250" y="272" text-anchor="middle" font-size="16" font-style="italic" fill="#b23b3b" font-weight="600">left ungoverned</text>
 
-  <!-- ============ THE FLEET: single origin, centered on the spine (y=344) ============ -->
-  <rect x="46" y="293" width="196" height="102" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="144" y="333" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">The agent fleet</text>
-  <text x="144" y="359" text-anchor="middle" font-size="17.28" fill="#2f5169">fast · cheap</text>
-  <text x="144" y="380" text-anchor="middle" font-size="17.28" fill="#57534e">one input, two fates</text>
+  <!-- Commodity intelligence: the source, one input two fates -->
+  <rect x="40" y="306" width="216" height="112" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="148" y="344" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">Commodity intelligence</text>
+  <text x="148" y="370" text-anchor="middle" font-size="15" fill="#2f5169">cheap implementation</text>
+  <text x="148" y="393" text-anchor="middle" font-size="15" fill="#57534e">one input, two fates</text>
 
-  <!-- ============ SPINE: fleet -> governed env -> trustworthy (all straight, y=344) ============ -->
-  <!-- tail on the fleet's right edge (x=242), head on the container's left edge (x=308) -->
-  <path d="M242 344 L306 344" fill="none" stroke="#2f5169" stroke-width="3" marker-end="url(#mg-ah-navy)"/>
+  <!-- reasoning horizon becomes binding, then into the governed spine -->
+  <text x="286" y="352" text-anchor="middle" font-size="13" font-style="italic" fill="#2f5169">reasoning horizon</text>
+  <text x="286" y="368" text-anchor="middle" font-size="13" font-style="italic" fill="#2f5169">becomes binding</text>
+  <path d="M256 388 L300 388" fill="none" stroke="#2f5169" stroke-width="3" marker-end="url(#mg-ah-navy)"/>
 
-  <!-- The governed environment: the HERO container (center y=344) -->
-  <rect x="308" y="216" width="452" height="256" rx="16" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <path d="M308 232 a16 16 0 0 1 16 -16 h420 a16 16 0 0 1 16 16 v22 h-452 z" fill="#1f7a4d"/>
-  <text x="534" y="245" text-anchor="middle" font-size="17.28" font-weight="700" fill="#ffffff" letter-spacing="0.3">The governed environment</text>
+  <!-- THE GOVERNED ENVIRONMENT: one connective spine -->
+  <rect x="302" y="150" width="512" height="430" rx="16" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <path d="M302 166 a16 16 0 0 1 16 -16 h480 a16 16 0 0 1 16 16 v24 h-512 z" fill="#1f7a4d"/>
+  <text x="558" y="180" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff" letter-spacing="0.3">The governed environment</text>
 
-  <rect x="334" y="278" width="400" height="80" rx="10" fill="#ffffff" stroke="#2f5169" stroke-width="2"/>
-  <text x="534" y="311" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">Modeling Thesis</text>
-  <text x="534" y="335" text-anchor="middle" font-size="17.28" fill="#2f5169">a typed model the fleet reasons through</text>
+  <!-- MODELING THESIS panel with the capability ladder folded inline -->
+  <rect x="326" y="210" width="464" height="132" rx="10" fill="#ffffff" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="558" y="238" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">Modeling Thesis — give it a world to reason through</text>
+  <!-- inline ladder: five cells with arrows -->
+  <g>
+    <rect x="338" y="256" width="80" height="44" rx="6" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.6"/>
+    <text x="378" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">context</text>
+    <rect x="432" y="256" width="80" height="44" rx="6" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.6"/>
+    <text x="472" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">knowledge</text>
+    <rect x="526" y="256" width="80" height="44" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+    <text x="566" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">structure</text>
+    <rect x="620" y="256" width="80" height="44" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+    <text x="660" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#1c1917">model</text>
+    <rect x="714" y="256" width="80" height="44" rx="6" fill="#e3f0e7" stroke="#155c38" stroke-width="2"/>
+    <text x="754" y="283" text-anchor="middle" font-size="13" font-weight="600" fill="#155c38">invariant</text>
+    <g stroke="#57534e" stroke-width="1.8" fill="none">
+      <path d="M420 278 L430 278" marker-end="url(#mg-ah-mut)"/>
+      <path d="M514 278 L524 278" marker-end="url(#mg-ah-mut)"/>
+      <path d="M608 278 L618 278" marker-end="url(#mg-ah-mut)"/>
+      <path d="M702 278 L712 278" marker-end="url(#mg-ah-mut)"/>
+    </g>
+    <text x="558" y="326" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the capability ladder, folded inline</text>
+  </g>
 
-  <rect x="334" y="370" width="400" height="80" rx="10" fill="#ffffff" stroke="#2f5169" stroke-width="2"/>
-  <text x="534" y="403" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">Alignment Thesis</text>
-  <text x="534" y="427" text-anchor="middle" font-size="17.28" fill="#2f5169">keeps output aligned with intent</text>
+  <!-- THE causal arrow: creates surfaces for -->
+  <path d="M558 342 L558 384" fill="none" stroke="#9a3f12" stroke-width="5" marker-end="url(#mg-ah-rust)"/>
+  <text x="574" y="368" text-anchor="start" font-size="15" font-weight="700" fill="#9a3f12">creates surfaces for</text>
 
-  <!-- straight output arrow, rightward on the spine: tail on container edge (x=760), head on Trustworthy edge (x=846) -->
-  <path d="M760 344 L844 344" fill="none" stroke="#1f7a4d" stroke-width="3" marker-end="url(#mg-ah-green)"/>
+  <!-- ALIGNMENT THESIS panel -->
+  <rect x="326" y="386" width="464" height="104" rx="10" fill="#ffffff" stroke="#9a3f12" stroke-width="2"/>
+  <text x="558" y="414" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Alignment Thesis — give that intent authority</text>
+  <text x="558" y="442" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">constrain · sense · validate · gate</text>
+  <text x="558" y="468" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the represented intent becomes binding on what the fleet can do</text>
 
-  <!-- Trustworthy software: the reward, on the spine — three earned attributes -->
-  <rect x="846" y="274" width="204" height="140" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="948" y="309" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Trustworthy</text>
-  <text x="948" y="331" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">software</text>
-  <text x="948" y="358" text-anchor="middle" font-size="17.28" fill="#155c38">high quality · auditable</text>
-  <text x="948" y="378" text-anchor="middle" font-size="17.28" font-style="italic" fill="#1f7a4d">at velocity</text>
-  <!-- auditability motif: a small model-traceability tag, centered in the box -->
-  <rect x="870" y="389" width="156" height="20" rx="10" fill="#ffffff" stroke="#1f7a4d" stroke-width="1.2"/>
-  <path d="M881 399 l3 3 l5.5 -6.5" fill="none" stroke="#1f7a4d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="956" y="404" text-anchor="middle" font-size="14.62" fill="#155c38" letter-spacing="0.2">traces to the models</text>
+  <!-- governance-conversion loop: climbs back up the left inner gutter -->
+  <path d="M336 528 C304 512 304 244 334 232" fill="none" stroke="#57534e" stroke-width="2"
+        stroke-dasharray="6 4" marker-end="url(#mg-ah-mut)"/>
+  <text x="558" y="524" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Governance conversion enriches representation or control.</text>
+  <text x="558" y="556" text-anchor="middle" font-size="13" font-style="italic" fill="#155c38">a reasoning problem before a control problem.</text>
+
+  <!-- spine out to Trustworthy software -->
+  <path d="M814 364 L866 364" fill="none" stroke="#1f7a4d" stroke-width="3" marker-end="url(#mg-ah-green)"/>
+
+  <!-- Trustworthy software: the converged fate -->
+  <rect x="868" y="296" width="212" height="140" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="974" y="332" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Trustworthy</text>
+  <text x="974" y="354" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">software</text>
+  <text x="974" y="381" text-anchor="middle" font-size="15" fill="#155c38">high quality · auditable</text>
+  <text x="974" y="401" text-anchor="middle" font-size="15" font-style="italic" fill="#1f7a4d">at velocity</text>
+  <rect x="892" y="411" width="164" height="20" rx="10" fill="#ffffff" stroke="#1f7a4d" stroke-width="1.2"/>
+  <path d="M903 421 l3 3 l5.5 -6.5" fill="none" stroke="#1f7a4d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="980" y="426" text-anchor="middle" font-size="14" fill="#155c38" letter-spacing="0.2">traces to the models</text>
 
   <!-- takeaway caption -->
-  <text x="540" y="497" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">MAGE is the governed path: the two theses hold off churn.</text>
-</svg><figcaption data-short="The MAGE method in one picture"><span class="fig-label">Figure 0.4-2.</span> The MAGE method in one picture. A cheap agent fleet, left ungoverned, drifts into churn as its work outruns the context window it can hold. Governed through the two theses, the same fleet converges on trustworthy software at velocity: the Modeling Thesis binds intent to a compact model the fleet reasons through, so the work fits the window, and the Alignment Thesis catches the confidently-wrong change before it compounds. The two divide the three not-knowings a fleet hits — what to build, how to realize it, and how to change the system without breaking it. Hold both theses in mind and the book stops being a list of tricks and becomes two ideas applied over and over.</figcaption></figure>
+  <text x="560" y="612" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">MAGE is the governed path: Modeling makes intent explicit, and Alignment gives it authority — one spine, not two divided halves.</text>
+</svg><figcaption data-short="The MAGE method in one picture"><span class="fig-label">Figure 0.4-2.</span> The MAGE method in one picture. A cheap agent fleet, left ungoverned, drifts into churn as its work outruns the window. Run through the governed environment, it converges on trustworthy software at velocity. Read the environment as one spine, not two divided halves: the Modeling Thesis gives the intelligence a world to reason through — the capability ladder folded inline, context through invariant — and <em>creates surfaces for</em> the Alignment Thesis, which gives that intent authority by constraining, sensing, validating, and gating. A governance-conversion loop climbs back up, enriching representation or control. Commodity intelligence creates a reasoning problem before a control problem; Modeling answers the first and builds the surfaces on which Alignment answers the second.</figcaption></figure>
 <p id="idx-def-universal-language">Hold both theses at once and a larger claim comes into view — the one this whole book argues toward. <strong>Models are the universal language of engineering.</strong> Every mature engineering discipline reasons about the system it builds through models, not through the raw artifact: a load diagram, a circuit, a control loop. Software could rarely afford to, because keeping the model equal to fast-moving code cost a person's standing labor. Agents cut that recurring cost sharply. They make the code cheap and run the drift checks that keep the map in sync for almost nothing (someone still authors the model and the gate), and that shift relocates the engineer's job upward — to the essential part it could never fully reach before: deciding what the system is <em>for</em>, and authoring the models whose properties drive the tradeoffs. In the system that underpins this book, the code stopped being the bottleneck; the model became the work. For software engineering, models are an idea whose time has come.</p>
 <p>And a model cheap enough to keep true stops being a picture of the system and starts running it. The fleet reads its models at commit time to grade its own gates, and at measurement time to shape its own metrics. The map no longer merely stays equal to the territory; it steers the machinery that keeps it equal.</p>
 <h2>Three ways to run a fleet</h2>
