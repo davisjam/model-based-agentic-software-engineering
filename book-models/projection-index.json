@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1548,
+    "total_sites": 1547,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1121,
+      "book-web": 1120,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -33,7 +33,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 28
+            "occ": 34
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -61,7 +61,7 @@
           },
           {
             "file": "book/1.5-the-engineers-seat.html",
-            "occ": 9
+            "occ": 10
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
@@ -903,7 +903,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -1515,7 +1515,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 45
+            "occ": 54
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -2654,10 +2654,6 @@
             "occ": 6
           },
           {
-            "file": "book/0.4-preface.html",
-            "occ": 1
-          },
-          {
             "file": "book/1.2-mage-by-example.html",
             "occ": 1
           },
@@ -2769,7 +2765,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 29
+            "occ": 28
           }
         ]
       },
@@ -2885,7 +2881,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 24
+            "occ": 25
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -2913,7 +2909,7 @@
           },
           {
             "file": "book/1.5-the-engineers-seat.html",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
@@ -4345,7 +4341,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -5735,7 +5731,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 4
+            "occ": 6
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
