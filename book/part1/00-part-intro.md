@@ -1,8 +1,18 @@
 <!-- part-foreshadows: abundant-implementation, govern-the-environment, seat-moves -->
-Before any tool, model, or governance rule comes a different way of seeing the work. This
-Part argues that coding agents have not eliminated software engineering; they have relocated
-it. Working through a production system built by a fleet of agents, you will see why
-implementation is no longer the scarce resource, why a governed environment matters more than
-a clever prompt, and why the engineer's job becomes authoring intent, designing mechanisms,
-and judging evidence rather than writing code. Everything else in the book follows from this
-one shift.
+Every engineering revolution begins by changing what engineers treat as scarce. Steam made
+mechanical power abundant. Integrated circuits made computation abundant. Coding agents make
+implementation abundant. When implementation is no longer scarce, software engineering reorganizes
+around what remains scarce: judgment.
+
+<!-- thesisbox -->
+> ### FOUNDING PREMISE
+>
+> Commodity intelligence makes implementation abundant.
+>
+> Engineering therefore reorganizes around judgment.
+
+This Part develops that shift. It argues that large-scale software engineering is a reasoning problem
+rather than a coding problem, explains why long-horizon work defeats both humans and agents, and
+introduces the two ideas that organize the rest of the book: representing engineering intent
+explicitly, and making that intent authoritative. Everything that follows assumes this change in
+economics.
