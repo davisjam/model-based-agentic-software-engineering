@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>41</b> chapters · <b>280</b> sections · <b>84</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>42</b> chapters · <b>285</b> sections · <b>84</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -1075,6 +1075,29 @@
 <div class="section s2" id="sec-5-4-the-road-to-mage--the-whole-method-made-real">
 <div class="sec-h"><a href="../book/5.4-the-road-to-mage.html">The whole method, made real</a></div>
 <p class="topic">This book opened on one diagram — [The MAGE Method at a Glance](0.1-the-mage-method-at-a-glance.html) — that named every part before the argument had earned it.</p>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-5-5-failures"><span class="tier-kick">Lesson</span><a href="../book/5.5-failures.html" class="ch-link">5.5-failures</a> <span class="ch-slug">5.5-failures</span></h3>
+<div class="section s2" id="sec-5-5-failures--the-instruction-satisfied-to-the-letter">
+<div class="sec-h"><a href="../book/5.5-failures.html">The instruction satisfied to the letter</a></div>
+<p class="topic">By April the system was 300,000 lines that worked but were janky — a Rube Goldberg machine, because it had started as an MVP built only to prove the thing was possible at all.</p>
+</div>
+<div class="section s2" id="sec-5-5-failures--the-architecture-was-the-constraint">
+<div class="sec-h"><a href="../book/5.5-failures.html">The architecture was the constraint</a></div>
+<p class="topic">The service was costing thirty to forty dollars a day to run idle on a Kubernetes cluster.</p>
+</div>
+<div class="section s2" id="sec-5-5-failures--the-decision-left-open">
+<div class="sec-h"><a href="../book/5.5-failures.html">The decision left open</a></div>
+<p class="topic">My merge-train cron kept stalling when two agents edited the same file, and it proposed a one-flag fix: tell the merge to just take one side and drop the other on any conflict.</p>
+</div>
+<div class="section s2" id="sec-5-5-failures--done-was-a-claim">
+<div class="sec-h"><a href="../book/5.5-failures.html">&quot;Done&quot; was a claim</a></div>
+<p class="topic">Two incidents, close together, made &quot;done is a claim&quot; non-negotiable.</p>
+</div>
+<div class="section s2" id="sec-5-5-failures--fieldnote-content-free-detector">
+<div class="sec-h"><a href="../book/5.5-failures.html">A content-free detector, measured on the wrong world</a></div>
+<p class="topic">Late in the same stretch, an agent wrote me a content-free detector: if an image&#x27;s pixels barely vary, skip the vision model and mark it decorative.</p>
 </div>
 </div>
 </section>

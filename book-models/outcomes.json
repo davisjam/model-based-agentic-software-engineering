@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 21,
     "elaborative_links": 28,
     "units_serving_as_elaborative": 20,
-    "sections_total": 280,
+    "sections_total": 285,
     "sections_primary_of_an_outcome": 42,
     "modules": 7,
-    "lessons": 39
+    "lessons": 40
   },
   "taxonomy": {
     "know": [
@@ -379,6 +379,11 @@
           },
           {
             "lesson": "5.4-the-road-to-mage",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "5.5-failures",
             "own_outcomes": [],
             "section_outcomes": []
           }

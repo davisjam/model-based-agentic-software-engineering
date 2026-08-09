@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1489,
+    "total_sites": 1491,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1063,
+      "book-web": 1065,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -181,7 +181,7 @@
           },
           {
             "file": "book/5.5-failures.html",
-            "occ": 3
+            "occ": 15
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -1150,6 +1150,10 @@
             "occ": 11
           },
           {
+            "file": "book/5.5-failures.html",
+            "occ": 2
+          },
+          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 94
           },
@@ -1225,7 +1229,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 31
+            "occ": 32
           }
         ]
       },
@@ -1703,7 +1707,7 @@
           },
           {
             "file": "book/5.5-failures.html",
-            "occ": 6
+            "occ": 7
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -2325,7 +2329,7 @@
           },
           {
             "file": "book/5.5-failures.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -3105,7 +3109,7 @@
           },
           {
             "file": "book/5.5-failures.html",
-            "occ": 6
+            "occ": 11
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -5617,7 +5621,7 @@
           },
           {
             "file": "book/5.5-failures.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -6266,6 +6270,10 @@
             "occ": 3
           },
           {
+            "file": "book/5.5-failures.html",
+            "occ": 1
+          },
+          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 6
           },
@@ -6333,7 +6341,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 31
+            "occ": 32
           }
         ]
       },
