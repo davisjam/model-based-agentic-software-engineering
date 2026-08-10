@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>45</b> chapters · <b>302</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>45</b> chapters · <b>303</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -840,8 +840,8 @@ that repays weeks on one subsystem repays far more across a fleet.</a></div>
 <div class="sec-h"><a href="../book/4.3-validating-change.html">What does it mean to validate a change?</a></div>
 <p class="topic">To validate a change is to assemble evidence that it satisfies its obligations — and to refuse it otherwise.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--validation-from-executable-models">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Validation from executable models</a></div>
+<div class="section s2" id="sec-4-3-validating-change--the-model-as-oracle">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">The model as oracle</a></div>
 <p class="topic">Most tests reproduce a dot.</p>
 </div>
 <div class="section s3" id="sec-4-3-validating-change--the-move-a-generator-hunts-a-counterexample-to-a-model">
@@ -853,12 +853,8 @@ that repays weeks on one subsystem repays far more across a fleet.</a></div>
 <div class="sec-h"><a href="../book/4.3-validating-change.html">Fuzz + MBSE: the structured model becomes the oracle</a></div>
 <p class="topic">The richest form of validation-from-a-model turns the model itself into the judge.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--validation-from-engineering-metrics">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Validation from engineering metrics</a></div>
-<p class="topic">A validator answers a yes/no obligation; a **metric** answers a question of degree, and degree is its own kind of evidence.</p>
-</div>
-<div class="section s2" id="sec-4-3-validating-change--deterministic-validators">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Deterministic validators</a></div>
+<div class="section s2" id="sec-4-3-validating-change--choosing-the-validation-technique">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Choosing the validation technique</a></div>
 <p class="topic">Models expose intent and metrics measure degree; **validators** are the machine-read checks that consume both and return a verdict.</p>
 </div>
 <div class="section s3" id="sec-4-3-validating-change--property-based-testing-the-invariant-is-the-oracle">
@@ -873,6 +869,14 @@ that repays weeks on one subsystem repays far more across a fleet.</a></div>
 <div class="sec-h"><a href="../book/4.3-validating-change.html">When to reach for which</a></div>
 <p class="topic">The family gives a compact decision aid, and the axes of the opening table are the decision.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-evaluate">evaluate</span><span class="oc-text">After this section, the reader can choose which validation strategy to reach for by the specification it attacks. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-4-3-validating-change--coverage-did-the-validation-explore-the-claim">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Coverage: did the validation explore the claim?</a></div>
+<p class="topic">A validator answers a yes/no obligation; a **metric** answers a question of degree, and degree is its own kind of evidence.</p>
+</div>
+<div class="section s2" id="sec-4-3-validating-change--deterministic-admission">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Deterministic admission</a></div>
+<p class="topic">These checks are deterministic sensors, machine-read — and they **become hard governance when their verdicts control admission**, wired as a commit gate that refuses the merge.</p>
 </div>
 <div class="section s2" id="sec-4-3-validating-change--why-this-matters-in-the-agentic-era">
 <div class="sec-h"><a href="../book/4.3-validating-change.html">Why this matters in the agentic era</a></div>

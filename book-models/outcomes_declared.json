@@ -493,11 +493,11 @@
     {
       "granularity": "chapter",
       "primary_unit": "generative-validation",
-      "verb": "choose",
-      "obj": "among property testing, fuzzing, and fuzz-MBSE by which specification a generator hunts against",
-      "statement": "After this chapter, the reader can choose among generative-validation strategies by the specification each one attacks, treating the structured model as an oracle.",
+      "verb": "design",
+      "obj": "the evidence system for a change — choosing the model-surface each validation technique turns into an oracle",
+      "statement": "After this chapter, the reader can design the evidence system for a change: choose the model-surface that becomes the oracle, and select among generative-validation techniques by the specification each one attacks rather than by a maturity ladder.",
       "provenance": "declared",
-      "anchor": "Section titles 'the-move-a-generator-hunts-a-counterexample-to-a-model', 'property-based-testing-...', 'fuzzing-...', 'fuzz-mbse-...', 'when-to-reach-for-which'."
+      "anchor": "Section titles 'the-model-as-oracle', 'choosing-the-validation-technique' (with property-based-testing / fuzzing / when-to-reach-for-which under it), 'coverage-did-the-validation-explore-the-claim', 'deterministic-admission', 'why-this-matters-in-the-agentic-era' (round-8 W1 4.3.1–4.3.6 reorg)."
     },
     {
       "granularity": "chapter",
