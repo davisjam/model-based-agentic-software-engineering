@@ -1,4 +1,4 @@
-# *3-D Printing Production Software* — the book
+# *Model-Based Agentic Software Engineering* — the book
 
 *Architecture, Validation, and Control for Agentic Software Engineering.* The book renders to a
 small static HTML site by `build_book_html.py` (wired into `catalog.py build`).
@@ -13,32 +13,54 @@ a Gang-of-Four appendix projected from the sibling catalogue entries.
 
 ```
 book/
-  frontmatter/0.1-the-mage-method-at-a-glance.md, 0.3-the-books-language.md, 0.4-preface.md, 0.5-how-to-read-this-book.md, 0.6-acknowledgments.md
+  frontmatter/0.1-the-mage-method-at-a-glance.md, 0.2-what-this-book-argues.md, 0.3-the-books-language.md,
+             0.4-preface.md, 0.5-how-to-read-this-book.md, 0.6-acknowledgments.md
   part1/  (Part 1 — The Context)
-    1.1-the-ada-context.md
-    1.2-the-timeline-and-the-work.md
+    1.1-the-printer.md
+    1.2-mage-by-example.md
+    1.3-loops-and-models.md
+    1.4-why-mage-follows-from-the-machine.md
+    1.5-transformations.md
+    1.6-the-engineers-seat.md
   part2/  (Part 2 — The Mindset)
-    2.1-the-printer.md
-    2.2-loops-and-models.md
+    2.1-context-is-the-first-modeling-problem.md … 2.12-keeping-models-in-sync.md
   part3/  (Part 3 — The Governed Engineering Environment)
     3.1-the-agent-stack.md
     3.2-models-and-the-semantic-gap.md
     3.3-the-governed-environment.md
-    3.4-the-model-zoo.md
-    3.5-lifecycles-and-runbooks.md
+    3.4-lifecycles-and-runbooks.md
+    3.5-metrics.md
+    3.6-when-guardrails-collide.md
   part4/  (Part 4 — Putting It to Work)
-    4.1-brownfield.md
-    4.2-the-skills.md
-    4.3-transformations.md
-    4.4-training-data.md
-    4.5-lessons-learned.md
-  backmatter/5.1-conclusion.md
+    4.1-the-mage-workflow.md
+    4.2-brownfield.md
+    4.3-the-skills.md
+    4.4-generative-validation.md
+    4.5-governance-conversion.md
+    4.6-the-field-guide.md
+  part5/  (Part 5 — The Case: ADA)
+    5.1-the-ada-context.md
+    5.2-why-this-system-was-a-hard-case.md
+    5.3-the-timeline-and-the-work.md
+    5.4-the-built-system.md
+    5.5-the-road-to-mage.md
+    5.6-governance-conversions.md
+  part6/  (Part 6 — Toward a Theory of MAGE)
+    6.1-toward-a-theory-of-mage.md … 6.8-conclusion.md
+  part7/  (back matter)
+    7.1-about-the-author.md
+    7.2-colophon.md
+  appendix-front-door.md, appendix-stacks/, appendix-notes/, appendix-operators-reference/,
+             appendix-skill-recipe/, appendix-c/    # hand-authored + catalogue-projected appendices
   data/metrics.json      # headline numbers, referenced from prose via {{token}}
   assets/                # figure assets (inline SVGs)
 ```
 
-Front matter (Preface) renders before Part 1; the Conclusion renders after Part 4. The appendix
-pages (`appendix-a/b/c-*.html`) are generated from the catalogue entries and render last.
+Each part's number and each chapter's `<N>.<M>` are explicit in the path; `00-part-intro.md` in a
+part directory carries that part's divider/epigraph page. Front matter (Preface) renders before
+Part 1. The appendix pages are generated from a mix of hand-authored `.md` (the stacks, the
+operator's reference, the skill recipe) and the catalogue entries (Appendix C's mechanism
+catalogue), and render after Part 6 / Part 7.
 
 ## Authoring notes
 
