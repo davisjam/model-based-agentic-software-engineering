@@ -1,47 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: mage-method). The MAGE method as ONE causal descent — the connective
-     re-model: the two theses are not parallel siblings but a single vertical progression. Commodity
-     intelligence hits a reasoning-horizon problem; the Modeling Thesis externalizes knowledge + intent
-     (a short branch into "better context" and "stronger semantics" that REJOINS, the only place two
-     arrows appear); those rejoin into structured / executable models; a HEAVY LABELED "creates surfaces
-     for" arrow — the load-bearing new content — carries the models into the Alignment Thesis, which gives
-     that intent authority through constraints · sensors · validators · gates; the column continues into
-     the Governed Engineering Environment, then governance conversion, Engineering Capital, and Trustworthy
-     Autonomy. A FAILURE BRANCH — dashed and grey — peels off the structured/executable-models node (NOT
-     the Modeling Thesis: models fail only for lack of Alignment, not for being modelled): without
-     Alignment the models never become authoritative, so they accrue no capital and dissipate into
-     Engineering Churn. Routed down the right margin to land parallel to Engineering Capital, it draws the
-     Capital <-> Churn mirror — same models, two fates.
-     ROUND-2 ADDITION (the governance-conversion RETURN LOOP, left margin): the governed work fails, that
-     failure enters a GOVERNANCE CONVERSION hub, and the hub forks BACK UP into the pair — "enrich model"
-     lands on the Modeling Thesis node, "enrich control" lands on the Alignment Thesis node — then the
-     descent repeats. Governance conversion is thus promoted from a downstream annotation to an explicit
-     feedback operation that re-enriches either side of the Modeling/Alignment pair.
+<!-- Hand-authored SVG (label: mage-method). REDRAW 260810 (author directive). The MAGE method as a
+     FORK between two attractors — Engineering Capital (green) and Engineering Churn (churn-red) — with the
+     two theses drawn as GATES (diamonds). Commodity intelligence meets the reasoning-horizon problem; the
+     descent then passes two gates. GATE 1, the Modeling Thesis: yes -> structured / executable models; no
+     (intent remains implicit) -> the single shared Engineering Churn box. GATE 2, the Alignment Thesis:
+     yes -> Governed Engineering Environment -> Engineering Capital; no (models stay inert) -> the SAME
+     Engineering Churn box. Both no-paths land in ONE Churn box, so the reader sees a fork between
+     capital-formation and churn immediately. The Modeling -> models step is a SINGLE arrow; "better
+     context" and "stronger semantics" ride beside it as annotations (consequences, not a branch). The
+     models -> Alignment edge carries a SHORT label, "creates authority surfaces" (the prose that it sheds —
+     "represented intent becomes authority" — moves to the caption). A left-margin GOVERNANCE CONVERSION hub
+     turns a governed-work failure into durable structure and forks it back: "enrich model" onto the
+     Modeling gate, "enrich control" onto the Alignment gate; a single muted dotted arc wraps the OUTSIDE
+     left margin as the "the descent repeats" return, kept clear of the two enrich forks.
      Palette: Umber Monograph tokens (fleet #2f5169 the commodity-intelligence source, churn-red #b23b3b
-     the reasoning-horizon problem, thesis-green #15803d + governed green #1f7a4d/#155c38 the Modeling band
-     + environment + capital, accent #9a3f12 the Alignment band + the "creates surfaces for" arrow + the
-     Autonomy outcome + the conversion hub, muted #57534e connectors + gloss + the dashed failure branch,
-     neutral #f6f4ef the Engineering-Churn box + the conversion hub). -->
+     the reasoning-horizon problem + the two failure edges + the Churn attractor, thesis-green #15803d the
+     Modeling gate, governed green #1f7a4d/#155c38 the models + environment + the Capital attractor, accent
+     #9a3f12 the Alignment gate + the "creates authority surfaces" arrow + the conversion hub, muted #57534e
+     connectors, light-muted #78716c/#a8a29e the outer repeat arc). -->
 <!-- semantic-families: agent, failure, governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 946" width="840" height="946"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 856" width="880" height="856"
      role="group" aria-labelledby="mmTitle mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mmTitle">The MAGE method at a glance — one causal descent with a governance-conversion return loop</title>
-  <desc id="mmDesc">A single causal descent with two branches. Commodity intelligence — broad,
+  <title id="mmTitle">The MAGE method at a glance — a fork between engineering capital and engineering churn, with the two theses as gates</title>
+  <desc id="mmDesc">A single descent that forks between two attractors. Commodity intelligence — broad,
     cheap, probabilistic — meets a reasoning-horizon problem: the system will not fit the context window.
-    The Modeling Thesis answers it by externalizing engineering knowledge and intent; a short branch
-    splits into better context for reasoning and stronger semantics for engineering, then rejoins into
-    structured and executable models — what is, what ought to be, and the invariants over them. A heavy
-    labelled arrow, creates surfaces for, carries those models into the Alignment Thesis, which gives
-    engineering intent authority through constraints, sensors, validators, and gates. The column continues
-    into the Governed Engineering Environment, then effort compounds as Engineering Capital, and the result
-    is trustworthy autonomy. A dashed grey branch peels off the structured-and-executable-models node:
-    without Alignment those models never become authoritative, so they dissipate into Engineering Churn —
-    repeated rediscovery, inspection, and correction, with no capital formation. Same models, two fates.
-    A second loop climbs back up the left margin: the governed work fails, and that failure enters a
-    Governance Conversion hub, which forks back into the pair — enrich model lands on the Modeling Thesis,
-    enrich control lands on the Alignment Thesis — and the descent repeats. Governance conversion reaches
-    into BOTH sides. Modeling makes intent explicit; Alignment gives it authority.</desc>
+    The descent then passes two gates. The first gate is the Modeling Thesis, make knowledge and intent
+    explicit. Pass it and a single arrow leads to structured and executable models — what is, what ought to
+    be, and the invariants over them — with better context for reasoning and stronger semantics for
+    engineering riding beside that arrow as consequences. Fail it and intent remains implicit, so the path
+    turns to Engineering Churn. A short heavy arrow, creates authority surfaces, carries the models into
+    the second gate, the Alignment Thesis, make obligations binding through constraints, sensors,
+    validators, and gates. Pass it and the descent continues into the Governed Engineering Environment,
+    where effort compounds as Engineering Capital and, with it, trustworthy autonomy. Fail it and the
+    models stay inert, so the path turns to the same Engineering Churn box — repeated rediscovery,
+    inspection, and correction, with no capital forming. Both failure paths land in one shared Churn box:
+    the method is a fork between capital-formation and churn, and the two gates decide which. A left-margin
+    Governance Conversion hub turns a governed-work failure into durable structure and forks it back —
+    enrich model onto the Modeling gate, enrich control onto the Alignment gate — and a muted outer arc
+    marks the descent repeating.</desc>
 
   <defs>
     <marker id="mm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -53,115 +50,119 @@
     <marker id="mm-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#15803d"/>
     </marker>
+    <marker id="mm-ah-churn" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
+    </marker>
+    <marker id="mm-ah-mute" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#a8a29e"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="840" height="946" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="880" height="856" fill="#fdfcf9"/>
+
+  <!-- ============================ THE MAIN DESCENT (center spine, x=300) ============================ -->
 
   <!-- A. Commodity intelligence — the source (fleet blue) -->
-  <rect x="235" y="30" width="250" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="360" y="62" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">Commodity intelligence</text>
-  <text x="360" y="84" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">broad · cheap · probabilistic</text>
-  <path d="M360,96 L360,124" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <rect x="175" y="22" width="250" height="62" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="300" y="52" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">Commodity intelligence</text>
+  <text x="300" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="#57534e">broad · cheap · probabilistic</text>
+  <path d="M300,84 L300,106" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
 
   <!-- B. Reasoning-horizon problem — the driving problem (churn red) -->
-  <rect x="228" y="126" width="264" height="60" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.2"/>
-  <text x="360" y="153" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">Reasoning-horizon problem</text>
-  <text x="360" y="175" text-anchor="middle" font-size="13" font-weight="600" fill="#b23b3b">the system won't fit the window</text>
-  <path d="M360,186 L360,214" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <rect x="168" y="108" width="264" height="56" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.2"/>
+  <text x="300" y="134" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">Reasoning-horizon problem</text>
+  <text x="300" y="154" text-anchor="middle" font-size="12" font-weight="600" fill="#b23b3b">the system won't fit the window</text>
+  <path d="M300,164 L300,186" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
 
-  <!-- C. Modeling Thesis (green) -->
-  <rect x="214" y="216" width="292" height="60" rx="8" fill="#eef7ee" stroke="#15803d" stroke-width="2.2"/>
-  <text x="360" y="243" text-anchor="middle" font-size="19" font-weight="700" fill="#15803d">Modeling Thesis</text>
-  <text x="360" y="265" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">externalize knowledge + engineering intent</text>
+  <!-- ==== GATE 1 — Modeling Thesis (green diamond) ==== -->
+  <polygon points="300,188 422,250 300,312 178,250" fill="#eef7ee" stroke="#15803d" stroke-width="2.6"/>
+  <text x="300" y="234" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1.5" fill="#15803d">GATE 1</text>
+  <text x="300" y="254" text-anchor="middle" font-size="17" font-weight="700" fill="#15803d">Modeling Thesis</text>
+  <text x="300" y="272" text-anchor="middle" font-size="11.5" font-weight="600" fill="#57534e">make knowledge + intent explicit</text>
 
-  <!-- the ONLY branch: better context / stronger semantics — it SPLITS then REJOINS -->
-  <path d="M360,276 L360,298 M180,298 L540,298 M180,298 L180,322 M540,298 L540,322"
-        fill="none" stroke="#57534e" stroke-width="2"/>
-  <path d="M180,318 L180,324" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
-  <path d="M540,318 L540,324" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
-  <text x="180" y="344" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">better context</text>
-  <text x="180" y="364" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">for reasoning</text>
-  <text x="540" y="344" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">stronger semantics</text>
-  <text x="540" y="364" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">for engineering</text>
-  <path d="M180,374 L180,394 M540,374 L540,394 M180,394 L540,394 M360,394 L360,414"
-        fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <!-- GATE 1 yes: single arrow down to the models (annotations ride beside it — NOT a branch) -->
+  <path d="M300,312 L300,388" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <text x="315" y="336" text-anchor="start" font-size="12" font-weight="700" fill="#15803d">yes</text>
+  <text x="222" y="360" text-anchor="end" font-size="11" font-style="italic" fill="#57534e">better context</text>
+  <text x="222" y="374" text-anchor="end" font-size="11" font-style="italic" fill="#57534e">for reasoning</text>
+  <text x="378" y="360" text-anchor="start" font-size="11" font-style="italic" fill="#57534e">stronger semantics</text>
+  <text x="378" y="374" text-anchor="start" font-size="11" font-style="italic" fill="#57534e">for engineering</text>
 
   <!-- D. Structured / executable models (governed green) -->
-  <rect x="212" y="416" width="296" height="66" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="360" y="446" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">Structured / executable models</text>
-  <text x="360" y="469" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">what is · what ought to be · invariants</text>
+  <rect x="150" y="390" width="300" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="300" y="418" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">Structured / executable models</text>
+  <text x="300" y="440" text-anchor="middle" font-size="12" font-weight="600" fill="#57534e">what is · what ought to be · invariants</text>
 
-  <!-- THE LOAD-BEARING NEW CONTENT: heavy, labelled "creates surfaces for" arrow, Modeling -> Alignment -->
-  <path d="M360,482 L360,538" fill="none" stroke="#9a3f12" stroke-width="5" marker-end="url(#mm-ah-rust)"/>
-  <text x="378" y="507" text-anchor="start" font-size="16" font-weight="700" fill="#9a3f12">creates surfaces for</text>
-  <text x="378" y="525" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">represented intent becomes authority</text>
+  <!-- THE LOAD-BEARING EDGE: short, heavy, labelled — models -> Alignment gate -->
+  <path d="M300,454 L300,526" fill="none" stroke="#9a3f12" stroke-width="5" marker-end="url(#mm-ah-rust)"/>
+  <text x="316" y="494" text-anchor="start" font-size="14.5" font-weight="700" fill="#9a3f12">creates authority surfaces</text>
 
-  <!-- E. Alignment Thesis (accent rust) -->
-  <rect x="238" y="540" width="244" height="60" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="360" y="567" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">Alignment Thesis</text>
-  <text x="360" y="589" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">give engineering intent authority</text>
-  <text x="360" y="626" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">constraints · sensors · validators · gates</text>
-  <path d="M360,636 L360,664" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <!-- ==== GATE 2 — Alignment Thesis (rust diamond) ==== -->
+  <polygon points="300,528 422,590 300,652 178,590" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="300" y="574" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1.5" fill="#9a3f12">GATE 2</text>
+  <text x="300" y="594" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Alignment Thesis</text>
+  <text x="300" y="612" text-anchor="middle" font-size="11" font-weight="600" fill="#57534e">constraints · sensors · validators · gates</text>
+
+  <!-- GATE 2 yes: down to the governed environment -->
+  <path d="M300,652 L300,674" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <text x="315" y="670" text-anchor="start" font-size="12" font-weight="700" fill="#9a3f12">yes</text>
 
   <!-- F. Governed Engineering Environment (governed green) -->
-  <rect x="168" y="666" width="384" height="56" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.8"/>
-  <text x="360" y="700" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">The Governed Engineering Environment</text>
-  <path d="M360,722 L360,758" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
-  <text x="372" y="744" text-anchor="start" font-size="14" font-style="italic" fill="#57534e">governance conversion grows it</text>
+  <rect x="120" y="676" width="360" height="52" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.8"/>
+  <text x="300" y="708" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">The Governed Engineering Environment</text>
+  <path d="M300,728 L300,752" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
 
-  <!-- G. Engineering Capital (compounding green) — the main path's fate -->
-  <rect x="250" y="760" width="220" height="56" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
-  <text x="360" y="788" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Engineering Capital</text>
-  <text x="360" y="807" text-anchor="middle" font-size="12" font-style="italic" fill="#155c38">compounds</text>
-  <path d="M360,816 L360,844" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#mm-ah)"/>
+  <!-- G. ENGINEERING CAPITAL — the good attractor (emphasized green) -->
+  <rect x="175" y="754" width="250" height="76" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3.6"/>
+  <text x="300" y="787" text-anchor="middle" font-size="19" font-weight="800" fill="#155c38">Engineering Capital</text>
+  <text x="300" y="809" text-anchor="middle" font-size="11.5" font-style="italic" fill="#155c38">effort compounds → trustworthy autonomy</text>
 
-  <!-- H. Trustworthy Autonomy — the outcome (accent rust) -->
-  <rect x="232" y="846" width="256" height="62" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
-  <text x="360" y="884" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">Trustworthy autonomy</text>
+  <!-- ============================ THE SHARED FAILURE ATTRACTOR (right, x≈695) ============================ -->
 
-  <!-- FAILURE BRANCH: dashed + grey, from the structured/executable-models node (D), down the right
-       margin to Engineering Churn. The grey dashed line is the "if you stop here" fate; lands parallel to
-       Engineering Capital — the Capital <-> Churn mirror, same models, two fates. -->
-  <path d="M508,449 L715,449 L715,752" fill="none" stroke="#57534e" stroke-width="2.4"
-        stroke-dasharray="6 4" marker-end="url(#mm-ah)"/>
-  <text x="634" y="556" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">without Alignment</text>
-  <text x="634" y="574" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">models never become</text>
-  <text x="634" y="590" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">authoritative</text>
+  <!-- ENGINEERING CHURN — the failure attractor (emphasized churn-red); BOTH no-paths land here -->
+  <rect x="560" y="744" width="270" height="94" rx="9" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.6"/>
+  <text x="695" y="777" text-anchor="middle" font-size="19" font-weight="800" fill="#b23b3b">Engineering Churn</text>
+  <text x="695" y="799" text-anchor="middle" font-size="12" font-style="italic" fill="#b23b3b">no capital forms</text>
+  <text x="695" y="820" text-anchor="middle" font-size="11" fill="#b23b3b">repeated rediscovery · inspection · correction</text>
 
-  <!-- Engineering Churn — the grey mirror of Engineering Capital (dissipates, no capital formation) -->
-  <rect x="600" y="754" width="230" height="88" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="715" y="780" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">Engineering Churn</text>
-  <text x="715" y="799" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">dissipates</text>
-  <text x="715" y="819" text-anchor="middle" font-size="11" fill="#57534e">repeated rediscovery, inspection,</text>
-  <text x="715" y="835" text-anchor="middle" font-size="11" fill="#57534e">correction — no capital formation</text>
+  <!-- GATE 1 no: intent remains implicit -> churn (right vertex, out and down, into churn TOP) -->
+  <path d="M422,250 L695,250 L695,744" fill="none" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#mm-ah-churn)"/>
+  <text x="436" y="242" text-anchor="start" font-size="12" font-weight="700" fill="#b23b3b">no</text>
+  <text x="686" y="242" text-anchor="end" font-size="11.5" font-weight="600" fill="#b23b3b">intent remains implicit</text>
 
-  <!-- ============================================================================
-       GOVERNANCE-CONVERSION RETURN LOOP (left margin). The productive response to a
-       failure in the governed work: convert it, and enrich BOTH sides of the pair.
-       A hub with one input (failure, from the governed environment) and two outputs
-       (enrich model -> Modeling node; enrich control -> Alignment node), then repeat.
-       ============================================================================ -->
+  <!-- GATE 2 no: models stay inert -> the SAME churn box (right vertex, out and down, into churn LEFT edge) -->
+  <path d="M422,590 L528,590 L528,780 L560,780" fill="none" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#mm-ah-churn)"/>
+  <text x="436" y="582" text-anchor="start" font-size="12" font-weight="700" fill="#b23b3b">no</text>
+  <text x="524" y="576" text-anchor="end" font-size="11.5" font-weight="600" fill="#b23b3b">models stay inert</text>
+
+  <!-- ============================ GOVERNANCE-CONVERSION LOOP (left margin) ============================
+       ONE job: convert a governed-work failure into durable structure, enriching EITHER side. The two
+       enrich forks land on the two gates; a muted dotted arc wraps the OUTSIDE as the "descent repeats"
+       return, kept in its own outer lane so the plumbing stays clean. -->
+
   <!-- the conversion hub -->
-  <rect x="6" y="386" width="156" height="100" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="84" y="416" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#9a3f12">GOVERNANCE</text>
-  <text x="84" y="434" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#9a3f12">CONVERSION</text>
-  <text x="84" y="458" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">turn a failure</text>
-  <text x="84" y="473" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">into structure</text>
+  <rect x="24" y="470" width="126" height="88" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="87" y="500" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1" fill="#9a3f12">GOVERNANCE</text>
+  <text x="87" y="516" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1" fill="#9a3f12">CONVERSION</text>
+  <text x="87" y="536" text-anchor="middle" font-size="10.5" font-style="italic" fill="#57534e">turn failure into</text>
+  <text x="87" y="550" text-anchor="middle" font-size="10.5" font-style="italic" fill="#57534e">durable structure</text>
 
-  <!-- input: governed work fails -> into the hub's right edge -->
-  <path d="M168,694 C120,650 130,470 164,450" fill="none" stroke="#9a3f12" stroke-width="2.2"
-        stroke-dasharray="5 4" marker-end="url(#mm-ah-rust)"/>
-  <text x="100" y="598" text-anchor="middle" font-size="12" font-weight="600" fill="#57534e">governed work</text>
-  <text x="100" y="616" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b23b3b">→ failure</text>
+  <!-- input: governed work fails -> into the hub -->
+  <path d="M120,694 C74,660 82,596 87,560" fill="none" stroke="#b23b3b" stroke-width="2.2"
+        stroke-dasharray="5 4" marker-end="url(#mm-ah-churn)"/>
+  <text x="128" y="642" text-anchor="start" font-size="11" font-weight="600" fill="#57534e">governed work</text>
+  <text x="128" y="657" text-anchor="start" font-size="11.5" font-weight="700" fill="#b23b3b">→ failure</text>
 
-  <!-- fork 1: enrich model -> up onto the Modeling Thesis node (C) -->
-  <path d="M60,386 L60,246 L212,246" fill="none" stroke="#15803d" stroke-width="2.2" marker-end="url(#mm-ah-green)"/>
-  <text x="136" y="238" text-anchor="middle" font-size="13" font-weight="700" fill="#15803d">enrich model</text>
+  <!-- fork A: enrich model -> onto the Modeling gate (outer green arc up the left) -->
+  <path d="M60,470 C30,410 30,300 172,252" fill="none" stroke="#15803d" stroke-width="2.2" marker-end="url(#mm-ah-green)"/>
+  <text x="44" y="356" text-anchor="start" font-size="11.5" font-weight="700" fill="#15803d">enrich model</text>
 
-  <!-- fork 2: enrich control -> down onto the Alignment Thesis node (E) -->
-  <path d="M100,486 L100,570 L236,570" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#mm-ah-rust)"/>
-  <text x="168" y="558" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12">enrich control</text>
+  <!-- fork B: enrich control -> onto the Alignment gate (short rust arc) -->
+  <path d="M150,540 C186,562 176,582 182,586" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#mm-ah-rust)"/>
+  <text x="158" y="536" text-anchor="start" font-size="11.5" font-weight="700" fill="#9a3f12">enrich control</text>
 
-  <!-- the loop repeats -->
-  <text x="66" y="506" text-anchor="middle" font-size="12" font-style="italic" fill="#9a3f12">↻ repeat</text>
+  <!-- the descent repeats: single muted dotted arc wrapping the far-left OUTSIDE margin (its own lane) -->
+  <path d="M175,792 C40,762 14,420 14,172 C14,142 62,136 164,136" fill="none" stroke="#a8a29e"
+        stroke-width="1.8" stroke-dasharray="2 6" marker-end="url(#mm-ah-mute)"/>
+  <text x="26" y="108" text-anchor="start" font-size="11" font-style="italic" fill="#78716c">↻ the descent repeats</text>
 </svg>
