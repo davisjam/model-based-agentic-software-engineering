@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1476,
+    "total_sites": 1475,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1048,
+      "book-web": 1047,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -153,7 +153,7 @@
           },
           {
             "file": "book/4.4-the-skills.html",
-            "occ": 57
+            "occ": 47
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -1460,16 +1460,12 @@
           {
             "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 1
-          },
-          {
-            "file": "book/4.4-the-skills.html",
-            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 2
+            "occ": 1
           }
         ]
       }
@@ -1663,7 +1659,7 @@
           },
           {
             "file": "book/4.4-the-skills.html",
-            "occ": 13
+            "occ": 19
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -2079,7 +2075,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 30
+            "occ": 32
           },
           {
             "file": "catalogue-figure.html",
@@ -2277,7 +2273,7 @@
           },
           {
             "file": "book/4.4-the-skills.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -3061,7 +3057,7 @@
           },
           {
             "file": "book/4.4-the-skills.html",
-            "occ": 52
+            "occ": 35
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -3825,7 +3821,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 110
+            "occ": 109
           },
           {
             "file": "catalogue-figure.html",
@@ -5537,7 +5533,7 @@
           },
           {
             "file": "book/4.4-the-skills.html",
-            "occ": 8
+            "occ": 3
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -6105,7 +6101,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 10
+            "occ": 9
           },
           {
             "file": "constructing-the-gee.html",
