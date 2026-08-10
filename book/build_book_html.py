@@ -3710,6 +3710,10 @@ def build_appendix_chapters(next_part: int, for_print: bool = False) -> list[dic
 # locators, the D80 figure-prefix fields, and buildable (orphan-free) pages. The A constituent prose, the B
 # compression, and the C bricks land when those sub-waves assemble the drafts under `book/_design/drafts/`.
 _APPENDIX_V2_B_OPENING_SLUG = "appendix-b-flagship-mechanisms"
+# GENRE-EXEMPT (machine-text standard): Appendix C, the mechanism catalog, is a GENERATED REFERENCE INDEX
+# (census-ordered bricks + the derived technique index) — the sanctioned exception to "no machine-generated
+# reader prose": an index is structural reference, not authored manuscript, and its framing sentences ARE
+# authored in appendix-c/_opening.md + _technique-index.md. Not a violation; do not "fix" by inlining prose.
 _APPENDIX_V2_C_OPENING_SLUG = "appendix-c-mechanism-catalog"
 
 def _appendix_v2_b_opening_prose() -> str:

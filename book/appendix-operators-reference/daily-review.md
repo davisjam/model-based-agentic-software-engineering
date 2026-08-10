@@ -23,13 +23,14 @@ It is the human-facing morning complement to the automated reflex the loop alrea
   4  Any regressions?                 → System Health
   5  Anything → infrastructure?       → Human Judgment
   ──────────────────────────────────────────────────────────────────────────
-  Automated complement: the ~30-min loop hook asks the same, between sessions.
+  Automated complement: a recurring loop hook asks the same, between sessions.
 ```
 
 Each question resolves to a specific card's reading — the morning review is not a sixth gauge, it is a
-routing pass over five existing ones. Its automated complement is the operator-loop hook that fires roughly
-every thirty minutes and asks whether, since the last check, the work hit a recurring failure or solved one
-problem several different ways — the same instincts, fired without waiting for a human to remember.
+routing pass over five existing ones. Its automated complement is the operator-loop hook that recurs often
+enough to catch a repeat while its cause is fresh and asks whether, since the last check, the work hit a
+recurring failure or solved one problem several different ways — the same instincts, fired without waiting
+for a human to remember.
 
 ### What this projects
 
