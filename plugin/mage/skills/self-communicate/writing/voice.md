@@ -544,3 +544,20 @@ Two more transformations from the author's own edits, same conservative posture 
    - *Before (author revert):* "the collision **lives in** the interaction"
      *After:* "the collision **is a property of** the interaction" *(a wrong copula-swap: "property of" is
      the precise relation between a conflict and the interaction it belongs to; "lives in" is looser.)*
+
+## Glossary entries — first sentence is the definition
+
+A glossary entry defines a term; it does not pitch it. The house rule:
+
+- **The first sentence must stand alone as a precise dictionary definition** — it
+  says what the term *is*. A memorable slogan comes second, or is cut. Taglines
+  like "A reasoning substrate." or "Judgment that compounds." are not definitions:
+  they do not say what the term is, so they never lead an entry.
+- **One sentence; two only when the second earns its place** (a necessary
+  disambiguation or scope note). Never a mini-essay.
+- **Stay in dictionary voice.** No manifesto ("Judgment, as code."), no teaching
+  prose, no argument. Present the term clinically — the entry names the concept
+  the surrounding chapters develop; it is not the place to develop it.
+- **Parallel terms take parallel syntax.** A set of sibling terms (constraint /
+  sensor / validator / gate) reads as one system when each entry uses the same
+  sentence shape.
