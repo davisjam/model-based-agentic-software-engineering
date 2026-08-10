@@ -231,6 +231,11 @@
           "view": "claims",
           "element": "mechanize-not-remember",
           "role": "claim-home"
+        },
+        {
+          "view": "outcomes",
+          "element": "relationship-to-se::situate-the-book-within-the-software-engineering",
+          "role": "primary-unit"
         }
       ]
     },
@@ -487,11 +492,6 @@
     "chapter:where-mage-fits": {
       "kind": "chapter",
       "dependents": [
-        {
-          "view": "outcomes",
-          "element": "where-mage-fits::situate-the-book-within-the-software-engineering",
-          "role": "primary-unit"
-        },
         {
           "view": "outcomes",
           "element": "part-6::evaluate-what-the-method-changes-for-how-software",
