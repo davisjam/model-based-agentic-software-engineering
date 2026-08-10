@@ -461,32 +461,47 @@
           ]
         },
         {
+          "section_id": "where-jugaad-ends",
+          "level": 2,
+          "heading_text": "Where jugaad ends",
+          "topic_sentence": "The loop has a productive cousin worth naming, because agents reach for it constantly.",
+          "id_source": "explicit",
+          "block_index": 40,
+          "points": [
+            {
+              "slug": "jugaad-discovers-conversion-makes-it-durable",
+              "text": "Jugaad discovers; conversion makes it durable.",
+              "block_index": 43
+            }
+          ]
+        },
+        {
           "section_id": "the-four-levers-of-an-engineered-loop",
           "level": 2,
           "heading_text": "The four levers of an engineered loop",
           "topic_sentence": "Now put the two ideas back together, because they are one machine.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 46,
           "points": [
             {
               "slug": "loop-and-model-meet-in-four-engineered-levers",
               "text": "Loop and model meet in four engineered levers.",
-              "block_index": 43
+              "block_index": 49
             },
             {
               "slug": "four-levers-state-actions-criterion-admission",
               "text": "Four levers: state, action surface, criterion, admission.",
-              "block_index": 47
+              "block_index": 53
             },
             {
               "slug": "levers-divide-between-the-two-theses",
               "text": "The levers divide between the book's two theses.",
-              "block_index": 51
+              "block_index": 57
             },
             {
               "slug": "levers-treat-churns-three-not-knowings",
               "text": "The levers treat churn's three not-knowing causes.",
-              "block_index": 53
+              "block_index": 59
             }
           ]
         }
@@ -3363,26 +3378,11 @@
               "slug": "the-second-occurrence-earns-a-lint",
               "text": "The second occurrence of a failure earns a lint.",
               "block_index": 38
-            }
-          ]
-        },
-        {
-          "section_id": "where-jugaad-ends",
-          "level": 2,
-          "heading_text": "Where jugaad ends",
-          "topic_sentence": "The loop has a productive cousin worth naming, because agents reach for it constantly.",
-          "id_source": "explicit",
-          "block_index": 41,
-          "points": [
-            {
-              "slug": "jugaad-discovers-conversion-makes-it-durable",
-              "text": "Jugaad discovers; conversion makes it durable.",
-              "block_index": 43
             },
             {
               "slug": "convert-judgment-into-infrastructure-encode-once",
               "text": "Convert judgment into infrastructure; encode each call once.",
-              "block_index": 46
+              "block_index": 41
             }
           ]
         },
@@ -3392,17 +3392,17 @@
           "heading_text": "The daily practice",
           "topic_sentence": "Put end to end, the cycle has a daily shape.",
           "id_source": "derived",
-          "block_index": 48,
+          "block_index": 43,
           "points": [
             {
               "slug": "the-loop-seen-from-the-desk-is-a-daily-rhythm",
               "text": "Seen from the desk, the loop is a daily rhythm.",
-              "block_index": 49
+              "block_index": 44
             },
             {
               "slug": "the-loop-is-not-tied-to-one-product",
               "text": "The loop is not tied to one product.",
-              "block_index": 51
+              "block_index": 46
             }
           ]
         },
@@ -3412,12 +3412,12 @@
           "heading_text": "What the rest of this Part does",
           "topic_sentence": "The chapters ahead take the loop off the page and run it, and each runs a conversion at a different scale.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 52,
           "points": [
             {
               "slug": "this-part-puts-the-method-to-work-chapter-by-chapter",
               "text": "This Part puts the method to work, chapter by chapter.",
-              "block_index": 58
+              "block_index": 53
             }
           ]
         }
