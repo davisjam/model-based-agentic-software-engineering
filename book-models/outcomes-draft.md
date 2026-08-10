@@ -43,7 +43,11 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 1.4-why-mage-follows-from-the-machine
 
 
-### Lesson 1.5-the-engineers-seat
+### Lesson 1.5-transformations
+
+  - **[DERIVED]** (evaluate) After this section, the reader can size a transformation's leap to its model and its guarantee. — _anchor: Heading text: 'Size the leap to the model and the guarantee'; ts: 'Give a model an input and either examples of a transformation or a precise description'._
+
+### Lesson 1.6-the-engineers-seat
 
 
 ## Module 2 — Modeling
@@ -151,34 +155,25 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 - **[DECLARED]** (apply) After Part 4, the reader can put the method to work: induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, size a transformation to its model and guarantee, and recognize the agent-shaped failure modes. _(primary: Module 4 · elaborated by: Module 5)_ — _anchor: Part 4 title 'Putting It to Work' + chapter arc: brownfield -> skills -> transformations -> training-data -> lessons-learned -> generative-validation._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
 
-### Lesson 4.1-brownfield
+### Lesson 4.1-the-mage-workflow
+
+
+### Lesson 4.2-brownfield
 
   - **[DERIVED]** (know) After this section, the reader can name the starting point and both destinations before you move. — _anchor: ts: Name the starting point and both destinations before you move._
 
-### Lesson 4.2-the-skills
+### Lesson 4.3-the-skills
 
   - **[DERIVED]** (apply) After this section, the reader can use the self-governance signal — a bad thing happened twice — to mint a control instead of re-patching the instance. — _anchor: ts: 'the second skill, self-governance, triggers on a simple signal: a bad thing happened more'._
 
-### Lesson 4.3-transformations
-
-  - **[DERIVED]** (evaluate) After this section, the reader can size a transformation's leap to its model and its guarantee. — _anchor: Heading text: 'Size the leap to the model and the guarantee'; ts: 'Give a model an input and either examples of a transformation or a precise description'._
-
-### Lesson 4.4-training-data
-
-
-### Lesson 4.5-lessons-learned
-
-  - **[DERIVED]** (know) After this section, the reader can recognize the agent-shaped failure modes and write tests that survive them. — _anchor: Heading text: 'Your tests must survive agent-shaped failure modes'._
-  - **[DERIVED]** (understand) After this section, the reader can distinguish vibe coding from engineering by whether the program is treated as an I/O device or a system. — _anchor: Heading text: 'Vibe coding treats the program as an I/O device; engineering treats it as a system'._
-  - **[DERIVED]** (analyze) After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds. _(primary: governance-is-a-spectrum-from-soft-to-hard · elaborated by: constraints-and-sensors)_ — _anchor: Heading text: 'Governance is a spectrum from soft to hard'._
-  - _elaborates (owned by the program):_ (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.
-  - _elaborates (owned by constraints-and-sensors):_ (understand) After this section, the reader can distinguish a constraint (prevent, costs no iteration) from a sensor (catch, costs iterations), place both on the independent soft-versus-hard axis, and tag most real mechanisms as a package by their primary move.
-
-### Lesson 4.6-generative-validation
+### Lesson 4.4-generative-validation
 
   - **[DERIVED]** (apply) After this section, the reader can apply the one move behind property testing, fuzzing, and fuzz-MBSE: a generator hunting a counterexample to a stated model. _(primary: the-move-a-generator-hunts-a-counterexample-to-a-model · elaborated by: when-to-reach-for-which)_ — _anchor: Heading text: 'The move: a generator hunts a counterexample to a model'._
   - **[DERIVED]** (evaluate) After this section, the reader can choose which validation strategy to reach for by the specification it attacks. — _anchor: Heading text: 'When to reach for which'._
   - _elaborates (owned by the-move-a-generator-hunts-a-counterexample-to-a-model):_ (apply) After this section, the reader can apply the one move behind property testing, fuzzing, and fuzz-MBSE: a generator hunting a counterexample to a stated model.
+
+### Lesson 4.5-governance-conversion
+
 
 ## Module 5 — The Evidence
 
@@ -188,16 +183,19 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 5.1-the-ada-context
 
 
-### Lesson 5.2-the-timeline-and-the-work
+### Lesson 5.2-why-this-system-was-a-hard-case
 
 
-### Lesson 5.3-the-built-system
+### Lesson 5.3-the-timeline-and-the-work
 
 
-### Lesson 5.4-the-road-to-mage
+### Lesson 5.4-the-built-system
 
 
-### Lesson 5.5-failures
+### Lesson 5.5-the-road-to-mage
+
+
+### Lesson 5.6-governance-conversions
 
 
 ## Module 6 — The Profession

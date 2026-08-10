@@ -163,7 +163,7 @@
         "EVID:data-claims.json",
         "DASH:grammar-coverage",
         "DASH:model-claim-coverage",
-        "CH:4.6-generative-validation",
+        "CH:4.4-generative-validation",
         "EVID:substantiation:soapbox-band"
       ],
       "assessment_signals": [],
@@ -178,7 +178,7 @@
       "family": "doctrine",
       "operator_question": "Where is governance weakest, and where should the next conversion happen?",
       "evidence_refs": [
-        "CH:4.1-brownfield",
+        "CH:4.2-brownfield",
         "DASH:missing-model-metric",
         "PAGE:from-drifted-wiki-to-trusted-model"
       ],
@@ -186,7 +186,7 @@
       "page_geometry": "landscape",
       "one_page": true,
       "status": "derive",
-      "_note": "PAGE:from-drifted-wiki-to-trusted-model is a sibling operator-reference page (in _OPERATORS_REFERENCE_PAGES) — resolves against the operators-reference card list, NOT catalogue-cards. The Sizing Matrix + four stages both live in CH:4.1-brownfield. page_geometry landscape (before/after bars)."
+      "_note": "PAGE:from-drifted-wiki-to-trusted-model is a sibling operator-reference page (in _OPERATORS_REFERENCE_PAGES) — resolves against the operators-reference card list, NOT catalogue-cards. The Sizing Matrix + four stages both live in CH:4.2-brownfield. page_geometry landscape (before/after bars)."
     },
     {
       "card-id": "operating-doctrine",
@@ -197,7 +197,7 @@
         "LIFE:principle:orient-positive-route-to-class",
         "LIFE:L1-manage-agents",
         "LIFE:L2-manage-context",
-        "CH:4.1-brownfield",
+        "CH:4.2-brownfield",
         "CONC:governed-environment"
       ],
       "assessment_signals": [],

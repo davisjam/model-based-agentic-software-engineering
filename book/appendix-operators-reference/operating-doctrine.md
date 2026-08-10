@@ -47,7 +47,7 @@ reading of that one claim.
 ### What this projects
 
 The self-operate principle "orient positive first, then route a break to its class"; the cattle-not-pets
-frame; the teetering-tower heuristic and the Sizing Matrix ([Chapter 4.1](4.1-brownfield.html)); the
+frame; the teetering-tower heuristic and the Sizing Matrix ([Chapter 4.1](4.2-brownfield.html)); the
 manage-agents and manage-context lifecycles; and the synthesis governed environment to trustworthy software,
 carried by the *governed-environment* concept, which absorbs the exploratory Trustworthiness frame as this
 doctrine's close.

@@ -3591,7 +3591,7 @@ next skill deliberately instead of by feel.
 
 This appendix names that pattern as a three-step recipe and grounds each step in the three self-* skills \
 you already met. Chapter 1 states the recipe; Chapter 2 applies it three times. Read the \
-[Skills chapter](4.2-the-skills.html) for what those skills *do*; read on here for how they were \
+[Skills chapter](4.3-the-skills.html) for what those skills *do*; read on here for how they were \
 *built*."""
 
 

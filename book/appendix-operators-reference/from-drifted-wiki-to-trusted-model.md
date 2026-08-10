@@ -65,7 +65,7 @@ per function.
 
 ### Full treatment
 
-See [Chapter 4.1](4.1-brownfield.html) for the explanation this card compresses:
+See [Chapter 4.1](4.2-brownfield.html) for the explanation this card compresses:
 
 - top-down modeling from a whiteboard;
 - bottom-up induction of the model from code;

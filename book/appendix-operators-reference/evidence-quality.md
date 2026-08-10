@@ -37,5 +37,5 @@ the validators exercise what they guard.
 
 A system's substantiation apparatus — the claim universe with its three evidence legs nested under each claim,
 projected as Claims, Measurements, Validators; the metric-to-claim ledger (the middle tier); and generative
-validation ([Chapter 4.6](4.6-generative-validation.html)) as the base tier. This book is the worked instance:
+validation ([Chapter 4.6](4.4-generative-validation.html)) as the base tier. This book is the worked instance:
 its soapbox gate is the no-backing check, rendered as the card's confidence gauge.

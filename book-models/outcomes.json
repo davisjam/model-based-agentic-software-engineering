@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 21,
     "elaborative_links": 28,
     "units_serving_as_elaborative": 20,
-    "sections_total": 296,
+    "sections_total": 285,
     "sections_primary_of_an_outcome": 42,
     "modules": 7,
-    "lessons": 43
+    "lessons": 44
   },
   "taxonomy": {
     "know": [
@@ -149,7 +149,14 @@
             "section_outcomes": []
           },
           {
-            "lesson": "1.5-the-engineers-seat",
+            "lesson": "1.5-transformations",
+            "own_outcomes": [],
+            "section_outcomes": [
+              "size-the-leap-to-the-model-and-the-guarantee::size-the-leap-a-transformation-makes-to-the-m"
+            ]
+          },
+          {
+            "lesson": "1.6-the-engineers-seat",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -310,47 +317,36 @@
         ],
         "lessons": [
           {
-            "lesson": "4.1-brownfield",
+            "lesson": "4.1-the-mage-workflow",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "4.2-brownfield",
             "own_outcomes": [],
             "section_outcomes": [
               "the-starting-point-and-the-destinations::name-the-starting-point-and-both-destinations"
             ]
           },
           {
-            "lesson": "4.2-the-skills",
+            "lesson": "4.3-the-skills",
             "own_outcomes": [],
             "section_outcomes": [
               "self-governance-the-catalogue-and-the-posture::use-the-self-governance-skill-convert-a-recu"
             ]
           },
           {
-            "lesson": "4.3-transformations",
-            "own_outcomes": [],
-            "section_outcomes": [
-              "size-the-leap-to-the-model-and-the-guarantee::size-the-leap-a-transformation-makes-to-the-m"
-            ]
-          },
-          {
-            "lesson": "4.4-training-data",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "4.5-lessons-learned",
-            "own_outcomes": [],
-            "section_outcomes": [
-              "your-tests-must-survive-agent-shaped-failure-modes::recognize-the-agent-shaped-failure-modes-a-test-su",
-              "vibe-coding-treats-the-program-as-an-i-o-device-engineering-treats-it-as-a-system::distinguish-vibe-coding-from-engineering-program-as",
-              "governance-is-a-spectrum-from-soft-to-hard::classify-a-mechanism-on-the-soft-to-hard-spectrum"
-            ]
-          },
-          {
-            "lesson": "4.6-generative-validation",
+            "lesson": "4.4-generative-validation",
             "own_outcomes": [],
             "section_outcomes": [
               "the-move-a-generator-hunts-a-counterexample-to-a-model::apply-the-core-generative-validation-move-a-ge",
               "when-to-reach-for-which::choose-which-generative-validation-strategy-fit"
             ]
+          },
+          {
+            "lesson": "4.5-governance-conversion",
+            "own_outcomes": [],
+            "section_outcomes": []
           }
         ]
       },
@@ -368,22 +364,27 @@
             "section_outcomes": []
           },
           {
-            "lesson": "5.2-the-timeline-and-the-work",
+            "lesson": "5.2-why-this-system-was-a-hard-case",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "5.3-the-built-system",
+            "lesson": "5.3-the-timeline-and-the-work",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "5.4-the-road-to-mage",
+            "lesson": "5.4-the-built-system",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "5.5-failures",
+            "lesson": "5.5-the-road-to-mage",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "5.6-governance-conversions",
             "own_outcomes": [],
             "section_outcomes": []
           }
