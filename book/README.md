@@ -34,10 +34,8 @@ book/
   part4/  (Part 4 — Putting It to Work)
     4.1-the-mage-workflow.md
     4.2-brownfield.md
-    4.3-the-skills.md
-    4.4-generative-validation.md
-    4.5-governance-conversion.md
-    4.6-the-field-guide.md
+    4.3-validating-change.md
+    4.4-the-skills.md
   part5/  (Part 5 — The Case: ADA)
     5.1-the-ada-context.md
     5.2-why-this-system-was-a-hard-case.md

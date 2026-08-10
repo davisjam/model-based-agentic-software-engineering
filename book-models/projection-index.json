@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1493,
+    "total_sites": 1476,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1065,
+      "book-web": 1048,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -141,27 +141,19 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 12
+            "occ": 21
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 30
+            "occ": 31
           },
           {
-            "file": "book/4.3-the-skills.html",
-            "occ": 45
+            "file": "book/4.3-validating-change.html",
+            "occ": 10
           },
           {
-            "file": "book/4.4-generative-validation.html",
-            "occ": 11
-          },
-          {
-            "file": "book/4.5-governance-conversion.html",
-            "occ": 14
-          },
-          {
-            "file": "book/4.6-the-field-guide.html",
-            "occ": 16
+            "file": "book/4.4-the-skills.html",
+            "occ": 57
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -503,7 +495,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 120
+            "occ": 118
           }
         ]
       },
@@ -970,7 +962,7 @@
             "occ": 2
           },
           {
-            "file": "book/4.4-generative-validation.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 2
           },
           {
@@ -1150,7 +1142,7 @@
             "occ": 2
           },
           {
-            "file": "book/4.6-the-field-guide.html",
+            "file": "book/4.4-the-skills.html",
             "occ": 3
           },
           {
@@ -1320,7 +1312,7 @@
       "book": {
         "book-web": [
           {
-            "file": "book/4.4-generative-validation.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 3
           },
           {
@@ -1374,10 +1366,6 @@
             "occ": 1
           },
           {
-            "file": "book/4.3-the-skills.html",
-            "occ": 1
-          },
-          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 23
           },
@@ -1417,7 +1405,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 13
+            "occ": 12
           }
         ]
       },
@@ -1474,7 +1462,7 @@
             "occ": 1
           },
           {
-            "file": "book/4.6-the-field-guide.html",
+            "file": "book/4.4-the-skills.html",
             "occ": 1
           }
         ],
@@ -1663,27 +1651,19 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 10
+            "occ": 12
           },
           {
             "file": "book/4.2-brownfield.html",
             "occ": 17
           },
           {
-            "file": "book/4.3-the-skills.html",
-            "occ": 11
-          },
-          {
-            "file": "book/4.4-generative-validation.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 7
           },
           {
-            "file": "book/4.5-governance-conversion.html",
-            "occ": 8
-          },
-          {
-            "file": "book/4.6-the-field-guide.html",
-            "occ": 8
+            "file": "book/4.4-the-skills.html",
+            "occ": 13
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -2025,7 +2005,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 120
+            "occ": 118
           }
         ]
       },
@@ -2285,26 +2265,18 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/4.2-brownfield.html",
             "occ": 1
           },
           {
-            "file": "book/4.3-the-skills.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 1
           },
           {
-            "file": "book/4.4-generative-validation.html",
-            "occ": 1
-          },
-          {
-            "file": "book/4.5-governance-conversion.html",
-            "occ": 2
-          },
-          {
-            "file": "book/4.6-the-field-guide.html",
+            "file": "book/4.4-the-skills.html",
             "occ": 1
           },
           {
@@ -2643,7 +2615,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 119
+            "occ": 117
           }
         ]
       },
@@ -2798,11 +2770,11 @@
             "occ": 1
           },
           {
-            "file": "book/4.3-the-skills.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 2
           },
           {
-            "file": "book/4.4-generative-validation.html",
+            "file": "book/4.4-the-skills.html",
             "occ": 2
           },
           {
@@ -2884,7 +2856,7 @@
       "book": {
         "book-web": [
           {
-            "file": "book/4.5-governance-conversion.html",
+            "file": "book/4.1-the-mage-workflow.html",
             "occ": 6
           }
         ],
@@ -3084,20 +3056,12 @@
             "occ": 100
           },
           {
-            "file": "book/4.3-the-skills.html",
-            "occ": 24
-          },
-          {
-            "file": "book/4.4-generative-validation.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 71
           },
           {
-            "file": "book/4.5-governance-conversion.html",
-            "occ": 6
-          },
-          {
-            "file": "book/4.6-the-field-guide.html",
-            "occ": 34
+            "file": "book/4.4-the-skills.html",
+            "occ": 52
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -3439,7 +3403,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 120
+            "occ": 118
           }
         ]
       },
@@ -4094,7 +4058,7 @@
             "occ": 1
           },
           {
-            "file": "book/4.4-generative-validation.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 1
           },
           {
@@ -4364,19 +4328,11 @@
             "occ": 1
           },
           {
-            "file": "book/4.3-the-skills.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 1
           },
           {
-            "file": "book/4.4-generative-validation.html",
-            "occ": 1
-          },
-          {
-            "file": "book/4.5-governance-conversion.html",
-            "occ": 1
-          },
-          {
-            "file": "book/4.6-the-field-guide.html",
+            "file": "book/4.4-the-skills.html",
             "occ": 1
           },
           {
@@ -4715,7 +4671,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 119
+            "occ": 117
           }
         ]
       },
@@ -5054,19 +5010,11 @@
             "occ": 2
           },
           {
-            "file": "book/4.3-the-skills.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 2
           },
           {
-            "file": "book/4.4-generative-validation.html",
-            "occ": 2
-          },
-          {
-            "file": "book/4.5-governance-conversion.html",
-            "occ": 2
-          },
-          {
-            "file": "book/4.6-the-field-guide.html",
+            "file": "book/4.4-the-skills.html",
             "occ": 2
           },
           {
@@ -5405,7 +5353,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 119
+            "occ": 117
           }
         ]
       },
@@ -5584,20 +5532,12 @@
             "occ": 14
           },
           {
-            "file": "book/4.3-the-skills.html",
-            "occ": 3
-          },
-          {
-            "file": "book/4.4-generative-validation.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 17
           },
           {
-            "file": "book/4.5-governance-conversion.html",
-            "occ": 1
-          },
-          {
-            "file": "book/4.6-the-field-guide.html",
-            "occ": 6
+            "file": "book/4.4-the-skills.html",
+            "occ": 8
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -5935,7 +5875,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 119
+            "occ": 117
           }
         ]
       },
@@ -6243,27 +6183,19 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 8
+            "occ": 15
           },
           {
             "file": "book/4.2-brownfield.html",
             "occ": 2
           },
           {
-            "file": "book/4.3-the-skills.html",
-            "occ": 3
-          },
-          {
-            "file": "book/4.4-generative-validation.html",
+            "file": "book/4.3-validating-change.html",
             "occ": 4
           },
           {
-            "file": "book/4.5-governance-conversion.html",
-            "occ": 6
-          },
-          {
-            "file": "book/4.6-the-field-guide.html",
-            "occ": 4
+            "file": "book/4.4-the-skills.html",
+            "occ": 7
           },
           {
             "file": "book/5.4-the-built-system.html",
@@ -6353,7 +6285,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 36
+            "occ": 34
           }
         ]
       },
@@ -6389,7 +6321,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 6
+            "occ": 7
           },
           {
             "file": "constructing-the-gee.html",

@@ -654,9 +654,9 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Phase-2c added the motivating failure: a method left as prose must be re-taught to every fresh agent, and a discipline that lives in memory rather than the environment is the first thing velocity drops — the batteries (three installable skills) answer that. Packaged-methodology role implicit (govern-the-environment). Ending passes as boundary-marking transition: names the unresolved team dimension explicitly and marks it out of scope.",
+      "note": "Phase-2c added the motivating failure: a method left as prose must be re-taught to every fresh agent, and a discipline that lives in memory rather than the environment is the first thing velocity drops — the batteries (three installable skills) answer that. Packaged-methodology role implicit (govern-the-environment). Round-6: the dissolved field guide re-homes here as the Part's synthesis close (portable-moves index + The Engineer's Day), so the ending is now the canonical Part-4 -> Part-5 handoff.",
       "opening_anchor": "A method only helps while someone remembers to apply it. Left as",
-      "closing_anchor": "practice, so I mark the boundary here rather than gesture past it."
+      "closing_anchor": "real deadline. The next Part tells that system's story from the beginning."
     },
     {
       "slug": "transformations",
@@ -1028,59 +1028,6 @@
       "note": "Opens by naming the gap the previous Parts left — ideas introduced one at a time, not yet joined into a method you run. Answer: the MAGE cycle, walked one turn at a time, with both theses named. Closes handing the assembled method to the rest of the Part.",
       "opening_anchor": "The previous Parts introduced the ideas one at a time. This Part",
       "closing_anchor": "the governed environment, and the models; this Part puts them to work."
-    },
-    {
-      "slug": "governance-conversion",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the six-step conversion loop (ex-post failure -> ex-ante mechanism)"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Question explicit (a check went red — what do you do?); answer explicit (convert the class, do not patch the instance). Names the governance-conversion method the book invokes everywhere. Closes handing the loop to Part 5, where the failures that earned these mechanisms are told in full.",
-      "opening_anchor": "When a check went red, I learned not to ask the agent",
-      "closing_anchor": "source, where the failures that earned these mechanisms are told in full."
-    },
-    {
-      "slug": "the-field-guide",
-      "opening": {
-        "failure_question": "implicit",
-        "answer": "explicit",
-        "thesis_link": "implicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "pattern",
-            "name": "the portable moves: patterns, anti-patterns, heuristics, checklists"
-          },
-          {
-            "type": "decision-tree",
-            "name": "the sizing-matrix reprise (failure cost x frequency)",
-            "anchor": "sizing-matrix-fieldguide"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Strips the case away to leave the part that ports: patterns, anti-patterns, heuristics, and checklists a reader can carry to their own repository. The implicit failure is 'how do I apply this without adopting anyone's platform.' Closes on the canonical Part-4 -> Part-5 handoff.",
-      "opening_anchor": "> ### THE PORTABLE MOVES > > The method is a small",
-      "closing_anchor": "real deadline. The next Part tells that system's story from the beginning."
     },
     {
       "slug": "failures",

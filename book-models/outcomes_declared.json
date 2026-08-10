@@ -75,7 +75,7 @@
       "obj": "a constraint from a sensor and a soft mechanism from a hard one",
       "statement": "After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.",
       "provenance": "declared",
-      "anchor": "The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (from-soft-to-hard, in the governance-conversion chapter).",
+      "anchor": "The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (from-soft-to-hard, in the MAGE Workflow chapter — re-homed in round-6).",
       "secondary_units": [
         "constraints-and-sensors",
         "from-soft-to-hard"
@@ -128,7 +128,7 @@
       "obj": "the method to a real codebase — running the MAGE workflow loop, inducing models from brownfield code, wielding the skills, holding the result with generative validation, and converting recurring failures into mechanisms",
       "statement": "After Part 4, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.",
       "provenance": "declared",
-      "anchor": "Part 4 title 'Putting It to Work' + chapter arc: the-mage-workflow -> brownfield -> skills -> generative-validation -> governance-conversion -> field-guide.",
+      "anchor": "Part 4 'The MAGE Method' + chapter arc: the-mage-workflow -> brownfield -> generative-validation -> the-skills (governance-conversion + field-guide dissolved into 4.1 + the 4.4 synthesis close in round-6).",
       "secondary_units": [
         "part-5"
       ]
@@ -295,7 +295,7 @@
       "anchor": "point: a-governed-environment-has-an-ex-ante-and-an-ex-post-half / a-mechanism-is-one-of-two-moves-prevent-or-catch / the-governed-environment-is-determinize-what-you-can-then-convert-every-surprise-into-a-constraint-or-sensor",
       "secondary_units": [
         "when-guardrails-collide",
-        "governance-conversion"
+        "the-mage-workflow"
       ]
     },
     {
@@ -672,7 +672,7 @@
       "obj": "a mechanism on the soft-to-hard spectrum by whether it aims or holds",
       "statement": "After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds.",
       "provenance": "derived",
-      "anchor": "Heading text: 'From soft to hard' (in the governance-conversion chapter).",
+      "anchor": "Heading text: 'From soft to hard' (in the MAGE Workflow chapter — re-homed from the dissolved governance-conversion chapter in round-6).",
       "secondary_units": [
         "constraints-and-sensors"
       ]

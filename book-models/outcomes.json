@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 21,
     "elaborative_links": 28,
     "units_serving_as_elaborative": 20,
-    "sections_total": 302,
+    "sections_total": 304,
     "sections_primary_of_an_outcome": 42,
     "modules": 7,
-    "lessons": 45
+    "lessons": 43
   },
   "taxonomy": {
     "know": [
@@ -319,7 +319,9 @@
           {
             "lesson": "4.1-the-mage-workflow",
             "own_outcomes": [],
-            "section_outcomes": []
+            "section_outcomes": [
+              "from-soft-to-hard::classify-a-mechanism-on-the-soft-to-hard-spectrum"
+            ]
           },
           {
             "lesson": "4.2-brownfield",
@@ -329,14 +331,7 @@
             ]
           },
           {
-            "lesson": "4.3-the-skills",
-            "own_outcomes": [],
-            "section_outcomes": [
-              "self-governance-the-catalogue-and-the-posture::use-the-self-governance-skill-convert-a-recu"
-            ]
-          },
-          {
-            "lesson": "4.4-generative-validation",
+            "lesson": "4.3-validating-change",
             "own_outcomes": [],
             "section_outcomes": [
               "the-move-a-generator-hunts-a-counterexample-to-a-model::apply-the-core-generative-validation-move-a-ge",
@@ -344,16 +339,10 @@
             ]
           },
           {
-            "lesson": "4.5-governance-conversion",
+            "lesson": "4.4-the-skills",
             "own_outcomes": [],
             "section_outcomes": [
-              "from-soft-to-hard::classify-a-mechanism-on-the-soft-to-hard-spectrum"
-            ]
-          },
-          {
-            "lesson": "4.6-the-field-guide",
-            "own_outcomes": [],
-            "section_outcomes": [
+              "self-governance-the-catalogue-and-the-posture::use-the-self-governance-skill-convert-a-recu",
               "what-the-day-makes-of-you::run-enough-of-these-days-and-the-shape-of-th"
             ]
           }
@@ -494,7 +483,7 @@
       "statement": "After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.",
       "bloom": "understand",
       "provenance": "declared",
-      "anchor": "The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (from-soft-to-hard, in the governance-conversion chapter).",
+      "anchor": "The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (from-soft-to-hard, in the MAGE Workflow chapter — re-homed in round-6).",
       "gap_note": null
     },
     {
@@ -564,7 +553,7 @@
       "statement": "After Part 4, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.",
       "bloom": "apply",
       "provenance": "declared",
-      "anchor": "Part 4 title 'Putting It to Work' + chapter arc: the-mage-workflow -> brownfield -> skills -> generative-validation -> governance-conversion -> field-guide.",
+      "anchor": "Part 4 'The MAGE Method' + chapter arc: the-mage-workflow -> brownfield -> generative-validation -> the-skills (governance-conversion + field-guide dissolved into 4.1 + the 4.4 synthesis close in round-6).",
       "gap_note": null
     },
     {
@@ -843,7 +832,7 @@
       "primary_unit": "the-governed-environment",
       "secondary_units": [
         "when-guardrails-collide",
-        "governance-conversion"
+        "the-mage-workflow"
       ],
       "verb": "distinguish",
       "obj": "ex-ante from ex-post decisions and a constraint from a sensor",
@@ -1216,7 +1205,7 @@
       "statement": "After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds.",
       "bloom": "analyze",
       "provenance": "derived",
-      "anchor": "Heading text: 'From soft to hard' (in the governance-conversion chapter).",
+      "anchor": "Heading text: 'From soft to hard' (in the MAGE Workflow chapter — re-homed from the dissolved governance-conversion chapter in round-6).",
       "gap_note": null
     },
     {
