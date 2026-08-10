@@ -819,74 +819,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>In other words:</strong> first write down what matters in a form both people and machines can understand; then teach the engineering environment to insist on it.</p></blockquote>
 <p>The theses are causally linked, not parallel. Modeling turns implicit engineering knowledge into a representation both humans and machines can reason over; Alignment attaches authority to it. Richer representations make more obligations enforceable, so the surface Modeling builds is what Alignment acts on. Alignment depends on Modeling; Modeling does not depend on Alignment — a dependency, not a disappearance, which is why there are still two.</p>
 <p>The order of the two working parts follows that dependency. Part 2 develops Modeling, the surfaces; Part 3 develops Alignment, the authority. You can only make binding what you have first made explicit.</p>
-<p>Neither thesis is the method by itself. MAGE is what happens when they run as a cycle: model the intent, give it authority, do the governed work, convert recurring failures into engineering capital, and repeat. <a class="xref" href="0.4-preface.html#fig-0-4-2">Figure&nbsp;0.4-2</a> draws that cycle.</p>
-<figure id="fig-0-4-2" class="book-figure" data-label="mage-overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640"
-     role="group" aria-labelledby="mc-title mc-desc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mc-title">The MAGE cycle — how to practise the method, one pass then repeat</title>
-  <desc id="mc-desc">The MAGE method as one repeating cycle. Four stations run down a column, and a return
-    arm on the right closes the loop back to the top. MODEL: make intent explicit. An arrow down to ALIGN:
-    give intent authority. An arrow down to WORK: grant autonomy. The next arrow is labelled failure and
-    evidence — where autonomy still fails, and what the pass surfaces. It leads to CONVERT: turn that
-    failure into representation or control. From CONVERT a long return arrow sweeps up the right side back
-    to MODEL, labelled repeat. The condensed method reads: model the intent, give it authority, convert
-    failures into capital, repeat. Each pass leaves the environment more capable than the one before.</desc>
-
-  <defs>
-    <marker id="mc-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-    <marker id="mc-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
-    </marker>
-    <marker id="mc-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#155c38"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="900" height="640" fill="#fdfcf9"/>
-
-  <text x="420" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The MAGE cycle</text>
-  <text x="420" y="74" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Model the intent · give it authority · convert failures into capital · repeat.</text>
-
-  <!-- Station 1: MODEL (green) -->
-  <rect x="290" y="100" width="260" height="76" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="420" y="134" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#1f7a4d">MODEL</text>
-  <text x="420" y="159" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">make intent explicit</text>
-  <path d="M420,176 L420,206" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#mc-ah-mut)"/>
-
-  <!-- Station 2: ALIGN (rust) -->
-  <rect x="290" y="208" width="260" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="420" y="242" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#9a3f12">ALIGN</text>
-  <text x="420" y="267" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">give intent authority</text>
-  <path d="M420,284 L420,314" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#mc-ah-mut)"/>
-
-  <!-- Station 3: WORK (fleet blue) -->
-  <rect x="290" y="316" width="260" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="420" y="350" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#2f5169">WORK</text>
-  <text x="420" y="375" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">grant autonomy</text>
-
-  <!-- the pass surfaces a failure -->
-  <path d="M420,392 L420,444" fill="none" stroke="#b23b3b" stroke-width="2.2" marker-end="url(#mc-ah-red)"/>
-  <text x="436" y="416" text-anchor="start" font-size="14" font-weight="700" fill="#b23b3b">failure / evidence</text>
-  <text x="436" y="433" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">where autonomy still fails</text>
-
-  <!-- Station 4: CONVERT (rust / governance) -->
-  <rect x="290" y="446" width="260" height="84" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="420" y="482" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="1" fill="#9a3f12">CONVERT</text>
-  <text x="420" y="507" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">representation or control</text>
-
-  <!-- the return arm: CONVERT climbs back up to MODEL — this closes the cycle -->
-  <path d="M550,488 C712,470 712,148 552,138" fill="none" stroke="#155c38" stroke-width="2.6"
-        marker-end="url(#mc-ah-green)"/>
-  <text transform="rotate(-90 726 316)" x="726" y="316" text-anchor="middle" font-size="17"
-        font-weight="700" fill="#155c38">repeat</text>
-  <text transform="rotate(-90 752 316)" x="752" y="316" text-anchor="middle" font-size="12.5"
-        font-style="italic" fill="#57534e">each pass compounds</text>
-
-  <!-- takeaway caption -->
-  <text x="420" y="588" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Each pass leaves the environment more capable than the one before.</text>
-</svg><figcaption data-short="The MAGE cycle"><span class="fig-label">Figure 0.4-2.</span> <em>The MAGE cycle.</em> The method is a loop, not a line. MODEL the intent — externalize the world the intelligence must reason about. ALIGN it — give that intent authority the environment enforces. WORK — let the governed fleet build at speed. CONVERT — read each recurring failure as a missing mechanism and bank it as engineering capital. Then repeat: each pass leaves the environment more capable than the one before. The three prose beats — model, align, convert — are the loop's stations; the governed work runs between align and convert.</figcaption></figure>
+<p>Neither thesis is the method by itself. MAGE is what happens when they run as a cycle: model the intent, give it authority, do the governed work, convert recurring failures into engineering capital, and repeat.</p>
 <p>Read top to bottom, the whole argument is a single chain:</p>
 <blockquote class="aside-sidenote"><p>Commodity intelligence creates a reasoning problem. Context engineering begins the response. Durable context becomes structured knowledge. Structured knowledge becomes engineering models. Models make intent explicit. Explicit intent makes more judgment mechanizable. Alignment gives that intent authority. Failures enrich the representations and controls. The environment compounds. Autonomy scales.</p>
 <p>That is MAGE.</p></blockquote>
