@@ -25,11 +25,26 @@ source-side literal check would false-flag every one of them. Those links are va
 whole-site HTML link scanner (`tests/html.py::check_html_links`, BLOCKING). This check owns the one class
 that gate cannot see at the source and that the renumber actually endangers.
 
-Run `python3 book-models/link_integrity_check.py` — exit 0 (clean) or 1 (lists every dangling ref).
-Wired into `catalog.py test` as a BLOCKING check (tests/book_models.py::check_link_integrity).
+SECOND FINDINGS-FUNCTION — NAMED-REFERENCE INTEGRITY (C5, round-8 W1, AUDIT-ONLY).  `findings()` above
+proves an HREF resolves; `close_label_findings()` below proves a NAMED conceptual destination in the Part-IV
+"portable moves" close still MATCHES the destination's CURRENT identity — a chapter TITLE (via
+`chapter_identity_model`) or an operator-card TITLE (`operator-cards.json`). The close cites destinations by
+name — `[The Governed Environment](3.3-…)`, `[Brownfield Progress](appendix-d-…)` — and a renamed chapter or
+card leaves the label stale: the nav representation disagrees with the book (map::territory drift IN the
+manuscript). This is the anchor check's analogue for named conceptual destinations. It CONSUMES the two
+existing identity resolvers (builds no new one, §G-5) and sanctions legitimate short-forms through a small
+alias registry. Lands AUDIT-ONLY-first (rule #55 — findings open at landing; a fix-wave drains them, then a
+follow-up promotes it BLOCKING). Scope: the "Closing the Part" close only (widen to the Engineer's Day card
+refs later).
+
+Run `python3 book-models/link_integrity_check.py` — exit 0 (clean) or 1 (lists every dangling ref); it also
+PRINTS the AUDIT-ONLY close-label findings (they do not affect the exit code while the check is audit-only).
+Wired into `catalog.py test` as a BLOCKING chapter-link check (tests/book_models.py::check_link_integrity)
+plus an AUDIT-ONLY close-label check (tests/book_models.py::check_close_label_integrity).
 """
 from __future__ import annotations
 
+import json
 import os
 import re
 import sys
@@ -129,16 +144,90 @@ def findings() -> "list[DanglingRef]":
     return out
 
 
+# ---- C5: named-reference -> current-identity, for the Part-IV "portable moves" close (AUDIT-ONLY) ----
+
+#: The close whose named destinations are audited, and the section that bounds it (patterns / anti-patterns
+#: / heuristics / checklists — NOT the Engineer's Day card refs, a later scope-widening).
+_CLOSE_FILE = "part4/4.4-the-skills.md"
+_CLOSE_START = "## Closing the Part"
+_CLOSE_END = "## The Engineer"
+#: A `[label](slug.html[#anchor])` link whose slug is a numbered chapter stem or an appendix-D card page.
+_CLOSE_LINK_RE = re.compile(r"\[([^\]]+)\]\((appendix-d-[a-z0-9-]+|\d+\.\d+-[a-z0-9-]+)\.html(?:#[^)\s]*)?\)")
+#: `appendix-d-<card-id>.html` names an operator card; the id is the slug after this prefix.
+_APPENDIX_D_PREFIX = "appendix-d-"
+#: SANCTIONED short-forms — a close label that legitimately abbreviates its destination's full identity,
+#: keyed by (label, destination-slug). The Governed Environment's title carries a ": Ex-Ante and Ex-Post"
+#: subtitle; the base name is the canonical short reference. Everything else that mismatches is a finding for
+#: the W3 fix-wave (e.g. 'Brownfield Progress' -> the 'Brownfield Progress Gauge' operator card).
+_CLOSE_LABEL_ALIASES: "frozenset[tuple[str, str]]" = frozenset({
+    ("The Governed Environment", "3.3-the-governed-environment"),
+})
+
+
+def _operator_card_titles() -> "dict[str, str]":
+    """card-id -> title, from operator-cards.json (the operator-card identity source C5 consumes)."""
+    with open(os.path.join(_HERE, "operator-cards.json"), encoding="utf-8") as fh:
+        return {c["card-id"]: c["title"] for c in json.load(fh).get("cards", [])}
+
+
+def close_label_findings() -> "list[str]":
+    """Every close label whose named destination no longer matches its CURRENT identity (a chapter title or
+    an operator-card title), minus the sanctioned short-forms. AUDIT-ONLY. Empty ⇒ every named destination in
+    the close still names its target by the target's current identity."""
+    if _HERE not in sys.path:
+        sys.path.insert(0, _HERE)
+    import chapter_identity_model as ci  # noqa: E402 — sibling identity resolver (consumed, not rebuilt)
+
+    cards = _operator_card_titles()
+    path = os.path.join(_BOOK, _CLOSE_FILE)
+    lines = open(path, encoding="utf-8").read().split("\n")
+    start = next((i for i, l in enumerate(lines) if l.startswith(_CLOSE_START)), None)
+    if start is None:
+        return []
+    end = next((i for i, l in enumerate(lines) if i > start and l.startswith(_CLOSE_END)), len(lines))
+
+    out: "list[str]" = []
+    for off in range(start, end):
+        for m in _CLOSE_LINK_RE.finditer(lines[off]):
+            label, slug = m.group(1), m.group(2)
+            if slug.startswith(_APPENDIX_D_PREFIX):
+                ident = cards.get(slug[len(_APPENDIX_D_PREFIX):])
+                kind = "operator card"
+            else:
+                lab = ci.label_for_slug(slug)
+                ident = ci.title(lab) if lab else None
+                kind = "chapter"
+            if ident is None or label == ident or (label, slug) in _CLOSE_LABEL_ALIASES:
+                continue
+            out.append(f"{_CLOSE_FILE}:{off + 1}: close label {label!r} names the {kind} whose current "
+                       f"identity is {ident!r} — update the label to the current name, point it at the "
+                       f"named card/appendix, or register a sanctioned short-form alias")
+    return out
+
+
+def _print_close_label_audit() -> None:
+    """Print the AUDIT-ONLY C5 close-label findings — never affects the exit code while audit-only."""
+    cl = close_label_findings()
+    if not cl:
+        print("close-label integrity (AUDIT-ONLY): 0 stale named destinations in the Part-IV close")
+        return
+    print(f"close-label integrity (AUDIT-ONLY): {len(cl)} stale named destination(s) in the Part-IV close:")
+    for f in cl:
+        print(f"  {f}")
+
+
 def main(argv: "list[str]") -> int:
     fs = findings()
     n_files = len(_scanned_files())
     if not fs:
         print(f"link-integrity: 0 dangling refs across {n_files} book source files "
               f"({len(valid_chapter_slugs())} live chapter slugs)")
+        _print_close_label_audit()
         return 0
     print(f"link-integrity: {len(fs)} DANGLING ref(s) across {n_files} book source files:")
     for f in fs:
         print(f"  {f.file}:{f.line} -> {f.target} ({f.kind})")
+    _print_close_label_audit()
     return 1
 
 
