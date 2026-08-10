@@ -4125,27 +4125,17 @@
       "part": 4,
       "sections": [
         {
-          "section_id": "self-operate-the-lifecycles-made-runnable",
+          "section_id": "the-construction-recipe-is-a-pattern-of-its-own",
           "level": 2,
-          "heading_text": "Self-operate: the lifecycles, made runnable",
-          "topic_sentence": "Self-operate is the starting point, because it holds the lifecycles of running a repo — the recurring repository lifecycles this project needed to operate.",
+          "heading_text": "The construction recipe is a pattern of its own",
+          "topic_sentence": "The three feel of a piece because they were all built the same way.",
           "id_source": "derived",
           "block_index": 12,
           "points": [
             {
-              "slug": "self-operate-holds-the-lifecycles-of-running-a-repo",
-              "text": "Self-operate holds the lifecycles of running a repo.",
+              "slug": "every-skill-is-base-model-orthogonal-models-and-a-skill-md",
+              "text": "Every skill: base model, orthogonal models, SKILL.md.",
               "block_index": 14
-            },
-            {
-              "slug": "playbooks-let-an-orchestrator-loop-react-to-events",
-              "text": "Playbooks let an orchestrator loop react to events.",
-              "block_index": 18
-            },
-            {
-              "slug": "dont-trust-a-done-claim-re-run-the-gates-yourself",
-              "text": "Don't trust a done claim; re-run gates.",
-              "block_index": 23
             }
           ]
         },
@@ -4155,22 +4145,22 @@
           "heading_text": "Self-governance: the catalogue and the posture",
           "topic_sentence": "The second skill, self-governance, triggers on a simple signal: a bad thing happened more than once — sometimes just once, if it was bad enough.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 19,
           "points": [
             {
               "slug": "recurrence-signals-a-missing-sensor-or-constraint",
               "text": "Recurrence signals a missing sensor or constraint.",
-              "block_index": 29
+              "block_index": 21
             },
             {
               "slug": "the-skill-ships-a-catalogue-plus-a-minting-posture",
               "text": "The skill ships a catalogue plus a minting posture.",
-              "block_index": 32
+              "block_index": 24
             },
             {
               "slug": "minted-rules-live-in-the-boot-context-mission-method-rules",
               "text": "Minted rules live in the boot context: mission, method, rules.",
-              "block_index": 35
+              "block_index": 27
             }
           ]
         },
@@ -4180,17 +4170,42 @@
           "heading_text": "The posture: minting new mechanisms well",
           "topic_sentence": "The first heuristic is to **avoid a teetering tower of governance.** Do too much of this and tending the tower becomes the work itself: the agent side-quests into polishing the linter while the product waits.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 31,
           "points": [
             {
               "slug": "avoid-a-teetering-tower-of-governance",
               "text": "Avoid a teetering tower of governance.",
-              "block_index": 41
+              "block_index": 33
             },
             {
               "slug": "a-passive-skill-needs-a-hook-to-fire-it",
               "text": "A passive skill needs a hook to fire it.",
-              "block_index": 46
+              "block_index": 38
+            }
+          ]
+        },
+        {
+          "section_id": "self-operate-the-lifecycles-made-runnable",
+          "level": 2,
+          "heading_text": "Self-operate: the lifecycles, made runnable",
+          "topic_sentence": "Self-operate is the starting point, because it holds the lifecycles of running a repo — the recurring repository lifecycles this project needed to operate.",
+          "id_source": "derived",
+          "block_index": 45,
+          "points": [
+            {
+              "slug": "self-operate-holds-the-lifecycles-of-running-a-repo",
+              "text": "Self-operate holds the lifecycles of running a repo.",
+              "block_index": 47
+            },
+            {
+              "slug": "playbooks-let-an-orchestrator-loop-react-to-events",
+              "text": "Playbooks let an orchestrator loop react to events.",
+              "block_index": 51
+            },
+            {
+              "slug": "dont-trust-a-done-claim-re-run-the-gates-yourself",
+              "text": "Don't trust a done claim; re-run gates.",
+              "block_index": 56
             }
           ]
         },
@@ -4200,12 +4215,12 @@
           "heading_text": "Self-communicate: how the agent writes and draws",
           "topic_sentence": "The third skill, self-communicate, governs how the agent explains itself — to you and to other people.",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 60,
           "points": [
             {
               "slug": "self-communicate-governs-the-agents-prose-and-diagrams",
               "text": "Self-communicate governs the agent's prose and diagrams.",
-              "block_index": 55
+              "block_index": 62
             }
           ]
         },
@@ -4215,27 +4230,12 @@
           "heading_text": "The lexicon: one concept, one word",
           "topic_sentence": "Self-communicate also owns a **lexicon**: the house vocabulary for your repo, so one concept gets one word, used consistently.",
           "id_source": "derived",
-          "block_index": 58,
+          "block_index": 65,
           "points": [
             {
               "slug": "a-lexicon-gives-one-concept-one-consistent-word",
               "text": "A lexicon gives one concept one consistent word.",
-              "block_index": 60
-            }
-          ]
-        },
-        {
-          "section_id": "the-construction-recipe-is-a-pattern-of-its-own",
-          "level": 2,
-          "heading_text": "The construction recipe is a pattern of its own",
-          "topic_sentence": "The three feel of a piece because they were all built the same way.",
-          "id_source": "derived",
-          "block_index": 66,
-          "points": [
-            {
-              "slug": "every-skill-is-base-model-orthogonal-models-and-a-skill-md",
-              "text": "Every skill: base model, orthogonal models, SKILL.md.",
-              "block_index": 68
+              "block_index": 67
             }
           ]
         },

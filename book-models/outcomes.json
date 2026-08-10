@@ -20,9 +20,9 @@
       "outcome": 45
     },
     "by_bloom": {
-      "know": 9,
+      "know": 10,
       "understand": 21,
-      "apply": 15,
+      "apply": 14,
       "analyze": 17,
       "evaluate": 10,
       "create": 14
@@ -909,16 +909,16 @@
       "gap_note": null
     },
     {
-      "outcome_id": "the-skills::use-the-self-operate-self-governance-and-sel",
+      "outcome_id": "the-skills::recognize-recurring-engineering-judgment-that-dese",
       "granularity": "chapter",
       "primary_unit": "the-skills",
       "secondary_units": [],
-      "verb": "use",
-      "obj": "the self-operate, self-governance, and self-communicate skills, and the recipe for minting new ones",
-      "statement": "After this chapter, the reader can use the three packaged skills and follow the construction recipe to mint a new one well.",
-      "bloom": "apply",
+      "verb": "recognize",
+      "obj": "recurring engineering judgment that deserves to become a reusable skill, with the three shipped skills as instances of the construction pattern",
+      "statement": "After this chapter, the reader can recognize recurring engineering judgment that deserves to become a skill, and follow the shared construction recipe to mint one — reading the three shipped skills as instances of that pattern rather than as ends in themselves.",
+      "bloom": "know",
       "provenance": "declared",
-      "anchor": "Section titles 'self-operate-...', 'self-governance-...', 'self-communicate-...', 'the-construction-recipe-is-a-pattern-of-its-own'.",
+      "anchor": "Section titles 'the-construction-recipe-is-a-pattern-of-its-own' (elevated), 'self-governance-the-catalogue-and-the-posture' (flagship), 'self-operate-the-lifecycles-made-runnable', 'self-communicate-how-the-agent-writes-and-draws' (round-8 W1 flagship-first reorder).",
       "gap_note": null
     },
     {
