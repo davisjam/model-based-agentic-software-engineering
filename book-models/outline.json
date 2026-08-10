@@ -2967,7 +2967,7 @@
             {
               "slug": "metrics-run-a-hard-to-soft-spectrum-and-the-mistake-is-treating-one-as-the-other",
               "text": "Metrics run hard to soft; don't confuse the two.",
-              "block_index": 15
+              "block_index": 16
             }
           ]
         },
@@ -2977,37 +2977,37 @@
           "heading_text": "The hard end: cold-start latency, machine-read and model-fed",
           "topic_sentence": "Start at the deterministic end, where a metric is a deterministic quantity with a defined measurement procedure.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 19,
           "points": [
             {
               "slug": "cold-start-latency-reads-obviously-as-the-scale-from-zero-penalty",
               "text": "Cold-start latency reads obviously as the scale-from-zero penalty.",
-              "block_index": 21
+              "block_index": 22
             },
             {
               "slug": "the-deeper-cold-start-number-named-runtime-init-not-scale-from-zero-or-image-size",
               "text": "The deeper number named runtime init, not scale-from-zero.",
-              "block_index": 23
+              "block_index": 24
             },
             {
               "slug": "spot-checking-doesnt-scale-so-a-model-reasons-over-the-chain-as-a-longest-path-sum",
               "text": "Spot-checking fails; a model sums the longest cold-start path.",
-              "block_index": 28
+              "block_index": 29
             },
             {
               "slug": "the-hard-ends-defining-move-is-the-number-feeds-the-model",
               "text": "The hard end's defining move: the number feeds the model.",
-              "block_index": 30
+              "block_index": 31
             },
             {
               "slug": "automate-the-map-upkeep-into-the-machine-rather-than-a-runbook-reminder",
               "text": "Automate map upkeep into the machine, not a reminder.",
-              "block_index": 33
+              "block_index": 34
             },
             {
               "slug": "as-built-the-seam-is-in-and-the-data-catches-up",
               "text": "As-built: the seam is in, the data catches up.",
-              "block_index": 35
+              "block_index": 36
             }
           ]
         },
@@ -3017,42 +3017,42 @@
           "heading_text": "The flagship: coverage measured one level deeper",
           "topic_sentence": "Now the middle of the spectrum: the \"measure one level deeper\" rule applied to the number that most often gets it wrong.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 38,
           "points": [
             {
               "slug": "line-coverage-answers-a-syntactic-question-not-the-semantic-one",
               "text": "Line coverage answers a syntactic question, not the semantic one.",
-              "block_index": 40
+              "block_index": 41
             },
             {
               "slug": "the-fix-joins-a-traceability-graph-to-the-coverage-oracle",
               "text": "The fix joins a traceability graph to the coverage oracle.",
-              "block_index": 42
+              "block_index": 43
             },
             {
               "slug": "the-composition-counts-model-claims-and-reports-a-named-verdict",
               "text": "The composition counts model claims and reports a named verdict.",
-              "block_index": 45
+              "block_index": 46
             },
             {
               "slug": "the-genre-check-names-this-requirements-based-coverage",
               "text": "The genre check names this requirements-based coverage.",
-              "block_index": 47
+              "block_index": 48
             },
             {
               "slug": "one-primitive-supports-several-aggregations-each-a-different-decision",
               "text": "One primitive supports several aggregations, each a different decision.",
-              "block_index": 50
+              "block_index": 51
             },
             {
               "slug": "the-honesty-layer-reports-a-breakdown-so-the-number-affords-engineering",
               "text": "The honesty layer reports a breakdown, not a percentage.",
-              "block_index": 53
+              "block_index": 54
             },
             {
               "slug": "measuring-one-level-deeper-cost-a-join-not-a-rebuild",
               "text": "Measuring one level deeper cost a join, not a rebuild.",
-              "block_index": 55
+              "block_index": 56
             }
           ]
         },
@@ -3062,7 +3062,7 @@
           "heading_text": "The dual: draining unmodelled code",
           "topic_sentence": "The flagship metric had a blind spot: it measured model→code, so code with no model at all stayed invisible to it — and this dual is what finds it.",
           "id_source": "explicit",
-          "block_index": 57,
+          "block_index": 58,
           "points": []
         },
         {
@@ -3071,17 +3071,17 @@
           "heading_text": "The soft end: doc-derived tests",
           "topic_sentence": "Slide to the far end of the spectrum, where the metric stops being a number a threshold can act on and becomes a judgment a human has to make.",
           "id_source": "derived",
-          "block_index": 65,
+          "block_index": 66,
           "points": [
             {
               "slug": "a-doc-derived-test-pins-a-doc-claim-and-its-metric-is-genuinely-soft",
               "text": "A doc-derived test pins a doc-claim; its metric is soft.",
-              "block_index": 68
+              "block_index": 69
             },
             {
               "slug": "the-soft-metric-is-inseparable-from-a-readiness-judgment-so-a-gate-would-manufacture-hollow-tests",
               "text": "Gating this soft signal manufactures hollow tests.",
-              "block_index": 71
+              "block_index": 72
             }
           ]
         },
@@ -3091,22 +3091,22 @@
           "heading_text": "The model runs the machinery",
           "topic_sentence": "The hard end and the flagship follow the same pattern.",
           "id_source": "derived",
-          "block_index": 81,
+          "block_index": 82,
           "points": [
             {
               "slug": "the-model-is-not-a-picture-of-the-machinery-it-is-the-machinery",
               "text": "The model runs the machinery, rather than picturing it.",
-              "block_index": 84
+              "block_index": 85
             },
             {
               "slug": "a-component-distance-grade-is-a-metric-that-drives-a-gate-three-ways",
               "text": "A component-distance grade drives a gate three ways.",
-              "block_index": 86
+              "block_index": 87
             },
             {
               "slug": "the-grade-is-a-metric-read-from-the-model-that-drives-a-sensors-decision",
               "text": "The grade is a model-read metric driving a sensor.",
-              "block_index": 90
+              "block_index": 91
             }
           ]
         },
@@ -3116,12 +3116,12 @@
           "heading_text": "A compact reference",
           "topic_sentence": "[ref:metrics-table] collects every metric — the decision each drives, where it sits on the hard-soft axis, and who reads it.",
           "id_source": "derived",
-          "block_index": 92,
+          "block_index": 93,
           "points": [
             {
               "slug": "every-row-names-a-decision-because-a-metric-that-names-none-was-measured-too-shallow",
               "text": "Every row names a decision, or was measured too shallow.",
-              "block_index": 96
+              "block_index": 97
             }
           ]
         }
@@ -5735,7 +5735,7 @@
           "heading_text": "Principal predictions",
           "topic_sentence": "Here is where the model sticks its neck out.",
           "id_source": "derived",
-          "block_index": 63,
+          "block_index": 65,
           "points": []
         },
         {
@@ -5744,7 +5744,7 @@
           "heading_text": "Corollaries and specializations",
           "topic_sentence": "Several claims read more precisely as consequences or domain instances of the eight than as coequal predictions — a statement of where each sits in the causal structure, not a demotion of its truth.",
           "id_source": "derived",
-          "block_index": 68,
+          "block_index": 70,
           "points": []
         },
         {
@@ -5753,7 +5753,7 @@
           "heading_text": "The reasoning-horizon proposition",
           "topic_sentence": "H4 is the falsifiable form of a wider claim the book has built toward since Part 1.",
           "id_source": "derived",
-          "block_index": 70,
+          "block_index": 72,
           "points": []
         },
         {
@@ -5762,7 +5762,7 @@
           "heading_text": "The compounding-governance proposition",
           "topic_sentence": "A second wide claim runs parallel to the first, and H6 is its falsifiable form.",
           "id_source": "derived",
-          "block_index": 79,
+          "block_index": 81,
           "points": []
         },
         {
@@ -5771,7 +5771,7 @@
           "heading_text": "Learning propagation",
           "topic_sentence": "H8 completes a chain the first seven leave open.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 89,
           "points": []
         },
         {
@@ -5780,7 +5780,7 @@
           "heading_text": "Two directional relations",
           "topic_sentence": "Two of the hypotheses have a form clean enough to write down.",
           "id_source": "derived",
-          "block_index": 94,
+          "block_index": 96,
           "points": []
         },
         {
@@ -5789,7 +5789,7 @@
           "heading_text": "The churn relation",
           "topic_sentence": "Durable throughput is raw velocity net of what churn eats:",
           "id_source": "derived",
-          "block_index": 96,
+          "block_index": 98,
           "points": []
         },
         {
@@ -5798,7 +5798,7 @@
           "heading_text": "Attention-based versus mechanized control",
           "topic_sentence": "The second relation contrasts two ways to hold a failure class.",
           "id_source": "derived",
-          "block_index": 108,
+          "block_index": 110,
           "points": []
         },
         {
@@ -5807,7 +5807,7 @@
           "heading_text": "Does governance eventually become a burden?",
           "topic_sentence": "The churn curve just showed that accumulation is non-monotonic: past the point of fit, more apparatus makes things worse.",
           "id_source": "derived",
-          "block_index": 113,
+          "block_index": 115,
           "points": []
         },
         {
@@ -5816,7 +5816,7 @@
           "heading_text": "Evolution of this theory",
           "topic_sentence": "The theory did not arrive whole — its empirical core came first, induced from a bounded case; the rest is later reflection.",
           "id_source": "derived",
-          "block_index": 125,
+          "block_index": 127,
           "points": []
         },
         {
@@ -5825,7 +5825,7 @@
           "heading_text": "Modeling feeds Alignment",
           "topic_sentence": "The book has carried the two theses side by side, as if Modeling and Alignment were parallel pillars holding up one roof.",
           "id_source": "derived",
-          "block_index": 134,
+          "block_index": 136,
           "points": []
         },
         {
@@ -5834,7 +5834,7 @@
           "heading_text": "What kind of theory this is",
           "topic_sentence": "Say plainly what kind of theory this is.",
           "id_source": "derived",
-          "block_index": 142,
+          "block_index": 144,
           "points": []
         },
         {
@@ -5843,7 +5843,7 @@
           "heading_text": "The three levels of evidence",
           "topic_sentence": "The two sources supply different kinds of evidence, and the terminology should say so.",
           "id_source": "explicit",
-          "block_index": 148,
+          "block_index": 150,
           "points": []
         },
         {
@@ -5852,7 +5852,7 @@
           "heading_text": "Research agenda",
           "topic_sentence": "The eight hypotheses suggest a focused program, not a scatter of disconnected tests.",
           "id_source": "derived",
-          "block_index": 152,
+          "block_index": 154,
           "points": []
         },
         {
@@ -5861,7 +5861,7 @@
           "heading_text": "Closing",
           "topic_sentence": "The claim of MAGE is not that more governance produces better software.",
           "id_source": "derived",
-          "block_index": 156,
+          "block_index": 158,
           "points": []
         }
       ],
