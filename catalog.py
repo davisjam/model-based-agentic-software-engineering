@@ -3284,7 +3284,7 @@ LANDING_INTRO = """  <!-- ===================== HERO + BIG IDEA 1 ==============
     </div>
   </div>
 
-  {theory_glance}
+{theory_glance}
 
   <div class="big-ideas" id="concepts">
   {big_ideas}
