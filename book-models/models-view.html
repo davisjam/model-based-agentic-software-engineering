@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>45</b> chapters · <b>305</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>45</b> chapters · <b>308</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -839,39 +839,51 @@ that repays weeks on one subsystem repays far more across a fleet.</a></div>
 </div>
 <div class="chapter">
 <h3 id="ch-4-3-validating-change"><span class="tier-kick">Lesson</span><a href="../book/4.3-validating-change.html" class="ch-link">4.3-validating-change</a> <span class="ch-slug">4.3-validating-change</span></h3>
-<div class="section s2" id="sec-4-3-validating-change--one-move-three-specifications">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">One move, three specifications</a></div>
-<p class="topic">[ref:generative-family] lays the family out on one page.</p>
+<div class="section s2" id="sec-4-3-validating-change--what-does-it-mean-to-validate-a-change">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">What does it mean to validate a change?</a></div>
+<p class="topic">To validate a change is to assemble evidence that it satisfies its obligations — and to refuse it otherwise.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--the-move-a-generator-hunts-a-counterexample-to-a-model">
+<div class="section s2" id="sec-4-3-validating-change--validation-from-executable-models">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Validation from executable models</a></div>
+<p class="topic">Most tests reproduce a dot.</p>
+</div>
+<div class="section s3" id="sec-4-3-validating-change--the-move-a-generator-hunts-a-counterexample-to-a-model">
 <div class="sec-h"><a href="../book/4.3-validating-change.html">The move: a generator hunts a counterexample to a model</a></div>
 <p class="topic">Before the three members, the shared shape.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the one move behind property testing, fuzzing, and fuzz-MBSE: a generator hunting a counterexample to a stated model. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--property-based-testing-the-invariant-is-the-oracle">
+<div class="section s3" id="sec-4-3-validating-change--fuzz-mbse-the-structured-model-becomes-the-oracle">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Fuzz + MBSE: the structured model becomes the oracle</a></div>
+<p class="topic">The richest form of validation-from-a-model turns the model itself into the judge.</p>
+</div>
+<div class="section s2" id="sec-4-3-validating-change--validation-from-engineering-metrics">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Validation from engineering metrics</a></div>
+<p class="topic">A validator answers a yes/no obligation; a **metric** answers a question of degree, and degree is its own kind of evidence.</p>
+</div>
+<div class="section s2" id="sec-4-3-validating-change--deterministic-validators">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Deterministic validators</a></div>
+<p class="topic">Models expose intent and metrics measure degree; **validators** are the machine-read checks that consume both and return a verdict.</p>
+</div>
+<div class="section s3" id="sec-4-3-validating-change--property-based-testing-the-invariant-is-the-oracle">
 <div class="sec-h"><a href="../book/4.3-validating-change.html">Property-based testing: the invariant is the oracle</a></div>
 <p class="topic">In property-based testing the author writes the law and the machine hunts the counterexample.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--fuzzing-the-contract-is-never-crash-never-corrupt">
+<div class="section s3" id="sec-4-3-validating-change--fuzzing-the-contract-is-never-crash-never-corrupt">
 <div class="sec-h"><a href="../book/4.3-validating-change.html">Fuzzing: the contract is &quot;never crash, never corrupt&quot;</a></div>
 <p class="topic">Property testing asks a rich question of inputs drawn from an authored domain.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--fuzz-mbse-the-structured-model-becomes-the-oracle">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Fuzz + MBSE: the structured model becomes the oracle</a></div>
-<p class="topic">&quot;Fuzz + model&quot; is this book&#x27;s practical label for one point in a well-populated space: adversarial generation judged against a structured system model as oracle.</p>
-</div>
-<div class="section s2" id="sec-4-3-validating-change--coverage-did-we-explore-the-spec-relevant-space">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Coverage: did we explore the spec-relevant space?</a></div>
-<p class="topic">Once you have a generator, a new question appears that example tests never had to ask: *did the campaign explore the space that matters, or did it just spin?* The book already owns coverage — the [metrics chapter](3.5-metrics.html) develops it as a flagship, with the rule to measure one level deeper than the raw percentage — so this section adds only the one cut that is genuinely native to generation and hands the rest back.</p>
-</div>
-<div class="section s2" id="sec-4-3-validating-change--when-to-reach-for-which">
+<div class="section s3" id="sec-4-3-validating-change--when-to-reach-for-which">
 <div class="sec-h"><a href="../book/4.3-validating-change.html">When to reach for which</a></div>
 <p class="topic">The family gives a compact decision aid, and the axes of the opening table are the decision.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-evaluate">evaluate</span><span class="oc-text">After this section, the reader can choose which validation strategy to reach for by the specification it attacks. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--worked-examples">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Worked examples</a></div>
-<p class="topic">The three techniques are one move worn three ways: generate evidence built to falsify a claim, and admit only the claim that survives.</p>
+<div class="section s2" id="sec-4-3-validating-change--why-this-matters-in-the-agentic-era">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Why this matters in the agentic era</a></div>
+<p class="topic">Autonomous development does not change *what* engineering evidence is.</p>
+</div>
+<div class="section s2" id="sec-4-3-validating-change--industrial-example">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Industrial example</a></div>
+<p class="topic">The move is one a team can copy: generate evidence built to falsify a claim, and admit only the claim that survives.</p>
 </div>
 </div>
 <div class="chapter">
