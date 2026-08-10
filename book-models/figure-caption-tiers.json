@@ -523,11 +523,11 @@
       "location": "part4",
       "rationale": "construction-layer matrix lookup"
     },
-    "lessons-learned::Lessons learned, quotable": {
-      "tier": "B",
+    "failures::The lessons, quotable": {
+      "tier": "C",
       "kind": "summary-of-points",
-      "location": "part4",
-      "rationale": "lessons + moves"
+      "location": "part5",
+      "rationale": "the quotable lessons strip — aphorism + move per row (re-homed from the dissolved lessons-learned chapter into 5.6; keyed on the surviving 'failures' identity label)"
     },
     "the-ada-context::The burden shift": {
       "tier": "C",
@@ -546,6 +546,12 @@
       "kind": "data",
       "location": "part5",
       "rationale": "numstat measurement"
+    },
+    "the-timeline-and-the-work::The seven build stages and what each forced": {
+      "tier": "B",
+      "kind": "timeline-table",
+      "location": "part5",
+      "rationale": "the seven build stages — the chapter's spine; each row a pressure and what it forced into the product and the machinery"
     },
     "toward-a-theory-of-mage::The four dimensions of E": {
       "tier": "B",

@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1495,
+    "total_sites": 1494,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1067,
+      "book-web": 1066,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -169,11 +169,11 @@
           },
           {
             "file": "book/5.2-why-this-system-was-a-hard-case.html",
-            "occ": 18
+            "occ": 17
           },
           {
             "file": "book/5.3-the-timeline-and-the-work.html",
-            "occ": 15
+            "occ": 14
           },
           {
             "file": "book/5.4-the-built-system.html",
@@ -185,7 +185,7 @@
           },
           {
             "file": "book/5.6-governance-conversions.html",
-            "occ": 15
+            "occ": 20
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -457,7 +457,7 @@
           },
           {
             "file": "book/book-index.html",
-            "occ": 8
+            "occ": 9
           },
           {
             "file": "book/catalogue-figure.html",
@@ -1687,11 +1687,11 @@
           },
           {
             "file": "book/5.1-the-ada-context.html",
-            "occ": 14
+            "occ": 8
           },
           {
             "file": "book/5.2-why-this-system-was-a-hard-case.html",
-            "occ": 10
+            "occ": 9
           },
           {
             "file": "book/5.3-the-timeline-and-the-work.html",
@@ -1707,11 +1707,11 @@
           },
           {
             "file": "book/5.6-governance-conversions.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 73
+            "occ": 74
           },
           {
             "file": "book/6.2-scope-conditions.html",
@@ -2309,7 +2309,7 @@
           },
           {
             "file": "book/5.1-the-ada-context.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/5.2-why-this-system-was-a-hard-case.html",
@@ -3101,23 +3101,23 @@
           },
           {
             "file": "book/5.1-the-ada-context.html",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/5.2-why-this-system-was-a-hard-case.html",
-            "occ": 27
+            "occ": 26
           },
           {
             "file": "book/5.3-the-timeline-and-the-work.html",
-            "occ": 19
+            "occ": 17
           },
           {
             "file": "book/5.4-the-built-system.html",
-            "occ": 84
+            "occ": 85
           },
           {
             "file": "book/5.5-the-road-to-mage.html",
-            "occ": 48
+            "occ": 47
           },
           {
             "file": "book/5.6-governance-conversions.html",
@@ -4914,18 +4914,14 @@
       "book": {
         "book-web": [
           {
-            "file": "book/5.2-why-this-system-was-a-hard-case.html",
-            "occ": 1
-          },
-          {
             "file": "book/book-index.html",
-            "occ": 2
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 2
+            "occ": 1
           }
         ]
       }
@@ -5083,7 +5079,7 @@
           },
           {
             "file": "book/5.2-why-this-system-was-a-hard-case.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/5.3-the-timeline-and-the-work.html",
@@ -5617,7 +5613,7 @@
           },
           {
             "file": "book/5.3-the-timeline-and-the-work.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/5.4-the-built-system.html",
@@ -6283,7 +6279,7 @@
           },
           {
             "file": "book/5.6-governance-conversions.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",

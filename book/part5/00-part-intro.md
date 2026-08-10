@@ -22,4 +22,7 @@ environment grows out of practice rather than prescription.
 
 In Part IV the industrial organizations served as portability demonstrations: proof that the moves
 travel. Here the direction reverses. DocAble is not merely an example of MAGE — it is the deep
-originating case, the investigation from which MAGE was induced.
+originating case, the investigation from which MAGE was induced. The prolonged engagement with one
+system gave full process visibility: not just the mechanisms that worked, but the failures, the
+redesigns, and the reasoning that produced them — the evidence a finished retrospective of someone
+else's system cannot show.
