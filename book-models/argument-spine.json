@@ -9,7 +9,7 @@
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 1,
+    "zero_claim_suspects": 4,
     "over_cap_unfocused": 0,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
@@ -103,7 +103,7 @@
         "0.4-preface",
         "1.1-the-printer",
         "4.5-lessons-learned",
-        "6.6-conclusion"
+        "6.8-conclusion"
       ],
       "body_depth": 2,
       "front_loaded": false,
@@ -134,7 +134,7 @@
         "0.4-preface",
         "1.2-mage-by-example",
         "5.4-the-road-to-mage",
-        "6.2-implications-for-se"
+        "6.5-implications-for-se"
       ],
       "body_depth": 2,
       "front_loaded": false,
@@ -236,7 +236,7 @@
         "4.1-brownfield",
         "4.2-the-skills",
         "4.5-lessons-learned",
-        "6.2-implications-for-se"
+        "6.5-implications-for-se"
       ],
       "body_depth": 8,
       "front_loaded": false,
@@ -462,9 +462,9 @@
         "0.4-preface",
         "2.11-the-scope-of-modeling",
         "4.4-training-data",
-        "6.2-implications-for-se",
-        "6.3-a-new-empirical-regime",
-        "6.6-conclusion"
+        "6.5-implications-for-se",
+        "6.7-open-problems",
+        "6.8-conclusion"
       ],
       "body_depth": 5,
       "front_loaded": false,
@@ -495,8 +495,8 @@
         "1.5-the-engineers-seat",
         "4.5-lessons-learned",
         "5.4-the-road-to-mage",
-        "6.2-implications-for-se",
-        "6.6-conclusion"
+        "6.5-implications-for-se",
+        "6.8-conclusion"
       ],
       "body_depth": 4,
       "front_loaded": false,
@@ -531,8 +531,8 @@
         "5.2-the-timeline-and-the-work",
         "5.3-the-built-system",
         "5.4-the-road-to-mage",
-        "6.3-a-new-empirical-regime",
-        "limitations"
+        "6.2-scope-conditions",
+        "6.7-open-problems"
       ],
       "body_depth": 6,
       "front_loaded": false,
@@ -565,8 +565,8 @@
       "statement_hash": "3d5cdcd1963c",
       "advanced_by": [
         "6.1-toward-a-theory-of-mage",
-        "6.2-implications-for-se",
-        "6.6-conclusion"
+        "6.5-implications-for-se",
+        "6.8-conclusion"
       ],
       "body_depth": 3,
       "front_loaded": false,
@@ -867,6 +867,11 @@
       "exempt": null
     },
     {
+      "slug": "5.5-failures",
+      "advances": [],
+      "exempt": null
+    },
+    {
       "slug": "6.1-toward-a-theory-of-mage",
       "advances": [
         "conversions-compound"
@@ -874,7 +879,24 @@
       "exempt": null
     },
     {
-      "slug": "6.2-implications-for-se",
+      "slug": "6.2-scope-conditions",
+      "advances": [
+        "grounded-in-one-case"
+      ],
+      "exempt": "discussion"
+    },
+    {
+      "slug": "6.3-relationship-to-se",
+      "advances": [],
+      "exempt": null
+    },
+    {
+      "slug": "6.4-engineering-beyond-software",
+      "advances": [],
+      "exempt": null
+    },
+    {
+      "slug": "6.5-implications-for-se",
       "advances": [
         "oversight-does-not-scale",
         "govern-the-environment",
@@ -885,7 +907,12 @@
       "exempt": "discussion"
     },
     {
-      "slug": "6.3-a-new-empirical-regime",
+      "slug": "6.6-where-mage-fits",
+      "advances": [],
+      "exempt": "discussion"
+    },
+    {
+      "slug": "6.7-open-problems",
       "advances": [
         "grounded-in-one-case",
         "mage-becomes-practical"
@@ -893,12 +920,7 @@
       "exempt": "discussion"
     },
     {
-      "slug": "6.5-where-mage-fits",
-      "advances": [],
-      "exempt": "discussion"
-    },
-    {
-      "slug": "6.6-conclusion",
+      "slug": "6.8-conclusion",
       "advances": [
         "fault-lies-in-instructions",
         "mage-becomes-practical",
@@ -916,17 +938,22 @@
       "slug": "acknowledgments",
       "advances": [],
       "exempt": "apparatus"
-    },
-    {
-      "slug": "limitations",
-      "advances": [
-        "grounded-in-one-case"
-      ],
-      "exempt": "discussion"
     }
   ],
   "flags": {
     "zero_claim_suspects": [
+      {
+        "chapter": "5.5-failures",
+        "advances": 0
+      },
+      {
+        "chapter": "6.3-relationship-to-se",
+        "advances": 0
+      },
+      {
+        "chapter": "6.4-engineering-beyond-software",
+        "advances": 0
+      },
       {
         "chapter": "7.2-colophon",
         "advances": 0
@@ -950,7 +977,7 @@
           "4.1-brownfield",
           "4.2-the-skills",
           "4.5-lessons-learned",
-          "6.2-implications-for-se"
+          "6.5-implications-for-se"
         ]
       },
       {

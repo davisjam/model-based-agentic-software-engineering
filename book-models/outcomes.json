@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 21,
     "elaborative_links": 28,
     "units_serving_as_elaborative": 20,
-    "sections_total": 285,
+    "sections_total": 295,
     "sections_primary_of_an_outcome": 42,
     "modules": 7,
-    "lessons": 40
+    "lessons": 43
   },
   "taxonomy": {
     "know": [
@@ -403,22 +403,37 @@
             "section_outcomes": []
           },
           {
-            "lesson": "6.2-implications-for-se",
+            "lesson": "6.2-scope-conditions",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.3-a-new-empirical-regime",
+            "lesson": "6.3-relationship-to-se",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.5-where-mage-fits",
+            "lesson": "6.4-engineering-beyond-software",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.6-conclusion",
+            "lesson": "6.5-implications-for-se",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "6.6-where-mage-fits",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "6.7-open-problems",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "6.8-conclusion",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -572,19 +587,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "a-new-empirical-regime::evaluate-why-studying-a-governed-environment-dema",
-      "granularity": "chapter",
-      "primary_unit": "a-new-empirical-regime",
-      "secondary_units": [],
-      "verb": "evaluate",
-      "obj": "why studying a governed environment demands a new empirical regime — fallible oracles, the limits of per-task ablation, deep single-case evidence, and a fixed intelligence input",
-      "statement": "After this chapter, the reader can evaluate why a governed environment demands a new empirical regime: the oracle is itself fallible, per-task ablation cannot price the environment, deep single-case evidence is a legitimate method, and the intelligence input must be held fixed to measure what the environment does.",
-      "bloom": "evaluate",
-      "provenance": "declared",
-      "anchor": "Section titles 'governing-the-oracle-...', 'the-beautiful-garden-...', 'the-methodology-of-deep-single-case-evidence', 'the-new-measurement-regime'.",
-      "gap_note": null
-    },
-    {
       "outcome_id": "brownfield::apply-three-approaches-to-inducing-a-model-fro",
       "granularity": "chapter",
       "primary_unit": "brownfield",
@@ -717,6 +719,19 @@
       "bloom": "understand",
       "provenance": "derived",
       "anchor": "point: the-apex-of-the-hierarchy-is-a-typed-model-that-binds-the-islands / a-drift-gate-proves-agreement-not-that-either-side-is-right / a-mirror-model-reflects-the-code-only-a-spec-authored-from-intent-catches-a-wrong-is",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "open-problems::evaluate-why-studying-a-governed-environment-dema",
+      "granularity": "chapter",
+      "primary_unit": "open-problems",
+      "secondary_units": [],
+      "verb": "evaluate",
+      "obj": "why studying a governed environment demands a new empirical regime — fallible oracles, the limits of per-task ablation, deep single-case evidence, and a fixed intelligence input",
+      "statement": "After this chapter, the reader can evaluate why a governed environment demands a new empirical regime: the oracle is itself fallible, per-task ablation cannot price the environment, deep single-case evidence is a legitimate method, and the intelligence input must be held fixed to measure what the environment does.",
+      "bloom": "evaluate",
+      "provenance": "declared",
+      "anchor": "Section titles 'governing-the-oracle-...', 'the-beautiful-garden-...', 'the-methodology-of-deep-single-case-evidence', 'the-new-measurement-regime'.",
       "gap_note": null
     },
     {

@@ -626,14 +626,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Part 6 — The Profession</li>
 <li><a class="" href="part-6-intro.html">The Profession</a></li>
 <li><a class="" href="6.1-toward-a-theory-of-mage.html">36&nbsp; Toward a Theory of MAGE</a></li>
-<li><a class="" href="6.2-implications-for-se.html">37&nbsp; What Changes in Software Engineering</a></li>
-<li><a class="" href="6.3-a-new-empirical-regime.html">38&nbsp; A New Empirical Regime</a></li>
-<li><a class="" href="6.4-limitations.html">39&nbsp; Limitations</a></li>
-<li><a class="" href="6.5-where-mage-fits.html">40&nbsp; Where MAGE Fits</a></li>
-<li><a class="" href="6.6-conclusion.html">41&nbsp; Conclusion</a></li>
-<li><a class="" href="6.7-scope-conditions.html">42&nbsp; Scope Conditions</a></li>
-<li><a class="" href="6.8-engineering-beyond-software.html">43&nbsp; Engineering Beyond Software</a></li>
-<li><a class="" href="6.9-open-problems.html">44&nbsp; Open Problems</a></li>
+<li><a class="" href="6.2-scope-conditions.html">37&nbsp; Scope Conditions</a></li>
+<li><a class="" href="6.3-relationship-to-se.html">38&nbsp; Relationship to Software Engineering</a></li>
+<li><a class="" href="6.4-engineering-beyond-software.html">39&nbsp; Engineering Beyond Software</a></li>
+<li><a class="" href="6.5-implications-for-se.html">40&nbsp; The New Profession</a></li>
+<li><a class="" href="6.6-where-mage-fits.html">41&nbsp; MAGE in the Wild</a></li>
+<li><a class="" href="6.7-open-problems.html">42&nbsp; Open Problems</a></li>
+<li><a class="" href="6.8-conclusion.html">43&nbsp; Conclusion</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
 <li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
@@ -712,7 +711,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <blockquote id="idx-def-compounding" class="aside-sidenote def-inset"><p><strong>Compounding.</strong> The positive dual of Churn. As recurring engineering judgment is converted into durable mechanisms, effort accrues as <em>engineering capital</em> instead of being re-spent, and the environment grows more capable of absorbing change — for as long as that capital stays fit. Read it as compound <em>interest</em>: the return on judgment already spent. Not the <em>compounding failure probability</em> of Part 4, which names risk multiplying across a long leap — same word, opposite sign; the capital vehicle fixes the valence.</p></blockquote>
 <p><strong>Engineering capital.</strong> <em>Judgment that compounds.</em> The stock Compounding accrues: coherent, economical, quality-bearing governance that lowers the recurring cost of change. Bureaucracy is its shadow — accumulation that adds friction without reducing future reasoning, so it never compounds; capital also depreciates once it outlives its fit, which is why mature adaptation retires and reconciles as well as adds.</p>
 <p><strong><a class="gloss-site" href="1.1-the-printer.html#idx-def-printer-metaphor">The Printer.</a></strong> The book's governing metaphor: treat a coding agent as a 3D printer, not a coder — it builds almost anything you describe, and only what you describe. A bad build is evidence about the instructions, not a limit in the machine.</p>
-<p><strong><a class="gloss-site" href="6.6-conclusion.html#idx-def-judgment-is-the-scarce-resource">Judgment is the scarce resource.</a></strong> The book in one sentence: agents make implementation cheap, so the expensive part becomes judgment — what to build, what "correct" means here, which failures deserve a wall and which a note. Those calls stay human. The discipline that pays converts each one into infrastructure, encoding a decision once so no agent has to make it again.</p>
+<p><strong><a class="gloss-site" href="6.8-conclusion.html#idx-def-judgment-is-the-scarce-resource">Judgment is the scarce resource.</a></strong> The book in one sentence: agents make implementation cheap, so the expensive part becomes judgment — what to build, what "correct" means here, which failures deserve a wall and which a note. Those calls stay human. The discipline that pays converts each one into infrastructure, encoding a decision once so no agent has to make it again.</p>
 <p><strong>Middle-range theory.</strong> After Merton: not a universal law, not raw description, but a mechanism bounded by stated scope conditions. It names the register of this book's claims — a theory drawn from one deep case, transferable wherever its conditions hold, never a coefficient asserted over all software.</p>
 <h2>How coding agents work (and fail)</h2>
 <p>What a fleet of coding agents is, and the ways it comes apart.</p>
@@ -747,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong><a class="gloss-site" href="3.1-the-agent-stack.html#idx-def-structured">Structured (model).</a></strong> Said of a model written in an explicit, declared shape a machine can read and validate — a schema, not prose — so a build can check the system against it for drift.</p>
 <p><strong><a class="gloss-site" href="2.3-the-executable-zoo.html#idx-def-executable-source-of-truth">Executable source-of-truth.</a></strong> An architecture that binds a model and the code that must agree with it tightly enough that a drift gate can block the build the moment they diverge.</p>
 <p><strong><a class="gloss-site" href="2.3-the-executable-zoo.html#idx-def-traceability">Traceability.</a></strong> The round-trip join between a model and the code it governs: every model node maps to the code it constrains, and back.</p>
-<p><strong><a class="gloss-site" href="6.5-where-mage-fits.html#idx-def-pattern">Pattern.</a></strong> Following the classic design-pattern form — name, recurring problem, solution shape, consequences, known uses — the book writes each governance mechanism as a pattern, so an engineer can reach for a vetted answer instead of re-deriving one.</p>
+<p><strong>Pattern.</strong> Following the classic design-pattern form — name, recurring problem, solution shape, consequences, known uses — the book writes each governance mechanism as a pattern, so an engineer can reach for a vetted answer instead of re-deriving one.</p>
 <p><strong><a class="gloss-site" href="2.3-the-executable-zoo.html#idx-def-model-zoo">The Model Zoo.</a></strong> Part 2's tour of the 4+1 architectural views — logical, process, development, physical, scenarios — as executable, drift-gated models, each walked on the real DocAble codebase.</p>
 <h2>DocAble specifics</h2>
 <p>Two mechanisms from the book's running example, DocAble.</p>

@@ -131,7 +131,7 @@
       "x": "A passing test suite has stood in for requirement satisfaction; automated repair long showed patches overfit the visible suite (Smith et al.).",
       "y": "The frontier now governs the oracle itself — OpenAI retiring SWE-Bench Verified (59.4% flawed test cases), decontaminated and live successors (Scale AI's SWE-Bench Pro at ~23%; the SWE-Bench Illusion 76%->53% memorization signature; SWE-bench-Live), and evidence that agent-authored tests are over-mocked or implementation-coupled (Hora & Robbes; the oracle study).",
       "z": "MAGE treats the suite as a fallible model that must be governed: completion is re-derived from the artifact and multiple evidence sources, not read off a green bar.",
-      "target_locations": ["a-new-empirical-regime"],
+      "target_locations": ["open-problems"],
       "citations": [
         {"key": "openai2026swebench", "backs_claims": ["alignment-thesis"], "relation": "substantiates"},
         {"key": "scaleai2025swebenchpro", "backs_claims": ["alignment-thesis"], "relation": "substantiates"},
@@ -171,7 +171,7 @@
       "x": "The single-case field report is a recognized method — case-study guidelines and mechanism-based process-tracing generalization (Runeson & Höst; Beach & Pedersen).",
       "y": "Practitioner build-reports now document large agentic builds (Cloudflare vinext, ~1 week / 1 engineer / ~$1,100; Anthropic's C compiler — 16 agents, a ~100K-line Rust compiler building Linux 6.9 on x86/ARM/RISC-V; Anthropic/Bun's million-line Zig->Rust migration) and a governable-agentic case study (Davis et al., Cheap Code, Costly Judgment).",
       "z": "MAGE grounds its method in one deep case (DocAble), motivating hypotheses for broader use — a field report, never a proof.",
-      "target_locations": ["a-new-empirical-regime"],
+      "target_locations": ["open-problems"],
       "citations": [
         {"key": "davis2026cheapcode", "backs_claims": ["grounded-in-one-case"], "relation": "substantiates"},
         {"key": "runeson2009guidelines", "backs_claims": ["grounded-in-one-case"], "relation": "situates"},
@@ -208,7 +208,7 @@
       "x": "Empirical software engineering has long tried to measure process interventions whose effects were small beside the variation among developers — skill, context, and intelligence swamped the signal.",
       "y": "GenAI commoditizes the intelligence input: a ~400-study systematic review maps the field's effort, a three-firm field experiment across 4,867 developers measures a 26% rise in completed tasks, and the canonical single-task RCT clocks a 55.8% speedup — with honest complications where experienced developers in familiar repositories slow down.",
       "z": "MAGE proposes to hold the intelligence confound fixed and vary the environment, representations, and governance — a measurement regime whose effects are large and reproducible enough to build cumulative theory on.",
-      "target_locations": ["a-new-empirical-regime"],
+      "target_locations": ["open-problems"],
       "citations": [
         {"key": "hou2024llm4se", "backs_claims": ["empirical-se-signal-to-noise"], "relation": "situates"},
         {"key": "cui2025genai", "backs_claims": ["empirical-se-signal-to-noise"], "relation": "substantiates"},

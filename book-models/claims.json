@@ -153,9 +153,9 @@
         "maintenance — model and code equal under drift gates",
         "authoring direction — model→code or code→model as the rule"
       ],
-      "home": "the-modeling-tradition-model-driven-software-engineering",
+      "home": "relationship-to-se",
       "asserted_at": [
-        "the-modeling-tradition-model-driven-software-engineering",
+        "relationship-to-se",
         "state-the-derivation-direction"
       ],
       "contradicted_by": "Prose stating MAGE prescribes model→code (or code→model) as its own authoring direction — the drift the 3.1 scope-box fix corrected.",
@@ -174,9 +174,9 @@
       "kind": "causal",
       "statement": "A model earns its keep twice: it solves the agent's context problem and it holds quality.",
       "distinguishes": [],
-      "home": "the-modeling-tradition-model-driven-software-engineering",
+      "home": "relationship-to-se",
       "asserted_at": [
-        "the-modeling-tradition-model-driven-software-engineering",
+        "relationship-to-se",
         "models-and-the-semantic-gap",
         "the-executable-zoo"
       ],
@@ -261,9 +261,9 @@
       "kind": "stance",
       "statement": "Engineering discipline must be mechanized, not remembered: push it into tooling so correctness never depends on recall.",
       "distinguishes": [],
-      "home": "mechanizing-discipline-software-engineering-at-google",
+      "home": "relationship-to-se",
       "asserted_at": [
-        "mechanizing-discipline-software-engineering-at-google"
+        "relationship-to-se"
       ],
       "contradicted_by": "Relying on an agent or human remembering, or being careful, as the enforcement.",
       "watch_phrases": [],
@@ -411,15 +411,15 @@
       "kind": "caveat",
       "statement": "This is a single-case field report; its numbers are observations from one system, not measured laws.",
       "distinguishes": [],
-      "home": "limitations",
+      "home": "scope-conditions",
       "asserted_at": [
-        "limitations"
+        "scope-conditions"
       ],
       "contradicted_by": "Stating a number as a general or measured law across systems.",
       "watch_phrases": [],
       "relates_to": [],
       "provenance": "stated",
-      "anchor": "6.0 limitations: a single-case field report; the numbers are observations from one system, not measured laws — the contribution is mechanism.",
+      "anchor": "scope conditions: a single-case field report; the numbers are observations from one system, not measured laws — the contribution is mechanism.",
       "word_count": 16
     },
     {
@@ -455,7 +455,7 @@
       "home": "derive-and-join-do-not-repeat",
       "asserted_at": [
         "derive-and-join-do-not-repeat",
-        "the-modeling-tradition-model-driven-software-engineering"
+        "relationship-to-se"
       ],
       "contradicted_by": "Endorsing a model kept as a separate hand-updated artifact (a second source), or asserting one fixed derivation direction as the rule.",
       "watch_phrases": [],

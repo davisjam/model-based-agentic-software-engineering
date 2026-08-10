@@ -207,16 +207,25 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 6.1-toward-a-theory-of-mage
 
 
-### Lesson 6.2-implications-for-se
+### Lesson 6.2-scope-conditions
 
 
-### Lesson 6.3-a-new-empirical-regime
+### Lesson 6.3-relationship-to-se
 
 
-### Lesson 6.5-where-mage-fits
+### Lesson 6.4-engineering-beyond-software
 
 
-### Lesson 6.6-conclusion
+### Lesson 6.5-implications-for-se
+
+
+### Lesson 6.6-where-mage-fits
+
+
+### Lesson 6.7-open-problems
+
+
+### Lesson 6.8-conclusion
 
 
 ## Module 7 — Part 7

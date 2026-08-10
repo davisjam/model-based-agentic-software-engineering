@@ -153,8 +153,8 @@
     "the-scope-of-modeling": "end-of-part-synthesis",
     "lessons-learned": "discussion",
     "implications-for-se": "discussion",
-    "a-new-empirical-regime": "discussion",
-    "limitations": "discussion",
+    "open-problems": "discussion",
+    "scope-conditions": "discussion",
     "where-mage-fits": "discussion",
     "conclusion": "conclusion"
   },
@@ -197,8 +197,8 @@
     "the-road-to-mage": ["oversight-does-not-scale", "seat-moves", "grounded-in-one-case"],
     "toward-a-theory-of-mage": ["conversions-compound"],
     "implications-for-se": ["oversight-does-not-scale", "govern-the-environment", "mage-becomes-practical", "seat-moves", "conversions-compound"],
-    "a-new-empirical-regime": ["grounded-in-one-case", "mage-becomes-practical"],
-    "limitations": ["grounded-in-one-case"],
+    "open-problems": ["grounded-in-one-case", "mage-becomes-practical"],
+    "scope-conditions": ["grounded-in-one-case"],
     "where-mage-fits": [],
     "conclusion": ["fault-lies-in-instructions", "mage-becomes-practical", "seat-moves", "conversions-compound"]
   }
