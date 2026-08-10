@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>45</b> chapters · <b>304</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>45</b> chapters · <b>305</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -778,6 +778,10 @@
 <p class="topic">Name the starting point and both destinations before you move.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can name the starting point and both destinations before you move. <span class="prov">derived</span></span></li></ul></div>
 </div>
+<div class="section s2" id="sec-4-2-brownfield--migration-strategies-the-moves-both-doors-share">
+<div class="sec-h"><a href="../book/4.2-brownfield.html">Migration strategies: the moves both doors share</a></div>
+<p class="topic">Whichever door you came through, the migration runs on a small set of organizational strategies.</p>
+</div>
 <div class="section s2" id="sec-4-2-brownfield--approach-one-top-down-from-a-whiteboard">
 <div class="sec-h"><a href="../book/4.2-brownfield.html">Approach one: top-down, from a whiteboard</a></div>
 <p class="topic">Start coarse and refine.</p>
@@ -814,12 +818,18 @@
 <div class="sec-h"><a href="../book/4.2-brownfield.html">How much governance is enough</a></div>
 <p class="topic">Which raises the real question: how much governance is enough?</p>
 </div>
-<div class="section s3" id="sec-4-2-brownfield--example-spotify-spotify-runs-the-move-at-fleet-scale-it-admits-work-only-on-independently-generated-evidence-a-change-flows-through-a-restricted-interface-into-a-merge-gate-fed-by-static-linters-a-semantic-reviewer-and-the-estate-s-tests-so-done-is-the-verifiers-verdict-not-the-agent-s-report-the-gate-is-the-move-the-fleet-wide-substrate-it-sits-in-is-where-the-path-leads">
+<div class="section s3" id="sec-4-2-brownfield--example-spotify-migration-at-fleet-scale-stays-incremental-you-target-a-change-schedule-it-across-the-estate-drain-it-and-keep-a-human-on-the-exceptions-spotify-is-the-evidence-it-holds-at-organizational-size-a-fleet-wide-migration-that-once-drew-in-hundreds-of-teams-and-ran-for-weeks-is-now-scoped-by-one-engineer-over-a-few-days-the-tooling-targeting-and-scheduling-the-work-while-agents-implement-it-concurrently-and-the-engineer-watches-the-fleet-and-handles-the-exceptions-rather-than-typing-each-change-cite-spotify2026honk-what-to-imitate-is-the-placement-not-the-tool-put-the-scarce-human-decision-upstream-what-where-when-whether-and-let-the-environment-carry-the-change-onward-the-same-move-the-strategies-above-run-at-a-single-subsystem-grain-the-takeaway-is-that-scale-does-not-undo-the-incremental-discipline-it-raises-the-payoff-so-the-move-that-repays-weeks-on-one-subsystem-repays-far-more-across-a-fleet">
 <div class="sec-h"><a href="../book/4.2-brownfield.html">Example — Spotify
-Spotify runs the move at fleet scale: it admits work only on independently generated evidence — a
-change flows through a restricted interface into a merge gate fed by static linters, a semantic
-reviewer, and the estate&#x27;s tests, so &quot;done&quot; is the verifiers&#x27; verdict, not the agent&#x27;s report. The
-gate is the move; the fleet-wide substrate it sits in is where the path leads.</a></div>
+Migration at fleet scale stays incremental: you target a change, schedule it across the estate,
+drain it, and keep a human on the exceptions. Spotify is the evidence it holds at organizational
+size — a fleet-wide migration that once drew in hundreds of teams and ran for weeks is now scoped
+by one engineer over a few days, the tooling targeting and scheduling the work while agents
+implement it concurrently and the engineer watches the fleet and handles the exceptions rather
+than typing each change [cite:spotify2026honk]. What to imitate is the placement, not the tool:
+put the scarce human decision upstream — *what, where, when, whether* — and let the environment
+carry the change onward, the same move the strategies above run at a single-subsystem grain. The
+takeaway is that scale does not undo the incremental discipline; it raises the payoff, so the move
+that repays weeks on one subsystem repays far more across a fleet.</a></div>
 <p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
 </div>
 <div class="section s2" id="sec-4-2-brownfield--field-note-the-docable-retrofit-month">
