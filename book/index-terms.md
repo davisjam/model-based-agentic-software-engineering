@@ -380,7 +380,7 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: silver-bullet | local
 - term: sysml | local
 - term: discrete-software | local
-- term: projection | local
+- term: projection | section
 - term: lens | local
 - term: c4 | local
 - term: trunk | local
@@ -482,6 +482,8 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: specialist-crew | section
 - term: reflective-codebase | local
 - term: assurance-criticality | local
+- term: determinization | section
+- term: independent-evidence | section
 
 ## Notes
 - Terms marked `[verify …]` need a presence check against the final chapter text before shipping.
