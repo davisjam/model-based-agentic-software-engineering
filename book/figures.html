@@ -993,93 +993,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- takeaway caption -->
   <text x="420" y="588" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Each pass leaves the environment more capable than the one before.</text>
-</svg><figcaption data-short="The MAGE cycle"><span class="fig-label">Figure 0.4-2.</span> <em>The MAGE cycle.</em> The method is a loop, not a line. MODEL the intent — externalize the world the intelligence must reason about. ALIGN it — give that intent authority the environment enforces. WORK — let the governed fleet build at speed. CONVERT — read each recurring failure as a missing mechanism and bank it as engineering capital. Then repeat: each pass leaves the environment more capable than the one before. The three prose beats — model, align, convert — are the loop's stations; the governed work runs between align and convert.</figcaption></figure><p class="gallery-source">From <a href="0.4-preface.html#fig-0-4-2">Preface</a></p></section><hr><section class="gallery-item"><figure id="fig-0-4-3-fig-0-4-3" class="book-figure" data-label="oversight-modes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 820"
-     role="group" aria-labelledby="fig-0-4-3-omTitle fig-0-4-3-omDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-0-4-3-omTitle">Three process models for agentic software engineering</title>
-  <desc id="fig-0-4-3-omDesc">Three panels arranged as a triangle. The two poles sit on top:
-    velocity-centric at top-left — a human sets a goal, then a ring of role-labeled agents —
-    planner, developer, tester, reviewer, security, deploy — passes work around a cycle, with
-    insufficient quality control; and oversight-centric at top-right — a human and a single
-    agent exchange a prompt and an output in a round trip, so human attention gates every step
-    of progress. Governance-centric sits centered beneath them as the synthesis: a human hands
-    policies into a governed engineering environment that contains the agent, so known
-    obligations become controls before the agent works. The book takes the third stance.</desc>
-
-  <defs>
-    <marker id="fig-0-4-3-omArrow" markerWidth="8" markerHeight="8" refX="6.5" refY="3"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L7,3 L0,6 Z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- faint synthesis connectors: from the two top corners down to the governance panel -->
-  <g fill="none" stroke="#e4e0d8" stroke-width="2" stroke-dasharray="5,7">
-    <path d="M295,470 C360,545 470,560 560,590"/>
-    <path d="M885,470 C820,545 710,560 620,590"/>
-  </g>
-
-  <!-- ============ (a) Velocity-centric: role ring (top-left) ============ -->
-  <text x="295" y="46" text-anchor="middle" font-size="28.32" font-weight="700" fill="#1c1917">(a) Velocity-centric</text>
-  <g font-size="28" fill="#1c1917" text-anchor="middle">
-    <text x="295" y="112" font-weight="700">Human</text>
-    <text x="295" y="144" font-size="22" font-style="italic" fill="#57534e">goal ↓</text>
-
-    <!-- six roles around a cycle -->
-    <text x="295" y="196">Planner</text>
-    <text x="411" y="256">Developer</text>
-    <text x="411" y="336">Tester</text>
-    <text x="295" y="396">Reviewer</text>
-    <text x="179" y="336">Security</text>
-    <text x="179" y="256">Deploy</text>
-
-    <!-- cycle arrows (clockwise) -->
-    <g fill="none" stroke="#1c1917" stroke-width="1.5" marker-end="url(#fig-0-4-3-omArrow)">
-      <path d="M345,202 C383,214 403,232 406,236"/>
-      <path d="M431,276 C437,296 437,306 435,311"/>
-      <path d="M413,350 C403,366 383,384 359,391"/>
-      <path d="M243,398 C207,388 187,370 183,363"/>
-      <path d="M161,322 C155,306 155,290 156,287"/>
-      <path d="M177,246 C187,232 207,214 234,206"/>
-    </g>
-  </g>
-  <text x="295" y="446" text-anchor="middle" font-size="24" font-style="italic" fill="#b23b3b">Insufficient quality control</text>
-
-  <!-- ============ (b) Oversight-centric: round trip (top-right) ============ -->
-  <text x="885" y="46" text-anchor="middle" font-size="28.32" font-weight="700" fill="#1c1917">(b) Oversight-centric</text>
-  <g font-size="28" fill="#1c1917">
-    <text x="753" y="266" text-anchor="middle" font-weight="700">Human</text>
-    <text x="1017" y="258" text-anchor="middle">Agent:</text>
-    <text x="1017" y="290" text-anchor="middle" font-size="22" fill="#57534e">bounded work</text>
-
-    <g fill="none" stroke="#1c1917" stroke-width="1.5" marker-end="url(#fig-0-4-3-omArrow)">
-      <path d="M811,240 C871,206 899,206 959,240"/>
-      <path d="M959,282 C899,316 871,316 811,282"/>
-    </g>
-    <text x="885" y="196" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">prompt</text>
-    <text x="885" y="348" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">output</text>
-  </g>
-  <text x="885" y="446" text-anchor="middle" font-size="24" font-style="italic" fill="#57534e">Human attention gates progress</text>
-
-  <!-- ============ (c) Governance-centric: env box (bottom-center, the synthesis) ============ -->
-  <text x="590" y="606" text-anchor="middle" font-size="28.32" font-weight="700" fill="#1c1917">(c) Governance-centric</text>
-  <g font-size="28" fill="#1c1917">
-    <text x="452" y="674" text-anchor="middle" font-weight="700">Human</text>
-
-    <rect x="518" y="638" width="272" height="150" rx="8" fill="none" stroke="#2f5169" stroke-width="2"/>
-    <text x="654" y="670" text-anchor="middle" font-size="24" fill="#2f5169">Governed</text>
-    <text x="654" y="696" text-anchor="middle" font-size="24" fill="#2f5169">engineering</text>
-    <text x="654" y="720" text-anchor="middle" font-size="24" fill="#2f5169">environment</text>
-    <rect x="584" y="726" width="140" height="46" rx="4" fill="none" stroke="#1c1917" stroke-width="1.4"/>
-    <text x="654" y="756" text-anchor="middle" font-size="24">Agent</text>
-
-    <g fill="none" stroke="#1c1917" stroke-width="1.5" marker-end="url(#fig-0-4-3-omArrow)">
-      <path d="M452,686 L452,738 L512,738"/>
-    </g>
-    <text x="460" y="770" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">policies</text>
-  </g>
-  <text x="590" y="806" text-anchor="middle" font-size="24" font-style="italic" fill="#2f5169">Known policies become controls</text>
-</svg><figcaption data-short="Three process models for agentic software engineering"><span class="fig-label">Figure 0.4-3.</span> Three process models for agentic software engineering. Velocity-centric rings job titles around the work — planner, developer, tester, reviewer — while the quality mechanism stays implicit, and implicit quality does not survive volume. Oversight-centric straddles a human over each bounded piece of work; it is honest about the failure mode, but human attention does not scale with the fleet, so the reviewer becomes the bottleneck. Governance-centric is the synthesis and the book's choice: agents work fast inside mechanisms the environment enforces, set up once, so reliability becomes a property of the ground they stand on rather than a toll paid per change. The first two are the two ends of one dial; governance steps off the dial entirely.</figcaption></figure><p class="gallery-source">From <a href="0.4-preface.html#fig-0-4-3">Preface</a></p></section><hr><section class="gallery-item"><figure id="fig-0-5-1-fig-0-5-1" class="book-figure" data-label="book-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 850"
+</svg><figcaption data-short="The MAGE cycle"><span class="fig-label">Figure 0.4-2.</span> <em>The MAGE cycle.</em> The method is a loop, not a line. MODEL the intent — externalize the world the intelligence must reason about. ALIGN it — give that intent authority the environment enforces. WORK — let the governed fleet build at speed. CONVERT — read each recurring failure as a missing mechanism and bank it as engineering capital. Then repeat: each pass leaves the environment more capable than the one before. The three prose beats — model, align, convert — are the loop's stations; the governed work runs between align and convert.</figcaption></figure><p class="gallery-source">From <a href="0.4-preface.html#fig-0-4-2">Preface</a></p></section><hr><section class="gallery-item"><figure id="fig-0-5-1-fig-0-5-1" class="book-figure" data-label="book-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 850"
      role="group" aria-labelledby="fig-0-5-1-bmTitle fig-0-5-1-bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-0-5-1-bmTitle">A map of the book — a single linear descent through six parts</title>
@@ -7015,11 +6929,97 @@ z
   <rect x="225" y="930" width="470" height="92" rx="9" fill="#f6f4ef" stroke="#1f7a4d" stroke-width="3.2"/>
   <text x="460" y="965" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Trustworthy software</text>
   <text x="460" y="990" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">the discipline lives in the environment</text>
-</svg><figcaption data-short="the MAGE argument as one top-to-bottom causal spine"><span class="fig-label">Figure 6.1-9.</span> <em>The MAGE argument as one causal spine.</em> Read top to bottom. Cheap implementation (Part 1) makes long-horizon reasoning the binding limit, not coding speed. Two theses answer that limit as causally linked: the Modeling Thesis gives the fleet models to reason through, and the Alignment Thesis keeps each model equal to the code (Parts 2–3). Together they stand up the Governed Engineering Environment <em>E</em> — the models, controls, and query surface. Governance Conversion grows that environment, turning each failure class into a mechanism (Part 5); conversion banks Engineering capital, which compounds; and the payoff is trustworthy software, because the discipline lives in the environment, not the code (Part 6).</figcaption></figure><p class="gallery-source">From <a href="6.1-toward-a-theory-of-mage.html#fig-6-1-9">36 · Toward a Theory of MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-6-5-1-fig-6-5-1" class="book-figure" data-label="soft-hard-spectrum"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" role="group" aria-labelledby="fig-6-5-1-frbTitle fig-6-5-1-frbDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-6-5-1-frbTitle">Governance runs soft to hard: a compact spectrum of mechanism classes.</title>
-  <desc id="fig-6-5-1-frbDesc">A horizontal spectrum runs from soft governance on the left to hard governance on the right. Soft, probabilistic mechanisms that aim an agent sit on the left: conventions, briefs, templates, prose conventions, and a reviewing agent. Judgment-laden doc-derived tests sit in the middle. Deterministic mechanisms that hold the line sit on the right: lints, types, schemas, and quality, drift, or deploy gates, together with a marker file the tool reads. Soft aims the agent; hard holds the line; a mature environment uses both.</desc>
+</svg><figcaption data-short="the MAGE argument as one top-to-bottom causal spine"><span class="fig-label">Figure 6.1-9.</span> <em>The MAGE argument as one causal spine.</em> Read top to bottom. Cheap implementation (Part 1) makes long-horizon reasoning the binding limit, not coding speed. Two theses answer that limit as causally linked: the Modeling Thesis gives the fleet models to reason through, and the Alignment Thesis keeps each model equal to the code (Parts 2–3). Together they stand up the Governed Engineering Environment <em>E</em> — the models, controls, and query surface. Governance Conversion grows that environment, turning each failure class into a mechanism (Part 5); conversion banks Engineering capital, which compounds; and the payoff is trustworthy software, because the discipline lives in the environment, not the code (Part 6).</figcaption></figure><p class="gallery-source">From <a href="6.1-toward-a-theory-of-mage.html#fig-6-1-9">36 · Toward a Theory of MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-6-5-1-fig-6-5-1" class="book-figure" data-label="oversight-modes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 820"
+     role="group" aria-labelledby="fig-6-5-1-omTitle fig-6-5-1-omDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-6-5-1-omTitle">Three process models for agentic software engineering</title>
+  <desc id="fig-6-5-1-omDesc">Three panels arranged as a triangle. The two poles sit on top:
+    velocity-centric at top-left — a human sets a goal, then a ring of role-labeled agents —
+    planner, developer, tester, reviewer, security, deploy — passes work around a cycle, with
+    insufficient quality control; and oversight-centric at top-right — a human and a single
+    agent exchange a prompt and an output in a round trip, so human attention gates every step
+    of progress. Governance-centric sits centered beneath them as the synthesis: a human hands
+    policies into a governed engineering environment that contains the agent, so known
+    obligations become controls before the agent works. The book takes the third stance.</desc>
+
   <defs>
-    <linearGradient id="fig-6-5-1-frbGrad" x1="0" y1="0" x2="1" y2="0">
+    <marker id="fig-6-5-1-omArrow" markerWidth="8" markerHeight="8" refX="6.5" refY="3"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- faint synthesis connectors: from the two top corners down to the governance panel -->
+  <g fill="none" stroke="#e4e0d8" stroke-width="2" stroke-dasharray="5,7">
+    <path d="M295,470 C360,545 470,560 560,590"/>
+    <path d="M885,470 C820,545 710,560 620,590"/>
+  </g>
+
+  <!-- ============ (a) Velocity-centric: role ring (top-left) ============ -->
+  <text x="295" y="46" text-anchor="middle" font-size="28.32" font-weight="700" fill="#1c1917">(a) Velocity-centric</text>
+  <g font-size="28" fill="#1c1917" text-anchor="middle">
+    <text x="295" y="112" font-weight="700">Human</text>
+    <text x="295" y="144" font-size="22" font-style="italic" fill="#57534e">goal ↓</text>
+
+    <!-- six roles around a cycle -->
+    <text x="295" y="196">Planner</text>
+    <text x="411" y="256">Developer</text>
+    <text x="411" y="336">Tester</text>
+    <text x="295" y="396">Reviewer</text>
+    <text x="179" y="336">Security</text>
+    <text x="179" y="256">Deploy</text>
+
+    <!-- cycle arrows (clockwise) -->
+    <g fill="none" stroke="#1c1917" stroke-width="1.5" marker-end="url(#fig-6-5-1-omArrow)">
+      <path d="M345,202 C383,214 403,232 406,236"/>
+      <path d="M431,276 C437,296 437,306 435,311"/>
+      <path d="M413,350 C403,366 383,384 359,391"/>
+      <path d="M243,398 C207,388 187,370 183,363"/>
+      <path d="M161,322 C155,306 155,290 156,287"/>
+      <path d="M177,246 C187,232 207,214 234,206"/>
+    </g>
+  </g>
+  <text x="295" y="446" text-anchor="middle" font-size="24" font-style="italic" fill="#b23b3b">Insufficient quality control</text>
+
+  <!-- ============ (b) Oversight-centric: round trip (top-right) ============ -->
+  <text x="885" y="46" text-anchor="middle" font-size="28.32" font-weight="700" fill="#1c1917">(b) Oversight-centric</text>
+  <g font-size="28" fill="#1c1917">
+    <text x="753" y="266" text-anchor="middle" font-weight="700">Human</text>
+    <text x="1017" y="258" text-anchor="middle">Agent:</text>
+    <text x="1017" y="290" text-anchor="middle" font-size="22" fill="#57534e">bounded work</text>
+
+    <g fill="none" stroke="#1c1917" stroke-width="1.5" marker-end="url(#fig-6-5-1-omArrow)">
+      <path d="M811,240 C871,206 899,206 959,240"/>
+      <path d="M959,282 C899,316 871,316 811,282"/>
+    </g>
+    <text x="885" y="196" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">prompt</text>
+    <text x="885" y="348" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">output</text>
+  </g>
+  <text x="885" y="446" text-anchor="middle" font-size="24" font-style="italic" fill="#57534e">Human attention gates progress</text>
+
+  <!-- ============ (c) Governance-centric: env box (bottom-center, the synthesis) ============ -->
+  <text x="590" y="606" text-anchor="middle" font-size="28.32" font-weight="700" fill="#1c1917">(c) Governance-centric</text>
+  <g font-size="28" fill="#1c1917">
+    <text x="452" y="674" text-anchor="middle" font-weight="700">Human</text>
+
+    <rect x="518" y="638" width="272" height="150" rx="8" fill="none" stroke="#2f5169" stroke-width="2"/>
+    <text x="654" y="670" text-anchor="middle" font-size="24" fill="#2f5169">Governed</text>
+    <text x="654" y="696" text-anchor="middle" font-size="24" fill="#2f5169">engineering</text>
+    <text x="654" y="720" text-anchor="middle" font-size="24" fill="#2f5169">environment</text>
+    <rect x="584" y="726" width="140" height="46" rx="4" fill="none" stroke="#1c1917" stroke-width="1.4"/>
+    <text x="654" y="756" text-anchor="middle" font-size="24">Agent</text>
+
+    <g fill="none" stroke="#1c1917" stroke-width="1.5" marker-end="url(#fig-6-5-1-omArrow)">
+      <path d="M452,686 L452,738 L512,738"/>
+    </g>
+    <text x="460" y="770" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">policies</text>
+  </g>
+  <text x="590" y="806" text-anchor="middle" font-size="24" font-style="italic" fill="#2f5169">Known policies become controls</text>
+</svg><figcaption data-short="Three process models for agentic software engineering"><span class="fig-label">Figure 6.5-1.</span> Three process models for agentic software engineering. Velocity-centric rings job titles around the work — planner, developer, tester, reviewer — while the quality mechanism stays implicit, and implicit quality does not survive volume. Oversight-centric straddles a human over each bounded piece of work; it is honest about the failure mode, but human attention does not scale with the fleet, so the reviewer becomes the bottleneck. Governance-centric is the synthesis and the book's choice: agents work fast inside mechanisms the environment enforces, set up once, so reliability becomes a property of the ground they stand on rather than a toll paid per change. The first two are the two ends of one dial; governance steps off the dial entirely.</figcaption></figure><p class="gallery-source">From <a href="6.5-implications-for-se.html#fig-6-5-1">40 · The New Profession</a></p></section><hr><section class="gallery-item"><figure id="fig-6-5-2-fig-6-5-2" class="book-figure" data-label="soft-hard-spectrum"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" role="group" aria-labelledby="fig-6-5-2-frbTitle fig-6-5-2-frbDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-6-5-2-frbTitle">Governance runs soft to hard: a compact spectrum of mechanism classes.</title>
+  <desc id="fig-6-5-2-frbDesc">A horizontal spectrum runs from soft governance on the left to hard governance on the right. Soft, probabilistic mechanisms that aim an agent sit on the left: conventions, briefs, templates, prose conventions, and a reviewing agent. Judgment-laden doc-derived tests sit in the middle. Deterministic mechanisms that hold the line sit on the right: lints, types, schemas, and quality, drift, or deploy gates, together with a marker file the tool reads. Soft aims the agent; hard holds the line; a mature environment uses both.</desc>
+  <defs>
+    <linearGradient id="fig-6-5-2-frbGrad" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#f6f4ef"/>
       <stop offset="0.5" stop-color="#faf1e6"/>
       <stop offset="1" stop-color="#9a3f12"/>
@@ -7030,7 +7030,7 @@ z
   <text x="500" y="72" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Soft aims the agent; hard holds the line. A mature environment uses both.</text>
   <text x="150" y="112" text-anchor="middle" font-size="16" fill="#57534e">probabilistic · aims an agent</text>
   <text x="850" y="112" text-anchor="middle" font-size="16" fill="#9a3f12">deterministic · holds the line</text>
-  <rect x="70" y="126" width="860" height="46" rx="12" fill="url(#fig-6-5-1-frbGrad)" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="70" y="126" width="860" height="46" rx="12" fill="url(#fig-6-5-2-frbGrad)" stroke="#e4e0d8" stroke-width="1.5"/>
   <text x="150" y="156" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">SOFT</text>
   <text x="850" y="156" text-anchor="middle" font-size="22" font-weight="700" fill="#fdfcf9">HARD</text>
   <line x1="150" y1="172" x2="150" y2="196" stroke="#e4e0d8" stroke-width="1.5"/>
@@ -7047,7 +7047,7 @@ z
   <text x="850" y="231" text-anchor="middle" font-size="16" font-weight="600" fill="#9a3f12">marker file the tool reads</text>
   <text x="500" y="288" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The second time a soft rule fails, convert it: a documented rule becomes a lint the agent cannot talk past.</text>
   <text x="500" y="314" text-anchor="middle" font-size="16" fill="#155c38">Stronger guardrails let the fleet run faster, safely.</text>
-</svg><figcaption data-short="The Soft–Hard Spectrum"><span class="fig-label">Figure 6.5-1.</span> <em>The Soft–Hard Spectrum.</em> Mechanisms sit along an axis of increasing machine-actionability and enforcement regularity — probabilistic mechanisms that aim an agent on the left, deterministic mechanisms that hold the line on the right. A mature environment uses both, and the working rule of thumb is that the second time a soft rule fails, convert it.</figcaption></figure><p class="gallery-source">From <a href="6.5-implications-for-se.html#fig-6-5-1">40 · The New Profession</a></p></section><hr><section class="gallery-item"><figure id="fig-6-6-1-fig-6-6-1" class="book-figure" data-label="governance-census"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+</svg><figcaption data-short="The Soft–Hard Spectrum"><span class="fig-label">Figure 6.5-2.</span> <em>The Soft–Hard Spectrum.</em> Mechanisms sit along an axis of increasing machine-actionability and enforcement regularity — probabilistic mechanisms that aim an agent on the left, deterministic mechanisms that hold the line on the right. A mature environment uses both, and the working rule of thumb is that the second time a soft rule fails, convert it.</figcaption></figure><p class="gallery-source">From <a href="6.5-implications-for-se.html#fig-6-5-2">40 · The New Profession</a></p></section><hr><section class="gallery-item"><figure id="fig-6-6-1-fig-6-6-1" class="book-figure" data-label="governance-census"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
      role="group" aria-labelledby="fig-6-6-1-gcTitle fig-6-6-1-gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-6-6-1-gcTitle">The governance census: governed, under-governance, and governance debt are counts once obligations and mechanisms are enumerated</title>
