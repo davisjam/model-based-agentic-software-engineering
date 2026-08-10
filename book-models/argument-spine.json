@@ -9,7 +9,7 @@
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 3,
+    "zero_claim_suspects": 4,
     "over_cap_unfocused": 1,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
@@ -839,6 +839,11 @@
       "exempt": null
     },
     {
+      "slug": "4.6-the-field-guide",
+      "advances": [],
+      "exempt": null
+    },
+    {
       "slug": "5.1-the-ada-context",
       "advances": [
         "grounded-in-one-case"
@@ -961,6 +966,10 @@
   ],
   "flags": {
     "zero_claim_suspects": [
+      {
+        "chapter": "4.6-the-field-guide",
+        "advances": 0
+      },
       {
         "chapter": "6.3-relationship-to-se",
         "advances": 0
