@@ -236,8 +236,14 @@ _APPARATUS_ONEPAGER_APPENDIX_SLUGS = {"appendix-d-operators-dashboard"}  # appen
 # claims, accent numerals) rather than a manuscript page — see the CSS `.argues-page` block.
 _WHAT_THIS_BOOK_ARGUES_LABEL = "what-this-book-argues"  # 0.2 — a non-outline identity row
 _GLOSS_TERM_SLUGS = {
+    # Round-7 glossary trim (42 → 29 headwords): the "Map and territory", "Compounding",
+    # "Structured (model)", "Executable source-of-truth", "Middle-range theory", "Long-horizon task",
+    # "One-shot Scripting", "Supervised Autonomy", "Loop engineering", "Pattern", "The Model Zoo",
+    # "Fidelity Validator", and "Provenance Layer" headwords were deleted or folded. Their concepts keep
+    # their PROSE `index-def` homes (e.g. `structured`@3.1, `executable-source-of-truth`@2.3,
+    # `map-and-territory`@3.2, `model-as-map`@2.3, `long-horizon-task`@1.1); only the front-of-book
+    # HEADWORDS left the glossary, so this display→slug map drops exactly those keys.
     "Model": "model",
-    "Map and territory": "map-and-territory",
     "Modeling Thesis": "thesis-modeling",
     "Alignment Thesis": "thesis-alignment",
     "Governance Conversion": "governance-conversion",
@@ -251,10 +257,6 @@ _GLOSS_TERM_SLUGS = {
     "Tool": "tool-deterministic-action",
     "Fleet": "fleet",
     "Reasoning horizon": "reasoning-horizon",
-    "Long-horizon task": "long-horizon-task",
-    "One-shot Scripting": "one-shot-scripting",
-    "Supervised Autonomy": "supervised-autonomy",
-    "Loop engineering": "loop-engineering",
     "Governed Engineering Environment": "governed-environment",
     "Governance Mechanism": "governance-mechanism",
     "Constraint": "constraint",
@@ -266,13 +268,7 @@ _GLOSS_TERM_SLUGS = {
     "Invariant": "invariant",
     "Model drift": "model-drift",
     "Drift Gate": "drift-gate",
-    "Structured (model)": "structured",
-    "Executable source-of-truth": "executable-source-of-truth",
     "Traceability": "traceability",
-    "Pattern": "pattern",
-    "The Model Zoo": "model-zoo",
-    "Fidelity Validator": "fidelity-validator",
-    "Provenance Layer": "provenance-layer",
 }
 # A rendered glossary entry: `<p><strong>Term.</strong> …`. Capture the bold lead (term text + its trailing
 # period) so the whole label becomes the link, leaving `<strong>` outside the `<a>`.

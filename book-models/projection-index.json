@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1475,
+    "total_sites": 1472,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1047,
+      "book-web": 1044,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -29,7 +29,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 11
+            "occ": 10
           },
           {
             "file": "book/0.4-preface.html",
@@ -1354,10 +1354,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.3-the-books-language.html",
-            "occ": 1
-          },
-          {
             "file": "book/1.5-transformations.html",
             "occ": 1
           },
@@ -1405,7 +1401,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 11
           }
         ]
       },
@@ -1535,7 +1531,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 28
+            "occ": 25
           },
           {
             "file": "book/0.4-preface.html",
@@ -2149,7 +2145,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 4
+            "occ": 2
           },
           {
             "file": "book/0.4-preface.html",
@@ -2900,10 +2896,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.3-the-books-language.html",
-            "occ": 1
-          },
-          {
             "file": "book/appendix-a-model-coherence-stack.html",
             "occ": 1
           },
@@ -2915,7 +2907,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 3
+            "occ": 2
           }
         ]
       }
@@ -2933,7 +2925,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 25
+            "occ": 20
           },
           {
             "file": "book/0.4-preface.html",
@@ -3910,10 +3902,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.3-the-books-language.html",
-            "occ": 1
-          },
-          {
             "file": "book/0.5-how-to-read-this-book.html",
             "occ": 1
           },
@@ -3977,7 +3965,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 16
+            "occ": 15
           }
         ]
       },
@@ -4699,7 +4687,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/1.1-the-printer.html",
@@ -5409,7 +5397,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/0.4-preface.html",
