@@ -1622,18 +1622,68 @@ def _part_nav_typst(current_part: int) -> str:
 
 
 def _nav_map_image(kind: str, part: int, width: str) -> str:
-    """A bare (unnumbered) orientation-map image for the Part-opener verso. `kind` is `subway` (the whole-book
-    "where am I in the book?" strip, Part N highlighted) or `local` (the Part-local "where am I in this Part?"
-    map, which already bakes in its cumulative "✓ Previously / New here" vocab footer). These maps are
-    navigational chrome, not referenceable floats, so they render as a plain `#image` — no "Figure N" number,
-    no caption, and none of the figure-family / caption-tier coupling numbered floats carry. Assets are
-    PROJECTED (never hand-authored) by `book-models/nav_map_model.py` from `nav-model.json` + `_PART_TITLES`,
-    so the map cannot drift from the Part sequence."""
+    """A bare (unnumbered) orientation-map image for the Part-opener verso. As of the round-7 W3 opener-anatomy
+    change the opener embeds only `kind="subway"` — the whole-book "where am I in the book?" strip with Part N
+    highlighted; the `local` (Part-local) map is retired from the opener (latent asset, W4 cleanup — see
+    nav-model.json `_note`). These maps are navigational chrome, not referenceable floats, so they render as a
+    plain `#image` — no "Figure N" number, no caption, and none of the figure-family / caption-tier coupling
+    numbered floats carry. Assets are PROJECTED (never hand-authored) by `book-models/nav_map_model.py` from
+    `nav-model.json` + `_PART_TITLES`, so the map cannot drift from the Part sequence. A missing asset fails the
+    COMPILE loud (below), so the subway map's presence on the verso needs no post-hoc text re-check."""
     asset = HERE / "assets" / f"nav-{kind}-p{part}.svg"
     if not asset.is_file():
         raise SystemExit(f"part-opener orientation map missing: {asset} "
                          f"(project it: python3 book-models/nav_map_model.py)")
     return f'#image("{_root_rel(asset, _EmitCtx.root)}", width: {width})'
+
+
+_NAV_MODEL_CACHE: "dict | None" = None
+
+
+def _nav_model_part(part: int) -> dict:
+    """The declared nav-model record for a numbered Part (`book-models/nav-model.json`), loaded once. The
+    Part-opener verso reads `carrying_forward` (the curated capped-prior band) + `new_here_vocab` (this Part's)
+    to render the native VOCAB BLOCK — the sole local-orientation device on the leaner round-7 opener."""
+    global _NAV_MODEL_CACHE
+    if _NAV_MODEL_CACHE is None:
+        with open(HERE.parent / "book-models" / "nav-model.json", encoding="utf-8") as fh:
+            _NAV_MODEL_CACHE = json.load(fh)["parts"]
+    return _NAV_MODEL_CACHE.get(str(part), {})
+
+
+#: The verso vocab-band headings — one source of truth shared by the divider render (below) AND the
+#: PART-OPENER SPREAD sensor's carries-nav leg, so the gate greps exactly what the renderer emits.
+NAV_VOCAB_CARRYING_LABEL = "Carrying forward"
+NAV_VOCAB_NEWHERE_LABEL = "New here"
+
+
+def _nav_vocab_typst(part: int) -> str:
+    """The Part-opener verso VOCAB BLOCK, rendered natively (round-7 W3 anatomy): a capped 'Carrying forward'
+    band (the curated prior terms this Part builds on — omitted for Part 1, which carries nothing) over a
+    'New here' band (this Part's newly-deployed terms). Replaces the retired Part-local map's baked-in vocab
+    footer; native text so it extracts as real PDF text (the sensor greps the 'New here' heading) and breathes
+    on the leaner verso. Reads `book-models/nav-model.json` (single source of truth)."""
+    rec = _nav_model_part(part)
+    carrying = rec.get("carrying_forward", [])
+    new_here = rec.get("new_here_vocab", [])
+    bands: "list[str]" = []
+    if carrying:
+        terms = " · ".join(inline_typst(t) for t in carrying)
+        bands.append(
+            f"    #text(size: 0.78em, fill: dt.muted, tracking: 0.08em)[#upper[{inline_typst(NAV_VOCAB_CARRYING_LABEL)}]]\n"
+            "    #linebreak()\n"
+            f"    #text(size: 0.95em, fill: dt.muted)[{terms}]\n"
+        )
+    if new_here:
+        terms = " · ".join(inline_typst(t) for t in new_here)
+        bands.append(
+            f"    #text(size: 0.78em, fill: dt.ink, tracking: 0.08em)[#upper[{inline_typst(NAV_VOCAB_NEWHERE_LABEL)}]]\n"
+            "    #linebreak()\n"
+            f"    #text(size: 0.95em, fill: dt.ink)[{terms}]\n"
+        )
+    if not bands:
+        return ""
+    return "  #block(width: 100%)[\n" + "    #v(0.7em)\n".join(bands) + "  ]\n"
 
 
 def _extract_thesisbox_raw(ch: "ir.Chapter") -> "str | None":
@@ -1661,9 +1711,11 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     the PDF-bookmark PARENT the demoted chapters (level-2) nest under.
 
     Numbered Parts 1-6 render a **two-page orientation SPREAD** (round-7): the VERSO (an even/left page) is a
-    dedicated orientation page — kicker + title, the whole-book subway map, the Part-local map (with its vocab
-    footer), the "Question this Part answers" DO-ladder line, the thesis box, and the Part-nav chip strip — and
-    the intro PROSE leads the facing RECTO (the reading flow, rendered by `render_chapter`). Print forces the
+    dedicated orientation page — kicker + title, the whole-book subway map, the "Question this Part answers"
+    DO-ladder line, the thesis box, and the Carrying-forward / New-here vocab block — and the intro PROSE leads
+    the facing RECTO (the reading flow, rendered by `render_chapter`). The intra-Part local map and the six-Part
+    footer chip strip were cut in the round-7 W3 author anatomy change (one navigation device, not three). Print
+    forces the
     verso to an EVEN page (`#pagebreak(to:"even")`) so chapter 1 falls on the facing odd page (§G-5, accepts an
     occasional blank recto before the verso); screen mode uses a plain `#pagebreak()` (no facing concept). The
     back-matter (7) and appendix Parts keep the simple single-page divider (no orientation apparatus)."""
@@ -1717,12 +1769,17 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
 
     # ── Numbered Part 1-6: the two-page orientation SPREAD ───────────────────────────────────────────────
     # Facing control (§G-5): the orientation lands on an EVEN (verso/left) page in print so chapter 1 falls on
-    # the facing ODD (recto/right) page; screen has no facing concept, so a plain break. AUDIT-ONLY-gated by
-    # the `PART-OPENER SPREAD` sensor in `build_book_html.verify_pdf` (four legs: orientation found, fits one
-    # page, carries the nav apparatus, even/odd facing parity — the last print-only).
+    # the facing ODD (recto/right) page; screen has no facing concept, so a plain break. Gated by the
+    # `PART-OPENER SPREAD` sensor in `build_book_html.verify_pdf` (four legs: orientation found, fits one page,
+    # carries the nav apparatus, even/odd facing parity — the last print-only).
+    #
+    # Round-7 W3 author anatomy change: the opener was cut to ONE navigation device. The whole-book SUBWAY map
+    # stays (the essential "where am I in the book?" orientation); the intra-Part LOCAL map is dropped (it read
+    # as "you are here" a second time) and the six-Part footer chip strip is dropped (the same book-level
+    # orientation the subway map already gives, in a second visual dialect). The sole local-orientation device
+    # is now the native VOCAB BLOCK (Carrying forward / New here). Leaner verso = more breathing room.
     opener = "#pagebreak(to: \"even\")\n" if OUTPUT_TYPE == "print" else "#pagebreak()\n"
-    subway = _nav_map_image("subway", part, "100%")   # whole-book "where am I in the book?" strip
-    local = _nav_map_image("local", part, "100%")      # Part-local map + cumulative vocab footer
+    subway = _nav_map_image("subway", part, "100%")   # whole-book "where am I in the book?" strip (the KEPT map)
     question = bb._PART_OPENER_QUESTIONS.get(part, "")
     q_label = bb._PART_OPENER_QUESTION_LABEL
     # The DO-ladder question the Part answers — the sensor greps `q_label` (uppercased) + the question text on
@@ -1736,7 +1793,7 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     )
     tb_raw = _extract_thesisbox_raw(ch)
     thesis = _render_blockquote(tb_raw, is_thesisbox=True) if tb_raw else ""
-    nav = _part_nav_typst(part)
+    vocab = _nav_vocab_typst(part)   # Carrying-forward / New-here — the sole local-orientation device
     # The whole orientation block is `breakable: false` so it stays atomic on the verso; the trailing
     # `#pagebreak()` sends the intro prose (rendered by `render_chapter`) to lead the facing recto.
     verso = (
@@ -1744,15 +1801,13 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
         f"  #v(0.45in)\n"
         + heading +
         "  #v(0.4em) #line(length: 30%, stroke: 1pt + dt.rule)\n"
-        "  #v(1.0em)\n"
+        "  #v(1.2em)\n"
         f"  {subway}\n"
-        "  #v(0.9em)\n"
-        f"  {local}\n"
-        "  #v(0.9em)\n"
+        "  #v(1.4em)\n"
         + q_block +
-        ("  #v(0.9em)\n" + _indent(thesis) + "\n" if thesis else "")
-        + _indent(nav) + "\n"
-        "]" + label
+        ("  #v(1.2em)\n" + _indent(thesis) + "\n" if thesis else "")
+        + ("  #v(1.2em)\n" + vocab if vocab else "")
+        + "]" + label
     )
     return opener + verso + "\n#pagebreak()"
 

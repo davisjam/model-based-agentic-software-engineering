@@ -5901,45 +5901,51 @@ def _pdf_orphan_caption_pages(pdf_path: pathlib.Path) -> list[tuple[int, str]]:
 def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
                             norm: "Callable[[str], str]",
                             facing_parity: bool) -> list[dict]:
-    """PART-OPENER SPREAD sensor (round-7). Each numbered Part 1–6 now opens on a two-page orientation SPREAD:
-    a VERSO orientation page (Part title · whole-book subway map · Part-local map · "Question this Part
-    answers" DO-ladder line · thesis box · Part-nav chip strip) with the intro PROSE leading the facing RECTO.
-    The old one-page invariant ("divider + intro + nav all on ONE page") is retired by design; this sensor
-    gates the new shape with FOUR legs, per Part:
+    """PART-OPENER SPREAD sensor (round-7). Each numbered Part 1–6 opens on a two-page orientation SPREAD: a
+    VERSO orientation page (Part title · whole-book subway map · "Question this Part answers" DO-ladder line ·
+    thesis box · Carrying-forward / New-here vocab block) with the intro PROSE leading the facing RECTO. The old
+    one-page invariant ("divider + intro + nav all on ONE page") is retired by design; this sensor gates the new
+    shape with FOUR legs, per Part:
 
       (a) orientation_found — a page carries the title-case divider heading "Part N <title>".
       (b) fits_one_page     — the orientation does NOT spill: the page AFTER the verso lacks the question
                               label (had it spilled, the label — unique to the orientation — would repeat there).
-      (c) carries_nav       — the verso carries all six uppercase nav chips AND the "Question this Part
-                              answers" label (the DO-ladder marker). The maps render as `image()` calls that
-                              fail the COMPILE if missing, so their presence needs no text re-check here.
+      (c) carries_nav       — the verso carries the KEPT orientation apparatus: the "Question this Part answers"
+                              DO-ladder label AND the "New here" vocab-band heading. (Round-7 W3 anatomy change:
+                              the six-Part footer chip strip + the Part-local map were cut, so the leg no longer
+                              greps nav chips.) The KEPT whole-book subway map renders as an `image()` that fails
+                              the COMPILE if missing, so its presence needs no text re-check here.
       (d) facing_parity     — PRINT ONLY (`facing_parity`): the verso page number is EVEN and the recto ODD (a
                               real bound-edition facing pair). Skipped for the shipped SCREEN PDF (no facing).
 
-    Both the divider and this sensor read `_PART_TITLES` + `_PART_OPENER_QUESTION_LABEL` (one source of truth),
-    so the gate cannot drift from the renderer. Returns one dict per Part with the four leg booleans + pages."""
+    Both the divider and this sensor read `_PART_TITLES` + `_PART_OPENER_QUESTION_LABEL` + the vocab-band label
+    SSOT (`book_typst.NAV_VOCAB_NEWHERE_LABEL`), so the gate cannot drift from the renderer. Returns one dict per
+    Part with the four leg booleans + pages."""
     per_page = _pdf_per_page_text(pdf_path)
     q_label = norm(_PART_OPENER_QUESTION_LABEL).upper()
-    # Nav chips extract UPPERCASE with an em-dash `norm`-folded to '-': "PART k - <TITLE>". Built from the same
-    # titles the Typst nav emits, so this list is exactly what a correctly-laid-out verso must contain.
-    nav_chips = [norm(f"Part {k} - {part_titles[k]}").upper() for k in range(1, 7)]
+    # Round-7 W3 anatomy: the verso's text orientation apparatus is the DO-ladder QUESTION LABEL + the "New here"
+    # VOCAB heading (the footer chip strip + Part-local map were cut). The KEPT whole-book subway map renders as
+    # an image() that fails the COMPILE if missing, so its presence needs no text re-check. Both markers extract
+    # UPPERCASE (norm-folded) and are unique to the orientation verso — a stray TOC line echoing the divider
+    # heading carries neither.
+    import book_typst as _bt  # noqa: E402 — the vocab-band label SSOT the divider renders (one source, no drift)
+    apparatus = [q_label, norm(_bt.NAV_VOCAB_NEWHERE_LABEL).upper()]
     normed = [norm(t) for t in per_page]                 # title-case, for the divider-heading match
-    normed_upper = [t.upper() for t in normed]           # for the uppercase nav-chip / label match
+    normed_upper = [t.upper() for t in normed]           # for the uppercase apparatus-marker match
     results: list[dict] = []
     for part in range(1, 7):
         div = norm(f"Part {part} {part_titles[part]}")   # divider heading, title-case
-        # The verso carries the title heading AND the nav chips; disambiguate on the nav apparatus so a stray
-        # TOC/outline line echoing the heading is never mistaken for the orientation page.
+        # The verso carries the title heading AND the orientation apparatus; disambiguate on the apparatus so a
+        # stray TOC/outline line echoing the heading is never mistaken for the orientation page.
         candidates = [i for i, t in enumerate(normed, 1)
-                      if div in t and all(c in normed_upper[i - 1] for c in nav_chips)]
+                      if div in t and all(c in normed_upper[i - 1] for c in apparatus)]
         if not candidates:
             candidates = [i for i, t in enumerate(normed, 1) if div in t]  # fall back so (a) can still report
         opener = max(candidates, key=lambda i: len(normed[i - 1].split())) if candidates else None
         nxt = normed_upper[opener] if (opener is not None and opener < len(normed_upper)) else ""
         orientation_found = opener is not None
         carries_nav = bool(opener is not None
-                           and all(c in normed_upper[opener - 1] for c in nav_chips)
-                           and q_label in normed_upper[opener - 1])
+                           and all(c in normed_upper[opener - 1] for c in apparatus))
         fits_one_page = bool(opener is not None and q_label not in nxt)
         facing_ok = True
         if facing_parity and opener is not None:
