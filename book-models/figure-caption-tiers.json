@@ -7,6 +7,24 @@
       "location": "frontmatter",
       "rationale": "the five model-classes taxonomy — glossary Model-entry reference chrome; short nav/reference caption"
     },
+    "assets/gloss-core-ideas.svg": {
+      "tier": "C",
+      "kind": "concept-map",
+      "location": "frontmatter",
+      "rationale": "glossary section-map for 'The core ideas' — orientation concept-map chrome; short reference caption"
+    },
+    "assets/gloss-agent-vocab.svg": {
+      "tier": "C",
+      "kind": "concept-map",
+      "location": "frontmatter",
+      "rationale": "glossary section-map for 'How coding agents work (and fail)' — orientation concept-map chrome; short reference caption"
+    },
+    "assets/gloss-gee.svg": {
+      "tier": "C",
+      "kind": "concept-map",
+      "location": "frontmatter",
+      "rationale": "glossary section-map for 'The Governed Engineering Environment' — orientation concept-map chrome; short reference caption"
+    },
     "assets/open-frontiers.svg": {
       "tier": "A",
       "kind": "roadmap",

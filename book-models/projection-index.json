@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1472,
+    "total_sites": 1473,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1044,
+      "book-web": 1045,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -29,7 +29,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 10
+            "occ": 12
           },
           {
             "file": "book/0.4-preface.html",
@@ -457,7 +457,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 98
+            "occ": 100
           },
           {
             "file": "book/index.html",
@@ -465,7 +465,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/part-1-intro.html",
@@ -911,7 +911,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -1015,7 +1015,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 27
+            "occ": 28
           },
           {
             "file": "book/part-1-intro.html",
@@ -1107,7 +1107,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 2
+            "occ": 4
           },
           {
             "file": "book/0.4-preface.html",
@@ -1219,7 +1219,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 66
+            "occ": 68
           },
           {
             "file": "book/list-of-figures.html",
@@ -1531,7 +1531,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 25
+            "occ": 31
           },
           {
             "file": "book/0.4-preface.html",
@@ -1959,7 +1959,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 120
+            "occ": 126
           },
           {
             "file": "book/index.html",
@@ -2145,7 +2145,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/0.4-preface.html",
@@ -2569,7 +2569,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/index.html",
@@ -2699,7 +2699,7 @@
         "book-web": [
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 2
+            "occ": 4
           },
           {
             "file": "book/1.3-loops-and-models.html",
@@ -2804,12 +2804,16 @@
           {
             "file": "book/book-index.html",
             "occ": 1
+          },
+          {
+            "file": "book/figures.html",
+            "occ": 2
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 27
+            "occ": 28
           }
         ]
       },
@@ -2925,7 +2929,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 44
+            "occ": 49
           },
           {
             "file": "book/0.4-preface.html",
@@ -3353,7 +3357,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 279
+            "occ": 284
           },
           {
             "file": "book/index.html",
@@ -3991,7 +3995,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -4091,7 +4095,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 28
+            "occ": 29
           },
           {
             "file": "book/part-1-intro.html",
@@ -4193,7 +4197,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 3
+            "occ": 5
           },
           {
             "file": "book/0.4-preface.html",
@@ -4617,7 +4621,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 16
+            "occ": 18
           },
           {
             "file": "book/index.html",
@@ -4687,7 +4691,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/1.1-the-printer.html",
@@ -4731,7 +4735,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/list-of-figures.html",

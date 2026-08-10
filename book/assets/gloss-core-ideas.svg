@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HAND-AUTHORED one-off glossary section-map (round-7 §G-6). Not machine-projected; edit this SVG directly. -->
+<!-- Orientation art for a glossary section (The core ideas), not a role-coloured figure. -->
+<!-- semantic-families: neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map: the core ideas">
+  <rect x="0" y="0" width="1000" height="460" fill="#fdfcf9"/>
+  <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
+  <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The core ideas</text>
+
+  <!-- edges (drawn first, nodes sit on top) -->
+  <line x1="500" y1="90" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="155" y1="165" x2="330" y2="240" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="330" y1="240" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="845" y1="150" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="200" y1="375" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="640" y1="360" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="640" y1="360" x2="880" y2="360" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- edge labels -->
+  <text x="512" y="168" font-size="13" fill="#78716c">reorganizes around</text>
+  <text x="228" y="196" text-anchor="middle" font-size="13" fill="#78716c">externalize into</text>
+  <text x="415" y="228" text-anchor="middle" font-size="13" fill="#78716c">reason through</text>
+  <text x="686" y="186" text-anchor="middle" font-size="13" fill="#78716c">encode as mechanisms</text>
+  <text x="352" y="300" text-anchor="middle" font-size="13" fill="#78716c">specify precisely</text>
+  <text x="586" y="292" text-anchor="middle" font-size="13" fill="#78716c">failure → mechanism</text>
+  <text x="760" y="350" text-anchor="middle" font-size="13" fill="#78716c">grows · compounds</text>
+
+  <!-- hub: Governance -->
+  <circle cx="500" cy="235" r="15" fill="#1c1917"/>
+  <text x="500" y="212" text-anchor="middle" font-size="21" font-weight="bold" fill="#1c1917">Governance</text>
+
+  <!-- spokes -->
+  <circle cx="500" cy="90" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="500" y="72" text-anchor="middle" font-size="18" fill="#57534e">Commodity intelligence</text>
+
+  <circle cx="155" cy="165" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="155" y="147" text-anchor="middle" font-size="18" fill="#57534e">Modeling Thesis</text>
+
+  <circle cx="330" cy="240" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="330" y="272" text-anchor="middle" font-size="18" fill="#57534e">Model</text>
+
+  <circle cx="845" cy="150" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="845" y="132" text-anchor="middle" font-size="18" fill="#57534e">Alignment Thesis</text>
+
+  <circle cx="200" cy="375" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="200" y="407" text-anchor="middle" font-size="18" fill="#57534e">The Printer</text>
+
+  <circle cx="640" cy="360" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="640" y="392" text-anchor="middle" font-size="18" fill="#57534e">Governance Conversion</text>
+
+  <circle cx="880" cy="360" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="880" y="392" text-anchor="middle" font-size="18" fill="#57534e">Engineering capital</text>
+</svg>
