@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1492,
+    "total_sites": 1493,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1064,
+      "book-web": 1065,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -1150,6 +1150,10 @@
             "occ": 2
           },
           {
+            "file": "book/4.6-the-field-guide.html",
+            "occ": 3
+          },
+          {
             "file": "book/5.3-the-timeline-and-the-work.html",
             "occ": 11
           },
@@ -1233,7 +1237,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 31
+            "occ": 32
           }
         ]
       },
@@ -1679,7 +1683,7 @@
           },
           {
             "file": "book/4.6-the-field-guide.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -1723,7 +1727,7 @@
           },
           {
             "file": "book/6.5-implications-for-se.html",
-            "occ": 50
+            "occ": 51
           },
           {
             "file": "book/6.6-where-mage-fits.html",
@@ -3093,7 +3097,7 @@
           },
           {
             "file": "book/4.6-the-field-guide.html",
-            "occ": 27
+            "occ": 34
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -6259,7 +6263,7 @@
           },
           {
             "file": "book/4.6-the-field-guide.html",
-            "occ": 1
+            "occ": 4
           },
           {
             "file": "book/5.4-the-built-system.html",
@@ -6287,7 +6291,7 @@
           },
           {
             "file": "book/6.5-implications-for-se.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/6.6-where-mage-fits.html",
