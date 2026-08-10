@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1487,
+    "total_sites": 1486,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1060,
+      "book-web": 1059,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -485,7 +485,7 @@
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 6
+            "occ": 3
           },
           {
             "file": "book/part-5-intro.html",
@@ -2015,15 +2015,15 @@
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 13
+            "occ": 16
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 13
+            "occ": 16
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 16
+            "occ": 17
           }
         ],
         "book-pdf": [
@@ -2629,15 +2629,15 @@
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 1
+            "occ": 3
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 1
+            "occ": 2
           }
         ],
         "book-pdf": [
@@ -3413,7 +3413,7 @@
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 11
+            "occ": 10
           },
           {
             "file": "book/part-5-intro.html",
@@ -5897,7 +5897,7 @@
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/part-5-intro.html",
@@ -6316,16 +6316,12 @@
           {
             "file": "book/figures.html",
             "occ": 16
-          },
-          {
-            "file": "book/part-4-intro.html",
-            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 35
+            "occ": 34
           }
         ]
       },
