@@ -16,7 +16,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ## Program — across the whole book
 
 - **[DECLARED]** (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. _(primary: the program · elaborated by: Module 2, Module 4)_ — _anchor: Preface 'mechanize discipline' + the book's stated aim (SE-at-Google + GoF touchstones): patterns that keep a fleet productive at bounded failure._
-- **[DECLARED]** (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. _(primary: the program · elaborated by: constraints-and-sensors, governance-is-a-spectrum-from-soft-to-hard)_ — _anchor: The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (governance-is-a-spectrum-from-soft-to-hard)._
+- **[DECLARED]** (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. _(primary: the program · elaborated by: constraints-and-sensors, from-soft-to-hard)_ — _anchor: The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (from-soft-to-hard, in the governance-conversion chapter)._
 - **[DECLARED]** (create) After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human's head. _(primary: the program · elaborated by: Module 3, a-drift-check-proves-agreement-not-correctness)_ — _anchor: The Modeling Thesis, developed across Part 3 (the executable 4+1 zoo)._
 
 ## Module 1 — The Mindset
@@ -124,9 +124,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
   - **[DERIVED]** (apply) After this section, the reader can apply specification-driven development to what is knowable up front: write every known rule down and determinize it with a cheap deterministic check the agent itself writes. — _anchor: point: ex-ante-write-down-what-you-know-and-determinize-it-with-cheap-checks_
   - **[DERIVED]** (understand) After this section, the reader can explain why governance is built ex-post — iteratively, as unforeseen failures reveal themselves — and why that is where most real mechanisms come from rather than a fallback for a weak plan. — _anchor: point: ex-post-you-build-governance-as-failures-reveal-themselves / ex-post-is-where-most-real-mechanisms-come-from-not-a-fallback / the-engine-is-to-hold-a-quality-goal-with-a-mechanism-placed-up-front-or-after-a-failure-seen-twice_
   - **[DERIVED]** (apply) After this section, the reader can run the promotion rule for a season and the environment fills with …. — _anchor: ts: Run the promotion rule for a season and the environment fills with controls — nearly all d_
-  - **[DERIVED]** (understand) After this section, the reader can distinguish a constraint (prevent, costs no iteration) from a sensor (catch, costs iterations), place both on the independent soft-versus-hard axis, and tag most real mechanisms as a package by their primary move. _(primary: constraints-and-sensors · elaborated by: governance-is-a-spectrum-from-soft-to-hard, when-guardrails-collide)_ — _anchor: point: a-mechanism-is-one-of-two-moves-prevent-or-catch / a-sensor-detects-drift-after-the-fact-and-costs-iterations / a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration / form-and-move-are-two-independent-axes / most-real-mechanisms-are-a-package-so-tag-the-primary-move_
+  - **[DERIVED]** (understand) After this section, the reader can distinguish a constraint (prevent, costs no iteration) from a sensor (catch, costs iterations), place both on the independent soft-versus-hard axis, and tag most real mechanisms as a package by their primary move. _(primary: constraints-and-sensors · elaborated by: from-soft-to-hard, when-guardrails-collide)_ — _anchor: point: a-mechanism-is-one-of-two-moves-prevent-or-catch / a-sensor-detects-drift-after-the-fact-and-costs-iterations / a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration / form-and-move-are-two-independent-axes / most-real-mechanisms-are-a-package-so-tag-the-primary-move_
   - _elaborates (owned by the program):_ (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.
-  - _elaborates (owned by governance-is-a-spectrum-from-soft-to-hard):_ (analyze) After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds.
+  - _elaborates (owned by from-soft-to-hard):_ (analyze) After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds.
   - **[DERIVED]** (know) After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it. _(primary: the-residual-goals-no-mechanism-reaches · elaborated by: implications-for-se)_ — _anchor: point: some-goals-split-into-neither-because-the-failure-is-an-absence-nobody-specified / the-residual-is-a-human-job-that-sets-the-throughput-ceiling / the-residual-is-the-complement-of-the-two-moves-not-a-third-value-on-the-soft-hard-axis / naming-the-residual-is-the-honest-edge-that-makes-the-mechanized-core-credible / the-residual-is-not-a-fixed-wall-authoring-the-missing-spec-pulls-a-goal-out_
 
 ### Lesson 3.4-lifecycles-and-runbooks
@@ -152,7 +152,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 4 — The MAGE Method
 
-- **[DECLARED]** (apply) After Part 4, the reader can put the method to work: induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, size a transformation to its model and guarantee, and recognize the agent-shaped failure modes. _(primary: Module 4 · elaborated by: Module 5)_ — _anchor: Part 4 title 'Putting It to Work' + chapter arc: brownfield -> skills -> transformations -> training-data -> lessons-learned -> generative-validation._
+- **[DECLARED]** (apply) After Part 4, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism. _(primary: Module 4 · elaborated by: Module 5)_ — _anchor: Part 4 title 'Putting It to Work' + chapter arc: the-mage-workflow -> brownfield -> skills -> generative-validation -> governance-conversion -> field-guide._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
 
 ### Lesson 4.1-the-mage-workflow
@@ -174,11 +174,17 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 4.5-governance-conversion
 
+  - **[DERIVED]** (analyze) After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds. _(primary: from-soft-to-hard · elaborated by: constraints-and-sensors)_ — _anchor: Heading text: 'From soft to hard' (in the governance-conversion chapter)._
+  - _elaborates (owned by the program):_ (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.
+  - _elaborates (owned by constraints-and-sensors):_ (understand) After this section, the reader can distinguish a constraint (prevent, costs no iteration) from a sensor (catch, costs iterations), place both on the independent soft-versus-hard axis, and tag most real mechanisms as a package by their primary move.
+
+### Lesson 4.6-the-field-guide
+
 
 ## Module 5 — The Evidence
 
 - **[DECLARED]** (analyze) After Part 5, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it. — _anchor: Part 5 is the ADA/DocAble case study: context -> timeline/work -> built-system -> road-to-MAGE (role progression)._
-- _elaborates (owned by Module 4):_ (apply) After Part 4, the reader can put the method to work: induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, size a transformation to its model and guarantee, and recognize the agent-shaped failure modes.
+- _elaborates (owned by Module 4):_ (apply) After Part 4, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.
 
 ### Lesson 5.1-the-ada-context
 
