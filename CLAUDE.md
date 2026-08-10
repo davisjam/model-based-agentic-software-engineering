@@ -76,6 +76,13 @@ re-deriving these, so they live here:**
   drafting agents run concurrently, with each other and with the `main` drain; an infrastructure wave
   assembles the drafts later. This is how to author a large appendix/section without serializing on the
   single-writer tree.
+- **Per-effort draft subdirs + verify-before-fold.** `book/_design/drafts/` accumulates ALREADY-FOLDED,
+  stale drafts across many rounds — a flat dir invites a later wave to re-read a superseded draft or
+  clobber a fresher one. So each drafting wave writes to its OWN subdir, `drafts/<effort>-<date>/` (e.g.
+  `drafts/part5-r3-260810/`), never the flat root. And before folding a draft into `main`, DIFF it against
+  the current `main` chapter: if `main` diverged since the draft was cut (a fold-time fix, a sibling wave's
+  edit), PATCH-fold the draft's intended change onto `main` rather than REPLACE-folding the whole file —
+  a replace-fold silently reverts every fix `main` gained after the draft forked.
 - **Gate discipline:** verify each `main` commit on the full suite BEFORE stacking the next writer; NEVER
   `git add -A` (it sweeps `book/_design/`); briefs read this file (the submodule ROOT `CLAUDE.md` — there is
   no `book/CLAUDE.md`).
