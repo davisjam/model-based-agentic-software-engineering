@@ -6202,9 +6202,10 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
     # Part-opener SPREAD sensor (round-7): each numbered Part opens on a two-page orientation spread (verso =
     # title + subway map + Part-local map + question + thesis box + nav strip; recto = intro prose). Four legs
     # per Part — orientation found, orientation fits one page, verso carries the nav apparatus, and (print only)
-    # even/odd facing parity. Landed AUDIT-ONLY (rule #55 — this is a new/rewritten sensor over a freshly
-    # reshaped opener): it PRINTS PASS/FAIL for every leg but does NOT contribute to the exit code, so the
-    # spread beds in across the six openers before a follow-up promotes it to BLOCKING (once all six are clean).
+    # even/odd facing parity. BLOCKING (round-7 W3 promotion, rule #55 audit-only-first): landed AUDIT-ONLY,
+    # bedded in clean across all six openers, now promoted to contribute to the exit code — a regressed opener
+    # (missing orientation, an overflowing verso, a stripped nav apparatus) fails the build instead of only
+    # printing.
     import book_typst as _bt  # for OUTPUT_TYPE — the facing-parity leg is print-only (the shipped PDF is screen)
     _facing = _bt.OUTPUT_TYPE == "print"
     spread_results = _pdf_part_opener_spread(pdf_path, _PART_TITLES, _norm, _facing)
@@ -6222,11 +6223,11 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
                   file=sys.stderr)
     if spread_fails:
         listing = ", ".join(f"Part {r['part']}" for r in spread_fails)
-        print(f"PDF PART-OPENER SPREAD SENSOR: AUDIT-ONLY FAIL — {len(spread_fails)} Part opener spread(s) "
-              f"not yet clean: {listing} (non-blocking; promote to BLOCKING once all six pass).",
-              file=sys.stderr)
+        print(f"PDF PART-OPENER SPREAD SENSOR: BLOCKING FAIL — {len(spread_fails)} Part opener spread(s) "
+              f"not clean: {listing}.", file=sys.stderr)
+        problems.append(f"part-opener spread(s) not clean: {len(spread_fails)} — {listing}")
     else:
-        print(f"PDF PART-OPENER SPREAD SENSOR: AUDIT-ONLY PASS — all 6 Part opener spreads clean"
+        print(f"PDF PART-OPENER SPREAD SENSOR: BLOCKING PASS — all 6 Part opener spreads clean"
               f"{' (incl. facing parity)' if _facing else ''}.")
 
     if problems:

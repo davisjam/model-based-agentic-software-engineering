@@ -1,9 +1,7 @@
 <!-- part-foreshadows: modeling-thesis, alignment-thesis, govern-the-environment, failures-become-machinery -->
-The previous Parts introduced the ideas one at a time. This Part joins them into an engineering
-method. MAGE is not a catalogue of isolated techniques; it is one recurring cycle that every task
-turns through. Modeling makes intent explicit, Alignment gives that intent authority, and the
-failures the work reveals feed back into both — so each pass begins from a stronger position than the
-last.
+The previous Parts introduced the ideas one at a time. This Part joins them into a single engineering
+method: not a catalogue of isolated techniques, but one recurring cycle that every task turns through,
+each pass beginning from a stronger position than the last.
 
 <!-- thesisbox -->
 > ### THE MAGE CYCLE

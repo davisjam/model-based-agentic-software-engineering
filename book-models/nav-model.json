@@ -4,32 +4,32 @@
     "1": {
       "subway_label": "Mindset",
       "local_nodes": ["Commodity intelligence", "Reasoning problem", "Agent as a loop", "Model", "Governance"],
-      "new_here_vocab": ["Commodity intelligence", "Model", "Modeling Thesis", "Alignment Thesis", "Governance Conversion", "Engineering capital", "Churn", "Reasoning horizon", "The Printer"]
+      "new_here_vocab": ["Commodity intelligence", "The Printer", "Model", "Governance", "Fleet", "Context Window", "Churn", "Reasoning horizon", "Foundation model", "Agentic harness", "Tool", "Skill"]
     },
     "2": {
       "subway_label": "Modeling",
-      "local_nodes": ["Models", "Behavior", "Structure", "Decisions", "Measurement"],
-      "new_here_vocab": ["Traceability", "Model drift", "Drift Gate", "Invariant", "4+1 views"]
+      "local_nodes": ["Context", "Executable models", "4+1 views", "The joined model", "Keeping in sync"],
+      "new_here_vocab": ["Modeling Thesis", "Traceability", "Invariant", "Model drift", "Drift Gate", "4+1 views"]
     },
     "3": {
       "subway_label": "Alignment",
-      "local_nodes": ["Governance", "Constraint", "Sensor", "Validator", "Gate"],
-      "new_here_vocab": ["Governed Engineering Environment", "Constraint", "Sensor", "Validator", "Gate", "Governance Mechanism", "Lint", "Hook"]
+      "local_nodes": ["Agent stack", "Constraint", "Sensor", "Validator", "Gate"],
+      "new_here_vocab": ["Alignment Thesis", "Governed Engineering Environment", "Governance Mechanism", "Constraint", "Sensor", "Validator", "Gate", "Lint", "Hook", "Governance Conversion", "Engineering capital"]
     },
     "4": {
       "subway_label": "Method",
       "local_nodes": ["Workflow", "Migration", "Validation", "Skills"],
-      "new_here_vocab": ["MAGE workflow", "Brownfield migration", "Generative validation", "Skills"]
+      "new_here_vocab": ["MAGE workflow", "Brownfield migration", "Generative validation"]
     },
     "5": {
       "subway_label": "Evidence",
-      "local_nodes": ["Incident", "Failure", "Investigation", "Mechanism", "Engineering capital"],
-      "new_here_vocab": ["Support ratio", "Fleet"]
+      "local_nodes": ["The context", "A hard case", "Timeline & work", "The built system", "Governance conversions"],
+      "new_here_vocab": ["Support ratio"]
     },
     "6": {
       "subway_label": "Profession",
-      "local_nodes": ["Engineer", "Models", "Authority", "Environment", "Engineering capital", "Profession"],
-      "new_here_vocab": ["Judgment is the scarce resource", "Universal language of engineering"]
+      "local_nodes": ["Theory", "Scope conditions", "Beyond software", "The profession", "Open problems"],
+      "new_here_vocab": ["Professional Thesis", "Universal language of engineering"]
     }
   }
 }
