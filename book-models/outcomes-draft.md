@@ -21,7 +21,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 1 — The Mindset
 
-- **[DECLARED]** (evaluate) After Part 1, the reader can judge which tasks warrant governance machinery and which do not, and read an agent as a loop that needs a model of its world. — _anchor: 1.1 'Not every programming task needs the machinery this book describes' + 1.3 'an agent runs in a loop … give it a model of the world'._
+- **[DECLARED]** (evaluate) After this Part, the reader can judge which engineering tasks warrant the book's machinery — grounded in the founding premise that implementation has become abundant, so judgment is the scarce resource — and read an agent as a loop whose behavior you condition by handing it a model of its world. — _anchor: 1.1 'Not every programming task needs the machinery this book describes' + the founding premise (commodity intelligence → judgment is the scarce resource) + 1.3 'an agent runs in a loop … give it a model of the world'._
 
 ### Lesson 1.1-the-printer
 
@@ -52,7 +52,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 2 — Modeling
 
-- **[DECLARED]** (create) After Part 2, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper. — _anchor: Part 2 chapter arc: agent-stack -> semantic-gap -> ex-ante/ex-post -> lifecycles/runbooks -> metrics -> guardrails-collide._
+- **[DECLARED]** (create) After this Part, the reader can model a system as the executable 4+1 zoo — logical, process, development, physical, and scenario views — identifying and building the small set of models it needs, each a structured model kept honest by a drift check. — _anchor: Modeling is the 4+1 views one chapter each (logical/process/development/physical/scenarios), spined by the context/control/executable-zoo/projection chapters and joined by the sync chapters._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
 
 ### Lesson 2.1-context-is-the-first-modeling-problem
@@ -95,7 +95,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 3 — Alignment
 
-- **[DECLARED]** (create) After Part 3, the reader can model a system as the executable 4+1 zoo — logical, process, development, physical, and scenario views — each a structured model kept honest by a drift check. — _anchor: Part 3 is the 4+1 views one chapter each (3.2 logical, 3.3 process, 3.4 development, 3.5 physical, 3.6 scenarios), spined by 3.1._
+- **[DECLARED]** (create) After this Part, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper. — _anchor: Alignment chapter arc: agent-stack -> semantic-gap -> governed-environment (ex-ante/ex-post) -> lifecycles/runbooks -> metrics -> when-guardrails-collide._
 - _elaborates (owned by the program):_ (create) After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human's head.
 - _elaborates (owned by models-and-the-semantic-gap):_ (understand) After this chapter, the reader can explain why a structured model beats prose and code as the thing an agent reasons through, and why a drift check proves agreement, not correctness.
 
@@ -152,7 +152,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 4 — The MAGE Method
 
-- **[DECLARED]** (apply) After Part 4, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism. _(primary: Module 4 · elaborated by: Module 5)_ — _anchor: Part 4 'The MAGE Method' + chapter arc: the-mage-workflow -> brownfield -> generative-validation -> the-skills (governance-conversion + field-guide dissolved into 4.1 + the 4.4 synthesis close in round-6)._
+- **[DECLARED]** (apply) After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism. _(primary: Module 4 · elaborated by: Module 5)_ — _anchor: The MAGE Method chapter arc: the-mage-workflow -> brownfield -> validating-change -> the-skills (governance-conversion + field-guide dissolved into 4.1 + the 4.4 synthesis close in round-6)._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
 
 ### Lesson 4.1-the-mage-workflow
@@ -178,8 +178,8 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 5 — The Evidence
 
-- **[DECLARED]** (analyze) After Part 5, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it. — _anchor: Part 5 is the ADA/DocAble case study: context -> timeline/work -> built-system -> road-to-MAGE (role progression)._
-- _elaborates (owned by Module 4):_ (apply) After Part 4, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.
+- **[DECLARED]** (analyze) After this Part, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it. — _anchor: The Evidence is the ADA/DocAble case study: context -> timeline/work -> built-system -> road-to-MAGE (role progression)._
+- _elaborates (owned by Module 4):_ (apply) After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.
 
 ### Lesson 5.1-the-ada-context
 
@@ -201,7 +201,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 6 — The Profession
 
-- **[DECLARED]** (evaluate) After Part 6, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become the universal language of engineering. _(primary: Module 6 · elaborated by: conclusion, where-mage-fits)_ — _anchor: 6.0 implications-for-se sections (the-judgment-moved, what-this-changes-for-how-we-measure-staff-and-teach, models-are-the-universal-language) + 6.1 the-part-that-stays-yours._
+- **[DECLARED]** (evaluate) After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become the universal language of engineering. _(primary: Module 6 · elaborated by: conclusion, where-mage-fits)_ — _anchor: implications-for-se sections (the-judgment-moved, what-this-changes-for-how-we-measure-staff-and-teach, models-are-the-universal-language) + the-part-that-stays-yours._
 
 ### Lesson 6.1-toward-a-theory-of-mage
 

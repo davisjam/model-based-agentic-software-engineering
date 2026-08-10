@@ -96,60 +96,60 @@
     },
     {
       "granularity": "part",
-      "primary_unit": "part-1",
+      "primary_unit": "part:the-mindset",
       "verb": "judge",
-      "obj": "whether a task needs the book's machinery at all, and read an agent as a loop that needs a model",
-      "statement": "After Part 1, the reader can judge which tasks warrant governance machinery and which do not, and read an agent as a loop that needs a model of its world.",
+      "obj": "which tasks warrant the book's machinery, given that implementation is abundant and judgment scarce, and how to read an agent as a loop conditioned by the model you give it",
+      "statement": "After this Part, the reader can judge which engineering tasks warrant the book's machinery — grounded in the founding premise that implementation has become abundant, so judgment is the scarce resource — and read an agent as a loop whose behavior you condition by handing it a model of its world.",
       "provenance": "declared",
-      "anchor": "1.1 'Not every programming task needs the machinery this book describes' + 1.3 'an agent runs in a loop … give it a model of the world'."
+      "anchor": "1.1 'Not every programming task needs the machinery this book describes' + the founding premise (commodity intelligence → judgment is the scarce resource) + 1.3 'an agent runs in a loop … give it a model of the world'."
     },
     {
       "granularity": "part",
-      "primary_unit": "part-2",
+      "primary_unit": "part:modeling",
+      "verb": "model",
+      "obj": "a system as the small set of models it needs — the executable 4+1 zoo, one per view, each kept honest by a drift check",
+      "statement": "After this Part, the reader can model a system as the executable 4+1 zoo — logical, process, development, physical, and scenario views — identifying and building the small set of models it needs, each a structured model kept honest by a drift check.",
+      "provenance": "declared",
+      "anchor": "Modeling is the 4+1 views one chapter each (logical/process/development/physical/scenarios), spined by the context/control/executable-zoo/projection chapters and joined by the sync chapters."
+    },
+    {
+      "granularity": "part",
+      "primary_unit": "part:alignment",
       "verb": "construct",
       "obj": "the governed environment — its layers, its ex-ante and ex-post mechanisms, its lifecycles, and its metrics",
-      "statement": "After Part 2, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper.",
+      "statement": "After this Part, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper.",
       "provenance": "declared",
-      "anchor": "Part 2 chapter arc: agent-stack -> semantic-gap -> ex-ante/ex-post -> lifecycles/runbooks -> metrics -> guardrails-collide."
+      "anchor": "Alignment chapter arc: agent-stack -> semantic-gap -> governed-environment (ex-ante/ex-post) -> lifecycles/runbooks -> metrics -> when-guardrails-collide."
     },
     {
       "granularity": "part",
-      "primary_unit": "part-3",
-      "verb": "model",
-      "obj": "a system through Kruchten's 4+1 views as structured models an agent reasons through",
-      "statement": "After Part 3, the reader can model a system as the executable 4+1 zoo — logical, process, development, physical, and scenario views — each a structured model kept honest by a drift check.",
-      "provenance": "declared",
-      "anchor": "Part 3 is the 4+1 views one chapter each (3.2 logical, 3.3 process, 3.4 development, 3.5 physical, 3.6 scenarios), spined by 3.1."
-    },
-    {
-      "granularity": "part",
-      "primary_unit": "part-4",
+      "primary_unit": "part:the-mage-method",
       "verb": "apply",
       "obj": "the method to a real codebase — running the MAGE workflow loop, inducing models from brownfield code, wielding the skills, holding the result with generative validation, and converting recurring failures into mechanisms",
-      "statement": "After Part 4, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.",
+      "statement": "After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.",
       "provenance": "declared",
-      "anchor": "Part 4 'The MAGE Method' + chapter arc: the-mage-workflow -> brownfield -> generative-validation -> the-skills (governance-conversion + field-guide dissolved into 4.1 + the 4.4 synthesis close in round-6).",
+      "anchor": "The MAGE Method chapter arc: the-mage-workflow -> brownfield -> validating-change -> the-skills (governance-conversion + field-guide dissolved into 4.1 + the 4.4 synthesis close in round-6).",
       "secondary_units": [
-        "part-5"
+        "part:the-evidence"
       ]
     },
     {
       "granularity": "part",
-      "primary_unit": "part-5",
+      "primary_unit": "part:the-evidence",
       "verb": "trace",
       "obj": "the method's evolution through a real accessibility-remediation system",
-      "statement": "After Part 5, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it.",
+      "statement": "After this Part, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it.",
       "provenance": "declared",
-      "anchor": "Part 5 is the ADA/DocAble case study: context -> timeline/work -> built-system -> road-to-MAGE (role progression)."
+      "anchor": "The Evidence is the ADA/DocAble case study: context -> timeline/work -> built-system -> road-to-MAGE (role progression)."
     },
     {
       "granularity": "part",
-      "primary_unit": "part-6",
+      "primary_unit": "part:the-profession",
       "verb": "evaluate",
       "obj": "what the method changes for how software engineering is measured, staffed, and taught",
-      "statement": "After Part 6, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become the universal language of engineering.",
+      "statement": "After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become the universal language of engineering.",
       "provenance": "declared",
-      "anchor": "6.0 implications-for-se sections (the-judgment-moved, what-this-changes-for-how-we-measure-staff-and-teach, models-are-the-universal-language) + 6.1 the-part-that-stays-yours.",
+      "anchor": "implications-for-se sections (the-judgment-moved, what-this-changes-for-how-we-measure-staff-and-teach, models-are-the-universal-language) + the-part-that-stays-yours.",
       "secondary_units": [
         "conclusion",
         "where-mage-fits"
@@ -167,9 +167,9 @@
     {
       "granularity": "chapter",
       "primary_unit": "mage-by-example",
-      "verb": "describe",
-      "obj": "the system the book's claims are grounded in — what it does, how its six parts fit, why it was built — and the governance-conversion move on two real incidents",
-      "statement": "After this chapter, the reader can describe the grounding case — what DocAble does, how its six parts fit together, and why it was built — and recognize the convert-a-failure-into-a-mechanism move in its first two incidents.",
+      "verb": "recognize",
+      "obj": "the convert-a-failure-into-a-mechanism move on two real incidents, using DocAble as the grounding case",
+      "statement": "After this chapter, the reader can recognize the convert-a-failure-into-a-mechanism move on two real incidents, using DocAble — what it does and how its six parts fit — as the grounding case.",
       "provenance": "declared",
       "anchor": "Section titles: 'two-birds-one-stone', 'the-shape-of-the-machine', 'two-scars', 'the-move-that-recurs'."
     },
@@ -194,9 +194,9 @@
     {
       "granularity": "chapter",
       "primary_unit": "the-agent-stack",
-      "verb": "identify",
-      "obj": "the four layers of the agent stack as four places to steer",
-      "statement": "After this chapter, the reader can identify the four layers of the agent stack and read each as a distinct place to insert a control.",
+      "verb": "route",
+      "obj": "a control to the right layer of the agent stack, reading each layer as a distinct injection point",
+      "statement": "After this chapter, the reader can route a control to the right layer of the agent stack, reading each of its four layers as a distinct injection point.",
       "provenance": "derived",
       "anchor": "point: agent-stack-has-four-injection-layers / read-each-layer-as-an-injection-opportunity / every-layer-serves-one-goal-narrow-the-search"
     },
@@ -328,7 +328,7 @@
     {
       "granularity": "chapter",
       "primary_unit": "metrics",
-      "verb": "compute",
+      "verb": "design",
       "obj": "a metric that measures one level deeper than the surface number",
       "statement": "After this chapter, the reader can design a metric that measures one level deeper — turning a number that reports into one that drives a decision — and place it on the hard-to-soft spectrum, feeding a hard number into a structured model the metric tool then consumes.",
       "provenance": "derived",
@@ -476,10 +476,10 @@
       "granularity": "chapter",
       "primary_unit": "failures",
       "verb": "recognize",
-      "obj": "the agent-shaped failure modes and the disciplines that survive them",
-      "statement": "After this chapter, the reader can recognize the recurring agent-shaped failure modes — optionality, false 'done', broken estimates, vibe coding — and adopt the disciplines that survive them.",
+      "obj": "the agent-shaped failure modes and convert each into a sensor that pins the invariant, not the example",
+      "statement": "After this chapter, the reader can recognize the recurring agent-shaped failure modes — optionality, false 'done', broken estimates, vibe coding — and convert each into a sensor that pins the invariant, not the example.",
       "provenance": "declared",
-      "anchor": "The quotable-lessons strip (each failure mode paired with the discipline it demands) plus the failure incidents 'The decision left open', '\"Done\" was a claim', and 'Lessons that recur without a single scene' in the merged 5.6 conversions chapter (identity label 'failures')."
+      "anchor": "The quotable-lessons strip (each failure mode paired with the discipline it demands, incl. 'An agent fails differently than a person -> build sensor barriers that pin the invariant, not the example') plus the failure incidents 'The decision left open', '\"Done\" was a claim', and 'Lessons that recur without a single scene' in the merged 5.6 conversions chapter (identity label 'failures')."
     },
     {
       "granularity": "chapter",
@@ -502,9 +502,9 @@
     {
       "granularity": "chapter",
       "primary_unit": "the-timeline-and-the-work",
-      "verb": "describe",
-      "obj": "the stages, velocity, and kinds of work the case-study system required",
-      "statement": "After this chapter, the reader can describe how the case-study project unfolded across its stages and the range of work it demanded.",
+      "verb": "map",
+      "obj": "the project's stages to the kinds of work each demanded and the velocity each produced",
+      "statement": "After this chapter, the reader can map the case-study project's stages to the kinds of work each demanded and the velocity each produced.",
       "provenance": "declared",
       "anchor": "Section titles 'six-stages-then-a-seventh', 'velocity', 'the-kinds-of-work-it-required'."
     },
@@ -760,15 +760,6 @@
       "statement": "After this section, the reader can use the self-governance signal — a bad thing happened twice — to mint a control instead of re-patching the instance.",
       "provenance": "derived",
       "anchor": "ts: 'the second skill, self-governance, triggers on a simple signal: a bad thing happened more'."
-    },
-    {
-      "granularity": "chapter",
-      "primary_unit": "failures",
-      "verb": "recognize",
-      "obj": "the agent-shaped failure modes a test suite must survive",
-      "statement": "After this chapter, the reader can recognize the agent-shaped failure modes and write tests that survive them.",
-      "provenance": "derived",
-      "anchor": "Strip row 'An agent fails differently than a person -> build sensor barriers that pin the invariant, not the example', in the merged 5.6 conversions chapter (identity label 'failures')."
     },
     {
       "granularity": "section",

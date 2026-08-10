@@ -106,6 +106,33 @@ PART_TITLES = {
     6: "The Profession",
 }
 
+#: Renumber-safe PART key surrogate. The outcomes DECLARED source keys each part record by a stable LABEL
+#: (`part:<slug-of-title>`), NOT the part NUMBER — so a Part renumber cannot transpose two records, the bug
+#: this determinizes away: `part-2` / `part-3` went stale after Modeling and Alignment swapped position, so
+#: the Modeling capability sat under `part-3` and the Alignment one under `part-2`. The number is DERIVED
+#: HERE from `PART_TITLES` (held in parity with `build_book_html._PART_TITLES` by check_part_title_parity)
+#: at load time, so a rename/renumber re-binds a label to its current number automatically — one source of
+#: truth for "which Part." `chapter_identity` is already label-keyed for the same reason; this brings the
+#: part outcomes into line. Every downstream consumer (U-gates, the tiered view, the site projection) still
+#: sees the resolved `part-<N>`, so only this one seam changes.
+_PART_LABEL_TO_NUM: "dict[str, int]" = {bs.slugify(title): n for n, title in PART_TITLES.items() if n != 0}
+
+
+def _resolve_part_key(unit_id: str) -> str:
+    """Map a renumber-safe part LABEL key (`part:<slug>`) to the current `part-<N>` the rest of the model
+    and every projection speak. A non-label key (chapter slug / section id / `book` / an already-numeric
+    `part-N`) passes through unchanged. Fails loud on a `part:` label naming no current Part — the
+    determinize's structural guarantee: a stale label can never silently resolve to the WRONG number; it
+    resolves to the right one or errors."""
+    if not unit_id.startswith("part:"):
+        return unit_id
+    slug = unit_id.removeprefix("part:")
+    n = _PART_LABEL_TO_NUM.get(slug)
+    if n is None:
+        raise SystemExit(f"outcomes: part label {unit_id!r} names no current Part — "
+                         f"known labels: {sorted(_PART_LABEL_TO_NUM)}")
+    return f"part-{n}"
+
 
 # ---- typed model ------------------------------------------------------------------------------------
 
@@ -254,8 +281,13 @@ def _declared_outcomes() -> "list[Outcome]":
     for d in _load_declared():
         verb, obj = d["verb"], d["obj"]
         statement = d.get("statement") or f"After this unit, the reader can {verb} {obj}."
-        out.append(_mk_outcome(granularity=d["granularity"], primary_unit=d["primary_unit"],
-                               secondary_units=d.get("secondary_units", []), verb=verb, obj=obj,
+        # Resolve the renumber-safe part LABEL surrogate → the current `part-<N>` before constructing the
+        # Outcome, so everything downstream (outcome_id, U-gates, tiered view, site projection) speaks the
+        # numeric key unchanged. A non-part key passes through untouched.
+        primary = _resolve_part_key(d["primary_unit"])
+        secondary = [_resolve_part_key(u) for u in d.get("secondary_units", [])]
+        out.append(_mk_outcome(granularity=d["granularity"], primary_unit=primary,
+                               secondary_units=secondary, verb=verb, obj=obj,
                                statement=statement, provenance=d.get("provenance", "declared"),
                                anchor=d.get("anchor"), gap_note=d.get("gap_note")))
     return out
@@ -472,6 +504,89 @@ def section_gap_findings(model: OutcomeModel) -> "list[str]":
     return gaps
 
 
+# ---- capability-quality: the part-binding transposition catcher (AUDIT-ONLY, rule #55) --------------
+#: The 260810 finding: `outcomes_declared.json`'s part-2/part-3 records went stale after Modeling and
+#: Alignment swapped position — the KEY (a part number) drifted from the CONTENT (the capability
+#: statement). The DETERMINIZE (label keys + derive-number, above) makes the KEY impossible to transpose.
+#: This lint is the FUZZY backstop the determinize cannot supply: it catches a right-key / WRONG-statement
+#: drift — a `part:modeling` record whose statement is about governance, not models. Two rungs, both
+#: reported AUDIT-ONLY (the whole U-gate family is audit-only; a follow-up may promote the structural rung).
+
+_PB_STOPWORDS = frozenset(
+    "the a an of to and or for in on at by with from into as is are be can each its it this that these "
+    "those one not how which what why who does do reader after part their they them you your may must "
+    "through over under about across between while when where then than so but also only more most".split())
+
+
+def _pb_tokens(text: str) -> "set[str]":
+    """Coarse content tokens for the fuzzy overlap check: lowercase alphabetic words ≥4 chars, minus a
+    small stopword set. No stemming — the overlap test below matches on a shared 4-char prefix, which
+    absorbs 'model' / 'models' / 'modeling' without a fragile stemmer."""
+    import re  # local: a tiny self-contained tokenizer used only by this audit-only lint
+    return {w for w in re.findall(r"[a-z]+", text.lower()) if len(w) >= 4 and w not in _PB_STOPWORDS}
+
+
+def _pb_overlap(statement_tokens: "set[str]", expected_tokens: "set[str]") -> int:
+    """Count expected tokens that share a ≥4-char prefix with some statement token (prefix match absorbs
+    plural/gerund morphology: 'modeling' ~ 'model')."""
+    hits = 0
+    for e in expected_tokens:
+        if any(s[:4] == e[:4] for s in statement_tokens):
+            hits += 1
+    return hits
+
+
+def _expected_part_tokens(part_num: int, outline) -> "set[str]":
+    """The vocabulary a Part-N outcome statement should touch: the Part TITLE words plus the words of the
+    chapter slugs the outline places in Part N (stripping the numeric `N.M-` prefix). Derived from the
+    live outline + PART_TITLES, so it tracks a renumber/rename with no hand-kept list."""
+    toks = _pb_tokens(PART_TITLES.get(part_num, ""))
+    for c in outline.chapters:
+        if c.part != part_num:
+            continue
+        stem = c.slug.split("-", 1)[1] if "-" in c.slug and c.slug.split("-", 1)[0].replace(".", "").isdigit() else c.slug
+        toks |= _pb_tokens(stem.replace("-", " "))
+    return toks
+
+
+def part_binding_findings() -> "list[str]":
+    """AUDIT-ONLY capability-quality checks over the DECLARED part records — the transposition catcher the
+    stale part-2/part-3 binding demanded (the audit's U9 sketch had count/uniqueness but MISSED this one).
+
+      U9pb-struct (DETERMINISTIC) — every `part` record keys by a `part:<label>` surrogate resolving to
+        exactly one current Part number. A bare numeric `part-<N>` key (the renumber-fragile form) or an
+        unresolvable label is a finding.
+      U9pb-parity (FUZZY) — the record's statement+object must OVERLAP the resolved Part's expected
+        vocabulary (title + chapter-slug words). Zero overlap flags a right-key / wrong-statement drift
+        (a Modeling statement mis-filed under Alignment, or vice versa).
+
+    Reads the declared file directly, so it sees the label surrogate the load-time resolver erases."""
+    outline = om.derive_outline()
+    findings: "list[str]" = []
+    for d in _load_declared():
+        if d.get("granularity") != "part":
+            continue
+        key = d["primary_unit"]
+        # U9pb-struct — the key must be a resolvable label surrogate, never a bare number.
+        if not key.startswith("part:"):
+            findings.append(f"U9pb-struct part record {key!r} uses a renumber-fragile numeric key — "
+                            f"re-key to the `part:<label>` surrogate (the transposition determinize)")
+            continue
+        slug = key.removeprefix("part:")
+        num = _PART_LABEL_TO_NUM.get(slug)
+        if num is None:
+            findings.append(f"U9pb-struct part label {key!r} names no current Part "
+                            f"(known: {sorted(_PART_LABEL_TO_NUM)})")
+            continue
+        # U9pb-parity — the statement must talk about THIS Part's subject.
+        stmt_tokens = _pb_tokens(f"{d.get('statement', '')} {d.get('obj', '')}")
+        expected = _expected_part_tokens(num, outline)
+        if _pb_overlap(stmt_tokens, expected) == 0:
+            findings.append(f"U9pb-parity part {key!r} (→ part-{num} {PART_TITLES.get(num)!r}) statement "
+                            f"shares NO vocabulary with the Part's title/chapters — possible mis-binding")
+    return findings
+
+
 # ---- materialization --------------------------------------------------------------------------------
 
 def to_jsonable(model: OutcomeModel) -> dict:
@@ -526,6 +641,11 @@ def regenerate() -> int:
     if cov:
         print(f"  {len(cov)} coverage finding(s) (audit-only — see tests/book_models.py):")
         for f in cov:
+            print(f"    {f}")
+    pb = part_binding_findings()
+    if pb:
+        print(f"  {len(pb)} part-binding finding(s) (audit-only — capability-quality U9pb):")
+        for f in pb:
             print(f"    {f}")
     return 0
 
