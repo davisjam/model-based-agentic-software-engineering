@@ -75,10 +75,10 @@
       "obj": "a constraint from a sensor and a soft mechanism from a hard one",
       "statement": "After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.",
       "provenance": "declared",
-      "anchor": "The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (governance-is-a-spectrum-from-soft-to-hard).",
+      "anchor": "The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (from-soft-to-hard, in the governance-conversion chapter).",
       "secondary_units": [
         "constraints-and-sensors",
-        "governance-is-a-spectrum-from-soft-to-hard"
+        "from-soft-to-hard"
       ]
     },
     {
@@ -125,10 +125,10 @@
       "granularity": "part",
       "primary_unit": "part-4",
       "verb": "apply",
-      "obj": "the method to a real codebase — inducing models from brownfield code, wielding the skills, and sizing transformations",
-      "statement": "After Part 4, the reader can put the method to work: induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, size a transformation to its model and guarantee, and recognize the agent-shaped failure modes.",
+      "obj": "the method to a real codebase — running the MAGE workflow loop, inducing models from brownfield code, wielding the skills, holding the result with generative validation, and converting recurring failures into mechanisms",
+      "statement": "After Part 4, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.",
       "provenance": "declared",
-      "anchor": "Part 4 title 'Putting It to Work' + chapter arc: brownfield -> skills -> transformations -> training-data -> lessons-learned -> generative-validation.",
+      "anchor": "Part 4 title 'Putting It to Work' + chapter arc: the-mage-workflow -> brownfield -> skills -> generative-validation -> governance-conversion -> field-guide.",
       "secondary_units": [
         "part-5"
       ]
@@ -295,7 +295,7 @@
       "anchor": "point: a-governed-environment-has-an-ex-ante-and-an-ex-post-half / a-mechanism-is-one-of-two-moves-prevent-or-catch / the-governed-environment-is-determinize-what-you-can-then-convert-every-surprise-into-a-constraint-or-sensor",
       "secondary_units": [
         "when-guardrails-collide",
-        "lessons-learned"
+        "governance-conversion"
       ]
     },
     {
@@ -474,12 +474,12 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "lessons-learned",
+      "primary_unit": "failures",
       "verb": "recognize",
       "obj": "the agent-shaped failure modes and the disciplines that survive them",
       "statement": "After this chapter, the reader can recognize the recurring agent-shaped failure modes — optionality, false 'done', broken estimates, vibe coding — and adopt the disciplines that survive them.",
       "provenance": "declared",
-      "anchor": "Section titles 'optionality-is-poison', 'done-is-a-claim-not-a-fact', 'the-cost-estimator-is-broken-...', 'vibe-coding-treats-the-program-as-an-i-o-device-...'."
+      "anchor": "The quotable-lessons strip (each failure mode paired with the discipline it demands) plus the failure incidents 'The decision left open', '\"Done\" was a claim', and 'Lessons that recur without a single scene' in the merged 5.6 conversions chapter (identity label 'failures')."
     },
     {
       "granularity": "chapter",
@@ -580,7 +580,7 @@
       "provenance": "derived",
       "anchor": "point: a-mechanism-is-one-of-two-moves-prevent-or-catch / a-sensor-detects-drift-after-the-fact-and-costs-iterations / a-constraint-prevents-drift-within-the-iteration-and-costs-no-iteration / form-and-move-are-two-independent-axes / most-real-mechanisms-are-a-package-so-tag-the-primary-move",
       "secondary_units": [
-        "governance-is-a-spectrum-from-soft-to-hard",
+        "from-soft-to-hard",
         "when-guardrails-collide"
       ]
     },
@@ -658,12 +658,12 @@
     },
     {
       "granularity": "section",
-      "primary_unit": "governance-is-a-spectrum-from-soft-to-hard",
+      "primary_unit": "from-soft-to-hard",
       "verb": "classify",
       "obj": "a mechanism on the soft-to-hard spectrum by whether it aims or holds",
       "statement": "After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds.",
       "provenance": "derived",
-      "anchor": "Heading text: 'Governance is a spectrum from soft to hard'.",
+      "anchor": "Heading text: 'From soft to hard' (in the governance-conversion chapter).",
       "secondary_units": [
         "constraints-and-sensors"
       ]
@@ -753,13 +753,13 @@
       "anchor": "ts: 'the second skill, self-governance, triggers on a simple signal: a bad thing happened more'."
     },
     {
-      "granularity": "section",
-      "primary_unit": "your-tests-must-survive-agent-shaped-failure-modes",
+      "granularity": "chapter",
+      "primary_unit": "failures",
       "verb": "recognize",
       "obj": "the agent-shaped failure modes a test suite must survive",
-      "statement": "After this section, the reader can recognize the agent-shaped failure modes and write tests that survive them.",
+      "statement": "After this chapter, the reader can recognize the agent-shaped failure modes and write tests that survive them.",
       "provenance": "derived",
-      "anchor": "Heading text: 'Your tests must survive agent-shaped failure modes'."
+      "anchor": "Strip row 'An agent fails differently than a person -> build sensor barriers that pin the invariant, not the example', in the merged 5.6 conversions chapter (identity label 'failures')."
     },
     {
       "granularity": "section",
