@@ -6,8 +6,8 @@
     "explicit_ids": 34,
     "derived_ids": 263,
     "missing_topic_sentence": 5,
-    "sections_drained": 179,
-    "paragraph_points": 591
+    "sections_drained": 182,
+    "paragraph_points": 618
   },
   "chapters": [
     {
@@ -4193,7 +4193,53 @@
           "topic_sentence": "A pattern is a move the method makes again and again, in a form you can reuse.",
           "id_source": "derived",
           "block_index": 6,
-          "points": []
+          "points": [
+            {
+              "slug": "bootstrap-from-the-environment-you-already-own",
+              "text": "Bootstrap from the environment you already own.",
+              "block_index": 9
+            },
+            {
+              "slug": "reach-for-a-constraint-first-add-a-sensor-for-the-rest",
+              "text": "Reach for a constraint first; add a sensor for the rest.",
+              "block_index": 11
+            },
+            {
+              "slug": "determinize-what-you-know-convert-what-you-learn",
+              "text": "Determinize what you know; convert what you learn.",
+              "block_index": 13
+            },
+            {
+              "slug": "audit-drain-promote-to-wear-a-lint-into-a-legacy-tree",
+              "text": "Audit, drain, promote to wear a lint into a legacy tree.",
+              "block_index": 15
+            },
+            {
+              "slug": "ask-the-deterministic-question-against-a-model",
+              "text": "Ask the deterministic question against a model, not the code.",
+              "block_index": 17
+            },
+            {
+              "slug": "generate-to-falsify-admit-only-what-survives",
+              "text": "Generate to falsify; admit only what survives.",
+              "block_index": 19
+            },
+            {
+              "slug": "never-add-metadata-without-a-consumer",
+              "text": "Never add metadata without a consumer.",
+              "block_index": 21
+            },
+            {
+              "slug": "package-the-procedure-so-the-work-becomes-delegable",
+              "text": "Package the procedure so a class of work becomes delegable.",
+              "block_index": 23
+            },
+            {
+              "slug": "govern-the-accumulated-governance",
+              "text": "Govern the accumulated governance.",
+              "block_index": 25
+            }
+          ]
         },
         {
           "section_id": "the-anti-patterns",
@@ -4201,8 +4247,54 @@
           "heading_text": "The anti-patterns",
           "topic_sentence": "An anti-pattern is a move that looks reasonable and fails predictably.",
           "id_source": "derived",
-          "block_index": 18,
-          "points": []
+          "block_index": 27,
+          "points": [
+            {
+              "slug": "the-teetering-tower-of-governance",
+              "text": "The teetering tower — upkeep outweighs benefit.",
+              "block_index": 30
+            },
+            {
+              "slug": "all-sensors-and-no-constraints",
+              "text": "All sensors, no constraints — removes no failure class.",
+              "block_index": 32
+            },
+            {
+              "slug": "words-alone-are-a-probability-flip",
+              "text": "Words alone are a probability flip.",
+              "block_index": 34
+            },
+            {
+              "slug": "flipping-a-check-to-blocking-with-findings-open",
+              "text": "Flipping a check to blocking with findings still open.",
+              "block_index": 36
+            },
+            {
+              "slug": "trusting-a-done-claim",
+              "text": "Trusting a done claim.",
+              "block_index": 38
+            },
+            {
+              "slug": "the-mirror-that-agrees-with-the-bug",
+              "text": "The mirror that agrees with the bug.",
+              "block_index": 40
+            },
+            {
+              "slug": "patching-the-seed-not-the-spec-point",
+              "text": "Patching the seed, not the spec point.",
+              "block_index": 42
+            },
+            {
+              "slug": "the-invoice-level-metric",
+              "text": "The invoice-level metric reports but cannot act.",
+              "block_index": 44
+            },
+            {
+              "slug": "reactive-growth-leaves-a-target-un-watched",
+              "text": "Reactive growth leaves a target un-watched.",
+              "block_index": 46
+            }
+          ]
         },
         {
           "section_id": "the-heuristics",
@@ -4210,8 +4302,54 @@
           "heading_text": "The heuristics",
           "topic_sentence": "A heuristic is a judgment rule for the calls no pattern makes for you.",
           "id_source": "derived",
-          "block_index": 30,
-          "points": []
+          "block_index": 48,
+          "points": [
+            {
+              "slug": "size-by-cost-times-frequency-architecture-first",
+              "text": "Size by cost times frequency; architecture before controls.",
+              "block_index": 51
+            },
+            {
+              "slug": "take-the-next-rung-when-a-recurring-question-earns-it",
+              "text": "Take the next rung when a recurring question earns it.",
+              "block_index": 53
+            },
+            {
+              "slug": "guidance-aims-machinery-holds",
+              "text": "Guidance aims; machinery holds.",
+              "block_index": 55
+            },
+            {
+              "slug": "convert-dont-just-repair",
+              "text": "Convert, don't just repair — audit becomes lint.",
+              "block_index": 57
+            },
+            {
+              "slug": "the-second-time-a-failure-shows-up-it-earns-its-mechanism",
+              "text": "The second time a failure shows up, it has earned its mechanism.",
+              "block_index": 59
+            },
+            {
+              "slug": "measure-one-level-deeper",
+              "text": "Measure one level deeper.",
+              "block_index": 61
+            },
+            {
+              "slug": "choose-the-fitness-function-then-the-cheapest-abstraction",
+              "text": "Choose the fitness function, then the cheapest abstraction that enforces it.",
+              "block_index": 63
+            },
+            {
+              "slug": "harvest-real-producers-before-hand-rolling-a-grammar",
+              "text": "Harvest real producers before hand-rolling a grammar.",
+              "block_index": 65
+            },
+            {
+              "slug": "orient-positive-before-you-hunt-a-break",
+              "text": "Orient positive before you hunt a break.",
+              "block_index": 67
+            }
+          ]
         },
         {
           "section_id": "the-checklists",
@@ -4219,7 +4357,7 @@
           "heading_text": "The checklists",
           "topic_sentence": "A checklist turns a pattern into something you run on Monday.",
           "id_source": "derived",
-          "block_index": 42,
+          "block_index": 69,
           "points": []
         },
         {
@@ -4228,12 +4366,12 @@
           "heading_text": "Starting a brownfield migration",
           "topic_sentence": "The three migration approaches — top-down from intent, bottom-up from code, and lint-cover-then-induce — run as one repeating loop, short enough to keep on a card ([Brownfield](4.2-brownfield.html)):",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 72,
           "points": [
             {
               "slug": "the-brownfield-loop-in-five-moves",
               "text": "The brownfield loop, in five moves.",
-              "block_index": 46
+              "block_index": 73
             }
           ]
         },
@@ -4243,12 +4381,12 @@
           "heading_text": "Minting a new mechanism",
           "topic_sentence": "When a failure recurs and a mechanism is owed, run the reflexes before you build ([The Skills](4.3-the-skills.html), [The Governed Environment](3.3-the-governed-environment.html)):",
           "id_source": "derived",
-          "block_index": 49,
+          "block_index": 76,
           "points": [
             {
               "slug": "the-minting-reflexes",
               "text": "The minting reflexes.",
-              "block_index": 50
+              "block_index": 77
             }
           ]
         },
@@ -4258,12 +4396,12 @@
           "heading_text": "Sizing a mechanism",
           "topic_sentence": "Cross how much a failure costs against how often it happens; each cell names the smallest change that still closes the class ([Brownfield](4.2-brownfield.html)).",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 80,
           "points": [
             {
               "slug": "the-sizing-matrix-as-a-decision-aid",
               "text": "The sizing matrix as a decision aid.",
-              "block_index": 54
+              "block_index": 81
             }
           ]
         },
@@ -4273,12 +4411,12 @@
           "heading_text": "Choosing a validation strategy",
           "topic_sentence": "Read the signal in the code under test and reach for the technique whose oracle fits ([Validation with Agents](4.4-generative-validation.html)):",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 84,
           "points": [
             {
               "slug": "the-generative-validation-decision-aid",
               "text": "The generative-validation decision aid.",
-              "block_index": 58
+              "block_index": 85
             }
           ]
         },
@@ -4288,17 +4426,17 @@
           "heading_text": "Auditing your governance estate",
           "topic_sentence": "Turn the method on the governance system itself, keeping three views over the same set of controls ([When Guardrails Collide](3.6-when-guardrails-collide.html)):",
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 88,
           "points": [
             {
               "slug": "the-three-views-over-one-control-set",
               "text": "Three views over one control set.",
-              "block_index": 62
+              "block_index": 89
             },
             {
               "slug": "the-field-guide-closes-the-method-and-opens-the-case",
               "text": "The field guide closes the method; the next Part is the case.",
-              "block_index": 65
+              "block_index": 92
             }
           ]
         }
