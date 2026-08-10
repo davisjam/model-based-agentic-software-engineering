@@ -180,6 +180,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 4.6-the-field-guide
 
+  - **[DERIVED]** (apply) After this section, the reader can run enough of these days and the shape of the work stands out. — _anchor: ts: Run enough of these days and the shape of the work stands out._
 
 ## Module 5 — The Evidence
 
