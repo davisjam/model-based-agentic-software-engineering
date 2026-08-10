@@ -53,6 +53,7 @@ from tests.book_models import (
     check_claims_model,
     check_flagship_stack,
     check_industry_cases,
+    check_link_integrity,
     check_lit_positioning,
     check_supporting_sources,
     check_metaphor_slogan_index,
@@ -293,6 +294,14 @@ CHECKS = [
     # exemption) drained them to 0, so this is now promoted to BLOCKING. See tests/book_models.py.
     Check("book-models: chapter-template conformance + label backstop (chapter files)", 1,
           lambda strict: check_chapter_identity_conformance()),
+    # BLOCKING (lands green at 0 dangling): the WHOLE-BOOK chapter-link integrity net — the primary
+    # correctness mechanism for a renumber. Scans every book source for number-bearing chapter links
+    # (`](N.M-slug.html)`) + `{{part:N}}` tokens and asserts each resolves to a live chapter slug / part,
+    # renumber-aware (derived from the sources, not the built HTML). The one dangling class the build's
+    # orphan gate (catches the reverse) and the post-build HTML scanner cannot see at the source. Appendix
+    # links are build-rewritten + validated by check_html_links, so out of scope. See tests/book_models.py.
+    Check("book-models: whole-book chapter-link integrity (link_integrity_check.py)", 1,
+          lambda strict: check_link_integrity()),
     # AUDIT-ONLY (rule #55 first landing): the ARGUMENT-SPINE view-model — the book's linear argument as an
     # ordered run of claims reconciling the author's seed statements, the claims model, and the Big Ideas,
     # plus the per-chapter labeling of which spine claims each chapter advances (editorial directive Phase 1).

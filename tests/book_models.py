@@ -702,6 +702,21 @@ def _thesis_stated_whole(part_dir: str, thesis_name: str) -> bool:
     return False
 
 
+def check_link_integrity():
+    """Whole-book chapter-link integrity (BLOCKING). Scans every book markdown source (frontmatter + all
+    Parts + the appendix trees) for number-bearing chapter links (`](N.M-slug.html)`) and `{{part:N}}`
+    tokens and asserts each resolves to a live chapter slug / part. This is the PRIMARY correctness net for
+    a renumber: it catches a stale-number link at the SOURCE (renumber-aware — a link fails even while the
+    old-numbered `.html` still sits on disk before a rebuild), the one dangling class the build's orphan
+    gate (which catches the reverse) and the post-build HTML scanner cannot see at the source. Appendix /
+    mechanism cross-references are build-rewritten and validated post-build by `check_html_links`, so they
+    are deliberately out of scope here. Keyed off `book-models/link_integrity_check.py` + the book sources."""
+    import link_integrity_check as lic  # noqa: E402 — path set above; the whole-book link net
+
+    issues = [f"{f.file}:{f.line} -> {f.target} ({f.kind})" for f in lic.findings()]
+    return (FAIL if issues else PASS), issues
+
+
 def check_canon_pins():
     """R3 canon-fidelity guard + R5 cycle pin (rule-#33 parity; AUDIT-ONLY-first, rule #55).
 
