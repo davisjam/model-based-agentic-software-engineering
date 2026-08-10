@@ -156,6 +156,7 @@ index entry (`definition of:` / `examples of:`) and suppresses the plain occurre
 display name. A tag whose slug is absent here fails the build. Display names are authored here once.
 
 - concept: commodity-intelligence | Commodity intelligence
+- concept: model-classes | Model classes
 - concept: churn | Churn
 - concept: fleet | The fleet
 - concept: printer-metaphor | The printer metaphor

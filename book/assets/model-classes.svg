@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HAND-AUTHORED one-off (Model-Classes taxonomy) — NOT projector output; edit by hand and keep this header. -->
+<!-- Model-classes taxonomy (label: model-classes). Reference/nav chrome, not a role-coloured figure. -->
+<!-- semantic-families: neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="model-classes">
+  <rect x="0" y="0" width="1000" height="620" fill="#fdfcf9"/>
+  <text x="905" y="42" text-anchor="end" font-size="20" font-weight="bold" fill="#1c1917">The five model classes</text>
+
+  <!-- root -->
+  <circle cx="120" cy="70" r="10" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+  <text x="150" y="66" font-size="24" font-weight="bold" fill="#1c1917">Model</text>
+  <text x="150" y="90" font-size="16" fill="#57534e">a structured approximation reasoned through, not over — sorted by what it represents</text>
+
+  <!-- spine -->
+  <line x1="120" y1="70" x2="120" y2="470" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- Behavioral -->
+  <line x1="120" y1="150" x2="150" y2="150" stroke="#cfcabf" stroke-width="3"/>
+  <circle cx="120" cy="150" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="165" y="147" font-size="22" font-weight="bold" fill="#1c1917">Behavioral</text>
+  <text x="165" y="170" font-size="16" fill="#57534e">how the system acts over runs — states, transitions, properties</text>
+  <text x="165" y="190" font-size="16" fill="#57534e">e.g. the job-lifecycle state machine (process view)</text>
+
+  <!-- Structural -->
+  <line x1="120" y1="230" x2="150" y2="230" stroke="#cfcabf" stroke-width="3"/>
+  <circle cx="120" cy="230" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="165" y="227" font-size="22" font-weight="bold" fill="#1c1917">Structural</text>
+  <text x="165" y="250" font-size="16" fill="#57534e">the system's shape — parts, zones, permitted composition</text>
+  <text x="165" y="270" font-size="16" fill="#57534e">e.g. the component-zone model (development view)</text>
+
+  <!-- Decision -->
+  <line x1="120" y1="310" x2="150" y2="310" stroke="#cfcabf" stroke-width="3"/>
+  <circle cx="120" cy="310" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="165" y="307" font-size="22" font-weight="bold" fill="#1c1917">Decision</text>
+  <text x="165" y="330" font-size="16" fill="#57534e">a choice to honor — contract, policy, permitted values</text>
+  <text x="165" y="350" font-size="16" fill="#57534e">e.g. the service-flow model + access policy (logical view)</text>
+
+  <!-- Measurement -->
+  <line x1="120" y1="390" x2="150" y2="390" stroke="#cfcabf" stroke-width="3"/>
+  <circle cx="120" cy="390" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="165" y="387" font-size="22" font-weight="bold" fill="#1c1917">Measurement</text>
+  <text x="165" y="410" font-size="16" fill="#57534e">a quantity the system exposes — cost, load, coverage</text>
+  <text x="165" y="430" font-size="16" fill="#57534e">e.g. the performance-and-cost model (physical view)</text>
+
+  <!-- Documentation -->
+  <line x1="120" y1="470" x2="150" y2="470" stroke="#cfcabf" stroke-width="3"/>
+  <circle cx="120" cy="470" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="165" y="467" font-size="22" font-weight="bold" fill="#1c1917">Documentation</text>
+  <text x="165" y="490" font-size="16" fill="#57534e">human-facing explanation as a governed, provenance-checked artifact</text>
+  <text x="165" y="510" font-size="16" fill="#57534e">e.g. a doc surface in the traceability graph</text>
+
+  <!-- footer notes -->
+  <line x1="95" y1="548" x2="905" y2="548" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="95" y="576" font-size="16" fill="#57534e">A contract or policy model is a <tspan font-weight="bold">Decision</tspan> model.</text>
+  <text x="95" y="600" font-size="16" fill="#57534e">Governance is a <tspan font-style="italic">Move</tspan> — an action on a model — not a sixth class.</text>
+</svg>
