@@ -1660,7 +1660,13 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     return (
         opener +
         "#block(breakable: false)[\n"
-        f"  #v(2.4in)\n"
+        # Top space above the "Part N" heading. TUNED, not arbitrary: the whole Part opener (divider heading +
+        # title + intro prose + thesis box + Part-nav strip) must fit on ONE page, and the LONGEST intro
+        # (Part 2 "Modeling") is the binding constraint — it fits with ~0.57in of nav clearance at 0.7in and
+        # overflows its nav onto a second page at 0.8in. 0.7in is the largest value at which all six openers
+        # fit. The `PART-OPENER SINGLE-PAGE` sensor in `build_book_html.verify_pdf` GATES this, so a future
+        # intro-lengthening (or a metric shift) that re-splits an opener fails the build instead of shipping.
+        f"  #v(0.7in)\n"
         + heading +
         "  #v(0.5em) #line(length: 30%, stroke: 1pt + dt.rule)\n"
         "]" + label

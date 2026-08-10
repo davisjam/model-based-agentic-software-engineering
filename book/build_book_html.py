@@ -6359,6 +6359,47 @@ def _pdf_orphan_caption_pages(pdf_path: pathlib.Path) -> list[tuple[int, str]]:
     return orphans
 
 
+# ── Part-opener single-page sensor ────────────────────────────────────────────────────────────────────
+# A numbered Part opens with a divider block — the "Part N" kicker over the big Part title — immediately
+# followed (on the same page) by the Part's intro prose, its thesis box, and the Part-nav strip (the row of
+# `PART 1 — THE MINDSET` … `PART 6 — THE PROFESSION` chips that closes the landing). The whole opener is meant
+# to fit on ONE page. The failure this catches: an intro long enough to push the nav strip onto a SECOND page,
+# splitting the opener (Part 2 "Modeling" is the longest intro and the binding constraint). The Typst
+# part-divider top-space knob is tuned so every opener fits; this build-time control catches any residual — a
+# lengthened intro, or a layout-metric shift.
+#
+# Detection reads the rendered PDF per page. The divider heading extracts TITLE-CASE ("Part 4 The MAGE
+# Method"); the nav chips extract UPPERCASE ("PART 4 — THE MAGE METHOD"), so the two never collide. For each
+# numbered Part it (1) finds the opener page — the page whose text carries the title-case divider heading,
+# breaking ties toward the page with the most words (the real opener, never a short table-of-contents line) —
+# then (2) asserts that SAME page also carries the FULL nav strip: all six uppercase chips. Both the heading
+# and the chip labels are built from `_PART_TITLES` (one source of truth), so the sensor cannot drift from
+# what the renderer emits.
+def _pdf_part_opener_single_page(pdf_path: pathlib.Path, part_titles: dict[int, str],
+                                 norm: "Callable[[str], str]") -> list[tuple[int, bool, "int | None", list[int]]]:
+    """PART-OPENER SINGLE-PAGE sensor. For each numbered Part 1–6 returns (part, ok, opener_page, nav_pages):
+    `ok` is True when the opener page also carries the full Part-nav strip. `opener_page` is the page holding
+    the divider heading (None if not found — itself a failure); `nav_pages` lists every page carrying the full
+    six-chip strip (for diagnostics: on a split opener the nav lands on opener_page + 1)."""
+    per_page = _pdf_per_page_text(pdf_path)
+    # Nav chips extract UPPERCASE with an em-dash `norm`-folded to '-': "PART k - <TITLE>". Built from the same
+    # titles the Typst nav emits, so this list is exactly what a correctly-laid-out opener page must contain.
+    nav_chips = [norm(f"Part {k} - {part_titles[k]}").upper() for k in range(1, 7)]
+    normed = [norm(t) for t in per_page]                 # title-case, for the divider-heading match
+    normed_upper = [t.upper() for t in normed]           # for the uppercase nav-chip match
+    nav_pages = [i for i, up in enumerate(normed_upper, 1) if all(c in up for c in nav_chips)]
+    results: list[tuple[int, bool, "int | None", list[int]]] = []
+    for part in range(1, 7):
+        div = norm(f"Part {part} {part_titles[part]}")   # divider heading, title-case
+        # Candidate opener pages carry the title-case heading; the real opener is the prose page (most words),
+        # never a short TOC/outline line that happens to echo the heading.
+        candidates = [i for i, t in enumerate(normed, 1) if div in t]
+        opener = max(candidates, key=lambda i: len(normed[i - 1].split())) if candidates else None
+        ok = opener is not None and opener in nav_pages
+        results.append((part, ok, opener, nav_pages))
+    return results
+
+
 # ── Overflow (margin-bleed) sensor ───────────────────────────────────────────────────────────────────
 # The book's page geometry (set in the Typst preamble): US-Letter portrait (8.5×11in) with an ASYMMETRIC
 # margin — a 0.875in binding margin + a 4.75in text measure (text box ends 5.625in from the left) + a wide
@@ -6604,6 +6645,29 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
                         f"table body on the next — {listing}")
     else:
         print("PDF CAPTION-ORPHAN SENSOR: PASS — every table caption rides with its body.")
+
+    # Part-opener single-page sensor: each numbered Part's opener (divider heading + intro + thesis box +
+    # Part-nav strip) must fit on ONE page. BLOCKING — the tuned Typst part-divider top-space keeps every
+    # opener whole, and this control catches any residual (a lengthened intro splitting the nav to a 2nd page).
+    opener_results = _pdf_part_opener_single_page(pdf_path, _PART_TITLES, _norm)
+    opener_fails = [(p, op, navs) for p, ok, op, navs in opener_results if not ok]
+    for part, ok, op, navs in opener_results:
+        if ok:
+            print(f"  Part {part} opener: PASS — divider + nav on p{op}.")
+        else:
+            where = f"p{op}" if op is not None else "not found"
+            nav_on = f"p{navs[part - 1]}" if len(navs) >= part else "?"
+            print(f"  Part {part} opener: FAIL — divider on {where}, nav strip on {nav_on} "
+                  f"(opener overflowed to a second page).", file=sys.stderr)
+    if opener_fails:
+        listing = ", ".join(f"Part {p} (divider p{op})" for p, op, _ in opener_fails)
+        print(f"PDF PART-OPENER SINGLE-PAGE SENSOR: FAIL — {len(opener_fails)} Part opener(s) overflow onto "
+              f"a second page: {listing}", file=sys.stderr)
+        problems.append(f"part-opener overflow: {len(opener_fails)} Part opener(s) push their nav strip onto "
+                        f"a second page — {listing}; reduce the part-divider top-space (`#v`) in the Typst "
+                        f"emitter or shorten the intro")
+    else:
+        print("PDF PART-OPENER SINGLE-PAGE SENSOR: PASS — all 6 Part openers fit one page.")
 
     if problems:
         print(f"PDF CONTENT-INTEGRITY FAILURES ({len(problems)}):", file=sys.stderr)
