@@ -155,6 +155,7 @@
     "open-problems": "discussion",
     "scope-conditions": "discussion",
     "where-mage-fits": "discussion",
+    "relationship-to-se": "discussion",
     "conclusion": "conclusion"
   },
   "chapter_advances": {
@@ -201,6 +202,7 @@
     "open-problems": ["grounded-in-one-case", "mage-becomes-practical"],
     "scope-conditions": ["grounded-in-one-case"],
     "where-mage-fits": [],
+    "relationship-to-se": [],
     "conclusion": ["fault-lies-in-instructions", "mage-becomes-practical", "seat-moves", "conversions-compound"]
   }
 }

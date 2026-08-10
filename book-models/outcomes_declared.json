@@ -551,7 +551,16 @@
       "obj": "the book within the software-engineering literature — Software Engineering at Google, the Gang of Four, and Model-Driven Software Engineering",
       "statement": "After this chapter, the reader can situate MAGE within the software-engineering literature — mechanized discipline (SE at Google), the design-pattern form (the Gang of Four), and the modeling tradition (MDSE) — as older aspirations under new economics.",
       "provenance": "declared",
-      "anchor": "Section titles 'mechanizing-discipline-software-engineering-at-google', 'the-design-pattern-form-the-gang-of-four', 'the-modeling-tradition-model-driven-software-engineering', 'older-aspirations-new-economics'."
+      "anchor": "Section titles 'the-same-two-questions-four-answers', 'standing-on-three-books' (Software Engineering at Google, the Gang of Four, Model-Driven Software Engineering), 'older-aspirations-new-economics', 'placing-mage'."
+    },
+    {
+      "granularity": "chapter",
+      "primary_unit": "where-mage-fits",
+      "verb": "analyze",
+      "obj": "six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling, the convergence buckets, and the governance census — without mistaking corroboration for a controlled test",
+      "statement": "After this chapter, the reader can analyze six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling where the software-first sites fall silent, the convergence buckets they share anyway, and the governance census that turns description into diagnosis — without mistaking corroboration across reconstructions for a controlled test.",
+      "provenance": "declared",
+      "anchor": "Section titles 'the-modeling-ceiling', 'three-buckets-of-convergence', 'the-governance-census', 'the-organizational-topology', 'common-destination-different-entry-points'."
     },
     {
       "granularity": "chapter",

@@ -608,7 +608,7 @@
         "thesis_target": "modeling"
       },
       "closing": {
-        "kind": "consequence"
+        "kind": "synthesis"
       },
       "delivers": {
         "artifacts": [
@@ -629,9 +629,9 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Failure: most readers stare at brownfield + agent-worsened sprawl; answer: start from the wiki you already have — treat the drifted wiki as an immature model, connect it round-trip, then mature it (Audit/Synchronize/Govern/Extend) toward the executable models the earlier Parts built; 'model-based engineering environment' implicit thesis-link (modeling). Closes on the 300k->200k scar evidence — concrete consequence.",
+      "note": "Failure: most readers stare at brownfield + agent-worsened sprawl; answer: start from the wiki you already have — treat the drifted wiki as an immature model, connect it round-trip, then mature it (Audit/Synchronize/Govern/Extend) toward the executable models the earlier Parts built; 'model-based engineering environment' implicit thesis-link (modeling). (Round-4 W3: the worked-examples teasers + field-guide section left 4.2; the chapter now closes inside the DocAble-retrofit field note on the bootstrap-governance takeaway — synthesis. closing_anchor re-frozen from that close, M3.)",
       "opening_anchor": "You have the mindset, the governed environment, and the models; this Part",
-      "closing_anchor": "so a later agent meets the check instead of rediscovering the failure.]"
+      "closing_anchor": "and mature it in place until an agent can reason through it."
     },
     {
       "slug": "the-skills",
@@ -867,9 +867,44 @@
         "artifacts": [],
         "artifact_would_help": false
       },
-      "note": "Discussion chapter. Opens by placing MAGE among the software-engineering traditions it descends from and departs from (Software Engineering at Google, the Gang of Four, the modeling tradition); closes on the Kuhnian economics claim — the foundations held, they were only too expensive to stand on until now. (Round-4 R1: re-keyed from where-mage-fits — this record always assessed 6.3's traditions chapter, not 6.6; 6.6's comparative record is authored in W3. Residue for W3/W4: 6.3 fires DV4 delivers-neither because the argument-spine does not mark it exempt — resolve by declaring the exemption or the delivered concept.)",
+      "note": "Discussion chapter. Opens by placing MAGE among the software-engineering traditions it descends from and departs from (Software Engineering at Google, the Gang of Four, the modeling tradition); closes on the Kuhnian economics claim — the foundations held, they were only too expensive to stand on until now. (Round-4 R1: re-keyed from where-mage-fits — this record always assessed 6.3's traditions chapter, not 6.6; 6.6's comparative record is authored separately below. 6.3 is now marked exempt as a discussion chapter in the argument-spine, so it no longer fires DV4/thesis-mismatch.)",
       "opening_anchor": "Thomas Kuhn observed that scientific disciplines periodically reorganize around new paradigms that",
       "closing_anchor": "sound. They were simply too expensive to stand on, until they weren't."
+    },
+    {
+      "slug": "where-mage-fits",
+      "opening": {
+        "failure_question": "implicit",
+        "answer": "explicit",
+        "thesis_link": "implicit",
+        "thesis_target": "both"
+      },
+      "closing": {
+        "kind": "synthesis"
+      },
+      "delivers": {
+        "artifacts": [
+          {
+            "type": "table",
+            "name": "the modeling-ceiling matrix (where the software-first sites fall silent)",
+            "anchor": "modeling-ceiling"
+          },
+          {
+            "type": "table",
+            "name": "the governance census (obligations x mechanisms -> gaps and orphans; description turned to diagnosis)",
+            "anchor": "governance-census"
+          },
+          {
+            "type": "framework",
+            "name": "the six-company reconstruction map (which region of the theory each system makes load-bearing)",
+            "anchor": "six-company-map"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "note": "Comparative chapter (Round-4 R1/M4 W3-half: the FRESH where-mage-fits record, authored against the reworked opener; the prior record keyed here actually assessed 6.3 and was re-keyed to relationship-to-se). Opens by setting six independent industrial systems side by side as the book's third grade of evidence — reconstructions read for the pattern each instantiates, not an appendix of examples. Delivers the modeling-ceiling matrix, the governance census, and the six-company reconstruction map. Closes on the common destination the six reach by different entry points — synthesis, not re-announcement.",
+      "opening_anchor": "Six industrial systems sit at the center of this chapter: Cloudflare, Spotify,",
+      "closing_anchor": "the phenomenon rather than rediscovering its pieces one failure at a time.**"
     },
     {
       "slug": "conclusion",

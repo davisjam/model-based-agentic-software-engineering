@@ -4,12 +4,12 @@
   "_counts": {
     "spine_claims": 15,
     "chapters_labeled": 41,
-    "chapters_exempt": 10,
+    "chapters_exempt": 11,
     "advancement_edges": 101,
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 4,
+    "zero_claim_suspects": 3,
     "over_cap_unfocused": 1,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
@@ -912,7 +912,7 @@
     {
       "slug": "6.3-relationship-to-se",
       "advances": [],
-      "exempt": null
+      "exempt": "discussion"
     },
     {
       "slug": "6.4-engineering-beyond-software",
@@ -968,10 +968,6 @@
     "zero_claim_suspects": [
       {
         "chapter": "4.6-the-field-guide",
-        "advances": 0
-      },
-      {
-        "chapter": "6.3-relationship-to-se",
         "advances": 0
       },
       {
