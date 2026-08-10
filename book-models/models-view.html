@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>46</b> chapters · <b>285</b> sections · <b>84</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>47</b> chapters · <b>296</b> sections · <b>84</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -733,13 +733,17 @@
 <div class="outcomes"><div class="oc-h">After Module 4 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After Part 4, the reader can put the method to work: induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, size a transformation to its model and guarantee, and recognize the agent-shaped failure modes. <span class="prov">declared</span></span></li></ul></div>
 <div class="chapter">
 <h3 id="ch-4-1-the-mage-workflow"><span class="tier-kick">Lesson</span><a href="../book/4.1-the-mage-workflow.html" class="ch-link">4.1-the-mage-workflow</a> <span class="ch-slug">4.1-the-mage-workflow</span></h3>
-<div class="section s2" id="sec-4-1-the-mage-workflow--the-loop">
-<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">The loop</a></div>
-<p class="topic">The workflow is a loop the engineer runs, not a checklist run once.</p>
+<div class="section s2" id="sec-4-1-the-mage-workflow--the-loop-one-turn-at-a-time">
+<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">The loop, one turn at a time</a></div>
+<p class="topic">**Need.** A turn begins with something you want to be true — a feature to ship, a property to guarantee, a class of bug to end.</p>
 </div>
-<div class="section s2" id="sec-4-1-the-mage-workflow--daily-practice">
-<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">Daily practice</a></div>
-<p class="topic">The same loop, seen from the desk, is a daily practice: what you reach for first, what you convert when a failure recurs, and how the work compounds.</p>
+<div class="section s2" id="sec-4-1-the-mage-workflow--the-daily-practice">
+<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">The daily practice</a></div>
+<p class="topic">Put end to end, the cycle has a daily shape.</p>
+</div>
+<div class="section s2" id="sec-4-1-the-mage-workflow--what-the-rest-of-this-part-does">
+<div class="sec-h"><a href="../book/4.1-the-mage-workflow.html">What the rest of this Part does</a></div>
+<p class="topic">The chapters ahead take the loop off the page and run it.</p>
 </div>
 </div>
 <div class="chapter">
@@ -804,6 +808,10 @@
 <div class="section s2" id="sec-4-2-brownfield--worked-examples">
 <div class="sec-h"><a href="../book/4.2-brownfield.html">Worked examples</a></div>
 <p class="topic">That retrofit is one instance of a pattern the industry runs at every scale: you do not wait for a clean environment, you begin from the one you already have.</p>
+</div>
+<div class="section s2" id="sec-4-2-brownfield--the-field-guide-six-migration-trajectories">
+<div class="sec-h"><a href="../book/4.2-brownfield.html">The field guide — six migration trajectories</a></div>
+<p class="topic">The method lands differently in every environment.</p>
 </div>
 </div>
 <div class="chapter">
@@ -874,20 +882,59 @@
 <div class="sec-h"><a href="../book/4.4-generative-validation.html">Worked examples</a></div>
 <p class="topic">The three techniques are one move worn three ways: generate evidence built to falsify a claim, and admit only the claim that survives.</p>
 </div>
-<div class="section s2" id="sec-4-4-generative-validation--the-daily-practice">
-<div class="sec-h"><a href="../book/4.4-generative-validation.html">The daily practice</a></div>
-<p class="topic">Put end to end, the method has a daily shape.</p>
-</div>
 </div>
 <div class="chapter">
 <h3 id="ch-4-5-governance-conversion"><span class="tier-kick">Lesson</span><a href="../book/4.5-governance-conversion.html" class="ch-link">4.5-governance-conversion</a> <span class="ch-slug">4.5-governance-conversion</span></h3>
 <div class="section s2" id="sec-4-5-governance-conversion--the-conversion-loop">
 <div class="sec-h"><a href="../book/4.5-governance-conversion.html">The conversion loop</a></div>
-<p class="topic">A conversion turns an ex-post failure into an ex-ante mechanism: the second time a failure shows up, it has earned its control.</p>
+<p class="topic">A conversion turns an *ex-post* failure into an *ex-ante* mechanism, and it runs the same six steps every time.</p>
 </div>
-<div class="section s2" id="sec-4-5-governance-conversion--soft-and-hard-conversions">
-<div class="sec-h"><a href="../book/4.5-governance-conversion.html">Soft and hard conversions</a></div>
-<p class="topic">Not every conversion is a hard gate — some stay guidance that aims, others become machinery that holds.</p>
+<div class="section s2" id="sec-4-5-governance-conversion--from-soft-to-hard">
+<div class="sec-h"><a href="../book/4.5-governance-conversion.html">From soft to hard</a></div>
+<p class="topic">The mechanisms a conversion produces sort along one axis: soft governance *aims* the agent, hard governance *holds* regardless of cooperation.</p>
+</div>
+<div class="section s2" id="sec-4-5-governance-conversion--where-jugaad-ends">
+<div class="sec-h"><a href="../book/4.5-governance-conversion.html">Where jugaad ends</a></div>
+<p class="topic">The loop has a productive cousin worth naming, because agents reach for it constantly.</p>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-4-6-the-field-guide"><span class="tier-kick">Lesson</span><a href="../book/4.6-the-field-guide.html" class="ch-link">4.6-the-field-guide</a> <span class="ch-slug">4.6-the-field-guide</span></h3>
+<div class="section s2" id="sec-4-6-the-field-guide--the-patterns">
+<div class="sec-h"><a href="../book/4.6-the-field-guide.html">The patterns</a></div>
+<p class="topic">A pattern is a move the method makes again and again, in a form you can reuse.</p>
+</div>
+<div class="section s2" id="sec-4-6-the-field-guide--the-anti-patterns">
+<div class="sec-h"><a href="../book/4.6-the-field-guide.html">The anti-patterns</a></div>
+<p class="topic">An anti-pattern is a move that looks reasonable and fails predictably.</p>
+</div>
+<div class="section s2" id="sec-4-6-the-field-guide--the-heuristics">
+<div class="sec-h"><a href="../book/4.6-the-field-guide.html">The heuristics</a></div>
+<p class="topic">A heuristic is a judgment rule for the calls no pattern makes for you.</p>
+</div>
+<div class="section s2" id="sec-4-6-the-field-guide--the-checklists">
+<div class="sec-h"><a href="../book/4.6-the-field-guide.html">The checklists</a></div>
+<p class="topic">A checklist turns a pattern into something you run on Monday.</p>
+</div>
+<div class="section s3" id="sec-4-6-the-field-guide--starting-a-brownfield-migration">
+<div class="sec-h"><a href="../book/4.6-the-field-guide.html">Starting a brownfield migration</a></div>
+<p class="topic">The three migration approaches — top-down from intent, bottom-up from code, and lint-cover-then-induce — run as one repeating loop, short enough to keep on a card ([Brownfield](4.2-brownfield.html)):</p>
+</div>
+<div class="section s3" id="sec-4-6-the-field-guide--minting-a-new-mechanism">
+<div class="sec-h"><a href="../book/4.6-the-field-guide.html">Minting a new mechanism</a></div>
+<p class="topic">When a failure recurs and a mechanism is owed, run the reflexes before you build ([The Skills](4.3-the-skills.html), [The Governed Environment](3.3-the-governed-environment.html)):</p>
+</div>
+<div class="section s3" id="sec-4-6-the-field-guide--sizing-a-mechanism">
+<div class="sec-h"><a href="../book/4.6-the-field-guide.html">Sizing a mechanism</a></div>
+<p class="topic">Cross how much a failure costs against how often it happens; each cell names the smallest change that still closes the class ([Brownfield](4.2-brownfield.html)).</p>
+</div>
+<div class="section s3" id="sec-4-6-the-field-guide--choosing-a-validation-strategy">
+<div class="sec-h"><a href="../book/4.6-the-field-guide.html">Choosing a validation strategy</a></div>
+<p class="topic">Read the signal in the code under test and reach for the technique whose oracle fits ([Validation with Agents](4.4-generative-validation.html)):</p>
+</div>
+<div class="section s3" id="sec-4-6-the-field-guide--auditing-your-governance-estate">
+<div class="sec-h"><a href="../book/4.6-the-field-guide.html">Auditing your governance estate</a></div>
+<p class="topic">Turn the method on the governance system itself, keeping three views over the same set of controls ([When Guardrails Collide](3.6-when-guardrails-collide.html)):</p>
 </div>
 </div>
 </section>

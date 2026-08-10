@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 21,
     "elaborative_links": 28,
     "units_serving_as_elaborative": 20,
-    "sections_total": 285,
+    "sections_total": 296,
     "sections_primary_of_an_outcome": 42,
     "modules": 7,
-    "lessons": 44
+    "lessons": 45
   },
   "taxonomy": {
     "know": [
@@ -345,6 +345,11 @@
           },
           {
             "lesson": "4.5-governance-conversion",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "4.6-the-field-guide",
             "own_outcomes": [],
             "section_outcomes": []
           }
