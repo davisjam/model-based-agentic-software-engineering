@@ -434,6 +434,23 @@ _PART_TITLES = {
     7: "Back Matter",
 }
 
+# The DO-ladder question each numbered Part answers — printed on the Part-opener orientation verso (the
+# PDF spread) under a fixed label. One question per Part 1-6, matching the corrected outcomes model: each
+# Part is framed by the single reasoning move the reader learns to make. Part 1 is the mindset opener (a
+# "why", the reasoning-problem setup), not an instrumental "how do I"; Parts 2-4 are "how do I", Part 5 a
+# "why", Part 6 a "where". Single source of truth: book_typst.py reads these (imported as `bb`) for the
+# orientation verso AND the PART-OPENER SPREAD sensor greps the same label + strings, so the print divider
+# and its gate cannot disagree on which question a Part carries.
+_PART_OPENER_QUESTION_LABEL = "Question this Part answers"
+_PART_OPENER_QUESTIONS = {
+    1: "Why is engineering a reasoning problem, not a coding problem?",
+    2: "How do I identify useful models?",
+    3: "How do I encode authority into my environment?",
+    4: "How do I practice MAGE?",
+    5: "Why does the method have this shape?",
+    6: "Where is the profession going?",
+}
+
 # Per-Part epigraph rendered at the opener of the first chapter in each numbered Part. Each is a
 # (quote, attribution) pair. The Macbeth line is verbatim from the source memoir; the Context and
 # Governed-Environment openers use a regulatory line and the book's own thesis, and the Putting-It-
@@ -5881,28 +5898,58 @@ def _pdf_orphan_caption_pages(pdf_path: pathlib.Path) -> list[tuple[int, str]]:
 # then (2) asserts that SAME page also carries the FULL nav strip: all six uppercase chips. Both the heading
 # and the chip labels are built from `_PART_TITLES` (one source of truth), so the sensor cannot drift from
 # what the renderer emits.
-def _pdf_part_opener_single_page(pdf_path: pathlib.Path, part_titles: dict[int, str],
-                                 norm: "Callable[[str], str]") -> list[tuple[int, bool, "int | None", list[int]]]:
-    """PART-OPENER SINGLE-PAGE sensor. For each numbered Part 1–6 returns (part, ok, opener_page, nav_pages):
-    `ok` is True when the opener page also carries the full Part-nav strip. `opener_page` is the page holding
-    the divider heading (None if not found — itself a failure); `nav_pages` lists every page carrying the full
-    six-chip strip (for diagnostics: on a split opener the nav lands on opener_page + 1)."""
+def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
+                            norm: "Callable[[str], str]",
+                            facing_parity: bool) -> list[dict]:
+    """PART-OPENER SPREAD sensor (round-7). Each numbered Part 1–6 now opens on a two-page orientation SPREAD:
+    a VERSO orientation page (Part title · whole-book subway map · Part-local map · "Question this Part
+    answers" DO-ladder line · thesis box · Part-nav chip strip) with the intro PROSE leading the facing RECTO.
+    The old one-page invariant ("divider + intro + nav all on ONE page") is retired by design; this sensor
+    gates the new shape with FOUR legs, per Part:
+
+      (a) orientation_found — a page carries the title-case divider heading "Part N <title>".
+      (b) fits_one_page     — the orientation does NOT spill: the page AFTER the verso lacks the question
+                              label (had it spilled, the label — unique to the orientation — would repeat there).
+      (c) carries_nav       — the verso carries all six uppercase nav chips AND the "Question this Part
+                              answers" label (the DO-ladder marker). The maps render as `image()` calls that
+                              fail the COMPILE if missing, so their presence needs no text re-check here.
+      (d) facing_parity     — PRINT ONLY (`facing_parity`): the verso page number is EVEN and the recto ODD (a
+                              real bound-edition facing pair). Skipped for the shipped SCREEN PDF (no facing).
+
+    Both the divider and this sensor read `_PART_TITLES` + `_PART_OPENER_QUESTION_LABEL` (one source of truth),
+    so the gate cannot drift from the renderer. Returns one dict per Part with the four leg booleans + pages."""
     per_page = _pdf_per_page_text(pdf_path)
+    q_label = norm(_PART_OPENER_QUESTION_LABEL).upper()
     # Nav chips extract UPPERCASE with an em-dash `norm`-folded to '-': "PART k - <TITLE>". Built from the same
-    # titles the Typst nav emits, so this list is exactly what a correctly-laid-out opener page must contain.
+    # titles the Typst nav emits, so this list is exactly what a correctly-laid-out verso must contain.
     nav_chips = [norm(f"Part {k} - {part_titles[k]}").upper() for k in range(1, 7)]
     normed = [norm(t) for t in per_page]                 # title-case, for the divider-heading match
-    normed_upper = [t.upper() for t in normed]           # for the uppercase nav-chip match
-    nav_pages = [i for i, up in enumerate(normed_upper, 1) if all(c in up for c in nav_chips)]
-    results: list[tuple[int, bool, "int | None", list[int]]] = []
+    normed_upper = [t.upper() for t in normed]           # for the uppercase nav-chip / label match
+    results: list[dict] = []
     for part in range(1, 7):
         div = norm(f"Part {part} {part_titles[part]}")   # divider heading, title-case
-        # Candidate opener pages carry the title-case heading; the real opener is the prose page (most words),
-        # never a short TOC/outline line that happens to echo the heading.
-        candidates = [i for i, t in enumerate(normed, 1) if div in t]
+        # The verso carries the title heading AND the nav chips; disambiguate on the nav apparatus so a stray
+        # TOC/outline line echoing the heading is never mistaken for the orientation page.
+        candidates = [i for i, t in enumerate(normed, 1)
+                      if div in t and all(c in normed_upper[i - 1] for c in nav_chips)]
+        if not candidates:
+            candidates = [i for i, t in enumerate(normed, 1) if div in t]  # fall back so (a) can still report
         opener = max(candidates, key=lambda i: len(normed[i - 1].split())) if candidates else None
-        ok = opener is not None and opener in nav_pages
-        results.append((part, ok, opener, nav_pages))
+        nxt = normed_upper[opener] if (opener is not None and opener < len(normed_upper)) else ""
+        orientation_found = opener is not None
+        carries_nav = bool(opener is not None
+                           and all(c in normed_upper[opener - 1] for c in nav_chips)
+                           and q_label in normed_upper[opener - 1])
+        fits_one_page = bool(opener is not None and q_label not in nxt)
+        facing_ok = True
+        if facing_parity and opener is not None:
+            facing_ok = (opener % 2 == 0) and ((opener + 1) % 2 == 1)
+        ok = orientation_found and carries_nav and fits_one_page and facing_ok
+        results.append({
+            "part": part, "opener": opener, "ok": ok,
+            "orientation_found": orientation_found, "carries_nav": carries_nav,
+            "fits_one_page": fits_one_page, "facing_parity": facing_ok,
+        })
     return results
 
 
@@ -6152,28 +6199,35 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
     else:
         print("PDF CAPTION-ORPHAN SENSOR: PASS — every table caption rides with its body.")
 
-    # Part-opener single-page sensor: each numbered Part's opener (divider heading + intro + thesis box +
-    # Part-nav strip) must fit on ONE page. BLOCKING — the tuned Typst part-divider top-space keeps every
-    # opener whole, and this control catches any residual (a lengthened intro splitting the nav to a 2nd page).
-    opener_results = _pdf_part_opener_single_page(pdf_path, _PART_TITLES, _norm)
-    opener_fails = [(p, op, navs) for p, ok, op, navs in opener_results if not ok]
-    for part, ok, op, navs in opener_results:
-        if ok:
-            print(f"  Part {part} opener: PASS — divider + nav on p{op}.")
+    # Part-opener SPREAD sensor (round-7): each numbered Part opens on a two-page orientation spread (verso =
+    # title + subway map + Part-local map + question + thesis box + nav strip; recto = intro prose). Four legs
+    # per Part — orientation found, orientation fits one page, verso carries the nav apparatus, and (print only)
+    # even/odd facing parity. Landed AUDIT-ONLY (rule #55 — this is a new/rewritten sensor over a freshly
+    # reshaped opener): it PRINTS PASS/FAIL for every leg but does NOT contribute to the exit code, so the
+    # spread beds in across the six openers before a follow-up promotes it to BLOCKING (once all six are clean).
+    import book_typst as _bt  # for OUTPUT_TYPE — the facing-parity leg is print-only (the shipped PDF is screen)
+    _facing = _bt.OUTPUT_TYPE == "print"
+    spread_results = _pdf_part_opener_spread(pdf_path, _PART_TITLES, _norm, _facing)
+    spread_fails = [r for r in spread_results if not r["ok"]]
+    for r in spread_results:
+        op = r["opener"]
+        where = f"p{op}" if op is not None else "not found"
+        if r["ok"]:
+            print(f"  Part {r['part']} spread: PASS — orientation verso {where}, nav apparatus present, "
+                  f"fits one page{', facing parity OK' if _facing else ''}.")
         else:
-            where = f"p{op}" if op is not None else "not found"
-            nav_on = f"p{navs[part - 1]}" if len(navs) >= part else "?"
-            print(f"  Part {part} opener: FAIL — divider on {where}, nav strip on {nav_on} "
-                  f"(opener overflowed to a second page).", file=sys.stderr)
-    if opener_fails:
-        listing = ", ".join(f"Part {p} (divider p{op})" for p, op, _ in opener_fails)
-        print(f"PDF PART-OPENER SINGLE-PAGE SENSOR: FAIL — {len(opener_fails)} Part opener(s) overflow onto "
-              f"a second page: {listing}", file=sys.stderr)
-        problems.append(f"part-opener overflow: {len(opener_fails)} Part opener(s) push their nav strip onto "
-                        f"a second page — {listing}; reduce the part-divider top-space (`#v`) in the Typst "
-                        f"emitter or shorten the intro")
+            legs = [name for name in ("orientation_found", "carries_nav", "fits_one_page", "facing_parity")
+                    if not r[name] and (name != "facing_parity" or _facing)]
+            print(f"  Part {r['part']} spread: FAIL — verso {where}; failing leg(s): {', '.join(legs)}.",
+                  file=sys.stderr)
+    if spread_fails:
+        listing = ", ".join(f"Part {r['part']}" for r in spread_fails)
+        print(f"PDF PART-OPENER SPREAD SENSOR: AUDIT-ONLY FAIL — {len(spread_fails)} Part opener spread(s) "
+              f"not yet clean: {listing} (non-blocking; promote to BLOCKING once all six pass).",
+              file=sys.stderr)
     else:
-        print("PDF PART-OPENER SINGLE-PAGE SENSOR: PASS — all 6 Part openers fit one page.")
+        print(f"PDF PART-OPENER SPREAD SENSOR: AUDIT-ONLY PASS — all 6 Part opener spreads clean"
+              f"{' (incl. facing parity)' if _facing else ''}.")
 
     if problems:
         print(f"PDF CONTENT-INTEGRITY FAILURES ({len(problems)}):", file=sys.stderr)

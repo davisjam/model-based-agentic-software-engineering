@@ -1070,6 +1070,15 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
             continue
         # DIRECTIVE blocks carry index-def / index-example / point markers → #metadata.
         if b.kind is ir.BlockKind.DIRECTIVE:
+            # A Part-intro's `<!-- thesisbox -->` renders on the orientation VERSO (the divider builder reads
+            # it via `_extract_thesisbox_raw`, §G-4), so skip the marker AND its blockquote here — the box
+            # prints once, on the verso, not again in the recto reading flow. Part pages only.
+            if is_part_page:
+                _tbm = ir._MARKER_LINE.match(b.raw.strip())
+                if _tbm and _tbm.group(1).lower() == "thesisbox":
+                    if i + 1 < len(blocks) and blocks[i + 1].kind is ir.BlockKind.BLOCKQUOTE:
+                        skip.add(i + 1)
+                    continue
             if b.directive == "table-landscape":
                 pending_landscape = True   # arm the flipped-page wrap for the next TABLE block (inert in HTML)
                 continue
@@ -1219,8 +1228,9 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
             pending_onepager = False
         if frag:
             out.append(frag)
-    if is_part_page:
-        out.append(_part_nav_typst(chapter.part))  # the Part-nav strip closes a Part landing page
+    # The Part-nav chip strip now closes the orientation VERSO (built in `_part_divider_typst`), not the recto
+    # intro-prose chapter — so a Part page's `render_chapter` contributes ONLY the intro prose that leads the
+    # facing recto. (round-7 spread; the divider owns the nav strip.)
     # CHAPTER-RELATIVE float numbering (mirrors the web `_number_floats` scheme): figures/tables read
     # "<part>.<chapter>-N" and N resets to 1 per chapter. The chapter's `<part>.<chapter>` id is baked as
     # a literal into a per-chapter `#set figure(numbering: …)` closure (no state/context coupling — set
@@ -1611,14 +1621,52 @@ def _part_nav_typst(current_part: int) -> str:
     )
 
 
+def _nav_map_image(kind: str, part: int, width: str) -> str:
+    """A bare (unnumbered) orientation-map image for the Part-opener verso. `kind` is `subway` (the whole-book
+    "where am I in the book?" strip, Part N highlighted) or `local` (the Part-local "where am I in this Part?"
+    map, which already bakes in its cumulative "✓ Previously / New here" vocab footer). These maps are
+    navigational chrome, not referenceable floats, so they render as a plain `#image` — no "Figure N" number,
+    no caption, and none of the figure-family / caption-tier coupling numbered floats carry. Assets are
+    PROJECTED (never hand-authored) by `book-models/nav_map_model.py` from `nav-model.json` + `_PART_TITLES`,
+    so the map cannot drift from the Part sequence."""
+    asset = HERE / "assets" / f"nav-{kind}-p{part}.svg"
+    if not asset.is_file():
+        raise SystemExit(f"part-opener orientation map missing: {asset} "
+                         f"(project it: python3 book-models/nav_map_model.py)")
+    return f'#image("{_root_rel(asset, _EmitCtx.root)}", width: {width})'
+
+
+def _extract_thesisbox_raw(ch: "ir.Chapter") -> "str | None":
+    """The raw markdown of a Part-intro's `<!-- thesisbox -->` blockquote, or None when the intro has none.
+    The Part opener renders this GREEN thesis box on the orientation VERSO (§G-4), so the divider builder
+    reads it out of the intro chapter's block stream here; `render_chapter` then SKIPS it on the recto so the
+    box prints exactly once. The `<!-- thesisbox -->` marker and its blockquote stay file-resident in
+    `part<N>/00-part-intro.md` — Typst reads them, the source is never edited."""
+    blocks = ch.blocks
+    for i, b in enumerate(blocks):
+        if b.kind is ir.BlockKind.DIRECTIVE:
+            m = ir._MARKER_LINE.match(b.raw.strip())
+            if m and m.group(1).lower() == "thesisbox":
+                nxt = blocks[i + 1] if i + 1 < len(blocks) else None
+                if nxt is not None and nxt.kind is ir.BlockKind.BLOCKQUOTE:
+                    return nxt.raw
+                return None
+    return None
+
+
 def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
-    """A part-divider page before the first chapter of a numbered Part, the back-matter Part, or an appendix
-    Part. Only front matter (0) gets no divider — its chapters open the book and sit at the OUTLINE root, so
-    a "Front Matter" parent would be redundant. Returns the Typst for the divider, or None. The divider's
-    title is a Typst LEVEL-1 heading, so it becomes the PDF-bookmark PARENT the demoted chapters (level-2)
-    nest under. Numbered parts use the web book's `_PART_TITLES`; the back-matter part titles as "Back Matter"
-    (a parent node so its apparatus does not mis-nest under the last numbered Part); an appendix part reuses
-    its own family name (e.g. "Appendix A — the pattern language")."""
+    """A part-divider before the first chapter of a numbered Part, the back-matter Part, or an appendix Part.
+    Only front matter (0) gets no divider — its chapters open the book at the OUTLINE root, so a "Front Matter"
+    parent would be redundant. Returns the Typst for the divider, or None. The title is a Typst LEVEL-1 heading,
+    the PDF-bookmark PARENT the demoted chapters (level-2) nest under.
+
+    Numbered Parts 1-6 render a **two-page orientation SPREAD** (round-7): the VERSO (an even/left page) is a
+    dedicated orientation page — kicker + title, the whole-book subway map, the Part-local map (with its vocab
+    footer), the "Question this Part answers" DO-ladder line, the thesis box, and the Part-nav chip strip — and
+    the intro PROSE leads the facing RECTO (the reading flow, rendered by `render_chapter`). Print forces the
+    verso to an EVEN page (`#pagebreak(to:"even")`) so chapter 1 falls on the facing odd page (§G-5, accepts an
+    occasional blank recto before the verso); screen mode uses a plain `#pagebreak()` (no facing concept). The
+    back-matter (7) and appendix Parts keep the simple single-page divider (no orientation apparatus)."""
     if part == 0:
         return None
     # The appendices mode-marker takes its own part (one below Appendix A); render its distinct divider.
@@ -1626,13 +1674,14 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
         return _appendices_divider_typst()
     part_titles = bb._PART_TITLES
     label = ""
+    is_numbered = part in part_titles and part <= 6
     if part == 7:
         # True back matter (apparatus). A bare title heading (no "Part N" kicker, no nav label) — it is a
         # bookmark PARENT so About-the-Author / Colophon nest under it instead of under the last numbered Part.
         kicker, title = "", part_titles.get(7, "Back Matter")
-    elif part in part_titles and part <= 6:
+    elif is_numbered:
         kicker, title = f"Part {part}", part_titles[part]
-        # The divider page is the Part opener, so it carries the `<part-N>` label the Part-nav strip links to
+        # The divider is the Part opener, so it carries the `<part-N>` label the Part-nav strip links to
         # (`#link(<part-N>)`). Numbered Parts only — the appendix families are not Part-nav targets.
         label = f" <part-{part}>"
     else:
@@ -1643,34 +1692,69 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
             title = title or kicker
         else:
             return None
-    # Screen mode opens a part/appendix divider on a plain page break (no recto-forcing → no blank verso);
-    # print mode forces a recto (odd) page per the bound-edition convention. Branches on the OUTPUT_TYPE seam.
-    opener = "#pagebreak(to: \"odd\")\n" if OUTPUT_TYPE == "print" else "#pagebreak()\n"
     # The title is a real Typst LEVEL-1 heading — the bookmark PARENT the demoted chapters (level-2) nest
-    # under. When a kicker is present it renders on its own muted line above the big title (the two-tier
-    # divider look), with a non-breaking space closing the kicker line so the flattened OUTLINE text keeps a
-    # separator ("Part 1 The Mindset", not "Part 1The Mindset"). `sticky` + block-spacing from the general
-    # heading show-rule stay contained inside the breakable:false block, so the divider still fills its own
-    # page. The `<part-N>` label (the Part-nav `#link(<part-N>)` target) attaches to the block, unchanged.
+    # under. A kicker renders on its own muted line above the big title (the two-tier divider look), with a
+    # non-breaking space closing the kicker line so the flattened OUTLINE text keeps a separator ("Part 1 The
+    # Mindset", not "Part 1The Mindset").
     if kicker:
         heading = (f"  = #text(size: 1.1em, fill: dt.muted)[{inline_typst(kicker)}~]"
                    f"#linebreak()#text(size: 2em, weight: \"bold\")[{inline_typst(title)}]\n")
     else:
         heading = f"  = #text(size: 2em, weight: \"bold\")[{inline_typst(title)}]\n"
-    return (
-        opener +
+
+    if not is_numbered:
+        # Back-matter / appendix divider: the simple single-page opener (no orientation apparatus). Screen
+        # opens on a plain break; print forces a recto per the bound-edition convention.
+        opener = "#pagebreak(to: \"odd\")\n" if OUTPUT_TYPE == "print" else "#pagebreak()\n"
+        return (
+            opener +
+            "#block(breakable: false)[\n"
+            f"  #v(0.7in)\n"
+            + heading +
+            "  #v(0.5em) #line(length: 30%, stroke: 1pt + dt.rule)\n"
+            "]" + label
+        )
+
+    # ── Numbered Part 1-6: the two-page orientation SPREAD ───────────────────────────────────────────────
+    # Facing control (§G-5): the orientation lands on an EVEN (verso/left) page in print so chapter 1 falls on
+    # the facing ODD (recto/right) page; screen has no facing concept, so a plain break. AUDIT-ONLY-gated by
+    # the `PART-OPENER SPREAD` sensor in `build_book_html.verify_pdf` (four legs: orientation found, fits one
+    # page, carries the nav apparatus, even/odd facing parity — the last print-only).
+    opener = "#pagebreak(to: \"even\")\n" if OUTPUT_TYPE == "print" else "#pagebreak()\n"
+    subway = _nav_map_image("subway", part, "100%")   # whole-book "where am I in the book?" strip
+    local = _nav_map_image("local", part, "100%")      # Part-local map + cumulative vocab footer
+    question = bb._PART_OPENER_QUESTIONS.get(part, "")
+    q_label = bb._PART_OPENER_QUESTION_LABEL
+    # The DO-ladder question the Part answers — the sensor greps `q_label` (uppercased) + the question text on
+    # the verso, so keep both file-and-gate-shared via `bb.` (one source of truth, no drift).
+    q_block = (
+        "  #block(width: 100%)[\n"
+        f"    #text(size: 0.82em, fill: dt.muted, tracking: 0.08em)[#upper[{inline_typst(q_label)}]]\n"
+        "    #linebreak()\n"
+        f"    #text(size: 1.12em, font: dt.font-display, style: \"italic\", fill: dt.ink)[{inline_typst(question)}]\n"
+        "  ]\n"
+    )
+    tb_raw = _extract_thesisbox_raw(ch)
+    thesis = _render_blockquote(tb_raw, is_thesisbox=True) if tb_raw else ""
+    nav = _part_nav_typst(part)
+    # The whole orientation block is `breakable: false` so it stays atomic on the verso; the trailing
+    # `#pagebreak()` sends the intro prose (rendered by `render_chapter`) to lead the facing recto.
+    verso = (
         "#block(breakable: false)[\n"
-        # Top space above the "Part N" heading. TUNED, not arbitrary: the whole Part opener (divider heading +
-        # title + intro prose + thesis box + Part-nav strip) must fit on ONE page, and the LONGEST intro
-        # (Part 2 "Modeling") is the binding constraint — it fits with ~0.57in of nav clearance at 0.7in and
-        # overflows its nav onto a second page at 0.8in. 0.7in is the largest value at which all six openers
-        # fit. The `PART-OPENER SINGLE-PAGE` sensor in `build_book_html.verify_pdf` GATES this, so a future
-        # intro-lengthening (or a metric shift) that re-splits an opener fails the build instead of shipping.
-        f"  #v(0.7in)\n"
+        f"  #v(0.45in)\n"
         + heading +
-        "  #v(0.5em) #line(length: 30%, stroke: 1pt + dt.rule)\n"
+        "  #v(0.4em) #line(length: 30%, stroke: 1pt + dt.rule)\n"
+        "  #v(1.0em)\n"
+        f"  {subway}\n"
+        "  #v(0.9em)\n"
+        f"  {local}\n"
+        "  #v(0.9em)\n"
+        + q_block +
+        ("  #v(0.9em)\n" + _indent(thesis) + "\n" if thesis else "")
+        + _indent(nav) + "\n"
         "]" + label
     )
+    return opener + verso + "\n#pagebreak()"
 
 
 def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_frontmatter: bool = False) -> str:
