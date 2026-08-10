@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 28,
-    "total_sites": 1486,
+    "total_sites": 1487,
     "by_projection": {
       "book-pdf": 25,
-      "book-web": 1060,
+      "book-web": 1061,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -4722,6 +4722,10 @@
             "occ": 5
           },
           {
+            "file": "book/1.5-transformations.html",
+            "occ": 1
+          },
+          {
             "file": "book/2.11-the-scope-of-modeling.html",
             "occ": 1
           },
@@ -4765,7 +4769,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 14
+            "occ": 15
           }
         ]
       },
