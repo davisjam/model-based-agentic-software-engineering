@@ -96,7 +96,9 @@ def _prose_files() -> list[pathlib.Path]:
     for d in PROSE_DIRS:
         dp = BOOK / d
         if dp.is_dir():
-            out.extend(sorted(dp.glob("*.md")))
+            # `_`-prefixed files are build-support opening prose (front-door openings lifted out of the
+            # build tool), not chapter/appendix content pages — skip them here.
+            out.extend(sorted(p for p in dp.glob("*.md") if not p.name.startswith("_")))
     return out
 
 

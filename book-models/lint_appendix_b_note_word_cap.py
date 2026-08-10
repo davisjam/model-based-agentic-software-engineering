@@ -67,7 +67,7 @@ def findings() -> "list[str]":
     out: "list[str]" = []
     if not _NOTES_DIR.is_dir():
         return out
-    for path in sorted(_NOTES_DIR.glob("*.md")):
+    for path in sorted(p for p in _NOTES_DIR.glob("*.md") if not p.name.startswith("_")):
         text = path.read_text(encoding="utf-8")
         spread = _declared_spread(text)
         cap = WORD_CAP.get(spread, WORD_CAP[DEFAULT_SPREAD])
@@ -84,7 +84,7 @@ def main(argv: "list[str]") -> int:
     mode = "STRICT (exit 1 on any finding)" if strict else "AUDIT-ONLY (prints, exits 0)"
     print(f"== appendix-b-note-word-cap — each note within its spread's word budget "
           f"(1pp≤{WORD_CAP[1]}, 2pp≤{WORD_CAP[2]}) [{mode}] ==")
-    n_notes = len(list(_NOTES_DIR.glob("*.md"))) if _NOTES_DIR.is_dir() else 0
+    n_notes = len([p for p in _NOTES_DIR.glob("*.md") if not p.name.startswith("_")]) if _NOTES_DIR.is_dir() else 0
     if not fs:
         print(f"  clean — {n_notes} authored note(s), each within its spread budget")
         return 0

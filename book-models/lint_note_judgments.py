@@ -62,7 +62,9 @@ def _note_slugs() -> "set[str]":
     by the completeness check, not silently tolerated."""
     if not _NOTES_DIR.is_dir():
         return set()
-    return {p.stem for p in _NOTES_DIR.glob("*.md")}
+    # `_`-prefixed files are build-support opening prose (e.g. `_opening-b.md`, the Appendix-B front-door),
+    # not flagship notes — skip them so they need no judgment entry.
+    return {p.stem for p in _NOTES_DIR.glob("*.md") if not p.name.startswith("_")}
 
 
 def _load_model() -> dict:

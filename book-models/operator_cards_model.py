@@ -324,7 +324,9 @@ def parity_findings(model: "DeckModel | None" = None) -> "list[str]":
     if os.path.isdir(_CARD_DIR):
         known = declared | set(_NON_CARD_PAGES)
         for fn in sorted(os.listdir(_CARD_DIR)):
-            if fn.endswith(".md") and fn[:-3] not in known:
+            # `_`-prefixed files are build-support opening prose (e.g. `_opening.md`, the Appendix-D
+            # front-door), not operator cards — skip them so they need no declared row.
+            if fn.endswith(".md") and not fn.startswith("_") and fn[:-3] not in known:
                 out.append(f"P2 orphan card page appendix-operators-reference/{fn} has no declared row")
     return out
 
