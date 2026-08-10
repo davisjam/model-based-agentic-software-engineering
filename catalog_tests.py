@@ -237,7 +237,7 @@ CHECKS = [
     # Landed with the Part-2/3/4/5 rename (Modeling / Alignment / The MAGE Method / The Evidence); green at
     # landing, a follow-up promotes it to blocking after a clean session. See tests/book_models.py.
     Check("book-models: Part-title parity — _PART_TITLES == outcomes_model.PART_TITLES on shared keys", 1,
-          lambda strict: check_part_title_parity(), audit_only=True),
+          lambda strict: check_part_title_parity(), audit_only=False),
     # AUDIT-ONLY-first (rule #55; rule-#33 parity): R3 canon-fidelity guard + R5 cycle pin. R3 asserts the
     # whole canon Modeling/Alignment Thesis is stated in a body chapter of its Part (pinned to the
     # argument-spine SSOT), so cutting the Preface Modeling-box cannot lose the canon — Alignment holds at
@@ -246,7 +246,7 @@ CHECKS = [
     # vacuous until the cycle surfaces land). Promotes BLOCKING once the Modeling gap drains. See
     # tests/book_models.py.
     Check("book-models: canon pins — R3 whole-thesis-in-Part guard + R5 3-line-method cycle pin", 1,
-          lambda strict: check_canon_pins(), audit_only=True),
+          lambda strict: check_canon_pins(), audit_only=False),
     # AUDIT-ONLY (rule #55): the REVERSE INDEX — a derived inversion of every built view's forward
     # references into {md symbol -> [dependent view elements]} (DESIGN §8). Two mechanical drift kinds:
     # FRESHNESS (reverse_index.json equals a fresh inversion) + STRUCTURAL (every view->md reference
