@@ -1,0 +1,35 @@
+{
+  "_note": "DECLARED navigation model for the book's cartographic layer (round-7 Thrust B). The Part SEQUENCE and full titles are NOT stored here — they are read from build_book_html._PART_TITLES at projection time (single source of truth, renumber-safe), exactly as the outcomes model reads it. This file holds only the per-Part facts the sequence cannot carry: a short SUBWAY_LABEL (the station name on the book-level map, an abbreviation of the full title), the LOCAL_NODES (the Part-local relationship map's stations), and the NEW_HERE_VOCAB (terms first deployed in that Part; the projector unions the prior Parts' vocab into the cumulative '✓ Previously' band). Consumed ONLY by book-models/nav_map_model.py, which projects assets/nav-subway-p{1..6}.svg (book-level map, one highlight variant per Part) + assets/nav-local-p{1..6}.svg (Part-local map). Hand-authored SOURCE. See scratchpad/theory-book-restructure/GLOSSARY-AND-MAPS-RATIFIED-PLAN.md §1. W2 refines the local_nodes/new_here_vocab prose; the Part-4 lean-4 (Workflow/Migration/Validation/Skills) matches round-6.",
+  "parts": {
+    "1": {
+      "subway_label": "Mindset",
+      "local_nodes": ["Commodity intelligence", "Reasoning problem", "Agent as a loop", "Model", "Governance"],
+      "new_here_vocab": ["Commodity intelligence", "Model", "Modeling Thesis", "Alignment Thesis", "Governance Conversion", "Engineering capital", "Churn", "Reasoning horizon", "The Printer"]
+    },
+    "2": {
+      "subway_label": "Modeling",
+      "local_nodes": ["Models", "Behavior", "Structure", "Decisions", "Measurement"],
+      "new_here_vocab": ["Traceability", "Model drift", "Drift Gate", "Invariant", "4+1 views"]
+    },
+    "3": {
+      "subway_label": "Alignment",
+      "local_nodes": ["Governance", "Constraint", "Sensor", "Validator", "Gate"],
+      "new_here_vocab": ["Governed Engineering Environment", "Constraint", "Sensor", "Validator", "Gate", "Governance Mechanism", "Lint", "Hook"]
+    },
+    "4": {
+      "subway_label": "Method",
+      "local_nodes": ["Workflow", "Migration", "Validation", "Skills"],
+      "new_here_vocab": ["MAGE workflow", "Brownfield migration", "Generative validation", "Skills"]
+    },
+    "5": {
+      "subway_label": "Evidence",
+      "local_nodes": ["Incident", "Failure", "Investigation", "Mechanism", "Engineering capital"],
+      "new_here_vocab": ["Support ratio", "Fleet"]
+    },
+    "6": {
+      "subway_label": "Profession",
+      "local_nodes": ["Engineer", "Models", "Authority", "Environment", "Engineering capital", "Profession"],
+      "new_here_vocab": ["Judgment is the scarce resource", "Universal language of engineering"]
+    }
+  }
+}
