@@ -17,8 +17,8 @@ richer, mechanisms grow stronger, and the environment accumulates engineering ca
 paying the same reasoning costs over and over. These chapters answer a practical question: what does a
 normal day of engineering look like once a fleet writes most of the code?
 
-The method is not tied to one product. Through these chapters we step outside DocAble again and again
-to watch the same moves at Siemens, Spotify, Shopify, Docker, Cloudflare, and Zenseact — not
-endorsements or benchmarks, but contrasting implementations that illuminate different parts of the
-cycle. A closing field guide gathers those organizations into one place, so you can ask which of them
-looks like the system you already own.
+The method is not tied to one product. Through these chapters we step outside DocAble in passing —
+noting where the same moves surface at other engineering organizations, brief parallels that show a
+principle is not idiosyncratic rather than case studies to study in depth. We only point at those
+industrial systems here; Part VI sets them side by side as evidence for the theory. Every page keeps
+its eye on what you should do next.
