@@ -4855,15 +4855,19 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
 
     # ── APPENDIX H — Part-V Evidence Ledger (fork G7). The raw count tables behind Part V's curves
     #    (support-ratio LoC, per-path churn, control-growth counts). Appended LAST so it re-letters no
-    #    earlier appendix. Routed through the shared hand-authored appendix builder — a stub the assembly
-    #    wave fills; the Part-V "The Build" chapter links it via `[appendix: appendix-evidence-ledger]`.
+    #    earlier appendix. Routed through the shared hand-authored appendix builder in SINGLE_DECK mode:
+    #    the lone evidence-tables page is inlined under the front-door opening so the appendix reads as
+    #    one deck, not a Part with exactly one content chapter (which the only-child heading sensor reds —
+    #    a single-page evidence ledger is a legitimate shape, so give it the genuine single-page form
+    #    rather than splitting the three tables artificially). The Part-V "The Build" chapter links the
+    #    front-door via `[appendix: appendix-evidence-ledger]`, the slug single_deck preserves.
     h_part = next_part + 7
     chapters += build_hand_authored_appendix(
         h_part, letter="H", part_name="Part-V Evidence Ledger",
         opening_slug=_APPENDIX_EVIDENCE_LEDGER_OPENING_SLUG,
         opening_prose=_load_opening(_EVIDENCE_LEDGER_DIR / "_opening.md"),
         content_dir=_EVIDENCE_LEDGER_DIR, pages_source=_EVIDENCE_LEDGER_PAGES,
-        locator_figs=True, locator_heading=True)
+        locator_figs=True, single_deck=True)
     return chapters
 
 
