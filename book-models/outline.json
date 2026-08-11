@@ -7,7 +7,7 @@
     "derived_ids": 257,
     "missing_topic_sentence": 8,
     "sections_drained": 167,
-    "paragraph_points": 508
+    "paragraph_points": 507
   },
   "chapters": [
     {
@@ -115,17 +115,17 @@
           "heading_text": "What this book is about (and what it is not)",
           "topic_sentence": "If you opened a book about agentic software engineering expecting a tour of agents, you may be surprised by what comes first.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 11,
           "points": [
             {
               "slug": "the-agent-is-not-the-hard-part-of-agentic-engineering",
               "text": "You came for agents; the agent itself is not the hard part.",
-              "block_index": 15
+              "block_index": 13
             },
             {
               "slug": "task-mode-is-first-judgment",
               "text": "The first judgment is whether a task needs governed autonomy.",
-              "block_index": 19
+              "block_index": 18
             }
           ]
         },
@@ -135,27 +135,27 @@
           "heading_text": "The two modes",
           "topic_sentence": "Start at the decision on the left.",
           "id_source": "derived",
-          "block_index": 22,
+          "block_index": 21,
           "points": [
             {
               "slug": "two-modes-fork-on-size-and-difficulty",
               "text": "Mode forks on the task's reasoning horizon.",
-              "block_index": 24
+              "block_index": 23
             },
             {
               "slug": "one-shot-for-small-unsubtle-tasks",
               "text": "One-shot scripting fits a small, short-horizon task.",
-              "block_index": 29
+              "block_index": 28
             },
             {
               "slug": "supervised-autonomy-supplies-four-things",
               "text": "Supervised autonomy supplies four things in two groups.",
-              "block_index": 32
+              "block_index": 31
             },
             {
               "slug": "book-structure-fills-the-four",
               "text": "Each later part develops one of the four elements.",
-              "block_index": 35
+              "block_index": 34
             }
           ]
         },
@@ -165,37 +165,37 @@
           "heading_text": "Where the emphasis falls",
           "topic_sentence": "That fork runs along the reasoning horizon.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 36,
           "points": [
             {
               "slug": "reasoning-horizon-sorts-tasks",
               "text": "Tasks sort along the reasoning horizon, from short to long.",
-              "block_index": 40
+              "block_index": 39
             },
             {
               "slug": "mode-misjudgment-is-costly-both-ways",
               "text": "Misjudging the mode either way is expensive.",
-              "block_index": 42
+              "block_index": 41
             },
             {
               "slug": "leash-length-from-data-density-and-capability",
               "text": "Leash length follows training-data density and model capability.",
-              "block_index": 44
+              "block_index": 43
             },
             {
               "slug": "modularity-lowers-the-horizon-not-removes-it",
               "text": "Modularity lowers the reasoning horizon; it does not remove it.",
-              "block_index": 46
+              "block_index": 45
             },
             {
               "slug": "books-weight-is-supervised-autonomy",
               "text": "The book's weight falls on supervised autonomy.",
-              "block_index": 48
+              "block_index": 47
             },
             {
               "slug": "code-is-cheap-now-productionize-it",
               "text": "Code is cheap; turn the fabricator into a production line.",
-              "block_index": 50
+              "block_index": 49
             }
           ]
         },
@@ -205,17 +205,17 @@
           "heading_text": "The printer",
           "topic_sentence": "Think of a 3D printer.",
           "id_source": "derived",
-          "block_index": 52,
+          "block_index": 51,
           "points": [
             {
               "slug": "printer-is-the-governing-metaphor",
               "text": "The 3D printer is the book's governing metaphor.",
-              "block_index": 54
+              "block_index": 53
             },
             {
               "slug": "leverage-moves-to-the-description",
               "text": "When realization is cheap, leverage moves to the description.",
-              "block_index": 57
+              "block_index": 56
             }
           ]
         },
@@ -225,22 +225,22 @@
           "heading_text": "A picture is not enough",
           "topic_sentence": "Everyone can sketch a piece of software.",
           "id_source": "derived",
-          "block_index": 59,
+          "block_index": 58,
           "points": [
             {
               "slug": "everyone-can-sketch-software-but-a-picture-wont-print",
               "text": "Anyone can picture software, but a picture will not print.",
-              "block_index": 61
+              "block_index": 60
             },
             {
               "slug": "printer-needs-a-model-not-a-photo",
               "text": "A printer needs a structural model plus print notes.",
-              "block_index": 63
+              "block_index": 62
             },
             {
               "slug": "agents-need-the-instructions-not-just-the-picture",
               "text": "Agents need the build instructions, not just the picture.",
-              "block_index": 66
+              "block_index": 65
             }
           ]
         },
@@ -250,22 +250,22 @@
           "heading_text": "Suspect the instructions first",
           "topic_sentence": "Suspect the engineered setup before you infer a machine limit.",
           "id_source": "explicit",
-          "block_index": 69,
+          "block_index": 68,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "Suspect the engineered setup before inferring a machine limit.",
-              "block_index": 71
+              "block_index": 70
             },
             {
               "slug": "capable-models-execute-a-bad-spec-at-speed",
               "text": "Capable models execute a bad specification at full speed.",
-              "block_index": 75
+              "block_index": 74
             },
             {
               "slug": "danger-is-velocity-without-judgment-not-the-vendor",
               "text": "The danger is velocity without judgment, not the vendor.",
-              "block_index": 78
+              "block_index": 77
             }
           ]
         }
@@ -285,11 +285,6 @@
           "slug": "printer-is-commodity-intelligence-made-local",
           "text": "The printer is the engineer's-seat face of commodity intelligence.",
           "block_index": 6
-        },
-        {
-          "slug": "agent-produces-implementation-engineer-produces-environment",
-          "text": "The agent produces the implementation; the engineer produces the environment that makes it trustworthy.",
-          "block_index": 11
         }
       ]
     },

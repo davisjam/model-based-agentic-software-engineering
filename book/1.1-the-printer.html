@@ -715,7 +715,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 1 · The Printer — MAGE"><header class="chap"><div class="kicker"><a href="part-1-intro.html" aria-label="Beginning of Part 1 — The New Engineering Problem">Part 1 — The New Engineering Problem</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 1</a></div><h1><span class="chap-num">1.1</span> The Printer</h1></header><p>Coding agents have made writing software cheap. Describe what you want and a capable model builds it, fast, at a scale no team could match. Implementation is abundant now. What has not come with it is reliability: the same machine builds the wrong thing as readily as the right one, and just as fast.</p>
 <p>So the chapter opens on a question: when an agent builds the wrong thing, where does the fault lie? Treat the agent as a <em>printer</em>, not a coder. A printer builds within the description you provide, so read a bad build first as evidence about the instructions, the representation, the task boundary, and the environment that produced them — not, by reflex, as a fixed ceiling in the machine. If implementation is cheap and unreliable, the engineering moves to authoring what the printer reads.</p>
 <p>This is what the Preface's question — <em>how do we safely grant autonomy to commodity intelligence?</em> — looks like from the engineer's seat. The printer is commodity intelligence made local: implementation so abundant that it will build almost anything you describe. The scarcity has moved upstream. What matters now is the engineering of the instructions, representations, constraints, and evidence that shape what gets built.</p>
-<p>Two pictures fix the shift before the details begin. <a class="xref" href="1.1-the-printer.html#fig-1-1-1">Figure&nbsp;1.1-1</a> contrasts the classical pipeline, where an engineer's skill largely sets a program's quality, with the agentic one, where the environment the work passes through does. <a class="xref" href="1.1-the-printer.html#fig-1-1-2">Figure&nbsp;1.1-2</a> names the consequence: where the common move is to engineer the agent, MAGE engineers the environment the agent works in.</p>
+<p>One picture fixes the shift before the details begin. <a class="xref" href="1.1-the-printer.html#fig-1-1-1">Figure&nbsp;1.1-1</a> contrasts the classical pipeline, where an engineer's skill largely sets a program's quality, with the agentic one, where the environment the work passes through does.</p>
 <figure id="fig-1-1-1" class="book-figure" data-label="new-engineering-problem"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660"
      role="group" aria-labelledby="nepTitle nepDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -805,93 +805,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="544" y="594" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Inside the Environment: the Governed Engineering Environment (GEE)</text>
   <text x="544" y="620" text-anchor="middle" font-size="16" fill="#57534e">models · skills · policies · validators · infrastructure</text>
 </svg><figcaption data-short="A New Engineering Problem"><span class="fig-label">Figure 1.1-1.</span> <em>A New Engineering Problem.</em> Two pipelines, stacked for contrast. In classical software the engineer writes the code, and the engineer's skill largely sets its quality. In agentic software the fleet writes the code, and what determines quality is no longer the engineer's typing but the environment the work passes through — the models it reasons from, the constraints it must satisfy, the gates it must clear. So the object of engineering shifts: you raise quality by engineering that environment, not by inspecting each change by hand. This is the problem the whole book is organized around.</figcaption></figure>
-<figure id="fig-1-1-2" class="book-figure" data-label="environment-as-object"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"
-     role="group" aria-labelledby="eaoTitle eaoDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="eaoTitle">The environment is the object of engineering — the first instinct is to engineer the agent; MAGE engineers the environment</title>
-  <desc id="eaoDesc">Two panels contrast what is being engineered. In the left panel, what you try first,
-    the engineer works on the agent — prompting, fine-tuning, wrapping it — and a target ring marks the
-    agent as the object of engineering; the environment underneath is a passive backdrop. In the right
-    panel, what MAGE teaches, the engineer works on the environment: obligations and mechanisms are bound into
-    a governed engineering environment, and the target ring now marks the environment as the object of
-    engineering; the agent simply operates inside it. The move is that the object of engineering jumps from
-    the agent to the governed environment the agent operates in.</desc>
-
-  <defs>
-    <marker id="eao-fleet" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="eao-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="1000" height="600" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The environment is the object of engineering</text>
-  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The first instinct is to engineer the agent. MAGE engineers the environment it operates in.</text>
-
-  <line x1="500" y1="104" x2="500" y2="560" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="5 6"/>
-
-  <!-- ===== LEFT PANEL — engineer the agent ===== -->
-  <text x="60" y="132" font-size="18" font-weight="700" letter-spacing="1" fill="#57534e">WHAT YOU TRY FIRST</text>
-  <text x="60" y="154" font-size="16" font-style="italic" fill="#57534e">work on the agent</text>
-
-  <!-- passive environment backdrop -->
-  <rect x="52" y="212" width="392" height="272" rx="12" fill="#f6f4ef" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="4 6"/>
-  <text x="248" y="470" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">environment — a passive backdrop</text>
-
-  <!-- engineer -->
-  <rect x="80" y="176" width="150" height="58" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="155" y="212" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
-
-  <!-- arrow onto the agent -->
-  <path d="M200,266 C236,286 250,300 262,314" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#eao-fleet)"/>
-  <text x="150" y="300" font-size="16" font-style="italic" fill="#57534e">prompts · tunes · wraps</text>
-
-  <!-- the agent (the object, ring-marked) -->
-  <circle cx="290" cy="368" r="66" fill="none" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="3 5"/>
-  <circle cx="290" cy="368" r="54" fill="none" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="3 5"/>
-  <rect x="222" y="340" width="136" height="58" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
-  <text x="290" y="376" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Agent</text>
-  <text x="290" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">the object of engineering</text>
-
-  <!-- ===== RIGHT PANEL — engineer the environment ===== -->
-  <text x="560" y="132" font-size="18" font-weight="700" letter-spacing="1" fill="#155c38">WHAT MAGE TEACHES</text>
-  <text x="560" y="154" font-size="16" font-style="italic" fill="#57534e">work on the environment</text>
-
-  <!-- the governed environment (the object, ring-marked, emphasized like the parent hub) -->
-  <rect x="548" y="206" width="404" height="284" rx="14" fill="#e3f0e7" stroke="#155c38" stroke-width="3.4"/>
-  <rect x="536" y="194" width="428" height="308" rx="18" fill="none" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="3 5"/>
-  <text x="750" y="242" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Governed Engineering Environment</text>
-  <text x="750" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">the object of engineering</text>
-
-  <!-- obligations -> mechanisms bound INTO the environment -->
-  <rect x="576" y="288" width="150" height="52" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="651" y="320" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligations</text>
-  <path d="M726,314 L766,314" fill="none" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#eao-accent)"/>
-  <rect x="768" y="288" width="156" height="52" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="846" y="320" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanisms</text>
-
-  <!-- the agent OPERATES INSIDE the environment (not the object) -->
-  <rect x="686" y="404" width="128" height="56" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="750" y="439" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Agent</text>
-  <text x="750" y="480" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">operates inside — not the object</text>
-
-  <!-- engineer works on the environment -->
-  <rect x="560" y="516" width="150" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="635" y="550" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
-  <path d="M700,520 C740,502 754,498 762,494" fill="none" stroke="#2f5169" stroke-width="2.8" marker-end="url(#eao-fleet)"/>
-  <text x="726" y="548" font-size="16" font-style="italic" fill="#57534e">governs · models</text>
-
-  <text x="500" y="590" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The move: the object of engineering jumps from the agent to the governed environment the agent operates in.</text>
-</svg><figcaption data-short="The Environment Is the Object"><span class="fig-label">Figure 1.1-2.</span> <em>The Environment Is the Object.</em> Two panels contrast what is being engineered. The common move tunes the agent — better prompts, stronger models, tighter oversight. MAGE engineers the environment the agent works in instead, so every agent inherits the same governed ground rather than the last engineer's private care.</figcaption></figure>
-<p>This is the new engineering problem: the agent produces the implementation, but the engineer produces the environment that makes that implementation trustworthy.</p>
 <h2><span class="sec-num">1.1.1</span> What this book is about (and what it is not)</h2>
 <p>If you opened a book about agentic software engineering expecting a tour of agents, you may be surprised by what comes first. That is deliberate. The agent itself is not the hard part of agentic software engineering. Agents are becoming abundant, capable, and increasingly interchangeable. The engineering problem begins when you ask one to work autonomously on a system large enough, important enough, or long-lived enough that "it usually works" is not good enough.</p>
 <p>So this Part starts one level above the agent. What changed when implementation became cheap? What now limits engineering? And what must the human engineer build around commodity intelligence so that its speed becomes trustworthy production rather than churn?</p>
 <p>We will get to agents, tools, hooks, skills, and workflows. But MAGE's claim is that those are machinery. The discipline lives in the models the machinery reasons through, the obligations the environment enforces, and the judgment that decides what should become permanent structure.</p>
-<p>Of course, not every programming task needs the machinery this book describes. Some tasks a capable model can simply do. You describe the input and the output, you push the button, and a working program comes back on the first pass. No iteration, no governance, no loop management. Knowing which tasks are like that, and which are not, is the first judgment an agentic engineer has to make. <a class="xref" href="1.1-the-printer.html#fig-1-1-3">Figure&nbsp;1.1-3</a> lays out that judgment as a flowchart.</p>
-<figure id="fig-1-1-3" class="book-figure" data-label="task-mode-decision"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 660" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" role="group" aria-labelledby="csp-title csp-desc">
+<p>Of course, not every programming task needs the machinery this book describes. Some tasks a capable model can simply do. You describe the input and the output, you push the button, and a working program comes back on the first pass. No iteration, no governance, no loop management. Knowing which tasks are like that, and which are not, is the first judgment an agentic engineer has to make. <a class="xref" href="1.1-the-printer.html#fig-1-1-2">Figure&nbsp;1.1-2</a> lays out that judgment as a flowchart.</p>
+<figure id="fig-1-1-2" class="book-figure" data-label="task-mode-decision"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 660" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" role="group" aria-labelledby="csp-title csp-desc">
   <title id="csp-title">One-shot scripting versus supervised autonomy</title>
   <desc id="csp-desc">A decision path for a computational coding task. Starting from "What kind of task", you specify the input/output behavior, then split by task size and difficulty. A simple task under a few thousand lines with no reasoning goes to one-shot scripting: describe the process and the agent produces it in a single pass. A hard task, especially one that includes reasoning, goes to supervised autonomy, where you supply four things: correctness conditions and proposed sub-tasks that shape the system, and tools that determinize recurring processes plus monitoring and intervention that shape the development process.</desc>
 
@@ -971,7 +890,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="225" y="566" text-anchor="middle" font-size="25.44" font-weight="700" fill="#1c1917">System design</text>
   <text x="745" y="566" text-anchor="middle" font-size="25.44" font-weight="700" fill="#1c1917">Development process</text>
-</svg><figcaption data-short="The Task-Mode Heuristic"><span class="fig-label">Figure 1.1-3.</span> <em>The Task-Mode Heuristic.</em> Specify a task's input/output behavior, then split on size and difficulty: a simple no-reasoning task goes to one-shot scripting, a hard or reasoning-heavy one to supervised autonomy. If unsure, try to one-shot it, but switch paths rather than throw good tokens after bad.</figcaption></figure>
+</svg><figcaption data-short="The Task-Mode Heuristic"><span class="fig-label">Figure 1.1-2.</span> <em>The Task-Mode Heuristic.</em> Specify a task's input/output behavior, then split on size and difficulty: a simple no-reasoning task goes to one-shot scripting, a hard or reasoning-heavy one to supervised autonomy. If unsure, try to one-shot it, but switch paths rather than throw good tokens after bad.</figcaption></figure>
 <h3>The two modes</h3>
 <span id="idx-def-reasoning-horizon"></span><span id="idx-def-long-horizon-task"></span><p>Start at the decision on the left. You have a computational task and you can say what it takes in and what it must produce. From there the path forks on how big and how hard the work is. More formally, what makes a task hard is often its <strong>reasoning horizon</strong> — the amount of intermediate reasoning state you must hold in mind at once to get it right — and a <strong>long-horizon task</strong> is one whose reasoning state will not fit losslessly within the working memory available to hold it.</p>
 <p id="idx-def-one-shot-scripting"><strong>One-shot scripting</strong> is the righthand branch. A task belongs here when its relevant reasoning state fits comfortably in one pass and the result is cheap to inspect — a few thousand lines is a rough indicator, not the rule. Think of a CSV-to-HTML report script. You specify the behavior once, the agent writes it in a single pass, and you read the result. Its reasoning horizon is short — the whole transaction fits in one context window and one sitting. When a task really is this size, the full apparatus of governed autonomy is wasted effort. Send it one-shot and move on.</p>
