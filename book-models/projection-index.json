@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1474,
+    "total_sites": 1485,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1046,
+      "book-web": 1057,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -432,6 +432,10 @@
             "occ": 15
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 15
+          },
+          {
             "file": "book/appendix-operators-reference.html",
             "occ": 3
           },
@@ -457,7 +461,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 102
+            "occ": 105
           },
           {
             "file": "book/index.html",
@@ -495,7 +499,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 118
+            "occ": 119
           }
         ]
       },
@@ -1010,12 +1014,16 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 3
+          },
+          {
             "file": "book/book-index.html",
             "occ": 1
           },
           {
             "file": "book/figures.html",
-            "occ": 28
+            "occ": 30
           },
           {
             "file": "book/part-1-intro.html",
@@ -1045,7 +1053,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 35
+            "occ": 36
           }
         ]
       },
@@ -1386,6 +1394,10 @@
             "occ": 2
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 2
+          },
+          {
             "file": "book/appendix-operators-reference.html",
             "occ": 1
           },
@@ -1395,7 +1407,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 15
+            "occ": 16
           },
           {
             "file": "book/list-of-figures.html",
@@ -1405,7 +1417,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 13
           }
         ]
       },
@@ -1938,6 +1950,10 @@
             "occ": 6
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 18
+          },
+          {
             "file": "book/appendix-operators-reference.html",
             "occ": 9
           },
@@ -1963,7 +1979,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 131
+            "occ": 139
           },
           {
             "file": "book/index.html",
@@ -2001,7 +2017,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 118
+            "occ": 119
           }
         ]
       },
@@ -2552,6 +2568,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-operators-reference.html",
             "occ": 2
           },
@@ -2611,7 +2631,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 117
+            "occ": 118
           }
         ]
       },
@@ -3336,6 +3356,10 @@
             "occ": 20
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 12
+          },
+          {
             "file": "book/appendix-operators-reference.html",
             "occ": 8
           },
@@ -3361,7 +3385,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 292
+            "occ": 293
           },
           {
             "file": "book/index.html",
@@ -3399,7 +3423,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 118
+            "occ": 119
           }
         ]
       },
@@ -4094,12 +4118,16 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 3
+          },
+          {
             "file": "book/book-index.html",
             "occ": 1
           },
           {
             "file": "book/figures.html",
-            "occ": 29
+            "occ": 31
           },
           {
             "file": "book/part-1-intro.html",
@@ -4129,7 +4157,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 34
+            "occ": 35
           }
         ]
       },
@@ -4604,6 +4632,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-operators-reference.html",
             "occ": 1
           },
@@ -4663,7 +4695,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 117
+            "occ": 118
           }
         ]
       },
@@ -4734,12 +4766,16 @@
             "occ": 6
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 3
+          },
+          {
             "file": "book/book-index.html",
             "occ": 1
           },
           {
             "file": "book/figures.html",
-            "occ": 9
+            "occ": 11
           },
           {
             "file": "book/list-of-figures.html",
@@ -4749,7 +4785,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 14
+            "occ": 15
           }
         ]
       },
@@ -5286,6 +5322,10 @@
             "occ": 2
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 2
+          },
+          {
             "file": "book/appendix-operators-reference.html",
             "occ": 2
           },
@@ -5345,7 +5385,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 117
+            "occ": 118
           }
         ]
       },
@@ -5808,6 +5848,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-field-guide.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-operators-reference.html",
             "occ": 1
           },
@@ -5867,7 +5911,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 117
+            "occ": 118
           }
         ]
       },

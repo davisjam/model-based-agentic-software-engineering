@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HAND-AUTHORED one-off (Field Guide card — Shopify) — NOT projector output; edit by hand and keep this header. -->
+<!-- Field-guide team card: Shopify's entry door (shared agent-ready environment) -> MAGE landing (Engineering Environment). label: field-guide-shopify. Reference/nav card art, not a role-coloured figure. -->
+<!-- semantic-families: neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Shopify — shared agent-ready environment to the Engineering Environment">
+  <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
+
+  <!-- header -->
+  <text x="48" y="44" font-size="16" fill="#57534e">Field Guide · card</text>
+  <text x="952" y="44" text-anchor="end" font-size="22" font-weight="bold" fill="#1c1917">Shopify</text>
+  <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Commerce platform · org-wide agent use with hard monthly usage numbers</text>
+  <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
+
+  <!-- door -->
+  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Shared agent-</text>
+  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">ready environment</text>
+
+  <!-- door -> sessions -->
+  <line x1="151" y1="205" x2="286" y2="205" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- many sessions run in the open -->
+  <circle cx="300" cy="165" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="300" cy="185" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="300" cy="205" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="300" cy="225" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="300" cy="245" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <line x1="305" y1="165" x2="400" y2="200" stroke="#cfcabf" stroke-width="2.5"/>
+  <line x1="305" y1="185" x2="400" y2="204" stroke="#cfcabf" stroke-width="2.5"/>
+  <line x1="305" y1="205" x2="400" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <line x1="305" y1="225" x2="400" y2="210" stroke="#cfcabf" stroke-width="2.5"/>
+  <line x1="305" y1="245" x2="400" y2="214" stroke="#cfcabf" stroke-width="2.5"/>
+
+  <!-- shared, observable corpus -->
+  <rect x="400" y="180" width="180" height="52" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
+  <text x="490" y="202" text-anchor="middle" font-size="16" fill="#1c1917">shared, observable</text>
+  <text x="490" y="222" text-anchor="middle" font-size="16" fill="#57534e">session corpus</text>
+  <text x="490" y="258" text-anchor="middle" font-size="16" fill="#78716c">59,918 sessions · 5,170 channels · 7,000+ people</text>
+
+  <!-- corpus -> reusable skill -->
+  <line x1="580" y1="206" x2="639" y2="206" stroke="#cfcabf" stroke-width="3"/>
+  <circle cx="650" cy="206" r="11" fill="#1c1917"/>
+  <text x="650" y="246" text-anchor="middle" font-size="16" fill="#57534e">reusable skill</text>
+
+  <!-- skill -> landing -->
+  <line x1="661" y1="205" x2="758" y2="205" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- landing badge -->
+  <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
+  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="860" y="203" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Engineering</text>
+  <text x="860" y="223" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Environment</text>
+
+  <!-- takeaway -->
+  <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="500" y="396" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">A private session does not compound; a shared, observable one becomes</text>
+  <text x="500" y="418" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a skill every later agent inherits.</text>
+</svg>

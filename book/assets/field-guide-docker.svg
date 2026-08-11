@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HAND-AUTHORED one-off (Field Guide card — Docker) — NOT projector output; edit by hand and keep this header. -->
+<!-- Field-guide team card: Docker's entry door (authority boundaries & evaluation loops) -> MAGE landing (Governance Conversion). label: field-guide-docker. Reference/nav card art, not a role-coloured figure. -->
+<!-- semantic-families: neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Docker — authority boundaries and evaluation loops to Governance Conversion">
+  <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
+
+  <!-- header -->
+  <text x="48" y="44" font-size="16" fill="#57534e">Field Guide · card</text>
+  <text x="952" y="44" text-anchor="end" font-size="22" font-weight="bold" fill="#1c1917">Docker</text>
+  <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Developer tooling (containers) · autonomous coding fleet with a role graph</text>
+  <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
+
+  <!-- door -->
+  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Authority boundaries</text>
+  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">&amp; eval loops</text>
+
+  <!-- door -> delegation hub -->
+  <line x1="151" y1="205" x2="296" y2="205" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- seven permission-backed roles -->
+  <circle cx="300" cy="140" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="300" cy="163" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="300" cy="186" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="300" cy="209" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="300" cy="232" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="300" cy="255" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="300" cy="278" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <line x1="349" y1="209" x2="305" y2="140" stroke="#cfcabf" stroke-width="2"/>
+  <line x1="349" y1="209" x2="305" y2="163" stroke="#cfcabf" stroke-width="2"/>
+  <line x1="349" y1="209" x2="305" y2="186" stroke="#cfcabf" stroke-width="2"/>
+  <line x1="349" y1="209" x2="305" y2="209" stroke="#cfcabf" stroke-width="2"/>
+  <line x1="349" y1="209" x2="305" y2="232" stroke="#cfcabf" stroke-width="2"/>
+  <line x1="349" y1="209" x2="305" y2="255" stroke="#cfcabf" stroke-width="2"/>
+  <line x1="349" y1="209" x2="305" y2="278" stroke="#cfcabf" stroke-width="2"/>
+  <circle cx="360" cy="209" r="11" fill="#1c1917"/>
+  <text x="330" y="305" text-anchor="middle" font-size="16" fill="#78716c">seven permission-backed roles</text>
+  <text x="330" y="325" text-anchor="middle" font-size="16" fill="#78716c">runs the shortest evidence horizon (◐)</text>
+
+  <!-- hub -> gate -->
+  <line x1="371" y1="209" x2="521" y2="209" stroke="#cfcabf" stroke-width="3"/>
+  <text x="452" y="196" text-anchor="middle" font-size="16" fill="#78716c">determinize the tests</text>
+
+  <!-- the admission gate is deliberately left open, a human standing on it -->
+  <line x1="545" y1="172" x2="545" y2="248" stroke="#1c1917" stroke-width="3"/>
+  <line x1="595" y1="172" x2="595" y2="248" stroke="#1c1917" stroke-width="3"/>
+  <circle cx="570" cy="210" r="9" fill="#1c1917"/>
+  <text x="570" y="150" text-anchor="middle" font-size="16" fill="#57534e">admission kept probabilistic</text>
+  <text x="570" y="272" text-anchor="middle" font-size="16" fill="#57534e">human on every merge</text>
+
+  <!-- gate -> landing -->
+  <line x1="596" y1="209" x2="758" y2="205" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- landing badge -->
+  <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
+  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="860" y="203" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Governance</text>
+  <text x="860" y="223" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Conversion</text>
+
+  <!-- takeaway -->
+  <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="500" y="396" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Determinize the decidable eagerly; keep a human on the judgment</text>
+  <text x="500" y="418" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">you deliberately choose not to close.</text>
+</svg>

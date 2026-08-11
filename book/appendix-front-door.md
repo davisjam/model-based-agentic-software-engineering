@@ -16,6 +16,7 @@ The map below shows how the parts fit, with the appendices as the working surfac
 | [appendix: appendix-c-mechanism-catalog] — Mechanism Catalog | The whole vocabulary at a glance | *What is this mechanism again?* |
 | [appendix: appendix-operators-reference] — Operator's Reference | Operate a governed environment: dashboards, health checks, the migration drill, release preflight, daily doctrine | *What should I watch or do while running the system?* |
 | [appendix: appendix-skill-recipe] — How to Write a Skill | Package a body of judgment into a skill an agent can reach for | *How do I build a skill?* |
+| [appendix: appendix-field-guide] — Field Guide | The six studied teams as one-page cards: who each is, the door it took into the design space, and the one lesson to carry | *Who was that team again?* |
 | *Online catalogue* | The complete reference for one mechanism — every entry as a full Gang-of-Four page | *How do I implement this mechanism?* |
 
 **Working the appendices together.** The first three appendices read best in sequence, from the capability you want down to the detail you ship. Start in [appendix: appendix-stacks] with the stack that delivers the capability and the mechanisms that compose it; study in [appendix: appendix-b-flagship-mechanisms] why each load-carrying mechanism takes the shape it does; keep [appendix: appendix-c-mechanism-catalog] open for quick recognition while you implement. When print runs out of room, the online catalogue carries the complete entry.

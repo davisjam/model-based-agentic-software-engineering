@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HAND-AUTHORED one-off (Field Guide card — Spotify) — NOT projector output; edit by hand and keep this header. -->
+<!-- Field-guide team card: Spotify's entry door (fleet-first autonomy) -> MAGE landing (Governed Engineering Environment). label: field-guide-spotify. Reference/nav card art, not a role-coloured figure. -->
+<!-- semantic-families: neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Spotify — fleet-first autonomy to the Governed Engineering Environment">
+  <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
+
+  <!-- header -->
+  <text x="48" y="44" font-size="16" fill="#57534e">Field Guide · card</text>
+  <text x="952" y="44" text-anchor="end" font-size="22" font-weight="bold" fill="#1c1917">Spotify</text>
+  <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Audio-streaming platform · fleet-scale autonomous-migration program</text>
+  <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
+
+  <!-- door -->
+  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Fleet-first</text>
+  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">autonomy</text>
+
+  <!-- door -> fleet -->
+  <line x1="151" y1="212" x2="296" y2="250" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- fleet of agents implementing concurrently -->
+  <circle cx="300" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="352" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="404" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="456" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="508" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle cx="560" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <text x="430" y="284" text-anchor="middle" font-size="16" fill="#78716c">agents implement concurrently</text>
+  <text x="430" y="306" text-anchor="middle" font-size="16" fill="#78716c">76% jump in PR frequency</text>
+
+  <!-- judgment moves upstream -->
+  <line x1="430" y1="238" x2="430" y2="163" stroke="#57534e" stroke-width="2.5"/>
+  <polygon points="422,175 430,157 438,175" fill="#57534e"/>
+  <circle cx="430" cy="145" r="12" fill="#1c1917"/>
+  <text x="430" y="128" text-anchor="middle" font-size="16" fill="#57534e">human judgment</text>
+  <text x="448" y="206" text-anchor="start" font-size="16" fill="#78716c">moves upstream</text>
+
+  <!-- judgment -> landing (amplified by the environment) -->
+  <line x1="442" y1="150" x2="758" y2="198" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- landing badge -->
+  <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
+  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="860" y="203" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Governed Engineering</text>
+  <text x="860" y="223" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Environment</text>
+
+  <!-- takeaway -->
+  <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="500" y="396" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Automate implementation and the scarce resource becomes the human decision —</text>
+  <text x="500" y="418" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">what, where, when, and whether — placed where the environment amplifies it.</text>
+</svg>
