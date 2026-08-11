@@ -3316,6 +3316,7 @@ def build_hand_authored_appendix(
     locator_heading: bool = False,
     opening_extras_md: str = "",
     front_only: bool = False,
+    single_deck: bool = False,
     page_body_fn: "Callable[[str, str, int], str] | None" = None,
 ) -> list[dict]:
     """Build a hand-authored appendix Part's chapter records: one opening front-door page (chapter 0), then
@@ -3342,11 +3343,18 @@ def build_hand_authored_appendix(
     low = letter.lower()
     chapters: list[dict] = []
     part_title = f"Appendix {letter} — {part_name}"
+    fold = page_body_fn or (lambda raw, stem, i: _fold_wrapped_bullets(raw.strip()))
 
-    # OPENING FRONT-DOOR PAGE — heads the Part (chapter 0, sorts before every content page).
+    # OPENING FRONT-DOOR PAGE — heads the Part (chapter 0, sorts before every content page). In single_deck
+    # mode it is the ONLY page: every content file is inlined under the opening prose (each card carries its
+    # own heading), so the whole appendix reads as one deck — the Field Guide's six-team-cards shape.
     opening_body = opening_prose.strip()
     if opening_extras_md.strip():
         opening_body = opening_body + "\n\n" + opening_extras_md.strip()
+    if single_deck:
+        cards = [fold((content_dir / f"{stem}.md").read_text(encoding="utf-8"), stem, i)
+                 for i, (stem, _t) in enumerate(pages, start=1)]
+        opening_body = opening_body + "\n\n" + "\n\n".join(cards)
     opening: dict = {
         "slug": opening_slug,
         "part": part,
@@ -3361,10 +3369,9 @@ def build_hand_authored_appendix(
         opening["fig_prefix"] = letter
     chapters.append(opening)
 
-    if front_only:
+    if front_only or single_deck:
         return chapters
 
-    fold = page_body_fn or (lambda raw, stem, i: _fold_wrapped_bullets(raw.strip()))
     # ONE PAGE PER CONTENT FILE — <letter>.1, <letter>.2, … in listed order. The heading form is either the
     # generated-looking "Appendix <letter> - <i>. <title>" (legacy default) or the clean locator "<letter>.<i>
     # <title>" ("D.1 The Operator's Dashboard") when `locator_heading` is set — currently only the Operator's
@@ -3521,27 +3528,41 @@ def build_field_guide_chapters(part: int, letter: str = "F", locator_figs: bool 
     the six team cards concatenated as `### <Team>` H3 sections. The six read as one deck under a single
     opening — the shape the card template authored — rather than as one page per team. Every card leads with
     its `<!-- figure: -->` neutral hand-SVG; figures number `Figure <letter>-N` off the locator when
-    `locator_figs` is set. Returns [] if no card files are present (the opening alone is not emitted without
-    its cards)."""
-    cards = [_fold_wrapped_bullets((_FIELD_GUIDE_DIR / f"{stem}.md").read_text(encoding="utf-8").strip())
-             for stem in _FIELD_GUIDE_TEAMS if (_FIELD_GUIDE_DIR / f"{stem}.md").is_file()]
-    if not cards:
-        return []
-    part_title = f"Appendix {letter} — Field Guide"
-    body = _load_opening(_FIELD_GUIDE_DIR / "_opening.md").strip() + "\n\n" + "\n\n".join(cards)
-    rec: dict = {
-        "slug": _APPENDIX_FIELD_GUIDE_OPENING_SLUG,
-        "part": part,
-        "part_title": part_title,
-        "chapter": 0,
-        "chapter_title": part_title,
-        "body_md": body,
-        "is_appendix": True,
-        "mermaid": False,
-    }
-    if locator_figs:
-        rec["fig_prefix"] = letter
-    return [rec]
+    `locator_figs` is set. Returns [] if no card files are present.
+
+    Delegates to `build_hand_authored_appendix` in `single_deck` mode — the ONE parameterized hand-authored
+    appendix builder the stacks / skill-recipe / operator's-reference / model-reference appendices also use,
+    so a change to the pager/TOC/index scaffold holds for every hand-authored appendix at once (no bespoke
+    field-guide copy). The cards carry their own headings; `single_deck` inlines them under the opening."""
+    return build_hand_authored_appendix(
+        part, letter=letter, part_name="Field Guide",
+        opening_slug=_APPENDIX_FIELD_GUIDE_OPENING_SLUG,
+        opening_prose=_load_opening(_FIELD_GUIDE_DIR / "_opening.md"),
+        content_dir=_FIELD_GUIDE_DIR, pages_source=[(t, t) for t in _FIELD_GUIDE_TEAMS],
+        locator_figs=locator_figs, single_deck=True)
+
+
+# APPENDIX G — Model Reference. One page per Part-II model: the fixed five-field (a)-(e) reference detail
+# (record schema / invariant table / derivation direction) migrated OUT of the view chapters (round-10 §C).
+# Hand-authored like the stacks / recipe / operators appendices — routed through build_hand_authored_appendix,
+# no bespoke builder. The page slugs carry a `-reference` suffix so `appendix-<letter>-<model>-reference`
+# never collides with a catalogue model slug (`<model>-model`) and is never swallowed by the
+# dropped-appendix-link redirect (D4a). Front-door slug is letter-independent (`appendix-models`). Scaffolded
+# empty-but-green this wave; W2.5 migrates the (b)/(d)/(e) detail out of the view chapters into these pages.
+_MODELS_DIR = HERE / "appendix-models"
+_APPENDIX_MODELS_OPENING_SLUG = "appendix-models"
+_MODEL_PAGES: list[tuple[str, str]] = [
+    ("service-flow-reference", "Service-Flow Model"),
+    ("component-zone-reference", "Component & Zone Model"),
+    ("synchronization-reference", "Synchronization Model"),
+    ("deployment-topology-reference", "Deployment-Topology Model"),
+    ("invariant-dag-reference", "Invariant-DAG Execution Policy"),
+    ("user-journey-reference", "User-Journey Model"),
+    ("agent-orchestration-reference", "Agent-Orchestration Model"),
+    ("journey-criticality-reference", "Journey-Criticality and Test-Placement Model"),
+    ("coverage-node-reference", "Coverage-to-Node Model"),
+    ("task-closure-reference", "Task-Closure Model"),
+]
 
 
 # APPENDIX D — Operator's Reference. Hand-authored, like the stacks Part and the skill recipe: a front-door
@@ -4799,6 +4820,18 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
     #    team name. Authored `.md` one-pagers, zero operator-card rows.
     f_part = next_part + 5
     chapters += build_field_guide_chapters(part=f_part, letter="F", locator_figs=True)
+
+    # ── APPENDIX G — Model Reference. One page per Part-II model: the fixed five-field (a)-(e) reference
+    #    detail migrated out of the view chapters (§C). Appended LAST so it re-letters no earlier appendix
+    #    (every `appendix-<letter>-<stem>` content-page slug upstream stays stable). Routed through the
+    #    shared hand-authored appendix builder — no near-clone builder. `-reference` page-slug namespace (D4a).
+    g_part = next_part + 6
+    chapters += build_hand_authored_appendix(
+        g_part, letter="G", part_name="Model Reference",
+        opening_slug=_APPENDIX_MODELS_OPENING_SLUG,
+        opening_prose=_load_opening(_MODELS_DIR / "_opening.md"),
+        content_dir=_MODELS_DIR, pages_source=_MODEL_PAGES,
+        locator_figs=True, locator_heading=True)
     return chapters
 
 

@@ -693,7 +693,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-e-theory.html">Appendix E - 1. Theory</a></li>
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li>
 <li class="part">Appendix F — Field Guide</li>
-<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 14. Control↔substrate dependency (computed blast-radius) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 14. Control↔substrate dependency (computed blast-radius)</h1></header><p><strong>The judgment</strong> — Declare the assumption so the blast radius is queryable before you change anything.</p>
+<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li>
+<li class="part">Appendix G — Model Reference</li>
+<li><a class="" href="appendix-models.html">Appendix G — Model Reference</a></li>
+<li><a class="" href="appendix-g-service-flow-reference.html">G.1 Service-Flow Model</a></li>
+<li><a class="" href="appendix-g-component-zone-reference.html">G.2 Component &amp; Zone Model</a></li>
+<li><a class="" href="appendix-g-synchronization-reference.html">G.3 Synchronization Model</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.4 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.5 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.6 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.7 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.8 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.9 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.10 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 14. Control↔substrate dependency (computed blast-radius) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 14. Control↔substrate dependency (computed blast-radius)</h1></header><p><strong>The judgment</strong> — Declare the assumption so the blast radius is queryable before you change anything.</p>
 <table class="book-table meta-card"><tbody><tr><td><strong>Role</strong></td><td>Models-bridge</td></tr><tr><td><strong>Family</strong></td><td>System models</td></tr><tr><td><strong>Used in stacks</strong></td><td>The governance-of-governance stack</td></tr><tr><td><strong>Enforcement</strong></td><td>Hard</td></tr><tr><td><strong>Applicability</strong></td><td>Specialized</td></tr><tr><td><strong>Related mechanisms</strong></td><td><em>Enabler:</em> <a href="../models-bridge/system-models/deployment-topology-model.html">Deployment &amp; tier topology</a>; <em>See also:</em> <a href="../models-bridge/system-models/meta-model-consumption.html">Meta-model consumption discipline (read, don't hardcode)</a>; <em>See also:</em> <a href="../models-bridge/system-models/query-surface.html">Model query surface (<code>repo-query</code>)</a>; <em>See also:</em> <a href="../models-bridge/system-models/drift-parity-gates.html">Drift &amp; parity gates</a></td></tr></tbody></table>
 <p><em>The Structure of Control↔substrate dependency (computed blast-radius) — its shape at a glance:</em></p>
 <p>Each substrate-reading mechanism declares its stance in a typed field. A query joins those declarations against the substrate model and, given a migration target, prints exactly which mechanisms a change puts in scope — the blast radius, computed before you touch the substrate.</p>

@@ -693,7 +693,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-e-theory.html">Appendix E - 1. Theory</a></li>
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li>
 <li class="part">Appendix F — Field Guide</li>
-<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 5. Test-serializer (N=1 flock on dotnet test) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 5. Test-serializer (N=1 flock on <code>dotnet test</code>)</h1></header><p><strong>The judgment</strong> — Process isolation isn't resource isolation; ban the un-mediated path.</p>
+<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li>
+<li class="part">Appendix G — Model Reference</li>
+<li><a class="" href="appendix-models.html">Appendix G — Model Reference</a></li>
+<li><a class="" href="appendix-g-service-flow-reference.html">G.1 Service-Flow Model</a></li>
+<li><a class="" href="appendix-g-component-zone-reference.html">G.2 Component &amp; Zone Model</a></li>
+<li><a class="" href="appendix-g-synchronization-reference.html">G.3 Synchronization Model</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.4 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.5 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.6 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.7 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.8 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.9 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.10 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 5. Test-serializer (N=1 flock on dotnet test) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 5. Test-serializer (N=1 flock on <code>dotnet test</code>)</h1></header><p><strong>The judgment</strong> — Process isolation isn't resource isolation; ban the un-mediated path.</p>
 <table class="book-table meta-card"><tbody><tr><td><strong>Role</strong></td><td>Agent</td></tr><tr><td><strong>Family</strong></td><td>Mediators &amp; resource locks</td></tr><tr><td><strong>Used in stacks</strong></td><td>The Mediation stack</td></tr><tr><td><strong>Enforcement</strong></td><td>Hard</td></tr><tr><td><strong>Applicability</strong></td><td>Specialized</td></tr><tr><td><strong>Related mechanisms</strong></td><td><em>See also:</em> <a href="../agent/mediators-and-resource-locks/build-serializer.html">Build-serializer (M=8 semaphore)</a></td></tr></tbody></table>
 <p><em>Full description → <a href="../agent/mediators-and-resource-locks/test-serializer.html">Test-serializer (N=1 flock on <code>dotnet test</code>)</a>.</em></p>
 <p><strong>Intent</strong> — A host-level wrapper that serializes the test runner to a single writer via an exclusive flock, so concurrent agent worktrees on one machine don't saturate I/O and interfere with each other's test runs (our instance: an N=1 flock on <code>dotnet test</code>).</p>

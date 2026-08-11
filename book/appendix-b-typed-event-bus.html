@@ -693,7 +693,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-e-theory.html">Appendix E - 1. Theory</a></li>
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li>
 <li class="part">Appendix F — Field Guide</li>
-<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 8. Orchestrator-as-reactor over an event bus — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 8. Orchestrator-as-reactor over an event bus</h1></header><p><strong>The judgment</strong> — Wire every failure to its reaction, so nothing has to be watching when it fires.</p>
+<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li>
+<li class="part">Appendix G — Model Reference</li>
+<li><a class="" href="appendix-models.html">Appendix G — Model Reference</a></li>
+<li><a class="" href="appendix-g-service-flow-reference.html">G.1 Service-Flow Model</a></li>
+<li><a class="" href="appendix-g-component-zone-reference.html">G.2 Component &amp; Zone Model</a></li>
+<li><a class="" href="appendix-g-synchronization-reference.html">G.3 Synchronization Model</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.4 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.5 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.6 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.7 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.8 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.9 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.10 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 8. Orchestrator-as-reactor over an event bus — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 8. Orchestrator-as-reactor over an event bus</h1></header><p><strong>The judgment</strong> — Wire every failure to its reaction, so nothing has to be watching when it fires.</p>
 <table class="book-table meta-card"><tbody><tr><td><strong>Role</strong></td><td>Agent</td></tr><tr><td><strong>Family</strong></td><td>Lifecycle &amp; observability</td></tr><tr><td><strong>Used in stacks</strong></td><td>The observe → react loop</td></tr><tr><td><strong>Enforcement</strong></td><td>Hard</td></tr><tr><td><strong>Applicability</strong></td><td>Universal</td></tr><tr><td><strong>Related mechanisms</strong></td><td><em>Enabler:</em> <a href="../agent/lifecycle-and-observability/cron-alerts-gate.html">Cron-alerts gate</a>; <em>See also:</em> <a href="../agent/lifecycle-and-observability/agent-registry.html">Agent registry (append-only log + marker cache)</a>; <em>See also:</em> <a href="../agent/lifecycle-and-observability/lifecycle-hooks.html">Lifecycle hooks (interpose on the agent runtime's events)</a></td></tr></tbody></table>
 <p><em>The Structure of Orchestrator-as-reactor over an event bus — its shape at a glance:</em></p>
 <p>Emitters publish topics drawn from a closed registry; the orchestrator polls the queryable surface, matches each event to its playbook entry, and takes the prescribed action — the playbook is the active half that turns a signal into a reaction.</p>

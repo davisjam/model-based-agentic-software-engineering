@@ -693,7 +693,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-e-theory.html">Appendix E - 1. Theory</a></li>
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li>
 <li class="part">Appendix F — Field Guide</li>
-<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 24. PdfModel (sole PDF mutation surface) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 24. PdfModel (sole PDF mutation surface)</h1></header><p><strong>The judgment</strong> — Make the bug class unrepresentable — one structured seam, raw API banned.</p>
+<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li>
+<li class="part">Appendix G — Model Reference</li>
+<li><a class="" href="appendix-models.html">Appendix G — Model Reference</a></li>
+<li><a class="" href="appendix-g-service-flow-reference.html">G.1 Service-Flow Model</a></li>
+<li><a class="" href="appendix-g-component-zone-reference.html">G.2 Component &amp; Zone Model</a></li>
+<li><a class="" href="appendix-g-synchronization-reference.html">G.3 Synchronization Model</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.4 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.5 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.6 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.7 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.8 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.9 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.10 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 24. PdfModel (sole PDF mutation surface) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 24. PdfModel (sole PDF mutation surface)</h1></header><p><strong>The judgment</strong> — Make the bug class unrepresentable — one structured seam, raw API banned.</p>
 <table class="book-table meta-card"><tbody><tr><td><strong>Role</strong></td><td>Product</td></tr><tr><td><strong>Family</strong></td><td>Canonical models &amp; seams</td></tr><tr><td><strong>Used in stacks</strong></td><td>The model-coherence stack</td></tr><tr><td><strong>Enforcement</strong></td><td>Hard</td></tr><tr><td><strong>Applicability</strong></td><td>Specialized</td></tr><tr><td><strong>Related mechanisms</strong></td><td><em>See also:</em> <a href="../product/canonical-models-and-seams/office-models.html">Office Models ({Slides,Docs,Sheets}Model)</a>; <em>See also:</em> <a href="../product/canonical-models-and-seams/canonical-walkers.html">Canonical walkers (one traversal per tree)</a></td></tr></tbody></table>
 <p><em>Full description → <a href="../product/canonical-models-and-seams/pdf-model.html">PdfModel (sole PDF mutation surface)</a>.</em></p>
 <p><strong>Intent</strong> — Route <em>all</em> reads and writes of a complex file format through one structured model, with raw access to the underlying library banned by a lint, so the format's invariants are compiler-checked and every mutation passes through a surface that already encodes them.</p>

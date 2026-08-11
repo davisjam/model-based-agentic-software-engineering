@@ -693,7 +693,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-e-theory.html">Appendix E - 1. Theory</a></li>
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li>
 <li class="part">Appendix F — Field Guide</li>
-<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 27. Fuzz campaigns (+ auto-coverage) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 27. Fuzz campaigns (+ auto-coverage)</h1></header><p><strong>The judgment</strong> — Fix to the spec point, not the seed; real producers beat random bytes as an adversary.</p>
+<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li>
+<li class="part">Appendix G — Model Reference</li>
+<li><a class="" href="appendix-models.html">Appendix G — Model Reference</a></li>
+<li><a class="" href="appendix-g-service-flow-reference.html">G.1 Service-Flow Model</a></li>
+<li><a class="" href="appendix-g-component-zone-reference.html">G.2 Component &amp; Zone Model</a></li>
+<li><a class="" href="appendix-g-synchronization-reference.html">G.3 Synchronization Model</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.4 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.5 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.6 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.7 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.8 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.9 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.10 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 27. Fuzz campaigns (+ auto-coverage) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 27. Fuzz campaigns (+ auto-coverage)</h1></header><p><strong>The judgment</strong> — Fix to the spec point, not the seed; real producers beat random bytes as an adversary.</p>
 <table class="book-table meta-card"><tbody><tr><td><strong>Role</strong></td><td>Product</td></tr><tr><td><strong>Family</strong></td><td>Regression tests</td></tr><tr><td><strong>Used in stacks</strong></td><td>—</td></tr><tr><td><strong>Enforcement</strong></td><td>Hard</td></tr><tr><td><strong>Applicability</strong></td><td>Specialized</td></tr><tr><td><strong>Related mechanisms</strong></td><td><em>See also:</em> <a href="../product/regression-tests/property-tests.html">FsCheck property tests</a></td></tr></tbody></table>
 <p><em>The Structure of Fuzz campaigns (+ auto-coverage) — its shape at a glance:</em></p>
 <p>The campaign generates malformed inputs and runs the tool against them; coverage is collected automatically and compared to a baseline. A finding routes to a fix aimed at the spec point, not the individual seed.</p>
