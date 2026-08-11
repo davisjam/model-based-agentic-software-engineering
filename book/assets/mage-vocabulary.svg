@@ -43,15 +43,15 @@
   <line x1="450" y1="498" x2="450" y2="538" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
   <text x="462" y="523" font-size="14.4" fill="#78716c">plays one of</text>
 
-  <!-- four role chips -->
-  <rect x="176" y="538" width="130" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="241" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Constraint</text>
-  <rect x="316" y="538" width="110" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="371" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Sensor</text>
-  <rect x="436" y="538" width="120" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="496" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Validator</text>
-  <rect x="566" y="538" width="100" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="616" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Gate</text>
+  <!-- four role chips — whole row shifted +29px right (176->205 … 666->695) so its span-centroid sits on the spine axis x=450 (was x=421, spine struck Validator); uniform 10px gaps preserved. -->
+  <rect x="205" y="538" width="130" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="270" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Constraint</text>
+  <rect x="345" y="538" width="110" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="400" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Sensor</text>
+  <rect x="465" y="538" width="120" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="525" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Validator</text>
+  <rect x="595" y="538" width="100" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="645" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Gate</text>
 
   <line x1="450" y1="574" x2="450" y2="614" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
   <text x="462" y="599" font-size="14.4" fill="#78716c">govern</text>
