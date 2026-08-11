@@ -359,7 +359,6 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: correctness-conditions | local
 - term: code-fabricator | local
 - term: production-software | local
-- term: quality-floor | local
 - term: cad-model | local
 - term: running-example | local
 - term: world-representation | local
