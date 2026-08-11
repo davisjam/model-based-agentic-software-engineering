@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 36,
     "slugs_rendered": 27,
-    "total_sites": 1650,
+    "total_sites": 1658,
     "by_projection": {
       "book-pdf": 24,
-      "book-web": 1224,
+      "book-web": 1232,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -104,11 +104,15 @@
             "occ": 26
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
-            "occ": 29
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
+            "occ": 14
           },
           {
-            "file": "book/3.6-when-guardrails-collide.html",
+            "file": "book/3.4-governance-conversion.html",
+            "occ": 18
+          },
+          {
+            "file": "book/3.5-when-guardrails-collide.html",
             "occ": 8
           },
           {
@@ -547,7 +551,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 131
+            "occ": 132
           }
         ]
       },
@@ -1174,7 +1178,7 @@
             "occ": 1
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
+            "file": "book/3.4-governance-conversion.html",
             "occ": 2
           },
           {
@@ -1646,11 +1650,15 @@
             "occ": 19
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
-            "occ": 33
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
+            "occ": 18
           },
           {
-            "file": "book/3.6-when-guardrails-collide.html",
+            "file": "book/3.4-governance-conversion.html",
+            "occ": 25
+          },
+          {
+            "file": "book/3.5-when-guardrails-collide.html",
             "occ": 10
           },
           {
@@ -2089,7 +2097,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 131
+            "occ": 132
           }
         ]
       },
@@ -2312,11 +2320,15 @@
             "occ": 1
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
             "occ": 1
           },
           {
-            "file": "book/3.6-when-guardrails-collide.html",
+            "file": "book/3.4-governance-conversion.html",
+            "occ": 1
+          },
+          {
+            "file": "book/3.5-when-guardrails-collide.html",
             "occ": 1
           },
           {
@@ -2751,7 +2763,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -2866,11 +2878,11 @@
             "occ": 4
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
             "occ": 3
           },
           {
-            "file": "book/3.6-when-guardrails-collide.html",
+            "file": "book/3.5-when-guardrails-collide.html",
             "occ": 4
           },
           {
@@ -3124,11 +3136,15 @@
             "occ": 131
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
-            "occ": 37
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
+            "occ": 30
           },
           {
-            "file": "book/3.6-when-guardrails-collide.html",
+            "file": "book/3.4-governance-conversion.html",
+            "occ": 26
+          },
+          {
+            "file": "book/3.5-when-guardrails-collide.html",
             "occ": 30
           },
           {
@@ -3567,7 +3583,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 131
+            "occ": 132
           }
         ]
       },
@@ -4440,11 +4456,15 @@
             "occ": 1
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
+            "occ": 1
+          },
+          {
+            "file": "book/3.4-governance-conversion.html",
             "occ": 6
           },
           {
-            "file": "book/3.6-when-guardrails-collide.html",
+            "file": "book/3.5-when-guardrails-collide.html",
             "occ": 1
           },
           {
@@ -4879,7 +4899,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -4926,7 +4946,7 @@
             "occ": 1
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
+            "file": "book/3.4-governance-conversion.html",
             "occ": 1
           },
           {
@@ -5158,11 +5178,15 @@
             "occ": 10
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.4-governance-conversion.html",
             "occ": 6
           },
           {
-            "file": "book/3.6-when-guardrails-collide.html",
+            "file": "book/3.5-when-guardrails-collide.html",
             "occ": 2
           },
           {
@@ -5597,7 +5621,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -5732,11 +5756,15 @@
             "occ": 18
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
-            "occ": 8
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
+            "occ": 7
           },
           {
-            "file": "book/3.6-when-guardrails-collide.html",
+            "file": "book/3.4-governance-conversion.html",
+            "occ": 2
+          },
+          {
+            "file": "book/3.5-when-guardrails-collide.html",
             "occ": 1
           },
           {
@@ -6171,7 +6199,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -6526,11 +6554,15 @@
             "occ": 2
           },
           {
-            "file": "book/3.3-the-governed-environment.html",
-            "occ": 13
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
+            "occ": 6
           },
           {
-            "file": "book/3.6-when-guardrails-collide.html",
+            "file": "book/3.4-governance-conversion.html",
+            "occ": 8
+          },
+          {
+            "file": "book/3.5-when-guardrails-collide.html",
             "occ": 1
           },
           {
@@ -6965,7 +6997,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },

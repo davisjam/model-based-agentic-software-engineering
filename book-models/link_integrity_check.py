@@ -163,9 +163,7 @@ _APPENDIX_D_PREFIX = "appendix-d-"
 #: keyed by (label, destination-slug). The Governed Environment's title carries a ": Ex-Ante and Ex-Post"
 #: subtitle; the base name is the canonical short reference. Everything else that mismatches is a finding for
 #: the W3 fix-wave (e.g. 'Brownfield Progress' -> the 'Brownfield Progress Gauge' operator card).
-_CLOSE_LABEL_ALIASES: "frozenset[tuple[str, str]]" = frozenset({
-    ("The Governed Environment", "3.3-the-governed-environment"),
-})
+_CLOSE_LABEL_ALIASES: "frozenset[tuple[str, str]]" = frozenset()
 
 
 def _operator_card_titles() -> "dict[str, str]":

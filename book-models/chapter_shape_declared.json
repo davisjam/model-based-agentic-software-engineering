@@ -228,7 +228,7 @@
       "closing_anchor": "every mechanism finally takes — the model and its gate among them."
     },
     {
-      "slug": "the-governed-environment",
+      "slug": "constraints-sensors-validators-gates",
       "opening": {
         "failure_question": "explicit",
         "answer": "explicit",
@@ -242,13 +242,38 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the constraint-vs-sensor figure and control-substrate table",
+            "name": "the constraint-vs-sensor figure and the four mechanism roles",
             "anchor": "constraint-vs-sensor"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Question: what can you decide up front vs learn along the way; answer: the two halves + two forms of mechanism; Alignment Thesis implicit. Closes on the residual — a concrete consequence (your throughput ceiling) with a forward pointer to 6.6.",
+      "note": "R11 split from the-governed-environment (taxonomy half): constraint/sensor/validator/gate — the four canonical mechanism roles. W2 promotes the four-role spine and cuts the form-move 2x2.",
+      "opening_anchor": "A mechanism is one of two moves",
+      "closing_anchor": "The model supplies the policy; the consumption supplies the holding."
+    },
+    {
+      "slug": "governance-conversion",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "implicit",
+        "thesis_target": "alignment"
+      },
+      "closing": {
+        "kind": "consequence"
+      },
+      "delivers": {
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the governance-conversion loop and control-growth curve",
+            "anchor": "governance-conversion-loop"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "note": "R11 split from the-governed-environment (conversion half): ex-ante/ex-post, the governance-conversion loop, control-growth, and the residual. Closes on the residual — a concrete consequence (your throughput ceiling). W2 recasts the opening seam.",
       "opening_anchor": "One rule runs this whole chapter: **an ex-post failure becomes an ex-ante",
       "closing_anchor": "pushes the human boundary the same way authoring a spec does here."
     },

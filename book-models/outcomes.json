@@ -33,7 +33,7 @@
     "sections_total": 299,
     "sections_primary_of_an_outcome": 43,
     "modules": 7,
-    "lessons": 38
+    "lessons": 39
   },
   "taxonomy": {
     "know": [
@@ -234,18 +234,24 @@
             ]
           },
           {
-            "lesson": "3.3-the-governed-environment",
+            "lesson": "3.3-constraints-sensors-validators-gates",
+            "own_outcomes": [],
+            "section_outcomes": [
+              "constraints-and-sensors::distinguish-a-constraint-from-a-sensor-prevent-the-m"
+            ]
+          },
+          {
+            "lesson": "3.4-governance-conversion",
             "own_outcomes": [],
             "section_outcomes": [
               "ex-ante-everything-you-can-decide-up-front::apply-specification-driven-development-to-what",
               "ex-post-everything-you-learn-by-building::explain-why-most-real-mechanisms-are-built-ex-po",
               "control-growth::run-the-promotion-rule-for-a-season-and-the",
-              "constraints-and-sensors::distinguish-a-constraint-from-a-sensor-prevent-the-m",
               "the-residual-goals-no-mechanism-reaches::identify-the-residual-goals-no-mechanism-reaches"
             ]
           },
           {
-            "lesson": "3.6-when-guardrails-collide",
+            "lesson": "3.5-when-guardrails-collide",
             "own_outcomes": [],
             "section_outcomes": [
               "drawing-what-lies-between-the-controls::analyze-the-collisions-between-controls-as-edges",
@@ -604,6 +610,22 @@
       "gap_note": null
     },
     {
+      "outcome_id": "governance-conversion::distinguish-ex-ante-from-ex-post-decisions-and-a-con",
+      "granularity": "chapter",
+      "primary_unit": "governance-conversion",
+      "secondary_units": [
+        "when-guardrails-collide",
+        "the-mage-workflow"
+      ],
+      "verb": "distinguish",
+      "obj": "ex-ante from ex-post decisions and a constraint from a sensor",
+      "statement": "After this chapter, the reader can split what is decidable up front from what is learned by building, and classify each mechanism as a constraint (prevent) or a sensor (catch).",
+      "bloom": "understand",
+      "provenance": "derived",
+      "anchor": "point: a-governed-environment-has-an-ex-ante-and-an-ex-post-half / a-mechanism-is-one-of-two-moves-prevent-or-catch / the-governed-environment-is-determinize-what-you-can-then-convert-every-surprise-into-a-constraint-or-sensor",
+      "gap_note": null
+    },
+    {
       "outcome_id": "implications-for-se::evaluate-what-the-method-changes-for-how-software",
       "granularity": "chapter",
       "primary_unit": "implications-for-se",
@@ -829,22 +851,6 @@
       "bloom": "understand",
       "provenance": "declared",
       "anchor": "Section titles 'the-expense-that-buried-mbse-is-the-one-a-fleet-pays-for-free' + 'kruchten-s-4-1-promoted-...-to-the-spine'.",
-      "gap_note": null
-    },
-    {
-      "outcome_id": "the-governed-environment::distinguish-ex-ante-from-ex-post-decisions-and-a-con",
-      "granularity": "chapter",
-      "primary_unit": "the-governed-environment",
-      "secondary_units": [
-        "when-guardrails-collide",
-        "the-mage-workflow"
-      ],
-      "verb": "distinguish",
-      "obj": "ex-ante from ex-post decisions and a constraint from a sensor",
-      "statement": "After this chapter, the reader can split what is decidable up front from what is learned by building, and classify each mechanism as a constraint (prevent) or a sensor (catch).",
-      "bloom": "understand",
-      "provenance": "derived",
-      "anchor": "point: a-governed-environment-has-an-ex-ante-and-an-ex-post-half / a-mechanism-is-one-of-two-moves-prevent-or-catch / the-governed-environment-is-determinize-what-you-can-then-convert-every-surprise-into-a-constraint-or-sensor",
       "gap_note": null
     },
     {

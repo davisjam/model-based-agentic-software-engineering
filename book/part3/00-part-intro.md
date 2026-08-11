@@ -11,7 +11,7 @@ A model that no mechanism enforces is still only advice.
 > Represented intent becomes authoritative.
 
 The last Part made intent explicit; this Part makes it binding. Constraints, sensors, validators,
-gates, runbooks, metrics, and control graphs all serve one purpose: turning engineering judgment from
+gates, and control graphs all serve one purpose: turning engineering judgment from
 something people remember into something the environment enforces. Reliability becomes a property of
 the engineering environment rather than of repeated human inspection — and as recurring failures are
 converted into mechanisms, governance itself grows into engineering capital.

@@ -36,6 +36,6 @@ when the same failures recur un-converted. Anchor it on the control-growth proxy
 ### What this projects
 
 The *governance-conversion* concept — the loop by which the environment evolves, each recurring failure
-converted into a durable mechanism (see [Chapter 3.3](3.3-the-governed-environment.html)) — plus the
+converted into a durable mechanism (see [Chapter 3.4](3.4-governance-conversion.html)) — plus the
 governance-adaptation loop, the failure-class-exposure hypothesis (how fast a class is recognized), and the
 conversion-conditions hypothesis (conversions stick when diagnosis capability and change authority sit together).

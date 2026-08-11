@@ -3,9 +3,9 @@
   "_note": "The argument-spine model holds the book's linear argument as an ordered run of claims, each reconciling the author's seed statements, the claims model, and the Big-Ideas model into one step — plus the per-chapter labeling of which steps each chapter advances. The `flags` block is DERIVED editorial signal and never gates: CHAPTER-side (a non-exempt chapter advancing 0 steps is suspect; one advancing more than the focus cap is probably unfocused — the directive's Phase-1c worklist) AND CLAIM-side health (a non-exempt claim advanced by 0 chapters is a gap; one advanced only within Part 0/1 is front-loaded/shallow; one advanced by more than the overmap cap is an overmapping-audit surface). Per-claim `reviewed_hash` seeds the AS8 freshness sensor: a statement edited without a re-review reddens its advancing chapters. Exempt chapters (preface / conclusion / discussion / end-of-part synthesis / apparatus) and exempt claims (genuine front-loaded-by-design premises) are the ones whose breadth, silence, or shallow reach is their job.",
   "_counts": {
     "spine_claims": 15,
-    "chapters_labeled": 35,
+    "chapters_labeled": 36,
     "chapters_exempt": 11,
-    "advancement_edges": 92,
+    "advancement_edges": 94,
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
@@ -229,8 +229,9 @@
         "1.2-mage-by-example",
         "1.4-why-mage-follows-from-the-machine",
         "3.1-the-agent-stack",
-        "3.3-the-governed-environment",
-        "3.6-when-guardrails-collide",
+        "3.3-constraints-sensors-validators-gates",
+        "3.4-governance-conversion",
+        "3.5-when-guardrails-collide",
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "4.4-the-skills",
@@ -238,7 +239,7 @@
         "5.6-governance-conversions",
         "6.5-implications-for-se"
       ],
-      "body_depth": 9,
+      "body_depth": 10,
       "front_loaded": false,
       "overmapped": true,
       "fresh": true
@@ -283,7 +284,7 @@
         "2.12-keeping-models-in-sync",
         "3.1-the-agent-stack",
         "3.2-models-and-the-semantic-gap",
-        "3.6-when-guardrails-collide",
+        "3.5-when-guardrails-collide",
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "4.3-validating-change",
@@ -324,13 +325,14 @@
         "1.4-why-mage-follows-from-the-machine",
         "2.3-the-executable-zoo",
         "3.2-models-and-the-semantic-gap",
-        "3.3-the-governed-environment",
+        "3.3-constraints-sensors-validators-gates",
+        "3.4-governance-conversion",
         "4.1-the-mage-workflow",
         "4.3-validating-change",
         "4.6-metrics",
         "5.6-governance-conversions"
       ],
-      "body_depth": 7,
+      "body_depth": 8,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -391,7 +393,7 @@
       "advanced_by": [
         "0.4-preface",
         "1.2-mage-by-example",
-        "3.3-the-governed-environment",
+        "3.4-governance-conversion",
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "4.4-the-skills",
@@ -718,7 +720,15 @@
       "exempt": null
     },
     {
-      "slug": "3.3-the-governed-environment",
+      "slug": "3.3-constraints-sensors-validators-gates",
+      "advances": [
+        "govern-the-environment",
+        "alignment-thesis"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "3.4-governance-conversion",
       "advances": [
         "govern-the-environment",
         "alignment-thesis",
@@ -727,7 +737,7 @@
       "exempt": null
     },
     {
-      "slug": "3.6-when-guardrails-collide",
+      "slug": "3.5-when-guardrails-collide",
       "advances": [
         "govern-the-environment",
         "modeling-thesis"
@@ -945,14 +955,15 @@
     "overmapped_claims": [
       {
         "claim": "govern-the-environment",
-        "advanced_by": 12,
+        "advanced_by": 13,
         "chapters": [
           "0.4-preface",
           "1.2-mage-by-example",
           "1.4-why-mage-follows-from-the-machine",
           "3.1-the-agent-stack",
-          "3.3-the-governed-environment",
-          "3.6-when-guardrails-collide",
+          "3.3-constraints-sensors-validators-gates",
+          "3.4-governance-conversion",
+          "3.5-when-guardrails-collide",
           "4.1-the-mage-workflow",
           "4.2-brownfield",
           "4.4-the-skills",
@@ -978,7 +989,7 @@
           "2.12-keeping-models-in-sync",
           "3.1-the-agent-stack",
           "3.2-models-and-the-semantic-gap",
-          "3.6-when-guardrails-collide",
+          "3.5-when-guardrails-collide",
           "4.1-the-mage-workflow",
           "4.2-brownfield",
           "4.3-validating-change",

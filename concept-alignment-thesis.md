@@ -7,7 +7,7 @@
 | Claim | Enforced mechanisms hold work to intent across later changes. Constrain first so the wrong move is unavailable; where prevention falls short, a sensor catches the drift. |
 | Mechanisms | Typed ViolationCategory / FailureCategory enums · The Audit-to-Lint mechanism · ContentValidator · F10 mutator-stamp-wiring lint |
 | Related | Documentation, taken to its limit, is a structured model · Convert recurring failures into controls |
-| In the book | book/3.3-the-governed-environment.html |
+| In the book | book/3.3-constraints-sensors-validators-gates.html |
 
 ## The idea
 
@@ -58,4 +58,4 @@ case that may never be written.
 
 ## Read in the book →
 
-[Read in the book →](book/3.3-the-governed-environment.html)
+[Read in the book →](book/3.3-constraints-sensors-validators-gates.html)

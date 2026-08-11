@@ -16,7 +16,7 @@
       "concepts": 158,
       "labels": 103,
       "refs": 99,
-      "chapters": 85,
+      "chapters": 87,
       "parts": 8,
       "points": 604,
       "terms": 303,
@@ -96,6 +96,16 @@
           "view": "outcomes",
           "element": "metrics::design-a-metric-that-measures-one-level-deeper",
           "role": "secondary-unit"
+        }
+      ]
+    },
+    "chapter:governance-conversion": {
+      "kind": "chapter",
+      "dependents": [
+        {
+          "view": "outcomes",
+          "element": "governance-conversion::distinguish-ex-ante-from-ex-post-decisions-and-a-con",
+          "role": "primary-unit"
         }
       ]
     },
@@ -334,16 +344,6 @@
         }
       ]
     },
-    "chapter:the-governed-environment": {
-      "kind": "chapter",
-      "dependents": [
-        {
-          "view": "outcomes",
-          "element": "the-governed-environment::distinguish-ex-ante-from-ex-post-decisions-and-a-con",
-          "role": "primary-unit"
-        }
-      ]
-    },
     "chapter:the-mage-workflow": {
       "kind": "chapter",
       "dependents": [
@@ -359,7 +359,7 @@
         },
         {
           "view": "outcomes",
-          "element": "the-governed-environment::distinguish-ex-ante-from-ex-post-decisions-and-a-con",
+          "element": "governance-conversion::distinguish-ex-ante-from-ex-post-decisions-and-a-con",
           "role": "secondary-unit"
         }
       ]
@@ -459,7 +459,7 @@
         },
         {
           "view": "outcomes",
-          "element": "the-governed-environment::distinguish-ex-ante-from-ex-post-decisions-and-a-con",
+          "element": "governance-conversion::distinguish-ex-ante-from-ex-post-decisions-and-a-con",
           "role": "secondary-unit"
         },
         {
@@ -674,7 +674,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-46",
+          "element": "3.3-constraints-sensors-validators-gates::block-15",
           "role": "paragraph-point"
         }
       ]
@@ -744,7 +744,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-0",
+          "element": "3.4-governance-conversion::block-0",
           "role": "paragraph-point"
         }
       ]
@@ -824,7 +824,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-21",
+          "element": "3.5-when-guardrails-collide::block-21",
           "role": "paragraph-point"
         }
       ]
@@ -854,7 +854,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-33",
+          "element": "3.3-constraints-sensors-validators-gates::block-2",
           "role": "paragraph-point"
         }
       ]
@@ -914,7 +914,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-77",
+          "element": "3.3-constraints-sensors-validators-gates::block-46",
           "role": "paragraph-point"
         }
       ]
@@ -994,7 +994,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-63",
+          "element": "3.3-constraints-sensors-validators-gates::block-32",
           "role": "paragraph-point"
         }
       ]
@@ -1094,7 +1094,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-39",
+          "element": "3.3-constraints-sensors-validators-gates::block-8",
           "role": "paragraph-point"
         }
       ]
@@ -1104,7 +1104,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-43",
+          "element": "3.3-constraints-sensors-validators-gates::block-12",
           "role": "paragraph-point"
         }
       ]
@@ -1154,7 +1154,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-1",
+          "element": "3.5-when-guardrails-collide::block-1",
           "role": "paragraph-point"
         }
       ]
@@ -1824,7 +1824,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-50",
+          "element": "3.3-constraints-sensors-validators-gates::block-19",
           "role": "paragraph-point"
         }
       ]
@@ -2104,7 +2104,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-4",
+          "element": "3.5-when-guardrails-collide::block-4",
           "role": "paragraph-point"
         }
       ]
@@ -2404,7 +2404,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-7",
+          "element": "3.4-governance-conversion::block-7",
           "role": "paragraph-point"
         }
       ]
@@ -2414,7 +2414,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-16",
+          "element": "3.4-governance-conversion::block-16",
           "role": "paragraph-point"
         }
       ]
@@ -2424,7 +2424,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-13",
+          "element": "3.4-governance-conversion::block-13",
           "role": "paragraph-point"
         }
       ]
@@ -2554,7 +2554,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-53",
+          "element": "3.3-constraints-sensors-validators-gates::block-22",
           "role": "paragraph-point"
         }
       ]
@@ -2594,7 +2594,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-73",
+          "element": "3.3-constraints-sensors-validators-gates::block-42",
           "role": "paragraph-point"
         }
       ]
@@ -2774,7 +2774,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-92",
+          "element": "3.4-governance-conversion::block-44",
           "role": "paragraph-point"
         }
       ]
@@ -2804,7 +2804,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-69",
+          "element": "3.3-constraints-sensors-validators-gates::block-38",
           "role": "paragraph-point"
         }
       ]
@@ -3044,7 +3044,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-43",
+          "element": "3.5-when-guardrails-collide::block-43",
           "role": "paragraph-point"
         }
       ]
@@ -3604,7 +3604,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-61",
+          "element": "3.3-constraints-sensors-validators-gates::block-30",
           "role": "paragraph-point"
         }
       ]
@@ -3654,7 +3654,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-104",
+          "element": "3.4-governance-conversion::block-56",
           "role": "paragraph-point"
         }
       ]
@@ -3864,7 +3864,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-39",
+          "element": "3.5-when-guardrails-collide::block-39",
           "role": "paragraph-point"
         }
       ]
@@ -3914,7 +3914,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-52",
+          "element": "3.5-when-guardrails-collide::block-52",
           "role": "paragraph-point"
         }
       ]
@@ -4474,7 +4474,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-97",
+          "element": "3.4-governance-conversion::block-49",
           "role": "paragraph-point"
         }
       ]
@@ -4664,7 +4664,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-35",
+          "element": "3.5-when-guardrails-collide::block-35",
           "role": "paragraph-point"
         }
       ]
@@ -4964,7 +4964,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-26",
+          "element": "3.5-when-guardrails-collide::block-26",
           "role": "paragraph-point"
         }
       ]
@@ -4974,7 +4974,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-23",
+          "element": "3.5-when-guardrails-collide::block-23",
           "role": "paragraph-point"
         }
       ]
@@ -4984,7 +4984,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-33",
+          "element": "3.5-when-guardrails-collide::block-33",
           "role": "paragraph-point"
         }
       ]
@@ -5044,7 +5044,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-65",
+          "element": "3.3-constraints-sensors-validators-gates::block-34",
           "role": "paragraph-point"
         }
       ]
@@ -5054,7 +5054,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-26",
+          "element": "3.4-governance-conversion::block-26",
           "role": "paragraph-point"
         }
       ]
@@ -5164,7 +5164,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-18",
+          "element": "3.4-governance-conversion::block-18",
           "role": "paragraph-point"
         }
       ]
@@ -5284,7 +5284,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-31",
+          "element": "3.5-when-guardrails-collide::block-31",
           "role": "paragraph-point"
         }
       ]
@@ -5354,7 +5354,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-10",
+          "element": "3.5-when-guardrails-collide::block-10",
           "role": "paragraph-point"
         }
       ]
@@ -5364,7 +5364,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-89",
+          "element": "3.4-governance-conversion::block-41",
           "role": "paragraph-point"
         }
       ]
@@ -5394,7 +5394,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-15",
+          "element": "3.5-when-guardrails-collide::block-15",
           "role": "paragraph-point"
         }
       ]
@@ -5414,7 +5414,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-17",
+          "element": "3.5-when-guardrails-collide::block-17",
           "role": "paragraph-point"
         }
       ]
@@ -5714,7 +5714,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-100",
+          "element": "3.4-governance-conversion::block-52",
           "role": "paragraph-point"
         }
       ]
@@ -5724,7 +5724,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-106",
+          "element": "3.4-governance-conversion::block-58",
           "role": "paragraph-point"
         }
       ]
@@ -5734,7 +5734,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-102",
+          "element": "3.4-governance-conversion::block-54",
           "role": "paragraph-point"
         }
       ]
@@ -5844,7 +5844,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-12",
+          "element": "3.5-when-guardrails-collide::block-12",
           "role": "paragraph-point"
         }
       ]
@@ -6544,7 +6544,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-36",
+          "element": "3.3-constraints-sensors-validators-gates::block-5",
           "role": "paragraph-point"
         }
       ]
@@ -6959,7 +6959,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::constraints-and-sensors",
+          "element": "3.3-constraints-sensors-validators-gates::constraints-and-sensors",
           "role": "section-anchor"
         }
       ]
@@ -6984,7 +6984,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::control-growth",
+          "element": "3.4-governance-conversion::control-growth",
           "role": "section-anchor"
         }
       ]
@@ -7139,7 +7139,7 @@
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::drawing-what-lies-between-the-controls",
+          "element": "3.5-when-guardrails-collide::drawing-what-lies-between-the-controls",
           "role": "section-anchor"
         }
       ]
@@ -7219,7 +7219,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::ex-ante-everything-you-can-decide-up-front",
+          "element": "3.4-governance-conversion::ex-ante-everything-you-can-decide-up-front",
           "role": "section-anchor"
         }
       ]
@@ -7239,7 +7239,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::ex-post-everything-you-learn-by-building",
+          "element": "3.4-governance-conversion::ex-post-everything-you-learn-by-building",
           "role": "section-anchor"
         }
       ]
@@ -7309,7 +7309,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::four-classes-one-bounded-term",
+          "element": "3.3-constraints-sensors-validators-gates::four-classes-one-bounded-term",
           "role": "section-anchor"
         }
       ]
@@ -7419,7 +7419,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::growing-controls-and-auditing-the-growth",
+          "element": "3.5-when-guardrails-collide::growing-controls-and-auditing-the-growth",
           "role": "section-anchor"
         }
       ]
@@ -7524,7 +7524,7 @@
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::keeping-the-model-honest",
+          "element": "3.5-when-guardrails-collide::keeping-the-model-honest",
           "role": "section-anchor"
         }
       ]
@@ -8879,7 +8879,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::the-other-question-a-list-can-t-answer",
+          "element": "3.5-when-guardrails-collide::the-other-question-a-list-can-t-answer",
           "role": "section-anchor"
         }
       ]
@@ -8984,7 +8984,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::the-residual-goals-no-mechanism-reaches",
+          "element": "3.4-governance-conversion::the-residual-goals-no-mechanism-reaches",
           "role": "section-anchor"
         }
       ]
@@ -9499,7 +9499,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::what-it-adds-up-to",
+          "element": "3.4-governance-conversion::what-it-adds-up-to",
           "role": "section-anchor"
         }
       ]
@@ -9734,7 +9734,7 @@
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::when-the-hooks-aren-t-yours",
+          "element": "3.5-when-guardrails-collide::when-the-hooks-aren-t-yours",
           "role": "section-anchor"
         }
       ]
@@ -10154,7 +10154,7 @@
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-1",
+          "element": "3.5-when-guardrails-collide::block-1",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10869,37 +10869,37 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-33",
+          "element": "3.3-constraints-sensors-validators-gates::block-15",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-36",
+          "element": "3.3-constraints-sensors-validators-gates::block-19",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-46",
+          "element": "3.3-constraints-sensors-validators-gates::block-2",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-50",
+          "element": "3.3-constraints-sensors-validators-gates::block-32",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-63",
+          "element": "3.3-constraints-sensors-validators-gates::block-34",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-65",
+          "element": "3.3-constraints-sensors-validators-gates::block-5",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-1",
+          "element": "3.5-when-guardrails-collide::block-1",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10939,7 +10939,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-32",
+          "element": "3.3-constraints-sensors-validators-gates::block-1",
           "role": "section-term[tier-1]"
         }
       ]
@@ -10949,32 +10949,32 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-18",
+          "element": "3.3-constraints-sensors-validators-gates::block-19",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-50",
+          "element": "3.3-constraints-sensors-validators-gates::block-22",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-53",
+          "element": "3.3-constraints-sensors-validators-gates::block-30",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-61",
+          "element": "3.3-constraints-sensors-validators-gates::block-42",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-73",
+          "element": "3.4-governance-conversion::block-18",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-89",
+          "element": "3.4-governance-conversion::block-41",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10984,17 +10984,17 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-32",
+          "element": "3.3-constraints-sensors-validators-gates::block-1",
           "role": "section-term[tier-1]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-68",
+          "element": "3.3-constraints-sensors-validators-gates::block-37",
           "role": "section-term[tier-1]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-96",
+          "element": "3.4-governance-conversion::block-48",
           "role": "section-term[tier-1]"
         },
         {
@@ -12119,12 +12119,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-0",
+          "element": "3.4-governance-conversion::block-0",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-7",
+          "element": "3.4-governance-conversion::block-7",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -12144,7 +12144,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-6",
+          "element": "3.4-governance-conversion::block-6",
           "role": "section-term[tier-1]"
         }
       ]
@@ -12154,17 +12154,17 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-0",
+          "element": "3.4-governance-conversion::block-0",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-13",
+          "element": "3.4-governance-conversion::block-13",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-16",
+          "element": "3.4-governance-conversion::block-16",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -12174,7 +12174,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-12",
+          "element": "3.4-governance-conversion::block-12",
           "role": "section-term[tier-1]"
         }
       ]
@@ -12784,17 +12784,17 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-16",
+          "element": "3.4-governance-conversion::block-16",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-18",
+          "element": "3.4-governance-conversion::block-18",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-26",
+          "element": "3.4-governance-conversion::block-26",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -12979,12 +12979,12 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-12",
+          "element": "3.4-governance-conversion::block-12",
           "role": "section-term[tier-1]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-25",
+          "element": "3.4-governance-conversion::block-25",
           "role": "section-term[tier-1]"
         },
         {
@@ -13034,52 +13034,52 @@
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-10",
+          "element": "3.5-when-guardrails-collide::block-10",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-15",
+          "element": "3.5-when-guardrails-collide::block-15",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-17",
+          "element": "3.5-when-guardrails-collide::block-17",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-21",
+          "element": "3.5-when-guardrails-collide::block-21",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-23",
+          "element": "3.5-when-guardrails-collide::block-23",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-26",
+          "element": "3.5-when-guardrails-collide::block-26",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-31",
+          "element": "3.5-when-guardrails-collide::block-31",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-33",
+          "element": "3.5-when-guardrails-collide::block-33",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-35",
+          "element": "3.5-when-guardrails-collide::block-35",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-39",
+          "element": "3.5-when-guardrails-collide::block-39",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -13114,22 +13114,22 @@
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-20",
+          "element": "3.5-when-guardrails-collide::block-20",
           "role": "section-term[tier-1]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-30",
+          "element": "3.5-when-guardrails-collide::block-30",
           "role": "section-term[tier-1]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-38",
+          "element": "3.5-when-guardrails-collide::block-38",
           "role": "section-term[tier-1]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-9",
+          "element": "3.5-when-guardrails-collide::block-9",
           "role": "section-term[tier-1]"
         },
         {
@@ -13144,22 +13144,22 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-69",
+          "element": "3.3-constraints-sensors-validators-gates::block-38",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-73",
+          "element": "3.3-constraints-sensors-validators-gates::block-42",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-77",
+          "element": "3.3-constraints-sensors-validators-gates::block-46",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-68",
+          "element": "3.3-constraints-sensors-validators-gates::block-37",
           "role": "section-term[tier-1]"
         }
       ]
@@ -13169,12 +13169,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-61",
+          "element": "3.3-constraints-sensors-validators-gates::block-30",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-73",
+          "element": "3.3-constraints-sensors-validators-gates::block-42",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -13314,12 +13314,12 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-89",
+          "element": "3.4-governance-conversion::block-41",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-92",
+          "element": "3.4-governance-conversion::block-44",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -13854,7 +13854,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-100",
+          "element": "3.4-governance-conversion::block-52",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -14619,7 +14619,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-106",
+          "element": "3.4-governance-conversion::block-58",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -14849,7 +14849,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-77",
+          "element": "3.3-constraints-sensors-validators-gates::block-46",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -15304,7 +15304,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-43",
+          "element": "3.3-constraints-sensors-validators-gates::block-12",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -15459,7 +15459,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-39",
+          "element": "3.5-when-guardrails-collide::block-39",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -16014,7 +16014,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-92",
+          "element": "3.4-governance-conversion::block-44",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -16174,27 +16174,27 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-100",
+          "element": "3.4-governance-conversion::block-49",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-102",
+          "element": "3.4-governance-conversion::block-52",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-104",
+          "element": "3.4-governance-conversion::block-54",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-106",
+          "element": "3.4-governance-conversion::block-56",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-97",
+          "element": "3.4-governance-conversion::block-58",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -16209,7 +16209,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-96",
+          "element": "3.4-governance-conversion::block-48",
           "role": "section-term[tier-1]"
         }
       ]
@@ -16769,7 +16769,7 @@
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-12",
+          "element": "3.5-when-guardrails-collide::block-12",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -16819,32 +16819,32 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-33",
+          "element": "3.3-constraints-sensors-validators-gates::block-12",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-39",
+          "element": "3.3-constraints-sensors-validators-gates::block-19",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-43",
+          "element": "3.3-constraints-sensors-validators-gates::block-2",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-50",
+          "element": "3.3-constraints-sensors-validators-gates::block-32",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-63",
+          "element": "3.3-constraints-sensors-validators-gates::block-34",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-65",
+          "element": "3.3-constraints-sensors-validators-gates::block-8",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -16884,7 +16884,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-32",
+          "element": "3.3-constraints-sensors-validators-gates::block-1",
           "role": "section-term[tier-1]"
         }
       ]
@@ -16934,22 +16934,22 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-10",
+          "element": "3.5-when-guardrails-collide::block-10",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-12",
+          "element": "3.5-when-guardrails-collide::block-12",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-39",
+          "element": "3.5-when-guardrails-collide::block-39",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-4",
+          "element": "3.5-when-guardrails-collide::block-4",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -17104,22 +17104,22 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-102",
+          "element": "3.3-constraints-sensors-validators-gates::block-22",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-36",
+          "element": "3.3-constraints-sensors-validators-gates::block-5",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-53",
+          "element": "3.4-governance-conversion::block-54",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-15",
+          "element": "3.5-when-guardrails-collide::block-15",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -17234,12 +17234,12 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-7",
+          "element": "3.4-governance-conversion::block-7",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-6",
+          "element": "3.4-governance-conversion::block-6",
           "role": "section-term[tier-1]"
         }
       ]
@@ -17659,12 +17659,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-35",
+          "element": "3.5-when-guardrails-collide::block-35",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-43",
+          "element": "3.5-when-guardrails-collide::block-43",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -17689,12 +17689,12 @@
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-30",
+          "element": "3.5-when-guardrails-collide::block-30",
           "role": "section-term[tier-1]"
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-42",
+          "element": "3.5-when-guardrails-collide::block-42",
           "role": "section-term[tier-1]"
         },
         {
@@ -17854,7 +17854,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-92",
+          "element": "3.4-governance-conversion::block-44",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -18209,7 +18209,7 @@
         },
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-92",
+          "element": "3.4-governance-conversion::block-44",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -18469,7 +18469,7 @@
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-43",
+          "element": "3.5-when-guardrails-collide::block-43",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -18519,7 +18519,7 @@
         },
         {
           "view": "outline",
-          "element": "3.6-when-guardrails-collide::block-42",
+          "element": "3.5-when-guardrails-collide::block-42",
           "role": "section-term[tier-1]"
         },
         {
@@ -18694,7 +18694,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-the-governed-environment::block-46",
+          "element": "3.3-constraints-sensors-validators-gates::block-15",
           "role": "paragraph-term[tier-2]"
         }
       ]

@@ -26,8 +26,9 @@ book/
   part3/  (Part 3 — The Governed Engineering Environment)
     3.1-the-agent-stack.md
     3.2-models-and-the-semantic-gap.md
-    3.3-the-governed-environment.md
-    3.6-when-guardrails-collide.md
+    3.3-constraints-sensors-validators-gates.md
+    3.4-governance-conversion.md
+    3.5-when-guardrails-collide.md
   part4/  (Part 4 — Putting It to Work)
     4.1-the-mage-workflow.md
     4.2-brownfield.md

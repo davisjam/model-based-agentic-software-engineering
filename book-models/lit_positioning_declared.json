@@ -113,7 +113,7 @@
       "x": "Mature engineering converts failures into durable controls — resilience engineering, blameless postmortems, poka-yoke (Hollnagel/Woods/Leveson; Google SRE Ch.15; Shingo).",
       "y": "Agentic velocity surfaces novel, unforeseeable failures faster than any playbook anticipates.",
       "z": "MAGE names the promotion rule: ex-post failure -> human classification -> recurring obligation -> ex-ante environmental control.",
-      "target_locations": ["the-governed-environment"],
+      "target_locations": ["governance-conversion"],
       "citations": [
         {"key": "hollnagel2006resilience", "backs_claims": ["failures-become-machinery"], "relation": "situates", "illustrates_pattern": "self-governance"},
         {"key": "beyer2016sre", "backs_claims": ["failures-become-machinery"], "relation": "situates", "illustrates_pattern": "self-governance"},
@@ -192,7 +192,7 @@
       "x": "Deciding who does what in a software project has long been an organizational, human concern.",
       "y": "The field is beginning to treat governance of agentic software engineering as a first-class, formalizable subject — Ait et al. propose a domain-specific language for defining and enforcing governance policies across mixed human-agent teams.",
       "z": "MAGE converges with that direction but works at a different grain: not a single policy language, but a repertoire of governance mechanisms grounded in a production case.",
-      "target_locations": ["the-governed-environment"],
+      "target_locations": ["governance-conversion"],
       "citations": [
         {"key": "ait2025governance", "backs_claims": ["govern-the-environment"], "relation": "convergent-evidence"}
       ],
