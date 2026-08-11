@@ -147,11 +147,14 @@ def findings() -> "list[DanglingRef]":
 
 # ---- C5: named-reference -> current-identity, for the Part-IV "portable moves" close (AUDIT-ONLY) ----
 
-#: The close whose named destinations are audited, and the section that bounds it (patterns / anti-patterns
-#: / heuristics / checklists — NOT the Engineer's Day card refs, a later scope-widening).
+#: The close whose named destinations are audited. The span runs from the close heading to end-of-file, so it
+#: covers BOTH the portable-moves close (patterns / anti-patterns / heuristics / checklists) AND the trailing
+#: Engineer's Day section. The former bound stopped at '## The Engineer', which SILENTLY skipped the
+#: Engineer's Day card refs (that is where the `[Daily Review]` label drifted from its card's 'Daily Operator
+#: Review' title unchecked); widening to EOF label-checks every named card/appendix destination in Part IV's tail.
 _CLOSE_FILE = "part4/4.4-the-skills.md"
 _CLOSE_START = "## Closing the Part"
-_CLOSE_END = "## The Engineer"
+_CLOSE_END = None  # None ⇒ scan to end-of-file (the close is Part IV's last region)
 #: A `[label](slug.html[#anchor])` link whose slug is a numbered chapter stem or an appendix-D card page.
 _CLOSE_LINK_RE = re.compile(r"\[([^\]]+)\]\((appendix-d-[a-z0-9-]+|\d+\.\d+-[a-z0-9-]+)\.html(?:#[^)\s]*)?\)")
 #: `appendix-d-<card-id>.html` names an operator card; the id is the slug after this prefix.
@@ -171,6 +174,18 @@ def _operator_card_titles() -> "dict[str, str]":
         return {c["card-id"]: c["title"] for c in json.load(fh).get("cards", [])}
 
 
+def _appendix_d_page_titles() -> "dict[str, str]":
+    """slug -> display title for EVERY Appendix-D page — the 10-card operator deck AND the non-card reference
+    pages (the Operator's Dashboard, the Brownfield Migration Drill). Read from the renderer's
+    `_OPERATORS_REFERENCE_PAGES`, the authoritative slug->title list both the web and print projections share.
+    Resolving an `appendix-d-*` close label against THIS (not just the 10 cards) stops a link to a NON-card
+    Appendix-D page from resolving to None and being silently skipped — the operators-dashboard silent-skip class."""
+    if _BOOK not in sys.path:
+        sys.path.insert(0, _BOOK)
+    import build_book_html as bbh  # noqa: E402 — the renderer owns _OPERATORS_REFERENCE_PAGES (slug->title SSOT)
+    return {slug: title for slug, title in bbh._OPERATORS_REFERENCE_PAGES}
+
+
 def close_label_findings() -> "list[str]":
     """Every close label whose named destination no longer matches its CURRENT identity (a chapter title or
     an operator-card title), minus the sanctioned short-forms. AUDIT-ONLY. Empty ⇒ every named destination in
@@ -180,20 +195,23 @@ def close_label_findings() -> "list[str]":
     import chapter_identity_model as ci  # noqa: E402 — sibling identity resolver (consumed, not rebuilt)
 
     cards = _operator_card_titles()
+    ad_pages = _appendix_d_page_titles()
     path = os.path.join(_BOOK, _CLOSE_FILE)
     lines = open(path, encoding="utf-8").read().split("\n")
     start = next((i for i, l in enumerate(lines) if l.startswith(_CLOSE_START)), None)
     if start is None:
         return []
-    end = next((i for i, l in enumerate(lines) if i > start and l.startswith(_CLOSE_END)), len(lines))
+    end = len(lines) if _CLOSE_END is None else next(
+        (i for i, l in enumerate(lines) if i > start and l.startswith(_CLOSE_END)), len(lines))
 
     out: "list[str]" = []
     for off in range(start, end):
         for m in _CLOSE_LINK_RE.finditer(lines[off]):
             label, slug = m.group(1), m.group(2)
             if slug.startswith(_APPENDIX_D_PREFIX):
-                ident = cards.get(slug[len(_APPENDIX_D_PREFIX):])
-                kind = "operator card"
+                stem = slug[len(_APPENDIX_D_PREFIX):]
+                ident = cards.get(stem) or ad_pages.get(stem)   # card title, else non-card Appendix-D page title
+                kind = "operator card" if stem in cards else "Appendix-D page"
             else:
                 lab = ci.label_for_slug(slug)
                 ident = ci.title(lab) if lab else None
