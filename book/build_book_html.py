@@ -6081,6 +6081,37 @@ def _pdf_margin_bleed(pdf_path: pathlib.Path) -> list[tuple[int, str, float, flo
     return bleeds
 
 
+_BODY_PAGE_H_PT = 11.0 * _PT_PER_IN            # 792 — us-letter portrait height
+_BODY_BOTTOM_MARGIN_PT = 1.0 * _PT_PER_IN      # 72 — 1in bottom y-margin (matches #set page)
+_BODY_SAFE_BOTTOM_PT = _BODY_PAGE_H_PT - _BODY_BOTTOM_MARGIN_PT   # 720 — a word's yMax must not cross this
+_BOTTOM_BLEED_TOL_PT = 6.0                     # same clean-gap tolerance as the horizontal sensor
+_PAGENUM_RE = re.compile(r"^\d+$")
+
+
+def _pdf_bottom_margin_bleed(pdf_path: pathlib.Path) -> list[tuple[int, str, float, float]]:
+    """Bottom-margin overflow sensor: no reader text may bleed past a PORTRAIT page's safe text bottom
+    into the reserved bottom margin (page-number / footer band). Vertical companion to _pdf_margin_bleed
+    and the structural backstop for the Tufte sidenote position-aware gate — a margin note anchored low on
+    the page can pass the height cap yet run its bottom off the text region. Portrait body pages only (the
+    landscape apparatus carries no note column). Exempts the running page number. Returns
+    (page_number, word_text, yMax_pt, safe_bottom_pt) per offending word."""
+    stdout = _run_pdftotext(pdf_path, "-bbox", purpose="the bottom-margin overflow sensor")
+    bleeds: list[tuple[int, str, float, float]] = []
+    for pno, pm in enumerate(_BBOX_PAGE_RE.finditer(stdout), start=1):
+        page_w = float(pm.group(1))
+        if abs(page_w - _LANDSCAPE_PAGE_W_PT) < 2:
+            continue  # landscape apparatus — no note column, separate geometry
+        for wm in _BBOX_WORD_RE.finditer(pm.group(2)):
+            xmin, ymin, xmax, ymax = (float(wm.group(i)) for i in (1, 2, 3, 4))
+            if ymax <= _BODY_SAFE_BOTTOM_PT + _BOTTOM_BLEED_TOL_PT:
+                continue
+            text = html.unescape(wm.group(5)).strip()
+            if _PAGENUM_RE.match(text) and ymin >= _BODY_SAFE_BOTTOM_PT:
+                continue  # running page number legitimately sits in the bottom margin
+            bleeds.append((pno, text, round(ymax, 1), round(_BODY_SAFE_BOTTOM_PT, 1)))
+    return bleeds
+
+
 def _density_report(pdf_path: pathlib.Path) -> tuple[int, list[str]]:
     """Compute + print the words-per-page density metric and gate on: over the FIRST N pages, at least
     _DENSITY_MIN_FRACTION exceed _DENSITY_WORDS_THRESHOLD words. Returns (rc, problems): rc is 0 if the
@@ -6243,6 +6274,20 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
                         f"({listing})")
     else:
         print("PDF OVERFLOW SENSOR: PASS — no content bleeds past the text box.")
+
+    # Bottom-margin overflow sensor: no reader text may bleed past a portrait page's safe bottom into the
+    # reserved bottom margin (page-number band). Catches the Tufte-sidenote VERTICAL-overflow class — a note
+    # anchored low on the page that passes the height cap but runs its bottom off the text region. The
+    # position-aware sidenote gate is the suspenders; this is the belt. AUDIT-ONLY-first: prints only, does
+    # NOT contribute to the exit code, until the sidenote fix drains it to 0 — then promote to `problems`.
+    vbleeds = _pdf_bottom_margin_bleed(pdf_path)
+    if vbleeds:
+        listing = ", ".join(f"p{n} {t!r} (y{ym}>{sb})" for n, t, ym, sb in vbleeds[:8])
+        print(f"PDF BOTTOM-MARGIN SENSOR: AUDIT-ONLY FAIL — {len(vbleeds)} word(s) bleed into the bottom "
+              f"margin: {listing}", file=sys.stderr)
+        # AUDIT-ONLY (rule #55): not appended to `problems` until the sidenote fix lands clean, then promote.
+    else:
+        print("PDF BOTTOM-MARGIN SENSOR: PASS — no content bleeds into the bottom margin.")
 
     # Caption-orphan sensor: no table caption may sit stranded on a page while its table body flows to the
     # next. BLOCKING — the sticky-caption Typst show-rule keeps every caption with its body, and this control
