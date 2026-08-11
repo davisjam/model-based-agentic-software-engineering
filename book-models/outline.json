@@ -818,12 +818,12 @@
           "heading_text": "The capability ladder",
           "topic_sentence": "Naming the steps from context to control gives the rest of this Part its organizing model.",
           "id_source": "derived",
-          "block_index": 7,
+          "block_index": 9,
           "points": [
             {
               "slug": "the-ladder-orders-capabilities-not-organizations",
               "text": "The capability ladder orders representational capabilities, not organizations.",
-              "block_index": 9
+              "block_index": 11
             }
           ]
         },
@@ -833,22 +833,22 @@
           "heading_text": "The turn from modeling to alignment",
           "topic_sentence": "The two sides of the ladder are one motion seen twice.",
           "id_source": "derived",
-          "block_index": 16,
+          "block_index": 18,
           "points": [
             {
               "slug": "knowledge-rep-makes-legible-executable-modeling-makes-analyzable",
               "text": "Knowledge representation makes the system legible; executable modeling makes it analyzable.",
-              "block_index": 18
+              "block_index": 20
             },
             {
               "slug": "modeling-makes-intent-explicit-alignment-makes-it-binding",
               "text": "Modeling makes intent explicit; Alignment makes it binding.",
-              "block_index": 20
+              "block_index": 22
             },
             {
               "slug": "representation-alignment-proposition",
               "text": "Representation–Alignment Proposition: more explicit structure makes more obligations eligible for deterministic enforcement.",
-              "block_index": 22
+              "block_index": 24
             }
           ]
         },
@@ -858,12 +858,12 @@
           "heading_text": "Where to start",
           "topic_sentence": "The ladder answers a question every real team asks: where do I start?",
           "id_source": "derived",
-          "block_index": 25,
+          "block_index": 27,
           "points": [
             {
               "slug": "start-at-the-lowest-rung-that-solves-a-real-problem",
               "text": "Start at the lowest step that solves a real reasoning problem; strengthen the model when a recurring question justifies it.",
-              "block_index": 27
+              "block_index": 29
             }
           ]
         }
@@ -1936,22 +1936,22 @@
             {
               "slug": "structured-is-what-admits-the-machine",
               "text": "The structure is what admits the machine.",
-              "block_index": 46
+              "block_index": 45
             },
             {
               "slug": "formal-model-definition-assembles-the-pieces",
               "text": "The formal definition assembles approximation, blueprint, and structure.",
-              "block_index": 49
+              "block_index": 48
             },
             {
               "slug": "five-load-bearing-terms-do-the-gatekeeping",
               "text": "Five load-bearing clauses gatekeep what counts as a model.",
-              "block_index": 53
+              "block_index": 51
             },
             {
               "slug": "definition-relations-tell-the-book-in-a-nutshell",
               "text": "The definitions' relations summarize the whole book.",
-              "block_index": 55
+              "block_index": 53
             }
           ]
         },
@@ -1961,57 +1961,57 @@
           "heading_text": "The four layers",
           "topic_sentence": "**At the bottom sits the foundation model.** It comes from a commercial vendor or an open-weight release, and it is a general language reasoner, able to *induce* an understanding of your environment — though that induction is expensive, and it happens fresh every time.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 55,
           "points": [
             {
               "slug": "foundation-layer-spares-the-model-reasoning-cost",
               "text": "Tell the model where to look; spare its reasoning.",
-              "block_index": 59
+              "block_index": 57
             },
             {
               "slug": "model-constituents-are-a-control-surface",
               "text": "The model's three parts steer differently.",
-              "block_index": 64
+              "block_index": 62
             },
             {
               "slug": "models-pack-the-window-denser",
               "text": "You cannot widen the window; pack it denser.",
-              "block_index": 67
+              "block_index": 65
             },
             {
               "slug": "window-control-is-the-books-bet",
               "text": "Model choice is yours; the book bets on the window.",
-              "block_index": 69
+              "block_index": 67
             },
             {
               "slug": "the-model-reasons-over-a-world-representation",
               "text": "The model reasons over a world representation, so equip it.",
-              "block_index": 71
+              "block_index": 69
             },
             {
               "slug": "harness-manages-the-context-window-and-holds-two-mechanism-points",
               "text": "The harness manages the context window and holds two mechanisms.",
-              "block_index": 74
+              "block_index": 72
             },
             {
               "slug": "the-harness-layer-has-a-named-taxonomy",
               "text": "The field names a framework, harness, and agent-OS taxonomy.",
-              "block_index": 78
+              "block_index": 76
             },
             {
               "slug": "skills-are-soft-hooks-are-hard-tools-are-deterministic",
               "text": "Skills are soft, hooks are hard, tools take deterministic action.",
-              "block_index": 80
+              "block_index": 78
             },
             {
               "slug": "engineering-environment-must-be-written-down-and-offers-git-and-ci-hooks",
               "text": "Write down the engineering environment; it offers git hooks.",
-              "block_index": 86
+              "block_index": 84
             },
             {
               "slug": "application-layer-makes-mistakes-structurally-impossible-via-static-analysis",
               "text": "Static analysis makes a mistake class structurally impossible.",
-              "block_index": 90
+              "block_index": 88
             }
           ]
         },
@@ -2021,27 +2021,27 @@
           "heading_text": "Every layer is a place to steer",
           "topic_sentence": "Read the stack as a list of opportunities, because that is what it is.",
           "id_source": "derived",
-          "block_index": 93,
+          "block_index": 91,
           "points": [
             {
               "slug": "read-each-layer-as-an-injection-opportunity",
               "text": "Read each layer as an injection opportunity.",
-              "block_index": 95
+              "block_index": 93
             },
             {
               "slug": "every-layer-serves-one-goal-narrow-the-search",
               "text": "Every layer serves one goal: narrow the agent's search.",
-              "block_index": 98
+              "block_index": 96
             },
             {
               "slug": "mechanisms-interact-and-the-interplay-is-its-own-problem",
               "text": "Mechanisms interact; the interplay is its own problem.",
-              "block_index": 101
+              "block_index": 99
             },
             {
               "slug": "the-stack-grounds-both-theses",
               "text": "The stack grounds both the Modeling and Alignment theses.",
-              "block_index": 104
+              "block_index": 102
             }
           ]
         }
