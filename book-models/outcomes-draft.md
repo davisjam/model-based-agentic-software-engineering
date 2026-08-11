@@ -40,9 +40,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 1.4-the-new-engineering-problem
 
 
-### Lesson 1.5-the-engineers-seat
-
-
 ## Module 2 — Modeling
 
 - **[DECLARED]** (create) After this Part, the reader can model a system as the executable 4+1 zoo — logical, process, development, physical, and scenario views — identifying and building the small set of models it needs, each a structured model kept honest by a drift check. — _anchor: Modeling is the 4+1 views one chapter each (logical/process/development/physical/scenarios), spined by the context/control/executable-zoo/projection chapters and joined by the sync chapters._

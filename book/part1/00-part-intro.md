@@ -1,4 +1,4 @@
-<!-- part-foreshadows: abundant-implementation, govern-the-environment, seat-moves -->
+<!-- part-foreshadows: abundant-implementation, govern-the-environment -->
 Every engineering revolution begins by changing what engineers treat as scarce. Steam made
 mechanical power abundant. Integrated circuits made computation abundant. Coding agents do the same
 for implementation — and each time, engineering reorganized around whatever stayed scarce.

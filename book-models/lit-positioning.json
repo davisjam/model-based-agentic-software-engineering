@@ -508,7 +508,7 @@
       "y": "Empirical study finds AI assistants recomposing developer work toward supervision (Vella & Blincoe: 82% report writing less code; they name it 'supervisory engineering work'), and education begins teaching critique and responsible GenAI use (Jackson/Liu/van der Hoek).",
       "z": "MAGE describes where the seat moves — human effort concentrates on intent, architecture, model authorship, validation, and judgment — not that coding is obsolete.",
       "target_locations": [
-        "the-engineers-seat"
+        "implications-for-se"
       ],
       "citations": [
         {
@@ -537,7 +537,7 @@
       ],
       "status": "landed",
       "fold_target": "",
-      "notes": "STANDALONE wave — LANDED (LPP-PROSE) in 1.5-the-engineers-seat, after the 'role shrinks nothing; judgment grows more consequential' beat. Frame held: 'the seat moves', NOT 'coding obsolete' and NOT 'every engineer becomes an architect' (both disclaimed in the prose). Vella & Blincoe = supervisory engineering work (empirical, longitudinal; flow + cognitive load erode even as output holds). Jackson et al. = SE-education on critiquing a model's design output before adopting. Both cites kept in 1.5 as the single primary insertion (draft-recommended over splitting Jackson to 6.0). target_locations trimmed to 1.5 (the actual landing). No illustrates_pattern — role/education framing, not an instance of a catalogue governance pattern.",
+      "notes": "STANDALONE wave — LANDED (LPP-PROSE) in 6.5-implications-for-se (folded there from old 1.5-the-engineers-seat by R14), after the 'role shrinks nothing; judgment grows more consequential' beat. Frame held: 'the seat moves', NOT 'coding obsolete' and NOT 'every engineer becomes an architect' (both disclaimed in the prose). Vella & Blincoe = supervisory engineering work (empirical, longitudinal; flow + cognitive load erode even as output holds). Jackson et al. = SE-education on critiquing a model's design output before adopting. Both cites kept in 1.5 as the single primary insertion (draft-recommended over splitting Jackson to 6.0). target_locations trimmed to 1.5 (the actual landing). No illustrates_pattern — role/education framing, not an instance of a catalogue governance pattern.",
       "locations_resolve": [
         true
       ],

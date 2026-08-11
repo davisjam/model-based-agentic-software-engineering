@@ -147,31 +147,6 @@
       "closing_anchor": "The keystrokes may move to the fleet. The engineering responsibility does not."
     },
     {
-      "slug": "the-engineers-seat",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the SDLC-to-SELC phase map",
-            "anchor": "sdlc-to-selc"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Failure: the engineer/technician split kept collapsing; answer: agents hold the seats apart; states 'the claim the rest of the book stands on' (seat-moves). Closes on the question the next part opens on — where do you reach in?",
-      "opening_anchor": "Older engineering fields draw a clean line between the engineer who designs",
-      "closing_anchor": "fleet; keep the engineer's seat — intent, design, judgment, and the line."
-    },
-    {
       "slug": "the-agent-stack",
       "opening": {
         "failure_question": "explicit",

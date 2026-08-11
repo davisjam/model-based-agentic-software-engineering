@@ -4,10 +4,10 @@
   "ration_rule": "Each declared idea gets ONE canonical slogan (scope invoke-by-name) at its best location. Later appearances are blunt referential invocations, not fresh polished formulations. A `used-once` line appears exactly once; a `commandment` may recur as a refrain. Density/clustering caps ration polished occurrences. A slogan and a metaphor elaborating the SAME idea do not compete — only two invoke-by-name slogans on one idea do.",
   "ratified_counts": {
     "core": 9,
-    "local": 8,
+    "local": 7,
     "overlaps": 0,
     "slogans": 9,
-    "commandments": 1,
+    "commandments": 0,
     "used_once": 1
   },
   "metaphors": [
@@ -136,7 +136,7 @@
         "id": "seat-moves"
       },
       "introduced_at": {
-        "label": "the-engineers-seat",
+        "label": "implications-for-se",
         "anchor": "engineers-seat"
       },
       "payoff": "The developer's seat moves to the fleet; humans keep the engineering seats.",
@@ -174,14 +174,14 @@
         "id": "constraint-prevents-sensor-detects"
       },
       "introduced_at": {
-        "label": "the-engineers-seat",
-        "anchor": "improving-the-process-is-engineering-too-toyota-named-the-moves"
+        "label": "the-mage-workflow",
+        "anchor": "kaizen-is-the-manufacturing-name-for-this-daily-loop"
       },
       "pays_off_at": {
-        "label": "the-engineers-seat",
-        "anchor": "improving-the-process-is-engineering-too-toyota-named-the-moves"
+        "label": "the-mage-workflow",
+        "anchor": "kaizen-is-the-manufacturing-name-for-this-daily-loop"
       },
-      "stretch": "the-engineers-seat",
+      "stretch": "the-mage-workflow",
       "payoff": "Mistake-proofing: shape the work so the defect cannot happen.",
       "overlap_ok": false,
       "overlap_rationale": "",
@@ -334,30 +334,6 @@
     },
     {
       "kind": "metaphor",
-      "name": "The compiler analogy",
-      "slug": "compiler-analogy",
-      "recurrence": "local",
-      "vehicle": "machines execute progressively higher-level descriptions",
-      "elaborates": {
-        "model": "argument-spine",
-        "id": "seat-moves"
-      },
-      "introduced_at": {
-        "label": "the-engineers-seat",
-        "anchor": ""
-      },
-      "pays_off_at": {
-        "label": "the-engineers-seat",
-        "anchor": ""
-      },
-      "stretch": "the-engineers-seat",
-      "payoff": "Each abstraction lifts the human's seat to a higher-level description.",
-      "overlap_ok": false,
-      "overlap_rationale": "",
-      "notes": "NEW (part1.md). As compilers lifted the human off assembly, machines executing ever-higher-level descriptions move the developer's seat up. Anchor empty until the fix-wave marks the paragraph; co-occurs with core engineers-seat (exempt) and local poka-yoke-fixture (pays off in place — no span overlap)."
-    },
-    {
-      "kind": "metaphor",
       "name": "The model bridge",
       "slug": "model-bridge",
       "recurrence": "core",
@@ -476,7 +452,7 @@
       "scope": "invoke-by-name",
       "ration_budget": 3,
       "home": {
-        "label": "the-engineers-seat",
+        "label": "why-mage-follows-from-the-machine",
         "anchor": ""
       },
       "competitors": [
@@ -507,24 +483,6 @@
         "too much to hold in mind at once"
       ],
       "notes": "Compresses the reasoning-horizon DEFINITION (ratified decision B: definitions is a fifth allowed elaborates namespace)."
-    },
-    {
-      "kind": "slogan",
-      "name": "Govern; do not type",
-      "slug": "govern-do-not-type",
-      "canonical": "Govern; do not type.",
-      "elaborates": {
-        "model": "argument-spine",
-        "id": "seat-moves"
-      },
-      "scope": "commandment",
-      "ration_budget": 0,
-      "home": {
-        "label": "the-engineers-seat",
-        "anchor": ""
-      },
-      "competitors": [],
-      "notes": "A commandment — may recur as a refrain, so it does not count as a competing canonical against human-role (both elaborate seat-moves). ration_budget 0 = unbudgeted refrain."
     },
     {
       "kind": "slogan",

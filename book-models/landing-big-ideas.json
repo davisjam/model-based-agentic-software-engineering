@@ -97,7 +97,7 @@
     "kicker": "Big idea 6 · the seat",
     "title": "The lifecycle stays, but now agents sit in the developer's seat",
     "figure": "sdlc-to-selc.svg",
-    "book_home": "the-engineers-seat",
+    "book_home": "implications-for-se",
     "claim": "SDLC becomes SELC: one seat reassigned, the lifecycle otherwise intact. The fleet writes the code; the engineer keeps the seats that were always the engineering.",
     "more": "The engineer flanks the fleet: models carry intent in on one side, judgment meets the output on the other. The seats the human keeps — requirements, specification, design, validation — were always the consequential ones; now they are the job.",
     "mechanisms": ["independent-design-review", "epic-and-design-templates", "epic-definition-of-done"],

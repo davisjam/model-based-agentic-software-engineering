@@ -329,10 +329,9 @@
         "the developer's seat moves to the fleet",
         "the lifecycle itself changes"
       ],
-      "home": "sdlc-to-selc",
+      "home": "the-reassigned-seat",
       "asserted_at": [
-        "sdlc-to-selc",
-        "the-lifecycle-it-keeps"
+        "the-reassigned-seat"
       ],
       "contradicted_by": "Claiming agents replace the whole lifecycle, or that the lifecycle itself changes.",
       "watch_phrases": [],
@@ -340,7 +339,7 @@
         "big-idea:seat-moves"
       ],
       "provenance": "stated",
-      "anchor": "1.3 the-engineers-seat: SDLC → SELC — the human keeps requirements/spec/design/validation; only the coding seat moves to the fleet."
+      "anchor": "6.5 implications-for-se: SDLC → SELC — the human keeps requirements/spec/design/validation; only the coding seat moves to the fleet."
     },
     {
       "id": "single-case-humility",

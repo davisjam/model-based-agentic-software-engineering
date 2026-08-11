@@ -3,9 +3,9 @@
   "_note": "The argument-spine model holds the book's linear argument as an ordered run of claims, each reconciling the author's seed statements, the claims model, and the Big-Ideas model into one step — plus the per-chapter labeling of which steps each chapter advances. The `flags` block is DERIVED editorial signal and never gates: CHAPTER-side (a non-exempt chapter advancing 0 steps is suspect; one advancing more than the focus cap is probably unfocused — the directive's Phase-1c worklist) AND CLAIM-side health (a non-exempt claim advanced by 0 chapters is a gap; one advanced only within Part 0/1 is front-loaded/shallow; one advanced by more than the overmap cap is an overmapping-audit surface). Per-claim `reviewed_hash` seeds the AS8 freshness sensor: a statement edited without a re-review reddens its advancing chapters. Exempt chapters (preface / conclusion / discussion / end-of-part synthesis / apparatus) and exempt claims (genuine front-loaded-by-design premises) are the ones whose breadth, silence, or shallow reach is their job.",
   "_counts": {
     "spine_claims": 15,
-    "chapters_labeled": 34,
+    "chapters_labeled": 33,
     "chapters_exempt": 11,
-    "advancement_edges": 91,
+    "advancement_edges": 90,
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
@@ -489,7 +489,6 @@
       "word_count": 26,
       "statement_hash": "6e678662a007",
       "advanced_by": [
-        "1.5-the-engineers-seat",
         "5.3-the-road-to-mage",
         "5.4-failures-that-became-infrastructure",
         "6.5-implications-for-se",
@@ -629,13 +628,6 @@
         "modeling-thesis",
         "alignment-thesis",
         "govern-the-environment"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "1.5-the-engineers-seat",
-      "advances": [
-        "seat-moves"
       ],
       "exempt": null
     },
