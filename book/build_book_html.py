@@ -46,6 +46,8 @@ HERE = pathlib.Path(__file__).resolve().parent
 # Single source of truth for the book's cover identity — book-manifest.json (also read by catalog.py).
 _BOOK_MANIFEST = json.loads((HERE / "book-manifest.json").read_text(encoding="utf-8"))
 _PDF_FILENAME = _BOOK_MANIFEST["pdf_filename"]  # single source: the manifest
+# The book's companion Medium post — a site-only nav link beside the PDF download (no book-body counterpart).
+_BLOG_POST_URL = "https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45"
 
 
 def _cover_sub(cls: str) -> str:
@@ -2299,7 +2301,7 @@ a.gloss-site:hover, a.gloss-site:focus {{ color: var(--accent); border-bottom-co
 .book-title {{ padding: 3rem 0 0.5rem; }}
 .book-title h1 {{ font-size: 2.4rem; margin: 0; }}
 .book-title .sub {{ color: var(--muted); margin-top: 0.4rem; }}
-.book-download {{ margin-top: 0.9rem; }}
+.book-download {{ margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }}
 .book-download a {{ display: inline-block; font-size: 14px; font-weight: 600; color: var(--accent);
                     text-decoration: none; padding: 0.45rem 0.9rem; border: 1px solid var(--rule);
                     border-radius: 6px; background: var(--paper); }}
@@ -6760,7 +6762,8 @@ def build() -> int:
         f'{_cover_sub("sub")}'
         # PDF edition — a CI-published artifact at book/mage-book.pdf on the deployed site (a purely-local
         # checkout without the CI render will 404 this; that is expected).
-        f'<div class="book-download"><a href="{_PDF_FILENAME}">Download the PDF edition ↓</a></div>'
+        f'<div class="book-download"><a href="{_PDF_FILENAME}">Download the PDF edition ↓</a>'
+        f'<a href="{_BLOG_POST_URL}" target="_blank" rel="noopener">Read the blog post ↗</a></div>'
         '</div>'
     )
     foot = f'<div class="book-foot">{html.escape(COPYRIGHT)}</div>'
