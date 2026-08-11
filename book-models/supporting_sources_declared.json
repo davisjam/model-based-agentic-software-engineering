@@ -79,7 +79,7 @@
         "Stripe built a benchmark around complete integrations rather than function-level tasks because real engineering is long-horizon and stateful — planning, persistent state, recovery from failure — with the best-performing runs averaging about 63 turns."
       ],
       "destination": {
-        "chapter": "loops-and-models",
+        "chapter": "reasoning-horizon",
         "anchor": null
       },
       "role": "corroborate",
@@ -248,7 +248,7 @@
         "Elastic's Control Plane team wired a Claude agent into monorepo CI so a failing dependency-update PR feeds its build/test logs back to the agent, which iterates over failed Gradle steps until green — 'self-correcting' PRs over 45% of dependencies in a one-month pilot."
       ],
       "destination": {
-        "chapter": "loops-and-models",
+        "chapter": "reasoning-horizon",
         "anchor": null
       },
       "role": "illustrate",
@@ -488,7 +488,7 @@
         "NXP's application note walks a coding agent through requesting an SPI1 driver for the MCXA346 microcontroller and cautions that AI-generated code cannot guarantee compilation or correctness and requires human review — even in embedded development the useful unit is an agent inside a compiler/toolchain loop over a concrete target, not text generation."
       ],
       "destination": {
-        "chapter": "loops-and-models",
+        "chapter": "reasoning-horizon",
         "anchor": null
       },
       "role": "illustrate",

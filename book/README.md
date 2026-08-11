@@ -18,7 +18,7 @@ book/
   part1/  (Part 1 — The Context)
     1.1-the-printer.md
     1.2-mage-by-example.md
-    1.3-loops-and-models.md
+    1.3-the-reasoning-horizon.md
     1.4-why-mage-follows-from-the-machine.md
     1.5-the-engineers-seat.md
   part2/  (Part 2 — The Mindset)

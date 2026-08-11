@@ -166,7 +166,10 @@
       "opening_anchor": "The last chapter closed on a promise: the running example of this",
       "closing_anchor": "place every claim in the coming chapters can be traced back to.",
       "delivers": {
-        "concepts": [],
+        "concepts": [
+          "fidelity-validator",
+          "provenance-layer"
+        ],
         "artifacts": [
           {
             "type": "worked-example",
@@ -186,7 +189,7 @@
       ]
     },
     {
-      "slug": "loops-and-models",
+      "slug": "reasoning-horizon",
       "opening": {
         "failure_question": "implicit",
         "answer": "explicit",
@@ -202,8 +205,8 @@
       "delivers": {
         "concepts": [
           "loop-engineering",
-          "success-metric",
-          "engineered-agent-loop"
+          "engineered-agent-loop",
+          "success-metric"
         ],
         "artifacts": [
           {
