@@ -196,4 +196,4 @@ Each constituent links to its full pattern — in this appendix for the flagship
 The stack pairs with the [observe → react loop](appendix-d-observe-react-stack.html) (the pressure signal
 rides the same observability surface) and the
 [Briefing stack](appendix-d-context-management-stack.html) (both share one machine among many
-agents). The full 83-mechanism catalogue is online in the web edition.
+agents). The full 85-mechanism catalogue is online in the web edition.

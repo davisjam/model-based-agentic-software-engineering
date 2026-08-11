@@ -229,4 +229,4 @@ Each constituent links to its full pattern — in this appendix for the flagship
 The stack sits on the [model-coherence stack](appendix-d-model-coherence-stack.html) (its state machines are
 that stack's executable data) and feeds the
 [observe → react loop](appendix-d-observe-react-stack.html) (a verified invariant still needs a live signal
-when it breaks). The full 83-mechanism catalogue is online in the web edition.
+when it breaks). The full 85-mechanism catalogue is online in the web edition.

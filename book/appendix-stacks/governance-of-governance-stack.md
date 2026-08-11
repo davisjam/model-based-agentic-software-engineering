@@ -240,4 +240,4 @@ Each constituent links to its full pattern — in this appendix for the flagship
 The stack reads the [observe → react loop](appendix-d-observe-react-stack.html) (a recurring alert is a
 recurrence INTERPRET converts) and shares its delivery surface with the
 [Briefing stack](appendix-d-context-management-stack.html) (the rule index is loaded into every
-boot there). The full 83-mechanism catalogue is online in the web edition.
+boot there). The full 85-mechanism catalogue is online in the web edition.

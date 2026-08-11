@@ -218,4 +218,4 @@ Each constituent links to its full pattern — in this appendix for the flagship
 INDEX's govern-itself facet lives in the
 [governance-of-governance stack](appendix-d-governance-of-governance-stack.html); the stack shares one
 machine among many agents with the [Mediation stack](appendix-d-resource-mediation-stack.html). The
-full 83-mechanism catalogue is online in the web edition.
+full 85-mechanism catalogue is online in the web edition.

@@ -271,4 +271,4 @@ The stack is the substrate under the
 [Provenance stack](appendix-d-provenance-fidelity-stack.html) (its sanctioned door is this
 stack's sealed seam) and the
 [Assurance stack](appendix-d-specification-verification-stack.html) (whose state machines
-are DATA this stack keeps honest). The full 83-mechanism catalogue is online in the web edition.
+are DATA this stack keeps honest). The full 85-mechanism catalogue is online in the web edition.

@@ -40,6 +40,6 @@ reputation. No fabricated count.
 
 ### What this projects
 
-The Brownfield chapter's four stages, each a useful stopping point ([Chapter 4.1](4.2-brownfield.html)); the
+The Brownfield chapter's four stages, each a useful stopping point ([Chapter 4.2](4.2-brownfield.html)); the
 Missing-Model Metric (the ungoverned-vs-governed drain); the Brownfield Migration Drill that joins wiki to
 code; and the chapter's Sizing Matrix, which picks the next mechanism by cost times frequency.

@@ -205,5 +205,5 @@ online for the rest. The stack composes with the
 [model-coherence stack](appendix-d-model-coherence-stack.html) — the sanctioned door it stamps is that
 stack's typed seam — and the
 [Assurance stack](appendix-d-specification-verification-stack.html). The complete
-83-mechanism catalogue, each pattern with its Motivation, Applicability, and Known uses, is online in the
+85-mechanism catalogue, each pattern with its Motivation, Applicability, and Known uses, is online in the
 web edition.
