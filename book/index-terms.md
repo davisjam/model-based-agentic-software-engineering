@@ -161,6 +161,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: fleet | The fleet
 - concept: printer-metaphor | The printer metaphor
 - concept: picture-vs-model | Picture vs. model
+- concept: descriptive-vs-prescriptive | Descriptive vs intent-bearing
 - concept: whose-fault | Whose fault is a bad build
 - concept: reasoning-horizon | Reasoning horizon
 - concept: long-horizon-task | Long-horizon task

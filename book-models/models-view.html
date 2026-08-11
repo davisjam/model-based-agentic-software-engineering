@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>40</b> chapters · <b>303</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>40</b> chapters · <b>302</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -318,29 +318,25 @@
 </div>
 <div class="chapter">
 <h3 id="ch-2-5-modeling-structure-and-ownership"><span class="tier-kick">Lesson</span><a href="../book/2.5-modeling-structure-and-ownership.html" class="ch-link">2.5-modeling-structure-and-ownership</a> <span class="ch-slug">2.5-modeling-structure-and-ownership</span></h3>
-<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--the-logical-view-what-the-system-is">
-<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">The Logical View: what the system is</a></div>
-<p class="topic">*What is this system made of, and what may depend on what?* That is the engineering question the Logical view answers — a projection over the connected system model that keeps the entities and relations bearing on structure and drops the rest.</p>
+<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--what-the-system-is-made-of-and-what-depends-on-what">
+<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">What the system is made of, and what depends on what</a></div>
+<p class="topic">The first question is compositional: what services exist, and which one is allowed to call which?</p>
 </div>
-<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--service-flow-model">
-<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">The service-flow / API model</a></div>
-<p class="topic">*The typed source-of-truth for a service-oriented architecture — its services, their endpoints, their authentication, and the wiring between them — from which the access policy and environment wiring are generated and against which the real call graph is checked.*</p>
+<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--who-owns-each-piece-and-what-may-cross-a-boundary">
+<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">Who owns each piece, and what may cross a boundary</a></div>
+<p class="topic">The next question is the one an agent asks before it edits a line: *where am I, and what may this file touch?* The **component and zone model** answers it — a typed catalog that gives every component a code zone (its focus directories, its tags, its boundary kind, the external seams it may cross).</p>
 </div>
-<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--domain-registries">
-<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">The domain registries</a></div>
-<p class="topic">**Freeze engineering facts that change slowly but are consulted everywhere.** A fact read in many places and revised rarely is exactly the fact that drifts when each reader keeps its own copy; make it a registry every consumer joins to by key, and disagreement becomes a build failure instead of a latent inconsistency.</p>
+<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--some-facts-describe-others-declare">
+<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">Some facts describe; others declare</a></div>
+<p class="topic">The component and zone model is the cleanest place to see a distinction that runs through every model in this book.</p>
 </div>
-<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--the-development-view-how-the-source-is-organized">
-<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">The Development View: how the source is organized</a></div>
-<p class="topic">*How is the implementation packaged, and who owns each piece?* That is the question the Development view answers — a projection over the connected system model, distinct from the Process view&#x27;s runtime-consistency question.</p>
+<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--the-facts-every-consumer-joins-to">
+<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">The facts every consumer joins to</a></div>
+<p class="topic">Some facts change slowly and are consulted everywhere — the file types a system handles, the governance rules it enforces.</p>
 </div>
-<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--component-zone-model">
-<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">The component &amp; zone model</a></div>
-<p class="topic">*A typed catalog of every component&#x27;s code zone — its focus directories, its tags, its boundary kind, its external seams, its read surfaces — so &quot;which component owns this file, and what may touch it&quot; is a queried fact rather than a per-tool guess.*</p>
-</div>
-<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--rule-metadata-registry">
-<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">The rule-metadata registry</a></div>
-<p class="topic">The rule-metadata registry is the self-referential slice of the domain registries: the governance rules&#x27; own metadata, and so a model the governance machinery — and this book — are partly governed by.</p>
+<div class="section s2" id="sec-2-5-modeling-structure-and-ownership--what-third-party-material-the-build-depends-on">
+<div class="sec-h"><a href="../book/2.5-modeling-structure-and-ownership.html">What third-party material the build depends on</a></div>
+<p class="topic">The last structural question looks outward: what does the build pull in that nobody in this repository wrote?</p>
 </div>
 </div>
 <div class="chapter">

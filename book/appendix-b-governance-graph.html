@@ -698,14 +698,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-models.html">Appendix G — Model Reference</a></li>
 <li><a class="" href="appendix-g-service-flow-reference.html">G.1 Service-Flow Model</a></li>
 <li><a class="" href="appendix-g-component-zone-reference.html">G.2 Component &amp; Zone Model</a></li>
-<li><a class="" href="appendix-g-synchronization-reference.html">G.3 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.4 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.5 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.6 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.7 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.8 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.9 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.10 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 19. Governance graph (mechanism-interaction model) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 19. Governance graph (mechanism-interaction model)</h1></header><p><strong>The judgment</strong> — Model your controls as a system; catch guardrail collisions at authoring, not production.</p>
+<li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
+<li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
+<li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 19. Governance graph (mechanism-interaction model) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 19. Governance graph (mechanism-interaction model)</h1></header><p><strong>The judgment</strong> — Model your controls as a system; catch guardrail collisions at authoring, not production.</p>
 <table class="book-table meta-card"><tbody><tr><td><strong>Role</strong></td><td>Models-bridge</td></tr><tr><td><strong>Family</strong></td><td>System models</td></tr><tr><td><strong>Used in stacks</strong></td><td>The governance-of-governance stack</td></tr><tr><td><strong>Enforcement</strong></td><td>Soft·Hard</td></tr><tr><td><strong>Applicability</strong></td><td>Universal</td></tr><tr><td><strong>Related mechanisms</strong></td><td><em>Counterpart:</em> <a href="../models-bridge/system-models/drift-parity-gates.html">Drift &amp; parity gates</a>; <em>Sibling:</em> <a href="../models-bridge/system-models/agent-orchestration-model.html">Agent-orchestration model (developer journeys)</a>; <em>Enabler:</em> <a href="../models-bridge/system-models/synchronization-model.html">Synchronization model (meta-sync)</a>; <em>See also:</em> <a href="../models-bridge/system-models/query-surface.html">Model query surface (<code>repo-query</code>)</a></td></tr></tbody></table>
 <p><em>The Structure of Governance graph (mechanism-interaction model) — its shape at a glance:</em></p>
 <p>Nodes are typed mechanisms; the closed resource vocabulary is the join key. An edge joins two mechanisms that collide on one resource, typed by a four-value conflict taxonomy. Each edge's nature is <em>derived</em> from its conflict type: a decidable edge routes to a consistency lint, a semantic one to a human prompt. A drift lint re-resolves each node's code anchor to hold the graph equal to the wired reality.</p>

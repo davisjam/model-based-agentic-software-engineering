@@ -3,15 +3,15 @@
   "_counts": {
     "tracked_slugs": 36,
     "slugs_rendered": 27,
-    "total_sites": 1604,
+    "total_sites": 1619,
     "by_projection": {
       "book-pdf": 24,
-      "book-web": 1179,
+      "book-web": 1193,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
       "website-landing": 13,
-      "website-misc": 53,
+      "website-misc": 54,
       "website-theory": 10
     }
   },
@@ -85,7 +85,7 @@
           },
           {
             "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/2.6-modeling-behavior-and-execution.html",
@@ -420,6 +420,10 @@
             "occ": 3
           },
           {
+            "file": "book/appendix-g-bill-of-materials-reference.html",
+            "occ": 3
+          },
+          {
             "file": "book/appendix-g-component-zone-reference.html",
             "occ": 3
           },
@@ -429,6 +433,10 @@
           },
           {
             "file": "book/appendix-g-deployment-topology-reference.html",
+            "occ": 3
+          },
+          {
+            "file": "book/appendix-g-domain-registries-reference.html",
             "occ": 3
           },
           {
@@ -523,7 +531,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 125
+            "occ": 127
           }
         ]
       },
@@ -865,7 +873,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 36
+            "occ": 38
           },
           {
             "file": "catalogue-figure.html",
@@ -1607,7 +1615,7 @@
           },
           {
             "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 12
+            "occ": 11
           },
           {
             "file": "book/2.6-modeling-behavior-and-execution.html",
@@ -1942,8 +1950,12 @@
             "occ": 10
           },
           {
-            "file": "book/appendix-g-component-zone-reference.html",
+            "file": "book/appendix-g-bill-of-materials-reference.html",
             "occ": 10
+          },
+          {
+            "file": "book/appendix-g-component-zone-reference.html",
+            "occ": 11
           },
           {
             "file": "book/appendix-g-coverage-node-reference.html",
@@ -1951,6 +1963,10 @@
           },
           {
             "file": "book/appendix-g-deployment-topology-reference.html",
+            "occ": 10
+          },
+          {
+            "file": "book/appendix-g-domain-registries-reference.html",
             "occ": 10
           },
           {
@@ -1963,7 +1979,7 @@
           },
           {
             "file": "book/appendix-g-service-flow-reference.html",
-            "occ": 10
+            "occ": 11
           },
           {
             "file": "book/appendix-g-synchronization-reference.html",
@@ -2045,7 +2061,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 125
+            "occ": 127
           }
         ]
       },
@@ -2119,7 +2135,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 35
+            "occ": 36
           },
           {
             "file": "catalogue-figure.html",
@@ -2584,6 +2600,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-g-bill-of-materials-reference.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-g-component-zone-reference.html",
             "occ": 1
           },
@@ -2593,6 +2613,10 @@
           },
           {
             "file": "book/appendix-g-deployment-topology-reference.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-g-domain-registries-reference.html",
             "occ": 1
           },
           {
@@ -2683,7 +2707,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 124
+            "occ": 126
           }
         ]
       },
@@ -2782,10 +2806,6 @@
             "occ": 5
           },
           {
-            "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 4
-          },
-          {
             "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 7
           },
@@ -2877,7 +2897,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 25
+            "occ": 24
           }
         ]
       },
@@ -2958,6 +2978,14 @@
             "occ": 3
           }
         ]
+      },
+      "website": {
+        "website-misc": [
+          {
+            "file": "book-models/models-view.html",
+            "occ": 1
+          }
+        ]
       }
     },
     "model": {
@@ -3029,7 +3057,7 @@
           },
           {
             "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 72
+            "occ": 48
           },
           {
             "file": "book/2.6-modeling-behavior-and-execution.html",
@@ -3364,8 +3392,12 @@
             "occ": 31
           },
           {
+            "file": "book/appendix-g-bill-of-materials-reference.html",
+            "occ": 24
+          },
+          {
             "file": "book/appendix-g-component-zone-reference.html",
-            "occ": 30
+            "occ": 39
           },
           {
             "file": "book/appendix-g-coverage-node-reference.html",
@@ -3374,6 +3406,10 @@
           {
             "file": "book/appendix-g-deployment-topology-reference.html",
             "occ": 29
+          },
+          {
+            "file": "book/appendix-g-domain-registries-reference.html",
+            "occ": 24
           },
           {
             "file": "book/appendix-g-invariant-dag-reference.html",
@@ -3385,11 +3421,11 @@
           },
           {
             "file": "book/appendix-g-service-flow-reference.html",
-            "occ": 30
+            "occ": 42
           },
           {
             "file": "book/appendix-g-synchronization-reference.html",
-            "occ": 30
+            "occ": 29
           },
           {
             "file": "book/appendix-g-task-closure-reference.html",
@@ -3429,7 +3465,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 297
+            "occ": 290
           },
           {
             "file": "book/index.html",
@@ -3437,7 +3473,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 28
+            "occ": 29
           },
           {
             "file": "book/part-1-intro.html",
@@ -3467,7 +3503,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 125
+            "occ": 127
           }
         ]
       },
@@ -3889,7 +3925,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 111
+            "occ": 112
           },
           {
             "file": "catalogue-figure.html",
@@ -4094,10 +4130,6 @@
             "occ": 2
           },
           {
-            "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 1
           },
@@ -4197,7 +4229,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 34
+            "occ": 33
           }
         ]
       },
@@ -4660,6 +4692,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-g-bill-of-materials-reference.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-g-component-zone-reference.html",
             "occ": 1
           },
@@ -4669,6 +4705,10 @@
           },
           {
             "file": "book/appendix-g-deployment-topology-reference.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-g-domain-registries-reference.html",
             "occ": 1
           },
           {
@@ -4759,7 +4799,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 124
+            "occ": 126
           }
         ]
       },
@@ -5358,6 +5398,10 @@
             "occ": 2
           },
           {
+            "file": "book/appendix-g-bill-of-materials-reference.html",
+            "occ": 2
+          },
+          {
             "file": "book/appendix-g-component-zone-reference.html",
             "occ": 2
           },
@@ -5367,6 +5411,10 @@
           },
           {
             "file": "book/appendix-g-deployment-topology-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-domain-registries-reference.html",
             "occ": 2
           },
           {
@@ -5457,7 +5505,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 124
+            "occ": 126
           }
         ]
       },
@@ -5573,7 +5621,7 @@
           },
           {
             "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 5
+            "occ": 1
           },
           {
             "file": "book/2.6-modeling-behavior-and-execution.html",
@@ -5908,6 +5956,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-g-bill-of-materials-reference.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-g-component-zone-reference.html",
             "occ": 1
           },
@@ -5917,6 +5969,10 @@
           },
           {
             "file": "book/appendix-g-deployment-topology-reference.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-g-domain-registries-reference.html",
             "occ": 1
           },
           {
@@ -5969,7 +6025,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 46
+            "occ": 42
           },
           {
             "file": "book/index.html",
@@ -5977,7 +6033,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-1-intro.html",
@@ -6007,7 +6063,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 124
+            "occ": 126
           }
         ]
       },
@@ -6237,7 +6293,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 9
+            "occ": 11
           },
           {
             "file": "constructing-the-gee.html",
@@ -6678,6 +6734,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-g-bill-of-materials-reference.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-g-component-zone-reference.html",
             "occ": 1
           },
@@ -6687,6 +6747,10 @@
           },
           {
             "file": "book/appendix-g-deployment-topology-reference.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-g-domain-registries-reference.html",
             "occ": 1
           },
           {
@@ -6777,7 +6841,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 124
+            "occ": 126
           }
         ]
       },

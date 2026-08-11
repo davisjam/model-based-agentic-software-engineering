@@ -698,14 +698,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-models.html">Appendix G — Model Reference</a></li>
 <li><a class="" href="appendix-g-service-flow-reference.html">G.1 Service-Flow Model</a></li>
 <li><a class="" href="appendix-g-component-zone-reference.html">G.2 Component &amp; Zone Model</a></li>
-<li><a class="" href="appendix-g-synchronization-reference.html">G.3 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.4 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.5 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.6 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.7 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.8 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.9 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.10 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 13 · Keeping the Models in Sync — A Measurement — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 13</a></div><h1><span class="chap-num">2.12</span> Keeping the Models in Sync — A Measurement</h1></header><h2><span class="sec-num">2.12.1</span> The question: the map must equal the territory, or the bridge lies</h2>
+<li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
+<li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
+<li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 13 · Keeping the Models in Sync — A Measurement — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 13</a></div><h1><span class="chap-num">2.12</span> Keeping the Models in Sync — A Measurement</h1></header><h2><span class="sec-num">2.12.1</span> The question: the map must equal the territory, or the bridge lies</h2>
 <p>This chapter reaches the top of the Part's ascent. Drift enforcement — rung eight — is where a model stops merely helping the fleet reason and the environment begins refusing to let the model and the code silently disagree. Everything the rung promises rests on one requirement.</p>
 <p>A context-bounded fleet governs a context-exceeding codebase <em>through</em> structured models. The models are the bridge the agents reason across. So the map must stay equal to the territory — equal over the relations the model claims to represent, not over every line of code. Stated precisely: the model must remain consistent with the territory over its declared surface. If a model claims something the code no longer does, every agent that trusts the model inherits the lie.</p>
 <blockquote id="idx-def-models-bridge" class="aside-sidenote def-inset"><p><strong>The models-bridge.</strong> The governed channel between the code and the authored models: the traceability edges that connect model elements to the code they represent, plus the drift checks that hold the two in agreement — the path by which authored models reach the agent's task context and its checks, and the relationship the agent reasons across.</p></blockquote>

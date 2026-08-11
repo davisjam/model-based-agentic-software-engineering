@@ -3554,6 +3554,8 @@ _APPENDIX_MODELS_OPENING_SLUG = "appendix-models"
 _MODEL_PAGES: list[tuple[str, str]] = [
     ("service-flow-reference", "Service-Flow Model"),
     ("component-zone-reference", "Component & Zone Model"),
+    ("domain-registries-reference", "Domain Registries"),
+    ("bill-of-materials-reference", "Bill of Materials"),
     ("synchronization-reference", "Synchronization Model"),
     ("deployment-topology-reference", "Deployment-Topology Model"),
     ("invariant-dag-reference", "Invariant-DAG Execution Policy"),
