@@ -61,27 +61,15 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 2.4-views-are-projections
 
 
-### Lesson 2.5-the-logical-view
+### Lesson 2.5-modeling-structure-and-ownership
 
 
-### Lesson 2.6-the-process-view
+### Lesson 2.6-modeling-behavior-and-execution
 
 
-### Lesson 2.7-the-development-view
-
-
-### Lesson 2.8-the-physical-view
-
-
-### Lesson 2.9-the-scenarios-view
-
-
-### Lesson 2.10-the-joined-model
+### Lesson 2.7-scenarios-and-the-joined-model
 
   - **[DERIVED]** (analyze) After this section, the reader can trace a single request. — _anchor: ts: Trace a single request._
-
-### Lesson 2.11-the-scope-of-modeling
-
 
 ### Lesson 2.12-keeping-models-in-sync
 

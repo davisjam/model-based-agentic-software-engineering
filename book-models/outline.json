@@ -961,17 +961,26 @@
           ]
         },
         {
+          "section_id": "mbse-nav-token",
+          "level": 2,
+          "heading_text": "The fewer-tokens leg — a navigation pilot",
+          "topic_sentence": "The *fewer-tokens* leg is directly measurable.",
+          "id_source": "explicit",
+          "block_index": 33,
+          "points": []
+        },
+        {
           "section_id": "the-trunk-machinery-that-holds-any-view-true",
           "level": 2,
           "heading_text": "The trunk: machinery that holds any view true",
           "topic_sentence": "Before the views, one chapter of framing.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 44,
           "points": [
             {
               "slug": "the-trunk-is-the-shared-machinery-that-makes-every-view-executable",
               "text": "Shared trunk machinery makes every view executable and drift-proof.",
-              "block_index": 41
+              "block_index": 46
             }
           ]
         },
@@ -981,17 +990,17 @@
           "heading_text": "Derive and join; do not repeat",
           "topic_sentence": "The last chapter warned against repetition: two models that say the same thing must now be kept in sync.",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 58,
           "points": [
             {
               "slug": "a-model-is-derived-and-joined-never-repeated",
               "text": "A model is derived and joined, never repeated.",
-              "block_index": 56
+              "block_index": 61
             },
             {
               "slug": "derivation-and-join-are-the-cure-for-repetition",
               "text": "Derivation and join are the cure for repetition.",
-              "block_index": 58
+              "block_index": 63
             }
           ]
         },
@@ -1001,17 +1010,17 @@
           "heading_text": "State the derivation direction",
           "topic_sentence": "A model and the code it concerns stay equal by derivation, and derivation runs in one of two directions.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 65,
           "points": [
             {
               "slug": "name-the-direction-of-derivation-up-front",
               "text": "Name the direction of derivation up front.",
-              "block_index": 63
+              "block_index": 68
             },
             {
               "slug": "most-of-the-zoo-is-model-from-code-because-the-codebase-came-first",
               "text": "Most of the zoo is model-from-code; the codebase came first.",
-              "block_index": 68
+              "block_index": 73
             }
           ]
         },
@@ -1021,22 +1030,22 @@
           "heading_text": "Extracted Code Graphs and Intent-Bearing Models",
           "topic_sentence": "The purest model-from-code artifact is not one of the zoo's own views.",
           "id_source": "derived",
-          "block_index": 70,
+          "block_index": 75,
           "points": [
             {
               "slug": "a-code-graph-recovers-structure-an-authored-model-declares-intent",
               "text": "A code graph recovers structure; an authored model declares intent.",
-              "block_index": 72
+              "block_index": 77
             },
             {
               "slug": "a-code-graph-and-an-authored-model-compose-through-a-gate",
               "text": "Code graph and authored model compose through a gate.",
-              "block_index": 79
+              "block_index": 84
             },
             {
               "slug": "spec-driven-development-authors-intent-as-prose-not-a-typed-model",
               "text": "Spec-driven development authors intent as prose, not a structured model.",
-              "block_index": 83
+              "block_index": 88
             }
           ]
         },
@@ -1046,32 +1055,32 @@
           "heading_text": "Trace every model element to code",
           "topic_sentence": "A model earns trust only if you can get from a model element back to the lines that realize it, and forward from a line to the model element that governs it.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 92,
           "points": [
             {
               "slug": "every-model-traces-to-the-code-in-both-directions",
               "text": "Every model traces to the code in both directions.",
-              "block_index": 90
+              "block_index": 95
             },
             {
               "slug": "the-template-folds-a-traceability-note-into-every-page",
               "text": "The template folds a traceability note into every page.",
-              "block_index": 92
+              "block_index": 97
             },
             {
               "slug": "a-zoo-of-drifted-views-is-worse-than-none",
               "text": "A zoo of drifted views is worse than none.",
-              "block_index": 94
+              "block_index": 99
             },
             {
               "slug": "the-round-trip-must-be-derived-not-snapshotted",
               "text": "The round-trip must be derived, not snapshotted.",
-              "block_index": 96
+              "block_index": 101
             },
             {
               "slug": "a-resolving-edge-is-both-drift-detection-and-navigation",
               "text": "A resolving edge is both drift-detection and navigation.",
-              "block_index": 98
+              "block_index": 103
             }
           ]
         },
@@ -1081,22 +1090,22 @@
           "heading_text": "Keeping the models honest — the traceability substrate",
           "topic_sentence": "DocAble did not design this up front.",
           "id_source": "derived",
-          "block_index": 101,
+          "block_index": 106,
           "points": [
             {
               "slug": "the-substrate-was-built-from-what-broke-not-designed-up-front",
               "text": "The substrate was built from what broke, not designed.",
-              "block_index": 103
+              "block_index": 108
             },
             {
               "slug": "a-stale-model-makes-agents-plan-against-a-system-that-no-longer-exists",
               "text": "A stale model makes agents plan against a dead system.",
-              "block_index": 105
+              "block_index": 110
             },
             {
               "slug": "the-checklist-approach-fails-because-a-hand-maintained-list-rots",
               "text": "A hand-maintained checklist rots the moment the code moves.",
-              "block_index": 107
+              "block_index": 112
             }
           ]
         },
@@ -1106,17 +1115,17 @@
           "heading_text": "Reading the fix off real drift",
           "topic_sentence": "The right sensor was read off real drift rather than guessed.",
           "id_source": "derived",
-          "block_index": 109,
+          "block_index": 114,
           "points": [
             {
               "slug": "the-fix-was-read-off-real-drift-not-guessed",
               "text": "The fix was read off real drift, not guessed.",
-              "block_index": 111
+              "block_index": 116
             },
             {
               "slug": "the-graph-is-nodes-the-system-already-has-joined-by-re-proved-edges",
               "text": "The graph joins existing nodes by re-proved edges.",
-              "block_index": 113
+              "block_index": 118
             }
           ]
         },
@@ -1126,17 +1135,17 @@
           "heading_text": "Two decisions that make the graph resist rot",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 115,
+          "block_index": 120,
           "points": [
             {
               "slug": "the-symbol-walk-fires-at-a-slower-cadence-because-the-cadence-follows-the-cost",
               "text": "The symbol walk fires slowly because cadence follows cost.",
-              "block_index": 118
+              "block_index": 123
             },
             {
               "slug": "derived-sensors-defend-snapshotted-ones-drift",
               "text": "Derived sensors defend; snapshotted ones drift.",
-              "block_index": 120
+              "block_index": 125
             }
           ]
         },
@@ -1146,17 +1155,17 @@
           "heading_text": "How to read a model page",
           "topic_sentence": "Every model page opens by naming its **entities and relations** — the slice of the system knowledge graph it projects — and then develops that slice through the five fields below.",
           "id_source": "derived",
-          "block_index": 122,
+          "block_index": 127,
           "points": [
             {
               "slug": "every-model-page-fills-the-same-five-field-template",
               "text": "Every model page fills the same five-field template.",
-              "block_index": 127
+              "block_index": 132
             },
             {
               "slug": "the-five-fields-answer-the-five-questions-a-reader-brings-to-a-model",
               "text": "The five fields answer the reader's five questions.",
-              "block_index": 131
+              "block_index": 136
             }
           ]
         },
@@ -1166,27 +1175,27 @@
           "heading_text": "A model is its schema plus its checked predicates",
           "topic_sentence": "Every model page in this Part draws the same **coherence triangle**.",
           "id_source": "derived",
-          "block_index": 133,
+          "block_index": 138,
           "points": [
             {
               "slug": "a-model-page-draws-one-shape-three-times",
               "text": "Every model page draws the coherence triangle: schema, invariants, checker.",
-              "block_index": 134
+              "block_index": 139
             },
             {
               "slug": "the-invariants-and-gate-complete-the-models-value",
               "text": "A model's value is both its schema and checked invariants.",
-              "block_index": 136
+              "block_index": 141
             },
             {
               "slug": "each-invariant-was-earned-from-a-failure",
               "text": "Each invariant was earned from a failure.",
-              "block_index": 138
+              "block_index": 143
             },
             {
               "slug": "the-trunk-is-built-so-the-branches-can-be-walked",
               "text": "The trunk is built; the five views are the branches.",
-              "block_index": 149
+              "block_index": 154
             }
           ]
         }
@@ -2016,6 +2025,26 @@
               "block_index": 122
             }
           ]
+        },
+        {
+          "section_id": "can-alignment-exist-without-models",
+          "level": 2,
+          "heading_text": "Can alignment exist without models?",
+          "topic_sentence": "One question sits under everything this Part has built, and it is worth answering before the next Part takes these models up as authority: can alignment exist without models at all?",
+          "id_source": "derived",
+          "block_index": 124,
+          "points": [
+            {
+              "slug": "alignment-without-models-yields-weak-authority",
+              "text": "Implicit representations support only weak authority; explicit models are the substrate for stronger guarantees.",
+              "block_index": 125
+            },
+            {
+              "slug": "part-2-closed-the-zoo-part-3-gives-authority",
+              "text": "The models are built; the next Part gives them authority.",
+              "block_index": 131
+            }
+          ]
         }
       ],
       "preamble_points": []
@@ -2079,21 +2108,12 @@
           "points": []
         },
         {
-          "section_id": "mbse-nav-token",
-          "level": 3,
-          "heading_text": "The fewer-tokens leg — a navigation pilot",
-          "topic_sentence": "The measurement above is the *quality* leg — the model stays true to the code.",
-          "id_source": "explicit",
-          "block_index": 36,
-          "points": []
-        },
-        {
           "section_id": "the-two-failure-modes-where-drift-still-escapes",
           "level": 2,
           "heading_text": "The two failure modes: where drift still escapes",
           "topic_sentence": "The net has two escape hatches.",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 36,
           "points": []
         },
         {
@@ -2102,28 +2122,8 @@
           "heading_text": "The honest reading",
           "topic_sentence": "The result is narrow, and stating its limits is part of stating it.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 42,
           "points": []
-        },
-        {
-          "section_id": "can-alignment-exist-without-models",
-          "level": 2,
-          "heading_text": "Can alignment exist without models?",
-          "topic_sentence": "One question sits under everything this Part has built, and it is worth answering before the next Part takes these models up as authority: can alignment exist without models at all?",
-          "id_source": "derived",
-          "block_index": 51,
-          "points": [
-            {
-              "slug": "alignment-without-models-yields-weak-authority",
-              "text": "Implicit representations support only weak authority; explicit models are the substrate for stronger guarantees.",
-              "block_index": 52
-            },
-            {
-              "slug": "part-2-closed-the-zoo-part-3-gives-authority",
-              "text": "The models are built; the next Part gives them authority.",
-              "block_index": 58
-            }
-          ]
         }
       ],
       "preamble_points": []

@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 36,
     "slugs_rendered": 27,
-    "total_sites": 1517,
+    "total_sites": 1516,
     "by_projection": {
       "book-pdf": 24,
-      "book-web": 1092,
+      "book-web": 1091,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -69,7 +69,7 @@
           },
           {
             "file": "book/2.12-keeping-models-in-sync.html",
-            "occ": 8
+            "occ": 7
           },
           {
             "file": "book/2.2-from-context-to-control.html",
@@ -77,7 +77,7 @@
           },
           {
             "file": "book/2.3-the-executable-zoo.html",
-            "occ": 30
+            "occ": 31
           },
           {
             "file": "book/2.4-views-are-projections.html",
@@ -1555,7 +1555,7 @@
           },
           {
             "file": "book/2.12-keeping-models-in-sync.html",
-            "occ": 12
+            "occ": 10
           },
           {
             "file": "book/2.2-from-context-to-control.html",
@@ -1579,7 +1579,7 @@
           },
           {
             "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 15
+            "occ": 17
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -2885,7 +2885,7 @@
           },
           {
             "file": "book/2.12-keeping-models-in-sync.html",
-            "occ": 68
+            "occ": 63
           },
           {
             "file": "book/2.2-from-context-to-control.html",
@@ -2893,7 +2893,7 @@
           },
           {
             "file": "book/2.3-the-executable-zoo.html",
-            "occ": 154
+            "occ": 157
           },
           {
             "file": "book/2.4-views-are-projections.html",
@@ -2909,7 +2909,7 @@
           },
           {
             "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 57
+            "occ": 58
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -3914,10 +3914,6 @@
             "occ": 4
           },
           {
-            "file": "book/2.12-keeping-models-in-sync.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.2-from-context-to-control.html",
             "occ": 2
           },
@@ -4029,7 +4025,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 35
+            "occ": 34
           }
         ]
       },
@@ -5297,7 +5293,7 @@
           },
           {
             "file": "book/2.12-keeping-models-in-sync.html",
-            "occ": 5
+            "occ": 3
           },
           {
             "file": "book/2.2-from-context-to-control.html",
@@ -5305,7 +5301,7 @@
           },
           {
             "file": "book/2.3-the-executable-zoo.html",
-            "occ": 13
+            "occ": 14
           },
           {
             "file": "book/2.4-views-are-projections.html",
@@ -5321,7 +5317,7 @@
           },
           {
             "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/3.1-the-agent-stack.html",
