@@ -7,7 +7,7 @@
     "derived_ids": 270,
     "missing_topic_sentence": 9,
     "sections_drained": 192,
-    "paragraph_points": 637
+    "paragraph_points": 635
   },
   "chapters": [
     {
@@ -723,34 +723,24 @@
           "section_id": "knowledge-graphs-and-engineering-models",
           "level": 2,
           "heading_text": "Knowledge graphs and engineering models",
-          "topic_sentence": "Modern agent architectures increasingly augment foundation models with external knowledge.",
+          "topic_sentence": "Modern agent architectures already externalize knowledge.",
           "id_source": "derived",
-          "block_index": 11,
+          "block_index": 9,
           "points": [
             {
               "slug": "agent-architectures-augment-the-model-with-external-knowledge",
               "text": "Agent architectures already externalize knowledge; a knowledge graph serves as an external reasoning substrate.",
-              "block_index": 13
+              "block_index": 11
             },
             {
               "slug": "mage-begins-from-the-same-observation-asks-a-different-question",
               "text": "MAGE begins from the same observation, then asks how knowledge should be represented so the environment, not only the agent, can reason over it.",
-              "block_index": 17
+              "block_index": 15
             },
             {
               "slug": "the-distinction-is-functional-not-structural",
-              "text": "The distinction is functional, not structural: dependency, semantics, and authority over one substrate.",
-              "block_index": 19
-            },
-            {
-              "slug": "the-question-is-who-depends-what-semantics-what-authority",
-              "text": "The question is not whether the representation is a graph, but who depends on it, what it asserts, and what authority it holds.",
-              "block_index": 21
-            },
-            {
-              "slug": "the-modeling-thesis-generalizes-knowledge-graphs",
-              "text": "The Modeling Thesis does not replace knowledge graphs; it generalizes them.",
-              "block_index": 23
+              "text": "The distinction between a knowledge graph and an engineering model is functional, not structural: dependency, semantics, and authority over one substrate.",
+              "block_index": 17
             }
           ]
         },
@@ -758,24 +748,24 @@
           "section_id": "the-system-knowledge-graph",
           "level": 2,
           "heading_text": "The system knowledge graph",
-          "topic_sentence": "The simplest useful form for that knowledge is a graph.",
+          "topic_sentence": "The simplest useful form for that knowledge is a graph — the *system knowledge graph*.",
           "id_source": "derived",
-          "block_index": 25,
+          "block_index": 19,
           "points": [
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of that knowledge is a graph.",
-              "block_index": 27
+              "block_index": 21
             },
             {
               "slug": "graph-is-structure-not-storage",
               "text": "Graph names the structure, not the storage technology.",
-              "block_index": 30
+              "block_index": 24
             },
             {
               "slug": "relevance-follows-relationships",
               "text": "Context engineering expressed structurally: relevance follows relationships.",
-              "block_index": 32
+              "block_index": 26
             }
           ]
         },
@@ -783,43 +773,38 @@
           "section_id": "industry-already-lives-here",
           "level": 2,
           "heading_text": "Industry already lives here",
-          "topic_sentence": "Externalizing knowledge this way is the first rung of the Modeling Thesis, and much of current industrial practice already stands on it.",
+          "topic_sentence": "Externalizing knowledge this way is the most basic move of the Modeling Thesis, and much of current practice already stands on it.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 29,
           "points": [
             {
               "slug": "knowledge-rep-is-the-first-rung",
-              "text": "Externalized knowledge representation is the first rung of the Modeling Thesis.",
-              "block_index": 37
+              "text": "Externalized knowledge representation is the most basic move of the Modeling Thesis, and most of industry already stands on it.",
+              "block_index": 31
             },
             {
               "slug": "knowledge-rep-universal-graph-common-executable-not",
               "text": "Knowledge representation is universal in the corpus; graph-shaped representation common; invariant-bearing models not.",
-              "block_index": 41
+              "block_index": 35
             }
           ]
         }
       ],
       "preamble_points": [
         {
-          "slug": "part-two-opens-on-the-modeling-thesis-stated-whole",
-          "text": "Part 2's governing claim, the Modeling Thesis, stated whole.",
+          "slug": "a-reasoner-arrives-knowing-nothing-about-your-system",
+          "text": "A foundation model knows the languages and patterns; it does not know your system.",
           "block_index": 1
         },
         {
-          "slug": "a-reasoner-arrives-knowing-nothing-about-your-system",
-          "text": "A commodity reasoner arrives knowing almost nothing about your system.",
-          "block_index": 5
-        },
-        {
           "slug": "rediscovery-is-the-binding-cost-at-system-scale",
-          "text": "Rediscovering the system from source is the binding cost at scale.",
-          "block_index": 7
+          "text": "Reconstruction from source is free until the system outgrows the reasoning horizon; then every task pays it again.",
+          "block_index": 3
         },
         {
           "slug": "the-first-purpose-of-a-model-is-better-context",
-          "text": "The first purpose of a model is modest: give the intelligence better context.",
-          "block_index": 9
+          "text": "The first job of a model is modest: preserve the knowledge the next reasoning episode should not have to rediscover.",
+          "block_index": 5
         }
       ]
     },
@@ -831,14 +816,14 @@
           "section_id": "the-capability-ladder",
           "level": 2,
           "heading_text": "The capability ladder",
-          "topic_sentence": "The climb from context to control has rungs, and naming them gives the rest of this Part its shape.",
+          "topic_sentence": "Naming the steps from context to control gives the rest of this Part its organizing model.",
           "id_source": "derived",
-          "block_index": 8,
+          "block_index": 7,
           "points": [
             {
               "slug": "the-ladder-orders-capabilities-not-organizations",
-              "text": "The ladder orders representational capabilities, not organizations.",
-              "block_index": 10
+              "text": "The capability ladder orders representational capabilities, not organizations.",
+              "block_index": 9
             }
           ]
         },
@@ -846,24 +831,24 @@
           "section_id": "the-turn-from-modeling-to-alignment",
           "level": 2,
           "heading_text": "The turn from modeling to alignment",
-          "topic_sentence": "The two axes of the ladder are one motion seen from two sides.",
+          "topic_sentence": "The two sides of the ladder are one motion seen twice.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 16,
           "points": [
             {
               "slug": "knowledge-rep-makes-legible-executable-modeling-makes-analyzable",
               "text": "Knowledge representation makes the system legible; executable modeling makes it analyzable.",
-              "block_index": 20
+              "block_index": 18
             },
             {
               "slug": "modeling-makes-intent-explicit-alignment-makes-it-binding",
               "text": "Modeling makes intent explicit; Alignment makes it binding.",
-              "block_index": 22
+              "block_index": 20
             },
             {
               "slug": "representation-alignment-proposition",
-              "text": "Representation–Alignment Proposition: more explicit structure expands what can be enforced deterministically.",
-              "block_index": 25
+              "text": "Representation–Alignment Proposition: more explicit structure makes more obligations eligible for deterministic enforcement.",
+              "block_index": 22
             }
           ]
         },
@@ -873,12 +858,12 @@
           "heading_text": "Where to start",
           "topic_sentence": "The ladder answers a question every real team asks: where do I start?",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 25,
           "points": [
             {
               "slug": "start-at-the-lowest-rung-that-solves-a-real-problem",
-              "text": "Start at the lowest rung that solves a real reasoning problem; climb when a question justifies it.",
-              "block_index": 32
+              "text": "Start at the lowest step that solves a real reasoning problem; strengthen the model when a recurring question justifies it.",
+              "block_index": 27
             }
           ]
         }
@@ -891,8 +876,13 @@
         },
         {
           "slug": "one-artifact-serves-three-roles",
-          "text": "The same artifact serves three roles: knowledge graph, engineering model, governed model.",
+          "text": "A structured representation serves three increasingly strong roles: context, engineering model, governed environment.",
           "block_index": 3
+        },
+        {
+          "slug": "what-makes-a-representation-a-model",
+          "text": "A representation becomes a model when it is reduced, machine-readable, and mechanically kept related to the system.",
+          "block_index": 5
         }
       ]
     },

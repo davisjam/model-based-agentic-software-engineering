@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 36,
     "slugs_rendered": 27,
-    "total_sites": 1604,
+    "total_sites": 1605,
     "by_projection": {
       "book-pdf": 24,
-      "book-web": 1179,
+      "book-web": 1180,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -65,7 +65,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 26
+            "occ": 25
           },
           {
             "file": "book/2.12-keeping-models-in-sync.html",
@@ -1595,7 +1595,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 30
+            "occ": 28
           },
           {
             "file": "book/2.12-keeping-models-in-sync.html",
@@ -1603,7 +1603,7 @@
           },
           {
             "file": "book/2.2-from-context-to-control.html",
-            "occ": 30
+            "occ": 29
           },
           {
             "file": "book/2.3-the-executable-zoo.html",
@@ -3013,7 +3013,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 28
+            "occ": 29
           },
           {
             "file": "book/2.12-keeping-models-in-sync.html",
@@ -3021,7 +3021,7 @@
           },
           {
             "file": "book/2.2-from-context-to-control.html",
-            "occ": 53
+            "occ": 55
           },
           {
             "file": "book/2.3-the-executable-zoo.html",
@@ -4806,6 +4806,10 @@
             "occ": 5
           },
           {
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
+            "occ": 1
+          },
+          {
             "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 1
           },
@@ -4849,7 +4853,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 14
+            "occ": 15
           }
         ]
       },
@@ -5561,7 +5565,7 @@
           },
           {
             "file": "book/2.2-from-context-to-control.html",
-            "occ": 8
+            "occ": 11
           },
           {
             "file": "book/2.3-the-executable-zoo.html",
