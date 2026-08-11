@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 36,
     "slugs_rendered": 27,
-    "total_sites": 1651,
+    "total_sites": 1650,
     "by_projection": {
       "book-pdf": 24,
-      "book-web": 1225,
+      "book-web": 1224,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -93,7 +93,7 @@
           },
           {
             "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -889,7 +889,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 39
+            "occ": 40
           },
           {
             "file": "catalogue-figure.html",
@@ -1635,7 +1635,7 @@
           },
           {
             "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 17
+            "occ": 19
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -3113,7 +3113,7 @@
           },
           {
             "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 70
+            "occ": 67
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -3989,7 +3989,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 110
+            "occ": 103
           },
           {
             "file": "catalogue-figure.html",
@@ -4926,10 +4926,6 @@
             "occ": 1
           },
           {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 1
-          },
-          {
             "file": "book/3.3-the-governed-environment.html",
             "occ": 1
           },
@@ -4969,7 +4965,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 15
+            "occ": 14
           }
         ]
       },

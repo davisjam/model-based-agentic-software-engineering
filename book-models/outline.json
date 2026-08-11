@@ -7,7 +7,7 @@
     "derived_ids": 274,
     "missing_topic_sentence": 8,
     "sections_drained": 186,
-    "paragraph_points": 600
+    "paragraph_points": 599
   },
   "chapters": [
     {
@@ -1612,7 +1612,7 @@
           "heading_text": "The Joined Model",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 72,
           "points": []
         },
         {
@@ -1621,12 +1621,12 @@
           "heading_text": "The views pay off when they join",
           "topic_sentence": "The five views earn their keep separately.",
           "id_source": "derived",
-          "block_index": 74,
+          "block_index": 73,
           "points": [
             {
               "slug": "the-views-are-worth-more-joined-than-apart",
               "text": "The five views are useful apart; their real value appears when they join.",
-              "block_index": 75
+              "block_index": 74
             }
           ]
         },
@@ -1636,12 +1636,12 @@
           "heading_text": "A request walks the connected slice",
           "topic_sentence": "Trace a single request.",
           "id_source": "derived",
-          "block_index": 77,
+          "block_index": 76,
           "points": [
             {
               "slug": "a-request-traverses-every-view-along-one-connected-slice",
               "text": "One engineering question traverses every view along a single connected slice.",
-              "block_index": 79
+              "block_index": 78
             }
           ]
         },
@@ -1651,12 +1651,12 @@
           "heading_text": "The graph is what lets the views meet",
           "topic_sentence": "The walk works only because every view names the same entities.",
           "id_source": "derived",
-          "block_index": 81,
+          "block_index": 80,
           "points": [
             {
               "slug": "the-graph-lets-the-views-meet-on-stable-identity",
               "text": "The system knowledge graph joins the views on stable identity, not on hand-kept consistency.",
-              "block_index": 82
+              "block_index": 81
             }
           ]
         },
@@ -1666,22 +1666,22 @@
           "heading_text": "Where Modeling meets Alignment",
           "topic_sentence": "This is also where the Modeling Thesis meets the Alignment Thesis.",
           "id_source": "derived",
-          "block_index": 84,
+          "block_index": 83,
           "points": [
             {
               "slug": "an-explicit-relation-can-carry-a-predicate",
               "text": "Once a relation is written down explicitly, the environment can attach a predicate to it.",
-              "block_index": 85
+              "block_index": 84
             },
             {
               "slug": "a-model-earns-its-place-twice",
               "text": "A model earns its place twice — it compresses the system for reasoning, and it creates a surface for obligations.",
-              "block_index": 87
+              "block_index": 86
             },
             {
               "slug": "this-part-supplied-the-world-the-next-part-gives-it-authority",
               "text": "This Part supplied the structured world; the next Part gives that world authority.",
-              "block_index": 89
+              "block_index": 88
             }
           ]
         },
@@ -1691,21 +1691,21 @@
           "heading_text": "The Scope of Modeling",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 91,
+          "block_index": 90,
           "points": []
         },
         {
           "section_id": "this-book-s-boundary",
           "level": 2,
           "heading_text": "This book's boundary",
-          "topic_sentence": "This Part climbed one ascent: from selecting the right context, to connected knowledge, to executable models, to a governed model the environment holds equal to the code.",
+          "topic_sentence": "MAGE does not replace established modeling disciplines.",
           "id_source": "derived",
-          "block_index": 93,
+          "block_index": 92,
           "points": [
             {
               "slug": "this-book-is-an-introduction-the-doorway-outward",
               "text": "This chapter is the doorway outward.",
-              "block_index": 95
+              "block_index": 94
             }
           ]
         },
@@ -1715,17 +1715,17 @@
           "heading_text": "When a sketch graduates",
           "topic_sentence": "There is a moment when a working sketch stops carrying its weight, and it is worth learning to see it coming.",
           "id_source": "derived",
-          "block_index": 97,
+          "block_index": 96,
           "points": [
             {
               "slug": "graduate-when-the-goal-sharpens-past-the-sketch",
               "text": "Graduate tools when the quality goal sharpens past the sketch.",
-              "block_index": 99
+              "block_index": 98
             },
             {
               "slug": "the-recognition-signal-is-a-preference-hardening-into-a-constraint",
               "text": "The signal: a soft preference hardening into a hard constraint.",
-              "block_index": 101
+              "block_index": 100
             }
           ]
         },
@@ -1735,22 +1735,17 @@
           "heading_text": "Where each view sends you",
           "topic_sentence": "Each view here is deliberately lightweight relative to the full analytic traditions behind it — even the ones that are executable registries with gates carry a fraction of what their fields can say.",
           "id_source": "derived",
-          "block_index": 103,
+          "block_index": 102,
           "points": [
             {
               "slug": "each-view-is-a-sketch-a-deeper-tool-waits",
               "text": "Each view is deliberately lightweight; a heavier method waits.",
-              "block_index": 105
+              "block_index": 104
             },
             {
               "slug": "a-protocol-property-needs-a-temporal-logic-model-checker",
               "text": "A protocol property needs a temporal-logic model checker.",
-              "block_index": 110
-            },
-            {
-              "slug": "digital-twins-shadow-a-physical-thing-out-of-scope",
-              "text": "The digital twin shadows a physical thing, not code.",
-              "block_index": 114
+              "block_index": 109
             }
           ]
         },
@@ -1758,19 +1753,19 @@
           "section_id": "models-tier-reasoning-descends",
           "level": 2,
           "heading_text": "Models tier; reasoning descends",
-          "topic_sentence": "One scaling move underlies the whole zoo.",
+          "topic_sentence": "One scaling move underlies every model here.",
           "id_source": "derived",
-          "block_index": 116,
+          "block_index": 112,
           "points": [
             {
               "slug": "tiered-models-are-how-a-finite-reasoner-scales-to-an-unbounded-system",
               "text": "Tiered models are how a finite reasoner scales.",
-              "block_index": 119
+              "block_index": 115
             },
             {
               "slug": "every-tool-keeps-a-model-honest-against-some-territory",
               "text": "Every tool keeps a model honest against some territory.",
-              "block_index": 122
+              "block_index": 118
             }
           ]
         },
@@ -1780,17 +1775,17 @@
           "heading_text": "Can alignment exist without models?",
           "topic_sentence": "One question sits under everything this Part has built, and it is worth answering before the next Part takes these models up as authority: can alignment exist without models at all?",
           "id_source": "derived",
-          "block_index": 124,
+          "block_index": 120,
           "points": [
             {
               "slug": "alignment-without-models-yields-weak-authority",
               "text": "Implicit representations support only weak authority; explicit models are the substrate for stronger guarantees.",
-              "block_index": 125
+              "block_index": 121
             },
             {
               "slug": "part-2-closed-the-zoo-part-3-gives-authority",
               "text": "The models are built; the next Part gives them authority.",
-              "block_index": 131
+              "block_index": 127
             }
           ]
         }
