@@ -686,9 +686,9 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Phase-2c reconciled the thesis/spine mismatch by REWEIGHTING the opening (option b), not relabeling the spine: the chapter's staircase thread now foregrounds the seat climbing (seat-moves) made safe by each step's model or control (oversight-does-not-scale), with the DocAble narrative grounding it (grounded-in-one-case) — the three claims the spine labels. The former headline 'the models accrete until the codebase can be reasoned about entirely through them' (a Modeling-Thesis over-claim; modeling is Part 3's job, advanced across 18 chapters) is demoted to a supporting observation. thesis_target modeling -> argument-step; spine labels unchanged, so check_argument_spine stays green. Closes on the Missing-Model-Metric loop + MAGE-was-demanded synthesis.",
+      "note": "Round-12 merge (old 5.4 Built System + old 5.5 Road to MAGE, ~70% cut). The chapter opens on what ultimately shipped — a six-responsibility tour + the LLM-as-function-call pattern — then walks the delegation staircase that forced the method out of it: the seat climbing (seat-moves) made safe by each step's model or control (oversight-does-not-scale), grounded in the DocAble narrative (grounded-in-one-case) — the three claims the spine labels. thesis_target stays argument-step; spine labels unchanged, so check_argument_spine stays green. The Missing-Model-Metric mechanics were SENT to 4.2-brownfield (round-12 G3); the chapter keeps only the three-bugs inset + a one-line pointer, plus the round-10 traceability incident as a ≤1-para field note. Closes on the delegation-climbed-as-far-as-the-controls synthesis and the frontispiece boxes now made real.",
       "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Thesis",
-      "closing_anchor": "case — whether they transfer is the question [Part 6](6.1-toward-a-theory-of-mage.html) takes up."
+      "closing_anchor": "whether the method transfers is the question [Part 6](6.1-toward-a-theory-of-mage.html) takes up."
     },
     {
       "slug": "implications-for-se",

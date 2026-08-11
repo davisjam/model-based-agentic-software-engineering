@@ -403,6 +403,12 @@
       "location": "part5",
       "rationale": "the built system's runtime architecture — case-study anchor"
     },
+    "assets/system-overview.svg": {
+      "tier": "B",
+      "kind": "architectural-overview",
+      "location": "part5",
+      "rationale": "the six-responsibility end-to-end tour — supports the responsibility bullets above it"
+    },
     "assets/frontend-mvc-editor-dsl.svg": {
       "tier": "B",
       "kind": "architectural-detail",

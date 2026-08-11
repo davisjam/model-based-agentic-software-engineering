@@ -30,7 +30,7 @@
     "outcomes_with_elaborative_units": 20,
     "elaborative_links": 27,
     "units_serving_as_elaborative": 20,
-    "sections_total": 295,
+    "sections_total": 284,
     "sections_primary_of_an_outcome": 39,
     "modules": 7,
     "lessons": 37
@@ -855,16 +855,16 @@
       "gap_note": null
     },
     {
-      "outcome_id": "the-road-to-mage::trace-the-author-s-path-from-solo-co-coder-to",
+      "outcome_id": "the-road-to-mage::trace-how-the-built-system-forced-the-method-o",
       "granularity": "chapter",
       "primary_unit": "the-road-to-mage",
       "secondary_units": [],
       "verb": "trace",
-      "obj": "the author's path from solo co-coder to tech lead of an agent crew",
-      "statement": "After this chapter, the reader can trace the role progression — co-coder, QA, review-lead, tech-lead — that grew a single developer into an agent organization.",
+      "obj": "how the built system forced the method out of it — the delegation staircase from solo co-coder to architect, each rung safe only because the step below minted the control it needed",
+      "statement": "After this chapter, the reader can trace the delegation staircase — co-coder, QA, review lead, tech lead, architect — by which the built system forced MAGE out of it, and can name why each rung was safe to climb only because the step below first minted the control that caught what the delegation dropped.",
       "bloom": "analyze",
       "provenance": "declared",
-      "anchor": "Section titles 'role-co-coder-step-one-...', 'role-qa-step-two-...', 'role-review-lead-step-three-...', 'role-tech-lead-step-four-...'.",
+      "anchor": "The merged chapter: 'What ultimately got built' (six-responsibility tour + system-overview figure), 'The LLM as a function call' (#llm-as-function-call), and 'The staircase' with the five rung lead-ins (Co-coder / QA / Review lead / Tech lead / Architect) + the mage-staircase figure.",
       "gap_note": null
     },
     {
