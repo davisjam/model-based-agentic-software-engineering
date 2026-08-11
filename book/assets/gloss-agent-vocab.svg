@@ -4,7 +4,8 @@
 <!-- semantic-families: neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Layered stack: how coding agents work, and the causal tail of how they fail">
   <defs>
-    <marker id="vh-av" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <!-- userSpaceOnUse so the 3px-stroke connectors keep a fixed ~11px head instead of scaling to ~21px (strokeWidth×3) and swallowing the short 20px inter-layer shafts. -->
+    <marker id="vh-av" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
   <rect x="0" y="0" width="1000" height="500" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
@@ -75,9 +76,9 @@
   <rect x="690" y="366" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
   <text x="800" y="395" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Churn</text>
 
-  <!-- bridge: the Context Window instantiates the horizon limit today -->
-  <line x1="580" y1="424" x2="690" y2="270" stroke="#cfcabf" stroke-width="3" stroke-dasharray="4 4" marker-end="url(#vh-av)"/>
-  <text x="612" y="360" font-size="16" fill="#78716c">instantiates</text>
+  <!-- bridge: the Context Window instantiates the horizon limit today. Orthogonal L-connector (right, up, right) through the empty middle gap — never a harsh diagonal. -->
+  <polyline points="580,424 635,424 635,261 690,261" fill="none" stroke="#cfcabf" stroke-width="3" stroke-dasharray="4 4" marker-end="url(#vh-av)"/>
+  <text x="645" y="350" font-size="16" fill="#78716c">instantiates</text>
 
   <!-- the two glossary terms that annotate the stack but aren't layers: Skill/Tool defined via chips above; Fleet noted below -->
   <text x="95" y="484" font-size="16" fill="#57534e">A <tspan font-weight="bold">Fleet</tspan> is many such stacks working one codebase — the agentic-era workforce this book governs.</text>
