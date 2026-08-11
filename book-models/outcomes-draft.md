@@ -169,8 +169,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 4.3-validating-change
 
   - **[DERIVED]** (apply) After this section, the reader can apply the one move behind property testing, fuzzing, and fuzz-MBSE: a generator hunting a counterexample to a stated model. _(primary: the-move-a-generator-hunts-a-counterexample-to-a-model · elaborated by: when-to-reach-for-which)_ — _anchor: Heading text: 'The move: a generator hunts a counterexample to a model'._
-  - **[DERIVED]** (evaluate) After this section, the reader can choose which validation strategy to reach for by the specification it attacks. — _anchor: Heading text: 'When to reach for which'._
-  - _elaborates (owned by the-move-a-generator-hunts-a-counterexample-to-a-model):_ (apply) After this section, the reader can apply the one move behind property testing, fuzzing, and fuzz-MBSE: a generator hunting a counterexample to a stated model.
 
 ### Lesson 4.4-the-skills
 
