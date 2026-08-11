@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 36,
     "slugs_rendered": 27,
-    "total_sites": 1551,
+    "total_sites": 1552,
     "by_projection": {
       "book-pdf": 24,
-      "book-web": 1126,
+      "book-web": 1127,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -137,7 +137,7 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 23
+            "occ": 24
           },
           {
             "file": "book/4.2-brownfield.html",
@@ -149,7 +149,7 @@
           },
           {
             "file": "book/4.4-the-skills.html",
-            "occ": 50
+            "occ": 51
           },
           {
             "file": "book/5.1-the-ada-context.html",
@@ -2754,6 +2754,10 @@
             "occ": 4
           },
           {
+            "file": "book/4.1-the-mage-workflow.html",
+            "occ": 1
+          },
+          {
             "file": "book/4.2-brownfield.html",
             "occ": 2
           },
@@ -2809,7 +2813,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 26
+            "occ": 27
           }
         ]
       },
@@ -3009,7 +3013,7 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 26
+            "occ": 34
           },
           {
             "file": "book/4.2-brownfield.html",
@@ -4205,7 +4209,7 @@
           },
           {
             "file": "book/1.5-the-engineers-seat.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
