@@ -6,7 +6,7 @@
     "core": 9,
     "local": 7,
     "overlaps": 0,
-    "slogans": 9,
+    "slogans": 8,
     "commandments": 0,
     "used_once": 1
   },
@@ -439,29 +439,6 @@
         "reliability from the environment, not repeated inspection"
       ],
       "notes": "Points at the apparatus-is-the-review claim added to claims_declared.json (ratified decision A) — a major book claim that previously had no declared home."
-    },
-    {
-      "kind": "slogan",
-      "name": "Human role",
-      "slug": "human-role",
-      "canonical": "The keystrokes move; the accountability does not.",
-      "elaborates": {
-        "model": "argument-spine",
-        "id": "seat-moves"
-      },
-      "scope": "invoke-by-name",
-      "ration_budget": 3,
-      "home": {
-        "label": "why-mage-follows-from-the-machine",
-        "anchor": ""
-      },
-      "competitors": [
-        "code got cheap, judgment did not",
-        "developer's seat goes to the fleet",
-        "implementation moves toward the fleet",
-        "SDLC becomes SELC"
-      ],
-      "notes": "The seat-moves slogan. Co-elaborated by the commandment 'Govern; do not type' (sanctioned refrain) and the compiler-analogy metaphor — none competes with this canonical."
     },
     {
       "kind": "slogan",

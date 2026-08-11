@@ -54,7 +54,7 @@ EXPECT_CORE = 9
 EXPECT_LOCAL = 7
 EXPECT_OVERLAPS = 0
 #: The ratified slogan split (by scope): invoke-by-name canonicals / commandments / used-once lines.
-EXPECT_SLOGANS = 9
+EXPECT_SLOGANS = 8
 EXPECT_COMMANDMENTS = 0
 EXPECT_USED_ONCE = 1
 
