@@ -3,14 +3,14 @@
   "_note": "The argument-spine model holds the book's linear argument as an ordered run of claims, each reconciling the author's seed statements, the claims model, and the Big-Ideas model into one step — plus the per-chapter labeling of which steps each chapter advances. The `flags` block is DERIVED editorial signal and never gates: CHAPTER-side (a non-exempt chapter advancing 0 steps is suspect; one advancing more than the focus cap is probably unfocused — the directive's Phase-1c worklist) AND CLAIM-side health (a non-exempt claim advanced by 0 chapters is a gap; one advanced only within Part 0/1 is front-loaded/shallow; one advanced by more than the overmap cap is an overmapping-audit surface). Per-claim `reviewed_hash` seeds the AS8 freshness sensor: a statement edited without a re-review reddens its advancing chapters. Exempt chapters (preface / conclusion / discussion / end-of-part synthesis / apparatus) and exempt claims (genuine front-loaded-by-design premises) are the ones whose breadth, silence, or shallow reach is their job.",
   "_counts": {
     "spine_claims": 15,
-    "chapters_labeled": 36,
+    "chapters_labeled": 34,
     "chapters_exempt": 11,
-    "advancement_edges": 94,
+    "advancement_edges": 91,
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
     "zero_claim_suspects": 2,
-    "over_cap_unfocused": 2,
+    "over_cap_unfocused": 3,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
     "overmapped_claims": 2,
@@ -70,11 +70,10 @@
         "0.4-preface",
         "1.1-the-printer",
         "1.2-mage-by-example",
-        "5.2-why-this-system-was-a-hard-case",
-        "5.3-the-timeline-and-the-work",
-        "5.6-governance-conversions"
+        "5.2-the-build",
+        "5.4-failures-that-became-infrastructure"
       ],
-      "body_depth": 3,
+      "body_depth": 2,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -102,7 +101,7 @@
       "advanced_by": [
         "0.4-preface",
         "1.1-the-printer",
-        "5.6-governance-conversions",
+        "5.4-failures-that-became-infrastructure",
         "6.8-conclusion"
       ],
       "body_depth": 2,
@@ -133,7 +132,7 @@
       "advanced_by": [
         "0.4-preface",
         "1.2-mage-by-example",
-        "5.5-the-road-to-mage",
+        "5.3-the-road-to-mage",
         "6.5-implications-for-se"
       ],
       "body_depth": 2,
@@ -236,7 +235,7 @@
         "4.2-brownfield",
         "4.4-the-skills",
         "4.5-lifecycles-and-runbooks",
-        "5.6-governance-conversions",
+        "5.4-failures-that-became-infrastructure",
         "6.5-implications-for-se"
       ],
       "body_depth": 10,
@@ -289,7 +288,7 @@
         "4.2-brownfield",
         "4.3-validating-change",
         "4.6-metrics",
-        "5.4-the-built-system"
+        "5.3-the-road-to-mage"
       ],
       "body_depth": 16,
       "front_loaded": false,
@@ -330,7 +329,7 @@
         "4.1-the-mage-workflow",
         "4.3-validating-change",
         "4.6-metrics",
-        "5.6-governance-conversions"
+        "5.4-failures-that-became-infrastructure"
       ],
       "body_depth": 8,
       "front_loaded": false,
@@ -397,7 +396,7 @@
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "4.4-the-skills",
-        "5.6-governance-conversions"
+        "5.4-failures-that-became-infrastructure"
       ],
       "body_depth": 5,
       "front_loaded": false,
@@ -460,12 +459,11 @@
       "advanced_by": [
         "0.4-preface",
         "2.7-scenarios-and-the-joined-model",
-        "5.2-why-this-system-was-a-hard-case",
         "6.5-implications-for-se",
         "6.7-open-problems",
         "6.8-conclusion"
       ],
-      "body_depth": 5,
+      "body_depth": 4,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -492,8 +490,8 @@
       "statement_hash": "6e678662a007",
       "advanced_by": [
         "1.5-the-engineers-seat",
-        "5.5-the-road-to-mage",
-        "5.6-governance-conversions",
+        "5.3-the-road-to-mage",
+        "5.4-failures-that-became-infrastructure",
         "6.5-implications-for-se",
         "6.8-conclusion"
       ],
@@ -526,14 +524,13 @@
       "advanced_by": [
         "0.4-preface",
         "1.2-mage-by-example",
-        "5.1-the-ada-context",
-        "5.3-the-timeline-and-the-work",
-        "5.4-the-built-system",
-        "5.5-the-road-to-mage",
+        "5.1-the-problem-and-the-bar",
+        "5.2-the-build",
+        "5.3-the-road-to-mage",
         "6.2-scope-conditions",
         "6.7-open-problems"
       ],
-      "body_depth": 6,
+      "body_depth": 5,
       "front_loaded": false,
       "overmapped": false,
       "fresh": true
@@ -795,22 +792,14 @@
       "exempt": null
     },
     {
-      "slug": "5.1-the-ada-context",
+      "slug": "5.1-the-problem-and-the-bar",
       "advances": [
         "grounded-in-one-case"
       ],
       "exempt": null
     },
     {
-      "slug": "5.2-why-this-system-was-a-hard-case",
-      "advances": [
-        "abundant-implementation",
-        "mage-becomes-practical"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "5.3-the-timeline-and-the-work",
+      "slug": "5.2-the-build",
       "advances": [
         "abundant-implementation",
         "grounded-in-one-case"
@@ -818,24 +807,17 @@
       "exempt": null
     },
     {
-      "slug": "5.4-the-built-system",
-      "advances": [
-        "modeling-thesis",
-        "grounded-in-one-case"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "5.5-the-road-to-mage",
+      "slug": "5.3-the-road-to-mage",
       "advances": [
         "oversight-does-not-scale",
+        "modeling-thesis",
         "seat-moves",
         "grounded-in-one-case"
       ],
       "exempt": null
     },
     {
-      "slug": "5.6-governance-conversions",
+      "slug": "5.4-failures-that-became-infrastructure",
       "advances": [
         "abundant-implementation",
         "fault-lies-in-instructions",
@@ -938,7 +920,17 @@
         ]
       },
       {
-        "chapter": "5.6-governance-conversions",
+        "chapter": "5.3-the-road-to-mage",
+        "advances": 4,
+        "spine_ids": [
+          "oversight-does-not-scale",
+          "modeling-thesis",
+          "seat-moves",
+          "grounded-in-one-case"
+        ]
+      },
+      {
+        "chapter": "5.4-failures-that-became-infrastructure",
         "advances": 6,
         "spine_ids": [
           "abundant-implementation",
@@ -968,7 +960,7 @@
           "4.2-brownfield",
           "4.4-the-skills",
           "4.5-lifecycles-and-runbooks",
-          "5.6-governance-conversions",
+          "5.4-failures-that-became-infrastructure",
           "6.5-implications-for-se"
         ]
       },
@@ -994,7 +986,7 @@
           "4.2-brownfield",
           "4.3-validating-change",
           "4.6-metrics",
-          "5.4-the-built-system"
+          "5.3-the-road-to-mage"
         ]
       }
     ]

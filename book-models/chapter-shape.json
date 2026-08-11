@@ -1034,15 +1034,7 @@
       "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Thesis",
       "closing_anchor": "ground that the apparatus had to grow as large as it did.",
       "delivers": {
-        "concepts": [
-          "conditioning-the-search",
-          "search-space",
-          "training-data-bias",
-          "novelty-axis",
-          "reference-class",
-          "diffusion-analogy",
-          "demoable-vs-productizable"
-        ],
+        "concepts": [],
         "artifacts": [
           {
             "type": "worked-example",
@@ -1118,6 +1110,7 @@
       "exempt": null,
       "spine_advances": [
         "oversight-does-not-scale",
+        "modeling-thesis",
         "seat-moves",
         "grounded-in-one-case"
       ]
