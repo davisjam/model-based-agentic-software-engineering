@@ -2494,8 +2494,7 @@ _ROADMAP_SVG_PATH = HERE / "assets" / "book-map.svg"
 
 
 def _roadmap_nav_html(current_part: int) -> str:
-    """The interactive book-roadmap on a Part landing page (WEB only) — the web twin of the Typst
-    `_part_nav_typst` chip strip (one list, `_PART_TITLES`, two projections). Reuses `assets/book-map.svg`:
+    """The interactive book-roadmap on a Part landing page (WEB only). Reuses `assets/book-map.svg`:
     each numbered Part (1–6) becomes a native SVG `<a>` to its intro page; the CURRENT Part is a non-link,
     highlighted, `aria-current` node. No JS — the highlight is a build-time class, the links are plain
     `<a href>`. Carries NO caption and is caption-tier-exempt: it renders as a `<nav>` landmark, not a

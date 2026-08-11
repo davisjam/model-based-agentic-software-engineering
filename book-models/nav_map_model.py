@@ -1,16 +1,17 @@
 """PROJECTOR `nav_map_model` — the book's cartographic navigation layer (round-7 Thrust B).
 
-Projects two families of transit-map SVGs from ONE declared model (`nav-model.json`) plus the book's
+Projects the book-level transit-map SVGs from ONE declared model (`nav-model.json`) plus the book's
 Part-sequence single source of truth (`build_book_html._PART_TITLES`):
 
   * `assets/nav-subway-p{1..6}.svg` — the BOOK-LEVEL "subway map": the six Parts as a line of stations
     (Mindset → Modeling → Alignment → Method → Evidence → Profession), one variant per Part with THAT Part's
     station highlighted. Answers "where am I in the book?"
-  * `assets/nav-local-p{1..6}.svg` — the PART-LOCAL map: that Part's own relationship stations
-    (`local_nodes`) plus a cumulative-but-sparse vocabulary footer distinguishing `✓ Previously` (the union
-    of every earlier Part's `new_here_vocab`) from `New here` (this Part's). Answers "where am I in this Part?"
 
-WHY A PROJECTOR, not 12 hand-SVGs: the book-map drifted once already on a Part rename (its own header records
+(The former Part-local map family — `assets/nav-local-p{1..6}.svg` — was retired in the round-7 opener
+anatomy change: the leaner opener embeds only the subway map, and the Part-opener verso now renders its own
+native vocab block from `new_here_vocab` + `carrying_forward`. The projector no longer emits it.)
+
+WHY A PROJECTOR, not hand-SVGs: the book-map drifted once already on a Part rename (its own header records
 a forced manual rebuild after Modeling/Alignment swapped). A projector over `_PART_TITLES` cannot drift — a
 renumber/rename re-projects. This is the book's own IR-projection thesis turned on its navigation art.
 
@@ -18,7 +19,7 @@ Every emitted SVG carries an AUTO-GEN provenance header (a hand-edit is meant to
 and a `<!-- semantic-families: neutral -->` budget marker (these are orientation art, not role-coloured
 figures). Stdlib-only, clone-and-run, like `catalog.py`.
 
-    python3 book-models/nav_map_model.py            # re-project all 12 SVGs into book/assets/
+    python3 book-models/nav_map_model.py            # re-project all 6 subway SVGs into book/assets/
     python3 book-models/nav_map_model.py --check     # drift check: fail (exit 1) if any on-disk SVG differs
 """
 from __future__ import annotations
@@ -124,86 +125,12 @@ def render_subway(active_part: int, model: dict) -> str:
     return out
 
 
-def _cumulative_prev(model: dict, part: int) -> "list[str]":
-    """The union of every EARLIER Part's `new_here_vocab`, de-duplicated, in first-introduction order —
-    the '✓ Previously' band. Empty for Part 1."""
-    seen: "set[str]" = set()
-    prev: "list[str]" = []
-    for n in _part_nums():
-        if n >= part:
-            break
-        for term in model[str(n)]["new_here_vocab"]:
-            if term not in seen:
-                seen.add(term)
-                prev.append(term)
-    return prev
-
-
-def _wrap_terms(terms: "list[str]", max_chars: int = 68) -> "list[str]":
-    """Join terms with ' · ' and soft-wrap into lines no wider than ~max_chars, so a long vocabulary band
-    never overflows the viewBox."""
-    if not terms:
-        return []
-    lines: "list[str]" = []
-    cur = ""
-    for t in terms:
-        piece = t if not cur else f"{cur} · {t}"
-        if len(piece) > max_chars and cur:
-            lines.append(cur)
-            cur = t
-        else:
-            cur = piece
-    if cur:
-        lines.append(cur)
-    return lines
-
-
-def render_local(part: int, model: dict) -> str:
-    """The Part-local relationship map: the Part's `local_nodes` as stations, plus a sparse vocabulary
-    footer ('✓ Previously' union vs 'New here')."""
-    rec = model[str(part)]
-    nodes = rec["local_nodes"]
-    new_here = rec["new_here_vocab"]
-    prev = _cumulative_prev(model, part)
-    title = bbh._PART_TITLES.get(part, f"Part {part}")
-
-    prev_lines = _wrap_terms(prev)
-    new_lines = _wrap_terms(new_here)
-    # Height grows with the vocabulary footer so nothing clips.
-    foot_lines = (1 + len(prev_lines) if prev_lines else 0) + (1 + len(new_lines) if new_lines else 0)
-    view_h = 150 + max(0, foot_lines) * 26 + 20
-
-    out = _header(f"nav-local-p{part}", view_h)
-    out += (f'  <text x="95" y="42" font-size="17" fill="{_MUTED}">Where am I in this Part?</text>\n')
-    out += (f'  <text x="905" y="42" text-anchor="end" font-size="20" font-weight="bold" '
-            f'fill="{_INK}">Part {part} · {_esc(title)}</text>\n')
-    out += _stations_svg(nodes, 100, None, base_size=19)
-
-    y = 175
-    if prev_lines:
-        out += (f'  <text x="95" y="{y}" font-size="17" font-weight="bold" fill="{_MUTED}">'
-                f'✓ Previously</text>\n')
-        y += 24
-        for ln in prev_lines:
-            out += f'  <text x="115" y="{y}" font-size="17" fill="{_MUTED}">{_esc(ln)}</text>\n'
-            y += 26
-    if new_lines:
-        out += (f'  <text x="95" y="{y}" font-size="17" font-weight="bold" fill="{_INK}">'
-                f'New here</text>\n')
-        y += 24
-        for ln in new_lines:
-            out += f'  <text x="115" y="{y}" font-size="17" fill="{_INK}">{_esc(ln)}</text>\n'
-            y += 26
-    out += "</svg>\n"
-    return out
-
-
 def _targets(model: dict) -> "dict[str, str]":
-    """{asset_path: svg_text} for all 12 nav maps — the projection surface `regenerate` + `--check` share."""
+    """{asset_path: svg_text} for all 6 subway nav maps — the projection surface `regenerate` + `--check`
+    share."""
     out: "dict[str, str]" = {}
     for n in _part_nums():
         out[os.path.join(_ASSETS, f"nav-subway-p{n}.svg")] = render_subway(n, model)
-        out[os.path.join(_ASSETS, f"nav-local-p{n}.svg")] = render_local(n, model)
     return out
 
 
@@ -213,8 +140,7 @@ def regenerate() -> int:
     for path, svg in sorted(targets.items()):
         with open(path, "w", encoding="utf-8") as fh:
             fh.write(svg)
-    print(f"re-projected {len(targets)} nav SVGs into {os.path.relpath(_ASSETS, _ROOT)}/ "
-          f"({len(_part_nums())} subway + {len(_part_nums())} local)")
+    print(f"re-projected {len(targets)} subway nav SVGs into {os.path.relpath(_ASSETS, _ROOT)}/")
     return 0
 
 

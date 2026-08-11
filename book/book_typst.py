@@ -1392,6 +1392,8 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 #let _MN-TOP    = 1in            // page y-margin; `place(top+left)` anchors here, so dy = base - _MN-TOP
 #let _MN-BUDGET = 3.2in          // max note height allowed in the margin; taller → in-column fallback
 #let _MN-VGAP   = 6pt            // min vertical gap between two stacked notes on one page (absolute, not em)
+#let _MN-SAFE-BOTTOM = 11in - 1in  // 10in page-absolute: a note's bottom must not cross into the reserved
+                                   // bottom y-margin (page number / footer). Matches #set page y-margin 1in.
 // Editorial-note mark cycle — mirrors the web `_note_glyph`: * † ‡ § ‖ ¶, doubled after six.
 #let _MN-GLYPHS = ("*", "†", "‡", "§", "‖", "¶")
 #let _mn-glyph(n) = _MN-GLYPHS.at(calc.rem(n - 1, 6)) * (calc.div-euclid(n - 1, 6) + 1)
@@ -1426,10 +1428,25 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
     let cur  = _mn-cursor.at(loc)
     // push this note below the previous one on the same page; reset the cursor when the page turns
     let base = if cur.page == pg { calc.max(natY, cur.bottom + _MN-VGAP) } else { natY }
-    _mn-cursor.update(_ => (page: pg, bottom: base + m.height))
+    // Position-aware bottom guard, CONVERGENCE-SAFE. Everything here feeds ONLY the out-of-flow `place` below
+    // — it adds NO content to the text flow, so it cannot perturb pagination and re-trigger layout (no "page
+    // counter did not converge", unlike an in-column fallback whose flow content is position-dependent).
     if mark != none { super(text(size: 0.72em, fill: dt.muted, weight: "bold")[#mark]) }  // inline mark
-    // `place(top+left)` anchors at the flow-region TOP (the y-margin), so dy is measured from _MN-TOP.
-    place(top + left, dx: _MN-DX, dy: base - _MN-TOP, notebox)
+    // BOTTOM-ANCHOR the note at `min(base + m.height, safe-bottom)` and let it grow UPWARD by its real
+    // rendered height. When the note fits, this is identical to top-aligning it at its reference line `base`
+    // (the normal Tufte look). When it would cross the safe text bottom into the reserved bottom y-margin
+    // (page-number / footer band), the bottom pins to the safe bottom and the box grows up — nothing clips.
+    // Bottom-anchoring makes the no-bleed guarantee robust to a `measure`/introspection anomaly that
+    // under-reports m.height for some low, marked, counter-bearing notes at page-boundary anchors (empirically
+    // one such note measured ≈0): a top-anchor computed as `safe-bottom − m.height` undershoots when m.height
+    // is wrong and still bleeds, but pinning the bottom holds regardless of the measured height. `_MN-SAFE-
+    // BOTTOM` (page height − y-margin) equals the flow-region bottom, so `place(bottom+left)` with dy = target
+    // − safe-bottom (≤ 0) seats the note exactly. A margin note is ≤ _MN-BUDGET (3.2in) < the 10in text
+    // height, so the upward-grown top never crosses the top y-margin. Cursor bottom = the actual bottom, so a
+    // later same-page note stacks below it.
+    let bot-y = calc.min(base + m.height, _MN-SAFE-BOTTOM)
+    _mn-cursor.update(_ => (page: pg, bottom: bot-y))
+    place(bottom + left, dx: _MN-DX, dy: bot-y - _MN-SAFE-BOTTOM, notebox)
   }
 }
 """
@@ -1583,41 +1600,6 @@ def _appendices_divider_typst() -> str:
         + heading +
         "  #v(0.5em) #line(length: 30%, stroke: 1pt + dt.rule)\n"
         "]"
-    )
-
-
-def _part_nav_typst(current_part: int) -> str:
-    """The Part-nav strip closing a Part landing page in the PDF — a row of separate boxed chips, one per
-    numbered Part, matching the web pill bar (`_part_nav_html`) button-for-button. Each chip is an inline
-    `#box(...)`, so Typst's own paragraph line-breaking wraps the row across lines exactly the way the web's
-    `flex-wrap` does — no manual line math. The current Part renders as a filled, bold, non-link chip
-    (`#strong`, no `#link`); every other Part is an outline chip wrapping a `#link(<part-N>)` that jumps to
-    that Part's divider page (labeled in `_part_divider_typst`). Both projections read
-    `build_book_html._PART_TITLES` restricted to Parts 1–6 — one list, two renderings, so they cannot
-    disagree on which Parts exist or what they're called."""
-    titles = bb._PART_TITLES
-    chips: list[str] = []
-    for n in range(1, 7):
-        raw_label = f"Part {n} — {titles.get(n, '')}"
-        label = f"#upper[{inline_typst(raw_label)}]"
-        if n == current_part:
-            text = f"#text(size: 8pt, tracking: 0.02em, fill: dt.ink, weight: \"bold\")[{label}]"
-            chips.append(
-                "#box(inset: (x: 8pt, y: 5pt), radius: 4pt, stroke: 1pt + dt.accent, "
-                f"fill: dt.panel)[{text}]"
-            )
-        else:
-            text = f"#text(size: 8pt, tracking: 0.02em, fill: dt.accent, weight: \"semibold\")[{label}]"
-            chips.append(
-                "#box(inset: (x: 8pt, y: 5pt), radius: 4pt, stroke: 0.5pt + dt.rule, "
-                f"fill: dt.paper)[#link(<part-{n}>)[{text}]]"
-            )
-    row = " ".join(chips)  # a plain space between inline boxes is the wrap point Typst breaks lines on
-    return (
-        "#v(0.6em)\n"
-        "#line(length: 100%, stroke: 0.5pt + dt.rule)\n"
-        "#v(0.9em)\n"
-        f"{row}\n"
     )
 
 
