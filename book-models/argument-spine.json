@@ -5,7 +5,7 @@
     "spine_claims": 15,
     "chapters_labeled": 39,
     "chapters_exempt": 11,
-    "advancement_edges": 97,
+    "advancement_edges": 96,
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
@@ -194,8 +194,7 @@
       "word_count": 22,
       "statement_hash": "0723642b2b10",
       "advanced_by": [
-        "0.4-preface",
-        "1.3-loops-and-models"
+        "0.4-preface"
       ],
       "body_depth": 0,
       "front_loaded": true,
@@ -624,7 +623,6 @@
     {
       "slug": "1.3-loops-and-models",
       "advances": [
-        "three-not-knowings-cause-churn",
         "modeling-thesis",
         "theses-treat-the-causes"
       ],

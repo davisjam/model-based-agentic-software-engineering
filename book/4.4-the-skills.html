@@ -582,7 +582,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="part-1-intro.html">The New Engineering Problem</a></li>
 <li><a class="" href="1.1-the-printer.html">1&nbsp; The Printer</a></li>
 <li><a class="" href="1.2-mage-by-example.html">2&nbsp; MAGE by Example</a></li>
-<li><a class="" href="1.3-loops-and-models.html">3&nbsp; Loops and Models</a></li>
+<li><a class="" href="1.3-loops-and-models.html">3&nbsp; Engineering the Loop</a></li>
 <li><a class="" href="1.4-why-mage-follows-from-the-machine.html">4&nbsp; Why MAGE Follows from the Machine</a></li>
 <li><a class="" href="1.5-the-engineers-seat.html">5&nbsp; The Engineer's Seat</a></li>
 <li class="part">Part 2 — Modeling</li>
@@ -862,7 +862,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">4.4.4</span> Self-operate: the lifecycles, made runnable</h2>
 <p id="idx-def-self-operate">Self-operate is the starting point, because it holds the lifecycles of running a repo — the recurring repository lifecycles this project needed to operate. Pull a ticket and build a feature. Pull a ticket and fix a bug. Optimize the codebase. Handle resource exhaustion. Each of those is written down as a model — I did say models everywhere, and I meant it — because that is how you constrain the agent's search and bias it toward doing the work the way you want.</p>
 <blockquote class="aside-sidenote"><p>Learn more about this governance mechanism: <a href="../agent/governance-doc-controls/operator-runbook-skill.html">self-operate (operator runbook skill)</a>.</p></blockquote>
-<p>On top of the models sit the playbooks — one per lifecycle, each with briefs for its judgment steps. This is what lets an orchestrator agent, itself running as a reactive loop, know how to respond when an event arrives. The loop turns on inputs from the environment: it is the <em>dispatch → work → land → tombstone</em> lifecycle from <a href="1.3-loops-and-models.html">Loops and Models</a>, now written down for the operator to run.</p>
+<p>On top of the models sit the playbooks — one per lifecycle, each with briefs for its judgment steps. This is what lets an orchestrator agent, itself running as a reactive loop, know how to respond when an event arrives. The loop turns on inputs from the environment: it is the <em>dispatch → work → land → tombstone</em> lifecycle from <a href="1.3-loops-and-models.html">Engineering the Loop</a>, now written down for the operator to run.</p>
 <blockquote class="concept-inset"><p class="inset-title">When an agent lands, what next?</p>
 <ul><li><strong>Agent landed</strong> → open the Epic file, which lists the launches the feature needs.</li><li><strong>Feature done?</strong> Not done → launch the next item. Done → run the definition-of-done audit over the whole Epic (does the model still match the code?).</li><li><strong>DoD passes</strong> → mark it done, move it to the closed pile.</li><li><strong>Still active</strong> → record the status and the commit that made progress, then launch the next item.</li></ul></blockquote>
 <p>That definition-of-done audit exists because of one hard-won rule.</p>

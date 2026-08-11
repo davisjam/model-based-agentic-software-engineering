@@ -21,6 +21,9 @@ tombstone — and the orchestrator's refill loop live implicitly across several 
 as typed state machines, so the failures stay invisible: an agent reaches a state no transition allows;
 the orchestrator rests with ratified work queued; a fleet invariant is asserted nowhere.
 
+<!-- gloss: Dispatch | To hand a scoped unit of work to an agent and launch it; the orchestrator's act of starting a worker on a task. -->
+<!-- gloss: Tombstone | The end-of-life marker an agent writes when its work has landed, signalling that its worktree is finished and safe to clean up. -->
+
 ### Applicability
 
 Reach for this when the fleet lifecycle is enacted through addressable substrate — a registry, a

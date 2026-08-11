@@ -30,7 +30,7 @@
     "outcomes_with_elaborative_units": 21,
     "elaborative_links": 28,
     "units_serving_as_elaborative": 20,
-    "sections_total": 301,
+    "sections_total": 299,
     "sections_primary_of_an_outcome": 43,
     "modules": 7,
     "lessons": 42
@@ -137,12 +137,7 @@
           {
             "lesson": "1.3-loops-and-models",
             "own_outcomes": [],
-            "section_outcomes": [
-              "everything-is-a-loop::describe-agent-work-as-a-fixed-shape-loop-enginee",
-              "give-it-a-model-of-the-world::construct-a-model-of-the-world-for-an-agent-to-act",
-              "give-it-a-model-of-the-world::explain-how-a-model-of-the-world-conditions-the",
-              "where-jugaad-ends::recognize-jugaad-the-agent-s-resourceful-improvisa"
-            ]
+            "section_outcomes": []
           },
           {
             "lesson": "1.4-why-mage-follows-from-the-machine",
