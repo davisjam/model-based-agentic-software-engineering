@@ -7,7 +7,7 @@
 | Claim | A context-bounded agent cannot hold the whole system. Give it a structured, drift-checked model to reason through, and the work fits in the window. |
 | Mechanisms | Executable source-of-truth models · Drift & parity gates · Component & zone model · PdfModel · Office Models |
 | Related | The Engineered Environment · Hold intent with a mechanism: prevent first, sense the rest |
-| In the book | book/1.3-loops-and-models.html |
+| In the book | book/2.1-context-is-the-first-modeling-problem.html |
 
 ## The idea
 
@@ -92,4 +92,4 @@ lives in markdown; the structure lives in the model; the gate keeps the two from
 
 ## Read in the book →
 
-[Read in the book →](book/1.3-loops-and-models.html)
+[Read in the book →](book/2.1-context-is-the-first-modeling-problem.html)

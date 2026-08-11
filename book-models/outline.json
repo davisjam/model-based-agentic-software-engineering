@@ -361,27 +361,27 @@
           "heading_text": "The horizon is a locality problem",
           "topic_sentence": "It is tempting to read this as a fact about today's context window, and so as a fact that the next model will erase.",
           "id_source": "derived",
-          "block_index": 14,
+          "block_index": 11,
           "points": [
             {
               "slug": "context-windows-are-an-instantiation-of-the-limit-not-the-limit",
               "text": "Context windows are today's most visible instantiation of the limit, not the limit itself; the durable constraint is locality.",
-              "block_index": 16
+              "block_index": 13
             },
             {
               "slug": "this-is-an-old-engineering-constraint-in-a-new-form",
               "text": "Software has always been arranged around the memory, compute, and communication hierarchy of its machine; agentic systems inherit the same obligation.",
-              "block_index": 18
+              "block_index": 15
             },
             {
               "slug": "the-reasoning-horizon-is-the-latest-instance-of-a-recurring-se-problem",
               "text": "The reasoning horizon is the latest instance of a recurring software-engineering problem: the abstraction is organized around the physical limits of the machine.",
-              "block_index": 20
+              "block_index": 17
             },
             {
               "slug": "the-account-earns-the-moves-the-wall-claim",
               "text": "A longer window or new architecture moves the wall without removing it; the hardware account earns that claim rather than asserting it.",
-              "block_index": 22
+              "block_index": 19
             }
           ]
         },
@@ -391,17 +391,17 @@
           "heading_text": "What the reasoner should work through",
           "topic_sentence": "Return to the lossy round trip, because it hides the hinge.",
           "id_source": "derived",
-          "block_index": 24,
+          "block_index": 21,
           "points": [
             {
               "slug": "loss-is-a-function-of-the-domain-you-compress-over",
               "text": "The loss in a reconstruction is not a fixed tax; it depends on what you compress over.",
-              "block_index": 26
+              "block_index": 23
             },
             {
               "slug": "the-unanswered-question-pulls-to-part-ii",
               "text": "Close on the open question: if raw implementation is a poor working state for a finite reasoner, what should it work through instead?",
-              "block_index": 28
+              "block_index": 25
             }
           ]
         }
