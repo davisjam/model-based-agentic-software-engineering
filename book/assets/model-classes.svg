@@ -2,11 +2,11 @@
 <!-- HAND-AUTHORED one-off glossary section-map (geometry-per-concept redraw 260810). Not machine-projected; edit this SVG directly. -->
 <!-- TAXONOMY-TREE geometry for the five model classes. Root Model branches to five kinds; NOT a vertical progression. Orientation reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Taxonomy tree: the five model classes, sorted by what each represents">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Taxonomy tree: the five model classes, sorted by what each represents">
   <defs>
     <marker id="vh-mc" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
-  <rect x="0" y="0" width="1000" height="620" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1000" height="480" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The five model classes</text>
 
@@ -78,14 +78,14 @@
   <text x="870" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. a doc surface in</text>
   <text x="870" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">the traceability graph</text>
 
-  <!-- footer notes -->
-  <line x1="95" y1="548" x2="905" y2="548" stroke="#cfcabf" stroke-width="1.5"/>
-  <text x="95" y="576" font-size="16" fill="#57534e">A contract or policy model is a <tspan font-weight="bold">Decision</tspan> model.</text>
-  <text x="95" y="600" font-size="16" fill="#57534e">Governance is a <tspan font-style="italic">Move</tspan> — an action on a model — not a sixth class.</text>
+  <!-- footer notes — pulled up (was y548/576/600) to close the ~200px void between the class-card tree (bottom ≈y347) and the footer band; viewBox height shrunk 620->480 to match. -->
+  <line x1="95" y1="408" x2="905" y2="408" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="95" y="436" font-size="16" fill="#57534e">A contract or policy model is a <tspan font-weight="bold">Decision</tspan> model.</text>
+  <text x="95" y="460" font-size="16" fill="#57534e">Governance is a <tspan font-style="italic">Move</tspan> — an action on a model — not a sixth class.</text>
 
   <!-- R13 zoom cue: FRAME-echo corner-brackets — this figure IS the expansion of 0.3-1's Model node. Same L mark as the source brackets there, at frame scale. -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
     <path d="M26,12 L12,12 L12,26"/>
-    <path d="M974,608 L988,608 L988,594"/>
+    <path d="M974,468 L988,468 L988,454"/>
   </g>
 </svg>
