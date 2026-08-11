@@ -136,7 +136,10 @@ def _inline(s: str, stash: list[str]) -> str:
     # 1c. Editorial notes `[note: text]` → a Tufte MARGIN note (symbolic mark, web `.editorial-note`
     #     parity). A note too tall for the margin falls back to the old page-bottom `#footnote`.
     def _note(m: "re.Match[str]") -> str:
-        inner = _inline(m.group(1).strip(), stash)
+        raw_note = m.group(1).strip()
+        inner = _inline(raw_note, stash)
+        if len(raw_note.split()) > _MARGIN_NOTE_MAX_WORDS:
+            return _hold(f"#footnote[{inner}]")
         return _hold(f"#sidenote([{inner}], footnote[{inner}], marked: true)")
     s = bb._NOTE_MARKER_RE.sub(_note, s)
     # 2. Intra-word emphasis `[+X+]` → emphasised run.
@@ -434,6 +437,11 @@ _DEFN_LEAD_RE = re.compile(r"^\*\*[^*]+\.\*\*")
 # only fires on the italic-lead catch-all.
 _EMLED_RE = re.compile(r"^\*[^*].*?\*")
 
+# Margin-note word budget: an editorial [note:] or em-led aside longer than this renders as its in-column
+# fallback (page-bottom footnote / block quote) instead of a right-margin sidenote — decided in PYTHON, before
+# Typst compiles, on a STABLE word count, deliberately NOT on the pass-unstable runtime measure() (see below).
+_MARGIN_NOTE_MAX_WORDS = 85
+
 # Definition typography, injected at the head of a def-inset / def-box block: italicise the body, but reset
 # every `strong` to upright so the bold Term LEAD reads as a label, not emphasis. (Definitions are short
 # glossary asides, so a body-wide strong-reset matches the web's "leading term upright" without a first-only
@@ -512,6 +520,8 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
         # mark. A note too tall for the margin falls back to the in-column quote by the measure-gate.
         # fallback is a call ARGUMENT (code mode) → no leading `#`
         quote_fallback = f"quote(block: true)[\n{_indent(inner)}\n]"
+        if len(stripped.split()) > _MARGIN_NOTE_MAX_WORDS:
+            return f"#{quote_fallback}"
         return f"#sidenote([\n{_indent(inner)}\n], {quote_fallback})"
     return f"#quote(block: true)[\n{_indent(inner)}\n]"
 
