@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 36,
     "slugs_rendered": 27,
-    "total_sites": 1552,
+    "total_sites": 1517,
     "by_projection": {
       "book-pdf": 24,
-      "book-web": 1127,
+      "book-web": 1092,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -68,14 +68,6 @@
             "occ": 26
           },
           {
-            "file": "book/2.10-the-joined-model.html",
-            "occ": 4
-          },
-          {
-            "file": "book/2.11-the-scope-of-modeling.html",
-            "occ": 4
-          },
-          {
             "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 8
           },
@@ -92,24 +84,16 @@
             "occ": 4
           },
           {
-            "file": "book/2.5-the-logical-view.html",
+            "file": "book/2.5-modeling-structure-and-ownership.html",
+            "occ": 9
+          },
+          {
+            "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 4
           },
           {
-            "file": "book/2.6-the-process-view.html",
-            "occ": 3
-          },
-          {
-            "file": "book/2.7-the-development-view.html",
-            "occ": 8
-          },
-          {
-            "file": "book/2.8-the-physical-view.html",
-            "occ": 4
-          },
-          {
-            "file": "book/2.9-the-scenarios-view.html",
-            "occ": 7
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
+            "occ": 9
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -495,7 +479,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 118
+            "occ": 114
           }
         ]
       },
@@ -926,10 +910,6 @@
             "occ": 5
           },
           {
-            "file": "book/2.10-the-joined-model.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.2-from-context-to-control.html",
             "occ": 2
           },
@@ -938,12 +918,12 @@
             "occ": 1
           },
           {
-            "file": "book/2.6-the-process-view.html",
+            "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 1
           },
           {
-            "file": "book/2.9-the-scenarios-view.html",
-            "occ": 1
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
+            "occ": 2
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -1049,7 +1029,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 36
+            "occ": 35
           }
         ]
       },
@@ -1574,14 +1554,6 @@
             "occ": 30
           },
           {
-            "file": "book/2.10-the-joined-model.html",
-            "occ": 12
-          },
-          {
-            "file": "book/2.11-the-scope-of-modeling.html",
-            "occ": 12
-          },
-          {
             "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 12
           },
@@ -1598,24 +1570,16 @@
             "occ": 16
           },
           {
-            "file": "book/2.5-the-logical-view.html",
+            "file": "book/2.5-modeling-structure-and-ownership.html",
             "occ": 12
           },
           {
-            "file": "book/2.6-the-process-view.html",
+            "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 10
           },
           {
-            "file": "book/2.7-the-development-view.html",
-            "occ": 10
-          },
-          {
-            "file": "book/2.8-the-physical-view.html",
-            "occ": 10
-          },
-          {
-            "file": "book/2.9-the-scenarios-view.html",
-            "occ": 11
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
+            "occ": 15
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -2001,7 +1965,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 118
+            "occ": 114
           }
         ]
       },
@@ -2075,7 +2039,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 34
+            "occ": 35
           },
           {
             "file": "catalogue-figure.html",
@@ -2188,14 +2152,6 @@
             "occ": 1
           },
           {
-            "file": "book/2.10-the-joined-model.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.11-the-scope-of-modeling.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 1
           },
@@ -2212,23 +2168,15 @@
             "occ": 1
           },
           {
-            "file": "book/2.5-the-logical-view.html",
+            "file": "book/2.5-modeling-structure-and-ownership.html",
             "occ": 1
           },
           {
-            "file": "book/2.6-the-process-view.html",
+            "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 1
           },
           {
-            "file": "book/2.7-the-development-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.8-the-physical-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.9-the-scenarios-view.html",
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 1
           },
           {
@@ -2611,7 +2559,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 117
+            "occ": 113
           }
         ]
       },
@@ -2710,23 +2658,15 @@
             "occ": 5
           },
           {
-            "file": "book/2.5-the-logical-view.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.6-the-process-view.html",
-            "occ": 3
-          },
-          {
-            "file": "book/2.7-the-development-view.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.8-the-physical-view.html",
+            "file": "book/2.5-modeling-structure-and-ownership.html",
             "occ": 4
           },
           {
-            "file": "book/2.9-the-scenarios-view.html",
+            "file": "book/2.6-modeling-behavior-and-execution.html",
+            "occ": 7
+          },
+          {
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 5
           },
           {
@@ -2813,7 +2753,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 27
+            "occ": 25
           }
         ]
       },
@@ -2944,16 +2884,8 @@
             "occ": 17
           },
           {
-            "file": "book/2.10-the-joined-model.html",
-            "occ": 14
-          },
-          {
-            "file": "book/2.11-the-scope-of-modeling.html",
-            "occ": 29
-          },
-          {
             "file": "book/2.12-keeping-models-in-sync.html",
-            "occ": 67
+            "occ": 68
           },
           {
             "file": "book/2.2-from-context-to-control.html",
@@ -2968,24 +2900,16 @@
             "occ": 28
           },
           {
-            "file": "book/2.5-the-logical-view.html",
-            "occ": 44
+            "file": "book/2.5-modeling-structure-and-ownership.html",
+            "occ": 61
           },
           {
-            "file": "book/2.6-the-process-view.html",
-            "occ": 38
+            "file": "book/2.6-modeling-behavior-and-execution.html",
+            "occ": 89
           },
           {
-            "file": "book/2.7-the-development-view.html",
-            "occ": 24
-          },
-          {
-            "file": "book/2.8-the-physical-view.html",
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 57
-          },
-          {
-            "file": "book/2.9-the-scenarios-view.html",
-            "occ": 29
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -3333,7 +3257,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 284
+            "occ": 286
           },
           {
             "file": "book/index.html",
@@ -3371,7 +3295,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 118
+            "occ": 114
           }
         ]
       },
@@ -3793,7 +3717,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 106
+            "occ": 111
           },
           {
             "file": "catalogue-figure.html",
@@ -3990,10 +3914,6 @@
             "occ": 4
           },
           {
-            "file": "book/2.10-the-joined-model.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 1
           },
@@ -4006,7 +3926,11 @@
             "occ": 3
           },
           {
-            "file": "book/2.5-the-logical-view.html",
+            "file": "book/2.5-modeling-structure-and-ownership.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 1
           },
           {
@@ -4216,14 +4140,6 @@
             "occ": 1
           },
           {
-            "file": "book/2.10-the-joined-model.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.11-the-scope-of-modeling.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 1
           },
@@ -4240,23 +4156,15 @@
             "occ": 1
           },
           {
-            "file": "book/2.5-the-logical-view.html",
+            "file": "book/2.5-modeling-structure-and-ownership.html",
             "occ": 1
           },
           {
-            "file": "book/2.6-the-process-view.html",
+            "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 1
           },
           {
-            "file": "book/2.7-the-development-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.8-the-physical-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.9-the-scenarios-view.html",
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 1
           },
           {
@@ -4639,7 +4547,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 117
+            "occ": 113
           }
         ]
       },
@@ -4682,7 +4590,7 @@
             "occ": 5
           },
           {
-            "file": "book/2.11-the-scope-of-modeling.html",
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 1
           },
           {
@@ -4882,14 +4790,6 @@
             "occ": 2
           },
           {
-            "file": "book/2.10-the-joined-model.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.11-the-scope-of-modeling.html",
-            "occ": 2
-          },
-          {
             "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 2
           },
@@ -4906,23 +4806,15 @@
             "occ": 2
           },
           {
-            "file": "book/2.5-the-logical-view.html",
+            "file": "book/2.5-modeling-structure-and-ownership.html",
             "occ": 2
           },
           {
-            "file": "book/2.6-the-process-view.html",
+            "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 2
           },
           {
-            "file": "book/2.7-the-development-view.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.8-the-physical-view.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.9-the-scenarios-view.html",
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 2
           },
           {
@@ -5305,7 +5197,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 117
+            "occ": 113
           }
         ]
       },
@@ -5404,14 +5296,6 @@
             "occ": 4
           },
           {
-            "file": "book/2.10-the-joined-model.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.11-the-scope-of-modeling.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 5
           },
@@ -5428,23 +5312,15 @@
             "occ": 3
           },
           {
-            "file": "book/2.5-the-logical-view.html",
+            "file": "book/2.5-modeling-structure-and-ownership.html",
             "occ": 5
           },
           {
-            "file": "book/2.6-the-process-view.html",
+            "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 1
           },
           {
-            "file": "book/2.7-the-development-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.8-the-physical-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.9-the-scenarios-view.html",
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 1
           },
           {
@@ -5827,7 +5703,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 117
+            "occ": 113
           }
         ]
       },
@@ -6146,14 +6022,6 @@
             "occ": 1
           },
           {
-            "file": "book/2.10-the-joined-model.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.11-the-scope-of-modeling.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.12-keeping-models-in-sync.html",
             "occ": 2
           },
@@ -6170,23 +6038,15 @@
             "occ": 1
           },
           {
-            "file": "book/2.5-the-logical-view.html",
+            "file": "book/2.5-modeling-structure-and-ownership.html",
             "occ": 1
           },
           {
-            "file": "book/2.6-the-process-view.html",
+            "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 1
           },
           {
-            "file": "book/2.7-the-development-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.8-the-physical-view.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.9-the-scenarios-view.html",
+            "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 1
           },
           {
@@ -6569,7 +6429,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 117
+            "occ": 113
           }
         ]
       },

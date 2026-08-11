@@ -422,7 +422,7 @@
       "elaborates": { "model": "claims", "id": "profile-edit-not-graph-edit" },
       "scope": "invoke-by-name",
       "ration_budget": 3,
-      "home": { "label": "the-physical-view", "anchor": "" },
+      "home": { "label": "modeling-behavior-and-execution", "anchor": "" },
       "competitors": [],
       "notes": "NEW (Part-3 revision). The Physical View: host-specific resource limits are a per-host scheduler profile over one shared invariant-DAG, not a forked execution graph per host. Elaborates the profile-edit-not-graph-edit claim added to claims_declared.json (it was a REAL dangler — no declared claim carried the idea; same pattern as apparatus-is-the-review). Anchor empty until the Part-3 fix-wave marks the canonical landing."
     }

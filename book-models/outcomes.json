@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 21,
     "elaborative_links": 28,
     "units_serving_as_elaborative": 20,
-    "sections_total": 299,
+    "sections_total": 306,
     "sections_primary_of_an_outcome": 43,
     "modules": 7,
-    "lessons": 42
+    "lessons": 38
   },
   "taxonomy": {
     "know": [
@@ -182,41 +182,21 @@
             "section_outcomes": []
           },
           {
-            "lesson": "2.5-the-logical-view",
+            "lesson": "2.5-modeling-structure-and-ownership",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "2.6-the-process-view",
+            "lesson": "2.6-modeling-behavior-and-execution",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "2.7-the-development-view",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "2.8-the-physical-view",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "2.9-the-scenarios-view",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "2.10-the-joined-model",
+            "lesson": "2.7-scenarios-and-the-joined-model",
             "own_outcomes": [],
             "section_outcomes": [
               "a-request-walks-the-connected-slice::trace-a-single-request"
             ]
-          },
-          {
-            "lesson": "2.11-the-scope-of-modeling",
-            "own_outcomes": [],
-            "section_outcomes": []
           },
           {
             "lesson": "2.12-keeping-models-in-sync",
@@ -693,6 +673,58 @@
       "gap_note": null
     },
     {
+      "outcome_id": "modeling-behavior-and-execution::model-the-concurrency-of-a-system-with-a-synch",
+      "granularity": "chapter",
+      "primary_unit": "modeling-behavior-and-execution",
+      "secondary_units": [],
+      "verb": "model",
+      "obj": "the concurrency of a system with a synchronization model and formal invariant verification",
+      "statement": "After this chapter, the reader can model the process view — cataloging every lock in a synchronization model and backing its invariants with formal verification.",
+      "bloom": "create",
+      "provenance": "declared",
+      "anchor": "Section titles 'formal-invariant-verification' + 'synchronization-model' (ts: 'A typed registry that models the system's synchronization behavior — every OS-level lock').",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "modeling-behavior-and-execution::model-where-a-system-runs-with-a-deployment-to",
+      "granularity": "chapter",
+      "primary_unit": "modeling-behavior-and-execution",
+      "secondary_units": [],
+      "verb": "model",
+      "obj": "where a system runs with a deployment-topology model and an invariant-DAG execution policy",
+      "statement": "After this chapter, the reader can model the physical view — deployment topology and a typed deploy DAG — and name the one honest gap in the cost view.",
+      "bloom": "create",
+      "provenance": "declared",
+      "anchor": "Section titles 'deployment-topology-model' + 'invariant-dag-execution-policy' + 'the-performance-cost-view-mostly-embodied-one-honest-gap'.",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "modeling-structure-and-ownership::model-a-codebase-s-zones-with-a-component-zone",
+      "granularity": "chapter",
+      "primary_unit": "modeling-structure-and-ownership",
+      "secondary_units": [],
+      "verb": "model",
+      "obj": "a codebase's zones with a component & zone model and a rule-metadata registry",
+      "statement": "After this chapter, the reader can model the development view — every component's zone and the governance rules that ride it — as typed registries.",
+      "bloom": "create",
+      "provenance": "declared",
+      "anchor": "Section titles 'component-zone-model' + 'rule-metadata-registry'; ts: 'A typed catalog of every component's code zone'.",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "modeling-structure-and-ownership::model-a-service-flow-model-and-the-domain-regi",
+      "granularity": "chapter",
+      "primary_unit": "modeling-structure-and-ownership",
+      "secondary_units": [],
+      "verb": "model",
+      "obj": "a service-flow model and the domain registries it rests on",
+      "statement": "After this chapter, the reader can model the logical view as a structured service-flow model backed by frozen domain registries.",
+      "bloom": "create",
+      "provenance": "declared",
+      "anchor": "Section titles 'service-flow-model' + 'domain-registries'; ts: 'The typed source-of-truth for a service-oriented architecture'.",
+      "gap_note": null
+    },
+    {
       "outcome_id": "models-and-the-semantic-gap::explain-why-a-structured-model-sits-at-the-apex",
       "granularity": "chapter",
       "primary_unit": "models-and-the-semantic-gap",
@@ -735,6 +767,19 @@
       "gap_note": null
     },
     {
+      "outcome_id": "scenarios-and-the-joined-model::map-user-and-developer-journeys-to-test-plac",
+      "granularity": "chapter",
+      "primary_unit": "scenarios-and-the-joined-model",
+      "secondary_units": [],
+      "verb": "map",
+      "obj": "user and developer journeys to test placement through a chain of structured models",
+      "statement": "After this chapter, the reader can map journeys to the environment tier that tests them, joining user-journey, orchestration, criticality, and coverage models.",
+      "bloom": "analyze",
+      "provenance": "declared",
+      "anchor": "Section titles 'user-journey-model' + 'agent-orchestration-model' + 'journey-criticality-test-placement' + 'worked-join'.",
+      "gap_note": null
+    },
+    {
       "outcome_id": "the-ada-context::explain-why-document-accessibility-is-a-hard-hig",
       "granularity": "chapter",
       "primary_unit": "the-ada-context",
@@ -774,24 +819,11 @@
       "gap_note": null
     },
     {
-      "outcome_id": "the-development-view::model-a-codebase-s-zones-with-a-component-zone",
-      "granularity": "chapter",
-      "primary_unit": "the-development-view",
-      "secondary_units": [],
-      "verb": "model",
-      "obj": "a codebase's zones with a component & zone model and a rule-metadata registry",
-      "statement": "After this chapter, the reader can model the development view — every component's zone and the governance rules that ride it — as typed registries.",
-      "bloom": "create",
-      "provenance": "declared",
-      "anchor": "Section titles 'component-zone-model' + 'rule-metadata-registry'; ts: 'A typed catalog of every component's code zone'.",
-      "gap_note": null
-    },
-    {
       "outcome_id": "the-executable-zoo::explain-why-a-fleet-pays-for-free-the-modeling-e",
       "granularity": "chapter",
       "primary_unit": "the-executable-zoo",
       "secondary_units": [
-        "the-scenarios-view"
+        "scenarios-and-the-joined-model"
       ],
       "verb": "explain",
       "obj": "why a fleet pays for free the modeling expense that once buried MBSE",
@@ -818,19 +850,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "the-logical-view::model-a-service-flow-model-and-the-domain-regi",
-      "granularity": "chapter",
-      "primary_unit": "the-logical-view",
-      "secondary_units": [],
-      "verb": "model",
-      "obj": "a service-flow model and the domain registries it rests on",
-      "statement": "After this chapter, the reader can model the logical view as a structured service-flow model backed by frozen domain registries.",
-      "bloom": "create",
-      "provenance": "declared",
-      "anchor": "Section titles 'service-flow-model' + 'domain-registries'; ts: 'The typed source-of-truth for a service-oriented architecture'.",
-      "gap_note": null
-    },
-    {
       "outcome_id": "the-mage-workflow::size-each-task-to-a-leap-the-fleet-can-make-a",
       "granularity": "chapter",
       "primary_unit": "the-mage-workflow",
@@ -843,19 +862,6 @@
       "bloom": "evaluate",
       "provenance": "declared",
       "anchor": "Section title 'task-sizing' (the sizing habit re-homed from Part I) — the modest task-sizing framing plus the DocAble bounded-typed-edits example.",
-      "gap_note": null
-    },
-    {
-      "outcome_id": "the-physical-view::model-where-a-system-runs-with-a-deployment-to",
-      "granularity": "chapter",
-      "primary_unit": "the-physical-view",
-      "secondary_units": [],
-      "verb": "model",
-      "obj": "where a system runs with a deployment-topology model and an invariant-DAG execution policy",
-      "statement": "After this chapter, the reader can model the physical view — deployment topology and a typed deploy DAG — and name the one honest gap in the cost view.",
-      "bloom": "create",
-      "provenance": "declared",
-      "anchor": "Section titles 'deployment-topology-model' + 'invariant-dag-execution-policy' + 'the-performance-cost-view-mostly-embodied-one-honest-gap'.",
       "gap_note": null
     },
     {
@@ -872,19 +878,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "the-process-view::model-the-concurrency-of-a-system-with-a-synch",
-      "granularity": "chapter",
-      "primary_unit": "the-process-view",
-      "secondary_units": [],
-      "verb": "model",
-      "obj": "the concurrency of a system with a synchronization model and formal invariant verification",
-      "statement": "After this chapter, the reader can model the process view — cataloging every lock in a synchronization model and backing its invariants with formal verification.",
-      "bloom": "create",
-      "provenance": "declared",
-      "anchor": "Section titles 'formal-invariant-verification' + 'synchronization-model' (ts: 'A typed registry that models the system's synchronization behavior — every OS-level lock').",
-      "gap_note": null
-    },
-    {
       "outcome_id": "the-road-to-mage::trace-the-author-s-path-from-solo-co-coder-to",
       "granularity": "chapter",
       "primary_unit": "the-road-to-mage",
@@ -895,19 +888,6 @@
       "bloom": "analyze",
       "provenance": "declared",
       "anchor": "Section titles 'role-co-coder-step-one-...', 'role-qa-step-two-...', 'role-review-lead-step-three-...', 'role-tech-lead-step-four-...'.",
-      "gap_note": null
-    },
-    {
-      "outcome_id": "the-scenarios-view::map-user-and-developer-journeys-to-test-plac",
-      "granularity": "chapter",
-      "primary_unit": "the-scenarios-view",
-      "secondary_units": [],
-      "verb": "map",
-      "obj": "user and developer journeys to test placement through a chain of structured models",
-      "statement": "After this chapter, the reader can map journeys to the environment tier that tests them, joining user-journey, orchestration, criticality, and coverage models.",
-      "bloom": "analyze",
-      "provenance": "declared",
-      "anchor": "Section titles 'user-journey-model' + 'agent-orchestration-model' + 'journey-criticality-test-placement' + 'worked-join'.",
       "gap_note": null
     },
     {

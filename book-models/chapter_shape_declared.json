@@ -378,30 +378,6 @@
       "closing_anchor": "what the system is made of, and what may depend on what."
     },
     {
-      "slug": "the-joined-model",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "synthesis"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the five views joined on one identity spine"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "End-of-views synthesis. Opening shows each view earns its keep separately, then joins them: the five project from one identity spine, so a change traced in one view resolves in the others. Modeling-Thesis link explicit. Closes the Part's build — this Part supplied the world the fleet reasons through; the next Part gives that world authority.",
-      "opening_anchor": "The five views earn their keep separately. The Logical view answers a",
-      "closing_anchor": "this Part made explicit and teaches the environment to insist on them."
-    },
-    {
       "slug": "the-executable-zoo",
       "opening": {
         "failure_question": "explicit",
@@ -427,7 +403,7 @@
       "closing_anchor": "holds them true. The Logical view is first: what the system is."
     },
     {
-      "slug": "the-logical-view",
+      "slug": "modeling-structure-and-ownership",
       "opening": {
         "failure_question": "explicit",
         "answer": "explicit",
@@ -452,7 +428,7 @@
       "closing_anchor": "Process view: what happens when many of the parts run at once."
     },
     {
-      "slug": "the-process-view",
+      "slug": "modeling-behavior-and-execution",
       "opening": {
         "failure_question": "explicit",
         "answer": "explicit",
@@ -477,57 +453,7 @@
       "closing_anchor": "Next, the Development view: how the code is packaged, layered, and owned."
     },
     {
-      "slug": "the-development-view",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "implicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the component-model figure and bill-of-materials table",
-            "anchor": "component-model-structure"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Question (where am I, what may this file touch) + answer (the map); 'the view the people and agents who build the system reason through' carries the Modeling-Thesis mechanism implicitly — the one view chapter that gestures at it. Ending: kicker transition to the Physical view.",
-      "opening_anchor": "The Process view held the running system consistent. The Development view steps",
-      "closing_anchor": "hosts, under what cost and load ceiling. That is the Physical view."
-    },
-    {
-      "slug": "the-physical-view",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the deployment and DAG-policy figures with their tables",
-            "anchor": "deployment-model-structure"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Failure (functionally correct yet mis-deployed) + answer (the placement lens) present; Phase-2c added the thesis clause — written down as a placement model the fleet reads, the where is something an agent reasons over before it deploys, the Modeling Thesis reaching the one view the others cannot see. Ending: kicker transition to the +1 view.",
-      "opening_anchor": "Before an agent deploys, it must answer where each part runs —",
-      "closing_anchor": "set them in motion and validate that the other four hold up."
-    },
-    {
-      "slug": "the-scenarios-view",
+      "slug": "scenarios-and-the-joined-model",
       "opening": {
         "failure_question": "explicit",
         "answer": "explicit",
@@ -550,25 +476,6 @@
       "note": "Question (do the views hold up?) + answer (scenarios walk them) present; Phase-2c added the thesis clause — the walk re-checks the other four against a real goal, so the scenario is where the models are held honest, the Alignment Thesis turned back on the views themselves. Ending: Part-closing synthesis — five views walked, why the upkeep is now affordable.",
       "opening_anchor": "The four views so far are static portraits. The Logical view says",
       "closing_anchor": "the system by hand each time we needed to trust a release."
-    },
-    {
-      "slug": "the-scope-of-modeling",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "implicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "synthesis"
-      },
-      "delivers": {
-        "artifacts": [],
-        "artifact_would_help": false
-      },
-      "note": "Exempt (end-of-part-synthesis). Doorway-out framing; map-equals-territory discipline implicit thesis. Through-line closing synthesis.",
-      "opening_anchor": "This book is an introduction. It gives you enough kinds of model",
-      "closing_anchor": "graduation — one of these tools is where the reasoning descends next."
     },
     {
       "slug": "keeping-models-in-sync",

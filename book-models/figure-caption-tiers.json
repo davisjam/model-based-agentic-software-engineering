@@ -523,37 +523,37 @@
       "location": "part2",
       "rationale": "lookup summary"
     },
-    "the-logical-view::Invariants of the Logical view": {
+    "modeling-structure-and-ownership::Invariants of the Logical view": {
       "tier": "C",
       "kind": "reference-lookup",
       "location": "part3",
       "rationale": "invariant lookup"
     },
-    "the-process-view::Invariants of the Process view": {
+    "modeling-behavior-and-execution::Invariants of the Process view": {
       "tier": "C",
       "kind": "reference-lookup",
       "location": "part3",
       "rationale": "invariant lookup"
     },
-    "the-development-view::Invariants of the Development view": {
+    "modeling-structure-and-ownership::Invariants of the Development view": {
       "tier": "C",
       "kind": "reference-lookup",
       "location": "part3",
       "rationale": "invariant lookup"
     },
-    "the-physical-view::Invariants of the Physical view: deployment placement": {
+    "modeling-behavior-and-execution::Invariants of the Physical view: deployment placement": {
       "tier": "C",
       "kind": "reference-lookup",
       "location": "part3",
       "rationale": "invariant lookup"
     },
-    "the-physical-view::Invariants of the Physical view: host-stress edges": {
+    "modeling-behavior-and-execution::Invariants of the Physical view: host-stress edges": {
       "tier": "C",
       "kind": "reference-lookup",
       "location": "part3",
       "rationale": "invariant lookup"
     },
-    "the-scenarios-view::Invariants of the Scenarios view": {
+    "scenarios-and-the-joined-model::Invariants of the Scenarios view": {
       "tier": "C",
       "kind": "reference-lookup",
       "location": "part3",

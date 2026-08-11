@@ -394,12 +394,12 @@
       "provenance": "declared",
       "anchor": "Section titles 'the-expense-that-buried-mbse-is-the-one-a-fleet-pays-for-free' + 'kruchten-s-4-1-promoted-...-to-the-spine'.",
       "secondary_units": [
-        "the-scenarios-view"
+        "scenarios-and-the-joined-model"
       ]
     },
     {
       "granularity": "chapter",
-      "primary_unit": "the-logical-view",
+      "primary_unit": "modeling-structure-and-ownership",
       "verb": "model",
       "obj": "a service-flow model and the domain registries it rests on",
       "statement": "After this chapter, the reader can model the logical view as a structured service-flow model backed by frozen domain registries.",
@@ -408,7 +408,7 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "the-process-view",
+      "primary_unit": "modeling-behavior-and-execution",
       "verb": "model",
       "obj": "the concurrency of a system with a synchronization model and formal invariant verification",
       "statement": "After this chapter, the reader can model the process view — cataloging every lock in a synchronization model and backing its invariants with formal verification.",
@@ -417,7 +417,7 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "the-development-view",
+      "primary_unit": "modeling-structure-and-ownership",
       "verb": "model",
       "obj": "a codebase's zones with a component & zone model and a rule-metadata registry",
       "statement": "After this chapter, the reader can model the development view — every component's zone and the governance rules that ride it — as typed registries.",
@@ -426,7 +426,7 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "the-physical-view",
+      "primary_unit": "modeling-behavior-and-execution",
       "verb": "model",
       "obj": "where a system runs with a deployment-topology model and an invariant-DAG execution policy",
       "statement": "After this chapter, the reader can model the physical view — deployment topology and a typed deploy DAG — and name the one honest gap in the cost view.",
@@ -435,7 +435,7 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "the-scenarios-view",
+      "primary_unit": "scenarios-and-the-joined-model",
       "verb": "map",
       "obj": "user and developer journeys to test placement through a chain of structured models",
       "statement": "After this chapter, the reader can map journeys to the environment tier that tests them, joining user-journey, orchestration, criticality, and coverage models.",
