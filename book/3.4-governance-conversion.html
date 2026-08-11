@@ -786,77 +786,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="625" y="345" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the environment is now harder to break — and velocity climbs again</text>
 </svg><figcaption data-short="The Governance-Conversion Loop"><span class="fig-label">Figure 3.4-1.</span> <em>The Governance-Conversion Loop.</em> The loop that hardens the environment, drawn in the same shape as the printer loop, escalated one level. The printer loop produces; when it keeps hitting one wall — the same failure class, again and again — judgment reads the recurrence as evidence of a missing mechanism and converts the class into a durable control the environment enforces on every later agent. A mistake caught in yesterday's manual audit becomes today's automatic check. The payoff is not one failure retired; it is an environment left more capable of absorbing the next change, so conversions accrue — the positive dual of churn the closing theory names and bounds.</figcaption></figure>
 <p>None of this is new as an instinct. Manufacturing stops the line at a defect and reshapes the work so it cannot recur; resilience engineering treats an incident as a signal about the system, not a verdict on the operator <sup class="cite-ref"><a href="#wc-3-4-governance-conversion-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> E. Hollnagel et al., <em>Resilience Engineering: Concepts and Precepts</em> (Ashgate, 2006).</span>; site reliability practice turns each outage into a blameless postmortem whose action items become durable work <sup class="cite-ref"><a href="#wc-3-4-governance-conversion-3" aria-label="citation 3">3</a></sup><span class="cite-note"><span class="cn-mark">3.</span> B. Beyer et al., <em>Site Reliability Engineering: How Google Runs Production Systems</em> (O'Reilly Media, 2016).</span>; Shingo built mistake-proofing into the fixture itself <sup class="cite-ref"><a href="#wc-3-4-governance-conversion-4" aria-label="citation 4">4</a></sup><span class="cite-note"><span class="cn-mark">4.</span> Shigeo Shingo, <em>Zero Quality Control: Source Inspection and the Poka-Yoke System</em>, trans. Andrew P. Dillon (Productivity Press, 1986).</span>. MAGE inherits that family. The changed ingredient is velocity: the fleet surfaces structural gaps fast enough that the environment accumulates reliability one class at a time.</p>
-<h2 id="control-growth"><span class="sec-num">3.4.3</span> The controls accumulate</h2>
-<p>Run the promotion rule for a season and the environment fills with controls — nearly all discovered ex-post, the obligations no up-front specification would have named. The case project shows the shape: <a class="xref" href="3.4-governance-conversion.html#fig-3-4-2">Figure&nbsp;3.4-2</a> counts its two hardest control surfaces — project-specific lint files and gate scripts — at the same four windows the build passed through.</p>
-<figure id="fig-3-4-2" class="book-figure" data-label="control-growth-curve"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
-     role="img" aria-labelledby="cgTitle cgDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="cgTitle">The controls accumulate across four windows</title>
-  <desc id="cgDesc">A two-line chart counting the project's governance controls at four dated
-    windows of the build. Project-specific lint files rise from zero in the prototype, to 336
-    at mechanization, to 595 at hardening, to 747 now. Gate scripts rise from zero, to 20, to
-    76, to 102 over the same windows. Both curves start at literal zero — the lint and gate
-    substrate is entirely post-prototype — and climb monotonically, steepest through the
-    mechanization window where the fleet built the machinery. The environment accumulates
-    controls one failure class at a time; the curve is that accumulation.</desc>
-
-  <!-- legend -->
-  <rect x="130" y="30" width="16" height="4" fill="#9a3f12"/>
-  <text x="152" y="38" font-size="16" fill="#1c1917">lint files</text>
-  <rect x="250" y="30" width="16" height="4" fill="#2f5169"/>
-  <text x="272" y="38" font-size="16" fill="#1c1917">gate scripts</text>
-
-  <!-- y gridlines + tick labels (count 200..600); baseline at 0. No 800 line — the 747 peak
-       floats above the top gridline, as the support-ratio chart lets its peak float. -->
-  <line x1="130" y1="313.25" x2="920" y2="313.25" stroke="#e4e0d8" stroke-width="1"/>
-  <line x1="130" y1="246.5"  x2="920" y2="246.5"  stroke="#e4e0d8" stroke-width="1"/>
-  <line x1="130" y1="179.75" x2="920" y2="179.75" stroke="#e4e0d8" stroke-width="1"/>
-  <text x="118" y="317.25" text-anchor="end" font-size="16" fill="#57534e">200</text>
-  <text x="118" y="250.5"  text-anchor="end" font-size="16" fill="#57534e">400</text>
-  <text x="118" y="183.75" text-anchor="end" font-size="16" fill="#57534e">600</text>
-
-  <!-- x axis baseline (count 0) -->
-  <line x1="130" y1="380" x2="920" y2="380" stroke="#1c1917" stroke-width="1.5"/>
-
-  <!-- the lint-file line: 0 -> 336 -> 595 -> 747 -->
-  <polyline points="160,380 400,267.86 640,181.42 880,130.69"
-            fill="none" stroke="#9a3f12" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-  <circle cx="160" cy="380"    r="5" fill="#9a3f12"/>
-  <circle cx="400" cy="267.86" r="5" fill="#9a3f12"/>
-  <circle cx="640" cy="181.42" r="5" fill="#9a3f12"/>
-  <circle cx="880" cy="130.69" r="5" fill="#9a3f12"/>
-  <text x="400" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">336</text>
-  <text x="640" y="165" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">595</text>
-  <text x="880" y="115" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">747</text>
-
-  <!-- the gate-script line: 0 -> 20 -> 76 -> 102 -->
-  <polyline points="160,380 400,373.33 640,354.63 880,345.96"
-            fill="none" stroke="#2f5169" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-  <circle cx="160" cy="380"    r="5" fill="#2f5169"/>
-  <circle cx="400" cy="373.33" r="5" fill="#2f5169"/>
-  <circle cx="640" cy="354.63" r="5" fill="#2f5169"/>
-  <circle cx="880" cy="345.96" r="5" fill="#2f5169"/>
-  <text x="400" y="368" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">20</text>
-  <text x="640" y="349" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">76</text>
-  <text x="880" y="341" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">102</text>
-
-  <!-- the shared zero at the prototype window -->
-  <text x="160" y="368" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">0</text>
-
-  <!-- x window labels + dates -->
-  <text x="160" y="406" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">prototype</text>
-  <text x="160" y="426" text-anchor="middle" font-size="16" fill="#57534e">Apr 9</text>
-  <text x="400" y="406" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">mechanization</text>
-  <text x="400" y="426" text-anchor="middle" font-size="16" fill="#57534e">May 31</text>
-  <text x="640" y="406" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">hardening</text>
-  <text x="640" y="426" text-anchor="middle" font-size="16" fill="#57534e">Jun 30</text>
-  <text x="880" y="406" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">now</text>
-  <text x="880" y="426" text-anchor="middle" font-size="16" fill="#57534e">Aug 3</text>
-
-  <!-- axis caption -->
-  <text x="130" y="452" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">count of governance controls in the tree · lint files and gate scripts · 993 registered lint specs at the final window</text>
-</svg><figcaption data-short="The controls accumulate across four windows — lint files (0 to 336 to 595 to…"><span class="fig-label">Figure 3.4-2.</span> The controls accumulate across four windows — lint files (0 to 336 to 595 to 747) and gate scripts (0 to 20 to 76 to 102). Both start at literal zero: the substrate is post-prototype. The climb is steepest through mechanization and rises after, one class at a time.</figcaption></figure>
-<p>The curve is the accumulation, not its cause. Those lint files carry 993 registered lint specs at the final window, each a policy the environment now enforces on every agent. What the count cannot separate is which controls a failure drove and which the domain suggested up front — the two modes interleave by design, and no commit trail cleanly splits them. But the discipline that converts a failure is documented and named: a paired fix-and-lint tag marks the commits that ship a code fix beside the check that forbids its recurrence, appearing in 208 commits, and 27 lints name a specific dated incident in their own text, spot-checked as genuine conversions. Read the curve as a documented, growing discipline, then — not a measured causal rate. For the data, see <a href="3.4-governance-conversion.html#control-growth">Governance Conversion →</a></p>
+<h2><span class="sec-num">3.4.3</span> The controls accumulate</h2>
+<p>Run the promotion rule for a season and the environment fills with controls — nearly all discovered ex-post, the obligations no up-front specification would have named. The case project's own accumulation is charted where its scale evidence lives: <a href="5.2-the-build.html#control-growth">the controls-accumulate curve</a> counts its two hardest control surfaces — project-specific lint files and gate scripts — climbing from zero across the four build windows, alongside the support ratio and churn.</p>
 <p>Conventional wisdom offers a rough rule for how large the environment should grow — about one line of tests per line of production — and <a href="5.2-the-build.html">The timeline and the work</a> measures the ratio MAGE reaches against it. Either way, the control a conversion adds is one of the two forms the previous chapter named — a constraint that prevents, like a firewall, or a sensor that catches, like a smoke detector.</p>
 <p>Before the synthesis, watch the conversion run outside one project — the failure that motivates it is mine, the pattern that answers it is not.</p>
 <blockquote class="aside-sidenote def-inset"><p><strong>Field note — the pipeline that ran open-loop.</strong> One of our document-remediation pipelines had every mark of a clean design: a single driver, one phase taxonomy, a typed contract on every pass, a startup sort that checked the order. It had drifted anyway. The declared order and the actual order had come apart at seven places, and the seven were not scattered — they sat exactly where the accessibility-AI loop churned hardest, each new trick wired straight into the run path, skipping the registry. The registry was a constraint that held for the passes routed through it; the inline additions routed around it, and my one guard only ever looked at registered passes. The repair was the missing sensor: a parity check that compares the passes that actually run against the declared graph and fails when an unregistered one appears. That is the conversion in miniature — a failure I could not afford to catch by hand became a check the environment now runs on every build.</p></blockquote>

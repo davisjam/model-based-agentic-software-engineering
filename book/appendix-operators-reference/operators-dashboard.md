@@ -21,7 +21,7 @@ single loop iteration, read this to steer or grade the whole program.
 | **Summative — measured at maturity, a verdict on the result** | | | | | |
 | **MBSE navigation token-savings** | summative | Tokens spent to reach an answer, model on versus off. | Certify the model earned its context budget. | Lower with the model on. | [2.3](2.3-the-executable-zoo.html) |
 | **Support ratio** | both | Support-apparatus LoC (tests, lints, docs, infra, tooling) over production LoC. | Watch the apparatus keeps leading as feature work resumes. | Leads production; settles around 3x it at maturity. | [5.2](5.2-the-build.html#support-ratio-curve) |
-| **Control growth** | both | Project-specific lint files and gate scripts, per window. | Watch the environment still accrete controls. | Climbs steadily (lints 0 to 747; gates 0 to 102). | [3.4](3.4-governance-conversion.html#control-growth) |
+| **Control growth** | both | Project-specific lint files and gate scripts, per window. | Watch the environment still accrete controls. | Climbs steadily (lints 0 to 747; gates 0 to 102). | [5.2](5.2-the-build.html#control-growth) |
 | **Epic-closure rate** | both | Epics moved into the closed set per week — the finishing rate, not the commit rate. | Whether an operating-mode shift converts to durable throughput rather than raw output. | Rises when the environment absorbs autonomous loops; flat velocity beside a rising closure rate is the healthy anti-decay shape. | [5.2](5.2-the-build.html) |
 
 Each metric's mode and the rationale for its formative-or-summative call live in the dashboard's model file,

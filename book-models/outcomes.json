@@ -30,7 +30,7 @@
     "outcomes_with_elaborative_units": 20,
     "elaborative_links": 27,
     "units_serving_as_elaborative": 20,
-    "sections_total": 284,
+    "sections_total": 279,
     "sections_primary_of_an_outcome": 39,
     "modules": 7,
     "lessons": 37
@@ -242,7 +242,7 @@
             "section_outcomes": [
               "ex-ante-everything-you-can-decide-up-front::apply-specification-driven-development-to-what",
               "ex-post-everything-you-learn-by-building::explain-why-most-real-mechanisms-are-built-ex-po",
-              "control-growth::run-the-promotion-rule-for-a-season-and-the",
+              "the-controls-accumulate::run-the-promotion-rule-for-a-season-and-the",
               "the-residual-goals-no-mechanism-reaches::identify-the-residual-goals-no-mechanism-reaches"
             ]
           },
@@ -1016,19 +1016,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "control-growth::run-the-promotion-rule-for-a-season-and-the",
-      "granularity": "section",
-      "primary_unit": "control-growth",
-      "secondary_units": [],
-      "verb": "run",
-      "obj": "the promotion rule for a season and the environment fills with …",
-      "statement": "After this section, the reader can run the promotion rule for a season and the environment fills with ….",
-      "bloom": "apply",
-      "provenance": "derived",
-      "anchor": "ts: Run the promotion rule for a season and the environment fills with controls — nearly all d",
-      "gap_note": null
-    },
-    {
       "outcome_id": "drawing-what-lies-between-the-controls::analyze-the-collisions-between-controls-as-edges",
       "granularity": "section",
       "primary_unit": "drawing-what-lies-between-the-controls",
@@ -1229,6 +1216,19 @@
       "bloom": "evaluate",
       "provenance": "derived",
       "anchor": "Heading text: 'Size the leap to the model and the guarantee'; ts: 'Give a model an input and either examples of a transformation or a precise description'.",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "the-controls-accumulate::run-the-promotion-rule-for-a-season-and-the",
+      "granularity": "section",
+      "primary_unit": "the-controls-accumulate",
+      "secondary_units": [],
+      "verb": "run",
+      "obj": "the promotion rule for a season and the environment fills with …",
+      "statement": "After this section, the reader can run the promotion rule for a season and the environment fills with ….",
+      "bloom": "apply",
+      "provenance": "derived",
+      "anchor": "ts: Run the promotion rule for a season and the environment fills with controls — nearly all d",
       "gap_note": null
     },
     {

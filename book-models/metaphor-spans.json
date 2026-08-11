@@ -4,7 +4,7 @@
   "ration_rule": "Each declared idea gets ONE canonical slogan (scope invoke-by-name) at its best location. Later appearances are blunt referential invocations, not fresh polished formulations. A `used-once` line appears exactly once; a `commandment` may recur as a refrain. Density/clustering caps ration polished occurrences. A slogan and a metaphor elaborating the SAME idea do not compete — only two invoke-by-name slogans on one idea do.",
   "ratified_counts": {
     "core": 9,
-    "local": 9,
+    "local": 8,
     "overlaps": 0,
     "slogans": 9,
     "commandments": 1,
@@ -234,30 +234,6 @@
       "overlap_ok": false,
       "overlap_rationale": "",
       "notes": "Vehicle word 'staircase' is reused by mage-staircase (5.4) — see the vehicle-collision check. Renaming this to 'the evidence ladder/ratchet' (a DEFERRED editorial call, no content edit here) would free 'staircase' for the load-bearing 5.4 close."
-    },
-    {
-      "kind": "metaphor",
-      "name": "The diffusion analogy",
-      "slug": "diffusion-analogy",
-      "recurrence": "local",
-      "vehicle": "an image-diffusion model",
-      "elaborates": {
-        "model": "argument-spine",
-        "id": "abundant-implementation"
-      },
-      "introduced_at": {
-        "label": "the-ada-context",
-        "anchor": "diffusion-analogy"
-      },
-      "pays_off_at": {
-        "label": "the-ada-context",
-        "anchor": "diffusion-analogy"
-      },
-      "stretch": "the-ada-context",
-      "payoff": "On novel code the average pull is against you; impose the bias yourself.",
-      "overlap_ok": false,
-      "overlap_rationale": "",
-      "notes": "Pays off in the section that raises it."
     },
     {
       "kind": "metaphor",
