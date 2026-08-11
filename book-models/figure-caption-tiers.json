@@ -25,6 +25,12 @@
       "location": "frontmatter",
       "rationale": "glossary section-map for 'The Governed Engineering Environment' — orientation concept-map chrome; short reference caption"
     },
+    "assets/mage-vocabulary.svg": {
+      "tier": "C",
+      "kind": "vocabulary-spine",
+      "location": "frontmatter",
+      "rationale": "the book's noun spine placed after the glossary — the vocabulary as one chain every later figure instantiates; short reference caption"
+    },
     "assets/open-frontiers.svg": {
       "tier": "A",
       "kind": "roadmap",

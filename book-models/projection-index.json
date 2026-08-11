@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 38,
     "slugs_rendered": 29,
-    "total_sites": 1473,
+    "total_sites": 1474,
     "by_projection": {
       "book-pdf": 26,
-      "book-web": 1045,
+      "book-web": 1046,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -1354,6 +1354,10 @@
       "book": {
         "book-web": [
           {
+            "file": "book/0.3-the-books-language.html",
+            "occ": 1
+          },
+          {
             "file": "book/1.5-transformations.html",
             "occ": 1
           },
@@ -1391,7 +1395,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 14
+            "occ": 15
           },
           {
             "file": "book/list-of-figures.html",
@@ -1401,7 +1405,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 11
+            "occ": 12
           }
         ]
       },
@@ -1531,7 +1535,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 33
+            "occ": 38
           },
           {
             "file": "book/0.4-preface.html",
@@ -1959,7 +1963,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 126
+            "occ": 131
           },
           {
             "file": "book/index.html",
@@ -2145,7 +2149,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 5
+            "occ": 10
           },
           {
             "file": "book/0.4-preface.html",
@@ -2569,7 +2573,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 24
+            "occ": 29
           },
           {
             "file": "book/index.html",
@@ -2699,7 +2703,7 @@
         "book-web": [
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 3
+            "occ": 5
           },
           {
             "file": "book/1.3-loops-and-models.html",
@@ -2807,7 +2811,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 1
+            "occ": 3
           }
         ],
         "book-pdf": [
@@ -2929,7 +2933,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 53
+            "occ": 57
           },
           {
             "file": "book/0.4-preface.html",
@@ -3357,7 +3361,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 288
+            "occ": 292
           },
           {
             "file": "book/index.html",
@@ -5401,7 +5405,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 5
+            "occ": 8
           },
           {
             "file": "book/0.4-preface.html",
@@ -5825,7 +5829,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 45
+            "occ": 48
           },
           {
             "file": "book/index.html",
