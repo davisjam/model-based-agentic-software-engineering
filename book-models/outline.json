@@ -1638,57 +1638,57 @@
           "heading_text": "The four layers",
           "topic_sentence": "**At the bottom sits the foundation model.** It comes from a commercial vendor or an open-weight release, and it is a general language reasoner, able to *induce* an understanding of your environment — though that induction is expensive, and it happens fresh every time.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 21,
           "points": [
             {
               "slug": "foundation-layer-spares-the-model-reasoning-cost",
               "text": "Tell the model where to look; spare its reasoning.",
-              "block_index": 20
+              "block_index": 23
             },
             {
               "slug": "model-constituents-are-a-control-surface",
               "text": "The model's three parts steer differently.",
-              "block_index": 25
+              "block_index": 28
             },
             {
               "slug": "models-pack-the-window-denser",
               "text": "You cannot widen the window; pack it denser.",
-              "block_index": 28
+              "block_index": 31
             },
             {
               "slug": "window-control-is-the-books-bet",
               "text": "Model choice is yours; the book bets on the window.",
-              "block_index": 30
+              "block_index": 33
             },
             {
               "slug": "the-model-reasons-over-a-world-representation",
               "text": "The model reasons over a world representation, so equip it.",
-              "block_index": 32
+              "block_index": 35
             },
             {
               "slug": "harness-manages-the-context-window-and-holds-two-mechanism-points",
               "text": "The harness manages the context window and holds two mechanisms.",
-              "block_index": 35
+              "block_index": 38
             },
             {
               "slug": "the-harness-layer-has-a-named-taxonomy",
               "text": "The field names a framework, harness, and agent-OS taxonomy.",
-              "block_index": 39
+              "block_index": 42
             },
             {
               "slug": "skills-are-soft-hooks-are-hard-tools-are-deterministic",
               "text": "Skills are soft, hooks are hard, tools take deterministic action.",
-              "block_index": 41
+              "block_index": 44
             },
             {
               "slug": "engineering-environment-must-be-written-down-and-offers-git-and-ci-hooks",
               "text": "Write down the engineering environment; it offers git hooks.",
-              "block_index": 47
+              "block_index": 50
             },
             {
               "slug": "application-layer-makes-mistakes-structurally-impossible-via-static-analysis",
               "text": "Static analysis makes a mistake class structurally impossible.",
-              "block_index": 51
+              "block_index": 54
             }
           ]
         },
@@ -1698,27 +1698,27 @@
           "heading_text": "Every layer is a place to steer",
           "topic_sentence": "Read the stack as a list of opportunities, because that is what it is.",
           "id_source": "derived",
-          "block_index": 54,
+          "block_index": 57,
           "points": [
             {
               "slug": "read-each-layer-as-an-injection-opportunity",
               "text": "Read each layer as an injection opportunity.",
-              "block_index": 56
+              "block_index": 59
             },
             {
               "slug": "every-layer-serves-one-goal-narrow-the-search",
               "text": "Every layer serves one goal: narrow the agent's search.",
-              "block_index": 59
+              "block_index": 62
             },
             {
               "slug": "mechanisms-interact-and-the-interplay-is-its-own-problem",
               "text": "Mechanisms interact; the interplay is its own problem.",
-              "block_index": 62
+              "block_index": 65
             },
             {
               "slug": "the-stack-grounds-both-theses",
               "text": "The stack grounds both the Modeling and Alignment theses.",
-              "block_index": 65
+              "block_index": 68
             }
           ]
         }
@@ -1742,12 +1742,12 @@
         {
           "slug": "alignment-is-the-move-from-guidance-to-obligation",
           "text": "A prompt aligns without creating authority; MAGE is the move from guidance to enforceable obligation.",
-          "block_index": 11
+          "block_index": 14
         },
         {
           "slug": "agent-stack-has-four-injection-layers",
           "text": "The agent stack has four layers, each an injection point.",
-          "block_index": 14
+          "block_index": 17
         }
       ]
     },

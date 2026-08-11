@@ -13,7 +13,7 @@
     ],
     "core_constructs": {
       "_note": "The six foundational constructs (say 'core construct' / 'core concept', never 'primitive' — 'primitive' is RESERVED for implementation-level code operations, the dense-primitive-region sense). The construct is the governance-conversion loop; its registered concept slug is `governance-conversion` (renamed 260804 from the earlier `failure-to-mechanism` so the slug matches the display name the prose uses).",
-      "engineered-agent-loop": "The engineered agent loop — a feedback process whose four levers (state exposed, action surface, success criterion, admission rule) the engineer shapes. Defined in 1.3.",
+      "engineered-agent-loop": "The engineered agent loop — a feedback process whose four levers (state exposed, action surface, success criterion, admission rule) the engineer shapes. Defined in 3.1.",
       "model": "A deliberately reduced, machine-readable representation of system intent, structure, behavior, policy, or evidence — the formal definition in definitions.json. Defined in 2.1.",
       "governance-mechanism": "A repeatable environmental structure that encodes an engineering policy — prevention, detection, evidence, or admission. Defined in 2.3.",
       "churn": "The failure mode: an increasing share of agent effort spent rediscovering, undoing, repairing, reconciling. Defined in the preface.",
@@ -168,7 +168,7 @@
     "kind": "core-construct",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "Core construct 1 of 6 (_hierarchy). The engineered agent loop: a feedback process in which the environment supplies a modeled state, constrains available actions, measures progress against an explicit criterion, and determines whether the result may advance. Four engineered levers — state exposed, action surface, success criterion, admission rule. Definitional text homed in definitions.json. Book index-def tagged at the 1.3 four-levers inset (the loop-engineering.svg figure marks the levers as the engineer's control points). Sibling of the registered loop-engineering concept, which names the PRACTICE of shaping this loop."
+    "note": "Core construct 1 of 6 (_hierarchy). The engineered agent loop: a feedback process in which the environment supplies a modeled state, constrains available actions, measures progress against an explicit criterion, and determines whether the result may advance. Four engineered levers — state exposed, action surface, success criterion, admission rule. Definitional text homed in definitions.json. Book index-def tagged at §3.1 The Agent Stack's soft/hard/feedback three-kinds paragraph (re-homed from §1.3 in R24, which restored §1.3's clean ending). Sibling of the registered loop-engineering concept, which names the PRACTICE of shaping this loop."
   },
   "model": {
     "kind": "core-construct",

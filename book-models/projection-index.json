@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 34,
     "slugs_rendered": 26,
-    "total_sites": 1647,
+    "total_sites": 1645,
     "by_projection": {
       "book-pdf": 23,
-      "book-web": 1223,
+      "book-web": 1221,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -53,7 +53,7 @@
           },
           {
             "file": "book/1.3-the-reasoning-horizon.html",
-            "occ": 7
+            "occ": 4
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
@@ -1506,10 +1506,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/1.3-the-reasoning-horizon.html",
-            "occ": 1
-          },
-          {
             "file": "book/book-index.html",
             "occ": 1
           }
@@ -1517,7 +1513,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 2
+            "occ": 1
           }
         ]
       }
@@ -1559,7 +1555,7 @@
           },
           {
             "file": "book/1.3-the-reasoning-horizon.html",
-            "occ": 20
+            "occ": 19
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
@@ -3021,7 +3017,7 @@
           },
           {
             "file": "book/1.3-the-reasoning-horizon.html",
-            "occ": 28
+            "occ": 26
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
@@ -6810,10 +6806,6 @@
             "occ": 1
           },
           {
-            "file": "book/1.3-the-reasoning-horizon.html",
-            "occ": 1
-          },
-          {
             "file": "book/1.4-the-new-engineering-problem.html",
             "occ": 2
           },
@@ -6941,7 +6933,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 33
+            "occ": 32
           }
         ]
       },

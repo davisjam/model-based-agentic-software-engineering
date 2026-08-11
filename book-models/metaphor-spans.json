@@ -117,13 +117,13 @@
         "id": "engineered-agent-loop"
       },
       "introduced_at": {
-        "label": "reasoning-horizon",
+        "label": "the-agent-stack",
         "anchor": "loop-engineering"
       },
       "payoff": "Agent work is a loop you engineer at four control points.",
       "overlap_ok": false,
       "overlap_rationale": "",
-      "notes": "\"Nearly everything in this book is an instance of it.\" The four levers land in 1.3; recurs book-wide. Elaborates the DEFINITION of the engineered agent loop."
+      "notes": "\"Nearly everything in this book is an instance of it.\" The four levers land in §3.1 (re-homed from §1.3 in R24); recurs book-wide. Elaborates the DEFINITION of the engineered agent loop."
     },
     {
       "kind": "metaphor",

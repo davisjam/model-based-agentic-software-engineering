@@ -146,8 +146,8 @@
     ],
     "site_home": "N/A",
     "derived_from": "book/_design/book-editorial-discipline-directive-260802.md#the-engineered-agent-loop",
-    "book_home": "loops-and-models#idx-def-engineered-agent-loop",
-    "book_home_owed": {"section": "Part 1 — §1.3 Loops and Models", "status": "landed", "note": "Landed: the engineered-loop inset in 1.3's four-levers section carries the index-def tag and renders as the light def-inset. Book-only by design."},
+    "book_home": "the-agent-stack#idx-def-engineered-agent-loop",
+    "book_home_owed": {"section": "Part 3 — §3.1 The Agent Stack", "status": "landed", "note": "Landed: the engineered-loop index-def now anchors on §3.1 The Agent Stack's soft/hard/feedback three-kinds paragraph (re-homed from §1.3's orphan loop-def block when R24 restored §1.3's ending). Book-only by design."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
