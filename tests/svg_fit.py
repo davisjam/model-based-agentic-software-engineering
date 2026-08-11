@@ -23,6 +23,7 @@ When it flags a figure, the report points the reader at the fix runbook so an ag
 """
 from __future__ import annotations
 
+import math
 import os
 import re
 import xml.etree.ElementTree as ET
@@ -180,13 +181,16 @@ def _collect_rects(root: ET.Element, vb_w: float | None) -> list[_Rect]:
     return rects
 
 
-def _text_extent(text: str, size: float, bold: bool, anchor: str) -> tuple[float, float]:
+def _text_extent(text: str, size: float, bold: bool, anchor: str, ratio: float | None = None) -> tuple[float, float]:
     """(left_x_offset, right_x_offset) of the estimated text run relative to the element's x.
 
     Width ~= len * size * ratio. `text-anchor` decides how the run sits about the x point:
-    `start` runs rightward, `middle` centers, `end` runs leftward.
+    `start` runs rightward, `middle` centers, `end` runs leftward. `ratio` overrides the default
+    glyph-width fraction — a caller testing whether text CROSSES INTO a box passes a lower, truer ratio so
+    the audit's deliberately-high default can't manufacture a phantom overlap.
     """
-    ratio = GLYPH_RATIO_BOLD if bold else GLYPH_RATIO
+    if ratio is None:
+        ratio = GLYPH_RATIO_BOLD if bold else GLYPH_RATIO
     width = len(text) * size * ratio
     if anchor == "middle":
         return -width / 2.0, width / 2.0
@@ -404,8 +408,99 @@ def _bbox_max_dim(verts: list[tuple[float, float]]) -> float:
     return max(max(xs) - min(xs), max(ys) - min(ys))
 
 
+# ---- shaftless-arrow (C5) constants + marker/connector helpers --------------------------------------
+# A `marker-end` triangle renders `markerWidth` units long, scaled by the line's stroke-width when
+# `markerUnits` is the SVG default `strokeWidth`. If the connector's final segment is barely longer than
+# that, the arrowhead eats the whole shaft and the connector reads as a bare floating triangle (the
+# 20px/stroke-3/markerWidth-7 down-arrows that rendered shaft-less). Flag when the visible remainder falls
+# below a minimum.
+MIN_VISIBLE_SHAFT = 8.0        # user units of shaft that must remain visible behind the arrowhead
+DEFAULT_MARKER_WIDTH = 3.0     # SVG spec default markerWidth when the attribute is absent
+DEFAULT_STROKE_WIDTH = 1.0     # SVG spec default stroke-width when the attribute is absent
+
+
+def _marker_end_id(el: ET.Element) -> str | None:
+    """The referenced marker id from `marker-end="url(#id)"` (attribute or inline `style`); None if absent."""
+    v = el.get("marker-end") or ""
+    if not v:
+        style = el.get("style") or ""
+        m = re.search(r"marker-end\s*:\s*url\(#([^)]+)\)", style)
+        return m.group(1) if m else None
+    m = re.search(r"url\(#([^)]+)\)", v)
+    return m.group(1) if m else None
+
+
+def _collect_markers(root: ET.Element) -> dict[str, tuple[float, str]]:
+    """Map each `<marker id=...>` to (markerWidth, markerUnits). Defaults per SVG spec: width 3,
+    units `strokeWidth`."""
+    out: dict[str, tuple[float, str]] = {}
+    for el in root.iter():
+        if _local(el.tag) != "marker":
+            continue
+        mid = el.get("id")
+        if not mid:
+            continue
+        mw = _num(el.get("markerWidth"))
+        units = (el.get("markerUnits") or "strokeWidth").strip()
+        out[mid] = (mw if mw is not None else DEFAULT_MARKER_WIDTH, units)
+    return out
+
+
+def _stroke_width(el: ET.Element) -> float:
+    n = _num(el.get("stroke-width")) if el.get("stroke-width") else None
+    return n if n is not None else DEFAULT_STROKE_WIDTH
+
+
+def _transformed_ids(root: ET.Element) -> set[int]:
+    """`id()` of every element that carries a `transform` OR sits under an ancestor that does. Those
+    elements' x/y are NOT absolute canvas coordinates, so the flat-coordinate collision/shaft geometry
+    would be wrong for them — the checks skip them (a documented conservative limitation, not a silent gap;
+    the hand-authored glossary figures are flat, transform-free)."""
+    parent = {c: p for p in root.iter() for c in p}
+    out: set[int] = set()
+    for el in root.iter():
+        node: ET.Element | None = el
+        while node is not None:
+            if node.get("transform"):
+                out.add(id(el))
+                break
+            node = parent.get(node)
+    return out
+
+
+def _final_segment(el: ET.Element) -> tuple[tuple[float, float], tuple[float, float]] | None:
+    """The last drawn segment (the one bearing a `marker-end`) of a `<line>`, `<polyline>`, or pure
+    absolute M/L `<path>`; None for curves/arcs or degenerate geometry. The visible shaft the reader sees
+    behind the arrowhead is this segment's length."""
+    tag = _local(el.tag)
+    if tag == "line":
+        x1, y1 = _num(el.get("x1")), _num(el.get("y1"))
+        x2, y2 = _num(el.get("x2")), _num(el.get("y2"))
+        if None in (x1, y1, x2, y2):
+            return None
+        return (x1, y1), (x2, y2)  # type: ignore[return-value]
+    if tag == "polyline":
+        nums = re.findall(r"-?[0-9.]+", el.get("points") or "")
+        if len(nums) < 4:
+            return None
+        pts = [(float(nums[i]), float(nums[i + 1])) for i in range(0, len(nums) - 1, 2)]
+        return (pts[-2], pts[-1])
+    if tag == "path":
+        d = el.get("d") or ""
+        if not d or re.search(r"[csqtahvCSQTAHV]|[mlz]", d):
+            return None  # curves / arcs / relative — don't reason about it
+        if _triangle_from_path_d(d) is not None:
+            return None  # an arrowhead triangle, not a connector
+        nums = re.findall(r"-?[0-9.]+", d)
+        if len(nums) < 4:
+            return None
+        pts = [(float(nums[i]), float(nums[i + 1])) for i in range(0, len(nums) - 1, 2)]
+        return (pts[-2], pts[-1])
+    return None
+
+
 def check_svg_drawing_hygiene():
-    """Scan every `book/assets/*.svg` for native-construct violations (AUDIT-ONLY). Three checks, each a
+    """Scan every `book/assets/*.svg` for native-construct violations (AUDIT-ONLY). Four checks, each a
     real bug the text-fit heuristic can't see:
       - **marker not +x** — a `<marker orient="auto">` arrowhead triangle drawn pointing up/down/backward
         instead of along +x; `orient` rotates it, so it lands perpendicular/off-target (the semantic-gap
@@ -414,6 +509,9 @@ def check_svg_drawing_hygiene():
         (hand-composed; use a native marker so it can't drift off the line).
       - **stroke through glyph** — a `<line>` OR a straight-segment `<path>` polyline whose stroke passes
         through a `<text>`'s estimated bbox.
+      - **shaftless arrow (C5)** — a `<line>`/`<polyline>`/pure-M/L `<path>` whose final segment is so
+        short the `marker-end` arrowhead consumes the whole shaft, so the connector reads as a bare
+        floating triangle. Exact geometry: visible = segment_len - marker_len, flagged below MIN_VISIBLE_SHAFT.
     Heuristic; audit-only. Fix guidance -> the drawing style doc."""
     assets_dir = os.path.join(ROOT, "book", "assets")
     if not os.path.isdir(assets_dir):
@@ -554,8 +652,188 @@ def check_svg_drawing_hygiene():
                     flagged.add(fn)
                     break
 
+        # (4) shaftless arrow (C5): a marker-end connector whose final segment is shorter than the
+        # rendered arrowhead, so the arrowhead swallows the shaft. Exact connector/marker geometry — no
+        # text-width estimate, so essentially no false positives. Skips transformed connectors (coords not
+        # absolute) and unresolvable marker refs.
+        markers = _collect_markers(root)
+        transformed = _transformed_ids(root)
+        if markers:
+            for el in root.iter():
+                if _local(el.tag) not in ("line", "polyline", "path"):
+                    continue
+                if id(el) in transformed:
+                    continue
+                mid = _marker_end_id(el)
+                if not mid or mid not in markers:
+                    continue
+                seg = _final_segment(el)
+                if seg is None:
+                    continue
+                (ax, ay), (bx, by) = seg
+                shaft = math.hypot(bx - ax, by - ay)
+                if shaft <= 0:
+                    continue
+                mw, units = markers[mid]
+                strokescaled = units in ("", "strokeWidth")
+                marker_len = mw * _stroke_width(el) if strokescaled else mw
+                visible = shaft - marker_len
+                if visible < MIN_VISIBLE_SHAFT:
+                    issues.append(
+                        f"{rel(path)}: SHAFTLESS arrow — a <{_local(el.tag)}> carrying "
+                        f"marker-end=url(#{mid}) has final segment {shaft:.0f}u but the arrowhead renders "
+                        f"~{marker_len:.0f}u ({'markerWidth ' + format(mw, '.0f') + ' x stroke ' + format(_stroke_width(el), '.0f') if strokescaled else 'markerWidth ' + format(mw, '.0f') + ' userSpace'}), "
+                        f"leaving {visible:.0f}u visible (< {MIN_VISIBLE_SHAFT:.0f}u) — lengthen the shaft, "
+                        f"shrink the marker, or set markerUnits=userSpaceOnUse")
+                    flagged.add(fn)
+
     if issues:
         issues.insert(0, f"{len(flagged)} figure(s) with native-construct / stroke-through-glyph issues:")
         issues.append("")
         issues.append(f"AUDIT-ONLY (heuristic; false positives expected). Fix guidance -> {DRAWING_DOC}")
+    return PASS, issues  # AUDIT-ONLY: never FAIL
+
+
+# ---- edge-label <-> node-box collision (C3) (AUDIT-ONLY) ---------------------------------------------
+# The PAGE-level PDF sensors treat an embedded figure as one opaque image, so an edge-verb label
+# overrunning a node box INSIDE the figure's own coordinate space is invisible to them. This parses the
+# SVG DOM and tests, per figure, whether a free connector label crowds a node box it does not own.
+#
+# The formulation is an ASYMMETRIC INFLATE, not a naive bbox-intersection. A label can clear a box
+# vertically by a few pixels in the narrow render metrics yet cross it in the wider print metrics — a
+# strict "label bbox intersects box" test misses exactly that near-miss (why the compiled-PDF gate passed
+# the "compounds into" overhang falsely). So: require real horizontal overlap (>= C3_H_OVERLAP_MIN_FRAC of
+# the font size — a label merely adjacent is not flagged) AND less than a full line-height of vertical
+# clearance (C3_V_CLEAR_FRAC). The vertical band swamps any glyph-width estimation error, so the crude
+# `_text_extent` ratio suffices here (unlike the box-fit gate, which needs the accurate per-glyph model).
+C3_H_OVERLAP_MIN_FRAC = 0.5   # horizontal overlap floor: a free label must cover >= 0.5*fs of the box's x
+# The trigger is a NEAR-crossing, not a comfortable clearance: the confirmed defect ("compounds into") sat
+# ~7px above a box top (< 0.5*fs at fs16) and crossed it in the wider print metrics, while the accepted
+# grazes elsewhere clear by ~12-13px (~0.8*fs). Calibrated to that boundary so accepted grazes don't flag.
+C3_V_CLEAR_FRAC = 0.5         # a free label must clear the box vertically by >= 0.5 line-height, else flag
+# For the horizontal CROSS-INTO decision, use the high end of the measured true per-string ratio
+# (0.36-0.43), NOT the audit's deliberately-high 0.55 default — a 30-50% over-read would otherwise
+# manufacture a phantom overlap for a label whose true glyphs clear the box edge.
+C3_GLYPH_RATIO = 0.42
+
+# Conservative fill-scoping (the DoD's high-precision form). The failure class — a floating verb-on-edge
+# label crowding a node box — lives in the concept-map / vocabulary figure family, which paints edge-verb
+# labels in a muted stone grey and node boxes in a light/dark card fill. Scoping the check to those fills
+# keeps it precise: a bar-chart bar, an axis tick, a triangle vertex, or a prose caption in any other
+# figure carries neither fill, so it is never tested and never false-flagged. A label INSIDE its own box
+# (a node title) is dark on the card and is separately exempted by the anchor-inside-box test.
+C3_EDGE_LABEL_FILLS = {"#78716c"}            # floating connector-verb label colour
+C3_NODE_BOX_FILLS = {"#f6f4ef", "#1c1917"}   # light card / dark card node-box fills
+
+
+def _fill(el: ET.Element) -> str:
+    """Resolve an element's fill (attribute or inline `style`), lower-cased; '' if none."""
+    v = (el.get("fill") or "").strip().lower()
+    if v:
+        return v
+    m = re.search(r"fill\s*:\s*([^;]+)", el.get("style") or "")
+    return m.group(1).strip().lower() if m else ""
+
+
+def _collect_node_box_rects(root: ET.Element, transformed: set[int]) -> list[_Rect]:
+    """Every `<rect>` painted a node-box fill and not under a transform — the boxes a floating edge-label
+    must not crowd. Narrower scope than `_collect_rects` (fill-typed), so chart bars / panels / frames
+    (other fills) are excluded by construction."""
+    rects: list[_Rect] = []
+    for el in root.iter():
+        if _local(el.tag) != "rect" or id(el) in transformed:
+            continue
+        if _fill(el) not in C3_NODE_BOX_FILLS:
+            continue
+        x, y = _num(el.get("x")), _num(el.get("y"))
+        w, h = _num(el.get("width")), _num(el.get("height"))
+        if None in (x, y, w, h) or w <= 0 or h <= 0:
+            continue
+        rects.append(_Rect(x, y, w, h))  # type: ignore[arg-type]
+    return rects
+
+
+def check_svg_edge_label_box_collision():
+    """Scan every `book/assets/*.svg`; flag a free connector label that crowds a node box it does not own.
+
+    For each `<text>` whose anchor sits OUTSIDE every node `<rect>` (a free edge/verb label floating in the
+    connector band — an anchor INSIDE a rect is that node's own title/subtitle and is exempt; the accurate
+    box-fit gate owns those), estimate its bbox and test the ASYMMETRIC INFLATE against every node rect:
+    horizontal overlap >= C3_H_OVERLAP_MIN_FRAC*fs AND vertical clearance < C3_V_CLEAR_FRAC*fs => collision.
+    Skips transformed elements (coords not absolute) — the hand-authored figures are flat.
+
+    AUDIT-ONLY: always returns (PASS, issues) — reports candidates, never contributes to the fail count.
+    """
+    assets_dir = os.path.join(ROOT, "book", "assets")
+    if not os.path.isdir(assets_dir):
+        return PASS, ["no book/assets/ dir — nothing to scan"]
+
+    issues: list[str] = []
+    flagged: set[str] = set()
+    for fn in sorted(os.listdir(assets_dir)):
+        if not fn.endswith(".svg"):
+            continue
+        path = os.path.join(assets_dir, fn)
+        try:
+            root = ET.parse(path).getroot()
+        except ET.ParseError:
+            continue  # the text-fit pass already reports parse errors
+        style_classes = _parse_style_font_sizes(root)
+        transformed = _transformed_ids(root)
+        rects = _collect_node_box_rects(root, transformed)
+        if not rects:
+            continue
+
+        for el in root.iter():
+            if _local(el.tag) != "text" or id(el) in transformed:
+                continue
+            if _fill(el) not in C3_EDGE_LABEL_FILLS:
+                continue  # only floating connector-verb labels are candidates (fill-scoped, low-FP)
+            text = _text_content(el)
+            if not text:
+                continue
+            x, y = _num(el.get("x")), _num(el.get("y"))
+            if x is None or y is None:
+                continue
+            fw = _font_size_and_weight(el, style_classes)
+            if fw is None:
+                continue
+            size, bold = fw
+            # A label whose anchor lies inside a node box is that box's own title/subtitle — exempt.
+            if any(r.contains_point(x, y) for r in rects):
+                continue
+            anchor = (el.get("text-anchor") or "start").strip()
+            lo, ro = _text_extent(text, size, bold, anchor, ratio=C3_GLYPH_RATIO)
+            left, right = x + lo, x + ro
+            top, bottom = y - size * 0.72, y + size * 0.22
+            h_floor = C3_H_OVERLAP_MIN_FRAC * size
+            v_clr = C3_V_CLEAR_FRAC * size
+            label = text if len(text) <= 42 else text[:39] + "..."
+            for r in rects:
+                # The anchor point must sit OUTSIDE the box's x-span: a label anchored WITHIN a box's
+                # column is that column's own connector label (it shares the box x-range by construction —
+                # a vertical-flow verb in the gap between two stacked boxes), NOT a label crossing into a
+                # box it doesn't belong to. The real defect anchors beside/above an offset box and its tail
+                # crosses in (compounds-into anchored at x=828, left of the box at 844-984).
+                if r.x <= x <= r.x + r.w:
+                    continue
+                h_ov = min(right, r.x + r.w) - max(left, r.x)
+                if h_ov < h_floor:
+                    continue  # not horizontally over the box (merely adjacent) — no crowding
+                # inflate the label band vertically by a full line-height; does it now reach the box?
+                if bottom + v_clr < r.y or top - v_clr > r.y + r.h:
+                    continue  # clears the box vertically by more than a line-height — safe
+                gap = min(abs(r.y - bottom), abs(top - (r.y + r.h)))
+                issues.append(
+                    f"{rel(path)}: EDGE-LABEL over box — free label {label!r} (x{left:.0f}-{right:.0f}, "
+                    f"font {size:.0f}u) horizontally overlaps node rect x={r.x:.0f} w={r.w:.0f} y={r.y:.0f} "
+                    f"h={r.h:.0f} by ~{h_ov:.0f}u with only ~{gap:.0f}u vertical clearance (< {v_clr:.0f}u "
+                    f"line-height) — reposition the label clear of the box")
+                flagged.add(fn)
+                break
+
+    if issues:
+        issues.insert(0, f"{len(flagged)} figure(s) with an edge-label crowding a node box:")
+        issues.append("")
+        issues.append(f"AUDIT-ONLY. Fix guidance -> {DRAWING_DOC}")
     return PASS, issues  # AUDIT-ONLY: never FAIL

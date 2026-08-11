@@ -111,7 +111,12 @@ from tests.skill import (
     check_skill_local_adapter,
     check_skill_structure,
 )
-from tests.svg_fit import check_svg_drawing_hygiene, check_svg_page_fit, check_svg_text_fit
+from tests.svg_fit import (
+    check_svg_drawing_hygiene,
+    check_svg_edge_label_box_collision,
+    check_svg_page_fit,
+    check_svg_text_fit,
+)
 
 
 class Check(NamedTuple):
@@ -504,8 +509,15 @@ CHECKS = [
     # through a <text> glyph box. The function hard-returns PASS (never contributes to the fail count);
     # audit_only matches that behavior and prevents a "promote to blocking" edit from detonating its
     # false positives. See tests/svg_fit.py.
-    Check("svg: drawing hygiene (marker +x / stitched arrowhead / stroke-through-glyph)", 1,
+    Check("svg: drawing hygiene (marker +x / stitched arrowhead / stroke-through-glyph / shaftless-arrow C5)", 1,
           lambda strict: check_svg_drawing_hygiene(), audit_only=True),
+    # AUDIT-ONLY-first (rule #55): C3 intra-figure collision — a free connector label horizontally
+    # overlapping a node <rect> it does not own with under a line-height of vertical clearance (the
+    # asymmetric-inflate that catches the "compounds into" overhang the PAGE-level PDF sensors, treating
+    # each figure as one opaque image, are blind to). Lands audit-only; promote to blocking in a follow-up
+    # once a clean session confirms 0 findings across ALL assets. See tests/svg_fit.py.
+    Check("svg: edge-label <-> node-box collision (C3, intra-figure)", 1,
+          lambda strict: check_svg_edge_label_box_collision(), audit_only=True),
     # BLOCKING (promoted — drain confirmed 0 at HEAD): a figure whose viewBox aspect projects past the page
     # bottom at image(width:85%) and clips. Deterministic (a pure function of the viewBox), unlike the crude
     # glyph-width heuristics above, so it is a real gate; it found the messy-timeline figure at 11.6in on a
