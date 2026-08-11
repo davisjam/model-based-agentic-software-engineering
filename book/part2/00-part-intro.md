@@ -19,9 +19,7 @@ Models are how MAGE stops paying that cost over and over.
 >
 > Richer representations create stronger reasoning surfaces.
 
-This Part walks one continuous ascent. We begin with lightweight context, organize it into connected
-knowledge, structure that knowledge into engineering models, and reach executable models whose
-correctness the environment itself can check. Each step enlarges what the engineer and the agent can
-understand without returning to raw implementation. The destination is not better documentation; it
-is a new engineering surface — the representations on which reasoning, analysis, prediction, and
-eventually governance are performed.
+Lightweight context organizes into connected knowledge, structures into engineering models, and reaches
+executable models whose correctness the environment itself can check. The destination is not better
+documentation; it is a new engineering surface — the representations on which reasoning, analysis,
+prediction, and eventually governance are performed.
