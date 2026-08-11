@@ -712,7 +712,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
 <li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
 <li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 94 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 856"
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 93 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 856"
      role="group" aria-labelledby="fig-0-1-1-mmTitle fig-0-1-1-mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-0-1-1-mmTitle">The MAGE method at a glance — a fork between engineering capital and engineering churn, with the two theses as gates</title>
@@ -2925,117 +2925,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text class="govlbl" x="0" y="0" text-anchor="start" transform="translate(1053 139) rotate(90)">Methodology +</text>
   <text class="govlbl" x="0" y="0" text-anchor="start" transform="translate(1005 178) rotate(90)">governance</text>
 
-</svg><figcaption data-short="The MAGE Stack"><span class="fig-label">Figure 3.1-1.</span> <em>The MAGE Stack.</em> Four layers stack from the GenAI foundation model up: the Harness that runs the agent and manages its context window, the Engineering environment of git and its hooks, and at the top the Application — the codebase, its tests, and CI. Each layer is a place to reach in and steer. The governance bar notches into all four, because a mechanism can live at any of them — a skill or hook in the harness, a pre-commit gate in the environment, a ban-lint in the application. Governance is a posture at every level, not one gate bolted on at the end.</figcaption></figure><p class="gallery-source">From <a href="3.1-the-agent-stack.html#fig-3-1-1">14 · Where Authority Lives</a></p></section><hr><section class="gallery-item"><figure id="fig-3-2-1-fig-3-2-1" class="book-figure" data-label="doc-hierarchy"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560"
-     role="img" aria-labelledby="fig-3-2-1-dhTitle fig-3-2-1-dhDesc"
+</svg><figcaption data-short="The MAGE Stack"><span class="fig-label">Figure 3.1-1.</span> <em>The MAGE Stack.</em> Four layers stack from the GenAI foundation model up: the Harness that runs the agent and manages its context window, the Engineering environment of git and its hooks, and at the top the Application — the codebase, its tests, and CI. Each layer is a place to reach in and steer. The governance bar notches into all four, because a mechanism can live at any of them — a skill or hook in the harness, a pre-commit gate in the environment, a ban-lint in the application. Governance is a posture at every level, not one gate bolted on at the end.</figcaption></figure><p class="gallery-source">From <a href="3.1-the-agent-stack.html#fig-3-1-1">14 · Where Authority Lives</a></p></section><hr><section class="gallery-item"><figure id="fig-3-2-1-fig-3-2-1" class="book-figure" data-label="semantic-gap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
+     role="group" aria-labelledby="fig-3-2-1-sgTitle fig-3-2-1-sgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-2-1-dhTitle">A structured model layer binds docs, code, and tests</title>
-  <desc id="fig-3-2-1-dhDesc">A two-panel contrast. Left panel, typical agentic methods: three
-    boxes — docs, code, and tests — stand as separate islands with no glue between them.
-    Nothing binds them, so they drift apart and there are no guardrails; a red marker notes
-    the missing binding. Right panel, the MAGE move: a structured model layer — a band of
-    several linked models, each at its own concern and altitude, not one universal master —
-    sits above the same three and binds them with checked edges. The layer is the set of
-    descriptions the machine checks the others against, so a drift check fails the build when
-    docs, code, or tests disagree with it. The lesson: bind the islands with a layer of linked
-    models, and the three that used to drift become one checkable whole.</desc>
-
-  <defs>
-    <marker id="fig-3-2-1-dhArrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9"
-            orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
-    </marker>
-  </defs>
-
-  <!-- panel divider -->
-  <line x1="480" y1="70" x2="480" y2="530" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="6 6"/>
-
-  <!-- ================= LEFT PANEL — typical agentic methods ================= -->
-  <text x="240" y="42" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Typical agentic methods</text>
-  <text x="240" y="70" text-anchor="middle" font-size="20" font-style="italic" fill="#b23b3b">three islands, no glue</text>
-
-  <!-- three unconnected islands -->
-  <g stroke="#1c1917" stroke-width="2" fill="#f6f4ef">
-    <rect x="70"  y="150" width="150" height="66" rx="8"/>
-    <rect x="260" y="150" width="150" height="66" rx="8"/>
-    <rect x="165" y="290" width="150" height="66" rx="8"/>
-  </g>
-  <g font-size="22" fill="#1c1917" text-anchor="middle">
-    <text x="145" y="190">docs</text>
-    <text x="335" y="190">code</text>
-    <text x="240" y="330">tests</text>
-  </g>
-
-  <!-- broken tethers between the islands: dashed stubs that do not connect -->
-  <g stroke="#b23b3b" stroke-width="2.5" stroke-dasharray="5 7" stroke-linecap="round">
-    <line x1="222" y1="183" x2="258" y2="183"/>
-    <line x1="205" y1="220" x2="250" y2="286"/>
-    <line x1="332" y1="220" x2="285" y2="286"/>
-  </g>
-
-  <!-- drift indicator -->
-  <text x="240" y="418" text-anchor="middle" font-size="21" font-style="italic" fill="#b23b3b">nothing binds them → they drift</text>
-  <text x="240" y="446" text-anchor="middle" font-size="21" font-style="italic" fill="#b23b3b">no guardrails</text>
-
-  <!-- ================= RIGHT PANEL — the MAGE move ================= -->
-  <text x="720" y="42" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">The MAGE move</text>
-  <text x="720" y="68" text-anchor="middle" font-size="19" font-style="italic" fill="#1f7a4d">a structured model layer binds the islands</text>
-  <text x="720" y="90" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">linked models, each its own concern — not one master</text>
-
-  <!-- the model LAYER: a band of several linked models (a stratum, not one apex point) -->
-  <rect x="545" y="100" width="350" height="98" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
-  <text x="720" y="126" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">structured model layer</text>
-  <!-- three linked model chips inside the band -->
-  <g fill="#ffffff" stroke="#2f5169" stroke-width="1.6">
-    <rect x="560" y="142" width="96" height="34" rx="5"/>
-    <rect x="672" y="142" width="96" height="34" rx="5"/>
-    <rect x="784" y="142" width="96" height="34" rx="5"/>
-  </g>
-  <g font-size="15" fill="#1c1917" text-anchor="middle">
-    <text x="608" y="164">intent</text>
-    <text x="720" y="164">structure</text>
-    <text x="832" y="164">behavior</text>
-  </g>
-  <!-- links: the models are a connected layer, not isolated boxes -->
-  <g stroke="#2f5169" stroke-width="1.6">
-    <line x1="656" y1="159" x2="672" y2="159"/>
-    <line x1="768" y1="159" x2="784" y2="159"/>
-  </g>
-
-  <!-- the three bound below -->
-  <g stroke="#2f5169" stroke-width="2" fill="#ffffff">
-    <rect x="565" y="330" width="130" height="60" rx="8"/>
-    <rect x="745" y="330" width="130" height="60" rx="8"/>
-    <rect x="655" y="440" width="130" height="60" rx="8"/>
-  </g>
-  <g font-size="21" fill="#1c1917" text-anchor="middle">
-    <text x="630" y="367">docs</text>
-    <text x="810" y="367">code</text>
-    <text x="720" y="477">tests</text>
-  </g>
-
-  <!-- binding edges from the LAYER (varied origins along the band, not one point) to each island -->
-  <g stroke="#2f5169" stroke-width="2.5" fill="none">
-    <line x1="612" y1="198" x2="630" y2="326" marker-end="url(#fig-3-2-1-dhArrow)"/>
-    <line x1="828" y1="198" x2="810" y2="326" marker-end="url(#fig-3-2-1-dhArrow)"/>
-    <line x1="720" y1="198" x2="720" y2="436" marker-end="url(#fig-3-2-1-dhArrow)"/>
-  </g>
-
-  <!-- green check on each binding: the drift check that keeps them in sync -->
-  <g>
-    <circle cx="614" cy="264" r="15" fill="#1f7a4d"/>
-    <path d="M607,264 L612,270 L622,258" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="826" cy="264" r="15" fill="#1f7a4d"/>
-    <path d="M819,264 L824,270 L834,258" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="737" cy="312" r="15" fill="#1f7a4d"/>
-    <path d="M730,312 L735,318 L745,306" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-  </g>
-
-  <text x="720" y="533" text-anchor="middle" font-size="19" font-style="italic" fill="#1f7a4d">checked: the layer must match the territory</text>
-</svg><figcaption data-short="A Structured Model Layer"><span class="fig-label">Figure 3.2-1.</span> <em>A Structured Model Layer.</em> Left: the typical setup leaves docs, code, and tests as unconnected islands that drift. Right: the MAGE move binds them with a structured model layer — several linked models, each its own concern, not one master — the descriptions the machine checks the others against, so a drift check fails the build when any of the three disagrees.</figcaption></figure><p class="gallery-source">From <a href="3.2-models-and-the-semantic-gap.html#fig-3-2-1">15 · From Intent to Enforceable Obligation</a></p></section><hr><section class="gallery-item"><figure id="fig-3-2-2-fig-3-2-2" class="book-figure" data-label="semantic-gap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
-     role="group" aria-labelledby="fig-3-2-2-sgTitle fig-3-2-2-sgDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-2-2-sgTitle">The semantic gap: enforce at the level where the property is legible</title>
-  <desc id="fig-3-2-2-sgDesc">A property is invisible at the low level and legible one level up. Bottom
+  <title id="fig-3-2-1-sgTitle">The semantic gap: enforce at the level where the property is legible</title>
+  <desc id="fig-3-2-1-sgDesc">A property is invisible at the low level and legible one level up. Bottom
     row: a sequence of small low-level events — individual commits, single system calls,
     single turns — where the property you care about is spread across many of them and cannot
     be seen in any one. A red cross marks enforcing here as the mistake. Top row: the whole
@@ -3044,7 +2938,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     enforcing here. The lesson: lift the check to the level where the meaning is legible.</desc>
 
   <defs>
-    <marker id="fig-3-2-2-sgUp" markerWidth="9" markerHeight="9" refX="9" refY="4.5"
+    <marker id="fig-3-2-1-sgUp" markerWidth="9" markerHeight="9" refX="9" refY="4.5"
             orient="auto" markerUnits="userSpaceOnUse">
       <!-- drawn in the +x convention: apex at max-x; orient="auto" rotates it onto the line -->
       <path d="M0,0 L9,4.5 L0,9 Z" fill="#2f5169"/>
@@ -3065,7 +2959,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- the lift arrow: rises from just above the events label up to the whole-unit box.
        Starts at y=278 so the stroke clears the bracket label (baseline y=296) — a line must never cross a glyph. -->
-  <line x1="480" y1="278" x2="480" y2="146" stroke="#2f5169" stroke-width="2.5" marker-end="url(#fig-3-2-2-sgUp)"/>
+  <line x1="480" y1="278" x2="480" y2="146" stroke="#2f5169" stroke-width="2.5" marker-end="url(#fig-3-2-1-sgUp)"/>
   <text x="503" y="223" font-size="20" font-style="italic" fill="#2f5169">lift the check up</text>
 
   <!-- ================= BOTTOM RUNG — too low ================= -->
@@ -3097,7 +2991,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="480" y="410" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Not here — the property is not yet legible</text>
   <text x="480" y="440" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">a single commit, a single system call, a single turn</text>
-</svg><figcaption data-short="The Semantic Gap"><span class="fig-label">Figure 3.2-2.</span> <em>The Semantic Gap.</em> Bottom row: small events — single commits, calls, turns — where the property spreads across many, invisible in one, so enforcing here is the mistake. Top row: the whole unit of work, where it becomes checkable — lift the check to where meaning is legible.</figcaption></figure><p class="gallery-source">From <a href="3.2-models-and-the-semantic-gap.html#fig-3-2-2">15 · From Intent to Enforceable Obligation</a></p></section><hr><section class="gallery-item"><figure id="fig-3-3-1-fig-3-3-1" class="book-figure" data-label="constraint-vs-sensor"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
+</svg><figcaption data-short="The Semantic Gap"><span class="fig-label">Figure 3.2-1.</span> <em>The Semantic Gap.</em> Bottom row: small events — single commits, calls, turns — where the property spreads across many, invisible in one, so enforcing here is the mistake. Top row: the whole unit of work, where it becomes checkable — lift the check to where meaning is legible.</figcaption></figure><p class="gallery-source">From <a href="3.2-models-and-the-semantic-gap.html#fig-3-2-1">15 · From Intent to Enforceable Obligation</a></p></section><hr><section class="gallery-item"><figure id="fig-3-3-1-fig-3-3-1" class="book-figure" data-label="constraint-vs-sensor"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
      role="group" aria-labelledby="fig-3-3-1-caTitle fig-3-3-1-caDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-3-3-1-caTitle">Two forms a quality goal splits into: a constraint or a sensor</title>

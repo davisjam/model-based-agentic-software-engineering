@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 36,
     "slugs_rendered": 27,
-    "total_sites": 1659,
+    "total_sites": 1657,
     "by_projection": {
       "book-pdf": 24,
-      "book-web": 1233,
+      "book-web": 1231,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -101,7 +101,7 @@
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 24
+            "occ": 10
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
@@ -893,7 +893,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 40
+            "occ": 39
           },
           {
             "file": "catalogue-figure.html",
@@ -1651,7 +1651,7 @@
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 19
+            "occ": 11
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
@@ -2051,7 +2051,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 61
+            "occ": 57
           },
           {
             "file": "book/book-index.html",
@@ -2879,7 +2879,7 @@
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 4
+            "occ": 2
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
@@ -3113,7 +3113,7 @@
           },
           {
             "file": "book/2.3-the-executable-zoo.html",
-            "occ": 125
+            "occ": 126
           },
           {
             "file": "book/2.4-views-are-projections.html",
@@ -3137,7 +3137,7 @@
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 131
+            "occ": 57
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
@@ -3537,7 +3537,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 31
+            "occ": 29
           },
           {
             "file": "book/book-index.html",
@@ -3549,7 +3549,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 286
+            "occ": 277
           },
           {
             "file": "book/index.html",
@@ -3557,7 +3557,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 31
+            "occ": 30
           },
           {
             "file": "book/part-1-intro.html",
@@ -4009,7 +4009,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 105
+            "occ": 104
           },
           {
             "file": "catalogue-figure.html",
@@ -4106,10 +4106,6 @@
             "occ": 1
           },
           {
-            "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 2
-          },
-          {
             "file": "book/5.4-the-built-system.html",
             "occ": 1
           },
@@ -4161,7 +4157,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 15
+            "occ": 14
           }
         ]
       },
@@ -4219,10 +4215,6 @@
           },
           {
             "file": "book/3.1-the-agent-stack.html",
-            "occ": 3
-          },
-          {
-            "file": "book/3.2-models-and-the-semantic-gap.html",
             "occ": 3
           },
           {
@@ -4313,7 +4305,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 33
+            "occ": 32
           }
         ]
       },
@@ -5179,7 +5171,7 @@
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 10
+            "occ": 2
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
@@ -5579,7 +5571,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 17
+            "occ": 13
           },
           {
             "file": "book/book-index.html",
@@ -5757,7 +5749,7 @@
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 18
+            "occ": 3
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
@@ -6165,7 +6157,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 40
+            "occ": 33
           },
           {
             "file": "book/index.html",
@@ -6173,7 +6165,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/part-1-intro.html",
@@ -6433,7 +6425,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 11
+            "occ": 10
           },
           {
             "file": "constructing-the-gee.html",

@@ -245,45 +245,6 @@
     },
     {
       "granularity": "section",
-      "primary_unit": "words-are-soft-code-is-verbose-a-model-is-the-sweet-spot",
-      "verb": "distinguish",
-      "obj": "words (too soft) from code (too verbose) and place a model as the compact, unambiguous sweet spot between them",
-      "statement": "After this section, the reader can distinguish soft prose from verbose code and explain why a model — accurate, unambiguous, yet compact — is the sweet spot an agent can reason over.",
-      "provenance": "derived",
-      "anchor": "point: words-are-soft-and-agents-need-precision-humans-do-not / code-is-precise-but-too-verbose-so-a-model-is-the-sweet-spot / a-model-is-a-cheap-honest-approximation-you-can-reason-over"
-    },
-    {
-      "granularity": "section",
-      "primary_unit": "why-the-models-drifted-and-why-that-changes-now",
-      "verb": "explain",
-      "obj": "why hand-maintained models rotted and why an agent fleet flips the calculation",
-      "statement": "After this section, the reader can explain why hand-maintained models drifted and fell out of favor, and why agents — which reason over models, not code — flip that calculation when a linked set of models is kept in sync.",
-      "provenance": "derived",
-      "anchor": "point: models-are-the-map-code-the-territory-and-hand-maintenance-drifts / hand-maintained-models-rot-when-the-maintainer-stops / agents-flip-the-calculation-they-reason-over-models-not-code / the-model-reached-for-shifts-with-the-move-so-you-need-a-linked-set / a-model-lets-the-agent-check-work-and-a-drift-gate-makes-map-equals-territory-checked"
-    },
-    {
-      "granularity": "section",
-      "primary_unit": "the-apex-of-the-documentation-hierarchy-is-a-typed-model",
-      "verb": "explain",
-      "obj": "why a structured model at the apex of the documentation hierarchy binds docs, code, and tests into a checkable whole",
-      "statement": "After this section, the reader can explain why the apex of the documentation hierarchy is a structured model — the one description a machine can read and check the others against, binding docs, code, and tests where structured English stops one rung short.",
-      "provenance": "derived",
-      "anchor": "point: what-you-hand-an-agent-is-a-hierarchy-of-partial-drifting-descriptions / the-usual-recipe-leaves-docs-code-tests-as-unbound-islands-so-drift-is-the-default / the-apex-of-the-hierarchy-is-a-typed-model-that-binds-the-islands / modeling-thesis-at-full-strength-the-model-is-the-one-description-that-cannot-silently-lie"
-    },
-    {
-      "granularity": "section",
-      "primary_unit": "execute-the-model-directly-a-spectrum-not-a-verdict",
-      "verb": "situate",
-      "obj": "the modeling choice on a spectrum from no modeling to an executable model, an economic call whose sweet spot agents move outward",
-      "statement": "After this section, the reader can situate how far to model on a spectrum trading strength against changeability, and read the choice as an economic call whose sweet spot agents have moved outward.",
-      "provenance": "derived",
-      "anchor": "point: executable-modeling-is-a-spectrum-agents-shift-the-optimum-outward",
-      "secondary_units": [
-        "the-executable-zoo"
-      ]
-    },
-    {
-      "granularity": "section",
       "primary_unit": "a-second-worked-example-the-context-fullness-bank-hook",
       "verb": "apply",
       "obj": "the semantic-gap fix to the operator's own loop — a bank-hook checking fullness and staleness together",

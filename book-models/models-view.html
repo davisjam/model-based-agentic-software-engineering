@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>41</b> chapters · <b>299</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>41</b> chapters · <b>294</b> sections · <b>82</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -286,7 +286,7 @@
 </div>
 <div class="section s3" id="sec-2-3-the-executable-zoo--keep-map-and-territory-equal-traceability">
 <div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Keep map and territory equal — traceability</a></div>
-<p class="topic">A model earns trust only if you can get from a model element back to the lines that realize it, and forward from a line to the model element that governs it.</p>
+<p class="topic">The model is the **map**; the code is the **territory**.</p>
 </div>
 <div class="section s2" id="sec-2-3-the-executable-zoo--a-model-is-its-schema-plus-its-checked-predicates">
 <div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">A model is its schema plus its checked predicates</a></div>
@@ -524,34 +524,10 @@
 </div>
 <div class="chapter">
 <h3 id="ch-3-2-models-and-the-semantic-gap"><span class="tier-kick">Lesson</span><a href="../book/3.2-models-and-the-semantic-gap.html" class="ch-link">3.2-models-and-the-semantic-gap</a> <span class="ch-slug">3.2-models-and-the-semantic-gap</span></h3>
-<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--words-are-soft-code-is-verbose-a-model-is-the-sweet-spot">
-<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">Words are soft, code is verbose, a model is the sweet spot</a></div>
-<p class="topic">Your first governance mechanism is the prompt, because the agent is a language model and words are how you talk to it.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can distinguish soft prose from verbose code and explain why a model — accurate, unambiguous, yet compact — is the sweet spot an agent can reason over. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--why-the-models-drifted-and-why-that-changes-now">
-<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">Why the models drifted — and why that changes now</a></div>
-<p class="topic">The models are the map; the code is the territory.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why hand-maintained models drifted and fell out of favor, and why agents — which reason over models, not code — flip that calculation when a linked set of models is kept in sync. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--the-apex-of-the-documentation-hierarchy-is-a-typed-model">
-<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">A structured model layer binds the islands</a></div>
-<p class="topic">Step back from drift for a moment and look at what you actually hand an agent to work from.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why the apex of the documentation hierarchy is a structured model — the one description a machine can read and check the others against, binding docs, code, and tests where structured English stops one rung short. <span class="prov">derived</span></span></li></ul></div>
-</div>
 <div class="section s2" id="sec-3-2-models-and-the-semantic-gap--a-drift-check-proves-agreement-not-correctness">
 <div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">A drift check proves agreement, not correctness</a></div>
-<p class="topic">The claim I just made hides a trap, and the book&#x27;s enthusiasm for drift gates can be misread into a dangerous half-truth.</p>
+<p class="topic">Here is the trap the opener warned of.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain the precise guarantee a drift check gives — agreement, not correctness — and why only a model authored from intent, not derived from code, catches a wrong &quot;is&quot;. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--a-model-is-a-convenience-not-a-second-copy-of-the-truth">
-<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">A model is a convenience, not a second copy of the truth</a></div>
-<p class="topic">The other side of the mirror carries an over-reach.</p>
-</div>
-<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--execute-the-model-directly-a-spectrum-not-a-verdict">
-<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">Execute the model directly? A spectrum, not a verdict</a></div>
-<p class="topic">One old idea says that if the structured model is where you now start, you should finish there too — skip the code and *execute the model directly*.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can situate how far to model on a spectrum trading strength against changeability, and read the choice as an economic call whose sweet spot agents have moved outward. <span class="prov">derived</span></span></li></ul></div>
 </div>
 <div class="section s2" id="sec-3-2-models-and-the-semantic-gap--the-semantic-gap">
 <div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">The semantic gap</a></div>
