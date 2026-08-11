@@ -435,15 +435,6 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "training-data",
-      "verb": "analyze",
-      "obj": "where a model's training-data bias helps and where MBSE earns its keep on the novelty axis",
-      "statement": "After this chapter, the reader can analyze how training-data bias shapes an agent's reach, and situate MBSE on the novelty axis where it shines.",
-      "provenance": "declared",
-      "anchor": "Section titles 'the-model-is-biased-toward-what-it-has-seen' + 'where-mbse-shines-the-novelty-axis'."
-    },
-    {
-      "granularity": "chapter",
       "primary_unit": "failures",
       "verb": "recognize",
       "obj": "the agent-shaped failure modes and convert each into a sensor that pins the invariant, not the example",
@@ -477,15 +468,6 @@
       "statement": "After this chapter, the reader can map the case-study project's stages to the kinds of work each demanded and the velocity each produced.",
       "provenance": "declared",
       "anchor": "Section titles 'six-stages-then-a-seventh', 'velocity', 'the-kinds-of-work-it-required'."
-    },
-    {
-      "granularity": "chapter",
-      "primary_unit": "the-built-system",
-      "verb": "analyze",
-      "obj": "the built system through three views of the same architecture",
-      "statement": "After this chapter, the reader can analyze the built system end-to-end through three complementary views over one shared edit language.",
-      "provenance": "declared",
-      "anchor": "Section titles 'three-views-of-the-same-system', 'view-1-...', 'view-2-...', 'view-3-...'."
     },
     {
       "granularity": "chapter",

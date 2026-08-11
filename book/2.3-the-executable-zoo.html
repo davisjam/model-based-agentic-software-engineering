@@ -612,22 +612,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="4.6-metrics.html">24&nbsp; Metrics</a></li>
 <li class="part">Part 5 — The Evidence</li>
 <li><a class="" href="part-5-intro.html">The Evidence</a></li>
-<li><a class="" href="5.1-the-ada-context.html">25&nbsp; The Bar the Problem Set</a></li>
-<li><a class="" href="5.2-why-this-system-was-a-hard-case.html">26&nbsp; Why This System Was a Hard Case</a></li>
-<li><a class="" href="5.3-the-timeline-and-the-work.html">27&nbsp; The Build</a></li>
-<li><a class="" href="5.4-the-built-system.html">28&nbsp; The Built System</a></li>
-<li><a class="" href="5.5-the-road-to-mage.html">29&nbsp; The Road to MAGE</a></li>
-<li><a class="" href="5.6-governance-conversions.html">30&nbsp; Conversions in Practice</a></li>
+<li><a class="" href="5.1-the-problem-and-the-bar.html">25&nbsp; The Problem and the Bar</a></li>
+<li><a class="" href="5.2-the-build.html">26&nbsp; The Build</a></li>
+<li><a class="" href="5.3-the-road-to-mage.html">27&nbsp; The Road to MAGE</a></li>
+<li><a class="" href="5.4-failures-that-became-infrastructure.html">28&nbsp; Failures That Became Infrastructure</a></li>
 <li class="part">Part 6 — The Profession</li>
 <li><a class="" href="part-6-intro.html">The Profession</a></li>
-<li><a class="" href="6.1-toward-a-theory-of-mage.html">31&nbsp; Toward a Theory of MAGE</a></li>
-<li><a class="" href="6.2-scope-conditions.html">32&nbsp; Scope Conditions</a></li>
-<li><a class="" href="6.3-relationship-to-se.html">33&nbsp; Relationship to Software Engineering</a></li>
-<li><a class="" href="6.4-engineering-beyond-software.html">34&nbsp; Engineering Beyond Software</a></li>
-<li><a class="" href="6.5-implications-for-se.html">35&nbsp; The New Profession</a></li>
-<li><a class="" href="6.6-where-mage-fits.html">36&nbsp; MAGE in the Wild</a></li>
-<li><a class="" href="6.7-open-problems.html">37&nbsp; Open Problems</a></li>
-<li><a class="" href="6.8-conclusion.html">38&nbsp; Conclusion</a></li>
+<li><a class="" href="6.1-toward-a-theory-of-mage.html">29&nbsp; Toward a Theory of MAGE</a></li>
+<li><a class="" href="6.2-scope-conditions.html">30&nbsp; Scope Conditions</a></li>
+<li><a class="" href="6.3-relationship-to-se.html">31&nbsp; Relationship to Software Engineering</a></li>
+<li><a class="" href="6.4-engineering-beyond-software.html">32&nbsp; Engineering Beyond Software</a></li>
+<li><a class="" href="6.5-implications-for-se.html">33&nbsp; The New Profession</a></li>
+<li><a class="" href="6.6-where-mage-fits.html">34&nbsp; MAGE in the Wild</a></li>
+<li><a class="" href="6.7-open-problems.html">35&nbsp; Open Problems</a></li>
+<li><a class="" href="6.8-conclusion.html">36&nbsp; Conclusion</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
 <li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
@@ -713,7 +711,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
 <li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 8 · Making Models Executable — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 8</a></div><h1><span class="chap-num">2.3</span> Making Models Executable</h1></header><p id="idx-def-model-as-map">A model exists to reduce how much system an engineer — or an agent — must reason about at once. An <strong>executable</strong> model earns a stronger claim: it is structured enough to reason over and bound tightly enough to the code that a build can catch the two disagreeing. That is the model this chapter defines, and the machinery that keeps code from drifting away from it.</p>
-<p>One real codebase sits under every model that follows: DocAble, the production accessibility service this book runs on. It carries nineteen structured, drift-checked models and uses everything in this book to stay coherent; the full account is <a href="5.4-the-built-system.html">The Built System</a> — Part 5 (The Evidence).</p>
+<p>One real codebase sits under every model that follows: DocAble, the production accessibility service this book runs on. It carries nineteen structured, drift-checked models and uses everything in this book to stay coherent; the full account is <a href="5.3-the-road-to-mage.html">The Built System</a> — Part 5 (The Evidence).</p>
 <blockquote class="concept-inset"><p class="inset-title" id="executable-model-pattern">The Executable Model Pattern</p>
 <p>Every model in Part 2 is <strong>one executable core, several projected views</strong>, and every one answers the same six questions:</p>
 <ul><li><strong>What entities and relations</strong> does it represent — which slice of the system knowledge graph?</li><li><strong>What engineering question</strong> does it settle that the raw code cannot?</li><li><strong>What invariant</strong> must hold?</li><li><strong>How is it derived</strong> — from the code, or the code from it?</li><li><strong>How is that checked</strong> on every build?</li><li><strong>What drift</strong> does the check prevent?</li></ul>
@@ -728,7 +726,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <blockquote class="concept-inset"><p class="inset-title" id="inset-sysml">Inset — What is SysML, and what does MAGE take from it?</p>
 <p><strong>SysML</strong> is one major notation for model-based systems engineering <sup class="cite-ref"><a href="#wc-2-3-the-executable-zoo-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Sanford Friedenthal et al., <em>A Practical Guide to Sysml: The Systems Modeling Language</em>, 3rd ed. (Morgan Kaufmann, 2014).</span>: blocks, constraint blocks, and verify-and-satisfy traceability, drawn in a modeling tool. A constraint block ties a required property to the element it governs; a verify-and-satisfy edge traces a requirement to the thing that meets it. MAGE borrows that concern — a typed invariant with a pointer to the check that verifies it <em>is</em> a constraint block in all but the notation — but implements it in a <strong>repository-native, drift-gated</strong> form. What it refuses is SysML's usual <em>form</em>: a model drawn beside the code. A second drawing of what the code already is snapshots the moment the code moves. Keep the model bound to the code, derived in either direction and gated either way, not drawn alongside it.</p>
 <p>The scope stops at <em>discrete</em> software. A system with continuous or real-time dynamics wants a different toolkit — the timed and hybrid automata of Alur and Dill <sup class="cite-ref"><a href="#wc-2-3-the-executable-zoo-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Rajeev Alur and David L. Dill, “A Theory of Timed Automata,” <em>Theoretical Computer Science</em> 126, no. 2 (1994): 183–235.</span> — out of scope here, and the place to read next if your system touches the physical world.</p></blockquote>
-<p>Working at the model level, with an agent doing the lifting, points at three things a team usually trades against one another: fewer tokens spent, more velocity, higher quality. For the data, see <a href="5.3-the-timeline-and-the-work.html#velocity">The Build →</a> The fewer-tokens leg is the one named on the first page — a model binds intent to implementation <em>and</em> shrinks what the agent must hold in-window to act on it. Whether the model level delivers all three together, and at what cost, is a larger claim than one chapter can carry; a controlled navigation pilot puts a first number under the fewer-tokens leg.</p>
+<p>Working at the model level, with an agent doing the lifting, points at three things a team usually trades against one another: fewer tokens spent, more velocity, higher quality. For the data, see <a href="5.2-the-build.html#velocity">The Build →</a> The fewer-tokens leg is the one named on the first page — a model binds intent to implementation <em>and</em> shrinks what the agent must hold in-window to act on it. Whether the model level delivers all three together, and at what cost, is a larger claim than one chapter can carry; a controlled navigation pilot puts a first number under the fewer-tokens leg.</p>
 <h2 id="mbse-nav-token"><span class="sec-num">2.3.3</span> The fewer-tokens leg — a navigation pilot</h2>
 <p>The <em>fewer-tokens</em> leg is directly measurable. In a controlled A/B pilot, an agent answered four navigation questions about the modeled codebase — locate a component, trace an invariant, resolve a tier, find an anchor — once with the MBSE navigation guidance loaded (ON) and once without it (OFF), counting the tokens each arm spent to reach the answer. <a class="xref" href="2.3-the-executable-zoo.html#tbl-2-3-1">Table&nbsp;2.3-1</a> reports the four tasks. For the data, see <a href="2.3-the-executable-zoo.html#mbse-nav-token">Making Models Executable →</a> (preliminary)</p>
 <table id="tbl-2-3-1" class="book-table" data-label="nav-token-savings"><caption data-short="Token savings from working through a model"><span class="tbl-label">Table 2.3-1.</span> Token cost of four navigation tasks with the model ON versus OFF — the measured saving from working through a structured model instead of raw code.</caption><thead><tr><th>Task</th><th>Type</th><th class="num">ON</th><th class="num">OFF</th><th class="num">Tokens saved</th></tr></thead><tbody><tr><td>NAV-01 component</td><td>modeled</td><td class="num">12,463</td><td class="num">15,507</td><td class="num">20%</td></tr><tr><td>NAV-02 invariant</td><td>modeled</td><td class="num">13,520</td><td class="num">15,421</td><td class="num">12%</td></tr><tr><td>NAV-03 tier</td><td>modeled</td><td class="num">8,975</td><td class="num">50,419</td><td class="num">82%</td></tr><tr><td>NAV-04 anchor</td><td>modeled</td><td class="num">11,396</td><td class="num">22,629</td><td class="num">50%</td></tr></tbody></table>

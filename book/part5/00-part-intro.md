@@ -6,13 +6,12 @@ accessibility is uniquely important, but because one deeply observed system reve
 mechanisms that isolated examples cannot.
 
 <!-- thesisbox -->
-> ### THE CASE STUDY
+> ### THE ORIGINATING CASE
 >
-> Theory predicts engineering.
+> MAGE was not designed on a whiteboard. It emerged as a small team repeatedly encountered
+> failures that agentic velocity made impossible to manage by attention alone.
 >
-> Engineering tests theory.
->
-> Each refines the other.
+> The method is the structure left behind.
 
 Watch the two theses become concrete. Models appear because reasoning demands them; mechanisms appear
 because failures demand them. The chapters trace the system, its timeline, its architecture, and the

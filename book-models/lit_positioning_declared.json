@@ -8,11 +8,21 @@
       "x": "Human review has long been the accepted safeguard on machine-generated changes.",
       "y": "At agent throughput, per-change oversight becomes emergent, effortful work that does not keep pace — Dhanorkar et al. document 17 developers doing four forms of oversight.",
       "z": "MAGE spends human attention per class of failure, encoded as a mechanism the environment enforces, not per individual change.",
-      "target_locations": ["preface"],
-      "citations": [
-        {"key": "dhanorkar2026oversight", "backs_claims": ["oversight-does-not-scale"], "relation": "substantiates"}
+      "target_locations": [
+        "preface"
       ],
-      "advances_theses": ["oversight-does-not-scale"],
+      "citations": [
+        {
+          "key": "dhanorkar2026oversight",
+          "backs_claims": [
+            "oversight-does-not-scale"
+          ],
+          "relation": "substantiates"
+        }
+      ],
+      "advances_theses": [
+        "oversight-does-not-scale"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "STANDALONE wave — LANDED (LPP-PROSE) in 0.4-preface, the 'three ways to run a fleet' oversight beat, right before 'The third answer is governance'. Claim CONFIRMED: interviews with 17 developers surface four forms of emergent oversight (a priori control, co-planning, real-time monitoring, post hoc review). Title-case rendering is a choice, not an error (arXiv renders sentence-case). target_locations trimmed to the actual landing chapter (was the MODELS-wave planned set 2.3/6.0; the prose draft's editorial judgment put it at the preface's oversight beat, the strongest spot). NOTE: 0.4-preface is a frontmatter chapter, so LP3's _chapter_text (which globs book/part*/ only) cannot read it — LP3 reports this landed cite as not-appearing-in-a-target-chapter (audit-only, non-gating). The cite IS present in book/frontmatter/0.4-preface.md."
@@ -24,12 +34,30 @@
       "x": "Foundation-model capability has been read off the model weights.",
       "y": "Recent work locates coding-agent capability in the runtime harness — tools, middleware, memory — more than the prompt; Lin et al. ablate the gain to tools/middleware/long-term memory, not the system prompt.",
       "z": "MAGE treats the harness as ONE layer of a governed environment, not a synonym for it — the environment encodes obligations the harness alone does not.",
-      "target_locations": ["why-mage-follows-from-the-machine"],
-      "citations": [
-        {"key": "zhong-zhu2026", "backs_claims": ["govern-the-environment"], "relation": "situates"},
-        {"key": "lin2026agentic", "backs_claims": ["govern-the-environment", "failures-become-machinery"], "relation": "corroborates", "illustrates_pattern": "dynamic-context-injection"}
+      "target_locations": [
+        "why-mage-follows-from-the-machine"
       ],
-      "advances_theses": ["govern-the-environment"],
+      "citations": [
+        {
+          "key": "zhong-zhu2026",
+          "backs_claims": [
+            "govern-the-environment"
+          ],
+          "relation": "situates"
+        },
+        {
+          "key": "lin2026agentic",
+          "backs_claims": [
+            "govern-the-environment",
+            "failures-become-machinery"
+          ],
+          "relation": "corroborates",
+          "illustrates_pattern": "dynamic-context-injection"
+        }
+      ],
+      "advances_theses": [
+        "govern-the-environment"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "STANDALONE wave — LANDED (LPP-PROSE) in 1.4-why-mage-follows-from-the-machine, the emerging-consensus paragraph: Lin et al.'s ablation sentence inserted after the thin-harness cite, before the 'MAGE stands on this literature' close (harness stays ONE layer of the governed environment). zhong-zhu2026 was already cited in 1.4 (reused, not re-added); Lin's ablation localizes the capability gain to tools/middleware/long-term memory, not the system prompt. Lin = 11 authors (Zhiheng Xi after Shihan Dou; Yu-Gang Jiang last). target_locations trimmed to the actual landing chapter (both cites appear in 1.4). illustrates_pattern=dynamic-context-injection on Lin: convergent evidence that agent capability rides on delivered harness structure, not prompt prose (§2/context prior-art double-duty, Point-of-Action Policy Delivery)."
@@ -41,14 +69,42 @@
       "x": "Agents lose the codebase between turns; the working context must be reconstructed each time.",
       "y": "Recent systems give agents a persistent, queryable representation of the repository — code graphs and codebase memory (RepoGraph, CodexGraph, Codebase-Memory, RANGER).",
       "z": "MAGE makes the models themselves the persistent context: the typed model IS the compact representation agents reason through and engineers specify against.",
-      "target_locations": ["the-executable-zoo"],
-      "citations": [
-        {"key": "ouyang2024repograph", "backs_claims": ["modeling-thesis"], "relation": "situates"},
-        {"key": "liu2024codexgraph", "backs_claims": ["modeling-thesis"], "relation": "situates"},
-        {"key": "vogel2026codebasememory", "backs_claims": ["modeling-thesis"], "relation": "situates"},
-        {"key": "shah2025ranger", "backs_claims": ["modeling-thesis"], "relation": "situates"}
+      "target_locations": [
+        "the-executable-zoo"
       ],
-      "advances_theses": ["modeling-thesis"],
+      "citations": [
+        {
+          "key": "ouyang2024repograph",
+          "backs_claims": [
+            "modeling-thesis"
+          ],
+          "relation": "situates"
+        },
+        {
+          "key": "liu2024codexgraph",
+          "backs_claims": [
+            "modeling-thesis"
+          ],
+          "relation": "situates"
+        },
+        {
+          "key": "vogel2026codebasememory",
+          "backs_claims": [
+            "modeling-thesis"
+          ],
+          "relation": "situates"
+        },
+        {
+          "key": "shah2025ranger",
+          "backs_claims": [
+            "modeling-thesis"
+          ],
+          "relation": "situates"
+        }
+      ],
+      "advances_theses": [
+        "modeling-thesis"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "= graphify. Core LANDED (graphify d4e3774) in 3.1-the-executable-zoo; the four cites resolve in references.bib and appear there. RepoGraph/CodexGraph/Codebase-Memory/RANGER verified earlier. EXTEND (planned follow-up) to model-query-surface / dynamic-context-injection / context-banking / ESoT locations."
@@ -60,12 +116,29 @@
       "x": "Specifications have always framed what software must do.",
       "y": "Spec-driven development places an authoritative spec/contract around a stochastic generator with deterministic validation; academic studies show specification quality, not model capability, is the success factor (Vilas Boas et al.) and that citation-to-spec discipline enables 86-88% hallucination detection (Panda).",
       "z": "MAGE binds intent into drift-checked models — the spec is not a document but an enforced, executable model the environment holds implementation to.",
-      "target_locations": ["the-executable-zoo"],
-      "citations": [
-        {"key": "sdd-abdurrahman-2026", "backs_claims": ["modeling-thesis"], "relation": "situates"},
-        {"key": "vilasboas2026onedeveloper", "backs_claims": ["modeling-thesis"], "relation": "corroborates"}
+      "target_locations": [
+        "the-executable-zoo"
       ],
-      "advances_theses": ["modeling-thesis", "alignment-thesis"],
+      "citations": [
+        {
+          "key": "sdd-abdurrahman-2026",
+          "backs_claims": [
+            "modeling-thesis"
+          ],
+          "relation": "situates"
+        },
+        {
+          "key": "vilasboas2026onedeveloper",
+          "backs_claims": [
+            "modeling-thesis"
+          ],
+          "relation": "corroborates"
+        }
+      ],
+      "advances_theses": [
+        "modeling-thesis",
+        "alignment-thesis"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "= W-SDD. Core LANDED (W-SDD c2225e0); the blog cite sdd-abdurrahman-2026 resolves in references.bib and appears in 3.1-the-executable-zoo. EXTEND: academic SDD paper vilasboas2026onedeveloper (2605.18461) LANDED as a one-sentence corroborating strengthening in the 3.1 spec-driven passage (resolves in references.bib + appears in 3.1-the-executable-zoo). panda2026citationdiscipline (2606.30689) SKIPPED per the wave ruling (conservative — vilasboas alone carries the academic beat); not in the .bib."
@@ -77,13 +150,37 @@
       "x": "Formal verification gives machine-checked guarantees but at heavy human cost (Ringer et al., QED at Large).",
       "y": "Recent work pairs an untrusted LLM generator with a trusted checker or prover — kernel-checked admission (AutoSOUP; AutoRocq; Fang & Xiong's ITP-checked project generation).",
       "z": "MAGE preserves the guarantee boundary: the stochastic generator proposes, a deterministic mechanism admits — the environment enforces the check, not the agent.",
-      "target_locations": ["the-built-system"],
-      "citations": [
-        {"key": "ringer2019qed", "backs_claims": ["alignment-thesis"], "relation": "situates", "illustrates_pattern": "formal-invariant-verification"},
-        {"key": "arxiv-2605-10712", "backs_claims": ["alignment-thesis"], "relation": "substantiates", "illustrates_pattern": "formal-invariant-verification"},
-        {"key": "tu2025agenticverification", "backs_claims": ["alignment-thesis"], "relation": "corroborates"}
+      "target_locations": [
+        "the-road-to-mage"
       ],
-      "advances_theses": ["alignment-thesis"],
+      "citations": [
+        {
+          "key": "ringer2019qed",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "situates",
+          "illustrates_pattern": "formal-invariant-verification"
+        },
+        {
+          "key": "arxiv-2605-10712",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "substantiates",
+          "illustrates_pattern": "formal-invariant-verification"
+        },
+        {
+          "key": "tu2025agenticverification",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "corroborates"
+        }
+      ],
+      "advances_theses": [
+        "alignment-thesis"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "STANDALONE wave — LANDED (LPP-PROSE) in 5.3-the-built-system, expanding the 'LLM as a function call' sidebar to two paragraphs: the untrusted-author/trusted-kernel lineage (Ringer, QED at Large), a recent LLM-in-the-loop system (AutoRocq, tu2025agenticverification), and the author's own AutoSOUP; then MAGE carries the trust boundary into production, preserving the guarantee boundary (a lint proves less than a verifier; no green local check certifies the whole system) and disclaiming invention. AutoSOUP reused as arxiv-2605-10712 (already cited in 5.3; the requested amusuo2026autosoup would be a duplicate). target_locations trimmed to 5.3 (the actual landing; the MODELS-wave planned set was 4.6/2.3). illustrates_pattern=formal-invariant-verification on Ringer + AutoSOUP (§5 prior-art double-duty, Model-Derived Assurance Coverage's proof-pole member). fang2026trustworthy (2605.26017) was verified and available as a second AutoSOUP-adjacent pick but is NOT landed (kept the sidebar to one adjacent system per the conservative-cite directive); it can anchor a future echo. Ringer arXiv preprint year is 2020 (journal 2019); both correct in context."
@@ -95,13 +192,36 @@
       "x": "Keeping models and implementation consistent has a real, recurring cost — the model-transformation and bidirectional-transformation lineage (Czarnecki & Helsen; Stevens; Murphy/Notkin/Sullivan reflexion models).",
       "y": "The open question is whether agents change that economics — whether the reconciliation labor can be absorbed rather than borne.",
       "z": "MAGE's own model-sync measurement is the recent-LLM-era instance: sync cost is reduced and redistributed, not zero.",
-      "target_locations": ["models-and-the-semantic-gap", "where-mage-fits"],
-      "citations": [
-        {"key": "czarnecki2006featurebased", "backs_claims": ["sync-cost-reduced"], "relation": "situates"},
-        {"key": "stevens2020maintaining", "backs_claims": ["sync-cost-reduced"], "relation": "situates"},
-        {"key": "murphy1995reflexion", "backs_claims": ["alignment-thesis"], "relation": "situates"}
+      "target_locations": [
+        "models-and-the-semantic-gap",
+        "where-mage-fits"
       ],
-      "advances_theses": ["sync-cost-reduced"],
+      "citations": [
+        {
+          "key": "czarnecki2006featurebased",
+          "backs_claims": [
+            "sync-cost-reduced"
+          ],
+          "relation": "situates"
+        },
+        {
+          "key": "stevens2020maintaining",
+          "backs_claims": [
+            "sync-cost-reduced"
+          ],
+          "relation": "situates"
+        },
+        {
+          "key": "murphy1995reflexion",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "situates"
+        }
+      ],
+      "advances_theses": [
+        "sync-cost-reduced"
+      ],
       "status": "landed",
       "fold_target": "W7",
       "notes": "FOLD into W7 (the model-sync deep-dive). PARTIAL-verification trio — recheck at typeset: czarnecki2006featurebased (DOI 10.1147/sj.453.0621, pp.621-645 via secondary listings); stevens2020maintaining (prefer the SoSyM-2020 DOI 10.1007/s10270-019-00736-x over the MODELS-2017 conference paper); murphy1995reflexion (FSE-3 1995 pp.18-28 confirmed via authors' page; re-confirm the exact ACM/IEEE DOI). The recent-LLM-era co-evolution beat points to the book's OWN model-sync measurement, NOT an external cite (CODESYNC is a tangential non-fit — do NOT cite). All three keys planned, not yet in the .bib."
@@ -113,13 +233,38 @@
       "x": "Mature engineering converts failures into durable controls — resilience engineering, blameless postmortems, poka-yoke (Hollnagel/Woods/Leveson; Google SRE Ch.15; Shingo).",
       "y": "Agentic velocity surfaces novel, unforeseeable failures faster than any playbook anticipates.",
       "z": "MAGE names the promotion rule: ex-post failure -> human classification -> recurring obligation -> ex-ante environmental control.",
-      "target_locations": ["governance-conversion"],
-      "citations": [
-        {"key": "hollnagel2006resilience", "backs_claims": ["failures-become-machinery"], "relation": "situates", "illustrates_pattern": "self-governance"},
-        {"key": "beyer2016sre", "backs_claims": ["failures-become-machinery"], "relation": "situates", "illustrates_pattern": "self-governance"},
-        {"key": "shingo1986zqc", "backs_claims": ["failures-become-machinery"], "relation": "situates", "illustrates_pattern": "self-governance"}
+      "target_locations": [
+        "governance-conversion"
       ],
-      "advances_theses": ["failures-become-machinery"],
+      "citations": [
+        {
+          "key": "hollnagel2006resilience",
+          "backs_claims": [
+            "failures-become-machinery"
+          ],
+          "relation": "situates",
+          "illustrates_pattern": "self-governance"
+        },
+        {
+          "key": "beyer2016sre",
+          "backs_claims": [
+            "failures-become-machinery"
+          ],
+          "relation": "situates",
+          "illustrates_pattern": "self-governance"
+        },
+        {
+          "key": "shingo1986zqc",
+          "backs_claims": [
+            "failures-become-machinery"
+          ],
+          "relation": "situates",
+          "illustrates_pattern": "self-governance"
+        }
+      ],
+      "advances_theses": [
+        "failures-become-machinery"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "SMALL standalone wave — LANDED (LPP-PROSE) in 2.3-the-governed-environment, the ex-post governance-conversion beat: a one-paragraph lineage (manufacturing / resilience engineering / SRE blameless postmortems / Shingo poka-yoke) placed between the failure-seen-twice sentence and the 'either way, a mechanism takes one of two forms' transition, then MAGE's promotion rule and the velocity ingredient. Anchors the manuscript's existing Toyota/poka-yoke/jidoka/SRE mentions to primary sources (Shingo for poka-yoke, not a secondary summary). All three VERIFIED-ESTAB (ISBN). target_locations trimmed to 2.3 (the actual landing). illustrates_pattern=self-governance on all three (§8 prior-art double-duty: convert-a-recurring-failure-into-a-control)."
@@ -131,18 +276,70 @@
       "x": "A passing test suite has stood in for requirement satisfaction; automated repair long showed patches overfit the visible suite (Smith et al.).",
       "y": "The frontier now governs the oracle itself — OpenAI retiring SWE-Bench Verified (59.4% flawed test cases), decontaminated and live successors (Scale AI's SWE-Bench Pro at ~23%; the SWE-Bench Illusion 76%->53% memorization signature; SWE-bench-Live), and evidence that agent-authored tests are over-mocked or implementation-coupled (Hora & Robbes; the oracle study).",
       "z": "MAGE treats the suite as a fallible model that must be governed: completion is re-derived from the artifact and multiple evidence sources, not read off a green bar.",
-      "target_locations": ["open-problems"],
-      "citations": [
-        {"key": "openai2026swebench", "backs_claims": ["alignment-thesis"], "relation": "substantiates"},
-        {"key": "scaleai2025swebenchpro", "backs_claims": ["alignment-thesis"], "relation": "substantiates"},
-        {"key": "liang2026swebenchillusion", "backs_claims": ["alignment-thesis"], "relation": "substantiates"},
-        {"key": "zhang2025swebenchlive", "backs_claims": ["alignment-thesis"], "relation": "corroborates"},
-        {"key": "swerebench2025", "backs_claims": ["alignment-thesis"], "relation": "corroborates"},
-        {"key": "smith2015overfitting", "backs_claims": ["alignment-thesis"], "relation": "substantiates"},
-        {"key": "hora2026overmocked", "backs_claims": ["alignment-thesis"], "relation": "substantiates"},
-        {"key": "llmoracle2024", "backs_claims": ["alignment-thesis"], "relation": "substantiates"}
+      "target_locations": [
+        "open-problems"
       ],
-      "advances_theses": ["alignment-thesis"],
+      "citations": [
+        {
+          "key": "openai2026swebench",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "substantiates"
+        },
+        {
+          "key": "scaleai2025swebenchpro",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "substantiates"
+        },
+        {
+          "key": "liang2026swebenchillusion",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "substantiates"
+        },
+        {
+          "key": "zhang2025swebenchlive",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "corroborates"
+        },
+        {
+          "key": "swerebench2025",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "corroborates"
+        },
+        {
+          "key": "smith2015overfitting",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "substantiates"
+        },
+        {
+          "key": "hora2026overmocked",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "substantiates"
+        },
+        {
+          "key": "llmoracle2024",
+          "backs_claims": [
+            "alignment-thesis"
+          ],
+          "relation": "substantiates"
+        }
+      ],
+      "advances_theses": [
+        "alignment-thesis"
+      ],
       "status": "landed",
       "fold_target": "W5",
       "notes": "W5 — LANDED (research-opportunities section of 6.3-a-new-empirical-regime, the 'Governing the oracle' subsection). SWE-Bench Pro = Scale AI (arXiv 2509.16941), NOT OpenAI — the OpenAI withdrawal and Scale's Pro cited as DISTINCT sources. The OpenAI withdrawal post fetched indirectly (openai.com returned 403); the two quotes (59.4% flawed; 'reflect how much the model was exposed to the benchmark at training time') recovered via HN corroboration and the date left approximate ('early 2026') with no invented day. GUARDRAIL held: fallible-but-governable, NOT 'testing is useless'. SWE-rebench (swerebench2025, 2505.20411) taken as the second decontamination cite. llmoracle2024 keys arXiv 2410.21136 (no single named author). All 8 keys now in references.bib. NOTE: retargeted from implications-for-se to a-new-empirical-regime — the Part-6 split moved this content out of 6.2 into 6.3; LP3 now resolves all cites in book/part6/6.3-a-new-empirical-regime.md."
@@ -154,12 +351,28 @@
       "x": "Software engineering has always been more than typing code.",
       "y": "Empirical study finds AI assistants recomposing developer work toward supervision (Vella & Blincoe: 82% report writing less code; they name it 'supervisory engineering work'), and education begins teaching critique and responsible GenAI use (Jackson/Liu/van der Hoek).",
       "z": "MAGE describes where the seat moves — human effort concentrates on intent, architecture, model authorship, validation, and judgment — not that coding is obsolete.",
-      "target_locations": ["the-engineers-seat"],
-      "citations": [
-        {"key": "vella2026impact", "backs_claims": ["seat-moves"], "relation": "substantiates"},
-        {"key": "jackson2025genaidesign", "backs_claims": ["seat-moves"], "relation": "corroborates"}
+      "target_locations": [
+        "the-engineers-seat"
       ],
-      "advances_theses": ["seat-moves"],
+      "citations": [
+        {
+          "key": "vella2026impact",
+          "backs_claims": [
+            "seat-moves"
+          ],
+          "relation": "substantiates"
+        },
+        {
+          "key": "jackson2025genaidesign",
+          "backs_claims": [
+            "seat-moves"
+          ],
+          "relation": "corroborates"
+        }
+      ],
+      "advances_theses": [
+        "seat-moves"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "STANDALONE wave — LANDED (LPP-PROSE) in 1.5-the-engineers-seat, after the 'role shrinks nothing; judgment grows more consequential' beat. Frame held: 'the seat moves', NOT 'coding obsolete' and NOT 'every engineer becomes an architect' (both disclaimed in the prose). Vella & Blincoe = supervisory engineering work (empirical, longitudinal; flow + cognitive load erode even as output holds). Jackson et al. = SE-education on critiquing a model's design output before adopting. Both cites kept in 1.5 as the single primary insertion (draft-recommended over splitting Jackson to 6.0). target_locations trimmed to 1.5 (the actual landing). No illustrates_pattern — role/education framing, not an instance of a catalogue governance pattern."
@@ -171,16 +384,60 @@
       "x": "The single-case field report is a recognized method — case-study guidelines and mechanism-based process-tracing generalization (Runeson & Höst; Beach & Pedersen).",
       "y": "Practitioner build-reports now document large agentic builds (Cloudflare vinext, ~1 week / 1 engineer / ~$1,100; Anthropic's C compiler — 16 agents, a ~100K-line Rust compiler building Linux 6.9 on x86/ARM/RISC-V; Anthropic/Bun's million-line Zig->Rust migration) and a governable-agentic case study (Davis et al., Cheap Code, Costly Judgment).",
       "z": "MAGE grounds its method in one deep case (DocAble), motivating hypotheses for broader use — a field report, never a proof.",
-      "target_locations": ["open-problems"],
-      "citations": [
-        {"key": "davis2026cheapcode", "backs_claims": ["grounded-in-one-case"], "relation": "substantiates"},
-        {"key": "runeson2009guidelines", "backs_claims": ["grounded-in-one-case"], "relation": "situates"},
-        {"key": "beach2019processtracing", "backs_claims": ["grounded-in-one-case"], "relation": "situates"},
-        {"key": "faulkner2026vinext", "backs_claims": ["abundant-implementation", "build-reports-corroborate-practices"], "relation": "convergent-evidence"},
-        {"key": "carlini2026ccompiler", "backs_claims": ["abundant-implementation", "build-reports-corroborate-practices"], "relation": "convergent-evidence"},
-        {"key": "anthropic2026migration", "backs_claims": ["abundant-implementation", "build-reports-corroborate-practices"], "relation": "convergent-evidence"}
+      "target_locations": [
+        "open-problems"
       ],
-      "advances_theses": ["grounded-in-one-case", "abundant-implementation"],
+      "citations": [
+        {
+          "key": "davis2026cheapcode",
+          "backs_claims": [
+            "grounded-in-one-case"
+          ],
+          "relation": "substantiates"
+        },
+        {
+          "key": "runeson2009guidelines",
+          "backs_claims": [
+            "grounded-in-one-case"
+          ],
+          "relation": "situates"
+        },
+        {
+          "key": "beach2019processtracing",
+          "backs_claims": [
+            "grounded-in-one-case"
+          ],
+          "relation": "situates"
+        },
+        {
+          "key": "faulkner2026vinext",
+          "backs_claims": [
+            "abundant-implementation",
+            "build-reports-corroborate-practices"
+          ],
+          "relation": "convergent-evidence"
+        },
+        {
+          "key": "carlini2026ccompiler",
+          "backs_claims": [
+            "abundant-implementation",
+            "build-reports-corroborate-practices"
+          ],
+          "relation": "convergent-evidence"
+        },
+        {
+          "key": "anthropic2026migration",
+          "backs_claims": [
+            "abundant-implementation",
+            "build-reports-corroborate-practices"
+          ],
+          "relation": "convergent-evidence"
+        }
+      ],
+      "advances_theses": [
+        "grounded-in-one-case",
+        "abundant-implementation"
+      ],
       "status": "landed",
       "fold_target": "W5-Part5",
       "notes": "W5 — LANDED (research-opportunities section of 6.3-a-new-empirical-regime: the 'methodology of deep single-case evidence' subsection, with a build-reports table + a skippable academic-methodology inset). Carlini = 16 agents / ~100K-line Rust C compiler / Linux 6.9 (carlini2026ccompiler); Cloudflare vinext ~1 week / 1 engineer (faulkner2026vinext); Anthropic/Bun million-line Zig->Rust (anthropic2026migration) — practitioner build-reports are convergent-evidence, NOT 'establish' (verb discipline). davis2026cheapcode is the author's own paper (2607.01087), cited in prose. Runeson/Höst + Beach/Pedersen anchor the skippable inset; Merton name-dropped only (no cite). All 6 keys now in references.bib. NOTE: retargeted from implications-for-se to a-new-empirical-regime — the Part-6 split moved this content into 6.3; LP3 now resolves all cites in book/part6/6.3-a-new-empirical-regime.md."
@@ -192,11 +449,21 @@
       "x": "Deciding who does what in a software project has long been an organizational, human concern.",
       "y": "The field is beginning to treat governance of agentic software engineering as a first-class, formalizable subject — Ait et al. propose a domain-specific language for defining and enforcing governance policies across mixed human-agent teams.",
       "z": "MAGE converges with that direction but works at a different grain: not a single policy language, but a repertoire of governance mechanisms grounded in a production case.",
-      "target_locations": ["governance-conversion"],
-      "citations": [
-        {"key": "ait2025governance", "backs_claims": ["govern-the-environment"], "relation": "convergent-evidence"}
+      "target_locations": [
+        "governance-conversion"
       ],
-      "advances_theses": ["govern-the-environment"],
+      "citations": [
+        {
+          "key": "ait2025governance",
+          "backs_claims": [
+            "govern-the-environment"
+          ],
+          "relation": "convergent-evidence"
+        }
+      ],
+      "advances_theses": [
+        "govern-the-environment"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "AUTHOR-SUPPLIED (coordinator, 260803) — LANDED (LPP-PROSE) in 2.3-the-governed-environment, right after the chapter intro's 'two forms every governance mechanism finally takes', before the ex-ante section. A light 2-3-sentence convergent-evidence note: the field is beginning to formalize governance of agentic SE (Ait et al.'s policy DSL for human-agent collaboration, ASE 2025 NIER); MAGE develops a full governed environment well beyond a single policy language. Respectful, non-dismissive per the author's steer. relation=convergent-evidence (they independently converge on governing agentic SE, NOT 'establish'). ait2025governance (arXiv 2510.14465) added to references.bib."
@@ -208,14 +475,42 @@
       "x": "Empirical software engineering has long tried to measure process interventions whose effects were small beside the variation among developers — skill, context, and intelligence swamped the signal.",
       "y": "GenAI commoditizes the intelligence input: a ~400-study systematic review maps the field's effort, a three-firm field experiment across 4,867 developers measures a 26% rise in completed tasks, and the canonical single-task RCT clocks a 55.8% speedup — with honest complications where experienced developers in familiar repositories slow down.",
       "z": "MAGE proposes to hold the intelligence confound fixed and vary the environment, representations, and governance — a measurement regime whose effects are large and reproducible enough to build cumulative theory on.",
-      "target_locations": ["open-problems"],
-      "citations": [
-        {"key": "hou2024llm4se", "backs_claims": ["empirical-se-signal-to-noise"], "relation": "situates"},
-        {"key": "cui2025genai", "backs_claims": ["empirical-se-signal-to-noise"], "relation": "substantiates"},
-        {"key": "peng2023copilot", "backs_claims": ["empirical-se-signal-to-noise"], "relation": "substantiates"},
-        {"key": "metr2025productivity", "backs_claims": ["empirical-se-signal-to-noise"], "relation": "situates"}
+      "target_locations": [
+        "open-problems"
       ],
-      "advances_theses": ["empirical-se-signal-to-noise"],
+      "citations": [
+        {
+          "key": "hou2024llm4se",
+          "backs_claims": [
+            "empirical-se-signal-to-noise"
+          ],
+          "relation": "situates"
+        },
+        {
+          "key": "cui2025genai",
+          "backs_claims": [
+            "empirical-se-signal-to-noise"
+          ],
+          "relation": "substantiates"
+        },
+        {
+          "key": "peng2023copilot",
+          "backs_claims": [
+            "empirical-se-signal-to-noise"
+          ],
+          "relation": "substantiates"
+        },
+        {
+          "key": "metr2025productivity",
+          "backs_claims": [
+            "empirical-se-signal-to-noise"
+          ],
+          "relation": "situates"
+        }
+      ],
+      "advances_theses": [
+        "empirical-se-signal-to-noise"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "Registers the S2 empirical-SE-decades claim + closes the measurement-regime LPP gap (cites landed in prose in publish #2 but modeled nowhere). hou2024llm4se situates the 'hundreds of studies / decades of effort' framing (a ~400-study SLR); cui2025genai + peng2023copilot substantiate the controlled gains; metr2025productivity situates the 'if modest, sometimes reverses' hedge (16 devs, 19% slower in familiar repos). Verb discipline: no 'establish'. All four keys resolve in references.bib (added publish #2) and appear in the 'The new measurement regime' section of 6.3-a-new-empirical-regime. backs_claims + advances_theses bind the DISCUSSION claim empirical-se-signal-to-noise (registered in discussion-claims.json); LP2/LP6 resolve it via the widened spine+theory+discussion universe. NOTE: retargeted from implications-for-se to a-new-empirical-regime — the Part-6 split moved this content into 6.3; LP3 now resolves all cites in book/part6/6.3-a-new-empirical-regime.md."
@@ -227,11 +522,21 @@
       "x": "For two decades the staged software maturity model — the CMM and its CMMI successor — was the dominant frame for engineering quality: rank an organization on a five-rung ladder and tell it to climb.",
       "y": "The staged model drew a documented critique — software capability evaluations grade process conformance in place of the outcomes the process was meant to produce, and under pressure the ladder decays into box-ticking (Bollinger & McGowan).",
       "z": "MAGE is a capability model, not a maturity ladder: a project's current bottleneck selects the next modeling or governance capability it needs, so no rung becomes the goal.",
-      "target_locations": ["toward-a-theory-of-mage"],
-      "citations": [
-        {"key": "bollinger1991critical", "backs_claims": ["maturity-model-box-ticking"], "relation": "substantiates"}
+      "target_locations": [
+        "toward-a-theory-of-mage"
       ],
-      "advances_theses": ["govern-the-environment"],
+      "citations": [
+        {
+          "key": "bollinger1991critical",
+          "backs_claims": [
+            "maturity-model-box-ticking"
+          ],
+          "relation": "substantiates"
+        }
+      ],
+      "advances_theses": [
+        "govern-the-environment"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "Registers + backs the S3 CMM box-ticking claim (6.0:229) per the author's CITE ruling. Bollinger & McGowan, 'A Critical Look at Software Capability Evaluations', IEEE Software 8(4):25-41, 1991 (DOI 10.1109/52.300034; IEEE Software 25th-anniversary Top Pick) documents the process-conformance-over-outcomes + box-ticking failure mode — relation=substantiates. backs_claims binds the DISCUSSION claim maturity-model-box-ticking (registered in discussion-claims.json). The cite marker [cite: bollinger1991critical] is in 6.0 prose at the box-ticking sentence. NOTE: 6.0 is a backmatter chapter (LP3's _chapter_text globs book/part*/ only), so LP3 reports this landed cite as not-appearing-in-a-target-chapter (audit-only, non-gating) — the single-case-methodology precedent."
@@ -243,11 +548,21 @@
       "x": "Agile's founding statement chose velocity over ceremony — it valued working software over comprehensive documentation and responding to change over following a plan, deprioritizing the up-front models and maintained plans that heavier methodologies demanded.",
       "y": "This book reads that observable choice as an accidental-complexity concession: teams shipped fast and kept models thin because holding quality and a current model honest by hand was too expensive to afford at pace — an owned causal-historical interpretation, not an established finding.",
       "z": "MAGE changes that arithmetic: agents absorb the accidental work — they type the code, keep the map in sync, and hold the line for cents — so the essential properties a model names and a gate checks can finally get the attention Agile had to spend elsewhere.",
-      "target_locations": ["implications-for-se"],
-      "citations": [
-        {"key": "agile-manifesto2001", "backs_claims": ["agile-accidental-complexity-origin"], "relation": "situates"}
+      "target_locations": [
+        "implications-for-se"
       ],
-      "advances_theses": ["agile-accidental-complexity-origin"],
+      "citations": [
+        {
+          "key": "agile-manifesto2001",
+          "backs_claims": [
+            "agile-accidental-complexity-origin"
+          ],
+          "relation": "situates"
+        }
+      ],
+      "advances_theses": [
+        "agile-accidental-complexity-origin"
+      ],
       "status": "landed",
       "fold_target": "",
       "notes": "Registers the S1 Agile-origin claim (6.1:365-368) per the author's HYBRID ruling. The Agile Manifesto (agile-manifesto2001; Beck et al., 'Manifesto for Agile Software Development', 2001, agilemanifesto.org) grounds the OBSERVABLE half — Agile's 'working software over comprehensive documentation' + 'responding to change over following a plan' values ARE the documentation/model concession the passage describes — relation=situates (it documents the choice, it does not establish the author's causal reading). The CAUSAL half (arose BECAUSE hand-maintenance was too expensive at pace) is the author's owned interpretation, registered in discussion-claims.json with frame=conjecture and kept loud in prose (no softening). backs_claims + advances_theses bind the DISCUSSION claim agile-accidental-complexity-origin. The cite marker [cite: agile-manifesto2001] sits on the observable clause ('kept models thin') in 6.1 prose, leaving the 'because' causal clause uncited as the conjecture. NOTE: 6.1 is a backmatter chapter (LP3's _chapter_text globs book/part*/ only), so LP3 reports this landed cite as not-appearing-in-a-target-chapter (audit-only, non-gating) — the single-case-methodology / empirical-measurement-regime precedent."

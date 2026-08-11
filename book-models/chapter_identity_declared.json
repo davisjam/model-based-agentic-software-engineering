@@ -1,51 +1,181 @@
 {
   "_note": "Hand-authored chapter-identity dimension table — the ONE surrogate-key model the whole book joins against. Each row: a frozen number-free `label` (the join key; assigned once at chapter creation, survives BOTH renumber and retitle) + the mutable `filename`. `number` derives from the filename's N.M- prefix; `title` derives from the chapter file's `<!-- chapter-title: -->` metadata — NEITHER is stored (SSOT: a reorg edits ONE field, `filename`). Every other book-model references `label`, never a filename or number. On a reorg, edit only the moved rows' `filename` here; all downstream refs stay valid untouched. Resolver + bijection check: chapter_identity_model.py. Do NOT key any downstream model on a filename or number again — that is the failure class this model kills.",
   "chapters": [
-    { "label": "the-mage-method-at-a-glance", "filename": "frontmatter/0.1-the-mage-method-at-a-glance.md" },
-    { "label": "what-this-book-argues", "filename": "frontmatter/0.2-what-this-book-argues.md" },
-    { "label": "the-books-language", "filename": "frontmatter/0.3-the-books-language.md" },
-    { "label": "preface", "filename": "frontmatter/0.4-preface.md" },
-    { "label": "how-to-read-this-book", "filename": "frontmatter/0.5-how-to-read-this-book.md" },
-    { "label": "acknowledgments", "filename": "frontmatter/0.6-acknowledgments.md" },
-    { "label": "the-printer", "filename": "part1/1.1-the-printer.md" },
-    { "label": "mage-by-example", "filename": "part1/1.2-mage-by-example.md" },
-    { "label": "loops-and-models", "filename": "part1/1.3-loops-and-models.md" },
-    { "label": "why-mage-follows-from-the-machine", "filename": "part1/1.4-why-mage-follows-from-the-machine.md" },
-    { "label": "the-engineers-seat", "filename": "part1/1.5-the-engineers-seat.md" },
-    { "label": "the-agent-stack", "filename": "part3/3.1-the-agent-stack.md" },
-    { "label": "models-and-the-semantic-gap", "filename": "part3/3.2-models-and-the-semantic-gap.md" },
-    { "label": "constraints-sensors-validators-gates", "filename": "part3/3.3-constraints-sensors-validators-gates.md" },
-    { "label": "governance-conversion", "filename": "part3/3.4-governance-conversion.md" },
-    { "label": "lifecycles-and-runbooks", "filename": "part4/4.5-lifecycles-and-runbooks.md" },
-    { "label": "metrics", "filename": "part4/4.6-metrics.md" },
-    { "label": "when-guardrails-collide", "filename": "part3/3.5-when-guardrails-collide.md" },
-    { "label": "context-is-the-first-modeling-problem", "filename": "part2/2.1-context-is-the-first-modeling-problem.md" },
-    { "label": "from-context-to-control", "filename": "part2/2.2-from-context-to-control.md" },
-    { "label": "the-executable-zoo", "filename": "part2/2.3-the-executable-zoo.md" },
-    { "label": "views-are-projections", "filename": "part2/2.4-views-are-projections.md" },
-    { "label": "modeling-structure-and-ownership", "filename": "part2/2.5-modeling-structure-and-ownership.md" },
-    { "label": "modeling-behavior-and-execution", "filename": "part2/2.6-modeling-behavior-and-execution.md" },
-    { "label": "scenarios-and-the-joined-model", "filename": "part2/2.7-scenarios-and-the-joined-model.md" },
-    { "label": "keeping-models-in-sync", "filename": "part2/2.12-keeping-models-in-sync.md" },
-    { "label": "the-mage-workflow", "filename": "part4/4.1-the-mage-workflow.md" },
-    { "label": "brownfield", "filename": "part4/4.2-brownfield.md" },
-    { "label": "the-skills", "filename": "part4/4.4-the-skills.md" },
-    { "label": "generative-validation", "filename": "part4/4.3-validating-change.md" },
-    { "label": "the-ada-context", "filename": "part5/5.1-the-ada-context.md" },
-    { "label": "training-data", "filename": "part5/5.2-why-this-system-was-a-hard-case.md" },
-    { "label": "the-timeline-and-the-work", "filename": "part5/5.3-the-timeline-and-the-work.md" },
-    { "label": "the-built-system", "filename": "part5/5.4-the-built-system.md" },
-    { "label": "the-road-to-mage", "filename": "part5/5.5-the-road-to-mage.md" },
-    { "label": "failures", "filename": "part5/5.6-governance-conversions.md" },
-    { "label": "toward-a-theory-of-mage", "filename": "part6/6.1-toward-a-theory-of-mage.md" },
-    { "label": "scope-conditions", "filename": "part6/6.2-scope-conditions.md" },
-    { "label": "relationship-to-se", "filename": "part6/6.3-relationship-to-se.md" },
-    { "label": "engineering-beyond-software", "filename": "part6/6.4-engineering-beyond-software.md" },
-    { "label": "implications-for-se", "filename": "part6/6.5-implications-for-se.md" },
-    { "label": "where-mage-fits", "filename": "part6/6.6-where-mage-fits.md" },
-    { "label": "open-problems", "filename": "part6/6.7-open-problems.md" },
-    { "label": "conclusion", "filename": "part6/6.8-conclusion.md" },
-    { "label": "about-the-author", "filename": "part7/7.1-about-the-author.md" },
-    { "label": "colophon", "filename": "part7/7.2-colophon.md" }
+    {
+      "label": "the-mage-method-at-a-glance",
+      "filename": "frontmatter/0.1-the-mage-method-at-a-glance.md"
+    },
+    {
+      "label": "what-this-book-argues",
+      "filename": "frontmatter/0.2-what-this-book-argues.md"
+    },
+    {
+      "label": "the-books-language",
+      "filename": "frontmatter/0.3-the-books-language.md"
+    },
+    {
+      "label": "preface",
+      "filename": "frontmatter/0.4-preface.md"
+    },
+    {
+      "label": "how-to-read-this-book",
+      "filename": "frontmatter/0.5-how-to-read-this-book.md"
+    },
+    {
+      "label": "acknowledgments",
+      "filename": "frontmatter/0.6-acknowledgments.md"
+    },
+    {
+      "label": "the-printer",
+      "filename": "part1/1.1-the-printer.md"
+    },
+    {
+      "label": "mage-by-example",
+      "filename": "part1/1.2-mage-by-example.md"
+    },
+    {
+      "label": "loops-and-models",
+      "filename": "part1/1.3-loops-and-models.md"
+    },
+    {
+      "label": "why-mage-follows-from-the-machine",
+      "filename": "part1/1.4-why-mage-follows-from-the-machine.md"
+    },
+    {
+      "label": "the-engineers-seat",
+      "filename": "part1/1.5-the-engineers-seat.md"
+    },
+    {
+      "label": "the-agent-stack",
+      "filename": "part3/3.1-the-agent-stack.md"
+    },
+    {
+      "label": "models-and-the-semantic-gap",
+      "filename": "part3/3.2-models-and-the-semantic-gap.md"
+    },
+    {
+      "label": "constraints-sensors-validators-gates",
+      "filename": "part3/3.3-constraints-sensors-validators-gates.md"
+    },
+    {
+      "label": "governance-conversion",
+      "filename": "part3/3.4-governance-conversion.md"
+    },
+    {
+      "label": "lifecycles-and-runbooks",
+      "filename": "part4/4.5-lifecycles-and-runbooks.md"
+    },
+    {
+      "label": "metrics",
+      "filename": "part4/4.6-metrics.md"
+    },
+    {
+      "label": "when-guardrails-collide",
+      "filename": "part3/3.5-when-guardrails-collide.md"
+    },
+    {
+      "label": "context-is-the-first-modeling-problem",
+      "filename": "part2/2.1-context-is-the-first-modeling-problem.md"
+    },
+    {
+      "label": "from-context-to-control",
+      "filename": "part2/2.2-from-context-to-control.md"
+    },
+    {
+      "label": "the-executable-zoo",
+      "filename": "part2/2.3-the-executable-zoo.md"
+    },
+    {
+      "label": "views-are-projections",
+      "filename": "part2/2.4-views-are-projections.md"
+    },
+    {
+      "label": "modeling-structure-and-ownership",
+      "filename": "part2/2.5-modeling-structure-and-ownership.md"
+    },
+    {
+      "label": "modeling-behavior-and-execution",
+      "filename": "part2/2.6-modeling-behavior-and-execution.md"
+    },
+    {
+      "label": "scenarios-and-the-joined-model",
+      "filename": "part2/2.7-scenarios-and-the-joined-model.md"
+    },
+    {
+      "label": "keeping-models-in-sync",
+      "filename": "part2/2.12-keeping-models-in-sync.md"
+    },
+    {
+      "label": "the-mage-workflow",
+      "filename": "part4/4.1-the-mage-workflow.md"
+    },
+    {
+      "label": "brownfield",
+      "filename": "part4/4.2-brownfield.md"
+    },
+    {
+      "label": "the-skills",
+      "filename": "part4/4.4-the-skills.md"
+    },
+    {
+      "label": "generative-validation",
+      "filename": "part4/4.3-validating-change.md"
+    },
+    {
+      "label": "the-ada-context",
+      "filename": "part5/5.1-the-problem-and-the-bar.md"
+    },
+    {
+      "label": "the-timeline-and-the-work",
+      "filename": "part5/5.2-the-build.md"
+    },
+    {
+      "label": "the-road-to-mage",
+      "filename": "part5/5.3-the-road-to-mage.md"
+    },
+    {
+      "label": "failures",
+      "filename": "part5/5.4-failures-that-became-infrastructure.md"
+    },
+    {
+      "label": "toward-a-theory-of-mage",
+      "filename": "part6/6.1-toward-a-theory-of-mage.md"
+    },
+    {
+      "label": "scope-conditions",
+      "filename": "part6/6.2-scope-conditions.md"
+    },
+    {
+      "label": "relationship-to-se",
+      "filename": "part6/6.3-relationship-to-se.md"
+    },
+    {
+      "label": "engineering-beyond-software",
+      "filename": "part6/6.4-engineering-beyond-software.md"
+    },
+    {
+      "label": "implications-for-se",
+      "filename": "part6/6.5-implications-for-se.md"
+    },
+    {
+      "label": "where-mage-fits",
+      "filename": "part6/6.6-where-mage-fits.md"
+    },
+    {
+      "label": "open-problems",
+      "filename": "part6/6.7-open-problems.md"
+    },
+    {
+      "label": "conclusion",
+      "filename": "part6/6.8-conclusion.md"
+    },
+    {
+      "label": "about-the-author",
+      "filename": "part7/7.1-about-the-author.md"
+    },
+    {
+      "label": "colophon",
+      "filename": "part7/7.2-colophon.md"
+    }
   ]
 }

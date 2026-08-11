@@ -452,7 +452,7 @@ _PART_OPENER_QUESTIONS = {
     2: "How do I identify useful models?",
     3: "How do I encode authority into my environment?",
     4: "How do I practice MAGE?",
-    5: "Why does the method have this shape?",
+    5: "How did the clean method emerge from messy engineering?",
     6: "Where is the profession going?",
 }
 

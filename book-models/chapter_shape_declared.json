@@ -591,31 +591,6 @@
       "closing_anchor": "real deadline. The next Part tells that system's story from the beginning."
     },
     {
-      "slug": "training-data",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "implicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "consequence"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "decision-tree",
-            "name": "the novelty-axis figure (three-knob decision aid)",
-            "anchor": "novelty-axis"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Reframed method->evidence (r3, now 5.2 'Why This System Was a Hard Case'): opens on 'a result is only as strong as the case', sets the novelty axis as the second dial. Closes on the demoable-vs-productizable distance.",
-      "opening_anchor": "A result is only as strong as the case that produced it.",
-      "closing_anchor": "belong together, in a treatment this field report > does not attempt."
-    },
-    {
       "slug": "generative-validation",
       "opening": {
         "failure_question": "explicit",
@@ -689,31 +664,6 @@
       "note": "Opens on the arc + the one fact that is the book's engineering problem; every governance idea learned at a point on the arc (failures-become-machinery). Closes on the recurring move + the arc's numbers — synthesis.",
       "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Printer ·",
       "closing_anchor": "governed is the story the rest of this book has already told."
-    },
-    {
-      "slug": "the-built-system",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "synthesis"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "worked-example",
-            "name": "the frontend-MVC, DSL-remediation, and reactive-services figures",
-            "anchor": "editor-mvc"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Question: what got built (governance makes no sense without the governed thing); answer: the system's shape, the two halves joined. Closes on Same-song-second-verse — the wrapped-VLM pattern read back onto the agents themselves. Exemplar.",
-      "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Thesis",
-      "closing_anchor": "rest of the book applied in the large. Same song, second verse."
     },
     {
       "slug": "the-road-to-mage",

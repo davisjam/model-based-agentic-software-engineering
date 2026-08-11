@@ -612,22 +612,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="4.6-metrics.html">24&nbsp; Metrics</a></li>
 <li class="part">Part 5 — The Evidence</li>
 <li><a class="" href="part-5-intro.html">The Evidence</a></li>
-<li><a class="" href="5.1-the-ada-context.html">25&nbsp; The Bar the Problem Set</a></li>
-<li><a class="" href="5.2-why-this-system-was-a-hard-case.html">26&nbsp; Why This System Was a Hard Case</a></li>
-<li><a class="" href="5.3-the-timeline-and-the-work.html">27&nbsp; The Build</a></li>
-<li><a class="" href="5.4-the-built-system.html">28&nbsp; The Built System</a></li>
-<li><a class="" href="5.5-the-road-to-mage.html">29&nbsp; The Road to MAGE</a></li>
-<li><a class="" href="5.6-governance-conversions.html">30&nbsp; Conversions in Practice</a></li>
+<li><a class="" href="5.1-the-problem-and-the-bar.html">25&nbsp; The Problem and the Bar</a></li>
+<li><a class="" href="5.2-the-build.html">26&nbsp; The Build</a></li>
+<li><a class="" href="5.3-the-road-to-mage.html">27&nbsp; The Road to MAGE</a></li>
+<li><a class="" href="5.4-failures-that-became-infrastructure.html">28&nbsp; Failures That Became Infrastructure</a></li>
 <li class="part">Part 6 — The Profession</li>
 <li><a class="" href="part-6-intro.html">The Profession</a></li>
-<li><a class="" href="6.1-toward-a-theory-of-mage.html">31&nbsp; Toward a Theory of MAGE</a></li>
-<li><a class="" href="6.2-scope-conditions.html">32&nbsp; Scope Conditions</a></li>
-<li><a class="" href="6.3-relationship-to-se.html">33&nbsp; Relationship to Software Engineering</a></li>
-<li><a class="" href="6.4-engineering-beyond-software.html">34&nbsp; Engineering Beyond Software</a></li>
-<li><a class="" href="6.5-implications-for-se.html">35&nbsp; The New Profession</a></li>
-<li><a class="" href="6.6-where-mage-fits.html">36&nbsp; MAGE in the Wild</a></li>
-<li><a class="" href="6.7-open-problems.html">37&nbsp; Open Problems</a></li>
-<li><a class="" href="6.8-conclusion.html">38&nbsp; Conclusion</a></li>
+<li><a class="" href="6.1-toward-a-theory-of-mage.html">29&nbsp; Toward a Theory of MAGE</a></li>
+<li><a class="" href="6.2-scope-conditions.html">30&nbsp; Scope Conditions</a></li>
+<li><a class="" href="6.3-relationship-to-se.html">31&nbsp; Relationship to Software Engineering</a></li>
+<li><a class="" href="6.4-engineering-beyond-software.html">32&nbsp; Engineering Beyond Software</a></li>
+<li><a class="" href="6.5-implications-for-se.html">33&nbsp; The New Profession</a></li>
+<li><a class="" href="6.6-where-mage-fits.html">34&nbsp; MAGE in the Wild</a></li>
+<li><a class="" href="6.7-open-problems.html">35&nbsp; Open Problems</a></li>
+<li><a class="" href="6.8-conclusion.html">36&nbsp; Conclusion</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
 <li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
@@ -727,7 +725,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>This is why an <em>engineered</em> representation validates where code and documentation alone cannot. A model in this sense is not a Wikipedia-style knowledge graph — facts scraped and associated, consulted by probabilistic lookup, true on average. It is an engineered artifact with declared types, closed sets, and stated invariants, built to support <strong>deterministic</strong> reasoning: given the model, a check returns the same verdict every time, and that verdict has a definite meaning. Code carries the behavior but not the intent; prose carries the intent but nothing a machine can check. The engineered model carries intent in a form a validator can consume — which is exactly what makes it a source of evidence rather than a description. The richer the model, the stronger the validation it permits, because the oracle a check can appeal to is only ever as rich as the model behind it.</p>
 <h3>The move: a generator hunts a counterexample to a model</h3>
 <p id="idx-def-property-test-models-the-output">Before the three members, the shared shape. An example-based test pins a single point: given <em>this</em> input, expect <em>that</em> output. A generative test does something else — it states the property the output must satisfy across the whole space of inputs, and hands a generator the job of hunting a counterexample. Where an example gives the machine one labelled dot to reproduce, a generative test gives it the law the whole space obeys and a search for the place the code breaks it.</p>
-<p>That difference is exactly the one that matters against an agent. Faced with a failing example, an agent will do the locally-expedient thing: special-case the path that makes <em>that</em> input pass. The example goes green and the bug survives, now hidden behind a branch cut to fit the test. A broadly quantified property blunts that move. There is no single case to patch: special-case the one input the generator surfaced and its neighbours — which the generator keeps drawing — still exercise the law, so the branch-cut that satisfied the example fails the next generated case. (The agent is not powerless here; it can weaken the generator or overfit the property itself. Those are the failures the coverage discipline later in this chapter is built to catch.) This is why the strategy that catches the <em>class</em> beats the one that catches the example, and why the generative family is what the <a href="5.6-governance-conversions.html">lessons chapter</a> means when it says to pin the invariant, not the example. <a class="xref" href="4.3-validating-change.html#fig-4-3-1">Figure&nbsp;4.3-1</a> draws the difference.</p>
+<p>That difference is exactly the one that matters against an agent. Faced with a failing example, an agent will do the locally-expedient thing: special-case the path that makes <em>that</em> input pass. The example goes green and the bug survives, now hidden behind a branch cut to fit the test. A broadly quantified property blunts that move. There is no single case to patch: special-case the one input the generator surfaced and its neighbours — which the generator keeps drawing — still exercise the law, so the branch-cut that satisfied the example fails the next generated case. (The agent is not powerless here; it can weaken the generator or overfit the property itself. Those are the failures the coverage discipline later in this chapter is built to catch.) This is why the strategy that catches the <em>class</em> beats the one that catches the example, and why the generative family is what the <a href="5.4-failures-that-became-infrastructure.html">lessons chapter</a> means when it says to pin the invariant, not the example. <a class="xref" href="4.3-validating-change.html#fig-4-3-1">Figure&nbsp;4.3-1</a> draws the difference.</p>
 <figure id="fig-4-3-1" class="book-figure" data-label="example-vs-generative"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 510"
      role="group" aria-labelledby="egTitle egDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

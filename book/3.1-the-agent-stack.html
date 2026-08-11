@@ -612,22 +612,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="4.6-metrics.html">24&nbsp; Metrics</a></li>
 <li class="part">Part 5 — The Evidence</li>
 <li><a class="" href="part-5-intro.html">The Evidence</a></li>
-<li><a class="" href="5.1-the-ada-context.html">25&nbsp; The Bar the Problem Set</a></li>
-<li><a class="" href="5.2-why-this-system-was-a-hard-case.html">26&nbsp; Why This System Was a Hard Case</a></li>
-<li><a class="" href="5.3-the-timeline-and-the-work.html">27&nbsp; The Build</a></li>
-<li><a class="" href="5.4-the-built-system.html">28&nbsp; The Built System</a></li>
-<li><a class="" href="5.5-the-road-to-mage.html">29&nbsp; The Road to MAGE</a></li>
-<li><a class="" href="5.6-governance-conversions.html">30&nbsp; Conversions in Practice</a></li>
+<li><a class="" href="5.1-the-problem-and-the-bar.html">25&nbsp; The Problem and the Bar</a></li>
+<li><a class="" href="5.2-the-build.html">26&nbsp; The Build</a></li>
+<li><a class="" href="5.3-the-road-to-mage.html">27&nbsp; The Road to MAGE</a></li>
+<li><a class="" href="5.4-failures-that-became-infrastructure.html">28&nbsp; Failures That Became Infrastructure</a></li>
 <li class="part">Part 6 — The Profession</li>
 <li><a class="" href="part-6-intro.html">The Profession</a></li>
-<li><a class="" href="6.1-toward-a-theory-of-mage.html">31&nbsp; Toward a Theory of MAGE</a></li>
-<li><a class="" href="6.2-scope-conditions.html">32&nbsp; Scope Conditions</a></li>
-<li><a class="" href="6.3-relationship-to-se.html">33&nbsp; Relationship to Software Engineering</a></li>
-<li><a class="" href="6.4-engineering-beyond-software.html">34&nbsp; Engineering Beyond Software</a></li>
-<li><a class="" href="6.5-implications-for-se.html">35&nbsp; The New Profession</a></li>
-<li><a class="" href="6.6-where-mage-fits.html">36&nbsp; MAGE in the Wild</a></li>
-<li><a class="" href="6.7-open-problems.html">37&nbsp; Open Problems</a></li>
-<li><a class="" href="6.8-conclusion.html">38&nbsp; Conclusion</a></li>
+<li><a class="" href="6.1-toward-a-theory-of-mage.html">29&nbsp; Toward a Theory of MAGE</a></li>
+<li><a class="" href="6.2-scope-conditions.html">30&nbsp; Scope Conditions</a></li>
+<li><a class="" href="6.3-relationship-to-se.html">31&nbsp; Relationship to Software Engineering</a></li>
+<li><a class="" href="6.4-engineering-beyond-software.html">32&nbsp; Engineering Beyond Software</a></li>
+<li><a class="" href="6.5-implications-for-se.html">33&nbsp; The New Profession</a></li>
+<li><a class="" href="6.6-where-mage-fits.html">34&nbsp; MAGE in the Wild</a></li>
+<li><a class="" href="6.7-open-problems.html">35&nbsp; Open Problems</a></li>
+<li><a class="" href="6.8-conclusion.html">36&nbsp; Conclusion</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
 <li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
@@ -822,7 +820,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p class="book-eq">P(wrong) = 1 − (1 − p)ⁿ</p>
 <p>The equation is only the intuition — real step errors are neither independent nor equal, and some are recoverable. The durable point survives the caveats: every unnecessary re-derivation is one more step in <em>n</em>, one more chance to drift.</p>
 <p><strong>What you control in the model.</strong> The foundation model has three parts, and you steer each one differently.</p>
-<ul><li><strong>Its reasoning is a grade you buy.</strong> Pick the tier, and size each task to a model that can reach the end of its chain — or let the orchestrator route the task to the model that fits.</li><li><strong>Its training data you do not touch.</strong> This book assumes you run the model as it ships. Bending the weights to your domain is a real lever, but a resource-intensive one, and in the main it is much more cost-effective to optimize the context window and revisit at the next generation of foundation models. (<a href="5.2-why-this-system-was-a-hard-case.html">A later chapter</a> treats training data as the novelty axis: how far your system sits from what the model has seen decides how hard you must condition it.)</li><li><strong>Its context window is fixed once a task is running on a chosen model.</strong> You cannot enlarge it from inside the task; you can only decide what meaning occupies it. What you change is how much each token carries.</li></ul>
+<ul><li><strong>Its reasoning is a grade you buy.</strong> Pick the tier, and size each task to a model that can reach the end of its chain — or let the orchestrator route the task to the model that fits.</li><li><strong>Its training data you do not touch.</strong> This book assumes you run the model as it ships. Bending the weights to your domain is a real lever, but a resource-intensive one, and in the main it is much more cost-effective to optimize the context window and revisit at the next generation of foundation models. (<a href="5.1-the-problem-and-the-bar.html">A later chapter</a> treats training data as the novelty axis: how far your system sits from what the model has seen decides how hard you must condition it.)</li><li><strong>Its context window is fixed once a task is running on a chosen model.</strong> You cannot enlarge it from inside the task; you can only decide what meaning occupies it. What you change is how much each token carries.</li></ul>
 <p>So the window bounds the fleet — but not the way it first looks. You cannot widen it; you can pack it denser. A model is a higher-abstraction representation, more meaning per token, so the same window holds more of the system. That is the Modeling Thesis aimed at the window bound: the fleet scales on two capacities, its reasoning grade and its window.</p>
 <p>To the extent you control model choice, make it; if you have the resources to tune, it may help. But this book's position is that controlling the context window is the key, and modeling is the path we take.</p>
 <p>This layer rests on one claim: the model reasons over an internal picture of its world, not just the surface of your prompt. Interpretability work such as Othello-GPT shows the shape of it — a model trained only on Othello move sequences, never shown a board, forms a recoverable representation of the board state inside the network, and its predictions track that representation when it is altered <sup class="cite-ref"><a href="#wc-3-1-the-agent-stack-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Kenneth Li et al., “Emergent World Representations: Exploring a Sequence Model Trained on a Synthetic Task,” 2022, <a href="https://arxiv.org/abs/2210.13382">https://arxiv.org/abs/2210.13382</a>.</span>. That is enough for the engineering claim here: capable foundation models can operate over structured representations we supply. The job at this layer is to equip that reasoning — to hand it your world instead of a guessed one — and the concrete act is packaging the context as a <strong>skill</strong> the model reaches for. <a href="appendix-skill-recipe.html">Appendix E</a> gives the recipe.</p>

@@ -36,13 +36,11 @@ book/
     4.4-the-skills.md
     4.5-lifecycles-and-runbooks.md
     4.6-metrics.md
-  part5/  (Part 5 — The Case: ADA)
-    5.1-the-ada-context.md
-    5.2-why-this-system-was-a-hard-case.md
-    5.3-the-timeline-and-the-work.md
-    5.4-the-built-system.md
-    5.5-the-road-to-mage.md
-    5.6-governance-conversions.md
+  part5/  (Part 5 — The Evidence)
+    5.1-the-problem-and-the-bar.md
+    5.2-the-build.md
+    5.3-the-road-to-mage.md
+    5.4-failures-that-became-infrastructure.md
   part6/  (Part 6 — Toward a Theory of MAGE)
     6.1-toward-a-theory-of-mage.md … 6.8-conclusion.md
   part7/  (back matter)
