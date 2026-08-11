@@ -44,11 +44,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 1.4-why-mage-follows-from-the-machine
 
 
-### Lesson 1.5-transformations
-
-  - **[DERIVED]** (evaluate) After this section, the reader can size a transformation's leap to its model and its guarantee. — _anchor: Heading text: 'Size the leap to the model and the guarantee'; ts: 'Give a model an input and either examples of a transformation or a precise description'._
-
-### Lesson 1.6-the-engineers-seat
+### Lesson 1.5-the-engineers-seat
 
 
 ## Module 2 — Modeling

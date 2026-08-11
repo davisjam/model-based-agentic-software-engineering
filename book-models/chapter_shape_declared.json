@@ -659,25 +659,6 @@
       "closing_anchor": "real deadline. The next Part tells that system's story from the beginning."
     },
     {
-      "slug": "transformations",
-      "opening": {
-        "failure_question": "implicit",
-        "answer": "explicit",
-        "thesis_link": "implicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "delivers": {
-        "artifacts": [],
-        "artifact_would_help": false
-      },
-      "note": "Habit-of-mind framing re-aimed (r3): opens by picking up 1.4's reasoning-horizon limit and turning it into the sizing habit; the failure (unchecked long reasoning degrades) is implicit. Closes handing the open question — which seat the human keeps — to the engineer's-seat chapter.",
-      "opening_anchor": "The last chapter's derivation ended on a limit: a finite reasoner has",
-      "closing_anchor": "input-to-output steps — and you will find yourself a much happier engineer."
-    },
-    {
       "slug": "training-data",
       "opening": {
         "failure_question": "explicit",

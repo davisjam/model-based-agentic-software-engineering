@@ -5,7 +5,7 @@
 
   "ration_rule": "Each declared idea gets ONE canonical slogan (scope invoke-by-name) at its best location. Later appearances are blunt referential invocations, not fresh polished formulations. A `used-once` line appears exactly once; a `commandment` may recur as a refrain. Density/clustering caps ration polished occurrences. A slogan and a metaphor elaborating the SAME idea do not compete — only two invoke-by-name slogans on one idea do.",
 
-  "ratified_counts": { "core": 9, "local": 11, "overlaps": 0, "slogans": 9, "commandments": 1, "used_once": 1 },
+  "ratified_counts": { "core": 9, "local": 9, "overlaps": 0, "slogans": 9, "commandments": 1, "used_once": 1 },
 
   "metaphors": [
     {
@@ -115,21 +115,6 @@
 
     {
       "kind": "metaphor",
-      "name": "The search space",
-      "slug": "search-space",
-      "recurrence": "local",
-      "vehicle": "agent behavior as a search over a vast space",
-      "elaborates": { "model": "big-ideas", "id": "modeling-thesis" },
-      "introduced_at": { "label": "loops-and-models", "anchor": "search-space" },
-      "pays_off_at": { "label": "loops-and-models", "anchor": "structuring-loop-and-model-conditions-the-distribution" },
-      "stretch": "loops-and-models",
-      "payoff": "A model aims the search and shrinks what must be held.",
-      "overlap_ok": false,
-      "overlap_rationale": "",
-      "notes": "Sole local in 1.3; co-occurs only with the core loop (exempt)."
-    },
-    {
-      "kind": "metaphor",
       "name": "Poka-yoke / the fixture",
       "slug": "poka-yoke-fixture",
       "recurrence": "local",
@@ -187,21 +172,6 @@
       "overlap_ok": false,
       "overlap_rationale": "",
       "notes": "Pays off in the section that raises it."
-    },
-    {
-      "kind": "metaphor",
-      "name": "Jugaad",
-      "slug": "jugaad",
-      "recurrence": "local",
-      "vehicle": "Hindi — a resourceful improvisation",
-      "elaborates": { "model": "claims", "id": "convert-failures-to-controls" },
-      "introduced_at": { "label": "loops-and-models", "anchor": "where-jugaad-ends" },
-      "pays_off_at": { "label": "loops-and-models", "anchor": "where-jugaad-ends" },
-      "stretch": "loops-and-models",
-      "payoff": "Engineering converts a successful improvisation into a durable mechanism.",
-      "overlap_ok": false,
-      "overlap_rationale": "",
-      "notes": "\"MAGE begins where jugaad ends.\" Pays off in the same passage."
     },
     {
       "kind": "metaphor",

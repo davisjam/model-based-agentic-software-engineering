@@ -462,12 +462,12 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "transformations",
+      "primary_unit": "the-mage-workflow",
       "verb": "size",
-      "obj": "a transformation to the model it produces and the guarantee it must carry",
-      "statement": "After this chapter, the reader can size a transformation to its model and guarantee, and tell a right-sized leap from a wrong-shaped one.",
+      "obj": "each task to a leap the fleet can make and evaluate — big enough to use the model's power, small enough to check the result",
+      "statement": "After this chapter, the reader can size each task to a leap the fleet can make and evaluate, and tell a right-sized leap from a wrong-shaped one.",
       "provenance": "declared",
-      "anchor": "Section titles 'size-the-leap-to-the-model-and-the-guarantee' + 'the-right-sized-leap-and-the-wrong-shaped-one'.",
+      "anchor": "Section title 'task-sizing' (the sizing habit re-homed from Part I) — the modest task-sizing framing plus the DocAble bounded-typed-edits example.",
       "secondary_units": [
         "the-skills"
       ]

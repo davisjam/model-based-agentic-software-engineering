@@ -20,8 +20,7 @@ book/
     1.2-mage-by-example.md
     1.3-loops-and-models.md
     1.4-why-mage-follows-from-the-machine.md
-    1.5-transformations.md
-    1.6-the-engineers-seat.md
+    1.5-the-engineers-seat.md
   part2/  (Part 2 — The Mindset)
     2.1-context-is-the-first-modeling-problem.md … 2.12-keeping-models-in-sync.md
   part3/  (Part 3 — The Governed Engineering Environment)

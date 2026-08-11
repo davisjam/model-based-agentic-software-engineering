@@ -51,7 +51,7 @@ _DECLARED = os.path.join(_HERE, "metaphor-spans.json")
 
 #: The ratified split — encode the author's set so a silent add/reclassify reddens.
 EXPECT_CORE = 9
-EXPECT_LOCAL = 11
+EXPECT_LOCAL = 9
 EXPECT_OVERLAPS = 0
 #: The ratified slogan split (by scope): invoke-by-name canonicals / commandments / used-once lines.
 EXPECT_SLOGANS = 9

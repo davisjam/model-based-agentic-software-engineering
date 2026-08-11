@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 21,
     "elaborative_links": 28,
     "units_serving_as_elaborative": 20,
-    "sections_total": 303,
+    "sections_total": 302,
     "sections_primary_of_an_outcome": 43,
     "modules": 7,
-    "lessons": 43
+    "lessons": 42
   },
   "taxonomy": {
     "know": [
@@ -150,14 +150,7 @@
             "section_outcomes": []
           },
           {
-            "lesson": "1.5-transformations",
-            "own_outcomes": [],
-            "section_outcomes": [
-              "size-the-leap-to-the-model-and-the-guarantee::size-the-leap-a-transformation-makes-to-the-m"
-            ]
-          },
-          {
-            "lesson": "1.6-the-engineers-seat",
+            "lesson": "1.5-the-engineers-seat",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -843,6 +836,21 @@
       "gap_note": null
     },
     {
+      "outcome_id": "the-mage-workflow::size-each-task-to-a-leap-the-fleet-can-make-a",
+      "granularity": "chapter",
+      "primary_unit": "the-mage-workflow",
+      "secondary_units": [
+        "the-skills"
+      ],
+      "verb": "size",
+      "obj": "each task to a leap the fleet can make and evaluate — big enough to use the model's power, small enough to check the result",
+      "statement": "After this chapter, the reader can size each task to a leap the fleet can make and evaluate, and tell a right-sized leap from a wrong-shaped one.",
+      "bloom": "evaluate",
+      "provenance": "declared",
+      "anchor": "Section title 'task-sizing' (the sizing habit re-homed from Part I) — the modest task-sizing framing plus the DocAble bounded-typed-edits example.",
+      "gap_note": null
+    },
+    {
       "outcome_id": "the-physical-view::model-where-a-system-runs-with-a-deployment-to",
       "granularity": "chapter",
       "primary_unit": "the-physical-view",
@@ -957,21 +965,6 @@
       "bloom": "analyze",
       "provenance": "declared",
       "anchor": "Section titles 'the-model-is-biased-toward-what-it-has-seen' + 'where-mbse-shines-the-novelty-axis'.",
-      "gap_note": null
-    },
-    {
-      "outcome_id": "transformations::size-a-transformation-to-the-model-it-produce",
-      "granularity": "chapter",
-      "primary_unit": "transformations",
-      "secondary_units": [
-        "the-skills"
-      ],
-      "verb": "size",
-      "obj": "a transformation to the model it produces and the guarantee it must carry",
-      "statement": "After this chapter, the reader can size a transformation to its model and guarantee, and tell a right-sized leap from a wrong-shaped one.",
-      "bloom": "evaluate",
-      "provenance": "declared",
-      "anchor": "Section titles 'size-the-leap-to-the-model-and-the-guarantee' + 'the-right-sized-leap-and-the-wrong-shaped-one'.",
       "gap_note": null
     },
     {
