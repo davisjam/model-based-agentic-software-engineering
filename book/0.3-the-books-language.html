@@ -716,19 +716,30 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Agentic software engineering is a fast-evolving topic, and it seems that many concepts have been given overlapping or contradictory names. Part of the purpose of this book is to articulate coherent vocabulary for the field. The glossary is divided into three parts: the core ideas of the book, the vocabulary for coding agents and their accompanying phenomena, and the terms for the governed engineering environment that stabilizes them.</p>
 <h2>The core ideas</h2>
 <p>The ideas the whole argument turns on — the two theses, the conversion that grows the environment, the governing metaphor, and the vocabulary of models underneath them.</p>
-<figure id="fig-0-3-1" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map: the core ideas">
-  <rect x="0" y="0" width="1000" height="460" fill="#fdfcf9"/>
+<figure id="fig-0-3-1" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map: the core ideas, edges typed by relation kind">
+  <defs>
+    <marker id="vh-ci" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="vh-ci-open" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#78716c" stroke-width="1.5"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1000" height="520" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The core ideas</text>
 
-  <!-- edges (drawn first, nodes sit on top) -->
-  <line x1="500" y1="90" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="155" y1="165" x2="330" y2="240" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="330" y1="240" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="845" y1="150" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="200" y1="375" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="640" y1="360" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="640" y1="360" x2="880" y2="360" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edges (drawn first, nodes sit on top); each typed by relation kind, arrow-end trimmed clear of its target node -->
+  <!-- Commodity intelligence -> Governance : causal/contextual (long-dash) -->
+  <line x1="500" y1="90" x2="500" y2="192" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci)"/>
+  <!-- Modeling Thesis -> Model : constitutive (solid) -->
+  <line x1="155" y1="165" x2="317" y2="234" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci)"/>
+  <!-- Model -> Governance : causal/contextual (long-dash) -->
+  <line x1="330" y1="240" x2="478" y2="236" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci)"/>
+  <!-- Alignment Thesis -> Governance : constitutive (solid) -->
+  <line x1="845" y1="150" x2="521" y2="230" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci)"/>
+  <!-- The Printer -> Governance : metaphorical/spec (fine-dotted, open head, lightest) -->
+  <line x1="200" y1="375" x2="480" y2="244" stroke="#78716c" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#vh-ci-open)"/>
+  <!-- Governance Conversion -> Governance : dynamic (dash-dot) -->
+  <line x1="640" y1="360" x2="516" y2="250" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci)"/>
+  <!-- Governance Conversion -> Engineering capital : dynamic (dash-dot) -->
+  <line x1="640" y1="360" x2="866" y2="360" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci)"/>
 
   <!-- edge labels (every edge carries a verb) -->
   <text x="512" y="168" font-size="16" fill="#78716c">reorganizes around</text>
@@ -764,6 +775,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <circle cx="880" cy="360" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
   <text x="880" y="392" text-anchor="middle" font-size="18" fill="#57534e">Engineering capital</text>
+
+  <!-- edge-type legend: dash pattern is the primary (print/greyscale/colourblind-safe) key -->
+  <line x1="95" y1="478" x2="905" y2="478" stroke="#cfcabf" stroke-width="1.5"/>
+  <line x1="95" y1="500" x2="135" y2="500" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci)"/>
+  <text x="143" y="505" font-size="15" fill="#57534e">Constitutive</text>
+  <line x1="300" y1="500" x2="340" y2="500" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci)"/>
+  <text x="348" y="505" font-size="15" fill="#57534e">Causal / contextual</text>
+  <line x1="520" y1="500" x2="560" y2="500" stroke="#78716c" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#vh-ci-open)"/>
+  <text x="568" y="505" font-size="15" fill="#57534e">Metaphorical</text>
+  <line x1="720" y1="500" x2="760" y2="500" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci)"/>
+  <text x="768" y="505" font-size="15" fill="#57534e">Dynamic</text>
 </svg><figcaption data-short="The core ideas, as a map"><span class="fig-label">Figure 0.3-1.</span> The core ideas, as a map: commodity intelligence forces engineering to reorganize around governance, which the two theses, the conversion, and the Printer metaphor spell out.</figcaption></figure>
 <p id="idx-def-commodity-intelligence"><strong>Commodity intelligence.</strong> Machine intelligence that has become abundant, inexpensive, and broadly available. Once intelligence is no longer scarce, engineering reorganizes around judgment, representations, evidence, authority, and governance.</p>
 <p><strong>Governance.</strong> The engineering discipline of encoding judgment into durable mechanisms that autonomous systems inherit automatically. In MAGE, governance includes models, constraints, validators, policies, workflows, and other executable or machine-interpretable artifacts; it is not synonymous with management or compliance.</p>
