@@ -160,9 +160,9 @@
       {"lead": "Why the constraint is capacity, not a token buffer", "text": "A context window instantiates the limit today, but the horizon is architecture-independent: a longer window, a new memory architecture, or a post-transformer system each moves the wall without removing it, because a finite reasoner still has a finite reasoning horizon. This is offered as an analytic generalization for the reader to test, not a measured law."}
     ],
     "site_home": "N/A",
-    "derived_from": "book/part1/1.1-the-printer.md#reasoning-horizon",
-    "book_home": "the-printer#idx-def-reasoning-horizon",
-    "book_home_owed": {"section": "Part 1 — §1.1 The Printer", "status": "landed", "note": "Landed: the term is introduced in §1.1's 'The two modes' fork and carries the index-def tag there. Book-only by design; the modeling-thesis reframe (§1.4) is where the causal chain it names is worked out."},
+    "derived_from": "book/part1/1.3-the-reasoning-horizon.md#reasoning-horizon",
+    "book_home": "reasoning-horizon#idx-def-reasoning-horizon",
+    "book_home_owed": {"section": "Part 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, the chapter that develops it (relocated from §1.1 when the Task-Mode fork moved to Part IV §4.1). Book-only by design; the modeling-thesis reframe (§1.4) is where the causal chain it names is worked out."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },
@@ -175,9 +175,9 @@
       {"lead": "The task class supervised autonomy is for", "text": "A long-horizon task is the downward branch of the task-mode fork: too large to hold in a single context window or trust to a single pass. It is why the book spends its weight on supervised autonomy — the method that supplies correctness conditions, tools, and monitoring rather than hoping a single pass lands."}
     ],
     "site_home": "N/A",
-    "derived_from": "book/part1/1.1-the-printer.md#long-horizon-task",
-    "book_home": "the-printer#idx-def-long-horizon-task",
-    "book_home_owed": {"section": "Part 1 — §1.1 The Printer", "status": "landed", "note": "Landed: the term is introduced in §1.1's 'The two modes' fork alongside reasoning horizon and carries the index-def tag there. Book-only by design."},
+    "derived_from": "book/part1/1.3-the-reasoning-horizon.md#long-horizon-task",
+    "book_home": "reasoning-horizon#idx-def-long-horizon-task",
+    "book_home_owed": {"section": "Part 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, its defining chapter, alongside reasoning horizon (relocated from §1.1 when the Task-Mode fork moved to Part IV §4.1). Book-only by design."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },

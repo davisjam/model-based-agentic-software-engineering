@@ -25,8 +25,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 1.1-the-printer
 
-  - **[DERIVED]** (understand) After this section, the reader can distinguish one-shot scripting from supervised autonomy and name what each supplies to the agent. — _anchor: point: two-modes-fork-on-size-and-difficulty / one-shot-for-small-unsubtle-tasks / supervised-autonomy-supplies-four-things_
-  - **[DERIVED]** (evaluate) After this section, the reader can judge how long a leash a task can run on from two factors — how densely the model's training data covers the work and how capable the model is at it — and see why misjudging the mode is costly either way. — _anchor: point: leash-length-from-data-density-and-capability / mode-misjudgment-is-costly-both-ways_
   - **[DECLARED]** (evaluate) After this chapter, the reader can judge whether a task is open-ended enough to need the book's machinery, and reason about accountability when an agent produces a wrong result. — _anchor: Section titles: 'What this book is about (and what it is not)', 'an-open-ended-technology', 'whose-fault-is-it'._
   - **[DERIVED]** (understand) After this section, the reader can explain why an agent, like a 3D printer, needs the detailed build instructions and not merely a picture of the desired result. — _anchor: point: printer-needs-a-model-not-a-photo / agents-need-the-instructions-not-just-the-picture_
   - **[DERIVED]** (apply) After this section, the reader can adopt the posture that an agent is a printer, not a stapler — so when it produces the wrong thing, the first suspect is the instructions, and the models can build anything one can explain. — _anchor: point: agent-is-a-printer-not-a-stapler-so-suspect-the-instructions / models-can-build-anything-you-can-explain_
@@ -121,6 +119,8 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
   - **[DERIVED]** (analyze) After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds. _(primary: from-soft-to-hard · elaborated by: constraints-and-sensors)_ — _anchor: Heading text: 'From soft to hard' (in the MAGE Workflow chapter — re-homed from the dissolved governance-conversion chapter in round-6)._
   - _elaborates (owned by the program):_ (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.
   - _elaborates (owned by constraints-and-sensors):_ (understand) After this section, the reader can distinguish a constraint (prevent, costs no iteration) from a sensor (catch, costs iterations), place both on the independent soft-versus-hard axis, and tag most real mechanisms as a package by their primary move.
+  - **[DERIVED]** (understand) After this section, the reader can distinguish one-shot scripting from supervised autonomy and name what each supplies to the agent. — _anchor: point: two-modes-fork-on-size-and-difficulty / one-shot-for-small-unsubtle-tasks / supervised-autonomy-supplies-four-things_
+  - **[DERIVED]** (evaluate) After this section, the reader can judge how long a leash a task can run on from two factors — how densely the model's training data covers the work and how capable the model is at it — and see why misjudging the mode is costly either way. — _anchor: point: leash-length-from-data-density-and-capability / mode-misjudgment-is-costly-both-ways_
 
 ### Lesson 4.2-brownfield
 

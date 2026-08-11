@@ -30,7 +30,7 @@
     "outcomes_with_elaborative_units": 20,
     "elaborative_links": 27,
     "units_serving_as_elaborative": 20,
-    "sections_total": 276,
+    "sections_total": 277,
     "sections_primary_of_an_outcome": 39,
     "modules": 7,
     "lessons": 36
@@ -122,8 +122,6 @@
             "lesson": "1.1-the-printer",
             "own_outcomes": [],
             "section_outcomes": [
-              "the-two-modes::distinguish-one-shot-scripting-from-supervised-auton",
-              "where-the-emphasis-falls::judge-how-long-a-leash-a-task-can-run-on-from",
               "the-printer::judge-when-an-open-ended-task-needs-governance",
               "a-picture-is-not-enough::explain-why-an-agent-needs-a-model-of-how-to-bui",
               "whose-fault-is-it::adopt-the-posture-that-when-an-agent-produces"
@@ -264,7 +262,9 @@
             "lesson": "4.1-the-mage-workflow",
             "own_outcomes": [],
             "section_outcomes": [
-              "from-soft-to-hard::classify-a-mechanism-on-the-soft-to-hard-spectrum"
+              "from-soft-to-hard::classify-a-mechanism-on-the-soft-to-hard-spectrum",
+              "the-two-modes::distinguish-one-shot-scripting-from-supervised-auton",
+              "where-the-emphasis-falls::judge-how-long-a-leash-a-task-can-run-on-from"
             ]
           },
           {
