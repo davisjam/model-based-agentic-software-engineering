@@ -718,15 +718,16 @@ def check_link_integrity():
 
 
 def check_close_label_integrity():
-    """Named-reference -> current-identity integrity for the Part-IV 'portable moves' close (C5, AUDIT-ONLY
-    first — rule #55). The close cites conceptual destinations by NAME (`[The Governed Environment](3.3-…)`,
-    `[Brownfield Progress](appendix-d-…)`); `check_link_integrity` proves the HREF resolves, this proves the
-    named LABEL still matches the destination's CURRENT identity — a chapter title (chapter_identity_model)
+    """Named-reference -> current-identity integrity for the Part-IV 'portable moves' close (C5, BLOCKING —
+    rule #55). The close cites conceptual destinations by NAME (`[The Governed Environment](3.3-…)`,
+    `[Brownfield Progress Gauge](appendix-d-…)`); `check_link_integrity` proves the HREF resolves, this proves
+    the named LABEL still matches the destination's CURRENT identity — a chapter title (chapter_identity_model)
     or an operator-card title (operator-cards.json). A renamed chapter/card leaves the label stale:
     map::territory drift IN the manuscript. Consumes the two existing identity resolvers (§G-5), sanctions
-    legitimate short-forms via an alias registry. Lands audit-only (findings open at round-8 W1 landing; the
-    W3 fix-wave drains them, then a follow-up promotes it BLOCKING). Keyed off
-    `book-models/link_integrity_check.py::close_label_findings` + operator-cards.json + the chapter titles."""
+    legitimate short-forms via an alias registry. Landed audit-only at round-8 W1 (one finding open); the W3
+    fix-wave drained it to 0, so this is now PROMOTED TO BLOCKING — a future chapter/card rename re-reddens
+    the suite. Keyed off `book-models/link_integrity_check.py::close_label_findings` + operator-cards.json +
+    the chapter titles."""
     import link_integrity_check as lic  # noqa: E402 — path set above; the 2nd findings-function (C5)
 
     issues = lic.close_label_findings()

@@ -33,14 +33,15 @@ name — `[The Governed Environment](3.3-…)`, `[Brownfield Progress](appendix-
 card leaves the label stale: the nav representation disagrees with the book (map::territory drift IN the
 manuscript). This is the anchor check's analogue for named conceptual destinations. It CONSUMES the two
 existing identity resolvers (builds no new one, §G-5) and sanctions legitimate short-forms through a small
-alias registry. Lands AUDIT-ONLY-first (rule #55 — findings open at landing; a fix-wave drains them, then a
-follow-up promotes it BLOCKING). Scope: the "Closing the Part" close only (widen to the Engineer's Day card
+alias registry. Landed AUDIT-ONLY-first (rule #55 — findings open at W1 landing); the round-8 W3 fix-wave
+drained the one open finding (the 'Brownfield Progress' → 'Brownfield Progress Gauge' card rename) to 0, so
+it is now PROMOTED TO BLOCKING. Scope: the "Closing the Part" close only (widen to the Engineer's Day card
 refs later).
 
-Run `python3 book-models/link_integrity_check.py` — exit 0 (clean) or 1 (lists every dangling ref); it also
-PRINTS the AUDIT-ONLY close-label findings (they do not affect the exit code while the check is audit-only).
-Wired into `catalog.py test` as a BLOCKING chapter-link check (tests/book_models.py::check_link_integrity)
-plus an AUDIT-ONLY close-label check (tests/book_models.py::check_close_label_integrity).
+Run `python3 book-models/link_integrity_check.py` — exit 0 (clean) or 1; it lists every dangling anchor ref
+AND folds any stale close-label finding into the non-zero exit (BLOCKING as of round-8 W3). Wired into
+`catalog.py test` as a BLOCKING chapter-link check (tests/book_models.py::check_link_integrity) plus the
+now-BLOCKING close-label check (tests/book_models.py::check_close_label_integrity).
 """
 from __future__ import annotations
 
@@ -206,29 +207,30 @@ def close_label_findings() -> "list[str]":
 
 
 def _print_close_label_audit() -> None:
-    """Print the AUDIT-ONLY C5 close-label findings — never affects the exit code while audit-only."""
+    """Print the C5 close-label findings. BLOCKING as of round-8 W3 — folded into main()'s exit code."""
     cl = close_label_findings()
     if not cl:
-        print("close-label integrity (AUDIT-ONLY): 0 stale named destinations in the Part-IV close")
+        print("close-label integrity (BLOCKING): 0 stale named destinations in the Part-IV close")
         return
-    print(f"close-label integrity (AUDIT-ONLY): {len(cl)} stale named destination(s) in the Part-IV close:")
+    print(f"close-label integrity (BLOCKING): {len(cl)} stale named destination(s) in the Part-IV close:")
     for f in cl:
         print(f"  {f}")
 
 
 def main(argv: "list[str]") -> int:
     fs = findings()
+    cl = close_label_findings()
     n_files = len(_scanned_files())
     if not fs:
         print(f"link-integrity: 0 dangling refs across {n_files} book source files "
               f"({len(valid_chapter_slugs())} live chapter slugs)")
-        _print_close_label_audit()
-        return 0
-    print(f"link-integrity: {len(fs)} DANGLING ref(s) across {n_files} book source files:")
-    for f in fs:
-        print(f"  {f.file}:{f.line} -> {f.target} ({f.kind})")
+    else:
+        print(f"link-integrity: {len(fs)} DANGLING ref(s) across {n_files} book source files:")
+        for f in fs:
+            print(f"  {f.file}:{f.line} -> {f.target} ({f.kind})")
     _print_close_label_audit()
-    return 1
+    # Both nets are BLOCKING (close-label promoted round-8 W3): non-zero exit if EITHER has a finding.
+    return 1 if (fs or cl) else 0
 
 
 if __name__ == "__main__":

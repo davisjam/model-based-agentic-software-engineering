@@ -303,14 +303,14 @@ CHECKS = [
     # links are build-rewritten + validated by check_html_links, so out of scope. See tests/book_models.py.
     Check("book-models: whole-book chapter-link integrity (link_integrity_check.py)", 1,
           lambda strict: check_link_integrity()),
-    # AUDIT-ONLY (rule #55 first landing): the C5 named-reference -> current-identity check — the Part-IV
-    # "portable moves" close cites destinations by NAME; this proves each named label still matches the
+    # BLOCKING (promoted round-8 W3 after the drain): the C5 named-reference -> current-identity check — the
+    # Part-IV "portable moves" close cites destinations by NAME; this proves each named label still matches the
     # destination's CURRENT identity (chapter title / operator-card title), catching map::territory drift IN
     # the manuscript. A 2nd findings-function inside link_integrity_check.py consuming the existing resolvers
-    # (§G-5). One finding open at landing ('Brownfield Progress' -> the 'Brownfield Progress Gauge' card);
-    # the W3 fix-wave drains it, then a follow-up promotes it BLOCKING. See tests/book_models.py.
+    # (§G-5). Landed AUDIT-ONLY at W1 with one finding open ('Brownfield Progress' -> the 'Brownfield Progress
+    # Gauge' card); the W3 fix-wave drained it to 0, so this promotes to BLOCKING (rule #55). See tests/book_models.py.
     Check("book-models: Part-IV close named-reference integrity (link_integrity_check.py::close_label)", 1,
-          lambda strict: check_close_label_integrity(), audit_only=True),
+          lambda strict: check_close_label_integrity(), audit_only=False),
     # AUDIT-ONLY (rule #55 first landing): the ARGUMENT-SPINE view-model — the book's linear argument as an
     # ordered run of claims reconciling the author's seed statements, the claims model, and the Big Ideas,
     # plus the per-chapter labeling of which spine claims each chapter advances (editorial directive Phase 1).
