@@ -91,4 +91,10 @@
   <line x1="20" y1="430" x2="984" y2="430" stroke="#cfcabf" stroke-width="1.5"/>
   <text x="30" y="454" font-size="16" fill="#57534e">A <tspan font-weight="bold">drift gate</tspan> catches <tspan font-style="italic">model drift</tspan> — a model and its code disagreeing.</text>
   <text x="30" y="476" font-size="16" fill="#57534e">A <tspan font-weight="bold">linter</tspan> senses; a <tspan font-weight="bold">gate</tspan> consumes its result to block the commit.</text>
+
+  <!-- R13 zoom cue: FRAME-echo corner-brackets — this figure IS the expansion of 0.3-1's Governance-Mechanism node. Same L mark as the source brackets there, at frame scale. -->
+  <g fill="none" stroke="#57534e" stroke-width="2.5">
+    <path d="M26,12 L12,12 L12,26"/>
+    <path d="M974,488 L988,488 L988,474"/>
+  </g>
 </svg>

@@ -72,4 +72,14 @@
   <text x="568" y="505" font-size="15" fill="#57534e">Metaphorical</text>
   <line x1="720" y1="500" x2="760" y2="500" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci)"/>
   <text x="768" y="505" font-size="15" fill="#57534e">Dynamic</text>
+
+  <!-- R13 zoom cue: SOURCE corner-brackets marking the two nodes expanded elsewhere. Same L mark echoed as a frame on the expansion figures (0.3-2, 0.3-4). Nudged clear of the converging dash-typed edges + labels (DELTA-1). -->
+  <g fill="none" stroke="#57534e" stroke-width="2.5">
+    <!-- Model node (expanded by 0.3-2): TR + BL, clear of the Modeling->Model and Model->Governance edges -->
+    <path d="M336,222 L350,222 L350,236"/>
+    <path d="M321,279 L307,279 L307,265"/>
+    <!-- Governance hub (expanded by 0.3-4): TL + BR around the label+hub group, outside the converging arrowheads -->
+    <path d="M460,195 L446,195 L446,209"/>
+    <path d="M540,251 L554,251 L554,237"/>
+  </g>
 </svg>

@@ -82,4 +82,10 @@
   <line x1="95" y1="548" x2="905" y2="548" stroke="#cfcabf" stroke-width="1.5"/>
   <text x="95" y="576" font-size="16" fill="#57534e">A contract or policy model is a <tspan font-weight="bold">Decision</tspan> model.</text>
   <text x="95" y="600" font-size="16" fill="#57534e">Governance is a <tspan font-style="italic">Move</tspan> — an action on a model — not a sixth class.</text>
+
+  <!-- R13 zoom cue: FRAME-echo corner-brackets — this figure IS the expansion of 0.3-1's Model node. Same L mark as the source brackets there, at frame scale. -->
+  <g fill="none" stroke="#57534e" stroke-width="2.5">
+    <path d="M26,12 L12,12 L12,26"/>
+    <path d="M974,608 L988,608 L988,594"/>
+  </g>
 </svg>

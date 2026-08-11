@@ -70,4 +70,14 @@
   <line x1="60" y1="800" x2="840" y2="800" stroke="#cfcabf" stroke-width="1.5"/>
   <text x="60" y="828" font-size="15" fill="#57534e">Read it as one sentence: reality is <tspan font-style="italic">captured as</tspan> a representation, <tspan font-style="italic">structured into</tspan> a model that <tspan font-style="italic">carries</tspan> an invariant,</text>
   <text x="60" y="850" font-size="15" fill="#57534e"><tspan font-style="italic">enforced by</tspan> a mechanism that <tspan font-style="italic">plays one of</tspan> four roles to <tspan font-style="italic">govern</tspan> an environment that <tspan font-style="italic">compounds into</tspan> engineering capital.</text>
+
+  <!-- R13 zoom cue: SOURCE corner-brackets on the two spine nodes expanded elsewhere (Model -> 0.3-2, Governance Mechanism -> 0.3-4). The spine is the master this whole family instantiates, so it carries NO frame-echo (FORK-D). -->
+  <g fill="none" stroke="#57534e" stroke-width="2.5">
+    <!-- Model node -->
+    <path d="M340,276 L326,276 L326,290"/>
+    <path d="M560,330 L574,330 L574,316"/>
+    <!-- Governance Mechanism node -->
+    <path d="M340,448 L326,448 L326,462"/>
+    <path d="M560,502 L574,502 L574,488"/>
+  </g>
 </svg>

@@ -81,4 +81,10 @@
 
   <!-- the two glossary terms that annotate the stack but aren't layers: Skill/Tool defined via chips above; Fleet noted below -->
   <text x="95" y="484" font-size="16" fill="#57534e">A <tspan font-weight="bold">Fleet</tspan> is many such stacks working one codebase — the agentic-era workforce this book governs.</text>
+
+  <!-- R13 zoom cue: FRAME-echo corner-brackets — a family-membership signal (0.3-1 has no agent source-node; this figure zooms sideways into the agent substrate, FORK-D). Same L mark at frame scale. -->
+  <g fill="none" stroke="#57534e" stroke-width="2.5">
+    <path d="M26,12 L12,12 L12,26"/>
+    <path d="M974,488 L988,488 L988,474"/>
+  </g>
 </svg>
