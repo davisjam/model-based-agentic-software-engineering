@@ -726,6 +726,12 @@
       "kind": "reference-lookup",
       "location": "part3",
       "rationale": "invariant lookup"
+    },
+    "the-mage-workflow::Substrate property → consequence → response → method step": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part4",
+      "rationale": "the substrate landscape synthesis table (R14: 7-row property→consequence→response→method-step) opening Part IV"
     }
   }
 }
