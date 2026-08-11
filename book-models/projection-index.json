@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 36,
     "slugs_rendered": 27,
-    "total_sites": 1658,
+    "total_sites": 1659,
     "by_projection": {
       "book-pdf": 24,
-      "book-web": 1232,
+      "book-web": 1233,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -105,7 +105,7 @@
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 13
+            "occ": 14
           },
           {
             "file": "book/3.4-governance-conversion.html",
@@ -994,6 +994,10 @@
             "occ": 6
           },
           {
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
+            "occ": 1
+          },
+          {
             "file": "book/4.1-the-mage-workflow.html",
             "occ": 1
           },
@@ -1093,7 +1097,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 33
+            "occ": 34
           }
         ]
       },
@@ -2879,7 +2883,7 @@
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
@@ -3137,7 +3141,7 @@
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 30
+            "occ": 26
           },
           {
             "file": "book/3.4-governance-conversion.html",
@@ -3545,7 +3549,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 288
+            "occ": 286
           },
           {
             "file": "book/index.html",
@@ -5757,7 +5761,7 @@
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 7
+            "occ": 4
           },
           {
             "file": "book/3.4-governance-conversion.html",
@@ -6161,7 +6165,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 42
+            "occ": 40
           },
           {
             "file": "book/index.html",
@@ -7033,7 +7037,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 6
+            "occ": 8
           },
           {
             "file": "constructing-the-gee.html",
