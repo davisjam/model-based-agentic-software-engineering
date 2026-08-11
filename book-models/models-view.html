@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>40</b> chapters · <b>306</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>40</b> chapters · <b>303</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -258,7 +258,7 @@
 <h3 id="ch-2-3-the-executable-zoo"><span class="tier-kick">Lesson</span><a href="../book/2.3-the-executable-zoo.html" class="ch-link">2.3-the-executable-zoo</a> <span class="ch-slug">2.3-the-executable-zoo</span></h3>
 <div class="section s2" id="sec-2-3-the-executable-zoo--why-models-are-newly-central">
 <div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Why models are newly central</a></div>
-<p class="topic">Part 1 derived the Modeling Thesis from the machine; this Part builds the executable-model architecture that earns it, then tests it across five views.</p>
+<p class="topic">Part 1 derived the Modeling Thesis from three facts about a coding fleet.</p>
 </div>
 <div class="section s2" id="sec-2-3-the-executable-zoo--the-upkeep-that-constrained-mbse-a-fleet-now-pays-cheaply">
 <div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">The upkeep that constrained MBSE, a fleet now pays cheaply</a></div>
@@ -268,46 +268,33 @@
 <div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">The fewer-tokens leg — a navigation pilot</a></div>
 <p class="topic">The *fewer-tokens* leg is directly measurable.</p>
 </div>
-<div class="section s2" id="sec-2-3-the-executable-zoo--the-trunk-machinery-that-holds-any-view-true">
-<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">The trunk: machinery that holds any view true</a></div>
-<p class="topic">Before the views, one chapter of framing.</p>
+<div class="section s2" id="sec-2-3-the-executable-zoo--the-shared-machinery-that-holds-any-view-true">
+<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">The shared machinery that holds any view true</a></div>
+<p class="topic">Most of the catalogue&#x27;s method models belong to no single view.</p>
 </div>
 <div class="section s3" id="sec-2-3-the-executable-zoo--derive-and-join-do-not-repeat">
 <div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Derive and join; do not repeat</a></div>
-<p class="topic">The last chapter warned against repetition: two models that say the same thing must now be kept in sync.</p>
+<p class="topic">A model here is **derived** — from the code, or the code from it — never kept beside the code as a parallel document.</p>
 </div>
 <div class="section s3" id="sec-2-3-the-executable-zoo--state-the-derivation-direction">
 <div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">State the derivation direction</a></div>
-<p class="topic">A model and the code it concerns stay equal by derivation, and derivation runs in one of two directions.</p>
+<p class="topic">A model and the code stay equal by derivation, and derivation runs in one of two directions.</p>
 </div>
-<div class="section s3" id="sec-2-3-the-executable-zoo--extracted-code-graphs-and-intent-bearing-models">
-<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Extracted Code Graphs and Intent-Bearing Models</a></div>
-<p class="topic">The purest model-from-code artifact is not one of the zoo&#x27;s own views.</p>
+<div class="section s3" id="sec-2-3-the-executable-zoo--descriptive-maps-and-intent-bearing-models">
+<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Descriptive maps and intent-bearing models</a></div>
+<p class="topic">The purest model-from-code artifact is the repository graph a growing class of tools now hands a coding agent: a parser walks the repository into a persistent, queryable graph of its entities and relations — functions, classes, imports, calls, endpoints, schemas, tables — so the agent reasons through the graph instead of re-reading raw files.</p>
 </div>
-<div class="section s3" id="sec-2-3-the-executable-zoo--trace-every-model-element-to-code">
-<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Trace every model element to code</a></div>
+<div class="section s3" id="sec-2-3-the-executable-zoo--keep-map-and-territory-equal-traceability">
+<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Keep map and territory equal — traceability</a></div>
 <p class="topic">A model earns trust only if you can get from a model element back to the lines that realize it, and forward from a line to the model element that governs it.</p>
-</div>
-<div class="section s2" id="sec-2-3-the-executable-zoo--keeping-the-models-honest-the-traceability-substrate">
-<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Keeping the models honest — the traceability substrate</a></div>
-<p class="topic">DocAble did not design this up front.</p>
-</div>
-<div class="section s3" id="sec-2-3-the-executable-zoo--reading-the-fix-off-real-drift">
-<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Reading the fix off real drift</a></div>
-<p class="topic">The right sensor was read off real drift rather than guessed.</p>
-</div>
-<div class="section s3" id="sec-2-3-the-executable-zoo--two-decisions-that-make-the-graph-resist-rot">
-<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Two decisions that make the graph resist rot</a></div>
-<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can analyze the two decisions that make a governance graph resist rot. <span class="prov-gap">gap-recommended</span><span class="gap-note">O2 finding: opens on a non-paragraph block (no topic sentence). The two decisions are named in the heading but the section does not open by stating them; recommend a topic sentence enumerating them.</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-2-3-the-executable-zoo--how-to-read-a-model-page">
-<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">How to read a model page</a></div>
-<p class="topic">Every model page opens by naming its **entities and relations** — the slice of the system knowledge graph it projects — and then develops that slice through the five fields below.</p>
 </div>
 <div class="section s2" id="sec-2-3-the-executable-zoo--a-model-is-its-schema-plus-its-checked-predicates">
 <div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">A model is its schema plus its checked predicates</a></div>
-<p class="topic">Every model page in this Part draws the same **coherence triangle**.</p>
+<p class="topic">Read that as one operational equation: **an executable model is its schema plus its checked predicates.** Fields (b) and (c) of the reference template below give the **structured model** — records, edges, state machines.</p>
+</div>
+<div class="section s2" id="sec-2-3-the-executable-zoo--how-to-read-a-model-page">
+<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">How to read a model page</a></div>
+<p class="topic">Part II teaches modeling by leading each section with an engineering question; the **appendix** documents each model with a uniform five-field reference template, so a reader who has read one reference page can read any of them on reflex.</p>
 </div>
 </div>
 <div class="chapter">
@@ -318,15 +305,15 @@
 </div>
 <div class="section s2" id="sec-2-4-views-are-projections--the-framework-is-a-choice-the-core-is-not">
 <div class="sec-h"><a href="../book/2.4-views-are-projections.html">The framework is a choice; the core is not</a></div>
-<p class="topic">Making the model executable is why this Part is not really *about* 4+1.</p>
+<p class="topic">Once the core is a structured model held equal to the code, a *framework* is a **projection over that core, not a second thing you maintain**.</p>
 </div>
 <div class="section s2" id="sec-2-4-views-are-projections--the-graph-gives-identity-the-view-gives-semantics">
 <div class="sec-h"><a href="../book/2.4-views-are-projections.html">The graph gives identity; the view gives semantics</a></div>
-<p class="topic">There is a seductive but wrong reading of all this: that everything is *really* one knowledge graph, and the five views are just paths through it.</p>
+<p class="topic">There is a seductive but wrong reading: that everything is *really* one knowledge graph, and the views are just paths through it.</p>
 </div>
-<div class="section s2" id="sec-2-4-views-are-projections--reading-the-five-views">
-<div class="sec-h"><a href="../book/2.4-views-are-projections.html">Reading the five views</a></div>
-<p class="topic">Because each view is a projection over the same connected representation, the chapters that follow need not re-teach *what a model is* five times.</p>
+<div class="section s2" id="sec-2-4-views-are-projections--reading-the-views">
+<div class="sec-h"><a href="../book/2.4-views-are-projections.html">Reading the views</a></div>
+<p class="topic">Because each view is a projection over the same connected representation, the chapters that follow need not re-teach *what a model is*.</p>
 </div>
 </div>
 <div class="chapter">

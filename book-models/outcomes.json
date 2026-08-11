@@ -30,7 +30,7 @@
     "outcomes_with_elaborative_units": 21,
     "elaborative_links": 28,
     "units_serving_as_elaborative": 20,
-    "sections_total": 306,
+    "sections_total": 303,
     "sections_primary_of_an_outcome": 43,
     "modules": 7,
     "lessons": 38
@@ -172,9 +172,7 @@
           {
             "lesson": "2.3-the-executable-zoo",
             "own_outcomes": [],
-            "section_outcomes": [
-              "two-decisions-that-make-the-graph-resist-rot::analyze-the-two-design-decisions-that-keep-a-gov"
-            ]
+            "section_outcomes": []
           },
           {
             "lesson": "2.4-views-are-projections",
