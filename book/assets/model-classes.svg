@@ -1,53 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off (Model-Classes taxonomy) — NOT projector output; edit by hand and keep this header. -->
-<!-- Model-classes taxonomy (label: model-classes). Reference/nav chrome, not a role-coloured figure. -->
+<!-- HAND-AUTHORED one-off glossary section-map (geometry-per-concept redraw 260810). Not machine-projected; edit this SVG directly. -->
+<!-- TAXONOMY-TREE geometry for the five model classes. Root Model branches to five kinds; NOT a vertical progression. Orientation reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="model-classes">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Taxonomy tree: the five model classes, sorted by what each represents">
+  <defs>
+    <marker id="vh-mc" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+  </defs>
   <rect x="0" y="0" width="1000" height="620" fill="#fdfcf9"/>
-  <text x="905" y="42" text-anchor="end" font-size="20" font-weight="bold" fill="#1c1917">The five model classes</text>
+  <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
+  <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The five model classes</text>
 
   <!-- root -->
-  <circle cx="120" cy="70" r="10" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
-  <text x="150" y="66" font-size="24" font-weight="bold" fill="#1c1917">Model</text>
-  <text x="150" y="90" font-size="16" fill="#57534e">a structured approximation reasoned through, not over — sorted by what it represents</text>
+  <rect x="390" y="66" width="220" height="66" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="500" y="98" text-anchor="middle" font-size="24" font-weight="bold" fill="#1c1917">Model</text>
+  <text x="500" y="120" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">What does it represent?</text>
 
-  <!-- spine -->
-  <line x1="120" y1="70" x2="120" y2="470" stroke="#cfcabf" stroke-width="3"/>
+  <!-- trunk down to the distribution bus, then the bus itself -->
+  <line x1="500" y1="132" x2="500" y2="162" stroke="#cfcabf" stroke-width="3"/>
+  <text x="512" y="152" font-size="16" fill="#78716c">sorts into</text>
+  <line x1="130" y1="162" x2="870" y2="162" stroke="#cfcabf" stroke-width="3"/>
 
+  <!-- five branch drops, each carrying its own micro-verb (the answer to "what does it represent?") -->
+  <line x1="130" y1="162" x2="130" y2="206" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mc)"/>
+  <line x1="315" y1="162" x2="315" y2="206" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mc)"/>
+  <line x1="500" y1="162" x2="500" y2="206" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mc)"/>
+  <line x1="685" y1="162" x2="685" y2="206" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mc)"/>
+  <line x1="870" y1="162" x2="870" y2="206" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mc)"/>
+  <text x="130" y="190" text-anchor="middle" font-size="16" fill="#78716c">acts</text>
+  <text x="315" y="190" text-anchor="middle" font-size="16" fill="#78716c">composes</text>
+  <text x="500" y="190" text-anchor="middle" font-size="16" fill="#78716c">decides</text>
+  <text x="685" y="190" text-anchor="middle" font-size="16" fill="#78716c">measures</text>
+  <text x="870" y="190" text-anchor="middle" font-size="16" fill="#78716c">explains</text>
+
+  <!-- five class cards (leaves) -->
   <!-- Behavioral -->
-  <line x1="120" y1="150" x2="150" y2="150" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="120" cy="150" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="147" font-size="22" font-weight="bold" fill="#1c1917">Behavioral</text>
-  <text x="165" y="170" font-size="16" fill="#57534e">how the system acts over runs — states, transitions, properties</text>
-  <text x="165" y="190" font-size="16" fill="#57534e">e.g. the job-lifecycle state machine (process view)</text>
+  <rect x="42" y="210" width="176" height="40" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="130" y="236" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Behavioral</text>
+  <text x="130" y="268" text-anchor="middle" font-size="16" fill="#57534e">how it acts over runs —</text>
+  <text x="130" y="286" text-anchor="middle" font-size="16" fill="#57534e">states, transitions,</text>
+  <text x="130" y="304" text-anchor="middle" font-size="16" fill="#57534e">properties</text>
+  <text x="130" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. job-lifecycle</text>
+  <text x="130" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">state machine</text>
 
   <!-- Structural -->
-  <line x1="120" y1="230" x2="150" y2="230" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="120" cy="230" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="227" font-size="22" font-weight="bold" fill="#1c1917">Structural</text>
-  <text x="165" y="250" font-size="16" fill="#57534e">the system's shape — parts, zones, permitted composition</text>
-  <text x="165" y="270" font-size="16" fill="#57534e">e.g. the component-zone model (development view)</text>
+  <rect x="227" y="210" width="176" height="40" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="315" y="236" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Structural</text>
+  <text x="315" y="268" text-anchor="middle" font-size="16" fill="#57534e">the system's shape —</text>
+  <text x="315" y="286" text-anchor="middle" font-size="16" fill="#57534e">parts, zones,</text>
+  <text x="315" y="304" text-anchor="middle" font-size="16" fill="#57534e">permitted composition</text>
+  <text x="315" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. component-zone</text>
+  <text x="315" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">model</text>
 
   <!-- Decision -->
-  <line x1="120" y1="310" x2="150" y2="310" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="120" cy="310" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="307" font-size="22" font-weight="bold" fill="#1c1917">Decision</text>
-  <text x="165" y="330" font-size="16" fill="#57534e">a choice to honor — contract, policy, permitted values</text>
-  <text x="165" y="350" font-size="16" fill="#57534e">e.g. the service-flow model + access policy (logical view)</text>
+  <rect x="412" y="210" width="176" height="40" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="500" y="236" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Decision</text>
+  <text x="500" y="268" text-anchor="middle" font-size="16" fill="#57534e">a choice to honor —</text>
+  <text x="500" y="286" text-anchor="middle" font-size="16" fill="#57534e">contract, policy,</text>
+  <text x="500" y="304" text-anchor="middle" font-size="16" fill="#57534e">permitted values</text>
+  <text x="500" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. service-flow</text>
+  <text x="500" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">model + access policy</text>
 
   <!-- Measurement -->
-  <line x1="120" y1="390" x2="150" y2="390" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="120" cy="390" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="387" font-size="22" font-weight="bold" fill="#1c1917">Measurement</text>
-  <text x="165" y="410" font-size="16" fill="#57534e">a quantity the system exposes — cost, load, coverage</text>
-  <text x="165" y="430" font-size="16" fill="#57534e">e.g. the performance-and-cost model (physical view)</text>
+  <rect x="597" y="210" width="176" height="40" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="685" y="236" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Measurement</text>
+  <text x="685" y="268" text-anchor="middle" font-size="16" fill="#57534e">a quantity exposed —</text>
+  <text x="685" y="286" text-anchor="middle" font-size="16" fill="#57534e">cost, load,</text>
+  <text x="685" y="304" text-anchor="middle" font-size="16" fill="#57534e">coverage</text>
+  <text x="685" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. performance-</text>
+  <text x="685" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">and-cost model</text>
 
   <!-- Documentation -->
-  <line x1="120" y1="470" x2="150" y2="470" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="120" cy="470" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="467" font-size="22" font-weight="bold" fill="#1c1917">Documentation</text>
-  <text x="165" y="490" font-size="16" fill="#57534e">human-facing explanation as a governed, provenance-checked artifact</text>
-  <text x="165" y="510" font-size="16" fill="#57534e">e.g. a doc surface in the traceability graph</text>
+  <rect x="782" y="210" width="176" height="40" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="870" y="236" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Documentation</text>
+  <text x="870" y="268" text-anchor="middle" font-size="16" fill="#57534e">human-facing</text>
+  <text x="870" y="286" text-anchor="middle" font-size="16" fill="#57534e">explanation as a</text>
+  <text x="870" y="304" text-anchor="middle" font-size="16" fill="#57534e">governed artifact</text>
+  <text x="870" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. a doc surface in</text>
+  <text x="870" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">the traceability graph</text>
 
   <!-- footer notes -->
   <line x1="95" y1="548" x2="905" y2="548" stroke="#cfcabf" stroke-width="1.5"/>

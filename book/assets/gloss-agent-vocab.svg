@@ -1,55 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off glossary section-map (round-7 §G-6). Not machine-projected; edit this SVG directly. -->
-<!-- Orientation art for a glossary section (How coding agents work and fail), not a role-coloured figure. -->
+<!-- HAND-AUTHORED one-off glossary section-map (geometry-per-concept redraw 260810). Not machine-projected; edit this SVG directly. -->
+<!-- LAYERED-STACK geometry for the agent vocabulary. Four stacked layers on the left; a causal failure tail on the right. Orientation reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map: how coding agents work and fail">
-  <rect x="0" y="0" width="1000" height="480" fill="#fdfcf9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Layered stack: how coding agents work, and the causal tail of how they fail">
+  <defs>
+    <marker id="vh-av" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1000" height="500" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">How coding agents work (and fail)</text>
 
-  <!-- edges -->
-  <line x1="500" y1="230" x2="500" y2="385" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="500" y1="385" x2="770" y2="150" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="500" y1="230" x2="770" y2="150" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="500" y1="230" x2="255" y2="115" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="500" y1="230" x2="255" y2="235" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="165" y1="375" x2="500" y2="230" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="770" y1="150" x2="885" y2="300" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="835" y1="435" x2="770" y2="150" stroke="#cfcabf" stroke-width="3"/>
+  <!-- column headers -->
+  <text x="330" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the stack</text>
+  <text x="800" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">how it comes apart</text>
 
-  <!-- edge labels -->
-  <text x="512" y="312" font-size="13" fill="#78716c">wraps</text>
-  <text x="648" y="280" text-anchor="middle" font-size="13" fill="#78716c">fixes</text>
-  <text x="628" y="182" text-anchor="middle" font-size="13" fill="#78716c">manages</text>
-  <text x="372" y="164" text-anchor="middle" font-size="13" fill="#78716c">hosts</text>
-  <text x="372" y="246" text-anchor="middle" font-size="13" fill="#78716c">hosts</text>
-  <text x="316" y="292" text-anchor="middle" font-size="13" fill="#78716c">many agents</text>
-  <text x="848" y="222" text-anchor="middle" font-size="13" fill="#78716c">overflow drives</text>
-  <text x="762" y="300" text-anchor="end" font-size="13" fill="#78716c">instantiated by</text>
+  <!-- ===== LEFT: the four-layer stack ===== -->
+  <!-- Application -->
+  <rect x="80" y="92" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="100" y="122" font-size="20" font-weight="bold" fill="#1c1917">Application</text>
+  <text x="100" y="144" font-size="16" fill="#57534e">your codebase</text>
 
-  <!-- hub: Agentic harness -->
-  <circle cx="500" cy="230" r="15" fill="#1c1917"/>
-  <text x="500" y="207" text-anchor="middle" font-size="21" font-weight="bold" fill="#1c1917">Agentic harness</text>
+  <!-- runs on -->
+  <line x1="330" y1="156" x2="330" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <text x="342" y="171" font-size="16" fill="#78716c">runs on</text>
 
-  <!-- nodes -->
-  <circle cx="500" cy="385" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="500" y="417" text-anchor="middle" font-size="18" fill="#57534e">Foundation model</text>
+  <!-- Agent Harness (taller; holds three chips) -->
+  <rect x="80" y="176" width="500" height="112" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="100" y="206" font-size="20" font-weight="bold" fill="#1c1917">Agent Harness</text>
+  <text x="100" y="227" font-size="16" fill="#57534e">Claude Code, OpenCode, and their kin</text>
+  <text x="100" y="258" font-size="16" fill="#78716c">hosts</text>
+  <rect x="150" y="246" width="112" height="30" rx="15" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="206" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Skills</text>
+  <rect x="272" y="246" width="112" height="30" rx="15" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="328" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Tools</text>
+  <rect x="394" y="246" width="112" height="30" rx="15" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="450" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Hooks</text>
 
-  <circle cx="770" cy="150" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="770" y="132" text-anchor="middle" font-size="18" fill="#57534e">Context Window</text>
+  <!-- wraps -->
+  <line x1="330" y1="288" x2="330" y2="308" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <text x="342" y="303" font-size="16" fill="#78716c">wraps</text>
 
-  <circle cx="255" cy="115" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="255" y="97" text-anchor="middle" font-size="18" fill="#57534e">Skill</text>
+  <!-- Foundation Model -->
+  <rect x="80" y="308" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="100" y="338" font-size="20" font-weight="bold" fill="#1c1917">Foundation Model</text>
+  <text x="100" y="360" font-size="16" fill="#57534e">the trained model at the bottom of the stack</text>
 
-  <circle cx="255" cy="235" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="255" y="267" text-anchor="middle" font-size="18" fill="#57534e">Tool</text>
+  <!-- bounded by -->
+  <line x1="330" y1="372" x2="330" y2="392" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <text x="342" y="387" font-size="16" fill="#78716c">bounded by</text>
 
-  <circle cx="165" cy="375" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="407" text-anchor="middle" font-size="18" fill="#57534e">Fleet</text>
+  <!-- Context Window -->
+  <rect x="80" y="392" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="100" y="422" font-size="20" font-weight="bold" fill="#1c1917">Context Window</text>
+  <text x="100" y="444" font-size="16" fill="#57534e">the bounded memory it holds at once</text>
 
-  <circle cx="885" cy="300" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="885" y="332" text-anchor="middle" font-size="18" fill="#57534e">Churn</text>
+  <!-- ===== RIGHT: causal failure tail ===== -->
+  <!-- work too large -->
+  <rect x="690" y="110" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="800" y="139" text-anchor="middle" font-size="18" fill="#1c1917">work too large</text>
 
-  <circle cx="835" cy="435" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="835" y="461" text-anchor="middle" font-size="18" fill="#57534e">Reasoning horizon</text>
+  <!-- overruns -->
+  <line x1="800" y1="156" x2="800" y2="238" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <text x="812" y="201" font-size="16" fill="#78716c">overruns</text>
+
+  <!-- Reasoning Horizon -->
+  <rect x="690" y="238" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="800" y="267" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Reasoning Horizon</text>
+
+  <!-- drives -->
+  <line x1="800" y1="284" x2="800" y2="366" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <text x="812" y="329" font-size="16" fill="#78716c">drives</text>
+
+  <!-- Churn -->
+  <rect x="690" y="366" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="800" y="395" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Churn</text>
+
+  <!-- bridge: the Context Window instantiates the horizon limit today -->
+  <line x1="580" y1="424" x2="690" y2="270" stroke="#cfcabf" stroke-width="3" stroke-dasharray="4 4" marker-end="url(#vh-av)"/>
+  <text x="612" y="360" font-size="16" fill="#78716c">instantiates</text>
+
+  <!-- the two glossary terms that annotate the stack but aren't layers: Skill/Tool defined via chips above; Fleet noted below -->
+  <text x="95" y="484" font-size="16" fill="#57534e">A <tspan font-weight="bold">Fleet</tspan> is many such stacks working one codebase — the agentic-era workforce this book governs.</text>
 </svg>

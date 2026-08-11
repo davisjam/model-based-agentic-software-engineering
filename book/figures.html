@@ -856,14 +856,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="640" y1="360" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
   <line x1="640" y1="360" x2="880" y2="360" stroke="#cfcabf" stroke-width="3"/>
 
-  <!-- edge labels -->
-  <text x="512" y="168" font-size="13" fill="#78716c">reorganizes around</text>
-  <text x="228" y="196" text-anchor="middle" font-size="13" fill="#78716c">externalize into</text>
-  <text x="415" y="228" text-anchor="middle" font-size="13" fill="#78716c">reason through</text>
-  <text x="686" y="186" text-anchor="middle" font-size="13" fill="#78716c">encode as mechanisms</text>
-  <text x="352" y="300" text-anchor="middle" font-size="13" fill="#78716c">specify precisely</text>
-  <text x="586" y="292" text-anchor="middle" font-size="13" fill="#78716c">failure → mechanism</text>
-  <text x="760" y="350" text-anchor="middle" font-size="13" fill="#78716c">grows · compounds</text>
+  <!-- edge labels (every edge carries a verb) -->
+  <text x="512" y="168" font-size="16" fill="#78716c">reorganizes around</text>
+  <text x="228" y="196" text-anchor="middle" font-size="16" fill="#78716c">externalize into</text>
+  <text x="415" y="228" text-anchor="middle" font-size="16" fill="#78716c">reason through</text>
+  <text x="686" y="186" text-anchor="middle" font-size="16" fill="#78716c">encode as mechanisms</text>
+  <text x="352" y="300" text-anchor="middle" font-size="16" fill="#78716c">specify precisely</text>
+  <text x="586" y="292" text-anchor="middle" font-size="16" fill="#78716c">converts failures</text>
+  <text x="760" y="350" text-anchor="middle" font-size="16" fill="#78716c">compounds into</text>
 
   <!-- hub: Governance -->
   <circle cx="500" cy="235" r="15" fill="#1c1917"/>
@@ -890,182 +890,233 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <circle cx="880" cy="360" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
   <text x="880" y="392" text-anchor="middle" font-size="18" fill="#57534e">Engineering capital</text>
-</svg><figcaption data-short="The core ideas, as a map"><span class="fig-label">Figure 0.3-1.</span> The core ideas, as a map: commodity intelligence forces engineering to reorganize around governance, which the two theses, the conversion, and the Printer metaphor spell out.</figcaption></figure><p class="gallery-source">From <a href="0.3-the-books-language.html#fig-0-3-1">The Book&#x27;s Language</a></p></section><hr><section class="gallery-item"><figure id="fig-0-3-2-fig-0-3-2" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="model-classes">
+</svg><figcaption data-short="The core ideas, as a map"><span class="fig-label">Figure 0.3-1.</span> The core ideas, as a map: commodity intelligence forces engineering to reorganize around governance, which the two theses, the conversion, and the Printer metaphor spell out.</figcaption></figure><p class="gallery-source">From <a href="0.3-the-books-language.html#fig-0-3-1">The Book&#x27;s Language</a></p></section><hr><section class="gallery-item"><figure id="fig-0-3-2-fig-0-3-2" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Taxonomy tree: the five model classes, sorted by what each represents">
+  <defs>
+    <marker id="fig-0-3-2-vh-mc" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+  </defs>
   <rect x="0" y="0" width="1000" height="620" fill="#fdfcf9"/>
-  <text x="905" y="42" text-anchor="end" font-size="20" font-weight="bold" fill="#1c1917">The five model classes</text>
+  <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
+  <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The five model classes</text>
 
   <!-- root -->
-  <circle cx="120" cy="70" r="10" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
-  <text x="150" y="66" font-size="24" font-weight="bold" fill="#1c1917">Model</text>
-  <text x="150" y="90" font-size="16" fill="#57534e">a structured approximation reasoned through, not over — sorted by what it represents</text>
+  <rect x="390" y="66" width="220" height="66" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="500" y="98" text-anchor="middle" font-size="24" font-weight="bold" fill="#1c1917">Model</text>
+  <text x="500" y="120" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">What does it represent?</text>
 
-  <!-- spine -->
-  <line x1="120" y1="70" x2="120" y2="470" stroke="#cfcabf" stroke-width="3"/>
+  <!-- trunk down to the distribution bus, then the bus itself -->
+  <line x1="500" y1="132" x2="500" y2="162" stroke="#cfcabf" stroke-width="3"/>
+  <text x="512" y="152" font-size="16" fill="#78716c">sorts into</text>
+  <line x1="130" y1="162" x2="870" y2="162" stroke="#cfcabf" stroke-width="3"/>
 
+  <!-- five branch drops, each carrying its own micro-verb (the answer to "what does it represent?") -->
+  <line x1="130" y1="162" x2="130" y2="206" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-2-vh-mc)"/>
+  <line x1="315" y1="162" x2="315" y2="206" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-2-vh-mc)"/>
+  <line x1="500" y1="162" x2="500" y2="206" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-2-vh-mc)"/>
+  <line x1="685" y1="162" x2="685" y2="206" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-2-vh-mc)"/>
+  <line x1="870" y1="162" x2="870" y2="206" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-2-vh-mc)"/>
+  <text x="130" y="190" text-anchor="middle" font-size="16" fill="#78716c">acts</text>
+  <text x="315" y="190" text-anchor="middle" font-size="16" fill="#78716c">composes</text>
+  <text x="500" y="190" text-anchor="middle" font-size="16" fill="#78716c">decides</text>
+  <text x="685" y="190" text-anchor="middle" font-size="16" fill="#78716c">measures</text>
+  <text x="870" y="190" text-anchor="middle" font-size="16" fill="#78716c">explains</text>
+
+  <!-- five class cards (leaves) -->
   <!-- Behavioral -->
-  <line x1="120" y1="150" x2="150" y2="150" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="120" cy="150" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="147" font-size="22" font-weight="bold" fill="#1c1917">Behavioral</text>
-  <text x="165" y="170" font-size="16" fill="#57534e">how the system acts over runs — states, transitions, properties</text>
-  <text x="165" y="190" font-size="16" fill="#57534e">e.g. the job-lifecycle state machine (process view)</text>
+  <rect x="42" y="210" width="176" height="40" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="130" y="236" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Behavioral</text>
+  <text x="130" y="268" text-anchor="middle" font-size="16" fill="#57534e">how it acts over runs —</text>
+  <text x="130" y="286" text-anchor="middle" font-size="16" fill="#57534e">states, transitions,</text>
+  <text x="130" y="304" text-anchor="middle" font-size="16" fill="#57534e">properties</text>
+  <text x="130" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. job-lifecycle</text>
+  <text x="130" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">state machine</text>
 
   <!-- Structural -->
-  <line x1="120" y1="230" x2="150" y2="230" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="120" cy="230" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="227" font-size="22" font-weight="bold" fill="#1c1917">Structural</text>
-  <text x="165" y="250" font-size="16" fill="#57534e">the system's shape — parts, zones, permitted composition</text>
-  <text x="165" y="270" font-size="16" fill="#57534e">e.g. the component-zone model (development view)</text>
+  <rect x="227" y="210" width="176" height="40" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="315" y="236" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Structural</text>
+  <text x="315" y="268" text-anchor="middle" font-size="16" fill="#57534e">the system's shape —</text>
+  <text x="315" y="286" text-anchor="middle" font-size="16" fill="#57534e">parts, zones,</text>
+  <text x="315" y="304" text-anchor="middle" font-size="16" fill="#57534e">permitted composition</text>
+  <text x="315" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. component-zone</text>
+  <text x="315" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">model</text>
 
   <!-- Decision -->
-  <line x1="120" y1="310" x2="150" y2="310" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="120" cy="310" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="307" font-size="22" font-weight="bold" fill="#1c1917">Decision</text>
-  <text x="165" y="330" font-size="16" fill="#57534e">a choice to honor — contract, policy, permitted values</text>
-  <text x="165" y="350" font-size="16" fill="#57534e">e.g. the service-flow model + access policy (logical view)</text>
+  <rect x="412" y="210" width="176" height="40" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="500" y="236" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Decision</text>
+  <text x="500" y="268" text-anchor="middle" font-size="16" fill="#57534e">a choice to honor —</text>
+  <text x="500" y="286" text-anchor="middle" font-size="16" fill="#57534e">contract, policy,</text>
+  <text x="500" y="304" text-anchor="middle" font-size="16" fill="#57534e">permitted values</text>
+  <text x="500" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. service-flow</text>
+  <text x="500" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">model + access policy</text>
 
   <!-- Measurement -->
-  <line x1="120" y1="390" x2="150" y2="390" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="120" cy="390" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="387" font-size="22" font-weight="bold" fill="#1c1917">Measurement</text>
-  <text x="165" y="410" font-size="16" fill="#57534e">a quantity the system exposes — cost, load, coverage</text>
-  <text x="165" y="430" font-size="16" fill="#57534e">e.g. the performance-and-cost model (physical view)</text>
+  <rect x="597" y="210" width="176" height="40" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="685" y="236" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Measurement</text>
+  <text x="685" y="268" text-anchor="middle" font-size="16" fill="#57534e">a quantity exposed —</text>
+  <text x="685" y="286" text-anchor="middle" font-size="16" fill="#57534e">cost, load,</text>
+  <text x="685" y="304" text-anchor="middle" font-size="16" fill="#57534e">coverage</text>
+  <text x="685" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. performance-</text>
+  <text x="685" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">and-cost model</text>
 
   <!-- Documentation -->
-  <line x1="120" y1="470" x2="150" y2="470" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="120" cy="470" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="467" font-size="22" font-weight="bold" fill="#1c1917">Documentation</text>
-  <text x="165" y="490" font-size="16" fill="#57534e">human-facing explanation as a governed, provenance-checked artifact</text>
-  <text x="165" y="510" font-size="16" fill="#57534e">e.g. a doc surface in the traceability graph</text>
+  <rect x="782" y="210" width="176" height="40" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="870" y="236" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Documentation</text>
+  <text x="870" y="268" text-anchor="middle" font-size="16" fill="#57534e">human-facing</text>
+  <text x="870" y="286" text-anchor="middle" font-size="16" fill="#57534e">explanation as a</text>
+  <text x="870" y="304" text-anchor="middle" font-size="16" fill="#57534e">governed artifact</text>
+  <text x="870" y="330" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">e.g. a doc surface in</text>
+  <text x="870" y="347" text-anchor="middle" font-size="16" font-style="italic" fill="#78716c">the traceability graph</text>
 
   <!-- footer notes -->
   <line x1="95" y1="548" x2="905" y2="548" stroke="#cfcabf" stroke-width="1.5"/>
   <text x="95" y="576" font-size="16" fill="#57534e">A contract or policy model is a <tspan font-weight="bold">Decision</tspan> model.</text>
   <text x="95" y="600" font-size="16" fill="#57534e">Governance is a <tspan font-style="italic">Move</tspan> — an action on a model — not a sixth class.</text>
-</svg><figcaption data-short="The five model classes, by what each represents — Behavioral, Structural,…"><span class="fig-label">Figure 0.3-2.</span> The five model classes, by what each represents — Behavioral, Structural, Decision, Measurement, Documentation, one real model each. Governance is a Move, not a class.</figcaption></figure><p class="gallery-source">From <a href="0.3-the-books-language.html#fig-0-3-2">The Book&#x27;s Language</a></p></section><hr><section class="gallery-item"><figure id="fig-0-3-3-fig-0-3-3" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map: how coding agents work and fail">
-  <rect x="0" y="0" width="1000" height="480" fill="#fdfcf9"/>
+</svg><figcaption data-short="The five model classes, by what each represents — Behavioral, Structural,…"><span class="fig-label">Figure 0.3-2.</span> The five model classes, by what each represents — Behavioral, Structural, Decision, Measurement, Documentation, one real model each. Governance is a Move, not a class.</figcaption></figure><p class="gallery-source">From <a href="0.3-the-books-language.html#fig-0-3-2">The Book&#x27;s Language</a></p></section><hr><section class="gallery-item"><figure id="fig-0-3-3-fig-0-3-3" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Layered stack: how coding agents work, and the causal tail of how they fail">
+  <defs>
+    <marker id="fig-0-3-3-vh-av" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1000" height="500" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">How coding agents work (and fail)</text>
 
-  <!-- edges -->
-  <line x1="500" y1="230" x2="500" y2="385" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="500" y1="385" x2="770" y2="150" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="500" y1="230" x2="770" y2="150" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="500" y1="230" x2="255" y2="115" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="500" y1="230" x2="255" y2="235" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="165" y1="375" x2="500" y2="230" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="770" y1="150" x2="885" y2="300" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="835" y1="435" x2="770" y2="150" stroke="#cfcabf" stroke-width="3"/>
+  <!-- column headers -->
+  <text x="330" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the stack</text>
+  <text x="800" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">how it comes apart</text>
 
-  <!-- edge labels -->
-  <text x="512" y="312" font-size="13" fill="#78716c">wraps</text>
-  <text x="648" y="280" text-anchor="middle" font-size="13" fill="#78716c">fixes</text>
-  <text x="628" y="182" text-anchor="middle" font-size="13" fill="#78716c">manages</text>
-  <text x="372" y="164" text-anchor="middle" font-size="13" fill="#78716c">hosts</text>
-  <text x="372" y="246" text-anchor="middle" font-size="13" fill="#78716c">hosts</text>
-  <text x="316" y="292" text-anchor="middle" font-size="13" fill="#78716c">many agents</text>
-  <text x="848" y="222" text-anchor="middle" font-size="13" fill="#78716c">overflow drives</text>
-  <text x="762" y="300" text-anchor="end" font-size="13" fill="#78716c">instantiated by</text>
+  <!-- ===== LEFT: the four-layer stack ===== -->
+  <!-- Application -->
+  <rect x="80" y="92" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="100" y="122" font-size="20" font-weight="bold" fill="#1c1917">Application</text>
+  <text x="100" y="144" font-size="16" fill="#57534e">your codebase</text>
 
-  <!-- hub: Agentic harness -->
-  <circle cx="500" cy="230" r="15" fill="#1c1917"/>
-  <text x="500" y="207" text-anchor="middle" font-size="21" font-weight="bold" fill="#1c1917">Agentic harness</text>
+  <!-- runs on -->
+  <line x1="330" y1="156" x2="330" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-3-vh-av)"/>
+  <text x="342" y="171" font-size="16" fill="#78716c">runs on</text>
 
-  <!-- nodes -->
-  <circle cx="500" cy="385" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="500" y="417" text-anchor="middle" font-size="18" fill="#57534e">Foundation model</text>
+  <!-- Agent Harness (taller; holds three chips) -->
+  <rect x="80" y="176" width="500" height="112" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="100" y="206" font-size="20" font-weight="bold" fill="#1c1917">Agent Harness</text>
+  <text x="100" y="227" font-size="16" fill="#57534e">Claude Code, OpenCode, and their kin</text>
+  <text x="100" y="258" font-size="16" fill="#78716c">hosts</text>
+  <rect x="150" y="246" width="112" height="30" rx="15" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="206" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Skills</text>
+  <rect x="272" y="246" width="112" height="30" rx="15" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="328" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Tools</text>
+  <rect x="394" y="246" width="112" height="30" rx="15" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="450" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Hooks</text>
 
-  <circle cx="770" cy="150" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="770" y="132" text-anchor="middle" font-size="18" fill="#57534e">Context Window</text>
+  <!-- wraps -->
+  <line x1="330" y1="288" x2="330" y2="308" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-3-vh-av)"/>
+  <text x="342" y="303" font-size="16" fill="#78716c">wraps</text>
 
-  <circle cx="255" cy="115" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="255" y="97" text-anchor="middle" font-size="18" fill="#57534e">Skill</text>
+  <!-- Foundation Model -->
+  <rect x="80" y="308" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="100" y="338" font-size="20" font-weight="bold" fill="#1c1917">Foundation Model</text>
+  <text x="100" y="360" font-size="16" fill="#57534e">the trained model at the bottom of the stack</text>
 
-  <circle cx="255" cy="235" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="255" y="267" text-anchor="middle" font-size="18" fill="#57534e">Tool</text>
+  <!-- bounded by -->
+  <line x1="330" y1="372" x2="330" y2="392" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-3-vh-av)"/>
+  <text x="342" y="387" font-size="16" fill="#78716c">bounded by</text>
 
-  <circle cx="165" cy="375" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="165" y="407" text-anchor="middle" font-size="18" fill="#57534e">Fleet</text>
+  <!-- Context Window -->
+  <rect x="80" y="392" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="100" y="422" font-size="20" font-weight="bold" fill="#1c1917">Context Window</text>
+  <text x="100" y="444" font-size="16" fill="#57534e">the bounded memory it holds at once</text>
 
-  <circle cx="885" cy="300" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="885" y="332" text-anchor="middle" font-size="18" fill="#57534e">Churn</text>
+  <!-- ===== RIGHT: causal failure tail ===== -->
+  <!-- work too large -->
+  <rect x="690" y="110" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="800" y="139" text-anchor="middle" font-size="18" fill="#1c1917">work too large</text>
 
-  <circle cx="835" cy="435" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="835" y="461" text-anchor="middle" font-size="18" fill="#57534e">Reasoning horizon</text>
-</svg><figcaption data-short="The agent stack and how it comes apart"><span class="fig-label">Figure 0.3-3.</span> The agent stack and how it comes apart: the harness wraps a foundation model, hosts skills and tools, and manages a context window whose overflow drives churn.</figcaption></figure><p class="gallery-source">From <a href="0.3-the-books-language.html#fig-0-3-3">The Book&#x27;s Language</a></p></section><hr><section class="gallery-item"><figure id="fig-0-3-4-fig-0-3-4" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map: the Governed Engineering Environment">
-  <rect x="0" y="0" width="1000" height="580" fill="#fdfcf9"/>
+  <!-- overruns -->
+  <line x1="800" y1="156" x2="800" y2="238" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-3-vh-av)"/>
+  <text x="812" y="201" font-size="16" fill="#78716c">overruns</text>
+
+  <!-- Reasoning Horizon -->
+  <rect x="690" y="238" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="800" y="267" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Reasoning Horizon</text>
+
+  <!-- drives -->
+  <line x1="800" y1="284" x2="800" y2="366" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-3-vh-av)"/>
+  <text x="812" y="329" font-size="16" fill="#78716c">drives</text>
+
+  <!-- Churn -->
+  <rect x="690" y="366" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="800" y="395" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Churn</text>
+
+  <!-- bridge: the Context Window instantiates the horizon limit today -->
+  <line x1="580" y1="424" x2="690" y2="270" stroke="#cfcabf" stroke-width="3" stroke-dasharray="4 4" marker-end="url(#fig-0-3-3-vh-av)"/>
+  <text x="612" y="360" font-size="16" fill="#78716c">instantiates</text>
+
+  <!-- the two glossary terms that annotate the stack but aren't layers: Skill/Tool defined via chips above; Fleet noted below -->
+  <text x="95" y="484" font-size="16" fill="#57534e">A <tspan font-weight="bold">Fleet</tspan> is many such stacks working one codebase — the agentic-era workforce this book governs.</text>
+</svg><figcaption data-short="The agent stack and how it comes apart"><span class="fig-label">Figure 0.3-3.</span> The agent stack and how it comes apart: the harness wraps a foundation model, hosts skills and tools, and manages a context window whose overflow drives churn.</figcaption></figure><p class="gallery-source">From <a href="0.3-the-books-language.html#fig-0-3-3">The Book&#x27;s Language</a></p></section><hr><section class="gallery-item"><figure id="fig-0-3-4-fig-0-3-4" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Control pipeline: models flow through governance mechanisms into a governed environment that accrues engineering capital">
+  <defs>
+    <marker id="fig-0-3-4-vh-gee" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1000" height="500" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The Governed Engineering Environment</text>
 
-  <!-- edges -->
-  <line x1="155" y1="270" x2="390" y2="180" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="155" y1="270" x2="155" y2="470" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="180" x2="635" y2="85" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="180" x2="635" y2="180" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="180" x2="640" y2="275" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="180" x2="635" y2="370" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="635" y1="180" x2="875" y2="145" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="635" y1="370" x2="875" y2="355" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="875" y1="145" x2="875" y2="260" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="635" y1="370" x2="875" y2="260" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="405" x2="635" y2="475" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="635" y1="475" x2="635" y2="370" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="525" x2="390" y2="405" stroke="#cfcabf" stroke-width="3"/>
+  <!-- ===== Stage 1: Models ===== -->
+  <rect x="30" y="205" width="140" height="70" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="100" y="247" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Models</text>
 
-  <!-- archetype fan caption -->
-  <text x="470" y="132" text-anchor="middle" font-size="13" fill="#78716c">primarily one of four roles</text>
+  <!-- encode into -->
+  <line x1="175" y1="240" x2="255" y2="240" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-4-vh-gee)"/>
+  <text x="215" y="228" text-anchor="middle" font-size="16" fill="#78716c">encode into</text>
 
-  <!-- edge labels -->
-  <text x="262" y="212" text-anchor="middle" font-size="13" fill="#78716c">encodes policy as</text>
-  <text x="167" y="372" font-size="13" fill="#78716c">sized by</text>
-  <text x="758" y="150" text-anchor="middle" font-size="13" fill="#78716c">e.g. a linter</text>
-  <text x="752" y="352" text-anchor="middle" font-size="13" fill="#78716c">enforces</text>
-  <text x="885" y="206" font-size="13" fill="#78716c">built on</text>
-  <text x="748" y="308" text-anchor="middle" font-size="13" fill="#78716c">built on</text>
-  <text x="500" y="432" text-anchor="middle" font-size="13" fill="#78716c">caught by</text>
-  <text x="648" y="428" font-size="13" fill="#78716c">is a gate</text>
-  <text x="402" y="470" font-size="13" fill="#78716c">join drift breaks</text>
+  <!-- ===== Stage 2: Governance Mechanisms (tall; four role chips) ===== -->
+  <rect x="260" y="110" width="190" height="270" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="355" y="140" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governance</text>
+  <text x="355" y="161" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Mechanism</text>
+  <text x="355" y="182" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">plays one of four roles</text>
 
-  <!-- hub: Governed Engineering Environment -->
-  <circle cx="155" cy="270" r="15" fill="#1c1917"/>
-  <text x="155" y="304" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governed Engineering</text>
-  <text x="155" y="326" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Environment</text>
+  <rect x="278" y="196" width="154" height="38" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="292" y="220" font-size="16" font-weight="bold" fill="#1c1917">Constraint</text>
+  <text x="420" y="220" text-anchor="end" font-size="16" font-style="italic" fill="#78716c">restricts</text>
 
-  <!-- nodes -->
-  <circle cx="155" cy="470" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="155" y="502" text-anchor="middle" font-size="18" fill="#57534e">Support ratio</text>
+  <rect x="278" y="238" width="154" height="38" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="292" y="262" font-size="16" font-weight="bold" fill="#1c1917">Sensor</text>
+  <text x="420" y="262" text-anchor="end" font-size="16" font-style="italic" fill="#78716c">detects</text>
 
-  <circle cx="390" cy="180" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="390" y="162" text-anchor="middle" font-size="18" fill="#57534e">Governance Mechanism</text>
+  <rect x="278" y="280" width="154" height="38" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="292" y="304" font-size="16" font-weight="bold" fill="#1c1917">Validator</text>
+  <text x="420" y="304" text-anchor="end" font-size="16" font-style="italic" fill="#78716c">evaluates</text>
 
-  <circle cx="390" cy="405" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="390" y="392" text-anchor="middle" font-size="18" fill="#57534e">Model drift</text>
+  <rect x="278" y="322" width="154" height="38" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="292" y="346" font-size="16" font-weight="bold" fill="#1c1917">Gate</text>
+  <text x="420" y="346" text-anchor="end" font-size="16" font-style="italic" fill="#78716c">admits</text>
 
-  <circle cx="390" cy="525" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="390" y="557" text-anchor="middle" font-size="18" fill="#57534e">Traceability</text>
+  <!-- govern -->
+  <line x1="450" y1="240" x2="540" y2="240" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-4-vh-gee)"/>
+  <text x="495" y="228" text-anchor="middle" font-size="16" fill="#78716c">govern</text>
 
-  <circle cx="635" cy="85" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="635" y="67" text-anchor="middle" font-size="18" fill="#57534e">Constraint</text>
+  <!-- ===== Stage 3: Engineering Environment ===== -->
+  <rect x="540" y="205" width="160" height="70" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="620" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Engineering</text>
+  <text x="620" y="260" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Environment</text>
 
-  <circle cx="635" cy="180" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="635" y="212" text-anchor="middle" font-size="18" fill="#57534e">Sensor</text>
+  <!-- compounds into -->
+  <line x1="700" y1="240" x2="790" y2="240" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-4-vh-gee)"/>
+  <text x="745" y="228" text-anchor="middle" font-size="16" fill="#78716c">compounds into</text>
 
-  <circle cx="640" cy="275" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="640" y="307" text-anchor="middle" font-size="18" fill="#57534e">Validator</text>
+  <!-- ===== Stage 4: Engineering Capital ===== -->
+  <rect x="790" y="205" width="180" height="70" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="880" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Engineering</text>
+  <text x="880" y="260" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Capital</text>
 
-  <circle cx="635" cy="370" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="635" y="402" text-anchor="middle" font-size="18" fill="#57534e">Gate</text>
+  <!-- substrate strip: mechanisms are built on hooks + invariants -->
+  <line x1="355" y1="380" x2="355" y2="420" stroke="#cfcabf" stroke-width="3" marker-end="url(#fig-0-3-4-vh-gee)"/>
+  <text x="367" y="405" font-size="16" fill="#78716c">built on</text>
+  <rect x="260" y="420" width="90" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="305" y="443" text-anchor="middle" font-size="16" fill="#1c1917">Hooks</text>
+  <rect x="360" y="420" width="110" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="415" y="443" text-anchor="middle" font-size="16" fill="#1c1917">Invariants</text>
 
-  <circle cx="875" cy="145" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="875" y="127" text-anchor="middle" font-size="18" fill="#57534e">Lint</text>
-
-  <circle cx="875" cy="260" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="875" y="292" text-anchor="middle" font-size="18" fill="#57534e">Hook</text>
-
-  <circle cx="875" cy="355" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="875" y="387" text-anchor="middle" font-size="18" fill="#57534e">Invariant</text>
-
-  <circle cx="635" cy="475" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="635" y="507" text-anchor="middle" font-size="18" fill="#57534e">Drift Gate</text>
+  <!-- footer note: the drift-gate story, kept in prose but named here -->
+  <line x1="540" y1="330" x2="905" y2="330" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="540" y="358" font-size="16" fill="#57534e">A <tspan font-weight="bold">drift gate</tspan> catches <tspan font-style="italic">model drift</tspan> — a model and its code disagreeing.</text>
+  <text x="540" y="380" font-size="16" fill="#57534e">A <tspan font-weight="bold">linter</tspan> senses; a <tspan font-weight="bold">gate</tspan> consumes its result to block the commit.</text>
 </svg><figcaption data-short="The governed environment"><span class="fig-label">Figure 0.3-4.</span> The governed environment: a governance mechanism plays one of four roles — constraint, sensor, validator, gate — built on hooks and invariants; a drift gate catches model drift.</figcaption></figure><p class="gallery-source">From <a href="0.3-the-books-language.html#fig-0-3-4">The Book&#x27;s Language</a></p></section><hr><section class="gallery-item"><figure id="fig-0-4-1-fig-0-4-1" class="book-figure" data-label="research-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700"
      role="group" aria-labelledby="fig-0-4-1-raTitle fig-0-4-1-raDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

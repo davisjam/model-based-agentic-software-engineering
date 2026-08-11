@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off glossary section-map (round-7 §G-6). Not machine-projected; edit this SVG directly. -->
-<!-- Orientation art for a glossary section (The core ideas), not a role-coloured figure. -->
+<!-- HAND-AUTHORED one-off glossary section-map (round-7 §G-6; geometry-per-concept verb-audit 260810). Not machine-projected; edit this SVG directly. -->
+<!-- HUB geometry for the core ideas — governance is genuinely the centre everything reorganizes around. Kept from round-7; verb-audit only (every edge now carries a verb). Orientation reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map: the core ideas">
   <rect x="0" y="0" width="1000" height="460" fill="#fdfcf9"/>
@@ -16,14 +16,14 @@
   <line x1="640" y1="360" x2="500" y2="235" stroke="#cfcabf" stroke-width="3"/>
   <line x1="640" y1="360" x2="880" y2="360" stroke="#cfcabf" stroke-width="3"/>
 
-  <!-- edge labels -->
-  <text x="512" y="168" font-size="13" fill="#78716c">reorganizes around</text>
-  <text x="228" y="196" text-anchor="middle" font-size="13" fill="#78716c">externalize into</text>
-  <text x="415" y="228" text-anchor="middle" font-size="13" fill="#78716c">reason through</text>
-  <text x="686" y="186" text-anchor="middle" font-size="13" fill="#78716c">encode as mechanisms</text>
-  <text x="352" y="300" text-anchor="middle" font-size="13" fill="#78716c">specify precisely</text>
-  <text x="586" y="292" text-anchor="middle" font-size="13" fill="#78716c">failure → mechanism</text>
-  <text x="760" y="350" text-anchor="middle" font-size="13" fill="#78716c">grows · compounds</text>
+  <!-- edge labels (every edge carries a verb) -->
+  <text x="512" y="168" font-size="16" fill="#78716c">reorganizes around</text>
+  <text x="228" y="196" text-anchor="middle" font-size="16" fill="#78716c">externalize into</text>
+  <text x="415" y="228" text-anchor="middle" font-size="16" fill="#78716c">reason through</text>
+  <text x="686" y="186" text-anchor="middle" font-size="16" fill="#78716c">encode as mechanisms</text>
+  <text x="352" y="300" text-anchor="middle" font-size="16" fill="#78716c">specify precisely</text>
+  <text x="586" y="292" text-anchor="middle" font-size="16" fill="#78716c">converts failures</text>
+  <text x="760" y="350" text-anchor="middle" font-size="16" fill="#78716c">compounds into</text>
 
   <!-- hub: Governance -->
   <circle cx="500" cy="235" r="15" fill="#1c1917"/>

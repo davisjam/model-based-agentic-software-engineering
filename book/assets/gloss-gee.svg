@@ -1,80 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off glossary section-map (round-7 §G-6). Not machine-projected; edit this SVG directly. -->
-<!-- Orientation art for a glossary section (The Governed Engineering Environment), not a role-coloured figure. -->
+<!-- HAND-AUTHORED one-off glossary section-map (geometry-per-concept redraw 260810). Not machine-projected; edit this SVG directly. -->
+<!-- CONTROL-PIPELINE geometry for the Governed Engineering Environment. Directed flow: Models -> Governance Mechanisms{4 roles} -> Engineering Environment -> Engineering Capital. Orientation reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map: the Governed Engineering Environment">
-  <rect x="0" y="0" width="1000" height="580" fill="#fdfcf9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Control pipeline: models flow through governance mechanisms into a governed environment that accrues engineering capital">
+  <defs>
+    <marker id="vh-gee" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1000" height="500" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The Governed Engineering Environment</text>
 
-  <!-- edges -->
-  <line x1="155" y1="270" x2="390" y2="180" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="155" y1="270" x2="155" y2="470" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="180" x2="635" y2="85" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="180" x2="635" y2="180" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="180" x2="640" y2="275" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="180" x2="635" y2="370" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="635" y1="180" x2="875" y2="145" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="635" y1="370" x2="875" y2="355" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="875" y1="145" x2="875" y2="260" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="635" y1="370" x2="875" y2="260" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="405" x2="635" y2="475" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="635" y1="475" x2="635" y2="370" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="390" y1="525" x2="390" y2="405" stroke="#cfcabf" stroke-width="3"/>
+  <!-- ===== Stage 1: Models ===== -->
+  <rect x="30" y="205" width="140" height="70" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="100" y="247" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Models</text>
 
-  <!-- archetype fan caption -->
-  <text x="470" y="132" text-anchor="middle" font-size="13" fill="#78716c">primarily one of four roles</text>
+  <!-- encode into -->
+  <line x1="175" y1="240" x2="255" y2="240" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee)"/>
+  <text x="215" y="228" text-anchor="middle" font-size="16" fill="#78716c">encode into</text>
 
-  <!-- edge labels -->
-  <text x="262" y="212" text-anchor="middle" font-size="13" fill="#78716c">encodes policy as</text>
-  <text x="167" y="372" font-size="13" fill="#78716c">sized by</text>
-  <text x="758" y="150" text-anchor="middle" font-size="13" fill="#78716c">e.g. a linter</text>
-  <text x="752" y="352" text-anchor="middle" font-size="13" fill="#78716c">enforces</text>
-  <text x="885" y="206" font-size="13" fill="#78716c">built on</text>
-  <text x="748" y="308" text-anchor="middle" font-size="13" fill="#78716c">built on</text>
-  <text x="500" y="432" text-anchor="middle" font-size="13" fill="#78716c">caught by</text>
-  <text x="648" y="428" font-size="13" fill="#78716c">is a gate</text>
-  <text x="402" y="470" font-size="13" fill="#78716c">join drift breaks</text>
+  <!-- ===== Stage 2: Governance Mechanisms (tall; four role chips) ===== -->
+  <rect x="260" y="110" width="190" height="270" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="355" y="140" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governance</text>
+  <text x="355" y="161" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Mechanism</text>
+  <text x="355" y="182" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">plays one of four roles</text>
 
-  <!-- hub: Governed Engineering Environment -->
-  <circle cx="155" cy="270" r="15" fill="#1c1917"/>
-  <text x="155" y="304" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governed Engineering</text>
-  <text x="155" y="326" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Environment</text>
+  <rect x="278" y="196" width="154" height="38" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="292" y="220" font-size="16" font-weight="bold" fill="#1c1917">Constraint</text>
+  <text x="420" y="220" text-anchor="end" font-size="16" font-style="italic" fill="#78716c">restricts</text>
 
-  <!-- nodes -->
-  <circle cx="155" cy="470" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="155" y="502" text-anchor="middle" font-size="18" fill="#57534e">Support ratio</text>
+  <rect x="278" y="238" width="154" height="38" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="292" y="262" font-size="16" font-weight="bold" fill="#1c1917">Sensor</text>
+  <text x="420" y="262" text-anchor="end" font-size="16" font-style="italic" fill="#78716c">detects</text>
 
-  <circle cx="390" cy="180" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="390" y="162" text-anchor="middle" font-size="18" fill="#57534e">Governance Mechanism</text>
+  <rect x="278" y="280" width="154" height="38" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="292" y="304" font-size="16" font-weight="bold" fill="#1c1917">Validator</text>
+  <text x="420" y="304" text-anchor="end" font-size="16" font-style="italic" fill="#78716c">evaluates</text>
 
-  <circle cx="390" cy="405" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="390" y="392" text-anchor="middle" font-size="18" fill="#57534e">Model drift</text>
+  <rect x="278" y="322" width="154" height="38" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="292" y="346" font-size="16" font-weight="bold" fill="#1c1917">Gate</text>
+  <text x="420" y="346" text-anchor="end" font-size="16" font-style="italic" fill="#78716c">admits</text>
 
-  <circle cx="390" cy="525" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="390" y="557" text-anchor="middle" font-size="18" fill="#57534e">Traceability</text>
+  <!-- govern -->
+  <line x1="450" y1="240" x2="540" y2="240" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee)"/>
+  <text x="495" y="228" text-anchor="middle" font-size="16" fill="#78716c">govern</text>
 
-  <circle cx="635" cy="85" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="635" y="67" text-anchor="middle" font-size="18" fill="#57534e">Constraint</text>
+  <!-- ===== Stage 3: Engineering Environment ===== -->
+  <rect x="540" y="205" width="160" height="70" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="620" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Engineering</text>
+  <text x="620" y="260" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Environment</text>
 
-  <circle cx="635" cy="180" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="635" y="212" text-anchor="middle" font-size="18" fill="#57534e">Sensor</text>
+  <!-- compounds into -->
+  <line x1="700" y1="240" x2="790" y2="240" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee)"/>
+  <text x="745" y="228" text-anchor="middle" font-size="16" fill="#78716c">compounds into</text>
 
-  <circle cx="640" cy="275" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="640" y="307" text-anchor="middle" font-size="18" fill="#57534e">Validator</text>
+  <!-- ===== Stage 4: Engineering Capital ===== -->
+  <rect x="790" y="205" width="180" height="70" rx="7" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="880" y="238" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Engineering</text>
+  <text x="880" y="260" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Capital</text>
 
-  <circle cx="635" cy="370" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="635" y="402" text-anchor="middle" font-size="18" fill="#57534e">Gate</text>
+  <!-- substrate strip: mechanisms are built on hooks + invariants -->
+  <line x1="355" y1="380" x2="355" y2="420" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee)"/>
+  <text x="367" y="405" font-size="16" fill="#78716c">built on</text>
+  <rect x="260" y="420" width="90" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="305" y="443" text-anchor="middle" font-size="16" fill="#1c1917">Hooks</text>
+  <rect x="360" y="420" width="110" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="415" y="443" text-anchor="middle" font-size="16" fill="#1c1917">Invariants</text>
 
-  <circle cx="875" cy="145" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="875" y="127" text-anchor="middle" font-size="18" fill="#57534e">Lint</text>
-
-  <circle cx="875" cy="260" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="875" y="292" text-anchor="middle" font-size="18" fill="#57534e">Hook</text>
-
-  <circle cx="875" cy="355" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="875" y="387" text-anchor="middle" font-size="18" fill="#57534e">Invariant</text>
-
-  <circle cx="635" cy="475" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="635" y="507" text-anchor="middle" font-size="18" fill="#57534e">Drift Gate</text>
+  <!-- footer note: the drift-gate story, kept in prose but named here -->
+  <line x1="540" y1="330" x2="905" y2="330" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="540" y="358" font-size="16" fill="#57534e">A <tspan font-weight="bold">drift gate</tspan> catches <tspan font-style="italic">model drift</tspan> — a model and its code disagreeing.</text>
+  <text x="540" y="380" font-size="16" fill="#57534e">A <tspan font-weight="bold">linter</tspan> senses; a <tspan font-weight="bold">gate</tspan> consumes its result to block the commit.</text>
 </svg>
