@@ -27,14 +27,14 @@ book/
     3.1-the-agent-stack.md
     3.2-models-and-the-semantic-gap.md
     3.3-the-governed-environment.md
-    3.4-lifecycles-and-runbooks.md
-    3.5-metrics.md
     3.6-when-guardrails-collide.md
   part4/  (Part 4 — Putting It to Work)
     4.1-the-mage-workflow.md
     4.2-brownfield.md
     4.3-validating-change.md
     4.4-the-skills.md
+    4.5-lifecycles-and-runbooks.md
+    4.6-metrics.md
   part5/  (Part 5 — The Case: ADA)
     5.1-the-ada-context.md
     5.2-why-this-system-was-a-hard-case.md

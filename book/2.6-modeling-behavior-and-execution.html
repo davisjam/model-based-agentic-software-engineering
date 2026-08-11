@@ -600,15 +600,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="3.1-the-agent-stack.html">14&nbsp; The Agent Stack</a></li>
 <li><a class="" href="3.2-models-and-the-semantic-gap.html">15&nbsp; Models and the Semantic Gap</a></li>
 <li><a class="" href="3.3-the-governed-environment.html">16&nbsp; The Governed Environment: Ex-Ante and Ex-Post</a></li>
-<li><a class="" href="3.4-lifecycles-and-runbooks.html">17&nbsp; Lifecycles and Runbooks</a></li>
-<li><a class="" href="3.5-metrics.html">18&nbsp; Metrics</a></li>
-<li><a class="" href="3.6-when-guardrails-collide.html">19&nbsp; When Guardrails Collide</a></li>
+<li><a class="" href="3.6-when-guardrails-collide.html">17&nbsp; When Guardrails Collide</a></li>
 <li class="part">Part 4 — The MAGE Method</li>
 <li><a class="" href="part-4-intro.html">The MAGE Method</a></li>
-<li><a class="" href="4.1-the-mage-workflow.html">20&nbsp; The MAGE Workflow</a></li>
-<li><a class="" href="4.2-brownfield.html">21&nbsp; Migrating to MAGE</a></li>
-<li><a class="" href="4.3-validating-change.html">22&nbsp; Validating Change</a></li>
-<li><a class="" href="4.4-the-skills.html">23&nbsp; The Skills</a></li>
+<li><a class="" href="4.1-the-mage-workflow.html">18&nbsp; The MAGE Workflow</a></li>
+<li><a class="" href="4.2-brownfield.html">19&nbsp; Migrating to MAGE</a></li>
+<li><a class="" href="4.3-validating-change.html">20&nbsp; Validating Change</a></li>
+<li><a class="" href="4.4-the-skills.html">21&nbsp; The Skills</a></li>
+<li><a class="" href="4.5-lifecycles-and-runbooks.html">22&nbsp; Lifecycles and Runbooks</a></li>
+<li><a class="" href="4.6-metrics.html">23&nbsp; Metrics</a></li>
 <li class="part">Part 5 — The Evidence</li>
 <li><a class="" href="part-5-intro.html">The Evidence</a></li>
 <li><a class="" href="5.1-the-ada-context.html">24&nbsp; The Bar the Problem Set</a></li>
@@ -829,7 +829,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <blockquote class="aside-sidenote"><p>Learn more about this governance mechanism: <a href="../models-bridge/system-models/invariant-dag-execution-policy.html">invariant-DAG execution policy</a>.</p></blockquote>
 <h2><span class="sec-num">2.6.5</span> One honest gap</h2>
 <p id="idx-def-model-only-where-a-failure-lives">That policy models the <em>load-and-cost</em> half of execution. The <em>pure-latency</em> half — request latency, cache-hit ratios, data-movement cost — has no dedicated model, and the honest move is to say so rather than invent one to fill the slot. The discipline behind the gap is <strong>model only where a failure lives</strong>: a model built with no decision, invariant, or named risk to exercise it rots before anyone checks it, because nothing reads it.</p>
-<p>The gap has drawn blood once. To cut idle cost, the fleet let its services scale to zero — a change the cost half of the policy welcomed and the latency half could not weigh. The cold-start incident in <a href="3.5-metrics.html">Metrics</a> is exactly this gap surfacing: a warm per-request floor a fleet-average number hid, run down to a resident-runtime re-architecture that cut it 4,057 → 109 ms. A latency slice here — request latency typed per service, the cold-start penalty an invariant over it — would have weighed that trade before a user waited on it. The gap stays honest; this is what it costs to leave open.</p>
+<p>The gap has drawn blood once. To cut idle cost, the fleet let its services scale to zero — a change the cost half of the policy welcomed and the latency half could not weigh. The cold-start incident in <a href="4.6-metrics.html">Metrics</a> is exactly this gap surfacing: a warm per-request floor a fleet-average number hid, run down to a resident-runtime re-architecture that cut it 4,057 → 109 ms. A latency slice here — request latency typed per service, the cold-start penalty an invariant over it — would have weighed that trade before a user waited on it. The gap stays honest; this is what it costs to leave open.</p>
 <h2><span class="sec-num">2.6.6</span> Computing a migration's blast radius</h2>
 <p id="idx-def-control-substrate-dependency">One last behavioral question an agent asks before it changes the ground everything runs on: <em>which mechanisms assume the substrate I am about to replace?</em> The <strong>substrate-dependency model</strong> makes each governance mechanism declare, as typed metadata, the substrate assumption it bakes in — bound to one substrate, substrate-aware, or substrate-agnostic. Joining those declarations against the topology model on the migration target turns a hopeful grep into a <em>computed</em> blast radius: a declaration lint requires the stance, so the one mechanism whose assumption is implicit cannot hide from the join.</p>
 <p>Worked once, on the plane the fleet actually migrated. When the system retired a Redis poll plane for a push plane, the join answered <em>which mechanisms bake in "workers pull from a Redis sorted set"?</em> before the change landed — the queue-depth metric, the stale-job sweep, the cancellation cleanup, the priority-preservation requeue, each declaring "bound to the poll plane" and each surfacing in the table. A substrate-agnostic mechanism that reads only durable Postgres truth declares its stance and correctly does not appear. The typed schema and the join code are in the appendix. <a href="appendix-g-control-substrate-dependency-reference.html">Appendix G</a></p>

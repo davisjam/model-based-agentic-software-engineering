@@ -600,15 +600,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="3.1-the-agent-stack.html">14&nbsp; The Agent Stack</a></li>
 <li><a class="" href="3.2-models-and-the-semantic-gap.html">15&nbsp; Models and the Semantic Gap</a></li>
 <li><a class="" href="3.3-the-governed-environment.html">16&nbsp; The Governed Environment: Ex-Ante and Ex-Post</a></li>
-<li><a class="" href="3.4-lifecycles-and-runbooks.html">17&nbsp; Lifecycles and Runbooks</a></li>
-<li><a class="" href="3.5-metrics.html">18&nbsp; Metrics</a></li>
-<li><a class="" href="3.6-when-guardrails-collide.html">19&nbsp; When Guardrails Collide</a></li>
+<li><a class="" href="3.6-when-guardrails-collide.html">17&nbsp; When Guardrails Collide</a></li>
 <li class="part">Part 4 — The MAGE Method</li>
 <li><a class="" href="part-4-intro.html">The MAGE Method</a></li>
-<li><a class="" href="4.1-the-mage-workflow.html">20&nbsp; The MAGE Workflow</a></li>
-<li><a class="" href="4.2-brownfield.html">21&nbsp; Migrating to MAGE</a></li>
-<li><a class="" href="4.3-validating-change.html">22&nbsp; Validating Change</a></li>
-<li><a class="" href="4.4-the-skills.html">23&nbsp; The Skills</a></li>
+<li><a class="" href="4.1-the-mage-workflow.html">18&nbsp; The MAGE Workflow</a></li>
+<li><a class="" href="4.2-brownfield.html">19&nbsp; Migrating to MAGE</a></li>
+<li><a class="" href="4.3-validating-change.html">20&nbsp; Validating Change</a></li>
+<li><a class="" href="4.4-the-skills.html">21&nbsp; The Skills</a></li>
+<li><a class="" href="4.5-lifecycles-and-runbooks.html">22&nbsp; Lifecycles and Runbooks</a></li>
+<li><a class="" href="4.6-metrics.html">23&nbsp; Metrics</a></li>
 <li class="part">Part 5 — The Evidence</li>
 <li><a class="" href="part-5-intro.html">The Evidence</a></li>
 <li><a class="" href="5.1-the-ada-context.html">24&nbsp; The Bar the Problem Set</a></li>
@@ -3346,162 +3346,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   
   <text x="705" y="434" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">hard sensor</text>
   <text x="705" y="518" text-anchor="middle" font-size="21" fill="#1c1917">a lint that blocks</text>
-</svg><figcaption data-short="Form × Move"><span class="fig-label">Figure 3.3-4.</span> <em>Form × Move.</em> The two axes are independent: form (soft aims a reasoner, hard holds a line) crosses move (a constraint prevents, a sensor catches). Any move can be built either way — the four cells give one worked example each.</figcaption></figure><p class="gallery-source">From <a href="3.3-the-governed-environment.html#fig-3-3-4">16 · The Governed Environment: Ex-Ante and Ex-Post</a></p></section><hr><section class="gallery-item"><figure id="fig-3-4-1-fig-3-4-1" class="book-figure" data-label="runbook-split"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -55 1020 595"
-     role="img" aria-labelledby="fig-3-4-1-corTitle fig-3-4-1-corDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-4-1-corTitle">A run-measure-assess loop wraps a three-step spine that fences one judgment step between deterministic ends</title>
-  <desc id="fig-3-4-1-corDesc">A run-then-measure-then-assess loop arcs across the top and returns to run. Inside
-    it sits a three-step spine. Step one, determinize the data space: a mechanical, automatable step
-    that fixes where the metrics live and what counts as normal. Step two, judgment: the agent reasons
-    over that data to decide which configuration to try. Step three, determinize the experiment space:
-    applying the chosen configuration is made mechanical, which lets the step capture a logged trace of
-    why this configuration was chosen. One arrow carries that trace out to a single note. Fencing the
-    one judgment step between two deterministic ends bounds the messy part and leaves an inspectable
-    trace a checker can grade.</desc>
-
-  <defs>
-    <marker id="fig-3-4-1-cor-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
-    </marker>
-  </defs>
-
-  <text x="170" y="38" text-anchor="middle" font-size="28" font-weight="700" fill="#2f5169">run</text>
-  <text x="510" y="38" text-anchor="middle" font-size="28" font-weight="700" fill="#2f5169">measure</text>
-  <text x="850" y="38" text-anchor="middle" font-size="28" font-weight="700" fill="#2f5169">assess</text>
-
-  <path d="M208,14 C340,-10 420,-10 468,14" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-3-4-1-cor-ah)"/>
-  
-  <path d="M552,14 C664,-10 764,-10 812,14" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-3-4-1-cor-ah)"/>
-  
-  <path d="M878,18 C700,-48 340,-48 162,18" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-3-4-1-cor-ah)"/>
-
-  <text x="510" y="128" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Fence the judgment step between deterministic ends</text>
-
-  <rect x="60" y="200" width="250" height="120" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="185" y="252" text-anchor="middle" font-size="25" font-weight="700" fill="#2f5169">Determinize</text>
-  <text x="185" y="284" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">data space</text>
-  <text x="185" y="310" text-anchor="middle" font-size="16" fill="#57534e">mechanical · automatable</text>
-
-  <line x1="312" y1="260" x2="360" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-3-4-1-cor-ah)"/>
-
-  <polygon points="510,192 632,260 510,328 388,260" fill="#2f5169" stroke="#2f5169" stroke-width="1.5"/>
-  <text x="510" y="256" text-anchor="middle" font-size="25" font-weight="700" fill="#ffffff">Judgment</text>
-  <text x="510" y="284" text-anchor="middle" font-size="16" fill="#e7edf3">reasoning decides</text>
-
-  <line x1="634" y1="260" x2="686" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-3-4-1-cor-ah)"/>
-
-  <rect x="688" y="200" width="250" height="120" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="813" y="252" text-anchor="middle" font-size="25" font-weight="700" fill="#2f5169">Determinize</text>
-  <text x="813" y="284" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">experiment space</text>
-  <text x="813" y="310" text-anchor="middle" font-size="16" fill="#57534e">mechanical · automatable</text>
-
-  <line x1="813" y1="320" x2="813" y2="390" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-3-4-1-cor-ah)"/>
-  <rect x="628" y="392" width="370" height="112" rx="6" fill="#ffffff" stroke="#2f5169" stroke-width="1.5" stroke-dasharray="6 4"/>
-  <text x="813" y="430" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Logged trace</text>
-  <text x="813" y="462" text-anchor="middle" font-size="18" fill="#57534e">why this configuration was chosen</text>
-  <text x="813" y="490" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">captured: step 3 is deterministic</text>
-</svg><figcaption data-short="The Fenced Judgment Step"><span class="fig-label">Figure 3.4-1.</span> <em>The Fenced Judgment Step.</em> A run-measure-assess loop wraps a three-step spine: determinize the data space, apply judgment, then determinize the experiment space. Fencing the one judgment step between deterministic ends bounds the messy part and leaves a logged trace a checker can grade.</figcaption></figure><p class="gallery-source">From <a href="3.4-lifecycles-and-runbooks.html#fig-3-4-1">17 · Lifecycles and Runbooks</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-fig-3-5-1" class="book-figure" data-label="metric-spectrum"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"
-     role="group" aria-labelledby="fig-3-5-1-msTitle fig-3-5-1-msDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-5-1-msTitle">The metric spectrum, hard to soft</title>
-  <desc id="fig-3-5-1-msDesc">Four governance metrics laid on a left-to-right spectrum. On the hard,
-    deterministic, machine-read end sit cold-start latency, fed into the perf model, and the
-    component-distance grade, which decides whether a gate fires. In the middle sits the
-    flagship, entry-point-native coverage, the deeper cut that asks whether a model claim is
-    exercised and names the untested invariant. On the soft, judgment-laden end sits
-    doc-derived-test pinning, which asks whether a doc-claim is pinned by a test and nudges
-    what to test next. A spine arrow runs hard to soft: the harder the metric, the more a
-    machine can block on it alone; the softer, the more it can only aim a reader.</desc>
-
-  <defs>
-    <marker id="fig-3-5-1-ms-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- zone kickers + role-colored underlines -->
-  <text x="304" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#2f5169">HARD · deterministic · machine-read</text>
-  <line x1="25" y1="66" x2="584" y2="66" stroke="#2f5169" stroke-width="1.5"/>
-  <text x="760" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">FLAGSHIP · the deeper cut</text>
-  <line x1="600" y1="66" x2="920" y2="66" stroke="#9a3f12" stroke-width="1.5"/>
-  <text x="1065" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">SOFT · aims a reader</text>
-  <line x1="935" y1="66" x2="1195" y2="66" stroke="#57534e" stroke-width="1.5"/>
-
-  <!-- hard card 1: cold-start latency -->
-  <rect x="25" y="110" width="272" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="161" y="148" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">cold-start latency</text>
-  <text x="161" y="180" text-anchor="middle" font-size="17.96" fill="#57534e">ms per service · longest-path Σ</text>
-  <text x="161" y="228" text-anchor="middle" font-size="19.2" font-style="italic" fill="#2f5169">→ fed into the perf model</text>
-
-  <!-- hard card 2: component-distance grade -->
-  <rect x="312" y="110" width="272" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="448" y="148" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">component-distance grade</text>
-  <text x="448" y="180" text-anchor="middle" font-size="19.2" fill="#57534e">HARD / SOFT / SILENT</text>
-  <text x="448" y="228" text-anchor="middle" font-size="18.63" font-style="italic" fill="#2f5169">→ decides whether a gate fires</text>
-
-  <!-- flagship card: entry-point-native coverage -->
-  <rect x="600" y="95" width="320" height="180" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="760" y="136" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">entry-point-native coverage</text>
-  <text x="760" y="172" text-anchor="middle" font-size="19.2" fill="#57534e">is the model claim exercised?</text>
-  <text x="760" y="238" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">→ names the untested invariant</text>
-
-  <!-- soft card: doc-derived-test pinning -->
-  <rect x="935" y="110" width="260" height="150" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="1065" y="148" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">doc-derived-test pinning</text>
-  <text x="1065" y="176" text-anchor="middle" font-size="19.2" fill="#57534e">is this doc-claim</text>
-  <text x="1065" y="196" text-anchor="middle" font-size="19.2" fill="#57534e">pinned by a test?</text>
-  <text x="1065" y="234" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">→ nudges what to test next</text>
-
-  <!-- the spine: hard to soft -->
-  <line x1="40" y1="320" x2="1160" y2="320" stroke="#1c1917" stroke-width="3" marker-end="url(#fig-3-5-1-ms-ah)"/>
-  <text x="40" y="356" font-size="19.2" font-style="italic" fill="#57534e">a machine blocks on it alone</text>
-  <text x="1160" y="356" text-anchor="end" font-size="19.2" font-style="italic" fill="#57534e">a reader must still judge</text>
-</svg><figcaption data-short="The Metric Spectrum"><span class="fig-label">Figure 3.5-1.</span> <em>The Metric Spectrum.</em> The harder the metric, the more a machine can block on it alone; the softer, the more it can only aim a reader who must still judge. The flagship sits in the middle: entry-point-native coverage, the deeper cut that names the untested invariant.</figcaption></figure><p class="gallery-source">From <a href="3.5-metrics.html#fig-3-5-1">18 · Metrics</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-2-fig-3-5-2" class="book-figure" data-label="mmm-drain-curve"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
-     role="img" aria-labelledby="fig-3-5-2-mmTitle fig-3-5-2-mmDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-5-2-mmTitle">The Missing-Model-Metric drain</title>
-  <desc id="fig-3-5-2-mmDesc">A line chart falling from left to right. It plots the Missing-Model-Metric
-    orphan rate — the fraction of tests whose exercised code reaches no model-anchored symbol —
-    across nine re-runs of the code-to-model tracer. Each re-run follows a model-loop Epic that
-    modeled the biggest remaining orphan cluster, so the orphan rate drains from 56 percent at the
-    pilot to 7.89 percent at the latest committed point, passing about 39 percent at the wave-1
-    interior. A dashed line marks the loop's target of 10 percent or below; the final run crosses
-    below it. Three anchor labels are shown — pilot, the wave-1 interior, and the final landing —
-    and the chapter's table carries the exact value at every run.</desc>
-
-  <line x1="130" y1="280" x2="920" y2="280" stroke="#e4e0d8" stroke-width="1"/>
-  <line x1="130" y1="180" x2="920" y2="180" stroke="#e4e0d8" stroke-width="1"/>
-  <text x="118" y="284" text-anchor="end" font-size="16" fill="#57534e">20%</text>
-  <text x="118" y="184" text-anchor="end" font-size="16" fill="#57534e">40%</text>
-  <text x="118" y="384" text-anchor="end" font-size="16" fill="#57534e">0%</text>
-
-  <line x1="130" y1="380" x2="920" y2="380" stroke="#1c1917" stroke-width="1.5"/>
-
-  <line x1="130" y1="330" x2="920" y2="330" stroke="#57534e" stroke-width="1.5" stroke-dasharray="6 5"/>
-  <text x="138" y="322" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">loop target — orphan rate ≤ 10%</text>
-
-  <polyline points="130,100 228.8,105 327.5,120 426.3,185 525,219 623.8,229.5 722.5,275.5 821.3,305.5 920,340.6"
-            fill="none" stroke="#1f7a4d" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-  <circle cx="130"   cy="100"   r="5" fill="#1f7a4d"/>
-  <circle cx="228.8" cy="105"   r="5" fill="#1f7a4d"/>
-  <circle cx="327.5" cy="120"   r="5" fill="#1f7a4d"/>
-  <circle cx="426.3" cy="185"   r="6.5" fill="#1f7a4d"/>
-  <circle cx="525"   cy="219"   r="5" fill="#1f7a4d"/>
-  <circle cx="623.8" cy="229.5" r="5" fill="#1f7a4d"/>
-  <circle cx="722.5" cy="275.5" r="5" fill="#1f7a4d"/>
-  <circle cx="821.3" cy="305.5" r="5" fill="#1f7a4d"/>
-  <circle cx="920"   cy="340.6" r="6.5" fill="#1f7a4d"/>
-
-  <text x="130"   y="86"  text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">56%</text>
-  <text x="426.3" y="171" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">39%</text>
-  <text x="920"   y="362" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">7.89%</text>
-
-  <text x="130"   y="406" text-anchor="middle" font-size="16" fill="#57534e">pilot</text>
-  <text x="426.3" y="406" text-anchor="middle" font-size="16" fill="#57534e">wave-1</text>
-  <text x="920"   y="406" text-anchor="middle" font-size="16" fill="#57534e">landing</text>
-
-  <text x="130" y="440" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">orphan rate over nine tracer re-runs · exact value per run in the table</text>
-</svg><figcaption data-short="The Missing-Model-Metric Drain"><span class="fig-label">Figure 3.5-2.</span> <em>The Missing-Model-Metric Drain.</em> The orphan rate — tests whose code reaches no model-anchored symbol — drains from 56% at the pilot to <strong>7.89%</strong> across nine tracer re-runs, crossing the loop's ≤10% target. Three runs are labelled; the table carries the exact value at each.</figcaption></figure><p class="gallery-source">From <a href="3.5-metrics.html#fig-3-5-2">18 · Metrics</a></p></section><hr><section class="gallery-item"><figure id="fig-3-6-1-fig-3-6-1" class="book-figure" data-label="collision-edge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
+</svg><figcaption data-short="Form × Move"><span class="fig-label">Figure 3.3-4.</span> <em>Form × Move.</em> The two axes are independent: form (soft aims a reasoner, hard holds a line) crosses move (a constraint prevents, a sensor catches). Any move can be built either way — the four cells give one worked example each.</figcaption></figure><p class="gallery-source">From <a href="3.3-the-governed-environment.html#fig-3-3-4">16 · The Governed Environment: Ex-Ante and Ex-Post</a></p></section><hr><section class="gallery-item"><figure id="fig-3-6-1-fig-3-6-1" class="book-figure" data-label="collision-edge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
      role="group" aria-labelledby="fig-3-6-1-ceTitle fig-3-6-1-ceDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-3-6-1-ceTitle">The conflict is the edge — a collision drawn nowhere until the graph draws it</title>
@@ -3549,7 +3394,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
         marker-start="url(#fig-3-6-1-ce-ah-churn)" marker-end="url(#fig-3-6-1-ce-ah-churn)"/>
   <text x="252" y="192" font-size="19" font-weight="700" fill="#b23b3b">the conflict is this edge:</text>
   <text x="252" y="216" font-size="19" fill="#b23b3b">in neither node’s code</text>
-</svg><figcaption data-short="The Conflict Is the Edge"><span class="fig-label">Figure 3.6-1.</span> <em>The Conflict Is the Edge.</em> Read Control A alone and it is correct; read Control B alone and it is correct. What they demand of the one resource they share collides — and that collision is drawn nowhere until the graph draws it.</figcaption></figure><p class="gallery-source">From <a href="3.6-when-guardrails-collide.html#fig-3-6-1">19 · When Guardrails Collide</a></p></section><hr><section class="gallery-item"><figure id="fig-3-6-2-fig-3-6-2" class="book-figure" data-label="census-trio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 600"
+</svg><figcaption data-short="The Conflict Is the Edge"><span class="fig-label">Figure 3.6-1.</span> <em>The Conflict Is the Edge.</em> Read Control A alone and it is correct; read Control B alone and it is correct. What they demand of the one resource they share collides — and that collision is drawn nowhere until the graph draws it.</figcaption></figure><p class="gallery-source">From <a href="3.6-when-guardrails-collide.html#fig-3-6-1">17 · When Guardrails Collide</a></p></section><hr><section class="gallery-item"><figure id="fig-3-6-2-fig-3-6-2" class="book-figure" data-label="census-trio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 600"
      role="img" aria-labelledby="fig-3-6-2-ctTitle fig-3-6-2-ctDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-3-6-2-ctTitle">One control set, three re-views: catalogue, interaction graph, and coverage census</title>
@@ -3633,7 +3478,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="640" y="540" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">One control set, three re-views</text>
   <text x="640" y="568" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the graph and the census add no data — they re-view the list</text>
-</svg><figcaption data-short="Catalogue, Graph, Census"><span class="fig-label">Figure 3.6-2.</span> <em>Catalogue, Graph, Census.</em> Three views ride on one set of controls. The catalogue lists what exists; the interaction graph draws which two collide over a shared resource; the coverage census bins the same controls by the target each guards and surfaces the target with none. The move that matters is that the graph and the census are <strong>re-views, not new data</strong> — the identical node-set, asked a different question each time. An empty census cell is not an absence nobody noticed; it is the estate's own blind spot, named, and pointing at where the next control should go.</figcaption></figure><p class="gallery-source">From <a href="3.6-when-guardrails-collide.html#fig-3-6-2">19 · When Guardrails Collide</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-1-fig-4-2-1" class="book-figure" data-label="wiki-linkage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540"
+</svg><figcaption data-short="Catalogue, Graph, Census"><span class="fig-label">Figure 3.6-2.</span> <em>Catalogue, Graph, Census.</em> Three views ride on one set of controls. The catalogue lists what exists; the interaction graph draws which two collide over a shared resource; the coverage census bins the same controls by the target each guards and surfaces the target with none. The move that matters is that the graph and the census are <strong>re-views, not new data</strong> — the identical node-set, asked a different question each time. An empty census cell is not an absence nobody noticed; it is the estate's own blind spot, named, and pointing at where the next control should go.</figcaption></figure><p class="gallery-source">From <a href="3.6-when-guardrails-collide.html#fig-3-6-2">17 · When Guardrails Collide</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-1-fig-4-2-1" class="book-figure" data-label="wiki-linkage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540"
      role="group" aria-labelledby="fig-4-2-1-wlTitle fig-4-2-1-wlDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-2-1-wlTitle">The wiki is the model you already have</title>
@@ -3723,7 +3568,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="781" y="438" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Drift gate</text>
 
   <text x="761" y="504" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">typed · gate-enforced</text>
-</svg><figcaption data-short="The wiki is the model you already have"><span class="fig-label">Figure 4.2-1.</span> <em>The wiki is the model you already have.</em> Pages, links, and backlinks already form a graph; the first move joins it down to code and tests, the same round-trip join a structured model carries. Audit, Synchronize, Govern, and Extend mature the left panel into the right.</figcaption></figure><p class="gallery-source">From <a href="4.2-brownfield.html#fig-4-2-1">21 · Migrating to MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-2-fig-4-2-2" class="book-figure" data-label="squash-zero-promote"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420"
+</svg><figcaption data-short="The wiki is the model you already have"><span class="fig-label">Figure 4.2-1.</span> <em>The wiki is the model you already have.</em> Pages, links, and backlinks already form a graph; the first move joins it down to code and tests, the same round-trip join a structured model carries. Audit, Synchronize, Govern, and Extend mature the left panel into the right.</figcaption></figure><p class="gallery-source">From <a href="4.2-brownfield.html#fig-4-2-1">19 · Migrating to MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-2-fig-4-2-2" class="book-figure" data-label="squash-zero-promote"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420"
      role="group" aria-labelledby="fig-4-2-2-szpTitle fig-4-2-2-szpDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-2-2-szpTitle">Squash, zero, promote: how a lint is worn into a legacy tree one step at a time</title>
@@ -3787,7 +3632,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <path d="M845,206 C845,240 940,240 966,206"/>
   </g>
   <text x="852" y="300" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">the smell can never return</text>
-</svg><figcaption data-short="Audit, Drain, Promote"><span class="fig-label">Figure 4.2-2.</span> <em>Audit, Drain, Promote.</em> A new lint lands audit-only — every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so the class of smell can never return.</figcaption></figure><p class="gallery-source">From <a href="4.2-brownfield.html#fig-4-2-2">21 · Migrating to MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-1-fig-4-3-1" class="book-figure" data-label="example-vs-generative"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 510"
+</svg><figcaption data-short="Audit, Drain, Promote"><span class="fig-label">Figure 4.2-2.</span> <em>Audit, Drain, Promote.</em> A new lint lands audit-only — every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so the class of smell can never return.</figcaption></figure><p class="gallery-source">From <a href="4.2-brownfield.html#fig-4-2-2">19 · Migrating to MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-1-fig-4-3-1" class="book-figure" data-label="example-vs-generative"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 510"
      role="group" aria-labelledby="fig-4-3-1-egTitle fig-4-3-1-egDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-3-1-egTitle">An example-based test pins one point; a generative test models the whole input space</title>
@@ -3845,7 +3690,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="797" y="370" text-anchor="middle" font-size="17" fill="#b23b3b">shrink / RCA to the</text>
   <text x="797" y="394" text-anchor="middle" font-size="17" fill="#b23b3b">minimal or spec-point</text>
   <text x="797" y="418" text-anchor="middle" font-size="17" fill="#b23b3b">cause</text>
-</svg><figcaption data-short="A Point vs a Space"><span class="fig-label">Figure 4.3-1.</span> <em>A Point vs a Space.</em> The example pins a point; the generative test models the space. One reproduces a dot the author already knew; the other states the law every dot obeys and lets a generator find where the code breaks it.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-1">22 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-2-fig-4-3-2" class="book-figure" data-label="generative-loop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 670"
+</svg><figcaption data-short="A Point vs a Space"><span class="fig-label">Figure 4.3-1.</span> <em>A Point vs a Space.</em> The example pins a point; the generative test models the space. One reproduces a dot the author already knew; the other states the law every dot obeys and lets a generator find where the code breaks it.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-1">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-2-fig-4-3-2" class="book-figure" data-label="generative-loop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 670"
      role="group" aria-labelledby="fig-4-3-2-glTitle fig-4-3-2-glDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-3-2-glTitle">One generator, three oracles, one shared model — and a coverage loop</title>
@@ -3932,7 +3777,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ... and model-claim coverage joins back to the model -->
   <path d="M806,540 C500,650 140,625 60,440 C 35,320 90,215 148,186" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#fig-4-3-2-gl-ah-mut)"/>
   <text x="430" y="652" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">model-claim coverage — the metrics chapter owns it</text>
-</svg><figcaption data-short="The Coin Is the Model"><span class="fig-label">Figure 4.3-2.</span> <em>The Coin Is the Model.</em> Fuzzing and property testing are two faces of one loop: a <strong>generator</strong> makes inputs, an <strong>oracle</strong> judges each outcome, a <strong>counterexample</strong> feeds back to shrink or diagnose, and <strong>coverage</strong> asks whether the generator ever reached the claims the model makes — closing the loop by refining the generator. The two faces draw their oracle from <strong>one specification family expressed at different strengths</strong> — an authored property, an implicit robustness contract, a structured model — not from one shared artifact.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-2">22 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-4-1-fig-4-4-1" class="book-figure" data-label="three-skills"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 620"
+</svg><figcaption data-short="The Coin Is the Model"><span class="fig-label">Figure 4.3-2.</span> <em>The Coin Is the Model.</em> Fuzzing and property testing are two faces of one loop: a <strong>generator</strong> makes inputs, an <strong>oracle</strong> judges each outcome, a <strong>counterexample</strong> feeds back to shrink or diagnose, and <strong>coverage</strong> asks whether the generator ever reached the claims the model makes — closing the loop by refining the generator. The two faces draw their oracle from <strong>one specification family expressed at different strengths</strong> — an authored property, an implicit robustness contract, a structured model — not from one shared artifact.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-2">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-4-1-fig-4-4-1" class="book-figure" data-label="three-skills"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 620"
      role="group" aria-labelledby="fig-4-4-1-tsTitle fig-4-4-1-tsDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-4-1-tsTitle">Three skills as complements around one substrate</title>
@@ -4000,7 +3845,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M925,206 C960,340 880,470 706,520" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-4-1-ts-ah-mut)"/>
   <text x="978" y="400" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">writes its</text>
   <text x="978" y="422" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">runbooks in</text>
-</svg><figcaption data-short="The Three Skills"><span class="fig-label">Figure 4.4-1.</span> <em>The Three Skills.</em> One substrate seen from three angles, each shipped as an installable skill. Self-governance hardens the fleet — it triggers on a recurring failure and converts the class into a durable mechanism. Self-operate runs the fleet — it holds the lifecycles of operating a repo as models an orchestrator executes. Self-communicate explains the fleet — it governs the prose and diagrams the agent produces, so what it writes is terse and true. The three are complements, and they feed each other: a recurring break self-governance catches becomes a mechanism, written in the register self-communicate governs and run by the loop self-operate holds. Each is a mastery-skill — a body of judgment, not an interface to one tool.</figcaption></figure><p class="gallery-source">From <a href="4.4-the-skills.html#fig-4-4-1">23 · The Skills</a></p></section><hr><section class="gallery-item"><figure id="fig-4-4-2-fig-4-4-2" class="book-figure" data-label="skill-recipe"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 440"
+</svg><figcaption data-short="The Three Skills"><span class="fig-label">Figure 4.4-1.</span> <em>The Three Skills.</em> One substrate seen from three angles, each shipped as an installable skill. Self-governance hardens the fleet — it triggers on a recurring failure and converts the class into a durable mechanism. Self-operate runs the fleet — it holds the lifecycles of operating a repo as models an orchestrator executes. Self-communicate explains the fleet — it governs the prose and diagrams the agent produces, so what it writes is terse and true. The three are complements, and they feed each other: a recurring break self-governance catches becomes a mechanism, written in the register self-communicate governs and run by the loop self-operate holds. Each is a mastery-skill — a body of judgment, not an interface to one tool.</figcaption></figure><p class="gallery-source">From <a href="4.4-the-skills.html#fig-4-4-1">21 · The Skills</a></p></section><hr><section class="gallery-item"><figure id="fig-4-4-2-fig-4-4-2" class="book-figure" data-label="skill-recipe"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 440"
      role="group" aria-labelledby="fig-4-4-2-srTitle fig-4-4-2-srDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-4-2-srTitle">The construction recipe for a skill</title>
@@ -4061,7 +3906,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <rect x="870" y="330" width="230" height="60" rx="30" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="985" y="368" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">a working skill</text>
-</svg><figcaption data-short="The Skill Skeleton"><span class="fig-label">Figure 4.4-2.</span> <em>The Skill Skeleton.</em> Every shipped skill has the same skeleton: a base model of the domain, orthogonal models cutting it along independent axes, and a SKILL.md of principles that ties them into a working skill.</figcaption></figure><p class="gallery-source">From <a href="4.4-the-skills.html#fig-4-4-2">23 · The Skills</a></p></section><hr><section class="gallery-item"><figure id="fig-4-4-3-fig-4-4-3" class="book-figure" data-label="transformations-pipeline"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 0 1040 470"
+</svg><figcaption data-short="The Skill Skeleton"><span class="fig-label">Figure 4.4-2.</span> <em>The Skill Skeleton.</em> Every shipped skill has the same skeleton: a base model of the domain, orthogonal models cutting it along independent axes, and a SKILL.md of principles that ties them into a working skill.</figcaption></figure><p class="gallery-source">From <a href="4.4-the-skills.html#fig-4-4-2">21 · The Skills</a></p></section><hr><section class="gallery-item"><figure id="fig-4-4-3-fig-4-4-3" class="book-figure" data-label="transformations-pipeline"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 0 1040 470"
      role="group" aria-labelledby="fig-4-4-3-txTitle fig-4-4-3-txDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-4-3-txTitle">The three skills are transformation chains all the way down</title>
@@ -4149,7 +3994,162 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="150" y="392" width="680" height="52" rx="10" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 5"/>
   <text x="490" y="416" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">One skeleton: a reasoning task broken into sized input-to-output steps</text>
   <text x="490" y="437" text-anchor="middle" font-size="16.64" font-style="italic" fill="#57534e">each step sized to the model and the guarantee you need</text>
-</svg><figcaption data-short="The three skills share one skeleton"><span class="fig-label">Figure 4.4-3.</span> The three skills share one skeleton: each carries an input to an output through sized transformations. Self-communicate stacks language and genre; self-operate maps event to design to launches; self-governance turns a symptom into a mechanism. Each step is sized to the model and the guarantee you need.</figcaption></figure><p class="gallery-source">From <a href="4.4-the-skills.html#fig-4-4-3">23 · The Skills</a></p></section><hr><section class="gallery-item"><figure id="fig-5-2-1-fig-5-2-1" class="book-figure" data-label="novelty-axis"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
+</svg><figcaption data-short="The three skills share one skeleton"><span class="fig-label">Figure 4.4-3.</span> The three skills share one skeleton: each carries an input to an output through sized transformations. Self-communicate stacks language and genre; self-operate maps event to design to launches; self-governance turns a symptom into a mechanism. Each step is sized to the model and the guarantee you need.</figcaption></figure><p class="gallery-source">From <a href="4.4-the-skills.html#fig-4-4-3">21 · The Skills</a></p></section><hr><section class="gallery-item"><figure id="fig-4-5-1-fig-4-5-1" class="book-figure" data-label="runbook-split"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -55 1020 595"
+     role="img" aria-labelledby="fig-4-5-1-corTitle fig-4-5-1-corDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-4-5-1-corTitle">A run-measure-assess loop wraps a three-step spine that fences one judgment step between deterministic ends</title>
+  <desc id="fig-4-5-1-corDesc">A run-then-measure-then-assess loop arcs across the top and returns to run. Inside
+    it sits a three-step spine. Step one, determinize the data space: a mechanical, automatable step
+    that fixes where the metrics live and what counts as normal. Step two, judgment: the agent reasons
+    over that data to decide which configuration to try. Step three, determinize the experiment space:
+    applying the chosen configuration is made mechanical, which lets the step capture a logged trace of
+    why this configuration was chosen. One arrow carries that trace out to a single note. Fencing the
+    one judgment step between two deterministic ends bounds the messy part and leaves an inspectable
+    trace a checker can grade.</desc>
+
+  <defs>
+    <marker id="fig-4-5-1-cor-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <text x="170" y="38" text-anchor="middle" font-size="28" font-weight="700" fill="#2f5169">run</text>
+  <text x="510" y="38" text-anchor="middle" font-size="28" font-weight="700" fill="#2f5169">measure</text>
+  <text x="850" y="38" text-anchor="middle" font-size="28" font-weight="700" fill="#2f5169">assess</text>
+
+  <path d="M208,14 C340,-10 420,-10 468,14" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-4-5-1-cor-ah)"/>
+  
+  <path d="M552,14 C664,-10 764,-10 812,14" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-4-5-1-cor-ah)"/>
+  
+  <path d="M878,18 C700,-48 340,-48 162,18" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-4-5-1-cor-ah)"/>
+
+  <text x="510" y="128" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Fence the judgment step between deterministic ends</text>
+
+  <rect x="60" y="200" width="250" height="120" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="185" y="252" text-anchor="middle" font-size="25" font-weight="700" fill="#2f5169">Determinize</text>
+  <text x="185" y="284" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">data space</text>
+  <text x="185" y="310" text-anchor="middle" font-size="16" fill="#57534e">mechanical · automatable</text>
+
+  <line x1="312" y1="260" x2="360" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-4-5-1-cor-ah)"/>
+
+  <polygon points="510,192 632,260 510,328 388,260" fill="#2f5169" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="510" y="256" text-anchor="middle" font-size="25" font-weight="700" fill="#ffffff">Judgment</text>
+  <text x="510" y="284" text-anchor="middle" font-size="16" fill="#e7edf3">reasoning decides</text>
+
+  <line x1="634" y1="260" x2="686" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-4-5-1-cor-ah)"/>
+
+  <rect x="688" y="200" width="250" height="120" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="813" y="252" text-anchor="middle" font-size="25" font-weight="700" fill="#2f5169">Determinize</text>
+  <text x="813" y="284" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">experiment space</text>
+  <text x="813" y="310" text-anchor="middle" font-size="16" fill="#57534e">mechanical · automatable</text>
+
+  <line x1="813" y1="320" x2="813" y2="390" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-4-5-1-cor-ah)"/>
+  <rect x="628" y="392" width="370" height="112" rx="6" fill="#ffffff" stroke="#2f5169" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="813" y="430" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Logged trace</text>
+  <text x="813" y="462" text-anchor="middle" font-size="18" fill="#57534e">why this configuration was chosen</text>
+  <text x="813" y="490" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">captured: step 3 is deterministic</text>
+</svg><figcaption data-short="The Fenced Judgment Step"><span class="fig-label">Figure 4.5-1.</span> <em>The Fenced Judgment Step.</em> A run-measure-assess loop wraps a three-step spine: determinize the data space, apply judgment, then determinize the experiment space. Fencing the one judgment step between deterministic ends bounds the messy part and leaves a logged trace a checker can grade.</figcaption></figure><p class="gallery-source">From <a href="4.5-lifecycles-and-runbooks.html#fig-4-5-1">22 · Lifecycles and Runbooks</a></p></section><hr><section class="gallery-item"><figure id="fig-4-6-1-fig-4-6-1" class="book-figure" data-label="metric-spectrum"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"
+     role="group" aria-labelledby="fig-4-6-1-msTitle fig-4-6-1-msDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-4-6-1-msTitle">The metric spectrum, hard to soft</title>
+  <desc id="fig-4-6-1-msDesc">Four governance metrics laid on a left-to-right spectrum. On the hard,
+    deterministic, machine-read end sit cold-start latency, fed into the perf model, and the
+    component-distance grade, which decides whether a gate fires. In the middle sits the
+    flagship, entry-point-native coverage, the deeper cut that asks whether a model claim is
+    exercised and names the untested invariant. On the soft, judgment-laden end sits
+    doc-derived-test pinning, which asks whether a doc-claim is pinned by a test and nudges
+    what to test next. A spine arrow runs hard to soft: the harder the metric, the more a
+    machine can block on it alone; the softer, the more it can only aim a reader.</desc>
+
+  <defs>
+    <marker id="fig-4-6-1-ms-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- zone kickers + role-colored underlines -->
+  <text x="304" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#2f5169">HARD · deterministic · machine-read</text>
+  <line x1="25" y1="66" x2="584" y2="66" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="760" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">FLAGSHIP · the deeper cut</text>
+  <line x1="600" y1="66" x2="920" y2="66" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="1065" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">SOFT · aims a reader</text>
+  <line x1="935" y1="66" x2="1195" y2="66" stroke="#57534e" stroke-width="1.5"/>
+
+  <!-- hard card 1: cold-start latency -->
+  <rect x="25" y="110" width="272" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="161" y="148" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">cold-start latency</text>
+  <text x="161" y="180" text-anchor="middle" font-size="17.96" fill="#57534e">ms per service · longest-path Σ</text>
+  <text x="161" y="228" text-anchor="middle" font-size="19.2" font-style="italic" fill="#2f5169">→ fed into the perf model</text>
+
+  <!-- hard card 2: component-distance grade -->
+  <rect x="312" y="110" width="272" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="448" y="148" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">component-distance grade</text>
+  <text x="448" y="180" text-anchor="middle" font-size="19.2" fill="#57534e">HARD / SOFT / SILENT</text>
+  <text x="448" y="228" text-anchor="middle" font-size="18.63" font-style="italic" fill="#2f5169">→ decides whether a gate fires</text>
+
+  <!-- flagship card: entry-point-native coverage -->
+  <rect x="600" y="95" width="320" height="180" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="760" y="136" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">entry-point-native coverage</text>
+  <text x="760" y="172" text-anchor="middle" font-size="19.2" fill="#57534e">is the model claim exercised?</text>
+  <text x="760" y="238" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">→ names the untested invariant</text>
+
+  <!-- soft card: doc-derived-test pinning -->
+  <rect x="935" y="110" width="260" height="150" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="1065" y="148" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">doc-derived-test pinning</text>
+  <text x="1065" y="176" text-anchor="middle" font-size="19.2" fill="#57534e">is this doc-claim</text>
+  <text x="1065" y="196" text-anchor="middle" font-size="19.2" fill="#57534e">pinned by a test?</text>
+  <text x="1065" y="234" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">→ nudges what to test next</text>
+
+  <!-- the spine: hard to soft -->
+  <line x1="40" y1="320" x2="1160" y2="320" stroke="#1c1917" stroke-width="3" marker-end="url(#fig-4-6-1-ms-ah)"/>
+  <text x="40" y="356" font-size="19.2" font-style="italic" fill="#57534e">a machine blocks on it alone</text>
+  <text x="1160" y="356" text-anchor="end" font-size="19.2" font-style="italic" fill="#57534e">a reader must still judge</text>
+</svg><figcaption data-short="The Metric Spectrum"><span class="fig-label">Figure 4.6-1.</span> <em>The Metric Spectrum.</em> The harder the metric, the more a machine can block on it alone; the softer, the more it can only aim a reader who must still judge. The flagship sits in the middle: entry-point-native coverage, the deeper cut that names the untested invariant.</figcaption></figure><p class="gallery-source">From <a href="4.6-metrics.html#fig-4-6-1">23 · Metrics</a></p></section><hr><section class="gallery-item"><figure id="fig-4-6-2-fig-4-6-2" class="book-figure" data-label="mmm-drain-curve"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
+     role="img" aria-labelledby="fig-4-6-2-mmTitle fig-4-6-2-mmDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-4-6-2-mmTitle">The Missing-Model-Metric drain</title>
+  <desc id="fig-4-6-2-mmDesc">A line chart falling from left to right. It plots the Missing-Model-Metric
+    orphan rate — the fraction of tests whose exercised code reaches no model-anchored symbol —
+    across nine re-runs of the code-to-model tracer. Each re-run follows a model-loop Epic that
+    modeled the biggest remaining orphan cluster, so the orphan rate drains from 56 percent at the
+    pilot to 7.89 percent at the latest committed point, passing about 39 percent at the wave-1
+    interior. A dashed line marks the loop's target of 10 percent or below; the final run crosses
+    below it. Three anchor labels are shown — pilot, the wave-1 interior, and the final landing —
+    and the chapter's table carries the exact value at every run.</desc>
+
+  <line x1="130" y1="280" x2="920" y2="280" stroke="#e4e0d8" stroke-width="1"/>
+  <line x1="130" y1="180" x2="920" y2="180" stroke="#e4e0d8" stroke-width="1"/>
+  <text x="118" y="284" text-anchor="end" font-size="16" fill="#57534e">20%</text>
+  <text x="118" y="184" text-anchor="end" font-size="16" fill="#57534e">40%</text>
+  <text x="118" y="384" text-anchor="end" font-size="16" fill="#57534e">0%</text>
+
+  <line x1="130" y1="380" x2="920" y2="380" stroke="#1c1917" stroke-width="1.5"/>
+
+  <line x1="130" y1="330" x2="920" y2="330" stroke="#57534e" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="138" y="322" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">loop target — orphan rate ≤ 10%</text>
+
+  <polyline points="130,100 228.8,105 327.5,120 426.3,185 525,219 623.8,229.5 722.5,275.5 821.3,305.5 920,340.6"
+            fill="none" stroke="#1f7a4d" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="130"   cy="100"   r="5" fill="#1f7a4d"/>
+  <circle cx="228.8" cy="105"   r="5" fill="#1f7a4d"/>
+  <circle cx="327.5" cy="120"   r="5" fill="#1f7a4d"/>
+  <circle cx="426.3" cy="185"   r="6.5" fill="#1f7a4d"/>
+  <circle cx="525"   cy="219"   r="5" fill="#1f7a4d"/>
+  <circle cx="623.8" cy="229.5" r="5" fill="#1f7a4d"/>
+  <circle cx="722.5" cy="275.5" r="5" fill="#1f7a4d"/>
+  <circle cx="821.3" cy="305.5" r="5" fill="#1f7a4d"/>
+  <circle cx="920"   cy="340.6" r="6.5" fill="#1f7a4d"/>
+
+  <text x="130"   y="86"  text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">56%</text>
+  <text x="426.3" y="171" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">39%</text>
+  <text x="920"   y="362" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">7.89%</text>
+
+  <text x="130"   y="406" text-anchor="middle" font-size="16" fill="#57534e">pilot</text>
+  <text x="426.3" y="406" text-anchor="middle" font-size="16" fill="#57534e">wave-1</text>
+  <text x="920"   y="406" text-anchor="middle" font-size="16" fill="#57534e">landing</text>
+
+  <text x="130" y="440" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">orphan rate over nine tracer re-runs · exact value per run in the table</text>
+</svg><figcaption data-short="The Missing-Model-Metric Drain"><span class="fig-label">Figure 4.6-2.</span> <em>The Missing-Model-Metric Drain.</em> The orphan rate — tests whose code reaches no model-anchored symbol — drains from 56% at the pilot to <strong>7.89%</strong> across nine tracer re-runs, crossing the loop's ≤10% target. Three runs are labelled; the table carries the exact value at each.</figcaption></figure><p class="gallery-source">From <a href="4.6-metrics.html#fig-4-6-2">23 · Metrics</a></p></section><hr><section class="gallery-item"><figure id="fig-5-2-1-fig-5-2-1" class="book-figure" data-label="novelty-axis"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
      role="group" aria-labelledby="fig-5-2-1-naTitle fig-5-2-1-naDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-5-2-1-naTitle">The novelty axis: how a part’s novelty sets the leap you can trust and the oversight you owe</title>

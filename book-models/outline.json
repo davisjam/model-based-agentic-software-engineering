@@ -1509,7 +1509,7 @@
           "section_id": "coverage-model-mapping",
           "level": 2,
           "heading_text": "Coverage → model-node mapping",
-          "topic_sentence": "Coverage-to-node mapping projects the test suite's coverage onto the model's *nodes* — states, seams, invariants, journey endpoints — instead of its lines (node coverage over line coverage, as [Metrics](3.5-metrics.html) laid out).",
+          "topic_sentence": "Coverage-to-node mapping projects the test suite's coverage onto the model's *nodes* — states, seams, invariants, journey endpoints — instead of its lines (node coverage over line coverage, as [Metrics](4.6-metrics.html) laid out).",
           "id_source": "explicit",
           "block_index": 26,
           "points": [
@@ -2501,311 +2501,6 @@
           "slug": "a-governed-environment-has-an-ex-ante-and-an-ex-post-half",
           "text": "A governed environment has an ex-ante and ex-post half.",
           "block_index": 0
-        }
-      ]
-    },
-    {
-      "slug": "3.4-lifecycles-and-runbooks",
-      "part": 3,
-      "sections": [
-        {
-          "section_id": "lifecycles-first-then-the-failure-map",
-          "level": 2,
-          "heading_text": "Lifecycles first, then the failure map",
-          "topic_sentence": "Start with the lifecycles, because everything else hangs off them.",
-          "id_source": "derived",
-          "block_index": 3,
-          "points": [
-            {
-              "slug": "a-lifecycle-is-the-healthy-path-then-a-failure-map-off-each-node",
-              "text": "A lifecycle: write the healthy path, then map failures.",
-              "block_index": 5
-            },
-            {
-              "slug": "fmea-names-the-way-out-and-the-prohibition-because-the-agent-knows-neither",
-              "text": "FMEA-inspired: name each failure's way out and prohibition.",
-              "block_index": 8
-            },
-            {
-              "slug": "name-the-sin-and-the-way-out-not-the-prohibition-alone",
-              "text": "Pair each prohibition with its sanctioned way out.",
-              "block_index": 12
-            }
-          ]
-        },
-        {
-          "section_id": "runbooks-split-the-deterministic-from-the-judgment",
-          "level": 2,
-          "heading_text": "Runbooks: split the deterministic from the judgment",
-          "topic_sentence": "Once the healthy path and the failure map are written, the thing you hand the agent is a **runbook** (or playbook): the steps to take, whether recovering from a failure or working a fresh ticket.",
-          "id_source": "derived",
-          "block_index": 14,
-          "points": [
-            {
-              "slug": "a-runbook-splits-into-deterministic-and-judgment-steps-governed-differently",
-              "text": "A runbook splits into deterministic and judgment steps.",
-              "block_index": 16
-            }
-          ]
-        },
-        {
-          "section_id": "the-deterministic-parts-get-tools",
-          "level": 3,
-          "heading_text": "The deterministic parts get tools",
-          "topic_sentence": "Anything that has a single correct outcome should be an executable script the agent runs, not a procedure it improvises.",
-          "id_source": "derived",
-          "block_index": 21,
-          "points": [
-            {
-              "slug": "deterministic-parts-get-tools-not-improvisation",
-              "text": "Deterministic steps get executable tools, not improvisation.",
-              "block_index": 22
-            },
-            {
-              "slug": "determinizing-a-step-buys-a-trace-with-two-consumers",
-              "text": "Determinizing buys a trace with two consumers.",
-              "block_index": 25
-            }
-          ]
-        },
-        {
-          "section_id": "the-judgment-parts-the-roughest-algorithm-that-still-fits",
-          "level": 3,
-          "heading_text": "The judgment parts: the roughest algorithm that still fits",
-          "topic_sentence": "**The judgment parts get the roughest algorithm that still fits.** For a well-constrained decision, write the algorithm down and let the agent do the glue.",
-          "id_source": "derived",
-          "block_index": 29,
-          "points": [
-            {
-              "slug": "judgment-parts-get-the-roughest-algorithm-that-still-fits",
-              "text": "Judgment steps get the roughest algorithm that fits.",
-              "block_index": 31
-            },
-            {
-              "slug": "a-judgment-that-is-a-measurement-gets-a-rubric",
-              "text": "A judgment that is a measurement gets a rubric.",
-              "block_index": 33
-            },
-            {
-              "slug": "the-pre-canned-brief-is-the-strongest-form-templating-delegation-itself",
-              "text": "The pre-canned brief templates delegation itself.",
-              "block_index": 36
-            },
-            {
-              "slug": "typing-each-runbook-step-makes-the-deterministic-judgment-split-mechanical",
-              "text": "Typing each step makes the deterministic-judgment split mechanical.",
-              "block_index": 40
-            }
-          ]
-        }
-      ],
-      "preamble_points": [
-        {
-          "slug": "agent-knows-git-not-your-environments-lifecycles-so-write-them-down",
-          "text": "The agent lacks your operating context; write it down.",
-          "block_index": 0
-        }
-      ]
-    },
-    {
-      "slug": "3.5-metrics",
-      "part": 3,
-      "sections": [
-        {
-          "section_id": "measure-one-level-deeper",
-          "level": 2,
-          "heading_text": "Measure one level deeper",
-          "topic_sentence": "John Ousterhout names the rule [cite: ousterhout2018]: **always measure one level deeper** — one level, not as deep as you can go.",
-          "id_source": "derived",
-          "block_index": 5,
-          "points": [
-            {
-              "slug": "measure-one-level-deeper-because-the-surface-number-cannot-act",
-              "text": "Measure one level deeper; the surface number cannot act.",
-              "block_index": 7
-            },
-            {
-              "slug": "a-cloud-bill-reports-but-splitting-it-by-service-acts",
-              "text": "A cloud bill reports; splitting it by service acts.",
-              "block_index": 10
-            },
-            {
-              "slug": "line-coverage-is-the-invoice-level-number-and-the-flagship-is-coverage-one-level-deeper",
-              "text": "Line coverage is the invoice number; go deeper.",
-              "block_index": 12
-            },
-            {
-              "slug": "metrics-run-a-hard-to-soft-spectrum-and-the-mistake-is-treating-one-as-the-other",
-              "text": "Metrics run hard to soft; don't confuse the two.",
-              "block_index": 16
-            }
-          ]
-        },
-        {
-          "section_id": "the-hard-end-cold-start-latency-machine-read-and-model-fed",
-          "level": 2,
-          "heading_text": "The hard end: cold-start latency, machine-read and model-fed",
-          "topic_sentence": "Start at the deterministic end, where a metric is a deterministic quantity with a defined measurement procedure.",
-          "id_source": "derived",
-          "block_index": 19,
-          "points": [
-            {
-              "slug": "cold-start-latency-reads-obviously-as-the-scale-from-zero-penalty",
-              "text": "Cold-start latency reads obviously as the scale-from-zero penalty.",
-              "block_index": 22
-            },
-            {
-              "slug": "the-deeper-cold-start-number-named-runtime-init-not-scale-from-zero-or-image-size",
-              "text": "The deeper number named runtime init, not scale-from-zero.",
-              "block_index": 24
-            },
-            {
-              "slug": "spot-checking-doesnt-scale-so-a-model-reasons-over-the-chain-as-a-longest-path-sum",
-              "text": "Spot-checking fails; a model sums the longest cold-start path.",
-              "block_index": 29
-            },
-            {
-              "slug": "the-hard-ends-defining-move-is-the-number-feeds-the-model",
-              "text": "The hard end's defining move: the number feeds the model.",
-              "block_index": 31
-            },
-            {
-              "slug": "automate-the-map-upkeep-into-the-machine-rather-than-a-runbook-reminder",
-              "text": "Automate map upkeep into the machine, not a reminder.",
-              "block_index": 34
-            },
-            {
-              "slug": "as-built-the-seam-is-in-and-the-data-catches-up",
-              "text": "As-built: the seam is in, the data catches up.",
-              "block_index": 36
-            }
-          ]
-        },
-        {
-          "section_id": "the-flagship-coverage-measured-one-level-deeper",
-          "level": 2,
-          "heading_text": "The flagship: coverage measured one level deeper",
-          "topic_sentence": "Now the middle of the spectrum: the \"measure one level deeper\" rule applied to the number that most often gets it wrong.",
-          "id_source": "derived",
-          "block_index": 38,
-          "points": [
-            {
-              "slug": "line-coverage-answers-a-syntactic-question-not-the-semantic-one",
-              "text": "Line coverage answers a syntactic question, not the semantic one.",
-              "block_index": 41
-            },
-            {
-              "slug": "the-fix-joins-a-traceability-graph-to-the-coverage-oracle",
-              "text": "The fix joins a traceability graph to the coverage oracle.",
-              "block_index": 43
-            },
-            {
-              "slug": "the-composition-counts-model-claims-and-reports-a-named-verdict",
-              "text": "The composition counts model claims and reports a named verdict.",
-              "block_index": 46
-            },
-            {
-              "slug": "the-genre-check-names-this-requirements-based-coverage",
-              "text": "The genre check names this requirements-based coverage.",
-              "block_index": 48
-            },
-            {
-              "slug": "one-primitive-supports-several-aggregations-each-a-different-decision",
-              "text": "One primitive supports several aggregations, each a different decision.",
-              "block_index": 51
-            },
-            {
-              "slug": "the-honesty-layer-reports-a-breakdown-so-the-number-affords-engineering",
-              "text": "The honesty layer reports a breakdown, not a percentage.",
-              "block_index": 54
-            },
-            {
-              "slug": "measuring-one-level-deeper-cost-a-join-not-a-rebuild",
-              "text": "Measuring one level deeper cost a join, not a rebuild.",
-              "block_index": 56
-            }
-          ]
-        },
-        {
-          "section_id": "mmm-drain",
-          "level": 2,
-          "heading_text": "The dual: draining unmodelled code",
-          "topic_sentence": "The flagship metric had a blind spot: it measured model→code, so code with no model at all stayed invisible to it — and this dual is what finds it.",
-          "id_source": "explicit",
-          "block_index": 58,
-          "points": []
-        },
-        {
-          "section_id": "the-soft-end-doc-derived-tests",
-          "level": 2,
-          "heading_text": "The soft end: doc-derived tests",
-          "topic_sentence": "Slide to the far end of the spectrum, where the metric stops being a number a threshold can act on and becomes a judgment a human has to make.",
-          "id_source": "derived",
-          "block_index": 66,
-          "points": [
-            {
-              "slug": "a-doc-derived-test-pins-a-doc-claim-and-its-metric-is-genuinely-soft",
-              "text": "A doc-derived test pins a doc-claim; its metric is soft.",
-              "block_index": 69
-            },
-            {
-              "slug": "the-soft-metric-is-inseparable-from-a-readiness-judgment-so-a-gate-would-manufacture-hollow-tests",
-              "text": "Gating this soft signal manufactures hollow tests.",
-              "block_index": 72
-            }
-          ]
-        },
-        {
-          "section_id": "the-model-runs-the-machinery",
-          "level": 2,
-          "heading_text": "The model runs the machinery",
-          "topic_sentence": "The hard end and the flagship follow the same pattern.",
-          "id_source": "derived",
-          "block_index": 82,
-          "points": [
-            {
-              "slug": "the-model-is-not-a-picture-of-the-machinery-it-is-the-machinery",
-              "text": "The model runs the machinery, rather than picturing it.",
-              "block_index": 85
-            },
-            {
-              "slug": "a-component-distance-grade-is-a-metric-that-drives-a-gate-three-ways",
-              "text": "A component-distance grade drives a gate three ways.",
-              "block_index": 87
-            },
-            {
-              "slug": "the-grade-is-a-metric-read-from-the-model-that-drives-a-sensors-decision",
-              "text": "The grade is a model-read metric driving a sensor.",
-              "block_index": 91
-            }
-          ]
-        },
-        {
-          "section_id": "a-compact-reference",
-          "level": 2,
-          "heading_text": "A compact reference",
-          "topic_sentence": "[ref:metrics-table] collects every metric — the decision each drives, where it sits on the hard-soft axis, and who reads it.",
-          "id_source": "derived",
-          "block_index": 93,
-          "points": [
-            {
-              "slug": "every-row-names-a-decision-because-a-metric-that-names-none-was-measured-too-shallow",
-              "text": "Every row names a decision, or was measured too shallow.",
-              "block_index": 97
-            }
-          ]
-        }
-      ],
-      "preamble_points": [
-        {
-          "slug": "a-metric-is-the-sensing-half-of-the-agent-loop",
-          "text": "A metric is the sensing half of the agent loop.",
-          "block_index": 0
-        },
-        {
-          "slug": "the-metric-comes-first-and-must-drive-a-decision",
-          "text": "The metric comes first; it must drive a decision.",
-          "block_index": 3
         }
       ]
     },
@@ -4309,6 +4004,311 @@
           "slug": "the-three-skills-harden-run-and-explain-one-substrate",
           "text": "The three harden, run, and explain one substrate.",
           "block_index": 9
+        }
+      ]
+    },
+    {
+      "slug": "4.5-lifecycles-and-runbooks",
+      "part": 4,
+      "sections": [
+        {
+          "section_id": "lifecycles-first-then-the-failure-map",
+          "level": 2,
+          "heading_text": "Lifecycles first, then the failure map",
+          "topic_sentence": "Start with the lifecycles, because everything else hangs off them.",
+          "id_source": "derived",
+          "block_index": 3,
+          "points": [
+            {
+              "slug": "a-lifecycle-is-the-healthy-path-then-a-failure-map-off-each-node",
+              "text": "A lifecycle: write the healthy path, then map failures.",
+              "block_index": 5
+            },
+            {
+              "slug": "fmea-names-the-way-out-and-the-prohibition-because-the-agent-knows-neither",
+              "text": "FMEA-inspired: name each failure's way out and prohibition.",
+              "block_index": 8
+            },
+            {
+              "slug": "name-the-sin-and-the-way-out-not-the-prohibition-alone",
+              "text": "Pair each prohibition with its sanctioned way out.",
+              "block_index": 12
+            }
+          ]
+        },
+        {
+          "section_id": "runbooks-split-the-deterministic-from-the-judgment",
+          "level": 2,
+          "heading_text": "Runbooks: split the deterministic from the judgment",
+          "topic_sentence": "Once the healthy path and the failure map are written, the thing you hand the agent is a **runbook** (or playbook): the steps to take, whether recovering from a failure or working a fresh ticket.",
+          "id_source": "derived",
+          "block_index": 14,
+          "points": [
+            {
+              "slug": "a-runbook-splits-into-deterministic-and-judgment-steps-governed-differently",
+              "text": "A runbook splits into deterministic and judgment steps.",
+              "block_index": 16
+            }
+          ]
+        },
+        {
+          "section_id": "the-deterministic-parts-get-tools",
+          "level": 3,
+          "heading_text": "The deterministic parts get tools",
+          "topic_sentence": "Anything that has a single correct outcome should be an executable script the agent runs, not a procedure it improvises.",
+          "id_source": "derived",
+          "block_index": 21,
+          "points": [
+            {
+              "slug": "deterministic-parts-get-tools-not-improvisation",
+              "text": "Deterministic steps get executable tools, not improvisation.",
+              "block_index": 22
+            },
+            {
+              "slug": "determinizing-a-step-buys-a-trace-with-two-consumers",
+              "text": "Determinizing buys a trace with two consumers.",
+              "block_index": 25
+            }
+          ]
+        },
+        {
+          "section_id": "the-judgment-parts-the-roughest-algorithm-that-still-fits",
+          "level": 3,
+          "heading_text": "The judgment parts: the roughest algorithm that still fits",
+          "topic_sentence": "**The judgment parts get the roughest algorithm that still fits.** For a well-constrained decision, write the algorithm down and let the agent do the glue.",
+          "id_source": "derived",
+          "block_index": 29,
+          "points": [
+            {
+              "slug": "judgment-parts-get-the-roughest-algorithm-that-still-fits",
+              "text": "Judgment steps get the roughest algorithm that fits.",
+              "block_index": 31
+            },
+            {
+              "slug": "a-judgment-that-is-a-measurement-gets-a-rubric",
+              "text": "A judgment that is a measurement gets a rubric.",
+              "block_index": 33
+            },
+            {
+              "slug": "the-pre-canned-brief-is-the-strongest-form-templating-delegation-itself",
+              "text": "The pre-canned brief templates delegation itself.",
+              "block_index": 36
+            },
+            {
+              "slug": "typing-each-runbook-step-makes-the-deterministic-judgment-split-mechanical",
+              "text": "Typing each step makes the deterministic-judgment split mechanical.",
+              "block_index": 40
+            }
+          ]
+        }
+      ],
+      "preamble_points": [
+        {
+          "slug": "agent-knows-git-not-your-environments-lifecycles-so-write-them-down",
+          "text": "The agent lacks your operating context; write it down.",
+          "block_index": 0
+        }
+      ]
+    },
+    {
+      "slug": "4.6-metrics",
+      "part": 4,
+      "sections": [
+        {
+          "section_id": "measure-one-level-deeper",
+          "level": 2,
+          "heading_text": "Measure one level deeper",
+          "topic_sentence": "John Ousterhout names the rule [cite: ousterhout2018]: **always measure one level deeper** — one level, not as deep as you can go.",
+          "id_source": "derived",
+          "block_index": 5,
+          "points": [
+            {
+              "slug": "measure-one-level-deeper-because-the-surface-number-cannot-act",
+              "text": "Measure one level deeper; the surface number cannot act.",
+              "block_index": 7
+            },
+            {
+              "slug": "a-cloud-bill-reports-but-splitting-it-by-service-acts",
+              "text": "A cloud bill reports; splitting it by service acts.",
+              "block_index": 10
+            },
+            {
+              "slug": "line-coverage-is-the-invoice-level-number-and-the-flagship-is-coverage-one-level-deeper",
+              "text": "Line coverage is the invoice number; go deeper.",
+              "block_index": 12
+            },
+            {
+              "slug": "metrics-run-a-hard-to-soft-spectrum-and-the-mistake-is-treating-one-as-the-other",
+              "text": "Metrics run hard to soft; don't confuse the two.",
+              "block_index": 16
+            }
+          ]
+        },
+        {
+          "section_id": "the-hard-end-cold-start-latency-machine-read-and-model-fed",
+          "level": 2,
+          "heading_text": "The hard end: cold-start latency, machine-read and model-fed",
+          "topic_sentence": "Start at the deterministic end, where a metric is a deterministic quantity with a defined measurement procedure.",
+          "id_source": "derived",
+          "block_index": 19,
+          "points": [
+            {
+              "slug": "cold-start-latency-reads-obviously-as-the-scale-from-zero-penalty",
+              "text": "Cold-start latency reads obviously as the scale-from-zero penalty.",
+              "block_index": 22
+            },
+            {
+              "slug": "the-deeper-cold-start-number-named-runtime-init-not-scale-from-zero-or-image-size",
+              "text": "The deeper number named runtime init, not scale-from-zero.",
+              "block_index": 24
+            },
+            {
+              "slug": "spot-checking-doesnt-scale-so-a-model-reasons-over-the-chain-as-a-longest-path-sum",
+              "text": "Spot-checking fails; a model sums the longest cold-start path.",
+              "block_index": 29
+            },
+            {
+              "slug": "the-hard-ends-defining-move-is-the-number-feeds-the-model",
+              "text": "The hard end's defining move: the number feeds the model.",
+              "block_index": 31
+            },
+            {
+              "slug": "automate-the-map-upkeep-into-the-machine-rather-than-a-runbook-reminder",
+              "text": "Automate map upkeep into the machine, not a reminder.",
+              "block_index": 34
+            },
+            {
+              "slug": "as-built-the-seam-is-in-and-the-data-catches-up",
+              "text": "As-built: the seam is in, the data catches up.",
+              "block_index": 36
+            }
+          ]
+        },
+        {
+          "section_id": "the-flagship-coverage-measured-one-level-deeper",
+          "level": 2,
+          "heading_text": "The flagship: coverage measured one level deeper",
+          "topic_sentence": "Now the middle of the spectrum: the \"measure one level deeper\" rule applied to the number that most often gets it wrong.",
+          "id_source": "derived",
+          "block_index": 38,
+          "points": [
+            {
+              "slug": "line-coverage-answers-a-syntactic-question-not-the-semantic-one",
+              "text": "Line coverage answers a syntactic question, not the semantic one.",
+              "block_index": 41
+            },
+            {
+              "slug": "the-fix-joins-a-traceability-graph-to-the-coverage-oracle",
+              "text": "The fix joins a traceability graph to the coverage oracle.",
+              "block_index": 43
+            },
+            {
+              "slug": "the-composition-counts-model-claims-and-reports-a-named-verdict",
+              "text": "The composition counts model claims and reports a named verdict.",
+              "block_index": 46
+            },
+            {
+              "slug": "the-genre-check-names-this-requirements-based-coverage",
+              "text": "The genre check names this requirements-based coverage.",
+              "block_index": 48
+            },
+            {
+              "slug": "one-primitive-supports-several-aggregations-each-a-different-decision",
+              "text": "One primitive supports several aggregations, each a different decision.",
+              "block_index": 51
+            },
+            {
+              "slug": "the-honesty-layer-reports-a-breakdown-so-the-number-affords-engineering",
+              "text": "The honesty layer reports a breakdown, not a percentage.",
+              "block_index": 54
+            },
+            {
+              "slug": "measuring-one-level-deeper-cost-a-join-not-a-rebuild",
+              "text": "Measuring one level deeper cost a join, not a rebuild.",
+              "block_index": 56
+            }
+          ]
+        },
+        {
+          "section_id": "mmm-drain",
+          "level": 2,
+          "heading_text": "The dual: draining unmodelled code",
+          "topic_sentence": "The flagship metric had a blind spot: it measured model→code, so code with no model at all stayed invisible to it — and this dual is what finds it.",
+          "id_source": "explicit",
+          "block_index": 58,
+          "points": []
+        },
+        {
+          "section_id": "the-soft-end-doc-derived-tests",
+          "level": 2,
+          "heading_text": "The soft end: doc-derived tests",
+          "topic_sentence": "Slide to the far end of the spectrum, where the metric stops being a number a threshold can act on and becomes a judgment a human has to make.",
+          "id_source": "derived",
+          "block_index": 66,
+          "points": [
+            {
+              "slug": "a-doc-derived-test-pins-a-doc-claim-and-its-metric-is-genuinely-soft",
+              "text": "A doc-derived test pins a doc-claim; its metric is soft.",
+              "block_index": 69
+            },
+            {
+              "slug": "the-soft-metric-is-inseparable-from-a-readiness-judgment-so-a-gate-would-manufacture-hollow-tests",
+              "text": "Gating this soft signal manufactures hollow tests.",
+              "block_index": 72
+            }
+          ]
+        },
+        {
+          "section_id": "the-model-runs-the-machinery",
+          "level": 2,
+          "heading_text": "The model runs the machinery",
+          "topic_sentence": "The hard end and the flagship follow the same pattern.",
+          "id_source": "derived",
+          "block_index": 82,
+          "points": [
+            {
+              "slug": "the-model-is-not-a-picture-of-the-machinery-it-is-the-machinery",
+              "text": "The model runs the machinery, rather than picturing it.",
+              "block_index": 85
+            },
+            {
+              "slug": "a-component-distance-grade-is-a-metric-that-drives-a-gate-three-ways",
+              "text": "A component-distance grade drives a gate three ways.",
+              "block_index": 87
+            },
+            {
+              "slug": "the-grade-is-a-metric-read-from-the-model-that-drives-a-sensors-decision",
+              "text": "The grade is a model-read metric driving a sensor.",
+              "block_index": 91
+            }
+          ]
+        },
+        {
+          "section_id": "a-compact-reference",
+          "level": 2,
+          "heading_text": "A compact reference",
+          "topic_sentence": "[ref:metrics-table] collects every metric — the decision each drives, where it sits on the hard-soft axis, and who reads it.",
+          "id_source": "derived",
+          "block_index": 93,
+          "points": [
+            {
+              "slug": "every-row-names-a-decision-because-a-metric-that-names-none-was-measured-too-shallow",
+              "text": "Every row names a decision, or was measured too shallow.",
+              "block_index": 97
+            }
+          ]
+        }
+      ],
+      "preamble_points": [
+        {
+          "slug": "a-metric-is-the-sensing-half-of-the-agent-loop",
+          "text": "A metric is the sensing half of the agent loop.",
+          "block_index": 0
+        },
+        {
+          "slug": "the-metric-comes-first-and-must-drive-a-decision",
+          "text": "The metric comes first; it must drive a decision.",
+          "block_index": 3
         }
       ]
     },

@@ -230,11 +230,11 @@
         "1.4-why-mage-follows-from-the-machine",
         "3.1-the-agent-stack",
         "3.3-the-governed-environment",
-        "3.4-lifecycles-and-runbooks",
         "3.6-when-guardrails-collide",
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "4.4-the-skills",
+        "4.5-lifecycles-and-runbooks",
         "5.6-governance-conversions",
         "6.5-implications-for-se"
       ],
@@ -283,11 +283,11 @@
         "2.12-keeping-models-in-sync",
         "3.1-the-agent-stack",
         "3.2-models-and-the-semantic-gap",
-        "3.5-metrics",
         "3.6-when-guardrails-collide",
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "4.3-validating-change",
+        "4.6-metrics",
         "5.4-the-built-system"
       ],
       "body_depth": 16,
@@ -325,9 +325,9 @@
         "2.3-the-executable-zoo",
         "3.2-models-and-the-semantic-gap",
         "3.3-the-governed-environment",
-        "3.5-metrics",
         "4.1-the-mage-workflow",
         "4.3-validating-change",
+        "4.6-metrics",
         "5.6-governance-conversions"
       ],
       "body_depth": 7,
@@ -727,21 +727,6 @@
       "exempt": null
     },
     {
-      "slug": "3.4-lifecycles-and-runbooks",
-      "advances": [
-        "govern-the-environment"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "3.5-metrics",
-      "advances": [
-        "modeling-thesis",
-        "alignment-thesis"
-      ],
-      "exempt": null
-    },
-    {
       "slug": "3.6-when-guardrails-collide",
       "advances": [
         "govern-the-environment",
@@ -781,6 +766,21 @@
       "advances": [
         "govern-the-environment",
         "failures-become-machinery"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "4.5-lifecycles-and-runbooks",
+      "advances": [
+        "govern-the-environment"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "4.6-metrics",
+      "advances": [
+        "modeling-thesis",
+        "alignment-thesis"
       ],
       "exempt": null
     },
@@ -952,11 +952,11 @@
           "1.4-why-mage-follows-from-the-machine",
           "3.1-the-agent-stack",
           "3.3-the-governed-environment",
-          "3.4-lifecycles-and-runbooks",
           "3.6-when-guardrails-collide",
           "4.1-the-mage-workflow",
           "4.2-brownfield",
           "4.4-the-skills",
+          "4.5-lifecycles-and-runbooks",
           "5.6-governance-conversions",
           "6.5-implications-for-se"
         ]
@@ -978,11 +978,11 @@
           "2.12-keeping-models-in-sync",
           "3.1-the-agent-stack",
           "3.2-models-and-the-semantic-gap",
-          "3.5-metrics",
           "3.6-when-guardrails-collide",
           "4.1-the-mage-workflow",
           "4.2-brownfield",
           "4.3-validating-change",
+          "4.6-metrics",
           "5.4-the-built-system"
         ]
       }

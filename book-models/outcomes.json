@@ -245,26 +245,6 @@
             ]
           },
           {
-            "lesson": "3.4-lifecycles-and-runbooks",
-            "own_outcomes": [],
-            "section_outcomes": [
-              "lifecycles-first-then-the-failure-map::map-a-lifecycle-s-healthy-path-and-the-failu",
-              "runbooks-split-the-deterministic-from-the-judgment::author-a-runbook-that-gives-deterministic-steps",
-              "the-judgment-parts-the-roughest-algorithm-that-still-fits::apply-the-roughest-algorithm-rule-to-a-judgmen"
-            ]
-          },
-          {
-            "lesson": "3.5-metrics",
-            "own_outcomes": [],
-            "section_outcomes": [
-              "measure-one-level-deeper::compute-a-metric-one-level-deeper-than-the-numbe",
-              "the-hard-end-cold-start-latency-machine-read-and-model-fed::analyze-a-hard-machine-read-metric-whose-definin",
-              "the-flagship-coverage-measured-one-level-deeper::compute-coverage-measured-one-level-deeper-model",
-              "the-soft-end-doc-derived-tests::classify-a-soft-judgment-laden-metric-that-aims-a",
-              "the-model-runs-the-machinery::explain-why-a-structured-model-is-not-a-picture"
-            ]
-          },
-          {
             "lesson": "3.6-when-guardrails-collide",
             "own_outcomes": [],
             "section_outcomes": [
@@ -310,6 +290,26 @@
             "section_outcomes": [
               "self-governance-the-catalogue-and-the-posture::use-the-self-governance-skill-convert-a-recu",
               "what-the-day-makes-of-you::run-enough-of-these-days-and-the-shape-of-th"
+            ]
+          },
+          {
+            "lesson": "4.5-lifecycles-and-runbooks",
+            "own_outcomes": [],
+            "section_outcomes": [
+              "lifecycles-first-then-the-failure-map::map-a-lifecycle-s-healthy-path-and-the-failu",
+              "runbooks-split-the-deterministic-from-the-judgment::author-a-runbook-that-gives-deterministic-steps",
+              "the-judgment-parts-the-roughest-algorithm-that-still-fits::apply-the-roughest-algorithm-rule-to-a-judgmen"
+            ]
+          },
+          {
+            "lesson": "4.6-metrics",
+            "own_outcomes": [],
+            "section_outcomes": [
+              "measure-one-level-deeper::compute-a-metric-one-level-deeper-than-the-numbe",
+              "the-hard-end-cold-start-latency-machine-read-and-model-fed::analyze-a-hard-machine-read-metric-whose-definin",
+              "the-flagship-coverage-measured-one-level-deeper::compute-coverage-measured-one-level-deeper-model",
+              "the-soft-end-doc-derived-tests::classify-a-soft-judgment-laden-metric-that-aims-a",
+              "the-model-runs-the-machinery::explain-why-a-structured-model-is-not-a-picture"
             ]
           }
         ]

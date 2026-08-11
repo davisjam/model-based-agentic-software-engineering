@@ -394,7 +394,7 @@
 </div>
 <div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--coverage-model-mapping">
 <div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Coverage → model-node mapping</a></div>
-<p class="topic">Coverage-to-node mapping projects the test suite&#x27;s coverage onto the model&#x27;s *nodes* — states, seams, invariants, journey endpoints — instead of its lines (node coverage over line coverage, as [Metrics](3.5-metrics.html) laid out).</p>
+<p class="topic">Coverage-to-node mapping projects the test suite&#x27;s coverage onto the model&#x27;s *nodes* — states, seams, invariants, journey endpoints — instead of its lines (node coverage over line coverage, as [Metrics](4.6-metrics.html) laid out).</p>
 </div>
 <div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--journey-task-closure">
 <div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Journey task-closure — asserting the goal completed</a></div>
@@ -602,64 +602,6 @@
 <div class="sec-h"><a href="../book/3.3-the-governed-environment.html">The residual: goals no mechanism reaches</a></div>
 <p class="topic">The synthesis reads as if it settles everything.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify the residual — goals that are neither preventable nor detectable because the failure is an absence nobody specified — explain why it sets the throughput ceiling and is the complement of the two moves rather than a third axis value, and see how authoring the missing spec pulls a goal out of it. <span class="prov">derived</span></span></li></ul></div>
-</div>
-</div>
-<div class="chapter">
-<h3 id="ch-3-4-lifecycles-and-runbooks"><span class="tier-kick">Lesson</span><a href="../book/3.4-lifecycles-and-runbooks.html" class="ch-link">3.4-lifecycles-and-runbooks</a> <span class="ch-slug">3.4-lifecycles-and-runbooks</span></h3>
-<div class="section s2" id="sec-3-4-lifecycles-and-runbooks--lifecycles-first-then-the-failure-map">
-<div class="sec-h"><a href="../book/3.4-lifecycles-and-runbooks.html">Lifecycles first, then the failure map</a></div>
-<p class="topic">Start with the lifecycles, because everything else hangs off them.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can map a lifecycle — the healthy path of a recurring activity plus, from each node, its failure states and the action for each — as a failure-mode-and-effects grid, and encode the way out and the prohibition an agent cannot supply on its own. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-4-lifecycles-and-runbooks--runbooks-split-the-deterministic-from-the-judgment">
-<div class="sec-h"><a href="../book/3.4-lifecycles-and-runbooks.html">Runbooks: split the deterministic from the judgment</a></div>
-<p class="topic">Once the healthy path and the failure map are written, the thing you hand the agent is a **runbook** (or playbook): the steps to take, whether recovering from a failure or working a fresh ticket.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this section, the reader can author a runbook that separates deterministic steps from judgment ones — giving the deterministic parts an executable tool that also yields a reusable trace, and the judgment parts a rubric or the roughest algorithm that still fits, up to a pre-canned brief for delegation. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s3" id="sec-3-4-lifecycles-and-runbooks--the-deterministic-parts-get-tools">
-<div class="sec-h"><a href="../book/3.4-lifecycles-and-runbooks.html">The deterministic parts get tools</a></div>
-<p class="topic">Anything that has a single correct outcome should be an executable script the agent runs, not a procedure it improvises.</p>
-</div>
-<div class="section s3" id="sec-3-4-lifecycles-and-runbooks--the-judgment-parts-the-roughest-algorithm-that-still-fits">
-<div class="sec-h"><a href="../book/3.4-lifecycles-and-runbooks.html">The judgment parts: the roughest algorithm that still fits</a></div>
-<p class="topic">**The judgment parts get the roughest algorithm that still fits.** For a well-constrained decision, write the algorithm down and let the agent do the glue.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the roughest-algorithm-that-still-fits rule to a judgment step — giving a well-constrained decision an algorithm, an open-ended one only hints, a measurement a rubric, and a delegated task a pre-canned brief. <span class="prov">derived</span></span></li></ul></div>
-</div>
-</div>
-<div class="chapter">
-<h3 id="ch-3-5-metrics"><span class="tier-kick">Lesson</span><a href="../book/3.5-metrics.html" class="ch-link">3.5-metrics</a> <span class="ch-slug">3.5-metrics</span></h3>
-<div class="section s2" id="sec-3-5-metrics--measure-one-level-deeper">
-<div class="sec-h"><a href="../book/3.5-metrics.html">Measure one level deeper</a></div>
-<p class="topic">John Ousterhout names the rule [cite: ousterhout2018]: **always measure one level deeper** — one level, not as deep as you can go.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply Ousterhout&#x27;s rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-5-metrics--the-hard-end-cold-start-latency-machine-read-and-model-fed">
-<div class="sec-h"><a href="../book/3.5-metrics.html">The hard end: cold-start latency, machine-read and model-fed</a></div>
-<p class="topic">Start at the deterministic end, where a metric is a deterministic quantity with a defined measurement procedure.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can analyze a hard, deterministic metric at the level where the decision lives — reading cold-start latency one level deeper to name runtime initialization rather than scale-from-zero, computing a longest-path worst case over a service graph, and feeding the number into a structured deployment model a recompute tool consumes. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-5-metrics--the-flagship-coverage-measured-one-level-deeper">
-<div class="sec-h"><a href="../book/3.5-metrics.html">The flagship: coverage measured one level deeper</a></div>
-<p class="topic">Now the middle of the spectrum: the &quot;measure one level deeper&quot; rule applied to the number that most often gets it wrong.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can compute coverage measured one level deeper — joining a traceability graph&#x27;s claim-to-anchor edges with the coverage oracle so the metric counts model claims instead of lines, names an unexercised invariant instead of a percentage, and reports an honest exercised/unmeasurable/out-of-surface breakdown. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-5-metrics--mmm-drain">
-<div class="sec-h"><a href="../book/3.5-metrics.html">The dual: draining unmodelled code</a></div>
-<p class="topic">The flagship metric had a blind spot: it measured model→code, so code with no model at all stayed invisible to it — and this dual is what finds it.</p>
-</div>
-<div class="section s2" id="sec-3-5-metrics--the-soft-end-doc-derived-tests">
-<div class="sec-h"><a href="../book/3.5-metrics.html">The soft end: doc-derived tests</a></div>
-<p class="topic">Slide to the far end of the spectrum, where the metric stops being a number a threshold can act on and becomes a judgment a human has to make.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can classify a soft metric — a doc-derived test&#x27;s coverage-of-doc-claims — as one that aims a reader rather than deciding, recognize why its softness is inseparable from a readiness judgment about the seam, and see why wiring it to a blocking gate manufactures hollow tests. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-5-metrics--the-model-runs-the-machinery">
-<div class="sec-h"><a href="../book/3.5-metrics.html">The model runs the machinery</a></div>
-<p class="topic">The hard end and the flagship follow the same pattern.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why the MBSE models are consumed at runtime to produce the metrics — the cold-start numbers and the coverage graph both read at check time — so a component-distance grade read from the model drives a pre-commit gate three ways, the model being the machinery rather than a picture of it. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-5-metrics--a-compact-reference">
-<div class="sec-h"><a href="../book/3.5-metrics.html">A compact reference</a></div>
-<p class="topic">[ref:metrics-table] collects every metric — the decision each drives, where it sits on the hard-soft axis, and who reads it.</p>
 </div>
 </div>
 <div class="chapter">
@@ -925,6 +867,64 @@ that repays weeks on one subsystem repays far more across a fleet.</a></div>
 <div class="sec-h"><a href="../book/4.4-the-skills.html">What the day makes of you</a></div>
 <p class="topic">Run enough of these days and the shape of the work stands out.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can run enough of these days and the shape of the work stands out. <span class="prov">derived</span></span></li></ul></div>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-4-5-lifecycles-and-runbooks"><span class="tier-kick">Lesson</span><a href="../book/4.5-lifecycles-and-runbooks.html" class="ch-link">4.5-lifecycles-and-runbooks</a> <span class="ch-slug">4.5-lifecycles-and-runbooks</span></h3>
+<div class="section s2" id="sec-4-5-lifecycles-and-runbooks--lifecycles-first-then-the-failure-map">
+<div class="sec-h"><a href="../book/4.5-lifecycles-and-runbooks.html">Lifecycles first, then the failure map</a></div>
+<p class="topic">Start with the lifecycles, because everything else hangs off them.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can map a lifecycle — the healthy path of a recurring activity plus, from each node, its failure states and the action for each — as a failure-mode-and-effects grid, and encode the way out and the prohibition an agent cannot supply on its own. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-4-5-lifecycles-and-runbooks--runbooks-split-the-deterministic-from-the-judgment">
+<div class="sec-h"><a href="../book/4.5-lifecycles-and-runbooks.html">Runbooks: split the deterministic from the judgment</a></div>
+<p class="topic">Once the healthy path and the failure map are written, the thing you hand the agent is a **runbook** (or playbook): the steps to take, whether recovering from a failure or working a fresh ticket.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this section, the reader can author a runbook that separates deterministic steps from judgment ones — giving the deterministic parts an executable tool that also yields a reusable trace, and the judgment parts a rubric or the roughest algorithm that still fits, up to a pre-canned brief for delegation. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s3" id="sec-4-5-lifecycles-and-runbooks--the-deterministic-parts-get-tools">
+<div class="sec-h"><a href="../book/4.5-lifecycles-and-runbooks.html">The deterministic parts get tools</a></div>
+<p class="topic">Anything that has a single correct outcome should be an executable script the agent runs, not a procedure it improvises.</p>
+</div>
+<div class="section s3" id="sec-4-5-lifecycles-and-runbooks--the-judgment-parts-the-roughest-algorithm-that-still-fits">
+<div class="sec-h"><a href="../book/4.5-lifecycles-and-runbooks.html">The judgment parts: the roughest algorithm that still fits</a></div>
+<p class="topic">**The judgment parts get the roughest algorithm that still fits.** For a well-constrained decision, write the algorithm down and let the agent do the glue.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the roughest-algorithm-that-still-fits rule to a judgment step — giving a well-constrained decision an algorithm, an open-ended one only hints, a measurement a rubric, and a delegated task a pre-canned brief. <span class="prov">derived</span></span></li></ul></div>
+</div>
+</div>
+<div class="chapter">
+<h3 id="ch-4-6-metrics"><span class="tier-kick">Lesson</span><a href="../book/4.6-metrics.html" class="ch-link">4.6-metrics</a> <span class="ch-slug">4.6-metrics</span></h3>
+<div class="section s2" id="sec-4-6-metrics--measure-one-level-deeper">
+<div class="sec-h"><a href="../book/4.6-metrics.html">Measure one level deeper</a></div>
+<p class="topic">John Ousterhout names the rule [cite: ousterhout2018]: **always measure one level deeper** — one level, not as deep as you can go.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply Ousterhout&#x27;s rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-4-6-metrics--the-hard-end-cold-start-latency-machine-read-and-model-fed">
+<div class="sec-h"><a href="../book/4.6-metrics.html">The hard end: cold-start latency, machine-read and model-fed</a></div>
+<p class="topic">Start at the deterministic end, where a metric is a deterministic quantity with a defined measurement procedure.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can analyze a hard, deterministic metric at the level where the decision lives — reading cold-start latency one level deeper to name runtime initialization rather than scale-from-zero, computing a longest-path worst case over a service graph, and feeding the number into a structured deployment model a recompute tool consumes. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-4-6-metrics--the-flagship-coverage-measured-one-level-deeper">
+<div class="sec-h"><a href="../book/4.6-metrics.html">The flagship: coverage measured one level deeper</a></div>
+<p class="topic">Now the middle of the spectrum: the &quot;measure one level deeper&quot; rule applied to the number that most often gets it wrong.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can compute coverage measured one level deeper — joining a traceability graph&#x27;s claim-to-anchor edges with the coverage oracle so the metric counts model claims instead of lines, names an unexercised invariant instead of a percentage, and reports an honest exercised/unmeasurable/out-of-surface breakdown. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-4-6-metrics--mmm-drain">
+<div class="sec-h"><a href="../book/4.6-metrics.html">The dual: draining unmodelled code</a></div>
+<p class="topic">The flagship metric had a blind spot: it measured model→code, so code with no model at all stayed invisible to it — and this dual is what finds it.</p>
+</div>
+<div class="section s2" id="sec-4-6-metrics--the-soft-end-doc-derived-tests">
+<div class="sec-h"><a href="../book/4.6-metrics.html">The soft end: doc-derived tests</a></div>
+<p class="topic">Slide to the far end of the spectrum, where the metric stops being a number a threshold can act on and becomes a judgment a human has to make.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can classify a soft metric — a doc-derived test&#x27;s coverage-of-doc-claims — as one that aims a reader rather than deciding, recognize why its softness is inseparable from a readiness judgment about the seam, and see why wiring it to a blocking gate manufactures hollow tests. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-4-6-metrics--the-model-runs-the-machinery">
+<div class="sec-h"><a href="../book/4.6-metrics.html">The model runs the machinery</a></div>
+<p class="topic">The hard end and the flagship follow the same pattern.</p>
+<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why the MBSE models are consumed at runtime to produce the metrics — the cold-start numbers and the coverage graph both read at check time — so a component-distance grade read from the model drives a pre-commit gate three ways, the model being the machinery rather than a picture of it. <span class="prov">derived</span></span></li></ul></div>
+</div>
+<div class="section s2" id="sec-4-6-metrics--a-compact-reference">
+<div class="sec-h"><a href="../book/4.6-metrics.html">A compact reference</a></div>
+<p class="topic">[ref:metrics-table] collects every metric — the decision each drives, where it sits on the hard-soft axis, and who reads it.</p>
 </div>
 </div>
 </section>
