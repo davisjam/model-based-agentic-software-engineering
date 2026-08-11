@@ -1539,7 +1539,7 @@
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 14
+            "occ": 11
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -1723,7 +1723,7 @@
           },
           {
             "file": "book/appendices-front-door.html",
-            "occ": 17
+            "occ": 16
           },
           {
             "file": "book/appendix-a-context-management-stack.html",
@@ -1959,7 +1959,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 126
+            "occ": 124
           },
           {
             "file": "book/index.html",
@@ -1971,27 +1971,27 @@
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 16
+            "occ": 15
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 17
+            "occ": 16
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 16
+            "occ": 15
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 17
-          },
-          {
-            "file": "book/part-5-intro.html",
             "occ": 16
           },
           {
-            "file": "book/part-6-intro.html",
+            "file": "book/part-5-intro.html",
             "occ": 15
+          },
+          {
+            "file": "book/part-6-intro.html",
+            "occ": 14
           }
         ],
         "book-pdf": [
@@ -2867,7 +2867,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 2
+            "occ": 3
           }
         ]
       }
@@ -6309,7 +6309,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "constructing-the-gee.html",
