@@ -12,7 +12,8 @@ against the history of software engineering.
 > engineering capital.
 
 These chapters ask what survives once the method and its case are behind us. The industrial
-organizations return, this time as comparative analysis rather than field guide — the question shifts
+organizations return, this time as comparative analysis rather than as the Field Guide
+([appendix: appendix-field-guide]) — the question shifts
 from what you can learn from an organization to what pattern it instantiates.
 
 From there the argument steps outside software entirely, to the disciplines that already build from
