@@ -12,7 +12,7 @@ fail-loud census over the seven primary source roots.
 | prototype — Apr 9 | 26,956 | 22,908 | 0.85× |
 | mechanization — May 31 | 302,844 | 751,050 | 2.48× |
 | hardening — Jun 30 | 337,905 | 1,244,194 | 3.68× |
-| now — Aug 3 | {{prod_loc}} | {{support_loc}} | 3.06× |
+| now — Aug 3 | 491,090 | 1,501,907 | 3.06× |
 
 The apparatus starts below parity (0.85×), crosses production at mechanization (2.48×), peaks at
 hardening (3.68×), then eases to 3.06× as feature work resumes on the finished environment — larger
