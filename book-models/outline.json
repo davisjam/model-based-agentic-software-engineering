@@ -7,7 +7,7 @@
     "derived_ids": 255,
     "missing_topic_sentence": 7,
     "sections_drained": 163,
-    "paragraph_points": 486
+    "paragraph_points": 487
   },
   "chapters": [
     {
@@ -2302,42 +2302,42 @@
           "heading_text": "The loop, one turn at a time",
           "topic_sentence": "**Need.** A turn begins with something you want to be true — a feature to ship, a property to guarantee, a class of bug to end.",
           "id_source": "derived",
-          "block_index": 10,
+          "block_index": 12,
           "points": [
             {
               "slug": "a-turn-begins-with-a-need-named-plainly",
               "text": "A turn begins with a need, named plainly.",
-              "block_index": 11
+              "block_index": 13
             },
             {
               "slug": "model-the-need-into-something-an-agent-can-reason-through",
               "text": "Model the need into a representation an agent can reason through.",
-              "block_index": 13
+              "block_index": 15
             },
             {
               "slug": "the-fleet-does-the-implementation-against-the-model",
               "text": "The fleet writes the implementation against the model.",
-              "block_index": 15
+              "block_index": 17
             },
             {
               "slug": "validation-re-checks-the-work-against-the-model-automatically",
               "text": "Validation re-checks the work against the model, automatically and forever.",
-              "block_index": 17
+              "block_index": 19
             },
             {
               "slug": "failures-are-the-agenda-not-an-interruption",
               "text": "Failure is the agenda, not an interruption.",
-              "block_index": 19
+              "block_index": 21
             },
             {
               "slug": "a-recurring-failure-earns-a-durable-mechanism",
               "text": "The second time a failure recurs, it earns a durable mechanism.",
-              "block_index": 21
+              "block_index": 23
             },
             {
               "slug": "each-turn-leaves-the-environment-more-capable-than-before",
               "text": "Each turn leaves the environment more capable than the last.",
-              "block_index": 23
+              "block_index": 25
             }
           ]
         },
@@ -2347,22 +2347,22 @@
           "heading_text": "Closing the loop: governance conversion",
           "topic_sentence": "When a check goes red, the reflex the method trains is not to patch the instance but to close the class it belongs to.",
           "id_source": "explicit",
-          "block_index": 25,
+          "block_index": 27,
           "points": [
             {
               "slug": "a-conversion-runs-six-steps",
               "text": "A conversion runs the same six steps.",
-              "block_index": 27
+              "block_index": 29
             },
             {
               "slug": "the-recurrence-is-the-information",
               "text": "The recurrence itself is the information.",
-              "block_index": 31
+              "block_index": 33
             },
             {
               "slug": "some-conversions-bank-judgment-not-machinery",
               "text": "Some conversions bank judgment, not machinery.",
-              "block_index": 33
+              "block_index": 35
             }
           ]
         },
@@ -2372,27 +2372,27 @@
           "heading_text": "From soft to hard",
           "topic_sentence": "The mechanisms a conversion produces sort along one axis: soft governance *aims* the agent, hard governance *holds* regardless of cooperation.",
           "id_source": "explicit",
-          "block_index": 35,
+          "block_index": 37,
           "points": [
             {
               "slug": "soft-aims-hard-holds",
               "text": "Soft governance aims the agent; hard governance holds.",
-              "block_index": 37
+              "block_index": 39
             },
             {
               "slug": "never-happen-specifies-a-hard-mechanism",
               "text": "\"This must never happen\" specifies a hard mechanism.",
-              "block_index": 40
+              "block_index": 42
             },
             {
               "slug": "the-second-occurrence-earns-a-lint",
               "text": "The second occurrence of a failure earns a lint.",
-              "block_index": 42
+              "block_index": 44
             },
             {
               "slug": "convert-judgment-into-infrastructure-encode-once",
               "text": "Convert judgment into infrastructure; encode each call once.",
-              "block_index": 45
+              "block_index": 47
             }
           ]
         },
@@ -2402,22 +2402,22 @@
           "heading_text": "The daily practice",
           "topic_sentence": "Put end to end, the cycle has a daily shape.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 49,
           "points": [
             {
               "slug": "the-loop-seen-from-the-desk-is-a-daily-rhythm",
               "text": "Seen from the desk, the loop is a daily rhythm.",
-              "block_index": 48
+              "block_index": 50
             },
             {
               "slug": "kaizen-is-the-manufacturing-name-for-this-daily-loop",
               "text": "Manufacturing named this daily loop first; MAGE runs it on software.",
-              "block_index": 50
+              "block_index": 52
             },
             {
               "slug": "the-loop-is-not-tied-to-one-product",
               "text": "The loop is not tied to one product.",
-              "block_index": 56
+              "block_index": 58
             }
           ]
         },
@@ -2427,27 +2427,27 @@
           "heading_text": "Task sizing",
           "topic_sentence": "The unit of work you hand an agent should be large enough to exploit the model's capabilities and small enough that its result can be meaningfully evaluated.",
           "id_source": "explicit",
-          "block_index": 62,
+          "block_index": 64,
           "points": [
             {
               "slug": "size-each-task-to-a-leap-the-fleet-can-check",
               "text": "Size each task to a leap the fleet can check.",
-              "block_index": 64
+              "block_index": 66
             },
             {
               "slug": "keep-leaps-short-so-per-step-risk-cannot-compound",
               "text": "Keep leaps short so per-step risk cannot compound.",
-              "block_index": 69
+              "block_index": 71
             },
             {
               "slug": "docable-sizes-the-leap-down-to-checkable-typed-edits",
               "text": "DocAble sizes the leap down to checkable typed edits.",
-              "block_index": 71
+              "block_index": 73
             },
             {
               "slug": "a-well-sized-transformation-of-the-wrong-shape-still-fails",
               "text": "A well-sized transformation of the wrong shape still fails.",
-              "block_index": 74
+              "block_index": 76
             }
           ]
         },
@@ -2457,12 +2457,12 @@
           "heading_text": "What the rest of this Part does",
           "topic_sentence": "The chapters ahead take the loop off the page and run it, and each runs a conversion at a different scale.",
           "id_source": "derived",
-          "block_index": 76,
+          "block_index": 78,
           "points": [
             {
               "slug": "this-part-puts-the-method-to-work-chapter-by-chapter",
               "text": "This Part puts the method to work, chapter by chapter.",
-              "block_index": 77
+              "block_index": 79
             }
           ]
         }
@@ -2474,14 +2474,19 @@
           "block_index": 0
         },
         {
-          "slug": "the-substrate-routes-each-response-to-one-method-step",
-          "text": "Each substrate property routes to one step of the method.",
+          "slug": "parts-ii-iii-taught-nouns-this-table-says-why-they-cohere",
+          "text": "Parts II and III taught the nouns; this table says why they belong together.",
           "block_index": 2
+        },
+        {
+          "slug": "the-cycle-below-runs-the-three-most-populated-verbs",
+          "text": "The cycle below runs the three verbs that recur most in the table.",
+          "block_index": 6
         },
         {
           "slug": "the-workflow-is-a-loop-you-run-not-a-checklist-you-finish",
           "text": "The workflow is a loop you run, not a checklist you finish.",
-          "block_index": 8
+          "block_index": 10
         }
       ]
     },
