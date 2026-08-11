@@ -19,7 +19,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 - **[DECLARED]** (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. _(primary: the program · elaborated by: constraints-and-sensors, from-soft-to-hard)_ — _anchor: The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (from-soft-to-hard, in the MAGE Workflow chapter — re-homed in round-6)._
 - **[DECLARED]** (create) After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human's head. _(primary: the program · elaborated by: Module 3, a-drift-check-proves-agreement-not-correctness)_ — _anchor: The Modeling Thesis, developed across Part 3 (the executable 4+1 zoo)._
 
-## Module 1 — The Mindset
+## Module 1 — The New Engineering Problem
 
 - **[DECLARED]** (evaluate) After this Part, the reader can judge which engineering tasks warrant the book's machinery — grounded in the founding premise that implementation has become abundant, so judgment is the scarce resource — and read an agent as a loop whose behavior you condition by handing it a model of its world. — _anchor: 1.1 'Not every programming task needs the machinery this book describes' + the founding premise (commodity intelligence → judgment is the scarce resource) + 1.3 'an agent runs in a loop … give it a model of the world'._
 

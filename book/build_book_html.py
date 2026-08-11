@@ -425,7 +425,7 @@ _PART_DIRS = {
 # chapters still names correctly, and so the TOC/index label is authoritative from one place).
 _PART_TITLES = {
     0: "Front Matter",
-    1: "The Mindset",
+    1: "The New Engineering Problem",
     2: "Modeling",
     3: "Alignment",
     4: "The MAGE Method",
@@ -437,13 +437,14 @@ _PART_TITLES = {
 # The DO-ladder question each numbered Part answers — printed on the Part-opener orientation verso (the
 # PDF spread) under a fixed label. One question per Part 1-6, matching the corrected outcomes model: each
 # Part is framed by the single reasoning move the reader learns to make. Part 1 is the mindset opener (a
-# "why", the reasoning-problem setup), not an instrumental "how do I"; Parts 2-4 are "how do I", Part 5 a
-# "why", Part 6 a "where". Single source of truth: book_typst.py reads these (imported as `bb`) for the
+# "why", the new-engineering-problem setup — what abundant implementation makes scarce), not an
+# instrumental "how do I"; Parts 2-4 are "how do I", Part 5 a "why", Part 6 a "where". Single source of
+# truth: book_typst.py reads these (imported as `bb`) for the
 # orientation verso AND the PART-OPENER SPREAD sensor greps the same label + strings, so the print divider
 # and its gate cannot disagree on which question a Part carries.
 _PART_OPENER_QUESTION_LABEL = "Question this Part answers"
 _PART_OPENER_QUESTIONS = {
-    1: "Why is engineering a reasoning problem, not a coding problem?",
+    1: "What becomes the engineering problem when implementation becomes abundant?",
     2: "How do I identify useful models?",
     3: "How do I encode authority into my environment?",
     4: "How do I practice MAGE?",
