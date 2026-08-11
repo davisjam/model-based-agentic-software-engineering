@@ -158,22 +158,16 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 - **[DECLARED]** (analyze) After this Part, the reader can trace how the method grew from a single reviewer to a multi-agent engineering organization in one real system, and relate each governance move to the problem that forced it. — _anchor: The Evidence is the ADA/DocAble case study: context -> timeline/work -> built-system -> road-to-MAGE (role progression)._
 - _elaborates (owned by Module 4):_ (apply) After this Part, the reader can put the method to work: run the MAGE workflow loop, induce models from an existing codebase, deploy the self-operate / self-govern / self-communicate skills, hold the result with generative validation, and convert a recurring failure into a durable mechanism.
 
-### Lesson 5.1-the-ada-context
+### Lesson 5.1-the-problem-and-the-bar
 
 
-### Lesson 5.2-why-this-system-was-a-hard-case
+### Lesson 5.2-the-build
 
 
-### Lesson 5.3-the-timeline-and-the-work
+### Lesson 5.3-the-road-to-mage
 
 
-### Lesson 5.4-the-built-system
-
-
-### Lesson 5.5-the-road-to-mage
-
-
-### Lesson 5.6-governance-conversions
+### Lesson 5.4-failures-that-became-infrastructure
 
 
 ## Module 6 — The Profession
