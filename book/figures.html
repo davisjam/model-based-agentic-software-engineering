@@ -583,7 +583,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="1.1-the-printer.html">1&nbsp; The Printer</a></li>
 <li><a class="" href="1.2-mage-by-example.html">2&nbsp; MAGE by Example</a></li>
 <li><a class="" href="1.3-the-reasoning-horizon.html">3&nbsp; The Reasoning Horizon</a></li>
-<li><a class="" href="1.4-why-mage-follows-from-the-machine.html">4&nbsp; Why MAGE Follows from the Machine</a></li>
+<li><a class="" href="1.4-the-new-engineering-problem.html">4&nbsp; The New Engineering Problem</a></li>
 <li><a class="" href="1.5-the-engineers-seat.html">5&nbsp; The Engineer's Seat</a></li>
 <li class="part">Part 2 — Modeling</li>
 <li><a class="" href="part-2-intro.html">Modeling</a></li>
@@ -712,7 +712,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 90 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 856"
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 88 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 856"
      role="group" aria-labelledby="fig-0-1-1-mmTitle fig-0-1-1-mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-0-1-1-mmTitle">The MAGE method at a glance — a fork between engineering capital and engineering churn, with the two theses as gates</title>
@@ -1755,143 +1755,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <rect x="575" y="484" width="320" height="40" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="735" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">Productive progress</text>
-</svg><figcaption data-short="The Reasoning Horizon"><span class="fig-label">Figure 1.3-1.</span> <em>The Reasoning Horizon.</em> A long-horizon task's reasoning state grows until it outruns the finite fast working memory that must hold it. Past that point the state is externalized, compressed, and reconstructed — and because every round trip is lossy, information is lost, rediscovered, and contradicted. The branch ends in churn: effort spent rebuilding the picture rather than advancing the system.</figcaption></figure><p class="gallery-source">From <a href="1.3-the-reasoning-horizon.html#fig-1-3-1">3 · The Reasoning Horizon</a></p></section><hr><section class="gallery-item"><figure id="fig-1-4-1-fig-1-4-1" class="book-figure" data-label="reasoning-horizon-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
-     role="group" aria-labelledby="fig-1-4-1-rhTitle fig-1-4-1-rhDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-1-4-1-rhTitle">The reasoning horizon, and what models do to it</title>
-  <desc id="fig-1-4-1-rhDesc">A human and a foundation model work a task. The reasoning state the task requires grows
-    with the task's length, shown as a wedge widening from left to right. When that state outgrows the
-    working memory available to hold it, it must be compacted and reconstructed, and the path forks.
-    Without models, on the left, the fleet reasons over raw implementation-level state; compaction is lossy,
-    rebuilds are frequent, and the result is churn. With MAGE models, on the right, the fleet reasons over
-    executable abstractions that already discarded the irrelevant detail; compaction loses far less, coherent
-    reasoning runs longer, and the result is productive progress. The contrast axis is fidelity under
-    compaction, not size: models are a better compression domain because they abstract, they do not merely
-    shrink.</desc>
-
-  <defs>
-    <marker id="fig-1-4-1-rhArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- ================= SPINE — reasoning state grows with task length ================= -->
-  <text x="500" y="42" text-anchor="middle" font-size="19" fill="#57534e">A human and a foundation model work a task.</text>
-  <!-- growing wedge: thin at the short-horizon end, thick at the long-horizon end -->
-  <polygon points="120,96 880,74 880,128 120,104" fill="#faf1e6" stroke="#57534e" stroke-width="1.5"/>
-  <text x="500" y="106" text-anchor="middle" font-size="19" font-style="italic" fill="#1c1917">Reasoning state grows with the length of the task</text>
-  <text x="150" y="150" text-anchor="middle" font-size="18" fill="#57534e">short horizon</text>
-  <text x="850" y="150" text-anchor="middle" font-size="18" fill="#57534e">long horizon</text>
-
-  <!-- the pinch: state outgrows working memory, so it must be compacted -->
-  <text x="500" y="184" text-anchor="middle" font-size="19" fill="#1c1917">The state outgrows working memory, so it must be compacted and rebuilt.</text>
-
-  <!-- fork edges from the spine down into the two columns -->
-  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-4-1-rhArrow)">
-    <path d="M430,196 C360,214 300,214 265,236"/>
-    <path d="M570,196 C640,214 700,214 735,236"/>
-  </g>
-
-  <!-- ================= LEFT — without models ================= -->
-  <rect x="60" y="242" width="410" height="292" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="265" y="280" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Without models</text>
-
-  <text x="265" y="322" text-anchor="middle" font-size="19" fill="#1c1917">Reason over raw</text>
-  <text x="265" y="346" text-anchor="middle" font-size="19" fill="#1c1917">implementation-level state</text>
-
-  <line x1="265" y1="360" x2="265" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#fig-1-4-1-rhArrow)"/>
-
-  <text x="265" y="414" text-anchor="middle" font-size="19" fill="#1c1917">Lossy compaction,</text>
-  <text x="265" y="438" text-anchor="middle" font-size="19" fill="#1c1917">frequent reconstruction</text>
-
-  <line x1="265" y1="452" x2="265" y2="474" stroke="#57534e" stroke-width="2" marker-end="url(#fig-1-4-1-rhArrow)"/>
-
-  <rect x="105" y="484" width="320" height="40" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="265" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#b23b3b">Churn</text>
-
-  <!-- ================= RIGHT — with MAGE models ================= -->
-  <rect x="530" y="242" width="410" height="292" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="735" y="280" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">With MAGE models</text>
-
-  <text x="735" y="322" text-anchor="middle" font-size="19" fill="#1c1917">Reason over executable</text>
-  <text x="735" y="346" text-anchor="middle" font-size="19" fill="#1c1917">abstractions</text>
-
-  <line x1="735" y1="360" x2="735" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#fig-1-4-1-rhArrow)"/>
-
-  <text x="735" y="414" text-anchor="middle" font-size="19" fill="#1c1917">Less-lossy compaction,</text>
-  <text x="735" y="438" text-anchor="middle" font-size="19" fill="#1c1917">longer coherent reasoning</text>
-
-  <line x1="735" y1="452" x2="735" y2="474" stroke="#57534e" stroke-width="2" marker-end="url(#fig-1-4-1-rhArrow)"/>
-
-  <rect x="575" y="484" width="320" height="40" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="735" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">Productive progress</text>
-</svg><figcaption data-short="The Reasoning Horizon"><span class="fig-label">Figure 1.4-1.</span> <em>The Reasoning Horizon.</em> Reasoning state grows with a task's length; once it outruns working memory it must be compacted. Without models, compaction is lossy and the branch ends in churn; with models, it loses less and the branch reaches productive progress.</figcaption></figure><p class="gallery-source">From <a href="1.4-why-mage-follows-from-the-machine.html#fig-1-4-1">4 · Why MAGE Follows from the Machine</a></p></section><hr><section class="gallery-item"><figure id="fig-1-4-2-fig-1-4-2" class="book-figure" data-label="substrate-derivation-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560"
-     role="group" aria-labelledby="fig-1-4-2-sdTitle fig-1-4-2-sdDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-1-4-2-sdTitle">The substrate derivation: properties to theses to environment</title>
-  <desc id="fig-1-4-2-sdDesc">Two panels of substrate properties feed two theses, which land in one
-    environment. The foundation-model panel lists broad semantic reasoning, probabilistic execution,
-    bounded and reconstructed context, and cheap repeated cognition. The agentic-harness panel lists
-    tool-mediated action, interposition, lifecycle visibility, and parallel execution. An arrow
-    labeled broad, bounded, cheap upkeep runs from the model panel to the Modeling Thesis; an arrow
-    labeled probabilistic runs from the model panel to the Alignment Thesis; an arrow labeled
-    mediated action and throughput runs from the harness panel to the Alignment Thesis. Both theses
-    then flow into the governed engineering environment — what the combination requires.</desc>
-
-  <defs>
-    <marker id="fig-1-4-2-sdArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- ===== the two property panels ===== -->
-  <!-- foundation model (fleet blue) -->
-  <rect x="45" y="42" width="415" height="205" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="68" y="80" font-size="20" font-weight="700" fill="#2f5169">The foundation model</text>
-  <text x="68" y="104" font-size="15.36" font-style="italic" fill="#57534e">a broad, probabilistic reasoner</text>
-  <text x="68" y="136" font-size="15.36" fill="#1c1917">Broad semantic reasoning</text>
-  <text x="68" y="164" font-size="15.36" fill="#1c1917">Probabilistic execution</text>
-  <text x="68" y="192" font-size="15.36" fill="#1c1917">Bounded, reconstructed context</text>
-  <text x="68" y="220" font-size="15.36" fill="#1c1917">Cheap repeated cognition</text>
-
-  <!-- agentic harness (governed green) -->
-  <rect x="500" y="42" width="415" height="205" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="523" y="80" font-size="20" font-weight="700" fill="#1f7a4d">The agentic harness</text>
-  <text x="523" y="104" font-size="15.36" font-style="italic" fill="#57534e">tools, lifecycle, interposition</text>
-  <text x="523" y="136" font-size="15.36" fill="#1c1917">Tool-mediated action</text>
-  <text x="523" y="164" font-size="15.36" fill="#1c1917">Interposition — inspect, constrain, deny</text>
-  <text x="523" y="192" font-size="15.36" fill="#1c1917">Lifecycle visibility</text>
-  <text x="523" y="220" font-size="15.36" fill="#1c1917">Parallel execution</text>
-
-  <!-- ===== derivation arrows: properties → theses ===== -->
-  <path d="M 200 247 L 200 322" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-4-2-sdArrow)"/>
-  <text x="212" y="290" font-size="15.36" font-style="italic" fill="#57534e">broad · bounded · cheap upkeep</text>
-
-  <path d="M 415 247 L 600 322" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-4-2-sdArrow)"/>
-  <text x="548" y="268" font-size="15.36" font-style="italic" fill="#57534e">probabilistic</text>
-
-  <path d="M 760 247 L 760 322" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-4-2-sdArrow)"/>
-  <text x="772" y="290" font-size="15.36" font-style="italic" fill="#57534e">mediated action · throughput</text>
-
-  <!-- ===== the two theses ===== -->
-  <rect x="70" y="330" width="340" height="72" rx="10" fill="#eef7ee" stroke="#15803d" stroke-width="2.5"/>
-  <text x="240" y="360" text-anchor="middle" font-size="19" font-weight="700" fill="#15803d">The Modeling Thesis</text>
-  <text x="240" y="386" text-anchor="middle" font-size="15.36" font-style="italic" fill="#57534e">a compact model to reason through</text>
-
-  <rect x="550" y="330" width="340" height="72" rx="10" fill="#eef7ee" stroke="#15803d" stroke-width="2.5"/>
-  <text x="720" y="360" text-anchor="middle" font-size="19" font-weight="700" fill="#15803d">The Alignment Thesis</text>
-  <text x="720" y="386" text-anchor="middle" font-size="15.36" font-style="italic" fill="#57534e">mechanically enforced intent</text>
-
-  <!-- ===== theses → environment ===== -->
-  <path d="M 240 402 L 240 440 L 400 440 L 400 464" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-4-2-sdArrow)"/>
-  <path d="M 720 402 L 720 440 L 560 440 L 560 464" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-4-2-sdArrow)"/>
-
-  <rect x="250" y="470" width="460" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="480" y="502" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">The governed engineering environment</text>
-  <text x="480" y="528" text-anchor="middle" font-size="15.36" font-style="italic" fill="#57534e">what the combination requires</text>
-</svg><figcaption data-short="The Derivation"><span class="fig-label">Figure 1.4-2.</span> <em>The Derivation.</em> MAGE is read off its material, not borrowed from a human organization. Four properties of the foundation model and four of the harness feed the two theses. Broad reasoning, a bounded reconstructed context, and cheap upkeep yield the Modeling Thesis: the reasoner can work through a model, the model is how the system fits its window, and the model can be kept true for nearly nothing. Probabilistic execution, tool-mediated action, and parallel throughput yield the Alignment Thesis: correctness needs external mechanisms, those mechanisms have real boundaries to stand on, and each recurring failure must become a durable property. Read the arrows as therefore — the two theses combine to require the governed environment.</figcaption></figure><p class="gallery-source">From <a href="1.4-why-mage-follows-from-the-machine.html#fig-1-4-2">4 · Why MAGE Follows from the Machine</a></p></section><hr><section class="gallery-item"><figure id="fig-1-5-1-fig-1-5-1" class="book-figure" data-label="sdlc-to-selc"><svg viewBox="0 0 940 392" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" role="img" aria-labelledby="fig-1-5-1-s2s-title fig-1-5-1-s2s-desc">
+</svg><figcaption data-short="The Reasoning Horizon"><span class="fig-label">Figure 1.3-1.</span> <em>The Reasoning Horizon.</em> A long-horizon task's reasoning state grows until it outruns the finite fast working memory that must hold it. Past that point the state is externalized, compressed, and reconstructed — and because every round trip is lossy, information is lost, rediscovered, and contradicted. The branch ends in churn: effort spent rebuilding the picture rather than advancing the system.</figcaption></figure><p class="gallery-source">From <a href="1.3-the-reasoning-horizon.html#fig-1-3-1">3 · The Reasoning Horizon</a></p></section><hr><section class="gallery-item"><figure id="fig-1-5-1-fig-1-5-1" class="book-figure" data-label="sdlc-to-selc"><svg viewBox="0 0 940 392" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" role="img" aria-labelledby="fig-1-5-1-s2s-title fig-1-5-1-s2s-desc">
   <title id="fig-1-5-1-s2s-title">SDLC to SELC: one seat reassigned</title>
   <desc id="fig-1-5-1-s2s-desc">Two lanes of the same six lifecycle activities — requirements, specification, design, implementation, validation, maintenance. Top lane, the conventional SDLC, has every seat held by one engineering role, with implementation marked as the seat that consumes the calendar. Bottom lane, the SELC, reassigns the implementation seat to the agent fleet, drawn in the accent colour; the engineer flanks the fleet, authoring intent on the left and judging and governing the output on the right, and a governance band beneath holds every seat’s output. A dashed arc returns from the last activity to the first, the cycle in “life cycle.”</desc>
   <defs>

@@ -7,13 +7,13 @@
     "by_idea": {
       "argument-spine/fault-lies-in-instructions": 1,
       "argument-spine/mage-becomes-practical": 3,
-      "argument-spine/seat-moves": 2,
+      "argument-spine/seat-moves": 3,
       "claims/constraint-prevents-sensor-detects": 6,
       "claims/convert-failures-to-controls": 3,
       "claims/model-earns-keep-via-invariants": 3,
       "claims/printer-not-coder": 1,
       "claims/profile-edit-not-graph-edit": 1,
-      "definitions/reasoning-horizon": 4
+      "definitions/reasoning-horizon": 3
     }
   },
   "index": {
@@ -107,6 +107,12 @@
         "id": "seat-moves"
       },
       "sites": [
+        {
+          "file": "book/1.4-the-new-engineering-problem.html",
+          "anchor": "idx-def-engineering-substrate",
+          "occ": 1,
+          "variant": "canonical"
+        },
         {
           "file": "book/1.5-the-engineers-seat.html",
           "anchor": "idx-def-engineers-seat",
@@ -232,12 +238,6 @@
         {
           "file": "book/1.3-the-reasoning-horizon.html",
           "anchor": "rhArrow",
-          "occ": 1,
-          "variant": "canonical"
-        },
-        {
-          "file": "book/1.4-why-mage-follows-from-the-machine.html",
-          "anchor": "idx-ex-reasoning-horizon-2",
           "occ": 1,
           "variant": "canonical"
         },

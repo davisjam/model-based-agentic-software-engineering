@@ -7,7 +7,7 @@
 | Claim | When intelligence becomes a commodity, implementation stops being scarce. What is scarce is trust — so the engineer's object of work shifts from code to environment. |
 | Mechanisms | Self-governance · ContentValidator · Staged deploy gates |
 | Related | Engineering Capital · The Engineered Environment |
-| In the book | book/1.4-why-mage-follows-from-the-machine.html |
+| In the book | book/1.4-the-new-engineering-problem.html |
 
 ## The idea
 
@@ -69,4 +69,4 @@ kind of trust automatic.
 
 ## Read in the book →
 
-[Read in the book →](book/1.4-why-mage-follows-from-the-machine.html)
+[Read in the book →](book/1.4-the-new-engineering-problem.html)

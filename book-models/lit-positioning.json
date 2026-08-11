@@ -6,7 +6,7 @@
     "landed": 14,
     "planned": 0,
     "citations_total": 41,
-    "citations_pending_bib": 0,
+    "citations_pending_bib": 3,
     "distinct_theses": 11
   },
   "taxonomy": {
@@ -101,14 +101,14 @@
       ],
       "status": "landed",
       "fold_target": "",
-      "notes": "STANDALONE wave — LANDED (LPP-PROSE) in 1.4-why-mage-follows-from-the-machine, the emerging-consensus paragraph: Lin et al.'s ablation sentence inserted after the thin-harness cite, before the 'MAGE stands on this literature' close (harness stays ONE layer of the governed environment). zhong-zhu2026 was already cited in 1.4 (reused, not re-added); Lin's ablation localizes the capability gain to tools/middleware/long-term memory, not the system prompt. Lin = 11 authors (Zhiheng Xi after Shihan Dou; Yu-Gang Jiang last). target_locations trimmed to the actual landing chapter (both cites appear in 1.4). illustrates_pattern=dynamic-context-injection on Lin: convergent evidence that agent capability rides on delivered harness structure, not prompt prose (§2/context prior-art double-duty, Point-of-Action Policy Delivery).",
+      "notes": "STANDALONE wave — LANDED (LPP-PROSE) in 1.4-the-new-engineering-problem, the emerging-consensus paragraph: Lin et al.'s ablation sentence inserted after the thin-harness cite, before the 'MAGE stands on this literature' close (harness stays ONE layer of the governed environment). zhong-zhu2026 was already cited in 1.4 (reused, not re-added); Lin's ablation localizes the capability gain to tools/middleware/long-term memory, not the system prompt. Lin = 11 authors (Zhiheng Xi after Shihan Dou; Yu-Gang Jiang last). target_locations trimmed to the actual landing chapter (both cites appear in 1.4). illustrates_pattern=dynamic-context-injection on Lin: convergent evidence that agent capability rides on delivered harness structure, not prompt prose (§2/context prior-art double-duty, Point-of-Action Policy Delivery).",
       "locations_resolve": [
         true
       ],
       "theses_resolve": [
         true
       ],
-      "landed_appears": true
+      "landed_appears": false
     },
     {
       "id": "persistent-context-code-graphs",
@@ -232,7 +232,7 @@
       "y": "Recent work pairs an untrusted LLM generator with a trusted checker or prover — kernel-checked admission (AutoSOUP; AutoRocq; Fang & Xiong's ITP-checked project generation).",
       "z": "MAGE preserves the guarantee boundary: the stochastic generator proposes, a deterministic mechanism admits — the environment enforces the check, not the agent.",
       "target_locations": [
-        "the-built-system"
+        "the-road-to-mage"
       ],
       "citations": [
         {
@@ -278,7 +278,7 @@
       "theses_resolve": [
         true
       ],
-      "landed_appears": true
+      "landed_appears": false
     },
     {
       "id": "model-sync-coevolution",
@@ -299,7 +299,7 @@
           ],
           "relation": "situates",
           "illustrates_pattern": "",
-          "resolves_bib": true,
+          "resolves_bib": false,
           "backs_resolve": true
         },
         {
@@ -309,7 +309,7 @@
           ],
           "relation": "situates",
           "illustrates_pattern": "",
-          "resolves_bib": true,
+          "resolves_bib": false,
           "backs_resolve": true
         },
         {
@@ -319,7 +319,7 @@
           ],
           "relation": "situates",
           "illustrates_pattern": "",
-          "resolves_bib": true,
+          "resolves_bib": false,
           "backs_resolve": true
         }
       ],
@@ -336,7 +336,7 @@
       "theses_resolve": [
         true
       ],
-      "landed_appears": true
+      "landed_appears": false
     },
     {
       "id": "incident-learning-governance",
@@ -346,7 +346,7 @@
       "y": "Agentic velocity surfaces novel, unforeseeable failures faster than any playbook anticipates.",
       "z": "MAGE names the promotion rule: ex-post failure -> human classification -> recurring obligation -> ex-ante environmental control.",
       "target_locations": [
-        "the-governed-environment"
+        "governance-conversion"
       ],
       "citations": [
         {
@@ -645,7 +645,7 @@
       "y": "The field is beginning to treat governance of agentic software engineering as a first-class, formalizable subject — Ait et al. propose a domain-specific language for defining and enforcing governance policies across mixed human-agent teams.",
       "z": "MAGE converges with that direction but works at a different grain: not a single policy language, but a repertoire of governance mechanisms grounded in a production case.",
       "target_locations": [
-        "the-governed-environment"
+        "governance-conversion"
       ],
       "citations": [
         {

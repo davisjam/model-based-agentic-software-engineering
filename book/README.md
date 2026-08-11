@@ -19,7 +19,7 @@ book/
     1.1-the-printer.md
     1.2-mage-by-example.md
     1.3-the-reasoning-horizon.md
-    1.4-why-mage-follows-from-the-machine.md
+    1.4-the-new-engineering-problem.md
     1.5-the-engineers-seat.md
   part2/  (Part 2 — The Mindset)
     2.1-context-is-the-first-modeling-problem.md … 2.12-keeping-models-in-sync.md

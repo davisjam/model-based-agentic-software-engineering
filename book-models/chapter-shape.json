@@ -8,8 +8,8 @@
     "closings_failing": 0,
     "thesis_spine_mismatches": 1,
     "openings_implicit_thesis": 10,
-    "chapters_with_artifact": 29,
-    "chapters_concept_only": 4,
+    "chapters_with_artifact": 28,
+    "chapters_concept_only": 5,
     "delivers_neither": 0,
     "all_prose_would_benefit": 0
   },
@@ -204,8 +204,8 @@
       "closing_anchor": "yet earned. The next chapter earns them — from the machine itself.",
       "delivers": {
         "concepts": [
-          "loop-engineering",
           "engineered-agent-loop",
+          "loop-engineering",
           "success-metric"
         ],
         "artifacts": [
@@ -234,21 +234,14 @@
       "closing": {
         "kind": "synthesis"
       },
-      "note": "Exemplary: question (theses chosen or derived?), answer (derived from substrate properties), both theses named. Closes collecting the derivation + re-run-the-derivation consequence + implication-not-proof.",
-      "opening_anchor": "Reinforced concrete carries a building because two materials split the work: concrete",
-      "closing_anchor": "the human does inside it. That seat is the next chapter's subject.",
+      "note": "Recast (R14, INV-R14-2): opens with the material-reading frame (an engineering method is read off its material), poses Problem A (representation) and Problem B (authority) as questions, signposts Parts II-IV, and closes on delegate-implementation-but-not-accountability. Derives the two QUESTIONS only, never the theses' answers.",
+      "opening_anchor": "Reinforced concrete carries a building because two materials divide the work: concrete",
+      "closing_anchor": "The keystrokes may move to the fleet. The engineering responsibility does not.",
       "delivers": {
         "concepts": [
-          "engineering-substrate",
-          "probabilistic-reasoning-machine"
+          "engineering-substrate"
         ],
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the substrate-derivation table (eight properties, seven consequences)",
-            "anchor": "substrate-table"
-          }
-        ],
+        "artifacts": [],
         "artifact_would_help": false
       },
       "exempt": null,

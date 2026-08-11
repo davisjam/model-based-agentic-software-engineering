@@ -7,7 +7,7 @@
     "derived_ids": 257,
     "missing_topic_sentence": 7,
     "sections_drained": 167,
-    "paragraph_points": 508
+    "paragraph_points": 501
   },
   "chapters": [
     {
@@ -425,141 +425,116 @@
       ]
     },
     {
-      "slug": "1.4-why-mage-follows-from-the-machine",
+      "slug": "1.4-the-new-engineering-problem",
       "part": 1,
       "sections": [
         {
-          "section_id": "the-reasoner-s-properties",
+          "section_id": "the-substrate-is-a-pairing",
           "level": 2,
-          "heading_text": "The reasoner's properties",
-          "topic_sentence": "[Engineering the Loop](3.1-the-agent-stack.html) called the foundation model a probabilistic reasoning machine.",
+          "heading_text": "The substrate is a pairing",
+          "topic_sentence": "The material is two parts, not one.",
           "id_source": "derived",
-          "block_index": 7,
+          "block_index": 2,
           "points": [
             {
-              "slug": "four-foundation-model-properties-carry-the-derivation",
-              "text": "Four foundation-model properties carry the derivation.",
-              "block_index": 9
+              "slug": "model-plus-harness-form-a-new-engineering-substrate",
+              "text": "A foundation model and a harness together form the engineering substrate.",
+              "block_index": 4
             },
             {
-              "slug": "the-promise-and-the-catch-pull-against-each-other",
-              "text": "The properties split into a promise and a catch.",
+              "slug": "four-foundation-model-properties",
+              "text": "The foundation model brings four properties.",
+              "block_index": 7
+            },
+            {
+              "slug": "four-harness-properties",
+              "text": "The harness adds four properties of its own.",
+              "block_index": 10
+            },
+            {
+              "slug": "the-substrate-framing-is-an-emerging-consensus",
+              "text": "The model-plus-harness reading is now a shared one.",
               "block_index": 13
             }
           ]
         },
         {
-          "section_id": "what-the-harness-adds",
+          "section_id": "not-a-faster-programmer",
           "level": 2,
-          "heading_text": "What the harness adds",
-          "topic_sentence": "A raw model only recommends.",
+          "heading_text": "Not a faster programmer",
+          "topic_sentence": "Now the question the substrate answers.",
           "id_source": "derived",
-          "block_index": 16,
+          "block_index": 15,
           "points": [
             {
-              "slug": "the-harness-turns-recommendation-into-governable-action",
-              "text": "The harness turns recommendation into governable action.",
-              "block_index": 18
+              "slug": "why-not-a-faster-programmer",
+              "text": "The substrate is not a faster programmer; its properties are different in kind.",
+              "block_index": 17
             },
             {
-              "slug": "harness-properties-are-control-points",
-              "text": "Read the harness properties as control points.",
-              "block_index": 21
-            },
-            {
-              "slug": "the-substrate-framing-is-an-emerging-consensus",
-              "text": "The model-plus-harness framing is now an emerging consensus.",
-              "block_index": 24
+              "slug": "representation-and-authority-become-first-class",
+              "text": "Those two properties make representation and authority first-class engineering problems.",
+              "block_index": 19
             }
           ]
         },
         {
-          "section_id": "the-engineering-that-follows",
+          "section_id": "the-loop-is-observable",
           "level": 2,
-          "heading_text": "The engineering that follows",
-          "topic_sentence": "Cross the two lists and the method starts writing itself.",
+          "heading_text": "The loop is observable",
+          "topic_sentence": "One property of the harness carries more than the others, and it sets up the second problem.",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 21,
           "points": [
             {
-              "slug": "each-substrate-property-forces-an-engineering-move",
-              "text": "Each substrate property forces an engineering move.",
-              "block_index": 28
+              "slug": "agentic-work-occurs-in-an-observable-loop",
+              "text": "Agentic work occurs in an observable loop, so control need not reach the hidden reasoning.",
+              "block_index": 23
+            }
+          ]
+        },
+        {
+          "section_id": "two-questions-not-two-answers",
+          "level": 2,
+          "heading_text": "Two questions, not two answers",
+          "topic_sentence": "Cross the substrate's properties and two engineering problems fall out.",
+          "id_source": "derived",
+          "block_index": 25,
+          "points": [
+            {
+              "slug": "part-one-poses-the-representation-problem",
+              "text": "Problem A, representation, follows from broad reasoning over a finite reconstructed state.",
+              "block_index": 27
             },
             {
-              "slug": "probabilistic-success-is-not-an-engineering-account",
-              "text": "A probabilistic process can be right without an account of its correctness; engineering asks for representations, evidence, and preservation.",
-              "block_index": 30
-            },
-            {
-              "slug": "the-economics-move-oversight-to-classes-and-policy-to-environment",
-              "text": "Economics move oversight to classes, policy into environment.",
+              "slug": "part-one-poses-the-authority-problem",
+              "text": "Problem B, authority, follows from probabilistic output meeting an observable loop.",
               "block_index": 32
             },
             {
-              "slug": "the-table-maps-property-to-problem-to-response",
-              "text": "The table maps each property to the MAGE response.",
-              "block_index": 34
+              "slug": "the-two-problems-signpost-the-composition",
+              "text": "The two problems map onto the next three Parts.",
+              "block_index": 36
             }
           ]
         },
         {
-          "section_id": "why-the-bound-bites",
+          "section_id": "where-the-engineer-stands",
           "level": 2,
-          "heading_text": "Why the bound bites",
-          "topic_sentence": "Of the four reasoner properties, the bounded, reconstructed working state is the one that forces the method.",
+          "heading_text": "Where the engineer stands",
+          "topic_sentence": "If implementation is no longer where most human effort belongs, where does the engineer stand?",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 38,
           "points": [
             {
-              "slug": "the-bounded-property-is-a-reasoning-horizon-limit",
-              "text": "The bounded property bites because supervised work is long-horizon.",
+              "slug": "implementation-can-be-delegated-accountability-cannot",
+              "text": "Implementation can be delegated; accountability cannot.",
               "block_index": 40
             },
             {
-              "slug": "the-chain-from-horizon-to-models",
-              "text": "Long-horizon reasoning drives the chain that ends in model-based reasoning.",
-              "block_index": 43
-            },
-            {
-              "slug": "models-are-a-better-compression-domain",
-              "text": "A model is a better compression domain because it abstracts.",
-              "block_index": 47
-            },
-            {
-              "slug": "the-account-is-analytic-not-measured",
-              "text": "The reasoning-horizon account generalizes analytically, past today's window.",
-              "block_index": 49
-            }
-          ]
-        },
-        {
-          "section_id": "the-theses-follow",
-          "level": 2,
-          "heading_text": "The theses follow",
-          "topic_sentence": "Now collect the derivation.",
-          "id_source": "derived",
-          "block_index": 52,
-          "points": [
-            {
-              "slug": "three-reasoner-properties-yield-the-modeling-thesis",
-              "text": "Broad, bounded, cheap-to-maintain yields the Modeling Thesis.",
-              "block_index": 55
-            },
-            {
-              "slug": "probabilism-mediation-throughput-yield-the-alignment-thesis",
-              "text": "Probabilism, mediation, and throughput yield the Alignment Thesis.",
-              "block_index": 57
-            },
-            {
-              "slug": "the-combination-requires-the-governed-environment",
-              "text": "The governed engineering environment is what the combination requires.",
-              "block_index": 60
-            },
-            {
-              "slug": "derivation-not-analogy-and-the-case-grounds-it",
-              "text": "The method is derived from properties, grounded by one case.",
-              "block_index": 63
+              "slug": "commodity-intelligence-removes-implementation-from-the-center",
+              "text": "Commodity intelligence removes implementation from the center of the constraint, and leaves two problems in its place.",
+              "block_index": 44
             }
           ]
         }
@@ -569,16 +544,6 @@
           "slug": "engineering-methods-are-read-off-their-materials",
           "text": "An engineering method is read off its material.",
           "block_index": 0
-        },
-        {
-          "slug": "model-plus-harness-form-a-new-engineering-substrate",
-          "text": "Foundation model plus harness form a new engineering substrate.",
-          "block_index": 2
-        },
-        {
-          "slug": "the-chapter-derives-the-theses-from-the-properties",
-          "text": "The chapter derives the two theses from substrate properties.",
-          "block_index": 5
         }
       ]
     },
