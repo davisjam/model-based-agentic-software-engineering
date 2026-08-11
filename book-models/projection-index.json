@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 36,
     "slugs_rendered": 27,
-    "total_sites": 1639,
+    "total_sites": 1658,
     "by_projection": {
       "book-pdf": 24,
-      "book-web": 1213,
+      "book-web": 1232,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -408,6 +408,10 @@
             "occ": 14
           },
           {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 2
+          },
+          {
             "file": "book/appendix-field-guide.html",
             "occ": 14
           },
@@ -473,6 +477,10 @@
           },
           {
             "file": "book/appendix-g-user-journey-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-h-evidence-tables.html",
             "occ": 2
           },
           {
@@ -543,7 +551,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 132
           }
         ]
       },
@@ -1179,7 +1187,7 @@
           },
           {
             "file": "book/5.2-the-build.html",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "book/5.4-failures-that-became-infrastructure.html",
@@ -1204,6 +1212,10 @@
           {
             "file": "book/6.8-conclusion.html",
             "occ": 2
+          },
+          {
+            "file": "book/appendices-front-door.html",
+            "occ": 1
           },
           {
             "file": "book/appendix-a-observe-react-stack.html",
@@ -1246,6 +1258,14 @@
             "occ": 9
           },
           {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-h-evidence-tables.html",
+            "occ": 3
+          },
+          {
             "file": "book/book-index.html",
             "occ": 1
           },
@@ -1261,7 +1281,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 30
+            "occ": 33
           }
         ]
       },
@@ -1946,6 +1966,10 @@
             "occ": 10
           },
           {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 10
+          },
+          {
             "file": "book/appendix-field-guide.html",
             "occ": 22
           },
@@ -2011,6 +2035,10 @@
           },
           {
             "file": "book/appendix-g-user-journey-reference.html",
+            "occ": 10
+          },
+          {
+            "file": "book/appendix-h-evidence-tables.html",
             "occ": 10
           },
           {
@@ -2081,7 +2109,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 132
           }
         ]
       },
@@ -2608,6 +2636,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-field-guide.html",
             "occ": 1
           },
@@ -2676,6 +2708,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-h-evidence-tables.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-models.html",
             "occ": 1
           },
@@ -2739,7 +2775,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 131
           }
         ]
       },
@@ -3416,6 +3452,10 @@
             "occ": 33
           },
           {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 20
+          },
+          {
             "file": "book/appendix-field-guide.html",
             "occ": 27
           },
@@ -3482,6 +3522,10 @@
           {
             "file": "book/appendix-g-user-journey-reference.html",
             "occ": 31
+          },
+          {
+            "file": "book/appendix-h-evidence-tables.html",
+            "occ": 19
           },
           {
             "file": "book/appendix-models.html",
@@ -3551,7 +3595,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 132
           }
         ]
       },
@@ -4716,6 +4760,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-field-guide.html",
             "occ": 1
           },
@@ -4784,6 +4832,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-h-evidence-tables.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-models.html",
             "occ": 1
           },
@@ -4847,7 +4899,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 131
           }
         ]
       },
@@ -5430,6 +5482,10 @@
             "occ": 2
           },
           {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 2
+          },
+          {
             "file": "book/appendix-field-guide.html",
             "occ": 2
           },
@@ -5498,6 +5554,10 @@
             "occ": 2
           },
           {
+            "file": "book/appendix-h-evidence-tables.html",
+            "occ": 2
+          },
+          {
             "file": "book/appendix-models.html",
             "occ": 2
           },
@@ -5561,7 +5621,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 131
           }
         ]
       },
@@ -6000,6 +6060,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-field-guide.html",
             "occ": 1
           },
@@ -6068,6 +6132,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-h-evidence-tables.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-models.html",
             "occ": 1
           },
@@ -6131,7 +6199,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 131
           }
         ]
       },
@@ -6790,6 +6858,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-field-guide.html",
             "occ": 1
           },
@@ -6858,6 +6930,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-h-evidence-tables.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-models.html",
             "occ": 1
           },
@@ -6921,7 +6997,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 131
           }
         ]
       },

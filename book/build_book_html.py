@@ -3554,6 +3554,16 @@ def build_field_guide_chapters(part: int, letter: str = "F", locator_figs: bool 
 # dropped-appendix-link redirect (D4a). Front-door slug is letter-independent (`appendix-models`). Scaffolded
 # empty-but-green this wave; W2.5 migrates the (b)/(d)/(e) detail out of the view chapters into these pages.
 _MODELS_DIR = HERE / "appendix-models"
+# Part-V Evidence Ledger (fork G7): a dedicated home for Part V's raw count tables — the support-ratio
+# lines-of-code, the per-path churn, and the running control-growth counts — kept out of the narrative
+# chapters so those read as prose. Distinct from the appendix-d dashboard cards (metric panels) and the
+# appendix-models model reference; a lookup surface for the counts behind Part V's curves. Hand-authored,
+# routed through the shared appendix builder like the Model Reference; a stub the assembly wave fills.
+_EVIDENCE_LEDGER_DIR = HERE / "appendix-evidence-ledger"
+_APPENDIX_EVIDENCE_LEDGER_OPENING_SLUG = "appendix-evidence-ledger"
+_EVIDENCE_LEDGER_PAGES: list[tuple[str, str]] = [
+    ("evidence-tables", "The Evidence Tables"),
+]
 _APPENDIX_MODELS_OPENING_SLUG = "appendix-models"
 _MODEL_PAGES: list[tuple[str, str]] = [
     ("service-flow-reference", "Service-Flow Model"),
@@ -4841,6 +4851,18 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
         opening_slug=_APPENDIX_MODELS_OPENING_SLUG,
         opening_prose=_load_opening(_MODELS_DIR / "_opening.md"),
         content_dir=_MODELS_DIR, pages_source=_MODEL_PAGES,
+        locator_figs=True, locator_heading=True)
+
+    # ── APPENDIX H — Part-V Evidence Ledger (fork G7). The raw count tables behind Part V's curves
+    #    (support-ratio LoC, per-path churn, control-growth counts). Appended LAST so it re-letters no
+    #    earlier appendix. Routed through the shared hand-authored appendix builder — a stub the assembly
+    #    wave fills; the Part-V "The Build" chapter links it via `[appendix: appendix-evidence-ledger]`.
+    h_part = next_part + 7
+    chapters += build_hand_authored_appendix(
+        h_part, letter="H", part_name="Part-V Evidence Ledger",
+        opening_slug=_APPENDIX_EVIDENCE_LEDGER_OPENING_SLUG,
+        opening_prose=_load_opening(_EVIDENCE_LEDGER_DIR / "_opening.md"),
+        content_dir=_EVIDENCE_LEDGER_DIR, pages_source=_EVIDENCE_LEDGER_PAGES,
         locator_figs=True, locator_heading=True)
     return chapters
 
