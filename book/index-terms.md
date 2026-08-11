@@ -326,7 +326,6 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: governance-target-models-bridge | Governance target — models-bridge
 - concept: governance-target-product | Governance target — product
 - concept: scope-of-modeling | The scope of modeling
-- concept: digital-twin | Digital twin
 
 ## Term tiers
 
@@ -390,7 +389,6 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: snapshot-vs-derived | section
 - term: symbol-anchor | local
 - term: uml | local
-- term: cyber-physical-systems | local
 - term: service-flow-model | section
 - term: domain-registries | section
 - term: concurrency | section

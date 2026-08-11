@@ -244,6 +244,9 @@ _GLOSS_TERM_SLUGS = {
     # `map-and-territory`@3.2, `model-as-map`@2.3, `long-horizon-task`@1.1); only the front-of-book
     # HEADWORDS left the glossary, so this display→slug map drops exactly those keys.
     "Model": "model",
+    "Engineering": "engineering",
+    "Structured": "structured",
+    "Descriptive vs. prescriptive": "descriptive-vs-prescriptive",
     "Modeling Thesis": "thesis-modeling",
     "Alignment Thesis": "thesis-alignment",
     "Governance Conversion": "governance-conversion",
