@@ -36,6 +36,7 @@ from typing import Callable, NamedTuple
 from tests.book import (
     check_caption_orphan_gate,
     check_float_ref_gate,
+    check_index_scan_hoist_parity,
     check_ir_render_fidelity,
     check_no_stray_comments,
     check_only_child_headings,
@@ -196,6 +197,12 @@ CHECKS = [
     Check("book: no orphaned table caption (caption rides with its body; PDF sensor)", 1,
           lambda strict: check_caption_orphan_gate()),
     Check("book: IR render-complete blocks render byte-identically (C->A migration net)", 1, lambda strict: check_ir_render_fidelity()),
+    # BLOCKING byte-identity net for the index-scan hoist: the O(pages) precomputed `_scan_term_refs` MUST
+    # agree with the naive per-term-renormalize reference (the pre-optimization algorithm, kept as the
+    # oracle) for every index term over the live chapters. book-index.html is an always-rebuild aggregate,
+    # so any divergence means the optimized build would ship different HTML. See tests/book.py.
+    Check("book: index-scan hoist == naive reference for every term (byte-identity soundness net)", 1,
+          lambda strict: check_index_scan_hoist_parity()),
     # BLOCKING (rule-#55 promotion): no only-child heading — a heading with EXACTLY one immediate next-level
     # child (a part with one content chapter, a page H1 with one H2, an H2 with one H3, an H3 with one H4).
     # Walks the two typed trees over the book IR (the volume part→chapter tree + the per-page H1→H2→H3→H4

@@ -5119,30 +5119,51 @@ def _load_index_terms() -> list[str]:
     return terms
 
 
-def _scan_term_refs(term: str, pages: list[dict]) -> list[dict]:
+class _PageScan(NamedTuple):
+    """One page's precomputed scan structures for the occurrence index. `order` is the reading-order index
+    (the tie-break key); `low` is the point-decorator-stripped body lowercased (the substring-occurrence
+    test); `heading_lows` are the page's stripped-and-lowercased heading lines (the heading-significance
+    test). `pg` is the page record itself."""
+    order: int
+    low: str
+    heading_lows: list[str]
+    pg: dict
+
+
+def _build_page_scan_index(pages: list[dict]) -> list[_PageScan]:
+    """Precompute, ONCE per page, the normalized structures every per-term index scan needs. The index build
+    was O(terms × pages × normalize): `_scan_term_refs` re-ran `_strip_point_decorators` + `.lower()` +
+    `splitlines()` on every page for each of the ~300 terms (~40k redundant re-normalizations of the same
+    bodies). Hoisting the normalize here makes it O(pages × normalize + terms × pages × membership) — the
+    expensive normalize runs once per page; the per-term work drops to substring membership tests. Reader-
+    visible prose only: the authored `<!-- point: … -->` decorators are stripped so a term appearing solely
+    inside a canonical-point never spawns a phantom occurrence reference (same rule as before, hoisted)."""
+    scan: list[_PageScan] = []
+    for order, pg in enumerate(pages):
+        md = _strip_point_decorators(pg["body_md"])
+        heading_lows: list[str] = []
+        for ln in md.splitlines():
+            s = ln.strip()
+            if s.startswith("#"):
+                heading_lows.append(s.lower())
+        scan.append(_PageScan(order, md.lower(), heading_lows, pg))
+    return scan
+
+
+def _scan_term_refs(term: str, page_scan: list[_PageScan]) -> list[dict]:
     """Find which pages mention `term`, ranked by significance. A page where the term appears in a heading
     (`# ` / `## ` / `### `) ranks above a body-only mention; ties break on reading order. Returns up to
-    `_MAX_REFS_PER_TERM` page records."""
+    `_MAX_REFS_PER_TERM` page records. `page_scan` is the once-per-page precompute from
+    `_build_page_scan_index` — the normalization is hoisted there, so this is pure membership testing."""
     keys = _match_keys(term)
     if not keys:
         return []
     scored: list[tuple[int, int, dict]] = []
-    for order, pg in enumerate(pages):
-        # Scan reader-visible prose only: strip the authored `<!-- point: … -->` decorators so a term that
-        # appears solely inside a canonical-point never spawns a phantom occurrence reference.
-        md = _strip_point_decorators(pg["body_md"])
-        low = md.lower()
+    for order, low, heading_lows, pg in page_scan:
         if not any(k in low for k in keys):
             continue
         # Significance: does the term appear in a heading line on this page?
-        in_heading = False
-        for ln in md.splitlines():
-            s = ln.strip()
-            if s.startswith("#"):
-                sl = s.lower()
-                if any(k in sl for k in keys):
-                    in_heading = True
-                    break
+        in_heading = any(k in hl for hl in heading_lows for k in keys)
         scored.append((0 if in_heading else 1, order, pg))
     scored.sort(key=lambda t: (t[0], t[1]))
     return [pg for _sig, _o, pg in scored[:_MAX_REFS_PER_TERM]]
@@ -5217,12 +5238,14 @@ def build_index_entries(chapters: list[dict], concept_registry: dict[str, dict] 
         seen_display.add(key)
         entries.append(e)
 
-    # Occurrence entries for every remaining findable term.
+    # Occurrence entries for every remaining findable term. Normalize each page ONCE up front (the scan
+    # index), then every term is a pure membership test against it — not a re-normalization of every body.
+    page_scan = _build_page_scan_index(chapters)
     for term in _load_index_terms():
         key = term.lower()
         if key in seen_display:
             continue
-        refs = _scan_term_refs(term, chapters)
+        refs = _scan_term_refs(term, page_scan)
         if not refs:
             continue
         seen_display.add(key)

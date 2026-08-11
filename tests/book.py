@@ -770,6 +770,87 @@ def check_ir_render_fidelity() -> "tuple[str, list[str]]":
     return (FAIL if active else PASS), active
 
 
+def check_index_scan_hoist_parity() -> "tuple[str, list[str]]":
+    """BLOCKING byte-identity gate for the index-scan hoist optimization. `_scan_term_refs` was made
+    O(pages) instead of O(terms×pages) by precomputing each page's normalized shape — the point-decorator-
+    stripped body lowercased + the lowercased heading lines — ONCE per page (`_build_page_scan_index`),
+    instead of re-normalizing every page for each of the ~300 index terms. `book-index.html`'s occurrence
+    index is a deterministic ALWAYS-REBUILD aggregate, so the optimized scan MUST return byte-identical
+    results to the naive per-term-renormalize reference for EVERY index term over the LIVE chapters. The
+    reference embedded here IS the pre-optimization algorithm, verbatim — it is the oracle, computed
+    independently of the production precompute, so agreement proves the hoist changed speed, not output.
+    Any divergence is a bug in the hoist. (This is the soundness net that lets the optimized build be
+    trusted; a diff here means the always-run index aggregate would ship different HTML.)"""
+    import sys as _sys  # noqa: E402 — local path bootstrap so the book/ builder is importable
+    if BOOK not in _sys.path:
+        _sys.path.insert(0, BOOK)
+    import build_book_html as _bb  # noqa: E402 — the book builder lives under book/
+
+    # Reconstruct the SAME page set the production index build scans: discovered chapters + the appendix
+    # pages build() appends before it builds the index (see build()).
+    metrics = _bb._load_metrics()
+    chapters = _bb._discover_chapters(metrics)
+    if not chapters:
+        return FAIL, ["no chapters discovered — cannot run the index-scan parity gate"]
+    max_part = max(c["part"] for c in chapters)
+    chapters = chapters + _bb.build_appendix_chapters(next_part=max_part + 1)
+
+    issues: list[str] = []
+
+    # (A) Precompute equivalence, over the real corpus. Independently derive each page's normalized shape —
+    # the exact structures the pre-optimization scan recomputed per term — and assert the production
+    # precompute (`_build_page_scan_index`) reproduces it field-for-field. This pins that the hoist moved
+    # the normalization WITHOUT changing what it produces (the only place a hoist bug can hide). O(pages).
+    oracle: list[tuple[int, str, list[str], dict]] = []
+    for order, pg in enumerate(chapters):
+        md = _bb._strip_point_decorators(pg["body_md"])
+        heads = [ln.strip().lower() for ln in md.splitlines() if ln.strip().startswith("#")]
+        oracle.append((order, md.lower(), heads, pg))
+    prod = _bb._build_page_scan_index(chapters)
+    if len(prod) != len(oracle):
+        issues.append(f"_build_page_scan_index yielded {len(prod)} pages, expected {len(oracle)}")
+    else:
+        for (po, pl, ph, ppg), (oo, ol, oh, opg) in zip(prod, oracle):
+            if (po, pl, ph, ppg["slug"]) != (oo, ol, oh, opg["slug"]):
+                issues.append(f"precompute diverges for page {opg['slug']!r} (order/low/heads mismatch)")
+
+    # (B) Scan equivalence, for EVERY index term over the real corpus. The reference below is the
+    # pre-optimization `_scan_term_refs` body verbatim (membership + heading-significance + score + reading-
+    # order tie-break + cap), operating on the independent `oracle` normalization — so it is an oracle for
+    # the production scan, not a copy of it. Any disagreement means the hoisted scan changed OUTPUT, i.e.
+    # book-index.html (an always-rebuild aggregate) would ship different HTML.
+    def _reference_scan(term: str) -> list:
+        keys = _bb._match_keys(term)
+        if not keys:
+            return []
+        scored = []
+        for order, low, heads, pg in oracle:
+            if not any(k in low for k in keys):
+                continue
+            in_heading = False
+            for hl in heads:
+                if any(k in hl for k in keys):
+                    in_heading = True
+                    break
+            scored.append((0 if in_heading else 1, order, pg))
+        scored.sort(key=lambda t: (t[0], t[1]))
+        return [pg for _s, _o, pg in scored[:_bb._MAX_REFS_PER_TERM]]
+
+    terms = _bb._load_index_terms()
+    for term in terms:
+        opt = [p["slug"] for p in _bb._scan_term_refs(term, prod)]
+        ref = [p["slug"] for p in _reference_scan(term)]
+        if opt != ref:
+            issues.append(f"index-scan hoist diverges for term {term!r}: optimized={opt} != reference={ref}")
+
+    # Self-guard against a green no-op: the gate is a soundness net only if it actually exercised the real
+    # corpus (many terms × many pages). A near-empty run would pass vacuously — flag it instead.
+    if len(terms) < 50 or len(chapters) < 10:
+        issues.append(f"parity gate exercised too little (terms={len(terms)}, pages={len(chapters)}) — it "
+                      "must scan the real corpus to be a soundness net")
+    return (FAIL if issues else PASS), issues
+
+
 # ---- rule 13: no only-child heading (a heading with exactly one next-level child) ----------------
 
 
