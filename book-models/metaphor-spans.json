@@ -135,13 +135,13 @@
       "recurrence": "local",
       "vehicle": "Aesop's raven raising water to reach it",
       "elaborates": { "model": "definitions", "id": "agent" },
-      "introduced_at": { "label": "the-agent-stack", "anchor": "intelligence-devises-means-within-constraints" },
-      "pays_off_at": { "label": "the-agent-stack", "anchor": "intelligence-devises-means-within-constraints" },
+      "introduced_at": { "label": "the-agent-stack", "anchor": "controllable-not-controlled-is-why-authority-leaves-the-prompt" },
+      "pays_off_at": { "label": "the-agent-stack", "anchor": "controllable-not-controlled-is-why-authority-leaves-the-prompt" },
       "stretch": "the-agent-stack",
       "payoff": "A goal-directed agent takes indirect steps toward a target.",
       "overlap_ok": false,
       "overlap_rationale": "",
-      "notes": "Local (kept, NOT retired). The raven vignette was cut from the §2.1 web body (Part-2 revision); its payoff now lives in the agent DEFINITION aspect (definitions.json -> agent -> aspects[0], 'a raven dropping pebbles to raise the water it cannot otherwise reach') — def-model/PDF-homed and web-absent, not the chapter body. The image still teaches the agent definition via the def-box aspect and the PDF, so it stays a live local metaphor (no count change; local stays local). Elaborates definitions/agent; anchor `intelligence-devises-means-within-constraints` still resolves (M3 clean)."
+      "notes": "Local (kept, NOT retired). The raven vignette was cut from the §2.1 web body (Part-2 revision); its payoff now lives in the agent DEFINITION aspect (definitions.json -> agent -> aspects[0], 'a raven dropping pebbles to raise the water it cannot otherwise reach') — def-model/PDF-homed and web-absent, not the chapter body. The image still teaches the agent definition via the def-box aspect and the PDF, so it stays a live local metaphor (no count change; local stays local). Elaborates definitions/agent; re-anchored to the recast opener point `controllable-not-controlled-is-why-authority-leaves-the-prompt`, which now carries the agent index-def after the R11 def-apparatus excision (M3 clean)."
     },
     {
       "kind": "metaphor",

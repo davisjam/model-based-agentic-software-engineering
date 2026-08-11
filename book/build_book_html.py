@@ -245,6 +245,7 @@ _GLOSS_TERM_SLUGS = {
     # HEADWORDS left the glossary, so this display→slug map drops exactly those keys.
     "Model": "model",
     "Engineering": "engineering",
+    "Software engineering": "software-engineering",
     "Structured": "structured",
     "Descriptive vs. prescriptive": "descriptive-vs-prescriptive",
     "Modeling Thesis": "thesis-modeling",
