@@ -701,13 +701,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="current" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · G.3 Domain Registries — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.3 Domain Registries</h1></header><p>The <strong>Domain Registries</strong> reference page. The chapter <em>Modeling Structure and Ownership</em> teaches these as the single facts every consumer joins to; the full five-field treatment lands here. The rule-metadata registry is the self-referential slice and gets its own entry below the shared fields.</p>
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · G.3 Domain Registries — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.3 Domain Registries</h1></header><p>The <strong>Domain Registries</strong> reference page. The chapter <em>Modeling Structure and Ownership</em> teaches these as the single facts every consumer joins to; the full five-field treatment lands here. The rule-metadata registry is the self-referential slice and gets its own entry below the shared fields.</p>
 <p><strong>(a) Quality property.</strong> <strong>Fact consistency</strong> — every consumer of a slowly-changing domain fact agrees, because each joins to the registry by key rather than keeping its own copy. A fact read in many places and revised rarely is exactly the fact that drifts when each reader copies it; the registry makes disagreement a build failure instead of a latent inconsistency.</p>
 <p><strong>(b) Structure.</strong> One frozen table per domain fact, each the single source of truth for its slice.</p>
 <ul><li><strong><code>Registry</code></strong> — a named table keyed by a stable id (for the file-type registry, the format id / extension), holding the authored fact and the fields consumers read.</li><li><strong>The join relation</strong> — every consumer references a registry row by key; no consumer stores a private copy of the value.</li></ul>

@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>40</b> chapters · <b>302</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>40</b> chapters · <b>299</b> sections · <b>86</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -341,49 +341,37 @@
 </div>
 <div class="chapter">
 <h3 id="ch-2-6-modeling-behavior-and-execution"><span class="tier-kick">Lesson</span><a href="../book/2.6-modeling-behavior-and-execution.html" class="ch-link">2.6-modeling-behavior-and-execution</a> <span class="ch-slug">2.6-modeling-behavior-and-execution</span></h3>
-<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--the-process-view-what-runs-at-once">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The Process View: what runs at once</a></div>
-<p class="topic">*What happens when many parts of the system run at once?* The Logical view holds the system still to name its parts; it projects structure and leaves time out.</p>
+<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--reading-behavior-formally">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Reading behavior formally</a></div>
+<p class="topic">The models below share a small formal vocabulary.</p>
 </div>
-<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--formal-invariant-verification">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Formal invariant verification: the verification backbone</a></div>
-<p class="topic">Formal invariant verification is the backbone the three models hang their invariant tables on — a governance method over the models, not a model of the running system.</p>
+<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--what-must-hold-across-every-interleaving">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">What must hold across every interleaving</a></div>
+<p class="topic">*What runs at once, and what stays true across every schedule?* Concurrency is where a correct-in-isolation design becomes a source of races, deadlocks, and torn writes, and the answer cannot be a thought experiment about interleavings.</p>
 </div>
-<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--synchronization-model">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The synchronization model</a></div>
-<p class="topic">*A typed registry that models the system&#x27;s synchronization behavior — every OS-level lock, which shared resource it guards, and the required acquisition ordering — so concurrency contracts are declared and checkable, not tribal.*</p>
+<div class="section s3" id="sec-2-6-modeling-behavior-and-execution--two-ways-to-make-a-concurrent-write-safe">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Two ways to make a concurrent write safe</a></div>
+<p class="topic">Above the raw locks sit two registries that draw a distinction worth naming, because confusing them is how a corruption bug hides inside a load limit.</p>
 </div>
-<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--two-ways-to-make-a-concurrent-write-safe-the-mediator-and-the-single-writer-registries">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Two ways to make a concurrent write safe: the mediator and the single-writer registries</a></div>
-<p class="topic">The synchronization model catalogs the raw locks.</p>
+<div class="section s3" id="sec-2-6-modeling-behavior-and-execution--the-verification-backbone">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The verification backbone</a></div>
+<p class="topic">All three concurrency models hang their invariant tables on one shared method, and it is trunk machinery rather than a model of the running system.</p>
 </div>
-<div class="section s3" id="sec-2-6-modeling-behavior-and-execution--mediator-registry">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The mediator registry</a></div>
-<p class="topic">The mediator registry is the *how-many* half.</p>
+<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--where-each-part-runs">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Where each part runs</a></div>
+<p class="topic">*Where does each part run, and which of those placements is a correctness decision?* A functionally correct system can still be mis-deployed.</p>
 </div>
-<div class="section s3" id="sec-2-6-modeling-behavior-and-execution--single-writer-registry">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The single-writer registry</a></div>
-<p class="topic">The single-writer registry is the *exactly-one* half, and its failure mode is what makes it a separate model.</p>
+<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--correctness-in-the-graph-resource-limits-in-a-profile">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Correctness in the graph, resource limits in a profile</a></div>
+<p class="topic">The placement models raise one more question — *what resources constrain execution?* — and answering it well turns on a single modeling principle, the most portable idea in this chapter: **correctness dependencies stay in the graph; host-specific resource limits live in a scheduler profile.**</p>
 </div>
-<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--the-physical-view-where-the-parts-live">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The Physical View: where the parts live</a></div>
-<p class="topic">*Where does each part run, and at what cost?* The Physical view is the projection over the connected system model that turns placement into a queryable relation over the same named entities the other views share, rather than a fact scattered across deployment configuration.</p>
+<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--one-honest-gap">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">One honest gap</a></div>
+<p class="topic">That policy models the *load-and-cost* half of execution.</p>
 </div>
-<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--the-performance-cost-view-mostly-embodied-one-honest-gap">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The performance/cost view: mostly embodied, one honest gap</a></div>
-<p class="topic">The zoo names a performance and cost model as a general type, and the framework supports it.</p>
-</div>
-<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--deployment-topology-model">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The deployment &amp; tier topology model</a></div>
-<p class="topic">*The typed statement of where things run — each service&#x27;s name, its layer, and its tier — from which the deploy scripts and layering lints reason about a declared topology rather than scattered constants, and against which the real deploy table is reconciled.*</p>
-</div>
-<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--invariant-dag-execution-policy">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The invariant-DAG execution policy</a></div>
-<p class="topic">The insight is one sentence: **correctness dependencies stay in the graph; host-specific resource limits live in a scheduler profile.** What must be true on *every* host — B is wrong without A — belongs in the deploy graph.</p>
-</div>
-<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--control-substrate-dependency">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The control↔substrate dependency model</a></div>
-<p class="topic">The substrate-dependency model makes each governance mechanism declare, as typed metadata, the substrate assumption it bakes in — bound to one substrate, substrate-aware, or substrate-agnostic.</p>
+<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--computing-a-migration-s-blast-radius">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Computing a migration&#x27;s blast radius</a></div>
+<p class="topic">One last behavioral question an agent asks before it changes the ground everything runs on: *which mechanisms assume the substrate I am about to replace?* The **substrate-dependency model** makes each governance mechanism declare, as typed metadata, the substrate assumption it bakes in — bound to one substrate, substrate-aware, or substrate-agnostic.</p>
 </div>
 </div>
 <div class="chapter">

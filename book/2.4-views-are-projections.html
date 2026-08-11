@@ -701,13 +701,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 9 · One System, Several Views — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 9</a></div><h1><span class="chap-num">2.4</span> One System, Several Views</h1></header><p>One connected representation does not imply one view. The last chapter built a single executable core — typed entities and relations, held equal to the code. If the whole system is one connected model, why keep many models at all?</p>
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 9 · One System, Several Views — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 9</a></div><h1><span class="chap-num">2.4</span> One System, Several Views</h1></header><p>One connected representation does not imply one view. The last chapter built a single executable core — typed entities and relations, held equal to the code. If the whole system is one connected model, why keep many models at all?</p>
 <p>Because no one projection answers every engineering question. A service dependency useful during a migration tells you little about lock ordering; a deployment relation useful for capacity planning tells you little about a user's journey. The same system therefore needs several <strong>projections</strong>, each keeping the entities, relations, and properties one question needs and suppressing the rest.</p>
 <p id="idx-def-four-plus-one-views">Kruchten's <strong>4+1 views</strong> supply a well-worn set of those projections: no single diagram captures a software architecture, and four complementary views plus a fifth that ties them together cover what a working engineer needs to see. The 4+1 is organizing vocabulary <em>inside</em> this Part — it names the <em>questions</em> worth projecting for. It does not organize the models; the connected representation does. The inset defines the five; <a class="xref" href="2.4-views-are-projections.html#fig-2-4-1">Figure&nbsp;2.4-1</a> draws the one core and the views projected from it.</p>
 <blockquote class="concept-inset"><p class="inset-title" id="inset-kruchten">Inset — What are Kruchten's 4+1 views?</p>

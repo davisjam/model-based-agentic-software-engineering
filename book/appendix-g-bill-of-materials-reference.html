@@ -701,13 +701,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="current" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · G.4 Bill of Materials — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.4 Bill of Materials</h1></header><p>The <strong>Bill of Materials / Dependency Model</strong> reference page. The chapter <em>Modeling Structure and Ownership</em> teaches this as the model that answers what third-party material the build depends on; the full five-field treatment lands here.</p>
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · G.4 Bill of Materials — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.4 Bill of Materials</h1></header><p>The <strong>Bill of Materials / Dependency Model</strong> reference page. The chapter <em>Modeling Structure and Ownership</em> teaches this as the model that answers what third-party material the build depends on; the full five-field treatment lands here.</p>
 <p><strong>(a) Quality property.</strong> <strong>Manifest completeness</strong> — a fresh checkout never breaks on a resolve the author never saw fail. A dependency is a packaging fact, not a runtime one: it decides what the build fetches before anything runs, so an undeclared package is a supply-chain surprise waiting for the next clean environment.</p>
 <p><strong>(b) Structure.</strong> The dependency graph of a build.</p>
 <ul><li><strong><code>Package</code></strong> — one third-party dependency: its name, its pinned version, and whether it is a direct requirement or pulled in transitively.</li><li><strong>The requires relation</strong> — the edges of the graph, direct and transitive, the SBOM lens on the code.</li><li><strong>The matching manifest</strong> — the declared set the graph must equal: every package the code or a quality gate imports appears in it.</li></ul>

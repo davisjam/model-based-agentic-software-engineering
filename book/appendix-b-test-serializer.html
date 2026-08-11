@@ -701,13 +701,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 5. Test-serializer (N=1 flock on dotnet test) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 5. Test-serializer (N=1 flock on <code>dotnet test</code>)</h1></header><p><strong>The judgment</strong> — Process isolation isn't resource isolation; ban the un-mediated path.</p>
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 5. Test-serializer (N=1 flock on dotnet test) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 5. Test-serializer (N=1 flock on <code>dotnet test</code>)</h1></header><p><strong>The judgment</strong> — Process isolation isn't resource isolation; ban the un-mediated path.</p>
 <table class="book-table meta-card"><tbody><tr><td><strong>Role</strong></td><td>Agent</td></tr><tr><td><strong>Family</strong></td><td>Mediators &amp; resource locks</td></tr><tr><td><strong>Used in stacks</strong></td><td>The Mediation stack</td></tr><tr><td><strong>Enforcement</strong></td><td>Hard</td></tr><tr><td><strong>Applicability</strong></td><td>Specialized</td></tr><tr><td><strong>Related mechanisms</strong></td><td><em>See also:</em> <a href="../agent/mediators-and-resource-locks/build-serializer.html">Build-serializer (M=8 semaphore)</a></td></tr></tbody></table>
 <p><em>Full description → <a href="../agent/mediators-and-resource-locks/test-serializer.html">Test-serializer (N=1 flock on <code>dotnet test</code>)</a>.</em></p>
 <p><strong>Intent</strong> — A host-level wrapper that serializes the test runner to a single writer via an exclusive flock, so concurrent agent worktrees on one machine don't saturate I/O and interfere with each other's test runs (our instance: an N=1 flock on <code>dotnet test</code>).</p>

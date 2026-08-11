@@ -701,13 +701,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix A - 6. The governance-of-governance stack — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>Appendix A - 6. The governance-of-governance stack</h1></header><p><em>A two-page synthesis of the governance-of-governance stack. Six patterns treat the governance system as its own subject: model the controls as a graph, census which targets are covered, compute a change's blast radius before making it, convert each recurring failure into a proportionate new control, and hold the governing document itself as enforced, queryable infrastructure.</em></p>
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix A - 6. The governance-of-governance stack — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>Appendix A - 6. The governance-of-governance stack</h1></header><p><em>A two-page synthesis of the governance-of-governance stack. Six patterns treat the governance system as its own subject: model the controls as a graph, census which targets are covered, compute a change's blast radius before making it, convert each recurring failure into a proportionate new control, and hold the governing document itself as enforced, queryable infrastructure.</em></p>
 <h2>The capability</h2>
 <p>The lints, gates, and mediators have quietly become a system of their own — with their own failure modes. The question stops being "is the product governed?" and becomes "can I improve the <em>governance</em> on purpose — or only find out when two guardrails collide in production?"</p>
 <p><strong>Govern the control estate the way you govern the product — model it, measure its coverage, bound its changes, and grow it by design.</strong> One capability defines it: <em>govern the control estate itself</em>. A fleet accumulates lints, gates, mediators, and registries until the estate is a system in its own right, with its own failure modes: controls that collide, targets no one guards, substrate changes with unknown blast radius, and a governing document that rots. The stack turns each of those into a modeled, queryable, self-repairing fact.</p>

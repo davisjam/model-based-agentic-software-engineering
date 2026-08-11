@@ -701,13 +701,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 97 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 856"
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 95 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 856"
      role="group" aria-labelledby="fig-0-1-1-mmTitle fig-0-1-1-mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-0-1-1-mmTitle">The MAGE method at a glance — a fork between engineering capital and engineering churn, with the two theses as gates</title>
@@ -2538,118 +2542,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <line x1="590" y1="358" x2="616" y2="370"/>
   </g>
   <text x="522" y="344" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">constrains</text>
-</svg><figcaption data-short="One lock record, many acquisition sites, many ordering constraints — the ER…"><span class="fig-label">Figure 2.6-1.</span> One lock record, many acquisition sites, many ordering constraints — the ER schema behind the synchronization model. Read it as three related record kinds: a SyncLock and its guarded resource, the LockAcquirer sites that take it, and the LockOrdering edges that constrain their sequence. The coverage and ordering lints walk this schema to catch an undeclared lock or a deadlock-inducing acquisition.</figcaption></figure><p class="gallery-source">From <a href="2.6-modeling-behavior-and-execution.html#fig-2-6-1">11 · Modeling Behavior and Execution</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-2-fig-2-6-2" class="book-figure" data-label="deployment-model-structure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 400"
-     role="group" aria-labelledby="fig-2-6-2-dmTitle fig-2-6-2-dmDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-6-2-dmTitle">The build host produces the image; the runtime cluster deploys it</title>
-  <desc id="fig-2-6-2-dmDesc">A build host runs the test serializer and build semaphore and produces
-    the image the runtime cluster deploys, where the web service enqueues onto a queue
-    drained by a worker. The model declares this placement.</desc>
-
-  <defs>
-    <marker id="fig-2-6-2-dm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- ===== the build host ===== -->
-  <rect x="40" y="50" width="330" height="310" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="60" y="88" font-size="20" font-weight="700" fill="#1c1917">Build host</text>
-
-  <rect x="70" y="120" width="270" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="205" y="160" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Test serializer</text>
-
-  <rect x="70" y="240" width="270" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="205" y="280" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Build semaphore</text>
-
-  <!-- host -> cluster: the image crosses the boundary -->
-  <line x1="374" y1="205" x2="554" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-6-2-dm-ah)"/>
-  <text x="465" y="184" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">produces the image</text>
-
-  <!-- ===== the runtime cluster ===== -->
-  <rect x="560" y="50" width="580" height="310" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="580" y="88" font-size="20" font-weight="700" fill="#1c1917">Runtime cluster</text>
-
-  <rect x="590" y="173" width="130" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="655" y="213" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Web</text>
-
-  <line x1="724" y1="205" x2="782" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-6-2-dm-ah)"/>
-
-  <!-- the queue (cylinder) -->
-  <g>
-    <path d="M 788,168 v 62 a 65,10 0 0 0 130,0 v -62" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <ellipse cx="853" cy="168" rx="65" ry="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="853" y="213" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Queue</text>
-  </g>
-
-  <line x1="922" y1="205" x2="980" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-6-2-dm-ah)"/>
-
-  <rect x="986" y="173" width="130" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="1051" y="213" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Worker</text>
-</svg><figcaption data-short="The model declares placement — the build host that produces the image, and…"><span class="fig-label">Figure 2.6-2.</span> The model declares placement — the build host that produces the image, and the runtime cluster it deploys into. Each service is a frozen record keyed by name, carrying its owning layer and its tier class. A bidirectional parity check reconciles those declared tiers against the real deploy table, so a service that ships at the wrong tier fails the build.</figcaption></figure><p class="gallery-source">From <a href="2.6-modeling-behavior-and-execution.html#fig-2-6-2">11 · Modeling Behavior and Execution</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-3-fig-2-6-3" class="book-figure" data-label="dag-policy-structure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
-     role="group" aria-labelledby="fig-2-6-3-dpTitle fig-2-6-3-dpDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-6-3-dpTitle">Load leaves the deploy graph for the Scheduler — a profile edit, not a graph edit</title>
-  <desc id="fig-2-6-3-dpDesc">Two zones. In the deploy graph, correctness and cost-gate edges stay, host-identical.
-    The load intent is banned from the graph and migrates to the second zone, off the graph, where the
-    Scheduler reads a per-host profile and emits an execution plan — the concurrency and cost-gate
-    decisions for that host. Moving the stress burden between hosts edits the profile, never the graph.</desc>
-
-  <defs>
-    <marker id="fig-2-6-3-dp-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-    <marker id="fig-2-6-3-dp-thick" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- ===== Zone 1 — in the deploy graph ===== -->
-  <rect x="30" y="70" width="440" height="400" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
-  <text x="50" y="106" font-size="20" font-weight="700" fill="#1c1917">In the deploy graph</text>
-
-  <rect x="55" y="150" width="390" height="76" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="250" y="190" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">CORRECTNESS</text>
-  <text x="250" y="214" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">host-identical — stays in the graph</text>
-
-  <rect x="55" y="246" width="390" height="76" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="250" y="286" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">COST_GATE</text>
-  <text x="250" y="310" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">host-identical — stays in the graph</text>
-
-  <rect x="55" y="342" width="390" height="76" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
-  <text x="250" y="382" text-anchor="middle" font-size="24" font-weight="700" fill="#b23b3b">LOAD</text>
-  <text x="250" y="406" text-anchor="middle" font-size="16" font-style="italic" fill="#b23b3b">banned from the graph</text>
-
-  <!-- ===== the load intent migrates off the graph ===== -->
-  <path d="M448,380 C530,372 558,268 608,204" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#fig-2-6-3-dp-thick)"/>
-  <text x="516" y="304" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">migrates</text>
-
-  <!-- ===== Zone 2 — off the graph, the Scheduler ===== -->
-  <rect x="530" y="70" width="440" height="400" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
-  <text x="550" y="106" font-size="20" font-weight="700" fill="#1c1917">Off the graph — the Scheduler</text>
-
-  <rect x="610" y="150" width="300" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="760" y="190" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Scheduler</text>
-  <text x="760" y="216" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">reads a per-host profile</text>
-
-  <line x1="760" y1="230" x2="760" y2="256" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-6-3-dp-ah)"/>
-
-  <!-- the per-host profile (cylinder) — the thing you edit -->
-  <g>
-    <path d="M 640,272 v 58 a 120,14 0 0 0 240,0 v -58" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-    <ellipse cx="760" cy="272" rx="120" ry="14" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-    <text x="760" y="312" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Per-host profile</text>
-    <text x="760" y="336" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">ceiling · budget</text>
-  </g>
-
-  <line x1="760" y1="346" x2="760" y2="390" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-6-3-dp-ah)"/>
-
-  <rect x="615" y="392" width="290" height="66" rx="33" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="760" y="433" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Execution plan</text>
-
-  <!-- ===== the registered slogan (verbatim) ===== -->
-  <text x="500" y="520" text-anchor="middle" font-size="22" font-style="italic" font-weight="700" fill="#1c1917">Move stress between hosts — a profile edit, not a graph edit.</text>
-</svg><figcaption data-short="Profile edit, not graph edit"><span class="fig-label">Figure 2.6-3.</span> <em>Profile edit, not graph edit.</em> Correctness and cost-gate edges stay in the deploy graph, host-identical; the load intent is banned from the graph and moves to the Scheduler, which reads a per-host profile and emits the execution plan. Moving stress between hosts edits the profile, never the graph.</figcaption></figure><p class="gallery-source">From <a href="2.6-modeling-behavior-and-execution.html#fig-2-6-3">11 · Modeling Behavior and Execution</a></p></section><hr><section class="gallery-item"><figure id="fig-2-7-1-fig-2-7-1" class="book-figure" data-label="task-closure-tree"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 700"
+</svg><figcaption data-short="One lock record, many acquisition sites, many ordering constraints — the ER…"><span class="fig-label">Figure 2.6-1.</span> One lock record, many acquisition sites, many ordering constraints — the ER schema behind the synchronization model. Read it as three related record kinds: a lock and its guarded resource, the sites that take it, and the ordering edges that constrain their sequence. The coverage and ordering lints walk this schema to catch an undeclared lock or a deadlock-inducing acquisition.</figcaption></figure><p class="gallery-source">From <a href="2.6-modeling-behavior-and-execution.html#fig-2-6-1">11 · Modeling Behavior and Execution</a></p></section><hr><section class="gallery-item"><figure id="fig-2-7-1-fig-2-7-1" class="book-figure" data-label="task-closure-tree"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 700"
      role="group" aria-labelledby="fig-2-7-1-tcTitle fig-2-7-1-tcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-7-1-tcTitle">Task-closure: an expression tree over observable predicates, and its derived grade</title>

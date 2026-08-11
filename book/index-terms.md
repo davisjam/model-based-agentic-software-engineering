@@ -259,7 +259,6 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: bill-of-materials | Bill of materials
 - concept: rule-metadata-registry | Rule-metadata registry
 - concept: deployment-topology-model | Deployment-topology model
-- concept: performance-cost-model | Performance-and-cost model
 - concept: model-only-where-a-failure-lives | Model only where a failure lives
 - concept: invariant-dag-execution-policy | Invariant-DAG execution policy
 - concept: control-substrate-dependency | Control-substrate dependency

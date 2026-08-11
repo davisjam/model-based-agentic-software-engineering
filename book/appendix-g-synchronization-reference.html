@@ -701,10 +701,47 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="current" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · G.5 Synchronization Model — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.5 Synchronization Model</h1></header><p>The <strong>Synchronization Model</strong> reference page. Its five-field treatment — (a) the quality property it settles, (b) the typed record schema, (c) its representative figure, (d) the complete invariant table, and (e) the derivation direction the drift gate compares — is migrated here from <em>Modeling Behavior and Execution</em> in round-10 W2.5. Until then this page reserves the slug and holds the scaffold.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">« Beginning of part</a><a href="appendix-g-bill-of-materials-reference.html" aria-label="Previous chapter — G.4 Bill of Materials">« Previous chapter</a></div><span class="chapnav-here" title="G.5 Synchronization Model">G.5 Synchronization Model</span><div class="chapnav-fwd"><a href="appendix-g-deployment-topology-reference.html" aria-label="Next chapter — G.6 Deployment-Topology Model">Next chapter »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · G.5 Synchronization Model — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.5 Synchronization Model</h1></header><p>A typed registry that models the system's synchronization behavior — every OS-level lock, which shared resource it guards, and the required acquisition ordering — so concurrency contracts are declared and checkable, not tribal. The Part-II mainline shows one ordering invariant; the full treatment is here.</p>
+<p><strong>(a) Quality property.</strong> Two, both locally visible but globally difficult to establish.</p>
+<ul><li><strong>Lock coverage</strong> — <em>is every OS lock in the codebase declared, and is what it guards known?</em> An undeclared lock is one nobody can reason about; the coverage lint makes it a build failure.</li><li><strong>Lock-order consistency</strong> — <em>does any acquisition invert a declared ordering?</em> The declared ordering graph answers "which locks, in what order" before the code runs, so an inverted acquisition fails at author time instead of hanging in production. This prevents the deadlocks that arise from <strong>declared-order inversions</strong>; it does not by itself prove global deadlock-freedom, which would need cycle detection over the whole graph.</li></ul>
+<p><strong>(b) Structure.</strong> Three record kinds compose the registry.</p>
+<ul><li><strong><code>SyncLock</code></strong> — one OS primitive: its lock-file path, its cap (1 for a mutex, M for a semaphore), the resource it guards, its bypass-env, its audit-log.</li><li><strong><code>LockAcquirer</code></strong> — one declared acquisition site: where in the code a lock is taken, or a declared "takes none" with a rationale.</li><li><strong><code>LockOrdering</code></strong> — a before/after constraint between two locks, with a rationale. The set of these is the ordering graph the deadlock lint walks.</li></ul>
+<p>One <code>SyncLock</code> is acquired at many <code>LockAcquirer</code> sites and constrained by many <code>LockOrdering</code> edges.</p>
+<p><strong>(c) Representative figure.</strong> An ER schema — three related record kinds with crow's-foot cardinality: a <code>SyncLock</code> and its guarded resource, the <code>LockAcquirer</code> sites that take it, and the <code>LockOrdering</code> edges that constrain their sequence. (Reuse <code>assets/sync-model-structure.svg</code>.)</p>
+<p><strong>(d) Invariants.</strong></p>
+<table id="tbl-G-5-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table G.5-1.</span></caption><thead><tr><th>Invariant</th><th>Temporal shape</th><th>How it is checked</th></tr></thead><tbody><tr><td>Every real lock call site is a declared acquirer</td><td><em>□P</em> (safety)</td><td>Coverage lint scans the lock call sites; each must be declared or carry a "not a sync lock" rationale.</td></tr><tr><td>No acquisition inverts a declared ordering</td><td><em>□P</em> (safety)</td><td>Ordering lint walks each code path's acquisition sequence against the ordering graph; an out-of-order acquire is a finding.</td></tr><tr><td>Every exempt site carries a rationale</td><td><em>□P</em> (safety)</td><td>The closed set of exempt rationales — an unexplained exemption fails the coverage lint.</td></tr></tbody></table>
+<p>The ordering lint does genuine graph reasoning. The shape, in schematic pseudocode (the production checker reasons over transitive orderings and per-path acquisition):</p>
+<pre><code># Schematic — illustrates the inversion check on one acquisition path.
+# The production lint reasons over the transitive ordering graph.
+import sys
+
+# Declared ordering: a lock in `before` must be acquired before its `after` lock.
+ORDERINGS = [("db-lock", "cache-lock")]      # db before cache, always
+
+def ordering_lint(acquire_sequence: list[str]) -&gt; list[str]:
+    """A held-lock acquiring one that must precede it is an inversion (deadlock risk)."""
+    findings, held = [], []
+    for lock in acquire_sequence:
+        for before, after in ORDERINGS:
+            if lock == before and after in held:
+                findings.append(f"acquired '{before}' while holding '{after}' — order inverted")
+        held.append(lock)
+    return findings
+
+if __name__ == "__main__":
+    findings = ordering_lint(walk_acquisitions())   # a code path's acquisition order
+    for f in findings:
+        print(f"LOCK-ORDER: {f}")
+    sys.exit(1 if findings else 0)</code></pre>
+<p><strong>(e) Derivation direction.</strong> <em>Model-from-code.</em> The coverage lint scans the real lock call sites and requires each to be a declared acquirer, so the code is ground truth and the model is the checked view. The join key is the lock <code>path</code> (which lock a site takes) and the acquirer <code>site</code> (where the acquisition happens).</p>
+<p><em>Also seen in:</em> the placement models — a lock is held per-host, so where it runs matters.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">« Beginning of part</a><a href="appendix-g-bill-of-materials-reference.html" aria-label="Previous chapter — G.4 Bill of Materials">« Previous chapter</a></div><span class="chapnav-here" title="G.5 Synchronization Model">G.5 Synchronization Model</span><div class="chapnav-fwd"><a href="appendix-g-single-writer-registry-reference.html" aria-label="Next chapter — G.6 Single-Writer Registry">Next chapter »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

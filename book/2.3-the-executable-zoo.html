@@ -701,13 +701,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 8 · Making Models Executable — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 8</a></div><h1><span class="chap-num">2.3</span> Making Models Executable</h1></header><p id="idx-def-model-as-map">A model exists to reduce how much system an engineer — or an agent — must reason about at once. An <strong>executable</strong> model earns a stronger claim: it is structured enough to reason over and bound tightly enough to the code that a build can catch the two disagreeing. That is the model this chapter defines, and the machinery that keeps code from drifting away from it.</p>
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 8 · Making Models Executable — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 8</a></div><h1><span class="chap-num">2.3</span> Making Models Executable</h1></header><p id="idx-def-model-as-map">A model exists to reduce how much system an engineer — or an agent — must reason about at once. An <strong>executable</strong> model earns a stronger claim: it is structured enough to reason over and bound tightly enough to the code that a build can catch the two disagreeing. That is the model this chapter defines, and the machinery that keeps code from drifting away from it.</p>
 <p>One real codebase sits under every model that follows: DocAble, the production accessibility service this book runs on. It carries nineteen structured, drift-checked models and uses everything in this book to stay coherent; the full account is <a href="5.4-the-built-system.html">The Built System</a> — Part 5 (The Evidence).</p>
 <blockquote class="concept-inset"><p class="inset-title" id="executable-model-pattern">The Executable Model Pattern</p>
 <p>Every model in Part 2 is <strong>one executable core, several projected views</strong>, and every one answers the same six questions:</p>

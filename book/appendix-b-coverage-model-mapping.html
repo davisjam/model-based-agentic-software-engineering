@@ -701,13 +701,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 15. Coverage → model-node mapping (which invariants are actually tested) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 15. Coverage → model-node mapping (which invariants are actually tested)</h1></header><p><strong>The judgment</strong> — Measure coverage against invariants, not lines; the aggregate hides the gap.</p>
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix B - 15. Coverage → model-node mapping (which invariants are actually tested) — MAGE"><header class="chap"><div class="kicker"><a href="appendix-b-flagship-mechanisms.html" aria-label="Beginning of Appendix B — Flagship Mechanisms">Appendix B — Flagship Mechanisms</a></div><h1>Appendix B - 15. Coverage → model-node mapping (which invariants are actually tested)</h1></header><p><strong>The judgment</strong> — Measure coverage against invariants, not lines; the aggregate hides the gap.</p>
 <table class="book-table meta-card"><tbody><tr><td><strong>Role</strong></td><td>Models-bridge</td></tr><tr><td><strong>Family</strong></td><td>System models</td></tr><tr><td><strong>Used in stacks</strong></td><td>The Assurance stack</td></tr><tr><td><strong>Enforcement</strong></td><td>Soft·Hard</td></tr><tr><td><strong>Applicability</strong></td><td>Specialized</td></tr><tr><td><strong>Related mechanisms</strong></td><td><em>Counterpart:</em> <a href="../models-bridge/system-models/formal-invariant-verification.html">Formal invariant verification (temporal form → model checking)</a>; <em>Enabler:</em> <a href="../models-bridge/system-models/executable-source-of-truth.html">Executable source-of-truth models</a>; <em>See also:</em> <a href="../models-bridge/system-models/drift-parity-gates.html">Drift &amp; parity gates</a></td></tr></tbody></table>
 <p><em>Full description → <a href="../models-bridge/system-models/coverage-model-mapping.html">Coverage → model-node mapping (which invariants are actually tested)</a>.</em></p>
 <p><strong>Intent</strong> — Project test coverage onto the <em>model's nodes</em> — its states, seams, and invariants — so "is this invariant tested?" becomes a queried fact instead of a guess from a line-coverage percentage. The map turns the model into a test work-list: an invariant node with no covering test is a visible gap that drives the next test.</p>

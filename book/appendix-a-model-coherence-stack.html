@@ -701,13 +701,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix A - 2. The model-coherence stack — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>Appendix A - 2. The model-coherence stack</h1></header><p><em>A two-page synthesis of the model-coherence stack. Six patterns let a context-bounded agent reason through a typed map of the system instead of the whole territory — and keep the map equal to the territory, so what the agent queries is what is true.</em></p>
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix A - 2. The model-coherence stack — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>Appendix A - 2. The model-coherence stack</h1></header><p><em>A two-page synthesis of the model-coherence stack. Six patterns let a context-bounded agent reason through a typed map of the system instead of the whole territory — and keep the map equal to the territory, so what the agent queries is what is true.</em></p>
 <h2>The capability</h2>
 <p>An agent cannot hold the whole codebase in its context. It has to act anyway. So the question is whether it can reason <em>safely</em> about a system it can only see a slice of at a time.</p>
 <p><strong>Give a bounded-context agent a typed map it can reason through, and hold that map equal to the code so the map never lies.</strong> It answers two capabilities at once — <em>maintain authoritative system knowledge</em> and <em>keep representations equal to reality</em>. The models are executable data, not prose — read live, checked against reality by a gate, derived where a derived edge cannot drift, and generated back into the system. An agent that cannot hold the whole codebase queries the map instead, and the map is trustworthy because machinery, not hope, keeps it current.</p>

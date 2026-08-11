@@ -701,13 +701,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
 <li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
 <li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.6 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.7 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.8 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.9 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.10 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.11 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.12 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · G.1 Service-Flow Model — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.1 Service-Flow Model</h1></header><p>The <strong>Service-Flow Model</strong> reference page. The chapter <em>Modeling Structure and Ownership</em> teaches this model through one engineering question, one figure, and one invariant; the full five-field treatment lands here.</p>
+<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
+<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
+<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
+<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
+<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
+<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
+<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
+<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
+<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
+<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
+<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · G.1 Service-Flow Model — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.1 Service-Flow Model</h1></header><p>The <strong>Service-Flow Model</strong> reference page. The chapter <em>Modeling Structure and Ownership</em> teaches this model through one engineering question, one figure, and one invariant; the full five-field treatment lands here.</p>
 <p><strong>(a) Quality property.</strong> Three questions the scattered deploy config and handler code cannot answer without a single model.</p>
 <ul><li><strong>Wiring correctness</strong> — <em>does every declared caller-to-callee edge have a real call site, and every real cross-service call a declared edge?</em> An undeclared call is an ungoverned one.</li><li><strong>Access-policy parity</strong> — <em>does the generated network access policy match the wiring the model declares?</em> The policy is emitted from the model, then diffed against the committed artifact, so what a service may reach stays equal to what the model says it may.</li><li><strong>Contract parity</strong> — <em>does each endpoint's declared request and response shape match the handler that serves it?</em> A drifted contract is a runtime failure the model turns into a build failure.</li></ul>
 <p><strong>(b) Structure.</strong> A typed catalog in the dialect of a service-catalog schema, adopted for its hard-won structure and read by the project's own tools.</p>

@@ -529,25 +529,7 @@
       "location": "part3",
       "rationale": "invariant lookup"
     },
-    "modeling-behavior-and-execution::Invariants of the Process view": {
-      "tier": "C",
-      "kind": "reference-lookup",
-      "location": "part3",
-      "rationale": "invariant lookup"
-    },
     "modeling-structure-and-ownership::Invariants of the Development view": {
-      "tier": "C",
-      "kind": "reference-lookup",
-      "location": "part3",
-      "rationale": "invariant lookup"
-    },
-    "modeling-behavior-and-execution::Invariants of the Physical view: deployment placement": {
-      "tier": "C",
-      "kind": "reference-lookup",
-      "location": "part3",
-      "rationale": "invariant lookup"
-    },
-    "modeling-behavior-and-execution::Invariants of the Physical view: host-stress edges": {
       "tier": "C",
       "kind": "reference-lookup",
       "location": "part3",
@@ -720,6 +702,24 @@
       "kind": "mechanism-illustration",
       "location": "part3",
       "rationale": "task-closure expression tree + derived grade"
+    },
+    "modeling-behavior-and-execution::Synchronization model — illustrative invariant": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part3",
+      "rationale": "invariant lookup"
+    },
+    "modeling-behavior-and-execution::Deployment-topology model — illustrative invariant": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part3",
+      "rationale": "invariant lookup"
+    },
+    "modeling-behavior-and-execution::Invariant-DAG execution policy — illustrative invariant": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part3",
+      "rationale": "invariant lookup"
     }
   }
 }
