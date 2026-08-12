@@ -193,11 +193,13 @@ def _mermaid_env() -> dict[str, str]:
         env["PUPPETEER_EXECUTABLE_PATH"] = exe
     return env
 
-# Chapter metadata comments — ONLY the two title keys. Scoped to these keys (not a generic `[a-z-]+`)
-# so the metadata strip never swallows a same-shaped directive comment that belongs in the body: a
+# Chapter metadata comments — the two title keys plus the `coda` flag. Scoped to these keys (not a generic
+# `[a-z-]+`) so the metadata strip never swallows a same-shaped directive comment that belongs in the body: a
 # `<!-- figure: … -->`, an `<!-- index-def: … -->`, or an `<!-- index-example: … -->`. A generic key
-# pattern here would delete those from `body_md` before the renderer ever saw them.
-META_RE = re.compile(r"<!--\s*(part-title|chapter-title):\s*(.*?)\s*-->")
+# pattern here would delete those from `body_md` before the renderer ever saw them. `coda: true` marks an
+# in-part UNNUMBERED closing (the Part-IV portable-moves coda): it sorts by filename like a real chapter but
+# every number-suppression site skips it, exactly like `is_part_page` — but without the part-opener render.
+META_RE = re.compile(r"<!--\s*(part-title|chapter-title|coda):\s*(.*?)\s*-->")
 
 # Curated-index annotation tags (book/AGENTS.md §6). Placed on their own line at (or just before) the
 # concept's defining / exemplifying block. The renderer turns each into a stable anchor on the FOLLOWING
@@ -915,6 +917,10 @@ def parse_chapter(path: pathlib.Path, part: int, chapter: int, metrics: dict[str
         # a main-narrative cross-reference to a mechanism the print appendix omits stays resolvable.
         "body_md": _redirect_dropped_appendix_links("\n".join(lines).strip()),
         "is_matter": part in (0, 7),  # front / back matter — no "Chapter N" kicker
+        # An in-part UNNUMBERED coda (`<!-- coda: true -->`): the Part-IV portable-moves closing. It sorts
+        # by its `4.6-` filename like a real chapter but every number-suppression site skips it (see the
+        # `is_coda` guards at the seq counter, `_chap_ref`, `_index_ref_label`, `num_label`, `chap_num`).
+        "is_coda": meta.get("coda", "").strip().lower() == "true",
         # Pull the Mermaid runtime onto this page only if the chapter carries a ```mermaid fence
         # (the Model Zoo chapters reuse the appendix Structure diagrams; other chapters do not).
         "mermaid": "```mermaid" in body,
@@ -969,7 +975,7 @@ def _discover_chapters(metrics: dict[str, str]) -> list[dict]:
     # drift again: renumbering is just moving a file.
     seq = 0
     for c in found:
-        if not c.get("is_matter") and not c.get("is_part_page"):
+        if not c.get("is_matter") and not c.get("is_part_page") and not c.get("is_coda"):
             seq += 1
             c["seq"] = seq
     # Resolve `[data: <slug>]` cross-ref markers now that every chapter's title is known — the link text
@@ -2423,10 +2429,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
 
 def _chap_ref(c: dict) -> str:
-    """The 'N.M' reference for a numbered chapter, or '' for front/back matter, the appendix, and a Part
-    landing page (the Part opener carries no chapter number)."""
+    """The 'N.M' reference for a numbered chapter, or '' for front/back matter, the appendix, a Part
+    landing page (the Part opener carries no chapter number), and the unnumbered in-part coda."""
     return ("" if c.get("is_matter") or c.get("is_appendix") or c.get("is_part_page")
-            or c.get("is_appendix_divider") else str(c["seq"]))
+            or c.get("is_appendix_divider") or c.get("is_coda") else str(c["seq"]))
 
 
 def _toc_prefix(c: dict) -> str:
@@ -5224,6 +5230,8 @@ def _index_ref_label(pg: dict) -> str:
         return pg["chapter_title"]
     if pg.get("is_matter"):
         return pg["chapter_title"]
+    if pg.get("is_coda"):
+        return pg["chapter_title"]   # the unnumbered coda carries no 'Ch. N' locator (it has no seq)
     return f'Ch. {pg["seq"]}'
 
 
@@ -6689,6 +6697,8 @@ def build() -> int:
             num_label = "Appendix"
         elif c.get("is_matter"):
             num_label = c["chapter_title"]  # "Preface" / "Conclusion"
+        elif c.get("is_coda"):
+            num_label = c["chapter_title"]  # the unnumbered coda's kicker is its title, not "Chapter N"
         else:
             num_label = f'Chapter {c["seq"]}'
         kicker = _kicker_html(chapters, i, num_label)
@@ -6698,7 +6708,7 @@ def build() -> int:
         # `section_prefix` below, each `## ` section — and never touches a heading's `{#slug}` id anchor,
         # so cross-refs, index-defs, and glossary pointers keep resolving.
         chap_num = (None if c.get("is_matter") or c.get("is_appendix") or c.get("is_part_page")
-                    or c.get("is_appendix_divider")
+                    or c.get("is_appendix_divider") or c.get("is_coda")
                     else f'{c["part"]}.{c["chapter"]}')
         chap_num_html = f'<span class="chap-num">{html.escape(chap_num)}</span> ' if chap_num else ""
         header = (

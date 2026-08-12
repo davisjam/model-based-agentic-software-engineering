@@ -1035,7 +1035,7 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     # it never prints an `N.0`. Suppressing on `is_part_page` keeps the number off the Part opener; the
     # appendices mode-marker is likewise unnumbered.
     numbered = (chapter.part not in (0, 7) and not is_appendix and not is_part_page
-                and not is_appendix_divider)
+                and not is_appendix_divider and not _is_coda(chapter))
     chap_num = f"{chapter.part}.{chapter.chapter}" if numbered else None
     title_num = f"#text(fill: dt.muted)[{chap_num}] " if chap_num else ""
     title_body = f"{title_num}{inline_typst(chapter.title)}"
@@ -1596,6 +1596,14 @@ def _is_appendix_divider(ch: "ir.Chapter") -> bool:
     """The appendices mode-marker — the synthetic divider `build_appendix_chapters` prepends before Appendix A
     (web twin: the record's `is_appendix_divider` flag). The IR carries no flags, so match on the minted slug."""
     return ch.slug == bb._APPENDICES_DIVIDER_SLUG
+
+
+def _is_coda(ch: "ir.Chapter") -> bool:
+    """The in-part UNNUMBERED coda — the Part-IV portable-moves closing (web twin: the record's `is_coda`
+    flag, read from `<!-- coda: true -->`). The IR carries no flags, so match on the minted slug, exactly as
+    `_is_part_page`/`_is_appendix_divider` do. It sorts last in Part IV by its `4.6-` filename but prints no
+    number."""
+    return ch.slug == "4.6-portable-moves"
 
 
 def _appendices_divider_typst() -> str:
