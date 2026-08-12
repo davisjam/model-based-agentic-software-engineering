@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid): the migration starting-conditions matrix. Two independent
+     axes — how much system already EXISTS (rows) crossed with how much INTENT is settled
+     (columns) — replace the greenfield/brownfield binary with four starting conditions, each
+     naming its proportionate first move. The right (settled) column is shaded a step stronger
+     than the left (uncertain) column to signal the chapter's rule: governance intensity tracks
+     how much you know, so the more settled the intent, the more modeling and enforcement the
+     start justifies. A pure grid — no curved connectors — so the C6 text-overlap and C7
+     stroke-cross-through gates have nothing to trip on. Accent #2f5169, source-red #b23b3b,
+     cream #f6f4ef, panel #e7edf3, ink #1c1917, muted #57534e. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" width="920" height="620"
+     role="img" aria-labelledby="mgTitle mgDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mgTitle">Two axes of a migration's starting conditions: how much system exists, crossed with how much intent is settled</title>
+  <desc id="mgDesc">A two-by-two matrix. The columns ask how much you know about what the system
+    should become: intent uncertain on the left, intent settled on the right. The rows ask how
+    much system already exists: little implementation on top, much implementation on the bottom.
+    The four cells name the proportionate first move. Little implementation with uncertain intent:
+    explore — build enough to learn before you specify. Little implementation with settled intent:
+    model early — a known contract earns heavy modeling from the start. Much implementation with
+    uncertain intent: recover, then explore — surface the latent structure, then probe the open
+    intent. Much implementation with settled intent: recover, then govern — surface the latent
+    models and put them under enforcement. The settled column is shaded more strongly than the
+    uncertain column because governance intensity should track how much you know: the more settled
+    the intent, the more specification and enforcement the start justifies. How much system exists
+    fixes the representation you inherit; how much intent is settled fixes how hard you should
+    specify and govern it.</desc>
+
+  <text x="460" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Two axes fix where a migration starts</text>
+
+  <!-- column axis: how much intent is settled -->
+  <text x="565" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">how much you know &#8594;</text>
+  <text x="415" y="132" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">Intent uncertain</text>
+  <text x="415" y="156" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">what to build is open</text>
+  <text x="715" y="132" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">Intent settled</text>
+  <text x="715" y="156" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the contract is known</text>
+
+  <!-- row axis: how much system exists -->
+  <text x="130" y="200" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">&#8595; how much exists</text>
+  <text x="130" y="290" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">Little</text>
+  <text x="130" y="314" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a blank page</text>
+  <text x="130" y="486" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">Much</text>
+  <text x="130" y="510" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a live estate</text>
+
+  <!-- left (uncertain) column: lighter fill -->
+  <g fill="#f6f4ef" stroke="#2f5169" stroke-width="2">
+    <rect x="268" y="188" width="294" height="196" rx="8"/>
+    <rect x="268" y="400" width="294" height="196" rx="8"/>
+  </g>
+  <!-- right (settled) column: stronger fill — governance tracks knowledge -->
+  <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
+    <rect x="568" y="188" width="294" height="196" rx="8"/>
+    <rect x="568" y="400" width="294" height="196" rx="8"/>
+  </g>
+
+  <!-- top-left: little x uncertain -->
+  <text x="415" y="230" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">little &#215; uncertain</text>
+  <text x="415" y="292" text-anchor="middle" font-size="27" font-weight="700" fill="#1c1917">Explore</text>
+  <text x="415" y="330" text-anchor="middle" font-size="16" fill="#1c1917">build enough to learn</text>
+  <text x="415" y="354" text-anchor="middle" font-size="16" fill="#1c1917">before you specify</text>
+
+  <!-- top-right: little x settled -->
+  <text x="715" y="230" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">little &#215; settled</text>
+  <text x="715" y="292" text-anchor="middle" font-size="27" font-weight="700" fill="#1c1917">Model early</text>
+  <text x="715" y="330" text-anchor="middle" font-size="16" fill="#1c1917">a known contract earns</text>
+  <text x="715" y="354" text-anchor="middle" font-size="16" fill="#1c1917">modeling from the start</text>
+
+  <!-- bottom-left: much x uncertain -->
+  <text x="415" y="442" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">much &#215; uncertain</text>
+  <text x="415" y="504" text-anchor="middle" font-size="27" font-weight="700" fill="#1c1917">Recover, explore</text>
+  <text x="415" y="542" text-anchor="middle" font-size="16" fill="#1c1917">surface the latent structure,</text>
+  <text x="415" y="566" text-anchor="middle" font-size="16" fill="#1c1917">then probe the open intent</text>
+
+  <!-- bottom-right: much x settled -->
+  <text x="715" y="442" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">much &#215; settled</text>
+  <text x="715" y="504" text-anchor="middle" font-size="27" font-weight="700" fill="#1c1917">Recover, govern</text>
+  <text x="715" y="542" text-anchor="middle" font-size="16" fill="#1c1917">surface the latent models,</text>
+  <text x="715" y="566" text-anchor="middle" font-size="16" fill="#1c1917">then put them under enforcement</text>
+</svg>
