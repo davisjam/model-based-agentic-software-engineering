@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 34,
     "slugs_rendered": 26,
-    "total_sites": 1646,
+    "total_sites": 1654,
     "by_projection": {
       "book-pdf": 23,
-      "book-web": 1222,
+      "book-web": 1230,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -170,6 +170,10 @@
           {
             "file": "book/6.5-implications-for-se.html",
             "occ": 67
+          },
+          {
+            "file": "book/6.6-educating-the-mage-engineer.html",
+            "occ": 12
           },
           {
             "file": "book/6.7-where-mage-fits.html",
@@ -543,7 +547,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -1678,6 +1682,10 @@
             "occ": 65
           },
           {
+            "file": "book/6.6-educating-the-mage-engineer.html",
+            "occ": 63
+          },
+          {
             "file": "book/6.7-where-mage-fits.html",
             "occ": 43
           },
@@ -1999,7 +2007,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 55
+            "occ": 59
           },
           {
             "file": "book/book-index.html",
@@ -2049,7 +2057,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -2338,6 +2346,10 @@
           {
             "file": "book/6.5-implications-for-se.html",
             "occ": 2
+          },
+          {
+            "file": "book/6.6-educating-the-mage-engineer.html",
+            "occ": 1
           },
           {
             "file": "book/6.7-where-mage-fits.html",
@@ -2707,7 +2719,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -3140,6 +3152,10 @@
             "occ": 64
           },
           {
+            "file": "book/6.6-educating-the-mage-engineer.html",
+            "occ": 34
+          },
+          {
             "file": "book/6.7-where-mage-fits.html",
             "occ": 46
           },
@@ -3511,7 +3527,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -4424,6 +4440,10 @@
             "occ": 1
           },
           {
+            "file": "book/6.6-educating-the-mage-engineer.html",
+            "occ": 1
+          },
+          {
             "file": "book/6.7-where-mage-fits.html",
             "occ": 1
           },
@@ -4791,7 +4811,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -4967,6 +4987,10 @@
           },
           {
             "file": "book/6.5-implications-for-se.html",
+            "occ": 2
+          },
+          {
+            "file": "book/6.6-educating-the-mage-engineer.html",
             "occ": 2
           },
           {
@@ -5337,7 +5361,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -5595,6 +5619,10 @@
           },
           {
             "file": "book/6.5-implications-for-se.html",
+            "occ": 12
+          },
+          {
+            "file": "book/6.6-educating-the-mage-engineer.html",
             "occ": 12
           },
           {
@@ -5965,7 +5993,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -6166,6 +6194,10 @@
           {
             "file": "book/6.5-implications-for-se.html",
             "occ": 3
+          },
+          {
+            "file": "book/6.6-educating-the-mage-engineer.html",
+            "occ": 1
           },
           {
             "file": "book/6.7-where-mage-fits.html",
@@ -6535,7 +6567,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },

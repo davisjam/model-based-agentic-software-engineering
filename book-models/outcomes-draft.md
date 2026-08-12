@@ -186,6 +186,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 6.5-implications-for-se
 
 
+### Lesson 6.6-educating-the-mage-engineer
+
+
 ### Lesson 6.7-where-mage-fits
 
 

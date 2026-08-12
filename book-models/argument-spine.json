@@ -9,7 +9,7 @@
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 2,
+    "zero_claim_suspects": 3,
     "over_cap_unfocused": 3,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
@@ -856,6 +856,11 @@
       "exempt": "discussion"
     },
     {
+      "slug": "6.6-educating-the-mage-engineer",
+      "advances": [],
+      "exempt": null
+    },
+    {
       "slug": "6.7-where-mage-fits",
       "advances": [],
       "exempt": "discussion"
@@ -893,6 +898,10 @@
     "zero_claim_suspects": [
       {
         "chapter": "6.4-engineering-beyond-software",
+        "advances": 0
+      },
+      {
+        "chapter": "6.6-educating-the-mage-engineer",
         "advances": 0
       },
       {

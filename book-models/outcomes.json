@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 20,
     "elaborative_links": 27,
     "units_serving_as_elaborative": 20,
-    "sections_total": 289,
+    "sections_total": 295,
     "sections_primary_of_an_outcome": 39,
     "modules": 7,
-    "lessons": 36
+    "lessons": 37
   },
   "taxonomy": {
     "know": [
@@ -371,6 +371,11 @@
           },
           {
             "lesson": "6.5-implications-for-se",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "6.6-educating-the-mage-engineer",
             "own_outcomes": [],
             "section_outcomes": []
           },
