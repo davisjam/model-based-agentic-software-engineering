@@ -2,9 +2,12 @@
 <!-- Hand-authored SVG (not Mermaid): a two-column contrast under one spine. The spine shows reasoning
      state growing with task length; the fork contrasts what happens to that state under compaction with
      and without models. Mermaid's flowchart would draw the fork but not the growing-wedge spine or the
-     fidelity-under-compaction contrast that is the whole point. Accent #9a3f12 (MAGE branch),
-     churn #b23b3b (the no-models branch). Grayscale-survivable: every branch and outcome is labelled,
-     left=without / right=with is a position cue, no meaning rides on hue alone. -->
+     fidelity-under-compaction contrast that is the whole point. Accent #9a3f12 (purposeful-models branch),
+     churn #b23b3b (the no-models branch). The right branch stops at "longer coherent reasoning" — NOT
+     "productive progress"; per editor R36, productive progress is the payoff of the full MAGE method, not
+     of Modeling alone (models without Alignment can still churn — see the mage-method figure's fork).
+     Grayscale-survivable: every branch and outcome is labelled, left=without / right=with is a position
+     cue, no meaning rides on hue alone. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
      role="group" aria-labelledby="rhTitle rhDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -13,11 +16,10 @@
     with the task's length, shown as a wedge widening from left to right. When that state outgrows the
     working memory available to hold it, it must be compacted and reconstructed, and the path forks.
     Without models, on the left, the fleet reasons over raw implementation-level state; compaction is lossy,
-    rebuilds are frequent, and the result is churn. With MAGE models, on the right, the fleet reasons over
-    executable abstractions that already discarded the irrelevant detail; compaction loses far less, coherent
-    reasoning runs longer, and the result is productive progress. The contrast axis is fidelity under
-    compaction, not size: models are a better compression domain because they abstract, they do not merely
-    shrink.</desc>
+    rebuilds are frequent, and the result is churn. With purposeful models, on the right, the fleet reasons
+    over executable abstractions that already discarded the irrelevant detail; reconstruction loses far less,
+    and coherent reasoning runs longer. The contrast axis is fidelity under compaction, not size: models are
+    a better compression domain because they abstract, they do not merely shrink.</desc>
 
   <defs>
     <marker id="rhArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
@@ -60,9 +62,9 @@
   <rect x="105" y="484" width="320" height="40" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
   <text x="265" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#b23b3b">Churn</text>
 
-  <!-- ================= RIGHT — with MAGE models ================= -->
+  <!-- ================= RIGHT — with purposeful models ================= -->
   <rect x="530" y="242" width="410" height="292" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="735" y="280" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">With MAGE models</text>
+  <text x="735" y="280" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">With purposeful models</text>
 
   <text x="735" y="322" text-anchor="middle" font-size="19" fill="#1c1917">Reason over executable</text>
   <text x="735" y="346" text-anchor="middle" font-size="19" fill="#1c1917">abstractions</text>
@@ -70,10 +72,10 @@
   <line x1="735" y1="360" x2="735" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#rhArrow)"/>
 
   <text x="735" y="414" text-anchor="middle" font-size="19" fill="#1c1917">Less-lossy compaction,</text>
-  <text x="735" y="438" text-anchor="middle" font-size="19" fill="#1c1917">longer coherent reasoning</text>
+  <text x="735" y="438" text-anchor="middle" font-size="19" fill="#1c1917">faithful reconstruction</text>
 
   <line x1="735" y1="452" x2="735" y2="474" stroke="#57534e" stroke-width="2" marker-end="url(#rhArrow)"/>
 
   <rect x="575" y="484" width="320" height="40" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="735" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">Productive progress</text>
+  <text x="735" y="510" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Longer coherent reasoning</text>
 </svg>

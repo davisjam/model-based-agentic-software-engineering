@@ -352,11 +352,10 @@
     with the task's length, shown as a wedge widening from left to right. When that state outgrows the
     working memory available to hold it, it must be compacted and reconstructed, and the path forks.
     Without models, on the left, the fleet reasons over raw implementation-level state; compaction is lossy,
-    rebuilds are frequent, and the result is churn. With MAGE models, on the right, the fleet reasons over
-    executable abstractions that already discarded the irrelevant detail; compaction loses far less, coherent
-    reasoning runs longer, and the result is productive progress. The contrast axis is fidelity under
-    compaction, not size: models are a better compression domain because they abstract, they do not merely
-    shrink.</desc>
+    rebuilds are frequent, and the result is churn. With purposeful models, on the right, the fleet reasons
+    over executable abstractions that already discarded the irrelevant detail; reconstruction loses far less,
+    and coherent reasoning runs longer. The contrast axis is fidelity under compaction, not size: models are
+    a better compression domain because they abstract, they do not merely shrink.</desc>
 
   <defs>
     <marker id="cf-2-rhArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
@@ -399,9 +398,9 @@
   <rect x="105" y="484" width="320" height="40" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
   <text x="265" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#b23b3b">Churn</text>
 
-  <!-- ================= RIGHT — with MAGE models ================= -->
+  <!-- ================= RIGHT — with purposeful models ================= -->
   <rect x="530" y="242" width="410" height="292" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="735" y="280" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">With MAGE models</text>
+  <text x="735" y="280" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">With purposeful models</text>
 
   <text x="735" y="322" text-anchor="middle" font-size="19" fill="#1c1917">Reason over executable</text>
   <text x="735" y="346" text-anchor="middle" font-size="19" fill="#1c1917">abstractions</text>
@@ -409,12 +408,12 @@
   <line x1="735" y1="360" x2="735" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
 
   <text x="735" y="414" text-anchor="middle" font-size="19" fill="#1c1917">Less-lossy compaction,</text>
-  <text x="735" y="438" text-anchor="middle" font-size="19" fill="#1c1917">longer coherent reasoning</text>
+  <text x="735" y="438" text-anchor="middle" font-size="19" fill="#1c1917">faithful reconstruction</text>
 
   <line x1="735" y1="452" x2="735" y2="474" stroke="#57534e" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
 
   <rect x="575" y="484" width="320" height="40" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="735" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">Productive progress</text>
+  <text x="735" y="510" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Longer coherent reasoning</text>
 </svg><figcaption><em>The reasoning horizon, and what a model does to it.</em> Reasoning state grows with a task's length; once it outruns working memory it must be compacted. Reason through a model and each compaction loses less, so the horizon stretches and the branch reaches progress instead of churn.</figcaption></figure>
 <p>The book states this as the <strong>Reasoning-Horizon Proposition</strong>: productivity degrades once the working reasoning state a task requires exceeds the effective reasoning horizon of the human–agent system, and executable models extend that horizon by replacing implementation-level state with abstractions whose properties survive repeated compaction with less loss. The proposition is offered for the reader to test against their own systems, not asserted as a law; its testable form is the hypothesis H4, and its full treatment lives in the theory chapter, <a href="book/6.1-toward-a-theory-of-mage.html">Toward a Theory of MAGE</a>. A model is a better <em>compression domain</em>, then — not merely a smaller file. Compacting over a model loses far less than compacting over code, because what survives is the information that carried the reasoning.</p>
 <p>This is what "documentation, taken to its limit" means. A README is prose a human skims; push it until an agent must reason from it on every change, and it becomes typed data that tools read and generate from — a model, not a document.</p>
