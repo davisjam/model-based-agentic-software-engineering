@@ -755,10 +755,98 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Why it failed.</strong> It was measured on the wrong world. Hand it a Rothko, or Malevich's black square, and the pixels barely vary; the detector marks the painting decorative and drops it, and a blind student reading an art book gets silence where the subject should be. No threshold saves you, because a blank spacer and a Malevich are identical in the one quantity the code looked at. "Content-free" was never a fact about pixels. It is a fact about an image in a context of use, and the use here is teaching, and teaching includes the one tradition built to prove a picture need not vary. That confident "not possible" was the tell: it marks the spot where the model's picture of its own inputs was too small.</p>
 <p><strong>Mechanism introduced.</strong> The mechanism is a rule about proxies: when the cheap proxy is unsure, describe the image anyway. A content-free detector that has never seen a Rothko will tell you a Rothko is nothing, so the detector does not get the last word — it defers to the fuller model at the margin. And the test that guards it is built for the agent's failure mode, not a human's: pin the class, the picture that varies little but carries everything, rather than the example.</p>
 <p><strong>General lesson.</strong> Build tests for the failure modes the agent actually has, not the ones a person would. The next confident, coherent, subtly-wrong subsystem should meet a sensor instead of a checkbox.</p>
-<h2><span class="sec-num">5.4.6</span> The lessons, once earned</h2>
+<h2><span class="sec-num">5.4.6</span> The retry that became a storm</h2>
+<p>The failures so far were about operating the fleet. The last four are about the product it built — the models inside DocAble — and each one, like the mechanisms above, began in a failure.</p>
+<p><strong>Problem.</strong> The dominant production failure was a slow generation call, and the lifecycle around it was implicit. Status got written from scattered places, and one terminal state masked many distinct internal failures.</p>
+<p><strong>Initial attempt.</strong> The reflex to any failed job was to requeue it. Retry was the default recovery for every timeout and every crash.</p>
+<p><strong>Why it failed.</strong> Under a slow dependency that reflex became a storm — requeue, still slow, same timeout, requeue again — and the recovery amplified the load precisely when the system was already hurting. Cost hid the damage. Every attempt wrote its full cost with nothing marking it a retry, so a job tried three times billed roughly three times over and the dashboards showed a silent multiplication no one could explain.</p>
+<p><strong>Mechanism introduced.</strong> Three moves replaced the reflex. An explicit state machine named the states and the transitions and put one guarded function in front of them that refuses any illegal move. Ownership by compare-and-set let a chunk be claimed only while it was still queued, so a redelivered claim loses the race and does nothing a second time — the exactly-once effect rests on that atomic claim, not on a lease that can lapse. And the retry was cut: a failure now surfaces as failed and never requeues, the one sanctioned exception being planned preemption, a recycle mid-flight rather than a failure, with a check that keeps the exception from widening back into general retry.</p>
+<p><strong>General lesson.</strong> A later failure taught the model a distinction it lacked on day one. A stale sweep hunting dead owners began reaping jobs that were slow but still advancing; a long-running job looked dead and got failed. The fix taught the sweep to tell a dead job from a merely slow one and to spare anything still making progress. Automatic recovery is not free. A reflex that fires into a wounded system can be the thing that finishes it, and the cure was to name the lifecycle, give each unit one atomic owner, and make recovery a decision instead of a reflex.</p>
+<h2><span class="sec-num">5.4.7</span> Provenance became a lookup</h2>
+<p><strong>Problem.</strong> A corrupted document once took four cross-file hops to trace back to the pass that wrote it. Each hop was cheap; the chain was expensive. The system could not cheaply answer the plainest question a remediation tool owes its user: which step changed this?</p>
+<p><strong>Initial attempt.</strong> Stamps were written by hand, site by site, with nothing checking that a given mutation was stamped at all. A low-level write path recorded its changes into the document's own structure and never into the registry the changelog reads.</p>
+<p><strong>Why it failed.</strong> Verification found eleven production sites writing through that low-level path, skipping the stamp helper, shipping empty changelog rows for a whole class of jobs. The customer's account of what changed came out blank while the code had changed plenty. An empty changelog row is "done" as a claim again — a report the work cannot back.</p>
+<p><strong>Mechanism introduced.</strong> The changelog became a projection. Every mutation writes its stamp — the verb, the pass, the visibility — and the customer-facing changelog is derived from those stamps rather than authored by hand, so diagnosis stopped being inference and became a lookup. A wiring check now fails the build for any mutating verb that returns without recording its stamp, and it landed the honest way: as a warning first, while dozens of verbs still lacked wiring; a fix wave drained the gap; only then did it turn blocking. Warning first made the obligation visible. Migration made it feasible. Blocking made it authoritative.</p>
+<p><strong>General lesson.</strong> This is governance conversion in almost embarrassingly literal form: a forensic cost turned into a derived guarantee, then into a gate. And the landing is the reusable move. You do not switch on a blocking gate the day you write it while the tree is already full of violations, or the likely response is to bury the code in exceptions. The warning that precedes the drain is what makes the gate survivable.</p>
+<h2><span class="sec-num">5.4.8</span> Measurement: the story that stops before the gate</h2>
+<p><strong>Problem.</strong> A document's repair stalled in silence. The subprocess was killed by the job timeout after roughly eight minutes, and the job failed with an opaque message while the customer's progress bar sat frozen at thirty-eight percent. The timeout existed. It told you almost nothing until the budget was already spent.</p>
+<p><strong>Initial attempt.</strong> There was no model of per-chunk cost or time. The timeout was a bare kill — nothing predicted whether a chunk's worst case would breach it, and there was no honest baseline for the happy path.</p>
+<p><strong>Mechanism introduced.</strong> The incident created the model: a per-chunk worst-case budget measured against the job ceiling, seeded from the very incident that motivated it. The seed measurement is externalized, timestamped, and marked provisional — kept as a datapoint in a file rather than frozen as a constant in the code, precisely because over-fitting to one fixture is the model's own top risk. <a class="xref" href="5.4-failures-that-became-infrastructure.html#fig-5-4-1">Figure&nbsp;5.4-1</a> draws where the chain deliberately stops.</p>
+<figure id="fig-5-4-1" class="book-figure" data-label="measurement-no-gate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600"
+     role="group" aria-labelledby="mngTitle mngDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mngTitle">Measurement — the history that stops before the gate</title>
+  <desc id="mngDesc">An engineering history, not a system model. A vertical chain. A silent hang and a bare
+    timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,
+    then a sensor that reports a would-be breach. The chain ends at REPORT — and then a gate drawn as a
+    ghost: a dashed box prefixed with a question mark and marked no gate yet, deliberately deferred. The
+    model reports a would-be breach but does not refuse the work. The tail model, sensor, report rhymes with
+    Part III's ungated measurement. The lesson: a model can be left ungated on purpose — sensed and
+    reported, not yet enforced.</desc>
+
+  <defs>
+    <marker id="mng-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
+    </marker>
+    <marker id="mng-arM" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="600" fill="#fdfcf9"/>
+
+  <text x="40" y="36" font-size="16" font-weight="600" fill="#57534e">A model left ungated on purpose: sensed, reported, not enforced.</text>
+
+  <!-- 1: timeout -->
+  <rect x="100" y="100" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="128" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">timeout</text>
+  <text x="330" y="131" font-size="13" font-style="italic" fill="#57534e">a bare kill, after the budget was spent</text>
+
+  <!-- 2: measurement -->
+  <rect x="100" y="178" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="206" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">measurement</text>
+  <text x="330" y="209" font-size="13" font-style="italic" fill="#57534e">one incident, timestamped, provisional</text>
+
+  <!-- 3: model  (rhyme node) -->
+  <rect x="100" y="256" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="284" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">model</text>
+  <text x="330" y="287" font-size="13" font-style="italic" fill="#57534e">per-chunk worst case vs the ceiling</text>
+
+  <!-- 4: sensor  (rhyme node) -->
+  <rect x="100" y="334" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="362" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">sensor</text>
+  <text x="330" y="365" font-size="13" font-style="italic" fill="#57534e">reports a would-be breach</text>
+
+  <!-- 5: REPORT  (rhyme node) -->
+  <rect x="100" y="412" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="440" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">REPORT</text>
+  <text x="330" y="443" font-size="13" font-style="italic" fill="#57534e">surfaced, not enforced</text>
+
+  <!-- 6: GATE — deferred, drawn as a ghost (dashed muted = not-yet-actual) -->
+  <rect x="100" y="490" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4"/>
+  <text x="200" y="518" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">? GATE</text>
+  <text x="330" y="515" font-size="13" fill="#57534e">[ no gate yet &#8212; deliberately deferred ]</text>
+
+  <!-- actual steps (solid) -->
+  <line x1="200" y1="147" x2="200" y2="175" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="225" x2="200" y2="253" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="303" x2="200" y2="331" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="381" x2="200" y2="409" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+
+  <!-- deferred transition (dashed = would-be, not switched on) with a question glyph beside it -->
+  <line x1="200" y1="459" x2="200" y2="487" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#mng-arM)"/>
+  <text x="222" y="479" font-size="20" font-weight="700" fill="#57534e">?</text>
+
+  <text x="320" y="576" text-anchor="middle" font-size="13" fill="#57534e">An engineering history, not a system model.</text>
+</svg><figcaption data-short="Modeled and Sensed, Not Yet Governed"><span class="fig-label">Figure 5.4-1.</span> <em>Modeled and Sensed, Not Yet Governed.</em> A bare timeout that spoke only after the budget was spent forces a measurement, which seeds a per-chunk cost-and-time model, which drives a sensor that reports a would-be breach. The chain stops there: the production gate is a deliberate, ratified deferral, the terminal node left open. An engineering history, not a system model.</figcaption></figure>
+<p><strong>General lesson.</strong> Here the history has a clean, honest ending, and I do not dress it up. No later failure forced this model stronger. Production enforcement is a deliberate, ratified deferral: the model reports a would-be breach, but it does not yet refuse the work or split it, and the only hard cap lives offline. Enforcing a poorly calibrated bound could cost more than observing it, so the restraint is a feature of the record, not a gap in it. Governance conversion does not mean turning every newly discovered relationship into a blocking mechanism. Sometimes the system is ready for authority. Sometimes it is ready only for better knowledge. The question mark belongs in the book.</p>
+<p>And measurement is not the same as safety. DocAble was deployed, it cleared the institutional checkers a document is required to pass, and it measured its own fidelity — but none of those three is the same as a blind student finding the document usable. This part is the evidence, and the evidence is honest about which rung it reaches.</p>
+<h2><span class="sec-num">5.4.9</span> A note on restraint</h2>
+<p>One history refuses the arc, and reporting that is the point. The unified detect-and-repair engine — one rule engine that ended a duplication tax where two separate checkers had scanned the same document in two languages a round-trip apart — was a real consolidation with a real motivation. But the record does not show a later failure of that model forcing it stronger. The nearest event, an audit prompted by a routing incident elsewhere, confirmed the model's boundary rather than breaking it. So I report a confirmation, not a forced strengthening. A book that makes every model fail and recover on the same beat is telling a formula, not a history: some models were forged in an incident and hardened by three more, others were built from a clean motivation and simply held. Reporting the difference is what makes the rest of this archaeology worth trusting.</p>
+<h2><span class="sec-num">5.4.10</span> The lessons, once earned</h2>
 <p>Four more aphorisms are not paid for by any single failure above; they run underneath all of them. Vibe-coding treats the program as an I/O device. What lives only in your head is invisible to the machine. Soft aims, hard holds. The second time a failure shows up, it has earned its mechanism. The method chapter earns each in full — here they are named, because you have now seen every one of them paid for.</p>
 <p>Collected, the lessons read as the chapter's compression: what happened, what we learned, and what became permanent. <a class="xref" href="5.4-failures-that-became-infrastructure.html#tbl-5-4-1">Table&nbsp;5.4-1</a> gathers them as lines, each paired with the move it demands.</p>
 <table id="tbl-5-4-1" class="book-table" data-label="lessons-quotable-strip"><caption data-short="The lessons, quotable"><span class="tbl-label">Table 5.4-1.</span> The lessons as quotable lines, each paired with the move it demands — the aphorisms this chapter's failures paid for.</caption><thead><tr><th>The lesson</th><th>The move it demands</th></tr></thead><tbody><tr><td>Claude is the fastest road to hell</td><td>Keep an open mind about the paradigm; speed only exposes the danger you already chose</td></tr><tr><td>Optionality is poison</td><td>Decide the consequential dimensions before execution; every unmade decision is where the agent guesses</td></tr><tr><td>"Done" is a claim, not a fact</td><td>Re-run the tests and lints yourself; trust nothing at the boundary</td></tr><tr><td>An agent fails differently than a person</td><td>Build sensor barriers that pin the invariant, not the example</td></tr><tr><td>Vibe-coding treats the program as an I/O device</td><td>Engineer it as a system — hold the invariants, not just the output</td></tr><tr><td>What lives only in your head is invisible to the machine</td><td>Make the architecture explicit, queryable, executable</td></tr><tr><td>Soft aims; hard holds</td><td>A convention that says "never" eventually gets violated at velocity — build the wall</td></tr><tr><td>The second time a failure shows up, it has earned its mechanism</td><td>Turn the audit into a lint</td></tr><tr><td>Amplification is neutral</td><td>Convert judgment into infrastructure — encode each call once</td></tr></tbody></table>
-<h2><span class="sec-num">5.4.7</span> What the failures taught</h2>
-<p>Step back from the five. What they share is not a technology but a posture. The agent amplified whatever judgment I brought, good and bad, with equal enthusiasm, so every failure here was a place my own judgment had been thin, and every mechanism was that judgment made explicit and permanent. Amplification is neutral. The fleet made good judgment cheap to repeat and bad judgment cheap to amplify. The method emerged from learning to tell the difference, and from turning the good calls into infrastructure before attention was asked to make them again.</p>
+<h2><span class="sec-num">5.4.11</span> What the failures taught</h2>
+<p>Step back from the failures. What they share is not a technology but a posture. The agent amplified whatever judgment I brought, good and bad, with equal enthusiasm, so every failure here was a place my own judgment had been thin, and every mechanism was that judgment made explicit and permanent. Amplification is neutral. The fleet made good judgment cheap to repeat and bad judgment cheap to amplify. The method emerged from learning to tell the difference, and from turning the good calls into infrastructure before attention was asked to make them again.</p>
 <p>That is where this field report hands off. My evidence is a single-person project without real customers, run against one vendor's models, and the specifics will not all generalize. But the shape held across every failure above: convert judgment into infrastructure, let the machinery hold what your attention cannot, and spend your scarce judgment on the calls the machinery cannot make. The clean method is what remains after the ugly failures were converted into structure. What that does to the shape of the profession — the roles, the org chart, who is trusted to build the walls, and who in an organization is even empowered to convert a recurring failure into shared practice — is the question Part VI takes up next.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">« Beginning of part</a><a href="5.3-the-road-to-mage.html" aria-label="Previous chapter — 24 · The Road to MAGE">« Previous chapter</a></div><span class="chapnav-here" title="25 · Failures That Became Infrastructure">25 · Failures That Became Infrastructure</span><div class="chapnav-fwd"><a href="part-6-intro.html" aria-label="Next chapter — The Profession">Next chapter »</a><a href="part-6-intro.html" aria-label="Next part — Part 6 — The Profession">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

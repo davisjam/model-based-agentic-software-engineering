@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: measurement-no-gate). Part V HISTORY figure for chapter 5.4 (measurement, the story that stops before the gate).
+     GENRE: an engineering history, not a system model (figures.md §"History figures are a distinct genre").
+     ONE JOB: a model can be deliberately left ungated — sensed and reported, not enforced. A vertical
+     chain: timeout -> measurement -> model -> sensor -> REPORT, then a DEFERRED gate drawn as a ghost.
+     The tail MODEL -> SENSOR -> REPORT is the deliberate visual rhyme with Part III's "MODEL -> SENSOR ->
+     REPORT [no gate yet]" (figures brief section 10); the terminal gate is drawn in the derived/not-yet
+     idiom — a dashed muted box prefixed with a question mark and bracketed "no gate yet — deferred" — so
+     the picture shows the model reaching a would-be gate that was consciously not switched on. Shared house
+     grammar: entity box (fill #f6f4ef, stroke #2b2825); solid arrow = actual step; DASHED muted stroke =
+     derived / not-yet-actual (the deferred transition and the ghost gate). Palette: page #fdfcf9, ink
+     #1c1917/#2b2825, muted #57534e, box fill #f6f4ef. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" width="640" height="600"
+     role="group" aria-labelledby="mngTitle mngDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mngTitle">Measurement — the history that stops before the gate</title>
+  <desc id="mngDesc">An engineering history, not a system model. A vertical chain. A silent hang and a bare
+    timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,
+    then a sensor that reports a would-be breach. The chain ends at REPORT — and then a gate drawn as a
+    ghost: a dashed box prefixed with a question mark and marked no gate yet, deliberately deferred. The
+    model reports a would-be breach but does not refuse the work. The tail model, sensor, report rhymes with
+    Part III's ungated measurement. The lesson: a model can be left ungated on purpose — sensed and
+    reported, not yet enforced.</desc>
+
+  <defs>
+    <marker id="mng-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
+    </marker>
+    <marker id="mng-arM" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="600" fill="#fdfcf9"/>
+
+  <text x="40" y="36" font-size="16" font-weight="600" fill="#57534e">A model left ungated on purpose: sensed, reported, not enforced.</text>
+
+  <!-- 1: timeout -->
+  <rect x="100" y="100" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="128" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">timeout</text>
+  <text x="330" y="131" font-size="13" font-style="italic" fill="#57534e">a bare kill, after the budget was spent</text>
+
+  <!-- 2: measurement -->
+  <rect x="100" y="178" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="206" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">measurement</text>
+  <text x="330" y="209" font-size="13" font-style="italic" fill="#57534e">one incident, timestamped, provisional</text>
+
+  <!-- 3: model  (rhyme node) -->
+  <rect x="100" y="256" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="284" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">model</text>
+  <text x="330" y="287" font-size="13" font-style="italic" fill="#57534e">per-chunk worst case vs the ceiling</text>
+
+  <!-- 4: sensor  (rhyme node) -->
+  <rect x="100" y="334" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="362" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">sensor</text>
+  <text x="330" y="365" font-size="13" font-style="italic" fill="#57534e">reports a would-be breach</text>
+
+  <!-- 5: REPORT  (rhyme node) -->
+  <rect x="100" y="412" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="440" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">REPORT</text>
+  <text x="330" y="443" font-size="13" font-style="italic" fill="#57534e">surfaced, not enforced</text>
+
+  <!-- 6: GATE — deferred, drawn as a ghost (dashed muted = not-yet-actual) -->
+  <rect x="100" y="490" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4"/>
+  <text x="200" y="518" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">? GATE</text>
+  <text x="330" y="515" font-size="13" fill="#57534e">[ no gate yet &#8212; deliberately deferred ]</text>
+
+  <!-- actual steps (solid) -->
+  <line x1="200" y1="147" x2="200" y2="175" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="225" x2="200" y2="253" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="303" x2="200" y2="331" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="381" x2="200" y2="409" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+
+  <!-- deferred transition (dashed = would-be, not switched on) with a question glyph beside it -->
+  <line x1="200" y1="459" x2="200" y2="487" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#mng-arM)"/>
+  <text x="222" y="479" font-size="20" font-weight="700" fill="#57534e">?</text>
+
+  <text x="320" y="576" text-anchor="middle" font-size="13" fill="#57534e">An engineering history, not a system model.</text>
+</svg>
