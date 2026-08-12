@@ -7,7 +7,7 @@
     "derived_ids": 243,
     "missing_topic_sentence": 13,
     "sections_drained": 150,
-    "paragraph_points": 465
+    "paragraph_points": 470
   },
   "chapters": [
     {
@@ -3942,16 +3942,16 @@
           ]
         },
         {
-          "section_id": "three-places-the-same-idea-surfaced",
+          "section_id": "places-the-same-idea-surfaced",
           "level": 2,
-          "heading_text": "Three places the same idea surfaced",
+          "heading_text": "Places the same idea surfaced",
           "topic_sentence": "The system carries that discipline in more than one place.",
           "id_source": "derived",
           "block_index": 20,
           "points": [
             {
-              "slug": "three-field-examples-one-principle",
-              "text": "Three engineering stories, each the same boundary-then-authority move.",
+              "slug": "the-move-recurs",
+              "text": "The boundary-then-authority move recurs; three seams surfaced as design, two a failure forced.",
               "block_index": 22
             },
             {
@@ -3965,14 +3965,29 @@
               "block_index": 27
             },
             {
-              "slug": "llm-call-is-the-third-instance",
-              "text": "The task-to-edit mapping is the function-call pattern once more.",
+              "slug": "two-seams-a-failure-forced",
+              "text": "Two more seams arrived not by design but under pressure, and the built order is the lesson.",
               "block_index": 30
             },
             {
-              "slug": "same-principle-materialized",
-              "text": "The three examples are one move: represent the boundary, then put authority on it.",
+              "slug": "a-convenient-call-silently-corrupted-the-product",
+              "text": "A convenient one-line call stripped the accessibility structure the product exists to add, and nothing caught it.",
               "block_index": 32
+            },
+            {
+              "slug": "the-format-seam-hardened-in-layers",
+              "text": "The seam hardened in layers, and the sharpest was the enforcement itself mis-reporting green.",
+              "block_index": 34
+            },
+            {
+              "slug": "a-path-crossed-a-boundary-that-did-not-share-it",
+              "text": "A caller handed another service a file path from its own world; a typed client made that mistake unrepresentable, and a reviewer caught the bypass the tests missed.",
+              "block_index": 37
+            },
+            {
+              "slug": "same-principle-materialized",
+              "text": "These seams are one move: represent the boundary, then put authority on it.",
+              "block_index": 39
             }
           ]
         },
@@ -3982,47 +3997,52 @@
           "heading_text": "The staircase",
           "topic_sentence": "MAGE was never designed on a whiteboard.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 41,
           "points": [
             {
               "slug": "mage-was-demanded-not-designed",
               "text": "MAGE accreted rung by rung as each quality mechanism stopped scaling.",
-              "block_index": 36
+              "block_index": 43
             },
             {
               "slug": "delegation-climbs-with-the-controls",
               "text": "Delegation climbs exactly as far as the controls carry it.",
-              "block_index": 38
+              "block_index": 45
             },
             {
               "slug": "rung-co-coder",
               "text": "Human review is the quality mechanism; it fails at agent volume.",
-              "block_index": 40
+              "block_index": 47
             },
             {
               "slug": "rung-qa",
               "text": "Delegate review to an agent; it fails because an audit is the weakest control.",
-              "block_index": 42
+              "block_index": 49
             },
             {
               "slug": "rung-review-lead",
               "text": "Specialize the audits and determinize the repeatable findings into lints.",
-              "block_index": 44
+              "block_index": 51
             },
             {
               "slug": "rung-tech-lead",
               "text": "Finite-context agents cannot hold the system; named zones externalize architecture.",
-              "block_index": 46
+              "block_index": 53
             },
             {
               "slug": "rung-architect",
               "text": "Zones become executable models the fleet reasons through, held honest by traceability.",
-              "block_index": 48
+              "block_index": 55
+            },
+            {
+              "slug": "drift-floor-held-under-load",
+              "text": "A later measurement turned the drift note from a story into a result: the derived floor retired the silent-drift class under heavy churn.",
+              "block_index": 58
             },
             {
               "slug": "modeling-found-real-bugs",
               "text": "Modeling exposed live defects that green tests had missed.",
-              "block_index": 51
+              "block_index": 60
             }
           ]
         },
@@ -4032,17 +4052,22 @@
           "heading_text": "Delegation climbed as far as the controls carried it",
           "topic_sentence": "The method that began with a human reading every line arrived at a system that models its own structure and dispatches work to close the gaps it finds.",
           "id_source": "derived",
-          "block_index": 56,
+          "block_index": 65,
           "points": [
             {
               "slug": "gee-is-the-accumulated-structure",
               "text": "The GEE is the accumulated structure that made successive delegation safe.",
-              "block_index": 58
+              "block_index": 67
+            },
+            {
+              "slug": "the-messy-version-is-why-the-method-exists",
+              "text": "The clean method tells you what to do; this history tells you what it feels like before you know, and why the method exists.",
+              "block_index": 69
             },
             {
               "slug": "frontispiece-boxes-now-real",
               "text": "The opening diagram's boxes now point to concrete artifacts in the case.",
-              "block_index": 60
+              "block_index": 71
             }
           ]
         }

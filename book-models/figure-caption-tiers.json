@@ -631,6 +631,12 @@
       "location": "part5",
       "rationale": "the scale-at-a-glance box — production/support/IaC/model LoC and the sustained commit rate, offloaded from the prose so the body lands on 'I inspected almost none of the code'"
     },
+    "assets/pdf-seam-layers.svg": {
+      "tier": "A",
+      "kind": "history-layers",
+      "location": "part5",
+      "rationale": "the flagship format-seam history — five layers each forced by the residual the last one left, ending on the enforcement itself found mis-reporting; anchor caption naming every layer"
+    },
     "toward-a-theory-of-mage::The four dimensions of E": {
       "tier": "B",
       "kind": "framework",

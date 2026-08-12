@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: pdf-seam-layers). Part V HISTORY figure for chapter 5.3 (the format seam).
+     GENRE: an engineering history, not a system model (figures.md §"History figures are a distinct genre").
+     ONE JOB: one format seam hardened in layers, each layer forced by the failure the last one left,
+     ending with the enforcement itself under scrutiny. A single vertical chain: convenient call -> silent
+     corruption -> library policy -> typed seam -> build-time ban -> gate integrity. Right-side muted
+     annotations name the principle each layer added; the corruption beat is annotated in the negative
+     accent. The terminal node (the gate that itself failed) carries the heavy stroke that marks authority
+     under scrutiny. Shared house grammar: entity box (fill #f6f4ef, stroke #2b2825); solid arrow = the next
+     step it forced; muted bracket text = the principle added. Palette: page #fdfcf9, ink #1c1917/#2b2825,
+     muted #57534e, accent-negative #b23b3b, box fill #f6f4ef. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" width="640" height="600"
+     role="group" aria-labelledby="pslTitle pslDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="pslTitle">The format seam, hardened in layers — each layer forced by a residual failure</title>
+  <desc id="pslDesc">An engineering history, not a system model. A vertical chain of six beats. A convenient
+    call, chosen because it was one line, silently corrupted the document by stripping its accessibility
+    structure — a failure the eye cannot catch. Each response added a layer: a library policy naming one
+    canonical library per format; a typed seam all mutation must pass through; a build-time ban on raw
+    access; and finally the gate's own integrity, after the ban check itself was caught mis-reporting. The
+    lesson: authority over a seam is maintained in layers, not granted once, and even the enforcement earns
+    its own scrutiny.</desc>
+
+  <defs>
+    <marker id="psl-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="600" fill="#fdfcf9"/>
+
+  <text x="40" y="36" font-size="16" font-weight="600" fill="#57534e">One seam, hardened in layers &#8212; each forced by a residual failure.</text>
+
+  <!-- 1: convenient call -->
+  <rect x="95" y="96" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="124" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">convenient call</text>
+  <text x="330" y="123" font-size="13" font-style="italic" fill="#57534e">chosen because it was one line</text>
+
+  <!-- 2: silent corruption (the founding failure) -->
+  <rect x="95" y="174" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="202" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">silent corruption</text>
+  <text x="330" y="201" font-size="13" fill="#b23b3b">tag tree stripped &#8212; the eye can't catch it</text>
+
+  <!-- 3: library policy -->
+  <rect x="95" y="252" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="280" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">library policy</text>
+  <text x="330" y="279" font-size="13" font-style="italic" fill="#57534e">one canonical library per format</text>
+
+  <!-- 4: typed seam -->
+  <rect x="95" y="330" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="358" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">typed seam</text>
+  <text x="330" y="357" font-size="13" font-style="italic" fill="#57534e">all mutation through one model</text>
+
+  <!-- 5: build-time ban -->
+  <rect x="95" y="408" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="436" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">build-time ban</text>
+  <text x="330" y="435" font-size="13" font-style="italic" fill="#57534e">enforced, not remembered</text>
+
+  <!-- 6: gate integrity (the enforcement itself under scrutiny) — heavy stroke = authority -->
+  <rect x="95" y="486" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
+  <text x="200" y="514" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">gate integrity</text>
+  <text x="330" y="513" font-size="13" font-style="italic" fill="#57534e">the check itself was caught mis-reporting</text>
+
+  <!-- forcing arrows (each failure forces the next layer) -->
+  <line x1="200" y1="143" x2="200" y2="171" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+  <line x1="200" y1="221" x2="200" y2="249" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+  <line x1="200" y1="299" x2="200" y2="327" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+  <line x1="200" y1="377" x2="200" y2="405" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+  <line x1="200" y1="455" x2="200" y2="483" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+
+  <text x="320" y="576" text-anchor="middle" font-size="13" fill="#57534e">An engineering history, not a system model.</text>
+</svg>
