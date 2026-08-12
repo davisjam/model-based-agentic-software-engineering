@@ -723,9 +723,75 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Engineering question</strong> — Which service may call which, and reach which resource?</li><li><strong>Model</strong> — a typed catalog of every service, its endpoints, their authentication, and the wires that join a caller to a callee.</li><li><strong>Property</strong> — only declared service-to-service edges are legal, and each carries its declared authentication posture. One node, the public web tier, faces the outside; every other node is internal.</li><li><strong>Quality attribute</strong> — security, least-privilege, architectural integrity.</li></ul></blockquote>
 <p>A system of services grows edges the way a garden grows weeds. A quick call from one service to another, added under deadline, becomes a permanent, undocumented dependency. Nobody decided the graph should have that edge; it appeared. Under audit, <em>who can reach the billing service?</em> has no answer you can trust. The first structural question is compositional, and it is this graph you need to make answerable.</p>
 <p>The first question is compositional: what services exist, and which one is allowed to call which? Deploy config and handler code each hold a fragment of the answer, and neither can be queried for the whole. The <strong>service-flow model</strong> holds it in one place — a typed catalog of every service, its endpoints, their authentication, and the <strong>wires</strong> that join a caller to a callee.</p>
-<p>Read the permitted calls as a declared graph — a short list of arrows. The quality service may ask the generation service. The conformance service may ask the validator. The worker may reach exactly five downstream services; the merge stage mirrors the worker. Only the web tier is public — it is the one node that faces the outside, and everything else sits behind an internal, authenticated door. That allow-list is six or so nodes, one of them public, and every edge that is <em>not</em> drawn is forbidden.</p>
-<p>What the model lets you establish is that declared architecture and running implementation cannot silently diverge, and it earns that in <strong>both directions</strong>. The network access policy is <em>generated</em> from the wires (model-to-code), so what a service may reach stays equal to what the model says it may. The real call graph is <em>read back</em> and reconciled against the wires (model-from-code), so a call nobody declared surfaces as a finding. A drawing of a service architecture goes stale the afternoon someone adds an endpoint; this graph fails the build instead. <a class="xref" href="2.5-modeling-structure-and-ownership.html#fig-2-5-1">Figure&nbsp;2.5-1</a> shows the model feeding its generators on one side and its parity gates on the other.</p>
-<figure id="fig-2-5-1" class="book-figure" data-label="service-model-structure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
+<p>Read the permitted calls as a declared graph — a short list of arrows. The quality service may ask the generation service. The conformance service may ask the validator. The worker may reach exactly five downstream services; the merge stage mirrors the worker. Only the web tier is public — it is the one node that faces the outside, and everything else sits behind an internal, authenticated door. That allow-list is six or so nodes, one of them public, and every edge that is <em>not</em> drawn is forbidden. <a class="xref" href="2.5-modeling-structure-and-ownership.html#fig-2-5-1">Figure&nbsp;2.5-1</a> draws it — the one public node, the permitted arrows, and the forbidden default around everything else.</p>
+<figure id="fig-2-5-1" class="book-figure" data-label="service-allow-list"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520"
+     role="group" aria-labelledby="salTitle salDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="salTitle">The service allow-list — connectivity is declared, and every edge not drawn is forbidden</title>
+  <desc id="salDesc">A simplified view of the declared service-connectivity model. The Internet reaches
+    one public node, the web service; the web service reaches the document editor; the document editor
+    reaches the worker; and the worker reaches three services it is cleared to call — render, OCR, and
+    generation. Only these declared edges are drawn. Every service connection not drawn is forbidden, shown
+    by a struck-out example edge at the foot. Connectivity is an authoritative mechanism: an allow-list the
+    build reconciles against the running system, not a property that emerges from whatever code calls what.</desc>
+
+  <defs>
+    <marker id="sal-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="520" fill="#fdfcf9"/>
+
+  <text x="40" y="38" font-size="16" font-weight="600" fill="#57534e">Question: Which service connections are authorized?</text>
+
+  <!-- ===== left spine: public boundary + public node descend to the worker ===== -->
+  <!-- Internet (public boundary, blue) -->
+  <rect x="90" y="66" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="165" y="97" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Internet</text>
+
+  <!-- web (the only public node, blue) -->
+  <rect x="90" y="150" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="165" y="181" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">web</text>
+  <text x="252" y="181" font-size="14" fill="#57534e">the only public node</text>
+
+  <!-- doc editor -->
+  <rect x="90" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="165" y="265" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">doc editor</text>
+
+  <!-- worker -->
+  <rect x="90" y="318" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="165" y="349" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">worker</text>
+
+  <!-- ===== right column: the three services the worker may reach ===== -->
+  <rect x="400" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="475" y="265" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">render</text>
+
+  <rect x="400" y="318" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="475" y="349" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">OCR</text>
+
+  <rect x="400" y="402" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="475" y="433" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">generation</text>
+
+  <!-- ===== permitted edges (solid) — spine ===== -->
+  <line x1="165" y1="116" x2="165" y2="150" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="165" y1="200" x2="165" y2="234" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="165" y1="284" x2="165" y2="318" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+
+  <!-- ===== permitted edges (solid) — worker fan-out ===== -->
+  <line x1="240" y1="336" x2="400" y2="262" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="240" y1="343" x2="400" y2="343" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="240" y1="350" x2="400" y2="424" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+
+  <!-- ===== legend: every unshown edge is forbidden ===== -->
+  <text x="150" y="483" text-anchor="end" font-size="15" fill="#57534e">any edge not drawn</text>
+  <line x1="168" y1="478" x2="258" y2="478" stroke="#b0aaa2" stroke-width="1.8"/>
+  <line x1="205" y1="470" x2="221" y2="486" stroke="#b23b3b" stroke-width="2.6"/>
+  <line x1="221" y1="470" x2="205" y2="486" stroke="#b23b3b" stroke-width="2.6"/>
+  <text x="272" y="483" font-size="15" font-weight="600" fill="#b23b3b">forbidden</text>
+</svg><figcaption data-short="A simplified view of the declared service-connectivity model; only the…"><span class="fig-label">Figure 2.5-1.</span> A simplified view of the declared service-connectivity model; only the relationships needed for this discussion are shown, one node is public, and every edge not drawn is forbidden.</figcaption></figure>
+<p>What the model lets you establish is that declared architecture and running implementation cannot silently diverge, and it earns that in <strong>both directions</strong>. The network access policy is <em>generated</em> from the wires (model-to-code), so what a service may reach stays equal to what the model says it may. The real call graph is <em>read back</em> and reconciled against the wires (model-from-code), so a call nobody declared surfaces as a finding. A drawing of a service architecture goes stale the afternoon someone adds an endpoint; this graph fails the build instead. <a class="xref" href="2.5-modeling-structure-and-ownership.html#fig-2-5-2">Figure&nbsp;2.5-2</a> shows the model feeding its generators on one side and its parity gates on the other.</p>
+<figure id="fig-2-5-2" class="book-figure" data-label="service-model-structure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
      role="group" aria-labelledby="smTitle smDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="smTitle">The service model feeds generators and parity gates</title>
@@ -792,7 +858,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- build blocked (stadium, failure) -->
   <rect x="720" y="300" width="210" height="60" rx="30" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
   <text x="825" y="338" text-anchor="middle" font-size="22" font-weight="700" fill="#b23b3b">build blocked</text>
-</svg><figcaption data-short="The service model feeds generators and parity gates"><span class="fig-label">Figure 2.5-1.</span> The service model feeds generators and parity gates. It is authoritative for what it generates and reconciled against reality for what it checks; either side diverging blocks the build.</figcaption></figure>
+</svg><figcaption data-short="The service model feeds generators and parity gates"><span class="fig-label">Figure 2.5-2.</span> The service model feeds generators and parity gates. It is authoritative for what it generates and reconciled against reality for what it checks; either side diverging blocks the build.</figcaption></figure>
 <p>One illustrative invariant carries the shape: <strong>every declared wire resolves to a real cross-service call, and every real cross-service call resolves to a declared wire.</strong> A call-graph parity lint holds both halves — an undeclared call is an ungoverned one, and it is exactly the thing the check refuses. The natural drawing is a <strong>data-flow diagram</strong>: the model on the left, the generators and parity gates it feeds on the right, each edge labeled with what flows across it rather than what decides.</p>
 <p>The move to carry away is general. A decision model answers <em>who may do what.</em> Represent the permissions explicitly — as data, not scattered call sites — and two powers follow. You can <em>check</em> actual behavior against the declared policy, and you can encode part of the policy in a type so a violation never compiles. Separate the <em>permission</em> from the <em>action</em>, write the permission down, and let something compare the written policy to the running system. Network policy, firewall rules, service-mesh authorization, and cloud access management are all this one model; the variation across shops is only the enforcement rung — a firewall at runtime, a policy check at build, a type at compile — not the shape of the model.</p>
 <blockquote id="idx-def-data-flow-diagram" class="aside-sidenote"><p>The complete record schema, the full invariant table, and the derivation direction the drift gate compares live in the model's appendix reference page. <a href="appendix-g-service-flow-reference.html">Appendix G</a></p></blockquote>
@@ -802,9 +868,57 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Engineering question</strong> — Where am I, what may this file touch, and what senses a boundary violation?</li><li><strong>Model</strong> — a typed catalog that gives every component a code zone: its directories, its tags, its boundary kind, the external seams it may cross — with one edge drawn forbidden.</li><li><strong>Property</strong> — every in-scope source directory is owned by exactly one component, and only a sanctioned seam crosses a boundary. In particular, no ordinary code touches a powerful format library directly; all of it routes through one structured model per format.</li><li><strong>Quality attribute</strong> — modularity and maintainability first; corruption-resistance (correctness) is the sharp secondary; keeping dangerous construction in one audited place serves security besides.</li></ul></blockquote>
 <p>A large system rots along its dependency edges. Any file imports any other. A convenient shortcut in one corner reaches across three subsystems, and six months later no one can say what depends on what. DocAble's version of the failure is sharper than generic tangle. A powerful document library — the kind that can rewrite a document's internal object structure — is a loaded weapon. Call it from the wrong place and you can silently destroy the very accessibility structure the product exists to build: the delivered file still opens and renders, but its remediation is gone, and the customer finds out only with a screen reader.</p>
 <p id="idx-def-component-zone-model">The next question is the one an agent asks before it edits a line: <em>where am I, and what may this file touch?</em> The <strong>component and zone model</strong> answers it — a typed catalog that gives every component a code zone (its focus directories, its tags, its boundary kind, the external seams it may cross). "Which component owns this file" becomes a lookup, not a per-tool guess that each lint, dispatcher, and context injector re-derives on its own and drifts on its own.</p>
-<p>Draw the system as zones — a web tier, a worker tier, a cluster of small services, the storage and queues, and the core that holds the rule engine and the per-format repair logic — and let dependency edges run between them. One edge is drawn in red and forbidden: <em>ordinary code may not reach the raw format library.</em> Every mutation of a format passes through one structured model dedicated to that format. The model is the only door; the raw library lives behind it — a single sanctioned door with the forbidden edge drawn around it.</p>
-<p>What the model lets you establish is that ownership and boundaries hold as the tree moves under them. A reverse-mapping test reconciles the declared zones against the real directory tree in both directions; a boundary lint refuses a reach outside a component's sanctioned seams. The illustrative invariant: <strong>every in-scope source directory is owned by exactly one component.</strong> The test runs reality-⊆-model over the declared source surface — the repository minus the paths that belong to no component — so a moved or unowned directory is a finding while a vendored tree is exempt. <a class="xref" href="2.5-modeling-structure-and-ownership.html#fig-2-5-2">Figure&nbsp;2.5-2</a> shows the registry feeding every tool that reads ownership, with a reverse-mapping test joining it back to the real tree.</p>
-<figure id="fig-2-5-2" class="book-figure" data-label="component-model-structure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460"
+<p>Draw the system as zones — a web tier, a worker tier, a cluster of small services, the storage and queues, and the core that holds the rule engine and the per-format repair logic — and let dependency edges run between them. One edge is drawn in red and forbidden: <em>ordinary code may not reach the raw format library.</em> Every mutation of a format passes through one structured model dedicated to that format. The model is the only door; the raw library lives behind it — a single sanctioned door with the forbidden edge drawn around it. <a class="xref" href="2.5-modeling-structure-and-ownership.html#fig-2-5-3">Figure&nbsp;2.5-3</a> draws that single door and the forbidden reach around it.</p>
+<figure id="fig-2-5-3" class="book-figure" data-label="typed-seam"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300"
+     role="group" aria-labelledby="tsTitle tsDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="tsTitle">The typed seam — the format library is reachable only through one typed model</title>
+  <desc id="tsDesc">Ordinary remediation passes reach a format model, and only the format model reaches
+    the underlying format library. The model is the single sanctioned door. A direct path from the
+    remediation passes to the format library, drawn below the row, is struck through with an X and marked
+    forbidden. These are authoritative mechanisms: routing every access through one typed seam is the only
+    permitted way to touch the powerful library.</desc>
+
+  <defs>
+    <marker id="ts-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
+    </marker>
+    <marker id="ts-arF" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b0aaa2"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="300" fill="#fdfcf9"/>
+
+  <!-- question marker (consistent across the figure set) -->
+  <text x="40" y="38" font-size="16" font-weight="600" fill="#57534e">Question: Where may document mutation occur?</text>
+
+  <!-- entity boxes -->
+  <rect x="25" y="120" width="160" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="105" y="150" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">remediation</text>
+  <text x="105" y="172" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">passes</text>
+
+  <rect x="235" y="120" width="170" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="320" y="157" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">format model</text>
+  <text x="320" y="206" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the only door</text>
+
+  <rect x="450" y="120" width="180" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="540" y="157" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">format library</text>
+
+  <!-- permitted arrows (solid) -->
+  <line x1="185" y1="152" x2="235" y2="152" stroke="#2b2825" stroke-width="2" marker-end="url(#ts-ar)"/>
+  <line x1="405" y1="152" x2="450" y2="152" stroke="#2b2825" stroke-width="2" marker-end="url(#ts-ar)"/>
+  <text x="427" y="138" text-anchor="middle" font-size="14" fill="#57534e">permitted</text>
+
+  <!-- forbidden bypass: routed below the row, struck with an X -->
+  <path d="M105,184 L105,250 L540,250 L540,184" fill="none" stroke="#b0aaa2" stroke-width="1.8"
+        marker-end="url(#ts-arF)"/>
+  <line x1="312" y1="240" x2="332" y2="260" stroke="#b23b3b" stroke-width="2.6"/>
+  <line x1="332" y1="240" x2="312" y2="260" stroke="#b23b3b" stroke-width="2.6"/>
+  <text x="322" y="284" text-anchor="middle" font-size="14" font-weight="600" fill="#b23b3b">direct access forbidden</text>
+</svg><figcaption data-short="A model creates an architectural seam"><span class="fig-label">Figure 2.5-3.</span> A model creates an architectural seam: ordinary remediation code reaches the underlying format library only through one structured model per format, and direct access is forbidden.</figcaption></figure>
+<p>What the model lets you establish is that ownership and boundaries hold as the tree moves under them. A reverse-mapping test reconciles the declared zones against the real directory tree in both directions; a boundary lint refuses a reach outside a component's sanctioned seams. The illustrative invariant: <strong>every in-scope source directory is owned by exactly one component.</strong> The test runs reality-⊆-model over the declared source surface — the repository minus the paths that belong to no component — so a moved or unowned directory is a finding while a vendored tree is exempt. <a class="xref" href="2.5-modeling-structure-and-ownership.html#fig-2-5-4">Figure&nbsp;2.5-4</a> shows the registry feeding every tool that reads ownership, with a reverse-mapping test joining it back to the real tree.</p>
+<figure id="fig-2-5-4" class="book-figure" data-label="component-model-structure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460"
      role="group" aria-labelledby="cmTitle cmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="cmTitle">One component registry, every tool reading the same ownership answer</title>
@@ -864,7 +978,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M290,158 C350,230 420,280 500,314" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#cm-ah)"/>
   <!-- tree -> reverse-mapping test -->
   <line x1="305" y1="362" x2="439" y2="362" stroke="#1c1917" stroke-width="2" marker-end="url(#cm-ah)"/>
-</svg><figcaption data-short="The component registry feeds the boundary lints, dispatch, and context…"><span class="fig-label">Figure 2.5-2.</span> The component registry feeds the boundary lints, dispatch, and context injection — every tool reads the same ownership answer — and a reverse-mapping test joins it to the real tree in both directions.</figcaption></figure>
+</svg><figcaption data-short="The component registry feeds the boundary lints, dispatch, and context…"><span class="fig-label">Figure 2.5-4.</span> The component registry feeds the boundary lints, dispatch, and context injection — every tool reads the same ownership answer — and a reverse-mapping test joins it to the real tree in both directions.</figcaption></figure>
 <p>A word on honesty of scale. The production structural model carries roughly a hundred and twenty components. The teaching view keeps about seven boxes and that single forbidden edge; the production model adds accounting buckets, deployment linkage, and the fan-out of front-end sub-parts. Strip them. A model leaves things out because leaving things out is what makes the relevant property visible — here, <em>which dependencies are legal, and what catches a violation.</em></p>
 <p>The move to carry away: find the one resource powerful enough that uncontrolled access to it is dangerous — a raw database handle, a filesystem, a format library, a credential — and route all access through a single typed seam. Now the model states a property worth defending: <em>the dangerous thing is reachable from exactly one place.</em> That serves maintainability first — a preservation fix made once at the seam holds for every caller — and correctness right behind it, because the corrupting operation becomes unreachable from ordinary code.</p>
 <blockquote class="aside-sidenote"><p>The full record schema, the complete invariant table, and the by-field derivation strip live in the model's appendix reference page. <a href="appendix-g-component-zone-reference.html">Appendix G</a></p></blockquote>

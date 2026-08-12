@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: fig-measurement-envelope). Measurement teaching figure for §2.6.
+     ONE JOB: the relationship among a measured execution, a predicted envelope, and a budget — observation
+     versus model versus obligation. The observed warm path (UPLOAD -> WORK -> MERGE -> DELIVER, ~24 s) is
+     what the deploy smoke MEASURES (solid). From it a per-chunk worst case is DERIVED (dashed border, dashed
+     arrow). The 600 s job budget is the OBLIGATION the system must hold ([bracket]). Envelope: observed <=
+     predicted <= budget. Shared house grammar: solid = measured / actual; dashed = derived / predicted;
+     [bracket] = obligation. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" width="640" height="440"
+     role="group" aria-labelledby="meTitle meDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="meTitle">The measurement envelope — observed execution, predicted worst case, and the budget</title>
+  <desc id="meDesc">Three different things a measurement model holds. The observed warm path — upload,
+    work, merge, deliver, about twenty-four seconds — is what the deploy smoke measures, drawn with solid
+    arrows. From it a predicted per-chunk worst case is derived, drawn with a dashed border and reached by a
+    dashed arrow. The six-hundred-second job budget is the obligation the system promises to hold. The
+    envelope reads observed at most predicted at most budget. These are authoritative mechanisms: a sensor
+    measures the run and an admission gate refuses work that would breach the bound before it starts.</desc>
+
+  <defs>
+    <marker id="me-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
+    </marker>
+    <marker id="me-arM" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="440" fill="#fdfcf9"/>
+
+  <text x="40" y="38" font-size="16" font-weight="600" fill="#57534e">Question: Will the work finish within its budget?</text>
+
+  <!-- observed warm path (measured) -->
+  <text x="320" y="82" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">observed warm path (~24 s)</text>
+  <rect x="40"  y="100" width="100" height="46" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="90"  y="128" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">UPLOAD</text>
+  <rect x="180" y="100" width="100" height="46" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="230" y="128" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">WORK</text>
+  <rect x="320" y="100" width="100" height="46" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="370" y="128" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">MERGE</text>
+  <rect x="460" y="100" width="100" height="46" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="510" y="128" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">DELIVER</text>
+  <line x1="140" y1="123" x2="180" y2="123" stroke="#2b2825" stroke-width="2" marker-end="url(#me-ar)"/>
+  <line x1="280" y1="123" x2="320" y2="123" stroke="#2b2825" stroke-width="2" marker-end="url(#me-ar)"/>
+  <line x1="420" y1="123" x2="460" y2="123" stroke="#2b2825" stroke-width="2" marker-end="url(#me-ar)"/>
+
+  <!-- derived worst case (dashed = derived) -->
+  <line x1="300" y1="146" x2="300" y2="196" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#me-arM)"/>
+  <text x="312" y="176" font-size="13" fill="#57534e">derive worst case</text>
+  <rect x="160" y="200" width="280" height="48" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4"/>
+  <text x="300" y="229" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">predicted per-chunk worst case</text>
+  <text x="450" y="229" font-size="14" fill="#57534e">[derived]</text>
+
+  <!-- must stay under the budget (obligation) -->
+  <line x1="300" y1="248" x2="300" y2="298" stroke="#2b2825" stroke-width="2" marker-end="url(#me-ar)"/>
+  <text x="312" y="276" font-size="13" fill="#57534e">must stay under</text>
+  <rect x="160" y="302" width="280" height="48" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
+  <text x="300" y="331" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">600 s job budget</text>
+  <text x="450" y="331" font-size="14" fill="#57534e">[the obligation]</text>
+
+  <!-- the envelope, stated -->
+  <text x="320" y="404" text-anchor="middle" font-size="15" fill="#57534e">envelope:  observed  &#8804;  predicted  &#8804;  budget</text>
+</svg>

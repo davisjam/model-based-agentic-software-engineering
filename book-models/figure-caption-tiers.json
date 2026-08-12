@@ -744,6 +744,42 @@
       "kind": "framework",
       "location": "part4",
       "rationale": "the substrate landscape synthesis table (R14: 7-row property→consequence→response→method-step) opening Part IV"
+    },
+    "assets/service-allow-list.svg": {
+      "tier": "B",
+      "kind": "model-schema",
+      "location": "part3",
+      "rationale": "the declared service-connectivity allow-list — one public node, permitted edges, forbidden default"
+    },
+    "assets/typed-seam.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part3",
+      "rationale": "the typed seam — ordinary code reaches a format library only through one structured model per format"
+    },
+    "assets/fig-job-lifecycle-sm.svg": {
+      "tier": "B",
+      "kind": "model-schema",
+      "location": "part3",
+      "rationale": "the remediation job lifecycle state machine — every active state routes to a terminal FAILED, no re-entry"
+    },
+    "assets/fig-lease-vs-cas.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part3",
+      "rationale": "lease (crash recovery) vs compare-and-set (exactly-once permission) — the claim, not the lease, carries correctness"
+    },
+    "assets/fig-measurement-envelope.svg": {
+      "tier": "B",
+      "kind": "conceptual-illustration",
+      "location": "part3",
+      "rationale": "observation / prediction / obligation — observed warm path against predicted worst case and the job budget"
+    },
+    "assets/provenance-derivation.svg": {
+      "tier": "B",
+      "kind": "mechanism-illustration",
+      "location": "part3",
+      "rationale": "provenance derivation — a mutation stamp fans out through one registry to validation and the customer changelog"
     }
   }
 }

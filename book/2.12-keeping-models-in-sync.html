@@ -723,7 +723,64 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Engineering question</strong> — Does the human-facing explanation of what changed stay in sync with what the code actually did?</li><li><strong>Model</strong> — a provenance model: every mutation stamped, every inserted artifact recorded, and the customer-facing changelog <em>derived</em> from those stamps rather than written by hand.</li><li><strong>Property</strong> — every change is stamped, every inserted artifact is recorded and survives to the output, and the changelog is a loss-free projection of the stamps — so what the customer is told changed equals what the code did.</li><li><strong>Quality attribute</strong> — understandability, maintainability, auditability.</li></ul></blockquote>
 <p>The architecture reverses the usual relationship: rather than describe the work afterward, the code records it as it works, and the explanation is a <em>view</em> of that record. DocAble builds this as a mark that rides inside the document itself. Three moves, in order:</p>
 <ul><li><strong>Mutate, then stamp.</strong> Every verb that changes the document writes an entry — which verb, in which pass, visible or invisible — into a provenance registry embedded in the file. A change that ships without its stamp is the failure this move exists to prevent.</li><li><strong>Insert, then record.</strong> Every artifact the tool adds is recorded with its locator and its placement, and it carries a reserved name-prefix so a later reader — and the validator — can tell an inserted artifact from one the author wrote.</li><li><strong>Derive, don't author.</strong> The changelog the customer reads is projected from the registry, one row per stamped entry, loss-free. Nobody writes it by hand. An empty registry yields an empty changelog — by construction, the document tells the truth about itself.</li></ul>
-<p>What the model buys is a single equality: what the customer is told changed equals what the code did. It earns that because the registry the code writes as it works is the <em>only</em> source the changelog reads. There is no second, hand-kept account to drift, so diagnosis turns from a cross-file hunt into a lookup. The shape of the derivation is a mutation writing a stamp, the registry fanning out to a validation and a customer-facing changelog.</p>
+<p>What the model buys is a single equality: what the customer is told changed equals what the code did. It earns that because the registry the code writes as it works is the <em>only</em> source the changelog reads. There is no second, hand-kept account to drift, so diagnosis turns from a cross-file hunt into a lookup. The shape of the derivation is a mutation writing a stamp, the registry fanning out to a validation and a customer-facing changelog. <a class="xref" href="2.12-keeping-models-in-sync.html#fig-2-12-1">Figure&nbsp;2.12-1</a> draws that derivation, from a mutation's stamp to the changelog the customer reads.</p>
+<figure id="fig-2-12-1" class="book-figure" data-label="provenance-derivation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 500"
+     role="group" aria-labelledby="pdTitle pdDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="pdTitle">Provenance derivation — the explanation is derived from the record, not authored beside it</title>
+  <desc id="pdDesc">A mutation writes a stamp, and every stamp lands in one provenance registry embedded in
+    the document. The registry is the only source. From it two views are derived, drawn with dashed arrows:
+    a validation pass and the customer-facing changelog. The changelog reaches the customer. Because the
+    changelog is derived from the same record the code writes as it acts, it cannot describe a change the
+    code never made. Deriving the explanation from an authoritative record, rather than keeping a parallel
+    account, is the mechanism that keeps the explanation true to the act.</desc>
+
+  <defs>
+    <marker id="pd-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
+    </marker>
+    <marker id="pd-arM" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="500" fill="#fdfcf9"/>
+
+  <text x="40" y="38" font-size="16" font-weight="600" fill="#57534e">Question: Does the explanation match what the code did?</text>
+
+  <!-- the write chain (solid) -->
+  <rect x="215" y="70" width="170" height="46" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="300" y="99" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">mutation</text>
+
+  <rect x="215" y="146" width="170" height="46" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="300" y="175" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">stamp</text>
+
+  <rect x="175" y="222" width="250" height="52" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
+  <text x="300" y="255" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">provenance registry</text>
+  <text x="435" y="255" font-size="14" fill="#57534e">[the only source]</text>
+
+  <line x1="300" y1="116" x2="300" y2="146" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
+  <line x1="300" y1="192" x2="300" y2="222" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
+
+  <!-- the two derived views (dashed = derived, not authored) -->
+  <rect x="70" y="340" width="160" height="48" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="150" y="370" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">validation</text>
+
+  <rect x="390" y="340" width="160" height="48" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="470" y="370" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">changelog</text>
+
+  <rect x="390" y="430" width="160" height="46" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="470" y="459" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">customer</text>
+
+  <line x1="250" y1="274" x2="180" y2="340" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#pd-arM)"/>
+  <line x1="350" y1="274" x2="430" y2="340" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#pd-arM)"/>
+  <text x="300" y="318" text-anchor="middle" font-size="14" fill="#57534e">derived, not authored</text>
+
+  <line x1="470" y1="388" x2="470" y2="430" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
+  <text x="385" y="410" text-anchor="end" font-size="13" fill="#57534e">one row per entry</text>
+
+  <text x="300" y="490" text-anchor="middle" font-size="13" fill="#57534e">the changelog is derived from the stamps, not kept in parallel</text>
+</svg><figcaption data-short="Provenance derivation — the explanation is derived, not authored"><span class="fig-label">Figure 2.12-1.</span> Provenance derivation — the explanation is derived, not authored: a mutation writes a stamp, every stamp lands in one provenance registry in the document, and the registry fans out to a validation pass and the customer-facing changelog (a loss-free projection, one row per entry).</figcaption></figure>
 <p>The production model carries more than this view keeps: a separate stamp mechanism per document format, an inserted-content registry with its own placement invariants, and a typed ownership contract naming which code may write each stamp. This view keeps the loop — every change stamped, every insert recorded, the changelog derived from the stamps — because the engineering question here is only whether the explanation stays true to the change. What the tidy version hides is precisely what makes the loop possible: before you can enforce a correspondence between code and explanation, you need a representation in which that correspondence can be <em>stated</em>.</p>
 <p><strong>Generalize.</strong> The class is <strong>Documentation</strong>, and it is a model like the others in this Part, not a category apart: the explanation is a <em>model of the action</em>, and like any model it can drift from what it represents. The property it exposes is provenance-consistency — the account and the act stay equal, and every statement in the account points back to what produced it. The move is useful wherever a system acts on a user's artifact and must later explain or reverse what it did. The defense is always the same shape: derive the explanation from a record the actor writes <em>as it acts</em>, force the emission with a check, and generate the human-facing artifact from the record — rather than write the explanation separately and hope the two agree.</p>
 <p><strong>Industry variation.</strong> Audit logs, data-pipeline provenance, change-data-capture, and regulatory audit trails are all this model — a record the actor writes as it acts, and an explanation derived from it. What separates the real ones from the theater is enforcement: whether emitting the record is optional or mandatory.</p>
@@ -755,8 +812,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Stale headers and stale prose numbers are <strong>documentation drift, not model drift.</strong> They are the soft layer's true positives, and they are cheap: a reader catches them, and the close tool heals them. Kept here, clearly labelled, so they are never counted as model-sync evidence.</p>
 <table id="tbl-2-12-2" class="book-table" data-label="doc-hygiene-aside"><caption data-short="Documentation-hygiene aside — not model sync"><span class="tbl-label">Table 2.12-2.</span> Documentation-hygiene aside — stale headers and prose numbers the soft layer catches; documentation drift, not model sync.</caption><thead><tr><th>Doc-hygiene drift</th><th>Refresh-window count</th><th>Caught by</th><th>Healed by</th></tr></thead><tbody><tr><td>STALE-HEADER (a status line frozen at a pre-close phase)</td><td><strong>11</strong></td><td>reading (human / Opus)</td><td>the Epic-close tool auto-rewrites the status atomically</td></tr><tr><td>DOC-CLAIM (a stale prose number: 105→107, 76%→90%, 266→234)</td><td><strong>9</strong></td><td>Opus re-derives the number from code</td><td>a routed one-line <code>[FIX]</code> / <code>[AUDIT]</code></td></tr></tbody></table>
 <p><em>Documentation hygiene, not model sync.</em> These rows describe prose the lints do not parse. They are real, and the soft layer is the only practical control for them — but they say nothing about whether the model equals the code.</p>
-<p>The whole shape — the gap, the two layers, and the two places drift still escapes — is drawn in <a class="xref" href="2.12-keeping-models-in-sync.html#fig-2-12-1">Figure&nbsp;2.12-1</a>.</p>
-<figure id="fig-2-12-1" class="book-figure" data-label="model-sync-two-layer-net"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640"
+<p>The whole shape — the gap, the two layers, and the two places drift still escapes — is drawn in <a class="xref" href="2.12-keeping-models-in-sync.html#fig-2-12-2">Figure&nbsp;2.12-2</a>.</p>
+<figure id="fig-2-12-2" class="book-figure" data-label="model-sync-two-layer-net"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640"
      role="group" aria-labelledby="msTitle msDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="msTitle">The two-layer net: modeled surface, two coverage layers, two uncovered regions, two backstops</title>
@@ -830,7 +887,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="800" y="591" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">failures → controls loop</text>
   <text x="800" y="612" text-anchor="middle" font-size="13" fill="#57534e">closes it — extends the net</text>
   <path d="M900,564 C906,480 890,420 828,388" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ms-grn)"/>
-</svg><figcaption data-short="The two-layer net"><span class="fig-label">Figure 2.12-1.</span> <strong>The two-layer net.</strong> The horizontal band is the modeled surface — the code a model represents. Two layers cover it: a hard floor of derived checks, each anchor resolved to a live symbol, and a soft reading layer — a person or Opus reading prose the checks can't parse. Two regions stay uncovered: a semantic mismatch, where the anchor resolves but the meaning drifted, and the unmodeled surface, which no anchor reaches. Two backstops turn noticing into machinery — the missing-model metric measures the unmodeled region, and the failures-become-controls loop closes it. Read the net as coverage, not a guarantee: the modeled-and-decidable is enforced, the semantic only aimed at, the unmodeled merely measured until a backstop extends it.</figcaption></figure>
+</svg><figcaption data-short="The two-layer net"><span class="fig-label">Figure 2.12-2.</span> <strong>The two-layer net.</strong> The horizontal band is the modeled surface — the code a model represents. Two layers cover it: a hard floor of derived checks, each anchor resolved to a live symbol, and a soft reading layer — a person or Opus reading prose the checks can't parse. Two regions stay uncovered: a semantic mismatch, where the anchor resolves but the meaning drifted, and the unmodeled surface, which no anchor reaches. Two backstops turn noticing into machinery — the missing-model metric measures the unmodeled region, and the failures-become-controls loop closes it. Read the net as coverage, not a guarantee: the modeled-and-decidable is enforced, the semantic only aimed at, the unmodeled merely measured until a backstop extends it.</figcaption></figure>
 <h2><span class="sec-num">2.12.6</span> The two failure modes: where drift still escapes</h2>
 <p>The net has two escape hatches. Neither is a footnote; they bound the claim.</p>
 <p><strong>Failure mode 1 — the judgment miss.</strong> A mis-alignment that is not mechanically decidable needs subjective judgment. The anchor resolves (the code exists, so the hard floor reads green), yet the <em>meaning</em> drifted. The soft reading layer is the only net for this, and it is fallible by construction — a subtle semantic drift can pass a green definition-of-done. This is the drift that slips through a hole in the soft layer.</p>

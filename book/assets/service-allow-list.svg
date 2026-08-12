@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: service-allow-list). Decision teaching figure for §2.5.
+     ONE JOB: service connectivity is an explicit allow-list, not an emergent property of what code
+     happens to call. Reduced to the ~6 nodes the property needs (figures.md removability test): a public
+     boundary (Internet) and a public node (web) descend a left spine to a worker, which fans out to the
+     three services it may reach. Every edge not drawn is forbidden (legend at the foot).
+     Shared house grammar: solid arrow = permitted call; light rule + red X = a forbidden (undeclared)
+     edge; [bracket] = property. Public nodes carry the fleet-blue treatment (stroke #2f5169, fill #e7edf3);
+     ordinary nodes are neutral (ink stroke, fill #f6f4ef). Only relationships needed here are shown. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" width="640" height="520"
+     role="group" aria-labelledby="salTitle salDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="salTitle">The service allow-list — connectivity is declared, and every edge not drawn is forbidden</title>
+  <desc id="salDesc">A simplified view of the declared service-connectivity model. The Internet reaches
+    one public node, the web service; the web service reaches the document editor; the document editor
+    reaches the worker; and the worker reaches three services it is cleared to call — render, OCR, and
+    generation. Only these declared edges are drawn. Every service connection not drawn is forbidden, shown
+    by a struck-out example edge at the foot. Connectivity is an authoritative mechanism: an allow-list the
+    build reconciles against the running system, not a property that emerges from whatever code calls what.</desc>
+
+  <defs>
+    <marker id="sal-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="520" fill="#fdfcf9"/>
+
+  <text x="40" y="38" font-size="16" font-weight="600" fill="#57534e">Question: Which service connections are authorized?</text>
+
+  <!-- ===== left spine: public boundary + public node descend to the worker ===== -->
+  <!-- Internet (public boundary, blue) -->
+  <rect x="90" y="66" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="165" y="97" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Internet</text>
+
+  <!-- web (the only public node, blue) -->
+  <rect x="90" y="150" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="165" y="181" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">web</text>
+  <text x="252" y="181" font-size="14" fill="#57534e">the only public node</text>
+
+  <!-- doc editor -->
+  <rect x="90" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="165" y="265" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">doc editor</text>
+
+  <!-- worker -->
+  <rect x="90" y="318" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="165" y="349" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">worker</text>
+
+  <!-- ===== right column: the three services the worker may reach ===== -->
+  <rect x="400" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="475" y="265" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">render</text>
+
+  <rect x="400" y="318" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="475" y="349" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">OCR</text>
+
+  <rect x="400" y="402" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="475" y="433" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">generation</text>
+
+  <!-- ===== permitted edges (solid) — spine ===== -->
+  <line x1="165" y1="116" x2="165" y2="150" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="165" y1="200" x2="165" y2="234" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="165" y1="284" x2="165" y2="318" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+
+  <!-- ===== permitted edges (solid) — worker fan-out ===== -->
+  <line x1="240" y1="336" x2="400" y2="262" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="240" y1="343" x2="400" y2="343" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="240" y1="350" x2="400" y2="424" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+
+  <!-- ===== legend: every unshown edge is forbidden ===== -->
+  <text x="150" y="483" text-anchor="end" font-size="15" fill="#57534e">any edge not drawn</text>
+  <line x1="168" y1="478" x2="258" y2="478" stroke="#b0aaa2" stroke-width="1.8"/>
+  <line x1="205" y1="470" x2="221" y2="486" stroke="#b23b3b" stroke-width="2.6"/>
+  <line x1="221" y1="470" x2="205" y2="486" stroke="#b23b3b" stroke-width="2.6"/>
+  <text x="272" y="483" font-size="15" font-weight="600" fill="#b23b3b">forbidden</text>
+</svg>

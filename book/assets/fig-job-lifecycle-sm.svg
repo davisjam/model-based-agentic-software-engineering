@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: fig-job-lifecycle-sm). Behavioral teaching figure for §2.6.
+     ONE JOB: the job lifecycle is explicit, and failure is terminal — not an implicit retry. A single
+     column of states descends QUEUED -> CLAIMED -> PLAN + DISPATCH -> WAITING -> MERGING -> FINALIZING ->
+     COMPLETED. Every ACTIVE state feeds one terminal FAILED (a light rail off each active box, one arrow
+     into FAILED). FAILED carries NO edge back into processing; that absence is the lesson. No enum names,
+     no retry counters, no submachines. Shared house grammar: solid arrow = a legal transition; the red
+     box + red arrow = the failure terminal; [bracket]/foot note = a property. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" width="640" height="600"
+     role="group" aria-labelledby="jlTitle jlDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="jlTitle">The remediation job lifecycle — explicit states, and a failure terminal with no re-entry</title>
+  <desc id="jlDesc">A remediation job descends a fixed column of states: QUEUED, then CLAIMED, then PLAN
+    and DISPATCH, then WAITING, then MERGING, then FINALIZING, then COMPLETED. Every active state also
+    routes to a single terminal state, FAILED, drawn to the right. FAILED has no edge back into processing:
+    a failed job surfaces, it does not quietly re-enter the pipeline. The legal transitions are an
+    authoritative mechanism — one guarded operator is the only writer of state, and it refuses any edge the
+    table does not list. Failure is a dead end, not a detour.</desc>
+
+  <defs>
+    <marker id="jl-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
+    </marker>
+    <marker id="jl-arR" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="600" fill="#fdfcf9"/>
+
+  <text x="40" y="38" font-size="16" font-weight="600" fill="#57534e">Question: Which transitions exist — and which do not?</text>
+
+  <!-- ===== the FAILED rail: a light line beside the active states, one arrow into FAILED ===== -->
+  <line x1="305" y1="86" x2="305" y2="476" stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="295" y1="86"  x2="305" y2="86"  stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="295" y1="164" x2="305" y2="164" stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="295" y1="242" x2="305" y2="242" stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="295" y1="320" x2="305" y2="320" stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="295" y1="398" x2="305" y2="398" stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="295" y1="476" x2="305" y2="476" stroke="#d9b3ae" stroke-width="1.6"/>
+
+  <!-- ===== the state column (left) ===== -->
+  <rect x="110" y="64"  width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="93"  text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">QUEUED</text>
+  <rect x="110" y="142" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="171" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CLAIMED</text>
+  <rect x="110" y="220" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="249" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">PLAN + DISPATCH</text>
+  <rect x="110" y="298" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="327" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">WAITING</text>
+  <rect x="110" y="376" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="405" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">MERGING</text>
+  <rect x="110" y="454" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <text x="200" y="483" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">FINALIZING</text>
+  <rect x="110" y="532" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#155c38" stroke-width="2.8"/>
+  <text x="200" y="561" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">COMPLETED</text>
+
+  <!-- legal transitions (solid, straight) -->
+  <line x1="200" y1="108" x2="200" y2="142" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="186" x2="200" y2="220" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="264" x2="200" y2="298" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="342" x2="200" y2="376" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="420" x2="200" y2="454" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="498" x2="200" y2="532" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+
+  <!-- ===== FAILED terminal (right, red) ===== -->
+  <rect x="395" y="298" width="150" height="44" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.4"/>
+  <text x="470" y="327" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">FAILED</text>
+  <line x1="305" y1="320" x2="395" y2="320" stroke="#b23b3b" stroke-width="2" marker-end="url(#jl-arR)"/>
+  <text x="330" y="308" font-size="13" fill="#b23b3b">any active state</text>
+  <text x="470" y="364" text-anchor="middle" font-size="13" fill="#b23b3b">terminal — no re-entry into processing</text>
+</svg>
