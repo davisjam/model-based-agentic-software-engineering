@@ -55,7 +55,8 @@
 
   <!-- code -> page: dashed, the missing back-link -->
   <path d="M175,326 C205,268 230,220 262,168" fill="none" stroke="#57534e" stroke-width="1.7" stroke-dasharray="6 5" marker-end="url(#wl-ah-weak)"/>
-  <text x="248" y="250" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">back-link missing</text>
+  <text x="250" y="244" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">back-link</text>
+  <text x="250" y="262" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">missing</text>
 
   <!-- page -> tests: dashed, partial -->
   <path d="M300,166 C330,240 340,280 340,324" fill="none" stroke="#57534e" stroke-width="1.7" stroke-dasharray="6 5" marker-end="url(#wl-ah-weak)"/>
