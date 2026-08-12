@@ -7,7 +7,7 @@
     "derived_ids": 267,
     "missing_topic_sentence": 13,
     "sections_drained": 174,
-    "paragraph_points": 530
+    "paragraph_points": 531
   },
   "chapters": [
     {
@@ -2576,32 +2576,37 @@
             {
               "slug": "model-the-need-into-something-an-agent-can-reason-through",
               "text": "Model the need into a representation an agent can reason through.",
-              "block_index": 15
+              "block_index": 19
+            },
+            {
+              "slug": "exploratory-code-must-not-acquire-a-settled-designs-authority",
+              "text": "When the need is uncertain, implementation is an instrument of discovery, not production.",
+              "block_index": 23
             },
             {
               "slug": "the-fleet-does-the-implementation-against-the-model",
               "text": "The fleet writes the implementation against the model.",
-              "block_index": 17
+              "block_index": 25
             },
             {
               "slug": "validation-re-checks-the-work-against-the-model-automatically",
               "text": "Validation re-checks the work against the model, automatically and forever.",
-              "block_index": 19
+              "block_index": 27
             },
             {
               "slug": "failures-are-the-agenda-not-an-interruption",
               "text": "Failure is the agenda, not an interruption.",
-              "block_index": 21
+              "block_index": 29
             },
             {
               "slug": "a-recurring-failure-earns-a-durable-mechanism",
               "text": "The second time a failure recurs, it earns a durable mechanism.",
-              "block_index": 23
+              "block_index": 31
             },
             {
               "slug": "each-turn-leaves-the-environment-more-capable-than-before",
               "text": "Each turn leaves the environment more capable than the last.",
-              "block_index": 25
+              "block_index": 33
             }
           ]
         },
@@ -2611,22 +2616,22 @@
           "heading_text": "Closing the loop: governance conversion",
           "topic_sentence": "When a check goes red, the reflex the method trains is not to patch the instance but to close the class it belongs to.",
           "id_source": "explicit",
-          "block_index": 27,
+          "block_index": 37,
           "points": [
             {
               "slug": "a-conversion-runs-six-steps",
               "text": "A conversion runs the same six steps.",
-              "block_index": 29
+              "block_index": 39
             },
             {
               "slug": "the-recurrence-is-the-information",
               "text": "The recurrence itself is the information.",
-              "block_index": 33
+              "block_index": 43
             },
             {
               "slug": "some-conversions-bank-judgment-not-machinery",
               "text": "Some conversions bank judgment, not machinery.",
-              "block_index": 35
+              "block_index": 45
             }
           ]
         },
@@ -2636,27 +2641,27 @@
           "heading_text": "From soft to hard",
           "topic_sentence": "The mechanisms a conversion produces sort along one axis: soft governance *aims* the agent, hard governance *holds* regardless of cooperation.",
           "id_source": "explicit",
-          "block_index": 37,
+          "block_index": 47,
           "points": [
             {
               "slug": "soft-aims-hard-holds",
               "text": "Soft governance aims the agent; hard governance holds.",
-              "block_index": 39
+              "block_index": 49
             },
             {
               "slug": "never-happen-specifies-a-hard-mechanism",
               "text": "\"This must never happen\" specifies a hard mechanism.",
-              "block_index": 42
+              "block_index": 52
             },
             {
               "slug": "the-second-occurrence-earns-a-lint",
               "text": "The second occurrence of a failure earns a lint.",
-              "block_index": 44
+              "block_index": 55
             },
             {
               "slug": "convert-judgment-into-infrastructure-encode-once",
               "text": "Convert judgment into infrastructure; encode each call once.",
-              "block_index": 47
+              "block_index": 58
             }
           ]
         },
@@ -2666,22 +2671,22 @@
           "heading_text": "The daily practice",
           "topic_sentence": "Put end to end, the cycle has a daily shape.",
           "id_source": "derived",
-          "block_index": 49,
+          "block_index": 60,
           "points": [
             {
               "slug": "the-loop-seen-from-the-desk-is-a-daily-rhythm",
               "text": "Seen from the desk, the loop is a daily rhythm.",
-              "block_index": 50
+              "block_index": 61
             },
             {
               "slug": "kaizen-is-the-manufacturing-name-for-this-daily-loop",
               "text": "Manufacturing named this daily loop first; MAGE runs it on software.",
-              "block_index": 52
+              "block_index": 63
             },
             {
               "slug": "the-loop-is-not-tied-to-one-product",
               "text": "The loop is not tied to one product.",
-              "block_index": 58
+              "block_index": 69
             }
           ]
         },
@@ -2691,12 +2696,12 @@
           "heading_text": "One-shot or supervised?",
           "topic_sentence": "Not every task the fleet touches needs the loop this chapter runs.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 75,
           "points": [
             {
               "slug": "not-every-task-needs-the-loop",
               "text": "Not every task needs the loop; the first judgment is which mode a task belongs to.",
-              "block_index": 65
+              "block_index": 76
             }
           ]
         },
@@ -2706,22 +2711,22 @@
           "heading_text": "The two modes",
           "topic_sentence": "Start at the decision on the left.",
           "id_source": "derived",
-          "block_index": 67,
+          "block_index": 78,
           "points": [
             {
               "slug": "two-modes-fork-on-size-and-difficulty",
               "text": "Mode forks on the task's reasoning horizon.",
-              "block_index": 69
+              "block_index": 80
             },
             {
               "slug": "one-shot-for-small-unsubtle-tasks",
               "text": "One-shot scripting fits a small, short-horizon task.",
-              "block_index": 72
+              "block_index": 83
             },
             {
               "slug": "supervised-autonomy-supplies-four-things",
               "text": "Supervised autonomy supplies four things in two groups.",
-              "block_index": 75
+              "block_index": 86
             }
           ]
         },
@@ -2731,27 +2736,27 @@
           "heading_text": "Where the emphasis falls",
           "topic_sentence": "That fork runs along the reasoning horizon.",
           "id_source": "derived",
-          "block_index": 78,
+          "block_index": 89,
           "points": [
             {
               "slug": "reasoning-horizon-sorts-tasks",
               "text": "Tasks sort along the reasoning horizon, from short to long.",
-              "block_index": 81
+              "block_index": 92
             },
             {
               "slug": "mode-misjudgment-is-costly-both-ways",
               "text": "Misjudging the mode either way is expensive.",
-              "block_index": 83
+              "block_index": 94
             },
             {
               "slug": "modularity-lowers-the-horizon-not-removes-it",
               "text": "Modularity lowers the reasoning horizon; it does not remove it.",
-              "block_index": 85
+              "block_index": 96
             },
             {
               "slug": "supervised-autonomy-is-the-interesting-engineering",
               "text": "The interesting engineering is supervised autonomy.",
-              "block_index": 87
+              "block_index": 98
             }
           ]
         },
@@ -2761,27 +2766,27 @@
           "heading_text": "Task sizing",
           "topic_sentence": "The unit of work you hand an agent should be large enough to exploit the model's capabilities and small enough that its result can be meaningfully evaluated.",
           "id_source": "explicit",
-          "block_index": 90,
+          "block_index": 101,
           "points": [
             {
               "slug": "size-each-task-to-a-leap-the-fleet-can-check",
               "text": "Size each task to a leap the fleet can check.",
-              "block_index": 92
+              "block_index": 103
             },
             {
               "slug": "keep-leaps-short-so-per-step-risk-cannot-compound",
               "text": "Keep leaps short so per-step risk cannot compound.",
-              "block_index": 97
+              "block_index": 108
             },
             {
               "slug": "docable-sizes-the-leap-down-to-checkable-typed-edits",
               "text": "DocAble sizes the leap down to checkable typed edits.",
-              "block_index": 99
+              "block_index": 110
             },
             {
               "slug": "a-well-sized-transformation-of-the-wrong-shape-still-fails",
               "text": "A well-sized transformation of the wrong shape still fails.",
-              "block_index": 102
+              "block_index": 113
             }
           ]
         },
@@ -2791,12 +2796,12 @@
           "heading_text": "What the rest of this Part does",
           "topic_sentence": "The chapters ahead take the loop off the page and run it, and each runs a conversion at a different scale.",
           "id_source": "derived",
-          "block_index": 104,
+          "block_index": 115,
           "points": [
             {
               "slug": "this-part-puts-the-method-to-work-chapter-by-chapter",
               "text": "This Part puts the method to work, chapter by chapter.",
-              "block_index": 105
+              "block_index": 116
             }
           ]
         }
