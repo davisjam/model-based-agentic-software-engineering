@@ -3,12 +3,12 @@
   "_counts": {
     "tracked_slugs": 34,
     "slugs_rendered": 25,
-    "total_sites": 1503,
+    "total_sites": 1502,
     "by_projection": {
       "book-pdf": 21,
       "book-web": 1082,
       "website-catalogue": 221,
-      "website-concepts": 58,
+      "website-concepts": 57,
       "website-industry-cases": 46,
       "website-landing": 13,
       "website-misc": 52,
@@ -45,7 +45,7 @@
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 8
+            "occ": 9
           },
           {
             "file": "book/1.2-mage-by-example.html",
@@ -885,7 +885,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 25
+            "occ": 26
           },
           {
             "file": "catalogue-figure.html",
@@ -1515,7 +1515,7 @@
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 32
+            "occ": 41
           },
           {
             "file": "book/1.2-mage-by-example.html",
@@ -1975,7 +1975,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 130
+            "occ": 135
           },
           {
             "file": "book/index.html",
@@ -1983,7 +1983,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 12
+            "occ": 11
           },
           {
             "file": "book/part-1-intro.html",
@@ -2021,7 +2021,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 45
+            "occ": 53
           }
         ],
         "website-concepts": [
@@ -2043,7 +2043,7 @@
           },
           {
             "file": "concept-new-problem.html",
-            "occ": 24
+            "occ": 32
           },
           {
             "file": "concept-research-agenda.html",
@@ -2965,7 +2965,7 @@
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 22
+            "occ": 23
           },
           {
             "file": "book/1.2-mage-by-example.html",
@@ -3885,7 +3885,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 74
+            "occ": 75
           },
           {
             "file": "catalogue-figure.html",
@@ -4205,7 +4205,7 @@
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 16
+            "occ": 14
           },
           {
             "file": "book/1.2-mage-by-example.html",
@@ -4813,7 +4813,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 1
+            "occ": 2
           }
         ],
         "website-theory": [
@@ -4899,7 +4899,7 @@
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 5
+            "occ": 3
           },
           {
             "file": "book/1.2-mage-by-example.html",
@@ -5355,7 +5355,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 5
+            "occ": 4
           },
           {
             "file": "book/index.html",
@@ -5401,16 +5401,12 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 4
+            "occ": 3
           }
         ],
         "website-concepts": [
           {
             "file": "concept-modeling-thesis.html",
-            "occ": 1
-          },
-          {
-            "file": "concept-new-problem.html",
             "occ": 1
           }
         ],

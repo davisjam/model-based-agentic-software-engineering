@@ -3,11 +3,11 @@
   "_counts": {
     "chapters": 35,
     "sections": 256,
-    "explicit_ids": 18,
-    "derived_ids": 238,
+    "explicit_ids": 19,
+    "derived_ids": 237,
     "missing_topic_sentence": 11,
     "sections_drained": 156,
-    "paragraph_points": 481
+    "paragraph_points": 480
   },
   "chapters": [
     {
@@ -133,12 +133,12 @@
           "heading_text": "What this book is about (and what it is not)",
           "topic_sentence": "If you opened a book about agentic software engineering expecting a tour of agents, you may be surprised by what comes first.",
           "id_source": "derived",
-          "block_index": 10,
+          "block_index": 9,
           "points": [
             {
               "slug": "the-agent-is-not-the-hard-part-of-agentic-engineering",
-              "text": "You came for agents; the agent itself is not the hard part.",
-              "block_index": 11
+              "text": "Agent capabilities matter but are not the engineering object this book stabilizes; the durable problem begins when an agent works autonomously where \"it usually works\" is not an acceptable standard.",
+              "block_index": 10
             }
           ]
         },
@@ -148,17 +148,17 @@
           "heading_text": "The printer",
           "topic_sentence": "Think of a 3D printer.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 13,
           "points": [
             {
               "slug": "printer-is-the-governing-metaphor",
               "text": "The 3D printer is the book's governing metaphor.",
-              "block_index": 17
+              "block_index": 15
             },
             {
               "slug": "leverage-moves-to-the-description",
               "text": "When realization is cheap, leverage moves to the description.",
-              "block_index": 20
+              "block_index": 18
             }
           ]
         },
@@ -168,22 +168,22 @@
           "heading_text": "A picture is not enough",
           "topic_sentence": "Everyone can sketch a piece of software.",
           "id_source": "derived",
-          "block_index": 22,
+          "block_index": 20,
           "points": [
             {
               "slug": "everyone-can-sketch-software-but-a-picture-wont-print",
               "text": "Anyone can picture software, but a picture will not print.",
-              "block_index": 24
+              "block_index": 22
             },
             {
               "slug": "printer-needs-a-model-not-a-photo",
               "text": "A printer needs a structural model plus print notes.",
-              "block_index": 26
+              "block_index": 24
             },
             {
               "slug": "agents-need-the-instructions-not-just-the-picture",
               "text": "A picture yields a plausible instance, not a specification of what must hold.",
-              "block_index": 29
+              "block_index": 27
             }
           ]
         },
@@ -193,22 +193,17 @@
           "heading_text": "Suspect the instructions first",
           "topic_sentence": "Suspect the engineered setup before you infer a machine limit.",
           "id_source": "explicit",
-          "block_index": 32,
+          "block_index": 30,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "Suspect the engineered setup before inferring a machine limit.",
-              "block_index": 34
-            },
-            {
-              "slug": "capable-models-execute-a-bad-spec-at-speed",
-              "text": "Capable models execute a bad specification at full speed.",
-              "block_index": 38
+              "block_index": 32
             },
             {
               "slug": "danger-is-velocity-without-judgment-not-the-vendor",
-              "text": "The danger is velocity without judgment, not the vendor.",
-              "block_index": 41
+              "text": "Capable models execute a bad direction at speed; velocity is neutral — it amplifies sound and bad engineering alike — so abundant implementation increases the value of getting the upstream engineering right.",
+              "block_index": 36
             }
           ]
         }
@@ -216,17 +211,17 @@
       "preamble_points": [
         {
           "slug": "agents-made-implementation-cheap-not-reliable",
-          "text": "Agents made implementation cheap; reliability did not come with it.",
+          "text": "Coding agents make implementation cheap enough to change the engineering problem; a sound spec, a coherent model, and evidence do not arrive with that capacity — implementation speed amplifies whatever engineering surrounds it.",
           "block_index": 0
         },
         {
           "slug": "the-agent-is-a-printer-so-a-bad-build-indicts-the-instructions",
-          "text": "An agent is a printer; a bad build indicts instructions.",
+          "text": "Treat the agent first as a printer, not the engineer of the whole system; when a build is wrong, inspect the engineered setup before inferring a fixed limit in the machine.",
           "block_index": 2
         },
         {
           "slug": "printer-is-commodity-intelligence-made-local",
-          "text": "The printer is the engineer's-seat face of commodity intelligence.",
+          "text": "This is the Preface's question from the engineer's seat: as implementation becomes abundant, engineering leverage moves toward the instructions, representations, constraints, evidence, and infrastructure that shape autonomous work.",
           "block_index": 6
         }
       ]
@@ -388,7 +383,7 @@
           "level": 2,
           "heading_text": "The reasoning horizon",
           "topic_sentence": "Scale creates a reasoning problem before an agent ever enters the picture.",
-          "id_source": "derived",
+          "id_source": "explicit",
           "block_index": 16,
           "points": [
             {

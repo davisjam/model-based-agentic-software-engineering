@@ -720,23 +720,23 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 1 · The Printer — MAGE"><header class="chap"><div class="kicker"><a href="part-1-intro.html" aria-label="Beginning of Part 1 — The New Engineering Problem">Part 1 — The New Engineering Problem</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 1</a></div><h1><span class="chap-num">1.1</span> The Printer</h1></header><p>Coding agents have made writing software cheap. Describe what you want and a capable model builds it, fast, at a scale no team could match. Implementation is abundant now. What has not come with it is reliability: the same machine builds the wrong thing as readily as the right one, and just as fast.</p>
-<p>So the chapter opens on a question: when an agent builds the wrong thing, where does the fault lie? Treat the agent as a <em>printer</em>, not a coder. A printer builds within the description you provide, so read a bad build first as evidence about the instructions, the representation, the task boundary, and the environment that produced them — not, by reflex, as a fixed ceiling in the machine. If implementation is cheap and unreliable, the engineering moves to authoring what the printer reads.</p>
-<p>This is what the Preface's question — <em>how do we safely grant autonomy to commodity intelligence?</em> — looks like from the engineer's seat. The printer is commodity intelligence made local: implementation so abundant that it will build almost anything you describe. The scarcity has moved upstream. What matters now is the engineering of the instructions, representations, constraints, and evidence that shape what gets built.</p>
-<p>One picture fixes the shift before the details begin. <a class="xref" href="1.1-the-printer.html#fig-1-1-1">Figure&nbsp;1.1-1</a> contrasts the classical pipeline, where an engineer's skill largely sets a program's quality, with the agentic one, where the environment the work passes through does.</p>
-<figure id="fig-1-1-1" class="book-figure" data-label="new-engineering-problem"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660"
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 1 · The Printer — MAGE"><header class="chap"><div class="kicker"><a href="part-1-intro.html" aria-label="Beginning of Part 1 — The New Engineering Problem">Part 1 — The New Engineering Problem</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 1</a></div><h1><span class="chap-num">1.1</span> The Printer</h1></header><p>Coding agents make implementation cheap enough to change the engineering problem. Describe a change and a capable agent can often build it quickly, at a scale that once required substantial human effort. What does not arrive automatically with that capacity is a sound specification, a coherent system model, or evidence that the result is acceptable. Implementation speed amplifies whatever engineering surrounds it.</p>
+<p>That changes how to read a bad build. Treat the agent first as a printer, not as the engineer responsible for the whole system. A printer realizes a description; when the result is wrong, inspect the engineered setup before inferring a fixed limit in the machine. Was the intent clear? Was the relevant system state represented? Was the task bounded sensibly? Did the environment expose the right tools and evidence? Sometimes the model simply cannot do the work. But failed output alone does not distinguish that case from a badly engineered task.</p>
+<p>This is the Preface's question—<em>how do we safely grant autonomy to commodity intelligence?</em>—from the engineer's seat. As implementation becomes abundant, engineering leverage moves toward the instructions, representations, constraints, evidence, and infrastructure that shape autonomous work. <a class="xref" href="1.1-the-printer.html#fig-1-1-1">Figure&nbsp;1.1-1</a> fixes that shift before the details begin.</p>
+<figure id="fig-1-1-1" class="book-figure" data-label="new-engineering-problem"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"
      role="group" aria-labelledby="nepTitle nepDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="nepTitle">A new engineering problem: in agentic SE the environment, not the engineer, determines quality</title>
+  <title id="nepTitle">A new engineering problem: engineering leverage moves into the environment</title>
   <desc id="nepDesc">Two pipelines are stacked for contrast. The top pipeline, classical software
-    engineering, has three stages: Engineer, then Code, then Quality — the engineer writes the code, so
-    the engineer's craft determines quality. The bottom pipeline, agentic software engineering, has five
-    stages: Engineer, then Environment, then Agents, then Code, then Quality. The engineer no longer
-    writes the code; agents write it, operating inside a governed environment the engineer builds. The
-    Environment stage is emphasized, and a callout carries from it to Quality: the environment now
-    determines quality. A strip beneath the pipeline unpacks the Environment: it is the Governed
-    Engineering Environment — models, skills, policies, validators, infrastructure. The lever of quality
-    has moved one step upstream, from the code to the environment the agents work in.</desc>
+    engineering, has three stages: Engineer, then Implementation, then Product quality — the engineer's
+    substantial direct effort acts through the implementation. The bottom pipeline, agentic software
+    engineering, has five stages: Engineer, then Engineering Environment, then Agents, then
+    Implementation, then Product quality. Agents perform the implementation inside an engineering
+    environment the engineer builds, and that environment is the primary engineered lever. A strip
+    beneath the pipeline unpacks the environment: models, policies, evidence, validators, and
+    infrastructure. As implementation becomes abundant, more of the engineer's leverage moves into the
+    environment that represents intent, constrains work, and evaluates what the fleet produces. The
+    environment is where the engineer increasingly obtains leverage; it does not alone determine quality.</desc>
 
   <defs>
     <marker id="nep-neutral" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
@@ -750,75 +750,78 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="660" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">A new engineering problem</text>
-  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">When commodity intelligence writes the code, the environment the engineer builds determines the quality.</text>
+  <rect x="0" y="0" width="1000" height="600" fill="#fdfcf9"/>
+  <text x="500" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">A new engineering problem</text>
+  <text x="500" y="66" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">When agents perform the implementation, engineering leverage moves into the environment.</text>
 
   <!-- ===== CLASSICAL pipeline (top) ===== -->
-  <text x="30" y="108" font-size="16" font-weight="700" letter-spacing="1.5" fill="#57534e">CLASSICAL SE</text>
-  <text x="30" y="130" font-size="16" font-style="italic" fill="#57534e">the engineer writes the code</text>
+  <text x="30" y="104" font-size="15" font-weight="700" letter-spacing="1.5" fill="#57534e">CLASSICAL SE</text>
+  <text x="30" y="124" font-size="15" font-style="italic" fill="#57534e">the engineer writes most implementation directly</text>
 
   <g fill="none" stroke="#57534e" stroke-width="2.4">
-    <path d="M296,170 L356,170" marker-end="url(#nep-neutral)"/>
-    <path d="M644,170 L704,170" marker-end="url(#nep-neutral)"/>
+    <path d="M300,173 L346,173" marker-end="url(#nep-neutral)"/>
+    <path d="M560,173 L606,173" marker-end="url(#nep-neutral)"/>
   </g>
 
-  <rect x="140" y="140" width="156" height="60" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="218" y="177" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Engineer</text>
-  <rect x="358" y="140" width="286" height="60" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="501" y="177" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Code</text>
-  <rect x="706" y="140" width="156" height="60" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="784" y="177" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Quality</text>
+  <rect x="150" y="146" width="150" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="225" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
+  <rect x="350" y="146" width="210" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="455" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Implementation</text>
+  <rect x="610" y="146" width="180" height="54" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="700" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Product quality</text>
+
+  <!-- classical lever annotation: the engineer's direct effort acts through the implementation -->
+  <line x1="455" y1="230" x2="455" y2="204" stroke="#57534e" stroke-width="1.8" marker-end="url(#nep-neutral)"/>
+  <text x="455" y="248" text-anchor="middle" font-size="15" fill="#57534e">substantial direct engineering effort</text>
 
   <!-- divider between the two regimes -->
-  <line x1="30" y1="240" x2="970" y2="240" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="5 6"/>
+  <line x1="30" y1="272" x2="970" y2="272" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="5 6"/>
 
   <!-- ===== AGENTIC pipeline (bottom) ===== -->
-  <text x="30" y="300" font-size="16" font-weight="700" letter-spacing="1.5" fill="#155c38">AGENTIC SE</text>
-  <text x="30" y="322" font-size="16" font-style="italic" fill="#57534e">agents write the code, inside a governed environment</text>
+  <text x="30" y="304" font-size="15" font-weight="700" letter-spacing="1.5" fill="#155c38">AGENTIC SE</text>
+  <text x="30" y="324" font-size="15" font-style="italic" fill="#57534e">agents perform the implementation, inside an engineering environment</text>
 
   <g fill="none" stroke="#57534e" stroke-width="2.4">
-    <path d="M186,360 L214,360" marker-end="url(#nep-neutral)"/>
-    <path d="M378,360 L406,360" marker-end="url(#nep-neutral)"/>
-    <path d="M570,360 L598,360" marker-end="url(#nep-neutral)"/>
-    <path d="M762,360 L790,360" marker-end="url(#nep-neutral)"/>
+    <path d="M146,371 L166,371" marker-end="url(#nep-neutral)"/>
+    <path d="M350,371 L370,371" marker-end="url(#nep-neutral)"/>
+    <path d="M492,371 L512,371" marker-end="url(#nep-neutral)"/>
+    <path d="M690,371 L710,371" marker-end="url(#nep-neutral)"/>
   </g>
 
-  <rect x="30" y="330" width="156" height="60" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="108" y="367" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Engineer</text>
+  <rect x="20" y="344" width="126" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="83" y="378" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Engineer</text>
 
-  <rect x="216" y="326" width="162" height="68" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
-  <text x="297" y="366" text-anchor="middle" font-size="21" font-weight="700" fill="#155c38">Environment</text>
+  <rect x="168" y="340" width="182" height="62" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
+  <text x="259" y="367" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Engineering</text>
+  <text x="259" y="388" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Environment</text>
 
-  <rect x="408" y="330" width="162" height="60" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="489" y="367" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Agents</text>
+  <rect x="372" y="344" width="120" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="432" y="378" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Agents</text>
 
-  <rect x="600" y="330" width="162" height="60" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="681" y="367" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Code</text>
+  <rect x="514" y="344" width="176" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="602" y="378" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Implementation</text>
 
-  <rect x="792" y="330" width="156" height="60" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="870" y="367" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Quality</text>
+  <rect x="712" y="344" width="150" height="54" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="787" y="378" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Product quality</text>
 
-  <!-- the determines callout: Environment curves down to Quality -->
-  <path d="M297,394 C297,470 870,470 870,396" fill="none" stroke="#9a3f12" stroke-width="2.6"
-        stroke-dasharray="2 5" marker-end="url(#nep-accent)"/>
-  <text x="583" y="500" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">The environment now determines quality.</text>
-  <text x="583" y="524" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The lever of quality moved one step upstream — from the code to the environment the agents work in.</text>
+  <!-- agentic lever annotation: the environment is the primary engineered lever -->
+  <line x1="259" y1="432" x2="259" y2="406" stroke="#9a3f12" stroke-width="2" marker-end="url(#nep-accent)"/>
+  <text x="259" y="450" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">primary engineered lever</text>
 
-  <!-- connector tying the Environment node to its detail strip below -->
-  <path d="M250,394 L250,556" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="3 5" marker-end="url(#nep-env)"/>
+  <!-- leverage framing callout (NOT "determines quality") -->
+  <text x="620" y="446" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Engineering leverage moves into the environment.</text>
+  <text x="620" y="468" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the instructions, representations, constraints, and evidence that shape autonomous work</text>
 
-  <!-- ===== the Environment, unpacked: what the engineer actually builds (the GEE) ===== -->
-  <rect x="140" y="558" width="808" height="82" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="544" y="594" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Inside the Environment: the Governed Engineering Environment (GEE)</text>
-  <text x="544" y="620" text-anchor="middle" font-size="16" fill="#57534e">models · skills · policies · validators · infrastructure</text>
-</svg><figcaption data-short="A New Engineering Problem"><span class="fig-label">Figure 1.1-1.</span> <em>A New Engineering Problem.</em> Two pipelines, stacked for contrast. In classical software the engineer writes the code, and the engineer's skill largely sets its quality. In agentic software the fleet writes the code, and what determines quality is no longer the engineer's typing but the environment the work passes through — the models it reasons from, the constraints it must satisfy, the gates it must clear. So the object of engineering shifts: you raise quality by engineering that environment, not by inspecting each change by hand. This is the problem the whole book is organized around.</figcaption></figure>
+  <!-- ===== the environment, unpacked ===== -->
+  <rect x="150" y="500" width="700" height="70" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="500" y="530" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Inside the Engineering Environment (the governed engineering environment)</text>
+  <text x="500" y="554" text-anchor="middle" font-size="16" fill="#57534e">models · policies · evidence · validators · infrastructure</text>
+</svg><figcaption data-short="Figure 1.1-1"><span class="fig-label">Figure 1.1-1.</span> <em>Figure 1.1-1: Engineering leverage moves upstream.</em> When engineers write most implementation directly, much of their effort acts through the code. When agents perform the implementation, more of that leverage moves into the environment that represents intent, constrains work, and evaluates what the fleet produces.</figcaption></figure>
 <h2><span class="sec-num">1.1.1</span> What this book is about (and what it is not)</h2>
-<p>If you opened a book about agentic software engineering expecting a tour of agents, you may be surprised by what comes first. That is deliberate. The agent itself is not the hard part of agentic software engineering. Agents are becoming abundant, capable, and increasingly interchangeable. The engineering problem begins when you ask one to work autonomously on a system large enough, important enough, or long-lived enough that "it usually works" is not good enough.</p>
-<p>So this Part starts one level above the agent. What changed when implementation became cheap? What now limits engineering? And what must the human engineer build around commodity intelligence so that its speed becomes trustworthy production rather than churn?</p>
-<p>We will get to agents, tools, hooks, skills, and workflows. But MAGE's claim is that those are machinery. The discipline lives in the models the machinery reasons through, the obligations the environment enforces, and the judgment that decides what should become permanent structure.</p>
+<p>If you opened a book about agentic software engineering expecting a tour of agents, you may be surprised by what comes first. That is deliberate. Agent capabilities matter, but they are not the engineering object this book tries to stabilize; models and vendors will continue to change. The durable problem begins when an agent works autonomously on a system large enough, important enough, or long-lived enough that "it usually works" is not an acceptable engineering standard.</p>
+<p>So this Part starts one level above the agent. What changed when implementation became cheap? Which old engineering constraints remain? What properties of the agentic substrate create new opportunities? And what should the human engineer build around commodity intelligence so that implementation speed becomes trustworthy production rather than churn? We will get to agents, tools, hooks, skills, and workflows. MAGE's argument is that the discipline lies in the representations the work reasons through, the obligations the environment can make authoritative, and the judgment that decides what should become durable structure.</p>
 <h2><span class="sec-num">1.1.2</span> The printer</h2>
-<p id="idx-def-printer-metaphor">Think of a 3D printer. It will build an extraordinary range of things,<sup class="note-ref"><a href="#note-1-1-the-printer-1" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-1-1-the-printer-1"><span class="cn-mark">*</span> Open-ended technologies repeatedly create this problem. Writing began as a means of recording particular things; its users later invented genres such as poetry, contracts, and textbooks. Printing made reproduction cheap and enabled still more forms. Generative AI has the same open-ended quality: the machine supplies productive capacity, while people still have to discover what is worth producing and how a good instance should be specified.</span> but it does not decide what should be built or whether the specification is sound. Its power lies in turning an authored representation into an artifact. Coding agents increasingly occupy the same role in software: implementation is becoming the execution of an upstream description.</p>
+<p id="idx-def-printer-metaphor">Think of a 3D printer. It will build an extraordinary range of things,<sup class="note-ref"><a href="#note-1-1-the-printer-1" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-1-1-the-printer-1"><span class="cn-mark">*</span> Open-ended technologies repeatedly create this problem. Writing began as a means of recording particular things; its users later invented genres such as poetry, contracts, and textbooks. Printing made reproduction cheap and enabled still more forms. Generative AI has the same open-ended quality: the machine supplies productive capacity, while people still have to discover what is worth producing and how a good instance should be specified.</span> but it does not decide what should be built or whether the specification is sound. Its power lies in turning an authored representation into an artifact. Coding agents increasingly make software implementation resemble the realization of an upstream engineering description.</p>
 <p>That is why the metaphor matters. When implementation was expensive, much of engineering effort was spent realizing the design. When realization becomes cheap, leverage moves toward the description itself: what is represented, what is left implicit, what constraints bind the result, and what evidence says it is acceptable.</p>
 <h2><span class="sec-num">1.1.3</span> A picture is not enough</h2>
 <p>Everyone can sketch a piece of software. We have all used Google Maps, spreadsheets, a document editor — programs that take in data and do something useful with it. The concept is easy to picture. But picturing the thing is not the same as knowing how to build it, and a picture is not a thing you can print.</p>
@@ -826,6 +829,4 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p id="idx-ex-picture-vs-model-1">Software agents are not quite the same. A capable multimodal agent can take a screenshot and infer a great deal, so the durable point is not input modality — it is underspecification. A picture may be enough to generate a plausible instance. It is not enough to state which properties must hold, which tradeoffs are acceptable, or what evidence establishes correctness. Those you must supply, or work out how to articulate. Good instructions raise your odds; they do not guarantee a correct result, and a capable model will sometimes rescue a poor one. The Printer fixes responsibility, not fidelity: authoring what the build answers to is the engineer's work.</p>
 <h2 id="whose-fault-is-it"><span class="sec-num">1.1.4</span> Suspect the instructions first</h2>
 <span id="idx-def-whose-fault"></span><span id="idx-ex-whose-fault-1"></span><p>Suspect the engineered setup before you infer a machine limit. When an agent produces the wrong result, inspect first what you controlled: the instructions, the representation of the problem, the task boundary, the tools it could use, and the evidence it was asked to satisfy. Sometimes the model simply cannot do the work. But a failed task does not distinguish that case from a badly engineered one.</p>
-<p>That distinction matters because capable models will execute a bad specification with extraordinary speed. They do not naturally stop to ask whether the path you chose was wise.</p>
-<blockquote class="aside-sidenote"><p>Claude is the fastest road to hell.</p></blockquote>
-<p>The line is intentionally unfair to Claude. The danger is not the vendor; it is velocity without judgment. Give commodity intelligence a doomed direction and it can elaborate that direction much faster than a human team ever could. Abundant implementation amplifies the quality of the engineering upstream — good or bad.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-1-intro.html" aria-label="Beginning of Part 1 — The New Engineering Problem">« Beginning of part</a><a href="part-1-intro.html" aria-label="Previous chapter — The New Engineering Problem">« Previous chapter</a></div><span class="chapnav-here" title="1 · The Printer">1 · The Printer</span><div class="chapnav-fwd"><a href="1.2-mage-by-example.html" aria-label="Next chapter — 2 · MAGE by Example">Next chapter »</a><a href="part-2-intro.html" aria-label="Next part — Part 2 — Modeling">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<p>That distinction matters because capable models can execute a bad direction with extraordinary speed. Velocity is neutral: it amplifies sound engineering and bad engineering alike. Give commodity intelligence a doomed direction and it can elaborate that direction much faster than a human team once could. Abundant implementation therefore increases the value of getting the upstream engineering right.<sup class="note-ref"><a href="#note-1-1-the-printer-2" role="doc-noteref" aria-label="note 2">†</a></sup><span class="editorial-note" id="note-1-1-the-printer-2"><span class="cn-mark">†</span> My field notes on this point were less measured: "Claude is the fastest road to hell."</span></p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-1-intro.html" aria-label="Beginning of Part 1 — The New Engineering Problem">« Beginning of part</a><a href="part-1-intro.html" aria-label="Previous chapter — The New Engineering Problem">« Previous chapter</a></div><span class="chapnav-here" title="1 · The Printer">1 · The Printer</span><div class="chapnav-fwd"><a href="1.2-mage-by-example.html" aria-label="Next chapter — 2 · MAGE by Example">Next chapter »</a><a href="part-2-intro.html" aria-label="Next part — Part 2 — Modeling">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

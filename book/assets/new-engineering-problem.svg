@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (not Mermaid, label: new-engineering-problem). The landing Big-Idea-1 figure:
-     the shape of software engineering changes when commodity intelligence writes the code. TWO stacked
-     pipelines contrast classical and agentic SE. CLASSICAL (top): Engineer -> Code -> Quality — the
-     engineer writes the code, so the engineer's craft determines quality. AGENTIC (bottom): Engineer ->
-     Environment -> Agents -> Code -> Quality — the engineer no longer writes the code; agents do, inside
-     a governed environment, so the ENVIRONMENT the engineer builds is what now determines quality. A
-     content strip beneath the pipeline unpacks that Environment node: it is the Governed Engineering
-     Environment (GEE) — models, skills, policies, validators, infrastructure — the box Part 6's industry
-     synthesis fills with real content. Semantic colour: green = environment / modeling, blue = engineer +
-     agents, gray = neutral code, rust = the determines-callout emphasis. Mermaid draws boxes and arrows
-     but cannot seat two aligned pipelines whose contrast (3 nodes vs 5) and the single emphasized inserted
-     node ARE the argument. Palette: Umber Monograph tokens (fleet #2f5169 engineer + agents — one blue for
-     the whole agent/autonomy family, governed green #155c38/#1f7a4d the environment object + GEE strip +
-     quality, muted #57534e code + captions, accent #9a3f12 the determines callout, rule #e4e0d8, page
-     #fdfcf9). Fonts in the 16-28 band. -->
+<!-- R42 REVISION (off-main scratch; folds over book/assets/new-engineering-problem.svg, label
+     new-engineering-problem). Hand-authored SVG (not Mermaid). Fig 1.1-1.
+     THESIS CHANGE per editor part1-3.md: "engineering leverage moves into the environment" — NOT
+     "the environment determines quality". The figure no longer claims the environment ALONE sets
+     quality; agent capability, tools, the implementation, requirements, and reality still matter.
+     Two stacked pipelines:
+       CLASSICAL — Engineer -> Implementation -> Product quality; the engineer's substantial direct
+                   effort acts through the implementation.
+       AGENTIC   — Engineer -> Engineering Environment -> Agents -> Implementation -> Product quality;
+                   the Engineering Environment is the PRIMARY ENGINEERED LEVER.
+     Node relabels vs landed asset: Code -> Implementation, Quality -> Product quality, Environment ->
+     Engineering Environment. The "environment now determines quality" callout is REMOVED and replaced
+     by the leverage framing. Strip item list = editor's: models · policies · evidence · validators ·
+     infrastructure (dropped "skills", added "evidence"); GEE parenthetical retained (book vocabulary).
+     Semantic colour: green = environment/modeling, blue = engineer + agents, gray = neutral
+     implementation, rust = the leverage callout emphasis. Palette: fleet #2f5169, governed green
+     #155c38/#1f7a4d, muted #57534e, accent #9a3f12, rule #e4e0d8, page #fdfcf9. Fonts 15-26. -->
 <!-- semantic-families: agent, governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" width="1000" height="660"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600"
      role="group" aria-labelledby="nepTitle nepDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="nepTitle">A new engineering problem: in agentic SE the environment, not the engineer, determines quality</title>
+  <title id="nepTitle">A new engineering problem: engineering leverage moves into the environment</title>
   <desc id="nepDesc">Two pipelines are stacked for contrast. The top pipeline, classical software
-    engineering, has three stages: Engineer, then Code, then Quality — the engineer writes the code, so
-    the engineer's craft determines quality. The bottom pipeline, agentic software engineering, has five
-    stages: Engineer, then Environment, then Agents, then Code, then Quality. The engineer no longer
-    writes the code; agents write it, operating inside a governed environment the engineer builds. The
-    Environment stage is emphasized, and a callout carries from it to Quality: the environment now
-    determines quality. A strip beneath the pipeline unpacks the Environment: it is the Governed
-    Engineering Environment — models, skills, policies, validators, infrastructure. The lever of quality
-    has moved one step upstream, from the code to the environment the agents work in.</desc>
+    engineering, has three stages: Engineer, then Implementation, then Product quality — the engineer's
+    substantial direct effort acts through the implementation. The bottom pipeline, agentic software
+    engineering, has five stages: Engineer, then Engineering Environment, then Agents, then
+    Implementation, then Product quality. Agents perform the implementation inside an engineering
+    environment the engineer builds, and that environment is the primary engineered lever. A strip
+    beneath the pipeline unpacks the environment: models, policies, evidence, validators, and
+    infrastructure. As implementation becomes abundant, more of the engineer's leverage moves into the
+    environment that represents intent, constrains work, and evaluates what the fleet produces. The
+    environment is where the engineer increasingly obtains leverage; it does not alone determine quality.</desc>
 
   <defs>
     <marker id="nep-neutral" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
@@ -41,66 +44,70 @@
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="660" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">A new engineering problem</text>
-  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">When commodity intelligence writes the code, the environment the engineer builds determines the quality.</text>
+  <rect x="0" y="0" width="1000" height="600" fill="#fdfcf9"/>
+  <text x="500" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">A new engineering problem</text>
+  <text x="500" y="66" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">When agents perform the implementation, engineering leverage moves into the environment.</text>
 
   <!-- ===== CLASSICAL pipeline (top) ===== -->
-  <text x="30" y="108" font-size="16" font-weight="700" letter-spacing="1.5" fill="#57534e">CLASSICAL SE</text>
-  <text x="30" y="130" font-size="16" font-style="italic" fill="#57534e">the engineer writes the code</text>
+  <text x="30" y="104" font-size="15" font-weight="700" letter-spacing="1.5" fill="#57534e">CLASSICAL SE</text>
+  <text x="30" y="124" font-size="15" font-style="italic" fill="#57534e">the engineer writes most implementation directly</text>
 
   <g fill="none" stroke="#57534e" stroke-width="2.4">
-    <path d="M296,170 L356,170" marker-end="url(#nep-neutral)"/>
-    <path d="M644,170 L704,170" marker-end="url(#nep-neutral)"/>
+    <path d="M300,173 L346,173" marker-end="url(#nep-neutral)"/>
+    <path d="M560,173 L606,173" marker-end="url(#nep-neutral)"/>
   </g>
 
-  <rect x="140" y="140" width="156" height="60" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="218" y="177" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Engineer</text>
-  <rect x="358" y="140" width="286" height="60" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="501" y="177" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Code</text>
-  <rect x="706" y="140" width="156" height="60" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="784" y="177" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Quality</text>
+  <rect x="150" y="146" width="150" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="225" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
+  <rect x="350" y="146" width="210" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="455" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Implementation</text>
+  <rect x="610" y="146" width="180" height="54" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="700" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Product quality</text>
+
+  <!-- classical lever annotation: the engineer's direct effort acts through the implementation -->
+  <line x1="455" y1="230" x2="455" y2="204" stroke="#57534e" stroke-width="1.8" marker-end="url(#nep-neutral)"/>
+  <text x="455" y="248" text-anchor="middle" font-size="15" fill="#57534e">substantial direct engineering effort</text>
 
   <!-- divider between the two regimes -->
-  <line x1="30" y1="240" x2="970" y2="240" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="5 6"/>
+  <line x1="30" y1="272" x2="970" y2="272" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="5 6"/>
 
   <!-- ===== AGENTIC pipeline (bottom) ===== -->
-  <text x="30" y="300" font-size="16" font-weight="700" letter-spacing="1.5" fill="#155c38">AGENTIC SE</text>
-  <text x="30" y="322" font-size="16" font-style="italic" fill="#57534e">agents write the code, inside a governed environment</text>
+  <text x="30" y="304" font-size="15" font-weight="700" letter-spacing="1.5" fill="#155c38">AGENTIC SE</text>
+  <text x="30" y="324" font-size="15" font-style="italic" fill="#57534e">agents perform the implementation, inside an engineering environment</text>
 
   <g fill="none" stroke="#57534e" stroke-width="2.4">
-    <path d="M186,360 L214,360" marker-end="url(#nep-neutral)"/>
-    <path d="M378,360 L406,360" marker-end="url(#nep-neutral)"/>
-    <path d="M570,360 L598,360" marker-end="url(#nep-neutral)"/>
-    <path d="M762,360 L790,360" marker-end="url(#nep-neutral)"/>
+    <path d="M146,371 L166,371" marker-end="url(#nep-neutral)"/>
+    <path d="M350,371 L370,371" marker-end="url(#nep-neutral)"/>
+    <path d="M492,371 L512,371" marker-end="url(#nep-neutral)"/>
+    <path d="M690,371 L710,371" marker-end="url(#nep-neutral)"/>
   </g>
 
-  <rect x="30" y="330" width="156" height="60" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="108" y="367" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Engineer</text>
+  <rect x="20" y="344" width="126" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="83" y="378" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Engineer</text>
 
-  <rect x="216" y="326" width="162" height="68" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
-  <text x="297" y="366" text-anchor="middle" font-size="21" font-weight="700" fill="#155c38">Environment</text>
+  <rect x="168" y="340" width="182" height="62" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
+  <text x="259" y="367" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Engineering</text>
+  <text x="259" y="388" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Environment</text>
 
-  <rect x="408" y="330" width="162" height="60" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="489" y="367" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Agents</text>
+  <rect x="372" y="344" width="120" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="432" y="378" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Agents</text>
 
-  <rect x="600" y="330" width="162" height="60" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="681" y="367" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Code</text>
+  <rect x="514" y="344" width="176" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="602" y="378" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Implementation</text>
 
-  <rect x="792" y="330" width="156" height="60" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="870" y="367" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Quality</text>
+  <rect x="712" y="344" width="150" height="54" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="787" y="378" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Product quality</text>
 
-  <!-- the determines callout: Environment curves down to Quality -->
-  <path d="M297,394 C297,470 870,470 870,396" fill="none" stroke="#9a3f12" stroke-width="2.6"
-        stroke-dasharray="2 5" marker-end="url(#nep-accent)"/>
-  <text x="583" y="500" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">The environment now determines quality.</text>
-  <text x="583" y="524" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The lever of quality moved one step upstream — from the code to the environment the agents work in.</text>
+  <!-- agentic lever annotation: the environment is the primary engineered lever -->
+  <line x1="259" y1="432" x2="259" y2="406" stroke="#9a3f12" stroke-width="2" marker-end="url(#nep-accent)"/>
+  <text x="259" y="450" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">primary engineered lever</text>
 
-  <!-- connector tying the Environment node to its detail strip below -->
-  <path d="M250,394 L250,556" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="3 5" marker-end="url(#nep-env)"/>
+  <!-- leverage framing callout (NOT "determines quality") -->
+  <text x="620" y="446" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Engineering leverage moves into the environment.</text>
+  <text x="620" y="468" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the instructions, representations, constraints, and evidence that shape autonomous work</text>
 
-  <!-- ===== the Environment, unpacked: what the engineer actually builds (the GEE) ===== -->
-  <rect x="140" y="558" width="808" height="82" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="544" y="594" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Inside the Environment: the Governed Engineering Environment (GEE)</text>
-  <text x="544" y="620" text-anchor="middle" font-size="16" fill="#57534e">models · skills · policies · validators · infrastructure</text>
+  <!-- ===== the environment, unpacked ===== -->
+  <rect x="150" y="500" width="700" height="70" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="500" y="530" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Inside the Engineering Environment (the governed engineering environment)</text>
+  <text x="500" y="554" text-anchor="middle" font-size="16" fill="#57534e">models · policies · evidence · validators · infrastructure</text>
 </svg>
