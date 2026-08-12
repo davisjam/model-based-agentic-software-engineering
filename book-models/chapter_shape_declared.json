@@ -436,15 +436,40 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the process figure and verification-tier table",
-            "anchor": "process-invariants"
+            "name": "the job-lifecycle state machine figure and its invariant table",
+            "anchor": "job-lifecycle-invariants"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Question (what happens when parts run at once?) + answer (states/locks/invariants lens) present; Phase-2c added the thesis clause — the invariants are not comments, a checker holds the running system to them, the Alignment Thesis at the grain of concurrency. Ending: kicker transition to the Development view.",
-      "opening_anchor": "Reasoning about a concurrent system by simulating its interleavings in your head",
-      "closing_anchor": "Next, the Development view: how the code is packaged, layered, and owned."
+      "note": "Question (what may the system do, and how is it allowed to run?) + answer (states/locks/invariants + placement/execution lens); the invariants are not comments, a checker holds the running system to them. R43 split: the measurement/documentation half left for the new Measurement-and-Evidence chapter, so this chapter ends at execution and transitions to it on the evidence-question seam.",
+      "opening_anchor": "The structural models of the last chapter hold the system still. They",
+      "closing_anchor": "whether its account of what happened remains true. Those are evidence questions."
+    },
+    {
+      "slug": "modeling-measurement-and-evidence",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "delivers": {
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the observation/prediction/obligation figure and the operational-envelope card",
+            "anchor": "measurement-invariants"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "note": "Question (is the running system inside its promised envelope, and is its account of itself faithful?) + answer (operational-envelope + provenance-and-changelog models). R43 split from the behavior chapter; opening picks up the evidence-question seam, closing transitions to the join chapter. thesis_target=modeling: advances the Modeling Thesis and hands an explicit authority surface to Part III without asserting a Modeling→Alignment dependency.",
+      "opening_anchor": "A system can follow every declared transition and still be unusably slow,",
+      "closing_anchor": "why the final chapter joins the models rather than adding another class."
     },
     {
       "slug": "scenarios-and-the-joined-model",
@@ -467,9 +492,9 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Question (do the views hold up?) + answer (scenarios walk them) present; Phase-2c added the thesis clause — the walk re-checks the other four against a real goal, so the scenario is where the models are held honest, the Alignment Thesis turned back on the views themselves. Ending: Part-closing synthesis — five views walked, why the upkeep is now affordable.",
-      "opening_anchor": "The four views so far are static portraits. The Logical view says",
-      "closing_anchor": "the system by hand each time we needed to trust a release."
+      "note": "Question (does a real goal work end to end across the separate models?) + answer (a scenario is a traversal that joins them on stable identities, not a seventh mega-model). R43 theory-sync: the join is where Modeling MEETS Alignment as two moves, not where Modeling BECOMES Alignment — Part II now ends at the Handoff to Alignment (models already pay in reasoning/prediction/composition/traceability; Part III asks the separate question of authority). Ending: Part-closing synthesis.",
+      "opening_anchor": "A real engineering goal rarely stays inside one model. A scenario —",
+      "closing_anchor": "obligations should the environment hold, by which mechanisms, and with what evidence."
     },
     {
       "slug": "brownfield",

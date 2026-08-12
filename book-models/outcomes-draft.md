@@ -40,7 +40,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 2 — Modeling
 
-- **[DECLARED]** (create) After this Part, the reader can model a system as the executable 4+1 zoo — logical, process, development, physical, and scenario views — identifying and building the small set of models it needs, each a structured model kept honest by a drift check. — _anchor: Modeling is the 4+1 views one chapter each (logical/process/development/physical/scenarios), spined by the context/control/executable-zoo/projection chapters and joined by the sync chapters._
+- **[DECLARED]** (create) After this Part, the reader can model a system as the small set of models it needs, choosing from five classes of model — behavioral, structural, decision, measurement, and documentation — rather than completing a fixed taxonomy, each a structured model kept honest by a drift check, and can join them around a scenario. — _anchor: Modeling moves through five classes of model across eight chapters (context, engineering model, executable models, views as projections, structure, behavior and execution, measurement and evidence, and the scenario join), each kept honest by a drift check._
 - _elaborates (owned by the program):_ (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.
 
 ### Lesson 2.1-context-is-the-first-modeling-problem

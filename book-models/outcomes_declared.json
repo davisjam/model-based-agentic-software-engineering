@@ -116,10 +116,10 @@
       "granularity": "part",
       "primary_unit": "part:modeling",
       "verb": "model",
-      "obj": "a system as the small set of models it needs — the executable 4+1 zoo, one per view, each kept honest by a drift check",
-      "statement": "After this Part, the reader can model a system as the executable 4+1 zoo — logical, process, development, physical, and scenario views — identifying and building the small set of models it needs, each a structured model kept honest by a drift check.",
+      "obj": "a system as the small set of models it needs — chosen from five classes of model (behavioral, structural, decision, measurement, documentation), each kept honest by a drift check",
+      "statement": "After this Part, the reader can model a system as the small set of models it needs, choosing from five classes of model — behavioral, structural, decision, measurement, and documentation — rather than completing a fixed taxonomy, each a structured model kept honest by a drift check, and can join them around a scenario.",
       "provenance": "declared",
-      "anchor": "Modeling is the 4+1 views one chapter each (logical/process/development/physical/scenarios), spined by the context/control/executable-zoo/projection chapters and joined by the sync chapters."
+      "anchor": "Modeling moves through five classes of model across eight chapters (context, engineering model, executable models, views as projections, structure, behavior and execution, measurement and evidence, and the scenario join), each kept honest by a drift check."
     },
     {
       "granularity": "part",
@@ -393,6 +393,15 @@
       "statement": "After this chapter, the reader can model the physical view — deployment topology and a typed deploy DAG — and name the one honest gap in the cost view.",
       "provenance": "declared",
       "anchor": "Section titles 'deployment-topology-model' + 'invariant-dag-execution-policy' + 'the-performance-cost-view-mostly-embodied-one-honest-gap'."
+    },
+    {
+      "granularity": "chapter",
+      "primary_unit": "modeling-measurement-and-evidence",
+      "verb": "model",
+      "obj": "what the running system promises and the record it must leave behind",
+      "statement": "After this chapter, the reader can model an operating envelope — naming measured quantities and the bounds that drive admission or merely report — and derive an audit-grade changelog from a provenance record the code writes as it acts.",
+      "provenance": "declared",
+      "anchor": "Section titles 'what-the-system-promises-about-time-and-cost' + 'keeping-the-explanation-true-to-the-change' (operational-envelope-model + provenance-and-changelog-model)."
     },
     {
       "granularity": "chapter",
