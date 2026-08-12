@@ -3,15 +3,15 @@
   "_counts": {
     "tracked_slugs": 33,
     "slugs_rendered": 25,
-    "total_sites": 1490,
+    "total_sites": 1492,
     "by_projection": {
       "book-pdf": 21,
-      "book-web": 1070,
+      "book-web": 1073,
       "website-catalogue": 221,
       "website-concepts": 57,
       "website-industry-cases": 46,
       "website-landing": 13,
-      "website-misc": 52,
+      "website-misc": 51,
       "website-theory": 10
     }
   },
@@ -81,11 +81,15 @@
           },
           {
             "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 4
+            "occ": 3
           },
           {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 4
+            "file": "book/2.7-modeling-measurement-and-evidence.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.8-joining-models-around-a-scenario.html",
+            "occ": 6
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -539,7 +543,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -881,7 +885,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 25
+            "occ": 26
           },
           {
             "file": "catalogue-figure.html",
@@ -967,10 +971,6 @@
           },
           {
             "file": "book/2.2-from-context-to-control.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
             "occ": 1
           },
           {
@@ -1065,7 +1065,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 29
+            "occ": 28
           }
         ]
       },
@@ -1087,10 +1087,6 @@
           }
         ],
         "website-misc": [
-          {
-            "file": "book-models/models-view.html",
-            "occ": 1
-          },
           {
             "file": "constructing-the-gee.html",
             "occ": 1
@@ -1543,11 +1539,15 @@
           },
           {
             "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 16
+            "occ": 12
           },
           {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 22
+            "file": "book/2.7-modeling-measurement-and-evidence.html",
+            "occ": 14
+          },
+          {
+            "file": "book/2.8-joining-models-around-a-scenario.html",
+            "occ": 25
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -1963,7 +1963,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 137
+            "occ": 140
           },
           {
             "file": "book/index.html",
@@ -1971,7 +1971,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "book/part-1-intro.html",
@@ -2001,7 +2001,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -2075,7 +2075,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 28
+            "occ": 29
           },
           {
             "file": "catalogue-figure.html",
@@ -2204,7 +2204,11 @@
             "occ": 1
           },
           {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
+            "file": "book/2.7-modeling-measurement-and-evidence.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.8-joining-models-around-a-scenario.html",
             "occ": 1
           },
           {
@@ -2655,7 +2659,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 128
+            "occ": 129
           }
         ]
       },
@@ -2750,14 +2754,6 @@
             "occ": 10
           },
           {
-            "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 1
-          },
-          {
             "file": "book/3.1-the-agent-stack.html",
             "occ": 2
           },
@@ -2825,7 +2821,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 19
+            "occ": 17
           }
         ]
       },
@@ -2981,11 +2977,15 @@
           },
           {
             "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 77
+            "occ": 54
           },
           {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 85
+            "file": "book/2.7-modeling-measurement-and-evidence.html",
+            "occ": 44
+          },
+          {
+            "file": "book/2.8-joining-models-around-a-scenario.html",
+            "occ": 71
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -3357,7 +3357,7 @@
           },
           {
             "file": "book/appendix-g-surfaces-built-reference.html",
-            "occ": 30
+            "occ": 29
           },
           {
             "file": "book/appendix-g-synchronization-reference.html",
@@ -3401,7 +3401,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 269
+            "occ": 272
           },
           {
             "file": "book/index.html",
@@ -3409,7 +3409,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 27
+            "occ": 26
           },
           {
             "file": "book/part-1-intro.html",
@@ -3417,7 +3417,7 @@
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 40
+            "occ": 39
           },
           {
             "file": "book/part-3-intro.html",
@@ -3439,7 +3439,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -3861,7 +3861,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 72
+            "occ": 68
           },
           {
             "file": "catalogue-figure.html",
@@ -4006,10 +4006,6 @@
             "occ": 1
           },
           {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 1
-          },
-          {
             "file": "book/3.1-the-agent-stack.html",
             "occ": 3
           },
@@ -4089,7 +4085,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 27
+            "occ": 26
           }
         ]
       },
@@ -4117,7 +4113,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "constructing-the-gee.html",
@@ -4216,7 +4212,11 @@
             "occ": 1
           },
           {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
+            "file": "book/2.7-modeling-measurement-and-evidence.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.8-joining-models-around-a-scenario.html",
             "occ": 1
           },
           {
@@ -4667,7 +4667,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 128
+            "occ": 129
           }
         ]
       },
@@ -4898,7 +4898,11 @@
             "occ": 2
           },
           {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
+            "file": "book/2.7-modeling-measurement-and-evidence.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.8-joining-models-around-a-scenario.html",
             "occ": 2
           },
           {
@@ -5349,7 +5353,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 128
+            "occ": 129
           }
         ]
       },
@@ -5460,8 +5464,12 @@
             "occ": 1
           },
           {
-            "file": "book/2.7-scenarios-and-the-joined-model.html",
-            "occ": 2
+            "file": "book/2.7-modeling-measurement-and-evidence.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.8-joining-models-around-a-scenario.html",
+            "occ": 1
           },
           {
             "file": "book/3.1-the-agent-stack.html",
@@ -5911,7 +5919,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 128
+            "occ": 129
           }
         ]
       },
@@ -6141,7 +6149,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "constructing-the-gee.html",

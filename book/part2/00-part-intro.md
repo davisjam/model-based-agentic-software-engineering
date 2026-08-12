@@ -120,6 +120,6 @@ Work through these with DocAble held constant while the question varies, and by 
 should hold a small mental toolbox: for each concern, the model that answers it, the property it lets
 you state, and the quality it serves. You come into this Part able to say *why* models matter; you leave
 it able to *choose one*. That toolbox arrives as a single table at the Part's close, in
-[Scenarios and the Joined Model](2.7-scenarios-and-the-joined-model.html). The test of this Part is not
+[Joining Models Around a Scenario](2.8-joining-models-around-a-scenario.html). The test of this Part is not
 whether you can recite DocAble's models. It is whether you could build the matching ones for a system of
 your own.

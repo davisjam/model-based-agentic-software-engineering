@@ -61,7 +61,10 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 2.6-modeling-behavior-and-execution
 
 
-### Lesson 2.7-scenarios-and-the-joined-model
+### Lesson 2.7-modeling-measurement-and-evidence
+
+
+### Lesson 2.8-joining-models-around-a-scenario
 
   - **[DERIVED]** (analyze) After this section, the reader can trace a single request. — _anchor: ts: Trace a single request._
 

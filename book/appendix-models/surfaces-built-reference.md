@@ -9,8 +9,8 @@ row-by-row account.
 **Five rows close into a gate that holds. Two stay OPEN** — modeled but not yet governed, in the
 exact bounded sense 3.4 draws: sensed and logged, not yet gated. The table marks the two so, and
 points them back to that gap rather than papering a fabricated gate over either. Read this receipt
-([ref:surfaces-built]) and the thinned II→III handoff float ([ref:ii-iii-handoff], 2.7) down the
-same two left columns — Model and Property — and the story runs continuous across the Part boundary:
+([ref:surfaces-built]) against the Model-and-Property pairing that
+[Part II handed forward](2.8-joining-models-around-a-scenario.html) — and the story runs continuous across the Part boundary:
 the model and the property unchanged, the authority now built rather than promised.
 
 <!-- label: surfaces-built -->

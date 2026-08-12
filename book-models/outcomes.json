@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 20,
     "elaborative_links": 27,
     "units_serving_as_elaborative": 20,
-    "sections_total": 254,
+    "sections_total": 251,
     "sections_primary_of_an_outcome": 37,
     "modules": 7,
-    "lessons": 33
+    "lessons": 34
   },
   "taxonomy": {
     "know": [
@@ -183,7 +183,12 @@
             "section_outcomes": []
           },
           {
-            "lesson": "2.7-scenarios-and-the-joined-model",
+            "lesson": "2.7-modeling-measurement-and-evidence",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "2.8-joining-models-around-a-scenario",
             "own_outcomes": [],
             "section_outcomes": [
               "a-request-walks-the-connected-slice::trace-a-single-request"
