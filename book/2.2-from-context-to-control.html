@@ -607,8 +607,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="part-3-intro.html">Alignment</a></li>
 <li><a class="" href="3.1-the-agent-stack.html">12&nbsp; Where Authority Lives</a></li>
 <li><a class="" href="3.2-models-and-the-semantic-gap.html">13&nbsp; From Intent to Enforceable Obligation</a></li>
-<li><a class="" href="3.3-constraints-sensors-validators-gates.html">14&nbsp; Constraints, Sensors, Validators, and Gates</a></li>
-<li><a class="" href="3.4-governance-conversion.html">15&nbsp; Governance Conversion</a></li>
+<li><a class="" href="3.3-constraints-sensors-validators-gates.html">14&nbsp; The Four Mechanism Roles</a></li>
+<li><a class="" href="3.4-governance-conversion.html">15&nbsp; Growing the Governed Environment</a></li>
 <li><a class="" href="3.5-when-guardrails-collide.html">16&nbsp; Governing the Governance</a></li>
 <li class="part">Part 4 — The MAGE Method</li>
 <li><a class="" href="part-4-intro.html">The MAGE Method</a></li>
@@ -720,6 +720,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
 <li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
+<li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
 <li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 6 · From Context to Engineering Model — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 6</a></div><h1><span class="chap-num">2.2</span> From Context to Engineering Model</h1></header><p>Suppose the graph records that a worker consumes a queue. As context, that edge helps an agent find the relevant code. Add to it and it does more. Give the edge a type and properties, and a tool can reason over it. Attach an invariant — only workers of class X may consume queues of class Y — and the edge now carries engineering intent, not just a fact. Derive the graph from the implementation, or generate the implementation from the graph, and its claims become checkable. Put a gate across divergence, and the edge becomes part of the governed environment. The same edge that began as context has acquired authority, one property at a time.</p>
 <p>A structured representation can serve three increasingly strong roles. As <strong>context</strong>, it helps an agent recover the facts a task touches. As an <strong>engineering model</strong>, it supports reasoning about the system's structure, behavior, intent, or evidence. When mechanisms enforce obligations expressed over it, it becomes part of the <strong>governed environment</strong>. Each role keeps the earlier ones — a governed model is still legible context — while adding a stronger claim on top. Modeling and Alignment are not two concerns bolted together; they are the low and high ends of one representation getting richer. This chapter reaches the middle role. The next Part builds the third.</p>

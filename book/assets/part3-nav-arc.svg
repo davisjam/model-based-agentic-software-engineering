@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: part3-nav-arc). Part III Part-opener navigation figure: the five-chapter
+     arc as five questions on one descending spine, each answered by the chapter beside it, and each
+     raising the next. WHERE authority can act (3.1) -> WHAT it may enforce (3.2) -> HOW it enforces
+     (3.3) -> how the control system GROWs (3.4) -> how we GOVERN the control system (3.5). Distinct from
+     the whole-book subway nav; this one walks Part III only. Palette: Umber Monograph tokens —
+     governance #9a3f12 + tint #faf1e6 for the station nodes and spine (the Part's subject is authority),
+     ink #1c1917 questions, muted #57534e chapter titles + spine. Fonts in the 16-28 band at the 1000px
+     reference. -->
+<!-- semantic-families: governance, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840" width="1000" height="840"
+     role="group" aria-labelledby="naTitle naDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="naTitle">Part III as five questions, one per chapter, on a single descending arc</title>
+  <desc id="naDesc">Five numbered stations descend a vertical spine, each a chapter of Part III, and each
+    answers a question the one above it raises. Station 3.1, Where Authority Lives, asks where can
+    authority act. Station 3.2, From Intent to Obligation, asks what can it legitimately enforce. Station
+    3.3, The Four Mechanism Roles, asks how does it enforce it. Station 3.4, Growing the Governed
+    Environment, asks how does the control system grow. Station 3.5, Governing the Governance, asks how do
+    we govern the control system itself. The arc runs from where authority can act down to governing the
+    controls that result.</desc>
+
+  <defs>
+    <marker id="na-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="840" fill="#fdfcf9"/>
+  <text x="500" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Part III — five questions, one per chapter</text>
+  <text x="500" y="76" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Each chapter answers the next question the one before it raises.</text>
+
+  <!-- spine arrows between the five stations -->
+  <g stroke="#9a3f12" stroke-width="2">
+    <line x1="150" y1="195" x2="150" y2="285" marker-end="url(#na-arrow)"/>
+    <line x1="150" y1="345" x2="150" y2="435" marker-end="url(#na-arrow)"/>
+    <line x1="150" y1="495" x2="150" y2="585" marker-end="url(#na-arrow)"/>
+    <line x1="150" y1="645" x2="150" y2="735" marker-end="url(#na-arrow)"/>
+  </g>
+
+  <!-- 3.1 WHERE -->
+  <circle cx="150" cy="165" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="173" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.1</text>
+  <text x="205" y="143" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">WHERE</text>
+  <text x="205" y="169" font-size="21" font-weight="700" fill="#1c1917">Where can authority act?</text>
+  <text x="205" y="195" font-size="16" fill="#57534e">3.1 · Where Authority Lives</text>
+
+  <!-- 3.2 WHAT -->
+  <circle cx="150" cy="315" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="323" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.2</text>
+  <text x="205" y="293" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">WHAT</text>
+  <text x="205" y="319" font-size="21" font-weight="700" fill="#1c1917">What can it legitimately enforce?</text>
+  <text x="205" y="345" font-size="16" fill="#57534e">3.2 · From Intent to Obligation</text>
+
+  <!-- 3.3 HOW -->
+  <circle cx="150" cy="465" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="473" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.3</text>
+  <text x="205" y="443" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">HOW</text>
+  <text x="205" y="469" font-size="21" font-weight="700" fill="#1c1917">How does it enforce it?</text>
+  <text x="205" y="495" font-size="16" fill="#57534e">3.3 · The Four Mechanism Roles</text>
+
+  <!-- 3.4 GROW -->
+  <circle cx="150" cy="615" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="623" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.4</text>
+  <text x="205" y="593" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">GROW</text>
+  <text x="205" y="619" font-size="21" font-weight="700" fill="#1c1917">How does the control system grow?</text>
+  <text x="205" y="645" font-size="16" fill="#57534e">3.4 · Growing the Governed Environment</text>
+
+  <!-- 3.5 GOVERN -->
+  <circle cx="150" cy="765" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="773" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.5</text>
+  <text x="205" y="743" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">GOVERN</text>
+  <text x="205" y="769" font-size="21" font-weight="700" fill="#1c1917">How do we govern the control system?</text>
+  <text x="205" y="795" font-size="16" fill="#57534e">3.5 · Governing the Governance</text>
+</svg>

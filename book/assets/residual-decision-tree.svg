@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: residual-decision-tree). R32: replaces the six-term
+     vocabulary sprawl of 3.4's residual discussion with one decision tree. Three questions,
+     four leaves — but only TWO leaves carry a mechanism NAME (RESIDUAL, OBSERVED-ONLY); the
+     other two are described in a clause (a human must judge / the loop is closed), per the
+     editor's "you don't need new terminology for every leaf" and 1b fold F7.
+     Palette: Umber Monograph tokens (question parchment #57534e, churn #b23b3b for the
+     human residual, warn amber #a86a1f for observed-but-ungated, governed #1f7a4d for the
+     closed loop, ink #1c1917). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 660" width="980" height="660"
+     role="group" aria-labelledby="rdtTitle rdtDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="rdtTitle">The residual decision tree — where a goal lands relative to the mechanisms</title>
+  <desc id="rdtDesc">A decision tree with three questions and four outcomes. First question:
+    is the obligation represented — modeled at all? If no, the goal is the RESIDUAL, an absence
+    nobody specified; there is nothing to point to and a human must know the check should be
+    there. If yes, second question: can a check mechanically evaluate it? If no, it is a
+    judgment call — a human must look, the residual's modeled cousin. If yes, third question:
+    is a gate acting on the reading? If no, the goal is OBSERVED ONLY — modeled, sensed, and
+    logged, but not yet governed; a sensor without a gate. If yes, the loop is closed and the
+    goal is governed. Only RESIDUAL and OBSERVED ONLY are named; the other two are described.</desc>
+
+  <defs>
+    <marker id="rdt-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- Q1 -->
+  <rect x="190" y="34" width="270" height="66" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
+  <text x="325" y="62" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Is the obligation</text>
+  <text x="325" y="86" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">modeled at all?</text>
+
+  <!-- Q2 -->
+  <rect x="400" y="196" width="270" height="66" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
+  <text x="535" y="224" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Can a check</text>
+  <text x="535" y="248" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">mechanically evaluate it?</text>
+
+  <!-- Q3 -->
+  <rect x="560" y="358" width="270" height="66" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
+  <text x="695" y="386" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Is a gate acting</text>
+  <text x="695" y="410" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">on the reading?</text>
+
+  <!-- Leaf: RESIDUAL (named) -->
+  <rect x="36" y="180" width="232" height="96" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
+  <text x="152" y="214" text-anchor="middle" font-size="21" font-weight="700" fill="#b23b3b">RESIDUAL</text>
+  <text x="152" y="240" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">an absence nobody specified —</text>
+  <text x="152" y="259" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a human must know it belongs</text>
+
+  <!-- Leaf: judgment (described, unnamed) -->
+  <rect x="250" y="344" width="232" height="96" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
+  <text x="366" y="382" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">A human must judge</text>
+  <text x="366" y="408" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the residual's modeled</text>
+  <text x="366" y="428" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">cousin — no cheap check</text>
+
+  <!-- Leaf: OBSERVED ONLY (named) -->
+  <rect x="432" y="506" width="232" height="96" rx="8" fill="#f7efe0" stroke="#a86a1f" stroke-width="2.5"/>
+  <text x="548" y="540" text-anchor="middle" font-size="21" font-weight="700" fill="#a86a1f">OBSERVED ONLY</text>
+  <text x="548" y="566" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">modeled but not yet governed</text>
+  <text x="548" y="586" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a sensor without a gate</text>
+
+  <!-- Leaf: governed (described, unnamed) -->
+  <rect x="712" y="506" width="232" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="828" y="546" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">The loop is closed</text>
+  <text x="828" y="572" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">governed — a gate refuses</text>
+  <text x="828" y="592" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the divergence</text>
+
+  <!-- edges -->
+  <g stroke="#1c1917" stroke-width="2" fill="none">
+    <path d="M255,100 L175,176" marker-end="url(#rdt-ah)"/>   <!-- Q1 no -> RESIDUAL -->
+    <path d="M430,100 L490,192" marker-end="url(#rdt-ah)"/>   <!-- Q1 yes -> Q2 -->
+    <path d="M472,262 L400,340" marker-end="url(#rdt-ah)"/>   <!-- Q2 no -> judgment -->
+    <path d="M628,262 L660,354" marker-end="url(#rdt-ah)"/>   <!-- Q2 yes -> Q3 -->
+    <path d="M632,424 L560,502" marker-end="url(#rdt-ah)"/>   <!-- Q3 no -> OBSERVED ONLY -->
+    <path d="M784,424 L818,502" marker-end="url(#rdt-ah)"/>   <!-- Q3 yes -> governed -->
+  </g>
+
+  <!-- edge labels -->
+  <g font-size="16" font-weight="700">
+    <text x="196" y="146" text-anchor="middle" fill="#b23b3b">no</text>
+    <text x="470" y="150" text-anchor="middle" fill="#57534e">yes</text>
+    <text x="410" y="312" text-anchor="middle" fill="#57534e">no</text>
+    <text x="662" y="316" text-anchor="middle" fill="#57534e">yes</text>
+    <text x="572" y="474" text-anchor="middle" fill="#a86a1f">no</text>
+    <text x="812" y="476" text-anchor="middle" fill="#1f7a4d">yes</text>
+  </g>
+</svg>

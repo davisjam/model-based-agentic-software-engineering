@@ -607,8 +607,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="current" href="part-3-intro.html">Alignment</a></li>
 <li><a class="" href="3.1-the-agent-stack.html">12&nbsp; Where Authority Lives</a></li>
 <li><a class="" href="3.2-models-and-the-semantic-gap.html">13&nbsp; From Intent to Enforceable Obligation</a></li>
-<li><a class="" href="3.3-constraints-sensors-validators-gates.html">14&nbsp; Constraints, Sensors, Validators, and Gates</a></li>
-<li><a class="" href="3.4-governance-conversion.html">15&nbsp; Governance Conversion</a></li>
+<li><a class="" href="3.3-constraints-sensors-validators-gates.html">14&nbsp; The Four Mechanism Roles</a></li>
+<li><a class="" href="3.4-governance-conversion.html">15&nbsp; Growing the Governed Environment</a></li>
 <li><a class="" href="3.5-when-guardrails-collide.html">16&nbsp; Governing the Governance</a></li>
 <li class="part">Part 4 — The MAGE Method</li>
 <li><a class="" href="part-4-intro.html">The MAGE Method</a></li>
@@ -720,11 +720,78 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
 <li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
+<li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
 <li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap part-page" aria-label="Part 3 · Alignment — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 3</a></div><h1>Alignment</h1></header><p>Models make engineering intent explicit. They do not, by themselves, ensure that intent is followed. A model that no mechanism enforces is still only advice.</p>
 <blockquote class="thesis-box"><p class="inset-title">ALIGNMENT THESIS</p>
 <p>Give engineering intent authority by encoding obligations into authoritative mechanisms that constrain actions, produce evidence, validate that evidence, and control admission.</p>
 <p>Represented intent becomes authoritative.</p></blockquote>
+<p>This Part walks five questions, each a chapter; <a class="xref" href="part-3-intro.html#fig-3-0-1">Figure&nbsp;3.0-1</a> sets them on one descending arc.</p>
+<figure id="fig-3-0-1" class="book-figure" data-label="part3-nav-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
+     role="group" aria-labelledby="naTitle naDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="naTitle">Part III as five questions, one per chapter, on a single descending arc</title>
+  <desc id="naDesc">Five numbered stations descend a vertical spine, each a chapter of Part III, and each
+    answers a question the one above it raises. Station 3.1, Where Authority Lives, asks where can
+    authority act. Station 3.2, From Intent to Obligation, asks what can it legitimately enforce. Station
+    3.3, The Four Mechanism Roles, asks how does it enforce it. Station 3.4, Growing the Governed
+    Environment, asks how does the control system grow. Station 3.5, Governing the Governance, asks how do
+    we govern the control system itself. The arc runs from where authority can act down to governing the
+    controls that result.</desc>
+
+  <defs>
+    <marker id="na-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="840" fill="#fdfcf9"/>
+  <text x="500" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Part III — five questions, one per chapter</text>
+  <text x="500" y="76" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Each chapter answers the next question the one before it raises.</text>
+
+  <!-- spine arrows between the five stations -->
+  <g stroke="#9a3f12" stroke-width="2">
+    <line x1="150" y1="195" x2="150" y2="285" marker-end="url(#na-arrow)"/>
+    <line x1="150" y1="345" x2="150" y2="435" marker-end="url(#na-arrow)"/>
+    <line x1="150" y1="495" x2="150" y2="585" marker-end="url(#na-arrow)"/>
+    <line x1="150" y1="645" x2="150" y2="735" marker-end="url(#na-arrow)"/>
+  </g>
+
+  <!-- 3.1 WHERE -->
+  <circle cx="150" cy="165" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="173" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.1</text>
+  <text x="205" y="143" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">WHERE</text>
+  <text x="205" y="169" font-size="21" font-weight="700" fill="#1c1917">Where can authority act?</text>
+  <text x="205" y="195" font-size="16" fill="#57534e">3.1 · Where Authority Lives</text>
+
+  <!-- 3.2 WHAT -->
+  <circle cx="150" cy="315" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="323" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.2</text>
+  <text x="205" y="293" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">WHAT</text>
+  <text x="205" y="319" font-size="21" font-weight="700" fill="#1c1917">What can it legitimately enforce?</text>
+  <text x="205" y="345" font-size="16" fill="#57534e">3.2 · From Intent to Obligation</text>
+
+  <!-- 3.3 HOW -->
+  <circle cx="150" cy="465" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="473" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.3</text>
+  <text x="205" y="443" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">HOW</text>
+  <text x="205" y="469" font-size="21" font-weight="700" fill="#1c1917">How does it enforce it?</text>
+  <text x="205" y="495" font-size="16" fill="#57534e">3.3 · The Four Mechanism Roles</text>
+
+  <!-- 3.4 GROW -->
+  <circle cx="150" cy="615" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="623" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.4</text>
+  <text x="205" y="593" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">GROW</text>
+  <text x="205" y="619" font-size="21" font-weight="700" fill="#1c1917">How does the control system grow?</text>
+  <text x="205" y="645" font-size="16" fill="#57534e">3.4 · Growing the Governed Environment</text>
+
+  <!-- 3.5 GOVERN -->
+  <circle cx="150" cy="765" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="773" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.5</text>
+  <text x="205" y="743" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">GOVERN</text>
+  <text x="205" y="769" font-size="21" font-weight="700" fill="#1c1917">How do we govern the control system?</text>
+  <text x="205" y="795" font-size="16" fill="#57534e">3.5 · Governing the Governance</text>
+</svg><figcaption data-short="The five chapters of Part III as five questions on one descending arc, each…"><span class="fig-label">Figure 3.0-1.</span> The five chapters of Part III as five questions on one descending arc, each answered by the chapter beside it and each raising the next: WHERE authority can act (3.1) → WHAT it may legitimately enforce (3.2) → HOW it enforces (3.3) → how the control system GROWs (3.4) → how we GOVERN the resulting control system (3.5). The Part reads as an argument, not a catalogue.</figcaption></figure>
 <p>The last Part made intent explicit; this Part makes it binding. Constraints, sensors, validators, gates, and control graphs all serve one purpose: turning engineering judgment from something people remember into something the environment enforces. Reliability becomes a property of the engineering environment rather than of repeated human inspection — and as recurring failures are converted into mechanisms, governance itself grows into engineering capital.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 850"
      role="group" aria-labelledby="bmTitle-nav bmDesc-nav"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

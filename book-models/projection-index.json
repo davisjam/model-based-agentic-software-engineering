@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 34,
     "slugs_rendered": 25,
-    "total_sites": 1642,
+    "total_sites": 1649,
     "by_projection": {
       "book-pdf": 22,
-      "book-web": 1219,
+      "book-web": 1226,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -89,7 +89,7 @@
           },
           {
             "file": "book/3.1-the-agent-stack.html",
-            "occ": 43
+            "occ": 40
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
@@ -97,11 +97,11 @@
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 16
+            "occ": 15
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 16
+            "occ": 6
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
@@ -464,6 +464,10 @@
             "occ": 2
           },
           {
+            "file": "book/appendix-g-surfaces-built-reference.html",
+            "occ": 2
+          },
+          {
             "file": "book/appendix-g-synchronization-reference.html",
             "occ": 2
           },
@@ -505,7 +509,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 69
+            "occ": 68
           },
           {
             "file": "book/index.html",
@@ -543,7 +547,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -1159,7 +1163,7 @@
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 3
+            "occ": 1
           },
           {
             "file": "book/4.4-the-skills.html",
@@ -1247,7 +1251,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 70
+            "occ": 69
           },
           {
             "file": "book/list-of-figures.html",
@@ -1575,11 +1579,11 @@
           },
           {
             "file": "book/3.1-the-agent-stack.html",
-            "occ": 35
+            "occ": 27
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 11
+            "occ": 10
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
@@ -1587,7 +1591,7 @@
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 25
+            "occ": 12
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
@@ -1950,6 +1954,10 @@
             "occ": 10
           },
           {
+            "file": "book/appendix-g-surfaces-built-reference.html",
+            "occ": 10
+          },
+          {
             "file": "book/appendix-g-synchronization-reference.html",
             "occ": 10
           },
@@ -1979,7 +1987,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 59
+            "occ": 50
           },
           {
             "file": "book/book-index.html",
@@ -2029,7 +2037,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -2612,6 +2620,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-g-surfaces-built-reference.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-g-synchronization-reference.html",
             "occ": 1
           },
@@ -2687,7 +2699,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -3037,23 +3049,23 @@
           },
           {
             "file": "book/3.1-the-agent-stack.html",
-            "occ": 66
+            "occ": 51
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 60
+            "occ": 62
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 35
+            "occ": 34
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 32
+            "occ": 26
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 29
+            "occ": 28
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
@@ -3353,7 +3365,7 @@
           },
           {
             "file": "book/appendix-evidence-ledger.html",
-            "occ": 19
+            "occ": 18
           },
           {
             "file": "book/appendix-field-guide.html",
@@ -3412,6 +3424,10 @@
             "occ": 22
           },
           {
+            "file": "book/appendix-g-surfaces-built-reference.html",
+            "occ": 30
+          },
+          {
             "file": "book/appendix-g-synchronization-reference.html",
             "occ": 28
           },
@@ -3441,7 +3457,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 24
+            "occ": 22
           },
           {
             "file": "book/book-index.html",
@@ -3461,7 +3477,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 29
+            "occ": 30
           },
           {
             "file": "book/part-1-intro.html",
@@ -3491,7 +3507,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -4333,7 +4349,7 @@
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 6
+            "occ": 2
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
@@ -4696,6 +4712,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-g-surfaces-built-reference.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-g-synchronization-reference.html",
             "occ": 1
           },
@@ -4733,7 +4753,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 9
+            "occ": 5
           },
           {
             "file": "book/index.html",
@@ -4771,7 +4791,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -5242,6 +5262,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-g-surfaces-built-reference.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-g-synchronization-reference.html",
             "occ": 1
           },
@@ -5317,7 +5341,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -5507,7 +5531,7 @@
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 6
+            "occ": 2
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
@@ -5870,6 +5894,10 @@
             "occ": 2
           },
           {
+            "file": "book/appendix-g-surfaces-built-reference.html",
+            "occ": 2
+          },
+          {
             "file": "book/appendix-g-synchronization-reference.html",
             "occ": 2
           },
@@ -5899,7 +5927,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 13
+            "occ": 11
           },
           {
             "file": "book/book-index.html",
@@ -5945,7 +5973,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -6065,7 +6093,7 @@
           },
           {
             "file": "book/3.1-the-agent-stack.html",
-            "occ": 7
+            "occ": 5
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
@@ -6073,11 +6101,11 @@
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 3
+            "occ": 1
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
@@ -6440,6 +6468,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-g-surfaces-built-reference.html",
+            "occ": 2
+          },
+          {
             "file": "book/appendix-g-synchronization-reference.html",
             "occ": 1
           },
@@ -6515,7 +6547,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -6798,16 +6830,12 @@
             "occ": 1
           },
           {
-            "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 1
-          },
-          {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
             "occ": 5
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 7
+            "occ": 5
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
@@ -6907,13 +6935,13 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 10
+            "occ": 11
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 31
+            "occ": 30
           }
         ]
       },

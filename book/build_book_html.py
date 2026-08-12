@@ -3611,6 +3611,7 @@ _MODEL_PAGES: list[tuple[str, str]] = [
     ("journey-criticality-reference", "Journey-Criticality and Test-Placement Model"),
     ("coverage-node-reference", "Coverage-to-Node Model"),
     ("task-closure-reference", "Task-Closure Model"),
+    ("surfaces-built-reference", "The Surfaces Built — the II→III Receipt"),
 ]
 
 

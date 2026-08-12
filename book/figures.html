@@ -607,8 +607,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="part-3-intro.html">Alignment</a></li>
 <li><a class="" href="3.1-the-agent-stack.html">12&nbsp; Where Authority Lives</a></li>
 <li><a class="" href="3.2-models-and-the-semantic-gap.html">13&nbsp; From Intent to Enforceable Obligation</a></li>
-<li><a class="" href="3.3-constraints-sensors-validators-gates.html">14&nbsp; Constraints, Sensors, Validators, and Gates</a></li>
-<li><a class="" href="3.4-governance-conversion.html">15&nbsp; Governance Conversion</a></li>
+<li><a class="" href="3.3-constraints-sensors-validators-gates.html">14&nbsp; The Four Mechanism Roles</a></li>
+<li><a class="" href="3.4-governance-conversion.html">15&nbsp; Growing the Governed Environment</a></li>
 <li><a class="" href="3.5-when-guardrails-collide.html">16&nbsp; Governing the Governance</a></li>
 <li class="part">Part 4 — The MAGE Method</li>
 <li><a class="" href="part-4-intro.html">The MAGE Method</a></li>
@@ -720,8 +720,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
 <li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
+<li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 91 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 856"
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 93 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 856"
      role="group" aria-labelledby="fig-0-1-1-mmTitle fig-0-1-1-mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-0-1-1-mmTitle">The MAGE method at a glance — a fork between engineering capital and engineering churn, decided by the two theses</title>
@@ -2657,7 +2658,71 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="880" y="448" font-size="18" font-style="italic" fill="#57534e">cost gate + a scarce host</text>
   <rect x="770" y="466" width="320" height="60" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="930" y="503" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">serialize — fan / join</text>
-</svg><figcaption data-short="The four-model join"><span class="fig-label">Figure 2.7-2.</span> <em>The four-model join.</em> A <strong>journey</strong> (M13) names a MAJOR endpoint; the <strong>Selector</strong> (M6) derives its test tier (major → local + staging; minor → staging only) and a coverage-floor lint fails a major endpoint with no local test; <strong>Coverage</strong> (M5) joins on the same endpoint node to ask whether it is tested at all; the <strong>Scheduler</strong> (M7) reads a per-host profile and emits the plan — fan out in parallel when only a cost gate applies (rounded), serialize when a scarce host is in play (square). The heavy edges are the joins; shape, not colour, marks the two plan modes.</figcaption></figure><p class="gallery-source">From <a href="2.7-scenarios-and-the-joined-model.html#fig-2-7-2">11 · Joining Models Around a Scenario</a></p></section><hr><section class="gallery-item"><figure id="fig-3-1-1-fig-3-1-1" class="book-figure" data-label="stack-layers"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 560"
+</svg><figcaption data-short="The four-model join"><span class="fig-label">Figure 2.7-2.</span> <em>The four-model join.</em> A <strong>journey</strong> (M13) names a MAJOR endpoint; the <strong>Selector</strong> (M6) derives its test tier (major → local + staging; minor → staging only) and a coverage-floor lint fails a major endpoint with no local test; <strong>Coverage</strong> (M5) joins on the same endpoint node to ask whether it is tested at all; the <strong>Scheduler</strong> (M7) reads a per-host profile and emits the plan — fan out in parallel when only a cost gate applies (rounded), serialize when a scarce host is in play (square). The heavy edges are the joins; shape, not colour, marks the two plan modes.</figcaption></figure><p class="gallery-source">From <a href="2.7-scenarios-and-the-joined-model.html#fig-2-7-2">11 · Joining Models Around a Scenario</a></p></section><hr><section class="gallery-item"><figure id="fig-3-0-1-fig-3-0-1" class="book-figure" data-label="part3-nav-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
+     role="group" aria-labelledby="fig-3-0-1-naTitle fig-3-0-1-naDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-3-0-1-naTitle">Part III as five questions, one per chapter, on a single descending arc</title>
+  <desc id="fig-3-0-1-naDesc">Five numbered stations descend a vertical spine, each a chapter of Part III, and each
+    answers a question the one above it raises. Station 3.1, Where Authority Lives, asks where can
+    authority act. Station 3.2, From Intent to Obligation, asks what can it legitimately enforce. Station
+    3.3, The Four Mechanism Roles, asks how does it enforce it. Station 3.4, Growing the Governed
+    Environment, asks how does the control system grow. Station 3.5, Governing the Governance, asks how do
+    we govern the control system itself. The arc runs from where authority can act down to governing the
+    controls that result.</desc>
+
+  <defs>
+    <marker id="fig-3-0-1-na-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="840" fill="#fdfcf9"/>
+  <text x="500" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Part III — five questions, one per chapter</text>
+  <text x="500" y="76" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Each chapter answers the next question the one before it raises.</text>
+
+  <!-- spine arrows between the five stations -->
+  <g stroke="#9a3f12" stroke-width="2">
+    <line x1="150" y1="195" x2="150" y2="285" marker-end="url(#fig-3-0-1-na-arrow)"/>
+    <line x1="150" y1="345" x2="150" y2="435" marker-end="url(#fig-3-0-1-na-arrow)"/>
+    <line x1="150" y1="495" x2="150" y2="585" marker-end="url(#fig-3-0-1-na-arrow)"/>
+    <line x1="150" y1="645" x2="150" y2="735" marker-end="url(#fig-3-0-1-na-arrow)"/>
+  </g>
+
+  <!-- 3.1 WHERE -->
+  <circle cx="150" cy="165" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="173" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.1</text>
+  <text x="205" y="143" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">WHERE</text>
+  <text x="205" y="169" font-size="21" font-weight="700" fill="#1c1917">Where can authority act?</text>
+  <text x="205" y="195" font-size="16" fill="#57534e">3.1 · Where Authority Lives</text>
+
+  <!-- 3.2 WHAT -->
+  <circle cx="150" cy="315" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="323" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.2</text>
+  <text x="205" y="293" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">WHAT</text>
+  <text x="205" y="319" font-size="21" font-weight="700" fill="#1c1917">What can it legitimately enforce?</text>
+  <text x="205" y="345" font-size="16" fill="#57534e">3.2 · From Intent to Obligation</text>
+
+  <!-- 3.3 HOW -->
+  <circle cx="150" cy="465" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="473" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.3</text>
+  <text x="205" y="443" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">HOW</text>
+  <text x="205" y="469" font-size="21" font-weight="700" fill="#1c1917">How does it enforce it?</text>
+  <text x="205" y="495" font-size="16" fill="#57534e">3.3 · The Four Mechanism Roles</text>
+
+  <!-- 3.4 GROW -->
+  <circle cx="150" cy="615" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="623" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.4</text>
+  <text x="205" y="593" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">GROW</text>
+  <text x="205" y="619" font-size="21" font-weight="700" fill="#1c1917">How does the control system grow?</text>
+  <text x="205" y="645" font-size="16" fill="#57534e">3.4 · Growing the Governed Environment</text>
+
+  <!-- 3.5 GOVERN -->
+  <circle cx="150" cy="765" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="150" y="773" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.5</text>
+  <text x="205" y="743" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">GOVERN</text>
+  <text x="205" y="769" font-size="21" font-weight="700" fill="#1c1917">How do we govern the control system?</text>
+  <text x="205" y="795" font-size="16" fill="#57534e">3.5 · Governing the Governance</text>
+</svg><figcaption data-short="The five chapters of Part III as five questions on one descending arc, each…"><span class="fig-label">Figure 3.0-1.</span> The five chapters of Part III as five questions on one descending arc, each answered by the chapter beside it and each raising the next: WHERE authority can act (3.1) → WHAT it may legitimately enforce (3.2) → HOW it enforces (3.3) → how the control system GROWs (3.4) → how we GOVERN the resulting control system (3.5). The Part reads as an argument, not a catalogue.</figcaption></figure><p class="gallery-source">From <a href="part-3-intro.html#fig-3-0-1">Alignment</a></p></section><hr><section class="gallery-item"><figure id="fig-3-1-1-fig-3-1-1" class="book-figure" data-label="stack-layers"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 560"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" role="group"
      aria-labelledby="fig-3-1-1-diagTitle fig-3-1-1-diagDesc">
   <title id="fig-3-1-1-diagTitle">The four-layer stack, its governance hooks, and the methodology that plugs into them</title>
@@ -2753,7 +2818,69 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text class="govlbl" x="0" y="0" text-anchor="start" transform="translate(1053 139) rotate(90)">Methodology +</text>
   <text class="govlbl" x="0" y="0" text-anchor="start" transform="translate(1005 178) rotate(90)">governance</text>
 
-</svg><figcaption data-short="The MAGE Stack"><span class="fig-label">Figure 3.1-1.</span> <em>The MAGE Stack.</em> Four layers stack from the GenAI foundation model up: the Harness that runs the agent and manages its context window, the Engineering environment of git and its hooks, and at the top the Application — the codebase, its tests, and CI. Each layer is a place to reach in and steer. The governance bar notches into all four, because a mechanism can live at any of them — a skill or hook in the harness, a pre-commit gate in the environment, a ban-lint in the application. Governance is a posture at every level, not one gate bolted on at the end.</figcaption></figure><p class="gallery-source">From <a href="3.1-the-agent-stack.html#fig-3-1-1">12 · Where Authority Lives</a></p></section><hr><section class="gallery-item"><figure id="fig-3-2-1-fig-3-2-1" class="book-figure" data-label="semantic-gap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
+</svg><figcaption data-short="The MAGE Stack"><span class="fig-label">Figure 3.1-1.</span> <em>The MAGE Stack.</em> Four layers stack from the foundation model up: the Harness that runs the agent and manages its window, the Engineering environment of git and its hooks, and the Application — code, tests, CI. The governance bar notches into all four: a mechanism can live at any of them — a skill or hook in the harness, a pre-commit gate in the environment, a ban-lint in the application. Governance is a posture at every level, not one gate bolted on at the end.</figcaption></figure><p class="gallery-source">From <a href="3.1-the-agent-stack.html#fig-3-1-1">12 · Where Authority Lives</a></p></section><hr><section class="gallery-item"><figure id="fig-3-1-2-fig-3-1-2" class="book-figure" data-label="authority-spectrum"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 330"
+     role="group" aria-labelledby="fig-3-1-2-asTitle fig-3-1-2-asDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-3-1-2-asTitle">The authority spectrum: four boundaries where intent can be bound, softest to hardest</title>
+  <desc id="fig-3-1-2-asDesc">Four boundaries sit in a row, connected left to right by arrows, above a rule that
+    fades from blue on the left to rust on the right. The left end is labelled SOFTEST, aims a
+    probability; the right end HARDEST, binds an outcome. The first two boundaries are blue: reasoning,
+    where authority acts through context, and the harness action, where it acts through a hook or tool.
+    The last two are rust: the workflow, governed by git and CI, and the accepted artifact, governed by
+    types and lints. Authority hardens from left to right — context conditions a probability while a type
+    makes the wrong artifact impossible to write — so the lesson is that the same intent can be placed at
+    any of these boundaries, at a chosen distance from the act.</desc>
+
+  <defs>
+    <marker id="fig-3-1-2-as-flow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+    <marker id="fig-3-1-2-as-ramp" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+    <linearGradient id="fig-3-1-2-asRamp" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2f5169"/>
+      <stop offset="0.5" stop-color="#57534e"/>
+      <stop offset="1" stop-color="#9a3f12"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="330" fill="#fdfcf9"/>
+  <text x="500" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where authority can live</text>
+  <text x="500" y="74" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The same intent, bound at four boundaries — softest to hardest.</text>
+
+  <text x="60" y="116" font-size="16" font-weight="600" fill="#2f5169">SOFTEST · aims a probability</text>
+  <text x="940" y="116" text-anchor="end" font-size="16" font-weight="600" fill="#9a3f12">HARDEST · binds an outcome</text>
+  <line x1="60" y1="128" x2="932" y2="128" stroke="url(#fig-3-1-2-asRamp)" stroke-width="5" stroke-linecap="round" marker-end="url(#fig-3-1-2-as-ramp)"/>
+
+  <!-- boundary pills (soft pair blue, hard pair rust) -->
+  <rect x="54"  y="165" width="196" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="152" y="209" text-anchor="middle" font-size="19" font-weight="600" fill="#1c1917">reasoning</text>
+
+  <rect x="286" y="165" width="196" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="384" y="209" text-anchor="middle" font-size="19" font-weight="600" fill="#1c1917">harness action</text>
+
+  <rect x="518" y="165" width="196" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="616" y="209" text-anchor="middle" font-size="19" font-weight="600" fill="#1c1917">workflow</text>
+
+  <rect x="750" y="165" width="196" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="848" y="209" text-anchor="middle" font-size="19" font-weight="600" fill="#1c1917">accepted artifact</text>
+
+  <!-- flow arrows between boundaries -->
+  <line x1="254" y1="203" x2="282" y2="203" stroke="#57534e" stroke-width="2" marker-end="url(#fig-3-1-2-as-flow)"/>
+  <line x1="486" y1="203" x2="514" y2="203" stroke="#57534e" stroke-width="2" marker-end="url(#fig-3-1-2-as-flow)"/>
+  <line x1="718" y1="203" x2="746" y2="203" stroke="#57534e" stroke-width="2" marker-end="url(#fig-3-1-2-as-flow)"/>
+
+  <!-- the mechanism that acts at each boundary -->
+  <line x1="152" y1="241" x2="152" y2="259" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="152" y="278" text-anchor="middle" font-size="16" fill="#2f5169">context</text>
+  <line x1="384" y1="241" x2="384" y2="259" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="384" y="278" text-anchor="middle" font-size="16" fill="#9a3f12">hook · tool</text>
+  <line x1="616" y1="241" x2="616" y2="259" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="616" y="278" text-anchor="middle" font-size="16" fill="#9a3f12">git · CI</text>
+  <line x1="848" y1="241" x2="848" y2="259" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="848" y="278" text-anchor="middle" font-size="16" fill="#9a3f12">types · lints</text>
+</svg><figcaption data-short="Simplified view of where authority can live"><span class="fig-label">Figure 3.1-2.</span> Simplified view of where authority can live: four representative boundaries, softest to hardest. Above each, the boundary where intent is bound — reasoning, the harness action, the workflow, the accepted artifact; below each, the mechanism that acts there — context, a hook or tool, git and CI, types and lints. Authority hardens left to right: context conditions a probability; a type makes the wrong artifact impossible to write. The same obligation can be attached at any of them.</figcaption></figure><p class="gallery-source">From <a href="3.1-the-agent-stack.html#fig-3-1-2">12 · Where Authority Lives</a></p></section><hr><section class="gallery-item"><figure id="fig-3-2-1-fig-3-2-1" class="book-figure" data-label="semantic-gap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
      role="group" aria-labelledby="fig-3-2-1-sgTitle fig-3-2-1-sgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-3-2-1-sgTitle">The semantic gap: enforce at the level where the property is legible</title>
@@ -2878,68 +3005,84 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="710" y="312" text-anchor="middle" font-size="20" fill="#1c1917">Lets the mistake happen,</text>
   <text x="710" y="337" text-anchor="middle" font-size="20" fill="#1c1917">detects it before it ships.</text>
   <text x="710" y="372" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">test suite in CI · smoke detector</text>
-</svg><figcaption data-short="Constraint or Sensor"><span class="fig-label">Figure 3.3-1.</span> <em>Constraint or Sensor.</em> The two moves and their asymmetric cost. A constraint prevents the mistake inside the iteration, so it costs no failed loop; a sensor catches it after the fact, so it costs at least one. Prefer the constraint where you can build one; add a sensor for the drift you cannot scope away.</figcaption></figure><p class="gallery-source">From <a href="3.3-constraints-sensors-validators-gates.html#fig-3-3-1">14 · Constraints, Sensors, Validators, and Gates</a></p></section><hr><section class="gallery-item"><figure id="fig-3-4-1-fig-3-4-1" class="book-figure" data-label="governance-conversion-loop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1250 430"
-     role="group" aria-labelledby="fig-3-4-1-gcTitle fig-3-4-1-gcDesc"
+</svg><figcaption data-short="Constraint or Sensor"><span class="fig-label">Figure 3.3-1.</span> <em>Constraint or Sensor.</em> The two moves and their asymmetric cost. A constraint prevents the mistake inside the iteration, so it costs no failed loop; a sensor catches it after the fact, so it costs at least one. Prefer the constraint where you can build one; add a sensor for the drift you cannot scope away.</figcaption></figure><p class="gallery-source">From <a href="3.3-constraints-sensors-validators-gates.html#fig-3-3-1">14 · The Four Mechanism Roles</a></p></section><hr><section class="gallery-item"><figure id="fig-3-4-1-fig-3-4-1" class="book-figure" data-label="residual-decision-tree"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 660"
+     role="group" aria-labelledby="fig-3-4-1-rdtTitle fig-3-4-1-rdtDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-4-1-gcTitle">Governance conversion — the loop that hardens the environment</title>
-  <desc id="fig-3-4-1-gcDesc">A five-step loop drawn left to right. Velocity rises as the fleet
-    accelerates. A failure recurs — the same wall hit twice. Judgment diagnoses the class,
-    naming the class rather than the instance. A mechanism is encoded — a type, a lint, a
-    gate, or a sensor. The class then cannot recur; it is prevented by construction. A dashed
-    return path runs back from prevention to rising velocity, labeled: the environment is now
-    harder to break, and velocity climbs again. This is the same loop shape as the printer
-    loop, escalated — it fires when the printer loop keeps hitting one wall.</desc>
+  <title id="fig-3-4-1-rdtTitle">The residual decision tree — where a goal lands relative to the mechanisms</title>
+  <desc id="fig-3-4-1-rdtDesc">A decision tree with three questions and four outcomes. First question:
+    is the obligation represented — modeled at all? If no, the goal is the RESIDUAL, an absence
+    nobody specified; there is nothing to point to and a human must know the check should be
+    there. If yes, second question: can a check mechanically evaluate it? If no, it is a
+    judgment call — a human must look, the residual's modeled cousin. If yes, third question:
+    is a gate acting on the reading? If no, the goal is OBSERVED ONLY — modeled, sensed, and
+    logged, but not yet governed; a sensor without a gate. If yes, the loop is closed and the
+    goal is governed. Only RESIDUAL and OBSERVED ONLY are named; the other two are described.</desc>
 
   <defs>
-    <marker id="fig-3-4-1-gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="fig-3-4-1-rdt-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-    <marker id="fig-3-4-1-gc-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
   </defs>
 
-  <!-- 1. velocity rises (center 135) -->
-  <rect x="30" y="70" width="210" height="104" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="135" y="116" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Velocity rises</text>
-  <text x="135" y="142" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the fleet accelerates</text>
+  <!-- Q1 -->
+  <rect x="190" y="34" width="270" height="66" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
+  <text x="325" y="62" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Is the obligation</text>
+  <text x="325" y="86" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">modeled at all?</text>
 
-  <!-- 2. a failure recurs (center 380) -->
-  <rect x="275" y="70" width="210" height="104" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="380" y="116" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">A failure recurs</text>
-  <text x="380" y="142" text-anchor="middle" font-size="20" font-style="italic" fill="#b23b3b">the same wall, twice</text>
+  <!-- Q2 -->
+  <rect x="400" y="196" width="270" height="66" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
+  <text x="535" y="224" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Can a check</text>
+  <text x="535" y="248" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">mechanically evaluate it?</text>
 
-  <!-- 3. diagnose the class (center 625) -->
-  <rect x="520" y="70" width="210" height="104" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="625" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Diagnose</text>
-  <text x="625" y="134" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the class, not</text>
-  <text x="625" y="154" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the instance</text>
+  <!-- Q3 -->
+  <rect x="560" y="358" width="270" height="66" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
+  <text x="695" y="386" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Is a gate acting</text>
+  <text x="695" y="410" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">on the reading?</text>
 
-  <!-- 4. encode a mechanism (center 870) -->
-  <rect x="765" y="70" width="210" height="104" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="870" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Encode a</text>
-  <text x="870" y="134" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">mechanism</text>
-  <text x="870" y="158" text-anchor="middle" font-size="18.11" font-style="italic" fill="#57534e">type · lint · gate · sensor</text>
+  <!-- Leaf: RESIDUAL (named) -->
+  <rect x="36" y="180" width="232" height="96" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
+  <text x="152" y="214" text-anchor="middle" font-size="21" font-weight="700" fill="#b23b3b">RESIDUAL</text>
+  <text x="152" y="240" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">an absence nobody specified —</text>
+  <text x="152" y="259" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a human must know it belongs</text>
 
-  <!-- 5. the class cannot recur (center 1115) -->
-  <rect x="1010" y="70" width="210" height="104" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="1115" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">The class</text>
-  <text x="1115" y="134" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">can't recur</text>
-  <text x="1115" y="158" text-anchor="middle" font-size="16.43" font-style="italic" fill="#57534e">prevented by construction</text>
+  <!-- Leaf: judgment (described, unnamed) -->
+  <rect x="250" y="344" width="232" height="96" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
+  <text x="366" y="382" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">A human must judge</text>
+  <text x="366" y="408" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the residual's modeled</text>
+  <text x="366" y="428" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">cousin — no cheap check</text>
 
-  <!-- forward arrows -->
+  <!-- Leaf: OBSERVED ONLY (named) -->
+  <rect x="432" y="506" width="232" height="96" rx="8" fill="#f7efe0" stroke="#a86a1f" stroke-width="2.5"/>
+  <text x="548" y="540" text-anchor="middle" font-size="21" font-weight="700" fill="#a86a1f">OBSERVED ONLY</text>
+  <text x="548" y="566" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">modeled but not yet governed</text>
+  <text x="548" y="586" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a sensor without a gate</text>
+
+  <!-- Leaf: governed (described, unnamed) -->
+  <rect x="712" y="506" width="232" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="828" y="546" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">The loop is closed</text>
+  <text x="828" y="572" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">governed — a gate refuses</text>
+  <text x="828" y="592" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the divergence</text>
+
+  <!-- edges -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M240,122 L271,122" marker-end="url(#fig-3-4-1-gc-ah)"/>
-    <path d="M485,122 L516,122" marker-end="url(#fig-3-4-1-gc-ah)"/>
-    <path d="M730,122 L761,122" marker-end="url(#fig-3-4-1-gc-ah)"/>
-    <path d="M975,122 L1006,122" marker-end="url(#fig-3-4-1-gc-ah)"/>
+    <path d="M255,100 L175,176" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q1 no -> RESIDUAL -->
+    <path d="M430,100 L490,192" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q1 yes -> Q2 -->
+    <path d="M472,262 L400,340" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q2 no -> judgment -->
+    <path d="M628,262 L660,354" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q2 yes -> Q3 -->
+    <path d="M632,424 L560,502" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q3 no -> OBSERVED ONLY -->
+    <path d="M784,424 L818,502" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q3 yes -> governed -->
   </g>
 
-  <!-- dashed return path: prevention -> velocity -->
-  <path d="M1115,174 C1115,300 640,330 135,300 L135,178"
-        fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#fig-3-4-1-gc-ah-mut)"/>
-  <text x="625" y="345" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the environment is now harder to break — and velocity climbs again</text>
-</svg><figcaption data-short="The Governance-Conversion Loop"><span class="fig-label">Figure 3.4-1.</span> <em>The Governance-Conversion Loop.</em> The loop that hardens the environment, drawn in the same shape as the printer loop, escalated one level. The printer loop produces; when it keeps hitting one wall — the same failure class, again and again — judgment reads the recurrence as evidence of a missing mechanism and converts the class into a durable control the environment enforces on every later agent. A mistake caught in yesterday's manual audit becomes today's automatic check. The payoff is not one failure retired; it is an environment left more capable of absorbing the next change, so conversions accrue — the positive dual of churn the closing theory names and bounds.</figcaption></figure><p class="gallery-source">From <a href="3.4-governance-conversion.html#fig-3-4-1">15 · Governance Conversion</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-fig-3-5-1" class="book-figure" data-label="collision-edge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
+  <!-- edge labels -->
+  <g font-size="16" font-weight="700">
+    <text x="196" y="146" text-anchor="middle" fill="#b23b3b">no</text>
+    <text x="470" y="150" text-anchor="middle" fill="#57534e">yes</text>
+    <text x="410" y="312" text-anchor="middle" fill="#57534e">no</text>
+    <text x="662" y="316" text-anchor="middle" fill="#57534e">yes</text>
+    <text x="572" y="474" text-anchor="middle" fill="#a86a1f">no</text>
+    <text x="812" y="476" text-anchor="middle" fill="#1f7a4d">yes</text>
+  </g>
+</svg><figcaption data-short="The residual decision tree"><span class="fig-label">Figure 3.4-1.</span> <em>The residual decision tree.</em> Three questions place any goal relative to the mechanisms: is the obligation modeled, can a check evaluate it mechanically, and does a gate act on the reading? An unmodeled goal is the RESIDUAL — an absence nobody specified, so a human must know the check belongs. A modeled goal no check can evaluate is a judgment call, still a human's to make. A checkable goal with no gate is OBSERVED ONLY — modeled, sensed, and logged, yet ungated; with a gate, the loop is closed and the goal is governed. Only RESIDUAL and OBSERVED ONLY carry a name; the other two are described, not christened.</figcaption></figure><p class="gallery-source">From <a href="3.4-governance-conversion.html#fig-3-4-1">15 · Growing the Governed Environment</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-fig-3-5-1" class="book-figure" data-label="collision-edge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
      role="group" aria-labelledby="fig-3-5-1-ceTitle fig-3-5-1-ceDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-3-5-1-ceTitle">The conflict is the edge — a collision drawn nowhere until the graph draws it</title>

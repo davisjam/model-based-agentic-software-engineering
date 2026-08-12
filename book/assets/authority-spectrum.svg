@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: authority-spectrum). R32 3.1 memorable takeaway: the same engineering
+     intent can be bound at four representative boundaries, softest to hardest. Top row, the boundary
+     where authority is placed (reasoning / harness action / workflow / accepted artifact); bottom row,
+     the mechanism that acts there (context / hook·tool / git·CI / types·lints). Coloured soft->hard:
+     the reasoning-and-harness pair is agent-blue (aims a probability), the workflow-and-artifact pair
+     is governance-rust (binds an outcome), and a blue->rust rule carries the continuum. Palette: Umber
+     Monograph tokens — agent #2f5169 + tint #e7edf3 (soft boundaries), governance #9a3f12 + tint
+     #faf1e6 (hard boundaries), neutral #57534e (flow arrows + a mechanism label), ink #1c1917 names,
+     paper #fdfcf9. Fonts in the 16-28 band at the 1000px reference. -->
+<!-- semantic-families: agent, governance, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 330" width="1000" height="330"
+     role="group" aria-labelledby="asTitle asDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="asTitle">The authority spectrum: four boundaries where intent can be bound, softest to hardest</title>
+  <desc id="asDesc">Four boundaries sit in a row, connected left to right by arrows, above a rule that
+    fades from blue on the left to rust on the right. The left end is labelled SOFTEST, aims a
+    probability; the right end HARDEST, binds an outcome. The first two boundaries are blue: reasoning,
+    where authority acts through context, and the harness action, where it acts through a hook or tool.
+    The last two are rust: the workflow, governed by git and CI, and the accepted artifact, governed by
+    types and lints. Authority hardens from left to right — context conditions a probability while a type
+    makes the wrong artifact impossible to write — so the lesson is that the same intent can be placed at
+    any of these boundaries, at a chosen distance from the act.</desc>
+
+  <defs>
+    <marker id="as-flow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+    <marker id="as-ramp" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+    <linearGradient id="asRamp" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2f5169"/>
+      <stop offset="0.5" stop-color="#57534e"/>
+      <stop offset="1" stop-color="#9a3f12"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="330" fill="#fdfcf9"/>
+  <text x="500" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where authority can live</text>
+  <text x="500" y="74" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The same intent, bound at four boundaries — softest to hardest.</text>
+
+  <text x="60" y="116" font-size="16" font-weight="600" fill="#2f5169">SOFTEST · aims a probability</text>
+  <text x="940" y="116" text-anchor="end" font-size="16" font-weight="600" fill="#9a3f12">HARDEST · binds an outcome</text>
+  <line x1="60" y1="128" x2="932" y2="128" stroke="url(#asRamp)" stroke-width="5" stroke-linecap="round" marker-end="url(#as-ramp)"/>
+
+  <!-- boundary pills (soft pair blue, hard pair rust) -->
+  <rect x="54"  y="165" width="196" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="152" y="209" text-anchor="middle" font-size="19" font-weight="600" fill="#1c1917">reasoning</text>
+
+  <rect x="286" y="165" width="196" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="384" y="209" text-anchor="middle" font-size="19" font-weight="600" fill="#1c1917">harness action</text>
+
+  <rect x="518" y="165" width="196" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="616" y="209" text-anchor="middle" font-size="19" font-weight="600" fill="#1c1917">workflow</text>
+
+  <rect x="750" y="165" width="196" height="76" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="848" y="209" text-anchor="middle" font-size="19" font-weight="600" fill="#1c1917">accepted artifact</text>
+
+  <!-- flow arrows between boundaries -->
+  <line x1="254" y1="203" x2="282" y2="203" stroke="#57534e" stroke-width="2" marker-end="url(#as-flow)"/>
+  <line x1="486" y1="203" x2="514" y2="203" stroke="#57534e" stroke-width="2" marker-end="url(#as-flow)"/>
+  <line x1="718" y1="203" x2="746" y2="203" stroke="#57534e" stroke-width="2" marker-end="url(#as-flow)"/>
+
+  <!-- the mechanism that acts at each boundary -->
+  <line x1="152" y1="241" x2="152" y2="259" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="152" y="278" text-anchor="middle" font-size="16" fill="#2f5169">context</text>
+  <line x1="384" y1="241" x2="384" y2="259" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="384" y="278" text-anchor="middle" font-size="16" fill="#9a3f12">hook · tool</text>
+  <line x1="616" y1="241" x2="616" y2="259" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="616" y="278" text-anchor="middle" font-size="16" fill="#9a3f12">git · CI</text>
+  <line x1="848" y1="241" x2="848" y2="259" stroke="#9a3f12" stroke-width="1.5"/>
+  <text x="848" y="278" text-anchor="middle" font-size="16" fill="#9a3f12">types · lints</text>
+</svg>
