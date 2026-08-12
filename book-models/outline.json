@@ -5,7 +5,7 @@
     "sections": 280,
     "explicit_ids": 22,
     "derived_ids": 258,
-    "missing_topic_sentence": 7,
+    "missing_topic_sentence": 11,
     "sections_drained": 166,
     "paragraph_points": 494
   },
@@ -1030,19 +1030,19 @@
           "section_id": "what-the-system-is-made-of-and-what-depends-on-what",
           "level": 2,
           "heading_text": "What the system is made of, and what depends on what",
-          "topic_sentence": "The first question is compositional: what services exist, and which one is allowed to call which?",
+          "topic_sentence": null,
           "id_source": "derived",
           "block_index": 5,
           "points": [
             {
               "slug": "the-service-flow-model-answers-what-the-system-is-made-of",
               "text": "The service-flow model answers what the system is made of and what depends on what.",
-              "block_index": 7
+              "block_index": 9
             },
             {
               "slug": "one-service-graph-generates-policy-and-reconciles-the-call-graph",
               "text": "One service graph generates the access policy and reconciles the real call graph.",
-              "block_index": 9
+              "block_index": 13
             }
           ]
         },
@@ -1050,19 +1050,19 @@
           "section_id": "who-owns-each-piece-and-what-may-cross-a-boundary",
           "level": 2,
           "heading_text": "Who owns each piece, and what may cross a boundary",
-          "topic_sentence": "The next question is the one an agent asks before it edits a line: *where am I, and what may this file touch?* The **component and zone model** answers it — a typed catalog that gives every component a code zone (its focus directories, its tags, its boundary kind, the external seams it may cross).",
+          "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 21,
           "points": [
             {
               "slug": "the-component-zone-model-makes-ownership-a-queried-fact",
               "text": "The component-zone model makes ownership and boundary a queried fact.",
-              "block_index": 17
+              "block_index": 25
             },
             {
               "slug": "ownership-and-boundary-become-lint-findings-not-slow-erosion",
               "text": "Ownership and boundary reaches become findings, not slow erosion.",
-              "block_index": 20
+              "block_index": 30
             }
           ]
         },
@@ -1072,12 +1072,12 @@
           "heading_text": "Some facts describe; others declare",
           "topic_sentence": "The component and zone model is the cleanest place to see a distinction that runs through every model in this book.",
           "id_source": "derived",
-          "block_index": 24,
+          "block_index": 44,
           "points": [
             {
               "slug": "descriptive-facts-are-derivable-intent-bearing-facts-are-authored",
               "text": "Descriptive facts are derivable; intent-bearing facts are authored.",
-              "block_index": 25
+              "block_index": 45
             }
           ]
         },
@@ -1085,19 +1085,19 @@
           "section_id": "the-facts-every-consumer-joins-to",
           "level": 2,
           "heading_text": "The facts every consumer joins to",
-          "topic_sentence": "Some facts change slowly and are consulted everywhere — the file types a system handles, the governance rules it enforces.",
+          "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 50,
           "points": [
             {
               "slug": "frozen-registries-are-the-single-source-every-consumer-joins",
               "text": "Frozen registries are the single source every consumer joins by key.",
-              "block_index": 32
+              "block_index": 53
             },
             {
               "slug": "the-rule-metadata-registry-is-the-self-referential-slice",
               "text": "The rule-metadata registry is the self-referential slice; the book is generated from it.",
-              "block_index": 35
+              "block_index": 56
             }
           ]
         },
@@ -1105,14 +1105,14 @@
           "section_id": "what-third-party-material-the-build-depends-on",
           "level": 2,
           "heading_text": "What third-party material the build depends on",
-          "topic_sentence": "The last structural question looks outward: what does the build pull in that nobody in this repository wrote?",
+          "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 61,
           "points": [
             {
               "slug": "a-bill-of-materials-holds-the-dependency-manifest-complete",
               "text": "A bill of materials holds the dependency manifest complete on every build.",
-              "block_index": 41
+              "block_index": 64
             }
           ]
         }

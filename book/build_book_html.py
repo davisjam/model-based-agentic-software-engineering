@@ -353,6 +353,14 @@ MARKER_KEYWORDS = (
     #   (Typst); the ROSTER projects from the industry-cases matrix, the PROSE stays authored. Consumed +
     #   stripped, so the leak gate covers the three markers by construction. Parser SSOT: book_ir.WEX_*.
     "worked-examples", "worked-examples-end", "takeaway",
+    # `<!-- figure-forthcoming (R25b figure wave): <slug> | <caption> | <ASCII spec> -->` — a NEW figure
+    #   whose SVG the figure wave has not authored yet. It carries the slug, caption, and ASCII spec forward
+    #   for that wave WITHOUT a live `<!-- figure: -->` declaration or a `[ref:]` (either would dangle the
+    #   build against a missing asset). An INERT authored placeholder marker, sibling of `part-foreshadows` /
+    #   `slogan`: recognized by the stray-comment gate, consumed as a lone comment, renders NOTHING in both
+    #   projections. Single-line by construction (a blank line would split it across render blocks). The
+    #   figure wave replaces each with a live `label` + `figure` + `[ref:]` once the SVG exists.
+    "figure-forthcoming",
 )
 # `<!-- web-only: <inline markdown> -->` — a line that belongs in the WEB book but NOT the print PDF (e.g.
 # a "download the PDF" call-to-action, which would be absurd inside the PDF itself). The HTML build renders
