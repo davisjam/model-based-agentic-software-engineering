@@ -56,10 +56,10 @@ _THEORY_DECLARED = os.path.join(_HERE, "theory_of_mage_declared.json")
 #: automatically (the label is frozen; the filename is the one field a reorg edits).
 #: R1: the comparative TABLES (matrix + both convergence grids + their key-lists) STAY co-located on this
 #: one page — the single-page parity binding forbids scattering them across chapters.
-_PAGE_REL = chapter_identity.filename("where-mage-fits")
+_PAGE_REL = chapter_identity.filename("mage-in-the-wild")
 
 #: The chapter the six "Meet the six" one-pager CARDS were authored into. Round-4 (F1=a) RETIRES the six
-#: narrated cards: the comparative chapter (`where-mage-fits`, 6.7) already carries the payload in
+#: narrated cards: the comparative chapter (`mage-in-the-wild`, 6.5) already carries the payload in
 #: non-narrative form and disclaims "an appendix of examples", so no `<!-- case-onepager: … -->` markers
 #: survive in the body. With the cards gone, this trace dissolves to `None`, and IC7's coverage/trace loop
 #: is skipped — there is no gallery page to audit. Stays AUDIT-ONLY. (The separate `six-company-map` gallery
@@ -484,7 +484,7 @@ def render_convergence_key_md(bucket: str, model: "IndustryCasesModel | None" = 
 
 
 # ---- coverage/trace: the per-case one-pager ("Meet the six") -----------------------------------------
-# The five gallery one-pagers are HAND-AUTHORED prose in the where-mage-fits chapter, drawn faithfully from
+# The five gallery one-pagers are HAND-AUTHORED prose in the mage-in-the-wild chapter, drawn faithfully from
 # each record (author rule: "no mechanical projections; hand-author and add tracing back to the models").
 # The model NO LONGER composes their text — it validates that each placed card COVERS its record (IC7 below)
 # and traces to it by a `<!-- case-onepager: <id> -->` marker. Nothing here renders user-facing prose.
@@ -1059,7 +1059,7 @@ def cross_case_pattern_findings(model: "IndustryCasesModel | None" = None) -> "l
 
 def parity_findings(model: "IndustryCasesModel | None" = None) -> "list[str]":
     """The page-parity checks. The prose wave has placed the modeling-ceiling matrix + the two convergence
-    tables (each now a glyph GRID + a companion KEY-LIST) onto the `where-mage-fits` chapter, so MCL5, CCP4,
+    tables (each now a glyph GRID + a companion KEY-LIST) onto the `mage-in-the-wild` chapter, so MCL5, CCP4,
     and CCP5 are ACTIVE — each placed block must equal the model's projection byte-for-byte, or the page
     drifted from the evidence and must be regenerated:
       - MCL5 — the modeling-ceiling matrix vs `render_modeling_ceiling_md()`.
@@ -1113,7 +1113,7 @@ def parity_findings(model: "IndustryCasesModel | None" = None) -> "list[str]":
 def all_findings(model: "IndustryCasesModel | None" = None) -> "list[str]":
     """Structural (IC1-IC4 + IC6 + audit-only IC7) + modeling-ceiling (MCL1-MCL4) + cross-case-pattern
     (CCP1-CCP3) + parity (MCL5 + CCP4 + CCP5 now ACTIVE — the grids + key-lists are placed on the
-    where-mage-fits chapter; IC5 still vacuous). This whole band is wired AUDIT-ONLY-first (rule-#55): a
+    mage-in-the-wild chapter; IC5 still vacuous). This whole band is wired AUDIT-ONLY-first (rule-#55): a
     follow-up promotes it to BLOCKING once a clean session confirms the drain."""
     if model is None:
         model = derive_model()

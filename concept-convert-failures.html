@@ -210,38 +210,67 @@
 <p><strong>Claim</strong> — Velocity surfaces the failures you could not foresee. Convert each recurring one into a mechanism, pushed as far toward hard enforcement as it will go.</p>
 <table><thead><tr><th>Concept</th><th>Big idea 5 · the practice</th></tr></thead><tbody><tr><td>Claim</td><td>Velocity surfaces the failures you could not foresee. Convert each recurring one into a mechanism, pushed as far toward hard enforcement as it will go.</td></tr><tr><td>Mechanisms</td><td>Self-governance · The Audit-to-Lint mechanism · Cross-source coherence lints · DDT pin-trailers</td></tr><tr><td>Related</td><td>Hold intent with a mechanism: prevent first, sense the rest · The lifecycle stays, but now agents sit in the developer's seat</td></tr><tr><td>In the book</td><td>book/3.4-governance-conversion.html</td></tr></tbody></table>
 <h2>The idea</h2>
-<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" role="group" aria-labelledby="frbTitle frbDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="cf-1-frbTitle">Governance runs soft to hard: a compact spectrum of mechanism classes.</title>
-  <desc id="cf-1-frbDesc">A horizontal spectrum runs from soft governance on the left to hard governance on the right. Soft, probabilistic mechanisms that aim an agent sit on the left: conventions, briefs, templates, prose conventions, and a reviewing agent. Judgment-laden doc-derived tests sit in the middle. Deterministic mechanisms that hold the line sit on the right: lints, types, schemas, and quality, drift, or deploy gates, together with a marker file the tool reads. Soft aims the agent; hard holds the line; a mature environment uses both.</desc>
+<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1250 430"
+     role="group" aria-labelledby="gcTitle gcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="cf-1-gcTitle">Governance conversion — the loop that hardens the environment</title>
+  <desc id="cf-1-gcDesc">A five-step loop drawn left to right. Velocity rises as the fleet
+    accelerates. A failure recurs — the same wall hit twice. Judgment diagnoses the class,
+    naming the class rather than the instance. A mechanism is encoded — a type, a lint, a
+    gate, or a sensor. The class then cannot recur; it is prevented by construction. A dashed
+    return path runs back from prevention to rising velocity, labeled: the environment is now
+    harder to break, and velocity climbs again. This is the same loop shape as the printer
+    loop, escalated — it fires when the printer loop keeps hitting one wall.</desc>
+
   <defs>
-    <linearGradient id="cf-1-frbGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#f6f4ef"/>
-      <stop offset="0.5" stop-color="#faf1e6"/>
-      <stop offset="1" stop-color="#9a3f12"/>
-    </linearGradient>
+    <marker id="cf-1-gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+    <marker id="cf-1-gc-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
   </defs>
-  <rect x="0" y="0" width="1000" height="340" fill="#fdfcf9"/>
-  <text x="500" y="46" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Governance runs soft to hard</text>
-  <text x="500" y="72" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Soft aims the agent; hard holds the line. A mature environment uses both.</text>
-  <text x="150" y="112" text-anchor="middle" font-size="16" fill="#57534e">probabilistic · aims an agent</text>
-  <text x="850" y="112" text-anchor="middle" font-size="16" fill="#9a3f12">deterministic · holds the line</text>
-  <rect x="70" y="126" width="860" height="46" rx="12" fill="url(#cf-1-frbGrad)" stroke="#e4e0d8" stroke-width="1.5"/>
-  <text x="150" y="156" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">SOFT</text>
-  <text x="850" y="156" text-anchor="middle" font-size="22" font-weight="700" fill="#fdfcf9">HARD</text>
-  <line x1="150" y1="172" x2="150" y2="196" stroke="#e4e0d8" stroke-width="1.5"/>
-  <text x="150" y="214" text-anchor="middle" font-size="16" font-weight="600" fill="#57534e">convention · brief</text>
-  <text x="150" y="231" text-anchor="middle" font-size="16" font-weight="600" fill="#57534e">template · prose</text>
-  <line x1="330" y1="172" x2="330" y2="196" stroke="#2f5169" stroke-width="1.5"/>
-  <text x="330" y="214" text-anchor="middle" font-size="16" font-weight="600" fill="#2f5169">reviewing agent</text>
-  <line x1="500" y1="172" x2="500" y2="196" stroke="#2f5169" stroke-width="1.5"/>
-  <text x="500" y="214" text-anchor="middle" font-size="16" font-weight="600" fill="#2f5169">doc-derived test</text>
-  <line x1="680" y1="172" x2="680" y2="196" stroke="#9a3f12" stroke-width="1.5"/>
-  <text x="680" y="214" text-anchor="middle" font-size="16" font-weight="600" fill="#9a3f12">lint · type · schema</text>
-  <line x1="850" y1="172" x2="850" y2="196" stroke="#9a3f12" stroke-width="1.5"/>
-  <text x="850" y="214" text-anchor="middle" font-size="16" font-weight="600" fill="#9a3f12">quality / drift / deploy gate ·</text>
-  <text x="850" y="231" text-anchor="middle" font-size="16" font-weight="600" fill="#9a3f12">marker file the tool reads</text>
-  <text x="500" y="288" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The second time a soft rule fails, convert it: a documented rule becomes a lint the agent cannot talk past.</text>
-  <text x="500" y="314" text-anchor="middle" font-size="16" fill="#155c38">Stronger guardrails let the fleet run faster, safely.</text>
+
+  <!-- 1. velocity rises (center 135) -->
+  <rect x="30" y="70" width="210" height="104" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="135" y="116" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Velocity rises</text>
+  <text x="135" y="142" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the fleet accelerates</text>
+
+  <!-- 2. a failure recurs (center 380) -->
+  <rect x="275" y="70" width="210" height="104" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+  <text x="380" y="116" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">A failure recurs</text>
+  <text x="380" y="142" text-anchor="middle" font-size="20" font-style="italic" fill="#b23b3b">the same wall, twice</text>
+
+  <!-- 3. diagnose the class (center 625) -->
+  <rect x="520" y="70" width="210" height="104" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="625" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Diagnose</text>
+  <text x="625" y="134" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the class, not</text>
+  <text x="625" y="154" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the instance</text>
+
+  <!-- 4. encode a mechanism (center 870) -->
+  <rect x="765" y="70" width="210" height="104" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="870" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Encode a</text>
+  <text x="870" y="134" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">mechanism</text>
+  <text x="870" y="158" text-anchor="middle" font-size="18.11" font-style="italic" fill="#57534e">type · lint · gate · sensor</text>
+
+  <!-- 5. the class cannot recur (center 1115) -->
+  <rect x="1010" y="70" width="210" height="104" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="1115" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">The class</text>
+  <text x="1115" y="134" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">can't recur</text>
+  <text x="1115" y="158" text-anchor="middle" font-size="16.43" font-style="italic" fill="#57534e">prevented by construction</text>
+
+  <!-- forward arrows -->
+  <g stroke="#1c1917" stroke-width="2" fill="none">
+    <path d="M240,122 L271,122" marker-end="url(#cf-1-gc-ah)"/>
+    <path d="M485,122 L516,122" marker-end="url(#cf-1-gc-ah)"/>
+    <path d="M730,122 L761,122" marker-end="url(#cf-1-gc-ah)"/>
+    <path d="M975,122 L1006,122" marker-end="url(#cf-1-gc-ah)"/>
+  </g>
+
+  <!-- dashed return path: prevention -> velocity -->
+  <path d="M1115,174 C1115,300 640,330 135,300 L135,178"
+        fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#cf-1-gc-ah-mut)"/>
+  <text x="625" y="345" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the environment is now harder to break — and velocity climbs again</text>
 </svg></figure>
 <p>You cannot foresee every failure a fast fleet will find. Velocity is what surfaces them: agents moving at scale reach edges no specification named and no designer pictured. Trying to enumerate them all up front is a losing game. The practice is the opposite — let velocity expose the failures, then convert each recurring one into a mechanism the environment enforces.</p>
 <p>Mechanisms sit on a spectrum from soft to hard: a convention or a brief aims the agent but cannot block it; a lint or a gate holds the line whether the agent cooperates or not. The second time a soft rule fails, move it right — the documented rule becomes a lint the agent cannot talk past.</p>

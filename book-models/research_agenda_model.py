@@ -47,9 +47,9 @@ _THEORY_DECLARED = os.path.join(_HERE, "theory_of_mage_declared.json")
 
 #: The page the coda index table is authored into (RA5 prose-parity target). Resolved through the
 #: chapter-identity model, so a renumber of the home chapter updates the target automatically. The coda is
-#: placed as the closing movement of the 'Where MAGE Fits' chapter (the last analytical beat before the
+#: placed in the 'Education, Research, and Open Problems' chapter (the research handoff before the
 #: Conclusion — every agenda home precedes it, so every back-reference resolves).
-_CODA_PAGE_REL = chapter_identity.filename("where-mage-fits")
+_CODA_PAGE_REL = chapter_identity.filename("education-research-open-problems")
 
 #: The ratified count — encode the author's set so a silent add/drop reddens (the theory model's
 #: EXPECT_HYPOTHESES analogue: the count guard is the backstop against silent agenda drift).

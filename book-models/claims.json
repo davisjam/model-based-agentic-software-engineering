@@ -51,7 +51,7 @@
         "the governing apparatus — constraints, sensors, validators, gates hold every change to standard",
         "per-change human inspection — re-reading each change by hand"
       ],
-      "home": "three-ways-to-run-a-fleet",
+      "home": "the-soft-layer-guides-the-hard-layer-holds",
       "asserted_at": [],
       "contradicted_by": "Prose treating recurring per-change human review as the reliability mechanism, rather than the governing apparatus that holds every change automatically.",
       "watch_phrases": [],
@@ -59,7 +59,7 @@
         "big-idea:alignment-thesis"
       ],
       "provenance": "implicit",
-      "anchor": "part1.md names 'The apparatus is the review' a major book claim, but no chapter yet lands it as a dedicated named formulation — the review-replacement slogan's net-subtractive fix-wave will canonicalize it. Homed at the governance-vs-oversight argument (three-ways-to-run-a-fleet); it is the Alignment-Thesis consequence of oversight-does-not-scale.",
+      "anchor": "part1.md names 'The apparatus is the review' a major book claim, but no chapter yet lands it as a dedicated named formulation — the review-replacement slogan's net-subtractive fix-wave will canonicalize it. Homed at the soft/hard-layer argument (the-soft-layer-guides-the-hard-layer-holds); it is the Alignment-Thesis consequence of oversight-does-not-scale.",
       "word_count": 16
     },
     {
@@ -115,7 +115,7 @@
       "home": "toward-a-theory-of-mage",
       "asserted_at": [
         "toward-a-theory-of-mage",
-        "implications-for-se"
+        "reorganization-of-se"
       ],
       "contradicted_by": "Treating more governance as monotonically better, or accumulation that raises apparatus without lowering future reasoning (bureaucracy that never compounds, or capital left unretired past its fit).",
       "watch_phrases": [],
@@ -131,9 +131,9 @@
       "kind": "practice",
       "statement": "Velocity exposes the unforeseeable failure; judgment converts each recurring one into a mechanism.",
       "distinguishes": [],
-      "home": "three-ways-to-run-a-fleet",
+      "home": "governance-conversion-the-move-that-scales",
       "asserted_at": [
-        "three-ways-to-run-a-fleet",
+        "governance-conversion-the-move-that-scales",
         "ex-post-everything-you-learn-by-building"
       ],
       "contradicted_by": "Prescribing up-front enumeration of all obligations as the method, or per-instance patching without retiring the class.",
@@ -153,9 +153,9 @@
         "maintenance — model and code equal under drift gates",
         "authoring direction — model→code or code→model as the rule"
       ],
-      "home": "relationship-to-se",
+      "home": "reorganization-of-se",
       "asserted_at": [
-        "relationship-to-se",
+        "reorganization-of-se",
         "state-the-derivation-direction"
       ],
       "contradicted_by": "Prose stating MAGE prescribes model→code (or code→model) as its own authoring direction — the drift the 3.1 scope-box fix corrected.",
@@ -174,9 +174,9 @@
       "kind": "causal",
       "statement": "A model earns its keep twice: it solves the agent's context problem and it holds quality.",
       "distinguishes": [],
-      "home": "relationship-to-se",
+      "home": "reorganization-of-se",
       "asserted_at": [
-        "relationship-to-se",
+        "reorganization-of-se",
         "models-and-the-semantic-gap",
         "the-executable-zoo"
       ],
@@ -201,7 +201,7 @@
       "home": "what-changed",
       "asserted_at": [
         "what-changed",
-        "implications-for-se"
+        "reorganization-of-se"
       ],
       "contradicted_by": "Blaming coordination / communication overhead; OR treating the context window as the sole bound, ignoring reasoning capacity.",
       "watch_phrases": [
@@ -222,9 +222,9 @@
         "a point on the velocity↔oversight dial",
         "changes what reliability is made of — pay per-class-of-failure"
       ],
-      "home": "three-ways-to-run-a-fleet",
+      "home": "the-soft-layer-guides-the-hard-layer-holds",
       "asserted_at": [
-        "three-ways-to-run-a-fleet"
+        "the-soft-layer-guides-the-hard-layer-holds"
       ],
       "contradicted_by": "Prose placing governance as a midpoint / balance on the speed-safety dial (the resolved 'midway' framing).",
       "watch_phrases": [
@@ -261,9 +261,9 @@
       "kind": "stance",
       "statement": "Engineering discipline must be mechanized, not remembered: push it into tooling so correctness never depends on recall.",
       "distinguishes": [],
-      "home": "relationship-to-se",
+      "home": "reorganization-of-se",
       "asserted_at": [
-        "relationship-to-se"
+        "reorganization-of-se"
       ],
       "contradicted_by": "Relying on an agent or human remembering, or being careful, as the enforcement.",
       "watch_phrases": [],
@@ -326,10 +326,10 @@
       "kind": "thesis",
       "statement": "Models are engineering's universal language; software could not afford them until agents cut the recurring sync cost.",
       "distinguishes": [],
-      "home": "models-as-a-common-working-language",
+      "home": "models-are-the-universal-language-of-engineering",
       "asserted_at": [
         "what-the-method-turned-out-to-be",
-        "models-as-a-common-working-language",
+        "models-are-the-universal-language-of-engineering",
         "conclusion"
       ],
       "contradicted_by": "Framing models as a nice-to-have or a software-specific trick rather than engineering's common language.",
@@ -454,7 +454,7 @@
       "home": "derive-and-join-do-not-repeat",
       "asserted_at": [
         "derive-and-join-do-not-repeat",
-        "relationship-to-se"
+        "reorganization-of-se"
       ],
       "contradicted_by": "Endorsing a model kept as a separate hand-updated artifact (a second source), or asserting one fixed derivation direction as the rule.",
       "watch_phrases": [],

@@ -7,14 +7,14 @@
     {
       "id": "empirical-se-signal-to-noise",
       "statement": "For decades empirical software engineering could rarely show a process effect much bigger than the variation among developers; the intelligence, skill, and context confounds swamped the signal.",
-      "chapter_slug": "implications-for-se",
+      "chapter_slug": "reorganization-of-se",
       "reality_claim": true,
       "frame": "reality"
     },
     {
       "id": "build-reports-corroborate-practices",
       "statement": "Independent practitioner build reports converge on the moves this book teaches — heavy testing, spec-driven development, an environment that enforces its own rules — corroborating that the practices work.",
-      "chapter_slug": "implications-for-se",
+      "chapter_slug": "reorganization-of-se",
       "reality_claim": true,
       "frame": "reality"
     },
@@ -28,7 +28,7 @@
     {
       "id": "agile-accidental-complexity-origin",
       "statement": "Agile's velocity-over-ceremony stance was an accidental-complexity concession — teams shipped fast and kept models thin because holding quality and a current model honest by hand was too expensive at pace.",
-      "chapter_slug": "implications-for-se",
+      "chapter_slug": "reorganization-of-se",
       "reality_claim": true,
       "frame": "conjecture"
     }

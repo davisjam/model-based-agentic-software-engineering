@@ -103,7 +103,7 @@
         "Stripe observed agents passing in nonexistent data, watching the API return 400s, and concluding the endpoint worked — an agent satisfying itself with evidence a competent engineer would recognize as irrelevant to the requirement."
       ],
       "destination": {
-        "chapter": "open-problems",
+        "chapter": "education-research-open-problems",
         "anchor": null
       },
       "role": "corroborate",
@@ -152,7 +152,7 @@
         "GitHub reports the same operational move MAGE calls governance conversion: when an agent repeats a mistake, change the environment — 'blame process, not agents' — including a reserved test space the agent cannot touch."
       ],
       "destination": {
-        "chapter": "implications-for-se",
+        "chapter": "reorganization-of-se",
         "anchor": null
       },
       "role": "corroborate",
@@ -392,7 +392,7 @@
         "Salesforce's Agent Graph externalizes reasoning into design-time graphs whose subagents are managed by finite state machines — 'guided determinism' — keeping the model's freedom only where it is valuable: when part of the reasoning is stable enough to represent explicitly, move it out of the model's private inference into an inspectable structure."
       ],
       "destination": {
-        "chapter": "implications-for-se",
+        "chapter": "reorganization-of-se",
         "anchor": null
       },
       "role": "corroborate",

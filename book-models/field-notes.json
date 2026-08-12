@@ -7,14 +7,14 @@
     {
       "id": "fn-worktree-cleanup-three-failures",
       "incident": "A worktree-cleanup guard failed three times in five days, each time destroying a live agent's work — the recurring failure that motivated converting the ad-hoc cleanup into a guarded, id-aware mechanism.",
-      "chapter_slug": "implications-for-se",
+      "chapter_slug": "reorganization-of-se",
       "backs_claims": ["failures-become-machinery"],
       "limitation": "Single operator, single repository; the frequency is one project's experience, not a measured rate."
     },
     {
       "id": "fn-weekend-ts-migration",
       "incident": "An entire front end was moved to a typed language over a weekend with no observed defects — the lived instance behind the refactoring-is-cheap-under-a-strong-environment claim.",
-      "chapter_slug": "implications-for-se",
+      "chapter_slug": "reorganization-of-se",
       "backs_claims": ["abundant-implementation"],
       "limitation": "One migration, no controlled comparison; 'no defects observed' is bounded by what the environment's gates could see."
     },
@@ -35,7 +35,7 @@
     {
       "id": "mmm-real-bug-ledger-260724",
       "incident": "Across six model-Epics, model-based reasoning surfaced FOUR confirmed real product defects (a mislabeled CLI exit-code seam, a chunk-leak on the content-fail cleanup path, an unfenced editor lost-update race, a monotonic-drift queue-depth counter) — the signal Epics all found something actionable; the clean Epics each produced an architectural strengthening move instead. The 'modeling catches real bugs' evidence.",
-      "chapter_slug": "implications-for-se",
+      "chapter_slug": "reorganization-of-se",
       "backs_claims": ["modeling-thesis", "H5-local-model-deficiency"],
       "limitation": "Four defects over six efforts, TWO of the four LOW-severity; a find-rate over one product's window, single operator, single fleet — a lived find-rate, not a controlled defect-yield comparison."
     },
@@ -70,14 +70,14 @@
     {
       "id": "reap-unit-pins-green-live-fails-pin-the-seam-260807",
       "incident": "A worktree-reap fix landed with fifteen green unit pins and a clean self-report, and it did not work: every run still reaped nothing, and the operator kept force-cleaning landed worktrees by hand for the rest of the session. The pins exercised the reap wrapper in isolation — they built the completion marker themselves and asserted the wrapper's return value — while the real defect lived one layer down, in a second guard INSIDE the subprocess the wrapper shells out to. A green unit suite over the unit-in-isolation is silent about the seam the unit crosses. The remedy was one honest end-to-end pin that drives the real land-then-clean path, faking only the leaf subprocesses with a faithful contract; it goes red on the bug and green with the fix. The operator's own repeated manual toil was the ground-truth signal that 'passed its pins' did not mean 'works' — operator friction is a symptom worth root-causing, not just working around.",
-      "chapter_slug": "implications-for-se",
+      "chapter_slug": "reorganization-of-se",
       "backs_claims": ["H3-mechanized-assurance", "H5-local-model-deficiency"],
       "limitation": "A single incident, single operator; illustrative of a seam-blindness class rather than a measured miss-rate. 'Prefer one end-to-end seam pin over N isolated-unit pins' holds for behavior whose value is an integration outcome; it is not a claim that unit pins are generally inferior."
     },
     {
       "id": "content-free-heuristic-vs-modern-art-260808",
       "incident": "A ContentFreeImageDetector — skip the GenAI alt-text call when an image's decoded pixels are near-uniform (composite standard deviation <= 3.0 on a 0-255 scale) — would mark a monochrome painting (a Malevich Black Square, a Rothko color field, an International Klein Blue) as decorative and skip it, dropping content that IS there and inverting the accessibility-fidelity mission. The detector's docstring asserted, confidently, that a false-decorative on a real image was 'not possible' because its guard set (photos, charts) measured stddev >= 64, a 20x margin over the gate. The margin was real and irrelevant: it was measured on the wrong population. A blank spacer and a Malevich are pixel-identical in variance because the difference is not in the pixels. 'Content-free' is not a property of an image but of an image in a context of use; a strong model produced locally-excellent, typed, fail-safe code that optimized a pixel property while the load-bearing predicate was a contextual judgment — the thing a domain-aware engineer supplies in one second and commodity intelligence still missed.",
-      "chapter_slug": "implications-for-se",
+      "chapter_slug": "reorganization-of-se",
       "backs_claims": ["abundant-implementation", "seat-moves"],
       "limitation": "A single caught-in-design incident, one operator, one product: the false-decorative was reasoned to and routed for a contextual-gate fix (a cheap thumbnail-to-VLM 'spacer vs artwork' gate plus a fidelity default of describe-when-uncertain), not observed harming a live user — a located capability-boundary, not a measured escape rate. The confident 'not possible' is the tell, not a metric."
     }

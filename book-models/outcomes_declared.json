@@ -158,10 +158,10 @@
       "obj": "what the method changes for how software engineering is measured, staffed, and taught",
       "statement": "After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become the universal language of engineering.",
       "provenance": "declared",
-      "anchor": "implications-for-se sections (the-judgment-moved, what-this-changes-for-how-we-measure-staff-and-teach, models-are-the-universal-language) + the-part-that-stays-yours.",
+      "anchor": "reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours.",
       "secondary_units": [
         "conclusion",
-        "where-mage-fits"
+        "mage-in-the-wild"
       ]
     },
     {
@@ -480,7 +480,7 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "implications-for-se",
+      "primary_unit": "reorganization-of-se",
       "verb": "evaluate",
       "obj": "what the method changes for how software engineering is measured, staffed, and taught",
       "statement": "After this chapter, the reader can evaluate the discipline-level implications: where judgment moved, what saturates, and why models are the universal language of engineering.",
@@ -498,7 +498,7 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "relationship-to-se",
+      "primary_unit": "reorganization-of-se",
       "verb": "situate",
       "obj": "the book within the software-engineering literature — Software Engineering at Google, the Gang of Four, and Model-Driven Software Engineering",
       "statement": "After this chapter, the reader can situate MAGE within the software-engineering literature — mechanized discipline (SE at Google), the design-pattern form (the Gang of Four), and the modeling tradition (MDSE) — as older aspirations under new economics.",
@@ -507,16 +507,16 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "where-mage-fits",
+      "primary_unit": "mage-in-the-wild",
       "verb": "analyze",
-      "obj": "six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling, the convergence buckets, and the governance census — without mistaking corroboration for a controlled test",
-      "statement": "After this chapter, the reader can analyze six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling where the software-first sites fall silent, the convergence buckets they share anyway, and the governance census that turns description into diagnosis — without mistaking corroboration across reconstructions for a controlled test.",
+      "obj": "six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling, the convergence buckets, and the gap/orphan diagnosis — without mistaking corroboration for a controlled test",
+      "statement": "After this chapter, the reader can analyze six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling where the software-first sites fall silent, the convergence buckets they share anyway, and the gap/orphan diagnosis read across the six sites — without mistaking corroboration across reconstructions for a controlled test.",
       "provenance": "declared",
-      "anchor": "Section titles 'the-modeling-ceiling', 'three-buckets-of-convergence', 'the-governance-census', 'the-organizational-topology', 'common-destination-different-entry-points'."
+      "anchor": "Section titles 'the-modeling-ceiling', 'three-buckets-of-convergence', 'the-organizational-topology', 'common-destination-different-entry-points'."
     },
     {
       "granularity": "chapter",
-      "primary_unit": "open-problems",
+      "primary_unit": "education-research-open-problems",
       "verb": "evaluate",
       "obj": "why studying a governed environment demands a new empirical regime — fallible oracles, the limits of per-task ablation, deep single-case evidence, and a fixed intelligence input",
       "statement": "After this chapter, the reader can evaluate why a governed environment demands a new empirical regime: the oracle is itself fallible, per-task ablation cannot price the environment, deep single-case evidence is a legitimate method, and the intelligence input must be held fixed to measure what the environment does.",
@@ -749,7 +749,7 @@
       "provenance": "derived",
       "anchor": "point: some-goals-split-into-neither-because-the-failure-is-an-absence-nobody-specified / the-residual-is-a-human-job-that-sets-the-throughput-ceiling / the-residual-is-the-complement-of-the-two-moves-not-a-third-value-on-the-soft-hard-axis / naming-the-residual-is-the-honest-edge-that-makes-the-mechanized-core-credible / the-residual-is-not-a-fixed-wall-authoring-the-missing-spec-pulls-a-goal-out",
       "secondary_units": [
-        "implications-for-se"
+        "reorganization-of-se"
       ]
     }
   ]

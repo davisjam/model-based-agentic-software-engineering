@@ -23,7 +23,7 @@
       "kind": "frontier",
       "status": "open",
       "one_line": "How far judgment compiles into deterministic machinery — and how far it can be pushed by conjecturing the rungs not yet discovered.",
-      "source_section": "6.7-where-mage-fits",
+      "source_section": "6.5-mage-in-the-wild",
       "related_hypotheses": ["H3-mechanized-assurance", "H4-representation-leverage"]
     },
     {
@@ -41,7 +41,7 @@
       "kind": "frontier",
       "status": "conjectured",
       "one_line": "How much assurance emerges as a by-product of a model-rich governed environment (the MAGE-II conjecture); proximity to NIST AI RMF and UL 4600.",
-      "source_section": "6.8-open-problems",
+      "source_section": "6.6-education-research-open-problems",
       "related_hypotheses": ["H3-mechanized-assurance"]
     },
     {
@@ -50,7 +50,7 @@
       "kind": "frontier",
       "status": "open",
       "one_line": "What must be shared for an outsider to reproduce not the artifact but the capacity to evolve it; which environment artifacts join the supply chain.",
-      "source_section": "6.8-open-problems",
+      "source_section": "6.6-education-research-open-problems",
       "related_hypotheses": ["H7-conversion-conditions"]
     },
     {
@@ -59,7 +59,7 @@
       "kind": "measurement",
       "status": "established",
       "one_line": "Inventory obligations against mechanisms; measure Coverage, Under-governance, and Governance-debt — with propagation-latency proposed as a future fourth metric.",
-      "source_section": "6.7-where-mage-fits",
+      "source_section": "6.5-mage-in-the-wild",
       "related_hypotheses": ["H3-mechanized-assurance", "H6-oversight-amortization", "H8-learning-propagation"]
     },
     {
@@ -77,7 +77,7 @@
       "kind": "generalization",
       "status": "conjectured",
       "one_line": "Whether the answer generalizes to model-based engineering at large (Siemens, Zenseact) — the widened core question of MBAE.",
-      "source_section": "6.7-where-mage-fits",
+      "source_section": "6.5-mage-in-the-wild",
       "related_hypotheses": ["H4-representation-leverage"]
     }
   ]

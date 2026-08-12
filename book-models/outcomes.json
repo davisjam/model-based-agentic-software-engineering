@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 20,
     "elaborative_links": 27,
     "units_serving_as_elaborative": 20,
-    "sections_total": 266,
+    "sections_total": 252,
     "sections_primary_of_an_outcome": 37,
     "modules": 7,
-    "lessons": 35
+    "lessons": 33
   },
   "taxonomy": {
     "know": [
@@ -340,37 +340,27 @@
             "section_outcomes": []
           },
           {
-            "lesson": "6.3-relationship-to-se",
+            "lesson": "6.3-reorganization-of-se",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.4-engineering-beyond-software",
+            "lesson": "6.4-software-rejoins-engineering",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.5-implications-for-se",
+            "lesson": "6.5-mage-in-the-wild",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.6-educating-the-mage-engineer",
+            "lesson": "6.6-education-research-open-problems",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.7-where-mage-fits",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "6.8-open-problems",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "6.9-conclusion",
+            "lesson": "6.7-conclusion",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -513,14 +503,14 @@
       "primary_unit": "part-6",
       "secondary_units": [
         "conclusion",
-        "where-mage-fits"
+        "mage-in-the-wild"
       ],
       "verb": "evaluate",
       "obj": "what the method changes for how software engineering is measured, staffed, and taught",
       "statement": "After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become the universal language of engineering.",
       "bloom": "evaluate",
       "provenance": "declared",
-      "anchor": "implications-for-se sections (the-judgment-moved, what-this-changes-for-how-we-measure-staff-and-teach, models-are-the-universal-language) + the-part-that-stays-yours.",
+      "anchor": "reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours.",
       "gap_note": null
     },
     {
@@ -547,6 +537,19 @@
       "bloom": "know",
       "provenance": "declared",
       "anchor": "Section titles 'the-part-that-stays-yours' + 'where-to-go-next'.",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "education-research-open-problems::evaluate-why-studying-a-governed-environment-dema",
+      "granularity": "chapter",
+      "primary_unit": "education-research-open-problems",
+      "secondary_units": [],
+      "verb": "evaluate",
+      "obj": "why studying a governed environment demands a new empirical regime — fallible oracles, the limits of per-task ablation, deep single-case evidence, and a fixed intelligence input",
+      "statement": "After this chapter, the reader can evaluate why a governed environment demands a new empirical regime: the oracle is itself fallible, per-task ablation cannot price the environment, deep single-case evidence is a legitimate method, and the intelligence input must be held fixed to measure what the environment does.",
+      "bloom": "evaluate",
+      "provenance": "declared",
+      "anchor": "Section titles 'governing-the-oracle-...', 'the-beautiful-garden-...', 'the-methodology-of-deep-single-case-evidence', 'the-new-measurement-regime'.",
       "gap_note": null
     },
     {
@@ -592,19 +595,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "implications-for-se::evaluate-what-the-method-changes-for-how-software",
-      "granularity": "chapter",
-      "primary_unit": "implications-for-se",
-      "secondary_units": [],
-      "verb": "evaluate",
-      "obj": "what the method changes for how software engineering is measured, staffed, and taught",
-      "statement": "After this chapter, the reader can evaluate the discipline-level implications: where judgment moved, what saturates, and why models are the universal language of engineering.",
-      "bloom": "evaluate",
-      "provenance": "declared",
-      "anchor": "Section titles 'the-judgment-moved-and-it-moved-toward-you', 'what-this-changes-for-how-we-measure-staff-and-teach', 'models-are-the-universal-language-of-engineering'.",
-      "gap_note": null
-    },
-    {
       "outcome_id": "lifecycles-and-runbooks::author-a-lifecycle-and-a-runbook-that-splits-th",
       "granularity": "chapter",
       "primary_unit": "lifecycles-and-runbooks",
@@ -628,6 +618,19 @@
       "bloom": "know",
       "provenance": "declared",
       "anchor": "Section titles: 'two-birds-one-stone', 'the-shape-of-the-machine', 'two-scars', 'the-move-that-recurs'.",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "mage-in-the-wild::analyze-six-independent-industrial-systems-as-ev",
+      "granularity": "chapter",
+      "primary_unit": "mage-in-the-wild",
+      "secondary_units": [],
+      "verb": "analyze",
+      "obj": "six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling, the convergence buckets, and the gap/orphan diagnosis — without mistaking corroboration for a controlled test",
+      "statement": "After this chapter, the reader can analyze six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling where the software-first sites fall silent, the convergence buckets they share anyway, and the gap/orphan diagnosis read across the six sites — without mistaking corroboration across reconstructions for a controlled test.",
+      "bloom": "analyze",
+      "provenance": "declared",
+      "anchor": "Section titles 'the-modeling-ceiling', 'three-buckets-of-convergence', 'the-organizational-topology', 'common-destination-different-entry-points'.",
       "gap_note": null
     },
     {
@@ -714,19 +717,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "open-problems::evaluate-why-studying-a-governed-environment-dema",
-      "granularity": "chapter",
-      "primary_unit": "open-problems",
-      "secondary_units": [],
-      "verb": "evaluate",
-      "obj": "why studying a governed environment demands a new empirical regime — fallible oracles, the limits of per-task ablation, deep single-case evidence, and a fixed intelligence input",
-      "statement": "After this chapter, the reader can evaluate why a governed environment demands a new empirical regime: the oracle is itself fallible, per-task ablation cannot price the environment, deep single-case evidence is a legitimate method, and the intelligence input must be held fixed to measure what the environment does.",
-      "bloom": "evaluate",
-      "provenance": "declared",
-      "anchor": "Section titles 'governing-the-oracle-...', 'the-beautiful-garden-...', 'the-methodology-of-deep-single-case-evidence', 'the-new-measurement-regime'.",
-      "gap_note": null
-    },
-    {
       "outcome_id": "reasoning-horizon::explain-why-an-agent-is-a-loop-and-why-it-needs",
       "granularity": "chapter",
       "primary_unit": "reasoning-horizon",
@@ -740,9 +730,22 @@
       "gap_note": null
     },
     {
-      "outcome_id": "relationship-to-se::situate-the-book-within-the-software-engineering",
+      "outcome_id": "reorganization-of-se::evaluate-what-the-method-changes-for-how-software",
       "granularity": "chapter",
-      "primary_unit": "relationship-to-se",
+      "primary_unit": "reorganization-of-se",
+      "secondary_units": [],
+      "verb": "evaluate",
+      "obj": "what the method changes for how software engineering is measured, staffed, and taught",
+      "statement": "After this chapter, the reader can evaluate the discipline-level implications: where judgment moved, what saturates, and why models are the universal language of engineering.",
+      "bloom": "evaluate",
+      "provenance": "declared",
+      "anchor": "Section titles 'the-judgment-moved-and-it-moved-toward-you', 'what-this-changes-for-how-we-measure-staff-and-teach', 'models-are-the-universal-language-of-engineering'.",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "reorganization-of-se::situate-the-book-within-the-software-engineering",
+      "granularity": "chapter",
+      "primary_unit": "reorganization-of-se",
       "secondary_units": [],
       "verb": "situate",
       "obj": "the book within the software-engineering literature — Software Engineering at Google, the Gang of Four, and Model-Driven Software Engineering",
@@ -897,19 +900,6 @@
       "bloom": "analyze",
       "provenance": "derived",
       "anchor": "point: a-system-of-controls-has-the-one-failure-a-list-cannot-show / each-collision-lives-in-the-space-between-two-controls-drawn-nowhere / the-governance-graph-nodes-are-mechanisms-edges-are-conflicts-joined-by-shared-resource / outside-governance-extends-the-graph-without-changing-shape",
-      "gap_note": null
-    },
-    {
-      "outcome_id": "where-mage-fits::analyze-six-independent-industrial-systems-as-ev",
-      "granularity": "chapter",
-      "primary_unit": "where-mage-fits",
-      "secondary_units": [],
-      "verb": "analyze",
-      "obj": "six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling, the convergence buckets, and the governance census — without mistaking corroboration for a controlled test",
-      "statement": "After this chapter, the reader can analyze six independent industrial systems as evidence for and against MAGE's claims — the modeling ceiling where the software-first sites fall silent, the convergence buckets they share anyway, and the governance census that turns description into diagnosis — without mistaking corroboration across reconstructions for a controlled test.",
-      "bloom": "analyze",
-      "provenance": "declared",
-      "anchor": "Section titles 'the-modeling-ceiling', 'three-buckets-of-convergence', 'the-governance-census', 'the-organizational-topology', 'common-destination-different-entry-points'.",
       "gap_note": null
     },
     {
@@ -1298,7 +1288,7 @@
       "granularity": "section",
       "primary_unit": "the-residual-goals-no-mechanism-reaches",
       "secondary_units": [
-        "implications-for-se"
+        "reorganization-of-se"
       ],
       "verb": "identify",
       "obj": "the residual goals no mechanism reaches, why they stay human judgment, and how authoring a spec pulls one out",

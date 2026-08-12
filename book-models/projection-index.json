@@ -3,15 +3,15 @@
   "_counts": {
     "tracked_slugs": 34,
     "slugs_rendered": 25,
-    "total_sites": 1646,
+    "total_sites": 1620,
     "by_projection": {
-      "book-pdf": 22,
-      "book-web": 1223,
+      "book-pdf": 21,
+      "book-web": 1199,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
       "website-landing": 13,
-      "website-misc": 53,
+      "website-misc": 52,
       "website-theory": 10
     }
   },
@@ -149,39 +149,31 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 19
+            "occ": 10
           },
           {
             "file": "book/6.2-scope-conditions.html",
             "occ": 4
           },
           {
-            "file": "book/6.3-relationship-to-se.html",
-            "occ": 9
+            "file": "book/6.3-reorganization-of-se.html",
+            "occ": 38
           },
           {
-            "file": "book/6.4-engineering-beyond-software.html",
+            "file": "book/6.4-software-rejoins-engineering.html",
             "occ": 4
           },
           {
-            "file": "book/6.5-implications-for-se.html",
-            "occ": 67
+            "file": "book/6.5-mage-in-the-wild.html",
+            "occ": 25
           },
           {
-            "file": "book/6.6-educating-the-mage-engineer.html",
-            "occ": 12
-          },
-          {
-            "file": "book/6.7-where-mage-fits.html",
+            "file": "book/6.6-education-research-open-problems.html",
             "occ": 19
           },
           {
-            "file": "book/6.8-open-problems.html",
-            "occ": 11
-          },
-          {
-            "file": "book/6.9-conclusion.html",
-            "occ": 12
+            "file": "book/6.7-conclusion.html",
+            "occ": 7
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -509,7 +501,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 69
+            "occ": 56
           },
           {
             "file": "book/index.html",
@@ -547,7 +539,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 131
+            "occ": 129
           }
         ]
       },
@@ -569,7 +561,7 @@
           },
           {
             "file": "concept-convert-failures.html",
-            "occ": 16
+            "occ": 9
           },
           {
             "file": "concept-governance-centric.html",
@@ -889,7 +881,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 26
+            "occ": 24
           },
           {
             "file": "catalogue-figure.html",
@@ -1006,23 +998,15 @@
             "occ": 1
           },
           {
-            "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 5
-          },
-          {
-            "file": "book/6.3-relationship-to-se.html",
-            "occ": 2
-          },
-          {
-            "file": "book/6.4-engineering-beyond-software.html",
+            "file": "book/6.3-reorganization-of-se.html",
             "occ": 1
           },
           {
-            "file": "book/6.5-implications-for-se.html",
+            "file": "book/6.4-software-rejoins-engineering.html",
             "occ": 1
           },
           {
-            "file": "book/6.7-where-mage-fits.html",
+            "file": "book/6.5-mage-in-the-wild.html",
             "occ": 4
           },
           {
@@ -1047,7 +1031,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 28
+            "occ": 23
           },
           {
             "file": "book/part-1-intro.html",
@@ -1077,7 +1061,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 30
+            "occ": 28
           }
         ]
       },
@@ -1111,7 +1095,7 @@
         "website-theory": [
           {
             "file": "theory.html",
-            "occ": 2
+            "occ": 1
           }
         ],
         "website-industry-cases": [
@@ -1131,7 +1115,7 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 13
+            "occ": 14
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
@@ -1175,22 +1159,26 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 96
+            "occ": 50
           },
           {
             "file": "book/6.2-scope-conditions.html",
             "occ": 1
           },
           {
-            "file": "book/6.5-implications-for-se.html",
-            "occ": 4
+            "file": "book/6.3-reorganization-of-se.html",
+            "occ": 2
           },
           {
-            "file": "book/6.7-where-mage-fits.html",
+            "file": "book/6.5-mage-in-the-wild.html",
             "occ": 1
           },
           {
-            "file": "book/6.9-conclusion.html",
+            "file": "book/6.6-education-research-open-problems.html",
+            "occ": 1
+          },
+          {
+            "file": "book/6.7-conclusion.html",
             "occ": 2
           },
           {
@@ -1247,17 +1235,17 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 70
+            "occ": 47
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 4
+            "occ": 2
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 31
+            "occ": 32
           }
         ]
       },
@@ -1315,7 +1303,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 5
+            "occ": 3
           },
           {
             "file": "constructing-the-gee.html",
@@ -1325,7 +1313,7 @@
         "website-theory": [
           {
             "file": "theory.html",
-            "occ": 6
+            "occ": 1
           }
         ],
         "website-industry-cases": [
@@ -1395,19 +1383,15 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 23
+            "occ": 13
           },
           {
             "file": "book/6.2-scope-conditions.html",
             "occ": 1
           },
           {
-            "file": "book/6.7-where-mage-fits.html",
-            "occ": 3
-          },
-          {
-            "file": "book/6.9-conclusion.html",
-            "occ": 1
+            "file": "book/6.5-mage-in-the-wild.html",
+            "occ": 2
           },
           {
             "file": "book/appendix-a-observe-react-stack.html",
@@ -1427,7 +1411,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 17
+            "occ": 13
           },
           {
             "file": "book/list-of-figures.html",
@@ -1437,7 +1421,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 13
+            "occ": 12
           }
         ]
       },
@@ -1635,39 +1619,31 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 94
+            "occ": 54
           },
           {
             "file": "book/6.2-scope-conditions.html",
             "occ": 19
           },
           {
-            "file": "book/6.3-relationship-to-se.html",
-            "occ": 42
+            "file": "book/6.3-reorganization-of-se.html",
+            "occ": 59
           },
           {
-            "file": "book/6.4-engineering-beyond-software.html",
-            "occ": 37
+            "file": "book/6.4-software-rejoins-engineering.html",
+            "occ": 43
           },
           {
-            "file": "book/6.5-implications-for-se.html",
-            "occ": 65
-          },
-          {
-            "file": "book/6.6-educating-the-mage-engineer.html",
-            "occ": 63
-          },
-          {
-            "file": "book/6.7-where-mage-fits.html",
+            "file": "book/6.5-mage-in-the-wild.html",
             "occ": 41
           },
           {
-            "file": "book/6.8-open-problems.html",
-            "occ": 21
+            "file": "book/6.6-education-research-open-problems.html",
+            "occ": 61
           },
           {
-            "file": "book/6.9-conclusion.html",
-            "occ": 58
+            "file": "book/6.7-conclusion.html",
+            "occ": 33
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -1995,7 +1971,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 139
+            "occ": 120
           },
           {
             "file": "book/index.html",
@@ -2003,7 +1979,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 13
+            "occ": 12
           },
           {
             "file": "book/part-1-intro.html",
@@ -2027,13 +2003,13 @@
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 19
+            "occ": 21
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 131
+            "occ": 129
           }
         ]
       },
@@ -2107,7 +2083,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 31
+            "occ": 28
           },
           {
             "file": "catalogue-figure.html",
@@ -2129,7 +2105,7 @@
         "website-theory": [
           {
             "file": "theory.html",
-            "occ": 16
+            "occ": 7
           }
         ],
         "website-industry-cases": [
@@ -2301,39 +2277,31 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 26
+            "occ": 15
           },
           {
             "file": "book/6.2-scope-conditions.html",
             "occ": 5
           },
           {
-            "file": "book/6.3-relationship-to-se.html",
-            "occ": 3
-          },
-          {
-            "file": "book/6.4-engineering-beyond-software.html",
-            "occ": 1
-          },
-          {
-            "file": "book/6.5-implications-for-se.html",
-            "occ": 2
-          },
-          {
-            "file": "book/6.6-educating-the-mage-engineer.html",
-            "occ": 1
-          },
-          {
-            "file": "book/6.7-where-mage-fits.html",
-            "occ": 8
-          },
-          {
-            "file": "book/6.8-open-problems.html",
+            "file": "book/6.3-reorganization-of-se.html",
             "occ": 4
           },
           {
-            "file": "book/6.9-conclusion.html",
-            "occ": 5
+            "file": "book/6.4-software-rejoins-engineering.html",
+            "occ": 1
+          },
+          {
+            "file": "book/6.5-mage-in-the-wild.html",
+            "occ": 8
+          },
+          {
+            "file": "book/6.6-education-research-open-problems.html",
+            "occ": 4
+          },
+          {
+            "file": "book/6.7-conclusion.html",
+            "occ": 4
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -2657,7 +2625,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 32
+            "occ": 24
           },
           {
             "file": "book/index.html",
@@ -2695,7 +2663,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 128
           }
         ]
       },
@@ -2737,7 +2705,7 @@
         "website-theory": [
           {
             "file": "theory.html",
-            "occ": 3
+            "occ": 1
           }
         ],
         "website-industry-cases": [
@@ -2760,7 +2728,7 @@
       "book": {
         "book-web": [
           {
-            "file": "book/6.7-where-mage-fits.html",
+            "file": "book/6.5-mage-in-the-wild.html",
             "occ": 1
           }
         ],
@@ -2835,18 +2803,14 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 3
-          },
-          {
-            "file": "book/6.3-relationship-to-se.html",
             "occ": 1
           },
           {
-            "file": "book/6.5-implications-for-se.html",
+            "file": "book/6.3-reorganization-of-se.html",
             "occ": 1
           },
           {
-            "file": "book/6.8-open-problems.html",
+            "file": "book/6.6-education-research-open-problems.html",
             "occ": 1
           },
           {
@@ -2873,7 +2837,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 21
+            "occ": 20
           }
         ]
       },
@@ -2969,7 +2933,7 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
@@ -3097,39 +3061,31 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 99
+            "occ": 69
           },
           {
             "file": "book/6.2-scope-conditions.html",
             "occ": 27
           },
           {
-            "file": "book/6.3-relationship-to-se.html",
-            "occ": 30
+            "file": "book/6.3-reorganization-of-se.html",
+            "occ": 46
           },
           {
-            "file": "book/6.4-engineering-beyond-software.html",
-            "occ": 42
+            "file": "book/6.4-software-rejoins-engineering.html",
+            "occ": 47
           },
           {
-            "file": "book/6.5-implications-for-se.html",
-            "occ": 63
+            "file": "book/6.5-mage-in-the-wild.html",
+            "occ": 56
           },
           {
-            "file": "book/6.6-educating-the-mage-engineer.html",
-            "occ": 33
+            "file": "book/6.6-education-research-open-problems.html",
+            "occ": 56
           },
           {
-            "file": "book/6.7-where-mage-fits.html",
-            "occ": 45
-          },
-          {
-            "file": "book/6.8-open-problems.html",
-            "occ": 42
-          },
-          {
-            "file": "book/6.9-conclusion.html",
-            "occ": 32
+            "file": "book/6.7-conclusion.html",
+            "occ": 24
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -3457,7 +3413,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 281
+            "occ": 289
           },
           {
             "file": "book/index.html",
@@ -3495,7 +3451,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 131
+            "occ": 129
           }
         ]
       },
@@ -3978,10 +3934,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/6.5-implications-for-se.html",
-            "occ": 1
-          },
-          {
             "file": "book/catalogue-figure.html",
             "occ": 3
           }
@@ -3989,7 +3941,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 2
+            "occ": 1
           }
         ]
       },
@@ -4010,11 +3962,11 @@
             "occ": 1
           },
           {
-            "file": "book/6.7-where-mage-fits.html",
+            "file": "book/6.5-mage-in-the-wild.html",
             "occ": 2
           },
           {
-            "file": "book/6.8-open-problems.html",
+            "file": "book/6.6-education-research-open-problems.html",
             "occ": 1
           },
           {
@@ -4126,23 +4078,15 @@
             "occ": 1
           },
           {
-            "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 8
-          },
-          {
-            "file": "book/6.3-relationship-to-se.html",
+            "file": "book/6.3-reorganization-of-se.html",
             "occ": 1
           },
           {
-            "file": "book/6.4-engineering-beyond-software.html",
+            "file": "book/6.4-software-rejoins-engineering.html",
             "occ": 1
           },
           {
-            "file": "book/6.5-implications-for-se.html",
-            "occ": 2
-          },
-          {
-            "file": "book/6.7-where-mage-fits.html",
+            "file": "book/6.5-mage-in-the-wild.html",
             "occ": 3
           },
           {
@@ -4163,7 +4107,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 29
+            "occ": 23
           },
           {
             "file": "book/part-1-intro.html",
@@ -4193,7 +4137,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 29
+            "occ": 27
           }
         ]
       },
@@ -4231,7 +4175,7 @@
         "website-theory": [
           {
             "file": "theory.html",
-            "occ": 3
+            "occ": 1
           }
         ],
         "website-industry-cases": [
@@ -4385,38 +4329,30 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 3
+            "occ": 1
           },
           {
             "file": "book/6.2-scope-conditions.html",
             "occ": 1
           },
           {
-            "file": "book/6.3-relationship-to-se.html",
+            "file": "book/6.3-reorganization-of-se.html",
             "occ": 1
           },
           {
-            "file": "book/6.4-engineering-beyond-software.html",
+            "file": "book/6.4-software-rejoins-engineering.html",
             "occ": 1
           },
           {
-            "file": "book/6.5-implications-for-se.html",
+            "file": "book/6.5-mage-in-the-wild.html",
+            "occ": 2
+          },
+          {
+            "file": "book/6.6-education-research-open-problems.html",
             "occ": 1
           },
           {
-            "file": "book/6.6-educating-the-mage-engineer.html",
-            "occ": 1
-          },
-          {
-            "file": "book/6.7-where-mage-fits.html",
-            "occ": 1
-          },
-          {
-            "file": "book/6.8-open-problems.html",
-            "occ": 1
-          },
-          {
-            "file": "book/6.9-conclusion.html",
+            "file": "book/6.7-conclusion.html",
             "occ": 2
           },
           {
@@ -4779,7 +4715,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 128
           }
         ]
       },
@@ -4787,7 +4723,7 @@
         "website-concepts": [
           {
             "file": "concept-convert-failures.html",
-            "occ": 2
+            "occ": 4
           },
           {
             "file": "concept-seat-moves.html",
@@ -4935,38 +4871,30 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 7
+            "occ": 3
           },
           {
             "file": "book/6.2-scope-conditions.html",
             "occ": 1
           },
           {
-            "file": "book/6.3-relationship-to-se.html",
+            "file": "book/6.3-reorganization-of-se.html",
             "occ": 1
           },
           {
-            "file": "book/6.4-engineering-beyond-software.html",
+            "file": "book/6.4-software-rejoins-engineering.html",
             "occ": 1
           },
           {
-            "file": "book/6.5-implications-for-se.html",
-            "occ": 2
-          },
-          {
-            "file": "book/6.6-educating-the-mage-engineer.html",
-            "occ": 2
-          },
-          {
-            "file": "book/6.7-where-mage-fits.html",
+            "file": "book/6.5-mage-in-the-wild.html",
             "occ": 7
           },
           {
-            "file": "book/6.8-open-problems.html",
-            "occ": 1
+            "file": "book/6.6-education-research-open-problems.html",
+            "occ": 2
           },
           {
-            "file": "book/6.9-conclusion.html",
+            "file": "book/6.7-conclusion.html",
             "occ": 1
           },
           {
@@ -5291,7 +5219,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 14
+            "occ": 12
           },
           {
             "file": "book/index.html",
@@ -5329,7 +5257,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 128
           }
         ]
       },
@@ -5363,7 +5291,7 @@
         "website-theory": [
           {
             "file": "theory.html",
-            "occ": 3
+            "occ": 1
           }
         ],
         "website-industry-cases": [
@@ -5399,20 +5327,6 @@
       }
     },
     "research-agenda": {
-      "book": {
-        "book-web": [
-          {
-            "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 2
-          }
-        ],
-        "book-pdf": [
-          {
-            "file": "book/mage-book.pdf",
-            "occ": 1
-          }
-        ]
-      },
       "website": {
         "website-landing": [
           {
@@ -5424,12 +5338,6 @@
           {
             "file": "concept-research-agenda.html",
             "occ": 3
-          }
-        ],
-        "website-misc": [
-          {
-            "file": "book-models/models-view.html",
-            "occ": 1
           }
         ]
       }
@@ -5574,32 +5482,24 @@
             "occ": 3
           },
           {
-            "file": "book/6.3-relationship-to-se.html",
-            "occ": 15
+            "file": "book/6.3-reorganization-of-se.html",
+            "occ": 17
           },
           {
-            "file": "book/6.4-engineering-beyond-software.html",
-            "occ": 6
+            "file": "book/6.4-software-rejoins-engineering.html",
+            "occ": 5
           },
           {
-            "file": "book/6.5-implications-for-se.html",
-            "occ": 12
-          },
-          {
-            "file": "book/6.6-educating-the-mage-engineer.html",
-            "occ": 12
-          },
-          {
-            "file": "book/6.7-where-mage-fits.html",
+            "file": "book/6.5-mage-in-the-wild.html",
             "occ": 2
           },
           {
-            "file": "book/6.8-open-problems.html",
-            "occ": 9
+            "file": "book/6.6-education-research-open-problems.html",
+            "occ": 16
           },
           {
-            "file": "book/6.9-conclusion.html",
-            "occ": 9
+            "file": "book/6.7-conclusion.html",
+            "occ": 6
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -5923,7 +5823,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 7
+            "occ": 5
           },
           {
             "file": "book/index.html",
@@ -5931,7 +5831,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-1-intro.html",
@@ -5955,13 +5855,13 @@
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 3
+            "occ": 4
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 128
           }
         ]
       },
@@ -6141,39 +6041,31 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 10
+            "occ": 4
           },
           {
             "file": "book/6.2-scope-conditions.html",
             "occ": 2
           },
           {
-            "file": "book/6.3-relationship-to-se.html",
+            "file": "book/6.3-reorganization-of-se.html",
             "occ": 3
           },
           {
-            "file": "book/6.4-engineering-beyond-software.html",
+            "file": "book/6.4-software-rejoins-engineering.html",
             "occ": 1
           },
           {
-            "file": "book/6.5-implications-for-se.html",
-            "occ": 3
+            "file": "book/6.5-mage-in-the-wild.html",
+            "occ": 9
           },
           {
-            "file": "book/6.6-educating-the-mage-engineer.html",
-            "occ": 1
-          },
-          {
-            "file": "book/6.7-where-mage-fits.html",
-            "occ": 4
-          },
-          {
-            "file": "book/6.8-open-problems.html",
+            "file": "book/6.6-education-research-open-problems.html",
             "occ": 2
           },
           {
-            "file": "book/6.9-conclusion.html",
-            "occ": 5
+            "file": "book/6.7-conclusion.html",
+            "occ": 1
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -6497,7 +6389,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 36
+            "occ": 32
           },
           {
             "file": "book/index.html",
@@ -6535,7 +6427,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 128
           }
         ]
       },
@@ -6775,7 +6667,7 @@
         "website-theory": [
           {
             "file": "theory.html",
-            "occ": 6
+            "occ": 2
           }
         ],
         "website-industry-cases": [
@@ -6855,31 +6747,27 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 6
+            "occ": 4
           },
           {
             "file": "book/6.2-scope-conditions.html",
             "occ": 1
           },
           {
-            "file": "book/6.3-relationship-to-se.html",
-            "occ": 5
-          },
-          {
-            "file": "book/6.5-implications-for-se.html",
+            "file": "book/6.3-reorganization-of-se.html",
             "occ": 3
           },
           {
-            "file": "book/6.7-where-mage-fits.html",
+            "file": "book/6.5-mage-in-the-wild.html",
             "occ": 1
           },
           {
-            "file": "book/6.8-open-problems.html",
+            "file": "book/6.6-education-research-open-problems.html",
             "occ": 1
           },
           {
-            "file": "book/6.9-conclusion.html",
-            "occ": 2
+            "file": "book/6.7-conclusion.html",
+            "occ": 1
           },
           {
             "file": "book/7.2-colophon.html",
@@ -6923,13 +6811,13 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 13
+            "occ": 12
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 30
+            "occ": 29
           }
         ]
       },
@@ -6937,7 +6825,7 @@
         "website-concepts": [
           {
             "file": "concept-convert-failures.html",
-            "occ": 1
+            "occ": 2
           }
         ],
         "website-catalogue": [

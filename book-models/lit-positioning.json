@@ -289,7 +289,7 @@
       "z": "MAGE's own model-sync measurement is the recent-LLM-era instance: sync cost is reduced and redistributed, not zero.",
       "target_locations": [
         "models-and-the-semantic-gap",
-        "where-mage-fits"
+        "mage-in-the-wild"
       ],
       "citations": [
         {
@@ -392,7 +392,7 @@
       "theses_resolve": [
         true
       ],
-      "landed_appears": true
+      "landed_appears": false
     },
     {
       "id": "fallible-oracles-swebench",
@@ -402,7 +402,7 @@
       "y": "The frontier now governs the oracle itself — OpenAI retiring SWE-Bench Verified (59.4% flawed test cases), decontaminated and live successors (Scale AI's SWE-Bench Pro at ~23%; the SWE-Bench Illusion 76%->53% memorization signature; SWE-bench-Live), and evidence that agent-authored tests are over-mocked or implementation-coupled (Hora & Robbes; the oracle study).",
       "z": "MAGE treats the suite as a fallible model that must be governed: completion is re-derived from the artifact and multiple evidence sources, not read off a green bar.",
       "target_locations": [
-        "open-problems"
+        "education-research-open-problems"
       ],
       "citations": [
         {
@@ -508,7 +508,7 @@
       "y": "Empirical study finds AI assistants recomposing developer work toward supervision (Vella & Blincoe: 82% report writing less code; they name it 'supervisory engineering work'), and education begins teaching critique and responsible GenAI use (Jackson/Liu/van der Hoek).",
       "z": "MAGE describes where the seat moves — human effort concentrates on intent, architecture, model authorship, validation, and judgment — not that coding is obsolete.",
       "target_locations": [
-        "implications-for-se"
+        "reorganization-of-se"
       ],
       "citations": [
         {
@@ -544,7 +544,7 @@
       "theses_resolve": [
         true
       ],
-      "landed_appears": true
+      "landed_appears": false
     },
     {
       "id": "single-case-methodology",
@@ -554,7 +554,7 @@
       "y": "Practitioner build-reports now document large agentic builds (Cloudflare vinext, ~1 week / 1 engineer / ~$1,100; Anthropic's C compiler — 16 agents, a ~100K-line Rust compiler building Linux 6.9 on x86/ARM/RISC-V; Anthropic/Bun's million-line Zig->Rust migration) and a governable-agentic case study (Davis et al., Cheap Code, Costly Judgment).",
       "z": "MAGE grounds its method in one deep case (DocAble), motivating hypotheses for broader use — a field report, never a proof.",
       "target_locations": [
-        "open-problems"
+        "education-research-open-problems"
       ],
       "citations": [
         {
@@ -671,7 +671,7 @@
       "theses_resolve": [
         true
       ],
-      "landed_appears": true
+      "landed_appears": false
     },
     {
       "id": "empirical-measurement-regime",
@@ -681,7 +681,7 @@
       "y": "GenAI commoditizes the intelligence input: a ~400-study systematic review maps the field's effort, a three-firm field experiment across 4,867 developers measures a 26% rise in completed tasks, and the canonical single-task RCT clocks a 55.8% speedup — with honest complications where experienced developers in familiar repositories slow down.",
       "z": "MAGE proposes to hold the intelligence confound fixed and vary the environment, representations, and governance — a measurement regime whose effects are large and reproducible enough to build cumulative theory on.",
       "target_locations": [
-        "open-problems"
+        "education-research-open-problems"
       ],
       "citations": [
         {
@@ -783,7 +783,7 @@
       "y": "This book reads that observable choice as an accidental-complexity concession: teams shipped fast and kept models thin because holding quality and a current model honest by hand was too expensive to afford at pace — an owned causal-historical interpretation, not an established finding.",
       "z": "MAGE changes that arithmetic: agents absorb the accidental work — they type the code, keep the map in sync, and hold the line for cents — so the essential properties a model names and a gate checks can finally get the attention Agile had to spend elsewhere.",
       "target_locations": [
-        "implications-for-se"
+        "reorganization-of-se"
       ],
       "citations": [
         {
@@ -809,7 +809,7 @@
       "theses_resolve": [
         true
       ],
-      "landed_appears": true
+      "landed_appears": false
     }
   ]
 }

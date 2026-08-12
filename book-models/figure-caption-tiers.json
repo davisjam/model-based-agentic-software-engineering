@@ -145,12 +145,6 @@
       "location": "frontmatter",
       "rationale": "the research arc — the book's evidence procedure from one case to the refined theory; the enlarged figure carries the sequence, the trimmed caption supports it"
     },
-    "assets/theory-of-mage-dynamics.svg": {
-      "tier": "A",
-      "kind": "core-loop",
-      "location": "frontmatter",
-      "rationale": "the theory's two-loop dynamics; compact companion to the method architecture and the dynamic causal model"
-    },
     "assets/new-engineering-problem.svg": {
       "tier": "A",
       "kind": "comparison-framework",
@@ -168,12 +162,6 @@
       "kind": "conceptual-framework",
       "location": "frontmatter",
       "rationale": "book-level method synthesis; reader learns the whole method from the caption"
-    },
-    "assets/oversight-modes.svg": {
-      "tier": "A",
-      "kind": "comparison-framework",
-      "location": "frontmatter",
-      "rationale": "introduces the governance-centric synthesis, a book-central idea"
     },
     "assets/book-map.svg": {
       "tier": "A",
@@ -463,59 +451,17 @@
       "location": "part6",
       "rationale": "THE central theoretical model"
     },
-    "assets/mage-loop-1-bootstrap.svg": {
-      "tier": "B",
-      "kind": "loop-inset",
-      "location": "part6",
-      "rationale": "one dynamic of the model; how-to-read"
-    },
-    "assets/mage-loop-2-churn.svg": {
-      "tier": "B",
-      "kind": "loop-inset",
-      "location": "part6",
-      "rationale": "churn/discovery loop"
-    },
-    "assets/mage-loop-3-adaptation.svg": {
-      "tier": "B",
-      "kind": "loop-inset",
-      "location": "part6",
-      "rationale": "governance-adaptation loop"
-    },
-    "assets/mage-loop-4-amplification.svg": {
-      "tier": "B",
-      "kind": "loop-inset",
-      "location": "part6",
-      "rationale": "capability-amplification loop"
-    },
-    "assets/mage-churn-curve.svg": {
-      "tier": "B",
-      "kind": "conceptual-illustration",
-      "location": "part6",
-      "rationale": "churn non-monotonic in governance"
-    },
     "assets/mage-churn-vs-compounding.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
       "location": "part6",
       "rationale": "the Churn/Compounding sign contrast — pairs two of the book's core dynamics; Part 6 anchor"
     },
-    "assets/mage-synthesis-spine.svg": {
-      "tier": "A",
-      "kind": "conceptual-framework",
-      "location": "part6",
-      "rationale": "the whole-book argument as one linear causal spine, each node tied to its home Part; the talk-reproduction synthesis figure at the 6.1 close — Part 6 anchor"
-    },
     "toward-a-theory-of-mage::Churn and its positive duals": {
       "tier": "B",
       "kind": "conceptual-table",
       "location": "part6",
       "rationale": "the churn-vs-compounding duality table — negative dynamics against their positive duals"
-    },
-    "assets/soft-hard-spectrum.svg": {
-      "tier": "B",
-      "kind": "conceptual-spectrum",
-      "location": "part6",
-      "rationale": "the soft-hard spectrum"
     },
     "assets/author-headshot.jpg": {
       "tier": "C",
@@ -679,47 +625,41 @@
       "location": "part6",
       "rationale": "nine software settings against the recurs/governable gates"
     },
-    "relationship-to-se::Four paradigms, two questions": {
+    "reorganization-of-se::Four paradigms, two questions": {
       "tier": "B",
       "kind": "comparison-summary",
       "location": "part6",
       "rationale": "Waterfall/Agile/DevOps/MAGE against the same two questions"
     },
-    "where-mage-fits::The Modeling Ceiling": {
+    "mage-in-the-wild::The Modeling Ceiling": {
       "tier": "B",
       "kind": "comparison-summary",
       "location": "part6",
       "rationale": "modeling-ceiling matrix across six sites + MAGE"
     },
-    "where-mage-fits::What Everyone Does": {
+    "mage-in-the-wild::What Everyone Does": {
       "tier": "B",
       "kind": "comparison-summary",
       "location": "part6",
       "rationale": "universal-convergence bucket"
     },
-    "where-mage-fits::What Industry Discovered": {
+    "mage-in-the-wild::What Industry Discovered": {
       "tier": "B",
       "kind": "comparison-summary",
       "location": "part6",
       "rationale": "generalizes-convergence bucket"
     },
-    "where-mage-fits::Universal patterns — key": {
+    "mage-in-the-wild::Universal patterns — key": {
       "tier": "C",
       "kind": "reference-key",
       "location": "part6",
       "rationale": "companion key-list to the universal glyph grid — construct + full statement per U-key"
     },
-    "where-mage-fits::Discovered patterns — key": {
+    "mage-in-the-wild::Discovered patterns — key": {
       "tier": "C",
       "kind": "reference-key",
       "location": "part6",
       "rationale": "companion key-list to the generalizes glyph grid — construct + full statement per G-key"
-    },
-    "where-mage-fits::The research agenda": {
-      "tier": "C",
-      "kind": "reference-structure",
-      "location": "part6",
-      "rationale": "index over the seven research-agenda directions — one row per open direction with its home chapter"
     },
     "colophon::The manuscript's governing models and the failures they prevent": {
       "tier": "C",
@@ -822,6 +762,12 @@
       "kind": "mechanism-illustration",
       "location": "part3",
       "rationale": "provenance derivation — a mutation stamp fans out through one registry to validation and the customer changelog"
+    },
+    "assets/why-software-came-last.svg": {
+      "tier": "A",
+      "kind": "conceptual-comparison",
+      "location": "part6",
+      "rationale": "the chapter's climax image — why software's inverted economics kept it from model-based engineering until commodity intelligence made live models affordable; anchor with the two-column comparison resolving into one causal chain"
     }
   }
 }

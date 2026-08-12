@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid): a causal comparison, not a data chart. Two columns state a
+     historical anomaly — older engineering paid to build but amortized its models, while software's
+     economics ran backward (cheap to build, expensive to keep a model current) — and a single downward
+     chain resolves it: commodity intelligence makes both implementation and reconciliation cheap, so live
+     models become viable and software rejoins the older engineering disciplines. Grayscale-legible: the
+     two columns and the chain read from position + words, never colour. Accent #2f5169. -->
+<!-- semantic-families: agent, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 940" width="920" height="940"
+     role="group" aria-labelledby="wsclTitle wsclDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="wsclTitle">Why software came last: the model-maintenance economics that kept software out of
+    engineering, and the change that let it in</title>
+  <desc id="wsclDesc">A comparison over two columns, older engineering versus software historically, on four
+    rows. Realization: expensive versus cheap. Artifact: changes slowly versus changes constantly. Model
+    upkeep: amortized versus standing labour. Result: model first versus model drift and thin models. In
+    older engineering, building was costly but the artifact changed slowly, so a model, once made, stayed
+    true and paid for itself. In software, building was cheap but the code changed constantly, so keeping a
+    model synchronized was permanent labour that never amortized, and models drifted or were kept thin. A
+    single downward chain then resolves the anomaly: commodity intelligence makes implementation cheap and
+    reconciliation cheap, so live models become viable, and software rejoins engineering.</desc>
+
+  <defs>
+    <marker id="wsclArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ============================= TITLE ============================= -->
+  <text x="460" y="46" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917"
+        letter-spacing="1.5">WHY SOFTWARE CAME LAST</text>
+
+  <!-- ===================== COMPARISON (two columns, four rows) ===================== -->
+  <!-- column headers -->
+  <text x="415" y="102" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">Older engineering</text>
+  <text x="745" y="102" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">Software, historically</text>
+  <!-- header underlines (2-point lines) -->
+  <line x1="316" y1="114" x2="514" y2="114" stroke="#57534e" stroke-width="1.5"/>
+  <line x1="636" y1="114" x2="854" y2="114" stroke="#57534e" stroke-width="1.5"/>
+
+  <!-- central divider between the two compared columns (2-point line) -->
+  <line x1="590" y1="130" x2="590" y2="378" stroke="#d6d3d1" stroke-width="1.5"/>
+
+  <!-- row 1: Realization -->
+  <text x="45" y="168" font-size="17" font-weight="700" fill="#1c1917">Realization</text>
+  <text x="415" y="168" text-anchor="middle" font-size="17" fill="#1c1917">expensive</text>
+  <text x="745" y="168" text-anchor="middle" font-size="17" fill="#1c1917">cheap</text>
+  <line x1="30" y1="196" x2="880" y2="196" stroke="#ece9e4" stroke-width="1"/>
+
+  <!-- row 2: Artifact -->
+  <text x="45" y="224" font-size="17" font-weight="700" fill="#1c1917">Artifact</text>
+  <text x="415" y="224" text-anchor="middle" font-size="17" fill="#1c1917">changes slowly</text>
+  <text x="745" y="224" text-anchor="middle" font-size="17" fill="#1c1917">changes constantly</text>
+  <line x1="30" y1="252" x2="880" y2="252" stroke="#ece9e4" stroke-width="1"/>
+
+  <!-- row 3: Model upkeep -->
+  <text x="45" y="280" font-size="17" font-weight="700" fill="#1c1917">Model upkeep</text>
+  <text x="415" y="280" text-anchor="middle" font-size="17" fill="#1c1917">amortized</text>
+  <text x="745" y="280" text-anchor="middle" font-size="17" fill="#1c1917">standing labor</text>
+  <line x1="30" y1="308" x2="880" y2="308" stroke="#ece9e4" stroke-width="1"/>
+
+  <!-- row 4: Result (column B is two lines) -->
+  <text x="45" y="344" font-size="17" font-weight="700" fill="#1c1917">Result</text>
+  <text x="415" y="344" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">model first</text>
+  <text x="745" y="332" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">model drift,</text>
+  <text x="745" y="356" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">thin models</text>
+
+  <!-- table foot rule -->
+  <line x1="30" y1="380" x2="880" y2="380" stroke="#a8a29e" stroke-width="1.5"/>
+
+  <!-- bridge into the resolving chain -->
+  <line x1="460" y1="392" x2="460" y2="430" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+
+  <!-- ===================== THE DOWNWARD CAUSAL CHAIN ===================== -->
+  <!-- driver -->
+  <rect x="280" y="438" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="460" y="470" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Commodity intelligence</text>
+
+  <line x1="460" y1="490" x2="460" y2="528" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+
+  <!-- the two edges the driver opens -->
+  <rect x="250" y="536" width="420" height="66" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="460" y="562" text-anchor="middle" font-size="17" fill="#1c1917">implementation becomes cheap</text>
+  <text x="460" y="588" text-anchor="middle" font-size="17" fill="#1c1917">reconciliation becomes cheap</text>
+
+  <line x1="460" y1="602" x2="460" y2="640" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+
+  <!-- the consequence -->
+  <rect x="280" y="648" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="460" y="680" text-anchor="middle" font-size="18" fill="#1c1917">live models become viable</text>
+
+  <line x1="460" y1="700" x2="460" y2="738" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+
+  <!-- terminal — the claim, set dark for grayscale emphasis -->
+  <rect x="220" y="746" width="480" height="58" rx="9" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="460" y="782" text-anchor="middle" font-size="20" font-weight="700" fill="#f6f4ef"
+        letter-spacing="0.5">SOFTWARE REJOINS ENGINEERING</text>
+</svg>
