@@ -11,6 +11,11 @@ target register), [`../writing/rhetoric.md`](../writing/rhetoric.md) (the prose 
 the *shape* — a structure, a flow, a lifecycle, a schema. When the thing you are explaining has a shape,
 draw it.
 
+This doc picks the diagram **type** and realizes it. Its drawing sibling
+[`figures.md`](figures.md) governs a prior, orthogonal question — the **editorial** judgment for a
+*teaching* figure: what it should show, how much, and how it relates to the figures around it in the book.
+Apply `figures.md` first to decide what the figure says; apply this doc second to decide how to draw it.
+
 ---
 
 ## Realization rule — Mermaid first, HTML/SVG only when it can't

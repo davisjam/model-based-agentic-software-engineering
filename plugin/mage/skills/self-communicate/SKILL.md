@@ -122,6 +122,12 @@ title/axis labels, a restrained two-color palette, Tufte data-ink; drawn from co
 [`drawing/tables.md`](drawing/tables.md) — the booktabs table style (three horizontal rules, no vertical
 rules or cell borders; horizontal rules group, whitespace separates). Chart a trend, table a grid of values.
 
+A fourth peer, [`drawing/figures.md`](drawing/figures.md), governs *editorial judgment* rather than diagram
+type: what a teaching figure should show, how much of it, and how it relates to the figures around it in
+the book — a figure is a model for teaching the reader, never a rendering of the system's own models.
+Apply it before picking a diagram type — it decides what the figure says; `diagrams.md` decides how to
+draw it.
+
 ## How to use this skill
 
 1. **Name the genre and the mode first.** What kind of doc is this — tutorial, how-to, reference,
@@ -132,7 +138,9 @@ rules or cell borders; horizontal rules group, whitespace separates). Chart a tr
 3. **Name concepts from the lexicon.** Use [`writing/lexicon.md`](writing/lexicon.md) — one established term
    per idea, linked; don't coin a synonym for a concept that already has a name.
 4. **Draw the shape where there is one.** If the content is a structure, flow, lifecycle, or schema, add a
-   diagram per [`drawing/diagrams.md`](drawing/diagrams.md) — Mermaid unless the geometry forces SVG.
+   diagram per [`drawing/diagrams.md`](drawing/diagrams.md) — Mermaid unless the geometry forces SVG. If the
+   figure teaches a concept rather than documenting the system's own model, apply
+   [`drawing/figures.md`](drawing/figures.md) first — what to show, how much, one job per figure.
 5. **Audit before you ship.** Run [`writing/audit.md`](writing/audit.md) over the draft and apply its fixes.
 
 ## Bootstrap the lexicon from a codebase walk — then keep it living
