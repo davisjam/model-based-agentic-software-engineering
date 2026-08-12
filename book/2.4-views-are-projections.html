@@ -720,14 +720,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 8 · One System, Several Views — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 8</a></div><h1><span class="chap-num">2.4</span> One System, Several Views</h1></header><p>One connected representation does not imply one view. The last chapter built a single executable core — typed entities and relations, held equal to the code. If the whole system is one connected model, why keep many models at all?</p>
-<p>Because no one projection answers every engineering question. A service dependency useful during a migration tells you little about lock ordering; a deployment relation useful for capacity planning tells you little about a user's journey. The same system therefore needs several <strong>projections</strong>, each keeping the entities, relations, and properties one question needs and suppressing the rest.</p>
-<p id="idx-def-four-plus-one-views">Which projections, then? Each answers one engineering question, and the models ahead sort by the <em>kind</em> of question they answer. That the same architecture needs several complementary views is an old observation: Kruchten's <strong>4+1 views</strong> named five of them a generation ago <sup class="cite-ref"><a href="#wc-2-4-views-are-projections-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Philippe Kruchten, “The 4+1 View Model of Architecture,” <em>IEEE Software</em> 12, no. 6 (1995): 42–50.</span>, the classic statement that no single diagram captures a software architecture. Here that observation is the starting point, not the organizing frame. The connected core organizes the models; the question chooses the projection. The inset grounds the 4+1 as precedent; <a class="xref" href="2.4-views-are-projections.html#fig-2-4-1">Figure&nbsp;2.4-1</a> draws the one core and the views projected from it.</p>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 8 · One System, Several Views — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 8</a></div><h1><span class="chap-num">2.4</span> One System, Several Views</h1></header><p>One connected representation does not imply one view. The previous chapter established a shared substrate of typed entities, relations, and traceability. But no single projection of that substrate answers every engineering question. A service dependency useful during a migration tells you little about lock ordering; a deployment relation useful for capacity planning tells you little about a user's journey.</p>
+<p>The same system therefore needs several purposeful <strong>projections</strong>, each keeping the entities, relations, and properties one question needs and suppressing the rest. That observation is old: Kruchten's <strong>4+1 views</strong> made the plurality explicit a generation ago <sup class="cite-ref"><a href="#wc-2-4-views-are-projections-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Philippe Kruchten, “The 4+1 View Model of Architecture,” <em>IEEE Software</em> 12, no. 6 (1995): 42–50.</span>, the classic statement that no single diagram captures a software architecture. MAGE adds a different emphasis. The views should reuse identities and facts from a connected substrate rather than becoming independent pictures that must be reconciled by hand.</p>
+<p id="idx-def-four-plus-one-views">Which projections, then? Each answers one engineering question, and the models ahead sort by the <em>kind</em> of question they answer. The connected substrate organizes the models; the question chooses the projection. The inset grounds the 4+1 as precedent; <a class="xref" href="2.4-views-are-projections.html#fig-2-4-1">Figure&nbsp;2.4-1</a> draws the one substrate and the views projected from it.</p>
 <blockquote class="concept-inset"><p class="inset-title" id="inset-kruchten">Inset — Kruchten's 4+1, as historical grounding</p>
 <p>The classic statement that one diagram cannot hold a whole architecture is Kruchten's <strong>4+1 views</strong>: a <em>logical</em> view (what the system is), a <em>process</em> view (what runs at once), a <em>development</em> view (how the source is packaged and owned), and a <em>physical</em> view (where it runs), plus a <em>scenarios</em> view that animates the other four and validates them. Name them once and move on. The view-names are precedent, not the coordinate system this book carries — the five model classes are. What MAGE keeps from 4+1 is the plural itself: an architecture needs several views, and they should share one body of facts rather than drift as separate diagrams.</p></blockquote>
 <h2><span class="sec-num">2.4.1</span> The trunk beneath the views</h2>
 <p>Draw those projections the classic way — several diagrams, each maintained on its own — and they drift independently, each ageing the first time its author forgets it. The move here is to make them projections over one connected engineering model instead: views drawn from shared entities join on identity, reuse facts, and expose contradictions wherever two of them disagree about the same element.</p>
-<p>That connected core is what MAGE adds beneath the projections, and it carries what the classical view frameworks did not: a drift gate. Kruchten described the views; he had no way to fail a build when a view and the code disagreed. Here every projection is a structured model a tool reads on every build, gated the moment the model and the code diverge. A framework tells you <em>which</em> views you need; the gate keeps each one from becoming a diagram that rots.</p>
+<p>That connected substrate is what MAGE adds beneath the projections. Its implementation strengthens the relationship between view and territory by making the projections machine-readable and mechanically maintaining the facts they claim to represent. A framework tells you <em>which</em> view may be useful; derivation, traceability, and parity checks keep a view from becoming an unchecked second copy of the code.</p>
 <figure id="fig-2-4-1" class="book-figure" data-label="trunk-and-views"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
      role="group" aria-labelledby="tvTitle tvDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -808,94 +808,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="853" y="388" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Read + generate</text>
     <text x="853" y="412" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">surfaces</text>
   </g>
-</svg><figcaption data-short="One System, Several Views"><span class="fig-label">Figure 2.4-1.</span> <em>One System, Several Views.</em> The system knowledge graph holds the shared engineering entities and relations; several architectural views project the subset each question needs. Beneath the graph, the executable trunk keeps those facts joined to the territory through derivation, traceability, and drift gates. The views are a reader's choice; the connected, drift-gated core beneath them is not.</figcaption></figure>
+</svg><figcaption data-short="One System, Several Views"><span class="fig-label">Figure 2.4-1.</span> <em>One System, Several Views.</em> Different engineering questions project different views over one shared set of identities and facts. A dependency view answers a migration question; a lock-ordering view answers a concurrency question; a deployment view answers a capacity question. No single projection answers them all, and none of them is the system itself. What keeps the views from becoming unrelated diagrams is the substrate beneath them — the source models, stable identities, and derivation they all read from. MAGE holds each projection connected to that substrate, so the views join around a shared engineering fact rather than drift apart as separate pictures.</figcaption></figure>
 <h2><span class="sec-num">2.4.2</span> The framework is a choice; the core is not</h2>
-<p>Once the core is a structured model held equal to the code, a <em>framework</em> is a <strong>projection over that core, not a second thing you maintain</strong>. The word <em>core</em> needs one clause: it is not a single universal metamodel but a <strong>joined set of authoritative source models</strong> — each owning its own slice, linked on shared keys — and a projection may draw from several at once. You keep that one joined core and render whatever view-set the audience needs from it.</p>
-<p>Change the audience and you change the projection; the model stays put. Runtime analysis wants Kruchten's Process view; a customer asking "what do you send my data through?" wants a <a href="https://c4model.com">C4</a> Context-and-Container view; a compliance reviewer wants a data-flow diagram. Rival methodologies at first blush — yet each is a rendering of the same structure, and a system whose core is executable can derive any of them.</p>
-<p>The same move works one level finer. Even inside a single framework, a view must choose <em>what to show</em>: a customer's Container view hides the internal helper mesh a maintainer needs; a privacy review shows only the data stores and where they egress. That choice is a second projection, and it stays honest by a clean split. The <strong>content</strong> — which containers, edges, and external systems exist — is a pure function of the source models, authored by no one. The <strong>lens</strong> picks which of that content a view shows; it may hide a node, but it can never invent one. Name a container the sources no longer contain and the lens fails the same drift gate the view does, so even "the customer's slice" cannot drift from the truth.<sup class="note-ref"><a href="#note-2-4-views-are-projections-1" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-2-4-views-are-projections-1"><span class="cn-mark">*</span> The programming-languages literature calls a view that hides source detail a "lens"; a well-behaved lens is bidirectional, pairing a "get" that projects the view with a "put" that pushes an edit back onto the source, tied by round-trip laws  CITE0 . The projection here uses only the "get" half — a reader consults the view, nobody edits it to change the code — so this is a view projection, not a full lens. What carries over is the read-side contract the drift gate enforces: a view may hide content the sources contain, never invent content they do not.</span> <a class="xref" href="2.4-views-are-projections.html#fig-2-4-2">Figure&nbsp;2.4-2</a> draws both projection axes — framework and lens.</p>
-<figure id="fig-2-4-2" class="book-figure" data-label="projection-axes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540"
-     role="group" aria-labelledby="paTitle paDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="paTitle">One executable model substrate, two projection axes — framework and lens</title>
-  <desc id="paDesc">At the left sits one executable model substrate: several authoritative source
-    models, held equal to the code and drift-gated, not one universal metamodel. A first fan of
-    arrows, under the axis label “projection: which framework”, reaches four sibling renderings of
-    that substrate — Kruchten’s 4+1 views (this book’s spine), C4 (Context and Container), SysML
-    constraint blocks, and a data-flow diagram. From the C4 node a second fan, under the axis label
-    “lens: which slice (read-side only)”, reaches three views of the same derived content —
-    customer, internal, and privacy/storage. Both fans are read-side projections off the substrate:
-    choosing a framework, and choosing a slice within one, are rendering decisions, never a second
-    model to maintain. The lens is a reading intuition, not a formal transformation law with an
-    update path.</desc>
-
-  <defs>
-    <marker id="pa-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
-    </marker>
-  </defs>
-
-  <!-- axis labels, as column headers -->
-  <text x="550" y="26" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">projection: which framework</text>
-  <text x="883" y="80" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">lens: which slice</text>
-  <text x="883" y="102" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">read-side only — no update path</text>
-
-  <!-- ===== the one executable model substrate ===== -->
-  <rect x="20" y="188" width="312" height="164" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="176" y="224" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">One executable</text>
-  <text x="176" y="250" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">model substrate</text>
-  <text x="176" y="280" text-anchor="middle" font-size="17" fill="#57534e">several authoritative models</text>
-  <text x="176" y="304" text-anchor="middle" font-size="17" fill="#57534e">held equal to the code</text>
-  <text x="176" y="328" text-anchor="middle" font-size="17" fill="#57534e">drift-gated</text>
-
-  <!-- ===== first fan: substrate -> four frameworks ===== -->
-  <g stroke="#2f5169" stroke-width="2" fill="none">
-    <path d="M336,228 C380,182 392,120 424,86" marker-end="url(#pa-ah)"/>
-    <path d="M336,252 C370,238 388,216 424,202" marker-end="url(#pa-ah)"/>
-    <path d="M336,278 C370,292 388,306 424,318" marker-end="url(#pa-ah)"/>
-    <path d="M336,302 C380,348 392,400 424,434" marker-end="url(#pa-ah)"/>
-  </g>
-
-  <g>
-    <rect x="430" y="42" width="240" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="550" y="76" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">4+1 views</text>
-    <text x="550" y="102" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">this book’s spine</text>
-
-    <rect x="430" y="162" width="240" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="550" y="196" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">C4</text>
-    <text x="550" y="222" text-anchor="middle" font-size="18" fill="#57534e">Context · Container</text>
-
-    <rect x="430" y="282" width="240" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="550" y="316" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">SysML</text>
-    <text x="550" y="342" text-anchor="middle" font-size="18" fill="#57534e">constraint blocks</text>
-
-    <rect x="430" y="402" width="240" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="550" y="436" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Data-flow</text>
-    <text x="550" y="462" text-anchor="middle" font-size="18" fill="#57534e">diagram</text>
-  </g>
-
-  <!-- ===== second fan: C4 -> three lenses (read-side slices) ===== -->
-  <g stroke="#2f5169" stroke-width="2" fill="none">
-    <path d="M674,190 C720,170 745,150 784,134" marker-end="url(#pa-ah)"/>
-    <path d="M674,202 C715,212 745,225 784,238" marker-end="url(#pa-ah)"/>
-    <path d="M674,222 C725,260 745,305 784,340" marker-end="url(#pa-ah)"/>
-  </g>
-
-  <g>
-    <rect x="790" y="118" width="186" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="883" y="158" text-anchor="middle" font-size="20" fill="#1c1917">customer</text>
-
-    <rect x="790" y="216" width="186" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="883" y="256" text-anchor="middle" font-size="20" fill="#1c1917">internal</text>
-
-    <rect x="790" y="314" width="186" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="883" y="348" text-anchor="middle" font-size="20" fill="#1c1917">privacy /</text>
-    <text x="883" y="374" text-anchor="middle" font-size="20" fill="#1c1917">storage</text>
-  </g>
-
-  <!-- ===== read-side caption spine ===== -->
-  <text x="500" y="516" text-anchor="middle" font-size="17" font-style="italic" fill="#1c1917">Framework and lens are both read-side projections off the substrate — never a second model to maintain.</text>
-</svg><figcaption data-short="4+1 is one framework projection among siblings; a lens is a read-side slice…"><span class="fig-label">Figure 2.4-2.</span> 4+1 is one framework projection among siblings; a lens is a read-side slice within one. Both are renderings off a single executable model <strong>substrate</strong> — several authoritative source models held equal to the code — never a second model to maintain, and never a formal transformation law with an update path.</figcaption></figure>
-<p>The transferable claim sits one level up: hit the joined executable core, and the framework wars dissolve into projection choices. Choose the core with care; choose the framework, and the lens, to fit the reader.</p>
+<p>Framework and audience are separate choices. The same source models can render a Kruchten-style Process view for a maintainer, a <a href="https://c4model.com">C4</a> Context-and-Container view for a customer, or a data-flow view for a privacy review; a further read-side projection can hide the details one audience does not need. The rule is simple: a view may omit facts from the source models, but it must not invent facts they do not contain.<sup class="note-ref"><a href="#note-2-4-views-are-projections-1" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-2-4-views-are-projections-1"><span class="cn-mark">*</span> The programming-languages literature calls a view that hides source detail a "lens"; a well-behaved lens is bidirectional, pairing a "get" that projects the view with a "put" that pushes an edit back onto the source, tied by round-trip laws  CITE0 . The projection here uses only the "get" half — a reader consults the view, nobody edits it to change the code — so this is a view projection, not a full lens. What carries over is the read-side contract the drift gate enforces: a view may hide content the sources contain, never invent content they do not.</span></p>
 <h2><span class="sec-num">2.4.3</span> The graph gives identity; the view gives semantics</h2>
 <p>There is a seductive but wrong reading: that everything is <em>really</em> one knowledge graph, and the views are just paths through it. That flattens the exact distinctions the models exist to teach.</p>
 <p>A state machine is not interesting because it can be drawn as nodes and edges. It is interesting because transition semantics let you answer a behavioral question — can this system reach a bad state? A concurrency model is interesting because it exposes possible interleavings and the shared-resource invariants they threaten. A scenario is interesting because it validates several views together against one goal.</p>
