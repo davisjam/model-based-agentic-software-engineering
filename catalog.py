@@ -1653,7 +1653,7 @@ TOPNAV = (f'<div class="topnav"><a href="{_SITE_URL}">James C. Davis, Purdue Uni
 NAV_GRID = (
     '<nav class="nav-grid" aria-label="Primary">'
     '<a class="ng-cell" href="theory.html">'
-    '<span class="ng-t">Theory</span><span class="ng-s">the two-loop dynamics of MAGE</span></a>'
+    '<span class="ng-t">Theory</span><span class="ng-s">the dynamics of MAGE</span></a>'
     '<a class="ng-cell" href="constructing-the-gee.html">'
     '<span class="ng-t">Method</span><span class="ng-s">build the governed environment</span></a>'
     '<a class="ng-cell" href="industry-case-studies.html">'
@@ -3021,7 +3021,7 @@ def _theory_svg_figure(asset: str, ns: str, caption: str = "") -> str:
 
 
 def _theory_body() -> str:
-    """The standalone Theory page — the two-loop dynamics diagram, the two theses stated in prose, and the
+    """The standalone Theory page — the one-circulation dynamics diagram, the two theses stated in prose, and the
     inside-cover 'theory at a glance' card. Every reader-facing sentence is a hand-authored literal; nothing
     is composed from a model. The two figures are the shared-source book assets (theory-of-mage-dynamics.svg
     is also the book's Fig 0.1-2), inlined with their ids namespaced so they never collide. Exactly one
@@ -3029,7 +3029,7 @@ def _theory_body() -> str:
     p: "list[str]" = []
     p.append("<h1>The theory of MAGE</h1>")
     p.append('<div class="concept-band"><span class="concept-chip">Theory</span>'
-             '<span class="concept-kicker">two loops, one governed environment</span></div>')
+             '<span class="concept-kicker">one circulation, two complementary arcs</span></div>')
     md1: "list[str]" = []
     md1.append("MAGE reads the engineering environment as the object of engineering. When commodity "
                "intelligence writes the code, quality stops belonging to any single change and becomes a "
@@ -3038,19 +3038,23 @@ def _theory_body() -> str:
     md1.append("It all answers one question: *how do we safely grant autonomy to commodity intelligence?* "
                "The [Big Question page](big-question.html) traces the through-line from that question to the "
                "ideas that answer it.")
-    md1.append("## The two loops")
-    md1.append("Two loops circulate through one shared hub, the governed engineering environment. The "
-               "knowledge loop turns on the left. Structured models stretch an agent’s reasoning horizon; a "
-               "longer horizon spends less effort rediscovering what it lost; less churn earns more "
-               "autonomy. The governance loop turns on the right. Autonomy meets a failure, a human reads "
-               "it, and governance conversion banks the lesson as a mechanism that accrues as engineering "
-               "capital. Both loops feed the same environment, and each turn of the pair grants more "
-               "autonomy. The circulation is the theory; the boxes are only its stations.")
+    md1.append("## One circulation, two arcs")
+    md1.append("One circulation runs through a single shared hub, the governed engineering environment, read "
+               "as two complementary arcs. Along the **modeling arc**, the environment provides structured "
+               "models that stretch an agent’s reasoning horizon; a longer horizon spends less effort "
+               "rediscovering what it lost; less churn earns more autonomy. Along the **governance arc**, that "
+               "autonomy meets a failure, a human reads it, and Governance Conversion banks the lesson as a "
+               "mechanism that accrues as engineering capital, strengthening the environment for the next "
+               "turn. The arcs are causally connected at the environment: better representation makes more "
+               "autonomy feasible, and the failures that autonomy exposes improve the environment that "
+               "supports later reasoning. The circulation is the theory; the boxes are only its stations.")
     p.append(render_md("\n\n".join(md1)))
     p.append(_theory_svg_figure(
         "theory-of-mage-dynamics.svg", "thy-dyn",
-        "*The Theory of MAGE.* The knowledge loop and the governance loop meet at the governed engineering "
-        "environment, and each revolution grants more autonomy."))
+        "*The Dynamics of MAGE.* One circulation with two complementary arcs. Along the modeling arc, "
+        "structured models extend the fleet’s reasoning horizon, reduce churn, and support more autonomy; "
+        "along the governance arc, that autonomy exposes failures and Governance Conversion turns the lessons "
+        "into engineering capital that strengthens the environment for the next cycle."))
     md2: "list[str]" = []
     md2.append("## Bind intent into models — the modeling thesis")
     md2.append("Documentation, carried to its limit, becomes a structured model. A context-bounded agent "
@@ -4197,7 +4201,7 @@ def cmd_build(_args) -> int:
                         _crumb("", [("Industry case studies", _IC_INDEX_PAGE), ("Comparative analysis", "")]),
                         _comparative_body(), rel_root="")
     open(os.path.join(ROOT, _COMPARATIVE_PAGE), "w", encoding="utf-8").write(comparative)
-    # The standalone Theory page — the two-loop dynamics diagram + the two theses + the inside-cover card.
+    # The standalone Theory page — the one-circulation dynamics diagram + the two theses + the inside-cover card.
     # Reachable from the primary nav's "Theory" cell (its orphan-gate inbound edge); the landing also carries
     # a hero-adjacent 'theory at a glance' card linking here (F-theory: both a landing element and a page).
     theory = _page("The theory of MAGE",
