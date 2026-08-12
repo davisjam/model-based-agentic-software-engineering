@@ -616,25 +616,25 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="4.2-brownfield.html">18&nbsp; Migrating to MAGE</a></li>
 <li><a class="" href="4.3-validating-change.html">19&nbsp; Validating Change</a></li>
 <li><a class="" href="4.4-the-skills.html">20&nbsp; The Skills</a></li>
-<li><a class="" href="4.5-lifecycles-and-runbooks.html">21&nbsp; Lifecycles and Runbooks</a></li>
-<li><a class="" href="4.6-metrics.html">22&nbsp; Metrics</a></li>
+<li><a class="" href="4.5-operating-mage.html">21&nbsp; Operating MAGE</a></li>
+<li><a class="" href="4.6-portable-moves.html">Closing: The Portable Moves</a></li>
 <li class="part">Part 5 — The Evidence</li>
 <li><a class="" href="part-5-intro.html">The Evidence</a></li>
-<li><a class="" href="5.1-the-problem-and-the-bar.html">23&nbsp; The Problem and the Bar</a></li>
-<li><a class="" href="5.2-the-build.html">24&nbsp; The Build</a></li>
-<li><a class="" href="5.3-the-road-to-mage.html">25&nbsp; The Road to MAGE</a></li>
-<li><a class="" href="5.4-failures-that-became-infrastructure.html">26&nbsp; Failures That Became Infrastructure</a></li>
+<li><a class="" href="5.1-the-problem-and-the-bar.html">22&nbsp; The Problem and the Bar</a></li>
+<li><a class="" href="5.2-the-build.html">23&nbsp; The Build</a></li>
+<li><a class="" href="5.3-the-road-to-mage.html">24&nbsp; The Road to MAGE</a></li>
+<li><a class="" href="5.4-failures-that-became-infrastructure.html">25&nbsp; Failures That Became Infrastructure</a></li>
 <li class="part">Part 6 — The Profession</li>
 <li><a class="" href="part-6-intro.html">The Profession</a></li>
-<li><a class="" href="6.1-toward-a-theory-of-mage.html">27&nbsp; Toward a Theory of MAGE</a></li>
-<li><a class="" href="6.2-scope-conditions.html">28&nbsp; Scope Conditions</a></li>
-<li><a class="" href="6.3-relationship-to-se.html">29&nbsp; Relationship to Software Engineering</a></li>
-<li><a class="" href="6.4-engineering-beyond-software.html">30&nbsp; Engineering Beyond Software</a></li>
-<li><a class="" href="6.5-implications-for-se.html">31&nbsp; The New Profession</a></li>
-<li><a class="" href="6.6-educating-the-mage-engineer.html">32&nbsp; Educating the MAGE Engineer</a></li>
-<li><a class="" href="6.7-where-mage-fits.html">33&nbsp; MAGE in the Wild</a></li>
-<li><a class="" href="6.8-open-problems.html">34&nbsp; Open Problems</a></li>
-<li><a class="" href="6.9-conclusion.html">35&nbsp; Conclusion</a></li>
+<li><a class="" href="6.1-toward-a-theory-of-mage.html">26&nbsp; Toward a Theory of MAGE</a></li>
+<li><a class="" href="6.2-scope-conditions.html">27&nbsp; Scope Conditions</a></li>
+<li><a class="" href="6.3-relationship-to-se.html">28&nbsp; Relationship to Software Engineering</a></li>
+<li><a class="" href="6.4-engineering-beyond-software.html">29&nbsp; Engineering Beyond Software</a></li>
+<li><a class="" href="6.5-implications-for-se.html">30&nbsp; The New Profession</a></li>
+<li><a class="" href="6.6-educating-the-mage-engineer.html">31&nbsp; Educating the MAGE Engineer</a></li>
+<li><a class="" href="6.7-where-mage-fits.html">32&nbsp; MAGE in the Wild</a></li>
+<li><a class="" href="6.8-open-problems.html">33&nbsp; Open Problems</a></li>
+<li><a class="" href="6.9-conclusion.html">34&nbsp; Conclusion</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
 <li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
@@ -902,7 +902,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <table id="tbl-2-6-2" class="book-table" data-label="host-stress-invariants"><caption data-short="Invariant-DAG execution policy — illustrative invariant"><span class="tbl-label">Table 2.6-2.</span> One invariant of the invariant-DAG execution policy — a load edge in the deploy graph is banned.</caption><thead><tr><th>Invariant</th><th>Temporal shape</th><th>How it is checked</th></tr></thead><tbody><tr><td>No deploy edge carries the <code>LOAD</code> intent</td><td><em>□P</em> (safety)</td><td>A load-edge lint reads the graph's resident intent set; a <code>LOAD</code> edge — the thing that would fork the graph per host — is a finding. Load rationing is a semaphore in the scheduler, never a graph edge.</td></tr></tbody></table>
 <p>The edge-intent schema, the profile record, the scheduler code, and the full invariant set are in the appendix; the model is also walked end to end in the next chapter's join example. <a href="appendix-g-invariant-dag-reference.html">Appendix G</a></p>
 <h2><span class="sec-num">2.6.7</span> One honest gap</h2>
-<p id="idx-def-model-only-where-a-failure-lives">That policy models the <em>load-and-cost</em> half of execution. The <em>pure-latency</em> half — request latency, cache-hit ratios, data-movement cost — has no dedicated model, and the honest move is to say so rather than invent one. The discipline behind the gap is <strong>model only where a failure lives</strong>: a model built with no decision or named risk to exercise it rots before anyone checks it. The gap has drawn blood once — scaling services to zero cut idle cost the policy welcomed but the latency half could not weigh, and the cold-start incident in <a href="4.6-metrics.html">Metrics</a> is exactly this gap surfacing: a warm per-request floor a fleet-average number hid, run down to a re-architecture that cut it 4,057 → 109 ms. The gap stays honest; this is what it costs to leave open.</p>
+<p id="idx-def-model-only-where-a-failure-lives">That policy models the <em>load-and-cost</em> half of execution. The <em>pure-latency</em> half — request latency, cache-hit ratios, data-movement cost — has no dedicated model, and the honest move is to say so rather than invent one. The discipline behind the gap is <strong>model only where a failure lives</strong>: a model built with no decision or named risk to exercise it rots before anyone checks it. The gap has drawn blood once — scaling services to zero cut idle cost the policy welcomed but the latency half could not weigh, and the cold-start incident in <a href="4.5-operating-mage.html">Operating MAGE</a> is exactly this gap surfacing: a warm per-request floor a fleet-average number hid, run down to a re-architecture that cut it 4,057 → 109 ms. The gap stays honest; this is what it costs to leave open.</p>
 <h2><span class="sec-num">2.6.8</span> Computing a migration's blast radius</h2>
 <blockquote id="idx-def-control-substrate-dependency" class="aside-sidenote"><p><strong>Substrate-dependency model · Structural</strong> <em>(compressed here; full card in the appendix)</em></p>
 <p>One last behavioral question before an agent changes the ground everything runs on: <em>which mechanisms assume the substrate I am about to replace?</em> Each governance mechanism declares, as typed metadata, the substrate assumption it bakes in — bound to one substrate, substrate-aware, or substrate-agnostic. Joining those declarations against the topology model on a migration target turns a hopeful grep into a <em>computed</em> blast radius; a declaration lint requires the stance, so the one mechanism whose assumption is implicit cannot hide from the join. Worked once on the plane the fleet actually migrated: retiring a poll plane for a push plane, the join named every mechanism that baked in "workers pull from a shared sorted set" — the queue-depth metric, the stale-job sweep, the cancellation cleanup, the priority-preservation requeue — before the change landed. <em>Property: a migration's blast radius is computed from declared stances, not grepped for by hand.</em> <a href="appendix-g-control-substrate-dependency-reference.html">Appendix G</a> · full card: <a href="appendix-b-control-substrate-dependency.html">control↔substrate dependency model</a></p></blockquote>

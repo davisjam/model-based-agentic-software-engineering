@@ -616,25 +616,25 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="4.2-brownfield.html">18&nbsp; Migrating to MAGE</a></li>
 <li><a class="current" href="4.3-validating-change.html">19&nbsp; Validating Change</a></li>
 <li><a class="" href="4.4-the-skills.html">20&nbsp; The Skills</a></li>
-<li><a class="" href="4.5-lifecycles-and-runbooks.html">21&nbsp; Lifecycles and Runbooks</a></li>
-<li><a class="" href="4.6-metrics.html">22&nbsp; Metrics</a></li>
+<li><a class="" href="4.5-operating-mage.html">21&nbsp; Operating MAGE</a></li>
+<li><a class="" href="4.6-portable-moves.html">Closing: The Portable Moves</a></li>
 <li class="part">Part 5 — The Evidence</li>
 <li><a class="" href="part-5-intro.html">The Evidence</a></li>
-<li><a class="" href="5.1-the-problem-and-the-bar.html">23&nbsp; The Problem and the Bar</a></li>
-<li><a class="" href="5.2-the-build.html">24&nbsp; The Build</a></li>
-<li><a class="" href="5.3-the-road-to-mage.html">25&nbsp; The Road to MAGE</a></li>
-<li><a class="" href="5.4-failures-that-became-infrastructure.html">26&nbsp; Failures That Became Infrastructure</a></li>
+<li><a class="" href="5.1-the-problem-and-the-bar.html">22&nbsp; The Problem and the Bar</a></li>
+<li><a class="" href="5.2-the-build.html">23&nbsp; The Build</a></li>
+<li><a class="" href="5.3-the-road-to-mage.html">24&nbsp; The Road to MAGE</a></li>
+<li><a class="" href="5.4-failures-that-became-infrastructure.html">25&nbsp; Failures That Became Infrastructure</a></li>
 <li class="part">Part 6 — The Profession</li>
 <li><a class="" href="part-6-intro.html">The Profession</a></li>
-<li><a class="" href="6.1-toward-a-theory-of-mage.html">27&nbsp; Toward a Theory of MAGE</a></li>
-<li><a class="" href="6.2-scope-conditions.html">28&nbsp; Scope Conditions</a></li>
-<li><a class="" href="6.3-relationship-to-se.html">29&nbsp; Relationship to Software Engineering</a></li>
-<li><a class="" href="6.4-engineering-beyond-software.html">30&nbsp; Engineering Beyond Software</a></li>
-<li><a class="" href="6.5-implications-for-se.html">31&nbsp; The New Profession</a></li>
-<li><a class="" href="6.6-educating-the-mage-engineer.html">32&nbsp; Educating the MAGE Engineer</a></li>
-<li><a class="" href="6.7-where-mage-fits.html">33&nbsp; MAGE in the Wild</a></li>
-<li><a class="" href="6.8-open-problems.html">34&nbsp; Open Problems</a></li>
-<li><a class="" href="6.9-conclusion.html">35&nbsp; Conclusion</a></li>
+<li><a class="" href="6.1-toward-a-theory-of-mage.html">26&nbsp; Toward a Theory of MAGE</a></li>
+<li><a class="" href="6.2-scope-conditions.html">27&nbsp; Scope Conditions</a></li>
+<li><a class="" href="6.3-relationship-to-se.html">28&nbsp; Relationship to Software Engineering</a></li>
+<li><a class="" href="6.4-engineering-beyond-software.html">29&nbsp; Engineering Beyond Software</a></li>
+<li><a class="" href="6.5-implications-for-se.html">30&nbsp; The New Profession</a></li>
+<li><a class="" href="6.6-educating-the-mage-engineer.html">31&nbsp; Educating the MAGE Engineer</a></li>
+<li><a class="" href="6.7-where-mage-fits.html">32&nbsp; MAGE in the Wild</a></li>
+<li><a class="" href="6.8-open-problems.html">33&nbsp; Open Problems</a></li>
+<li><a class="" href="6.9-conclusion.html">34&nbsp; Conclusion</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
 <li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
@@ -837,7 +837,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h3>Fuzzing: the contract is "never crash, never corrupt"</h3>
 <p>Where a property test asks a rich question of inputs drawn from an authored domain, fuzzing asks a coarser question of arbitrary, mutated ones. Neither ranks above the other; they meet different signals. In its baseline coverage-guided form the fuzzer's oracle is the implicit robustness contract every input-parsing surface signs whether or not anyone wrote it down: <em>do not crash, do not hang, do not corrupt, and reject cleanly whatever the format forbids.</em> Modern fuzzing enriches that oracle — sanitizers, differential comparison, semantic assertions, metamorphic relations — but the baseline is the honest starting point, and Inset E unpacks it. A malformed DocAble upload — a PDF truncated mid-object, a slide deck with a corrupted offset table, a document with megabytes of garbage appended — is precisely the input a generator of <em>valid</em> documents will never produce, and precisely where the crash lives. The fuzzer mutates and adversarially perturbs its way into that space and watches for the process to fall over or the output to fail to re-parse.</p>
 <p>The multiplier is discipline about the fix. When a fuzzer surfaces a crash, the temptation is to handle the exact bytes it found. The stronger move is to trace the failure to the point in the format's specification that the input violated, and fix <em>that</em> — because the specification is stable while any one producer's quirks are not, so a fix aimed at the specification point closes every input the format allows, not the single failing seed. One fix for the whole class, not a pile of one-off patches.</p>
-<p>A campaign that merely runs has explored nothing, so the honesty layer matters: the host test-runner can auto-collect line and branch coverage over each fuzz campaign and track it against a baseline, so "we fuzzed it" becomes a claim with a number behind it rather than a vibe. A coverage plateau — the campaign no longer finding new edges — is <em>one</em> saturation signal, not proof of saturation: it can hide input-grammar variants or semantic states the generator never produced in the first place (Inset E and the coverage section return to this). Its deeper treatment belongs to the <a href="4.6-metrics.html">metrics chapter</a>, which owns coverage.</p>
+<p>A campaign that merely runs has explored nothing, so the honesty layer matters: the host test-runner can auto-collect line and branch coverage over each fuzz campaign and track it against a baseline, so "we fuzzed it" becomes a claim with a number behind it rather than a vibe. A coverage plateau — the campaign no longer finding new edges — is <em>one</em> saturation signal, not proof of saturation: it can hide input-grammar variants or semantic states the generator never produced in the first place (Inset E and the coverage section return to this). Its deeper treatment belongs to the <a href="4.5-operating-mage.html">Operating MAGE chapter</a>, which owns coverage.</p>
 <blockquote class="aside-sidenote"><p>Learn more about this governance mechanism: <a href="appendix-b-fuzz-campaigns.html">fuzz campaigns</a>.</p></blockquote>
 <blockquote class="concept-inset"><p class="inset-title">Inset — What does coverage-guided fuzzing measure?</p>
 <p>A fuzzer throws malformed and mutated bytes at a parsing surface and watches for it to fall over. <em>Coverage guidance</em> makes the throwing smart: the fuzzer keeps any input that reaches new code and breeds more variants from it. Feed a PDF reader truncated and bit-flipped files; when one input reaches a new branch in the object-stream parser, the fuzzer notices and mutates that one further.</p>
@@ -846,7 +846,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>You can now read "we fuzzed it" as a claim with a coverage number behind it, and know to ask which oracle the campaign used — crash-only, or something richer. What counts as <em>enough</em> coverage belongs to the metrics chapter, not here.</p></blockquote>
 <p>The third member — fuzz plus a model, where the structured model itself becomes the oracle — is the richest deterministic validator, and this chapter develops it earlier, under <em>The model as oracle</em>, because its whole point is that the <em>model</em> is the judge. The format model, the producer-dialect corpus, and the interleaving search against a concurrency invariant all live there.</p>
 <h2><span class="sec-num">4.3.4</span> Coverage: did the validation explore the claim?</h2>
-<p>A validator answers a yes/no obligation; a <strong>metric</strong> answers a question of degree, and degree is its own kind of evidence. Did content fidelity hold — does the remediated document still say everything the original did? Did accessibility conformance improve or regress? Did latency, correctness, or a domain-specific quality measure move the right way? These are not pass/fail laws so much as measured properties, tracked against a baseline so a change that quietly degrades one of them is caught by the number rather than by a reviewer's memory. The book develops these as a flagship of its own — the <a href="4.6-metrics.html">metrics chapter</a> owns the general treatment, including the discipline to <strong>measure one level deeper</strong> than the raw percentage. This section takes only the one metric native to generative validation, and hands the rest back.</p>
+<p>A validator answers a yes/no obligation; a <strong>metric</strong> answers a question of degree, and degree is its own kind of evidence. Did content fidelity hold — does the remediated document still say everything the original did? Did accessibility conformance improve or regress? Did latency, correctness, or a domain-specific quality measure move the right way? These are not pass/fail laws so much as measured properties, tracked against a baseline so a change that quietly degrades one of them is caught by the number rather than by a reviewer's memory. The book develops these as a flagship of its own — the <a href="4.5-operating-mage.html">Operating MAGE chapter</a> owns the general treatment, including the discipline to <strong>measure one level deeper</strong> than the raw percentage. This section takes only the one metric native to generative validation, and hands the rest back.</p>
 <p>Once you have a generator, a new question appears that example tests never had to ask: <em>did the campaign explore the space that matters, or did it just spin?</em> A campaign that merely runs has explored nothing, so coverage is the honesty layer that turns "we fuzzed it" into a claim with a number behind it rather than a vibe.</p>
 <p>The native cut is <strong>grammar coverage.</strong> Line and branch coverage measure the <em>code</em> the inputs reached. Grammar coverage measures the <em>inputs</em> themselves: did the generator exercise every production of the input grammar — every structural variant, every mutation kind, every dialect the corpus is supposed to contain? It is branch coverage moved to the input side, and it answers the question the gap analyses of a real fuzzing effort keep circling back to: <em>is the corpus rich enough?</em> Three distinct measures live under that one name, and they are not interchangeable: <strong>grammar-production coverage</strong> (did the generator exercise every production of an explicit input grammar), <strong>mutation-operator coverage</strong> (did it apply every kind of mutation), and <strong>producer/dialect coverage</strong> (did the corpus carry every real producer's accent) — the last has no explicit grammar at all, so a producer corpus is measured by dialect coverage, not by productions (Inset C). A campaign that never generates a document with headers and footers, or never a cross-sheet formula, has such a hole no amount of line coverage will reveal, because the untested lines were never reached by any generated input in the first place.</p>
 <blockquote class="concept-inset"><p class="inset-title">Inset — What does grammar coverage count?</p>

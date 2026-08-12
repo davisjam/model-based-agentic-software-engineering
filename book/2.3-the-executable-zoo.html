@@ -616,25 +616,25 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="4.2-brownfield.html">18&nbsp; Migrating to MAGE</a></li>
 <li><a class="" href="4.3-validating-change.html">19&nbsp; Validating Change</a></li>
 <li><a class="" href="4.4-the-skills.html">20&nbsp; The Skills</a></li>
-<li><a class="" href="4.5-lifecycles-and-runbooks.html">21&nbsp; Lifecycles and Runbooks</a></li>
-<li><a class="" href="4.6-metrics.html">22&nbsp; Metrics</a></li>
+<li><a class="" href="4.5-operating-mage.html">21&nbsp; Operating MAGE</a></li>
+<li><a class="" href="4.6-portable-moves.html">Closing: The Portable Moves</a></li>
 <li class="part">Part 5 — The Evidence</li>
 <li><a class="" href="part-5-intro.html">The Evidence</a></li>
-<li><a class="" href="5.1-the-problem-and-the-bar.html">23&nbsp; The Problem and the Bar</a></li>
-<li><a class="" href="5.2-the-build.html">24&nbsp; The Build</a></li>
-<li><a class="" href="5.3-the-road-to-mage.html">25&nbsp; The Road to MAGE</a></li>
-<li><a class="" href="5.4-failures-that-became-infrastructure.html">26&nbsp; Failures That Became Infrastructure</a></li>
+<li><a class="" href="5.1-the-problem-and-the-bar.html">22&nbsp; The Problem and the Bar</a></li>
+<li><a class="" href="5.2-the-build.html">23&nbsp; The Build</a></li>
+<li><a class="" href="5.3-the-road-to-mage.html">24&nbsp; The Road to MAGE</a></li>
+<li><a class="" href="5.4-failures-that-became-infrastructure.html">25&nbsp; Failures That Became Infrastructure</a></li>
 <li class="part">Part 6 — The Profession</li>
 <li><a class="" href="part-6-intro.html">The Profession</a></li>
-<li><a class="" href="6.1-toward-a-theory-of-mage.html">27&nbsp; Toward a Theory of MAGE</a></li>
-<li><a class="" href="6.2-scope-conditions.html">28&nbsp; Scope Conditions</a></li>
-<li><a class="" href="6.3-relationship-to-se.html">29&nbsp; Relationship to Software Engineering</a></li>
-<li><a class="" href="6.4-engineering-beyond-software.html">30&nbsp; Engineering Beyond Software</a></li>
-<li><a class="" href="6.5-implications-for-se.html">31&nbsp; The New Profession</a></li>
-<li><a class="" href="6.6-educating-the-mage-engineer.html">32&nbsp; Educating the MAGE Engineer</a></li>
-<li><a class="" href="6.7-where-mage-fits.html">33&nbsp; MAGE in the Wild</a></li>
-<li><a class="" href="6.8-open-problems.html">34&nbsp; Open Problems</a></li>
-<li><a class="" href="6.9-conclusion.html">35&nbsp; Conclusion</a></li>
+<li><a class="" href="6.1-toward-a-theory-of-mage.html">26&nbsp; Toward a Theory of MAGE</a></li>
+<li><a class="" href="6.2-scope-conditions.html">27&nbsp; Scope Conditions</a></li>
+<li><a class="" href="6.3-relationship-to-se.html">28&nbsp; Relationship to Software Engineering</a></li>
+<li><a class="" href="6.4-engineering-beyond-software.html">29&nbsp; Engineering Beyond Software</a></li>
+<li><a class="" href="6.5-implications-for-se.html">30&nbsp; The New Profession</a></li>
+<li><a class="" href="6.6-educating-the-mage-engineer.html">31&nbsp; Educating the MAGE Engineer</a></li>
+<li><a class="" href="6.7-where-mage-fits.html">32&nbsp; MAGE in the Wild</a></li>
+<li><a class="" href="6.8-open-problems.html">33&nbsp; Open Problems</a></li>
+<li><a class="" href="6.9-conclusion.html">34&nbsp; Conclusion</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
 <li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
@@ -765,7 +765,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <blockquote class="concept-inset"><p class="inset-title" id="sidebar-spec-driven">Sidebar — Spec-driven development, from the field</p>
 <p>Recent studies of spec-driven agent workflows converge on the same point. An industrial one-person-squad case that ran an explicit spec-driven process to deliver work scoped for a four-person team reports that specification quality and institutional knowledge — not raw model capability — decided the outcome <sup class="cite-ref"><a href="#wc-2-3-the-executable-zoo-7" aria-label="citation 7">7</a></sup><span class="cite-note"><span class="cn-mark">7.</span> Marcelo Vilas Boas et al., “One Developer Is All You Need: A Case Study of an AI-Augmented One-Person Squad in a Brownfield Enterprise,” 2026.</span>. One team's field report is exact about where it broke <sup class="cite-ref"><a href="#wc-2-3-the-executable-zoo-8" aria-label="citation 8">8</a></sup><span class="cite-note"><span class="cn-mark">8.</span> Abdurrahman, “We Adopted Spec-Driven Development, Then the Specs Started Eating Our Context Window,” Medium, July 2026, <a href="https://abdurrahman5.medium.com/we-adopted-spec-driven-development-then-the-specs-started-eating-our-context-window-6cb9476dfedc">https://abdurrahman5.medium.com/we-adopted-spec-driven-development-then-the-specs-started-eating-our-context-window-6cb9476dfedc</a>.</span>: a naive preload reached roughly thirty-five thousand tokens at startup, of which about six percent was relevant, and the agent degraded once the window passed half full. Its remedies climb the same hill. Living specs, one per feature and edited in place, are the derive-don't-snapshot rule under another name; a thin router and index that load only the matching documents reach for <a href="appendix-a-context-management-stack.html">a context-management layer</a>; generated wikis and <a href="appendix-b-drift-parity-gates.html">a CI check that flags a doc-against-code mismatch</a> are a drift gate and derived traceability bolted onto a prose corpus after the fact.</p></blockquote>
 <h3>Keep map and territory equal — traceability</h3>
-<span id="idx-def-map-and-territory"></span><span id="idx-def-traceability"></span><p>The model is the <strong>map</strong>; the code is the <strong>territory</strong>. A model earns trust only if you can get from a model element back to the lines that realize it, and forward from a line to the model element that governs it. That round-trip is <strong>traceability</strong> — what the safety-critical standards demanded and what the drift gate mechanizes, since the reconciler <em>is</em> a traceability check that runs on every build. The forward direction is itself measurable — how much tested code reaches any model — and driving that number up is how the case study drained its unmodelled code. For the data, see <a href="4.6-metrics.html#mmm-drain">Metrics →</a></p>
+<span id="idx-def-map-and-territory"></span><span id="idx-def-traceability"></span><p>The model is the <strong>map</strong>; the code is the <strong>territory</strong>. A model earns trust only if you can get from a model element back to the lines that realize it, and forward from a line to the model element that governs it. That round-trip is <strong>traceability</strong> — what the safety-critical standards demanded and what the drift gate mechanizes, since the reconciler <em>is</em> a traceability check that runs on every build. The forward direction is itself measurable — how much tested code reaches any model — and driving that number up is how the case study drained its unmodelled code. For the data, see <a href="4.5-operating-mage.html#mmm-drain">Operating MAGE →</a></p>
 <p>The round-trip must itself be <strong>derived</strong>, not snapshotted. Picture the graph it walks — model element to lint to code entry point to test to registry row, each hop an edge. Write those edges down once and trust them, and the graph is a frozen snapshot that drifts the first time a symbol it names is deleted. Give each edge the mechanism that re-proves it — resolve the target against the code and see whether it still exists — and a deletion turns the edge red. Re-resolution is not infallibility; a live resolver can still mis-resolve. But it removes the one failure a snapshot guarantees: falling quietly out of date. The edge pays a second dividend — because a resolving edge means the map is current, an agent can <em>walk</em> it to pull the slice of a codebase it cannot hold in one window.</p>
 <blockquote class="aside-sidenote"><p>Learn more about this governance mechanism: <a href="appendix-b-symbol-anchored-traceability-graph.html">symbol-anchored traceability graph</a>.</p></blockquote>
 <blockquote class="concept-inset"><p class="inset-title" id="field-note-docable-drift">Field note — reading the fix off real drift</p>

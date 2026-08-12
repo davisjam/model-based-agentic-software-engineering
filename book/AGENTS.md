@@ -55,7 +55,7 @@ book/
   part1/          1.1-the-printer.md … 1.4-the-new-engineering-problem.md (4 chapters)              (Part 1 — The New Engineering Problem)
   part2/          2.1-context-is-the-first-modeling-problem.md … 2.7-scenarios-and-the-joined-model.md (7 chapters)  (Part 2 — Modeling)
   part3/          3.1-the-agent-stack.md … 3.5-when-guardrails-collide.md (5 chapters)              (Part 3 — Alignment)
-  part4/          4.1-the-mage-workflow.md … 4.6-metrics.md (6 chapters)                            (Part 4 — The MAGE Method)
+  part4/          4.1-the-mage-workflow.md … 4.6-portable-moves.md (6 chapters)                     (Part 4 — The MAGE Method)
   part5/          5.1-the-problem-and-the-bar.md … 5.4-failures-that-became-infrastructure.md (4 chapters)  (Part 5 — The Evidence)
   part6/          6.1-toward-a-theory-of-mage.md … 6.9-conclusion.md (9 chapters, incl. 6.6-educating-the-mage-engineer.md)  (Part 6 — The Profession)
   part7/          7.1-about-the-author.md, 7.2-colophon.md (2 chapters)                             (Part 7 — Back Matter)

@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 34,
     "slugs_rendered": 25,
-    "total_sites": 1649,
+    "total_sites": 1647,
     "by_projection": {
       "book-pdf": 22,
-      "book-web": 1226,
+      "book-web": 1224,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -109,7 +109,7 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 27
+            "occ": 31
           },
           {
             "file": "book/4.2-brownfield.html",
@@ -121,15 +121,15 @@
           },
           {
             "file": "book/4.4-the-skills.html",
-            "occ": 50
+            "occ": 43
           },
           {
-            "file": "book/4.5-lifecycles-and-runbooks.html",
-            "occ": 26
+            "file": "book/4.5-operating-mage.html",
+            "occ": 32
           },
           {
-            "file": "book/4.6-metrics.html",
-            "occ": 10
+            "file": "book/4.6-portable-moves.html",
+            "occ": 4
           },
           {
             "file": "book/5.1-the-problem-and-the-bar.html",
@@ -509,7 +509,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 68
+            "occ": 69
           },
           {
             "file": "book/index.html",
@@ -889,7 +889,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 30
+            "occ": 27
           },
           {
             "file": "catalogue-figure.html",
@@ -998,10 +998,6 @@
             "occ": 2
           },
           {
-            "file": "book/4.6-metrics.html",
-            "occ": 1
-          },
-          {
             "file": "book/5.1-the-problem-and-the-bar.html",
             "occ": 1
           },
@@ -1081,7 +1077,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 31
+            "occ": 30
           }
         ]
       },
@@ -1166,8 +1162,8 @@
             "occ": 1
           },
           {
-            "file": "book/4.4-the-skills.html",
-            "occ": 3
+            "file": "book/4.1-the-mage-workflow.html",
+            "occ": 1
           },
           {
             "file": "book/5.2-the-build.html",
@@ -1251,7 +1247,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 69
+            "occ": 70
           },
           {
             "file": "book/list-of-figures.html",
@@ -1599,7 +1595,7 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 22
+            "occ": 27
           },
           {
             "file": "book/4.2-brownfield.html",
@@ -1614,12 +1610,12 @@
             "occ": 24
           },
           {
-            "file": "book/4.5-lifecycles-and-runbooks.html",
-            "occ": 10
+            "file": "book/4.5-operating-mage.html",
+            "occ": 20
           },
           {
-            "file": "book/4.6-metrics.html",
-            "occ": 21
+            "file": "book/4.6-portable-moves.html",
+            "occ": 11
           },
           {
             "file": "book/5.1-the-problem-and-the-bar.html",
@@ -1987,7 +1983,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 50
+            "occ": 54
           },
           {
             "file": "book/book-index.html",
@@ -2280,11 +2276,11 @@
             "occ": 2
           },
           {
-            "file": "book/4.5-lifecycles-and-runbooks.html",
+            "file": "book/4.5-operating-mage.html",
             "occ": 1
           },
           {
-            "file": "book/4.6-metrics.html",
+            "file": "book/4.6-portable-moves.html",
             "occ": 1
           },
           {
@@ -2838,12 +2834,8 @@
             "occ": 2
           },
           {
-            "file": "book/4.5-lifecycles-and-runbooks.html",
-            "occ": 2
-          },
-          {
-            "file": "book/4.6-metrics.html",
-            "occ": 4
+            "file": "book/4.5-operating-mage.html",
+            "occ": 7
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -2885,7 +2877,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 23
+            "occ": 22
           }
         ]
       },
@@ -3069,7 +3061,7 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 65
+            "occ": 64
           },
           {
             "file": "book/4.2-brownfield.html",
@@ -3081,15 +3073,15 @@
           },
           {
             "file": "book/4.4-the-skills.html",
-            "occ": 53
+            "occ": 41
           },
           {
-            "file": "book/4.5-lifecycles-and-runbooks.html",
-            "occ": 22
+            "file": "book/4.5-operating-mage.html",
+            "occ": 67
           },
           {
-            "file": "book/4.6-metrics.html",
-            "occ": 69
+            "file": "book/4.6-portable-moves.html",
+            "occ": 21
           },
           {
             "file": "book/5.1-the-problem-and-the-bar.html",
@@ -3461,7 +3453,7 @@
           },
           {
             "file": "book/book-index.html",
-            "occ": 39
+            "occ": 40
           },
           {
             "file": "book/catalogue-figure.html",
@@ -3929,7 +3921,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 76
+            "occ": 77
           },
           {
             "file": "catalogue-figure.html",
@@ -4357,7 +4349,7 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 2
+            "occ": 7
           },
           {
             "file": "book/4.2-brownfield.html",
@@ -4372,11 +4364,11 @@
             "occ": 1
           },
           {
-            "file": "book/4.5-lifecycles-and-runbooks.html",
+            "file": "book/4.5-operating-mage.html",
             "occ": 1
           },
           {
-            "file": "book/4.6-metrics.html",
+            "file": "book/4.6-portable-moves.html",
             "occ": 1
           },
           {
@@ -4753,7 +4745,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 5
+            "occ": 9
           },
           {
             "file": "book/index.html",
@@ -4922,11 +4914,11 @@
             "occ": 1
           },
           {
-            "file": "book/4.5-lifecycles-and-runbooks.html",
+            "file": "book/4.5-operating-mage.html",
             "occ": 1
           },
           {
-            "file": "book/4.6-metrics.html",
+            "file": "book/4.6-portable-moves.html",
             "occ": 1
           },
           {
@@ -5554,11 +5546,11 @@
             "occ": 2
           },
           {
-            "file": "book/4.5-lifecycles-and-runbooks.html",
+            "file": "book/4.5-operating-mage.html",
             "occ": 2
           },
           {
-            "file": "book/4.6-metrics.html",
+            "file": "book/4.6-portable-moves.html",
             "occ": 2
           },
           {
@@ -6113,7 +6105,7 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/4.2-brownfield.html",
@@ -6128,12 +6120,12 @@
             "occ": 3
           },
           {
-            "file": "book/4.5-lifecycles-and-runbooks.html",
-            "occ": 1
+            "file": "book/4.5-operating-mage.html",
+            "occ": 4
           },
           {
-            "file": "book/4.6-metrics.html",
-            "occ": 5
+            "file": "book/4.6-portable-moves.html",
+            "occ": 1
           },
           {
             "file": "book/5.1-the-problem-and-the-bar.html",
@@ -6777,7 +6769,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "constructing-the-gee.html",
@@ -6839,7 +6831,7 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 19
+            "occ": 21
           },
           {
             "file": "book/4.2-brownfield.html",
@@ -6851,15 +6843,15 @@
           },
           {
             "file": "book/4.4-the-skills.html",
-            "occ": 8
-          },
-          {
-            "file": "book/4.5-lifecycles-and-runbooks.html",
             "occ": 2
           },
           {
-            "file": "book/4.6-metrics.html",
-            "occ": 5
+            "file": "book/4.5-operating-mage.html",
+            "occ": 7
+          },
+          {
+            "file": "book/4.6-portable-moves.html",
+            "occ": 1
           },
           {
             "file": "book/5.4-failures-that-became-infrastructure.html",
@@ -6935,7 +6927,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 11
+            "occ": 13
           }
         ],
         "book-pdf": [
@@ -6977,7 +6969,7 @@
         "website-misc": [
           {
             "file": "book-models/models-view.html",
-            "occ": 9
+            "occ": 7
           },
           {
             "file": "constructing-the-gee.html",

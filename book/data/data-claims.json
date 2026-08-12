@@ -69,7 +69,7 @@
     "gloss": "The model-sync measurement: a drift-detection sensor whose readings (derived-floor churn +8,970/-173 lines across 63 commits; 0 model-drift reopens across a separate N=56 closes; ~27 pre-floor findings at S:N~1.0 before tuning) show reconciliation stays cheap and divergence is caught."
   },
   "mmm-drain": {
-    "source": "metrics",
+    "source": "operating-mage",
     "anchor": "mmm-drain",
     "holds": ["56%", "55%", "52%", "39%", "32.2%", "30.1%", "20.9%", "14.9%", "7.89%"],
     "status": "final",

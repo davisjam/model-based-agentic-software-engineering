@@ -4,7 +4,7 @@ serve both purposes.
 
 [ref:operators-dashboard] gives each metric in two bands — the formative metrics above the divider, the
 summative verdicts below — with what each one counts, when to read it, and its healthy direction. Scan the
-band you need. The [4.6](4.6-metrics.html) reference is the companion one level down: read it to steer a
+band you need. The [4.5](4.5-operating-mage.html) reference is the companion one level down: read it to steer a
 single loop iteration, read this to steer or grade the whole program.
 
 <!-- label: operators-dashboard -->
@@ -12,7 +12,7 @@ single loop iteration, read this to steer or grade the whole program.
 | Metric | Mode | What it counts | When to watch | Healthy direction | Defined in |
 |---|---|---|---|---|---|
 | **Formative — measured during the work, to steer the next step** | | | | | |
-| **Missing-Model Metric** | formative | Fraction of tests whose exercised code traces to no model claim — the unmodelled surface — plus its drain curve. | After each model-loop Epic; steer the next at the biggest orphan cluster. | Drains toward 10%-or-under (56% to 7.89% over nine re-runs). | [4.6](4.6-metrics.html#mmm-drain) |
+| **Missing-Model Metric** | formative | Fraction of tests whose exercised code traces to no model claim — the unmodelled surface — plus its drain curve. | After each model-loop Epic; steer the next at the biggest orphan cluster. | Drains toward 10%-or-under (56% to 7.89% over nine re-runs). | [4.5](4.5-operating-mage.html#mmm-drain) |
 | **Velocity** | formative | Commits per week. | Watch the dip where velocity buys hardening. | Roughly linear; a hardening dip is expected, not alarming. | [5.2](5.2-the-build.html#velocity) |
 | **Churn** | formative | Lines added and deleted per week per path. | Reads which build phase you are in. | Peaks at mechanization, then collapses as the environment stabilizes. | [5.2](5.2-the-build.html#churn) |
 | **Model-sync efficacy** | formative | Whether the drift and parity gates keep model equal to code. | Watch that map-equals-territory holds. | Gates stay green. | [5.3](5.3-the-road-to-mage.html) |

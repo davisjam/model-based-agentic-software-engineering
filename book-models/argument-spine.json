@@ -9,7 +9,7 @@
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 3,
+    "zero_claim_suspects": 4,
     "over_cap_unfocused": 3,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
@@ -234,9 +234,9 @@
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "4.4-the-skills",
-        "4.5-lifecycles-and-runbooks",
         "5.4-failures-that-became-infrastructure",
-        "6.5-implications-for-se"
+        "6.5-implications-for-se",
+        "lifecycles-and-runbooks"
       ],
       "body_depth": 10,
       "front_loaded": false,
@@ -286,8 +286,8 @@
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "4.3-validating-change",
-        "4.6-metrics",
-        "5.3-the-road-to-mage"
+        "5.3-the-road-to-mage",
+        "metrics"
       ],
       "body_depth": 15,
       "front_loaded": false,
@@ -327,8 +327,8 @@
         "3.4-governance-conversion",
         "4.1-the-mage-workflow",
         "4.3-validating-change",
-        "4.6-metrics",
-        "5.4-failures-that-became-infrastructure"
+        "5.4-failures-that-became-infrastructure",
+        "metrics"
       ],
       "body_depth": 8,
       "front_loaded": false,
@@ -759,18 +759,8 @@
       "exempt": null
     },
     {
-      "slug": "4.5-lifecycles-and-runbooks",
-      "advances": [
-        "govern-the-environment"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "4.6-metrics",
-      "advances": [
-        "modeling-thesis",
-        "alignment-thesis"
-      ],
+      "slug": "4.5-operating-mage",
+      "advances": [],
       "exempt": null
     },
     {
@@ -882,10 +872,29 @@
       "slug": "acknowledgments",
       "advances": [],
       "exempt": "apparatus"
+    },
+    {
+      "slug": "lifecycles-and-runbooks",
+      "advances": [
+        "govern-the-environment"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "metrics",
+      "advances": [
+        "modeling-thesis",
+        "alignment-thesis"
+      ],
+      "exempt": null
     }
   ],
   "flags": {
     "zero_claim_suspects": [
+      {
+        "chapter": "4.5-operating-mage",
+        "advances": 0
+      },
       {
         "chapter": "6.4-engineering-beyond-software",
         "advances": 0
@@ -950,9 +959,9 @@
           "4.1-the-mage-workflow",
           "4.2-brownfield",
           "4.4-the-skills",
-          "4.5-lifecycles-and-runbooks",
           "5.4-failures-that-became-infrastructure",
-          "6.5-implications-for-se"
+          "6.5-implications-for-se",
+          "lifecycles-and-runbooks"
         ]
       },
       {
@@ -975,8 +984,8 @@
           "4.1-the-mage-workflow",
           "4.2-brownfield",
           "4.3-validating-change",
-          "4.6-metrics",
-          "5.3-the-road-to-mage"
+          "5.3-the-road-to-mage",
+          "metrics"
         ]
       }
     ]

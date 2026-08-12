@@ -529,29 +529,23 @@
       "location": "part1",
       "rationale": "supports the derivation figure"
     },
-    "lifecycles-and-runbooks::Typing a runbook's steps": {
+    "operating-mage::Typing a runbook's steps": {
       "tier": "B",
       "kind": "framework",
-      "location": "part2",
+      "location": "part4",
       "rationale": "governs the step taxonomy"
     },
-    "metrics::Measure one level deeper": {
+    "operating-mage::Measure one level deeper": {
       "tier": "B",
       "kind": "framework",
-      "location": "part2",
+      "location": "part4",
       "rationale": "decision-driving table"
     },
-    "metrics::The Missing-Model-Metric drain, run by run": {
+    "operating-mage::The Missing-Model-Metric drain, run by run": {
       "tier": "B",
       "kind": "data",
-      "location": "part2",
+      "location": "part4",
       "rationale": "per-run measurements"
-    },
-    "metrics::The governance metrics at a glance": {
-      "tier": "C",
-      "kind": "reference-glance",
-      "location": "part2",
-      "rationale": "lookup summary"
     },
     "modeling-structure-and-ownership::Invariants of the Logical view": {
       "tier": "C",
