@@ -169,6 +169,14 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: supervised-autonomy | Supervised autonomy
 - concept: fidelity-validator | The fidelity validator
 - concept: provenance-layer | The provenance layer
+- concept: remediation-job | A remediation job
+- concept: worker | A worker
+- concept: chunk | A chunk
+- concept: remediation-service | A remediation service
+- concept: work-queue | Queues and infrastructure
+- concept: evidence-record | The evidence record
+- concept: accessibility-obligation | The accessibility obligations
+- concept: model-selection | Model selection
 - concept: selc | SELC — the software engineering life cycle
 - concept: lifecycle-phases | The lifecycle phases
 - concept: engineers-seat | The engineer's seat
