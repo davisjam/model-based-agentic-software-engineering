@@ -537,12 +537,20 @@ CHECKS = [
     # any overlap. See tests/svg_fit.py.
     Check("svg: text-label overlap (C6, two captions on top of each other)", 1,
           lambda strict: check_svg_text_overlap()),
-    # AUDIT-ONLY-first (rule #55): C7 stroke cross-through — a stroked <path>/<line> (CURVES included, unlike
-    # the straight-only stroke-through-glyph in drawing hygiene) running through a <text> or node <rect> it
-    # neither starts nor ends at (endpoint-connection exempts the arrowhead's own target). Caught the
-    # return-arc through the conversion hub + the green enrich-arc through "enrich model" here. Lands
-    # audit-only (~10 figures flag at HEAD — a mix of real reroutes + likely FPs to triage in a drain wave);
-    # promote to blocking once drained to 0. See tests/svg_fit.py.
+    # AUDIT-ONLY (KEPT — an irreducible FP class blocks a clean promotion): C7 stroke cross-through — a
+    # stroked <path>/<line> (CURVES included, unlike the straight-only stroke-through-glyph in drawing
+    # hygiene) running through a <text> or node <rect> it neither starts nor ends at (endpoint-connection
+    # exempts the arrowhead's own target). Caught the return-arc through the conversion hub + the green
+    # enrich-arc through "enrich model". A drain wave removed the cleanly-excludable false-positive classes:
+    # OCCLUSION (a sample hidden behind an opaque shape painted later than the connector — halo plates,
+    # arcs-under-nodes, opaque waypoint badges) + DECORATIVE files (cover*/velocity-*). Two real cross-label
+    # strikes were fixed in figures (collision-edge, wiki-linkage). What remains (9 findings across 5 figures)
+    # is NOT cleanly separable by geometry: a label placed ON its own flow/loop connector (the numbered-
+    # waypoint idiom in mage-dynamic), a feedback arc crossing long chain labels (mage-churn), and connectors
+    # that traverse the EMPTY interior of a region/panel box (open-frontiers, model-sync, join-composite) —
+    # each reads to a pure-geometry test exactly like a genuine strike. Promoting would either red-gate on
+    # intended idioms or demand risky blind coordinate edits to the book's flagship print figures. So this
+    # stays AUDIT-ONLY and the residual is a figure-owner redraw backlog. See tests/svg_fit.py.
     Check("svg: stroke cross-through unrelated element (C7, curved connectors)", 1,
           lambda strict: check_svg_stroke_crossthrough(), audit_only=True),
     # BLOCKING (promoted — drain confirmed 0 at HEAD): a figure whose viewBox aspect projects past the page

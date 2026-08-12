@@ -1045,6 +1045,75 @@ def _near_box(px: float, py: float, box: tuple[float, float, float, float], marg
     return (l - margin) <= px <= (r + margin) and (t - margin) <= py <= (b + margin)
 
 
+# Figures out of scope for the cross-through pass: decorative cover art (free-form flourishes, not a
+# node-and-connector diagram) + data charts (plotted paths cross axis/gridline rects by construction).
+# The same out-of-scope set the box-overflow and font-band sensors carry.
+_CROSS_EXCLUDE_PREFIXES = ("cover", "velocity-")
+
+
+def _fill_is_opaque(el: ET.Element) -> bool:
+    """True when a shape paints an OPAQUE fill: a solid colour, not `none`/transparent, at full opacity. A
+    shape like this, drawn LATER than a connector, HIDES the connector where they overlap — so a geometric
+    cross-through behind it is not a visible one (the occlusion the halo-plate + arcs-under-nodes idioms rely on)."""
+    fill = (el.get("fill") or "").strip().lower()
+    if fill in ("", "none", "transparent"):
+        return False
+    fo, op = _num(el.get("fill-opacity")), _num(el.get("opacity"))
+    return not ((fo is not None and fo < 1.0) or (op is not None and op < 1.0))
+
+
+def _polygon_points(s: str) -> list[tuple[float, float]]:
+    nums = re.findall(r"-?[0-9.]+", s)
+    return [(float(nums[i]), float(nums[i + 1])) for i in range(0, len(nums) - 1, 2)]
+
+
+def _point_in_polygon(px: float, py: float, poly: list[tuple[float, float]]) -> bool:
+    """Ray-cast point-in-polygon test."""
+    inside = False
+    j = len(poly) - 1
+    for i in range(len(poly)):
+        xi, yi = poly[i]
+        xj, yj = poly[j]
+        if ((yi > py) != (yj > py)) and (px < (xj - xi) * (py - yi) / (yj - yi) + xi):
+            inside = not inside
+        j = i
+    return inside
+
+
+def _point_in_shape(el: ET.Element, px: float, py: float) -> bool:
+    """Point-in-shape for the shapes used as opaque occluders: rect, circle, ellipse, polygon. Coordinates
+    must be absolute — the caller excludes transformed shapes."""
+    tag = _local(el.tag)
+    if tag == "rect":
+        x, y, w, h = _num(el.get("x")), _num(el.get("y")), _num(el.get("width")), _num(el.get("height"))
+        if None in (x, y, w, h):
+            return False
+        return x <= px <= x + w and y <= py <= y + h  # type: ignore[operator]
+    if tag == "circle":
+        cx, cy, r = _num(el.get("cx")), _num(el.get("cy")), _num(el.get("r"))
+        if None in (cx, cy, r):
+            return False
+        return (px - cx) ** 2 + (py - cy) ** 2 <= r * r  # type: ignore[operator]
+    if tag == "ellipse":
+        cx, cy, rx, ry = _num(el.get("cx")), _num(el.get("cy")), _num(el.get("rx")), _num(el.get("ry"))
+        if None in (cx, cy, rx, ry) or not rx or not ry:
+            return False
+        return ((px - cx) / rx) ** 2 + ((py - cy) / ry) ** 2 <= 1.0  # type: ignore[operator]
+    if tag == "polygon":
+        pts = _polygon_points(el.get("points") or "")
+        return _point_in_polygon(px, py, pts) if len(pts) >= 3 else False
+    return False
+
+
+def _opaque_occluders(root: ET.Element, transformed: set[int]) -> list[tuple[int, ET.Element]]:
+    """Every opaquely-filled rect/circle/ellipse/polygon, tagged with its document (= paint) order index.
+    A connector sample covered by an occluder painted AFTER the connector is hidden behind it. Transformed
+    shapes are skipped (their coordinates are not absolute, so containment can't be tested here)."""
+    return [(idx, el) for idx, el in enumerate(root.iter())
+            if _local(el.tag) in ("rect", "circle", "ellipse", "polygon")
+            and id(el) not in transformed and _fill_is_opaque(el)]
+
+
 def check_svg_stroke_crossthrough():
     """Scan every `book/assets/*.svg`; flag a stroked `<path>`/`<line>` (curves included) that runs THROUGH
     the box of a `<text>` or a node `<rect>` it neither starts nor ends at.
@@ -1054,7 +1123,19 @@ def check_svg_stroke_crossthrough():
     of it — a pure pass-through, not the arrowhead terminating on its target. Skips transformed connectors
     (coords not absolute), marker-internal shapes, and background/panel rects (a connector may cross a panel).
 
-    AUDIT-ONLY: reports candidates, never contributes to the fail count."""
+    Two false-positive classes are excluded:
+      * DECORATIVE / CHART files (`cover*`, `velocity-*`) — free-form flourishes and plotted data paths cross
+        rects by construction; the same out-of-scope set the box-overflow + font-band sensors carry.
+      * OCCLUSION — a sample hidden behind an OPAQUE shape (rect/circle/ellipse/polygon) painted LATER in
+        document order than the connector is not a VISIBLE cross-through. This is the idiom the corpus uses
+        deliberately: canvas-coloured halo plates under an edge label, dashed cross-link arcs drawn under
+        opaque nodes, an opaque waypoint-badge circle over its loop arc.
+
+    AUDIT-ONLY: reports candidates, never contributes to the fail count. It stays audit-only rather than a
+    gate because a residual FP class is not cleanly separable by geometry — a label placed ON its own flow /
+    loop connector (the numbered-waypoint idiom) and a connector that legitimately traverses the empty
+    interior of a region/panel box read to this check exactly like a genuine foreign stroke through a label.
+    Distinguishing them needs per-figure ownership semantics the geometry does not carry."""
     assets_dir = os.path.join(ROOT, "book", "assets")
     if not os.path.isdir(assets_dir):
         return PASS, ["no book/assets/ dir — nothing to scan"]
@@ -1062,7 +1143,7 @@ def check_svg_stroke_crossthrough():
     issues: list[str] = []
     flagged: set[str] = set()
     for fn in sorted(os.listdir(assets_dir)):
-        if not fn.endswith(".svg"):
+        if not fn.endswith(".svg") or fn.startswith(_CROSS_EXCLUDE_PREFIXES):
             continue
         path = os.path.join(assets_dir, fn)
         try:
@@ -1072,6 +1153,8 @@ def check_svg_stroke_crossthrough():
         style_classes = _parse_style_font_sizes(root)
         transformed = _transformed_ids(root)
         vb_w = _viewbox_width(root)
+        order = {id(el): i for i, el in enumerate(root.iter())}   # document = paint order
+        occluders = _opaque_occluders(root, transformed)          # opaque shapes that can hide a connector
 
         in_marker: set[int] = set()
         for el in root.iter():
@@ -1104,22 +1187,29 @@ def check_svg_stroke_crossthrough():
             pts = _connector_points(el)
             if not pts or len(pts) < 3:
                 continue  # nothing to sample interior-of (a bare 2-point line has no interior sample)
+            conn_idx = order.get(id(el), -1)
             p0, pN = pts[0], pts[-1]
             interior = pts[1:-1]  # never test the endpoints themselves
             for name, box, inset in targets:
                 if _near_box(*p0, box, CROSS_CONNECT_MARGIN) or _near_box(*pN, box, CROSS_CONNECT_MARGIN):
                     continue  # a connector endpoint touches this element — it terminates here, not through it
                 l, t, r, b = box
+                hit: tuple[float, float] | None = None
                 for (px, py) in interior:
-                    if (l + inset) < px < (r - inset) and (t + inset) < py < (b - inset):
-                        issues.append(
-                            f"{rel(path)}: STROKE cross-through — a <{_local(el.tag)}> passes through "
-                            f"{name} it does not start or end at — reroute it clear of the element")
-                        flagged.add(fn)
-                        break
-                else:
-                    continue
-                break  # one finding per connector is enough
+                    if not ((l + inset) < px < (r - inset) and (t + inset) < py < (b - inset)):
+                        continue
+                    # A sample hidden behind an opaque shape painted AFTER this connector is not a VISIBLE
+                    # cross-through (the halo-plate / arcs-under-nodes / opaque-badge idioms). Skip it.
+                    if any(oi > conn_idx and _point_in_shape(oel, px, py) for oi, oel in occluders):
+                        continue
+                    hit = (px, py)
+                    break
+                if hit is not None:
+                    issues.append(
+                        f"{rel(path)}: STROKE cross-through — a <{_local(el.tag)}> passes through "
+                        f"{name} it does not start or end at — reroute it clear of the element")
+                    flagged.add(fn)
+                    break  # one finding per connector is enough
 
     if issues:
         issues.insert(0, f"{len(flagged)} figure(s) with a stroke crossing through an unrelated element:")
