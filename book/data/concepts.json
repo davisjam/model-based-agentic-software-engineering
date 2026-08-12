@@ -158,12 +158,6 @@
     "status": "book-only",
     "note": "realized as the catalogue's three top-level role sections (agent/ models-bridge/ product/) + the catalogue-views grouping; discussed in the book; no standalone landing card. Governance target (c) — the shipped artifact the fleet PRODUCES. Book index-def tagged at Appendix C's C.3 Product zone section (the mechanism-catalogue zone that introduces this target)."
   },
-  "models-bridge": {
-    "kind": "mechanism-class",
-    "site_home": "N/A",
-    "status": "book-only",
-    "note": "The models-bridge: model-code traceability + drift-checking — the governed channel by which the fleet's reasoning crosses between the code (the territory) and the authored system models (the map). Authored models supply the agent's priors; traceability edges connect model elements to the code; drift gates check the code against the models; the agent reasons ACROSS the bridge. The concept the Modeling Thesis's model-code relationship rests on, and the concept the core metaphor 'the model bridge' (metaphor-spans.json slug `model-bridge`) teaches. Book index-def tagged at §3.8 (keeping the models in sync) — book_home 3.8; seeded earlier, without the literal words, at §2.2's 'a structured model layer binds the islands' figure/prose. Book-only by design (no landing card; mechanism-class, exempt from L3). Realized in the companion catalogue as the models-bridge role section and its traceability + drift-parity mechanisms. DISTINCT from `governance-target-models-bridge` (the axis/zone — the models-as-artifacts the fleet reasons THROUGH); this concept is the checked, traversable RELATIONSHIP between those models and the code. Also DISTINCT from its sibling registered concepts `traceability` and `drift-gate`: models-bridge is the composed channel — `traceability` names its edges and `drift-gate` its checks — the concept is the whole relationship those two halves make. kind `mechanism-class` is chosen for MECHANICAL placement (a valid, L3-exempt enum slot), not taxonomic identity — models-bridge is the model-code relationship such mechanisms enforce, not itself a category of mechanism; the closest dual-home precedent is `compounding` (kind `axis` + a definitions record), not the core-construct dual-homes."
-  },
   "engineered-agent-loop": {
     "kind": "core-construct",
     "site_home": "N/A",

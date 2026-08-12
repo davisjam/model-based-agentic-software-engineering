@@ -1,15 +1,19 @@
-<!-- part-foreshadows: sync-cost-reduced, modeling-thesis, mage-becomes-practical -->
-Software engineering has long claimed to be model-based, yet models rarely became central to
-practice: keeping them synchronized with a fast-moving codebase demanded continuous human effort.
-Commodity intelligence changes that equation. Coding agents make synchronization cheap enough that
-explicit models become practical engineering assets rather than expensive documentation.
+<!-- part-foreshadows: modeling-thesis, mage-becomes-practical -->
 
-You may still be wondering why a book about coding agents has arrived at models. The answer is that
-agents make software engineering's oldest weakness impossible to ignore. A human engineer can often
-reconstruct enough of a system from code, history, and memory to make progress. A fast-moving fleet
-cannot afford to rediscover that world on every task. Once implementation becomes cheap, the
-expensive part is repeatedly rebuilding the understanding required to change the system safely.
-Models are how MAGE stops paying that cost over and over.
+Software engineering has always relied on abstraction. Large systems exceed what any engineer can
+reason about directly, so we work through architectures, interfaces, schemas, requirements, state
+machines, dependency graphs, and other purposeful reductions. Explicit models have nevertheless
+remained secondary in much code-centric software practice because maintaining another representation of
+a fast-moving system carries a standing cost. Commodity intelligence changes that economics. Deriving,
+reconciling, regenerating, and querying structured representations are exactly the kinds of repeated
+work a coding fleet can perform cheaply.
+
+You may still be wondering why a book about coding agents has arrived at models. The answer is not that
+agents invented software engineering's reasoning problem. Scale did that long ago. The change is that
+implementation can now move much faster than the knowledge required to direct it. A human team can spend
+substantial effort reconstructing architecture, ownership, policy, and lifecycle from code and
+institutional memory; an agent fleet can spend that same effort over and over, once per task and once
+per fresh reasoning state. MAGE uses models to stop repurchasing knowledge that can be made durable.
 
 <!-- thesisbox -->
 > ### MODELING THESIS
@@ -17,12 +21,14 @@ Models are how MAGE stops paying that cost over and over.
 > Externalize engineering knowledge and intent into explicit, structured models that both engineers
 > and agents can reason through.
 >
-> Richer representations create stronger reasoning surfaces.
+> Richer representations make larger engineering questions tractable and expose richer surfaces for
+> authority.
 
-Lightweight context organizes into connected knowledge, structures into engineering models, and reaches
-executable models whose correctness the environment itself can check. The destination is not better
-documentation; it is a new engineering surface — the representations on which reasoning, analysis,
-prediction, and eventually governance are performed.
+The progression begins modestly. Selected context becomes connected knowledge; connected knowledge
+becomes a model when it carries semantics useful to an engineering question; richer models can state
+properties, support analysis, and remain mechanically related to the system they represent. The
+destination is not more documentation. It is an engineering surface through which people, agents, and
+tools can reason about properties that would otherwise have to be reconstructed from lower-level detail.
 
 <!-- point: part-2-asks-what-to-model-and-what-it-reveals | Part II asks one question of every system: what should I model, and what will the model let me know? | terms: thesis-modeling, model-as-map, scope-of-modeling -->
 That surface does not build itself. Before an agent can reason over a model, an engineer has to decide
@@ -62,7 +68,8 @@ depending only on which question you bring to it — a phenomenon Part I walks i
 image: one object, five true pictures, and none of them *is* the worker.
 
 <!-- point: part-2-moves-through-five-model-classes | Part II moves through five classes of model, not a taxonomy to memorize. | terms: model-zoo, four-plus-one-views -->
-The models divide into five classes. Fix this ontology now, because the rest of the book uses it:
+The models divide into five classes. The examples ahead fall into five classes that the rest of the
+book will reuse:
 
 - **Behavioral** — what states a thing occupies, and how it moves between them.
 - **Structural** — what parts exist, and which may depend on which.
@@ -72,8 +79,8 @@ The models divide into five classes. Fix this ontology now, because the rest of 
 
 Concurrency and ownership feel like a sixth class. They are not. Ownership is a *specialization*: lay an
 owner and a lease over a behavioral machine, add the queue the owner claims from to the structural
-picture, and you have it. The class count stays at five on purpose, because a small clean ontology is
-worth more than a complete one.
+picture, and you have it. The five classes are deliberately coarse. The point is to organize recurring
+engineering questions, not to produce an exhaustive modeling taxonomy.
 
 <!-- point: there-is-no-model-of-the-system-only-purposeful-reductions | There is no model of the system, only purposeful reductions that each answer one question. | terms: model-as-map, scope-of-modeling, map-and-territory -->
 So there is no single "model of the system." There are only purposeful reductions of it, each built to
@@ -101,10 +108,12 @@ reduction *is* the thesis, demonstrated — say it to yourself each time the rea
 >
 > The lines are the rhythm, not a form to fill. The prose flows over them; it does not announce them.
 
-Part III adds a fifth question — *what gives the property authority?* Writing down that only certain
-services may talk does not make it true. A model starts to matter when the engineering environment can
-compare the system against it and refuse the change that violates it. Part II builds the representations.
-Part III makes them bite.
+Part III adds a fifth question: **what gives the property authority?** Some obligations can already be
+held without an explicit system model — a sandbox can deny an action, a compiler can reject a construct,
+a test can block a regression. The models in this Part enlarge that surface. Once architecture,
+ownership, behavior, policy, or measurement is explicit, the environment can reason about obligations
+that would otherwise require an agent or a human to reconstruct the missing semantics. Part II builds
+those representations. Part III develops the general machinery of authority.
 
 <!-- point: part-2-hands-you-a-reusable-mental-toolbox | By the Part's end you hold a mental toolbox you can rebuild for your own system. | terms: model-zoo, scope-of-modeling, thesis-modeling -->
 Work through these with DocAble held constant while the question varies, and by the Part's end you

@@ -7,7 +7,7 @@
 
   "_book_only_note": "Every record now carries `site_home` = \"N/A\": the landing dropped its on-landing definitions strip (commit 727378a — 'end the landing at the nav cards; drop on-landing catalogue + vocabulary strip'), so NO definition projects to the site. The landing's conceptual preview is carried by the big-ideas projection (`id=bi-*`) plus the nav cards; each definition's realization is its BOOK home (§2.1 for the core four + the structured rider; the preface, §2.3, and §1.3 for the three core-construct insets — churn, governance-mechanism, engineered-agent-loop). `check_definitions_site` skips N/A records in the model→site direction, and the site→model direction is vacuously satisfied (no `def-*` ids on the landing). The three core-construct records also carry the concepts model's L1 home (joined by slug); their definitional text here is the SSOT the prose insets mirror. RECONCILIATION (projection metamodel, book-models/projections.json + projection-index.json): `site_home` names only the landing def-strip anchor (dropped in 727378a), NOT every website appearance of the concept. Churn, for instance, is `site_home:\"N/A\"` here yet renders a dedicated website concept page (concept-churn.html) plus a landing Big-Idea card (bi-churn) — a real cross-cutting site presence this field cannot express. That contradiction is now caught mechanically by the projection-index SITE-HOME gate (`projections_model.py site-home`, audit-only): a book-only definition whose concept has its own website concept page is flagged, so the `site_home:\"N/A\"` claim can no longer silently under-report a concept that does project to the site. The value is left as-is on purpose — flipping it would re-render the removed def-strip and break `check_definitions_site`; the projection index is the reconciling source of truth for where the concept actually renders.",
 
-  "_order": ["model", "agent", "engineering", "software-engineering", "structured", "churn", "compounding", "governance-mechanism", "engineered-agent-loop", "reasoning-horizon", "long-horizon-task", "models-bridge"],
+  "_order": ["model", "agent", "engineering", "software-engineering", "structured", "churn", "compounding", "governance-mechanism", "engineered-agent-loop", "reasoning-horizon", "long-horizon-task"],
 
   "model": {
     "term": "Model",
@@ -178,35 +178,6 @@
     "derived_from": "book/part1/1.3-the-agentic-substrate.md#long-horizon-task",
     "book_home": "reasoning-horizon#idx-def-long-horizon-task",
     "book_home_owed": {"section": "Part 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, its defining chapter, alongside reasoning horizon (relocated from §1.1 when the Task-Mode fork moved to Part IV §4.1). Book-only by design."},
-    "lexicon_link": "the-books-language",
-    "concepts_link": "book/data/concepts.json"
-  },
-
-  "models-bridge": {
-    "term": "The models-bridge",
-    "box": "The governed channel between the code and the authored system models: the traceability edges that connect model elements to the code they represent, plus the drift checks that hold the two in agreement — the path by which authored models reach the agent's task context and its checks, and the relationship the agent reasons across.",
-    "aspects": [
-      {
-        "lead": "Map, territory, and the span between them",
-        "text": "The authored models are the map; the running code is the territory. The bridge is neither endpoint but the span: the edges a tool can follow from a modeled element to the live symbol it governs, and the gate that fails the build when the two fall out of step. A context-bounded fleet governs a context-exceeding codebase THROUGH this span — it reasons across the bridge, not over the whole territory at once."
-      },
-      {
-        "lead": "Priors in, checks out",
-        "text": "Two directions of traffic. Inbound: the models hand the agent the priors its training never gave it — the invariants and intent written where it will read them, instead of guessed from the wrong reference class. Outbound: the drift checks read the code back against the models and redden when a change makes the map lie. The catalogue's models-bridge role is this channel made concrete."
-      },
-      {
-        "lead": "Derived, not snapshotted",
-        "text": "The span is kept as one derived source, re-resolved from live code, not a hand-updated copy that drifts between runs — derived defends, snapshotted drifts. That freshness-by-derivation is a property the bridge has, not the whole of it: the bridge is the traceability-plus-drift relationship; keeping it derived is how it stays honest."
-      }
-    ],
-    "site_home": "N/A",
-    "derived_from": "book/part2/2.3-the-executable-zoo.md#models-bridge",
-    "book_home": "the-executable-zoo#idx-def-models-bridge",
-    "book_home_owed": {
-      "section": "Part 2 — §2.3 Making Models Executable ('How a model stays trustworthy')",
-      "status": "landed",
-      "note": "Landed: §2.3's 'How a model stays trustworthy' subsection tags the definition with `<!-- index-def: models-bridge -->` and renders the def-box; book-only by design (no landing def-strip). Seeded earlier (no tag) at §2.2's structured-model-layer figure/prose. Relocated here from the dissolved 2.12 in R31's Part-II tightening."
-    },
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   }
