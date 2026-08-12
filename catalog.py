@@ -732,8 +732,15 @@ def check_banned_terms() -> list[str]:
     validate), and skips the bundled plugin (regenerated from the entries)."""
     problems: list[str] = []
     figures = ["catalogue-figure.html", "development-workflow.html"]
+    # Scan published SOURCES only; skip the bundled plugin (regenerated from entries) and the unpublished
+    # scratch/draft trees. scratchpad/ and book/_design/ hold working notes and pre-fold drafts — never a
+    # catalogue source — so a banned term named there (e.g. an internal ADATool model reference to the real
+    # PDF library) must not redden the shared validate gate. The published surface (tracked book/ chapters,
+    # entries) stays scanned, so a draft that names the real library is still caught when it folds into book/.
+    _skip = (os.sep + "plugin" + os.sep, os.sep + "scratchpad" + os.sep,
+             os.sep + "book" + os.sep + "_design" + os.sep)
     sources = [f for f in glob.glob(os.path.join(ROOT, "**", "*.md"), recursive=True)
-               if os.sep + "plugin" + os.sep not in f]
+               if not any(s in f for s in _skip)]
     sources += [os.path.join(ROOT, f) for f in figures]
     for f in sources:
         if not os.path.isfile(f):
