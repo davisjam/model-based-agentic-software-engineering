@@ -1052,17 +1052,17 @@
           "heading_text": "Who owns each piece, and what may cross a boundary",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 21,
+          "block_index": 20,
           "points": [
             {
               "slug": "the-component-zone-model-makes-ownership-a-queried-fact",
               "text": "The component-zone model makes ownership and boundary a queried fact.",
-              "block_index": 25
+              "block_index": 24
             },
             {
               "slug": "ownership-and-boundary-become-lint-findings-not-slow-erosion",
               "text": "Ownership and boundary reaches become findings, not slow erosion.",
-              "block_index": 30
+              "block_index": 29
             }
           ]
         },
@@ -1072,12 +1072,12 @@
           "heading_text": "Some facts describe; others declare",
           "topic_sentence": "The component and zone model is the cleanest place to see a distinction that runs through every model in this book.",
           "id_source": "derived",
-          "block_index": 44,
+          "block_index": 42,
           "points": [
             {
               "slug": "descriptive-facts-are-derivable-intent-bearing-facts-are-authored",
               "text": "Descriptive facts are derivable; intent-bearing facts are authored.",
-              "block_index": 45
+              "block_index": 43
             }
           ]
         },
@@ -1087,17 +1087,17 @@
           "heading_text": "The facts every consumer joins to",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 48,
           "points": [
             {
               "slug": "frozen-registries-are-the-single-source-every-consumer-joins",
               "text": "Frozen registries are the single source every consumer joins by key.",
-              "block_index": 53
+              "block_index": 51
             },
             {
               "slug": "the-rule-metadata-registry-is-the-self-referential-slice",
               "text": "The rule-metadata registry is the self-referential slice; the book is generated from it.",
-              "block_index": 56
+              "block_index": 54
             }
           ]
         },
@@ -1107,12 +1107,12 @@
           "heading_text": "What third-party material the build depends on",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 59,
           "points": [
             {
               "slug": "a-bill-of-materials-holds-the-dependency-manifest-complete",
               "text": "A bill of materials holds the dependency manifest complete on every build.",
-              "block_index": 64
+              "block_index": 62
             }
           ]
         }

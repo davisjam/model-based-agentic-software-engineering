@@ -14,8 +14,8 @@
     "universe": {
       "section_ids": 286,
       "concepts": 159,
-      "labels": 102,
-      "refs": 96,
+      "labels": 100,
+      "refs": 94,
       "chapters": 81,
       "parts": 8,
       "points": 526,
@@ -579,7 +579,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-64",
+          "element": "2.5-modeling-structure-and-ownership::block-62",
           "role": "paragraph-point"
         }
       ]
@@ -1749,7 +1749,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-45",
+          "element": "2.5-modeling-structure-and-ownership::block-43",
           "role": "paragraph-point"
         }
       ]
@@ -2279,7 +2279,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-53",
+          "element": "2.5-modeling-structure-and-ownership::block-51",
           "role": "paragraph-point"
         }
       ]
@@ -3289,7 +3289,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-30",
+          "element": "2.5-modeling-structure-and-ownership::block-29",
           "role": "paragraph-point"
         }
       ]
@@ -4309,7 +4309,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-25",
+          "element": "2.5-modeling-structure-and-ownership::block-24",
           "role": "paragraph-point"
         }
       ]
@@ -5049,7 +5049,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-56",
+          "element": "2.5-modeling-structure-and-ownership::block-54",
           "role": "paragraph-point"
         }
       ]
@@ -9294,12 +9294,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-64",
+          "element": "2.5-modeling-structure-and-ownership::block-62",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-62",
+          "element": "2.5-modeling-structure-and-ownership::block-60",
           "role": "section-term[tier-1]"
         }
       ]
@@ -9349,12 +9349,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-45",
+          "element": "2.5-modeling-structure-and-ownership::block-43",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-22",
+          "element": "2.5-modeling-structure-and-ownership::block-21",
           "role": "section-term[tier-1]"
         }
       ]
@@ -9364,12 +9364,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-25",
+          "element": "2.5-modeling-structure-and-ownership::block-24",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-30",
+          "element": "2.5-modeling-structure-and-ownership::block-29",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -9649,7 +9649,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-22",
+          "element": "2.5-modeling-structure-and-ownership::block-21",
           "role": "section-term[tier-1]"
         }
       ]
@@ -9689,7 +9689,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-25",
+          "element": "2.5-modeling-structure-and-ownership::block-24",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -9709,7 +9709,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-22",
+          "element": "2.5-modeling-structure-and-ownership::block-21",
           "role": "section-term[tier-1]"
         }
       ]
@@ -10254,12 +10254,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-64",
+          "element": "2.5-modeling-structure-and-ownership::block-62",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-62",
+          "element": "2.5-modeling-structure-and-ownership::block-60",
           "role": "section-term[tier-1]"
         }
       ]
@@ -10344,7 +10344,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-45",
+          "element": "2.5-modeling-structure-and-ownership::block-43",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -10544,12 +10544,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-53",
+          "element": "2.5-modeling-structure-and-ownership::block-51",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-51",
+          "element": "2.5-modeling-structure-and-ownership::block-49",
           "role": "section-term[tier-1]"
         }
       ]
@@ -11014,7 +11014,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-51",
+          "element": "2.5-modeling-structure-and-ownership::block-49",
           "role": "section-term[tier-1]"
         },
         {
@@ -11079,7 +11079,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-53",
+          "element": "2.5-modeling-structure-and-ownership::block-51",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -12394,7 +12394,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-53",
+          "element": "2.5-modeling-structure-and-ownership::block-51",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -13399,7 +13399,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-45",
+          "element": "2.5-modeling-structure-and-ownership::block-43",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -13829,7 +13829,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-25",
+          "element": "2.5-modeling-structure-and-ownership::block-24",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -14549,7 +14549,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-30",
+          "element": "2.5-modeling-structure-and-ownership::block-29",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -14674,7 +14674,7 @@
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-56",
+          "element": "2.5-modeling-structure-and-ownership::block-54",
           "role": "paragraph-term[tier-2]"
         }
       ]
@@ -14699,12 +14699,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-56",
+          "element": "2.5-modeling-structure-and-ownership::block-54",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-51",
+          "element": "2.5-modeling-structure-and-ownership::block-49",
           "role": "section-term[tier-1]"
         }
       ]
@@ -14854,7 +14854,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "2.5-modeling-structure-and-ownership::block-64",
+          "element": "2.5-modeling-structure-and-ownership::block-62",
           "role": "paragraph-term[tier-2]"
         }
       ]
