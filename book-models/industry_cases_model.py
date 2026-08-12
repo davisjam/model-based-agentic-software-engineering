@@ -59,11 +59,11 @@ _THEORY_DECLARED = os.path.join(_HERE, "theory_of_mage_declared.json")
 _PAGE_REL = chapter_identity.filename("where-mage-fits")
 
 #: The chapter the six "Meet the six" one-pager CARDS were authored into. Round-4 (F1=a) RETIRES the six
-#: narrated cards: the comparative chapter (`where-mage-fits`, 6.6) already carries the payload in
+#: narrated cards: the comparative chapter (`where-mage-fits`, 6.7) already carries the payload in
 #: non-narrative form and disclaims "an appendix of examples", so no `<!-- case-onepager: … -->` markers
 #: survive in the body. With the cards gone, this trace dissolves to `None`, and IC7's coverage/trace loop
 #: is skipped — there is no gallery page to audit. Stays AUDIT-ONLY. (The separate `six-company-map` gallery
-#: figure moves to the 6.6 opener, its declared `part6` home — a figure, not a card.)
+#: figure moves to the 6.7 opener, its declared `part6` home — a figure, not a card.)
 _CARDS_PAGE_REL: "str | None" = None
 
 #: The status enum. A `pending-writeup` stub carries only the roster fields; `authored` records are checked

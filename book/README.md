@@ -41,7 +41,7 @@ book/
     5.3-the-road-to-mage.md
     5.4-failures-that-became-infrastructure.md
   part6/  (Part 6 — Toward a Theory of MAGE)
-    6.1-toward-a-theory-of-mage.md … 6.8-conclusion.md
+    6.1-toward-a-theory-of-mage.md … 6.9-conclusion.md
   part7/  (back matter)
     7.1-about-the-author.md
     7.2-colophon.md

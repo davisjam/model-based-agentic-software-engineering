@@ -7,7 +7,7 @@
 | Claim | Three open frontiers: how far judgment can migrate into deterministic machinery, how to census a governed environment's coverage and gaps, and what stronger models unlock. |
 | Mechanisms | Control-coverage census · Governance graph · Formal invariant verification |
 | Related | Convert recurring failures into controls · Documentation, taken to its limit, is a structured model |
-| In the book | book/6.7-open-problems.html |
+| In the book | book/6.8-open-problems.html |
 
 ## The idea
 
@@ -76,4 +76,4 @@ proves. Each is a first step onto a frontier the book marks as still open.
 
 ## Read in the book →
 
-[Read in the book →](book/6.7-open-problems.html)
+[Read in the book →](book/6.8-open-problems.html)

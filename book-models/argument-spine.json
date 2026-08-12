@@ -102,7 +102,7 @@
         "0.4-preface",
         "1.1-the-printer",
         "5.4-failures-that-became-infrastructure",
-        "6.8-conclusion"
+        "6.9-conclusion"
       ],
       "body_depth": 2,
       "front_loaded": false,
@@ -460,8 +460,8 @@
         "0.4-preface",
         "2.7-scenarios-and-the-joined-model",
         "6.5-implications-for-se",
-        "6.7-open-problems",
-        "6.8-conclusion"
+        "6.8-open-problems",
+        "6.9-conclusion"
       ],
       "body_depth": 4,
       "front_loaded": false,
@@ -492,7 +492,7 @@
         "5.3-the-road-to-mage",
         "5.4-failures-that-became-infrastructure",
         "6.5-implications-for-se",
-        "6.8-conclusion"
+        "6.9-conclusion"
       ],
       "body_depth": 4,
       "front_loaded": false,
@@ -527,7 +527,7 @@
         "5.2-the-build",
         "5.3-the-road-to-mage",
         "6.2-scope-conditions",
-        "6.7-open-problems"
+        "6.8-open-problems"
       ],
       "body_depth": 5,
       "front_loaded": false,
@@ -561,7 +561,7 @@
       "advanced_by": [
         "6.1-toward-a-theory-of-mage",
         "6.5-implications-for-se",
-        "6.8-conclusion"
+        "6.9-conclusion"
       ],
       "body_depth": 3,
       "front_loaded": false,
@@ -856,12 +856,12 @@
       "exempt": "discussion"
     },
     {
-      "slug": "6.6-where-mage-fits",
+      "slug": "6.7-where-mage-fits",
       "advances": [],
       "exempt": "discussion"
     },
     {
-      "slug": "6.7-open-problems",
+      "slug": "6.8-open-problems",
       "advances": [
         "grounded-in-one-case",
         "mage-becomes-practical"
@@ -869,7 +869,7 @@
       "exempt": "discussion"
     },
     {
-      "slug": "6.8-conclusion",
+      "slug": "6.9-conclusion",
       "advances": [
         "fault-lies-in-instructions",
         "mage-becomes-practical",
