@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>39</b> chapters · <b>294</b> sections · <b>80</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>39</b> chapters · <b>288</b> sections · <b>80</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -363,29 +363,17 @@
 </div>
 <div class="chapter">
 <h3 id="ch-2-7-scenarios-and-the-joined-model"><span class="tier-kick">Lesson</span><a href="../book/2.7-scenarios-and-the-joined-model.html" class="ch-link">2.7-scenarios-and-the-joined-model</a> <span class="ch-slug">2.7-scenarios-and-the-joined-model</span></h3>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--the-scenarios-view-what-the-system-does-for-someone">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The Scenarios View: what the system does for someone</a></div>
+<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--the-scenario-what-the-system-does-for-someone">
+<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The scenario: what the system does for someone</a></div>
 <p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
 </div>
 <div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--user-journey-model">
 <div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The user-journey model</a></div>
 <p class="topic">The user-journey model makes the product&#x27;s journeys first-class typed entities — each an actor pursuing a goal through ordered steps, every boundary-crossing step joined to the endpoint it calls.</p>
 </div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--agent-orchestration-model">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The agent-orchestration model</a></div>
-<p class="topic">The agent-orchestration model is the developer-journey counterpart — the scenarios view pointed at the fleet rather than the user.</p>
-</div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--journey-criticality-test-placement">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Journey-criticality → test-placement</a></div>
-<p class="topic">This model — the **Selector** in the join below — derives which environment tier a journey&#x27;s tests run in from the journey&#x27;s criticality: a `MAJOR` part runs the fast local tier and the full staging matrix, a `MINOR` part runs staging only.</p>
-</div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--coverage-model-mapping">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Coverage → model-node mapping</a></div>
-<p class="topic">Coverage-to-node mapping projects the test suite&#x27;s coverage onto the model&#x27;s *nodes* — states, seams, invariants, journey endpoints — instead of its lines (node coverage over line coverage, as [Metrics](4.6-metrics.html) laid out).</p>
-</div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--journey-task-closure">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Journey task-closure — asserting the goal completed</a></div>
-<p class="topic">The three models above ask whether a journey&#x27;s test *exists*, *runs*, and runs *in which tier*.</p>
+<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--feeder-models">
+<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The feeder models</a></div>
+<p class="topic">Three small models feed the flagship, each answering one question about a journey&#x27;s tests.</p>
 </div>
 <div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--worked-join">
 <div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Worked join — the journey↔coverage↔deploy-policy composition</a></div>
@@ -412,21 +400,21 @@
 <p class="topic">The join keys chain, and a reader can walk them against the figure: the **endpoint** ties M13 to M5, the **criticality** ties M13 to M6, the **derived tier** ties M6 to M7&#x27;s roster, and the **host profile** ties the roster to the plan.</p>
 </div>
 <div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--the-joined-model">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The Joined Model</a></div>
+<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The joined model</a></div>
 <p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
 </div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--the-views-pay-off-when-they-join">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The views pay off when they join</a></div>
-<p class="topic">The five views earn their keep separately.</p>
+<div class="section s3" id="sec-2-7-scenarios-and-the-joined-model--the-models-pay-off-when-they-join">
+<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The models pay off when they join</a></div>
+<p class="topic">Each model earns its keep separately.</p>
 </div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--a-request-walks-the-connected-slice">
+<div class="section s3" id="sec-2-7-scenarios-and-the-joined-model--a-request-walks-the-connected-slice">
 <div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">A request walks the connected slice</a></div>
 <p class="topic">Trace a single request.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can trace a single request. <span class="prov">derived</span></span></li></ul></div>
 </div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--the-graph-is-what-lets-the-views-meet">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The graph is what lets the views meet</a></div>
-<p class="topic">The walk works only because every view names the same entities.</p>
+<div class="section s3" id="sec-2-7-scenarios-and-the-joined-model--the-graph-is-what-lets-the-projections-meet">
+<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The graph is what lets the projections meet</a></div>
+<p class="topic">The walk works only because every model names the same entities.</p>
 </div>
 <div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--where-modeling-meets-alignment">
 <div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Where Modeling meets Alignment</a></div>
@@ -441,24 +429,12 @@
 <p class="topic">The join showed the models meeting; the hinge above showed why an explicit relation can carry a predicate.</p>
 </div>
 <div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--the-scope-of-modeling">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The Scope of Modeling</a></div>
-<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
-</div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--this-book-s-boundary">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">This book&#x27;s boundary</a></div>
+<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">The scope of modeling</a></div>
 <p class="topic">MAGE does not replace established modeling disciplines.</p>
 </div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--when-a-sketch-graduates">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">When a sketch graduates</a></div>
-<p class="topic">There is a moment when a working sketch stops carrying its weight, and it is worth learning to see it coming.</p>
-</div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--where-each-view-sends-you">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Where each view sends you</a></div>
-<p class="topic">Each view here is deliberately lightweight relative to the full analytic traditions behind it — even the ones that are executable registries with gates carry a fraction of what their fields can say.</p>
-</div>
-<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--models-tier-reasoning-descends">
-<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Models tier; reasoning descends</a></div>
-<p class="topic">One scaling move underlies every model here.</p>
+<div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--where-a-concern-sends-you">
+<div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Where a concern sends you</a></div>
+<p class="topic">Each model here is deliberately lightweight relative to the analytic tradition behind it.</p>
 </div>
 <div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--can-alignment-exist-without-models">
 <div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Can alignment exist without models?</a></div>
