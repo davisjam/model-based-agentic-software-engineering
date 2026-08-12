@@ -527,13 +527,16 @@ CHECKS = [
     # once a clean session confirms 0 findings across ALL assets. See tests/svg_fit.py.
     Check("svg: edge-label <-> node-box collision (C3, intra-figure)", 1,
           lambda strict: check_svg_edge_label_box_collision(), audit_only=True),
-    # AUDIT-ONLY-first (rule #55): C6 text-label overlap — two <text> labels whose estimated glyph boxes
-    # collide in both axes, printing on top of each other ("models stay inertno"). Neither the box-fit nor
-    # the edge-label check compares two labels to EACH OTHER. Lands audit-only (3 figures flag at HEAD:
-    # mage-method fixed here, plus model-coherence-stack + model-map awaiting a drain wave); promote to
-    # blocking once a clean session confirms 0 across ALL assets. See tests/svg_fit.py.
+    # BLOCKING (promoted — drain confirmed 0 at HEAD): C6 text-label overlap — two <text> labels whose
+    # estimated glyph boxes collide in both axes, printing on top of each other. Neither the box-fit nor the
+    # edge-label check compares two labels to EACH OTHER. The two figures that flagged were REAL overlaps,
+    # now fixed: model-coherence-stack (three legend keys crammed on one row -> restacked vertically) and
+    # model-map (the too-wide cross-link caption -> split into two lines). The estimate uses the deliberately
+    # LOW true glyph ratio (~0.42em) + a per-axis overlap floor, so it under-reads width and fires only on a
+    # genuine both-axes collision, not a graze — a conservative gate. check_svg_text_overlap returns FAIL on
+    # any overlap. See tests/svg_fit.py.
     Check("svg: text-label overlap (C6, two captions on top of each other)", 1,
-          lambda strict: check_svg_text_overlap(), audit_only=True),
+          lambda strict: check_svg_text_overlap()),
     # AUDIT-ONLY-first (rule #55): C7 stroke cross-through — a stroked <path>/<line> (CURVES included, unlike
     # the straight-only stroke-through-glyph in drawing hygiene) running through a <text> or node <rect> it
     # neither starts nor ends at (endpoint-connection exempts the arrowhead's own target). Caught the

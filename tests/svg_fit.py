@@ -892,8 +892,10 @@ def check_svg_text_overlap():
     BOTH axes (past a per-axis floor). Catches two captions printing on top of each other — the collision the
     box-fit and edge-label checks, each measuring a label against a *rect*, cannot see.
 
-    AUDIT-ONLY: reports candidates, never contributes to the fail count. Skips transformed text (coords not
-    absolute) and tspan/dx-positioned labels (no cheap anchor)."""
+    BLOCKING (promoted): returns FAIL on any overlap. The glyph box uses the deliberately-LOW true ratio
+    (~0.42em) + a per-axis floor, so it under-reads width and fires only on a genuine both-axes collision,
+    not a graze — a conservative gate that drained to 0. Skips transformed text (coords not absolute) and
+    tspan/dx-positioned labels (no cheap anchor)."""
     assets_dir = os.path.join(ROOT, "book", "assets")
     if not os.path.isdir(assets_dir):
         return PASS, ["no book/assets/ dir — nothing to scan"]
@@ -941,8 +943,8 @@ def check_svg_text_overlap():
     if issues:
         issues.insert(0, f"{len(flagged)} figure(s) with overlapping text labels:")
         issues.append("")
-        issues.append(f"AUDIT-ONLY (heuristic; false positives expected). Fix guidance -> {DRAWING_DOC}")
-    return PASS, issues  # AUDIT-ONLY: never FAIL
+        issues.append(f"Separate the labels so their glyph boxes no longer collide. Fix guidance -> {DRAWING_DOC}")
+    return (FAIL if issues else PASS), issues  # BLOCKING: a genuine both-axes text overlap fails the gate
 
 
 def _flatten_path_points(d: str) -> list[tuple[float, float]] | None:
