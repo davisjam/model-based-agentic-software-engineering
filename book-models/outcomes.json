@@ -30,7 +30,7 @@
     "outcomes_with_elaborative_units": 20,
     "elaborative_links": 27,
     "units_serving_as_elaborative": 20,
-    "sections_total": 254,
+    "sections_total": 256,
     "sections_primary_of_an_outcome": 37,
     "modules": 7,
     "lessons": 33
@@ -133,7 +133,7 @@
             "section_outcomes": []
           },
           {
-            "lesson": "1.3-the-reasoning-horizon",
+            "lesson": "1.3-the-agentic-substrate",
             "own_outcomes": [],
             "section_outcomes": []
           },
@@ -717,16 +717,16 @@
       "gap_note": null
     },
     {
-      "outcome_id": "reasoning-horizon::explain-why-an-agent-is-a-loop-and-why-it-needs",
+      "outcome_id": "reasoning-horizon::derive-the-two-engineering-problems-from-the-tw",
       "granularity": "chapter",
       "primary_unit": "reasoning-horizon",
       "secondary_units": [],
-      "verb": "explain",
-      "obj": "why an agent is a loop and why it needs a model of its world",
-      "statement": "After this chapter, the reader can explain the agent as a fixed-shape loop and why giving it a model of the world is the first act of governance.",
-      "bloom": "understand",
+      "verb": "derive",
+      "obj": "the two engineering problems from the two properties of the agentic substrate",
+      "statement": "After this chapter, the reader can name the two properties of the agentic substrate — a finite, reconstructed reasoning state that meets a scale-driven locality problem, and probabilistic work that cannot certify itself but crosses an interposable, observable harness — and derive the two engineering problems, representation and authority, that follow, without treating either as a prerequisite of the other.",
+      "bloom": "create",
       "provenance": "declared",
-      "anchor": "Section titles 'everything-is-a-loop' + 'give-it-a-model-of-the-world'; ts: 'an agent runs in a loop, and the loop has a fixed shape'.",
+      "anchor": "Section titles: 'the-substrate-is-a-pairing', 'the-reasoning-horizon', 'the-horizon-is-a-locality-problem', 'probabilistic-work-needs-external-authority', 'the-loop-is-observable'.",
       "gap_note": null
     },
     {
@@ -903,16 +903,16 @@
       "gap_note": null
     },
     {
-      "outcome_id": "why-mage-follows-from-the-machine::derive-the-two-theses-and-the-governed-engineer",
+      "outcome_id": "why-mage-follows-from-the-machine::explain-the-two-engineering-problems-and-why-mag",
       "granularity": "chapter",
       "primary_unit": "why-mage-follows-from-the-machine",
       "secondary_units": [],
-      "verb": "derive",
-      "obj": "the two theses and the governed engineering environment from the substrate's properties — four of the foundation model, four of the harness",
-      "statement": "After this chapter, the reader can derive the Modeling and Alignment theses from the properties of the foundation model and the agentic harness, and say why their combination requires the governed engineering environment.",
-      "bloom": "create",
+      "verb": "explain",
+      "obj": "the two engineering problems and why MAGE develops Modeling first as a methodological choice",
+      "statement": "After this chapter, the reader can explain the two engineering problems — representation (Problem A, Part II) and authority (Problem B, Part III) — and why they are related but independent, so MAGE develops Modeling first as a methodological choice rather than a logical prerequisite of Alignment.",
+      "bloom": "understand",
       "provenance": "declared",
-      "anchor": "Section titles: 'the-reasoners-properties', 'what-the-harness-adds', 'the-engineering-that-follows', 'the-theses-follow'.",
+      "anchor": "Section titles: 'the-representation-problem', 'the-authority-problem', 'related-but-not-the-same'.",
       "gap_note": null
     },
     {

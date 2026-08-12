@@ -32,7 +32,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 1.2-mage-by-example
 
 
-### Lesson 1.3-the-reasoning-horizon
+### Lesson 1.3-the-agentic-substrate
 
 
 ### Lesson 1.4-the-new-engineering-problem

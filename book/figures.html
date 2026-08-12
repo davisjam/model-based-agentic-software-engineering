@@ -592,7 +592,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="part-1-intro.html">The New Engineering Problem</a></li>
 <li><a class="" href="1.1-the-printer.html">1&nbsp; The Printer</a></li>
 <li><a class="" href="1.2-mage-by-example.html">2&nbsp; MAGE by Example</a></li>
-<li><a class="" href="1.3-the-reasoning-horizon.html">3&nbsp; The Reasoning Horizon</a></li>
+<li><a class="" href="1.3-the-agentic-substrate.html">3&nbsp; The Agentic Substrate</a></li>
 <li><a class="" href="1.4-the-new-engineering-problem.html">4&nbsp; The New Engineering Problem</a></li>
 <li class="part">Part 2 — Modeling</li>
 <li><a class="" href="part-2-intro.html">Modeling</a></li>
@@ -1604,18 +1604,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- caption -->
   <text x="490" y="400" text-anchor="middle" font-size="15.5" font-style="italic" fill="#57534e">Here is the kind of production system these ideas govern — what it does, not yet how.</text>
-</svg><figcaption data-short="The kind of production system these ideas govern"><span class="fig-label">Figure 1.2-1.</span> <em>The kind of production system these ideas govern.</em> One panel, two sides. On the left, an inaccessible slide deck goes in — images with no descriptions, a reading order no screen reader can follow. On the right, what comes back: the same deck, remediated, paired with an evidence record — a changelog of every edit and a map from each remaining finding to the clause of the standard it answers. Nothing of the machine's insides is shown here; that is the point. This is the object the rest of the book governs, not yet the explanation of how.</figcaption></figure><p class="gallery-source">From <a href="1.2-mage-by-example.html#fig-1-2-1">2 · MAGE by Example</a></p></section><hr><section class="gallery-item"><figure id="fig-1-3-1-fig-1-3-1" class="book-figure" data-label="reasoning-horizon-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+</svg><figcaption data-short="The kind of production system these ideas govern"><span class="fig-label">Figure 1.2-1.</span> <em>The kind of production system these ideas govern.</em> One panel, two sides. On the left, an inaccessible slide deck goes in — images with no descriptions, a reading order no screen reader can follow. On the right, what comes back: the same deck, remediated, paired with an evidence record — a changelog of every edit and a map from each remaining finding to the clause of the standard it answers. Nothing of the machine's insides is shown here; that is the point. This is the object the rest of the book governs, not yet the explanation of how.</figcaption></figure><p class="gallery-source">From <a href="1.2-mage-by-example.html#fig-1-2-1">2 · MAGE by Example</a></p></section><hr><section class="gallery-item"><figure id="fig-1-3-1-fig-1-3-1" class="book-figure" data-label="reasoning-horizon-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700"
      role="group" aria-labelledby="fig-1-3-1-rhTitle fig-1-3-1-rhDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-1-3-1-rhTitle">The reasoning horizon, and what models do to it</title>
-  <desc id="fig-1-3-1-rhDesc">A human and a foundation model work a task. The reasoning state the task requires grows
-    with the task's length, shown as a wedge widening from left to right. When that state outgrows the
-    working memory available to hold it, it must be compacted and reconstructed, and the path forks.
-    Without models, on the left, the fleet reasons over raw implementation-level state; compaction is lossy,
-    rebuilds are frequent, and the result is churn. With purposeful models, on the right, the fleet reasons
-    over executable abstractions that already discarded the irrelevant detail; reconstruction loses far less,
-    and coherent reasoning runs longer. The contrast axis is fidelity under compaction, not size: models are
-    a better compression domain because they abstract, they do not merely shrink.</desc>
+  <title id="fig-1-3-1-rhTitle">The reasoning horizon</title>
+  <desc id="fig-1-3-1-rhDesc">At sufficient scale a task requires more reasoning state than a finite reasoner can
+    keep active, so some state must be reconstructed. The figure forks on the representation the reasoner
+    works through. On the left, raw implementation as the working substrate carries a large active state,
+    forces repeated reconstruction, and easily loses relevant structure, ending in churn. On the right,
+    a purposeful abstraction keeps the question-relevant state smaller, lowers the reconstruction burden,
+    and sustains longer coherent reasoning. The representation decides how much of the state must be
+    reconstructed.</desc>
 
   <defs>
     <marker id="fig-1-3-1-rhArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
@@ -1624,57 +1623,64 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- ================= SPINE — reasoning state grows with task length ================= -->
-  <text x="500" y="42" text-anchor="middle" font-size="19" fill="#57534e">A human and a foundation model work a task.</text>
-  <!-- growing wedge: thin at the short-horizon end, thick at the long-horizon end -->
-  <polygon points="120,96 880,74 880,128 120,104" fill="#faf1e6" stroke="#57534e" stroke-width="1.5"/>
-  <text x="500" y="106" text-anchor="middle" font-size="19" font-style="italic" fill="#1c1917">Reasoning state grows with the length of the task</text>
-  <text x="150" y="150" text-anchor="middle" font-size="18" fill="#57534e">short horizon</text>
-  <text x="850" y="150" text-anchor="middle" font-size="18" fill="#57534e">long horizon</text>
+  <rect x="0" y="0" width="1000" height="700" fill="#fdfcf9"/>
 
-  <!-- the pinch: state outgrows working memory, so it must be compacted -->
-  <text x="500" y="184" text-anchor="middle" font-size="19" fill="#1c1917">The state outgrows working memory, so it must be compacted and rebuilt.</text>
+  <!-- ===== shared top: the horizon condition ===== -->
+  <rect x="270" y="26" width="460" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="500" y="52" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">A task exceeds the finite active state</text>
+  <text x="500" y="74" text-anchor="middle" font-size="16" fill="#57534e">some reasoning state must be reconstructed</text>
 
-  <!-- fork edges from the spine down into the two columns -->
-  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)">
-    <path d="M430,196 C360,214 300,214 265,236"/>
-    <path d="M570,196 C640,214 700,214 735,236"/>
-  </g>
+  <!-- hinge label -->
+  <text x="500" y="112" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">The representation decides how much must be reconstructed</text>
 
-  <!-- ================= LEFT — without models ================= -->
-  <rect x="60" y="242" width="410" height="292" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="265" y="280" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Without models</text>
+  <!-- fork arrows from top node to the two branch heads -->
+  <line x1="440" y1="88" x2="250" y2="158" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
+  <line x1="560" y1="88" x2="750" y2="158" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
 
-  <text x="265" y="322" text-anchor="middle" font-size="19" fill="#1c1917">Reason over raw</text>
-  <text x="265" y="346" text-anchor="middle" font-size="19" fill="#1c1917">implementation-level state</text>
+  <!-- ================= LEFT BRANCH: raw implementation -> churn ================= -->
+  <rect x="90" y="160" width="320" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="250" y="184" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Raw implementation as</text>
+  <text x="250" y="205" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">working substrate</text>
+  <line x1="250" y1="216" x2="250" y2="246" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
 
-  <line x1="265" y1="360" x2="265" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
+  <rect x="90" y="248" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="250" y="279" text-anchor="middle" font-size="17" fill="#1c1917">Large active state</text>
+  <line x1="250" y1="298" x2="250" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
 
-  <text x="265" y="414" text-anchor="middle" font-size="19" fill="#1c1917">Lossy compaction,</text>
-  <text x="265" y="438" text-anchor="middle" font-size="19" fill="#1c1917">frequent reconstruction</text>
+  <rect x="90" y="330" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="250" y="361" text-anchor="middle" font-size="17" fill="#1c1917">Repeated reconstruction</text>
+  <line x1="250" y1="380" x2="250" y2="410" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
 
-  <line x1="265" y1="452" x2="265" y2="474" stroke="#57534e" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
+  <rect x="90" y="412" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="250" y="443" text-anchor="middle" font-size="17" fill="#1c1917">Relevant structure easily lost</text>
+  <line x1="250" y1="462" x2="250" y2="492" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
 
-  <rect x="105" y="484" width="320" height="40" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="265" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#b23b3b">Churn</text>
+  <rect x="150" y="494" width="200" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
+  <text x="250" y="529" text-anchor="middle" font-size="21" font-weight="700" fill="#b23b3b">Churn</text>
 
-  <!-- ================= RIGHT — with purposeful models ================= -->
-  <rect x="530" y="242" width="410" height="292" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="735" y="280" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">With purposeful models</text>
+  <!-- ================= RIGHT BRANCH: purposeful abstraction -> longer coherent reasoning ================= -->
+  <rect x="590" y="160" width="320" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="750" y="194" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Purposeful abstraction</text>
+  <line x1="750" y1="216" x2="750" y2="246" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
 
-  <text x="735" y="322" text-anchor="middle" font-size="19" fill="#1c1917">Reason over executable</text>
-  <text x="735" y="346" text-anchor="middle" font-size="19" fill="#1c1917">abstractions</text>
+  <rect x="590" y="248" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="750" y="279" text-anchor="middle" font-size="17" fill="#1c1917">Smaller question-relevant state</text>
+  <line x1="750" y1="298" x2="750" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
 
-  <line x1="735" y1="360" x2="735" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
+  <rect x="590" y="330" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="750" y="361" text-anchor="middle" font-size="17" fill="#1c1917">Lower reconstruction burden</text>
+  <line x1="750" y1="380" x2="750" y2="410" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
 
-  <text x="735" y="414" text-anchor="middle" font-size="19" fill="#1c1917">Less-lossy compaction,</text>
-  <text x="735" y="438" text-anchor="middle" font-size="19" fill="#1c1917">faithful reconstruction</text>
+  <rect x="620" y="412" width="260" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="750" y="437" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Longer coherent</text>
+  <text x="750" y="458" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">reasoning</text>
 
-  <line x1="735" y1="452" x2="735" y2="474" stroke="#57534e" stroke-width="2" marker-end="url(#fig-1-3-1-rhArrow)"/>
-
-  <rect x="575" y="484" width="320" height="40" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="735" y="510" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Longer coherent reasoning</text>
-</svg><figcaption data-short="The Reasoning Horizon"><span class="fig-label">Figure 1.3-1.</span> <em>The Reasoning Horizon.</em> A long-horizon task's reasoning state grows until it outruns the finite fast working memory that must hold it. Past that point the state is externalized, compressed, and reconstructed — and because every round trip is lossy, information is lost, rediscovered, and contradicted. The branch ends in churn: effort spent rebuilding the picture rather than advancing the system.</figcaption></figure><p class="gallery-source">From <a href="1.3-the-reasoning-horizon.html#fig-1-3-1">3 · The Reasoning Horizon</a></p></section><hr><section class="gallery-item"><figure id="fig-2-2-1-fig-2-2-1" class="book-figure" data-label="capability-ladder"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720"
+  <!-- caption (rendered by the build from the figure marker; repeated here for standalone viewing) -->
+  <text x="500" y="596" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Figure 1.3-1: The reasoning horizon. At sufficient scale, a task requires more state than a finite</text>
+  <text x="500" y="617" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">reasoner can keep active. The representation determines how much of that state must be reconstructed:</text>
+  <text x="500" y="638" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">raw implementation carries expensive irrelevant detail, while purposeful abstraction can keep the</text>
+  <text x="500" y="659" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">question-relevant state smaller.</text>
+</svg><figcaption data-short="Figure 1.3-1"><span class="fig-label">Figure 1.3-1.</span> <em>Figure 1.3-1: The reasoning horizon.</em> At sufficient scale, a task requires more state than a finite reasoner can keep active. The representation determines how much of that state must be reconstructed: raw implementation carries expensive irrelevant detail, while purposeful abstraction can keep the question-relevant state smaller.</figcaption></figure><p class="gallery-source">From <a href="1.3-the-agentic-substrate.html#fig-1-3-1">3 · The Agentic Substrate</a></p></section><hr><section class="gallery-item"><figure id="fig-2-2-1-fig-2-2-1" class="book-figure" data-label="capability-ladder"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720"
      role="group" aria-labelledby="fig-2-2-1-mlTitle fig-2-2-1-mlDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-2-1-mlTitle">The capability ladder: eight representational capabilities from context selection to drift enforcement</title>

@@ -48,7 +48,7 @@
     "kicker": "Big idea 3 · Thesis 1",
     "title": "Documentation, taken to its limit, is a structured model",
     "figure": "model-ladder.svg",
-    "book_home": "reasoning-horizon",
+    "book_home": "context-is-the-first-modeling-problem",
     "claim": "A context-bounded agent can't hold the whole system. Externalize what it must know, from context to drift-checked models, and the reasoning fits the window.",
     "more": "The climb is gradual: select the right context, connect it into typed knowledge, then harden it into drift-checked models — each rung answers more engineering questions without reading raw code. *In other words:* move the knowledge out of people's heads and into representations the next agent can start from. Models used to die because keeping them current was somebody's unpaid job; agents now do it for cents, and a drifted model fails the build where a drifted prose doc only lies quietly.",
     "mechanisms": ["executable-source-of-truth", "drift-parity-gates", "component-zone-model", "pdf-model", "office-models"],

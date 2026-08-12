@@ -18,7 +18,7 @@ book/
   part1/  (Part 1 — The Context)
     1.1-the-printer.md
     1.2-mage-by-example.md
-    1.3-the-reasoning-horizon.md
+    1.3-the-agentic-substrate.md
     1.4-the-new-engineering-problem.md
   part2/  (Part 2 — Modeling)
     2.1-context-is-the-first-modeling-problem.md … 2.7-scenarios-and-the-joined-model.md

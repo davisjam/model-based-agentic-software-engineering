@@ -185,20 +185,20 @@
     {
       "granularity": "chapter",
       "primary_unit": "reasoning-horizon",
-      "verb": "explain",
-      "obj": "why an agent is a loop and why it needs a model of its world",
-      "statement": "After this chapter, the reader can explain the agent as a fixed-shape loop and why giving it a model of the world is the first act of governance.",
+      "verb": "derive",
+      "obj": "the two engineering problems from the two properties of the agentic substrate",
+      "statement": "After this chapter, the reader can name the two properties of the agentic substrate — a finite, reconstructed reasoning state that meets a scale-driven locality problem, and probabilistic work that cannot certify itself but crosses an interposable, observable harness — and derive the two engineering problems, representation and authority, that follow, without treating either as a prerequisite of the other.",
       "provenance": "declared",
-      "anchor": "Section titles 'everything-is-a-loop' + 'give-it-a-model-of-the-world'; ts: 'an agent runs in a loop, and the loop has a fixed shape'."
+      "anchor": "Section titles: 'the-substrate-is-a-pairing', 'the-reasoning-horizon', 'the-horizon-is-a-locality-problem', 'probabilistic-work-needs-external-authority', 'the-loop-is-observable'."
     },
     {
       "granularity": "chapter",
       "primary_unit": "why-mage-follows-from-the-machine",
-      "verb": "derive",
-      "obj": "the two theses and the governed engineering environment from the substrate's properties — four of the foundation model, four of the harness",
-      "statement": "After this chapter, the reader can derive the Modeling and Alignment theses from the properties of the foundation model and the agentic harness, and say why their combination requires the governed engineering environment.",
+      "verb": "explain",
+      "obj": "the two engineering problems and why MAGE develops Modeling first as a methodological choice",
+      "statement": "After this chapter, the reader can explain the two engineering problems — representation (Problem A, Part II) and authority (Problem B, Part III) — and why they are related but independent, so MAGE develops Modeling first as a methodological choice rather than a logical prerequisite of Alignment.",
       "provenance": "declared",
-      "anchor": "Section titles: 'the-reasoners-properties', 'what-the-harness-adds', 'the-engineering-that-follows', 'the-theses-follow'."
+      "anchor": "Section titles: 'the-representation-problem', 'the-authority-problem', 'related-but-not-the-same'."
     },
     {
       "granularity": "chapter",

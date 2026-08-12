@@ -344,18 +344,17 @@
 </svg></figure>
 <p>Start with the constraint. A foundation model reasons through a bounded context and rebuilds its picture of the system on every task. Software engineering is a long-horizon task: the reasoning state a real change needs — the interfaces it touches, the invariants it must not break, the way the pieces compose — outruns the working memory that has to hold it. So that state gets compressed and reconstructed, over and over, and every lossy round trip degrades the reasoning it stands in for.</p>
 <p>A model answers that chain at its source. Give the fleet a compact, structured representation to reason through, and each reconstruction restores more of what mattered. The reasoning horizon the human–agent system can hold stretches out. Compactness is one part of why, not the whole claim: the real leverage is that a model re-expresses the system at a higher level — subsystem, interface, invariant, workflow — where the irrelevant implementation detail has already been dropped.</p>
-<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700"
      role="group" aria-labelledby="rhTitle rhDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="cf-2-rhTitle">The reasoning horizon, and what models do to it</title>
-  <desc id="cf-2-rhDesc">A human and a foundation model work a task. The reasoning state the task requires grows
-    with the task's length, shown as a wedge widening from left to right. When that state outgrows the
-    working memory available to hold it, it must be compacted and reconstructed, and the path forks.
-    Without models, on the left, the fleet reasons over raw implementation-level state; compaction is lossy,
-    rebuilds are frequent, and the result is churn. With purposeful models, on the right, the fleet reasons
-    over executable abstractions that already discarded the irrelevant detail; reconstruction loses far less,
-    and coherent reasoning runs longer. The contrast axis is fidelity under compaction, not size: models are
-    a better compression domain because they abstract, they do not merely shrink.</desc>
+  <title id="cf-2-rhTitle">The reasoning horizon</title>
+  <desc id="cf-2-rhDesc">At sufficient scale a task requires more reasoning state than a finite reasoner can
+    keep active, so some state must be reconstructed. The figure forks on the representation the reasoner
+    works through. On the left, raw implementation as the working substrate carries a large active state,
+    forces repeated reconstruction, and easily loses relevant structure, ending in churn. On the right,
+    a purposeful abstraction keeps the question-relevant state smaller, lowers the reconstruction burden,
+    and sustains longer coherent reasoning. The representation decides how much of the state must be
+    reconstructed.</desc>
 
   <defs>
     <marker id="cf-2-rhArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
@@ -364,56 +363,63 @@
     </marker>
   </defs>
 
-  <!-- ================= SPINE — reasoning state grows with task length ================= -->
-  <text x="500" y="42" text-anchor="middle" font-size="19" fill="#57534e">A human and a foundation model work a task.</text>
-  <!-- growing wedge: thin at the short-horizon end, thick at the long-horizon end -->
-  <polygon points="120,96 880,74 880,128 120,104" fill="#faf1e6" stroke="#57534e" stroke-width="1.5"/>
-  <text x="500" y="106" text-anchor="middle" font-size="19" font-style="italic" fill="#1c1917">Reasoning state grows with the length of the task</text>
-  <text x="150" y="150" text-anchor="middle" font-size="18" fill="#57534e">short horizon</text>
-  <text x="850" y="150" text-anchor="middle" font-size="18" fill="#57534e">long horizon</text>
+  <rect x="0" y="0" width="1000" height="700" fill="#fdfcf9"/>
 
-  <!-- the pinch: state outgrows working memory, so it must be compacted -->
-  <text x="500" y="184" text-anchor="middle" font-size="19" fill="#1c1917">The state outgrows working memory, so it must be compacted and rebuilt.</text>
+  <!-- ===== shared top: the horizon condition ===== -->
+  <rect x="270" y="26" width="460" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="500" y="52" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">A task exceeds the finite active state</text>
+  <text x="500" y="74" text-anchor="middle" font-size="16" fill="#57534e">some reasoning state must be reconstructed</text>
 
-  <!-- fork edges from the spine down into the two columns -->
-  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-2-rhArrow)">
-    <path d="M430,196 C360,214 300,214 265,236"/>
-    <path d="M570,196 C640,214 700,214 735,236"/>
-  </g>
+  <!-- hinge label -->
+  <text x="500" y="112" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">The representation decides how much must be reconstructed</text>
 
-  <!-- ================= LEFT — without models ================= -->
-  <rect x="60" y="242" width="410" height="292" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="265" y="280" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Without models</text>
+  <!-- fork arrows from top node to the two branch heads -->
+  <line x1="440" y1="88" x2="250" y2="158" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
+  <line x1="560" y1="88" x2="750" y2="158" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
 
-  <text x="265" y="322" text-anchor="middle" font-size="19" fill="#1c1917">Reason over raw</text>
-  <text x="265" y="346" text-anchor="middle" font-size="19" fill="#1c1917">implementation-level state</text>
+  <!-- ================= LEFT BRANCH: raw implementation -> churn ================= -->
+  <rect x="90" y="160" width="320" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="250" y="184" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Raw implementation as</text>
+  <text x="250" y="205" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">working substrate</text>
+  <line x1="250" y1="216" x2="250" y2="246" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
 
-  <line x1="265" y1="360" x2="265" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
+  <rect x="90" y="248" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="250" y="279" text-anchor="middle" font-size="17" fill="#1c1917">Large active state</text>
+  <line x1="250" y1="298" x2="250" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
 
-  <text x="265" y="414" text-anchor="middle" font-size="19" fill="#1c1917">Lossy compaction,</text>
-  <text x="265" y="438" text-anchor="middle" font-size="19" fill="#1c1917">frequent reconstruction</text>
+  <rect x="90" y="330" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="250" y="361" text-anchor="middle" font-size="17" fill="#1c1917">Repeated reconstruction</text>
+  <line x1="250" y1="380" x2="250" y2="410" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
 
-  <line x1="265" y1="452" x2="265" y2="474" stroke="#57534e" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
+  <rect x="90" y="412" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="250" y="443" text-anchor="middle" font-size="17" fill="#1c1917">Relevant structure easily lost</text>
+  <line x1="250" y1="462" x2="250" y2="492" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
 
-  <rect x="105" y="484" width="320" height="40" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="265" y="510" text-anchor="middle" font-size="22" font-weight="700" fill="#b23b3b">Churn</text>
+  <rect x="150" y="494" width="200" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
+  <text x="250" y="529" text-anchor="middle" font-size="21" font-weight="700" fill="#b23b3b">Churn</text>
 
-  <!-- ================= RIGHT — with purposeful models ================= -->
-  <rect x="530" y="242" width="410" height="292" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="735" y="280" text-anchor="middle" font-size="24" font-weight="700" fill="#9a3f12">With purposeful models</text>
+  <!-- ================= RIGHT BRANCH: purposeful abstraction -> longer coherent reasoning ================= -->
+  <rect x="590" y="160" width="320" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="750" y="194" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Purposeful abstraction</text>
+  <line x1="750" y1="216" x2="750" y2="246" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
 
-  <text x="735" y="322" text-anchor="middle" font-size="19" fill="#1c1917">Reason over executable</text>
-  <text x="735" y="346" text-anchor="middle" font-size="19" fill="#1c1917">abstractions</text>
+  <rect x="590" y="248" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="750" y="279" text-anchor="middle" font-size="17" fill="#1c1917">Smaller question-relevant state</text>
+  <line x1="750" y1="298" x2="750" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
 
-  <line x1="735" y1="360" x2="735" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
+  <rect x="590" y="330" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="750" y="361" text-anchor="middle" font-size="17" fill="#1c1917">Lower reconstruction burden</text>
+  <line x1="750" y1="380" x2="750" y2="410" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
 
-  <text x="735" y="414" text-anchor="middle" font-size="19" fill="#1c1917">Less-lossy compaction,</text>
-  <text x="735" y="438" text-anchor="middle" font-size="19" fill="#1c1917">faithful reconstruction</text>
+  <rect x="620" y="412" width="260" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="750" y="437" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Longer coherent</text>
+  <text x="750" y="458" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">reasoning</text>
 
-  <line x1="735" y1="452" x2="735" y2="474" stroke="#57534e" stroke-width="2" marker-end="url(#cf-2-rhArrow)"/>
-
-  <rect x="575" y="484" width="320" height="40" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="735" y="510" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Longer coherent reasoning</text>
+  <!-- caption (rendered by the build from the figure marker; repeated here for standalone viewing) -->
+  <text x="500" y="596" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Figure 1.3-1: The reasoning horizon. At sufficient scale, a task requires more state than a finite</text>
+  <text x="500" y="617" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">reasoner can keep active. The representation determines how much of that state must be reconstructed:</text>
+  <text x="500" y="638" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">raw implementation carries expensive irrelevant detail, while purposeful abstraction can keep the</text>
+  <text x="500" y="659" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">question-relevant state smaller.</text>
 </svg><figcaption><em>The reasoning horizon, and what a model does to it.</em> Reasoning state grows with a task's length; once it outruns working memory it must be compacted. Reason through a model and each compaction loses less, so the horizon stretches and the branch reaches progress instead of churn.</figcaption></figure>
 <p>The book states this as the <strong>Reasoning-Horizon Proposition</strong>: productivity degrades once the working reasoning state a task requires exceeds the effective reasoning horizon of the human–agent system, and executable models extend that horizon by replacing implementation-level state with abstractions whose properties survive repeated compaction with less loss. The proposition is offered for the reader to test against their own systems, not asserted as a law; its testable form is the hypothesis H4, and its full treatment lives in the theory chapter, <a href="book/6.1-toward-a-theory-of-mage.html">Toward a Theory of MAGE</a>. A model is a better <em>compression domain</em>, then — not merely a smaller file. Compacting over a model loses far less than compacting over code, because what survives is the information that carried the reasoning.</p>
 <p>This is what "documentation, taken to its limit" means. A README is prose a human skims; push it until an agent must reason from it on every change, and it becomes typed data that tools read and generate from — a model, not a document.</p>

@@ -9,8 +9,8 @@
     "thesis_spine_mismatches": 1,
     "openings_implicit_thesis": 10,
     "chapters_with_artifact": 25,
-    "chapters_concept_only": 5,
-    "delivers_neither": 0,
+    "chapters_concept_only": 4,
+    "delivers_neither": 1,
     "all_prose_would_benefit": 0
   },
   "taxonomy": {
@@ -196,24 +196,26 @@
         "failure_question": "implicit",
         "answer": "explicit",
         "thesis_link": "explicit",
-        "thesis_target": "argument-step"
+        "thesis_target": "both"
       },
       "closing": {
-        "kind": "synthesis"
+        "kind": "transition"
       },
-      "note": "Failure implicit ('Get them wrong, it wanders'). Opening names the two ideas that carry the book — the theses' seedbed; graded argument-step (not 'both') because the spine deliberately labels 1.3 modeling-side only, alignment left to Part 2 (Phase-1 log). Closes on the four levers = theses in miniature + the not-knowings division of labor.",
-      "opening_anchor": "Two ideas carry the rest of this book, and everything else is",
-      "closing_anchor": "yet earned. The next chapter earns them — from the machine itself.",
+      "note": "R42 rename 'The Reasoning Horizon' -> 'The Agentic Substrate' + rebuild to 5 subsections. Opening reads the method off the substrate's material (reinforced concrete). 1.3.1 the pairing; 1.3.2-1.3.3 derive representation (the reasoning horizon as a scale-driven locality problem); 1.3.4-1.3.5 derive authority (probabilistic work + the interposable, observable harness -- ALIGNMENT PERP MODELING: real Alignment limited by semantic reach, Modeling moves the boundary outward). Derives BOTH problems; closes by handing the complete statement to 1.4.",
+      "opening_anchor": "Engineering methods have to fit the substrate they act on. Reinforced",
+      "closing_anchor": "We can now state the engineering problem completely.",
       "delivers": {
         "concepts": [
+          "engineering-substrate",
           "long-horizon-task",
-          "reasoning-horizon"
+          "reasoning-horizon",
+          "churn"
         ],
         "artifacts": [
           {
             "type": "framework",
-            "name": "the loop-engineering figure (four levers)",
-            "anchor": "the-loop"
+            "name": "the reasoning-horizon figure",
+            "anchor": "reasoning-horizon-fig"
           }
         ],
         "artifact_would_help": false
@@ -221,7 +223,7 @@
       "exempt": null,
       "spine_advances": [
         "modeling-thesis",
-        "theses-treat-the-causes"
+        "alignment-thesis"
       ]
     },
     {
@@ -235,13 +237,11 @@
       "closing": {
         "kind": "synthesis"
       },
-      "note": "Recast (R14, INV-R14-2): opens with the material-reading frame (an engineering method is read off its material), poses Problem A (representation) and Problem B (authority) as questions, signposts Parts II-IV, and closes on delegate-implementation-but-not-accountability. Derives the two QUESTIONS only, never the theses' answers.",
-      "opening_anchor": "Reinforced concrete carries a building because two materials divide the work: concrete",
-      "closing_anchor": "The keystrokes may move to the fleet. The engineering responsibility does not.",
+      "note": "R42 shrink to synthesis-only (~2pp). Reinforced-concrete / pairing / 'Not a faster programmer' / observable-loop derivation MOVED to 1.3. Recalls the two properties in one paragraph, then NAMES Problem A (representation -> Part II Modeling) and Problem B (authority -> Part III Alignment) as three H2 sections, closing on one composition paragraph. THEORY CHANGE: the two problems are related but INDEPENDENT -- MAGE teaches Modeling first as a methodological choice, not because Alignment is impossible without it. No re-derivation.",
+      "opening_anchor": "Commodity intelligence changes the economics of implementation without abolishing the",
+      "closing_anchor": "it does not remove the decisions themselves.",
       "delivers": {
-        "concepts": [
-          "engineering-substrate"
-        ],
+        "concepts": [],
         "artifacts": [],
         "artifact_would_help": false
       },
@@ -249,7 +249,7 @@
       "spine_advances": [
         "modeling-thesis",
         "alignment-thesis",
-        "govern-the-environment"
+        "theses-treat-the-causes"
       ]
     },
     {
@@ -1304,7 +1304,12 @@
         ]
       }
     ],
-    "delivers_neither": [],
+    "delivers_neither": [
+      {
+        "chapter": "why-mage-follows-from-the-machine",
+        "note": "R42 shrink to synthesis-only (~2pp). Reinforced-concrete / pairing / 'Not a faster programmer' / observable-loop derivation MOVED to 1.3. Recalls the two properties in one paragraph, then NAMES Problem A (representation -> Part II Modeling) and Problem B (authority -> Part III Alignment) as three H2 sections, closing on one composition paragraph. THEORY CHANGE: the two problems are related but INDEPENDENT -- MAGE teaches Modeling first as a methodological choice, not because Alignment is impossible without it. No re-derivation."
+      }
+    ],
     "all_prose_would_benefit": []
   }
 }
