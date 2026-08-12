@@ -370,7 +370,6 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: production-software | local
 - term: cad-model | local
 - term: running-example | local
-- term: world-representation | local
 - term: static-analysis | local
 - term: ban-lint | local
 - term: documentation-hierarchy | section
