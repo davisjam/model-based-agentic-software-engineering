@@ -535,6 +535,18 @@
       "location": "part3",
       "rationale": "invariant lookup"
     },
+    "scenarios-and-the-joined-model::The mental toolbox": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part2",
+      "rationale": "synthesis toolbox lookup"
+    },
+    "scenarios-and-the-joined-model::The Modeling-to-Alignment handoff": {
+      "tier": "B",
+      "kind": "supporting",
+      "location": "part2",
+      "rationale": "II-to-III handoff contract"
+    },
     "keeping-models-in-sync::Model-sync evidence — the derived floor under load": {
       "tier": "B",
       "kind": "data",
