@@ -177,6 +177,9 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: evidence-record | The evidence record
 - concept: accessibility-obligation | The accessibility obligations
 - concept: model-selection | Model selection
+- concept: operational-envelope-model | The operational-envelope model
+- concept: resource-ceiling | Resource ceiling
+- concept: admission-gate | The admission gate
 - concept: selc | SELC — the software engineering life cycle
 - concept: lifecycle-phases | The lifecycle phases
 - concept: engineers-seat | The engineer's seat

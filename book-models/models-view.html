@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>38</b> chapters · <b>280</b> sections · <b>80</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>38</b> chapters · <b>283</b> sections · <b>80</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -324,6 +324,14 @@
 <div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Reading behavior formally</a></div>
 <p class="topic">The models below share a small formal vocabulary.</p>
 </div>
+<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--a-remediation-job-s-lifecycle">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">A remediation job&#x27;s lifecycle</a></div>
+<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
+</div>
+<div class="section s3" id="sec-2-6-modeling-behavior-and-execution--ownership-over-the-lifecycle-a-specialization">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Ownership over the lifecycle, a specialization</a></div>
+<p class="topic">The state machine says what states a job may occupy.</p>
+</div>
 <div class="section s2" id="sec-2-6-modeling-behavior-and-execution--what-must-hold-across-every-interleaving">
 <div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">What must hold across every interleaving</a></div>
 <p class="topic">*What runs at once, and what stays true across every schedule?* Concurrency is where a correct-in-isolation design becomes a source of races, deadlocks, and torn writes, and the answer cannot be a thought experiment about interleavings.</p>
@@ -351,6 +359,10 @@
 <div class="section s2" id="sec-2-6-modeling-behavior-and-execution--computing-a-migration-s-blast-radius">
 <div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Computing a migration&#x27;s blast radius</a></div>
 <p class="topic">One last behavioral question an agent asks before it changes the ground everything runs on: *which mechanisms assume the substrate I am about to replace?* The **substrate-dependency model** makes each governance mechanism declare, as typed metadata, the substrate assumption it bakes in — bound to one substrate, substrate-aware, or substrate-agnostic.</p>
+</div>
+<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--what-the-system-promises-about-time-and-cost">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">What the system promises about time and cost</a></div>
+<p class="topic">The structural models say what the system is made of.</p>
 </div>
 </div>
 <div class="chapter">

@@ -715,6 +715,18 @@
       "location": "part3",
       "rationale": "invariant lookup"
     },
+    "modeling-behavior-and-execution::Job-lifecycle state machine — illustrative invariant": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part2",
+      "rationale": "invariant lookup"
+    },
+    "modeling-behavior-and-execution::Operational-envelope model — illustrative invariant": {
+      "tier": "C",
+      "kind": "reference-lookup",
+      "location": "part2",
+      "rationale": "invariant lookup"
+    },
     "the-mage-workflow::Substrate property → consequence → response → method step": {
       "tier": "B",
       "kind": "framework",
