@@ -6653,6 +6653,112 @@ def build_pdf() -> int:
     return verify_pdf(pdf_out)
 
 
+# ─────────────────────── Per-section split PDFs (review aid; additive to `--pdf`) ────────────────────────
+# A local `--pdf` run ALSO emits one PDF per logical book section — a review aid so a reader can open just
+# the front matter, one Part, the back matter, or the appendices. The split is DEFAULT-ON locally and OFF in
+# CI / the deploy pre-push gate (which render only the shipped whole-book `mage-book.pdf`). The section PDFs
+# are gitignored generated artifacts, exactly like `mage-book.pdf`; they carry NO whole-book content-integrity
+# gate (page floor, part-opener spread) — a 20-page Part PDF is verified only to COMPILE and be non-empty.
+
+#: The exact section filenames the reviewer asked for (`mage-book-<Section>.pdf`).
+def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
+    """The ONE canonical grouping of the book's ordered chapters into the 9 review sections, keyed off the
+    same `part` field the whole-book render iterates:
+      part 0 → FrontMatter · parts 1-6 → Part1…Part6 · part 7 → BackMatter · parts ≥ 8 → Appendices
+    (the appendices front-door divider plus every appendix chapter). It reuses the IR chapter order, so each
+    section is a contiguous slice of the whole-book reading order — there is no second section model that
+    could drift from the full projection. Returns ordered `(filename-suffix, [slug, …])` pairs."""
+    def _bucket(part: int) -> str:
+        if part == 0:
+            return "FrontMatter"
+        if 1 <= part <= 6:
+            return f"Part{part}"
+        if part == 7:
+            return "BackMatter"
+        return "Appendices"
+
+    buckets: "dict[str, list[str]]" = {}
+    order: "list[str]" = []
+    for ch in doc.chapters:  # type: ignore[attr-defined]
+        key = _bucket(ch.part)
+        if key not in buckets:
+            buckets[key] = []
+            order.append(key)
+        buckets[key].append(ch.slug)
+    return [(k, buckets[k]) for k in order]
+
+
+def build_pdf_split() -> int:
+    """Emit one PDF per logical book section (front matter, Parts 1-6, back matter, appendices) alongside the
+    full `mage-book.pdf`. Each section PDF is projected from the SAME typed IR and Typst emitter the whole
+    book uses (`book_typst.emit_document(..., split_section=True)`), so a section PDF cannot diverge from its
+    slice of the whole book. A `[ref:]` cross-reference whose target float sits in another section renders as
+    descriptive text ("Figure B.24-1"), not a live `@label` (which would be absent here and fail the compile).
+    Each section PDF is verified only to COMPILE and be non-empty — the whole-book content-integrity gate stays
+    on `mage-book.pdf` alone. Returns 0 when every section compiled non-empty, 1 otherwise."""
+    import shutil
+    import subprocess
+
+    import book_typst
+    import book_ir
+
+    typst = shutil.which("typst")
+    if not typst:
+        print("ERROR: `typst` not found on PATH — cannot render the per-section split PDFs.", file=sys.stderr)
+        return 2
+
+    doc = book_ir.parse_book(include_appendices=True, for_print=True)
+    sections = _pdf_split_sections(doc)
+    typ_dir = HERE / "_typst"
+    typ_dir.mkdir(exist_ok=True)
+    last_modified = _book_last_modified()
+    base = _PDF_FILENAME[:-4] if _PDF_FILENAME.endswith(".pdf") else _PDF_FILENAME  # "mage-book"
+
+    print(f"\n== Per-section split PDFs ({len(sections)} sections; review aid, no whole-book gate) ==")
+    produced: "list[tuple[str, int]]" = []
+    failures: "list[str]" = []
+    for suffix, slugs in sections:
+        pdf_out = HERE / f"{base}-{suffix}.pdf"
+        if not slugs:
+            print(f"WARNING: section {suffix} has no chapters — skipping (no PDF emitted).", file=sys.stderr)
+            continue
+        typ = book_typst.emit_document(slugs, root=ROOT, with_frontmatter=True, split_section=True)
+        typ_src = typ_dir / f"{base}-{suffix}.typ"
+        typ_src.write_text(typ, encoding="utf-8")
+        cmd = [typst, "compile", "--input", f"last_modified={last_modified}",
+               "--root", str(ROOT), "--font-path", str(HERE / "fonts"), str(typ_src), str(pdf_out)]
+        r = subprocess.run(cmd, capture_output=True, text=True)
+        if r.returncode != 0 or not pdf_out.is_file():
+            print(f"ERROR: section {suffix} Typst compile failed (rc={r.returncode}).\n{r.stderr}",
+                  file=sys.stderr)
+            failures.append(suffix)
+            continue
+        pages = _pdf_page_count(pdf_out)
+        if pages < 1:
+            print(f"ERROR: section {suffix} produced an empty PDF (0 pages).", file=sys.stderr)
+            failures.append(suffix)
+            continue
+        size_kib = pdf_out.stat().st_size / 1024
+        produced.append((suffix, pages))
+        print(f"  {pdf_out.name:<28} {pages:>3} pages  {size_kib:>6.0f} KiB")
+
+    print(f"Per-section split: {len(produced)}/{len(sections)} section PDFs produced"
+          + (f"; FAILED: {', '.join(failures)}" if failures else " (all compiled non-empty)"))
+    return 1 if failures else 0
+
+
+def _pdf_split_enabled(args: "list[str]") -> bool:
+    """Whether a `--pdf` run should ALSO emit the per-section review PDFs. Default-on locally; OFF when
+    `--no-split` is passed OR the build runs in GitHub Actions / any CI (the published site ships only the
+    whole-book `mage-book.pdf`, so CI must not pay the per-section compile cost). `GITHUB_ACTIONS` is set by
+    the Pages workflow runner; `CI` is the generic fallback."""
+    if "--no-split" in args:
+        return False
+    if os.environ.get("GITHUB_ACTIONS") or os.environ.get("CI"):
+        return False
+    return True
+
+
 def build() -> int:
     metrics = _load_metrics()
     _load_citations()  # the committed Chicago render of references.bib — read once, consumed per chapter
@@ -6874,8 +6980,13 @@ def build() -> int:
 if __name__ == "__main__":
     args = sys.argv[1:]
     # `--pdf` is the opt-in print edition (the print-native Typst render); default is the fast web build.
+    # A local `--pdf` ALSO emits the per-section review PDFs by default (additive); `--no-split` forces
+    # full-only, and CI / the deploy pre-push gate are full-only via `_pdf_split_enabled` (env + flag).
     if "--pdf" in args:
-        raise SystemExit(build_pdf())
+        rc = build_pdf()
+        if rc == 0 and _pdf_split_enabled(args):
+            rc = build_pdf_split() or rc  # section PDFs are additive; a section failure surfaces as nonzero
+        raise SystemExit(rc)
     # `--verify-pdf` runs ONLY the content-integrity gate over an existing book/mage-book.pdf (CI reuses it).
     if "--verify-pdf" in args:
         pdf = HERE / _PDF_FILENAME

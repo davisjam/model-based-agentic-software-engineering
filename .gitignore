@@ -52,6 +52,10 @@ book/_design/*-brief*.md
 # multi-MB binary in history). `build_book_html.py --pdf` regenerates it locally (gitignored preview);
 # the Pages workflow regenerates + publishes it at /book/mage-book.pdf on the deployed site.
 /book/mage-book.pdf
+# Per-section review-aid PDFs (FrontMatter / Part1-6 / BackMatter / Appendices) — emitted by a local
+# `build_book_html.py --pdf` alongside the full book, same gitignore posture as mage-book.pdf (created,
+# never committed; not rendered in CI).
+/book/mage-book-*.pdf
 
 # Node build tooling for the PDF render (Puppeteer). package.json + package-lock.json ARE tracked (CI
 # runs `npm ci`); the installed tree is not.

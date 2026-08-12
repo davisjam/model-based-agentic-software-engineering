@@ -68,6 +68,20 @@ _DEF_SLUGS = frozenset({"model", "agent", "engineering", "software-engineering"}
 #            branch so the print behaviour is a one-line flip, but NOT active.
 OUTPUT_TYPE = "screen"
 
+# ── Per-section split PDFs — cross-section reference degradation ──────────────────────────────────────
+# The per-section review split (`build_book_html.py` default-on locally) renders ONE PDF per book section
+# from a SUBSET of the chapters. A `[ref:key]` cross-reference whose target float lives in ANOTHER section
+# is absent from that section's document, so a live Typst `@key` reference would fail the compile ("label
+# does not exist"). In split-section mode these two module globals carry the resolution context:
+#   `_SPLIT_LABELS`     — the labels present IN THIS SECTION; an in-section key stays a live `@key`.
+#   `_SPLIT_LABEL_TEXT` — key → descriptive text ("Figure B.24-1") for EVERY labelled float in the book; an
+#                         out-of-section key degrades to that text (what the live reference would have shown).
+# `_SPLIT_LABELS is None` = whole-book mode (the shipped `mage-book.pdf`): every label is present, so every
+# `[ref:]` stays a live `@key` — the production path is untouched. `emit_document(split_section=True)` sets
+# and clears these around one section's emission.
+_SPLIT_LABELS: "set[str] | None" = None
+_SPLIT_LABEL_TEXT: "dict[str, str]" = {}
+
 # Appendix chapter/note headings repeat many times (one per entry), so they read as a per-entry head, not
 # a part-opener. The general H1 show rule sizes chapter titles at 1.5em (16.5pt on the 11pt body) — too
 # large for a heading that recurs 29× down Appendix B. Appendix chapter titles override to this smaller
@@ -122,7 +136,15 @@ def _inline(s: str, stash: list[str]) -> str:
         return f"\x00S{len(stash) - 1}\x00"
 
     # 1. Cross-references FIRST — `[ref:key]` → a Typst `@key`. Held so later escaping leaves the `@` alone.
-    s = _XREF_RE.sub(lambda m: _hold(f"@{m.group(1)}"), s)
+    #    In split-section mode a key whose target float lives in ANOTHER section is absent from this
+    #    document — a live `@key` would fail the compile — so it degrades to descriptive text ("Figure
+    #    B.24-1"), the same string the live reference would print. Intra-section keys stay live `@key`.
+    def _ref(m: "re.Match[str]") -> str:
+        key = m.group(1)
+        if _SPLIT_LABELS is not None and key not in _SPLIT_LABELS:
+            return _hold(_esc(_SPLIT_LABEL_TEXT.get(key, f"Figure {key}")))
+        return _hold(f"@{key}")
+    s = _XREF_RE.sub(_ref, s)
     # 1b. Citations `[cite: key(, loc); key2]` → Typst `#cite(<key>)` (chicago-notes → a numbered footnote
     #     citation). Multiple keys emit multiple #cite; a locator becomes the citation supplement. The
     #     #bibliography emit_document appends renders these — Typst's own engine, the SAME references.bib
@@ -1821,16 +1843,52 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     return opener + verso + "\n#pagebreak()"
 
 
-def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_frontmatter: bool = False) -> str:
+def _book_label_text(doc: "ir.Document") -> "dict[str, str]":
+    """key → the descriptive reference string ("Figure <prefix>-N" / "Table <prefix>-N") for every labelled
+    float in the book. Numbered exactly as the print projection numbers floats: chapter-relative, image and
+    table counters independent and reset at each chapter, using the same `_float_prefix` the renderer bakes
+    into its per-chapter `#set figure(numbering: …)`. A FIGURE or MERMAID block is a Typst `kind: image`
+    figure ("Figure N"); a TABLE is `kind: table` ("Table N"). This is the text a CROSS-SECTION `[ref:]`
+    renders in a split-section PDF (where the live `@key` label is absent), so its printed number equals what
+    the live reference would have shown in the whole-book render."""
+    out: "dict[str, str]" = {}
+    for ch in doc.chapters:
+        prefix = _float_prefix(ch, ch.slug.startswith("appendix"))
+        fig_n = tbl_n = 0
+        for b in ch.floats():
+            if b.kind is ir.BlockKind.TABLE:
+                tbl_n += 1
+                word, num = "Table", f"{prefix}-{tbl_n}"
+            else:  # FIGURE / MERMAID → a Typst `kind: image` figure
+                fig_n += 1
+                word, num = "Figure", f"{prefix}-{fig_n}"
+            if b.label:
+                out[b.label] = f"{word} {num}"
+    return out
+
+
+def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_frontmatter: bool = False,
+                  split_section: bool = False) -> str:
     """Emit a standalone Typst document for the named chapter slugs. When `with_frontmatter` is set (the
     whole-book production render), a title-page cover leads and a part-divider page precedes the first
     chapter of each numbered Part and each appendix Part — the same structure the web book carries, so the
     print edition does not diverge. `root` is the Typst compilation root the image paths resolve against
-    (defaults to the repo dir, the parent of book/)."""
+    (defaults to the repo dir, the parent of book/).
+
+    When `split_section` is set (a per-section review PDF that renders only `slugs`), a `[ref:]`
+    cross-reference whose target float lives OUTSIDE this section degrades to descriptive text instead of a
+    live Typst `@label`: the label is absent from this subset document, so a live reference would fail the
+    compile. Intra-section references stay live. Whole-book mode (`split_section=False`) is untouched — the
+    shipped `mage-book.pdf` keeps every `[ref:]` a live link."""
+    global _SPLIT_LABELS, _SPLIT_LABEL_TEXT
     root = root or HERE.parent
     ctx = _EmitCtx(root)
     doc = ir.parse_book(include_appendices=True, for_print=True)
     by_slug = {c.slug: c for c in doc.chapters}
+    if split_section:
+        sec = set(slugs)
+        _SPLIT_LABELS = {key for key, (ch, _b) in doc.labels().items() if ch.slug in sec}
+        _SPLIT_LABEL_TEXT = _book_label_text(doc)
     parts: list[str] = [_PREAMBLE]
     # The front-matter acknowledgments chapter — relocated onto the copyright page in the PRINT projection
     # (its source file is untouched, so the web book still renders it as a chapter). Matched by title so the
@@ -1885,7 +1943,12 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
         bib_rel = _root_rel(bb.HERE / "references.bib", root)
         parts.append("#pagebreak()")
         parts.append(f'#bibliography({_typst_str(bib_rel)}, style: "chicago-notes", title: "Bibliography")')
-    return "\n\n".join(parts) + "\n"
+    result = "\n\n".join(parts) + "\n"
+    # Clear the split-section context so a later whole-book emission (or the next section) starts clean. An
+    # unknown-slug `raise SystemExit` above aborts the whole process, so it needs no reset here.
+    _SPLIT_LABELS = None
+    _SPLIT_LABEL_TEXT = {}
+    return result
 
 
 def _any_cites(doc: "ir.Document") -> bool:

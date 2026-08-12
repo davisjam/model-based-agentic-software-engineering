@@ -4861,8 +4861,10 @@ def cmd_deploy(args) -> int:
     # the content-integrity gate AND the shipped-size ceiling (<= 8 MiB, measured post-repack). This refuses
     # to push a bloated PDF (e.g. a full-bleed rasterized cover regressing to 30+ MB) — the exact failure CI
     # renders on push. Mirrors the `local --pdf` abort pattern. CI still re-renders authoritatively on push.
+    # `--no-split`: gate only the shipped whole-book PDF here — the per-section review PDFs are a local
+    # convenience, not a published artifact, so the pre-push gate must not pay their ~9× compile cost.
     print("\n== Pre-push PDF gate (book/mage-book.pdf) via Typst; content-integrity + size ceiling (8 MiB) ==")
-    pdf_gate = subprocess.run([sys.executable, os.path.join("book", "build_book_html.py"), "--pdf"],
+    pdf_gate = subprocess.run([sys.executable, os.path.join("book", "build_book_html.py"), "--pdf", "--no-split"],
                               cwd=ROOT)
     if pdf_gate.returncode != 0:
         print("ABORT: PDF gate failed — will not push (see build_book_html.py --pdf output above; "
