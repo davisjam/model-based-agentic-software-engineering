@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 34,
     "slugs_rendered": 26,
-    "total_sites": 1645,
+    "total_sites": 1646,
     "by_projection": {
       "book-pdf": 23,
-      "book-web": 1221,
+      "book-web": 1222,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -33,7 +33,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 15
+            "occ": 11
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -1390,6 +1390,10 @@
             "occ": 2
           },
           {
+            "file": "book/0.4-preface.html",
+            "occ": 1
+          },
+          {
             "file": "book/4.1-the-mage-workflow.html",
             "occ": 1
           },
@@ -1437,7 +1441,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 13
           }
         ]
       },
@@ -1535,7 +1539,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 51
+            "occ": 48
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -2997,7 +3001,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 27
+            "occ": 24
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -5455,7 +5459,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 6
+            "occ": 4
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
