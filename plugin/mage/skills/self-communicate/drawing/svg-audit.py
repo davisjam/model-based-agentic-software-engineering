@@ -465,8 +465,268 @@ def check_svg_drawing_hygiene():
     return PASS, issues  # AUDIT-ONLY: never FAIL
 
 
+# ---- text-label overlap + stroke-cross-through-unrelated-element -------------------------------------
+# Two blind spots the checks above miss, each a real defect on a rendered figure:
+#   - text-label overlap: two <text> boxes colliding, printing on top of each other ("...inertno").
+#   - stroke cross-through: a stroked <path>/<line> (CURVES included — the drawing-hygiene stroke-through
+#     reasons only about straight segments) running through a <text> or node <rect> it neither starts nor
+#     ends at. Endpoint-connection exempts the arrowhead's own target, so only pass-through flags.
+# Both use the conservative low glyph ratio so an over-read can't manufacture a phantom collision.
+
+TEXT_OVERLAP_H_MIN_FRAC = 0.5
+TEXT_OVERLAP_V_MIN_FRAC = 0.25
+_CROSS_GLYPH_RATIO = 0.42
+CROSS_CONNECT_MARGIN = 12.0
+_CROSS_RECT_INSET = 1.5
+_CROSS_TEXT_INSET = 0.5
+_CROSS_CURVE_SAMPLES = 18
+
+
+def _transformed_ids(root: ET.Element) -> set[int]:
+    """`id()` of every element carrying a `transform` or under an ancestor that does — its x/y are not
+    absolute canvas coordinates, so the flat-coordinate geometry would be wrong; the checks skip them."""
+    parent = {c: p for p in root.iter() for c in p}
+    out: set[int] = set()
+    for el in root.iter():
+        node: ET.Element | None = el
+        while node is not None:
+            if node.get("transform"):
+                out.add(id(el))
+                break
+            node = parent.get(node)
+    return out
+
+
+def _text_bbox(el: ET.Element, style_classes: dict[str, tuple[float, bool]],
+               ratio: float | None = None) -> tuple[float, float, float, float] | None:
+    t = _text_content(el)
+    x, y = _num(el.get("x")), _num(el.get("y"))
+    if not t or x is None or y is None:
+        return None
+    fw = _font_size_and_weight(el, style_classes)
+    if fw is None:
+        return None
+    size, bold = fw
+    ratio = _CROSS_GLYPH_RATIO if ratio is None else ratio
+    width = len(t) * size * ratio
+    anchor = (el.get("text-anchor") or "start").strip()
+    if anchor == "middle":
+        lo, ro = -width / 2.0, width / 2.0
+    elif anchor == "end":
+        lo, ro = -width, 0.0
+    else:
+        lo, ro = 0.0, width
+    return (x + lo, y - size * 0.72, x + ro, y + size * 0.22)
+
+
+def check_svg_text_overlap():
+    """Flag a pair of <text> labels whose estimated glyph boxes overlap in BOTH axes (past a per-axis
+    floor) — two captions printing on top of each other. AUDIT-ONLY (always PASS)."""
+    targets = _scan_svgs()
+    if not targets:
+        return PASS, ["no book/assets/ dir — nothing to scan"]
+    issues: list[str] = []
+    flagged: set[str] = set()
+    for fn in targets:
+        path = os.path.join(_SCAN_DIR, fn)
+        try:
+            root = ET.parse(path).getroot()
+        except ET.ParseError:
+            continue
+        style_classes = _parse_style_font_sizes(root)
+        transformed = _transformed_ids(root)
+        labels: list[tuple[str, tuple[float, float, float, float], float]] = []
+        for el in root.iter():
+            if _local(el.tag) != "text" or id(el) in transformed:
+                continue
+            fw = _font_size_and_weight(el, style_classes)
+            bbox = _text_bbox(el, style_classes)
+            if fw is None or bbox is None:
+                continue
+            txt = _text_content(el)
+            labels.append((txt if len(txt) <= 34 else txt[:31] + "...", bbox, fw[0]))
+        for i in range(len(labels)):
+            for j in range(i + 1, len(labels)):
+                (li, (al, at, ar, ab), si) = labels[i]
+                (lj, (bl, bt, br, bb), sj) = labels[j]
+                h_ov = min(ar, br) - max(al, bl)
+                v_ov = min(ab, bb) - max(at, bt)
+                if h_ov <= 0 or v_ov <= 0:
+                    continue
+                fs = min(si, sj)
+                if h_ov < TEXT_OVERLAP_H_MIN_FRAC * fs or v_ov < TEXT_OVERLAP_V_MIN_FRAC * fs:
+                    continue
+                issues.append(
+                    f"{rel(path)}: TEXT overlap — {li!r} and {lj!r} render on top of each other "
+                    f"(~{h_ov:.0f}u x ~{v_ov:.0f}u overlap) — separate the labels")
+                flagged.add(fn)
+    if issues:
+        issues.insert(0, f"{len(flagged)} figure(s) with overlapping text labels:")
+        issues.append("")
+        issues.append(f"AUDIT-ONLY (heuristic; false positives expected). Fix guidance -> {DRAWING_DOC}")
+    return PASS, issues
+
+
+def _flatten_path_points(d: str) -> list[tuple[float, float]] | None:
+    """Flatten an absolute-command <path> (M L H V C Q Z) to a polyline, sampling Béziers; None (skip) for
+    relative / arc / smooth commands we do not reason about."""
+    tokens = re.findall(r"-?\d*\.?\d+(?:[eE][-+]?\d+)?|[A-Za-z]", d)
+    pts: list[tuple[float, float]] = []
+    i, n = 0, len(tokens)
+    cur = (0.0, 0.0)
+    sub_start = (0.0, 0.0)
+    cmd: str | None = None
+
+    def _take() -> float:
+        nonlocal i
+        v = float(tokens[i])
+        i += 1
+        return v
+
+    try:
+        while i < n:
+            tok = tokens[i]
+            if tok.isalpha():
+                cmd = tok
+                i += 1
+                if cmd not in "MLHVCQZ":
+                    return None
+                if cmd == "Z":
+                    cur = sub_start
+                    pts.append(cur)
+                    cmd = None
+                    continue
+            if cmd is None:
+                return None
+            if cmd == "M":
+                cur = (_take(), _take())
+                sub_start = cur
+                pts.append(cur)
+                cmd = "L"
+            elif cmd == "L":
+                cur = (_take(), _take())
+                pts.append(cur)
+            elif cmd == "H":
+                cur = (_take(), cur[1])
+                pts.append(cur)
+            elif cmd == "V":
+                cur = (cur[0], _take())
+                pts.append(cur)
+            elif cmd == "C":
+                p1 = (_take(), _take())
+                p2 = (_take(), _take())
+                p3 = (_take(), _take())
+                for k in range(1, _CROSS_CURVE_SAMPLES + 1):
+                    t = k / _CROSS_CURVE_SAMPLES
+                    mt = 1 - t
+                    pts.append((mt**3 * cur[0] + 3 * mt * mt * t * p1[0] + 3 * mt * t * t * p2[0] + t**3 * p3[0],
+                                mt**3 * cur[1] + 3 * mt * mt * t * p1[1] + 3 * mt * t * t * p2[1] + t**3 * p3[1]))
+                cur = p3
+            elif cmd == "Q":
+                p1 = (_take(), _take())
+                p2 = (_take(), _take())
+                for k in range(1, _CROSS_CURVE_SAMPLES + 1):
+                    t = k / _CROSS_CURVE_SAMPLES
+                    mt = 1 - t
+                    pts.append((mt * mt * cur[0] + 2 * mt * t * p1[0] + t * t * p2[0],
+                                mt * mt * cur[1] + 2 * mt * t * p1[1] + t * t * p2[1]))
+                cur = p2
+    except (ValueError, IndexError):
+        return None
+    return pts if len(pts) >= 2 else None
+
+
+def _connector_points(el: ET.Element) -> list[tuple[float, float]] | None:
+    tag = _local(el.tag)
+    if tag == "line":
+        x1, y1 = _num(el.get("x1")), _num(el.get("y1"))
+        x2, y2 = _num(el.get("x2")), _num(el.get("y2"))
+        if None in (x1, y1, x2, y2):
+            return None
+        return [(x1, y1), (x2, y2)]  # type: ignore[list-item]
+    if tag == "path":
+        d = el.get("d") or ""
+        if not d or _triangle_from_path_d(d) is not None:
+            return None
+        return _flatten_path_points(d)
+    return None
+
+
+def _near_box(px: float, py: float, box: tuple[float, float, float, float], margin: float) -> bool:
+    l, t, r, b = box
+    return (l - margin) <= px <= (r + margin) and (t - margin) <= py <= (b + margin)
+
+
+def check_svg_stroke_crossthrough():
+    """Flag a stroked <path>/<line> (curves included) that runs THROUGH a <text> or node <rect> it neither
+    starts nor ends at (endpoint-connection exempts the arrowhead's own target). AUDIT-ONLY (always PASS)."""
+    targets_files = _scan_svgs()
+    if not targets_files:
+        return PASS, ["no book/assets/ dir — nothing to scan"]
+    issues: list[str] = []
+    flagged: set[str] = set()
+    for fn in targets_files:
+        path = os.path.join(_SCAN_DIR, fn)
+        try:
+            root = ET.parse(path).getroot()
+        except ET.ParseError:
+            continue
+        style_classes = _parse_style_font_sizes(root)
+        transformed = _transformed_ids(root)
+        vb_w = _viewbox_width(root)
+        in_marker: set[int] = set()
+        for el in root.iter():
+            if _local(el.tag) == "marker":
+                for d in el.iter():
+                    in_marker.add(id(d))
+        targets: list[tuple[str, tuple[float, float, float, float], float]] = []
+        for r in _collect_rects(root, vb_w):
+            targets.append((f"rect x={r.x:.0f} w={r.w:.0f} y={r.y:.0f} h={r.h:.0f}",
+                            (r.x, r.y, r.x + r.w, r.y + r.h), _CROSS_RECT_INSET))
+        for el in root.iter():
+            if _local(el.tag) != "text" or id(el) in transformed:
+                continue
+            bbox = _text_bbox(el, style_classes)
+            if bbox is None:
+                continue
+            txt = _text_content(el)
+            targets.append((f"text {(txt if len(txt) <= 30 else txt[:27] + '...')!r}", bbox, _CROSS_TEXT_INSET))
+        for el in root.iter():
+            if _local(el.tag) not in ("path", "line") or id(el) in transformed or id(el) in in_marker:
+                continue
+            fill = (el.get("fill") or "").strip().lower()
+            stroke = (el.get("stroke") or "").strip().lower()
+            if stroke in ("", "none") and fill not in ("", "none"):
+                continue
+            pts = _connector_points(el)
+            if not pts or len(pts) < 3:
+                continue
+            p0, pN = pts[0], pts[-1]
+            interior = pts[1:-1]
+            for name, box, inset in targets:
+                if _near_box(*p0, box, CROSS_CONNECT_MARGIN) or _near_box(*pN, box, CROSS_CONNECT_MARGIN):
+                    continue
+                l, t, r, b = box
+                for (px, py) in interior:
+                    if (l + inset) < px < (r - inset) and (t + inset) < py < (b - inset):
+                        issues.append(
+                            f"{rel(path)}: STROKE cross-through — a <{_local(el.tag)}> passes through "
+                            f"{name} it does not start or end at — reroute it clear of the element")
+                        flagged.add(fn)
+                        break
+                else:
+                    continue
+                break
+    if issues:
+        issues.insert(0, f"{len(flagged)} figure(s) with a stroke crossing through an unrelated element:")
+        issues.append("")
+        issues.append(f"AUDIT-ONLY (heuristic; false positives expected). Fix guidance -> {DRAWING_DOC}")
+    return PASS, issues
+
+
 if __name__ == "__main__":
-    for _fn in (check_svg_text_fit, check_svg_drawing_hygiene):
+    for _fn in (check_svg_text_fit, check_svg_drawing_hygiene, check_svg_text_overlap,
+                check_svg_stroke_crossthrough):
         _status, _msgs = _fn()
         for _m in _msgs:
             print(_m)

@@ -837,3 +837,290 @@ def check_svg_edge_label_box_collision():
         issues.append("")
         issues.append(f"AUDIT-ONLY. Fix guidance -> {DRAWING_DOC}")
     return PASS, issues  # AUDIT-ONLY: never FAIL
+
+
+# ---- text-label overlap (C6) + stroke-cross-through-unrelated-element (C7) (AUDIT-ONLY) ---------------
+# Two blind spots the checks above do not cover, each a real defect the author saw on the rendered
+# MAGE-method figure:
+#   - **text-label overlap** — two `<text>` labels whose rendered glyph boxes collide, so they print on top
+#     of each other ("models stay inert" + its "no" rendering as "models stay inertno"). The box-fit and
+#     edge-label checks measure a label against a *rect*; neither compares two labels to each other.
+#   - **stroke through an unrelated element** — a stroked `<path>`/`<line>` that runs THROUGH the box of a
+#     `<text>` or a node `<rect>` it neither starts nor ends at. The drawing-hygiene stroke-through-glyph
+#     check reasons only about STRAIGHT segments (`<line>` + pure-M/L `<path>`) and only against text; it is
+#     blind to the CURVED connectors (`C`/`Q` Béziers) that route a return-arc through a box or a green
+#     enrich-arc through a label. This flattens the curve and tests both text and node rects, exempting the
+#     element a connector legitimately terminates on (endpoint-connection), so only genuine pass-through flags.
+#
+# Both use the conservative (low) per-glyph ratio, not the audit's deliberately-high default — a 30-50%
+# over-read would manufacture phantom overlaps/crossings.
+
+# Overlap must clear a floor in BOTH axes, so two labels that merely graze a corner (an ascender kissing a
+# descender) don't flag — the real collision overlaps a meaningful fraction of the smaller label's em.
+TEXT_OVERLAP_H_MIN_FRAC = 0.5    # horizontal overlap must reach >= 0.5*fs of the smaller label
+TEXT_OVERLAP_V_MIN_FRAC = 0.25   # vertical overlap must reach >= 0.25*fs of the smaller label
+# Use the high end of the measured true per-string ratio (0.36-0.43), NOT the 0.55 audit default, so a
+# comfortable inter-label gap in the real render is not read as a collision by an inflated width estimate.
+_CROSS_GLYPH_RATIO = 0.42
+# A connector legitimately ENDS on the box/label it points at (the marker tip touches the target). Treat a
+# target within this many user units of either path endpoint as connected, so only PASS-through (an interior
+# sample inside an element neither endpoint touches) flags — not the arrowhead landing on its own target.
+CROSS_CONNECT_MARGIN = 12.0
+_CROSS_RECT_INSET = 1.5    # a sample must sit this far INSIDE a rect to count (ignore border-tangent grazes)
+_CROSS_TEXT_INSET = 0.5    # text boxes are small — a lighter inset
+_CROSS_CURVE_SAMPLES = 18  # points per Bézier segment when flattening a curved connector
+
+
+def _text_bbox(el: ET.Element, style_classes: dict[str, tuple[float, bool]],
+               ratio: float | None = None) -> tuple[float, float, float, float] | None:
+    """(left, top, right, bottom) of a `<text>`'s estimated glyph box, or None if it can't be placed/sized.
+    `ratio` overrides the glyph-width fraction (callers testing collisions pass the low true ratio)."""
+    t = _text_content(el)
+    x, y = _num(el.get("x")), _num(el.get("y"))
+    if not t or x is None or y is None:
+        return None
+    fw = _font_size_and_weight(el, style_classes)
+    if fw is None:
+        return None
+    size, bold = fw
+    lo, ro = _text_extent(t, size, bold, (el.get("text-anchor") or "start").strip(), ratio=ratio)
+    return (x + lo, y - size * 0.72, x + ro, y + size * 0.22)
+
+
+def check_svg_text_overlap():
+    """Scan every `book/assets/*.svg`; flag a pair of `<text>` labels whose estimated glyph boxes overlap in
+    BOTH axes (past a per-axis floor). Catches two captions printing on top of each other — the collision the
+    box-fit and edge-label checks, each measuring a label against a *rect*, cannot see.
+
+    AUDIT-ONLY: reports candidates, never contributes to the fail count. Skips transformed text (coords not
+    absolute) and tspan/dx-positioned labels (no cheap anchor)."""
+    assets_dir = os.path.join(ROOT, "book", "assets")
+    if not os.path.isdir(assets_dir):
+        return PASS, ["no book/assets/ dir — nothing to scan"]
+
+    issues: list[str] = []
+    flagged: set[str] = set()
+    for fn in sorted(os.listdir(assets_dir)):
+        if not fn.endswith(".svg"):
+            continue
+        path = os.path.join(assets_dir, fn)
+        try:
+            root = ET.parse(path).getroot()
+        except ET.ParseError:
+            continue  # the text-fit pass already reports parse errors
+        style_classes = _parse_style_font_sizes(root)
+        transformed = _transformed_ids(root)
+
+        labels: list[tuple[str, tuple[float, float, float, float], float]] = []
+        for el in root.iter():
+            if _local(el.tag) != "text" or id(el) in transformed:
+                continue
+            fw = _font_size_and_weight(el, style_classes)
+            bbox = _text_bbox(el, style_classes, ratio=_CROSS_GLYPH_RATIO)
+            if fw is None or bbox is None:
+                continue
+            txt = _text_content(el)
+            labels.append((txt if len(txt) <= 34 else txt[:31] + "...", bbox, fw[0]))
+
+        for i in range(len(labels)):
+            for j in range(i + 1, len(labels)):
+                (li, (al, at, ar, ab), si) = labels[i]
+                (lj, (bl, bt, br, bb), sj) = labels[j]
+                h_ov = min(ar, br) - max(al, bl)
+                v_ov = min(ab, bb) - max(at, bt)
+                if h_ov <= 0 or v_ov <= 0:
+                    continue
+                fs = min(si, sj)
+                if h_ov < TEXT_OVERLAP_H_MIN_FRAC * fs or v_ov < TEXT_OVERLAP_V_MIN_FRAC * fs:
+                    continue  # a mere graze, under the per-axis floor — not a genuine on-top collision
+                issues.append(
+                    f"{rel(path)}: TEXT overlap — {li!r} and {lj!r} render on top of each other "
+                    f"(~{h_ov:.0f}u horizontal x ~{v_ov:.0f}u vertical overlap) — separate the labels")
+                flagged.add(fn)
+
+    if issues:
+        issues.insert(0, f"{len(flagged)} figure(s) with overlapping text labels:")
+        issues.append("")
+        issues.append(f"AUDIT-ONLY (heuristic; false positives expected). Fix guidance -> {DRAWING_DOC}")
+    return PASS, issues  # AUDIT-ONLY: never FAIL
+
+
+def _flatten_path_points(d: str) -> list[tuple[float, float]] | None:
+    """Flatten an absolute-command `<path>` (`M L H V C Q Z`) to a polyline of sample points, sampling each
+    cubic/quadratic Bézier so a CURVED connector's mid-run is testable. Returns None (conservative skip) for
+    any relative command, arc (`A`), or smooth shorthand (`S`/`T`) we do not reason about — those figures
+    simply aren't covered by the cross-through pass rather than mis-measured."""
+    # Numbers first in the alternation so an exponent (`1e-3`) is consumed whole and its `e` is never read
+    # as a command letter.
+    tokens = re.findall(r"-?\d*\.?\d+(?:[eE][-+]?\d+)?|[A-Za-z]", d)
+    pts: list[tuple[float, float]] = []
+    i, n = 0, len(tokens)
+    cur = (0.0, 0.0)
+    sub_start = (0.0, 0.0)
+    cmd: str | None = None
+
+    def _take() -> float:
+        nonlocal i
+        v = float(tokens[i])  # raises ValueError if a letter lands here — caught below as malformed
+        i += 1
+        return v
+
+    try:
+        while i < n:
+            tok = tokens[i]
+            if tok.isalpha():
+                cmd = tok
+                i += 1
+                if cmd not in "MLHVCQZ":
+                    return None  # relative / arc / smooth — don't reason about this path
+                if cmd == "Z":
+                    cur = sub_start
+                    pts.append(cur)
+                    cmd = None
+                    continue
+            if cmd is None:
+                return None
+            if cmd == "M":
+                cur = (_take(), _take())
+                sub_start = cur
+                pts.append(cur)
+                cmd = "L"  # subsequent coordinate pairs after an M are implicit linetos
+            elif cmd == "L":
+                cur = (_take(), _take())
+                pts.append(cur)
+            elif cmd == "H":
+                cur = (_take(), cur[1])
+                pts.append(cur)
+            elif cmd == "V":
+                cur = (cur[0], _take())
+                pts.append(cur)
+            elif cmd == "C":
+                p1 = (_take(), _take())
+                p2 = (_take(), _take())
+                p3 = (_take(), _take())
+                for k in range(1, _CROSS_CURVE_SAMPLES + 1):
+                    t = k / _CROSS_CURVE_SAMPLES
+                    mt = 1 - t
+                    x = mt**3 * cur[0] + 3 * mt * mt * t * p1[0] + 3 * mt * t * t * p2[0] + t**3 * p3[0]
+                    y = mt**3 * cur[1] + 3 * mt * mt * t * p1[1] + 3 * mt * t * t * p2[1] + t**3 * p3[1]
+                    pts.append((x, y))
+                cur = p3
+            elif cmd == "Q":
+                p1 = (_take(), _take())
+                p2 = (_take(), _take())
+                for k in range(1, _CROSS_CURVE_SAMPLES + 1):
+                    t = k / _CROSS_CURVE_SAMPLES
+                    mt = 1 - t
+                    x = mt * mt * cur[0] + 2 * mt * t * p1[0] + t * t * p2[0]
+                    y = mt * mt * cur[1] + 2 * mt * t * p1[1] + t * t * p2[1]
+                    pts.append((x, y))
+                cur = p2
+    except (ValueError, IndexError):
+        return None  # malformed number stream — skip conservatively
+    return pts if len(pts) >= 2 else None
+
+
+def _connector_points(el: ET.Element) -> list[tuple[float, float]] | None:
+    """Sample points along a `<line>` or `<path>` connector (curves flattened); None for un-reasoned shapes."""
+    tag = _local(el.tag)
+    if tag == "line":
+        x1, y1 = _num(el.get("x1")), _num(el.get("y1"))
+        x2, y2 = _num(el.get("x2")), _num(el.get("y2"))
+        if None in (x1, y1, x2, y2):
+            return None
+        return [(x1, y1), (x2, y2)]  # type: ignore[list-item]
+    if tag == "path":
+        d = el.get("d") or ""
+        if not d or _triangle_from_path_d(d) is not None:
+            return None  # empty, or an arrowhead triangle — not a connector
+        return _flatten_path_points(d)
+    return None
+
+
+def _near_box(px: float, py: float, box: tuple[float, float, float, float], margin: float) -> bool:
+    """True when (px,py) sits within `margin` of the box bbox (l,t,r,b) — the endpoint-connection test."""
+    l, t, r, b = box
+    return (l - margin) <= px <= (r + margin) and (t - margin) <= py <= (b + margin)
+
+
+def check_svg_stroke_crossthrough():
+    """Scan every `book/assets/*.svg`; flag a stroked `<path>`/`<line>` (curves included) that runs THROUGH
+    the box of a `<text>` or a node `<rect>` it neither starts nor ends at.
+
+    For each connector, flatten its geometry (Bézier curves sampled), then for every candidate target box
+    test whether an INTERIOR sample sits inside it while NEITHER path endpoint is within CROSS_CONNECT_MARGIN
+    of it — a pure pass-through, not the arrowhead terminating on its target. Skips transformed connectors
+    (coords not absolute), marker-internal shapes, and background/panel rects (a connector may cross a panel).
+
+    AUDIT-ONLY: reports candidates, never contributes to the fail count."""
+    assets_dir = os.path.join(ROOT, "book", "assets")
+    if not os.path.isdir(assets_dir):
+        return PASS, ["no book/assets/ dir — nothing to scan"]
+
+    issues: list[str] = []
+    flagged: set[str] = set()
+    for fn in sorted(os.listdir(assets_dir)):
+        if not fn.endswith(".svg"):
+            continue
+        path = os.path.join(assets_dir, fn)
+        try:
+            root = ET.parse(path).getroot()
+        except ET.ParseError:
+            continue  # the text-fit pass already reports parse errors
+        style_classes = _parse_style_font_sizes(root)
+        transformed = _transformed_ids(root)
+        vb_w = _viewbox_width(root)
+
+        in_marker: set[int] = set()
+        for el in root.iter():
+            if _local(el.tag) == "marker":
+                for d in el.iter():
+                    in_marker.add(id(d))
+
+        # Targets: node-box rects (panels/background excluded by _collect_rects) + text glyph boxes. Each
+        # carries a label + inset for the interior test.
+        targets: list[tuple[str, tuple[float, float, float, float], float]] = []
+        for r in _collect_rects(root, vb_w):
+            targets.append((f"rect x={r.x:.0f} w={r.w:.0f} y={r.y:.0f} h={r.h:.0f}",
+                            (r.x, r.y, r.x + r.w, r.y + r.h), _CROSS_RECT_INSET))
+        for el in root.iter():
+            if _local(el.tag) != "text" or id(el) in transformed:
+                continue
+            bbox = _text_bbox(el, style_classes, ratio=_CROSS_GLYPH_RATIO)
+            if bbox is None:
+                continue
+            txt = _text_content(el)
+            targets.append((f"text {(txt if len(txt) <= 30 else txt[:27] + '...')!r}", bbox, _CROSS_TEXT_INSET))
+
+        for el in root.iter():
+            if _local(el.tag) not in ("path", "line") or id(el) in transformed or id(el) in in_marker:
+                continue
+            fill = (el.get("fill") or "").strip().lower()
+            stroke = (el.get("stroke") or "").strip().lower()
+            if stroke in ("", "none") and fill not in ("", "none"):
+                continue  # a filled, unstroked shape is not a connector
+            pts = _connector_points(el)
+            if not pts or len(pts) < 3:
+                continue  # nothing to sample interior-of (a bare 2-point line has no interior sample)
+            p0, pN = pts[0], pts[-1]
+            interior = pts[1:-1]  # never test the endpoints themselves
+            for name, box, inset in targets:
+                if _near_box(*p0, box, CROSS_CONNECT_MARGIN) or _near_box(*pN, box, CROSS_CONNECT_MARGIN):
+                    continue  # a connector endpoint touches this element — it terminates here, not through it
+                l, t, r, b = box
+                for (px, py) in interior:
+                    if (l + inset) < px < (r - inset) and (t + inset) < py < (b - inset):
+                        issues.append(
+                            f"{rel(path)}: STROKE cross-through — a <{_local(el.tag)}> passes through "
+                            f"{name} it does not start or end at — reroute it clear of the element")
+                        flagged.add(fn)
+                        break
+                else:
+                    continue
+                break  # one finding per connector is enough
+
+    if issues:
+        issues.insert(0, f"{len(flagged)} figure(s) with a stroke crossing through an unrelated element:")
+        issues.append("")
+        issues.append(f"AUDIT-ONLY (heuristic; false positives expected). Fix guidance -> {DRAWING_DOC}")
+    return PASS, issues  # AUDIT-ONLY: never FAIL

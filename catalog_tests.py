@@ -116,7 +116,9 @@ from tests.svg_fit import (
     check_svg_drawing_hygiene,
     check_svg_edge_label_box_collision,
     check_svg_page_fit,
+    check_svg_stroke_crossthrough,
     check_svg_text_fit,
+    check_svg_text_overlap,
 )
 
 
@@ -525,6 +527,21 @@ CHECKS = [
     # once a clean session confirms 0 findings across ALL assets. See tests/svg_fit.py.
     Check("svg: edge-label <-> node-box collision (C3, intra-figure)", 1,
           lambda strict: check_svg_edge_label_box_collision(), audit_only=True),
+    # AUDIT-ONLY-first (rule #55): C6 text-label overlap — two <text> labels whose estimated glyph boxes
+    # collide in both axes, printing on top of each other ("models stay inertno"). Neither the box-fit nor
+    # the edge-label check compares two labels to EACH OTHER. Lands audit-only (3 figures flag at HEAD:
+    # mage-method fixed here, plus model-coherence-stack + model-map awaiting a drain wave); promote to
+    # blocking once a clean session confirms 0 across ALL assets. See tests/svg_fit.py.
+    Check("svg: text-label overlap (C6, two captions on top of each other)", 1,
+          lambda strict: check_svg_text_overlap(), audit_only=True),
+    # AUDIT-ONLY-first (rule #55): C7 stroke cross-through — a stroked <path>/<line> (CURVES included, unlike
+    # the straight-only stroke-through-glyph in drawing hygiene) running through a <text> or node <rect> it
+    # neither starts nor ends at (endpoint-connection exempts the arrowhead's own target). Caught the
+    # return-arc through the conversion hub + the green enrich-arc through "enrich model" here. Lands
+    # audit-only (~10 figures flag at HEAD — a mix of real reroutes + likely FPs to triage in a drain wave);
+    # promote to blocking once drained to 0. See tests/svg_fit.py.
+    Check("svg: stroke cross-through unrelated element (C7, curved connectors)", 1,
+          lambda strict: check_svg_stroke_crossthrough(), audit_only=True),
     # BLOCKING (promoted — drain confirmed 0 at HEAD): a figure whose viewBox aspect projects past the page
     # bottom at image(width:85%) and clips. Deterministic (a pure function of the viewBox), unlike the crude
     # glyph-width heuristics above, so it is a real gate; it found the messy-timeline figure at 11.6in on a
