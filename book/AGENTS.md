@@ -51,14 +51,14 @@ from the path, and reads the title metadata from each file.
 
 ```
 book/
-  frontmatter/    0.1-the-mage-method-at-a-glance.md, 0.3-the-books-language.md, 0.4-preface.md, 0.5-how-to-read-this-book.md, 0.6-acknowledgments.md   (Part 0 — Front Matter)
-  part1/          1.1-…, 1.2-…                              (Part 1 — The Context)
-  part2/          2.1-…, 2.2-…                              (Part 2 — The Mindset)
-  part3/          3.1-… … 3.4-…                             (Part 3 — The Governed Engineering Environment)
-  part4/          4.1-… … 4.6-…                             (Part 4 — The Model Zoo)
-  part5/          5.1-… … 5.5-…                             (Part 5 — Putting It to Work)
-  part6/          6.1-toward-a-theory-of-mage.md, 6.2-implications-for-se.md, 6.3-conclusion.md   (Part 6 — The Profession)
-  part7/          7.1-about-the-author.md, 7.2-colophon.md  (Part 7 — Back Matter)
+  frontmatter/    0.1-the-mage-method-at-a-glance.md … 0.6-acknowledgments.md (6 chapters)         (Part 0 — Front Matter)
+  part1/          1.1-the-printer.md … 1.4-the-new-engineering-problem.md (4 chapters)              (Part 1 — The New Engineering Problem)
+  part2/          2.1-context-is-the-first-modeling-problem.md … 2.7-…, 2.12-keeping-models-in-sync.md (8 chapters)  (Part 2 — Modeling)
+  part3/          3.1-the-agent-stack.md … 3.5-when-guardrails-collide.md (5 chapters)              (Part 3 — Alignment)
+  part4/          4.1-the-mage-workflow.md … 4.6-metrics.md (6 chapters)                            (Part 4 — The MAGE Method)
+  part5/          5.1-the-problem-and-the-bar.md … 5.4-failures-that-became-infrastructure.md (4 chapters)  (Part 5 — The Evidence)
+  part6/          6.1-toward-a-theory-of-mage.md … 6.9-conclusion.md (9 chapters, incl. 6.6-educating-the-mage-engineer.md)  (Part 6 — The Profession)
+  part7/          7.1-about-the-author.md, 7.2-colophon.md (2 chapters)                             (Part 7 — Back Matter)
   data/metrics.json          # headline numbers, referenced from prose via {{token}}
   assets/                     # figure assets (inline SVGs, rasters)
   appendix-fills/<role>/<slug>.md   # per-entry Structure + Sample Code fills for the appendix
