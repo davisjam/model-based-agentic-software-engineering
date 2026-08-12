@@ -50,7 +50,7 @@
       "counts": "Whether the drift and parity gates keep model equal to code.",
       "informs": "Watch that map-equals-territory holds.",
       "healthy_direction": "Gates stay green.",
-      "defined_in": { "label": "keeping-models-in-sync", "anchor": "" },
+      "defined_in": { "label": "the-road-to-mage", "anchor": "" },
       "mode": "formative",
       "rationale": "Formative: the drift and parity gates fire during the work; a red gate steers you to the divergence before it lands. Feedback in the loop, not an end-state score."
     },

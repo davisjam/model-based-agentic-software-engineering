@@ -65,9 +65,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
   - **[DERIVED]** (analyze) After this section, the reader can trace a single request. — _anchor: ts: Trace a single request._
 
-### Lesson 2.12-keeping-models-in-sync
-
-
 ## Module 3 — Alignment
 
 - **[DECLARED]** (create) After this Part, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper. — _anchor: Alignment chapter arc: agent-stack -> semantic-gap -> governed-environment (ex-ante/ex-post) -> lifecycles/runbooks -> metrics -> when-guardrails-collide._

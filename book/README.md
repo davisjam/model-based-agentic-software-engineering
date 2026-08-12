@@ -21,7 +21,7 @@ book/
     1.3-the-reasoning-horizon.md
     1.4-the-new-engineering-problem.md
   part2/  (Part 2 — Modeling)
-    2.1-context-is-the-first-modeling-problem.md … 2.12-keeping-models-in-sync.md
+    2.1-context-is-the-first-modeling-problem.md … 2.7-scenarios-and-the-joined-model.md
   part3/  (Part 3 — The Governed Engineering Environment)
     3.1-the-agent-stack.md
     3.2-models-and-the-semantic-gap.md

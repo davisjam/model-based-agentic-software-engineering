@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>39</b> chapters · <b>288</b> sections · <b>80</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>38</b> chapters · <b>279</b> sections · <b>80</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -263,6 +263,10 @@
 <div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">Keep map and territory equal — traceability</a></div>
 <p class="topic">The model is the **map**; the code is the **territory**.</p>
 </div>
+<div class="section s2" id="sec-2-3-the-executable-zoo--how-a-model-stays-trustworthy">
+<div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">How a model stays trustworthy</a></div>
+<p class="topic">Drift enforcement is where a model stops merely helping the fleet reason and the environment begins refusing to let model and code silently disagree.</p>
+</div>
 <div class="section s2" id="sec-2-3-the-executable-zoo--a-model-is-its-schema-plus-its-checked-predicates">
 <div class="sec-h"><a href="../book/2.3-the-executable-zoo.html">A model is its schema plus its checked predicates</a></div>
 <p class="topic">Read that as one operational equation: **an executable model is its schema plus its checked predicates.** Fields (b) and (c) of the reference template below give the **structured model** — records, edges, state machines.</p>
@@ -332,14 +336,6 @@
 <div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">What must hold across every interleaving</a></div>
 <p class="topic">*What runs at once, and what stays true across every schedule?* Concurrency is where a correct-in-isolation design becomes a source of races, deadlocks, and torn writes, and the answer cannot be a thought experiment about interleavings.</p>
 </div>
-<div class="section s3" id="sec-2-6-modeling-behavior-and-execution--two-ways-to-make-a-concurrent-write-safe">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Two ways to make a concurrent write safe</a></div>
-<p class="topic">Above the raw locks sit two registries that draw a distinction worth naming, because confusing them is how a corruption bug hides inside a load limit.</p>
-</div>
-<div class="section s3" id="sec-2-6-modeling-behavior-and-execution--the-verification-backbone">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">The verification backbone</a></div>
-<p class="topic">All three concurrency models hang their invariant tables on one shared method, and it is trunk machinery rather than a model of the running system.</p>
-</div>
 <div class="section s2" id="sec-2-6-modeling-behavior-and-execution--where-each-part-runs">
 <div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Where each part runs</a></div>
 <p class="topic">*Where does each part run, and which of those placements is a correctness decision?* A functionally correct system can still be mis-deployed.</p>
@@ -354,11 +350,15 @@
 </div>
 <div class="section s2" id="sec-2-6-modeling-behavior-and-execution--computing-a-migration-s-blast-radius">
 <div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Computing a migration&#x27;s blast radius</a></div>
-<p class="topic">One last behavioral question an agent asks before it changes the ground everything runs on: *which mechanisms assume the substrate I am about to replace?* The **substrate-dependency model** makes each governance mechanism declare, as typed metadata, the substrate assumption it bakes in — bound to one substrate, substrate-aware, or substrate-agnostic.</p>
+<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
 </div>
 <div class="section s2" id="sec-2-6-modeling-behavior-and-execution--what-the-system-promises-about-time-and-cost">
 <div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">What the system promises about time and cost</a></div>
 <p class="topic">The structural models say what the system is made of.</p>
+</div>
+<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--keeping-the-explanation-true-to-the-change">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Keeping the explanation true to the change</a></div>
+<p class="topic">Documentation is easy to dismiss as prose about the real system.</p>
 </div>
 </div>
 <div class="chapter">
@@ -439,45 +439,6 @@
 <div class="section s2" id="sec-2-7-scenarios-and-the-joined-model--can-alignment-exist-without-models">
 <div class="sec-h"><a href="../book/2.7-scenarios-and-the-joined-model.html">Can alignment exist without models?</a></div>
 <p class="topic">One question sits under everything this Part has built, and it is worth answering before the next Part takes these models up as authority: can alignment exist without models at all?</p>
-</div>
-</div>
-<div class="chapter">
-<h3 id="ch-2-12-keeping-models-in-sync"><span class="tier-kick">Lesson</span><a href="../book/2.12-keeping-models-in-sync.html" class="ch-link">2.12-keeping-models-in-sync</a> <span class="ch-slug">2.12-keeping-models-in-sync</span></h3>
-<div class="section s2" id="sec-2-12-keeping-models-in-sync--keeping-the-explanation-true-to-the-change-a-provenance-model">
-<div class="sec-h"><a href="../book/2.12-keeping-models-in-sync.html">Keeping the explanation true to the change: a provenance model</a></div>
-<p class="topic">A system that changes a customer&#x27;s artifact owes an explanation of what it changed and why.</p>
-</div>
-<div class="section s2" id="sec-2-12-keeping-models-in-sync--the-question-the-map-must-equal-the-territory-or-the-bridge-lies">
-<div class="sec-h"><a href="../book/2.12-keeping-models-in-sync.html">The question: the map must equal the territory, or the bridge lies</a></div>
-<p class="topic">Drift enforcement is where a model stops merely helping the fleet reason and the environment begins refusing to let the model and the code silently disagree.</p>
-</div>
-<div class="section s2" id="sec-2-12-keeping-models-in-sync--the-mechanism-a-two-layer-net-and-freshness-by-derivation">
-<div class="sec-h"><a href="../book/2.12-keeping-models-in-sync.html">The mechanism: a two-layer net, and freshness by derivation</a></div>
-<p class="topic">Sync holds through two layers stacked over the model↔code gap.</p>
-</div>
-<div class="section s2" id="sec-2-12-keeping-models-in-sync--the-model-grows-with-the-system">
-<div class="sec-h"><a href="../book/2.12-keeping-models-in-sync.html">The model grows with the system</a></div>
-<p class="topic">Sync is a living practice, not a one-time alignment.</p>
-</div>
-<div class="section s2" id="sec-2-12-keeping-models-in-sync--the-evidence">
-<div class="sec-h"><a href="../book/2.12-keeping-models-in-sync.html">The evidence</a></div>
-<p class="topic">The claim is a field-report result, so the numbers come with their provenance.</p>
-</div>
-<div class="section s3" id="sec-2-12-keeping-models-in-sync--model-sync-efficacy">
-<div class="sec-h"><a href="../book/2.12-keeping-models-in-sync.html">The derived floor under load</a></div>
-<p class="topic">Documentation drift is excluded here by construction; this table is model↔code sync only.</p>
-</div>
-<div class="section s3" id="sec-2-12-keeping-models-in-sync--documentation-hygiene-aside-not-model-sync">
-<div class="sec-h"><a href="../book/2.12-keeping-models-in-sync.html">Documentation-hygiene aside (NOT model sync)</a></div>
-<p class="topic">Stale headers and stale prose numbers are **documentation drift, not model drift.** They are the soft layer&#x27;s true positives, and they are cheap: a reader catches them, and the close tool heals them.</p>
-</div>
-<div class="section s2" id="sec-2-12-keeping-models-in-sync--the-two-failure-modes-where-drift-still-escapes">
-<div class="sec-h"><a href="../book/2.12-keeping-models-in-sync.html">The two failure modes: where drift still escapes</a></div>
-<p class="topic">The net has two escape hatches.</p>
-</div>
-<div class="section s2" id="sec-2-12-keeping-models-in-sync--the-honest-reading">
-<div class="sec-h"><a href="../book/2.12-keeping-models-in-sync.html">The honest reading</a></div>
-<p class="topic">The result is narrow, and stating its limits is part of stating it.</p>
 </div>
 </div>
 </section>

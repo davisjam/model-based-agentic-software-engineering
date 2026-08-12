@@ -200,12 +200,12 @@
       }
     ],
     "site_home": "N/A",
-    "derived_from": "book/part3/3.8-keeping-models-in-sync.md#models-bridge",
-    "book_home": "keeping-models-in-sync#idx-def-models-bridge",
+    "derived_from": "book/part2/2.3-the-executable-zoo.md#models-bridge",
+    "book_home": "the-executable-zoo#idx-def-models-bridge",
     "book_home_owed": {
-      "section": "Part 3 — §3.8 Keeping the Models in Sync with the Code",
+      "section": "Part 2 — §2.3 Making Models Executable ('How a model stays trustworthy')",
       "status": "landed",
-      "note": "Landed: §3.8 tags the definition with `<!-- index-def: models-bridge -->` and renders the def-box; book-only by design (no landing def-strip). Seeded earlier (no tag) at §2.2's structured-model-layer figure/prose."
+      "note": "Landed: §2.3's 'How a model stays trustworthy' subsection tags the definition with `<!-- index-def: models-bridge -->` and renders the def-box; book-only by design (no landing def-strip). Seeded earlier (no tag) at §2.2's structured-model-layer figure/prose. Relocated here from the dissolved 2.12 in R31's Part-II tightening."
     },
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"

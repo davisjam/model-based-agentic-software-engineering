@@ -472,35 +472,6 @@
       "closing_anchor": "the system by hand each time we needed to trust a release."
     },
     {
-      "slug": "keeping-models-in-sync",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "synthesis"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the two-layer-net figure and sync-evidence tables",
-            "anchor": "model-sync-two-layer-net"
-          },
-          {
-            "type": "commandment",
-            "name": "derived defends, snapshotted drifts"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "The measurement chapter. Opening states the failure (map must equal the territory, or the bridge lies) and the modeling-thesis link outright; answer is the two-layer net + liveness-as-a-property. 'The honest reading' closes by bounding the claim — a synthesis, not a re-announcement.",
-      "opening_anchor": "A context-bounded fleet governs a context-exceeding codebase *through* structured models. The models",
-      "closing_anchor": "codebase that carries none of it. The next Part starts from spaghetti."
-    },
-    {
       "slug": "brownfield",
       "opening": {
         "failure_question": "explicit",

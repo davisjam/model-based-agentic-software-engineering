@@ -559,18 +559,6 @@
       "location": "part2",
       "rationale": "II-to-III handoff contract — property-only float (giant C/S/V/G table deleted, Move #3)"
     },
-    "keeping-models-in-sync::Model-sync evidence — the derived floor under load": {
-      "tier": "B",
-      "kind": "data",
-      "location": "part3",
-      "rationale": "the derived floor under load"
-    },
-    "keeping-models-in-sync::Documentation-hygiene aside — not model sync": {
-      "tier": "C",
-      "kind": "reference-aside",
-      "location": "part3",
-      "rationale": "small aside table"
-    },
     "brownfield::Sizing the mechanism": {
       "tier": "A",
       "kind": "design-decision-table",
