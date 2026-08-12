@@ -89,6 +89,11 @@ nav.toc a { color: var(--ink); text-decoration: none; display: block; padding: 2
 nav.toc a:hover { color: var(--accent); }
 nav.toc a.current { color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
                      padding-left: calc(1rem - 2px); }
+/* The blog-post link rides the top nav's flex row opposite the ☰ Contents summary — an inline accent link,
+   overriding the block/indent the chapter `<a>` rule sets. */
+nav.toc a.toc-blog { display: inline; color: var(--accent); font-weight: 600; padding: 0;
+                      white-space: nowrap; }
+nav.toc a.toc-blog:hover { text-decoration: underline; }
 header.chap { padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }
 header.chap .kicker { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
                        text-transform: uppercase; }
@@ -717,7 +722,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · G.8 Deployment-Topology Model — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.8 Deployment-Topology Model</h1></header><p>The typed statement of where things run — each service's name, its layer, and its tier — from which the deploy scripts and layering lints reason about a declared topology rather than scattered constants, and against which the real deploy table is reconciled. The Part-II mainline shows the parity invariant; the full treatment is here.</p>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · G.8 Deployment-Topology Model — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.8 Deployment-Topology Model</h1></header><p>The typed statement of where things run — each service's name, its layer, and its tier — from which the deploy scripts and layering lints reason about a declared topology rather than scattered constants, and against which the real deploy table is reconciled. The Part-II mainline shows the parity invariant; the full treatment is here.</p>
 <p><strong>(a) Quality property.</strong> <strong>Deployment parity</strong> — <em>does every service the model declares deploy at the tier the model says, and does every deployed service appear in the model?</em> A tier that drifts in the code without a matching model edit fails the build instead of surfacing as a production surprise. The same record also carries the layer-boundary graph the structural chapter checks — <em>may this layer import that one?</em> — so a cross-layer shortcut is a finding there.</p>
 <p><strong>(b) Structure.</strong> A frozen record per service, keyed by name.</p>
 <ul><li><strong><code>Service</code></strong> — one deployable unit: its name, its owning layer (web, worker, shared), and its tier class (critical, batch).</li><li><strong>The tier relation</strong> — each <code>Service</code> declares the tier it must deploy at; the set of declared tiers is what the deploy table is checked against.</li><li><strong>The layer relation</strong> — the layers form the dependency graph a cross-layer-import lint reads, and the same topology is the ground truth the migration blast-radius query joins against.</li></ul>

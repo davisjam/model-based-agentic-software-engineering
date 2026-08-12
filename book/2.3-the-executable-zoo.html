@@ -89,6 +89,11 @@ nav.toc a { color: var(--ink); text-decoration: none; display: block; padding: 2
 nav.toc a:hover { color: var(--accent); }
 nav.toc a.current { color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
                      padding-left: calc(1rem - 2px); }
+/* The blog-post link rides the top nav's flex row opposite the ☰ Contents summary — an inline accent link,
+   overriding the block/indent the chapter `<a>` rule sets. */
+nav.toc a.toc-blog { display: inline; color: var(--accent); font-weight: 600; padding: 0;
+                      white-space: nowrap; }
+nav.toc a.toc-blog:hover { text-decoration: underline; }
 header.chap { padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }
 header.chap .kicker { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
                        text-transform: uppercase; }
@@ -717,7 +722,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 7 · Making Models Executable — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 7</a></div><h1><span class="chap-num">2.3</span> Making Models Executable</h1></header><p id="idx-def-model-as-map">A model exists to reduce how much system an engineer — or an agent — must reason about at once. An <strong>executable</strong> model earns a stronger claim: it is structured enough to reason over and bound tightly enough to the code that a build can catch the two disagreeing. That is the model this chapter defines, and the machinery that keeps code from drifting away from it.</p>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 7 · Making Models Executable — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 7</a></div><h1><span class="chap-num">2.3</span> Making Models Executable</h1></header><p id="idx-def-model-as-map">A model exists to reduce how much system an engineer — or an agent — must reason about at once. An <strong>executable</strong> model earns a stronger claim: it is structured enough to reason over and bound tightly enough to the code that a build can catch the two disagreeing. That is the model this chapter defines, and the machinery that keeps code from drifting away from it.</p>
 <p>One real codebase sits under every model that follows: DocAble, the production accessibility service this book runs on. It carries nineteen structured, drift-checked models and uses everything in this book to stay coherent; the full account is <a href="5.3-the-road-to-mage.html">The Built System</a> — Part 5 (The Evidence).</p>
 <blockquote class="concept-inset"><p class="inset-title" id="executable-model-pattern">The Executable Model Pattern</p>
 <p>Every model in Part 2 is <strong>one executable core, several projected views</strong>, and every one answers the same six questions:</p>

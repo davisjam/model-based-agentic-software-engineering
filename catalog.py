@@ -47,6 +47,9 @@ _REPO_NAME = _REPO_META["repo"]
 _REPO_URL = f"https://github.com/{_REPO_OWNER}/{_REPO_NAME}"          # <site>/<owner>/<repo>
 _REPO_ACTIONS_URL = _REPO_META.get("actions_url", f"{_REPO_URL}/actions")
 _SITE_URL = _REPO_META["site_url"]                                    # the author's Pages root
+# The MAGE blog post (Medium) — the short-form entry point into the method; linked from the landing nav
+# (top nav-card grid + the closing ways-in) and, in the book web build, from every book page's top chrome.
+_BLOG_URL = "https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45"
 
 
 def _book_title_block() -> str:
@@ -1645,9 +1648,9 @@ TOPNAV = (f'<div class="topnav"><a href="{_SITE_URL}">James C. Davis, Purdue Uni
           f'<a class="gh" href="{_REPO_URL}">'
           f'{GITHUB_SVG} GitHub</a></div>')
 
-# Landing primary nav — the six-item conceptual nav (website-v2 reorg): the reader's map of the whole
-# site. Theory · Method · Industry case studies · Mechanisms · Book · GitHub. A 3-column CSS grid seats six
-# cells in two rows of three, dropping to two columns then one as the viewport narrows (see .nav-grid CSS).
+# Landing primary nav — the conceptual nav (website-v2 reorg): the reader's map of the whole
+# site. Theory · Method · Industry case studies · Mechanisms · Book · GitHub · Blog post. A 3-column CSS grid
+# flows the cells left-to-right, dropping to two columns then one as the viewport narrows (see .nav-grid CSS).
 # Quick Start + the PDF download left the top nav; both stay reachable — Quick Start from the closing
 # ways-in, the PDF from the footer.
 NAV_GRID = (
@@ -1664,6 +1667,8 @@ NAV_GRID = (
     '<span class="ng-t">Book</span><span class="ng-s">read the web book</span></a>'
     f'<a class="ng-cell" href="{_REPO_URL}">'
     f'<span class="ng-t">{GITHUB_SVG} GitHub</span><span class="ng-s">the source repository</span></a>'
+    f'<a class="ng-cell" href="{_BLOG_URL}">'
+    '<span class="ng-t">Blog post</span><span class="ng-s">the short version, on Medium</span></a>'
     '</nav>')
 
 
@@ -2619,6 +2624,7 @@ def _landing_closing() -> str:
         ("Full catalogue", "catalogue-views.html", "every mechanism, by role · model · enforcement"),
         ("Book", "book/index.html", "the full treatment of the method"),
         ("Claude quickstart", "quick-start.html", "install the skills in your repo"),
+        ("Read the MAGE blog post", _BLOG_URL, "the short version, on Medium"),
     ]
     buttons = "\n    ".join(
         f'<a class="close-btn" href="{_attr(h)}"><span class="cb-t">{_esc(t)}</span>'
@@ -2630,7 +2636,7 @@ def _landing_closing() -> str:
         'under which fast code can be trusted — the machine can search faster than any of us, but it cannot '
         'tell us what is worth searching for. So start with one recurring failure your agents keep handing '
         'you, and convert it: one type, one lint, one gate. The theory and methodology grow from there; below '
-        'are five ways in.</p>\n'
+        'are six ways in.</p>\n'
         f'  <div class="close-ways">\n    {buttons}\n  </div>\n'
         '</section>')
 

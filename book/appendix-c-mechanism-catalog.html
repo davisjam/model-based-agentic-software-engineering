@@ -89,6 +89,11 @@ nav.toc a { color: var(--ink); text-decoration: none; display: block; padding: 2
 nav.toc a:hover { color: var(--accent); }
 nav.toc a.current { color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
                      padding-left: calc(1rem - 2px); }
+/* The blog-post link rides the top nav's flex row opposite the ☰ Contents summary — an inline accent link,
+   overriding the block/indent the chapter `<a>` rule sets. */
+nav.toc a.toc-blog { display: inline; color: var(--accent); font-weight: 600; padding: 0;
+                      white-space: nowrap; }
+nav.toc a.toc-blog:hover { text-decoration: underline; }
 header.chap { padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }
 header.chap .kicker { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
                        text-transform: uppercase; }
@@ -717,7 +722,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix C — Mechanism Catalog — MAGE"><header class="chap"><div class="kicker"><a href="appendix-c-mechanism-catalog.html" aria-label="Beginning of Appendix C — Mechanism Catalog">Appendix C — Mechanism Catalog</a></div><h1>Appendix C — Mechanism Catalog</h1></header><h2>How to use this catalogue</h2>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix C — Mechanism Catalog — MAGE"><header class="chap"><div class="kicker"><a href="appendix-c-mechanism-catalog.html" aria-label="Beginning of Appendix C — Mechanism Catalog">Appendix C — Mechanism Catalog</a></div><h1>Appendix C — Mechanism Catalog</h1></header><h2>How to use this catalogue</h2>
 <p>This appendix is a reference manual, not a chapter. Browse it; you are not meant to read it straight through. Each mechanism appears in its smallest useful form — a diagram, a short engineering summary, and a line of metadata — so you can recognize a mechanism and find it fast.</p>
 <p>The chip line under each mechanism tells you four things at a glance: its <strong>family</strong>, its <strong>primary concern</strong>, whether it enforces <strong>softly or hard</strong>, and whether it is <strong>essential</strong> (expected in nearly every Governed Engineering Environment) or <strong>specialized</strong> (worth adopting when your domain calls for it). Essential and specialized mark expected applicability, not quality — a specialized mechanism is not a lesser one.</p>
 <p>When a mechanism is central to MAGE, its Engineering Note in <a href="appendix-b-flagship-mechanisms.html">Appendix B</a> carries the judgment behind it, and the brick points you there. The full <a href="https://davisjam.github.io/model-based-agentic-software-engineering">online catalogue</a> holds the complete documentation, implementation guidance, and extended examples.</p>
