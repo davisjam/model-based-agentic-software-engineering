@@ -585,13 +585,22 @@ def _render_table(block: Block_t) -> str:
     return f"#figure(\n  fit-table({tbl}),\n  kind: table,{caption}\n){label}"
 
 
+# Figures that earn a full-measure render (100% of the text column) rather than the 85% default, because
+# they carry provenance the reader should be able to trace at a glance. Path-keyed so the same set governs
+# both projections (Typst PDF here, HTML in `build_book_html.py`) and the two stay in lockstep.
+_WIDE_FIGURES = {"assets/research-arc.svg"}
+
+
 def _render_figure(block: Block_t, width: str = "85%", bare: bool = False) -> str:
     """A `<!-- figure: path | caption -->` → `#figure(image(path), caption: […])`, numbered + labelled.
-    `width` sizes the image (default 85% of the measure; the wrapped author portrait passes a small width so
-    it sits beside the bio, see `render_chapter`). `bare=True` renders just the image — no `#figure`
-    wrapper, so no "Figure N" number and no caption — for a plain picture like the author portrait."""
+    `width` sizes the image (default 85% of the measure; a `_WIDE_FIGURES` member renders at 100%; the
+    wrapped author portrait passes a small width so it sits beside the bio, see `render_chapter`).
+    `bare=True` renders just the image — no `#figure` wrapper, so no "Figure N" number and no caption —
+    for a plain picture like the author portrait."""
     spec = block.raw[len("<!--"):-len("-->")].strip()[len("figure:"):].strip()
     rel = spec.split("|", 1)[0].strip()
+    if rel in _WIDE_FIGURES and not bare:
+        width = "100%"
     asset = HERE / rel
     if not asset.is_file():
         raise SystemExit(f"figure directive: asset not found: {asset}")

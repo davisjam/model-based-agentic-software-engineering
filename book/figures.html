@@ -406,6 +406,11 @@ blockquote.pull-quote strong { font-style: normal; }
 figure.book-figure { margin: 1.8rem 0; text-align: center; }
 figure.book-figure svg,
 figure.book-figure img { max-width: 100%; height: auto; }
+/* A wide figure breaks out past the reading column for more visual authority. Centered on the column via
+   a half-shift; capped at 96vw so it never forces horizontal scroll on a narrow screen. */
+figure.book-figure--wide { width: min(64rem, 96vw); margin-left: 50%; transform: translateX(-50%); }
+figure.book-figure--wide svg,
+figure.book-figure--wide img { max-width: 100%; height: auto; }
 figure.book-figure figcaption { font-size: 14px; color: var(--muted); margin-top: 0.6rem;
                                 text-align: left; line-height: 1.5; }
 figure.book-figure figcaption.fig-label-only { text-align: center; }
@@ -1282,7 +1287,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <path d="M340,448 L326,448 L326,462"/>
     <path d="M560,502 L574,502 L574,488"/>
   </g>
-</svg><figcaption data-short="The book&#x27;s noun spine"><span class="fig-label">Figure 0.3-5.</span> The book's noun spine: reality is captured as a representation, structured into a model carrying an invariant, enforced by a mechanism that governs an environment compounding into engineering capital.</figcaption></figure><p class="gallery-source">From <a href="0.3-the-books-language.html#fig-0-3-5">The Book&#x27;s Language</a></p></section><hr><section class="gallery-item"><figure id="fig-0-4-1-fig-0-4-1" class="book-figure" data-label="research-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700"
+</svg><figcaption data-short="The book&#x27;s noun spine"><span class="fig-label">Figure 0.3-5.</span> The book's noun spine: reality is captured as a representation, structured into a model carrying an invariant, enforced by a mechanism that governs an environment compounding into engineering capital.</figcaption></figure><p class="gallery-source">From <a href="0.3-the-books-language.html#fig-0-3-5">The Book&#x27;s Language</a></p></section><hr><section class="gallery-item"><figure id="fig-0-4-1-fig-0-4-1" class="book-figure book-figure--wide" data-label="research-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700"
      role="group" aria-labelledby="fig-0-4-1-raTitle fig-0-4-1-raDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-0-4-1-raTitle">Where the theory came from: the research provenance, one procedure read top to bottom</title>

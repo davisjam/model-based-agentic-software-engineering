@@ -406,6 +406,11 @@ blockquote.pull-quote strong { font-style: normal; }
 figure.book-figure { margin: 1.8rem 0; text-align: center; }
 figure.book-figure svg,
 figure.book-figure img { max-width: 100%; height: auto; }
+/* A wide figure breaks out past the reading column for more visual authority. Centered on the column via
+   a half-shift; capped at 96vw so it never forces horizontal scroll on a narrow screen. */
+figure.book-figure--wide { width: min(64rem, 96vw); margin-left: 50%; transform: translateX(-50%); }
+figure.book-figure--wide svg,
+figure.book-figure--wide img { max-width: 100%; height: auto; }
 figure.book-figure figcaption { font-size: 14px; color: var(--muted); margin-top: 0.6rem;
                                 text-align: left; line-height: 1.5; }
 figure.book-figure figcaption.fig-label-only { text-align: center; }

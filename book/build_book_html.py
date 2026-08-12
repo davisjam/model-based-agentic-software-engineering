@@ -1050,6 +1050,12 @@ def _plain(s: str) -> str:
     return s
 
 
+# Figures that break out past the reading column for more visual authority (a modest, bounded breakout
+# on web; 100% of the measure in the Typst PDF). Path-keyed so both projections enlarge the same figures.
+# Mirrors the same-named set in `book_typst.py` — keep the two in lockstep.
+_WIDE_FIGURES = {"assets/research-arc.svg"}
+
+
 def _figure_block(comment: str) -> str:
     """Render a `<!-- figure: <path> | <caption> -->` directive into a <figure>.
 
@@ -1076,7 +1082,7 @@ def _figure_block(comment: str) -> str:
         src = html.escape(rel, quote=True)
         return f'<figure class="plain-image portrait-wrap"><img src="{src}" alt="{alt}"></figure>'
     cap_html = _caption_el("figcaption", caption) if caption else ""
-    extra_cls = ""
+    extra_cls = " book-figure--wide" if rel in _WIDE_FIGURES else ""
     if asset.suffix.lower() == ".svg":
         svg = asset.read_text(encoding="utf-8")
         # Strip an XML prolog / leading comment so only the <svg>…</svg> is spliced inline.
@@ -2225,6 +2231,11 @@ blockquote.pull-quote strong {{ font-style: normal; }}
 figure.book-figure {{ margin: 1.8rem 0; text-align: center; }}
 figure.book-figure svg,
 figure.book-figure img {{ max-width: 100%; height: auto; }}
+/* A wide figure breaks out past the reading column for more visual authority. Centered on the column via
+   a half-shift; capped at 96vw so it never forces horizontal scroll on a narrow screen. */
+figure.book-figure--wide {{ width: min(64rem, 96vw); margin-left: 50%; transform: translateX(-50%); }}
+figure.book-figure--wide svg,
+figure.book-figure--wide img {{ max-width: 100%; height: auto; }}
 figure.book-figure figcaption {{ font-size: 14px; color: var(--muted); margin-top: 0.6rem;
                                 text-align: left; line-height: 1.5; }}
 figure.book-figure figcaption.fig-label-only {{ text-align: center; }}
