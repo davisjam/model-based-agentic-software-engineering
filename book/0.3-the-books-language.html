@@ -725,94 +725,90 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Agentic software engineering is a fast-evolving topic, and it seems that many concepts have been given overlapping or contradictory names. Part of the purpose of this book is to articulate coherent vocabulary for the field. The glossary is divided into three parts: the core ideas of the book, the vocabulary for coding agents and their accompanying phenomena, and the terms for the governed engineering environment that stabilizes them.</p>
 <h2>The core ideas</h2>
 <p>The ideas the whole argument turns on — the two theses, the conversion that grows the environment, the governing metaphor, and the vocabulary of models underneath them.</p>
-<figure id="fig-0-3-1" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map: the core ideas, edges typed by relation kind">
+<figure id="fig-0-3-1" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map of the core ideas: commodity intelligence changes the economics of engineering; the Modeling and Alignment theses address different constraints; Modeling supplies richer authority surfaces to Alignment but is not a prerequisite; governance conversion enriches either models or controls and compounds into engineering capital; the Printer is a metaphor">
   <defs>
-    <marker id="vh-ci" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
-    <marker id="vh-ci-open" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#78716c" stroke-width="1.5"/></marker>
+    <marker id="vh-ci2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="vh-ci2-open" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#78716c" stroke-width="1.5"/></marker>
   </defs>
-  <rect x="0" y="0" width="1000" height="520" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1000" height="580" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The core ideas</text>
 
-  <!-- edges (drawn first, nodes sit on top); each typed by relation kind, arrow-end trimmed clear of its target node -->
-  <!-- Commodity intelligence -> Governance : causal/contextual (long-dash) -->
-  <line x1="500" y1="90" x2="500" y2="192" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci)"/>
-  <!-- Modeling Thesis -> Model : constitutive (solid) -->
-  <line x1="155" y1="165" x2="317" y2="234" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci)"/>
-  <!-- Model -> Governance : causal/contextual (long-dash) -->
-  <line x1="330" y1="240" x2="478" y2="236" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci)"/>
-  <!-- Alignment Thesis -> Governance : constitutive (solid) -->
-  <line x1="845" y1="150" x2="521" y2="230" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci)"/>
-  <!-- The Printer -> Governance : metaphorical/spec (fine-dotted, open head, lightest) -->
-  <line x1="200" y1="375" x2="480" y2="244" stroke="#78716c" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#vh-ci-open)"/>
-  <!-- Governance Conversion -> Governance : dynamic (dash-dot) -->
-  <line x1="640" y1="360" x2="516" y2="250" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci)"/>
+  <!-- ===== edges (drawn first; nodes sit on top) ===== -->
+  <!-- Commodity intelligence -> each thesis dot : causal/contextual (long-dash) -->
+  <line x1="486" y1="110" x2="292" y2="208" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci2)"/>
+  <line x1="514" y1="110" x2="708" y2="208" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci2)"/>
+  <!-- Modeling -> Alignment : SOFT causal, supplies richer surfaces, NOT a prerequisite (long-dash) -->
+  <line x1="296" y1="214" x2="704" y2="214" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci2)"/>
+  <!-- Governance Conversion -> the thesis layer (enriches either side) : dynamic (dash-dot) -->
+  <line x1="450" y1="390" x2="500" y2="254" stroke="#57534e" stroke-width="2.2" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci2)"/>
   <!-- Governance Conversion -> Engineering capital : dynamic (dash-dot) -->
-  <line x1="640" y1="360" x2="866" y2="360" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci)"/>
+  <line x1="494" y1="402" x2="766" y2="402" stroke="#57534e" stroke-width="2.2" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci2)"/>
+  <!-- The Printer -> Modeling : metaphorical (fine-dotted, open head); bows right into the dot from below, clear of the job text -->
+  <path d="M175,396 C210,330 250,270 272,222" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#vh-ci2-open)"/>
 
-  <!-- edge labels (every edge carries a verb) -->
-  <text x="512" y="168" font-size="16" fill="#78716c">reorganizes around</text>
-  <text x="228" y="196" text-anchor="middle" font-size="16" fill="#78716c">externalize into</text>
-  <text x="415" y="228" text-anchor="middle" font-size="16" fill="#78716c">reason through</text>
-  <text x="686" y="186" text-anchor="middle" font-size="16" fill="#78716c">encode as mechanisms</text>
-  <text x="352" y="300" text-anchor="middle" font-size="16" fill="#78716c">specify precisely</text>
-  <text x="586" y="292" text-anchor="middle" font-size="16" fill="#78716c">converts failures</text>
-  <text x="760" y="350" text-anchor="middle" font-size="16" fill="#78716c">compounds into</text>
+  <!-- ===== edge labels (each edge carries a verb) ===== -->
+  <text x="500" y="170" text-anchor="middle" font-size="16" fill="#78716c">changes the economics of</text>
+  <text x="500" y="200" text-anchor="middle" font-size="15" fill="#78716c">supplies richer authority surfaces</text>
+  <text x="500" y="240" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">— not a prerequisite</text>
+  <text x="490" y="320" text-anchor="start" font-size="15" fill="#78716c">enriches models or controls</text>
+  <text x="628" y="394" text-anchor="middle" font-size="15" fill="#78716c">compounds into</text>
+  <text x="150" y="350" text-anchor="middle" font-size="13" fill="#78716c">a metaphor for</text>
+  <text x="150" y="366" text-anchor="middle" font-size="13" fill="#78716c">explicit intent</text>
 
-  <!-- hub: Governance -->
-  <circle cx="500" cy="235" r="15" fill="#1c1917"/>
-  <text x="500" y="212" text-anchor="middle" font-size="21" font-weight="bold" fill="#1c1917">Governance</text>
+  <!-- ===== nodes (labels outboard of dots) ===== -->
+  <!-- Commodity intelligence (top) -->
+  <circle cx="500" cy="102" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="500" y="84" text-anchor="middle" font-size="18" fill="#57534e">Commodity intelligence</text>
 
-  <!-- spokes -->
-  <circle cx="500" cy="90" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="500" y="72" text-anchor="middle" font-size="18" fill="#57534e">Commodity intelligence</text>
+  <!-- Modeling Thesis (left) — label + job outboard to the LEFT -->
+  <circle cx="280" cy="214" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="262" y="209" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">Modeling Thesis</text>
+  <text x="244" y="231" text-anchor="end" font-size="13.4" font-style="italic" fill="#57534e">externalizes knowledge + intent</text>
 
-  <circle cx="155" cy="165" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="155" y="147" text-anchor="middle" font-size="18" fill="#57534e">Modeling Thesis</text>
+  <!-- Alignment Thesis (right) — label + job outboard to the RIGHT -->
+  <circle cx="720" cy="214" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="738" y="209" text-anchor="start" font-size="18" font-weight="bold" fill="#1c1917">Alignment Thesis</text>
+  <text x="738" y="231" text-anchor="start" font-size="13.4" font-style="italic" fill="#57534e">gives obligations authority</text>
 
-  <circle cx="330" cy="240" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="330" y="272" text-anchor="middle" font-size="18" fill="#57534e">Model</text>
+  <!-- Governance Conversion (centre-bottom) -->
+  <circle cx="450" cy="400" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="450" y="430" text-anchor="middle" font-size="18" fill="#57534e">Governance Conversion</text>
 
-  <circle cx="845" cy="150" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="845" y="132" text-anchor="middle" font-size="18" fill="#57534e">Alignment Thesis</text>
+  <!-- Engineering capital (right-bottom) -->
+  <circle cx="785" cy="402" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="785" y="432" text-anchor="middle" font-size="18" fill="#57534e">Engineering capital</text>
 
-  <circle cx="200" cy="375" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="200" y="407" text-anchor="middle" font-size="18" fill="#57534e">The Printer</text>
-
-  <circle cx="640" cy="360" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="640" y="392" text-anchor="middle" font-size="18" fill="#57534e">Governance Conversion</text>
-
-  <circle cx="880" cy="360" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="880" y="392" text-anchor="middle" font-size="18" fill="#57534e">Engineering capital</text>
+  <!-- The Printer (left-bottom) -->
+  <circle cx="175" cy="404" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="175" y="434" text-anchor="middle" font-size="18" fill="#57534e">The Printer</text>
 
   <!-- edge-type legend: dash pattern is the primary (print/greyscale/colourblind-safe) key -->
-  <line x1="95" y1="478" x2="905" y2="478" stroke="#cfcabf" stroke-width="1.5"/>
-  <line x1="95" y1="500" x2="135" y2="500" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci)"/>
-  <text x="143" y="505" font-size="15" fill="#57534e">Constitutive</text>
-  <line x1="300" y1="500" x2="340" y2="500" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci)"/>
-  <text x="348" y="505" font-size="15" fill="#57534e">Causal / contextual</text>
-  <line x1="520" y1="500" x2="560" y2="500" stroke="#78716c" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#vh-ci-open)"/>
-  <text x="568" y="505" font-size="15" fill="#57534e">Metaphorical</text>
-  <line x1="720" y1="500" x2="760" y2="500" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci)"/>
-  <text x="768" y="505" font-size="15" fill="#57534e">Dynamic</text>
+  <line x1="95" y1="512" x2="905" y2="512" stroke="#cfcabf" stroke-width="1.5"/>
+  <line x1="95" y1="536" x2="135" y2="536" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci2)"/>
+  <text x="143" y="541" font-size="15" fill="#57534e">Constitutive</text>
+  <line x1="300" y1="536" x2="340" y2="536" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci2)"/>
+  <text x="348" y="541" font-size="15" fill="#57534e">Causal / contextual</text>
+  <line x1="520" y1="536" x2="560" y2="536" stroke="#78716c" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#vh-ci2-open)"/>
+  <text x="568" y="541" font-size="15" fill="#57534e">Metaphorical</text>
+  <line x1="720" y1="536" x2="760" y2="536" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci2)"/>
+  <text x="768" y="541" font-size="15" fill="#57534e">Dynamic</text>
 
-  <!-- R13 zoom cue: SOURCE corner-brackets marking the two nodes expanded elsewhere. Same L mark echoed as a frame on the expansion figures (0.3-2, 0.3-4). Nudged clear of the converging dash-typed edges + labels (DELTA-1). -->
+  <!-- R13 zoom cue: SOURCE corner-brackets marking the two thesis nodes expanded elsewhere (Modeling -> model classes 0.3-2; Alignment -> the governed environment 0.3-4). -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
-    <!-- Model node (expanded by 0.3-2): TR + BL, clear of the Modeling->Model and Model->Governance edges -->
-    <path d="M336,222 L350,222 L350,236"/>
-    <path d="M321,279 L307,279 L307,265"/>
-    <!-- Governance hub (expanded by 0.3-4): TL + BR around the label+hub group, outside the converging arrowheads -->
-    <path d="M460,195 L446,195 L446,209"/>
-    <path d="M540,251 L554,251 L554,237"/>
+    <path d="M292,198 L302,198 L302,208"/>
+    <path d="M268,230 L258,230 L258,220"/>
+    <path d="M708,198 L698,198 L698,208"/>
+    <path d="M732,230 L742,230 L742,220"/>
   </g>
-</svg><figcaption data-short="The core ideas, as a map"><span class="fig-label">Figure 0.3-1.</span> The core ideas, as a map: commodity intelligence forces engineering to reorganize around governance, which the two theses, the conversion, and the Printer metaphor spell out.</figcaption></figure>
-<p id="idx-def-commodity-intelligence"><strong>Commodity intelligence.</strong> Machine intelligence that has become abundant, inexpensive, and broadly available. Once intelligence is no longer scarce, engineering reorganizes around judgment, representations, evidence, authority, and governance.</p>
-<p><strong>Governance.</strong> The engineering discipline of encoding judgment into durable mechanisms that autonomous systems inherit automatically. In MAGE, governance includes models, constraints, validators, policies, workflows, and other executable or machine-interpretable artifacts; it is not synonymous with management or compliance.</p>
-<p><strong><a class="gloss-site" href="2.1-context-is-the-first-modeling-problem.html#idx-def-engineering">Engineering.</a></strong> What separates engineering from mere construction: the responsibility to compare alternatives and predict their trade-offs <em>before</em> building. A model makes that prediction cheap — you reason over the representation instead of over the running system.</p>
-<p><strong><a class="gloss-site" href="2.1-context-is-the-first-modeling-problem.html#idx-def-software-engineering">Software engineering.</a></strong> Engineering applied to software: choosing among workable designs by reasoning about the properties each will produce, <em>before</em> building. When agents make implementation cheap, you can build more than one and select among them — and selection needs a model to predict from.</p>
-<p><strong><a class="gloss-site" href="2.2-from-context-to-control.html#idx-def-model">Model.</a></strong> A structured approximation of a system that preserves the information needed to answer some class of engineering questions. Engineers and agents reason through the model rather than reconstructing those answers from lower-level system detail. To be governed, a model must have an explicit, machine-readable structure that can be queried, validated, and checked for drift.</p>
+</svg><figcaption data-short="The core ideas"><span class="fig-label">Figure 0.3-1.</span> The core ideas. Commodity intelligence changes the economics of engineering; Modeling and Alignment address different constraints within that new economy, while governance conversion makes their lessons durable.</figcaption></figure>
+<p id="idx-def-commodity-intelligence"><strong>Commodity intelligence.</strong> General-purpose machine intelligence available at sufficiently low cost and high capacity that implementation effort becomes less scarce relative to engineering judgment. The term describes an economic change, not a claim that intelligence is free, unlimited, or itself sufficient for engineering.</p>
+<p><strong>Governance.</strong> The engineering discipline of turning consequential judgment into durable structure that autonomous work inherits. In MAGE, that structure includes models, constraints, validators, policies, workflows, and other machine-interpretable or executable artifacts; governance is not synonymous with management or compliance.</p>
+<p><strong>Engineering, as used here.</strong> Designing under goals, constraints, and trade-offs by reasoning about the properties alternatives are expected to produce and the evidence that supports those expectations.</p>
+<p><strong>Software engineering, as used here.</strong> Engineering applied to software: designing and evolving software systems by reasoning about intended properties, constraints, evidence, and trade-offs rather than relying on the implementation alone to reveal them.</p>
+<p><strong><a class="gloss-site" href="2.2-from-context-to-control.html#idx-def-model">Model.</a></strong> A purposeful approximation of a system that preserves the information needed to answer some class of engineering questions. Engineers and agents reason through the model rather than reconstructing those answers from lower-level system detail. MAGE favors explicit, machine-readable models because they can be queried, joined, validated, and checked against the system they represent.</p>
 <p><strong><a class="gloss-site" href="2.2-from-context-to-control.html#idx-def-structured">Structured.</a></strong> An explicit, declared shape a machine can read and validate—a schema rather than unconstrained prose. Structure makes the representation reliably queryable, joinable, and governable at the level of its meaning.</p>
-<p><strong><a class="gloss-site" href="2.5-modeling-structure-and-ownership.html#idx-def-descriptive-vs-prescriptive">Descriptive vs. prescriptive.</a></strong> Two things a model's facts can do. A <em>descriptive</em> fact records what the system currently is — a service exists, a call is made. A <em>prescriptive</em> (intent-bearing, blueprint) fact declares what is allowed or required — only this class may consume that queue. Descriptive facts let an agent reason; prescriptive facts give the environment something to enforce.</p>
+<p><strong><a class="gloss-site" href="2.5-modeling-structure-and-ownership.html#idx-def-descriptive-vs-prescriptive">Descriptive vs. prescriptive.</a></strong> Two things a model's facts can do. A <em>descriptive</em> fact records what the system currently is — a service exists, a call is made. A <em>prescriptive</em> (intent-bearing, blueprint) fact declares what is allowed or required — only this class may consume that queue. Descriptive facts make current reality explicit. Prescriptive facts make intended reality explicit; the more precisely that intent is represented, the more of it becomes available to deterministic analysis and enforcement.</p>
 <p id="idx-def-model-classes"><strong>Model classes.</strong> Five kinds of model, sorted by what the model <em>represents</em>. The kind fixes the diagram it wants and the invariant it can carry, so naming it first is how a reader reads a model page on reflex.</p>
 <ul><li><strong>Behavioral.</strong> Represents how the system acts across runs — its states, its transitions, and the properties that must hold over them. The job-lifecycle <strong>state machine</strong> (the process view) is one: <code>leased</code> holds if and only if an owner is set.</li><li><strong>Structural.</strong> Represents the system's shape — its parts, its zones, and which parts may compose. The <strong>component-zone model</strong> (the development view) is one, induced from the real directory tree and gated against the imports the code actually makes.</li><li><strong>Decision.</strong> Represents a choice the system must honor — a contract, a policy, a permitted-value set. The <strong>service-flow model</strong> and the <strong>access policy</strong> generated from it (the logical view) are one. A contract or policy model is a Decision model.</li><li><strong>Measurement.</strong> Represents a quantity the system exposes — a cost, a load, a coverage surface. The <strong>performance-and-cost model</strong> (the physical view) is one, reading a per-host ceiling and budget the scheduler rations against.</li><li><strong>Documentation.</strong> Represents human-facing explanation as a governed artifact — generated from a model and provenance-checked, so a hand-edit reddens the build instead of drifting unseen. A <strong>doc surface</strong> is a first-class node in the traceability graph, joined to the code it explains by a re-proved edge.</li></ul>
 <p>Governance is not a sixth class. It names an <em>action on</em> a model — the Move axis, whether a mechanism constrains, senses, or packages — not a kind of representation. A governance mechanism governs a Decision model or a Structural one; it is not itself a model class.</p>
@@ -903,17 +899,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <path d="M974,468 L988,468 L988,454"/>
   </g>
 </svg><figcaption data-short="The five model classes, by what each represents — Behavioral, Structural,…"><span class="fig-label">Figure 0.3-2.</span> The five model classes, by what each represents — Behavioral, Structural, Decision, Measurement, Documentation, one real model each. Governance is a Move, not a class.</figcaption></figure>
-<p><strong><a class="gloss-site" href="2.1-context-is-the-first-modeling-problem.html#idx-def-thesis-modeling">Modeling Thesis.</a></strong> Externalize engineering knowledge and intent into explicit, structured models so engineers and agents share a compact representation to reason through.</p>
-<p><strong><a class="gloss-site" href="3.1-the-agent-stack.html#idx-def-thesis-alignment">Alignment Thesis.</a></strong> Encode engineering obligations into authoritative mechanisms that constrain actions, produce evidence, validate that evidence, and control admission. The mechanisms may be mechanically checkable or may require agent or human judgment; what matters is that the obligation has authority over the engineering process.</p>
+<p><strong><a class="gloss-site" href="2.1-context-is-the-first-modeling-problem.html#idx-def-thesis-modeling">Modeling Thesis.</a></strong> Externalize engineering knowledge and intent into explicit, purposeful models so humans and agents can reason over larger engineering questions without reconstructing the relevant facts from lower-level detail.</p>
+<p><strong><a class="gloss-site" href="3.1-the-agent-stack.html#idx-def-thesis-alignment">Alignment Thesis.</a></strong> Encode engineering obligations into authoritative mechanisms that constrain actions, produce evidence, validate that evidence, and control admission. Alignment can act directly on actions and artifacts; explicit models enlarge the set of properties those mechanisms can state and check.</p>
 <p><strong><a class="gloss-site" href="3.4-governance-conversion.html#idx-def-governance-conversion">Governance Conversion.</a></strong> Converting a recurring failure and the judgment needed to resolve it into durable engineering structure that future work inherits.</p>
 <p id="idx-def-compounding"><strong>Engineering capital.</strong> The stock of durable engineering mechanisms that reduce the recurring cost of change. It grows through governance conversion and depreciates when it no longer fits the system. Each recurring judgment converted into a durable mechanism lowers the future cost of change, allowing engineering effort to compound.</p>
 <p><strong><a class="gloss-site" href="1.1-the-printer.html#idx-def-printer-metaphor">The Printer.</a></strong> The book's governing metaphor: treat a coding agent like a 3D printer. It builds almost anything you specify — and only what you specify.</p>
 <h2>How coding agents work (and fail)</h2>
 <p>What a fleet of coding agents is, and the ways it comes apart.</p>
-<figure id="fig-0-3-3" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Layered stack: how coding agents work, and the causal tail of how they fail">
+<figure id="fig-0-3-3" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Layered stack of how coding agents work, and a softened causal tail of how they come apart: a large engineering task requires a reasoning horizon that may exceed the available working state, of which the context window is one present limit, contributing to churn">
   <defs>
-    <!-- userSpaceOnUse so the 3px-stroke connectors keep a fixed ~11px head instead of scaling to ~21px (strokeWidth×3) and swallowing the short 20px inter-layer shafts. -->
-    <marker id="vh-av" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="vh-av2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
   <rect x="0" y="0" width="1000" height="500" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
@@ -921,16 +916,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- column headers -->
   <text x="330" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the stack</text>
-  <text x="800" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">how it comes apart</text>
+  <text x="825" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">how it comes apart</text>
 
-  <!-- ===== LEFT: the four-layer stack ===== -->
+  <!-- ===== LEFT: the four-layer stack (unchanged) ===== -->
   <!-- Application -->
   <rect x="80" y="92" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="100" y="122" font-size="20" font-weight="bold" fill="#1c1917">Application</text>
   <text x="100" y="144" font-size="16" fill="#57534e">your codebase</text>
 
   <!-- runs on -->
-  <line x1="330" y1="156" x2="330" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <line x1="330" y1="156" x2="330" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="342" y="171" font-size="16" fill="#78716c">runs on</text>
 
   <!-- Agent Harness (taller; holds three chips) -->
@@ -946,7 +941,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="450" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Hooks</text>
 
   <!-- wraps -->
-  <line x1="330" y1="288" x2="330" y2="308" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <line x1="330" y1="288" x2="330" y2="308" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="342" y="303" font-size="16" fill="#78716c">wraps</text>
 
   <!-- Foundation Model -->
@@ -955,48 +950,57 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="100" y="360" font-size="16" fill="#57534e">the trained model at the bottom of the stack</text>
 
   <!-- bounded by -->
-  <line x1="330" y1="372" x2="330" y2="392" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <line x1="330" y1="372" x2="330" y2="392" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="342" y="387" font-size="16" fill="#78716c">bounded by</text>
 
   <!-- Context Window -->
   <rect x="80" y="392" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="100" y="422" font-size="20" font-weight="bold" fill="#1c1917">Context Window</text>
-  <text x="100" y="444" font-size="16" fill="#57534e">the bounded memory it holds at once</text>
+  <text x="100" y="444" font-size="16" fill="#57534e">the bounded working state it holds at once</text>
 
-  <!-- ===== RIGHT: causal failure tail ===== -->
-  <!-- work too large -->
-  <rect x="690" y="110" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="800" y="139" text-anchor="middle" font-size="18" fill="#1c1917">work too large</text>
+  <!-- ===== RIGHT: softened causal tail ===== -->
+  <!-- large engineering task -->
+  <rect x="690" y="92" width="260" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="820" y="121" text-anchor="middle" font-size="18" fill="#1c1917">Large engineering task</text>
 
-  <!-- overruns -->
-  <line x1="800" y1="156" x2="800" y2="238" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
-  <text x="812" y="201" font-size="16" fill="#78716c">overruns</text>
+  <!-- requires -->
+  <line x1="820" y1="138" x2="820" y2="178" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <text x="832" y="162" font-size="16" fill="#78716c">requires</text>
 
   <!-- Reasoning Horizon -->
-  <rect x="690" y="238" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="800" y="267" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Reasoning Horizon</text>
+  <rect x="690" y="178" width="260" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="820" y="207" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Reasoning Horizon</text>
 
-  <!-- drives -->
-  <line x1="800" y1="284" x2="800" y2="366" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
-  <text x="812" y="329" font-size="16" fill="#78716c">drives</text>
+  <!-- may exceed -->
+  <line x1="820" y1="224" x2="820" y2="264" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <text x="832" y="248" font-size="16" fill="#78716c">may exceed</text>
+
+  <!-- Available working state (context window is one present limit) -->
+  <rect x="690" y="264" width="260" height="58" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="820" y="290" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Available working state</text>
+  <text x="820" y="311" text-anchor="middle" font-size="12.4" font-style="italic" fill="#57534e">context window is one present limit</text>
+
+  <!-- contributes to -->
+  <line x1="820" y1="322" x2="820" y2="362" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <text x="832" y="346" font-size="16" fill="#78716c">contributes to</text>
 
   <!-- Churn -->
-  <rect x="690" y="366" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="800" y="395" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Churn</text>
+  <rect x="690" y="362" width="260" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="820" y="391" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Churn</text>
 
-  <!-- bridge: the Context Window instantiates the horizon limit today. Orthogonal L-connector (right, up, right) through the empty middle gap — never a harsh diagonal. -->
-  <polyline points="580,424 635,424 635,261 690,261" fill="none" stroke="#cfcabf" stroke-width="3" stroke-dasharray="4 4" marker-end="url(#vh-av)"/>
-  <text x="645" y="350" font-size="16" fill="#78716c">instantiates</text>
+  <!-- bridge: the Context Window is ONE instance of the working-state limit today. Orthogonal L-connector
+       through the empty middle gap, no label (the working-state node carries the meaning). -->
+  <polyline points="580,424 636,424 636,293 688,293" fill="none" stroke="#cfcabf" stroke-width="3" stroke-dasharray="4 4" marker-end="url(#vh-av2)"/>
 
-  <!-- the two glossary terms that annotate the stack but aren't layers: Skill/Tool defined via chips above; Fleet noted below -->
+  <!-- the two glossary terms that annotate the stack but aren't layers -->
   <text x="95" y="484" font-size="16" fill="#57534e">A <tspan font-weight="bold">Fleet</tspan> is many such stacks working one codebase — the agentic-era workforce this book governs.</text>
 
-  <!-- R13 zoom cue: FRAME-echo corner-brackets — a family-membership signal (0.3-1 has no agent source-node; this figure zooms sideways into the agent substrate, FORK-D). Same L mark at frame scale. -->
+  <!-- R13 zoom cue: FRAME-echo corner-brackets — a family-membership signal (this figure zooms sideways into the agent substrate). -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
     <path d="M26,12 L12,12 L12,26"/>
     <path d="M974,488 L988,488 L988,474"/>
   </g>
-</svg><figcaption data-short="The agent stack and how it comes apart"><span class="fig-label">Figure 0.3-3.</span> The agent stack and how it comes apart: the harness wraps a foundation model, hosts skills and tools, and manages a context window whose overflow drives churn.</figcaption></figure>
+</svg><figcaption data-short="The agent stack and one way it comes apart"><span class="fig-label">Figure 0.3-3.</span> The agent stack and one way it comes apart. When a task's reasoning horizon exceeds the working state the harness can keep active, repeated reconstruction contributes to churn.</figcaption></figure>
 <p><strong><a class="gloss-site" href="0.4-preface.html#idx-def-churn">Churn.</a></strong> The agent-fleet form of velocity decay: an increasing share of effort spent rediscovering context, undoing recent changes, repairing regressions, or reconciling inconsistencies rather than advancing the system.</p>
 <p><strong><a class="gloss-site" href="3.1-the-agent-stack.html#idx-def-context-window">Context Window.</a></strong> The bounded amount of information the foundation model can hold directly in context at once.</p>
 <p><strong><a class="gloss-site" href="3.1-the-agent-stack.html#idx-def-foundation-model">Foundation model.</a></strong> The trained model at the bottom of the agent stack. Its capabilities and context capacity establish important bounds that the surrounding harness and engineering environment must work within.</p>
@@ -1007,103 +1011,73 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong><a class="gloss-site" href="1.3-the-reasoning-horizon.html#idx-def-reasoning-horizon">Reasoning horizon.</a></strong> The amount of intermediate reasoning state a task requires held at once to carry it to a correct result. It is a property of the task, not of who reasons — human, agent, or a later architecture. A <em>long-horizon task</em> is one whose reasoning horizon outruns the available working memory, forcing lossy compression and reconstruction of that state; the context window instantiates that limit today.</p>
 <h2>The Governed Engineering Environment</h2>
 <p>The environment that holds the fleet to a standard, and the mechanisms it is built from.</p>
-<figure id="fig-0-3-4" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Control pipeline: a model's invariant is enforced by a governance mechanism that plays one of four roles to govern an environment that compounds into engineering capital; a hook is the injection point where enforcement fires">
+<figure id="fig-0-3-4" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Two-input control flow: an engineering obligation is acted on either through a directly observable action or artifact, or through an explicit model or invariant with richer semantics; both join at the governance mechanism, which governs an environment that compounds into engineering capital">
   <defs>
-    <marker id="vh-gee" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="vh-gee2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
-  <rect x="0" y="0" width="1000" height="500" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The Governed Engineering Environment</text>
 
-  <!-- stage label for the role fan -->
-  <text x="523" y="145" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Role — one of four</text>
+  <!-- ===== the input: an engineering obligation ===== -->
+  <rect x="390" y="70" width="220" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="500" y="96" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Engineering</text>
+  <text x="500" y="115" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">obligation</text>
 
-  <!-- end-transition verbs, floating in the clean band above the boxes (y=176 keeps the wider 'compounds into' clear of the Engineering-Capital box top at y=197 in Georgia/Typst metrics) -->
-  <text x="183" y="176" text-anchor="middle" font-size="16" fill="#78716c">enforced by</text>
-  <text x="828" y="176" text-anchor="middle" font-size="16" fill="#78716c">compounds into</text>
+  <!-- fork to two ways of obtaining something to act on -->
+  <line x1="500" y1="122" x2="500" y2="150" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="280" y1="150" x2="720" y2="150" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="280" y1="150" x2="280" y2="182" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <line x1="720" y1="150" x2="720" y2="182" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <text x="500" y="172" text-anchor="middle" font-size="14" font-style="italic" fill="#78716c">acted on through one of two surfaces</text>
 
-  <!-- ===== Stage A: Model / Invariant — the enforced predicate ===== -->
-  <rect x="20" y="193" width="140" height="84" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="90" y="219" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Model /</text>
-  <text x="90" y="240" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Invariant</text>
-  <text x="90" y="260" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">the predicate to enforce</text>
+  <!-- LEFT input: a directly observable action or artifact (no model) -->
+  <rect x="110" y="184" width="330" height="78" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
+  <text x="275" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Directly observable</text>
+  <text x="275" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">action or artifact</text>
+  <text x="275" y="255" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run — no model</text>
 
-  <!-- A -> B -->
-  <line x1="160" y1="235" x2="206" y2="235" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee)"/>
+  <!-- RIGHT input: an explicit model / invariant (richer semantics) -->
+  <rect x="560" y="184" width="330" height="78" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2.4"/>
+  <text x="725" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Explicit model / invariant</text>
+  <text x="725" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">richer semantics</text>
+  <text x="725" y="255" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">states properties observation cannot reach</text>
 
-  <!-- ===== Stage B: Governance Mechanism ===== -->
-  <rect x="206" y="193" width="150" height="84" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="281" y="222" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governance</text>
-  <text x="281" y="243" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Mechanism</text>
-  <text x="281" y="263" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">encodes a policy</text>
+  <!-- join: both surfaces meet at the mechanism -->
+  <line x1="275" y1="262" x2="275" y2="292" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="725" y1="262" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="275" y1="292" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="500" y1="292" x2="500" y2="322" stroke="#57534e" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <text x="512" y="312" font-size="14" fill="#78716c">enforced by</text>
 
-  <!-- B -> C: lead-in to the role bus, then the bus splits to the four chips -->
-  <line x1="356" y1="235" x2="424" y2="235" stroke="#cfcabf" stroke-width="3"/>
-  <text x="388" y="226" text-anchor="middle" font-size="13" fill="#78716c">plays one of</text>
-  <line x1="424" y1="172" x2="424" y2="298" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="424" y1="172" x2="438" y2="172" stroke="#cfcabf" stroke-width="2" marker-end="url(#vh-gee)"/>
-  <line x1="424" y1="214" x2="438" y2="214" stroke="#cfcabf" stroke-width="2" marker-end="url(#vh-gee)"/>
-  <line x1="424" y1="256" x2="438" y2="256" stroke="#cfcabf" stroke-width="2" marker-end="url(#vh-gee)"/>
-  <line x1="424" y1="298" x2="438" y2="298" stroke="#cfcabf" stroke-width="2" marker-end="url(#vh-gee)"/>
+  <!-- ===== the JOIN point: Governance Mechanism ===== -->
+  <rect x="330" y="322" width="340" height="62" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="500" y="350" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governance Mechanism</text>
+  <text x="500" y="371" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
+  <line x1="500" y1="384" x2="500" y2="422" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <text x="512" y="408" font-size="14" fill="#78716c">governs</text>
 
-  <!-- four role chips (vertical fan) -->
-  <rect x="438" y="155" width="170" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="450" y="177" font-size="15" font-weight="bold" fill="#1c1917">Constraint</text>
-  <text x="596" y="177" text-anchor="end" font-size="13" font-style="italic" fill="#78716c">restricts</text>
+  <!-- Governed Engineering Environment -->
+  <rect x="290" y="422" width="420" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="500" y="454" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governed Engineering Environment</text>
+  <line x1="500" y1="474" x2="500" y2="512" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <text x="512" y="498" font-size="14" fill="#78716c">compounds into</text>
 
-  <rect x="438" y="197" width="170" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="450" y="219" font-size="15" font-weight="bold" fill="#1c1917">Sensor</text>
-  <text x="596" y="219" text-anchor="end" font-size="13" font-style="italic" fill="#78716c">produces evidence</text>
+  <!-- Engineering Capital — terminal (dark) -->
+  <rect x="390" y="512" width="220" height="52" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
+  <text x="500" y="544" text-anchor="middle" font-size="19" font-weight="bold" fill="#fdfcf9">Engineering Capital</text>
 
-  <rect x="438" y="239" width="170" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="450" y="261" font-size="15" font-weight="bold" fill="#1c1917">Validator</text>
-  <text x="596" y="261" text-anchor="end" font-size="13" font-style="italic" fill="#78716c">evaluates</text>
+  <!-- footer band: the drift-gate story + the linter/gate example (preserved) -->
+  <line x1="60" y1="588" x2="940" y2="588" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="70" y="612" font-size="15" fill="#57534e">A <tspan font-weight="bold">drift gate</tspan> catches <tspan font-style="italic">model drift</tspan> — a model and its code disagreeing. A <tspan font-weight="bold">linter</tspan> senses; a <tspan font-weight="bold">gate</tspan> blocks the commit.</text>
 
-  <rect x="438" y="281" width="170" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="450" y="303" font-size="15" font-weight="bold" fill="#1c1917">Gate</text>
-  <text x="596" y="303" text-anchor="end" font-size="13" font-style="italic" fill="#78716c">admits</text>
-
-  <!-- C -> D: collect the fan, then a single govern edge into D -->
-  <line x1="608" y1="172" x2="624" y2="172" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="608" y1="214" x2="624" y2="214" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="608" y1="256" x2="624" y2="256" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="608" y1="298" x2="624" y2="298" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="624" y1="172" x2="624" y2="298" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="624" y1="235" x2="672" y2="235" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee)"/>
-  <text x="648" y="227" text-anchor="middle" font-size="13" fill="#78716c">govern</text>
-
-  <!-- ===== Stage D: Governed Environment ===== -->
-  <rect x="672" y="197" width="140" height="76" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="742" y="228" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governed</text>
-  <text x="742" y="250" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Environment</text>
-
-  <!-- D -> E -->
-  <line x1="812" y1="235" x2="844" y2="235" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee)"/>
-
-  <!-- ===== Stage E: Engineering Capital — terminal (echoes the spine terminal) ===== -->
-  <rect x="844" y="197" width="140" height="76" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
-  <text x="914" y="228" text-anchor="middle" font-size="18" font-weight="bold" fill="#fdfcf9">Engineering</text>
-  <text x="914" y="250" text-anchor="middle" font-size="18" font-weight="bold" fill="#fdfcf9">Capital</text>
-
-  <!-- Hook callout: a SEPARATE execution primitive tapped onto the B->C enforcement edge -->
-  <line x1="378" y1="352" x2="392" y2="238" stroke="#cfcabf" stroke-width="2" marker-end="url(#vh-gee)"/>
-  <text x="366" y="300" text-anchor="end" font-size="15" fill="#78716c">fires at</text>
-  <rect x="300" y="352" width="150" height="46" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="375" y="373" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Hook</text>
-  <text x="375" y="390" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">deterministic injection point</text>
-
-  <!-- footer band: the drift-gate story + the linter/gate example (preserved verbatim) -->
-  <line x1="20" y1="430" x2="984" y2="430" stroke="#cfcabf" stroke-width="1.5"/>
-  <text x="30" y="454" font-size="16" fill="#57534e">A <tspan font-weight="bold">drift gate</tspan> catches <tspan font-style="italic">model drift</tspan> — a model and its code disagreeing.</text>
-  <text x="30" y="476" font-size="16" fill="#57534e">A <tspan font-weight="bold">linter</tspan> senses; a <tspan font-weight="bold">gate</tspan> consumes its result to block the commit.</text>
-
-  <!-- R13 zoom cue: FRAME-echo corner-brackets — this figure IS the expansion of 0.3-1's Governance-Mechanism node. Same L mark as the source brackets there, at frame scale. -->
+  <!-- R13 zoom cue: FRAME-echo corner-brackets — this figure IS the expansion of 0.3-1's Governance-Mechanism node. -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
     <path d="M26,12 L12,12 L12,26"/>
-    <path d="M974,488 L988,488 L988,474"/>
+    <path d="M974,628 L988,628 L988,614"/>
   </g>
-</svg><figcaption data-short="The governed environment"><span class="fig-label">Figure 0.3-4.</span> The governed environment: a governance mechanism enforces an invariant by playing one of four roles — constraint, sensor, validator, gate — firing at a hook, compounding into engineering capital.</figcaption></figure>
-<p><strong><a class="gloss-site" href="3.4-governance-conversion.html#idx-def-governed-environment">Governed Engineering Environment.</a></strong> An engineering environment in which policy is encoded into models and mechanisms rather than relying on human memory or repeated inspection.</p>
+</svg><figcaption data-short="The governed environment"><span class="fig-label">Figure 0.3-4.</span> The governed environment. An obligation reaches a mechanism — constraint, sensor, validator, gate — by two paths: an observable action or artifact, or an explicit model adding richer semantics.</figcaption></figure>
+<p><strong><a class="gloss-site" href="3.4-governance-conversion.html#idx-def-governed-environment">Governed Engineering Environment.</a></strong> An engineering environment in which consequential policy is carried by durable mechanisms rather than depending primarily on human memory or repeated inspection. Explicit models can extend those mechanisms to properties that would otherwise require human reconstruction or judgment.</p>
 <p><strong><a class="gloss-site" href="3.3-constraints-sensors-validators-gates.html#idx-def-governance-mechanism">Governance Mechanism.</a></strong> A repeatable structure in the governed engineering environment that encodes an engineering policy. Every mechanism primarily serves one of four archetypal roles: constraint, sensor, validator, or gate. These categories describe the role a mechanism plays in the engineering environment, not the outcome it ultimately contributes to.</p>
 <p><em>The four mechanism roles.</em></p>
 <p><strong><a class="gloss-site" href="3.3-constraints-sensors-validators-gates.html#idx-def-constraint">Constraint.</a></strong> Restricts the permissible action space.</p>
@@ -1113,86 +1087,92 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A single implementation may participate in more than one role. A linter, for example, both produces the finding-evidence and judges it against the ban — a sensor and validator bundled — while the commit hook or CI pipeline is the gate that blocks the change from advancing.</p>
 <p><strong><a class="gloss-site" href="4.2-brownfield.html#idx-def-lint">Lint.</a></strong> An automated check that scans code for a banned pattern and fails the commit when it finds one, so a rule holds without a human remembering it.</p>
 <p><strong><a class="gloss-site" href="3.1-the-agent-stack.html#idx-def-hook-hard-control">Hook.</a></strong> A mechanism that fires automatically at a defined point in a workflow — before or after a step — to enforce policy without anyone remembering to. The harness's before/after-action hooks are one instance; Git, CI, build, and deploy hooks are others.</p>
-<p><strong><a class="gloss-site" href="2.3-the-executable-zoo.html#idx-def-invariant">Invariant.</a></strong> A predicate over a model that must always hold — the testable claim a gate or a model-checker enforces.</p>
+<p><strong><a class="gloss-site" href="2.3-the-executable-zoo.html#idx-def-invariant">Invariant.</a></strong> A predicate that must hold over a system, model, artifact, or process. Making the relevant state explicit determines whether the invariant can be checked mechanically and at what scale.</p>
 <p><strong><a class="gloss-site" href="2.3-the-executable-zoo.html#idx-def-model-drift">Model drift.</a></strong> A model and the system, evidence, or other representation to which it is meant to correspond cease to agree.</p>
 <p><strong><a class="gloss-site" href="2.3-the-executable-zoo.html#idx-def-drift-gate">Drift Gate.</a></strong> A build-time check that fails when a model and the code it describes disagree, keeping the model from decaying into stale documentation.</p>
 <p><strong><a class="gloss-site" href="2.3-the-executable-zoo.html#idx-def-traceability">Traceability.</a></strong> Explicit, machine-readable relationships connecting model elements to the artifacts, evidence, obligations, or other model elements they represent or govern.</p>
-<figure id="fig-0-3-5" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Noun spine: the MAGE vocabulary as one chain — Reality / Intent to Engineering Capital, every link a verb">
+<figure id="fig-0-3-5" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 900" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Fork-and-join grammar: the modeling chain from reality to a property or invariant yields a richer surface for governance, while a raw action or artifact can be governed directly; both join at the governance mechanism, which governs an environment that compounds into engineering capital">
   <defs>
-    <marker id="vh-spine" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="vh-mv" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
-  <rect x="0" y="0" width="900" height="900" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="940" height="900" fill="#fdfcf9"/>
   <text x="60" y="44" font-size="17" fill="#57534e">Glossary · the grammar of the book</text>
-  <text x="840" y="44" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The MAGE vocabulary</text>
-  <text x="450" y="72" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Every later figure instantiates a slice of this spine.</text>
+  <text x="880" y="44" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The MAGE vocabulary</text>
+  <text x="470" y="72" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Models are not a prerequisite for governance — they expand the surface it can act on.</text>
 
-  <!-- Reality -->
-  <rect x="330" y="96" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="122" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Reality / Intent</text>
-  <text x="450" y="141" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">the system as it is, or intended</text>
-  <line x1="450" y1="148" x2="450" y2="188" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="173" font-size="14.4" fill="#78716c">captured as</text>
+  <!-- ===== the modeling chain (centre-right), Reality -> Property/Invariant -> richer surface ===== -->
+  <!-- Reality / Intent -->
+  <rect x="440" y="86" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="560" y="112" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Reality / Intent</text>
+  <text x="560" y="131" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">the system as it is, or intended</text>
+  <line x1="560" y1="138" x2="560" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="572" y="162" font-size="14" fill="#78716c">represented as</text>
 
   <!-- Representation -->
-  <rect x="330" y="188" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="214" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Representation</text>
-  <text x="450" y="233" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">any account of it</text>
-  <line x1="450" y1="240" x2="450" y2="280" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="265" font-size="14.4" fill="#78716c">structured into</text>
+  <rect x="440" y="176" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="560" y="202" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Representation</text>
+  <text x="560" y="221" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">any account of it</text>
+  <line x1="560" y1="228" x2="560" y2="266" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="572" y="252" font-size="14" fill="#78716c">may be structured into</text>
 
   <!-- Model -->
-  <rect x="330" y="280" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="309" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Model</text>
-  <line x1="450" y1="326" x2="450" y2="366" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="351" font-size="14.4" fill="#78716c">carries</text>
+  <rect x="440" y="266" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="560" y="295" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Model</text>
+  <line x1="560" y1="312" x2="560" y2="350" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="572" y="336" font-size="14" fill="#78716c">makes properties explicit</text>
 
-  <!-- Invariant -->
-  <rect x="330" y="366" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="395" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Invariant</text>
-  <line x1="450" y1="412" x2="450" y2="452" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="437" font-size="14.4" fill="#78716c">enforced by</text>
+  <!-- Property / Invariant -->
+  <rect x="440" y="350" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="560" y="382" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Property / Invariant</text>
+  <line x1="560" y1="402" x2="560" y2="440" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="572" y="426" font-size="14" fill="#78716c">yields</text>
 
-  <!-- Governance Mechanism -->
-  <rect x="330" y="452" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="481" text-anchor="middle" font-size="19.03" font-weight="bold" fill="#1c1917">Governance Mechanism</text>
-  <line x1="450" y1="498" x2="450" y2="538" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="523" font-size="14.4" fill="#78716c">plays one of</text>
+  <!-- Richer surface for governance (the modeling output that feeds the mechanism) -->
+  <rect x="440" y="440" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="560" y="466" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Richer surface</text>
+  <text x="560" y="485" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">for governance</text>
+  <!-- richer surface -> the mechanism (join from above) -->
+  <line x1="560" y1="492" x2="560" y2="548" stroke="#57534e" stroke-width="3" marker-end="url(#vh-mv)"/>
 
-  <!-- four role chips — whole row shifted +29px right (176->205 … 666->695) so its span-centroid sits on the spine axis x=450 (was x=421, spine struck Validator); uniform 10px gaps preserved. -->
-  <rect x="205" y="538" width="130" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="270" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Constraint</text>
-  <rect x="345" y="538" width="110" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="400" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Sensor</text>
-  <rect x="465" y="538" width="120" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="525" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Validator</text>
-  <rect x="595" y="538" width="100" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="645" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Gate</text>
+  <!-- ===== the DIRECT path: a raw action / artifact governed without a model ===== -->
+  <rect x="60" y="350" width="260" height="72" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
+  <text x="190" y="382" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Raw action / artifact</text>
+  <text x="190" y="405" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
+  <!-- bypass the whole modeling chain: down, then right into the mechanism's left edge -->
+  <polyline points="190,422 190,574 358,574" fill="none" stroke="#57534e" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="196" y="500" font-size="14" fill="#78716c">acted on directly —</text>
+  <text x="196" y="518" font-size="14" fill="#78716c">no model required</text>
 
-  <line x1="450" y1="574" x2="450" y2="614" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="599" font-size="14.4" fill="#78716c">govern</text>
+  <!-- ===== the JOIN: Governance Mechanism (two inputs meet here) ===== -->
+  <rect x="360" y="548" width="320" height="60" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="520" y="575" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governance Mechanism</text>
+  <text x="520" y="596" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
+  <line x1="520" y1="608" x2="520" y2="646" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="532" y="632" font-size="14" fill="#78716c">governs</text>
 
   <!-- Governed Environment -->
-  <rect x="330" y="614" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="643" text-anchor="middle" font-size="19.4" font-weight="bold" fill="#1c1917">Governed Environment</text>
-  <line x1="450" y1="660" x2="450" y2="700" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="685" font-size="14.4" fill="#78716c">compounds into</text>
+  <rect x="360" y="646" width="320" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="520" y="675" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governed Environment</text>
+  <line x1="520" y1="692" x2="520" y2="730" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="532" y="716" font-size="14" fill="#78716c">compounds into</text>
 
-  <!-- Engineering Capital -->
-  <rect x="330" y="700" width="240" height="52" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
-  <text x="450" y="732" text-anchor="middle" font-size="20" font-weight="bold" fill="#fdfcf9">Engineering Capital</text>
+  <!-- Engineering Capital — terminal (dark) -->
+  <rect x="360" y="730" width="320" height="52" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
+  <text x="520" y="762" text-anchor="middle" font-size="20" font-weight="bold" fill="#fdfcf9">Engineering Capital</text>
 
-  <!-- footer -->
-  <line x1="60" y1="800" x2="840" y2="800" stroke="#cfcabf" stroke-width="1.5"/>
-  <text x="60" y="828" font-size="15" fill="#57534e">Read it as one sentence: reality is <tspan font-style="italic">captured as</tspan> a representation, <tspan font-style="italic">structured into</tspan> a model that <tspan font-style="italic">carries</tspan> an invariant,</text>
-  <text x="60" y="850" font-size="15" fill="#57534e"><tspan font-style="italic">enforced by</tspan> a mechanism that <tspan font-style="italic">plays one of</tspan> four roles to <tspan font-style="italic">govern</tspan> an environment that <tspan font-style="italic">compounds into</tspan> engineering capital.</text>
+  <!-- footer: the grammar in one sentence -->
+  <line x1="60" y1="806" x2="880" y2="806" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="60" y="832" font-size="15" fill="#57534e">Read it as a fork: a representation <tspan font-style="italic">may be structured into</tspan> a model that</text>
+  <text x="60" y="854" font-size="15" fill="#57534e">makes properties explicit — a richer surface for governance. But a raw</text>
+  <text x="60" y="876" font-size="15" fill="#57534e">action or artifact can be governed <tspan font-style="italic">directly</tspan>; both join at the mechanism.</text>
 
-  <!-- R13 zoom cue: SOURCE corner-brackets on the two spine nodes expanded elsewhere (Model -> 0.3-2, Governance Mechanism -> 0.3-4). The spine is the master this whole family instantiates, so it carries NO frame-echo (FORK-D). -->
+  <!-- R13 zoom cue: SOURCE corner-brackets on the two nodes expanded elsewhere (Model, Governance Mechanism). -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
     <!-- Model node -->
-    <path d="M340,276 L326,276 L326,290"/>
-    <path d="M560,330 L574,330 L574,316"/>
+    <path d="M450,262 L436,262 L436,276"/>
+    <path d="M670,316 L684,316 L684,302"/>
     <!-- Governance Mechanism node -->
-    <path d="M340,448 L326,448 L326,462"/>
-    <path d="M560,502 L574,502 L574,488"/>
+    <path d="M370,544 L356,544 L356,558"/>
+    <path d="M670,612 L684,612 L684,598"/>
   </g>
-</svg><figcaption data-short="The book&#x27;s noun spine"><span class="fig-label">Figure 0.3-5.</span> The book's noun spine: reality is captured as a representation, structured into a model carrying an invariant, enforced by a mechanism that governs an environment compounding into engineering capital.</figcaption></figure><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="0.1-the-mage-method-at-a-glance.html" aria-label="Beginning of Front Matter">« Beginning of part</a><a href="0.2-what-this-book-argues.html" aria-label="Previous chapter — What This Book Argues">« Previous chapter</a></div><span class="chapnav-here" title="The Book&#x27;s Language">The Book's Language</span><div class="chapnav-fwd"><a href="0.4-preface.html" aria-label="Next chapter — Preface">Next chapter »</a><a href="part-1-intro.html" aria-label="Next part — Part 1 — The New Engineering Problem">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+</svg><figcaption data-short="The book&#x27;s grammar"><span class="fig-label">Figure 0.3-5.</span> The book's grammar. Models are not a prerequisite for governance; they expand the semantic surface over which governance can operate.</figcaption></figure><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="0.1-the-mage-method-at-a-glance.html" aria-label="Beginning of Front Matter">« Beginning of part</a><a href="0.2-what-this-book-argues.html" aria-label="Previous chapter — What This Book Argues">« Previous chapter</a></div><span class="chapnav-here" title="The Book&#x27;s Language">The Book's Language</span><div class="chapnav-fwd"><a href="0.4-preface.html" aria-label="Next chapter — Preface">Next chapter »</a><a href="part-1-intro.html" aria-label="Next part — Part 1 — The New Engineering Problem">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

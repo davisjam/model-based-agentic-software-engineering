@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 34,
     "slugs_rendered": 25,
-    "total_sites": 1620,
+    "total_sites": 1608,
     "by_projection": {
       "book-pdf": 21,
-      "book-web": 1199,
+      "book-web": 1187,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -29,7 +29,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 15
+            "occ": 12
           },
           {
             "file": "book/0.4-preface.html",
@@ -501,7 +501,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 56
+            "occ": 55
           },
           {
             "file": "book/index.html",
@@ -947,7 +947,7 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 9
+            "occ": 4
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
@@ -959,7 +959,7 @@
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/2.2-from-context-to-control.html",
@@ -1011,7 +1011,7 @@
           },
           {
             "file": "book/appendices-front-door.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/appendix-d-from-drifted-wiki-to-trusted-model.html",
@@ -1031,31 +1031,31 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 23
+            "occ": 16
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 3
+            "occ": 2
           }
         ],
         "book-pdf": [
@@ -1115,15 +1115,11 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 14
-          },
-          {
-            "file": "book/0.2-what-this-book-argues.html",
-            "occ": 1
+            "occ": 8
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/0.4-preface.html",
@@ -1235,7 +1231,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 47
+            "occ": 42
           },
           {
             "file": "book/list-of-figures.html",
@@ -1245,7 +1241,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 32
+            "occ": 31
           }
         ]
       },
@@ -1370,10 +1366,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.3-the-books-language.html",
-            "occ": 2
-          },
-          {
             "file": "book/0.4-preface.html",
             "occ": 1
           },
@@ -1411,7 +1403,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 13
+            "occ": 11
           },
           {
             "file": "book/list-of-figures.html",
@@ -1421,7 +1413,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 11
           }
         ]
       },
@@ -1495,11 +1487,11 @@
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
-            "occ": 22
+            "occ": 24
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 49
+            "occ": 57
           },
           {
             "file": "book/0.4-preface.html",
@@ -1507,7 +1499,7 @@
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 17
+            "occ": 19
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -1655,7 +1647,7 @@
           },
           {
             "file": "book/appendices-front-door.html",
-            "occ": 20
+            "occ": 22
           },
           {
             "file": "book/appendix-a-context-management-stack.html",
@@ -1971,7 +1963,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 120
+            "occ": 130
           },
           {
             "file": "book/index.html",
@@ -1983,27 +1975,27 @@
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 33
+            "occ": 35
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 28
+            "occ": 30
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 20
+            "occ": 22
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 21
+            "occ": 23
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 16
+            "occ": 18
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 21
+            "occ": 23
           }
         ],
         "book-pdf": [
@@ -2149,11 +2141,11 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 6
+            "occ": 3
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/0.3-the-books-language.html",
@@ -2625,7 +2617,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 24
+            "occ": 21
           },
           {
             "file": "book/index.html",
@@ -2755,7 +2747,7 @@
         "book-web": [
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 9
+            "occ": 10
           },
           {
             "file": "book/2.3-the-executable-zoo.html",
@@ -2831,7 +2823,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 7
+            "occ": 8
           }
         ],
         "book-pdf": [
@@ -2933,7 +2925,7 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 22
+            "occ": 19
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
@@ -2941,7 +2933,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 81
+            "occ": 77
           },
           {
             "file": "book/0.4-preface.html",
@@ -2949,7 +2941,7 @@
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 21
+            "occ": 20
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -3097,7 +3089,7 @@
           },
           {
             "file": "book/appendices-front-door.html",
-            "occ": 21
+            "occ": 20
           },
           {
             "file": "book/appendix-a-context-management-stack.html",
@@ -3413,7 +3405,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 289
+            "occ": 284
           },
           {
             "file": "book/index.html",
@@ -3425,27 +3417,27 @@
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 22
+            "occ": 21
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 40
+            "occ": 39
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 22
+            "occ": 21
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 22
+            "occ": 21
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 21
+            "occ": 20
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 21
+            "occ": 20
           }
         ],
         "book-pdf": [
@@ -3958,10 +3950,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 1
-          },
-          {
             "file": "book/6.5-mage-in-the-wild.html",
             "occ": 2
           },
@@ -3970,46 +3958,14 @@
             "occ": 1
           },
           {
-            "file": "book/appendices-front-door.html",
-            "occ": 1
-          },
-          {
             "file": "book/book-index.html",
-            "occ": 1
-          },
-          {
-            "file": "book/figures.html",
-            "occ": 2
-          },
-          {
-            "file": "book/part-1-intro.html",
-            "occ": 1
-          },
-          {
-            "file": "book/part-2-intro.html",
-            "occ": 1
-          },
-          {
-            "file": "book/part-3-intro.html",
-            "occ": 1
-          },
-          {
-            "file": "book/part-4-intro.html",
-            "occ": 1
-          },
-          {
-            "file": "book/part-5-intro.html",
-            "occ": 1
-          },
-          {
-            "file": "book/part-6-intro.html",
             "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 3
           }
         ]
       },
@@ -4027,7 +3983,7 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 8
+            "occ": 3
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
@@ -4039,7 +3995,7 @@
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
@@ -4091,7 +4047,7 @@
           },
           {
             "file": "book/appendices-front-door.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/appendix-d-operating-doctrine.html",
@@ -4107,31 +4063,31 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 23
+            "occ": 16
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 3
+            "occ": 2
           }
         ],
         "book-pdf": [
@@ -4209,7 +4165,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 6
+            "occ": 7
           },
           {
             "file": "book/0.4-preface.html",
@@ -4677,7 +4633,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 9
+            "occ": 10
           },
           {
             "file": "book/index.html",
@@ -4743,7 +4699,7 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 1
+            "occ": 4
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
@@ -4751,7 +4707,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 5
+            "occ": 7
           },
           {
             "file": "book/0.4-preface.html",
@@ -5219,7 +5175,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 12
+            "occ": 17
           },
           {
             "file": "book/index.html",
@@ -5351,7 +5307,7 @@
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
-            "occ": 3
+            "occ": 5
           },
           {
             "file": "book/0.3-the-books-language.html",
@@ -5913,7 +5869,7 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 5
+            "occ": 1
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
@@ -5921,7 +5877,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 7
+            "occ": 4
           },
           {
             "file": "book/0.4-preface.html",
@@ -6389,7 +6345,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 32
+            "occ": 27
           },
           {
             "file": "book/index.html",
@@ -6698,10 +6654,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 1
-          },
-          {
             "file": "book/1.4-the-new-engineering-problem.html",
             "occ": 2
           },
@@ -6811,13 +6763,13 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 12
+            "occ": 11
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 29
+            "occ": 28
           }
         ]
       },

@@ -12,31 +12,31 @@
   "cheap-code-costly-judgment": {
     "id": "argues-cheap-code-costly-judgment",
     "order": 1,
-    "statement": "Cheap code, costly judgment. Coding agents have made writing code fast and cheap; once implementation stops being the bottleneck, the scarce and expensive work moves up a level — to judgment, architecture, validation, and governing what the agents produce."
+    "statement": "Commodity intelligence changes the economics of software engineering. Implementation capacity is becoming abundant relative to engineering judgment. As that constraint loosens, engineering effort shifts toward what remains scarce: deciding what should be built, representing the system well enough to reason about it, producing evidence, and giving consequential intent authority."
   },
   "se-is-long-horizon-reasoning": {
     "id": "argues-se-is-long-horizon-reasoning",
     "order": 2,
-    "statement": "Large software engineering is a reasoning problem, not merely a coding problem. A big system eventually grows too complicated for anyone, person or AI, to keep entirely in mind at once; the hard part is holding coherent reasoning over the whole as it changes, and that becomes a principal limit on how large a system a team or fleet can build."
+    "statement": "Scale creates a reasoning problem. Large software systems already exceed the reasoning horizon of humans; agents inherit the same problem. Software engineering has always answered scale with abstraction. Commodity intelligence does not remove that need. It makes the quality of the representations through which work proceeds increasingly consequential."
   },
   "models-help-reason": {
     "id": "argues-models-help-reason",
     "order": 3,
-    "statement": "Models are valuable because they help humans and AI reason about large systems. An explicit model lets people and agents reason about a system without holding all of its code in mind at once — not documentation pinned beside the code, but the thing you think through. The book calls this the Modeling Thesis."
+    "statement": "The Modeling Thesis. Externalize engineering knowledge and intent into explicit, purposeful models that preserve what an engineering question needs and suppress what it does not. Models let humans and agents reason about larger properties without repeatedly reconstructing them from implementation, and they make more consequential facts available to tools."
   },
   "reliability-from-environment": {
     "id": "argues-reliability-from-environment",
     "order": 4,
-    "statement": "Reliability should come from the engineering environment, not from repeated human inspection. Software should be trustworthy because the environment itself — the constraints, sensors, validators, and gates — holds every change to the standard automatically. The book calls this the Alignment Thesis."
+    "statement": "The Alignment Thesis. Give engineering obligations authority through constraints, sensors, validators, and gates embedded in the engineering environment. Alignment does not require a comprehensive model of the system: a sandbox, a test, or a permission boundary can already hold a local rule. Explicit models expand what can be stated and checked deterministically; where the necessary abstraction is absent, human judgment often fills the gap."
   },
   "every-failure-becomes-infrastructure": {
     "id": "argues-every-failure-becomes-infrastructure",
     "order": 5,
-    "statement": "Every recurring failure should become permanent engineering infrastructure. When a mistake reveals a recurring or consequential failure class, build something that makes the mistake impossible or catches it every time, so the lesson is captured in the environment once and never has to be learned again."
+    "statement": "Governance conversion turns recurring judgment into engineering capital. When a failure exposes missing knowledge or an unenforced obligation, encode the lesson into durable engineering structure. The immediate repair fixes one instance; conversion reduces the cost of the next change by preventing the same judgment from being repeatedly rediscovered."
   },
   "engineers-role-changes": {
     "id": "argues-engineers-role-changes",
     "order": 6,
-    "statement": "The engineer's job changes. The engineer spends less time writing implementation and more time deciding the shape of the system, building the models everyone reasons through, checking that the work is right, and governing the fleet that produces it. Architecture, modeling, validation, and governance become the work."
+    "statement": "The profession changes. Engineers increasingly design the representations, evidence, policies, and governed environments through which abundant implementation capacity can be used safely. Writing implementation remains engineering work; it is no longer where all of the leverage resides."
   }
 }

@@ -1,83 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off glossary section-map (geometry-per-concept redraw 260810; NEW figure, ratify-optional). Not machine-projected; edit this SVG directly. -->
-<!-- NOUN-SPINE geometry — the grammar of the book. One vertical chain of nouns, each edge a verb; every other glossary figure instantiates a slice of this spine. Orientation reference chrome, not a role-coloured figure. -->
+<!-- HAND-AUTHORED one-off glossary section-map. R41b THEORY REBUILD (preface-3): the old figure drew a
+     single LINEAR noun-spine Reality -> Representation -> Model -> Invariant -> Governance Mechanism, which
+     made a model a PREREQUISITE for authority. That is now wrong. This is a FORK-AND-JOIN grammar: the
+     modeling chain (Reality/Intent -> Representation -> Model -> Property/Invariant) makes properties
+     explicit and yields a richer SURFACE for governance; but a governance mechanism can also act DIRECTLY
+     on a raw action or artifact, with no model in between. Both inputs JOIN at the Governance Mechanism.
+     Models are not a prerequisite for governance — they expand the semantic surface over which it operates.
+     Orientation reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Noun spine: the MAGE vocabulary as one chain — Reality / Intent to Engineering Capital, every link a verb">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 900" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Fork-and-join grammar: the modeling chain from reality to a property or invariant yields a richer surface for governance, while a raw action or artifact can be governed directly; both join at the governance mechanism, which governs an environment that compounds into engineering capital">
   <defs>
-    <marker id="vh-spine" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="vh-mv" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
-  <rect x="0" y="0" width="900" height="900" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="940" height="900" fill="#fdfcf9"/>
   <text x="60" y="44" font-size="17" fill="#57534e">Glossary · the grammar of the book</text>
-  <text x="840" y="44" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The MAGE vocabulary</text>
-  <text x="450" y="72" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Every later figure instantiates a slice of this spine.</text>
+  <text x="880" y="44" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The MAGE vocabulary</text>
+  <text x="470" y="72" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Models are not a prerequisite for governance — they expand the surface it can act on.</text>
 
-  <!-- Reality -->
-  <rect x="330" y="96" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="122" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Reality / Intent</text>
-  <text x="450" y="141" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">the system as it is, or intended</text>
-  <line x1="450" y1="148" x2="450" y2="188" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="173" font-size="14.4" fill="#78716c">captured as</text>
+  <!-- ===== the modeling chain (centre-right), Reality -> Property/Invariant -> richer surface ===== -->
+  <!-- Reality / Intent -->
+  <rect x="440" y="86" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="560" y="112" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Reality / Intent</text>
+  <text x="560" y="131" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">the system as it is, or intended</text>
+  <line x1="560" y1="138" x2="560" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="572" y="162" font-size="14" fill="#78716c">represented as</text>
 
   <!-- Representation -->
-  <rect x="330" y="188" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="214" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Representation</text>
-  <text x="450" y="233" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">any account of it</text>
-  <line x1="450" y1="240" x2="450" y2="280" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="265" font-size="14.4" fill="#78716c">structured into</text>
+  <rect x="440" y="176" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="560" y="202" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Representation</text>
+  <text x="560" y="221" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">any account of it</text>
+  <line x1="560" y1="228" x2="560" y2="266" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="572" y="252" font-size="14" fill="#78716c">may be structured into</text>
 
   <!-- Model -->
-  <rect x="330" y="280" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="309" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Model</text>
-  <line x1="450" y1="326" x2="450" y2="366" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="351" font-size="14.4" fill="#78716c">carries</text>
+  <rect x="440" y="266" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="560" y="295" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Model</text>
+  <line x1="560" y1="312" x2="560" y2="350" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="572" y="336" font-size="14" fill="#78716c">makes properties explicit</text>
 
-  <!-- Invariant -->
-  <rect x="330" y="366" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="395" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Invariant</text>
-  <line x1="450" y1="412" x2="450" y2="452" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="437" font-size="14.4" fill="#78716c">enforced by</text>
+  <!-- Property / Invariant -->
+  <rect x="440" y="350" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="560" y="382" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Property / Invariant</text>
+  <line x1="560" y1="402" x2="560" y2="440" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="572" y="426" font-size="14" fill="#78716c">yields</text>
 
-  <!-- Governance Mechanism -->
-  <rect x="330" y="452" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="481" text-anchor="middle" font-size="19.03" font-weight="bold" fill="#1c1917">Governance Mechanism</text>
-  <line x1="450" y1="498" x2="450" y2="538" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="523" font-size="14.4" fill="#78716c">plays one of</text>
+  <!-- Richer surface for governance (the modeling output that feeds the mechanism) -->
+  <rect x="440" y="440" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="560" y="466" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Richer surface</text>
+  <text x="560" y="485" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">for governance</text>
+  <!-- richer surface -> the mechanism (join from above) -->
+  <line x1="560" y1="492" x2="560" y2="548" stroke="#57534e" stroke-width="3" marker-end="url(#vh-mv)"/>
 
-  <!-- four role chips — whole row shifted +29px right (176->205 … 666->695) so its span-centroid sits on the spine axis x=450 (was x=421, spine struck Validator); uniform 10px gaps preserved. -->
-  <rect x="205" y="538" width="130" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="270" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Constraint</text>
-  <rect x="345" y="538" width="110" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="400" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Sensor</text>
-  <rect x="465" y="538" width="120" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="525" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Validator</text>
-  <rect x="595" y="538" width="100" height="36" rx="18" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="645" y="562" text-anchor="middle" font-size="15" fill="#1c1917">Gate</text>
+  <!-- ===== the DIRECT path: a raw action / artifact governed without a model ===== -->
+  <rect x="60" y="350" width="260" height="72" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
+  <text x="190" y="382" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Raw action / artifact</text>
+  <text x="190" y="405" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
+  <!-- bypass the whole modeling chain: down, then right into the mechanism's left edge -->
+  <polyline points="190,422 190,574 358,574" fill="none" stroke="#57534e" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="196" y="500" font-size="14" fill="#78716c">acted on directly —</text>
+  <text x="196" y="518" font-size="14" fill="#78716c">no model required</text>
 
-  <line x1="450" y1="574" x2="450" y2="614" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="599" font-size="14.4" fill="#78716c">govern</text>
+  <!-- ===== the JOIN: Governance Mechanism (two inputs meet here) ===== -->
+  <rect x="360" y="548" width="320" height="60" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="520" y="575" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governance Mechanism</text>
+  <text x="520" y="596" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
+  <line x1="520" y1="608" x2="520" y2="646" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="532" y="632" font-size="14" fill="#78716c">governs</text>
 
   <!-- Governed Environment -->
-  <rect x="330" y="614" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="643" text-anchor="middle" font-size="19.4" font-weight="bold" fill="#1c1917">Governed Environment</text>
-  <line x1="450" y1="660" x2="450" y2="700" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
-  <text x="462" y="685" font-size="14.4" fill="#78716c">compounds into</text>
+  <rect x="360" y="646" width="320" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="520" y="675" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governed Environment</text>
+  <line x1="520" y1="692" x2="520" y2="730" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <text x="532" y="716" font-size="14" fill="#78716c">compounds into</text>
 
-  <!-- Engineering Capital -->
-  <rect x="330" y="700" width="240" height="52" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
-  <text x="450" y="732" text-anchor="middle" font-size="20" font-weight="bold" fill="#fdfcf9">Engineering Capital</text>
+  <!-- Engineering Capital — terminal (dark) -->
+  <rect x="360" y="730" width="320" height="52" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
+  <text x="520" y="762" text-anchor="middle" font-size="20" font-weight="bold" fill="#fdfcf9">Engineering Capital</text>
 
-  <!-- footer -->
-  <line x1="60" y1="800" x2="840" y2="800" stroke="#cfcabf" stroke-width="1.5"/>
-  <text x="60" y="828" font-size="15" fill="#57534e">Read it as one sentence: reality is <tspan font-style="italic">captured as</tspan> a representation, <tspan font-style="italic">structured into</tspan> a model that <tspan font-style="italic">carries</tspan> an invariant,</text>
-  <text x="60" y="850" font-size="15" fill="#57534e"><tspan font-style="italic">enforced by</tspan> a mechanism that <tspan font-style="italic">plays one of</tspan> four roles to <tspan font-style="italic">govern</tspan> an environment that <tspan font-style="italic">compounds into</tspan> engineering capital.</text>
+  <!-- footer: the grammar in one sentence -->
+  <line x1="60" y1="806" x2="880" y2="806" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="60" y="832" font-size="15" fill="#57534e">Read it as a fork: a representation <tspan font-style="italic">may be structured into</tspan> a model that</text>
+  <text x="60" y="854" font-size="15" fill="#57534e">makes properties explicit — a richer surface for governance. But a raw</text>
+  <text x="60" y="876" font-size="15" fill="#57534e">action or artifact can be governed <tspan font-style="italic">directly</tspan>; both join at the mechanism.</text>
 
-  <!-- R13 zoom cue: SOURCE corner-brackets on the two spine nodes expanded elsewhere (Model -> 0.3-2, Governance Mechanism -> 0.3-4). The spine is the master this whole family instantiates, so it carries NO frame-echo (FORK-D). -->
+  <!-- R13 zoom cue: SOURCE corner-brackets on the two nodes expanded elsewhere (Model, Governance Mechanism). -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
     <!-- Model node -->
-    <path d="M340,276 L326,276 L326,290"/>
-    <path d="M560,330 L574,330 L574,316"/>
+    <path d="M450,262 L436,262 L436,276"/>
+    <path d="M670,316 L684,316 L684,302"/>
     <!-- Governance Mechanism node -->
-    <path d="M340,448 L326,448 L326,462"/>
-    <path d="M560,502 L574,502 L574,488"/>
+    <path d="M370,544 L356,544 L356,558"/>
+    <path d="M670,612 L684,612 L684,598"/>
   </g>
 </svg>

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off glossary section-map (geometry-per-concept redraw 260810). Not machine-projected; edit this SVG directly. -->
-<!-- LAYERED-STACK geometry for the agent vocabulary. Four stacked layers on the left; a causal failure tail on the right. Orientation reference chrome, not a role-coloured figure. -->
+<!-- HAND-AUTHORED one-off glossary section-map. R41b THEORY REBUILD (preface-3): the LEFT four-layer agent
+     stack is unchanged. The RIGHT causal tail is SOFTENED — the old tail said context-window overflow
+     "drives" churn. The corrected chain: a large engineering task REQUIRES a reasoning horizon, which MAY
+     EXCEED the available working state (the context window is only ONE present limit, not the definition),
+     which CONTRIBUTES TO churn. Repeated reconstruction is a contributing cost, not a deterministic driver.
+     Orientation reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Layered stack: how coding agents work, and the causal tail of how they fail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Layered stack of how coding agents work, and a softened causal tail of how they come apart: a large engineering task requires a reasoning horizon that may exceed the available working state, of which the context window is one present limit, contributing to churn">
   <defs>
-    <!-- userSpaceOnUse so the 3px-stroke connectors keep a fixed ~11px head instead of scaling to ~21px (strokeWidth×3) and swallowing the short 20px inter-layer shafts. -->
-    <marker id="vh-av" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="vh-av2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
   <rect x="0" y="0" width="1000" height="500" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
@@ -13,16 +16,16 @@
 
   <!-- column headers -->
   <text x="330" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the stack</text>
-  <text x="800" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">how it comes apart</text>
+  <text x="825" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">how it comes apart</text>
 
-  <!-- ===== LEFT: the four-layer stack ===== -->
+  <!-- ===== LEFT: the four-layer stack (unchanged) ===== -->
   <!-- Application -->
   <rect x="80" y="92" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="100" y="122" font-size="20" font-weight="bold" fill="#1c1917">Application</text>
   <text x="100" y="144" font-size="16" fill="#57534e">your codebase</text>
 
   <!-- runs on -->
-  <line x1="330" y1="156" x2="330" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <line x1="330" y1="156" x2="330" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="342" y="171" font-size="16" fill="#78716c">runs on</text>
 
   <!-- Agent Harness (taller; holds three chips) -->
@@ -38,7 +41,7 @@
   <text x="450" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Hooks</text>
 
   <!-- wraps -->
-  <line x1="330" y1="288" x2="330" y2="308" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <line x1="330" y1="288" x2="330" y2="308" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="342" y="303" font-size="16" fill="#78716c">wraps</text>
 
   <!-- Foundation Model -->
@@ -47,43 +50,52 @@
   <text x="100" y="360" font-size="16" fill="#57534e">the trained model at the bottom of the stack</text>
 
   <!-- bounded by -->
-  <line x1="330" y1="372" x2="330" y2="392" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
+  <line x1="330" y1="372" x2="330" y2="392" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="342" y="387" font-size="16" fill="#78716c">bounded by</text>
 
   <!-- Context Window -->
   <rect x="80" y="392" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="100" y="422" font-size="20" font-weight="bold" fill="#1c1917">Context Window</text>
-  <text x="100" y="444" font-size="16" fill="#57534e">the bounded memory it holds at once</text>
+  <text x="100" y="444" font-size="16" fill="#57534e">the bounded working state it holds at once</text>
 
-  <!-- ===== RIGHT: causal failure tail ===== -->
-  <!-- work too large -->
-  <rect x="690" y="110" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="800" y="139" text-anchor="middle" font-size="18" fill="#1c1917">work too large</text>
+  <!-- ===== RIGHT: softened causal tail ===== -->
+  <!-- large engineering task -->
+  <rect x="690" y="92" width="260" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="820" y="121" text-anchor="middle" font-size="18" fill="#1c1917">Large engineering task</text>
 
-  <!-- overruns -->
-  <line x1="800" y1="156" x2="800" y2="238" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
-  <text x="812" y="201" font-size="16" fill="#78716c">overruns</text>
+  <!-- requires -->
+  <line x1="820" y1="138" x2="820" y2="178" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <text x="832" y="162" font-size="16" fill="#78716c">requires</text>
 
   <!-- Reasoning Horizon -->
-  <rect x="690" y="238" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="800" y="267" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Reasoning Horizon</text>
+  <rect x="690" y="178" width="260" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="820" y="207" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Reasoning Horizon</text>
 
-  <!-- drives -->
-  <line x1="800" y1="284" x2="800" y2="366" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av)"/>
-  <text x="812" y="329" font-size="16" fill="#78716c">drives</text>
+  <!-- may exceed -->
+  <line x1="820" y1="224" x2="820" y2="264" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <text x="832" y="248" font-size="16" fill="#78716c">may exceed</text>
+
+  <!-- Available working state (context window is one present limit) -->
+  <rect x="690" y="264" width="260" height="58" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="820" y="290" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Available working state</text>
+  <text x="820" y="311" text-anchor="middle" font-size="12.4" font-style="italic" fill="#57534e">context window is one present limit</text>
+
+  <!-- contributes to -->
+  <line x1="820" y1="322" x2="820" y2="362" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <text x="832" y="346" font-size="16" fill="#78716c">contributes to</text>
 
   <!-- Churn -->
-  <rect x="690" y="366" width="220" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="800" y="395" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Churn</text>
+  <rect x="690" y="362" width="260" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
+  <text x="820" y="391" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Churn</text>
 
-  <!-- bridge: the Context Window instantiates the horizon limit today. Orthogonal L-connector (right, up, right) through the empty middle gap — never a harsh diagonal. -->
-  <polyline points="580,424 635,424 635,261 690,261" fill="none" stroke="#cfcabf" stroke-width="3" stroke-dasharray="4 4" marker-end="url(#vh-av)"/>
-  <text x="645" y="350" font-size="16" fill="#78716c">instantiates</text>
+  <!-- bridge: the Context Window is ONE instance of the working-state limit today. Orthogonal L-connector
+       through the empty middle gap, no label (the working-state node carries the meaning). -->
+  <polyline points="580,424 636,424 636,293 688,293" fill="none" stroke="#cfcabf" stroke-width="3" stroke-dasharray="4 4" marker-end="url(#vh-av2)"/>
 
-  <!-- the two glossary terms that annotate the stack but aren't layers: Skill/Tool defined via chips above; Fleet noted below -->
+  <!-- the two glossary terms that annotate the stack but aren't layers -->
   <text x="95" y="484" font-size="16" fill="#57534e">A <tspan font-weight="bold">Fleet</tspan> is many such stacks working one codebase — the agentic-era workforce this book governs.</text>
 
-  <!-- R13 zoom cue: FRAME-echo corner-brackets — a family-membership signal (0.3-1 has no agent source-node; this figure zooms sideways into the agent substrate, FORK-D). Same L mark at frame scale. -->
+  <!-- R13 zoom cue: FRAME-echo corner-brackets — a family-membership signal (this figure zooms sideways into the agent substrate). -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
     <path d="M26,12 L12,12 L12,26"/>
     <path d="M974,488 L988,488 L988,474"/>

@@ -1,100 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off glossary section-map (geometry-per-concept redraw 260810; R13 ontology redraw 260811). Not machine-projected; edit this SVG directly. -->
-<!-- CONTROL-PIPELINE geometry for the Governed Engineering Environment. Horizontal verb-on-edge flow: Model/Invariant -enforced by-> Governance Mechanism -plays one of-> Role{4 chips} -govern-> Governed Environment -compounds into-> Engineering Capital. Hook is a SEPARATE execution primitive tapped onto the enforcement edge ("fires at"), NOT a peer of Invariant; the Invariant is folded into stage A as the enforced predicate. Orientation reference chrome, not a role-coloured figure. -->
+<!-- HAND-AUTHORED one-off glossary section-map. R41b THEORY REBUILD (preface-3): the old figure led with
+     Model / Invariant -> Governance Mechanism, as though every mechanism starts from a model. That is now
+     wrong. The input is an ENGINEERING OBLIGATION, and a mechanism has TWO ways to obtain something to act
+     on: a directly observable action or artifact (no model needed), OR an explicit model / invariant
+     (richer semantics). Both JOIN at the Governance Mechanism, which governs the environment that compounds
+     into engineering capital. Explicit models are not a prerequisite — they extend the mechanism to
+     properties that would otherwise need human reconstruction. Orientation reference chrome, not a
+     role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Control pipeline: a model's invariant is enforced by a governance mechanism that plays one of four roles to govern an environment that compounds into engineering capital; a hook is the injection point where enforcement fires">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Two-input control flow: an engineering obligation is acted on either through a directly observable action or artifact, or through an explicit model or invariant with richer semantics; both join at the governance mechanism, which governs an environment that compounds into engineering capital">
   <defs>
-    <marker id="vh-gee" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="vh-gee2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
-  <rect x="0" y="0" width="1000" height="500" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The Governed Engineering Environment</text>
 
-  <!-- stage label for the role fan -->
-  <text x="523" y="145" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Role — one of four</text>
+  <!-- ===== the input: an engineering obligation ===== -->
+  <rect x="390" y="70" width="220" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="500" y="96" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Engineering</text>
+  <text x="500" y="115" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">obligation</text>
 
-  <!-- end-transition verbs, floating in the clean band above the boxes (y=176 keeps the wider 'compounds into' clear of the Engineering-Capital box top at y=197 in Georgia/Typst metrics) -->
-  <text x="183" y="176" text-anchor="middle" font-size="16" fill="#78716c">enforced by</text>
-  <text x="828" y="176" text-anchor="middle" font-size="16" fill="#78716c">compounds into</text>
+  <!-- fork to two ways of obtaining something to act on -->
+  <line x1="500" y1="122" x2="500" y2="150" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="280" y1="150" x2="720" y2="150" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="280" y1="150" x2="280" y2="182" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <line x1="720" y1="150" x2="720" y2="182" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <text x="500" y="172" text-anchor="middle" font-size="14" font-style="italic" fill="#78716c">acted on through one of two surfaces</text>
 
-  <!-- ===== Stage A: Model / Invariant — the enforced predicate ===== -->
-  <rect x="20" y="193" width="140" height="84" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="90" y="219" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Model /</text>
-  <text x="90" y="240" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Invariant</text>
-  <text x="90" y="260" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">the predicate to enforce</text>
+  <!-- LEFT input: a directly observable action or artifact (no model) -->
+  <rect x="110" y="184" width="330" height="78" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
+  <text x="275" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Directly observable</text>
+  <text x="275" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">action or artifact</text>
+  <text x="275" y="255" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run — no model</text>
 
-  <!-- A -> B -->
-  <line x1="160" y1="235" x2="206" y2="235" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee)"/>
+  <!-- RIGHT input: an explicit model / invariant (richer semantics) -->
+  <rect x="560" y="184" width="330" height="78" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2.4"/>
+  <text x="725" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Explicit model / invariant</text>
+  <text x="725" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">richer semantics</text>
+  <text x="725" y="255" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">states properties observation cannot reach</text>
 
-  <!-- ===== Stage B: Governance Mechanism ===== -->
-  <rect x="206" y="193" width="150" height="84" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="281" y="222" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governance</text>
-  <text x="281" y="243" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Mechanism</text>
-  <text x="281" y="263" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">encodes a policy</text>
+  <!-- join: both surfaces meet at the mechanism -->
+  <line x1="275" y1="262" x2="275" y2="292" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="725" y1="262" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="275" y1="292" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="500" y1="292" x2="500" y2="322" stroke="#57534e" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <text x="512" y="312" font-size="14" fill="#78716c">enforced by</text>
 
-  <!-- B -> C: lead-in to the role bus, then the bus splits to the four chips -->
-  <line x1="356" y1="235" x2="424" y2="235" stroke="#cfcabf" stroke-width="3"/>
-  <text x="388" y="226" text-anchor="middle" font-size="13" fill="#78716c">plays one of</text>
-  <line x1="424" y1="172" x2="424" y2="298" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="424" y1="172" x2="438" y2="172" stroke="#cfcabf" stroke-width="2" marker-end="url(#vh-gee)"/>
-  <line x1="424" y1="214" x2="438" y2="214" stroke="#cfcabf" stroke-width="2" marker-end="url(#vh-gee)"/>
-  <line x1="424" y1="256" x2="438" y2="256" stroke="#cfcabf" stroke-width="2" marker-end="url(#vh-gee)"/>
-  <line x1="424" y1="298" x2="438" y2="298" stroke="#cfcabf" stroke-width="2" marker-end="url(#vh-gee)"/>
+  <!-- ===== the JOIN point: Governance Mechanism ===== -->
+  <rect x="330" y="322" width="340" height="62" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="500" y="350" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governance Mechanism</text>
+  <text x="500" y="371" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
+  <line x1="500" y1="384" x2="500" y2="422" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <text x="512" y="408" font-size="14" fill="#78716c">governs</text>
 
-  <!-- four role chips (vertical fan) -->
-  <rect x="438" y="155" width="170" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="450" y="177" font-size="15" font-weight="bold" fill="#1c1917">Constraint</text>
-  <text x="596" y="177" text-anchor="end" font-size="13" font-style="italic" fill="#78716c">restricts</text>
+  <!-- Governed Engineering Environment -->
+  <rect x="290" y="422" width="420" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
+  <text x="500" y="454" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governed Engineering Environment</text>
+  <line x1="500" y1="474" x2="500" y2="512" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <text x="512" y="498" font-size="14" fill="#78716c">compounds into</text>
 
-  <rect x="438" y="197" width="170" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="450" y="219" font-size="15" font-weight="bold" fill="#1c1917">Sensor</text>
-  <text x="596" y="219" text-anchor="end" font-size="13" font-style="italic" fill="#78716c">produces evidence</text>
+  <!-- Engineering Capital — terminal (dark) -->
+  <rect x="390" y="512" width="220" height="52" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
+  <text x="500" y="544" text-anchor="middle" font-size="19" font-weight="bold" fill="#fdfcf9">Engineering Capital</text>
 
-  <rect x="438" y="239" width="170" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="450" y="261" font-size="15" font-weight="bold" fill="#1c1917">Validator</text>
-  <text x="596" y="261" text-anchor="end" font-size="13" font-style="italic" fill="#78716c">evaluates</text>
+  <!-- footer band: the drift-gate story + the linter/gate example (preserved) -->
+  <line x1="60" y1="588" x2="940" y2="588" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="70" y="612" font-size="15" fill="#57534e">A <tspan font-weight="bold">drift gate</tspan> catches <tspan font-style="italic">model drift</tspan> — a model and its code disagreeing. A <tspan font-weight="bold">linter</tspan> senses; a <tspan font-weight="bold">gate</tspan> blocks the commit.</text>
 
-  <rect x="438" y="281" width="170" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="450" y="303" font-size="15" font-weight="bold" fill="#1c1917">Gate</text>
-  <text x="596" y="303" text-anchor="end" font-size="13" font-style="italic" fill="#78716c">admits</text>
-
-  <!-- C -> D: collect the fan, then a single govern edge into D -->
-  <line x1="608" y1="172" x2="624" y2="172" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="608" y1="214" x2="624" y2="214" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="608" y1="256" x2="624" y2="256" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="608" y1="298" x2="624" y2="298" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="624" y1="172" x2="624" y2="298" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="624" y1="235" x2="672" y2="235" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee)"/>
-  <text x="648" y="227" text-anchor="middle" font-size="13" fill="#78716c">govern</text>
-
-  <!-- ===== Stage D: Governed Environment ===== -->
-  <rect x="672" y="197" width="140" height="76" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="742" y="228" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governed</text>
-  <text x="742" y="250" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Environment</text>
-
-  <!-- D -> E -->
-  <line x1="812" y1="235" x2="844" y2="235" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee)"/>
-
-  <!-- ===== Stage E: Engineering Capital — terminal (echoes the spine terminal) ===== -->
-  <rect x="844" y="197" width="140" height="76" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
-  <text x="914" y="228" text-anchor="middle" font-size="18" font-weight="bold" fill="#fdfcf9">Engineering</text>
-  <text x="914" y="250" text-anchor="middle" font-size="18" font-weight="bold" fill="#fdfcf9">Capital</text>
-
-  <!-- Hook callout: a SEPARATE execution primitive tapped onto the B->C enforcement edge -->
-  <line x1="378" y1="352" x2="392" y2="238" stroke="#cfcabf" stroke-width="2" marker-end="url(#vh-gee)"/>
-  <text x="366" y="300" text-anchor="end" font-size="15" fill="#78716c">fires at</text>
-  <rect x="300" y="352" width="150" height="46" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="375" y="373" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Hook</text>
-  <text x="375" y="390" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">deterministic injection point</text>
-
-  <!-- footer band: the drift-gate story + the linter/gate example (preserved verbatim) -->
-  <line x1="20" y1="430" x2="984" y2="430" stroke="#cfcabf" stroke-width="1.5"/>
-  <text x="30" y="454" font-size="16" fill="#57534e">A <tspan font-weight="bold">drift gate</tspan> catches <tspan font-style="italic">model drift</tspan> — a model and its code disagreeing.</text>
-  <text x="30" y="476" font-size="16" fill="#57534e">A <tspan font-weight="bold">linter</tspan> senses; a <tspan font-weight="bold">gate</tspan> consumes its result to block the commit.</text>
-
-  <!-- R13 zoom cue: FRAME-echo corner-brackets — this figure IS the expansion of 0.3-1's Governance-Mechanism node. Same L mark as the source brackets there, at frame scale. -->
+  <!-- R13 zoom cue: FRAME-echo corner-brackets — this figure IS the expansion of 0.3-1's Governance-Mechanism node. -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
     <path d="M26,12 L12,12 L12,26"/>
-    <path d="M974,488 L988,488 L988,474"/>
+    <path d="M974,628 L988,628 L988,614"/>
   </g>
 </svg>

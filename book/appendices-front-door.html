@@ -722,77 +722,69 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
 <li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendices-divider" aria-label="Appendices — The Working Surface of MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Reference</a></div><h1>Appendices</h1></header><p class="appendices-divider-sub">The Working Surface of MAGE</p><div class="appendices-divider-body"><p>The argument ends here. What follows is the working surface of MAGE — the reference material you return to while building rather than read sequentially. These appendices package the book's ideas for repeated use: engineering stacks, flagship mechanisms, operational references, implementation guidance. Like the Gang of Four, consult them when a problem arises; you need not read them cover to cover.</p>
 <p>The map below shows how the parts fit, with the appendices as the working surface at its foot.</p>
-<figure id="fig-8-0-1" class="book-figure" data-label="book-map-appendix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 850"
+<figure id="fig-8-0-1" class="book-figure" data-label="book-map-appendix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 850"
      role="group" aria-labelledby="bmTitle bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="bmTitle">A map of the book — a single linear descent through six parts</title>
-  <desc id="bmDesc">The book is one straight descent, not a fork. Part I, The Mindset, sets the frame and
-    the two theses — why engineering changes. It leads down to Part II, Modeling, which develops the
-    Modeling Thesis: make intent explicit. That leads to Part III, Alignment,
-    which develops the Alignment Thesis: give intent authority — Alignment depends on Modeling, so it comes
-    after, not beside it. That leads to Part IV, The MAGE Method, which joins the two
-    theses — model, align, convert, repeat — and turns them into practical engineering work: the
-    workflow, migration, validation of change, and reusable skills, with brief industrial examples as
-    illustration. That leads to Part V, The Evidence: DocAble end to end, where the method came from.
-    That leads to Part VI, The Profession: theory, industrial comparison, scope, the profession,
-    and open problems. Off to the side sits the reference back matter — appendices, about the author,
-    colophon — an aside beside the argument, not a stage in it.</desc>
+  <desc id="bmDesc">The book is one straight descent through six parts. Part I, The New Engineering Problem,
+    sets the frame: the changed economics and the engineering problems that remain when implementation
+    becomes abundant. It leads to Part II, Modeling, which develops the Modeling Thesis: make knowledge and
+    intent explicit. That leads to Part III, Alignment, which develops the Alignment Thesis: give
+    obligations authority. Modeling comes first as a principled progression from representation to
+    authority, not as a dependency — Alignment can exist without explicit models, but its reach is narrower
+    and human judgment must bridge what the environment cannot represent. That leads to Part IV, The MAGE
+    Method, which joins the two theses — model, align, convert, repeat — as practical engineering work:
+    workflow, migration, validation, and skills. That leads to Part V, The Evidence: DocAble end to end,
+    where the method came from. That leads to Part VI, The Profession: theory, industrial comparison, scope,
+    the profession, and open problems.</desc>
 
   <defs>
-    <marker id="bm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="bm2-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="980" height="850" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="900" height="850" fill="#fdfcf9"/>
 
-  <!-- PART I — The Mindset (ink frame) -->
-  <rect x="200" y="40" width="520" height="90" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="460" y="80" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part I · The Mindset</text>
-  <text x="460" y="108" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">why engineering changes — the frame and the two theses</text>
-  <line x1="460" y1="130" x2="460" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+  <!-- PART I — The New Engineering Problem (ink frame) -->
+  <rect x="190" y="40" width="520" height="90" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="450" y="80" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part I · The New Engineering Problem</text>
+  <text x="450" y="108" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the changed economics — why engineering changes</text>
+  <line x1="450" y1="130" x2="450" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
-  <!-- PART II — The Model Zoo · Modeling Thesis (green) -->
-  <rect x="200" y="160" width="520" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
-  <text x="460" y="200" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
-  <text x="460" y="228" text-anchor="middle" font-size="16" font-style="italic" fill="#1f7a4d">Modeling Thesis · make intent explicit</text>
-  <line x1="460" y1="256" x2="460" y2="284" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+  <!-- PART II — Modeling (green) -->
+  <rect x="190" y="160" width="520" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="450" y="200" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
+  <text x="450" y="228" text-anchor="middle" font-size="16" font-style="italic" fill="#1f7a4d">Modeling Thesis · make knowledge + intent explicit</text>
+  <line x1="450" y1="256" x2="450" y2="298" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <text x="472" y="272" text-anchor="start" font-size="13" font-style="italic" fill="#57534e">principled progression:</text>
+  <text x="472" y="288" text-anchor="start" font-size="13" font-style="italic" fill="#57534e">representation → authority</text>
 
-  <!-- PART III — The Governed Engineering Environment · Alignment Thesis (rust) -->
-  <rect x="200" y="286" width="520" height="96" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="460" y="326" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
-  <text x="460" y="354" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Alignment Thesis · give intent authority</text>
-  <line x1="460" y1="382" x2="460" y2="410" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+  <!-- PART III — Alignment (rust) -->
+  <rect x="190" y="300" width="520" height="96" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="450" y="340" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
+  <text x="450" y="368" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Alignment Thesis · give obligations authority</text>
+  <line x1="450" y1="396" x2="450" y2="424" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
-  <!-- PART IV — Putting It to Work · the MAGE method (neutral: joins the two) -->
-  <rect x="200" y="412" width="520" height="114" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="460" y="450" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
-  <text x="460" y="476" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the MAGE method · join the theses</text>
-  <text x="460" y="498" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">model → align → convert → repeat</text>
-  <text x="460" y="518" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">workflow · migration · validation · skills</text>
-  <line x1="460" y1="526" x2="460" y2="554" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+  <!-- PART IV — The MAGE Method (neutral: joins the two) -->
+  <rect x="190" y="426" width="520" height="114" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="450" y="464" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
+  <text x="450" y="490" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">join the theses</text>
+  <text x="450" y="512" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">model → align → convert → repeat</text>
+  <text x="450" y="532" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">workflow · migration · validation · skills</text>
+  <line x1="450" y1="540" x2="450" y2="568" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
-  <!-- PART V — A MAGE Case Study (fleet blue) -->
-  <rect x="200" y="556" width="520" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="460" y="596" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
-  <text x="460" y="624" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">DocAble, end to end · where the method came from</text>
-  <line x1="460" y1="652" x2="460" y2="680" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+  <!-- PART V — The Evidence (fleet blue) -->
+  <rect x="190" y="570" width="520" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="450" y="610" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
+  <text x="450" y="638" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">DocAble, end to end · where the method came from</text>
+  <line x1="450" y1="666" x2="450" y2="694" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART VI — The Profession (purple) -->
-  <rect x="200" y="682" width="520" height="104" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
-  <text x="460" y="720" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
-  <text x="460" y="746" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">theory · industrial comparison · scope</text>
-  <text x="460" y="768" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">profession · open problems</text>
-
-  <!-- BACK MATTER — off to the side (an aside, not a numbered stage) -->
-  <path d="M720,616 C752,616 758,624 786,624" fill="none" stroke="#57534e" stroke-width="1.8"
-        stroke-dasharray="5 4"/>
-  <rect x="788" y="586" width="176" height="104" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8"
-        stroke-dasharray="5 4"/>
-  <text x="876" y="616" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">Back matter</text>
-  <text x="876" y="640" text-anchor="middle" font-size="12.5" fill="#57534e">appendices · about the</text>
-  <text x="876" y="657" text-anchor="middle" font-size="12.5" fill="#57534e">author · colophon</text>
-  <text x="876" y="679" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">an aside, not a stage</text>
+  <rect x="190" y="696" width="520" height="104" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <text x="450" y="734" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
+  <text x="450" y="760" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">theory · industrial comparison · scope</text>
+  <text x="450" y="782" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">profession · open problems</text>
 </svg><figcaption data-short="A map of the book"><span class="fig-label">Figure 8.0-1.</span> A map of the book. The appendices are the working surface at the foot of it — return here while building.</figcaption></figure>
 <p><a class="xref" href="appendices-front-door.html#tbl-8-0-1">Table&nbsp;8.0-1</a> sets each reference beside the job it does and the question that sends you to it.</p>
 <table id="tbl-8-0-1" class="book-table" data-label="where-to-look"><caption data-short="The MAGE reference surfaces, their jobs, and the questions they answer"><span class="tbl-label">Table 8.0-1.</span> The MAGE reference surfaces — each appendix and the online catalogue beside the job it does and the question that sends you to it.</caption><thead><tr><th>Reference</th><th>What it's for</th><th>Reach here when you're asking</th></tr></thead><tbody><tr><td><a href="appendix-stacks.html">Appendix A</a> — MAGE Engineering Stacks</td><td>Compose a capability from the mechanisms that travel together</td><td><em>How should I build this capability?</em></td></tr><tr><td><a href="appendix-b-flagship-mechanisms.html">Appendix B</a> — Flagship Mechanisms</td><td>The engineering judgment behind the load-carrying mechanisms</td><td><em>Why is this the right decision?</em></td></tr><tr><td><a href="appendix-c-mechanism-catalog.html">Appendix C</a> — Mechanism Catalog</td><td>The whole vocabulary at a glance</td><td><em>What is this mechanism again?</em></td></tr><tr><td><a href="appendix-operators-reference.html">Appendix D</a> — Operator's Reference</td><td>Operate a governed environment: dashboards, health checks, the migration drill, release preflight, daily doctrine</td><td><em>What should I watch or do while running the system?</em></td></tr><tr><td><a href="appendix-skill-recipe.html">Appendix E</a> — How to Write a Skill</td><td>Package a body of judgment into a skill an agent can reach for</td><td><em>How do I build a skill?</em></td></tr><tr><td><a href="appendix-field-guide.html">Appendix F</a> — Field Guide</td><td>The six studied teams as one-page cards: who each is, the door it took into the design space, and the one lesson to carry</td><td><em>Who was that team again?</em></td></tr><tr><td><a href="appendix-evidence-ledger.html">Appendix H</a> — Part-V Evidence Ledger</td><td>The raw count tables behind Part V's curves: support-ratio lines, per-path churn, control-growth totals</td><td><em>What are the counts behind that curve?</em></td></tr><tr><td><em>Online catalogue</em></td><td>The complete reference for one mechanism — every entry as a full Gang-of-Four page</td><td><em>How do I implement this mechanism?</em></td></tr></tbody></table>

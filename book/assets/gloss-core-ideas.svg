@@ -1,85 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off glossary section-map (round-7 §G-6; geometry-per-concept verb-audit 260810; R13 edge-type differentiation 260811). Not machine-projected; edit this SVG directly. -->
-<!-- HUB geometry for the core ideas — governance is genuinely the centre everything reorganizes around. Kept from round-7. Every edge now carries a verb AND a relation-type: dash pattern is the primary greyscale/colourblind-safe key (solid=constitutive, long-dash=causal/contextual, fine-dotted+open-head=metaphorical, dash-dot=dynamic); arrowheads add direction. Orientation reference chrome, not a role-coloured figure. -->
+<!-- HAND-AUTHORED one-off glossary section-map. R41b THEORY REBUILD (preface-3): the old figure made
+     Governance the hub everything "reorganizes around," and inherited the false linear dependency
+     Modeling -> Alignment. Both fixed. Commodity intelligence CHANGES THE ECONOMICS; the two theses address
+     DIFFERENT constraints within that new economy. Modeling SUPPLIES richer authority surfaces to Alignment
+     but is NOT a prerequisite (a soft causal edge, annotated). Governance conversion enriches EITHER models
+     OR controls (a dynamic edge into the thesis layer) and compounds into engineering capital. The Printer
+     stays metaphorical, not causal (fine-dotted, open head). Edge dash-pattern is the primary
+     greyscale/colourblind-safe key: solid=constitutive, long-dash=causal/contextual,
+     fine-dotted+open-head=metaphorical, dash-dot=dynamic. Node labels sit OUTBOARD of their dots so the
+     edges land on the dots without crossing text. Orientation reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map: the core ideas, edges typed by relation kind">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Concept map of the core ideas: commodity intelligence changes the economics of engineering; the Modeling and Alignment theses address different constraints; Modeling supplies richer authority surfaces to Alignment but is not a prerequisite; governance conversion enriches either models or controls and compounds into engineering capital; the Printer is a metaphor">
   <defs>
-    <marker id="vh-ci" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
-    <marker id="vh-ci-open" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#78716c" stroke-width="1.5"/></marker>
+    <marker id="vh-ci2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="vh-ci2-open" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#78716c" stroke-width="1.5"/></marker>
   </defs>
-  <rect x="0" y="0" width="1000" height="520" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1000" height="580" fill="#fdfcf9"/>
   <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The core ideas</text>
 
-  <!-- edges (drawn first, nodes sit on top); each typed by relation kind, arrow-end trimmed clear of its target node -->
-  <!-- Commodity intelligence -> Governance : causal/contextual (long-dash) -->
-  <line x1="500" y1="90" x2="500" y2="192" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci)"/>
-  <!-- Modeling Thesis -> Model : constitutive (solid) -->
-  <line x1="155" y1="165" x2="317" y2="234" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci)"/>
-  <!-- Model -> Governance : causal/contextual (long-dash) -->
-  <line x1="330" y1="240" x2="478" y2="236" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci)"/>
-  <!-- Alignment Thesis -> Governance : constitutive (solid) -->
-  <line x1="845" y1="150" x2="521" y2="230" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci)"/>
-  <!-- The Printer -> Governance : metaphorical/spec (fine-dotted, open head, lightest) -->
-  <line x1="200" y1="375" x2="480" y2="244" stroke="#78716c" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#vh-ci-open)"/>
-  <!-- Governance Conversion -> Governance : dynamic (dash-dot) -->
-  <line x1="640" y1="360" x2="516" y2="250" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci)"/>
+  <!-- ===== edges (drawn first; nodes sit on top) ===== -->
+  <!-- Commodity intelligence -> each thesis dot : causal/contextual (long-dash) -->
+  <line x1="486" y1="110" x2="292" y2="208" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci2)"/>
+  <line x1="514" y1="110" x2="708" y2="208" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci2)"/>
+  <!-- Modeling -> Alignment : SOFT causal, supplies richer surfaces, NOT a prerequisite (long-dash) -->
+  <line x1="296" y1="214" x2="704" y2="214" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci2)"/>
+  <!-- Governance Conversion -> the thesis layer (enriches either side) : dynamic (dash-dot) -->
+  <line x1="450" y1="390" x2="500" y2="254" stroke="#57534e" stroke-width="2.2" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci2)"/>
   <!-- Governance Conversion -> Engineering capital : dynamic (dash-dot) -->
-  <line x1="640" y1="360" x2="866" y2="360" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci)"/>
+  <line x1="494" y1="402" x2="766" y2="402" stroke="#57534e" stroke-width="2.2" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci2)"/>
+  <!-- The Printer -> Modeling : metaphorical (fine-dotted, open head); bows right into the dot from below, clear of the job text -->
+  <path d="M175,396 C210,330 250,270 272,222" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#vh-ci2-open)"/>
 
-  <!-- edge labels (every edge carries a verb) -->
-  <text x="512" y="168" font-size="16" fill="#78716c">reorganizes around</text>
-  <text x="228" y="196" text-anchor="middle" font-size="16" fill="#78716c">externalize into</text>
-  <text x="415" y="228" text-anchor="middle" font-size="16" fill="#78716c">reason through</text>
-  <text x="686" y="186" text-anchor="middle" font-size="16" fill="#78716c">encode as mechanisms</text>
-  <text x="352" y="300" text-anchor="middle" font-size="16" fill="#78716c">specify precisely</text>
-  <text x="586" y="292" text-anchor="middle" font-size="16" fill="#78716c">converts failures</text>
-  <text x="760" y="350" text-anchor="middle" font-size="16" fill="#78716c">compounds into</text>
+  <!-- ===== edge labels (each edge carries a verb) ===== -->
+  <text x="500" y="170" text-anchor="middle" font-size="16" fill="#78716c">changes the economics of</text>
+  <text x="500" y="200" text-anchor="middle" font-size="15" fill="#78716c">supplies richer authority surfaces</text>
+  <text x="500" y="240" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">— not a prerequisite</text>
+  <text x="490" y="320" text-anchor="start" font-size="15" fill="#78716c">enriches models or controls</text>
+  <text x="628" y="394" text-anchor="middle" font-size="15" fill="#78716c">compounds into</text>
+  <text x="150" y="350" text-anchor="middle" font-size="13" fill="#78716c">a metaphor for</text>
+  <text x="150" y="366" text-anchor="middle" font-size="13" fill="#78716c">explicit intent</text>
 
-  <!-- hub: Governance -->
-  <circle cx="500" cy="235" r="15" fill="#1c1917"/>
-  <text x="500" y="212" text-anchor="middle" font-size="21" font-weight="bold" fill="#1c1917">Governance</text>
+  <!-- ===== nodes (labels outboard of dots) ===== -->
+  <!-- Commodity intelligence (top) -->
+  <circle cx="500" cy="102" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="500" y="84" text-anchor="middle" font-size="18" fill="#57534e">Commodity intelligence</text>
 
-  <!-- spokes -->
-  <circle cx="500" cy="90" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="500" y="72" text-anchor="middle" font-size="18" fill="#57534e">Commodity intelligence</text>
+  <!-- Modeling Thesis (left) — label + job outboard to the LEFT -->
+  <circle cx="280" cy="214" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="262" y="209" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">Modeling Thesis</text>
+  <text x="244" y="231" text-anchor="end" font-size="13.4" font-style="italic" fill="#57534e">externalizes knowledge + intent</text>
 
-  <circle cx="155" cy="165" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="155" y="147" text-anchor="middle" font-size="18" fill="#57534e">Modeling Thesis</text>
+  <!-- Alignment Thesis (right) — label + job outboard to the RIGHT -->
+  <circle cx="720" cy="214" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="738" y="209" text-anchor="start" font-size="18" font-weight="bold" fill="#1c1917">Alignment Thesis</text>
+  <text x="738" y="231" text-anchor="start" font-size="13.4" font-style="italic" fill="#57534e">gives obligations authority</text>
 
-  <circle cx="330" cy="240" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="330" y="272" text-anchor="middle" font-size="18" fill="#57534e">Model</text>
+  <!-- Governance Conversion (centre-bottom) -->
+  <circle cx="450" cy="400" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="450" y="430" text-anchor="middle" font-size="18" fill="#57534e">Governance Conversion</text>
 
-  <circle cx="845" cy="150" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="845" y="132" text-anchor="middle" font-size="18" fill="#57534e">Alignment Thesis</text>
+  <!-- Engineering capital (right-bottom) -->
+  <circle cx="785" cy="402" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="785" y="432" text-anchor="middle" font-size="18" fill="#57534e">Engineering capital</text>
 
-  <circle cx="200" cy="375" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="200" y="407" text-anchor="middle" font-size="18" fill="#57534e">The Printer</text>
-
-  <circle cx="640" cy="360" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="640" y="392" text-anchor="middle" font-size="18" fill="#57534e">Governance Conversion</text>
-
-  <circle cx="880" cy="360" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="880" y="392" text-anchor="middle" font-size="18" fill="#57534e">Engineering capital</text>
+  <!-- The Printer (left-bottom) -->
+  <circle cx="175" cy="404" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="175" y="434" text-anchor="middle" font-size="18" fill="#57534e">The Printer</text>
 
   <!-- edge-type legend: dash pattern is the primary (print/greyscale/colourblind-safe) key -->
-  <line x1="95" y1="478" x2="905" y2="478" stroke="#cfcabf" stroke-width="1.5"/>
-  <line x1="95" y1="500" x2="135" y2="500" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci)"/>
-  <text x="143" y="505" font-size="15" fill="#57534e">Constitutive</text>
-  <line x1="300" y1="500" x2="340" y2="500" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci)"/>
-  <text x="348" y="505" font-size="15" fill="#57534e">Causal / contextual</text>
-  <line x1="520" y1="500" x2="560" y2="500" stroke="#78716c" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#vh-ci-open)"/>
-  <text x="568" y="505" font-size="15" fill="#57534e">Metaphorical</text>
-  <line x1="720" y1="500" x2="760" y2="500" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci)"/>
-  <text x="768" y="505" font-size="15" fill="#57534e">Dynamic</text>
+  <line x1="95" y1="512" x2="905" y2="512" stroke="#cfcabf" stroke-width="1.5"/>
+  <line x1="95" y1="536" x2="135" y2="536" stroke="#57534e" stroke-width="3" marker-end="url(#vh-ci2)"/>
+  <text x="143" y="541" font-size="15" fill="#57534e">Constitutive</text>
+  <line x1="300" y1="536" x2="340" y2="536" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 6" marker-end="url(#vh-ci2)"/>
+  <text x="348" y="541" font-size="15" fill="#57534e">Causal / contextual</text>
+  <line x1="520" y1="536" x2="560" y2="536" stroke="#78716c" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#vh-ci2-open)"/>
+  <text x="568" y="541" font-size="15" fill="#57534e">Metaphorical</text>
+  <line x1="720" y1="536" x2="760" y2="536" stroke="#57534e" stroke-width="2.5" stroke-dasharray="10 4 2 4" marker-end="url(#vh-ci2)"/>
+  <text x="768" y="541" font-size="15" fill="#57534e">Dynamic</text>
 
-  <!-- R13 zoom cue: SOURCE corner-brackets marking the two nodes expanded elsewhere. Same L mark echoed as a frame on the expansion figures (0.3-2, 0.3-4). Nudged clear of the converging dash-typed edges + labels (DELTA-1). -->
+  <!-- R13 zoom cue: SOURCE corner-brackets marking the two thesis nodes expanded elsewhere (Modeling -> model classes 0.3-2; Alignment -> the governed environment 0.3-4). -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
-    <!-- Model node (expanded by 0.3-2): TR + BL, clear of the Modeling->Model and Model->Governance edges -->
-    <path d="M336,222 L350,222 L350,236"/>
-    <path d="M321,279 L307,279 L307,265"/>
-    <!-- Governance hub (expanded by 0.3-4): TL + BR around the label+hub group, outside the converging arrowheads -->
-    <path d="M460,195 L446,195 L446,209"/>
-    <path d="M540,251 L554,251 L554,237"/>
+    <path d="M292,198 L302,198 L302,208"/>
+    <path d="M268,230 L258,230 L258,220"/>
+    <path d="M708,198 L698,198 L698,208"/>
+    <path d="M732,230 L742,230 L742,220"/>
   </g>
 </svg>

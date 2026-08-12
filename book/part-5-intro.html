@@ -727,75 +727,67 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The method is the structure left behind.</p></blockquote>
 <p>The clean method arrived last, not first. Models appear in these chapters because reasoning demanded them; mechanisms appear because failures demanded them. Part V walks the build in the order it happened: the problem that set the bar, the stages the system grew through, the road by which delegation climbed from co-coder to architect, the seams that arrived under pressure, and the failures that were each converted into a piece of permanent structure.</p>
 <p>Read the chapters that follow as a path, not a destination. The evidence is not that DocAble ended with models and gates — a finished architecture could be designed that way from the start, and would show nothing about how the method was found. The evidence is the order of events: which failure appeared first, what changed in response, and whether the change retired the failure class or only postponed it. That is the difference between a case and an advertisement.</p>
-<p>In Part IV the industrial organizations served as portability demonstrations — proof that the moves travel. Here the direction reverses. DocAble is not merely an example of MAGE; it is the deep originating case, the investigation from which MAGE was induced. Only a system watched this closely, from the inside and from the start, can show the wrong turns and the reasoning behind the finished mechanisms — the evidence a retrospective of someone else's platform never has.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 850"
+<p>In Part IV the industrial organizations served as portability demonstrations — proof that the moves travel. Here the direction reverses. DocAble is not merely an example of MAGE; it is the deep originating case, the investigation from which MAGE was induced. Only a system watched this closely, from the inside and from the start, can show the wrong turns and the reasoning behind the finished mechanisms — the evidence a retrospective of someone else's platform never has.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 850"
      role="group" aria-labelledby="bmTitle-nav bmDesc-nav"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="bmTitle-nav">A map of the book — a single linear descent through six parts</title>
-  <desc id="bmDesc-nav">The book is one straight descent, not a fork. Part I, The Mindset, sets the frame and
-    the two theses — why engineering changes. It leads down to Part II, Modeling, which develops the
-    Modeling Thesis: make intent explicit. That leads to Part III, Alignment,
-    which develops the Alignment Thesis: give intent authority — Alignment depends on Modeling, so it comes
-    after, not beside it. That leads to Part IV, The MAGE Method, which joins the two
-    theses — model, align, convert, repeat — and turns them into practical engineering work: the
-    workflow, migration, validation of change, and reusable skills, with brief industrial examples as
-    illustration. That leads to Part V, The Evidence: DocAble end to end, where the method came from.
-    That leads to Part VI, The Profession: theory, industrial comparison, scope, the profession,
-    and open problems. Off to the side sits the reference back matter — appendices, about the author,
-    colophon — an aside beside the argument, not a stage in it.</desc>
+  <desc id="bmDesc-nav">The book is one straight descent through six parts. Part I, The New Engineering Problem,
+    sets the frame: the changed economics and the engineering problems that remain when implementation
+    becomes abundant. It leads to Part II, Modeling, which develops the Modeling Thesis: make knowledge and
+    intent explicit. That leads to Part III, Alignment, which develops the Alignment Thesis: give
+    obligations authority. Modeling comes first as a principled progression from representation to
+    authority, not as a dependency — Alignment can exist without explicit models, but its reach is narrower
+    and human judgment must bridge what the environment cannot represent. That leads to Part IV, The MAGE
+    Method, which joins the two theses — model, align, convert, repeat — as practical engineering work:
+    workflow, migration, validation, and skills. That leads to Part V, The Evidence: DocAble end to end,
+    where the method came from. That leads to Part VI, The Profession: theory, industrial comparison, scope,
+    the profession, and open problems.</desc>
 
   <defs>
-    <marker id="bm-ah-nav" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="bm2-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="980" height="850" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="900" height="850" fill="#fdfcf9"/>
 
-  <!-- PART I — The Mindset (ink frame) -->
-  <rect x="200" y="40" width="520" height="90" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="460" y="80" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part I · The Mindset</text>
-  <text x="460" y="108" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">why engineering changes — the frame and the two theses</text>
-  <line x1="460" y1="130" x2="460" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
+  <!-- PART I — The New Engineering Problem (ink frame) -->
+  <rect x="190" y="40" width="520" height="90" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="450" y="80" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part I · The New Engineering Problem</text>
+  <text x="450" y="108" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the changed economics — why engineering changes</text>
+  <line x1="450" y1="130" x2="450" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
-  <!-- PART II — The Model Zoo · Modeling Thesis (green) -->
-  <rect x="200" y="160" width="520" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
-  <text x="460" y="200" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
-  <text x="460" y="228" text-anchor="middle" font-size="16" font-style="italic" fill="#1f7a4d">Modeling Thesis · make intent explicit</text>
-  <line x1="460" y1="256" x2="460" y2="284" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
+  <!-- PART II — Modeling (green) -->
+  <rect x="190" y="160" width="520" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="450" y="200" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
+  <text x="450" y="228" text-anchor="middle" font-size="16" font-style="italic" fill="#1f7a4d">Modeling Thesis · make knowledge + intent explicit</text>
+  <line x1="450" y1="256" x2="450" y2="298" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <text x="472" y="272" text-anchor="start" font-size="13" font-style="italic" fill="#57534e">principled progression:</text>
+  <text x="472" y="288" text-anchor="start" font-size="13" font-style="italic" fill="#57534e">representation → authority</text>
 
-  <!-- PART III — The Governed Engineering Environment · Alignment Thesis (rust) -->
-  <rect x="200" y="286" width="520" height="96" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="460" y="326" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
-  <text x="460" y="354" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Alignment Thesis · give intent authority</text>
-  <line x1="460" y1="382" x2="460" y2="410" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
+  <!-- PART III — Alignment (rust) -->
+  <rect x="190" y="300" width="520" height="96" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="450" y="340" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
+  <text x="450" y="368" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Alignment Thesis · give obligations authority</text>
+  <line x1="450" y1="396" x2="450" y2="424" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
-  <!-- PART IV — Putting It to Work · the MAGE method (neutral: joins the two) -->
-  <rect x="200" y="412" width="520" height="114" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="460" y="450" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
-  <text x="460" y="476" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the MAGE method · join the theses</text>
-  <text x="460" y="498" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">model → align → convert → repeat</text>
-  <text x="460" y="518" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">workflow · migration · validation · skills</text>
-  <line x1="460" y1="526" x2="460" y2="554" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
+  <!-- PART IV — The MAGE Method (neutral: joins the two) -->
+  <rect x="190" y="426" width="520" height="114" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="450" y="464" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
+  <text x="450" y="490" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">join the theses</text>
+  <text x="450" y="512" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">model → align → convert → repeat</text>
+  <text x="450" y="532" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">workflow · migration · validation · skills</text>
+  <line x1="450" y1="540" x2="450" y2="568" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
-  <!-- PART V — A MAGE Case Study (fleet blue) -->
-  <rect x="200" y="556" width="520" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="460" y="596" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
-  <text x="460" y="624" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">DocAble, end to end · where the method came from</text>
-  <line x1="460" y1="652" x2="460" y2="680" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah-nav)"/>
+  <!-- PART V — The Evidence (fleet blue) -->
+  <rect x="190" y="570" width="520" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="450" y="610" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
+  <text x="450" y="638" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">DocAble, end to end · where the method came from</text>
+  <line x1="450" y1="666" x2="450" y2="694" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART VI — The Profession (purple) -->
-  <rect x="200" y="682" width="520" height="104" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
-  <text x="460" y="720" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
-  <text x="460" y="746" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">theory · industrial comparison · scope</text>
-  <text x="460" y="768" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">profession · open problems</text>
-
-  <!-- BACK MATTER — off to the side (an aside, not a numbered stage) -->
-  <path d="M720,616 C752,616 758,624 786,624" fill="none" stroke="#57534e" stroke-width="1.8"
-        stroke-dasharray="5 4"/>
-  <rect x="788" y="586" width="176" height="104" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8"
-        stroke-dasharray="5 4"/>
-  <text x="876" y="616" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">Back matter</text>
-  <text x="876" y="640" text-anchor="middle" font-size="12.5" fill="#57534e">appendices · about the</text>
-  <text x="876" y="657" text-anchor="middle" font-size="12.5" fill="#57534e">author · colophon</text>
-  <text x="876" y="679" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">an aside, not a stage</text>
+  <rect x="190" y="696" width="520" height="104" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <text x="450" y="734" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
+  <text x="450" y="760" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">theory · industrial comparison · scope</text>
+  <text x="450" y="782" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">profession · open problems</text>
 </svg><ul class="visually-hidden roadmap-fallback"><li>Part 1 — The New Engineering Problem: <a href="part-1-intro.html">go to Part 1</a></li><li>Part 2 — Modeling: <a href="part-2-intro.html">go to Part 2</a></li><li>Part 3 — Alignment: <a href="part-3-intro.html">go to Part 3</a></li><li>Part 4 — The MAGE Method: <a href="part-4-intro.html">go to Part 4</a></li><li aria-current="page">Part 5 — The Evidence (current part)</li><li>Part 6 — The Profession: <a href="part-6-intro.html">go to Part 6</a></li></ul></nav><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="4.6-portable-moves.html" aria-label="Previous chapter — Closing: The Portable Moves">« Previous chapter</a></div><span class="chapnav-here" title="The Evidence">The Evidence</span><div class="chapnav-fwd"><a href="5.1-the-problem-and-the-bar.html" aria-label="Next chapter — 22 · The Problem and the Bar">Next chapter »</a><a href="part-6-intro.html" aria-label="Next part — Part 6 — The Profession">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
