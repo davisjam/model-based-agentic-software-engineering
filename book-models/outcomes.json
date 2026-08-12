@@ -30,7 +30,7 @@
     "outcomes_with_elaborative_units": 20,
     "elaborative_links": 27,
     "units_serving_as_elaborative": 20,
-    "sections_total": 265,
+    "sections_total": 261,
     "sections_primary_of_an_outcome": 37,
     "modules": 7,
     "lessons": 35
@@ -269,9 +269,7 @@
           {
             "lesson": "4.3-validating-change",
             "own_outcomes": [],
-            "section_outcomes": [
-              "the-move-a-generator-hunts-a-counterexample-to-a-model::apply-the-core-generative-validation-move-a-ge"
-            ]
+            "section_outcomes": []
           },
           {
             "lesson": "4.4-the-skills",

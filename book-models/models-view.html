@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>37</b> chapters · <b>265</b> sections · <b>78</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>37</b> chapters · <b>261</b> sections · <b>78</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -672,50 +672,33 @@ that repays weeks on one subsystem repays far more across a fleet.</a></div>
 </div>
 <div class="chapter">
 <h3 id="ch-4-3-validating-change"><span class="tier-kick">Lesson</span><a href="../book/4.3-validating-change.html" class="ch-link">4.3-validating-change</a> <span class="ch-slug">4.3-validating-change</span></h3>
-<div class="section s2" id="sec-4-3-validating-change--what-does-it-mean-to-validate-a-change">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">What does it mean to validate a change?</a></div>
+<div class="section s2" id="sec-4-3-validating-change--what-validation-means">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">What validation means</a></div>
 <p class="topic">To validate a change is to assemble evidence that it satisfies its obligations — and to refuse it otherwise.</p>
 </div>
 <div class="section s2" id="sec-4-3-validating-change--the-model-as-oracle">
 <div class="sec-h"><a href="../book/4.3-validating-change.html">The model as oracle</a></div>
-<p class="topic">None of the individual validation techniques in this chapter is new.</p>
+<p class="topic">The Modeling Thesis explains why validation now leans on the model.</p>
 </div>
-<div class="section s3" id="sec-4-3-validating-change--the-move-a-generator-hunts-a-counterexample-to-a-model">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">The move: a generator hunts a counterexample to a model</a></div>
-<p class="topic">Before the three members, the shared shape.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the one move behind property testing, fuzzing, and fuzz-MBSE: a generator hunting a counterexample to a stated model. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-4-3-validating-change--generate-falsifying-evidence">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Generate falsifying evidence</a></div>
+<p class="topic">The move — generate inputs and search for a counterexample — answers three different signals in the code under test, and the signal, not a technique&#x27;s sophistication, picks the member.</p>
 </div>
-<div class="section s3" id="sec-4-3-validating-change--fuzz-mbse-the-structured-model-becomes-the-oracle">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Fuzz + MBSE: the structured model becomes the oracle</a></div>
-<p class="topic">The richest form of validation-from-a-model turns the model itself into the judge.</p>
-</div>
-<div class="section s2" id="sec-4-3-validating-change--choosing-the-validation-technique">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Choosing the validation technique</a></div>
-<p class="topic">Models expose intent and metrics measure degree; **validators** are the machine-read checks that consume both and return a verdict.</p>
-</div>
-<div class="section s3" id="sec-4-3-validating-change--property-based-testing-the-invariant-is-the-oracle">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Property-based testing: the invariant is the oracle</a></div>
-<p class="topic">In property-based testing the author writes the law and the machine hunts the counterexample [cite: claessen2000quickcheck].</p>
-</div>
-<div class="section s3" id="sec-4-3-validating-change--fuzzing-the-contract-is-never-crash-never-corrupt">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Fuzzing: the contract is &quot;never crash, never corrupt&quot;</a></div>
-<p class="topic">Where a property test asks a rich question of inputs drawn from an authored domain, fuzzing asks a coarser question of arbitrary, mutated ones.</p>
-</div>
-<div class="section s2" id="sec-4-3-validating-change--coverage-did-the-validation-explore-the-claim">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Coverage: did the validation explore the claim?</a></div>
-<p class="topic">A validator answers a yes/no obligation; a **metric** answers a question of degree, and degree is its own kind of evidence.</p>
+<div class="section s2" id="sec-4-3-validating-change--did-the-search-cover-the-claim">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Did the search cover the claim?</a></div>
+<p class="topic">Once you have a generator, a question example tests never had to ask appears: *did the campaign explore the space that matters, or did it just spin?* A campaign that merely runs has explored nothing, so coverage is the honesty layer that turns &quot;we fuzzed it&quot; into a claim with a number behind it.</p>
 </div>
 <div class="section s2" id="sec-4-3-validating-change--deterministic-admission">
 <div class="sec-h"><a href="../book/4.3-validating-change.html">Deterministic admission</a></div>
-<p class="topic">These checks are deterministic sensors, machine-read — and they **become hard governance when their verdicts control admission**, wired as a commit gate that refuses the merge.</p>
+<p class="topic">These checks are **repeatable** — run one twice on the same input and it agrees — and they keep Part III&#x27;s roles distinct even when one artifact carries several.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--why-this-matters-in-the-agentic-era">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Why this matters in the agentic era</a></div>
-<p class="topic">Autonomous development does not change *what* engineering evidence is.</p>
+<div class="section s2" id="sec-4-3-validating-change--why-agentic-velocity-changes-the-economics">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Why agentic velocity changes the economics</a></div>
+<p class="topic">None of the techniques in this chapter is new.</p>
 </div>
-<div class="section s2" id="sec-4-3-validating-change--industrial-example">
-<div class="sec-h"><a href="../book/4.3-validating-change.html">Industrial example</a></div>
-<p class="topic">The move is one a team can copy: generate evidence built to falsify a claim, and admit only the claim that survives.</p>
+<div class="section s2" id="sec-4-3-validating-change--industrial-example-docker">
+<div class="sec-h"><a href="../book/4.3-validating-change.html">Industrial example — Docker</a></div>
+<p class="topic">Here is the move; one industrial team converged on it independently.</p>
 </div>
 </div>
 <div class="chapter">
