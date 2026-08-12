@@ -5,8 +5,8 @@ A model that no mechanism enforces is still only advice.
 <!-- thesisbox -->
 > ### ALIGNMENT THESIS
 >
-> Give engineering intent authority by encoding obligations into deterministic mechanisms that
-> constrain actions, sense violations, validate evidence, and control admission.
+> Give engineering intent authority by encoding obligations into authoritative mechanisms that
+> constrain actions, produce evidence, validate that evidence, and control admission.
 >
 > Represented intent becomes authoritative.
 
