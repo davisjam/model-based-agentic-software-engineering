@@ -305,6 +305,10 @@ def _link_glossary_sites(body_html: str, gloss_link_map: "dict[str, tuple[str, s
 # new notation auto-extends the gate — the two can never drift (CLAUDE.md rule #33: stable-check-reads-SSOT).
 # `glossary-auto` is the arg-less generated-glossary directive; the rest take a `:`-delimited argument.
 MARKER_KEYWORDS = (
+    # `coda: true` — the metadata flag marking an in-part UNNUMBERED closing (the Part-IV portable-moves
+    #   coda). Stripped earlier by META_RE like part-title/chapter-title; kept in the vocabulary so a leaked
+    #   `<!-- coda: true -->` is recognised as a marker (not a stray book comment) by the stray-comment gate.
+    "coda",
     "part-title", "chapter-title", "figure", "figure-iframe",
     "gloss", "gloss-only", "glossary-auto", "eq", "index-def", "index-example",
     "inset", "data", "label", "table", "point", "section-terms", "web-only",
