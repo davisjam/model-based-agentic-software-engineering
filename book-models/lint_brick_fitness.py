@@ -54,7 +54,7 @@ ROOT = HERE.parent
 _FILLS = ROOT / "book" / "appendix-fills"
 _SUMMARIES = HERE / "brick-summaries.json"
 
-# The word cap on a rendered brick summary. MUST equal `_BRICK_SUMMARY_WORD_CAP` in book/build_book_html.py —
+# The word cap on a rendered brick summary. MUST equal `_BRICK_SUMMARY_WORD_CAP` in book/build_book.py —
 # the renderer truncates at that count, this sensor flags any source summary that would be truncated.
 _SUMMARY_WORD_CAP = 55
 # The role zones whose entry `.md` files carry the `**Intent**` fallback summary.

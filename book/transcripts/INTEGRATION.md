@@ -9,7 +9,7 @@ homes here. Several notes **self-specify** placement in the audio ("that goes in
 Per the author: the definitions get **green boxes** (a concise definition) followed by **per-aspect
 elaboration**. Drafted in [`DEFINITIONS-DRAFT.md`](DEFINITIONS-DRAFT.md). Two follow-ups gate the landing:
 - **Renderer:** a `<!-- def: <term> -->` green box — ONE directive-registry row + a CSS accent, added to
-  `build_book_html.py` now that the C→A IR migration has settled it. (Sibling of the concept-inset box.)
+  `build_book.py` now that the C→A IR migration has settled it. (Sibling of the concept-inset box.)
 - **Home:** a new **"Definitions" section early in Part 2** (author's hint), cross-linked from the lexicon
   (`writing/lexicon.md`) and the concept-model (`book/data/concepts.json`).
 

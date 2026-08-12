@@ -1,5 +1,5 @@
 {
-  "_provenance": "design-tokens SSOT — edit here; renderers project via book-models/design_tokens.py (CSS :root, Typst #let dt, mermaid-config.json, SVG palette allow-list). Do not hand-edit the projected blocks in catalog.py / build_book_html.py / book_typst.py / mermaid-config.json.",
+  "_provenance": "design-tokens SSOT — edit here; renderers project via book-models/design_tokens.py (CSS :root, Typst #let dt, mermaid-config.json, SVG palette allow-list). Do not hand-edit the projected blocks in catalog.py / build_book.py / book_typst.py / mermaid-config.json.",
   "option": "umber-monograph",
   "accent_name": "burnt umber",
   "palette": {

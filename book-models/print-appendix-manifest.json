@@ -1,5 +1,5 @@
 {
-  "_provenance": "Declared print-appendix projection scope. Base flagship set is DERIVED at build time from catalogue-classification.json (disposition == keep-as-L2); this file declares ONLY the deviations. Consumed by book/build_book_html.py:_load_print_manifest / _flagship_slugs. Hand-authored — edit in place.",
+  "_provenance": "Declared print-appendix projection scope. Base flagship set is DERIVED at build time from catalogue-classification.json (disposition == keep-as-L2); this file declares ONLY the deviations. Consumed by book/build_book.py:_load_print_manifest / _flagship_slugs. Hand-authored — edit in place.",
   "_derivation": "flagship_slugs = {keep-as-L2 slugs (24)} UNION print_promotions (5) MINUS appendix_exclude = 29. appendix_exclude names a move-to-book-case entry (already outside keep-as-L2) so it is a no-op guard, not a subtraction; intro_l1_principles names the lift-to-L1 entry represented in the intro rather than as a flagship page. The 'two excludes' (standards-rule-engine to Part-5 case, semantic-level-enforcement to L1 intro) are already outside the 24 keep-as-L2, so 24 + 5 = 29.",
   "_claude_md_rule_index_dial": "The claude-md-rule-index (Governed Knowledge Base) keep-as-L2 stays a PRINT flagship by default (design 260803 §1b/§2c). The editorial dial that sends it web-only would add it to appendix_exclude, dropping print flagships from 29 to 28; NOT pulled here.",
   "print_promotions": [
@@ -15,7 +15,7 @@
   "appendix_exclude": [
     "standards-rule-engine"
   ],
-  "_appendix_render_modes": "skill_recipe: print-render mode for the How-to-Write-a-Skill appendix (v2 Appendix D, legacy Appendix E) — 'full' keeps the whole recipe in the print/PDF projection (same content as the web edition); 'pointer' collapses the print/PDF projection to the front-door + an online pointer instead, and is the mode NOT currently set (consumed by build_book_html.py:build_skill_recipe_chapters). 'full' is now set. The appendices end at D: 'A Theory of MAGE' was relocated out of the appendices to a numbered main-text chapter (backmatter), so there is no longer an appendix_e render mode.",
+  "_appendix_render_modes": "skill_recipe: print-render mode for the How-to-Write-a-Skill appendix (v2 Appendix D, legacy Appendix E) — 'full' keeps the whole recipe in the print/PDF projection (same content as the web edition); 'pointer' collapses the print/PDF projection to the front-door + an online pointer instead, and is the mode NOT currently set (consumed by build_book.py:build_skill_recipe_chapters). 'full' is now set. The appendices end at D: 'A Theory of MAGE' was relocated out of the appendices to a numbered main-text chapter (backmatter), so there is no longer an appendix_e render mode.",
   "skill_recipe": "full",
   "stack_compression": {
     "target_words": 1250,

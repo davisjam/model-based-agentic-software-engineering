@@ -93,7 +93,7 @@ _TIER_OF_GRANULARITY = {"book": "program", "part": "module", "chapter": "lesson"
 #: (the reading-view reads these titles back out of the emitted `hierarchy`, not a second hand-kept copy).
 #: Part 0 is front matter (preface / acknowledgments) — not a teaching Module, so it is omitted from the
 #: module tier (matching the coverage invariants, which already skip it).
-#: These MUST agree, on every shared Part number, with `build_book_html._PART_TITLES` (the reader-facing
+#: These MUST agree, on every shared Part number, with `build_book._PART_TITLES` (the reader-facing
 #: SSOT the running-heads/openers render from) — a rule-#33 parity lint holds the two in step
 #: (check_part_title_parity, AUDIT-ONLY-first).
 PART_TITLES = {
@@ -110,7 +110,7 @@ PART_TITLES = {
 #: (`part:<slug-of-title>`), NOT the part NUMBER — so a Part renumber cannot transpose two records, the bug
 #: this determinizes away: `part-2` / `part-3` went stale after Modeling and Alignment swapped position, so
 #: the Modeling capability sat under `part-3` and the Alignment one under `part-2`. The number is DERIVED
-#: HERE from `PART_TITLES` (held in parity with `build_book_html._PART_TITLES` by check_part_title_parity)
+#: HERE from `PART_TITLES` (held in parity with `build_book._PART_TITLES` by check_part_title_parity)
 #: at load time, so a rename/renumber re-binds a label to its current number automatically — one source of
 #: truth for "which Part." `chapter_identity` is already label-keyed for the same reason; this brings the
 #: part outcomes into line. Every downstream consumer (U-gates, the tiered view, the site projection) still

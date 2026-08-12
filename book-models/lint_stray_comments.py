@@ -12,14 +12,14 @@ appendix content dirs), skipping fenced + inline code so a comment SHOWN as an e
 each `<!-- … -->`, take its leading token and require it to be a recognized decorator. A stray is a finding
 — pointing the author at the exact `file:line` to delete or fix BEFORE it reaches the reader.
 
-SINGLE SOURCE OF TRUTH.  The recognized set is `build_book_html.MARKER_KEYWORDS` (the render vocabulary SSOT
+SINGLE SOURCE OF TRUTH.  The recognized set is `build_book.MARKER_KEYWORDS` (the render vocabulary SSOT
 the notation-leak gate also reads — CLAUDE.md's stable-check-reads-the-SSOT discipline), plus `noqa`, the
 lint-suppression directive that is deliberately outside the render vocabulary (it is consumed as an inert
 directive and must never be flagged). A notation added to the build auto-extends this gate; there is no
 second hand-maintained copy.
 
 Run `python3 book-models/lint_stray_comments.py` (audit-only, exit 0) or `--strict` (exit 1 on any finding).
-The render-time strip in `build_book_html`/`book_typst` is the backstop; this lint is the front line that
+The render-time strip in `build_book`/`book_typst` is the backstop; this lint is the front line that
 keeps the source clean, so on a clean tree it reports nothing and can gate blocking.
 """
 from __future__ import annotations
@@ -34,7 +34,7 @@ _BOOK_DIR = os.path.join(_ROOT, "book")
 if _BOOK_DIR not in sys.path:
     sys.path.insert(0, _BOOK_DIR)
 
-import build_book_html as bb  # noqa: E402 — path set above; the render-vocabulary SSOT (MARKER_KEYWORDS)
+import build_book as bb  # noqa: E402 — path set above; the render-vocabulary SSOT (MARKER_KEYWORDS)
 
 #: The recognized decorator vocabulary: the render SSOT plus `noqa`. A comment whose leading token is not in
 #: this set is a stray. `noqa` is a lint-suppression directive consumed as an inert marker — outside the
@@ -55,7 +55,7 @@ _APPENDIX_DIRS = ("appendix-fills", "appendix-stacks", "appendix-skill-recipe")
 
 
 def _content_files() -> "list[str]":
-    """Every rendered book-source `.md`, sorted. Chapter dirs come from `build_book_html._PART_DIRS` (the
+    """Every rendered book-source `.md`, sorted. Chapter dirs come from `build_book._PART_DIRS` (the
     render SSOT for which dir holds each Part); the appendix content dirs are walked recursively."""
     out: "list[str]" = []
     for d in bb._PART_DIRS.values():

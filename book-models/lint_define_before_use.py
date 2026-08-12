@@ -40,7 +40,7 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 _BOOK = os.path.join(os.path.dirname(_HERE), "book")
 if _BOOK not in sys.path:
     sys.path.insert(0, _BOOK)
-import build_book_html as bbh  # noqa: E402 — the renderer owns the index-def/-example harvest + reading order
+import build_book as bbh  # noqa: E402 — the renderer owns the index-def/-example harvest + reading order
 
 
 @dataclass

@@ -100,7 +100,7 @@ jobs:
       # LOCALLY (per-section review PDFs); CI is already covered by the GITHUB_ACTIONS env gate, and `--no-split`
       # states full-only explicitly at the call site so CI never pays the per-section compile cost.
       - name: Render book PDF (print-native Typst) + content-integrity gate
-        run: python3 book/build_book_html.py --pdf --no-split
+        run: python3 book/build_book.py --pdf --no-split
       # ── Responsive-layout gate (deploy-blocking) ────────────────────────────────────────────────
       # Assert the landing `.masonry` region renders a structurally different layout at wide vs phone
       # width (>= 3 columns at 2560px, exactly 1 column at 390px) — the author's success metric made

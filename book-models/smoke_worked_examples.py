@@ -3,7 +3,7 @@
 This proves the renderer BEFORE any real chapter declares a gallery (Wave-0 lands the directive INERT). It
 drives a minimal fixture gallery through:
 
-  * the WEB (HTML) path — `build_book_html.md_to_html` (the real block-loop intercept + collect-forward);
+  * the WEB (HTML) path — `build_book.md_to_html` (the real block-loop intercept + collect-forward);
   * the PRINT (Typst) path — `book_ir._parse_chapter` → `book_typst.render_chapter` (the real directive
     collector);
   * the PROJECTION — `industry_cases_model.worked_example_roster` (the roster is WE1-clean by construction).
@@ -25,7 +25,7 @@ for _p in (str(_ROOT / "book"), str(_HERE)):
 
 import book_ir  # noqa: E402 — the shared parser + IR
 import book_typst  # noqa: E402 — the Typst projection
-import build_book_html as bb  # noqa: E402 — the HTML projection
+import build_book as bb  # noqa: E402 — the HTML projection
 import industry_cases_model as icm  # noqa: E402 — the roster projection
 
 

@@ -1,5 +1,5 @@
 {
-  "_comment": "Single source of truth for the book's cover identity. Consumed by catalog.py (site landing hero) and book/build_book_html.py (print cover, web front page, footers). Edit here once; all render sites follow. An empty string renders nothing (e.g. subtitle omitted). The copyright line and the PhD byline are DERIVED from author + credential + copyright_years, so the name is stated once.",
+  "_comment": "Single source of truth for the book's cover identity. Consumed by catalog.py (site landing hero) and book/build_book.py (print cover, web front page, footers). Edit here once; all render sites follow. An empty string renders nothing (e.g. subtitle omitted). The copyright line and the PhD byline are DERIVED from author + credential + copyright_years, so the name is stated once.",
   "kicker": "The MAGE Method",
   "title": "Model-Based Agentic Software Engineering",
   "_cover_title_break_after_comment": "Cover title line-break HINT (soft/discretionary): the substring after which the full-bleed print cover should force a line break. Here the cover reads 'Model-Based' on line 1 and 'Agentic Software Engineering' on line 2. Empty or absent = let the title auto-wrap. Applies to the cover only; the SSOT `title` above is used verbatim everywhere else.",

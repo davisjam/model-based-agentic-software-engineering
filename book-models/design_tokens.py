@@ -125,7 +125,7 @@ def load(path: pathlib.Path = TOKENS_JSON) -> Tokens:
 # ── CSS projection ──────────────────────────────────────────────────────────────────────────────────
 # Custom-property names are the cross-renderer contract. Palette keys map 1:1 to `--<key>`; type roles
 # become `--fs-<role>`; spacing/radii/borders/line-heights get stable names. Both catalog.py (site) and
-# build_book_html.py (web book) inline this block at the top of their style, then reference var(--…).
+# build_book.py (web book) inline this block at the top of their style, then reference var(--…).
 
 _ROLE_ORDER = ["micro", "meta", "card-body", "body", "card-title", "section", "thesis-title", "display"]
 

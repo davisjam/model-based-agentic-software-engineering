@@ -70,7 +70,7 @@ re-deriving these, so they live here:**
   hand-edit), commit in TWO steps (the isolated change first) or `git stash` the second agent's own files
   across the first commit — never `git commit --no-verify` (banned; it skips the hook).
 - **Drafting parallelizes; infrastructure serializes.** Split a big job into (a) SEQUENTIAL INFRASTRUCTURE —
-  `catalog.py` / `book/build_book_html.py` / `book/book_typst.py` renderers, packers, migrations (shared
+  `catalog.py` / `book/build_book.py` / `book/book_typst.py` renderers, packers, migrations (shared
   files, one writer) — and (b) PARALLEL CONTENT DRAFTING — prose, blurbs, notes — that writes to DRAFT files
   under `book/_design/drafts/` (NOT `main`, not committed, not built). Draft files are independent, so MANY
   drafting agents run concurrently, with each other and with the `main` drain; an infrastructure wave
@@ -181,17 +181,17 @@ The site is generated from the markdown — **never hand-edit the `.html`** (it 
 The book ships a **PDF** at `/book/mage-book.pdf` (the landing's "Download PDF" button). It is **gitignored
 on purpose** — a multi-MB binary does not belong in git history — so it is *created, never committed*:
 
-The PDF is rendered by the **print-native Typst path**: `book/build_book_html.py --pdf` projects the same
+The PDF is rendered by the **print-native Typst path**: `book/build_book.py --pdf` projects the same
 typed book IR the web build walks to a Typst document, then `typst compile` lays it out. One IR, two
 projections (HTML web + Typst PDF), so the PDF cannot diverge from the web book.
 
 - **Published (authoritative):** the Pages workflow ([`.github/workflows/pages.yml`](.github/workflows/pages.yml))
-  runs `python3 book/build_book_html.py --pdf` on **every push**, runs the content-integrity gate (whole-book
+  runs `python3 book/build_book.py --pdf` on **every push**, runs the content-integrity gate (whole-book
   text extraction + page floor/ceiling + density + no-raw-mermaid + tag-tree present), and hard-asserts the
   file into the site artifact. So `deploy github` always ships a PDF freshly rendered from source — no flag needed.
 - **Local preview:** the default web build does **not** render the PDF, so any `book/mage-book.pdf` on disk
   goes stale between renders. Regenerate it on demand (Typst compiles the whole book in a couple of seconds)
-  with `catalog.py deploy local --pdf`, or directly via `python3 book/build_book_html.py --pdf`.
+  with `catalog.py deploy local --pdf`, or directly via `python3 book/build_book.py --pdf`.
 
 **Two deploy modes, one command:**
 - **`deploy local`** — preview in a browser. Blocks while serving; Ctrl-C to stop. Add `--pdf` to also

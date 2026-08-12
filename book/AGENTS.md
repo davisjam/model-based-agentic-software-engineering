@@ -1,7 +1,7 @@
 # AGENTS.md — the book's format, build, and conventions
 
 *3D Printing Production Software* renders from markdown source into a small static HTML site by
-`book/build_book_html.py` (stdlib-only, no dependencies). This file is what a new contributor or agent
+`book/build_book.py` (stdlib-only, no dependencies). This file is what a new contributor or agent
 needs to build and edit the book correctly. It also specifies the **index-annotation method** — a
 proposed way to point index entries at curated concept anchors instead of raw text occurrences.
 
@@ -16,7 +16,7 @@ and the design record for the annotation work.
   regenerates the census views, and — as one of its stages — invokes the book renderer. It also runs a
   **BLOCKING orphan-reachability gate** over the book pages (a page rendered but linked from nowhere
   fails the build).
-- **Book only:** `python3 book/build_book_html.py` renders just the book (stdlib-only, runs on a fresh
+- **Book only:** `python3 book/build_book.py` renders just the book (stdlib-only, runs on a fresh
   checkout with nothing installed).
 - **Never hand-edit the `.html`.** Every page is generated and overwritten on the next build. Edit the
   markdown source, then rebuild.
@@ -86,7 +86,7 @@ freely. Front and back matter render without a "Chapter N" kicker.
 ### Per-Part epigraphs
 
 The first chapter of each **numbered** Part opens with an epigraph. These are not in the markdown — they
-live in `_PART_EPIGRAPHS` in `build_book_html.py`, one `(quote, attribution)` pair per Part. The Macbeth
+live in `_PART_EPIGRAPHS` in `build_book.py`, one `(quote, attribution)` pair per Part. The Macbeth
 (Part 2) and Ecclesiastes (Part 5) quotations are verbatim from the source memoir; the Part 1, Part 3, and
 Part 4 (the George Box "all models are wrong" line for the Model Zoo) openers are editor-swappable
 candidates.
@@ -363,7 +363,7 @@ concept registry.
 
 ### 6.5 Follow-ups (NOT part of this change)
 
-1. **Implement the tags in the renderer.** Extend `build_book_html.py`'s index generator to (a) recognize
+1. **Implement the tags in the renderer.** Extend `build_book.py`'s index generator to (a) recognize
    `index-def` / `index-example` comments in `md_to_html` and emit the anchors; (b) collect them across
    pages; (c) read the `concept:` registry lines from `index-terms.md`; (d) emit curated concept entries
    and suppress the matching occurrence entries; (e) fail loud on a duplicate `index-def`, an unregistered

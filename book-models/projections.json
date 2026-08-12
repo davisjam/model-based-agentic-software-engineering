@@ -5,14 +5,14 @@
     {
       "id": "book-web",
       "kind": "book",
-      "builder": "book/build_book_html.py",
+      "builder": "book/build_book.py",
       "globs": ["book/*.html"],
       "note": "The web book — every chapter, part-opener, appendix, and the assembled index/figures/bibliography pages. Non-recursive: node_modules/ and _print/ under book/ are build scratch, not surfaces."
     },
     {
       "id": "book-pdf",
       "kind": "book",
-      "builder": "book/build_book_html.py --pdf",
+      "builder": "book/build_book.py --pdf",
       "globs": ["book/mage-book.pdf"],
       "derived_twin_of": "book-web",
       "note": "The Typst print edition. Renders the SAME chapter sources as book-web, so its churn map is a projection of book-web's chapter appearances — the single PDF file is one site, present whenever the concept appears in any book-web page. Gitignored + binary, so the index derives its presence from book-web rather than scanning the PDF; it is exempt from the HTML completeness gate."

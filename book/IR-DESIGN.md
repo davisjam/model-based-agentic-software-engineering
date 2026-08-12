@@ -2,7 +2,7 @@
 
 ## Why
 
-`build_book_html.py` parses the book **several times over** — float numbering, concept-tag harvest,
+`build_book.py` parses the book **several times over** — float numbering, concept-tag harvest,
 glossary, the notation-leak gate, and every structural check in `tests/book.py` — each pass with its own
 regexes, each able to drift from the others. That is the classic pre-IR smell: **N walkers, each
 re-deriving structure.** `book/book_ir.py` is the one structured model those walks share. The book is ~50K
@@ -25,7 +25,7 @@ The genre-correct engine for pluggable markdown is a token-stream parser + a sta
 So we adopt the **schema** of a pluggable engine — a registry of `directive name → typed node` — while
 keeping our own runtime and notation. This is the "adopt the schema, skip the runtime" move. Adding
 notation is **one registry row** (`_DIRECTIVES` / `_EMITS` / `_ARMS` in `book_ir.py`, plus the render-side
-twin `MARKER_KEYWORDS` in `build_book_html.py` that the notation-leak gate reads).
+twin `MARKER_KEYWORDS` in `build_book.py` that the notation-leak gate reads).
 
 It is on the path to a real engine, not off it — see "If clone-and-run is ever relaxed" below.
 
@@ -43,7 +43,7 @@ directive, other}. The three **float** kinds (`figure`, `table`, `mermaid`) are 
 "Figure N." / "Table N." and what an author cross-references.
 
 **Tokenizer SSOT.** Block splitting, chapter discovery, and the marker regexes are imported from
-`build_book_html` — there is exactly ONE tokenizer; the IR is a typed layer over it, never a copy. This is
+`build_book` — there is exactly ONE tokenizer; the IR is a typed layer over it, never a copy. This is
 what makes the IR safe (no second-parser drift, the failure mode that sinks a "read-only analysis parser").
 
 **A-ready rule (do not break).** Every `Block` carries its **raw source slice**, and the block taxonomy
@@ -96,12 +96,12 @@ that keep C→A clean hold: **one shared tokenizer** (no drift) and **raw slice 
 - **Classification vs. `_classify_prose`.** `classify_render_block` deliberately does NOT reuse
   `_classify_prose`'s looser shape tests (any-`#`, first-line-`>`). It replicates the renderer's precise
   branch order and tests, because that — not the looser shape — is what byte-identity requires.
-- **The SSOT import cycle is real.** `book_ir` imports `build_book_html` for the tokenizer, so
-  `build_book_html` reaches `book_ir` through a lazy `_book_ir()` accessor, never a module-load import.
+- **The SSOT import cycle is real.** `book_ir` imports `build_book` for the tokenizer, so
+  `build_book` reaches `book_ir` through a lazy `_book_ir()` accessor, never a module-load import.
 
 ## PDF generation — output via Typst (production)
 
-The PDF is rendered **print-native via Typst** — the production path. `book/build_book_html.py --pdf`
+The PDF is rendered **print-native via Typst** — the production path. `book/build_book.py --pdf`
 projects the typed IR to a Typst document (`book/book_typst.py`), then `typst compile` lays it out to
 `book/mage-book.pdf`. HTML (the web book) and Typst (the PDF) are two projections of the one IR, neither
 derived from the other — the "one model, many projections" the book preaches (Part 3,
@@ -155,7 +155,7 @@ plain MD/GitHub viewer plus dependence on Typst's HTML export for the Pages site
 
 ## Adding a directive (today, Foundation 1)
 
-1. Add the render behavior in `build_book_html.py` (`_consume_leading_marker` / the block loop) and the
+1. Add the render behavior in `build_book.py` (`_consume_leading_marker` / the block loop) and the
    keyword to `MARKER_KEYWORDS` (the notation-leak gate reads it).
 2. Add the classification to `book_ir.py` (`_ARMS` / `_EMITS`, or a `DIRECTIVE` fall-through).
 3. Document it in `AGENTS.md` §3 and, if it carries a rule, add a `tests/book.py` walk over the IR.

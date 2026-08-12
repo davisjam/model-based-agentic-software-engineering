@@ -34,7 +34,7 @@ CSS_ROOT_BLOCK = _dtokens.css_root_block()
 FONTS_LINK = _dtokens.google_fonts_link()
 
 # Single source of truth for the book's cover identity (title/subtitle/kicker/author). Also read by
-# book/build_book_html.py (print cover + web front page) — edit book/book-manifest.json once, all follow.
+# book/build_book.py (print cover + web front page) — edit book/book-manifest.json once, all follow.
 BOOK_MANIFEST = json.loads(open(os.path.join(ROOT, "book", "book-manifest.json"), encoding="utf-8").read())
 _PDF_HREF = "book/" + BOOK_MANIFEST["pdf_filename"]  # root-relative href to the published PDF (single source: the manifest)
 
@@ -649,15 +649,15 @@ def check_abstractions(entries: list[Entry], abbrs: dict) -> list[str]:
     return problems
 
 
-# The [gh:] marker regex — kept in sync with book/build_book_html.py:_GH_MARKER_RE. Simple enough that a
-# 2nd copy is acceptable; importing build_book_html here would pull its heavier module-load (manifest reads).
+# The [gh:] marker regex — kept in sync with book/build_book.py:_GH_MARKER_RE. Simple enough that a
+# 2nd copy is acceptable; importing build_book here would pull its heavier module-load (manifest reads).
 _GH_MARKER_RE = re.compile(r"\[gh:\s*([^\]|]+?)\s*(?:\|[^\]]*?)?\]")
 
 
 def check_gh_refs() -> list[str]:
     """Every `[gh:<repo-relative-path>]` in the book prose must resolve to a real file in the working tree.
     Deterministic + offline (no network) — a rotted source reference must fail the build, not ship a 404
-    'view the source' link. Path-exists twin of the build-time resolver in book/build_book_html.py."""
+    'view the source' link. Path-exists twin of the build-time resolver in book/build_book.py."""
     problems: list[str] = []
     for md in sorted(glob.glob(os.path.join(ROOT, "book", "**", "*.md"), recursive=True)):
         text = open(md, encoding="utf-8").read()
@@ -4247,7 +4247,7 @@ def cmd_build(_args) -> int:
     # entries. Subprocess keeps `catalog.py` stdlib-only and avoids importing the book builder. The book
     # pages are subject to the reachability gate below — the landing links the book index; the book's own
     # pages link each other — so the book must build BEFORE the gate runs.
-    book_builder = os.path.join(ROOT, "book", "build_book_html.py")
+    book_builder = os.path.join(ROOT, "book", "build_book.py")
     if os.path.isfile(book_builder):
         rc_book = subprocess.run([sys.executable, book_builder], cwd=os.path.join(ROOT, "book")).returncode
         if rc_book != 0:
@@ -4841,10 +4841,10 @@ def cmd_deploy(args) -> int:
     # book, not a stale gitignored copy. Publish (github) needs no flag — CI renders the PDF on every push.
     if want_pdf:
         print("\n== Rendering PDF (book/mage-book.pdf) via Typst; content-integrity gate runs internally ==")
-        pdf_build = subprocess.run([sys.executable, os.path.join("book", "build_book_html.py"), "--pdf"],
+        pdf_build = subprocess.run([sys.executable, os.path.join("book", "build_book.py"), "--pdf"],
                                    cwd=ROOT)
         if pdf_build.returncode != 0:
-            print("ABORT: PDF render failed (see build_book_html.py --pdf output above).")
+            print("ABORT: PDF render failed (see build_book.py --pdf output above).")
             return 1
 
     if args.target == "local":
@@ -4864,10 +4864,10 @@ def cmd_deploy(args) -> int:
     # `--no-split`: gate only the shipped whole-book PDF here — the per-section review PDFs are a local
     # convenience, not a published artifact, so the pre-push gate must not pay their ~9× compile cost.
     print("\n== Pre-push PDF gate (book/mage-book.pdf) via Typst; content-integrity + size ceiling (8 MiB) ==")
-    pdf_gate = subprocess.run([sys.executable, os.path.join("book", "build_book_html.py"), "--pdf", "--no-split"],
+    pdf_gate = subprocess.run([sys.executable, os.path.join("book", "build_book.py"), "--pdf", "--no-split"],
                               cwd=ROOT)
     if pdf_gate.returncode != 0:
-        print("ABORT: PDF gate failed — will not push (see build_book_html.py --pdf output above; "
+        print("ABORT: PDF gate failed — will not push (see build_book.py --pdf output above; "
               "a >8 MiB PDF or a content-integrity miss blocks the push).")
         return 1
 

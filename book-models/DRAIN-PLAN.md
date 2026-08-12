@@ -31,10 +31,10 @@ For each of the ~139 sections (the `outcomes_model.py gaps` / outline worklist):
 
 ## Prerequisite (do first)
 
-Add the **`<!-- point: <text> -->` directive**: a `MARKER_KEYWORDS` row in `build_book_html.py` + IR
+Add the **`<!-- point: <text> -->` directive**: a `MARKER_KEYWORDS` row in `build_book.py` + IR
 classification in `book_ir.py` (a DIRECTIVE/arming marker, stripped from HTML — degradation-friendly, does
 not leak, byte-identical build). Land it **after the Typst spike reports** (both read/edit `book_ir` /
-`build_book_html`; avoid concurrent edits). Extend the reverse index + structural audit to cover the new
+`build_book`; avoid concurrent edits). Extend the reverse index + structural audit to cover the new
 `point` symbol kind (it's an authored reference — the drift-prone kind).
 
 ## Roll-out — pilot, refine, then parallelize

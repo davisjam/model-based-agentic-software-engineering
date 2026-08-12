@@ -11,7 +11,7 @@ WHY WHOLE-BOOK, NOT PART-SCOPED. A renumber in Part 1/4/5 is linked INTO from Pa
 appendices). A grep scoped to the renumbered Parts misses those cross-facet inbound links, so this walks
 every `book/frontmatter/*.md`, `book/part*/*.md`, and `book/appendix*/**/*.md`.
 
-RESOLUTION MODEL (matches the flat build layout — `build_book_html.py` renders `book/<basename>.html`):
+RESOLUTION MODEL (matches the flat build layout — `build_book.py` renders `book/<basename>.html`):
   - A NUMBERED target (`^\\d+\\.\\d+-…` — every body chapter 1.x–6.x, the frontmatter 0.x, the backmatter
     7.x) must match a chapter SOURCE basename stem on disk. Deriving the valid set from the *sources* (not
     the built `.html`) makes the check RENUMBER-AWARE: a link to a stale number fails even while the stale
@@ -180,7 +180,7 @@ def _appendix_d_page_titles() -> "dict[str, str]":
     Appendix-D page from resolving to None and being silently skipped — the operators-dashboard silent-skip class."""
     if _BOOK not in sys.path:
         sys.path.insert(0, _BOOK)
-    import build_book_html as bbh  # noqa: E402 — the renderer owns _OPERATORS_REFERENCE_PAGES (slug->title SSOT)
+    import build_book as bbh  # noqa: E402 — the renderer owns _OPERATORS_REFERENCE_PAGES (slug->title SSOT)
     return {slug: title for slug, title in bbh._OPERATORS_REFERENCE_PAGES}
 
 

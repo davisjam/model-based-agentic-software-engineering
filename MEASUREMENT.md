@@ -12,7 +12,7 @@ staleness risk.
 ## How this was measured
 
 - Worktree: `buildopt-incremental` (submodule worktree off `ef13ed1b`), stdlib-only.
-- The book subprocess (`book/build_book_html.py`) renders 130 of the ~145 pages and is where the
+- The book subprocess (`book/build_book.py`) renders 130 of the ~145 pages and is where the
   real per-chapter render lives. Its mermaid diagrams are rendered to inline SVG via `mmdc` and
   **cached** at `book/.mermaid-svg-cache/` (gitignored). A fresh worktree has no cache, so the book
   build aborts ("`mmdc` not found"). I populated the cache from the primary checkout's gitignored

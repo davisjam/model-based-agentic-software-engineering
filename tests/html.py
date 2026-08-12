@@ -73,7 +73,7 @@ def check_book_html_tracking():
     """Every tracked book/*.html is a page the current build produces (no stale orphans), present and
     non-empty. Blocks the renumber-orphan class (a chapter renumber leaves the old-numbered HTML tracked
     with no source) AND the generated-page-orphan class (a page the build writes outside chapter discovery,
-    like the list of floats): the expected set is `build_book_html.expected_page_slugs()` — the build's OWN
+    like the list of floats): the expected set is `build_book.expected_page_slugs()` — the build's OWN
     single source of truth for every page it writes — so it can't drift from what the build produces."""
     import subprocess
     import sys as _sys
@@ -81,7 +81,7 @@ def check_book_html_tracking():
     book_dir = os.path.join(root, "book")
     if book_dir not in _sys.path:
         _sys.path.insert(0, book_dir)
-    import build_book_html as bb  # noqa: E402 — path set above; build's discovery is the source of truth
+    import build_book as bb  # noqa: E402 — path set above; build's discovery is the source of truth
     # `expected_page_slugs()` is the build's OWN single source of truth for every page it writes — chapter
     # + appendix discovery, generated front-matter (the list of floats), the index pages, and the figure
     # copy. Consuming it (not re-deriving here) is what keeps this test from missing a build-generated page.
@@ -330,13 +330,13 @@ def _norm_num_unit_haystack(text: str) -> set[str]:
 
 def _marker_keywords() -> tuple[str, ...]:
     """The build-time notation vocabulary — READ from its single source of truth in the build script
-    (`build_book_html.MARKER_KEYWORDS`) so this gate can never drift from what the build defines. A new
+    (`build_book.MARKER_KEYWORDS`) so this gate can never drift from what the build defines. A new
     notation added there auto-extends this gate; there is NO second hand-maintained copy (CLAUDE.md rule
     #33: a stable check that reads the SSOT beats N hand-rolled lints)."""
     book_dir = os.path.join(ROOT, "book")
     if book_dir not in _sys.path:
         _sys.path.insert(0, book_dir)
-    import build_book_html as bb  # noqa: E402 — path set above; the build owns the vocabulary
+    import build_book as bb  # noqa: E402 — path set above; the build owns the vocabulary
     return tuple(bb.MARKER_KEYWORDS)
 
 
@@ -365,7 +365,7 @@ def check_no_notation_leak():
         return FAIL, ["no built HTML found — run `catalog.py build` first"]
     kws = _marker_keywords()
     if not kws:
-        return FAIL, ["build_book_html.MARKER_KEYWORDS is empty — the vocabulary SSOT vanished"]
+        return FAIL, ["build_book.MARKER_KEYWORDS is empty — the vocabulary SSOT vanished"]
     kw_alt = "|".join(re.escape(k) for k in kws)
     # A marker comment for a known keyword, in EITHER shipped form: escaped (markdown-escaped visible text)
     # or raw (an un-consumed HTML comment). The trailing boundary (`:` arg-marker, or `-->`/whitespace for
@@ -485,7 +485,7 @@ def _harvested_book_homes() -> dict[str, tuple[str, str]]:
     book_dir = os.path.join(ROOT, "book")
     if book_dir not in _sys.path:
         _sys.path.insert(0, book_dir)
-    import build_book_html as bb  # noqa: E402 — path set above; the build owns concept harvesting
+    import build_book as bb  # noqa: E402 — path set above; the build owns concept harvesting
     metrics = bb._load_metrics()
     chapters = bb._discover_chapters(metrics)
     if chapters:

@@ -28,7 +28,7 @@ from tests.common import FAIL, PASS, ROOT, rel
 _BOOK = os.path.join(ROOT, "book")
 if _BOOK not in _sys.path:
     _sys.path.insert(0, _BOOK)
-import build_book_html as bb  # noqa: E402 — the build owns the cite-marker vocabulary + slug discovery
+import build_book as bb  # noqa: E402 — the build owns the cite-marker vocabulary + slug discovery
 import render_citations as rc  # noqa: E402 — the renderer owns the BibTeX parse + freshness hash
 
 _REFERENCES_BIB = os.path.join(_BOOK, "references.bib")

@@ -2,7 +2,7 @@
   "name": "mage-book-build-tooling",
   "private": true,
   "type": "module",
-  "description": "Node-only tooling for the MAGE book build. NOT part of the stdlib-only catalog.py / site build — used by `build_book_html.py` to render ```mermaid fences to inline SVG at BUILD time (mermaid-cli / mmdc), and by the responsive-layout + console-error served-page smoke gates (headless Chrome via Puppeteer). The book PDF is rendered separately by the print-native Typst path (`--pdf`), which needs no Node. The web book build stays dependency-free EXCEPT for the mermaid-cli SVG pre-render (guarded: a page with no mermaid fence needs no Node).",
+  "description": "Node-only tooling for the MAGE book build. NOT part of the stdlib-only catalog.py / site build — used by `build_book.py` to render ```mermaid fences to inline SVG at BUILD time (mermaid-cli / mmdc), and by the responsive-layout + console-error served-page smoke gates (headless Chrome via Puppeteer). The book PDF is rendered separately by the print-native Typst path (`--pdf`), which needs no Node. The web book build stays dependency-free EXCEPT for the mermaid-cli SVG pre-render (guarded: a page with no mermaid fence needs no Node).",
   "dependencies": {
     "@mermaid-js/mermaid-cli": "^11.4.0",
     "puppeteer": "^23.0.0"

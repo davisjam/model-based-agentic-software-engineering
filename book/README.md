@@ -1,12 +1,12 @@
 # *Model-Based Agentic Software Engineering* — the book
 
 *Architecture, Validation, and Control for Agentic Software Engineering.* The book renders to a
-small static HTML site by `build_book_html.py` (wired into `catalog.py build`).
+small static HTML site by `build_book.py` (wired into `catalog.py build`).
 
 ## Part/Chapter filesystem hierarchy
 
 The source tree **encodes the hierarchy**: a chapter lives at `part<N>/<N>.<M>-<slug>.md`, so the
-part number and chapter number are explicit in the path. `build_book_html.py` walks the tree,
+part number and chapter number are explicit in the path. `build_book.py` walks the tree,
 derives PART.CHAPTER from the path, and reads the `<!-- part-title --> <!-- chapter-title -->`
 metadata from each file. It emits one flat `<slug>.html` per chapter plus `index.html`, and appends
 a Gang-of-Four appendix projected from the sibling catalogue entries.
@@ -67,7 +67,7 @@ catalogue), and render after Part 6 / Part 7.
   Edit the number in the JSON, never in the prose. A later pass refreshes the repo-derived figures
   from history-mining; the cost-model and policy figures are the book's canonical estimates.
 - **Epigraphs.** The first chapter of each numbered Part opens with an epigraph, defined in
-  `_PART_EPIGRAPHS` in `build_book_html.py`. The Macbeth (Part 2) and Ecclesiastes (Part 4) quotations
+  `_PART_EPIGRAPHS` in `build_book.py`. The Macbeth (Part 2) and Ecclesiastes (Part 4) quotations
   are verbatim from the source memoir; the Context and Governed-Environment openers are candidates a
   human editor may swap.
 - **Figures.** Insert a figure with a directive comment: `<!-- figure: assets/<file> | <caption> -->`.
@@ -77,10 +77,10 @@ catalogue), and render after Part 6 / Part 7.
 
 ## Build
 
-Run `python3 build_book_html.py` (stdlib-only) or, from the catalogue root,
+Run `python3 build_book.py` (stdlib-only) or, from the catalogue root,
 `python3 catalog.py build` (builds the book as part of the site and runs the orphan-reachability gate
 over the book pages too). Never hand-edit the `.html`.
 
 The book's appendix references catalogue-root figures. Run `catalog.py build` (regenerates
-`catalogue-views.html`) before or alongside `build_book_html.py`, and commit both, so any deployed
+`catalogue-views.html`) before or alongside `build_book.py`, and commit both, so any deployed
 cross-references resolve.

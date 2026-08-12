@@ -40,7 +40,7 @@ import metaphor_slogan_index_model as msi  # noqa: E402 — the derived occurren
 _BOOK = os.path.join(os.path.dirname(_HERE), "book")
 if _BOOK not in sys.path:
     sys.path.insert(0, _BOOK)
-import build_book_html as bbh  # noqa: E402 — owns the reading-order walk + body_md harvest
+import build_book as bbh  # noqa: E402 — owns the reading-order walk + body_md harvest
 
 #: The clustering window (class c): two full occurrences within this many anchors of each other on one page
 #: are "clustered" — a rationed slogan/image repeated too close. Ratified default.

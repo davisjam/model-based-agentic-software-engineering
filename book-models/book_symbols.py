@@ -25,7 +25,7 @@ if _BOOK_DIR not in sys.path:
     sys.path.insert(0, _BOOK_DIR)
 
 import book_ir  # noqa: E402 — path set above; the book IR is the read-only data source
-import build_book_html as bb  # noqa: E402 — the SSOT for the heading-anchor grammar (_HEADING_ANCHOR_RE)
+import build_book as bb  # noqa: E402 — the SSOT for the heading-anchor grammar (_HEADING_ANCHOR_RE)
 
 #: The renderer's own heading-anchor grammar — imported, never re-typed (tokenizer SSOT).
 _HEADING_ANCHOR_RE = bb._HEADING_ANCHOR_RE

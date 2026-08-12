@@ -195,7 +195,7 @@ CHECKS = [
     # 260805 Table 7.2-1 report). Runs the rendered-PDF caption-orphan sensor against book/mage-book.pdf when
     # present; SKIPs when no PDF is rendered (gitignored; built by --pdf). The authoritative twin is the
     # --pdf content-integrity gate on every push. The sticky-caption Typst show-rule drives it to 0. See
-    # tests/book.py + build_book_html._pdf_orphan_caption_pages.
+    # tests/book.py + build_book._pdf_orphan_caption_pages.
     Check("book: no orphaned table caption (caption rides with its body; PDF sensor)", 1,
           lambda strict: check_caption_orphan_gate()),
     Check("book: IR render-complete blocks render byte-identically (C->A migration net)", 1, lambda strict: check_ir_render_fidelity()),
@@ -248,7 +248,7 @@ CHECKS = [
     Check("book-models: outcomes view drift + coverage (outcomes.json)", 1,
           lambda strict: check_outcomes_model(), audit_only=True),
     # AUDIT-ONLY-first (rule #55; rule-#33 parity): the two Part-title SSOTs — the reader-facing
-    # `build_book_html._PART_TITLES` and the pedagogy digest's `outcomes_model.PART_TITLES` — must name each
+    # `build_book._PART_TITLES` and the pedagogy digest's `outcomes_model.PART_TITLES` — must name each
     # shared Part identically, so a Part is never one title to the reader and another in the outcomes model.
     # Landed with the Part-2/3/4/5 rename (Modeling / Alignment / The MAGE Method / The Evidence); green at
     # landing, a follow-up promotes it to blocking after a clean session. See tests/book_models.py.

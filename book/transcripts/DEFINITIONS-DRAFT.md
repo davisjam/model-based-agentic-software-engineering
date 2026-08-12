@@ -7,7 +7,7 @@ elaboration** shape the author asked for. Each term gets a short **box** (the co
 **Two follow-ups gate the final landing (not blockers for drafting):**
 1. **Renderer feature — the green definition box.** Proposed directive `<!-- def: <term> -->` heading a
    blockquote → `<aside class="definition-box">` with green accent (a sibling of the concept-inset box).
-   It needs `build_book_html.py`, currently owned by the C→A IR migration; it drops in as ONE directive-
+   It needs `build_book.py`, currently owned by the C→A IR migration; it drops in as ONE directive-
    registry row + a CSS rule once that lands. Spec it there.
 2. **Chapter home.** The author's audio says these belong "in the definitions, in Part 2" (and some framing
    early in Part 1). Likely a new **"Definitions" section** early in Part 2 (or a Part-1 §), cross-linked

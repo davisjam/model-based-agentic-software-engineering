@@ -254,7 +254,7 @@ view, perhaps partially derived or annotative").
 ## 3. The symbol scheme
 
 The models reference symbols in the markdown. The governing constraint: **the notation-leak gate and the
-renderer share one vocabulary SSOT (`MARKER_KEYWORDS` in `build_book_html.py`), and that file is owned by
+renderer share one vocabulary SSOT (`MARKER_KEYWORDS` in `build_book.py`), and that file is owned by
 the concurrent C→A migration — this design must not require editing it for the PoC.** A new marker keyword
 that the renderer does not know how to consume ships as escaped visible text (`&lt;!-- sec: … --&gt;`), an
 ugly leak. So the scheme is layered:
@@ -633,7 +633,7 @@ existing SSOT of the 135 `- concept:` slugs — under a new **`## Term tiers`** 
 - An explicit `- term: <slug> | <tier>` row also **overrides** a concept's default (demote a broad concept
   to `local` where a paragraph uses it narrowly).
 
-The loader is `build_book_html._load_term_tiers()` → `{slug: tier}` (concepts seeded section, `- term:` rows
+The loader is `build_book._load_term_tiers()` → `{slug: tier}` (concepts seeded section, `- term:` rows
 register/override) — one reader, no parallel parse. `TERM_TIERS = ("section", "local")` is the closed tier
 set. This keeps `index-terms.md` the single term SSOT, joined on the same slug the concept registry,
 `concepts.json`, and the book's `index-def` tags all use. A `- term:` row for an unknown tier is a

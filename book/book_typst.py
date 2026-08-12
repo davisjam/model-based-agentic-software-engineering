@@ -9,9 +9,9 @@ WHY (the decision this settled).  The PDF used to be HTML → Paged.js (headless
 inherited browser artifacts, bloat, imperfect print typography, and a headless-browser dependency.
 `IR → Typst → PDF` is the print-native path now in production (recorded in `book/IR-DESIGN.md`
 §"PDF generation"): the Typst binary lays out the whole book in ~2 s and emits a small, tagged PDF with no
-browser in the loop. The whole-book render is driven by `build_book_html.build_pdf` (the `--pdf` flag).
+browser in the loop. The whole-book render is driven by `build_book.build_pdf` (the `--pdf` flag).
 
-DISCIPLINE — OUTPUT ONLY.  This module is stdlib (it emits text) and READS `build_book_html` / `book_ir`
+DISCIPLINE — OUTPUT ONLY.  This module is stdlib (it emits text) and READS `build_book` / `book_ir`
 for the tokenizer, the IR, mermaid-SVG rendering, figure-asset resolution, and metrics — it does NOT modify
 either. The web `build()` path is untouched: this emitter is the SECOND projection, invoked only by `--pdf`.
 
@@ -42,7 +42,7 @@ import json
 import pathlib
 import re
 
-import build_book_html as bb
+import build_book as bb
 import book_ir as ir
 import design_tokens as _dtokens  # bb already put book-models on sys.path — the design-token projector
 
@@ -69,7 +69,7 @@ _DEF_SLUGS = frozenset({"model", "agent", "engineering", "software-engineering"}
 OUTPUT_TYPE = "screen"
 
 # ── Per-section split PDFs — cross-section reference degradation ──────────────────────────────────────
-# The per-section review split (`build_book_html.py` default-on locally) renders ONE PDF per book section
+# The per-section review split (`build_book.py` default-on locally) renders ONE PDF per book section
 # from a SUBSET of the chapters. A `[ref:key]` cross-reference whose target float lives in ANOTHER section
 # is absent from that section's document, so a live Typst `@key` reference would fail the compile ("label
 # does not exist"). In split-section mode these two module globals carry the resolution context:
@@ -121,7 +121,7 @@ _ABBR_RE = re.compile(r"\[\[([^\]|]+?)(?:\|([^\]]*))?\]\]")
 
 def inline_typst(s: str) -> str:
     """Convert one run of the book's inline-markdown subset to Typst inline markup. Mirrors the branch order
-    of `build_book_html.inline` (code spans stashed first so no bold/italic runs inside them), but the
+    of `build_book.inline` (code spans stashed first so no bold/italic runs inside them), but the
     `[ref:key]` token becomes a Typst `@key` reference rather than an <a>. Everything else that is plain body
     text is escaped so a stray `#`/`*`/`@`/`_` in prose does not trigger Typst markup."""
     return _inline(s, [])
@@ -201,7 +201,7 @@ _LEGEND_ANCHOR_RE = re.compile(r"^(a-\d+-|part-\d+$)")
 
 
 # ── Appendix v2 render-mechanism Typst twins (flag ON; restructure sub-wave 2) ──────────────────────
-# Each mirrors an `build_book_html` HTML render path, CALLING that module for its data (the one source of the
+# Each mirrors an `build_book` HTML render path, CALLING that module for its data (the one source of the
 # legend rows / packed brick rows), so the two projections cannot disagree on membership, order, or labels.
 
 def _render_stack_legend(directive_line: str) -> str:
@@ -227,7 +227,7 @@ def _render_stack_legend(directive_line: str) -> str:
 
 def _render_brick_grid(directive_line: str) -> str:
     """`<!-- brick-grid: <group> -->` → the packed Typst brick grid for one Appendix-C zone (§14). The packer
-    (`build_book_html._brick_pack`) resolves the rows and per-brick spans; here each row becomes a `#grid` of
+    (`build_book._brick_pack`) resolves the rows and per-brick spans; here each row becomes a `#grid` of
     two columns whose cells use `grid.cell(colspan: …)` for a wide brick. Each cell is a bordered block —
     a thumbnail slot, the linked name, a stub summary, the metadata footer. Thumbnails are UNNUMBERED (§5.4):
     plain cells, never a `#figure`, so no brick enters the PDF's figure stream."""
@@ -375,7 +375,7 @@ def _render_paragraph(raw: str) -> str:
     # Strip any stray HTML comment (an authoring TODO/note whose keyword is not in the notation vocabulary).
     # The IR peels every RECOGNIZED marker into a DIRECTIVE (rendered as nothing); a comment that reaches a
     # PARA block is stray and would otherwise print as VISIBLE text in the PDF (the leak this closes). Removed
-    # here, mirroring the web renderer's block-level strip; both share `build_book_html._STRAY_COMMENT_RE`. A
+    # here, mirroring the web renderer's block-level strip; both share `build_book._STRAY_COMMENT_RE`. A
     # block that was nothing but a stray comment renders empty and is dropped by `render_chapter`'s `if frag`.
     raw = bb._STRAY_COMMENT_RE.sub("", raw)
     lines = [ln.strip() for ln in raw.splitlines() if ln.strip()]
@@ -609,7 +609,7 @@ def _render_table(block: Block_t) -> str:
 
 # Figures that earn a full-measure render (100% of the text column) rather than the 85% default, because
 # they carry provenance the reader should be able to trace at a glance. Path-keyed so the same set governs
-# both projections (Typst PDF here, HTML in `build_book_html.py`) and the two stay in lockstep.
+# both projections (Typst PDF here, HTML in `build_book.py`) and the two stay in lockstep.
 _WIDE_FIGURES = {"assets/research-arc.svg"}
 
 
@@ -1291,7 +1291,7 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
 
 _PREAMBLE = _TYPST_PREAMBLE + """\
 // GENERATED by book/book_typst.py — the IR→Typst emitter (the production PDF path). Do not hand-edit;
-// regenerate via `python3 book/build_book_html.py --pdf` (whole book) or
+// regenerate via `python3 book/build_book.py --pdf` (whole book) or
 //   python3 book/book_typst.py <chapter-slug> [<slug> …]   (a subset).
 // The compiled PDF and the emitted .typ live under book/_typst/ (gitignored — created, never committed).
 // Type/colour/surface come from the design-token `dt` preamble above. Body stays at a print-native 11pt
@@ -1327,7 +1327,7 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 // Keep-with-next: a heading STICKS to the content after it, so a heading can never be the last meaningful
 // thing on a page (the orphaned-title failure — a chapter/section head alone on a page with its body flowing
 // to the next). `sticky` moves the heading to the following block's page rather than stranding it. The
-// build-time orphaned-heading sensor (in build_book_html.verify_pdf) is the belt to this suspenders.
+// build-time orphaned-heading sensor (in build_book.verify_pdf) is the belt to this suspenders.
 // More air ABOVE a heading than below (2.0em / 0.75em) — the calmer rhythm sets each section off from the
 // prose above it while keeping the heading tied to its own body.
 #show heading: set block(above: 2.0em, below: 0.75em, sticky: true)
@@ -1801,7 +1801,7 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     # ── Numbered Part 1-6: the two-page orientation SPREAD ───────────────────────────────────────────────
     # Facing control (§G-5): the orientation lands on an EVEN (verso/left) page in print so chapter 1 falls on
     # the facing ODD (recto/right) page; screen has no facing concept, so a plain break. Gated by the
-    # `PART-OPENER SPREAD` sensor in `build_book_html.verify_pdf` (four legs: orientation found, fits one page,
+    # `PART-OPENER SPREAD` sensor in `build_book.verify_pdf` (four legs: orientation found, fits one page,
     # carries the nav apparatus, even/odd facing parity — the last print-only).
     #
     # Round-7 W3 author anatomy change: the opener was cut to ONE navigation device. The whole-book SUBWAY map

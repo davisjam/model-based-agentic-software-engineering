@@ -569,7 +569,7 @@ def check_hardcoded_chapter_num() -> tuple[list[Finding], dict]:
 # to an inline copy so the lint still runs rather than crashing the audit.
 try:
     import importlib.util as _ilu
-    _bspec = _ilu.spec_from_file_location("_bbh", os.path.join(BOOK, "build_book_html.py"))
+    _bspec = _ilu.spec_from_file_location("_bbh", os.path.join(BOOK, "build_book.py"))
     _bmod = _ilu.module_from_spec(_bspec)  # type: ignore[arg-type]
     _bspec.loader.exec_module(_bmod)       # type: ignore[union-attr]
     _MERMAID_SOURCE_MARKERS: tuple[str, ...] = _bmod.MERMAID_SOURCE_MARKERS
@@ -588,7 +588,7 @@ _CODE_BLOCK_RE = re.compile(r"<pre><code>(.*?)</code></pre>", re.S)
 
 def check_no_raw_mermaid() -> tuple[list[Finding], dict]:
     """No un-rendered ```mermaid source may ship in ANY built `book/*.html`. Mermaid fences render to a
-    static inline `<svg>` at build time (`build_book_html.py: render_mermaid_svg`), so a shipped diagram is
+    static inline `<svg>` at build time (`build_book.py: render_mermaid_svg`), so a shipped diagram is
     always an `<svg>` — never `flowchart`/`subgraph`/`-->` SYNTAX text. Web analogue of the PDF
     `verify_pdf` mermaid assert (shares the `MERMAID_SOURCE_MARKERS` tuple).
 
@@ -692,7 +692,7 @@ def check_caption_orphan_gate() -> "tuple[str, list[str]]":
     if not os.path.isfile(pdf) or not _shutil.which("pdftotext"):
         return SKIP, ["book/mage-book.pdf not rendered (build with --pdf) or pdftotext absent"]
     import pathlib as _pl  # noqa: E402 — local to this rule
-    import build_book_html as _bb  # noqa: E402 — the PDF sensors live in the book renderer
+    import build_book as _bb  # noqa: E402 — the PDF sensors live in the book renderer
     orphans = _bb._pdf_orphan_caption_pages(_pl.Path(pdf))
     return (FAIL if orphans else PASS), [
         f"p{n} — table caption {lbl!r} sits on a page with its table body on the next" for n, lbl in orphans]
@@ -743,7 +743,7 @@ def check_ir_render_fidelity() -> "tuple[str, list[str]]":
     if BOOK not in _sys.path:
         _sys.path.insert(0, BOOK)
     import book_ir as _ir       # noqa: E402 — the typed book IR lives under book/
-    import build_book_html as _bb  # noqa: E402
+    import build_book as _bb  # noqa: E402
 
     doc = _ir.parse_book()
     active: list[str] = []
@@ -784,7 +784,7 @@ def check_index_scan_hoist_parity() -> "tuple[str, list[str]]":
     import sys as _sys  # noqa: E402 — local path bootstrap so the book/ builder is importable
     if BOOK not in _sys.path:
         _sys.path.insert(0, BOOK)
-    import build_book_html as _bb  # noqa: E402 — the book builder lives under book/
+    import build_book as _bb  # noqa: E402 — the book builder lives under book/
 
     # Reconstruct the SAME page set the production index build scans: discovered chapters + the appendix
     # pages build() appends before it builds the index (see build()).

@@ -1,7 +1,7 @@
 """A typed intermediate representation of the book — a stdlib parse into typed blocks that analyses
 *walk*, instead of every lint re-deriving structure with its own regexes (the N-walkers smell).
 
-WHY THIS EXISTS.  `build_book_html` parses the book several times over — float numbering, concept-tag
+WHY THIS EXISTS.  `build_book` parses the book several times over — float numbering, concept-tag
 harvest, glossary, the notation-leak gate, and every structural check in `tests/book.py` — each pass with
 its own regexes and each able to drift. This module is the one typed model those walks share. See
 `book/IR-DESIGN.md` for the design and the C→A migration plan.
@@ -19,7 +19,7 @@ renderer can later emit *from* it (the C→A step) without re-adding detail. The
 renderer's own block handling 1:1 for the same reason.
 
 TOKENIZER SSOT.  Block splitting, chapter discovery, and the marker regexes are imported from
-`build_book_html` — there is exactly ONE tokenizer; this module is a typed layer over it, never a copy.
+`build_book` — there is exactly ONE tokenizer; this module is a typed layer over it, never a copy.
 """
 from __future__ import annotations
 
@@ -28,7 +28,7 @@ from collections.abc import Iterator
 from dataclasses import dataclass, field
 from enum import Enum
 
-import build_book_html as bb  # SSOT: _split_blocks, _discover_chapters, _load_metrics, _is_pipe_table, _XREF_RE, _INSET_RE
+import build_book as bb  # SSOT: _split_blocks, _discover_chapters, _load_metrics, _is_pipe_table, _XREF_RE, _INSET_RE
 
 
 class BlockKind(Enum):
@@ -55,7 +55,7 @@ _MARKER_LINE = re.compile(r"^<!--\s*([a-z0-9-]+)\s*(?::\s*(.*?))?\s*-->$", re.I)
 
 #: The directive registry — the pluggable-notation SSOT. `arms` directives set state for the NEXT float
 #: (label, caption); `emits` directives produce a block of the named kind; the rest are inert markers the
-#: IR records as DIRECTIVE. `build_book_html.MARKER_KEYWORDS` is the render-side twin; the notation-leak
+#: IR records as DIRECTIVE. `build_book.MARKER_KEYWORDS` is the render-side twin; the notation-leak
 #: gate reads that. Keep the two in step when adding notation (IR-DESIGN.md §"Adding a directive").
 #: `point` is a drain-phase inert DIRECTIVE — `<!-- point: <slug> | <claim> | terms: <t1>, <t2> -->` — the
 #: induced canonical point of the paragraph it heads. It renders NOTHING (like an index tag), and
@@ -67,7 +67,7 @@ _MARKER_LINE = re.compile(r"^<!--\s*([a-z0-9-]+)\s*(?::\s*(.*?))?\s*-->$", re.I)
 _ARMS = {"label", "table"}                       # arm state consumed by the next float
 # `stack-legend` / `brick-grid` (appendix-restructure v2, flag ON) emit a build-generated block — the linked
 # constituent legend / the packed brick grid. They carry BlockKind.OTHER + a `directive` tag; the render
-# twins (`book_typst.render_typst` OTHER branch, `build_book_html._consume_leading_marker`) key off the tag.
+# twins (`book_typst.render_typst` OTHER branch, `build_book._consume_leading_marker`) key off the tag.
 _EMITS = {"figure": BlockKind.FIGURE, "figure-iframe": BlockKind.OTHER, "eq": BlockKind.EQ,
           "stack-legend": BlockKind.OTHER, "brick-grid": BlockKind.OTHER}
 
@@ -229,7 +229,7 @@ class Block:
             raise ValueError(
                 f"{self.kind.value} is not render-complete: it needs the renderer's arming/fold state "
                 f"(label / caption / anchor / mermaid-caption fold); render it through md_to_html")
-        import build_book_html as _bb
+        import build_book as _bb
         k = self.kind
         if k is BlockKind.HEADING:
             return _bb._render_heading(self.raw)
@@ -295,7 +295,7 @@ def blocks_outside_worked_examples(blocks: "list[Block]") -> "Iterator[Block]":
     """Yield every block that is NOT inside a worked-examples gallery span — the span from a
     `<!-- worked-examples: KEY -->` DIRECTIVE block through the `<!-- worked-examples-end -->` close marker
     (inclusive). The gallery is a single directive-managed unit that both emitters collect and render whole
-    (`build_book_html.md_to_html` intercepts the open marker and hands the bracketed inner markdown to
+    (`build_book.md_to_html` intercepts the open marker and hands the bracketed inner markdown to
     `parse_worked_examples`); its inner `### Example` heads, `<!-- takeaway -->` divider, and close marker are
     DIRECTIVE SYNTAX, not standalone narrative blocks. So per-block checks (O2 topic-sentence over headings,
     the C→A isolated-render fidelity net) must skip the whole span — an inner block rendered in isolation
@@ -340,7 +340,7 @@ def _classify_prose(text: str) -> BlockKind:
 
 
 def classify_render_block(block: str) -> BlockKind:
-    """Classify one whole render block EXACTLY as `build_book_html.md_to_html`'s emit loop dispatches it —
+    """Classify one whole render block EXACTLY as `build_book.md_to_html`'s emit loop dispatches it —
     the single classifier the renderer's content dispatch now calls, so one parse feeds both render and
     analysis (the C→A flip). Mirrors the renderer's precise branch order and tests (a space-delimited
     heading, an all-lines `>` blockquote, a `_is_pipe_table` table), NOT the looser `_classify_prose` shape

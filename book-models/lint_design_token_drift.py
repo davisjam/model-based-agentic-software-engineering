@@ -9,7 +9,7 @@ decided semantic-box anchors by hue band (thesis GREEN, definition BLUE, inset L
 Checks:
   1. No raw color in a style region. `#hex` / `rgb(` / `rgba(` / `hsl(` / `luma(` in the site CSS blocks
      (`PAGE_CSS`/`LANDING_CSS`/`FONT_CSS`/`VIEWS_CSS` in catalog.py), the web-book `CSS` f-string in
-     build_book_html.py, or the Typst helpers in book_typst.py — anything outside a `var(--…)` / `dt.…`
+     build_book.py, or the Typst helpers in book_typst.py — anything outside a `var(--…)` / `dt.…`
      lookup is a finding. Escape (sparingly): a `token-exempt` marker on the line.
   2. No off-scale font-size. Any `font-size`/`text(size:` literal in those regions must be a `var(--fs-*)`
      / `dt.fs-*` lookup or resolve to a scale step; a bare px/pt/rem font-size is a finding.
@@ -38,7 +38,7 @@ import design_tokens as dtk  # noqa: E402 — the projector is this lint's sourc
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CATALOG_PY = ROOT / "catalog.py"
-BOOK_HTML_PY = ROOT / "book" / "build_book_html.py"
+BOOK_HTML_PY = ROOT / "book" / "build_book.py"
 BOOK_TYPST_PY = ROOT / "book" / "book_typst.py"
 ASSETS = ROOT / "book" / "assets"
 
@@ -78,7 +78,7 @@ def _style_regions() -> list[tuple[str, str]]:
     book = BOOK_HTML_PY.read_text(encoding="utf-8")
     book_css = _extract_triple_quoted(book, "CSS")
     if book_css is not None:
-        regions.append(("build_book_html.py:CSS", book_css))
+        regions.append(("build_book.py:CSS", book_css))
     # book_typst.py: the whole module — its color literals live in scattered `_render_*` helpers, and
     # after migration all become dt.… lookups (the runtime-prepended preamble is not in this source).
     regions.append(("book_typst.py", BOOK_TYPST_PY.read_text(encoding="utf-8")))
