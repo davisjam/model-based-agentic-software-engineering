@@ -6,8 +6,8 @@
     "explicit_ids": 22,
     "derived_ids": 272,
     "missing_topic_sentence": 13,
-    "sections_drained": 174,
-    "paragraph_points": 532
+    "sections_drained": 172,
+    "paragraph_points": 529
   },
   "chapters": [
     {
@@ -1023,17 +1023,17 @@
           "heading_text": "What the system is made of, and what depends on what",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 5,
+          "block_index": 3,
           "points": [
             {
               "slug": "the-service-flow-model-answers-what-the-system-is-made-of",
               "text": "The service-flow model answers what the system is made of and what depends on what.",
-              "block_index": 9
+              "block_index": 7
             },
             {
               "slug": "one-service-graph-generates-policy-and-reconciles-the-call-graph",
               "text": "One service graph generates the access policy and reconciles the real call graph.",
-              "block_index": 13
+              "block_index": 11
             }
           ]
         },
@@ -1043,17 +1043,17 @@
           "heading_text": "Who owns each piece, and what may cross a boundary",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 18,
           "points": [
             {
               "slug": "the-component-zone-model-makes-ownership-a-queried-fact",
               "text": "The component-zone model makes ownership and boundary a queried fact.",
-              "block_index": 24
+              "block_index": 22
             },
             {
               "slug": "ownership-and-boundary-become-lint-findings-not-slow-erosion",
               "text": "Ownership and boundary reaches become findings, not slow erosion.",
-              "block_index": 29
+              "block_index": 27
             }
           ]
         },
@@ -1063,12 +1063,12 @@
           "heading_text": "Some facts describe; others declare",
           "topic_sentence": "The component and zone model is the cleanest place to see a distinction that runs through every model in this book.",
           "id_source": "derived",
-          "block_index": 42,
+          "block_index": 40,
           "points": [
             {
               "slug": "descriptive-facts-are-derivable-intent-bearing-facts-are-authored",
               "text": "Descriptive facts are derivable; intent-bearing facts are authored.",
-              "block_index": 43
+              "block_index": 41
             }
           ]
         },
@@ -1078,19 +1078,8 @@
           "heading_text": "The facts every consumer joins to",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 48,
-          "points": [
-            {
-              "slug": "frozen-registries-are-the-single-source-every-consumer-joins",
-              "text": "Frozen registries are the single source every consumer joins by key.",
-              "block_index": 51
-            },
-            {
-              "slug": "the-rule-metadata-registry-is-the-self-referential-slice",
-              "text": "The rule-metadata registry is the self-referential slice; the book is generated from it.",
-              "block_index": 54
-            }
-          ]
+          "block_index": 46,
+          "points": []
         },
         {
           "section_id": "what-third-party-material-the-build-depends-on",
@@ -1098,20 +1087,14 @@
           "heading_text": "What third-party material the build depends on",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 59,
-          "points": [
-            {
-              "slug": "a-bill-of-materials-holds-the-dependency-manifest-complete",
-              "text": "A bill of materials holds the dependency manifest complete on every build.",
-              "block_index": 62
-            }
-          ]
+          "block_index": 48,
+          "points": []
         }
       ],
       "preamble_points": [
         {
           "slug": "structural-models-turn-structure-into-queryable-facts",
-          "text": "Structural models turn architecture, ownership, and boundaries into queryable facts.",
+          "text": "Structural and decision models turn architecture, ownership, and boundaries into queryable facts.",
           "block_index": 2
         }
       ]
