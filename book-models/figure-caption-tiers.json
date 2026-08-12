@@ -625,6 +625,12 @@
       "location": "part5",
       "rationale": "the seven build stages — the chapter's spine; each row a pressure and what it forced into the product and the machinery"
     },
+    "the-timeline-and-the-work::The build's scale at one snapshot": {
+      "tier": "B",
+      "kind": "scale-ledger",
+      "location": "part5",
+      "rationale": "the scale-at-a-glance box — production/support/IaC/model LoC and the sustained commit rate, offloaded from the prose so the body lands on 'I inspected almost none of the code'"
+    },
     "toward-a-theory-of-mage::The four dimensions of E": {
       "tier": "B",
       "kind": "framework",

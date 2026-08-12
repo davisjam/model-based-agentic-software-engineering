@@ -14,8 +14,8 @@
     "universe": {
       "section_ids": 261,
       "concepts": 151,
-      "labels": 98,
-      "refs": 95,
+      "labels": 99,
+      "refs": 96,
       "chapters": 80,
       "parts": 8,
       "points": 482,
@@ -559,7 +559,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-7",
+          "element": "5.2-the-build::block-9",
           "role": "paragraph-point"
         }
       ]
@@ -1479,7 +1479,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-44",
+          "element": "5.2-the-build::block-49",
           "role": "paragraph-point"
         }
       ]
@@ -1749,7 +1749,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-13",
+          "element": "5.2-the-build::block-15",
           "role": "paragraph-point"
         }
       ]
@@ -3289,7 +3289,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-54",
+          "element": "5.2-the-build::block-59",
           "role": "paragraph-point"
         }
       ]
@@ -3589,7 +3589,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-38",
+          "element": "5.2-the-build::block-43",
           "role": "paragraph-point"
         }
       ]
@@ -3789,7 +3789,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-19",
+          "element": "5.2-the-build::block-24",
           "role": "paragraph-point"
         }
       ]
@@ -3969,7 +3969,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-29",
+          "element": "5.2-the-build::block-34",
           "role": "paragraph-point"
         }
       ]
@@ -4009,7 +4009,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-25",
+          "element": "5.2-the-build::block-30",
           "role": "paragraph-point"
         }
       ]
@@ -4569,7 +4569,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-57",
+          "element": "5.2-the-build::block-62",
           "role": "paragraph-point"
         }
       ]
@@ -4739,7 +4739,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-17",
+          "element": "5.2-the-build::block-19",
           "role": "paragraph-point"
         }
       ]
@@ -4759,7 +4759,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-59",
+          "element": "5.2-the-build::block-64",
           "role": "paragraph-point"
         }
       ]
@@ -5149,7 +5149,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-9",
+          "element": "5.2-the-build::block-11",
           "role": "paragraph-point"
         }
       ]
@@ -8839,7 +8839,7 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-44",
+          "element": "5.2-the-build::block-49",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -8854,7 +8854,7 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-41",
+          "element": "5.2-the-build::block-46",
           "role": "section-term[tier-1]"
         }
       ]
@@ -9444,7 +9444,7 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-6",
+          "element": "5.2-the-build::block-8",
           "role": "section-term[tier-1]"
         }
       ]
@@ -9674,7 +9674,7 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-59",
+          "element": "5.2-the-build::block-64",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10269,12 +10269,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-7",
+          "element": "5.2-the-build::block-9",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-6",
+          "element": "5.2-the-build::block-8",
           "role": "section-term[tier-1]"
         }
       ]
@@ -10694,12 +10694,12 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-29",
+          "element": "5.2-the-build::block-34",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-57",
+          "element": "5.2-the-build::block-62",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10784,12 +10784,12 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-28",
+          "element": "5.2-the-build::block-33",
           "role": "section-term[tier-1]"
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-53",
+          "element": "5.2-the-build::block-58",
           "role": "section-term[tier-1]"
         },
         {
@@ -10949,12 +10949,12 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-19",
+          "element": "5.2-the-build::block-24",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-38",
+          "element": "5.2-the-build::block-43",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -10969,12 +10969,12 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-12",
+          "element": "5.2-the-build::block-14",
           "role": "section-term[tier-1]"
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-34",
+          "element": "5.2-the-build::block-39",
           "role": "section-term[tier-1]"
         },
         {
@@ -11504,12 +11504,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-54",
+          "element": "5.2-the-build::block-59",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-53",
+          "element": "5.2-the-build::block-58",
           "role": "section-term[tier-1]"
         }
       ]
@@ -14169,17 +14169,17 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-13",
+          "element": "5.2-the-build::block-15",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-17",
+          "element": "5.2-the-build::block-19",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-12",
+          "element": "5.2-the-build::block-14",
           "role": "section-term[tier-1]"
         }
       ]
@@ -14339,7 +14339,7 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-9",
+          "element": "5.2-the-build::block-11",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -14364,12 +14364,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-19",
+          "element": "5.2-the-build::block-24",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-38",
+          "element": "5.2-the-build::block-43",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -14379,7 +14379,7 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-34",
+          "element": "5.2-the-build::block-39",
           "role": "section-term[tier-1]"
         },
         {
@@ -14799,7 +14799,7 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-57",
+          "element": "5.2-the-build::block-62",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -15474,12 +15474,12 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "5.2-the-build::block-25",
+          "element": "5.2-the-build::block-30",
           "role": "paragraph-term[tier-2]"
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-22",
+          "element": "5.2-the-build::block-27",
           "role": "section-term[tier-1]"
         }
       ]
@@ -15524,7 +15524,7 @@
         },
         {
           "view": "outline",
-          "element": "5.2-the-build::block-7",
+          "element": "5.2-the-build::block-9",
           "role": "paragraph-term[tier-2]"
         },
         {
