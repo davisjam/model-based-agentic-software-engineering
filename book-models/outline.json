@@ -7,7 +7,7 @@
     "derived_ids": 267,
     "missing_topic_sentence": 13,
     "sections_drained": 174,
-    "paragraph_points": 531
+    "paragraph_points": 532
   },
   "chapters": [
     {
@@ -3236,17 +3236,17 @@
           "heading_text": "What does it mean to validate a change?",
           "topic_sentence": "To validate a change is to assemble evidence that it satisfies its obligations — and to refuse it otherwise.",
           "id_source": "derived",
-          "block_index": 3,
+          "block_index": 5,
           "points": [
             {
               "slug": "validate-is-assemble-evidence",
               "text": "Validating a change means assembling evidence that it satisfies its obligations.",
-              "block_index": 5
+              "block_index": 7
             },
             {
               "slug": "evidence-is-independent-of-the-author",
               "text": "Strong evidence is independent of whoever proposed the change.",
-              "block_index": 7
+              "block_index": 9
             }
           ]
         },
@@ -3256,42 +3256,42 @@
           "heading_text": "The model as oracle",
           "topic_sentence": "None of the individual validation techniques in this chapter is new.",
           "id_source": "derived",
-          "block_index": 9,
+          "block_index": 11,
           "points": [
             {
               "slug": "validation-techniques-are-not-new",
               "text": "None of the validation techniques is new; abundant implementation changed their role, not the algorithms.",
-              "block_index": 11
+              "block_index": 13
             },
             {
               "slug": "models-are-the-shared-substrate",
               "text": "Explicit models are the shared substrate humans and agents reason through, and the model that helps produce a change later helps judge it.",
-              "block_index": 13
+              "block_index": 15
             },
             {
               "slug": "each-technique-exploits-a-kind-of-model",
               "text": "Each validation technique exploits a particular kind of model; together they instance one principle.",
-              "block_index": 15
+              "block_index": 17
             },
             {
               "slug": "validation-shifts-from-reading-code-to-evaluating-evidence",
               "text": "As implementation grows abundant, validation shifts from reading code to evaluating evidence built on model surfaces.",
-              "block_index": 17
+              "block_index": 19
             },
             {
               "slug": "generate-to-falsify-a-model-supplied-spec",
               "text": "Generate inputs to falsify a specification the model supplies.",
-              "block_index": 19
+              "block_index": 21
             },
             {
               "slug": "generative-test-unites-both-theses",
               "text": "A generative test unites the Modeling and Alignment theses.",
-              "block_index": 22
+              "block_index": 24
             },
             {
               "slug": "engineered-model-enables-deterministic-validation",
               "text": "An engineered model supports deterministic validation; a scraped knowledge graph does not.",
-              "block_index": 24
+              "block_index": 26
             }
           ]
         },
@@ -3301,17 +3301,17 @@
           "heading_text": "The move: a generator hunts a counterexample to a model",
           "topic_sentence": "Before the three members, the shared shape.",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 28,
           "points": [
             {
               "slug": "generative-test-hunts-a-counterexample",
               "text": "A generative test hunts a counterexample across the space.",
-              "block_index": 27
+              "block_index": 29
             },
             {
               "slug": "a-property-has-no-case-to-special-case",
               "text": "A broadly quantified property makes one-input special-casing less effective.",
-              "block_index": 30
+              "block_index": 32
             }
           ]
         },
@@ -3321,32 +3321,32 @@
           "heading_text": "Fuzz + MBSE: the structured model becomes the oracle",
           "topic_sentence": "The richest form of validation-from-a-model turns the model itself into the judge.",
           "id_source": "derived",
-          "block_index": 33,
+          "block_index": 35,
           "points": [
             {
               "slug": "the-typed-model-becomes-the-oracle",
               "text": "The structured model itself becomes the oracle.",
-              "block_index": 36
+              "block_index": 38
             },
             {
               "slug": "sort-outcomes-against-the-closed-legal-set",
               "text": "Sort adversarial outcomes against the model's closed legal set.",
-              "block_index": 39
+              "block_index": 41
             },
             {
               "slug": "producer-dialect-is-the-adversarial-input",
               "text": "Let a rival producer's legal dialect be the input.",
-              "block_index": 41
+              "block_index": 43
             },
             {
               "slug": "harvest-producers-before-hand-rolling-a-grammar",
               "text": "Harvest real producers before hand-rolling a grammar.",
-              "block_index": 44
+              "block_index": 46
             },
             {
               "slug": "search-interleavings-against-the-invariant-predicate",
               "text": "For a concurrency invariant, search interleavings against the predicate.",
-              "block_index": 47
+              "block_index": 49
             }
           ]
         },
@@ -3356,37 +3356,37 @@
           "heading_text": "Choosing the validation technique",
           "topic_sentence": "Models expose intent and metrics measure degree; **validators** are the machine-read checks that consume both and return a verdict.",
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 52,
           "points": [
             {
               "slug": "validators-consume-models-and-metrics",
               "text": "Deterministic validators consume the models and metrics as machine-read checks.",
-              "block_index": 52
+              "block_index": 54
             },
             {
               "slug": "pick-the-technique-from-the-signal-in-the-code",
               "text": "Pick the technique from the signal in the code under test, not from a maturity ladder.",
-              "block_index": 54
+              "block_index": 56
             },
             {
               "slug": "the-family-is-three-answers-not-three-rungs",
               "text": "The generative family is one move worn three ways — three answers to three signals, not three rungs.",
-              "block_index": 57
+              "block_index": 59
             },
             {
               "slug": "oracle-richness-and-input-wildness-trade-off",
               "text": "Oracle richness and input wildness trade off.",
-              "block_index": 61
+              "block_index": 63
             },
             {
               "slug": "failure-means-false-law-or-crash",
               "text": "Failure means a false law or a crash.",
-              "block_index": 63
+              "block_index": 65
             },
             {
               "slug": "stable-spec-point-bridges-fuzzing-and-model",
               "text": "The stable spec point bridges fuzzing and the model.",
-              "block_index": 65
+              "block_index": 67
             }
           ]
         },
@@ -3396,17 +3396,17 @@
           "heading_text": "Property-based testing: the invariant is the oracle",
           "topic_sentence": "In property-based testing the author writes the law and the machine hunts the counterexample [cite: claessen2000quickcheck].",
           "id_source": "derived",
-          "block_index": 67,
+          "block_index": 69,
           "points": [
             {
               "slug": "author-writes-law-generator-shrinks",
               "text": "The author writes the law; the generator shrinks the counterexample.",
-              "block_index": 69
+              "block_index": 71
             },
             {
               "slug": "property-is-the-modeling-thesis-as-a-test",
               "text": "The property is the Modeling Thesis worn as a test.",
-              "block_index": 71
+              "block_index": 73
             }
           ]
         },
@@ -3416,27 +3416,27 @@
           "heading_text": "Fuzzing: the contract is \"never crash, never corrupt\"",
           "topic_sentence": "Where a property test asks a rich question of inputs drawn from an authored domain, fuzzing asks a coarser question of arbitrary, mutated ones.",
           "id_source": "derived",
-          "block_index": 75,
+          "block_index": 77,
           "points": [
             {
               "slug": "fuzzing-asks-a-coarse-question-of-wild-inputs",
               "text": "Fuzzing asks a coarse question of wild inputs.",
-              "block_index": 77
+              "block_index": 79
             },
             {
               "slug": "fix-a-crash-to-the-spec-point",
               "text": "Fix a crash to the spec point, not the seed.",
-              "block_index": 79
+              "block_index": 81
             },
             {
               "slug": "coverage-makes-we-fuzzed-it-a-claim",
               "text": "Coverage makes 'we fuzzed it' a measured claim.",
-              "block_index": 81
+              "block_index": 83
             },
             {
               "slug": "fuzz-plus-mbse-is-placed-earlier",
               "text": "The fuzz-plus-model technique is developed above, under The model as oracle.",
-              "block_index": 85
+              "block_index": 87
             }
           ]
         },
@@ -3446,27 +3446,27 @@
           "heading_text": "Coverage: did the validation explore the claim?",
           "topic_sentence": "A validator answers a yes/no obligation; a **metric** answers a question of degree, and degree is its own kind of evidence.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 89,
           "points": [
             {
               "slug": "metrics-are-evidence-of-improve-or-degrade",
               "text": "Metrics turn \"did it get better or worse\" into standing evidence.",
-              "block_index": 89
+              "block_index": 91
             },
             {
               "slug": "generation-adds-a-native-coverage-question",
               "text": "Generation adds one coverage question native to it.",
-              "block_index": 91
+              "block_index": 93
             },
             {
               "slug": "grammar-coverage-measures-inputs-not-code",
               "text": "Grammar coverage measures the inputs, not the code.",
-              "block_index": 93
+              "block_index": 95
             },
             {
               "slug": "model-claim-coverage-is-the-saturation-oracle",
               "text": "Model-claim coverage is the family's real saturation oracle.",
-              "block_index": 96
+              "block_index": 98
             }
           ]
         },
@@ -3476,12 +3476,12 @@
           "heading_text": "Deterministic admission",
           "topic_sentence": "These checks are deterministic sensors, machine-read — and they **become hard governance when their verdicts control admission**, wired as a commit gate that refuses the merge.",
           "id_source": "derived",
-          "block_index": 99,
+          "block_index": 101,
           "points": [
             {
               "slug": "generative-validation-is-hard-governance",
               "text": "Generative validation is hard governance, the Alignment Thesis mechanical.",
-              "block_index": 101
+              "block_index": 103
             }
           ]
         },
@@ -3491,17 +3491,17 @@
           "heading_text": "Why this matters in the agentic era",
           "topic_sentence": "Autonomous development does not change *what* engineering evidence is.",
           "id_source": "derived",
-          "block_index": 103,
+          "block_index": 105,
           "points": [
             {
               "slug": "agentic-era-changes-how-much-evidence",
               "text": "Autonomous development changes how much evidence we require, not what evidence is.",
-              "block_index": 105
+              "block_index": 107
             },
             {
               "slug": "evidence-must-outrun-inspection",
               "text": "Evidence must now be generated faster than a human can inspect.",
-              "block_index": 107
+              "block_index": 109
             }
           ]
         },
@@ -3511,12 +3511,12 @@
           "heading_text": "Industrial example",
           "topic_sentence": "The move is one a team can copy: generate evidence built to falsify a claim, and admit only the claim that survives.",
           "id_source": "derived",
-          "block_index": 109,
+          "block_index": 111,
           "points": [
             {
               "slug": "independent-evidence-is-not-a-docable-idiosyncrasy",
               "text": "Placing the grader outside the author is a general move, not a DocAble idiosyncrasy.",
-              "block_index": 111
+              "block_index": 113
             }
           ]
         }
@@ -3526,6 +3526,11 @@
           "slug": "how-do-we-know-a-change-is-acceptable",
           "text": "Every engineering process must answer how it knows a change is acceptable.",
           "block_index": 0
+        },
+        {
+          "slug": "validation-is-only-as-strong-as-the-obligation",
+          "text": "Validation is only as strong as the obligation behind it.",
+          "block_index": 3
         }
       ]
     },
@@ -3599,22 +3604,22 @@
           "heading_text": "Self-operate: the lifecycles, made runnable",
           "topic_sentence": "Self-operate is the starting point, because it holds the lifecycles of running a repo — the recurring repository lifecycles this project needed to operate.",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 46,
           "points": [
             {
               "slug": "self-operate-holds-the-lifecycles-of-running-a-repo",
               "text": "Self-operate holds the lifecycles of running a repo.",
-              "block_index": 47
+              "block_index": 48
             },
             {
               "slug": "playbooks-let-an-orchestrator-loop-react-to-events",
               "text": "Playbooks let an orchestrator loop react to events.",
-              "block_index": 51
+              "block_index": 52
             },
             {
               "slug": "dont-trust-a-done-claim-re-run-the-gates-yourself",
               "text": "Don't trust a done claim; re-run gates.",
-              "block_index": 56
+              "block_index": 57
             }
           ]
         },
@@ -3624,12 +3629,12 @@
           "heading_text": "Self-communicate: how the agent writes and draws",
           "topic_sentence": "The third skill, self-communicate, encodes a different craft through the same mechanism: how the agent explains itself, to you and to other people.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 61,
           "points": [
             {
               "slug": "self-communicate-governs-the-agents-prose-and-diagrams",
               "text": "Self-communicate governs the agent's prose and diagrams.",
-              "block_index": 62
+              "block_index": 63
             }
           ]
         },
@@ -3639,12 +3644,12 @@
           "heading_text": "The lexicon: one concept, one word",
           "topic_sentence": "Self-communicate also owns a **lexicon** — the house vocabulary for your repo, one concept to one word.",
           "id_source": "derived",
-          "block_index": 65,
+          "block_index": 66,
           "points": [
             {
               "slug": "a-lexicon-gives-one-concept-one-consistent-word",
               "text": "A lexicon gives one concept one consistent word.",
-              "block_index": 67
+              "block_index": 68
             }
           ]
         },
@@ -3654,7 +3659,7 @@
           "heading_text": "Worked examples",
           "topic_sentence": "Shipping the method as skills is one project's answer to a pattern the industry is finding in parallel: encoded knowledge is an asset that compounds, and each site accumulates it.",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 74,
           "points": []
         },
         {
@@ -3663,22 +3668,22 @@
           "heading_text": "The skills are transformations",
           "topic_sentence": "[ref:transformations-pipeline] shows the shared skeleton — each skill carrying an input to an output through a sequence of sized transformations.",
           "id_source": "explicit",
-          "block_index": 83,
+          "block_index": 84,
           "points": [
             {
               "slug": "each-skill-is-a-sequence-of-sized-transformations",
               "text": "Each skill is a sequence of sized transformations.",
-              "block_index": 87
+              "block_index": 88
             },
             {
               "slug": "the-catalogue-reads-like-a-symptom-to-mechanism-lookup",
               "text": "The catalogue reads like a symptom-to-mechanism lookup.",
-              "block_index": 89
+              "block_index": 90
             },
             {
               "slug": "read-every-task-as-a-sized-checkable-sequence",
               "text": "Read every task as a sized, checkable sequence.",
-              "block_index": 91
+              "block_index": 92
             }
           ]
         },
@@ -3688,12 +3693,12 @@
           "heading_text": "Closing the Part: the portable moves",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 93,
+          "block_index": 94,
           "points": [
             {
               "slug": "the-method-reduces-to-two-moves-and-a-feedback",
               "text": "The method reduces to two moves and a feedback.",
-              "block_index": 97
+              "block_index": 98
             }
           ]
         },
@@ -3703,52 +3708,52 @@
           "heading_text": "The patterns",
           "topic_sentence": "A pattern is a move the method makes again and again, in a form you can reuse.",
           "id_source": "derived",
-          "block_index": 99,
+          "block_index": 100,
           "points": [
             {
               "slug": "bootstrap-from-the-environment-you-already-own",
               "text": "Bootstrap from the environment you already own.",
-              "block_index": 102
+              "block_index": 103
             },
             {
               "slug": "reach-for-a-constraint-first-add-a-sensor-for-the-rest",
               "text": "Reach for a constraint first; add a sensor for the rest.",
-              "block_index": 104
+              "block_index": 105
             },
             {
               "slug": "determinize-what-you-know-convert-what-you-learn",
               "text": "Determinize what you know; convert what you learn.",
-              "block_index": 106
+              "block_index": 107
             },
             {
               "slug": "audit-drain-promote-to-wear-a-lint-into-a-legacy-tree",
               "text": "Audit, drain, promote to wear a lint into a legacy tree.",
-              "block_index": 108
+              "block_index": 109
             },
             {
               "slug": "ask-the-deterministic-question-against-a-model",
               "text": "Ask the deterministic question against a model, not the code.",
-              "block_index": 110
+              "block_index": 111
             },
             {
               "slug": "generate-to-falsify-admit-only-what-survives",
               "text": "Generate to falsify; admit only what survives.",
-              "block_index": 112
+              "block_index": 113
             },
             {
               "slug": "never-add-metadata-without-a-consumer",
               "text": "Never add metadata without a consumer.",
-              "block_index": 114
+              "block_index": 115
             },
             {
               "slug": "package-the-procedure-so-the-work-becomes-delegable",
               "text": "Package the procedure so a class of work becomes delegable.",
-              "block_index": 116
+              "block_index": 117
             },
             {
               "slug": "govern-the-accumulated-governance",
               "text": "Govern the accumulated governance.",
-              "block_index": 118
+              "block_index": 119
             }
           ]
         },
@@ -3758,52 +3763,52 @@
           "heading_text": "The anti-patterns",
           "topic_sentence": "An anti-pattern is a move that looks reasonable and fails predictably.",
           "id_source": "derived",
-          "block_index": 120,
+          "block_index": 121,
           "points": [
             {
               "slug": "the-teetering-tower-of-governance",
               "text": "The teetering tower — upkeep outweighs benefit.",
-              "block_index": 123
+              "block_index": 124
             },
             {
               "slug": "all-sensors-and-no-constraints",
               "text": "All sensors, no constraints — removes no failure class.",
-              "block_index": 125
+              "block_index": 126
             },
             {
               "slug": "words-alone-are-a-probability-flip",
               "text": "Words alone are a probability flip.",
-              "block_index": 127
+              "block_index": 128
             },
             {
               "slug": "flipping-a-check-to-blocking-with-findings-open",
               "text": "Flipping a check to blocking with findings still open.",
-              "block_index": 129
+              "block_index": 130
             },
             {
               "slug": "trusting-a-done-claim",
               "text": "Trusting a done claim.",
-              "block_index": 131
+              "block_index": 132
             },
             {
               "slug": "the-mirror-that-agrees-with-the-bug",
               "text": "The mirror that agrees with the bug.",
-              "block_index": 133
+              "block_index": 134
             },
             {
               "slug": "patching-the-seed-not-the-spec-point",
               "text": "Patching the seed, not the spec point.",
-              "block_index": 135
+              "block_index": 136
             },
             {
               "slug": "the-invoice-level-metric",
               "text": "The invoice-level metric reports but cannot act.",
-              "block_index": 137
+              "block_index": 138
             },
             {
               "slug": "reactive-growth-leaves-a-target-un-watched",
               "text": "Reactive growth leaves a target un-watched.",
-              "block_index": 139
+              "block_index": 140
             }
           ]
         },
@@ -3813,52 +3818,52 @@
           "heading_text": "The heuristics",
           "topic_sentence": "A heuristic is a judgment rule for the calls no pattern makes for you.",
           "id_source": "derived",
-          "block_index": 141,
+          "block_index": 142,
           "points": [
             {
               "slug": "size-by-cost-times-frequency-architecture-first",
               "text": "Size by cost times frequency; architecture before controls.",
-              "block_index": 144
+              "block_index": 145
             },
             {
               "slug": "take-the-next-rung-when-a-recurring-question-earns-it",
               "text": "Take the next rung when a recurring question earns it.",
-              "block_index": 146
+              "block_index": 147
             },
             {
               "slug": "guidance-aims-machinery-holds",
               "text": "Guidance aims; machinery holds.",
-              "block_index": 148
+              "block_index": 149
             },
             {
               "slug": "convert-dont-just-repair",
               "text": "Convert, don't just repair — audit becomes lint.",
-              "block_index": 150
+              "block_index": 151
             },
             {
               "slug": "the-second-time-a-failure-shows-up-it-earns-its-mechanism",
               "text": "The second time a failure shows up, it has earned its mechanism.",
-              "block_index": 152
+              "block_index": 153
             },
             {
               "slug": "measure-one-level-deeper",
               "text": "Measure one level deeper.",
-              "block_index": 154
+              "block_index": 155
             },
             {
               "slug": "choose-the-fitness-function-then-the-cheapest-abstraction",
               "text": "Choose the fitness function, then the cheapest abstraction that enforces it.",
-              "block_index": 156
+              "block_index": 157
             },
             {
               "slug": "harvest-real-producers-before-hand-rolling-a-grammar",
               "text": "Harvest real producers before hand-rolling a grammar.",
-              "block_index": 158
+              "block_index": 159
             },
             {
               "slug": "orient-positive-before-you-hunt-a-break",
               "text": "Orient positive before you hunt a break.",
-              "block_index": 160
+              "block_index": 161
             }
           ]
         },
@@ -3868,32 +3873,32 @@
           "heading_text": "The checklists",
           "topic_sentence": "A checklist turns a pattern into something you run on Monday.",
           "id_source": "derived",
-          "block_index": 162,
+          "block_index": 163,
           "points": [
             {
               "slug": "the-brownfield-loop-in-five-moves",
               "text": "The brownfield loop, in five moves.",
-              "block_index": 165
+              "block_index": 166
             },
             {
               "slug": "the-minting-reflexes",
               "text": "The minting reflexes.",
-              "block_index": 167
+              "block_index": 168
             },
             {
               "slug": "the-sizing-matrix-as-a-decision-aid",
               "text": "The sizing matrix as a decision aid.",
-              "block_index": 169
+              "block_index": 170
             },
             {
               "slug": "the-generative-validation-decision-aid",
               "text": "The generative-validation decision aid.",
-              "block_index": 171
+              "block_index": 172
             },
             {
               "slug": "the-three-views-over-one-control-set",
               "text": "Three views over one control set.",
-              "block_index": 173
+              "block_index": 174
             }
           ]
         },
@@ -3903,12 +3908,12 @@
           "heading_text": "The Engineer's Day",
           "topic_sentence": "The workflow chapter walked the loop one turn at a time.",
           "id_source": "derived",
-          "block_index": 175,
+          "block_index": 176,
           "points": [
             {
               "slug": "the-day-runs-the-loop-through-instruments",
               "text": "The engineer's day runs the loop through instruments.",
-              "block_index": 176
+              "block_index": 177
             }
           ]
         },
@@ -3918,17 +3923,17 @@
           "heading_text": "Morning: read what the night left",
           "topic_sentence": "The day opens the way the loop's daily rhythm already promised: you read what broke while you slept.",
           "id_source": "derived",
-          "block_index": 178,
+          "block_index": 179,
           "points": [
             {
               "slug": "morning-routes-attention-before-it-spends-any",
               "text": "The morning routes attention before it spends any.",
-              "block_index": 179
+              "block_index": 180
             },
             {
               "slug": "two-health-reads-answer-most-of-the-morning",
               "text": "Two health reads answer most of the morning.",
-              "block_index": 181
+              "block_index": 182
             }
           ]
         },
@@ -3938,12 +3943,12 @@
           "heading_text": "The instruments on the desk",
           "topic_sentence": "Behind the morning read sits one panel that holds every metric the build acts on, split into two bands.",
           "id_source": "derived",
-          "block_index": 183,
+          "block_index": 184,
           "points": [
             {
               "slug": "the-dashboard-splits-steering-from-certifying",
               "text": "The dashboard splits what you steer by from what you certify with.",
-              "block_index": 184
+              "block_index": 185
             }
           ]
         },
@@ -3953,12 +3958,12 @@
           "heading_text": "Midday: where judgment goes",
           "topic_sentence": "Through the middle of the day one reflex runs under everything: watch where your attention actually lands.",
           "id_source": "derived",
-          "block_index": 188,
+          "block_index": 189,
           "points": [
             {
               "slug": "watch-where-attention-lands-and-convert-the-repeats",
               "text": "Watch where attention lands; convert what you keep deciding by hand.",
-              "block_index": 189
+              "block_index": 190
             }
           ]
         },
@@ -3968,12 +3973,12 @@
           "heading_text": "Before you ship: the preflight",
           "topic_sentence": "A release is not cleared from feel.",
           "id_source": "derived",
-          "block_index": 191,
+          "block_index": 192,
           "points": [
             {
               "slug": "certify-a-release-from-gates-not-from-feel",
               "text": "Certify a release from gates, not from feel.",
-              "block_index": 192
+              "block_index": 193
             }
           ]
         },
@@ -3983,17 +3988,17 @@
           "heading_text": "What the day makes of you",
           "topic_sentence": "Run enough of these days and the shape of the work stands out.",
           "id_source": "derived",
-          "block_index": 196,
+          "block_index": 197,
           "points": [
             {
               "slug": "the-day-names-three-competencies-part-six-develops",
               "text": "The day points at three competencies Part VI develops.",
-              "block_index": 197
+              "block_index": 198
             },
             {
               "slug": "the-skills-closes-the-method-and-opens-the-case",
               "text": "The moves close the method; the next Part is the case.",
-              "block_index": 199
+              "block_index": 200
             }
           ]
         }
