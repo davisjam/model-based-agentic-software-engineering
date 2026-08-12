@@ -48,7 +48,7 @@
 
   <rect x="438" y="197" width="170" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
   <text x="450" y="219" font-size="15" font-weight="bold" fill="#1c1917">Sensor</text>
-  <text x="596" y="219" text-anchor="end" font-size="13" font-style="italic" fill="#78716c">detects</text>
+  <text x="596" y="219" text-anchor="end" font-size="13" font-style="italic" fill="#78716c">produces evidence</text>
 
   <rect x="438" y="239" width="170" height="34" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
   <text x="450" y="261" font-size="15" font-weight="bold" fill="#1c1917">Validator</text>

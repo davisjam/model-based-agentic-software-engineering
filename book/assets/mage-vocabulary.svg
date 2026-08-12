@@ -2,7 +2,7 @@
 <!-- HAND-AUTHORED one-off glossary section-map (geometry-per-concept redraw 260810; NEW figure, ratify-optional). Not machine-projected; edit this SVG directly. -->
 <!-- NOUN-SPINE geometry — the grammar of the book. One vertical chain of nouns, each edge a verb; every other glossary figure instantiates a slice of this spine. Orientation reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Noun spine: the MAGE vocabulary as one chain — Reality to Engineering Capital, every link a verb">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Noun spine: the MAGE vocabulary as one chain — Reality / Intent to Engineering Capital, every link a verb">
   <defs>
     <marker id="vh-spine" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
@@ -13,8 +13,8 @@
 
   <!-- Reality -->
   <rect x="330" y="96" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="450" y="122" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Reality</text>
-  <text x="450" y="141" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">the system as it truly is</text>
+  <text x="450" y="122" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Reality / Intent</text>
+  <text x="450" y="141" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">the system as it is, or intended</text>
   <line x1="450" y1="148" x2="450" y2="188" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-spine)"/>
   <text x="462" y="173" font-size="14.4" fill="#78716c">captured as</text>
 
