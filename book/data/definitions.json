@@ -122,9 +122,9 @@
 
   "governance-mechanism": {
     "term": "Governance mechanism",
-    "box": "A repeatable environmental structure that encodes an engineering policy and either constrains an action, detects a violation, requires evidence, or controls admission.",
+    "box": "A repeatable environmental structure that encodes an engineering policy and either constrains an action, produces evidence of a violation, evaluates that evidence, or controls admission.",
     "aspects": [
-      {"lead": "The four classes", "text": "Prevention (a constraint — scopes the action space so the mistake is impossible), detection (a sensor — catches the violation and fails the iteration), evidence (demands the change carry its proof — a provenance stamp, a re-derived result), and admission (decides whether the result may advance — the loop's last door). Prevention and detection are the catalogue's constraint/sensor move axis; package names a bundle."},
+      {"lead": "The four roles", "text": "Prevention (a constraint — scopes the action space so the mistake is impossible), sensing (a sensor — observes the system and produces evidence of what happened), validation (a validator — evaluates that evidence against the obligation), and admission (a gate — decides whether the result may advance, the loop's last door). Constraint and sensor are the catalogue's constraint/sensor move axis; package names a bundle."},
       {"lead": "A model is not a mechanism until enforced", "text": "A structured model on disk aims nobody. The lint that reads it, the gate that checks against it, the generator that derives from it — those are the mechanisms. The model supplies the policy; the mechanism supplies the holding."},
       {"lead": "Why 'repeatable environmental structure'", "text": "A one-off inspection is not a mechanism; a mechanism fires on every subsequent change without anyone remembering it. That repeatability is what lets attention be spent per class of failure instead of per change."}
     ],

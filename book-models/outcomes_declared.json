@@ -71,7 +71,7 @@
       "obj": "a governed environment in which a fleet of coding agents does useful engineering work at bounded risk",
       "statement": "After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class.",
       "provenance": "declared",
-      "anchor": "Preface 'mechanize discipline' + the book's stated aim (SE-at-Google + GoF touchstones): patterns that keep a fleet productive at bounded failure.",
+      "anchor": "Preface 'Who this book is for': recognize when an engineering problem is being paid for repeatedly in reconstruction or human judgment; decide whether a better representation, stronger authority, or both would retire that cost; and design mechanisms suited to your own system rather than copying another organization's process.",
       "secondary_units": [
         "part-2",
         "part-4"

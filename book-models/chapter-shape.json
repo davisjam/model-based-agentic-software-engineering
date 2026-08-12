@@ -87,11 +87,11 @@
         "thesis_target": "argument-step"
       },
       "closing": {
-        "kind": "transition"
+        "kind": "synthesis"
       },
-      "note": "Exempt (preface). Four-question refocus; comparisons moved to where-mage-fits. Lead states the shift and the book's subject; theses arrive later in the preface body. Closes thematically on the one-move epigraph (the map of the book now lives in the How to read this book page).",
-      "opening_anchor": "This is a book about engineering — specifically, about what engineering work",
-      "closing_anchor": "> Everything that follows is one move, repeated: convert judgment into infrastructure.",
+      "note": "Exempt (preface). Opens on the core question and its reorganization answer; adds `Where the theory came from`, `What changed`, `Evidence and scope`; states the method as a FOUR-step cycle (Model · Align · Work · Convert) whose theses are INDEPENDENT (Modeling first is a principled scaling choice, not a prerequisite), closing on the cyclicality/engineering-capital sentence; the Printer metaphor no longer reprises here (it lives in 1.1); closes on `Who this book is for` and the convert-recurring-judgment move. The book map lives in the How to read this book page.",
+      "opening_anchor": "**How do we safely grant autonomy to commodity intelligence?** In this book,",
+      "closing_anchor": "models, constraints, evidence, validators, workflows, and the engineering judgment encoded in them.",
       "delivers": {
         "concepts": [
           "fleet",
@@ -112,7 +112,6 @@
         "alignment-thesis",
         "theses-treat-the-causes",
         "failures-become-machinery",
-        "sync-cost-reduced",
         "mage-becomes-practical",
         "grounded-in-one-case"
       ]
@@ -1267,9 +1266,9 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Apparatus / navigation. Opens by laying out the five parts and their compose-order and the two ways to read; answers how to work the appendices; hands the reader the book map as a navigational framework. Advances no thesis (apparatus). Not yet carried in the argument-spine exemptions — a pre-existing spine gap, tracked separately.",
-      "opening_anchor": "Five parts, and they compose in a particular order. **Part 1** sets",
-      "closing_anchor": "argument, so it reads in sequence with the chapters that earn it.",
+      "note": "Apparatus / navigation. Opens by laying out the six Parts in their deliberate argument order (Modeling before Alignment is a principled progression — representation then authority — not a dependency) and the three shorter routes; hands the reader the book map as a navigational framework. Advances no thesis (apparatus). Not yet carried in the argument-spine exemptions — a pre-existing spine gap, tracked separately.",
+      "opening_anchor": "The six Parts follow the method's argument in a deliberate order. Part",
+      "closing_anchor": "the appendices are intended to work as a reference while you build.",
       "delivers": {
         "concepts": [],
         "artifacts": [
@@ -1292,7 +1291,7 @@
         "missing": [
           "thesis-link"
         ],
-        "note": "Apparatus / navigation. Opens by laying out the five parts and their compose-order and the two ways to read; answers how to work the appendices; hands the reader the book map as a navigational framework. Advances no thesis (apparatus). Not yet carried in the argument-spine exemptions — a pre-existing spine gap, tracked separately."
+        "note": "Apparatus / navigation. Opens by laying out the six Parts in their deliberate argument order (Modeling before Alignment is a principled progression — representation then authority — not a dependency) and the three shorter routes; hands the reader the book map as a navigational framework. Advances no thesis (apparatus). Not yet carried in the argument-spine exemptions — a pre-existing spine gap, tracked separately."
       }
     ],
     "failing_closings": [],

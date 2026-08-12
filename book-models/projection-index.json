@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 34,
     "slugs_rendered": 25,
-    "total_sites": 1608,
+    "total_sites": 1607,
     "by_projection": {
       "book-pdf": 21,
-      "book-web": 1187,
+      "book-web": 1186,
       "website-catalogue": 221,
       "website-concepts": 58,
       "website-industry-cases": 46,
@@ -33,7 +33,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 11
+            "occ": 5
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -1123,7 +1123,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 6
+            "occ": 1
           },
           {
             "file": "book/1.1-the-printer.html",
@@ -1366,10 +1366,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.4-preface.html",
-            "occ": 1
-          },
-          {
             "file": "book/4.1-the-mage-workflow.html",
             "occ": 1
           },
@@ -1413,7 +1409,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 11
+            "occ": 10
           }
         ]
       },
@@ -1495,11 +1491,11 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 47
+            "occ": 56
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 19
+            "occ": 20
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -2153,7 +2149,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -2937,7 +2933,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 23
+            "occ": 26
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -4169,7 +4165,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 3
+            "occ": 1
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -5315,7 +5311,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 4
+            "occ": 9
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
@@ -5881,7 +5877,7 @@
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 4
+            "occ": 2
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",

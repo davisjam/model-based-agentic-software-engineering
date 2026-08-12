@@ -1,7 +1,14 @@
 {
-  "_note": "Hand-authored canon pin for INV-3 (one backbone, many resolutions). R5: the ONE 3-line-method wording, reused VERBATIM across the three surfaces that state the MAGE cycle — the Part-IV MAGE CYCLE opener box, the Preface cycle paragraph, and the 0.4-2 cycle figure — so they can never drift. Any surface that states the cycle carries the `mage-cycle` anchor and is held to this wording by the canon-pin check (audit-only-first, promoted BLOCKING once the surfaces land). Source: RATIFIED-PLAN theory-book-restructure §F.",
-  "three_line_method": "Model the intent. Give that intent authority. Convert recurring failures into engineering capital. Repeat.",
+  "_note": "Hand-authored canon pin for INV-3 (one backbone, many resolutions). The ONE 4-step MAGE method (R41 / preface-3): Model the consequential knowledge · Give obligations authority · Do the governed work · Convert recurring failures. `three_line_method` is the pinned prose reused VERBATIM by every surface that states the cycle (each carrying the `mage-cycle` anchor, held to this wording by the canon-pin check — audit-only-first, promoted BLOCKING once the surfaces land). Station-2 id = ALIGN (the cycle sentence uses 'align'); the step TITLE is the noun form 'Give obligations authority'. WORK is an explicit step; 'repeat' is prose (in `closing_cyclicality`), not a station. The Part-IV cycle surfaces are R33's tree — route that reconciliation there, not here. Source: preface-3 'What the method turned out to be'.",
   "cycle_stations": ["MODEL", "ALIGN", "WORK", "CONVERT"],
-  "anchor": "mage-cycle",
-  "preface_cycle_sentence": "Neither thesis is the method by itself. MAGE is what happens when they run as a cycle: model the intent, give it authority, do the governed work, convert recurring failures into engineering capital, and repeat."
+  "cycle_steps": [
+    {"n": 1, "station": "MODEL",   "heading": "Model the consequential knowledge", "verb": "model"},
+    {"n": 2, "station": "ALIGN",   "heading": "Give obligations authority",         "verb": "align"},
+    {"n": 3, "station": "WORK",    "heading": "Do the governed work",               "verb": "work"},
+    {"n": 4, "station": "CONVERT", "heading": "Convert recurring failures",         "verb": "convert"}
+  ],
+  "mnemonic": "Model → Align → Work → Convert",
+  "three_line_method": "Model the consequential knowledge. Give obligations authority. Do the governed work. Convert recurring failures.",
+  "closing_cyclicality": "Neither thesis is MAGE by itself. The method is the cycle they create: model where better representation changes the engineering problem; align what can be made authoritative; do the governed work; convert recurring failures; repeat. Over time, those durable models and controls accumulate as engineering capital.",
+  "anchor": "mage-cycle"
 }

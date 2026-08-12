@@ -142,7 +142,7 @@
     {
       "id": "alignment-thesis",
       "order": 8,
-      "statement": "Give engineering intent authority over autonomous work by binding obligations to deterministic mechanisms — constrain, sense, validate, gate; where Modeling makes intent explicit, Alignment makes it binding.",
+      "statement": "Give engineering obligations authority through mechanisms embedded in the environment — constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the set of properties those mechanisms can state and check.",
       "seeds": [
         5
       ],
@@ -156,7 +156,7 @@
           "alignment-thesis"
         ]
       },
-      "reviewed_hash": "afa4edc8467f",
+      "reviewed_hash": "5a24063f0dc6",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "drift-detection signal quality and reconciliation labor for models and implementation"
@@ -164,7 +164,7 @@
     {
       "id": "theses-treat-the-causes",
       "order": 9,
-      "statement": "The theses are causally linked, not parallel: Modeling turns implicit knowledge into representation; Alignment attaches authority; the richer the model, the more obligations move from judgment into enforcement.",
+      "statement": "The theses are independent and address different problems: Modeling makes consequential knowledge explicit; Alignment gives obligations authority. Alignment can act without a model; MAGE places Modeling first as a principled scaling choice, not a logical prerequisite. The richer the model, the more obligations move from human judgment into enforcement.",
       "seeds": [
         4,
         5
@@ -175,7 +175,7 @@
         ],
         "big_ideas": []
       },
-      "reviewed_hash": "6c23eca46ac4",
+      "reviewed_hash": "4320fa5f5f85",
       "quantifiable": false,
       "reality_claim": false
     },
@@ -331,7 +331,6 @@
       "alignment-thesis",
       "theses-treat-the-causes",
       "failures-become-machinery",
-      "sync-cost-reduced",
       "mage-becomes-practical",
       "grounded-in-one-case"
     ],

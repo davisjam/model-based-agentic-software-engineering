@@ -5,7 +5,7 @@
     "spine_claims": 15,
     "chapters_labeled": 32,
     "chapters_exempt": 10,
-    "advancement_edges": 88,
+    "advancement_edges": 87,
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
@@ -18,7 +18,7 @@
     "claims_stale": 0,
     "quantifiable_claims": 9,
     "reality_claims": 10,
-    "max_statement_words": 32
+    "max_statement_words": 49
   },
   "taxonomy": {
     "word_cap": 32,
@@ -297,7 +297,7 @@
     {
       "id": "alignment-thesis",
       "order": 8,
-      "statement": "Give engineering intent authority over autonomous work by binding obligations to deterministic mechanisms — constrain, sense, validate, gate; where Modeling makes intent explicit, Alignment makes it binding.",
+      "statement": "Give engineering obligations authority through mechanisms embedded in the environment — constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the set of properties those mechanisms can state and check.",
       "seeds": [
         5
       ],
@@ -312,12 +312,12 @@
       "reconciles_argues_claims": [],
       "feeds": [],
       "exempt": null,
-      "reviewed_hash": "afa4edc8467f",
+      "reviewed_hash": "5a24063f0dc6",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "drift-detection signal quality and reconciliation labor for models and implementation",
-      "word_count": 27,
-      "statement_hash": "afa4edc8467f",
+      "word_count": 36,
+      "statement_hash": "5a24063f0dc6",
       "advanced_by": [
         "0.4-preface",
         "1.4-the-new-engineering-problem",
@@ -338,7 +338,7 @@
     {
       "id": "theses-treat-the-causes",
       "order": 9,
-      "statement": "The theses are causally linked, not parallel: Modeling turns implicit knowledge into representation; Alignment attaches authority; the richer the model, the more obligations move from judgment into enforcement.",
+      "statement": "The theses are independent and address different problems: Modeling makes consequential knowledge explicit; Alignment gives obligations authority. Alignment can act without a model; MAGE places Modeling first as a principled scaling choice, not a logical prerequisite. The richer the model, the more obligations move from human judgment into enforcement.",
       "seeds": [
         4,
         5
@@ -350,12 +350,12 @@
       "reconciles_argues_claims": [],
       "feeds": [],
       "exempt": "bridge",
-      "reviewed_hash": "6c23eca46ac4",
+      "reviewed_hash": "4320fa5f5f85",
       "quantifiable": false,
       "reality_claim": false,
       "measurand": "",
-      "word_count": 28,
-      "statement_hash": "6c23eca46ac4",
+      "word_count": 49,
+      "statement_hash": "4320fa5f5f85",
       "advanced_by": [
         "0.4-preface",
         "1.3-the-reasoning-horizon"
@@ -423,7 +423,6 @@
       "word_count": 16,
       "statement_hash": "681d832a8c6d",
       "advanced_by": [
-        "0.4-preface",
         "2.3-the-executable-zoo",
         "3.2-models-and-the-semantic-gap"
       ],
@@ -586,7 +585,6 @@
         "alignment-thesis",
         "theses-treat-the-causes",
         "failures-become-machinery",
-        "sync-cost-reduced",
         "mage-becomes-practical",
         "grounded-in-one-case"
       ],
