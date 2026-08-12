@@ -7,7 +7,7 @@
     "derived_ids": 264,
     "missing_topic_sentence": 13,
     "sections_drained": 171,
-    "paragraph_points": 516
+    "paragraph_points": 518
   },
   "chapters": [
     {
@@ -2005,22 +2005,22 @@
           "heading_text": "A drift check proves agreement, not correctness",
           "topic_sentence": "Here is the trap the opener warned of.",
           "id_source": "derived",
-          "block_index": 4,
+          "block_index": 8,
           "points": [
             {
               "slug": "a-drift-gate-proves-agreement-not-that-either-side-is-right",
               "text": "A drift gate proves agreement, not correctness.",
-              "block_index": 6
+              "block_index": 10
             },
             {
               "slug": "a-mirror-model-reflects-the-code-only-a-spec-authored-from-intent-catches-a-wrong-is",
               "text": "A mirror reflects code; only a spec catches wrong.",
-              "block_index": 10
+              "block_index": 14
             },
             {
               "slug": "what-belongs-in-the-model-is-the-essential-residual-that-does-not-automate",
               "text": "Deciding what belongs in the model is the essential residual.",
-              "block_index": 14
+              "block_index": 18
             }
           ]
         },
@@ -2030,27 +2030,27 @@
           "heading_text": "The semantic gap",
           "topic_sentence": "Enforce a property at the wrong level and it slips through; [ref:semantic-gap] shows the fix — lift the check to where the meaning is legible.",
           "id_source": "derived",
-          "block_index": 24,
+          "block_index": 28,
           "points": [
             {
               "slug": "enforce-at-the-wrong-level-and-the-property-slips-through",
               "text": "Enforce a property at the wrong level; it slips through.",
-              "block_index": 26
+              "block_index": 30
             },
             {
               "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
               "text": "Checking model drift at the commit is the wrong granularity.",
-              "block_index": 29
+              "block_index": 33
             },
             {
               "slug": "the-semantic-gap-is-enforcing-a-property-at-the-wrong-level-of-abstraction",
               "text": "The semantic gap is enforcing at the wrong level.",
-              "block_index": 31
+              "block_index": 35
             },
             {
               "slug": "enforce-at-the-level-where-the-property-is-legible-agent-return-for-model-drift",
               "text": "Enforce where the property is legible: at agent-return.",
-              "block_index": 35
+              "block_index": 39
             }
           ]
         },
@@ -2060,36 +2060,46 @@
           "heading_text": "A second worked example: the context-fullness bank-hook",
           "topic_sentence": "The semantic gap shows up in the operator's own loop, not just the product.",
           "id_source": "derived",
-          "block_index": 42,
+          "block_index": 46,
           "points": [
             {
               "slug": "compaction-guesses-below-meaning-so-it-can-only-approximate",
               "text": "Compaction guesses below meaning; it can only approximate.",
-              "block_index": 44
+              "block_index": 48
             },
             {
               "slug": "fire-the-bank-hook-on-fullness-and-staleness-together",
               "text": "Fire the bank-hook on fullness and staleness together.",
-              "block_index": 46
+              "block_index": 50
             },
             {
               "slug": "with-no-clean-rung-a-roughly-right-hook-beats-the-perfect-one",
               "text": "With no clean rung, roughly-right beats the perfect hook.",
-              "block_index": 50
+              "block_index": 54
             }
           ]
         }
       ],
       "preamble_points": [
         {
+          "slug": "part-two-handed-each-model-forward-as-a-typed-seam-this-part-builds-its-authority",
+          "text": "Part II handed each model forward as a typed seam naming a constraint, sensor, validator, and gate; this Part builds those surfaces.",
+          "block_index": 0
+        },
+        {
+          "slug": "alignment-does-not-replace-the-model-it-gives-the-model-authority",
+          "text": "Alignment does not replace the model; it gives the model authority.",
+          "block_index": 2
+        },
+        {
           "slug": "part-two-built-the-model-this-chapter-gives-it-authority",
           "text": "Part 2 built the model; this chapter is where represented intent gets authority.",
-          "block_index": 0
+          "block_index": 4
         },
         {
           "slug": "the-turn-is-rung-4-to-rung-5-and-it-has-a-trap",
           "text": "Wire the model to a gate and it binds; but a green check can certify the wrong thing.",
-          "block_index": 2
+          "block_index": 6
         }
       ]
     },
