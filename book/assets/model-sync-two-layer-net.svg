@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (not Mermaid): a non-graph infographic. REVISION (Part-3 §XII / FIG-3.8-1):
-     SIMPLIFIED from the busy earlier net to four elements — (1) the MODELED SURFACE with its two
-     coverage layers (a hard floor of derived checks, a soft layer of reading); (2) two UNCOVERED
-     regions drawn as gaps: a semantic mismatch (anchor resolves, meaning drifted) and the unmodeled
-     surface (no anchor reaches); (3) two BACKSTOPS extending the net into the unmodeled region: the
-     missing-model metric that measures it and the failures-become-controls loop that closes it.
-     Decorative mesh ticks and the multiple drift arrows of the earlier draft are dropped. Overlapping
-     coverage zones with holes are a mesh-and-gaps geometry Mermaid's auto-layout won't draw, so this
-     earns the hand-SVG escape. No meaning by colour alone: each region and layer is labelled.
-     The ~110-word A-tier caption for this figure is drafted in wo-3.8-draft.md §X-8 and carried in
-     placement-notes.md. Palette: fleet #2f5169 (soft reading layer), governed #1f7a4d (hard derived
-     floor + the controls backstop), churn #b23b3b (uncovered + escapes), def-blue #1f6fae (metric). -->
+<!-- Hand-authored SVG (not Mermaid): a non-graph infographic. REVISION (Part-2 §2.3 / FIG-2.3-1):
+     SIMPLIFIED to four elements — (1) the MODELED SURFACE with its two coverage layers (a mechanical
+     layer of derived checks, a judgment layer of probabilistic review); (2) two UNCOVERED regions drawn
+     as gaps: a semantic mismatch (anchor resolves, meaning drifted) and the unmodeled surface (no anchor
+     reaches); (3) two BACKSTOPS extending the net into the unmodeled region: the missing-model metric that
+     measures it and the failures-become-controls loop that closes it. Overlapping coverage zones with holes
+     are a mesh-and-gaps geometry Mermaid's auto-layout won't draw, so this earns the hand-SVG escape. No
+     meaning by colour alone: each region and layer is labelled. Palette: agent #2f5169 (judgment layer),
+     governed #1f7a4d (mechanical derived layer + the controls backstop), churn #b23b3b (uncovered +
+     escapes), def-blue #1f6fae (metric). -->
+<!-- semantic-families: agent, governance, modeling, neutral, failure -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640" width="980" height="640"
      role="group" aria-labelledby="msTitle msDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="msTitle">The two-layer net: modeled surface, two coverage layers, two uncovered regions, two backstops</title>
   <desc id="msDesc">A horizontal band is the modeled surface, the slice of code a model claims to
-    represent. Two coverage layers sit over it: a hard floor of derived checks, drawn solid green,
-    that resolves each model anchor against a live symbol and holds; and above it a soft reading
-    layer, dashed blue, a person or an Opus checking prose the checks cannot parse. The soft layer
-    covers the modeled-and-decidable zone but has a gap over a second zone, the semantic mismatch,
-    where the anchor still resolves but the meaning drifted, so a drift escapes the reading pass.
+    represent. Two coverage layers sit over it: a mechanical layer of derived checks, drawn solid green,
+    that resolves each model anchor against a live symbol and holds; and above it a judgment layer,
+    dashed blue, a person or another probabilistic reasoner checking prose the checks cannot parse. The
+    judgment layer covers the modeled-and-decidable zone but has a gap over a second zone, the semantic
+    mismatch, where the anchor still resolves but the meaning drifted, so a drift escapes the review pass.
     To the right lies the unmodeled surface, a dashed red band no anchor reaches and no layer covers,
     where a drift escapes unopposed. Below sit two backstops that turn “someone happens to notice”
     into machinery: a missing-model metric that measures the unmodeled region, and a
-    failures-become-controls loop that closes it by extending the hard floor into the formerly
+    failures-become-controls loop that closes it by extending the mechanical layer into the formerly
     unmodeled zone, drawn as a dashed green extension. Read the net as coverage, not a guarantee.</desc>
 
   <defs>
@@ -42,15 +41,15 @@
   <text x="490" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">The two-layer net</text>
   <text x="490" y="58" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">read the net as coverage, not a guarantee</text>
 
-  <!-- ===== soft layer — the reading pass (covers the decidable zone; a GAP over the mismatch) ===== -->
-  <text x="70" y="300" font-size="15" font-weight="700" fill="#2f5169">soft layer — reading (human / Opus)</text>
+  <!-- ===== judgment layer — the review pass (covers the decidable zone; a GAP over the mismatch) ===== -->
+  <text x="70" y="300" font-size="15" font-weight="700" fill="#2f5169">judgment layer — human / probabilistic review</text>
   <line x1="60" y1="326" x2="310" y2="326" stroke="#2f5169" stroke-width="4" stroke-dasharray="10 6"/>
   <text x="360" y="322" font-size="14" font-style="italic" fill="#b23b3b">gap — meaning slips through</text>
 
-  <!-- ===== hard layer — the derived floor (covers both modeled zones) ===== -->
+  <!-- ===== mechanical layer — the derived floor (covers both modeled zones) ===== -->
   <rect x="60" y="356" width="540" height="30" rx="4" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="3"/>
-  <text x="300" y="376" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">hard floor — derived checks (holds)</text>
-  <!-- extension of the floor into the unmodeled zone, added by a control -->
+  <text x="300" y="376" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">mechanical layer — derived checks (holds)</text>
+  <!-- extension of the layer into the unmodeled zone, added by a control -->
   <rect x="630" y="356" width="200" height="30" rx="4" fill="none" stroke="#1f7a4d" stroke-width="3" stroke-dasharray="6 6"/>
   <text x="730" y="376" text-anchor="middle" font-size="13" font-style="italic" fill="#1f7a4d">extended by a new control</text>
 
@@ -82,7 +81,8 @@
   <path d="M600,566 C622,540 634,522 648,510" fill="none" stroke="#1f6fae" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ms-blue)"/>
 
   <rect x="670" y="566" width="260" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="800" y="591" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">failures → controls loop</text>
+  <text x="800" y="591" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">failures &#8594; controls loop</text>
   <text x="800" y="612" text-anchor="middle" font-size="13" fill="#57534e">closes it — extends the net</text>
-  <path d="M900,564 C906,480 890,420 828,388" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ms-grn)"/>
+  <!-- routed out to the right margin (clear of the UNMODELED-surface box) before hooking into the extension -->
+  <path d="M905,566 C970,545 970,455 940,432 C900,405 866,395 830,388" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ms-grn)"/>
 </svg>

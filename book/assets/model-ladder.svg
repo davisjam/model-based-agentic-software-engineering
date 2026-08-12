@@ -1,148 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: model-ladder). THE ONE canonical Capability Ladder — 8 rungs, drawn as a
-     vertical column with a two-axis gradient. This RETIRES the older 6-rung diagonal "representation
-     ladder" (Documentation/Knowledge graph/Structured/Behavior/Reasoning/Computable) so the book carries
-     exactly one ladder. Bottom to top: context selection -> externalized knowledge -> structured
-     relationships -> system models -> explicit properties (invariants) -> model-derived analysis ->
-     traceability -> drift enforcement. The vertical gradient is the visual claim, NOT two hard blocks:
-     the fill steps from green tints at the bottom (Modeling-leaning — better context, helps the reasoner)
-     through a warm neutral at the turn into rust tints at the top (Alignment-leaning — stronger control,
-     governs the artifact). A dotted "the turn" line sits between rungs 4 and 5; right-margin brackets name
-     the two lobes; a left gradient strip carries the better-context (down) / stronger-control (up) axis.
-     Rung labels are authoritative and match the canon's 8-rung vocabulary verbatim.
-     Palette: Umber Monograph tokens (governed green #1f7a4d/#155c38 the Modeling lobe + strip bottom,
-     accent #9a3f12 the Alignment lobe + strip top + the turn, ink #1c1917 names, muted #57534e capability
-     lines + axis, page #fdfcf9). Fonts in the 12-26 band at the 1000px reference. -->
+<!-- Hand-authored SVG (label: model-ladder). THE ONE canonical Representation Capability Ladder — 8 rungs,
+     drawn as a vertical column with a SINGLE representational gradient (pale green at the bottom -> deeper
+     governed green at the top = a richer representation). This is a REPRESENTATION-ONLY ladder: it orders
+     representational capabilities and says nothing about authority. There is no "stronger control" axis, no
+     "the turn", and no Modeling-vs-Alignment lobe split — those were retired because Modeling and Alignment
+     are orthogonal, not two ends of one ladder. Bottom to top: context selection -> externalized knowledge
+     -> structured relationships -> system semantics -> explicit properties (invariants) -> model-derived
+     analysis -> traceability -> mechanically maintained correspondence. Two upward-widening side
+     annotations name what grows as you climb: a larger reasoning reach, and more properties available to
+     analysis and governance. Docker sits BESIDE a low rung as the counterexample — strong local authority,
+     low on this ladder — which proves authority is a separate axis. Palette: Umber Monograph tokens
+     (modeling green #1f7a4d stroke + #155c38 rung numbers + a pale->deep green fill ramp; governance rust
+     #9a3f12 + tint #faf1e6 only on the off-ladder Docker counterexample; ink #1c1917 names; muted #57534e
+     descriptions + captions; paper #fdfcf9). Fonts in the 12-26 band at the 1000px reference. -->
 <!-- semantic-families: modeling, governance, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" width="1000" height="720"
      role="group" aria-labelledby="mlTitle mlDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mlTitle">The capability ladder: eight representational capabilities from context selection to drift enforcement</title>
-  <desc id="mlDesc">One vertical ladder of eight rungs with a two-axis gradient. From the bottom up: rung
-    one, Context selection — choose the task-relevant slice of knowledge for this reasoning episode. Rung
-    two, Externalized knowledge — put durable knowledge outside memory: catalogs, skills, registries. Rung
-    three, Structured relationships — typed entities and edges, dependencies, ownership, lineage, that
-    tools traverse. Rung four, System models — add semantics: behavioral, process, scenario, the system's
-    intended shape. Between rungs four and five is the turn, where intent becomes explicit. Rung five,
-    Explicit properties (invariants) — state invariants and obligations over the model. Rung six,
-    Model-derived analysis — query, target, generate, predict, and verify from the model. Rung seven,
-    Traceability — join model elements bidirectionally to the implementation, and back. Rung eight, Drift
-    enforcement — the environment refuses to let model and territory silently diverge. The bottom rungs
-    lean Modeling: they help the reasoner with better context. The top rungs lean Alignment: they give the
-    environment stronger control over the artifact. Moving up does both at once — the Modeling Thesis
-    gradually turns into the Alignment Thesis. It is a capability ladder, not a maturity model: higher
-    rungs make more engineering questions possible; they do not imply every system should climb every
-    rung.</desc>
+  <title id="mlTitle">The representation capability ladder: eight representational capabilities from context selection to mechanically maintained correspondence</title>
+  <desc id="mlDesc">One vertical ladder of eight rungs with a single representational gradient — pale green
+    at the bottom deepening to governed green at the top, meaning a richer representation, not a stronger
+    control. From the bottom up: rung one, Context selection — choose the task-relevant slice of knowledge
+    for this reasoning episode. Rung two, Externalized knowledge — put durable knowledge outside memory:
+    catalogs, skills, registries. Rung three, Structured relationships — typed entities and edges,
+    dependencies, ownership, lineage, that tools traverse. Rung four, System semantics — add behavioral,
+    process, and scenario meaning: the system's intended shape. Rung five, Explicit properties (invariants)
+    — state invariants and obligations over the model. Rung six, Model-derived analysis — query, target,
+    generate, predict, and verify from the model. Rung seven, Traceability — join model elements
+    bidirectionally to the implementation, and back. Rung eight, Mechanically maintained correspondence —
+    the environment refuses to let model and territory silently diverge. The ladder is purely
+    representational: climbing it does not make an organization more mature, and it carries no authority
+    axis. Two upward-widening annotations on the right name what a richer representation buys — a larger
+    reasoning reach, and more properties available to analysis and governance. Authority is a separate axis:
+    Docker sits beside a low rung as a counterexample, with strong local authority yet low representational
+    capability. Higher rungs make more engineering questions tractable; they do not imply every system
+    should climb every rung.</desc>
 
   <defs>
-    <marker id="ml-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-    <!-- vertical axis gradient: rust (top, stronger control) -> neutral -> green (bottom, better context) -->
-    <linearGradient id="mlAxis" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#9a3f12"/>
-      <stop offset="0.5" stop-color="#f3efe7"/>
+    <!-- single representational gradient: pale (bottom) -> deep governed green (top) -->
+    <linearGradient id="mlReach" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#eef7f1"/>
       <stop offset="1" stop-color="#1f7a4d"/>
     </linearGradient>
   </defs>
 
   <rect x="0" y="0" width="1000" height="720" fill="#fdfcf9"/>
-  <text x="500" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The capability ladder</text>
+  <text x="500" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The representation capability ladder</text>
   <text x="500" y="68" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">One ladder — representational capabilities, ordered. Not a maturity model.</text>
 
-  <!-- top axis banner (stronger control) -->
-  <text x="420" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">▲ STRONGER CONTROL — representations govern the artifact</text>
-
-  <!-- left gradient strip carrying the two-axis reading -->
-  <rect x="118" y="120" width="16" height="494" rx="8" fill="url(#mlAxis)" stroke="#e4e0d8" stroke-width="1"/>
-  <text x="126" y="114" text-anchor="middle" font-size="14" fill="#9a3f12">▲</text>
-  <text x="126" y="632" text-anchor="middle" font-size="14" fill="#1f7a4d">▼</text>
+  <!-- left strip: the single representational gradient, pale (bottom) -> deep (top) -->
+  <rect x="120" y="120" width="14" height="488" rx="7" fill="url(#mlReach)" stroke="#e4e0d8" stroke-width="1"/>
+  <text x="127" y="112" text-anchor="middle" font-size="14" font-weight="700" fill="#1f7a4d">&#9650;</text>
 
   <!-- ===================== THE EIGHT RUNGS (bottom = rung 1) ===================== -->
 
-  <!-- rung 8 — Drift enforcement (top, Alignment lobe) -->
-  <rect x="150" y="120" width="540" height="54" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
-  <text x="176" y="153" font-size="20" font-weight="700" fill="#9a3f12">8</text>
-  <text x="206" y="144" font-size="17" font-weight="700" fill="#1c1917">Drift enforcement</text>
-  <text x="206" y="164" font-size="12.5" fill="#57534e">The environment refuses to let model and territory silently diverge.</text>
-  <rect x="694" y="131" width="76" height="22" rx="11" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/>
-  <text x="732" y="146" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3f12">gate</text>
+  <!-- rung 8 — Mechanically maintained correspondence (top, deepest fill) -->
+  <rect x="150" y="120" width="540" height="54" rx="8" fill="#9ccdb0" stroke="#1f7a4d" stroke-width="2.8"/>
+  <text x="176" y="153" font-size="20" font-weight="700" fill="#155c38">8</text>
+  <text x="206" y="144" font-size="16.5" font-weight="700" fill="#1c1917">Mechanically maintained correspondence</text>
+  <text x="206" y="164" font-size="12.5" fill="#3f4d44">The environment refuses to let model and territory silently diverge.</text>
 
   <!-- rung 7 — Traceability -->
-  <rect x="150" y="182" width="540" height="54" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="176" y="215" font-size="20" font-weight="700" fill="#9a3f12">7</text>
+  <rect x="150" y="182" width="540" height="54" rx="8" fill="#abd5bb" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="215" font-size="20" font-weight="700" fill="#155c38">7</text>
   <text x="206" y="206" font-size="17" font-weight="700" fill="#1c1917">Traceability</text>
-  <text x="206" y="226" font-size="12.5" fill="#57534e">Join model elements bidirectionally to the implementation, and back.</text>
-  <rect x="694" y="193" width="76" height="22" rx="11" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/>
-  <text x="732" y="208" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3f12">trace</text>
+  <text x="206" y="226" font-size="12.5" fill="#3f4d44">Join model elements bidirectionally to the implementation, and back.</text>
 
   <!-- rung 6 — Model-derived analysis -->
-  <rect x="150" y="244" width="540" height="54" rx="8" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="176" y="277" font-size="20" font-weight="700" fill="#9a3f12">6</text>
+  <rect x="150" y="244" width="540" height="54" rx="8" fill="#b9dcc6" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="277" font-size="20" font-weight="700" fill="#155c38">6</text>
   <text x="206" y="268" font-size="17" font-weight="700" fill="#1c1917">Model-derived analysis</text>
-  <text x="206" y="288" font-size="12.5" fill="#57534e">Query, target, generate, predict, and verify from the model.</text>
-  <rect x="694" y="255" width="76" height="22" rx="11" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/>
-  <text x="732" y="270" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3f12">derive</text>
+  <text x="206" y="288" font-size="12.5" fill="#3f4d44">Query, target, generate, predict, and verify from the model.</text>
 
-  <!-- rung 5 — Explicit properties (invariants) — first Alignment-leaning rung -->
-  <rect x="150" y="306" width="540" height="54" rx="8" fill="#f3efe7" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="176" y="339" font-size="20" font-weight="700" fill="#9a3f12">5</text>
+  <!-- rung 5 — Explicit properties (invariants) -->
+  <rect x="150" y="306" width="540" height="54" rx="8" fill="#c6e2d0" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="339" font-size="20" font-weight="700" fill="#155c38">5</text>
   <text x="206" y="330" font-size="17" font-weight="700" fill="#1c1917">Explicit properties (invariants)</text>
-  <text x="206" y="350" font-size="12.5" fill="#57534e">State invariants and obligations over the model — intent becomes explicit.</text>
-  <rect x="694" y="317" width="76" height="22" rx="11" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.4"/>
-  <text x="732" y="332" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3f12">assert</text>
+  <text x="206" y="350" font-size="12.5" fill="#57534e">State invariants and obligations over the model.</text>
 
-  <!-- THE TURN — dotted line between rungs 4 and 5 (not a wall) -->
-  <line x1="150" y1="367" x2="690" y2="367" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="4 4"/>
-  <text x="694" y="371" text-anchor="start" font-size="12.5" font-style="italic" font-weight="700" fill="#9a3f12">the turn</text>
-
-  <!-- rung 4 — System models (top of the Modeling lobe) -->
-  <rect x="150" y="374" width="540" height="54" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="176" y="407" font-size="20" font-weight="700" fill="#1f7a4d">4</text>
-  <text x="206" y="398" font-size="17" font-weight="700" fill="#1c1917">System models</text>
-  <text x="206" y="418" font-size="12.5" fill="#57534e">Add semantics — behavioral, process, scenario — the system's intended shape.</text>
-  <rect x="694" y="385" width="76" height="22" rx="11" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.4"/>
-  <text x="732" y="400" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1f7a4d">model</text>
+  <!-- rung 4 — System semantics -->
+  <rect x="150" y="368" width="540" height="54" rx="8" fill="#d2e8da" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="401" font-size="20" font-weight="700" fill="#155c38">4</text>
+  <text x="206" y="392" font-size="17" font-weight="700" fill="#1c1917">System semantics</text>
+  <text x="206" y="412" font-size="12.5" fill="#57534e">Add behavioral, process, and scenario meaning — the system's intended shape.</text>
 
   <!-- rung 3 — Structured relationships -->
-  <rect x="150" y="436" width="540" height="54" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="176" y="469" font-size="20" font-weight="700" fill="#1f7a4d">3</text>
-  <text x="206" y="460" font-size="17" font-weight="700" fill="#1c1917">Structured relationships</text>
-  <text x="206" y="480" font-size="12.5" fill="#57534e">Typed entities and edges — deps, ownership, lineage — tools traverse it.</text>
-  <rect x="694" y="447" width="76" height="22" rx="11" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.4"/>
-  <text x="732" y="462" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1f7a4d">relate</text>
+  <rect x="150" y="430" width="540" height="54" rx="8" fill="#ddeee2" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="463" font-size="20" font-weight="700" fill="#155c38">3</text>
+  <text x="206" y="454" font-size="17" font-weight="700" fill="#1c1917">Structured relationships</text>
+  <text x="206" y="474" font-size="12.5" fill="#57534e">Typed entities and edges — deps, ownership, lineage — tools traverse it.</text>
 
   <!-- rung 2 — Externalized knowledge -->
-  <rect x="150" y="498" width="540" height="54" rx="8" fill="#eef7ee" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="176" y="531" font-size="20" font-weight="700" fill="#1f7a4d">2</text>
-  <text x="206" y="522" font-size="17" font-weight="700" fill="#1c1917">Externalized knowledge</text>
-  <text x="206" y="542" font-size="12.5" fill="#57534e">Put durable knowledge outside memory — catalogs, skills, registries.</text>
-  <rect x="694" y="509" width="76" height="22" rx="11" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.4"/>
-  <text x="732" y="524" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1f7a4d">externalize</text>
+  <rect x="150" y="492" width="540" height="54" rx="8" fill="#e6f2ea" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="525" font-size="20" font-weight="700" fill="#155c38">2</text>
+  <text x="206" y="516" font-size="17" font-weight="700" fill="#1c1917">Externalized knowledge</text>
+  <text x="206" y="536" font-size="12.5" fill="#57534e">Put durable knowledge outside memory — catalogs, skills, registries.</text>
 
-  <!-- rung 1 — Context selection (bottom, Modeling lobe) -->
-  <rect x="150" y="560" width="540" height="54" rx="8" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="176" y="593" font-size="20" font-weight="700" fill="#1f7a4d">1</text>
-  <text x="206" y="584" font-size="17" font-weight="700" fill="#1c1917">Context selection</text>
-  <text x="206" y="604" font-size="12.5" fill="#57534e">Choose the task-relevant slice of knowledge for this reasoning episode.</text>
-  <rect x="694" y="571" width="76" height="22" rx="11" fill="#eef7f0" stroke="#1f7a4d" stroke-width="1.4"/>
-  <text x="732" y="586" text-anchor="middle" font-size="12.5" font-weight="600" fill="#1f7a4d">select</text>
+  <!-- rung 1 — Context selection (bottom, palest fill) -->
+  <rect x="150" y="554" width="540" height="54" rx="8" fill="#eef7f1" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="176" y="587" font-size="20" font-weight="700" fill="#155c38">1</text>
+  <text x="206" y="578" font-size="17" font-weight="700" fill="#1c1917">Context selection</text>
+  <text x="206" y="598" font-size="12.5" fill="#57534e">Choose the task-relevant slice of knowledge for this reasoning episode.</text>
 
-  <!-- ===================== RIGHT-MARGIN LOBE BRACKETS ===================== -->
-  <!-- Alignment-leaning: rungs 5-8 -->
-  <path d="M782,120 h10 v240 h-10" fill="none" stroke="#9a3f12" stroke-width="2"/>
-  <text x="800" y="234" font-size="14" font-weight="700" fill="#9a3f12">Alignment-leaning</text>
-  <text x="800" y="253" font-size="12.5" font-style="italic" fill="#57534e">authority over the artifact</text>
+  <!-- ===================== UPWARD-WIDENING SIDE ANNOTATIONS ===================== -->
+  <!-- a wedge that widens toward the top; the two labels name what a richer representation buys -->
+  <polygon points="726,505 708,150 744,150" fill="url(#mlReach)" stroke="#1f7a4d" stroke-width="1.4"/>
+  <text x="726" y="140" text-anchor="middle" font-size="14" font-weight="700" fill="#1f7a4d">&#9650;</text>
+  <text x="758" y="172" font-size="15" font-weight="700" fill="#1f7a4d">Larger reasoning reach</text>
+  <text x="758" y="200" font-size="15" fill="#1f7a4d">More properties available</text>
+  <text x="758" y="220" font-size="15" fill="#1f7a4d">to analysis and governance</text>
 
-  <!-- Modeling-leaning: rungs 1-4 -->
-  <path d="M782,374 h10 v240 h-10" fill="none" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="800" y="488" font-size="14" font-weight="700" fill="#1f7a4d">Modeling-leaning</text>
-  <text x="800" y="507" font-size="12.5" font-style="italic" fill="#57534e">help the reasoner</text>
+  <!-- ===================== DOCKER — the off-ladder counterexample (beside a LOW rung) ===================== -->
+  <line x1="710" y1="556" x2="692" y2="540" stroke="#9a3f12" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <rect x="712" y="536" width="256" height="72" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="728" y="562" font-size="16" font-weight="700" fill="#9a3f12">Docker</text>
+  <text x="788" y="562" font-size="12" font-style="italic" fill="#9a3f12">a counterexample</text>
+  <text x="728" y="584" font-size="12.5" fill="#57534e">strong local authority,</text>
+  <text x="728" y="602" font-size="12.5" fill="#57534e">low on this ladder</text>
 
-  <!-- bottom axis banner (better context) -->
-  <text x="420" y="642" text-anchor="middle" font-size="15" font-weight="700" fill="#1f7a4d">▼ BETTER CONTEXT — representations help the reasoner</text>
-
-  <!-- the transition sentence (canon, verbatim) + the maturity-model guard -->
-  <text x="500" y="676" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">Rungs 1–4 mostly help the reasoner; the turn at rung 5 makes intent explicit; rungs 5–8 give the environment authority over the artifact.</text>
-  <text x="500" y="700" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">Higher rungs make more engineering questions possible — they do not imply every system should climb every rung.</text>
+  <!-- captions: the gradient's meaning (replaces the removed banners) + the maturity-model guard -->
+  <text x="500" y="676" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">The single gradient is representational reach — pale to deep is a richer representation, not a stronger control.</text>
+  <text x="500" y="700" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">Higher rungs make more engineering questions tractable — they do not imply every system should climb every rung.</text>
 </svg>

@@ -20,7 +20,7 @@
     {"id": "structured-relationships", "order": 3, "label": "Structured relationships", "lean": "modeling",
      "capability": "Typed entities and typed edges — dependencies, ownership, lineage — so relevance follows relationships and tools traverse it.",
      "capability_question": "What entities and typed relations form this system?"},
-    {"id": "system-models", "order": 4, "label": "System models", "lean": "modeling",
+    {"id": "system-models", "order": 4, "label": "System semantics", "lean": "modeling",
      "capability": "Add semantics — behavioral, process, physical, scenario — so the representation says what shape the system should have.",
      "capability_question": "What shape is the system meant to have?"},
     {"id": "explicit-invariants", "order": 5, "label": "Explicit properties (invariants)", "lean": "alignment",
@@ -32,9 +32,9 @@
     {"id": "traceability", "order": 7, "label": "Traceability", "lean": "alignment",
      "capability": "Join model elements bidirectionally to the implementation — a claim points at the code that realizes it and back.",
      "capability_question": "Are model elements joined to implementation both ways?"},
-    {"id": "drift-enforcement", "order": 8, "label": "Drift enforcement", "lean": "alignment",
-     "capability": "The environment refuses to let model and territory silently diverge — a gate blocks the edit until they agree.",
-     "capability_question": "What divergence will the environment refuse?"}
+    {"id": "drift-enforcement", "order": 8, "label": "Mechanically maintained correspondence", "lean": "alignment",
+     "capability": "Model and territory are kept in mechanical correspondence — a derived check re-reads the code and the environment surfaces divergence rather than letting it accumulate silently.",
+     "capability_question": "How is model↔territory correspondence kept from drifting?"}
   ],
 
   "modeling_ceiling_map": {

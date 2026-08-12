@@ -45,7 +45,7 @@
     {
       "id": "system-models",
       "order": 4,
-      "label": "System models",
+      "label": "System semantics",
       "capability": "Add semantics — behavioral, process, physical, scenario — so the representation says what shape the system should have.",
       "capability_question": "What shape is the system meant to have?",
       "lean": "modeling"
@@ -77,9 +77,9 @@
     {
       "id": "drift-enforcement",
       "order": 8,
-      "label": "Drift enforcement",
-      "capability": "The environment refuses to let model and territory silently diverge — a gate blocks the edit until they agree.",
-      "capability_question": "What divergence will the environment refuse?",
+      "label": "Mechanically maintained correspondence",
+      "capability": "Model and territory are kept in mechanical correspondence — a derived check re-reads the code and the environment surfaces divergence rather than letting it accumulate silently.",
+      "capability_question": "How is model↔territory correspondence kept from drifting?",
       "lean": "alignment"
     }
   ],

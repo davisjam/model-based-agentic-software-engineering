@@ -8,7 +8,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470"
      role="group" aria-labelledby="tvTitle tvDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="tvTitle">One trunk of drift-proof machinery, five Kruchten views branching from it</title>
+  <title id="tvTitle">One shared substrate, five Kruchten views branching from it</title>
   <desc id="tvDesc">A shared trunk sits at the base: the executable source-of-truth, the drift
     and parity gates, the agent-first harness, and the read-and-generate surfaces — the machinery
     that makes every view executable and holds each one true against the code. Five branches fan
@@ -65,7 +65,7 @@
   <!-- ================= THE SHARED TRUNK (bottom) ================= -->
   <!-- the trunk bar every branch grows from -->
   <rect x="40" y="300" width="920" height="8" rx="4" fill="#2f5169"/>
-  <text x="500" y="342" text-anchor="middle" font-size="26" font-weight="700" fill="#2f5169">The trunk — machinery that holds any view true</text>
+  <text x="500" y="342" text-anchor="middle" font-size="26" font-weight="700" fill="#2f5169">Shared substrate — machinery that keeps the views connected</text>
 
   <!-- the four trunk components -->
   <g>

@@ -3,12 +3,12 @@
   "_counts": {
     "tracked_slugs": 33,
     "slugs_rendered": 25,
-    "total_sites": 1492,
+    "total_sites": 1488,
     "by_projection": {
       "book-pdf": 21,
-      "book-web": 1073,
+      "book-web": 1071,
       "website-catalogue": 221,
-      "website-concepts": 57,
+      "website-concepts": 55,
       "website-industry-cases": 46,
       "website-landing": 13,
       "website-misc": 51,
@@ -970,10 +970,6 @@
             "occ": 1
           },
           {
-            "file": "book/2.2-from-context-to-control.html",
-            "occ": 1
-          },
-          {
             "file": "book/3.1-the-agent-stack.html",
             "occ": 6
           },
@@ -1035,7 +1031,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 15
+            "occ": 14
           },
           {
             "file": "book/part-1-intro.html",
@@ -1065,7 +1061,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 28
+            "occ": 27
           }
         ]
       },
@@ -1073,17 +1069,13 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 4
+            "occ": 3
           }
         ],
         "website-concepts": [
           {
             "file": "concept-independent-convergence.html",
             "occ": 3
-          },
-          {
-            "file": "concept-modeling-thesis.html",
-            "occ": 1
           }
         ],
         "website-misc": [
@@ -2961,7 +2953,7 @@
           },
           {
             "file": "book/2.2-from-context-to-control.html",
-            "occ": 51
+            "occ": 49
           },
           {
             "file": "book/2.3-the-executable-zoo.html",
@@ -3401,7 +3393,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 272
+            "occ": 270
           },
           {
             "file": "book/index.html",
@@ -3447,7 +3439,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 23
+            "occ": 21
           }
         ],
         "website-concepts": [
@@ -3473,7 +3465,7 @@
           },
           {
             "file": "concept-modeling-thesis.html",
-            "occ": 40
+            "occ": 38
           },
           {
             "file": "concept-new-problem.html",
@@ -3861,7 +3853,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 68
+            "occ": 69
           },
           {
             "file": "catalogue-figure.html",
@@ -4002,10 +3994,6 @@
             "occ": 3
           },
           {
-            "file": "book/2.2-from-context-to-control.html",
-            "occ": 1
-          },
-          {
             "file": "book/3.1-the-agent-stack.html",
             "occ": 3
           },
@@ -4055,7 +4043,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 15
+            "occ": 14
           },
           {
             "file": "book/part-1-intro.html",
@@ -4085,7 +4073,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 26
+            "occ": 25
           }
         ]
       },
@@ -4093,7 +4081,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 4
+            "occ": 3
           }
         ],
         "website-concepts": [
@@ -4104,10 +4092,6 @@
           {
             "file": "concept-independent-convergence.html",
             "occ": 3
-          },
-          {
-            "file": "concept-modeling-thesis.html",
-            "occ": 1
           }
         ],
         "website-misc": [

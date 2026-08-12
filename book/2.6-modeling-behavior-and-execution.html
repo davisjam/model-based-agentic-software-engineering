@@ -825,7 +825,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <title id="lcTitle">Lease versus compare-and-set — redelivery and permission-to-act are different things</title>
   <desc id="lcDesc">A delivery, which may repeat, is taken under a lease that provides crash recovery
     only: it says the consumer currently holds this delivery. A separate compare-and-set provides the
-    exactly-once claim: it says the consumer is the one allowed the side effect. The claim branches two
+    at-most-once claim: it says the consumer is the one allowed the side effect. The claim branches two
     ways — the winner performs the effect, and the loser acknowledges without repeating it. Exactly-once
     rests on the claim, not the lease; these are authoritative mechanisms, the lease for liveness and the
     compare-and-set for correctness.</desc>
@@ -853,7 +853,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- compare-and-set -->
   <rect x="205" y="246" width="230" height="48" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="320" y="276" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">compare-and-set</text>
-  <text x="445" y="276" font-size="14" fill="#57534e">[the exactly-once claim]</text>
+  <text x="445" y="276" font-size="14" fill="#57534e">[the at-most-once claim]</text>
 
   <!-- branch targets -->
   <rect x="85" y="360" width="150" height="48" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>

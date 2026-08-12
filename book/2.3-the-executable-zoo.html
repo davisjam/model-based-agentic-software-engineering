@@ -764,15 +764,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="msTitle">The two-layer net: modeled surface, two coverage layers, two uncovered regions, two backstops</title>
   <desc id="msDesc">A horizontal band is the modeled surface, the slice of code a model claims to
-    represent. Two coverage layers sit over it: a hard floor of derived checks, drawn solid green,
-    that resolves each model anchor against a live symbol and holds; and above it a soft reading
-    layer, dashed blue, a person or an Opus checking prose the checks cannot parse. The soft layer
-    covers the modeled-and-decidable zone but has a gap over a second zone, the semantic mismatch,
-    where the anchor still resolves but the meaning drifted, so a drift escapes the reading pass.
+    represent. Two coverage layers sit over it: a mechanical layer of derived checks, drawn solid green,
+    that resolves each model anchor against a live symbol and holds; and above it a judgment layer,
+    dashed blue, a person or another probabilistic reasoner checking prose the checks cannot parse. The
+    judgment layer covers the modeled-and-decidable zone but has a gap over a second zone, the semantic
+    mismatch, where the anchor still resolves but the meaning drifted, so a drift escapes the review pass.
     To the right lies the unmodeled surface, a dashed red band no anchor reaches and no layer covers,
     where a drift escapes unopposed. Below sit two backstops that turn “someone happens to notice”
     into machinery: a missing-model metric that measures the unmodeled region, and a
-    failures-become-controls loop that closes it by extending the hard floor into the formerly
+    failures-become-controls loop that closes it by extending the mechanical layer into the formerly
     unmodeled zone, drawn as a dashed green extension. Read the net as coverage, not a guarantee.</desc>
 
   <defs>
@@ -790,15 +790,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="490" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">The two-layer net</text>
   <text x="490" y="58" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">read the net as coverage, not a guarantee</text>
 
-  <!-- ===== soft layer — the reading pass (covers the decidable zone; a GAP over the mismatch) ===== -->
-  <text x="70" y="300" font-size="15" font-weight="700" fill="#2f5169">soft layer — reading (human / Opus)</text>
+  <!-- ===== judgment layer — the review pass (covers the decidable zone; a GAP over the mismatch) ===== -->
+  <text x="70" y="300" font-size="15" font-weight="700" fill="#2f5169">judgment layer — human / probabilistic review</text>
   <line x1="60" y1="326" x2="310" y2="326" stroke="#2f5169" stroke-width="4" stroke-dasharray="10 6"/>
   <text x="360" y="322" font-size="14" font-style="italic" fill="#b23b3b">gap — meaning slips through</text>
 
-  <!-- ===== hard layer — the derived floor (covers both modeled zones) ===== -->
+  <!-- ===== mechanical layer — the derived floor (covers both modeled zones) ===== -->
   <rect x="60" y="356" width="540" height="30" rx="4" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="3"/>
-  <text x="300" y="376" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">hard floor — derived checks (holds)</text>
-  <!-- extension of the floor into the unmodeled zone, added by a control -->
+  <text x="300" y="376" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">mechanical layer — derived checks (holds)</text>
+  <!-- extension of the layer into the unmodeled zone, added by a control -->
   <rect x="630" y="356" width="200" height="30" rx="4" fill="none" stroke="#1f7a4d" stroke-width="3" stroke-dasharray="6 6"/>
   <text x="730" y="376" text-anchor="middle" font-size="13" font-style="italic" fill="#1f7a4d">extended by a new control</text>
 
@@ -830,9 +830,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M600,566 C622,540 634,522 648,510" fill="none" stroke="#1f6fae" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ms-blue)"/>
 
   <rect x="670" y="566" width="260" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="800" y="591" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">failures → controls loop</text>
+  <text x="800" y="591" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">failures &#8594; controls loop</text>
   <text x="800" y="612" text-anchor="middle" font-size="13" fill="#57534e">closes it — extends the net</text>
-  <path d="M900,564 C906,480 890,420 828,388" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ms-grn)"/>
+  <!-- routed out to the right margin (clear of the UNMODELED-surface box) before hooking into the extension -->
+  <path d="M905,566 C970,545 970,455 940,432 C900,405 866,395 830,388" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ms-grn)"/>
 </svg><figcaption data-short="Figure 2.3-1"><span class="fig-label">Figure 2.3-1.</span> <strong>Figure 2.3-1: The two-layer net.</strong> Mechanical checks cover the modeled-and-decidable surface; judgment covers semantics the representation does not yet make checkable. A semantic miss can escape through the first layer, while an unmodeled property has no coverage at all. Read the net as coverage, not a guarantee.</figcaption></figure>
 <h2><span class="sec-num">2.3.4</span> An executable model is its schema plus its checked predicates</h2>
 <p>Read that as one operational equation: in the operational sense used here, <strong>an executable model is its structured schema plus the predicates and derivations machines can actually consume.</strong> The schema gives the entities, fields, edges, and states; the checked predicates state what must remain true over that structure. Fields (b) and (c) of the reference template below give the <strong>structured schema</strong> — records, edges, state machines. Field (d) adds the <strong>checked predicates</strong>, each named by a stable id and held true at its declared cadence by its checker — a drift lint or a model check.</p>
