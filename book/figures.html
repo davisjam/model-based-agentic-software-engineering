@@ -3005,11 +3005,81 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="710" y="312" text-anchor="middle" font-size="20" fill="#1c1917">Lets the mistake happen,</text>
   <text x="710" y="337" text-anchor="middle" font-size="20" fill="#1c1917">detects it before it ships.</text>
   <text x="710" y="372" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">test suite in CI · smoke detector</text>
-</svg><figcaption data-short="Constraint or Sensor"><span class="fig-label">Figure 3.3-1.</span> <em>Constraint or Sensor.</em> The two moves and their asymmetric cost. A constraint prevents the mistake inside the iteration, so it costs no failed loop; a sensor catches it after the fact, so it costs at least one. Prefer the constraint where you can build one; add a sensor for the drift you cannot scope away.</figcaption></figure><p class="gallery-source">From <a href="3.3-constraints-sensors-validators-gates.html#fig-3-3-1">14 · The Four Mechanism Roles</a></p></section><hr><section class="gallery-item"><figure id="fig-3-4-1-fig-3-4-1" class="book-figure" data-label="residual-decision-tree"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 660"
-     role="group" aria-labelledby="fig-3-4-1-rdtTitle fig-3-4-1-rdtDesc"
+</svg><figcaption data-short="Constraint or Sensor"><span class="fig-label">Figure 3.3-1.</span> <em>Constraint or Sensor.</em> The two moves and their asymmetric cost. A constraint prevents the mistake inside the iteration, so it costs no failed loop; a sensor catches it after the fact, so it costs at least one. Prefer the constraint where you can build one; add a sensor for the drift you cannot scope away.</figcaption></figure><p class="gallery-source">From <a href="3.3-constraints-sensors-validators-gates.html#fig-3-3-1">14 · The Four Mechanism Roles</a></p></section><hr><section class="gallery-item"><figure id="fig-3-4-1-fig-3-4-1" class="book-figure" data-label="governance-census"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+     role="group" aria-labelledby="fig-3-4-1-gcTitle fig-3-4-1-gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-3-4-1-rdtTitle">The residual decision tree — where a goal lands relative to the mechanisms</title>
-  <desc id="fig-3-4-1-rdtDesc">A decision tree with three questions and four outcomes. First question:
+  <title id="fig-3-4-1-gcTitle">The governance census: governed, under-governance, and governance debt are counts once obligations and mechanisms are enumerated</title>
+  <desc id="fig-3-4-1-gcDesc">Two columns face each other. On the left, Obligations — what must be governed. On the
+    right, Mechanisms — the controls that meet them. A line joins each obligation to the mechanism that
+    covers it. Three quantities fall out of the match, shown as three large outputs. Governed: an obligation
+    met by a mechanism, in green. Under-governance: an obligation with no mechanism, a hole in governance, in
+    red. Governance debt: a mechanism with no obligation, an unjustified control, in muted grey. Once
+    obligations and mechanisms are enumerated, these three become counts rather than opinions — governance
+    becomes an engineering artifact. The figure is a bipartite graph, the requirements-traceability analogue.</desc>
+
+  <defs>
+    <marker id="fig-3-4-1-gc-cov" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The governance census</text>
+  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Governance becomes an engineering artifact — governed, under-governed, and debt are counts, not opinions.</text>
+
+  <!-- column headers (both in the rust governance family) -->
+  <text x="228" y="118" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#9a3f12">OBLIGATIONS</text>
+  <text x="228" y="140" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">what must be governed</text>
+  <text x="772" y="118" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#9a3f12">MECHANISMS</text>
+  <text x="772" y="140" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the controls that meet them</text>
+
+  <!-- match lines (green = coverage), drawn behind the chips -->
+  <g stroke="#1f7a4d" stroke-width="2.2" fill="none">
+    <path d="M356,190 L644,190" marker-end="url(#fig-3-4-1-gc-cov)"/>
+    <path d="M356,246 L644,246" marker-end="url(#fig-3-4-1-gc-cov)"/>
+    <path d="M356,302 L644,302" marker-end="url(#fig-3-4-1-gc-cov)"/>
+  </g>
+
+  <!-- obligation chips (left, rust) -->
+  <rect x="128" y="166" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="242" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
+  <rect x="128" y="222" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="242" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
+  <rect x="128" y="278" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="242" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
+  <!-- the under-governed obligation (no line to any mechanism) -->
+  <rect x="128" y="334" width="228" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.6"/>
+  <text x="242" y="364" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">Uncovered obligation</text>
+
+  <!-- mechanism chips (right, rust) -->
+  <rect x="644" y="166" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="758" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
+  <rect x="644" y="222" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="758" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
+  <rect x="644" y="278" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="758" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
+  <!-- the debt mechanism (no line to any obligation) -->
+  <rect x="644" y="334" width="228" height="48" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.6"/>
+  <text x="758" y="364" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">Unmatched mechanism</text>
+
+  <!-- the three derived outputs, made large -->
+  <text x="500" y="424" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Three counts fall out of the match</text>
+  <rect x="40"  y="438" width="288" height="76" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="3"/>
+  <text x="184" y="474" text-anchor="middle" font-size="23" font-weight="700" fill="#1f7a4d">GOVERNED</text>
+  <text x="184" y="498" text-anchor="middle" font-size="16" fill="#57534e">obligation met by a mechanism</text>
+  <rect x="356" y="438" width="288" height="76" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="3"/>
+  <text x="500" y="474" text-anchor="middle" font-size="23" font-weight="700" fill="#b23b3b">UNDER-GOVERNANCE</text>
+  <text x="500" y="498" text-anchor="middle" font-size="16" fill="#57534e">obligation with no mechanism</text>
+  <rect x="672" y="438" width="288" height="76" rx="10" fill="#f3efe7" stroke="#57534e" stroke-width="3"/>
+  <text x="816" y="474" text-anchor="middle" font-size="23" font-weight="700" fill="#57534e">GOVERNANCE DEBT</text>
+  <text x="816" y="498" text-anchor="middle" font-size="16" fill="#57534e">mechanism with no obligation</text>
+
+  <text x="500" y="544" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Governance as a bipartite graph — the requirements-traceability analogue.</text>
+</svg><figcaption data-short="The Governance Census"><span class="fig-label">Figure 3.4-1.</span> <em>The Governance Census.</em> Set the obligations that must be governed against the mechanisms that govern them, and two diagnostics become counts, not opinions: a gap is an obligation no mechanism carries (under-governance); an orphan is a mechanism tracing to no obligation (governance debt). Governed is the matched middle. The inventory turns a description of an environment into a diagnosis of it.</figcaption></figure><p class="gallery-source">From <a href="3.4-governance-conversion.html#fig-3-4-1">15 · Growing the Governed Environment</a></p></section><hr><section class="gallery-item"><figure id="fig-3-4-2-fig-3-4-2" class="book-figure" data-label="residual-decision-tree"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 660"
+     role="group" aria-labelledby="fig-3-4-2-rdtTitle fig-3-4-2-rdtDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-3-4-2-rdtTitle">The residual decision tree — where a goal lands relative to the mechanisms</title>
+  <desc id="fig-3-4-2-rdtDesc">A decision tree with three questions and four outcomes. First question:
     is the obligation represented — modeled at all? If no, the goal is the RESIDUAL, an absence
     nobody specified; there is nothing to point to and a human must know the check should be
     there. If yes, second question: can a check mechanically evaluate it? If no, it is a
@@ -3019,7 +3089,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     goal is governed. Only RESIDUAL and OBSERVED ONLY are named; the other two are described.</desc>
 
   <defs>
-    <marker id="fig-3-4-1-rdt-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="fig-3-4-2-rdt-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
   </defs>
@@ -3065,12 +3135,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- edges -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M255,100 L175,176" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q1 no -> RESIDUAL -->
-    <path d="M430,100 L490,192" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q1 yes -> Q2 -->
-    <path d="M472,262 L400,340" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q2 no -> judgment -->
-    <path d="M628,262 L660,354" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q2 yes -> Q3 -->
-    <path d="M632,424 L560,502" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q3 no -> OBSERVED ONLY -->
-    <path d="M784,424 L818,502" marker-end="url(#fig-3-4-1-rdt-ah)"/>   <!-- Q3 yes -> governed -->
+    <path d="M255,100 L175,176" marker-end="url(#fig-3-4-2-rdt-ah)"/>   <!-- Q1 no -> RESIDUAL -->
+    <path d="M430,100 L490,192" marker-end="url(#fig-3-4-2-rdt-ah)"/>   <!-- Q1 yes -> Q2 -->
+    <path d="M472,262 L400,340" marker-end="url(#fig-3-4-2-rdt-ah)"/>   <!-- Q2 no -> judgment -->
+    <path d="M628,262 L660,354" marker-end="url(#fig-3-4-2-rdt-ah)"/>   <!-- Q2 yes -> Q3 -->
+    <path d="M632,424 L560,502" marker-end="url(#fig-3-4-2-rdt-ah)"/>   <!-- Q3 no -> OBSERVED ONLY -->
+    <path d="M784,424 L818,502" marker-end="url(#fig-3-4-2-rdt-ah)"/>   <!-- Q3 yes -> governed -->
   </g>
 
   <!-- edge labels -->
@@ -3082,7 +3152,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="572" y="474" text-anchor="middle" fill="#a86a1f">no</text>
     <text x="812" y="476" text-anchor="middle" fill="#1f7a4d">yes</text>
   </g>
-</svg><figcaption data-short="The residual decision tree"><span class="fig-label">Figure 3.4-1.</span> <em>The residual decision tree.</em> Three questions place any goal relative to the mechanisms: is the obligation modeled, can a check evaluate it mechanically, and does a gate act on the reading? An unmodeled goal is the RESIDUAL — an absence nobody specified, so a human must know the check belongs. A modeled goal no check can evaluate is a judgment call, still a human's to make. A checkable goal with no gate is OBSERVED ONLY — modeled, sensed, and logged, yet ungated; with a gate, the loop is closed and the goal is governed. Only RESIDUAL and OBSERVED ONLY carry a name; the other two are described, not christened.</figcaption></figure><p class="gallery-source">From <a href="3.4-governance-conversion.html#fig-3-4-1">15 · Growing the Governed Environment</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-fig-3-5-1" class="book-figure" data-label="collision-edge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
+</svg><figcaption data-short="The residual decision tree"><span class="fig-label">Figure 3.4-2.</span> <em>The residual decision tree.</em> Three questions place any goal relative to the mechanisms: is the obligation modeled, can a check evaluate it mechanically, and does a gate act on the reading? An unmodeled goal is the RESIDUAL — an absence nobody specified, so a human must know the check belongs. A modeled goal no check can evaluate is a judgment call, still a human's to make. A checkable goal with no gate is OBSERVED ONLY — modeled, sensed, and logged, yet ungated; with a gate, the loop is closed and the goal is governed. Only RESIDUAL and OBSERVED ONLY carry a name; the other two are described, not christened.</figcaption></figure><p class="gallery-source">From <a href="3.4-governance-conversion.html#fig-3-4-2">15 · Growing the Governed Environment</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-1-fig-3-5-1" class="book-figure" data-label="collision-edge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
      role="group" aria-labelledby="fig-3-5-1-ceTitle fig-3-5-1-ceDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-3-5-1-ceTitle">The conflict is the edge — a collision drawn nowhere until the graph draws it</title>
@@ -7208,77 +7278,7 @@ z
   <text x="839" y="637" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">the whole landscape</text>
 
   <text x="500" y="700" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">No two organizations began with the same problem — yet they converge.</text>
-</svg><figcaption data-short="Independent Reconstructions"><span class="fig-label">Figure 6.7-1.</span> <em>Independent Reconstructions.</em> Six industrial systems, each entering the design space through a different door, reconstruct overlapping regions of one theory of MAGE. Colour marks which lobe each makes load-bearing: rust for governance and alignment, green for modeling and knowledge. No system covers the whole; read together, they trace its shape.</figcaption></figure><p class="gallery-source">From <a href="6.7-where-mage-fits.html#fig-6-7-1">32 · MAGE in the Wild</a></p></section><hr><section class="gallery-item"><figure id="fig-6-7-2-fig-6-7-2" class="book-figure" data-label="governance-census"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
-     role="group" aria-labelledby="fig-6-7-2-gcTitle fig-6-7-2-gcDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-6-7-2-gcTitle">The governance census: governed, under-governance, and governance debt are counts once obligations and mechanisms are enumerated</title>
-  <desc id="fig-6-7-2-gcDesc">Two columns face each other. On the left, Obligations — what must be governed. On the
-    right, Mechanisms — the controls that meet them. A line joins each obligation to the mechanism that
-    covers it. Three quantities fall out of the match, shown as three large outputs. Governed: an obligation
-    met by a mechanism, in green. Under-governance: an obligation with no mechanism, a hole in governance, in
-    red. Governance debt: a mechanism with no obligation, an unjustified control, in muted grey. Once
-    obligations and mechanisms are enumerated, these three become counts rather than opinions — governance
-    becomes an engineering artifact. The figure is a bipartite graph, the requirements-traceability analogue.</desc>
-
-  <defs>
-    <marker id="fig-6-7-2-gc-cov" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
-    </marker>
-  </defs>
-
-  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The governance census</text>
-  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Governance becomes an engineering artifact — governed, under-governed, and debt are counts, not opinions.</text>
-
-  <!-- column headers (both in the rust governance family) -->
-  <text x="228" y="118" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#9a3f12">OBLIGATIONS</text>
-  <text x="228" y="140" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">what must be governed</text>
-  <text x="772" y="118" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#9a3f12">MECHANISMS</text>
-  <text x="772" y="140" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the controls that meet them</text>
-
-  <!-- match lines (green = coverage), drawn behind the chips -->
-  <g stroke="#1f7a4d" stroke-width="2.2" fill="none">
-    <path d="M356,190 L644,190" marker-end="url(#fig-6-7-2-gc-cov)"/>
-    <path d="M356,246 L644,246" marker-end="url(#fig-6-7-2-gc-cov)"/>
-    <path d="M356,302 L644,302" marker-end="url(#fig-6-7-2-gc-cov)"/>
-  </g>
-
-  <!-- obligation chips (left, rust) -->
-  <rect x="128" y="166" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="242" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
-  <rect x="128" y="222" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="242" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
-  <rect x="128" y="278" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="242" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
-  <!-- the under-governed obligation (no line to any mechanism) -->
-  <rect x="128" y="334" width="228" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.6"/>
-  <text x="242" y="364" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">Uncovered obligation</text>
-
-  <!-- mechanism chips (right, rust) -->
-  <rect x="644" y="166" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="758" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
-  <rect x="644" y="222" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="758" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
-  <rect x="644" y="278" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="758" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
-  <!-- the debt mechanism (no line to any obligation) -->
-  <rect x="644" y="334" width="228" height="48" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.6"/>
-  <text x="758" y="364" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">Unmatched mechanism</text>
-
-  <!-- the three derived outputs, made large -->
-  <text x="500" y="424" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Three counts fall out of the match</text>
-  <rect x="40"  y="438" width="288" height="76" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="3"/>
-  <text x="184" y="474" text-anchor="middle" font-size="23" font-weight="700" fill="#1f7a4d">GOVERNED</text>
-  <text x="184" y="498" text-anchor="middle" font-size="16" fill="#57534e">obligation met by a mechanism</text>
-  <rect x="356" y="438" width="288" height="76" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="3"/>
-  <text x="500" y="474" text-anchor="middle" font-size="23" font-weight="700" fill="#b23b3b">UNDER-GOVERNANCE</text>
-  <text x="500" y="498" text-anchor="middle" font-size="16" fill="#57534e">obligation with no mechanism</text>
-  <rect x="672" y="438" width="288" height="76" rx="10" fill="#f3efe7" stroke="#57534e" stroke-width="3"/>
-  <text x="816" y="474" text-anchor="middle" font-size="23" font-weight="700" fill="#57534e">GOVERNANCE DEBT</text>
-  <text x="816" y="498" text-anchor="middle" font-size="16" fill="#57534e">mechanism with no obligation</text>
-
-  <text x="500" y="544" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Governance as a bipartite graph — the requirements-traceability analogue.</text>
-</svg><figcaption data-short="The Governance Census"><span class="fig-label">Figure 6.7-2.</span> <em>The Governance Census.</em> Set the obligations that must be governed against the mechanisms that govern them, and two diagnostics become counts, not opinions: a gap is an obligation no mechanism carries (under-governance); an orphan is a mechanism tracing to no obligation (governance debt). Governed is the matched middle. The inventory turns a description of an environment into a diagnosis of it.</figcaption></figure><p class="gallery-source">From <a href="6.7-where-mage-fits.html#fig-6-7-2">32 · MAGE in the Wild</a></p></section><hr><section class="gallery-item"><figure id="fig-6-9-1-fig-6-9-1" class="book-figure" data-label="determinization-frontier"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 570"
+</svg><figcaption data-short="Independent Reconstructions"><span class="fig-label">Figure 6.7-1.</span> <em>Independent Reconstructions.</em> Six industrial systems, each entering the design space through a different door, reconstruct overlapping regions of one theory of MAGE. Colour marks which lobe each makes load-bearing: rust for governance and alignment, green for modeling and knowledge. No system covers the whole; read together, they trace its shape.</figcaption></figure><p class="gallery-source">From <a href="6.7-where-mage-fits.html#fig-6-7-1">32 · MAGE in the Wild</a></p></section><hr><section class="gallery-item"><figure id="fig-6-9-1-fig-6-9-1" class="book-figure" data-label="determinization-frontier"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 570"
      role="group" aria-labelledby="fig-6-9-1-dfTitle fig-6-9-1-dfDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-6-9-1-dfTitle">The determinization frontier: how far engineering judgment can be compiled into machinery</title>
