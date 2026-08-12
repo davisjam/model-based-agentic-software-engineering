@@ -6366,15 +6366,24 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
             problems.append(f"Part title {pt!r} (part {p}) missing from PDF")
 
     # Tail: a distinctive word-run from the LAST section's rendered body must appear (not truncated).
+    # Extract the run and search the PDF text through the SAME normalization (_norm), so the check does
+    # not false-fail when the tail contains short words or spans a reflow line-break:
+    #   - the token pattern keeps 1-char words ("a", "I") — a `+` quantifier dropped them, so a tail
+    #     ending "...not a footnote to it" extracted as "not footnote to" and missed the real PDF text;
+    #   - _norm() collapses all whitespace to single spaces (and straightens quotes) on BOTH the run and
+    #     the searched text, so a run split across a line-break in the PDF still matches.
+    # The guard's anti-truncation strength is preserved: a genuinely truncated render simply lacks the
+    # last section's tail words in the extracted PDF text, so the substring check still fails — the
+    # normalization only removes whitespace/short-word false-negatives, never manufactures a match.
     last = full[-1]
-    tail_words = re.findall(r"[A-Za-z][A-Za-z'-]+", md_to_html(last["body_md"]))
+    tail_words = re.findall(r"[A-Za-z][A-Za-z'-]*", md_to_html(last["body_md"]))
     # take a 6-word run from near the end of the last section
     if len(tail_words) >= 12:
-        tail_run = " ".join(tail_words[-8:-2])
-        if tail_run and tail_run not in text:
+        tail_run = _norm(" ".join(tail_words[-8:-2]))
+        if tail_run and tail_run not in text_norm:
             # fall back to a shorter run (rendering may split a hyphenated word)
-            short = " ".join(tail_words[-6:-3])
-            if short not in text:
+            short = _norm(" ".join(tail_words[-6:-3]))
+            if short not in text_norm:
                 problems.append(f"tail run from last section {last['slug']!r} not found "
                                 f"({short!r}) — render may be truncated")
 
