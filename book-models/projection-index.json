@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1440,
+    "total_sites": 1439,
     "by_projection": {
       "book-pdf": 20,
-      "book-web": 1027,
+      "book-web": 1026,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -177,7 +177,7 @@
           },
           {
             "file": "book/6.7-conclusion.html",
-            "occ": 7
+            "occ": 4
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -1122,10 +1122,6 @@
             "occ": 4
           },
           {
-            "file": "book/6.7-conclusion.html",
-            "occ": 2
-          },
-          {
             "file": "book/appendices-front-door.html",
             "occ": 1
           },
@@ -1185,7 +1181,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 24
+            "occ": 23
           }
         ]
       },
@@ -1513,7 +1509,7 @@
           },
           {
             "file": "book/6.7-conclusion.html",
-            "occ": 34
+            "occ": 32
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -1957,7 +1953,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 39
+            "occ": 40
           },
           {
             "file": "catalogue-figure.html",
@@ -2179,7 +2175,7 @@
           },
           {
             "file": "book/6.7-conclusion.html",
-            "occ": 5
+            "occ": 3
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -2895,7 +2891,7 @@
           },
           {
             "file": "book/6.7-conclusion.html",
-            "occ": 24
+            "occ": 20
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -3683,7 +3679,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 39
+            "occ": 38
           },
           {
             "file": "catalogue-figure.html",
@@ -4109,7 +4105,7 @@
           },
           {
             "file": "book/6.7-conclusion.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/7.1-about-the-author.html",
@@ -4797,7 +4793,7 @@
           },
           {
             "file": "book/6.7-conclusion.html",
-            "occ": 6
+            "occ": 8
           },
           {
             "file": "book/7.1-about-the-author.html",
