@@ -7,7 +7,7 @@
 | Claim | SDLC becomes SELC: one seat reassigned, the lifecycle otherwise intact. The fleet writes the code; the engineer keeps the seats that were always the engineering. |
 | Mechanisms | Independent pre-implementation design review · Epic & design-doc templates · Epic Definition-of-Done |
 | Related | Convert recurring failures into controls |
-| In the book | book/6.3-reorganization-of-se.html |
+| In the book | book/6.4-reorganization-of-se.html |
 
 ## The idea
 
@@ -54,4 +54,4 @@ needs someone who can specify and judge, not someone who types a little faster.
 
 ## Read in the book →
 
-[Read in the book →](book/6.3-reorganization-of-se.html)
+[Read in the book →](book/6.4-reorganization-of-se.html)

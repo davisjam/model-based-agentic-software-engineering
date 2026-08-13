@@ -21,5 +21,4 @@ when implementation no longer does.
 > Engineering effort shifts toward representation, evidence, authority, and judgment: the work of
 > designing and maintaining the environment through which autonomous implementation proceeds.
 
-<!-- new-here -->
 **New here:** Professional Thesis · Determinization frontier · Representation engineering · Software rejoins engineering
