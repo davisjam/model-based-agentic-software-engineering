@@ -1,9 +1,11 @@
 """The METRICS-DASHBOARD view — a typed model of the metrics the book steers by or certifies with, carrying
 the author's INCLUSION CRITERION so a future metric is testable against it, not sorted by taste. A sibling of
 the other declared -> generated book models (claims / outline / flagship-stack): the hand-authored source of
-truth is `book-models/metrics-dashboard.json`; this module projects ALL ten metrics into the Operator's
-Dashboard page (Appendix D.1, Operator's Reference), grouped by MODE, and holds that page's table equal to
-the model with a parity check.
+truth is `book-models/metrics-dashboard.json`. The model is now REGISTRY-ONLY — it is the resolution target
+for the operator cards' `DASH:` evidence_refs and carries the structural mode-count / defined-in invariants.
+The former page-parity projection into Appendix D.1's table is RETIRED: the Operator's-Reference copyedit
+replaced D.1's raw 10-metric table with a conceptual five-reading table and routed the raw metrics to
+Appendix H (the Evidence Ledger's per-section receipts), so no page holds the projection any longer.
 
 FORMATIVE vs SUMMATIVE.  Every metric the book names is on the dashboard now — an engineering reference wants
 the whole set — but each carries a MODE that says WHEN you read it. A `formative` metric is measured DURING
@@ -13,16 +15,16 @@ summatively at maturity. The criterion (verbatim from the author): a metric belo
 BY while the work is in flight (formative) or one you CERTIFY THE RESULT with at maturity (summative) —
 measured to guide or to judge engineering with MAGE, not merely reported.
 
-TWO PROJECTIONS, ONE SOURCE.
-  * `render_table_md()` — the markdown table the Operator's Dashboard page shows: all ten metrics in two mode bands
-    (a Formative band, a divider/band-label row, then a Summative band that carries the summative + both
-    metrics). Author it into the page from `... table`; the page and the model cannot then diverge without
-    the parity check reddening.
-  * `structural_findings()` / `parity_findings()` — the invariants (schema + defined-in resolution + the
-    ratified mode counts) and the page-parity check. Wired into `catalog.py validate`.
+DERIVATION, ONE SOURCE.
+  * `render_table_md()` — the mode-banded markdown table (all ten metrics: a Formative band, a divider row,
+    then a Summative band carrying the summative + both metrics). Regenerate it on demand with `... table`;
+    it is no longer authored into any page (see the retirement note above).
+  * `structural_findings()` — the invariants (schema + defined-in resolution + the ratified mode counts),
+    wired into `catalog.py validate`. `parity_findings()` remains defined but is NO LONGER wired: the page
+    it held equal was dissolved by the copyedit.
 
-Run `python3 book-models/metrics_dashboard_model.py verify` to drift-check (structural + parity);
-`... table` to print the markdown table for the page; `... show` to list every metric and its mode.
+Run `python3 book-models/metrics_dashboard_model.py verify` to drift-check (structural invariants);
+`... table` to print the mode-banded markdown table; `... show` to list every metric and its mode.
 """
 from __future__ import annotations
 
@@ -249,10 +251,15 @@ def parity_findings(model: "DashboardModel | None" = None) -> "list[str]":
 
 
 def all_findings(model: "DashboardModel | None" = None) -> "list[str]":
-    """Structural + parity — the full check catalog.py validate runs."""
+    """The check catalog.py validate runs: STRUCTURAL only. WHY no parity: the copyedit dissolved D.1's
+    projected 10-metric table (the metrics are now framed conceptually in D.1 and carried as per-section
+    receipts in Appendix H), so there is no page left for the projection to hold equal — the page-parity
+    check was verifying something editorial intent removed. This model stays as the DASH evidence-ref
+    registry + the structural mode-count / defined-in invariants; `parity_findings` is intentionally
+    unwired (kept only for the manual `table` regen path), not deleted."""
     if model is None:
         model = derive_model()
-    return structural_findings(model) + parity_findings(model)
+    return structural_findings(model)
 
 
 # ---- CLI --------------------------------------------------------------------------------------------
@@ -283,7 +290,7 @@ def _cmd_verify() -> int:
         return 1
     nf, ns, nb = len(model.by_mode("formative")), len(model.by_mode("summative")), len(model.by_mode("both"))
     print(f"metrics-dashboard is in sync ({len(model.metrics)} metrics: {nf} formative, {ns} summative, "
-          f"{nb} both; page table matches the model)")
+          f"{nb} both; structural invariants pass — registry-only, page-parity retired)")
     return 0
 
 
