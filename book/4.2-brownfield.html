@@ -700,25 +700,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li>
 <li class="part">Appendix F — Field Guide</li>
 <li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li>
-<li class="part">Appendix G — Model Reference</li>
-<li><a class="" href="appendix-models.html">Appendix G — Model Reference</a></li>
-<li><a class="" href="appendix-g-service-flow-reference.html">G.1 Service-Flow Model</a></li>
-<li><a class="" href="appendix-g-component-zone-reference.html">G.2 Component &amp; Zone Model</a></li>
-<li><a class="" href="appendix-g-domain-registries-reference.html">G.3 Domain Registries</a></li>
-<li><a class="" href="appendix-g-bill-of-materials-reference.html">G.4 Bill of Materials</a></li>
-<li><a class="" href="appendix-g-synchronization-reference.html">G.5 Synchronization Model</a></li>
-<li><a class="" href="appendix-g-single-writer-registry-reference.html">G.6 Single-Writer Registry</a></li>
-<li><a class="" href="appendix-g-mediator-registry-reference.html">G.7 Mediator Registry</a></li>
-<li><a class="" href="appendix-g-deployment-topology-reference.html">G.8 Deployment-Topology Model</a></li>
-<li><a class="" href="appendix-g-invariant-dag-reference.html">G.9 Invariant-DAG Execution Policy</a></li>
-<li><a class="" href="appendix-g-control-substrate-dependency-reference.html">G.10 Control–Substrate Dependency Model</a></li>
-<li><a class="" href="appendix-g-ltl-primer.html">G.11 Reading Behavior Formally — Extended Primer</a></li>
-<li><a class="" href="appendix-g-user-journey-reference.html">G.12 User-Journey Model</a></li>
-<li><a class="" href="appendix-g-agent-orchestration-reference.html">G.13 Agent-Orchestration Model</a></li>
-<li><a class="" href="appendix-g-journey-criticality-reference.html">G.14 Journey-Criticality and Test-Placement Model</a></li>
-<li><a class="" href="appendix-g-coverage-node-reference.html">G.15 Coverage-to-Node Model</a></li>
-<li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
-<li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
+<li class="part">Appendix C — Model Reference</li>
+<li><a class="" href="appendix-models.html">Appendix C — Model Reference</a></li>
+<li><a class="" href="appendix-c-structure-and-boundaries.html">C.1 Structure and Boundaries</a></li>
+<li><a class="" href="appendix-c-behavior-and-ownership.html">C.2 Behavior and Ownership</a></li>
+<li><a class="" href="appendix-c-execution-and-placement.html">C.3 Execution and Placement</a></li>
+<li><a class="" href="appendix-c-measurement.html">C.4 Measurement</a></li>
+<li><a class="" href="appendix-c-documentation-and-provenance.html">C.5 Documentation and Provenance</a></li>
+<li><a class="" href="appendix-c-joining-views.html">C.6 Joining Views Around a Scenario</a></li>
+<li><a class="" href="appendix-c-representation-to-authority.html">C.7 From Representation to Authority</a></li>
 <li class="part">Appendix G — Evidence Ledger: The DocAble Case</li>
 <li><a class="" href="appendix-evidence-ledger.html">Appendix G — Evidence Ledger: The DocAble Case</a></li>
 <li class="part">Back Matter</li>
@@ -917,7 +907,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <blockquote id="idx-def-control-substrate-dependency" class="concept-inset"><p class="inset-title" id="inset-blast-radius">Inset — Compute the blast radius before you replace the ground</p>
 <p><strong>Substrate-dependency model · Structural</strong> <em>(compressed here; full card in the appendix)</em></p>
 <p>One question comes before you re-pave a bounded surface everything else runs on: <em>which mechanisms assume the substrate I am about to replace?</em> Have each governance mechanism declare, as typed metadata, the substrate assumption it bakes in — bound to one substrate, substrate-aware, or substrate-agnostic. Joining those declarations against the topology model on a migration target turns a hopeful grep into a <em>computed</em> blast radius; a declaration lint requires the stance, so the one mechanism whose assumption is implicit cannot hide from the join. Worked once on the plane the fleet actually migrated: retiring a poll plane for a push plane, the join named every mechanism that baked in "workers pull from a shared sorted set" — the queue-depth metric, the stale-job sweep, the cancellation cleanup, the priority-preservation requeue — before the change landed.</p>
-<p><em>Property: a migration's blast radius is computed from declared stances, not grepped for by hand.</em> <a href="appendix-g-control-substrate-dependency-reference.html">Appendix G</a> · full card: <a href="appendix-b-control-substrate-dependency.html">control↔substrate dependency model</a></p></blockquote>
+<p><em>Property: a migration's blast radius is computed from declared stances, not grepped for by hand.</em> Full card: <a href="appendix-b-control-substrate-dependency.html">control↔substrate dependency model</a></p></blockquote>
 <h2><span class="sec-num">4.2.5</span> Introduce new authority safely: Audit → Drain → Promote</h2>
 <p>A valid future invariant is not always a valid present admission rule. A legacy tree may violate the rule everywhere on the day you first decide the rule is worth having. Turning it blocking immediately does not improve the estate; it merely breaks all work already in flight. So introduce a new obligation over an inherited estate in three beats — and the order is the safety.</p>
 <blockquote class="concept-inset"><p class="inset-title" id="audit-drain-promote">The move — Audit → Drain → Promote</p>

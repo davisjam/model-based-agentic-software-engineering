@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- R54-G figure round — appendix-g-1-executable-model.svg, common vocabulary per R54-FIGURE-MANIFEST. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 800" width="720" height="800"
+     role="img" aria-labelledby="g1Title g1Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="g1Title">The executable-model pattern — the spine every later reference figure specializes</title>
+  <desc id="g1Desc">An engineering question selects a representation. A model box is fed from the left by
+    authored intent along a solid arrow, and from the right by derived facts along a dashed arrow. The model
+    declares or generates code, config, runtime, and artifacts, shown along a solid arrow. Those artifacts are
+    observed or re-derived back into a correspondence check, shown along a dashed arrow. The check asks whether
+    the authored and derived facts disagree. A no leaves the model advisory and report-only. A yes flows along a
+    heavy bordered authority arrow, crossed by a gate glyph, into a finding or gate where warranted. A shared
+    legend below fixes the vocabulary for every G figure: solid arrows are declared relations, dashed arrows are
+    derived or observed correspondence, and a heavy boundary with a gate glyph marks the only place real
+    authority sits. Not every model traverses every edge; a useful representation may remain advisory.</desc>
+
+  <defs>
+    <marker id="g1-solid" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
+    <marker id="g1-auth" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="800" fill="#fdfcf9"/>
+
+  <!-- ENGINEERING QUESTION (driver, neutral) -->
+  <rect x="230" y="34" width="260" height="44" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
+  <text x="360" y="62" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ENGINEERING QUESTION</text>
+  <line x1="360" y1="78" x2="360" y2="112" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
+
+  <!-- MODEL (representation) -->
+  <rect x="230" y="112" width="260" height="80" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="360" y="142" text-anchor="middle" font-size="20" font-weight="700" fill="#8a2f2f">MODEL</text>
+  <text x="360" y="164" text-anchor="middle" font-size="14" fill="#57534e">entities · relations</text>
+  <text x="360" y="182" text-anchor="middle" font-size="14" fill="#57534e">· properties</text>
+
+  <!-- AUTHORED intent in (SOLID, from left) -->
+  <line x1="120" y1="152" x2="230" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
+  <text x="95" y="147" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED</text>
+  <text x="95" y="164" text-anchor="middle" font-size="13" fill="#57534e">intent</text>
+
+  <!-- DERIVED facts in (DASHED, from right) -->
+  <line x1="600" y1="152" x2="490" y2="152" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g1-solid)"/>
+  <text x="628" y="147" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
+  <text x="628" y="164" text-anchor="middle" font-size="13" fill="#57534e">facts</text>
+
+  <!-- declares / generates (SOLID down) -->
+  <line x1="360" y1="192" x2="360" y2="228" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
+  <text x="474" y="214" font-size="13" font-style="italic" fill="#57534e">declares / generates</text>
+
+  <!-- CODE / CONFIG / RUNTIME / ARTIFACTS (observed / implementation) -->
+  <rect x="230" y="228" width="260" height="64" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="360" y="254" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">CODE · CONFIG ·</text>
+  <text x="360" y="276" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">RUNTIME · ARTIFACTS</text>
+
+  <!-- observe / re-derive (DASHED down) -->
+  <line x1="360" y1="292" x2="360" y2="330" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g1-solid)"/>
+  <text x="474" y="309" font-size="13" font-style="italic" fill="#57534e">observe / re-derive</text>
+  <text x="474" y="325" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED</text>
+
+  <!-- CORRESPONDENCE / INVARIANT CHECK (representation) -->
+  <rect x="230" y="330" width="260" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="360" y="356" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">CORRESPONDENCE /</text>
+  <text x="360" y="378" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">INVARIANT CHECK</text>
+
+  <!-- decision -->
+  <line x1="360" y1="394" x2="360" y2="420" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
+  <text x="360" y="438" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">disagreement?</text>
+
+  <!-- NO leg: advisory / report-only (plain, no authority) -->
+  <line x1="330" y1="448" x2="200" y2="480" stroke="#2f5169" stroke-width="2" marker-end="url(#g1-solid)"/>
+  <text x="250" y="462" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">no</text>
+  <rect x="70" y="484" width="230" height="46" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
+  <text x="185" y="506" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">advisory · report-only</text>
+  <text x="185" y="523" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">informs the engineer</text>
+
+  <!-- YES leg: finding / gate where warranted (HEAVY authority + gate glyph) -->
+  <line x1="390" y1="448" x2="512" y2="480" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g1-auth)"/>
+  <text x="470" y="462" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">yes</text>
+  <!-- gate glyph: two heavy bars across the authority arrow -->
+  <g stroke="#b23b3b" stroke-width="3.4">
+    <line x1="447" y1="456" x2="455" y2="474"/>
+    <line x1="458" y1="452" x2="466" y2="470"/>
+  </g>
+  <rect x="420" y="484" width="240" height="52" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
+  <text x="540" y="507" text-anchor="middle" font-size="14" font-weight="700" fill="#b23b3b">finding / gate</text>
+  <text x="540" y="525" text-anchor="middle" font-size="12" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED — where warranted</text>
+
+  <text x="360" y="566" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">Not every model traverses every edge — a useful representation may stay advisory.</text>
+
+  <!-- ===================== SHARED LEGEND (ship once, here in G.1) ===================== -->
+  <rect x="60" y="596" width="600" height="176" rx="10" fill="#f7f5f0" stroke="#2b2825" stroke-width="1.4"/>
+  <text x="80" y="624" font-size="15" font-weight="700" fill="#1c1917">Legend — one vocabulary for every G figure</text>
+
+  <!-- solid = declared -->
+  <line x1="90" y1="652" x2="170" y2="652" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
+  <text x="186" y="649" font-size="13.5" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED</text>
+  <text x="186" y="666" font-size="13" fill="#1c1917">solid arrow = a declared relation (authored intent)</text>
+
+  <!-- dashed = derived/observed -->
+  <line x1="90" y1="692" x2="170" y2="692" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g1-solid)"/>
+  <text x="186" y="689" font-size="13.5" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED · OBSERVED</text>
+  <text x="186" y="706" font-size="13" fill="#1c1917">dashed arrow = derived / observed correspondence</text>
+
+  <!-- heavy = authority -->
+  <line x1="90" y1="732" x2="170" y2="732" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g1-auth)"/>
+  <g stroke="#b23b3b" stroke-width="3.4">
+    <line x1="122" y1="724" x2="122" y2="740"/>
+    <line x1="132" y1="724" x2="132" y2="740"/>
+  </g>
+  <text x="186" y="729" font-size="13.5" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
+  <text x="186" y="746" font-size="13" fill="#1c1917">heavy boundary + gate glyph = real authority (can block)</text>
+
+  <text x="80" y="768" font-size="12" font-style="italic" fill="#57534e">Rounded box = a representation.  Weight, dash, and glyph carry the meaning — not colour.</text>
+</svg>

@@ -3592,13 +3592,15 @@ def build_field_guide_chapters(part: int, letter: str = "F", locator_figs: bool 
         locator_figs=locator_figs, single_deck=True)
 
 
-# APPENDIX G — Model Reference. One page per Part-II model: the fixed five-field (a)-(e) reference detail
-# (record schema / invariant table / derivation direction) migrated OUT of the view chapters (round-10 §C).
-# Hand-authored like the stacks / recipe / operators appendices — routed through build_hand_authored_appendix,
-# no bespoke builder. The page slugs carry a `-reference` suffix so `appendix-<letter>-<model>-reference`
-# never collides with a catalogue model slug (`<model>-model`) and is never swallowed by the
-# dropped-appendix-link redirect (D4a). Front-door slug is letter-independent (`appendix-models`). Scaffolded
-# empty-but-green this wave; W2.5 migrates the (b)/(d)/(e) detail out of the view chapters into these pages.
+# APPENDIX C — Model Reference. A compact teaching pattern-book, not a per-model catalogue: seven sections
+# (C.1 "Reading the Reference" on the front-door, then C.2–C.8) that show the representative FORMS a model
+# takes — structure and boundaries, behavior and ownership, execution and placement, measurement,
+# documentation and provenance, joining views, and the representation→authority seam. Collapsed from the
+# earlier 17 per-model reference cards (round-54). Hand-authored like the stacks / recipe / operators
+# appendices — routed through build_hand_authored_appendix, no bespoke builder. Page slugs are net-new
+# `appendix-c-<section>` stems (none collides with a catalogue `<model>-model` slug); the front-door slug
+# stays letter-independent (`appendix-models`). Narrative cross-refs use title-based `[appendix:]` tokens,
+# so the reader-facing C.n locator numbering never has to be cited.
 _MODELS_DIR = HERE / "appendix-models"
 # Part-V Evidence Ledger (fork G7): a dedicated home for Part V's raw count tables — the support-ratio
 # lines-of-code, the per-path churn, and the running control-growth counts — kept out of the narrative
@@ -3612,23 +3614,13 @@ _EVIDENCE_LEDGER_PAGES: list[tuple[str, str]] = [
 ]
 _APPENDIX_MODELS_OPENING_SLUG = "appendix-models"
 _MODEL_PAGES: list[tuple[str, str]] = [
-    ("service-flow-reference", "Service-Flow Model"),
-    ("component-zone-reference", "Component & Zone Model"),
-    ("domain-registries-reference", "Domain Registries"),
-    ("bill-of-materials-reference", "Bill of Materials"),
-    ("synchronization-reference", "Synchronization Model"),
-    ("single-writer-registry-reference", "Single-Writer Registry"),
-    ("mediator-registry-reference", "Mediator Registry"),
-    ("deployment-topology-reference", "Deployment-Topology Model"),
-    ("invariant-dag-reference", "Invariant-DAG Execution Policy"),
-    ("control-substrate-dependency-reference", "Control–Substrate Dependency Model"),
-    ("ltl-primer", "Reading Behavior Formally — Extended Primer"),
-    ("user-journey-reference", "User-Journey Model"),
-    ("agent-orchestration-reference", "Agent-Orchestration Model"),
-    ("journey-criticality-reference", "Journey-Criticality and Test-Placement Model"),
-    ("coverage-node-reference", "Coverage-to-Node Model"),
-    ("task-closure-reference", "Task-Closure Model"),
-    ("surfaces-built-reference", "The Surfaces Built — the II→III Receipt"),
+    ("structure-and-boundaries",      "Structure and Boundaries"),
+    ("behavior-and-ownership",        "Behavior and Ownership"),
+    ("execution-and-placement",       "Execution and Placement"),
+    ("measurement",                   "Measurement"),
+    ("documentation-and-provenance",  "Documentation and Provenance"),
+    ("joining-views",                 "Joining Views Around a Scenario"),
+    ("representation-to-authority",   "From Representation to Authority"),
 ]
 
 
@@ -4916,13 +4908,13 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
     f_part = next_part + 5
     chapters += build_field_guide_chapters(part=f_part, letter="F", locator_figs=True)
 
-    # ── APPENDIX G — Model Reference. One page per Part-II model: the fixed five-field (a)-(e) reference
-    #    detail migrated out of the view chapters (§C). Appended LAST so it re-letters no earlier appendix
-    #    (every `appendix-<letter>-<stem>` content-page slug upstream stays stable). Routed through the
-    #    shared hand-authored appendix builder — no near-clone builder. `-reference` page-slug namespace (D4a).
+    # ── APPENDIX C — Model Reference. A compact teaching pattern-book: seven sections showing the
+    #    representative forms a model takes (collapsed from the earlier 17 per-model cards, round-54).
+    #    Routed through the shared hand-authored appendix builder — no near-clone builder. Content-page
+    #    slugs are net-new `appendix-c-<section>` stems; the front-door slug stays `appendix-models`.
     g_part = next_part + 6
     chapters += build_hand_authored_appendix(
-        g_part, letter="G", part_name="Model Reference",
+        g_part, letter="C", part_name="Model Reference",
         opening_slug=_APPENDIX_MODELS_OPENING_SLUG,
         opening_prose=_load_opening(_MODELS_DIR / "_opening.md"),
         content_dir=_MODELS_DIR, pages_source=_MODEL_PAGES,

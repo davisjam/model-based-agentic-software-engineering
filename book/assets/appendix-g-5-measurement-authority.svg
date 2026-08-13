@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- R54-G figure round — appendix-g-5-measurement-authority.svg, common vocabulary per R54-FIGURE-MANIFEST. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" width="720" height="520"
+     role="img" aria-labelledby="g5Title g5Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="g5Title">Measurement does not imply authority — a number earns a gate only when evidence warrants it</title>
+  <desc id="g5Desc">A running system is observed along a dashed arrow into a measurement box holding latency, cost,
+    and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison
+    branches on whether the evidence is sufficient. A no leads to a plain report-only box: the number is surfaced,
+    not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission
+    gate — the one place authority sits. The lesson: represent first; grant authority only when the evidence
+    warrants it. Legend as in Figure G-1; weight, dash, and glyph carry the meaning without colour.</desc>
+
+  <defs>
+    <marker id="g5-solid" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
+    <marker id="g5-auth" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="520" fill="#fdfcf9"/>
+  <text x="40" y="34" font-size="15" font-weight="600" fill="#57534e">Question: what bound is declared — and what happens when it is exceeded?</text>
+
+  <!-- RUNNING SYSTEM (observed / implementation) -->
+  <rect x="250" y="52" width="220" height="50" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="360" y="83" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">RUNNING SYSTEM</text>
+
+  <!-- observe (DASHED) -->
+  <line x1="360" y1="102" x2="360" y2="138" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g5-solid)"/>
+  <text x="374" y="118" font-size="13" font-style="italic" fill="#57534e">observe</text>
+  <text x="374" y="134" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED</text>
+
+  <!-- MEASUREMENT (representation) -->
+  <rect x="250" y="138" width="220" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="360" y="166" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">MEASUREMENT</text>
+  <text x="360" y="189" text-anchor="middle" font-size="14" fill="#57534e">latency · cost · queue</text>
+
+  <!-- compare (SOLID) -->
+  <line x1="360" y1="204" x2="360" y2="240" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g5-solid)"/>
+  <text x="374" y="226" font-size="13" font-style="italic" fill="#57534e">compare</text>
+
+  <!-- DECLARED BOUND (representation) -->
+  <rect x="250" y="240" width="220" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="360" y="268" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">DECLARED BOUND</text>
+  <text x="360" y="289" text-anchor="middle" font-size="13" fill="#57534e">threshold · scope · statistic</text>
+
+  <!-- decision -->
+  <line x1="360" y1="300" x2="360" y2="326" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g5-solid)"/>
+  <text x="360" y="344" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">evidence sufficient?</text>
+
+  <!-- NO leg: report only (plain) -->
+  <line x1="330" y1="354" x2="200" y2="390" stroke="#2f5169" stroke-width="2" marker-end="url(#g5-solid)"/>
+  <text x="248" y="368" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">no</text>
+  <rect x="80" y="394" width="220" height="54" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
+  <text x="190" y="420" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">REPORT ONLY</text>
+  <text x="190" y="439" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">surfaced, not enforced</text>
+
+  <!-- YES leg: admission gate (HEAVY authority + gate glyph) -->
+  <line x1="390" y1="354" x2="512" y2="390" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g5-auth)"/>
+  <text x="470" y="368" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">yes</text>
+  <g stroke="#b23b3b" stroke-width="3.4">
+    <line x1="447" y1="362" x2="455" y2="380"/>
+    <line x1="458" y1="358" x2="466" y2="376"/>
+  </g>
+  <rect x="420" y="394" width="250" height="58" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
+  <text x="545" y="418" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">WARNING / ADMISSION GATE</text>
+  <text x="545" y="438" text-anchor="middle" font-size="12" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
+
+  <text x="360" y="480" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Represent first; grant authority only when the evidence warrants it.</text>
+  <text x="40" y="506" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure G-1.  A quantity does not earn a gate by being measurable.</text>
+</svg>
