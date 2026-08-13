@@ -588,8 +588,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="list-of-figures.html">List of Figures and Tables</a></li>
 <li><a class="" href="0.5-how-to-read-this-book.html">How to read this book</a></li>
 <li><a class="" href="0.6-acknowledgments.html">Acknowledgments</a></li>
-<li class="part">Part 1 — The New Engineering Problem</li>
-<li><a class="" href="part-1-intro.html">The New Engineering Problem</a></li>
+<li class="part">Part 1 — Introduction: The New Engineering Problem</li>
+<li><a class="" href="part-1-intro.html">Introduction: The New Engineering Problem</a></li>
 <li><a class="" href="1.1-the-printer.html">1&nbsp; The Printer</a></li>
 <li><a class="" href="1.2-mage-by-example.html">2&nbsp; MAGE by Example</a></li>
 <li><a class="" href="1.3-the-agentic-substrate.html">3&nbsp; The Agentic Substrate</a></li>
@@ -633,10 +633,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="6.4-reorganization-of-se.html">30&nbsp; The Reorganization of Software Engineering</a></li>
 <li><a class="" href="6.5-software-rejoins-engineering.html">31&nbsp; Software Rejoins Engineering</a></li>
 <li><a class="" href="6.6-education-research-open-problems.html">32&nbsp; The Profession: Education and Research</a></li>
-<li><a class="" href="6.7-conclusion.html">33&nbsp; Conclusion — The Part That Stays Yours</a></li>
-<li class="part">Back Matter</li>
-<li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
-<li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
+<li><a class="" href="6.7-the-profession.html">33&nbsp; The Profession</a></li>
+<li class="part">Conclusion</li>
+<li><a class="" href="7.1-the-part-that-stays-yours.html">The Part That Stays Yours</a></li>
 <li class="part">Appendices</li>
 <li><a class="" href="appendices-front-door.html">Appendices</a></li>
 <li class="part">Appendix A — MAGE Engineering Stacks</li>
@@ -721,7 +720,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 12 · Joining Models Around a Scenario — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 12</a></div><h1><span class="chap-num">2.8</span> Joining Models Around a Scenario</h1></header><p id="idx-def-scenarios-view">A real engineering goal rarely stays inside one model. A scenario — a use case or journey — walks a goal end to end and forces several projections to meet: structural dependencies, behavior, ownership, placement, measurement, and provenance may all matter before the goal closes. The scenario does not replace validation of those models individually. Its value is compositional: it exposes whether the facts and properties that were sensible in isolation still join coherently around one piece of work.</p>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li>
+<li class="part">Back Matter</li>
+<li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 12 · Joining Models Around a Scenario — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 12</a></div><h1><span class="chap-num">2.8</span> Joining Models Around a Scenario</h1></header><p id="idx-def-scenarios-view">A real engineering goal rarely stays inside one model. A scenario — a use case or journey — walks a goal end to end and forces several projections to meet: structural dependencies, behavior, ownership, placement, measurement, and provenance may all matter before the goal closes. The scenario does not replace validation of those models individually. Its value is compositional: it exposes whether the facts and properties that were sensible in isolation still join coherently around one piece of work.</p>
 <p>The scenario itself is therefore not a seventh mega-model. It is a traversal across models joined on stable identities.</p>
 <blockquote class="concept-inset"><p class="inset-title">Scenario / joined view · Behavioral</p>
 <ul><li><strong>Engineering question</strong> — Does the whole system still accomplish the user's goal through valid states once the separate models are composed?</li><li><strong>Model</strong> — one goal walked end to end across the other models — the join an engineer performs, not a seventh mega-model the system stores.</li><li><strong>Property</strong> — the goal completes only through a sequence of valid states, with every cross-cut — ownership, authorization, a measured bound, provenance — satisfied at each hop.</li><li><strong>Quality attribute</strong> — end-to-end correctness, the composite of what the other models each guarantee.</li></ul></blockquote>

@@ -81,7 +81,8 @@ def _label_for_src(rel_to_book: str) -> str:
 
 # Chapter source dirs — front/back matter + the five parts. Appendix fills / README / manifests are not
 # authored-caption chapters, matching the book suite's own chapter-source scope.
-CHAPTER_DIRS = ("frontmatter", "part1", "part2", "part3", "part4", "part5", "part6", "part7",
+CHAPTER_DIRS = ("frontmatter", "part1", "part2", "part3", "part4", "part5", "part6",
+                "conclusion", "backmatter",
                 # The Field Guide appendix is the one appendix whose figures carry declared caption-tier rows
                 # (tier C team-card art), so its card `.md` sources are scanned to band-check those captions and
                 # to keep the rows live (not orphan). The other hand-authored appendices ship no tier rows.

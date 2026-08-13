@@ -754,9 +754,9 @@
         "artifacts": [],
         "artifact_would_help": false
       },
-      "note": "Trimmed synthesis; comparisons now one chapter back. Closes on the do-one-conversion concrete next step — a model conclusion ending.",
-      "opening_anchor": "> I applied mine heart to know, and to search, and to",
-      "closing_anchor": "MAGE method serves your work as well as it has served mine."
+      "note": "The book-level Conclusion (top-level matter, parallel to the Preface; exempt: conclusion). Returns to the Preface's question, gives the compact three-move answer, asks the converse (what cannot be delegated?), and lands on responsibility as the durable boundary. Closes on the reframing that implementation became cheap so more of engineering can be practiced.",
+      "opening_anchor": "> Though much is taken, > much abides. > > — Alfred,",
+      "closing_anchor": "implementation cheap, it may finally force us to practice more of it."
     },
     {
       "slug": "toward-a-theory-of-mage",
@@ -812,31 +812,6 @@
       "note": "Apparatus / navigation. Opens by laying out the six Parts in their deliberate argument order (Modeling before Alignment is a principled progression — representation then authority — not a dependency) and the three shorter routes; hands the reader the book map as a navigational framework. Advances no thesis (apparatus). Not yet carried in the argument-spine exemptions — a pre-existing spine gap, tracked separately.",
       "opening_anchor": "The six Parts follow the method's argument in a deliberate order. Part",
       "closing_anchor": "the appendices are intended to work as a reference while you build."
-    },
-    {
-      "slug": "colophon",
-      "opening": {
-        "failure_question": "implicit",
-        "answer": "explicit",
-        "thesis_link": "implicit",
-        "thesis_target": "argument-step"
-      },
-      "closing": {
-        "kind": "synthesis"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "table",
-            "name": "the models that governed the manuscript",
-            "anchor": "manuscript-models"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Apparatus, but load-bearing: the note on the book's own making doubles as evidence that MAGE governs knowledge work beyond code — the manuscript itself was held by executable models and consistency checks. Delivers the table of the models that governed the manuscript. Not yet carried in the argument-spine exemptions — a pre-existing spine gap, tracked separately.",
-      "opening_anchor": "> *A colophon is the note a book keeps about its own",
-      "closing_anchor": "construction.** The book became evidence for one of its own central claims."
     },
     {
       "slug": "the-mage-workflow",

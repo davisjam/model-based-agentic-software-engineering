@@ -588,8 +588,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="list-of-figures.html">List of Figures and Tables</a></li>
 <li><a class="" href="0.5-how-to-read-this-book.html">How to read this book</a></li>
 <li><a class="" href="0.6-acknowledgments.html">Acknowledgments</a></li>
-<li class="part">Part 1 — The New Engineering Problem</li>
-<li><a class="" href="part-1-intro.html">The New Engineering Problem</a></li>
+<li class="part">Part 1 — Introduction: The New Engineering Problem</li>
+<li><a class="" href="part-1-intro.html">Introduction: The New Engineering Problem</a></li>
 <li><a class="" href="1.1-the-printer.html">1&nbsp; The Printer</a></li>
 <li><a class="" href="1.2-mage-by-example.html">2&nbsp; MAGE by Example</a></li>
 <li><a class="" href="1.3-the-agentic-substrate.html">3&nbsp; The Agentic Substrate</a></li>
@@ -633,10 +633,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="6.4-reorganization-of-se.html">30&nbsp; The Reorganization of Software Engineering</a></li>
 <li><a class="" href="6.5-software-rejoins-engineering.html">31&nbsp; Software Rejoins Engineering</a></li>
 <li><a class="" href="6.6-education-research-open-problems.html">32&nbsp; The Profession: Education and Research</a></li>
-<li><a class="" href="6.7-conclusion.html">33&nbsp; Conclusion — The Part That Stays Yours</a></li>
-<li class="part">Back Matter</li>
-<li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
-<li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
+<li><a class="" href="6.7-the-profession.html">33&nbsp; The Profession</a></li>
+<li class="part">Conclusion</li>
+<li><a class="" href="7.1-the-part-that-stays-yours.html">The Part That Stays Yours</a></li>
 <li class="part">Appendices</li>
 <li><a class="" href="appendices-front-door.html">Appendices</a></li>
 <li class="part">Appendix A — MAGE Engineering Stacks</li>
@@ -721,7 +720,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap part-page" aria-label="Part 3 · Alignment — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 3</a></div><h1>Alignment</h1></header><p>Part 2 made engineering knowledge and intent explicit. Those models already earn their keep: they let engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from lower-level detail. This Part asks a different question. <strong>Which of those properties should the environment itself hold as obligations, and how should it hold them?</strong></p>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li>
+<li class="part">Back Matter</li>
+<li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap part-page" aria-label="Part 3 · Alignment — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 3</a></div><h1>Alignment</h1></header><p>Part 2 made engineering knowledge and intent explicit. Those models already earn their keep: they let engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from lower-level detail. This Part asks a different question. <strong>Which of those properties should the environment itself hold as obligations, and how should it hold them?</strong></p>
 <p>Alignment is the move from guidance to authority. Some obligations require no rich system model: a permission can forbid network access, a type can rule out an illegal value, a sandbox can make an action unavailable. Explicit models extend that reach. Once architecture, ownership, behavior, measurement, or policy has been represented at the level where the property exists, the environment can govern questions that would otherwise need an agent or a human to reconstruct the missing semantics.</p>
 <blockquote class="thesis-box"><p class="inset-title">ALIGNMENT THESIS</p>
 <p>Give engineering intent authority by encoding obligations into authoritative mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.</p>
@@ -792,67 +794,119 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="205" y="769" font-size="21" font-weight="700" fill="#1c1917">How do we govern the control system?</text>
   <text x="205" y="795" font-size="16" fill="#57534e">3.5 · Governing the Governance</text>
 </svg><figcaption data-short="Figure 3.0-1"><span class="fig-label">Figure 3.0-1.</span> <em>Figure 3.0-1: Five questions organize Alignment.</em> WHERE authority can act (3.1) → WHAT obligation it should hold (3.2) → HOW — which mechanism role holds it (3.3) → how the environment GROWs, learning new obligations and controls (3.4) → how we GOVERN the resulting control system (3.5). The Part reads as an argument: from where authority acts, to what it may enforce, to how, to governing the result.</figcaption></figure>
-<p>Alignment externalizes selected engineering judgments into the environment. Constraints narrow what work can do; sensors produce evidence of what it did; validators evaluate that evidence against an obligation; gates decide what may advance. Some mechanisms can be designed before the work begins. Others emerge only when a failure reveals an obligation nobody encoded. As those lessons become durable structure, the environment accumulates engineering capital, and eventually enough machinery that the machinery itself must be engineered.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 850"
+<p>Alignment externalizes selected engineering judgments into the environment. Constraints narrow what work can do; sensors produce evidence of what it did; validators evaluate that evidence against an obligation; gates decide what may advance. Some mechanisms can be designed before the work begins. Others emerge only when a failure reveals an obligation nobody encoded. As those lessons become durable structure, the environment accumulates engineering capital, and eventually enough machinery that the machinery itself must be engineered.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1300"
      role="group" aria-labelledby="bmTitle-nav bmDesc-nav"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bmTitle-nav">A map of the book — a single linear descent through six parts</title>
-  <desc id="bmDesc-nav">The book is one straight descent through six parts. Part I, The New Engineering Problem,
-    sets the frame: the changed economics and the engineering problems that remain when implementation
-    becomes abundant. It leads to Part II, Modeling, which develops the Modeling Thesis: make knowledge and
-    intent explicit. That leads to Part III, Alignment, which develops the Alignment Thesis: give
-    obligations authority. Modeling comes first as a principled progression from representation to
-    authority, not as a dependency — Alignment can exist without explicit models, but its reach is narrower
-    and human judgment must bridge what the environment cannot represent. That leads to Part IV, The MAGE
-    Method, which joins the two theses — model, align, convert, repeat — as practical engineering work:
-    workflow, migration, validation, and skills. That leads to Part V, The Evidence: DocAble end to end,
+  <title id="bmTitle-nav">A map of the book — a question posed in the Preface, answered in the Conclusion, across six Parts</title>
+  <desc id="bmDesc-nav">The book is a call and a response wrapped around a single descent through six Parts. The
+    Preface poses the governing question: how do we safely grant autonomy to commodity intelligence? It leads
+    to Part I, Introduction — The New Engineering Problem, which sets the frame: the changed economics and why
+    the question is urgent when implementation becomes abundant. That leads to Part II, Modeling, which
+    develops the Modeling Thesis: make knowledge and intent explicit. That leads to Part III, Alignment, which
+    develops the Alignment Thesis: give obligations authority. Modeling comes first as a principled progression
+    from representation to authority, not as a dependency. That leads to Part IV, The MAGE Method, which joins
+    the two theses — model, align, convert, repeat. That leads to Part V, The Evidence: DocAble end to end,
     where the method came from. That leads to Part VI, The Profession: theory, industrial comparison, scope,
-    the profession, and open problems.</desc>
+    the profession, and open problems. The book then reaches the Conclusion, The Part That Stays Yours — an
+    unnumbered section parallel to the Preface — which returns to the Preface's question, gives the compact
+    answer, and asks the converse: what cannot be delegated? Responsibility. After the argument is over, the
+    book's apparatus follows in a muted tail: the Appendices, then the Colophon (Dogfooding MAGE), then About
+    the Author.</desc>
 
   <defs>
     <marker id="bm2-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
+    <marker id="bm2-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#78716c"/>
+    </marker>
+    <marker id="bm2-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="900" height="850" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="900" height="1300" fill="#fdfcf9"/>
 
-  <!-- PART I — The New Engineering Problem (ink frame) -->
-  <rect x="190" y="40" width="520" height="90" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="450" y="80" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part I · The New Engineering Problem</text>
-  <text x="450" y="108" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the changed economics — why engineering changes</text>
-  <line x1="450" y1="130" x2="450" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <!-- CALL-AND-RESPONSE ARC — Preface (call) tied to Conclusion (response), down the left margin -->
+  <path d="M 190 104 C 58 280, 58 760, 190 926" fill="none" stroke="#9a3f12" stroke-width="1.8"
+        stroke-dasharray="1 0" marker-end="url(#bm2-ah-rust)" opacity="0.85"/>
+  <text x="60" y="515" transform="rotate(-90 60 515)" text-anchor="middle" font-size="13"
+        font-style="italic" fill="#9a3f12">call → response · the question returns, and turns</text>
+
+  <!-- PREFACE — the call (unnumbered matter) -->
+  <rect x="190" y="48" width="520" height="88" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="450" y="86" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Preface</text>
+  <text x="450" y="108" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">poses the question:</text>
+  <text x="450" y="127" text-anchor="middle" font-size="14" font-style="italic" fill="#1c1917">&#8220;How do we safely grant autonomy to commodity intelligence?&#8221;</text>
+  <line x1="450" y1="136" x2="450" y2="160" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+
+  <!-- PART I — Introduction: The New Engineering Problem (ink frame) -->
+  <rect x="190" y="162" width="520" height="96" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="450" y="196" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Part I · Introduction</text>
+  <text x="450" y="220" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">The New Engineering Problem</text>
+  <text x="450" y="242" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the changed economics — why the question is urgent</text>
+  <line x1="450" y1="258" x2="450" y2="282" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART II — Modeling (green) -->
-  <rect x="190" y="160" width="520" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
-  <text x="450" y="200" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
-  <text x="450" y="228" text-anchor="middle" font-size="16" font-style="italic" fill="#1f7a4d">Modeling Thesis · make knowledge + intent explicit</text>
-  <line x1="450" y1="256" x2="450" y2="298" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
-  <text x="472" y="272" text-anchor="start" font-size="13" font-style="italic" fill="#57534e">principled progression:</text>
-  <text x="472" y="288" text-anchor="start" font-size="13" font-style="italic" fill="#57534e">representation → authority</text>
+  <rect x="190" y="284" width="520" height="86" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="450" y="320" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
+  <text x="450" y="348" text-anchor="middle" font-size="15" font-style="italic" fill="#1f7a4d">Modeling Thesis · make knowledge + intent explicit</text>
+  <line x1="450" y1="370" x2="450" y2="400" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <text x="472" y="384" text-anchor="start" font-size="13" font-style="italic" fill="#57534e">principled progression:</text>
+  <text x="472" y="400" text-anchor="start" font-size="13" font-style="italic" fill="#57534e">representation → authority</text>
 
   <!-- PART III — Alignment (rust) -->
-  <rect x="190" y="300" width="520" height="96" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="450" y="340" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
-  <text x="450" y="368" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Alignment Thesis · give obligations authority</text>
-  <line x1="450" y1="396" x2="450" y2="424" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <rect x="190" y="402" width="520" height="86" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="450" y="438" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
+  <text x="450" y="466" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">Alignment Thesis · give obligations authority</text>
+  <line x1="450" y1="488" x2="450" y2="512" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART IV — The MAGE Method (neutral: joins the two) -->
-  <rect x="190" y="426" width="520" height="114" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="450" y="464" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
-  <text x="450" y="490" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">join the theses</text>
-  <text x="450" y="512" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">model → align → convert → repeat</text>
-  <text x="450" y="532" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">workflow · migration · validation · skills</text>
-  <line x1="450" y1="540" x2="450" y2="568" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <rect x="190" y="514" width="520" height="104" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="450" y="548" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
+  <text x="450" y="572" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">join the theses</text>
+  <text x="450" y="592" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">model → align → convert → repeat</text>
+  <text x="450" y="611" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">workflow · migration · validation · skills</text>
+  <line x1="450" y1="618" x2="450" y2="642" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART V — The Evidence (fleet blue) -->
-  <rect x="190" y="570" width="520" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="450" y="610" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
-  <text x="450" y="638" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">DocAble, end to end · where the method came from</text>
-  <line x1="450" y1="666" x2="450" y2="694" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <rect x="190" y="644" width="520" height="86" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="450" y="680" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
+  <text x="450" y="708" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5169">DocAble, end to end · where the method came from</text>
+  <line x1="450" y1="730" x2="450" y2="754" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART VI — The Profession (purple) -->
-  <rect x="190" y="696" width="520" height="104" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
-  <text x="450" y="734" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
-  <text x="450" y="760" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">theory · industrial comparison · scope</text>
-  <text x="450" y="782" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">profession · open problems</text>
-</svg><ul class="visually-hidden roadmap-fallback"><li>Part 1 — The New Engineering Problem: <a href="part-1-intro.html">go to Part 1</a></li><li>Part 2 — Modeling: <a href="part-2-intro.html">go to Part 2</a></li><li aria-current="page">Part 3 — Alignment (current part)</li><li>Part 4 — The MAGE Method: <a href="part-4-intro.html">go to Part 4</a></li><li>Part 5 — The Evidence: <a href="part-5-intro.html">go to Part 5</a></li><li>Part 6 — The Profession: <a href="part-6-intro.html">go to Part 6</a></li></ul></nav><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="2.8-joining-models-around-a-scenario.html" aria-label="Previous chapter — 12 · Joining Models Around a Scenario">« Previous chapter</a></div><span class="chapnav-here" title="Alignment">Alignment</span><div class="chapnav-fwd"><a href="3.1-where-authority-can-act.html" aria-label="Next chapter — 13 · Where Authority Can Act">Next chapter »</a><a href="part-4-intro.html" aria-label="Next part — Part 4 — The MAGE Method">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+  <rect x="190" y="756" width="520" height="94" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <text x="450" y="790" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
+  <text x="450" y="816" text-anchor="middle" font-size="15" font-style="italic" fill="#5b4a72">theory · industrial comparison · scope</text>
+  <text x="450" y="836" text-anchor="middle" font-size="15" font-style="italic" fill="#5b4a72">the profession · open problems</text>
+  <line x1="450" y1="850" x2="450" y2="874" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+
+  <!-- CONCLUSION — the response (unnumbered matter, parallel to the Preface) -->
+  <rect x="190" y="876" width="520" height="106" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="450" y="910" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
+  <text x="450" y="934" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">The Part That Stays Yours</text>
+  <text x="450" y="956" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
+  <text x="450" y="975" text-anchor="middle" font-size="14" font-style="italic" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — Responsibility</text>
+
+  <!-- transition out of the argument into the apparatus (muted, dashed) -->
+  <line x1="450" y1="982" x2="450" y2="1032" stroke="#a8a29e" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#bm2-ah-muted)"/>
+  <text x="480" y="1001" text-anchor="start" font-size="12.5" font-style="italic" fill="#78716c">the argument is over —</text>
+  <text x="480" y="1017" text-anchor="start" font-size="12.5" font-style="italic" fill="#78716c">what follows is the book's apparatus</text>
+
+  <!-- APPENDICES (apparatus tail — muted) -->
+  <rect x="190" y="1034" width="520" height="60" rx="8" fill="#f5f3ee" stroke="#a8a29e" stroke-width="1.8"/>
+  <text x="450" y="1062" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">Appendices</text>
+  <text x="450" y="1082" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">reference while you build</text>
+  <line x1="450" y1="1094" x2="450" y2="1114" stroke="#a8a29e" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#bm2-ah-muted)"/>
+
+  <!-- COLOPHON (apparatus tail — muted; precedes About the Author) -->
+  <rect x="190" y="1116" width="520" height="60" rx="8" fill="#f5f3ee" stroke="#a8a29e" stroke-width="1.8"/>
+  <text x="450" y="1144" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">Colophon — Dogfooding MAGE</text>
+  <text x="450" y="1164" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">the book itself, maintained as a modeled, governed artifact</text>
+  <line x1="450" y1="1176" x2="450" y2="1196" stroke="#a8a29e" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#bm2-ah-muted)"/>
+
+  <!-- ABOUT THE AUTHOR (apparatus tail — the terminal book-object page) -->
+  <rect x="190" y="1198" width="520" height="56" rx="8" fill="#f5f3ee" stroke="#a8a29e" stroke-width="1.8"/>
+  <text x="450" y="1231" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">About the Author</text>
+</svg><ul class="visually-hidden roadmap-fallback"><li>Part 1 — Introduction: The New Engineering Problem: <a href="part-1-intro.html">go to Part 1</a></li><li>Part 2 — Modeling: <a href="part-2-intro.html">go to Part 2</a></li><li aria-current="page">Part 3 — Alignment (current part)</li><li>Part 4 — The MAGE Method: <a href="part-4-intro.html">go to Part 4</a></li><li>Part 5 — The Evidence: <a href="part-5-intro.html">go to Part 5</a></li><li>Part 6 — The Profession: <a href="part-6-intro.html">go to Part 6</a></li></ul></nav><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="2.8-joining-models-around-a-scenario.html" aria-label="Previous chapter — 12 · Joining Models Around a Scenario">« Previous chapter</a></div><span class="chapnav-here" title="Alignment">Alignment</span><div class="chapnav-fwd"><a href="3.1-where-authority-can-act.html" aria-label="Next chapter — 13 · Where Authority Can Act">Next chapter »</a><a href="part-4-intro.html" aria-label="Next part — Part 4 — The MAGE Method">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

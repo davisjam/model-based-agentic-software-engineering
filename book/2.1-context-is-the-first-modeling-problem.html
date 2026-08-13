@@ -588,8 +588,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="list-of-figures.html">List of Figures and Tables</a></li>
 <li><a class="" href="0.5-how-to-read-this-book.html">How to read this book</a></li>
 <li><a class="" href="0.6-acknowledgments.html">Acknowledgments</a></li>
-<li class="part">Part 1 — The New Engineering Problem</li>
-<li><a class="" href="part-1-intro.html">The New Engineering Problem</a></li>
+<li class="part">Part 1 — Introduction: The New Engineering Problem</li>
+<li><a class="" href="part-1-intro.html">Introduction: The New Engineering Problem</a></li>
 <li><a class="" href="1.1-the-printer.html">1&nbsp; The Printer</a></li>
 <li><a class="" href="1.2-mage-by-example.html">2&nbsp; MAGE by Example</a></li>
 <li><a class="" href="1.3-the-agentic-substrate.html">3&nbsp; The Agentic Substrate</a></li>
@@ -633,10 +633,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="6.4-reorganization-of-se.html">30&nbsp; The Reorganization of Software Engineering</a></li>
 <li><a class="" href="6.5-software-rejoins-engineering.html">31&nbsp; Software Rejoins Engineering</a></li>
 <li><a class="" href="6.6-education-research-open-problems.html">32&nbsp; The Profession: Education and Research</a></li>
-<li><a class="" href="6.7-conclusion.html">33&nbsp; Conclusion — The Part That Stays Yours</a></li>
-<li class="part">Back Matter</li>
-<li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
-<li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
+<li><a class="" href="6.7-the-profession.html">33&nbsp; The Profession</a></li>
+<li class="part">Conclusion</li>
+<li><a class="" href="7.1-the-part-that-stays-yours.html">The Part That Stays Yours</a></li>
 <li class="part">Appendices</li>
 <li><a class="" href="appendices-front-door.html">Appendices</a></li>
 <li class="part">Appendix A — MAGE Engineering Stacks</li>
@@ -721,7 +720,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 5 · Context Is the First Modeling Problem — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 5</a></div><h1><span class="chap-num">2.1</span> Context Is the First Modeling Problem</h1></header><p>A foundation model knows Python, React, queues, databases, and common architectural patterns. It does not acquire your service boundaries, deployment topology, ownership rules, yesterday's migration, or local engineering conventions from pretraining. Those facts live in the engineering environment — in source, configuration, registries, documentation, history, and the people who maintain the system — and each reasoning episode has to recover the subset the task needs.</p>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li>
+<li class="part">Back Matter</li>
+<li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 5 · Context Is the First Modeling Problem — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 5</a></div><h1><span class="chap-num">2.1</span> Context Is the First Modeling Problem</h1></header><p>A foundation model knows Python, React, queues, databases, and common architectural patterns. It does not acquire your service boundaries, deployment topology, ownership rules, yesterday's migration, or local engineering conventions from pretraining. Those facts live in the engineering environment — in source, configuration, registries, documentation, history, and the people who maintain the system — and each reasoning episode has to recover the subset the task needs.</p>
 <p>An agent can reconstruct much of that knowledge from raw artifacts. Point it at the repository and it can often discover what calls what, where a service runs, and who appears to own which piece. The problem is cost and scale. Once the task requires more state than the reasoner can keep usefully active, exploration becomes selective and repeated; the next agent may pay much of the same reconstruction cost again.</p>
 <p>The first <strong>modeling move</strong> is therefore modest: externalize engineering knowledge that should not have to be rediscovered. Name the services, modules, APIs, queues, owners, requirements, policies, and tests; name the relations among them. The agent can then retrieve the connected slice its task touches instead of rebuilding that slice from raw files every time.</p>
 <p id="idx-def-thesis-modeling">That is the <strong>Modeling Thesis</strong>, and it is worth stating whole. <strong>The Modeling Thesis.</strong> Externalize engineering knowledge and intent into explicit, structured representations that give engineers and agents a compact world to reason through. As those representations acquire relationships, semantics, and explicit properties, they make larger engineering questions tractable without forcing every reasoner back through raw implementation. <em>In other words:</em> don't make every agent rediscover your architecture from raw code; move the engineering knowledge out of people's heads and into representations the next engineer, and the next agent, can start from. This chapter earns only its weakest form — better externalized context. The chapters after it make the representation carry progressively more of the system's meaning.</p>

@@ -15,11 +15,14 @@ filename prefix). A template-conformance sensor (`check`) keeps the derivation a
 file carries exactly one `<!-- chapter-title: -->`, exactly one H1 (counted outside code fences), and a
 filename prefix agreeing with its outline position.
 
-ASYMMETRIC BIJECTION. The model holds all 40 chapter files under `frontmatter/` + `part1..7/` (excluding
-`00-part-intro.md`), which is a SUPERSET of the 37 outline chapters: `0.1-the-mage-method-at-a-glance`,
-`0.2-what-this-book-argues`, and `7.1-about-the-author` are real chapter files referenced by label but not
-in the outline's chapter tree. So `verify` asserts every OUTLINE chapter has an identity row (37/37) and
-every identity `filename` exists on disk (40/40) — but NOT the converse (the 3 extras are legitimate).
+ASYMMETRIC BIJECTION. The model holds the DISCOVERED chapter files under `frontmatter/` + `part1..6/` +
+`conclusion/` (excluding `00-part-intro.md`), a SUPERSET of the outline chapters: a couple of front-matter
+apparatus pages (`0.1-the-mage-method-at-a-glance`, `0.2-what-this-book-argues`) are real chapter files
+referenced by label but not in the outline's chapter tree. The SYNTHETIC apparatus — the appendices and the
+terminal back matter (Colophon, About-the-Author, assembled by `build_backmatter_chapters`) — carries NO
+identity row, exactly like the appendix pages: identity covers discovered chapters only. So `verify` asserts
+every OUTLINE chapter has an identity row and every identity `filename` exists on disk — but NOT the converse
+(the front-matter extras are legitimate).
 
 Run `python3 book-models/chapter_identity_model.py regenerate` to write the derived artifact; `... verify`
 to run the bijection drift-check; `... check` to run the template-conformance sensor + dangling-label

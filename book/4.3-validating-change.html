@@ -588,8 +588,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="list-of-figures.html">List of Figures and Tables</a></li>
 <li><a class="" href="0.5-how-to-read-this-book.html">How to read this book</a></li>
 <li><a class="" href="0.6-acknowledgments.html">Acknowledgments</a></li>
-<li class="part">Part 1 — The New Engineering Problem</li>
-<li><a class="" href="part-1-intro.html">The New Engineering Problem</a></li>
+<li class="part">Part 1 — Introduction: The New Engineering Problem</li>
+<li><a class="" href="part-1-intro.html">Introduction: The New Engineering Problem</a></li>
 <li><a class="" href="1.1-the-printer.html">1&nbsp; The Printer</a></li>
 <li><a class="" href="1.2-mage-by-example.html">2&nbsp; MAGE by Example</a></li>
 <li><a class="" href="1.3-the-agentic-substrate.html">3&nbsp; The Agentic Substrate</a></li>
@@ -633,10 +633,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="6.4-reorganization-of-se.html">30&nbsp; The Reorganization of Software Engineering</a></li>
 <li><a class="" href="6.5-software-rejoins-engineering.html">31&nbsp; Software Rejoins Engineering</a></li>
 <li><a class="" href="6.6-education-research-open-problems.html">32&nbsp; The Profession: Education and Research</a></li>
-<li><a class="" href="6.7-conclusion.html">33&nbsp; Conclusion — The Part That Stays Yours</a></li>
-<li class="part">Back Matter</li>
-<li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
-<li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
+<li><a class="" href="6.7-the-profession.html">33&nbsp; The Profession</a></li>
+<li class="part">Conclusion</li>
+<li><a class="" href="7.1-the-part-that-stays-yours.html">The Part That Stays Yours</a></li>
 <li class="part">Appendices</li>
 <li><a class="" href="appendices-front-door.html">Appendices</a></li>
 <li class="part">Appendix A — MAGE Engineering Stacks</li>
@@ -721,7 +720,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 20 · Validating Change — MAGE"><header class="chap"><div class="kicker"><a href="part-4-intro.html" aria-label="Beginning of Part 4 — The MAGE Method">Part 4 — The MAGE Method</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 20</a></div><h1><span class="chap-num">4.3</span> Validating Change</h1></header><p>Every engineering process eventually asks the same question: <strong>what evidence is sufficient to accept this change?</strong> Code review, testing, static analysis, operational measurement, and expert judgment answered that question long before coding agents arrived. Commodity implementation does not make those techniques obsolete. It makes them more important, because changes can now arrive faster than human inspection can scale.</p>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li>
+<li class="part">Back Matter</li>
+<li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 20 · Validating Change — MAGE"><header class="chap"><div class="kicker"><a href="part-4-intro.html" aria-label="Beginning of Part 4 — The MAGE Method">Part 4 — The MAGE Method</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 20</a></div><h1><span class="chap-num">4.3</span> Validating Change</h1></header><p>Every engineering process eventually asks the same question: <strong>what evidence is sufficient to accept this change?</strong> Code review, testing, static analysis, operational measurement, and expert judgment answered that question long before coding agents arrived. Commodity implementation does not make those techniques obsolete. It makes them more important, because changes can now arrive faster than human inspection can scale.</p>
 <p>Validation begins with an obligation. If the obligation is settled, evidence can test whether the change satisfies it. If the obligation is still a hypothesis — whether users want the feature, which workflow they prefer, which tradeoff is acceptable — no test suite can manufacture the missing product knowledge. In that regime the evidence is experimental. MAGE can govern the experiment and preserve known constraints; it cannot turn an open question into a mechanical truth.</p>
 <h2><span class="sec-num">4.3.1</span> Independent evidence</h2>
 <p>To validate a change is to assemble evidence that bears on its obligations and decide what consequence that evidence should have. The producer's own report is rarely enough. A human says the change is correct; an agent says the tests pass; a tool announces completion. Each claim may be useful, but the strongest assurance comes from evidence generated outside the judgment asking to be admitted.</p>

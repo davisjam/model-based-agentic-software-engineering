@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1433,
+    "total_sites": 1439,
     "by_projection": {
       "book-pdf": 20,
-      "book-web": 1022,
+      "book-web": 1028,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -176,15 +176,15 @@
             "occ": 11
           },
           {
-            "file": "book/6.7-conclusion.html",
-            "occ": 4
-          },
-          {
-            "file": "book/7.1-about-the-author.html",
+            "file": "book/6.7-the-profession.html",
             "occ": 2
           },
           {
-            "file": "book/7.2-colophon.html",
+            "file": "book/7.1-the-part-that-stays-yours.html",
+            "occ": 5
+          },
+          {
+            "file": "book/about-the-author.html",
             "occ": 2
           },
           {
@@ -504,6 +504,10 @@
             "occ": 68
           },
           {
+            "file": "book/colophon.html",
+            "occ": 2
+          },
+          {
             "file": "book/figures.html",
             "occ": 41
           },
@@ -543,7 +547,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -1349,7 +1353,7 @@
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 21
+            "occ": 17
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -1488,20 +1492,20 @@
             "occ": 81
           },
           {
-            "file": "book/6.7-conclusion.html",
-            "occ": 32
+            "file": "book/6.7-the-profession.html",
+            "occ": 15
           },
           {
-            "file": "book/7.1-about-the-author.html",
-            "occ": 14
+            "file": "book/7.1-the-part-that-stays-yours.html",
+            "occ": 31
           },
           {
-            "file": "book/7.2-colophon.html",
-            "occ": 26
+            "file": "book/about-the-author.html",
+            "occ": 13
           },
           {
             "file": "book/appendices-front-door.html",
-            "occ": 23
+            "occ": 20
           },
           {
             "file": "book/appendix-a-context-management-stack.html",
@@ -1816,8 +1820,12 @@
             "occ": 3
           },
           {
+            "file": "book/colophon.html",
+            "occ": 12
+          },
+          {
             "file": "book/figures.html",
-            "occ": 155
+            "occ": 148
           },
           {
             "file": "book/index.html",
@@ -1829,33 +1837,33 @@
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 33
+            "occ": 30
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 31
+            "occ": 28
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 22
+            "occ": 19
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 21
+            "occ": 18
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 21
+            "occ": 18
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 28
+            "occ": 25
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -1937,7 +1945,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 41
+            "occ": 43
           },
           {
             "file": "catalogue-figure.html",
@@ -2158,15 +2166,15 @@
             "occ": 8
           },
           {
-            "file": "book/6.7-conclusion.html",
-            "occ": 3
-          },
-          {
-            "file": "book/7.1-about-the-author.html",
+            "file": "book/6.7-the-profession.html",
             "occ": 2
           },
           {
-            "file": "book/7.2-colophon.html",
+            "file": "book/7.1-the-part-that-stays-yours.html",
+            "occ": 3
+          },
+          {
+            "file": "book/about-the-author.html",
             "occ": 2
           },
           {
@@ -2482,6 +2490,10 @@
             "occ": 3
           },
           {
+            "file": "book/colophon.html",
+            "occ": 2
+          },
+          {
             "file": "book/figures.html",
             "occ": 23
           },
@@ -2521,7 +2533,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -2874,16 +2886,16 @@
             "occ": 50
           },
           {
-            "file": "book/6.7-conclusion.html",
-            "occ": 19
-          },
-          {
-            "file": "book/7.1-about-the-author.html",
+            "file": "book/6.7-the-profession.html",
             "occ": 17
           },
           {
-            "file": "book/7.2-colophon.html",
-            "occ": 43
+            "file": "book/7.1-the-part-that-stays-yours.html",
+            "occ": 20
+          },
+          {
+            "file": "book/about-the-author.html",
+            "occ": 17
           },
           {
             "file": "book/appendices-front-door.html",
@@ -3202,6 +3214,10 @@
             "occ": 24
           },
           {
+            "file": "book/colophon.html",
+            "occ": 32
+          },
+          {
             "file": "book/figures.html",
             "occ": 213
           },
@@ -3241,7 +3257,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 130
+            "occ": 131
           }
         ]
       },
@@ -3663,7 +3679,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 38
+            "occ": 37
           },
           {
             "file": "catalogue-figure.html",
@@ -4074,15 +4090,15 @@
             "occ": 1
           },
           {
-            "file": "book/6.7-conclusion.html",
+            "file": "book/6.7-the-profession.html",
             "occ": 1
           },
           {
-            "file": "book/7.1-about-the-author.html",
+            "file": "book/7.1-the-part-that-stays-yours.html",
             "occ": 1
           },
           {
-            "file": "book/7.2-colophon.html",
+            "file": "book/about-the-author.html",
             "occ": 1
           },
           {
@@ -4398,6 +4414,10 @@
             "occ": 2
           },
           {
+            "file": "book/colophon.html",
+            "occ": 1
+          },
+          {
             "file": "book/figures.html",
             "occ": 6
           },
@@ -4437,7 +4457,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -4766,16 +4786,16 @@
             "occ": 22
           },
           {
-            "file": "book/6.7-conclusion.html",
-            "occ": 8
+            "file": "book/6.7-the-profession.html",
+            "occ": 3
           },
           {
-            "file": "book/7.1-about-the-author.html",
-            "occ": 4
-          },
-          {
-            "file": "book/7.2-colophon.html",
+            "file": "book/7.1-the-part-that-stays-yours.html",
             "occ": 7
+          },
+          {
+            "file": "book/about-the-author.html",
+            "occ": 3
           },
           {
             "file": "book/appendices-front-door.html",
@@ -5090,6 +5110,10 @@
             "occ": 4
           },
           {
+            "file": "book/colophon.html",
+            "occ": 2
+          },
+          {
             "file": "book/figures.html",
             "occ": 4
           },
@@ -5129,7 +5153,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -5332,16 +5356,16 @@
             "occ": 1
           },
           {
-            "file": "book/6.7-conclusion.html",
+            "file": "book/6.7-the-profession.html",
             "occ": 1
           },
           {
-            "file": "book/7.1-about-the-author.html",
+            "file": "book/7.1-the-part-that-stays-yours.html",
             "occ": 1
           },
           {
-            "file": "book/7.2-colophon.html",
-            "occ": 6
+            "file": "book/about-the-author.html",
+            "occ": 1
           },
           {
             "file": "book/appendices-front-door.html",
@@ -5656,6 +5680,10 @@
             "occ": 3
           },
           {
+            "file": "book/colophon.html",
+            "occ": 3
+          },
+          {
             "file": "book/figures.html",
             "occ": 26
           },
@@ -5695,7 +5723,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 129
+            "occ": 130
           }
         ]
       },
@@ -5994,12 +6022,8 @@
             "occ": 2
           },
           {
-            "file": "book/6.7-conclusion.html",
+            "file": "book/7.1-the-part-that-stays-yours.html",
             "occ": 1
-          },
-          {
-            "file": "book/7.2-colophon.html",
-            "occ": 2
           },
           {
             "file": "book/appendix-a-context-management-stack.html",
@@ -6041,7 +6065,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 19
+            "occ": 18
           }
         ]
       },

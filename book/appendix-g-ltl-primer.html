@@ -588,8 +588,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="list-of-figures.html">List of Figures and Tables</a></li>
 <li><a class="" href="0.5-how-to-read-this-book.html">How to read this book</a></li>
 <li><a class="" href="0.6-acknowledgments.html">Acknowledgments</a></li>
-<li class="part">Part 1 — The New Engineering Problem</li>
-<li><a class="" href="part-1-intro.html">The New Engineering Problem</a></li>
+<li class="part">Part 1 — Introduction: The New Engineering Problem</li>
+<li><a class="" href="part-1-intro.html">Introduction: The New Engineering Problem</a></li>
 <li><a class="" href="1.1-the-printer.html">1&nbsp; The Printer</a></li>
 <li><a class="" href="1.2-mage-by-example.html">2&nbsp; MAGE by Example</a></li>
 <li><a class="" href="1.3-the-agentic-substrate.html">3&nbsp; The Agentic Substrate</a></li>
@@ -633,10 +633,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="6.4-reorganization-of-se.html">30&nbsp; The Reorganization of Software Engineering</a></li>
 <li><a class="" href="6.5-software-rejoins-engineering.html">31&nbsp; Software Rejoins Engineering</a></li>
 <li><a class="" href="6.6-education-research-open-problems.html">32&nbsp; The Profession: Education and Research</a></li>
-<li><a class="" href="6.7-conclusion.html">33&nbsp; Conclusion — The Part That Stays Yours</a></li>
-<li class="part">Back Matter</li>
-<li><a class="" href="7.1-about-the-author.html">About the Author</a></li>
-<li><a class="" href="7.2-colophon.html">Colophon: Dogfooding MAGE</a></li>
+<li><a class="" href="6.7-the-profession.html">33&nbsp; The Profession</a></li>
+<li class="part">Conclusion</li>
+<li><a class="" href="7.1-the-part-that-stays-yours.html">The Part That Stays Yours</a></li>
 <li class="part">Appendices</li>
 <li><a class="" href="appendices-front-door.html">Appendices</a></li>
 <li class="part">Appendix A — MAGE Engineering Stacks</li>
@@ -721,7 +720,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · G.11 Reading Behavior Formally — Extended Primer — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.11 Reading Behavior Formally — Extended Primer</h1></header><p>The Part-II chapter <em>Modeling Behavior and Execution</em> teaches the formal vocabulary its models use — a state machine, an invariant as <em>□P</em> or <em>P ↝ Q</em>, and a bounded exhaustive walk. This page carries the rest: the two temporal operators those models do not lean on, and the edge cases a reader who wants the full picture will ask about. Nothing here is needed to read the mainline; it is the lookup for the curious engineer who wants the ground under the shorthand.</p>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li>
+<li class="part">Back Matter</li>
+<li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · G.11 Reading Behavior Formally — Extended Primer — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix G — Model Reference">Appendix G — Model Reference</a></div><h1>G.11 Reading Behavior Formally — Extended Primer</h1></header><p>The Part-II chapter <em>Modeling Behavior and Execution</em> teaches the formal vocabulary its models use — a state machine, an invariant as <em>□P</em> or <em>P ↝ Q</em>, and a bounded exhaustive walk. This page carries the rest: the two temporal operators those models do not lean on, and the edge cases a reader who wants the full picture will ask about. Nothing here is needed to read the mainline; it is the lookup for the curious engineer who wants the ground under the shorthand.</p>
 <h2>Automata, in a little more depth</h2>
 <p>An <strong>automaton</strong> (<strong>state machine</strong>) is a finite set of states and the labeled transitions between them. It models computation as <em>which state am I in, and which moves are legal from here.</em> The mainline's leased-job example — <em>queued → leased → running → reclaimed</em> — is the whole shape: states are nodes, legal moves are edges, and an <strong>illegal state</strong> is one the diagram never draws an edge into. A <strong>missing transition</strong> is a move the code performs that the diagram forbids; a <strong>reachable illegal state</strong> is the bug. Drawing the machine makes both visible before the code runs: a path back to <em>running</em> from <em>reclaimed</em> is a double-execution bug you can see on paper.</p>
 <p>A behavior invariant attaches to the machine as a predicate. A <em>state</em> invariant is evaluated at each node (<em>"a leased job has exactly one owner"</em>). A <em>sequence</em> invariant is evaluated over a run — a path the system walks, one state after another.</p>

@@ -1047,16 +1047,19 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     caption, and (c) emit each block."""
     # `part.chapter` chapter number + `part.chapter.N` section numbers — the print twin of the web build's
     # `chap-num`/`sec-num` (D67a). Numbered body chapters (Parts 1-6) get numbers; front matter (part 0),
-    # true back matter (part 7 — apparatus), and the appendix (its own A/B/C locators) do not. This keeps
-    # the PDF in step with the web build's `is_matter = part in (0, 7)`. Numbers are display-only — they
-    # never touch a heading anchor, so `@ref`/metadata queries keep resolving.
+    # the top-level Conclusion (part 7 — matter), the synthetic back-matter apparatus, and the appendix (its
+    # own A/B/C locators) do not. This keeps the PDF in step with the web build's `is_matter` flag. Numbers
+    # are display-only — they never touch a heading anchor, so `@ref`/metadata queries keep resolving.
     is_appendix = chapter.slug.startswith("appendix")
     is_part_page = _is_part_page(chapter)
     is_appendix_divider = _is_appendix_divider(chapter)
-    # A Part landing page (chapter-0 synthetic record) is unnumbered — like front/back matter and the appendix,
-    # it never prints an `N.0`. Suppressing on `is_part_page` keeps the number off the Part opener; the
-    # appendices mode-marker is likewise unnumbered.
-    numbered = (chapter.part not in (0, 7) and not is_appendix and not is_part_page
+    # Front matter (0), the top-level Conclusion (7), and the synthetic back matter (dynamic part, flagged
+    # `is_matter` on the record) are UNNUMBERED matter.
+    is_matter = chapter.part in bb._MATTER_PARTS or getattr(chapter, "is_matter", False)
+    # A Part landing page (chapter-0 synthetic record) is unnumbered — like matter and the appendix, it never
+    # prints an `N.0`. Suppressing on `is_part_page` keeps the number off the Part opener; the appendices
+    # mode-marker is likewise unnumbered.
+    numbered = (not is_matter and not is_appendix and not is_part_page
                 and not is_appendix_divider and not _is_coda(chapter))
     chap_num = f"{chapter.part}.{chapter.chapter}" if numbered else None
     title_num = f"#text(fill: dt.muted)[{chap_num}] " if chap_num else ""
@@ -1759,9 +1762,13 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     label = ""
     is_numbered = part in part_titles and part <= 6
     if part == 7:
-        # True back matter (apparatus). A bare title heading (no "Part N" kicker, no nav label) — it is a
-        # bookmark PARENT so About-the-Author / Colophon nest under it instead of under the last numbered Part.
-        kicker, title = "", part_titles.get(7, "Back Matter")
+        # The top-level Conclusion (matter). A bare title heading (no "Part N" kicker, no nav label) — the
+        # bookmark PARENT under which "The Part That Stays Yours" (level-2) nests.
+        kicker, title = "", part_titles.get(7, "Conclusion")
+    elif getattr(ch, "is_matter", False):
+        # The synthetic post-appendix back matter (Colophon, then About-the-Author). One bare "Back Matter"
+        # divider heads both — the terminal book-object bookmark parent, after the appendices.
+        kicker, title = "", "Back Matter"
     elif is_numbered:
         kicker, title = f"Part {part}", part_titles[part]
         # The divider is the Part opener, so it carries the `<part-N>` label the Part-nav strip links to

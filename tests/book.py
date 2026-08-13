@@ -857,14 +857,19 @@ def check_index_scan_hoist_parity() -> "tuple[str, list[str]]":
 class _HNode:
     """One node in the book's conceptual heading tree (DESIGN §2.2). `level` is 0=BOOK, so PART=0's
     children, then CHAPTER (the implicit H1 root, level 1), then H2/H3/H4 blocks by their heading level.
-    `anchor` is the lone child's explicit `{#slug}` id (for the finding), or None."""
-    __slots__ = ("level", "label", "anchor", "children")
+    `anchor` is the lone child's explicit `{#slug}` id (for the finding), or None. `is_matter` is True on a
+    PART node standing for an UNNUMBERED matter group (front matter, the top-level Conclusion, the synthetic
+    back matter) — such a group legitimately holds a single unnumbered chapter, so it is exempt from the
+    part→chapter only-child rule (the Conclusion is one section standing as its own group, parallel to the
+    Preface — not a wrapper heading with a promotable lone child)."""
+    __slots__ = ("level", "label", "anchor", "children", "is_matter")
 
-    def __init__(self, level: int, label: str, anchor: str | None = None):
+    def __init__(self, level: int, label: str, anchor: str | None = None, is_matter: bool = False):
         self.level = level
         self.label = label
         self.anchor = anchor
         self.children: list[_HNode] = []
+        self.is_matter = is_matter
 
 
 def _only_child_pairs(root: "_HNode") -> "list[tuple[_HNode, _HNode]]":
@@ -912,7 +917,11 @@ def _build_only_child_forest() -> "tuple[list[_HNode], list[_HNode]]":
         chs = by_part[part]
         intro = next((c for c in chs if c.chapter == 0), None)
         label = intro.title if intro is not None else f"Part {part}"
-        part_node = _HNode(0, label, intro.slug if intro is not None else None)
+        # A matter part (front matter, the top-level Conclusion, the synthetic back matter) is an apparatus
+        # group whose content chapters carry `is_matter`; its chapter count is a structural choice, so it is
+        # exempt from part→chapter only-child (a single unnumbered chapter standing as its own group is fine).
+        is_matter = any(c.is_matter for c in chs if c.chapter >= 1)
+        part_node = _HNode(0, label, intro.slug if intro is not None else None, is_matter=is_matter)
         for c in chs:
             if c.chapter >= 1:
                 part_node.children.append(_HNode(1, c.title, c.slug))
@@ -959,6 +968,8 @@ def check_only_child_headings() -> "tuple[str, list[str]]":
     issues: list[str] = []
     for root in volume_roots:
         for parent, child in _only_child_pairs(root):
+            if parent.is_matter:  # matter apparatus group — a single unnumbered chapter is a valid shape
+                continue
             pair = _PAIR_LABEL.get((parent.level, child.level), f"L{parent.level}→L{child.level}")
             issues.append(f"[volume] Part holding only {child.label!r} ({child.anchor}) — a lone content "
                           f"chapter under {parent.label!r} ({pair})")

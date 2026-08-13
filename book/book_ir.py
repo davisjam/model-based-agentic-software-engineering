@@ -268,6 +268,13 @@ class Chapter:
     #: numeric `<part>.<chapter>` — so App-D tables read "Table D.1-1", not "Table 12.1-1". None for body
     #: chapters, which keep `<part>.<chapter>`.
     fig_prefix: "str | None" = None
+    #: True for an UNNUMBERED matter chapter (front matter, the top-level Conclusion, the synthetic back
+    #: matter). The Typst projection reads this to suppress the chapter number and to give the synthetic
+    #: post-appendix back matter its own "Back Matter" divider (its part number is dynamic).
+    is_matter: bool = False
+    #: The chapter's part display title ("Back Matter" for the synthetic tail) — carried so the divider text
+    #: for a matter part whose number is not in `_PART_TITLES` is available on the record.
+    part_title: str = ""
 
     def floats(self) -> list[Block]:
         return [b for b in self.blocks if b.is_float]
@@ -462,7 +469,8 @@ def _parse_chapter(rec: dict) -> Chapter:
 
     return Chapter(slug=slug, part=rec["part"],
                    title=rec.get("chapter_title") or rec.get("part_title", ""), blocks=blocks,
-                   chapter=rec.get("chapter", 0), fig_prefix=rec.get("fig_prefix"))
+                   chapter=rec.get("chapter", 0), fig_prefix=rec.get("fig_prefix"),
+                   is_matter=bool(rec.get("is_matter")), part_title=rec.get("part_title", ""))
 
 
 def parse_book(include_appendices: bool = False, for_print: bool = False) -> Document:
@@ -474,6 +482,11 @@ def parse_book(include_appendices: bool = False, for_print: bool = False) -> Doc
     if include_appendices:
         chapters = chapters + bb.build_appendix_chapters(
             next_part=max(c["part"] for c in chapters) + 1, for_print=for_print)
+        # The terminal book-object apparatus (Colophon, About-the-Author) rides after the appendices, the
+        # mirror of the appendix append — so the PDF projection carries it; the structure-only views
+        # (outline, include_appendices=False) leave it out, keeping the back matter out of the outline.
+        chapters = chapters + bb.build_backmatter_chapters(
+            next_part=max(c["part"] for c in chapters) + 1)
         # Resolve symbolic appendix cross-references BEFORE parsing each chapter into the IR, using the same
         # build-time letter derivation the HTML build uses (bb._appendix_letter_map /
         # bb._resolve_appendix_refs_md) — so the print projection's `[appendix: <slug>]` markers become the

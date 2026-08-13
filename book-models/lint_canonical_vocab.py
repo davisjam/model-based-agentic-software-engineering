@@ -49,16 +49,14 @@ DEPRECATED_VOCAB: dict[str, str] = {
     "typed data": "structured data",
 }
 
-# The scanned scope: the numbered narrative body chapters. Front/back matter, appendix fills, and figure
-# SVGs are out of scope (see the module docstring).
-_PART_GLOB = "part*/*.md"
+# The scanned scope: the numbered narrative body chapters (Parts 1–6) plus the top-level Conclusion —
+# real narrative held to the house term. Front matter, the terminal back matter apparatus (`backmatter/` —
+# About-the-Author, Colophon), appendix fills, and figure SVGs are out of scope (see the module docstring).
+_PART_GLOBS = ("part*/*.md", "conclusion/*.md")
 
-# The former single `backmatter/` dir was split into `part6/` (Reflections) + `part7/` (Back Matter
-# apparatus) when the closing chapters were promoted to a named Part. Part 6 is now real narrative — the
-# theory, implications-for-SE, and conclusion chapters — so it is IN scope, held to the same house term as
-# Parts 1–5. Part 7 (about-the-author, colophon) stays out of scope: it is apparatus, the back matter the
-# single `backmatter/` dir carried before the split.
-_EXCLUDED_PART_DIRS = ("part7",)
+# `backmatter/` (About-the-Author, Colophon) is apparatus, not narrative argument, so it stays out of scope —
+# the terminal book-object pages the reader meets after the argument is over.
+_EXCLUDED_PART_DIRS = ("backmatter",)
 
 # A deprecated phrase is matched as its two words joined by whitespace (so the hyphenated slug form
 # `typed-model` in a `<!-- point: … -->` id is NOT a hit), case-insensitive, with an optional plural on
@@ -76,7 +74,8 @@ _NOQA_RE = re.compile(r"noqa:\s*canonical-vocab\s*(?:—|\s-\s)\s*\S")
 
 
 def _chapter_files() -> list[pathlib.Path]:
-    return sorted(p for p in BOOK.glob(_PART_GLOB) if p.parent.name not in _EXCLUDED_PART_DIRS)
+    return sorted(p for g in _PART_GLOBS for p in BOOK.glob(g)
+                  if p.parent.name not in _EXCLUDED_PART_DIRS)
 
 
 def findings() -> list[str]:
@@ -105,7 +104,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  {dep!r} -> {canon!r}")
         return 0
     fs = findings()
-    print(f"== canonical-vocab — house-term enforcement over {_PART_GLOB} [BLOCKING] ==")
+    print(f"== canonical-vocab — house-term enforcement over {', '.join(_PART_GLOBS)} [BLOCKING] ==")
     if not fs:
         print(f"  clean — {len(DEPRECATED_VOCAB)} deprecated phrase(s) watched; none appear un-suppressed")
         return 0

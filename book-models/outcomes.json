@@ -30,10 +30,10 @@
     "outcomes_with_elaborative_units": 15,
     "elaborative_links": 21,
     "units_serving_as_elaborative": 18,
-    "sections_total": 203,
+    "sections_total": 200,
     "sections_primary_of_an_outcome": 28,
     "modules": 7,
-    "lessons": 34
+    "lessons": 33
   },
   "taxonomy": {
     "know": [
@@ -114,7 +114,7 @@
       {
         "module": "part-1",
         "number": 1,
-        "title": "The New Engineering Problem",
+        "title": "Introduction: The New Engineering Problem",
         "own_outcomes": [
           "part-1::judge-which-tasks-warrant-the-book-s-machinery"
         ],
@@ -340,11 +340,6 @@
             "lesson": "6.6-education-research-open-problems",
             "own_outcomes": [],
             "section_outcomes": []
-          },
-          {
-            "lesson": "6.7-conclusion",
-            "own_outcomes": [],
-            "section_outcomes": []
           }
         ]
       },
@@ -355,7 +350,7 @@
         "own_outcomes": [],
         "lessons": [
           {
-            "lesson": "7.2-colophon",
+            "lesson": "7.1-the-part-that-stays-yours",
             "own_outcomes": [],
             "section_outcomes": []
           }

@@ -9,7 +9,7 @@
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 3,
+    "zero_claim_suspects": 2,
     "over_cap_unfocused": 3,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
@@ -102,7 +102,7 @@
         "0.4-preface",
         "1.1-the-printer",
         "5.4-failures-that-became-infrastructure",
-        "6.7-conclusion"
+        "7.1-the-part-that-stays-yours"
       ],
       "body_depth": 2,
       "front_loaded": false,
@@ -458,7 +458,7 @@
         "2.8-joining-models-around-a-scenario",
         "6.4-reorganization-of-se",
         "6.6-education-research-open-problems",
-        "6.7-conclusion"
+        "7.1-the-part-that-stays-yours"
       ],
       "body_depth": 4,
       "front_loaded": false,
@@ -489,7 +489,7 @@
         "5.3-the-road-to-mage",
         "5.4-failures-that-became-infrastructure",
         "6.4-reorganization-of-se",
-        "6.7-conclusion"
+        "7.1-the-part-that-stays-yours"
       ],
       "body_depth": 4,
       "front_loaded": false,
@@ -558,7 +558,7 @@
       "advanced_by": [
         "6.1-toward-a-theory-of-mage",
         "6.4-reorganization-of-se",
-        "6.7-conclusion"
+        "7.1-the-part-that-stays-yours"
       ],
       "body_depth": 3,
       "front_loaded": false,
@@ -848,7 +848,7 @@
       "exempt": "discussion"
     },
     {
-      "slug": "6.7-conclusion",
+      "slug": "7.1-the-part-that-stays-yours",
       "advances": [
         "fault-lies-in-instructions",
         "mage-becomes-practical",
@@ -856,11 +856,6 @@
         "conversions-compound"
       ],
       "exempt": "conclusion"
-    },
-    {
-      "slug": "7.2-colophon",
-      "advances": [],
-      "exempt": null
     },
     {
       "slug": "acknowledgments",
@@ -891,10 +886,6 @@
       },
       {
         "chapter": "6.5-software-rejoins-engineering",
-        "advances": 0
-      },
-      {
-        "chapter": "7.2-colophon",
         "advances": 0
       }
     ],

@@ -198,7 +198,7 @@ def _chapter_text(slug: str) -> str:
     if slug in chapter_identity.labels():
         path = os.path.join(_ROOT, "book", chapter_identity.filename(slug))
         return open(path, encoding="utf-8").read() if os.path.isfile(path) else ""
-    for sub in ("frontmatter", "part1", "part2", "part3", "part4", "part5", "part6", "part7"):
+    for sub in ("frontmatter", "part1", "part2", "part3", "part4", "part5", "part6", "conclusion", "backmatter"):
         hits = glob.glob(os.path.join(_ROOT, "book", sub, slug + ".md"))
         if hits:
             return open(hits[0], encoding="utf-8").read()

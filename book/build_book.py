@@ -438,20 +438,27 @@ _PART_DIRS = {
     4: "part4",
     5: "part5",
     6: "part6",
-    7: "part7",
+    7: "conclusion",   # the top-level Conclusion — an unnumbered MATTER part, parallel to the Preface
+    # The back-matter apparatus (Colophon, About-the-Author) is NOT discovered here: it is a synthetic
+    # post-appendix tail assembled by `build_backmatter_chapters` (mirrors `build_appendix_chapters`).
 }
+
+# The parts rendered as UNNUMBERED matter (no "Chapter N" kicker, own TOC/bookmark group): front matter (0)
+# and the top-level Conclusion (7). The synthetic post-appendix back matter sets `is_matter` on its own
+# records (its part number is dynamic — above the appendices), so it need not be listed here.
+_MATTER_PARTS = frozenset({0, 7})
 
 # Part number → its display title (mirrors the `part-title` metadata; kept here so a part with no
 # chapters still names correctly, and so the TOC/index label is authoritative from one place).
 _PART_TITLES = {
     0: "Front Matter",
-    1: "The New Engineering Problem",
+    1: "Introduction: The New Engineering Problem",
     2: "Modeling",
     3: "Alignment",
     4: "The MAGE Method",
     5: "The Evidence",
     6: "The Profession",
-    7: "Back Matter",
+    7: "Conclusion",   # the top-level Conclusion's part title — the divider/kicker line above "The Part That Stays Yours"
 }
 
 # The DO-ladder question each numbered Part answers — printed on the Part-opener orientation verso (the
@@ -478,8 +485,8 @@ _PART_OPENER_QUESTIONS = {
 # to-Work opener the working method of that part (candidates a human editor may swap). The
 # Ecclesiastes line that once opened Part 5 now lands only in the conclusion, where it sets up the
 # closing "machines search, not wisdom" — kept to one appearance to avoid the reader meeting it twice.
-# The book carries ONE epigraph — the Ecclesiastes verse at the opening of the Conclusion, placed
-# inline there. The per-Part opener epigraphs were removed (author's call); this map stays empty so
+# The book carries its epigraphs inline — the top-level Conclusion opens on a Tennyson / Ecclesiastes
+# pair, placed inline there. The per-Part opener epigraphs were removed (author's call); this map stays empty so
 # `_epigraph_html` is a no-op for every Part.
 _PART_EPIGRAPHS: dict[int, tuple[str, str]] = {}
 
@@ -920,7 +927,7 @@ def parse_chapter(path: pathlib.Path, part: int, chapter: int, metrics: dict[str
         # Redirect any authored link to a now-dropped (non-flagship) appendix page to the live web entry, so
         # a main-narrative cross-reference to a mechanism the print appendix omits stays resolvable.
         "body_md": _redirect_dropped_appendix_links("\n".join(lines).strip()),
-        "is_matter": part in (0, 7),  # front / back matter — no "Chapter N" kicker
+        "is_matter": part in _MATTER_PARTS,  # front matter + the top-level Conclusion — no "Chapter N" kicker
         # An in-part UNNUMBERED coda (`<!-- coda: true -->`): the Part-IV portable-moves closing. It sorts
         # by its `4.6-` filename like a real chapter but every number-suppression site skips it (see the
         # `is_coda` guards at the seq counter, `_chap_ref`, `_index_ref_label`, `num_label`, `chap_num`).
@@ -958,9 +965,9 @@ def _discover_chapters(metrics: dict[str, str]) -> list[dict]:
             continue
         for p in sorted(d.glob("*.md")):
             if p.stem == _PART_INTRO_STEM:
-                # A numbered Part's landing page. Front matter (0) and true back matter (7 — apparatus) are
-                # not numbered Parts, so they carry no landing page even if a stray intro file appears.
-                if part not in (0, 7):
+                # A numbered Part's landing page. Front matter (0) and the top-level Conclusion (7 — matter)
+                # are not numbered Parts, so they carry no landing page even if a stray intro file appears.
+                if part not in _MATTER_PARTS:
                     found.append(_parse_part_intro(p, part, metrics))
                 continue
             m = _PART_CHAP_RE.match(p.name)
@@ -2611,7 +2618,7 @@ def _part_label(c: dict) -> str:
     themselves; numbered Parts get 'Part N — Title'."""
     if c.get("is_appendix") or c.get("is_appendix_divider"):
         return c["part_title"]
-    if c["part"] in (0, 7):
+    if c["part"] in _MATTER_PARTS or c.get("is_matter"):
         return c["part_title"]
     return f'Part {c["part"]} — {c["part_title"]}'
 
@@ -3844,6 +3851,31 @@ def build_appendix_chapters(next_part: int, for_print: bool = False) -> list[dic
     own divider / bookmark parent."""
     divider = _appendices_divider_record(next_part)
     return [divider] + _build_appendix_chapters_v2(next_part + 1, for_print)
+
+
+#: The terminal book-object apparatus, in reading order: the Colophon first (the traditional making-of note),
+#: then About-the-Author last. Bare-slug files under `book/backmatter/` — not discovered by the chapter regex.
+_BACKMATTER_ORDER = ("colophon.md", "about-the-author.md")
+_BACKMATTER_DIR = "backmatter"
+_BACKMATTER_PART_TITLE = "Back Matter"
+
+
+def build_backmatter_chapters(next_part: int) -> list[dict]:
+    """The terminal book-object apparatus (Colophon, then About-the-Author), appended AFTER the appendices —
+    the mirror of `build_appendix_chapters`. Reads the two authored files from `book/backmatter/`. Both share
+    ONE part number (`next_part`), so a single 'Back Matter' divider / PDF-bookmark parent heads the pair;
+    they differ only by within-part chapter number (1, 2), and are flagged `is_matter` (unnumbered — no
+    'Chapter N' kicker). The bare filenames carry no `N.M-` prefix, so they are not discovered by
+    `_discover_chapters`; `parse_chapter` tolerates a prefix-free name when called directly (the
+    `_PART_CHAP_RE` gate lives in discovery, not here)."""
+    metrics = _load_metrics()
+    out: list[dict] = []
+    for i, name in enumerate(_BACKMATTER_ORDER):
+        rec = parse_chapter(HERE / _BACKMATTER_DIR / name, next_part, i + 1, metrics)
+        rec["is_matter"] = True
+        rec["part_title"] = _BACKMATTER_PART_TITLE
+        out.append(rec)
+    return out
 
 
 # ─────────────────────────── Appendix v2 — the value-ordered A/B/C/D projection ───────────────
@@ -5430,6 +5462,8 @@ def compute_word_counts(chapters: list[dict]) -> WordCounts:
     appendix letter (A/B/C pattern Parts, D stacks, E recipe — per-letter subtotals). Fresh every build."""
     body_by_part: dict[int, int] = {}
     body_part_order: list[int] = []
+    body_title: dict[int, str] = {}       # part -> its display title (for the dynamic back-matter part)
+    body_is_matter: dict[int, bool] = {}  # part -> is this an unnumbered matter part (no "Part N — " label)
     app_by_letter: dict[str, int] = {}
     app_letter_order: list[str] = []
     for pg in chapters:
@@ -5446,10 +5480,12 @@ def compute_word_counts(chapters: list[dict]) -> WordCounts:
             if part not in body_by_part:
                 body_by_part[part] = 0
                 body_part_order.append(part)
+                body_title[part] = pg.get("part_title", "")
+                body_is_matter[part] = bool(pg.get("is_matter"))
             body_by_part[part] += wc
 
-    body_parts = [(_PART_TITLES.get(p, f"Part {p}") if p in (0, 7)
-                   else f"Part {p} — {_PART_TITLES.get(p, '')}", body_by_part[p])
+    body_parts = [((_PART_TITLES.get(p, body_title[p]) if (p in _MATTER_PARTS or body_is_matter[p])
+                    else f"Part {p} — {_PART_TITLES.get(p, '')}"), body_by_part[p])
                   for p in body_part_order]
     body_total = sum(body_by_part.values())
     appendix_letters = [(ltr if ltr == "Appendices divider" else f"Appendix {ltr}", app_by_letter[ltr])
@@ -5890,6 +5926,7 @@ def expected_page_slugs() -> set[str]:
     know-it orphan."""
     chapters = _discover_chapters(_load_metrics())
     chapters += build_appendix_chapters(next_part=max(c["part"] for c in chapters) + 1)
+    chapters += build_backmatter_chapters(next_part=max(c["part"] for c in chapters) + 1)
     return ({c["slug"] for c in chapters} | set(_GENERATED_PAGE_SLUGS)
             | {"index", "book-index", "catalogue-figure", _FIGURES_GALLERY_SLUG, _BIBLIOGRAPHY_SLUG})
 
@@ -6324,7 +6361,8 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
     metrics = _load_metrics()
     chapters = _discover_chapters(metrics)
     appendix = build_appendix_chapters(next_part=max(c["part"] for c in chapters) + 1, for_print=True)
-    full = chapters + appendix
+    backmatter = build_backmatter_chapters(next_part=max(c["part"] for c in (chapters + appendix)) + 1)
+    full = chapters + appendix + backmatter
 
     # Normalize for matching so a markup / typographic difference cannot false-fail on intact content:
     #   - drop backtick markers: the typed IR renders a `code-span` in a title as PLAIN TEXT (no ` fences),
@@ -6360,11 +6398,20 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
     if missing_titles:
         problems.append(f"{len(missing_titles)} chapter title(s) missing from PDF: {missing_titles[:5]}")
 
-    # Every rendered Part title (numbered Parts 1–6 get a divider; front/back matter do not).
-    rendered_parts = sorted({c["part"] for c in full if c["part"] not in (0, 7)})
+    # Every rendered Part title: front matter (0) emits no divider; every other top-level group DOES —
+    # the numbered Parts 1–6, the top-level Conclusion (7, matter), the appendix families, and the synthetic
+    # back matter (matter). A matter part's divider text is its own `part_title` ("Conclusion" / "Back Matter").
+    rendered_parts = sorted({c["part"] for c in full if c["part"] != 0})
     for p in rendered_parts:
-        appendix_part = next((c for c in full if c["part"] == p and c.get("is_appendix")), None)
-        pt = appendix_part["part_title"] if appendix_part else _PART_TITLES.get(p, "")
+        part_recs = [c for c in full if c["part"] == p]
+        appendix_part = next((c for c in part_recs if c.get("is_appendix")), None)
+        matter_part = next((c for c in part_recs if c.get("is_matter")), None)
+        if appendix_part:
+            pt = appendix_part["part_title"]
+        elif matter_part:
+            pt = matter_part["part_title"]
+        else:
+            pt = _PART_TITLES.get(p, "")
         if pt and not _present(pt):
             problems.append(f"Part title {pt!r} (part {p}) missing from PDF")
 
@@ -6672,8 +6719,9 @@ def build_pdf() -> int:
 def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
     """The ONE canonical grouping of the book's ordered chapters into the review sections, keyed off the
     same `part` field the whole-book render iterates:
-      part 0 → FrontMatter · parts 1-6 → Part1…Part6 · part 7 → BackMatter · parts ≥ 8 → Appendices
-    (the appendices front-door divider plus every appendix chapter). It reuses the IR chapter order, so each
+      part 0 → FrontMatter · parts 1-6 → Part1…Part6 · part 7 → Conclusion · parts ≥ 8 → Appendices
+    (the appendices front-door divider plus every appendix chapter) · the synthetic matter tail → BackMatter.
+    It reuses the IR chapter order, so each
     section is a contiguous slice of the whole-book reading order — there is no second section model that
     could drift from the full projection.
 
@@ -6685,13 +6733,16 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
     umbrella `Appendices` front-door divider) rides the combined PDF only and gets no per-appendix entry.
     Both the combined and per-appendix sections project through the SAME split path, so no second model
     drifts. Returns ordered `(filename-suffix, [slug, …])` pairs."""
-    def _bucket(part: int) -> str:
+    def _bucket(ch: "object") -> str:
+        part = ch.part  # type: ignore[attr-defined]
         if part == 0:
             return "FrontMatter"
         if 1 <= part <= 6:
             return f"Part{part}"
         if part == 7:
-            return "BackMatter"
+            return "Conclusion"   # the top-level Conclusion (matter part 7)
+        if getattr(ch, "is_matter", False):
+            return "BackMatter"   # the synthetic post-appendix apparatus (Colophon, About-the-Author)
         return "Appendices"
 
     buckets: "dict[str, list[str]]" = {}
@@ -6700,12 +6751,14 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
     appendix_order: "list[int]" = []              # appendix part-numbers in reading order
     appendix_letter: "dict[int, str]" = {}        # appendix part-number → its bare letter (A, B, …)
     for ch in doc.chapters:  # type: ignore[attr-defined]
-        key = _bucket(ch.part)
+        key = _bucket(ch)
         if key not in buckets:
             buckets[key] = []
             order.append(key)
         buckets[key].append(ch.slug)
-        if ch.part >= 8:
+        # The per-appendix split (below) keys off the appendix parts ≥ 8; the synthetic back matter also sits
+        # above the appendices but is NOT an appendix — exclude it so it never mints a bogus per-appendix PDF.
+        if ch.part >= 8 and not getattr(ch, "is_matter", False):
             if ch.part not in appendix_slugs:
                 appendix_slugs[ch.part] = []
                 appendix_order.append(ch.part)
@@ -6805,11 +6858,12 @@ def build() -> int:
         print("no chapter files found under the Part/Chapter hierarchy", file=sys.stderr)
         return 1
 
-    # Appendix — the pattern catalogue, projected from the catalogue entries into GoF format. Sorts
-    # after the back matter.
+    # Appendix — the pattern catalogue, projected from the catalogue entries into GoF format. Sorts after
+    # the Conclusion; the terminal back matter (Colophon, About-the-Author) sorts after the appendices.
     max_part = max(c["part"] for c in chapters)
     appendix = build_appendix_chapters(next_part=max_part + 1)
-    chapters = chapters + appendix
+    backmatter = build_backmatter_chapters(next_part=max(c["part"] for c in appendix) + 1)
+    chapters = chapters + appendix + backmatter
 
     # Resolve symbolic appendix cross-references (`[appendix: <slug>]` → "Appendix <letter>" link) now that
     # every appendix page exists and its letter is known. Rewriting the marker to a plain markdown link here

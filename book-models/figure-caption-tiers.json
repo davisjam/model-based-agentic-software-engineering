@@ -508,7 +508,7 @@
     "assets/author-headshot.jpg": {
       "tier": "C",
       "kind": "author-photo",
-      "location": "part7",
+      "location": "backmatter",
       "rationale": "identify the author; one sentence"
     },
     "how-to-read-this-book::Where to look — surfaces, jobs, and the questions they answer": {
@@ -709,17 +709,11 @@
       "location": "part6",
       "rationale": "companion key-list to the generalizes glyph grid — construct + full statement per G-key"
     },
-    "colophon::The manuscript's governing models and the failures they prevent": {
+    "backmatter/colophon.md::The manuscript's governing models and the failures they prevent": {
       "tier": "C",
       "kind": "reference-colophon",
-      "location": "part7",
-      "rationale": "per-model lookup"
-    },
-    "colophon::The governed manuscript as declared source, generated form, and drift check": {
-      "tier": "C",
-      "kind": "reference-colophon",
-      "location": "part7",
-      "rationale": "per-model lookup"
+      "location": "backmatter",
+      "rationale": "per-model lookup; the synthetic back matter carries no chapter-identity row, so its caption id keys on the file path"
     },
     "the-executable-zoo::Token savings from working through a model": {
       "tier": "B",
