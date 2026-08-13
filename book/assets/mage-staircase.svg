@@ -1,114 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (ported from the chapter's mermaid fence, label: mage-staircase).
-     The five-rung climb from Co-coder to Architect: each rung is a role and the state of the
-     system there; between rungs, the shortcoming that forced the next step. The top rung —
-     explicit models held honest by a traceability substrate — is MAGE. Palette: Umber
-     Monograph tokens (fleet #2f5169 rungs, churn #b23b3b shortcomings,
-     governed #1f7a4d + accent #9a3f12 the summit). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 815" width="1180" height="815"
-     role="group" aria-labelledby="mgTitle mgDesc"
+<!-- Hand-authored SVG (R46b redraw of label: mage-staircase). Fold-target: book/assets/mage-staircase.svg.
+     The delegation staircase, five rungs climbing bottom (Co-coder) to top (Architect). Each rung
+     carries THREE fields: delegated work · what the environment now carries · what remains human.
+     A residual-human band (churn red) runs up the right column and NARROWS as the climb proceeds —
+     human tactical burden shrinks, it does not vanish. The environment absorbs two kinds of work:
+     representation (Modeling) and authority (Alignment). A miss in either can push work back down.
+     Palette: Umber Monograph tokens — fleet #2f5169 (delegated), governed #1f7a4d (environment
+     carries), churn #b23b3b (residual human burden), accent #9a3f12 (supports/labels),
+     ink #1c1917, muted #57534e. Font Source Sans 3. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 940" width="1200" height="940"
+     role="group" aria-labelledby="dsTitle dsDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mgTitle">The five-rung staircase from Co-coder to Architect — the top rung is MAGE</title>
-  <desc id="mgDesc">A five-rung staircase climbing left to right. Rung one, Co-coder: I read
-    every diff and merge by hand — the human is the quality gate. Its shortcoming, a review
-    queue one human cannot clear, forces rung two, QA: one agent audits the work; review has
-    left my hands. Its shortcoming — one generalist audit cannot rank findings or tell one
-    part of the code from another — forces rung three, Review Lead: specialist audits run per
-    zone; findings aimed and ranked, the deterministic half becoming lints. Its shortcoming —
-    a finite-context agent cannot hold the whole codebase — forces rung four, Tech Lead: the
-    code is partitioned into named zones and an agent reasons inside one, fenced from the
-    rest. Its shortcoming — hardcoded facts rot, and the growing set of models drifts into
-    stale ghosts — forces rung five, Architect: the system is committed to explicit models,
-    one view per property, held honest by a traceability substrate. Together they are MAGE.
-    The ladder ends at Architect.</desc>
+  <title id="dsTitle">The delegation staircase — five rungs from Co-coder to Architect, with a residual human-judgment band that narrows but never vanishes</title>
+  <desc id="dsDesc">A five-rung staircase climbing from bottom to top. Each rung shows three fields:
+    the work delegated, what the engineering environment now carries, and what remains human. Rung
+    one, Co-coder: delegated is code generation; the environment carries nothing durable beyond an
+    ordinary repository; remaining human is reading every diff, holding the map, and admitting the
+    change. Rung two, QA: delegated is generation plus a second agent's audit; the environment
+    carries a probabilistic reviewer that is episodic and advisory; remaining human is adjudicating
+    findings and admitting the change. Rung three, Review lead: delegated is specialized review per
+    region; the environment carries deterministic checks for the decidable findings; remaining human
+    is the semantic review a check cannot settle. Rung four, Tech lead: delegated is bounded work
+    inside one zone; the environment carries named zones and boundary rules; remaining human is the
+    system-level map and strategy. Rung five, Architect: delegated is model-guided work across the
+    system; the environment carries explicit models, traceability, and controls; remaining human is
+    residual semantics and strategy. Along the right, a red residual-human band narrows from wide at
+    the bottom rung to a sliver at the top — the human tactical burden shrinks but never reaches
+    zero. The environment absorbs two kinds of work: representation through Modeling and authority
+    through Alignment. A failure in either can push work back down the staircase.</desc>
 
   <defs>
-    <marker id="mg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    <marker id="ds-up" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,10 L5,0 L10,10 z" fill="#2f5169"/>
     </marker>
-    <marker id="mg-ah-churn" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
+    <marker id="ds-down" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L5,10 L10,0 z" fill="#b23b3b"/>
     </marker>
   </defs>
 
-  <!-- ===== rung 1 · Co-coder ===== -->
-  <rect x="10" y="650" width="228" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="124" y="684" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">1 · Co-coder</text>
-  <text x="124" y="712" text-anchor="middle" font-size="18.88" fill="#57534e">I read every diff and</text>
-  <text x="124" y="734" text-anchor="middle" font-size="18.88" fill="#57534e">merge by hand — the</text>
-  <text x="124" y="756" text-anchor="middle" font-size="17.95" fill="#57534e">human is the quality gate</text>
+  <!-- column header strip -->
+  <text x="316" y="30" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169" letter-spacing="0.4">DELEGATED WORK</text>
+  <text x="628" y="30" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1f7a4d" letter-spacing="0.4">WHAT THE ENVIRONMENT NOW CARRIES</text>
+  <text x="948" y="30" text-anchor="middle" font-size="16.5" font-weight="700" fill="#b23b3b" letter-spacing="0.4">WHAT REMAINS HUMAN</text>
+  <line x1="30" y1="40" x2="1064" y2="40" stroke="#d6cfc6" stroke-width="1.5"/>
 
-  <!-- shortcoming 1 -->
-  <line x1="242" y1="720" x2="281" y2="720" stroke="#1c1917" stroke-width="2.5" marker-end="url(#mg-ah)"/>
-  <rect x="285" y="670" width="205" height="134" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
-  <text x="387" y="698" text-anchor="middle" font-size="18.88" font-style="italic" font-weight="600" fill="#b23b3b">the shortcoming</text>
-  <text x="387" y="732" text-anchor="middle" font-size="18.88" fill="#57534e">a review queue one</text>
-  <text x="387" y="754" text-anchor="middle" font-size="18.88" fill="#57534e">human cannot clear</text>
-  <line x1="387" y1="666" x2="387" y2="644" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#mg-ah-churn)"/>
-  <text x="399" y="658" font-size="18.88" font-style="italic" fill="#b23b3b">forces</text>
+  <!-- ascending arrow: delegation climbs (left margin) -->
+  <line x1="1108" y1="880" x2="1108" y2="70" stroke="#2f5169" stroke-width="2.5" marker-end="url(#ds-up)"/>
+  <text x="1128" y="480" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169" transform="rotate(90 1128 480)" letter-spacing="0.5">delegation climbs</text>
+  <!-- descending caution: a miss sends it backward -->
+  <line x1="1150" y1="120" x2="1150" y2="840" stroke="#b23b3b" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#ds-down)"/>
+  <text x="1170" y="480" text-anchor="middle" font-size="13.5" font-style="italic" fill="#b23b3b" transform="rotate(90 1170 480)">a miss sends it backward</text>
 
-  <!-- ===== rung 2 · QA ===== -->
-  <rect x="241" y="490" width="228" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="355" y="524" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">2 · QA</text>
-  <text x="355" y="552" text-anchor="middle" font-size="18.88" fill="#57534e">one agent audits the</text>
-  <text x="355" y="574" text-anchor="middle" font-size="18.88" fill="#57534e">work; review has</text>
-  <text x="355" y="596" text-anchor="middle" font-size="18.88" fill="#57534e">left my hands</text>
+  <!-- ================= RUNG 5 · Architect (summit, top) ================= -->
+  <rect x="30" y="52" width="1034" height="150" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="46" y="80" font-size="19" font-weight="700" fill="#1c1917">5 · Architect</text>
+  <text x="46" y="102" font-size="14.5" font-style="italic" fill="#9a3f12">explicit models carry system-level knowledge</text>
+  <line x1="160" y1="112" x2="1050" y2="112" stroke="#bcd6c6" stroke-width="1.2"/>
+  <!-- fields -->
+  <text x="316" y="140" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">model-guided work</text>
+  <text x="316" y="162" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">across the system</text>
+  <text x="628" y="140" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">explicit models · traceability</text>
+  <text x="628" y="162" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">· controls</text>
+  <text x="948" y="151" text-anchor="middle" font-size="16.5" fill="#57534e">residual semantics + strategy</text>
+  <!-- residual-human band: narrowest -->
+  <rect x="1046" y="120" width="14" height="64" rx="3" fill="#b23b3b" opacity="0.9"/>
 
-  <!-- shortcoming 2 -->
-  <line x1="473" y1="570" x2="512" y2="570" stroke="#1c1917" stroke-width="2.5" marker-end="url(#mg-ah)"/>
-  <rect x="516" y="510" width="205" height="134" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
-  <text x="618" y="536" text-anchor="middle" font-size="18.88" font-style="italic" font-weight="600" fill="#b23b3b">the shortcoming</text>
-  <text x="618" y="560" text-anchor="middle" font-size="18.88" fill="#57534e">one generalist audit</text>
-  <text x="618" y="580" text-anchor="middle" font-size="18.88" fill="#57534e">cannot rank findings</text>
-  <text x="618" y="600" text-anchor="middle" font-size="18.88" fill="#57534e">or tell one part of the</text>
-  <text x="618" y="620" text-anchor="middle" font-size="18.88" fill="#57534e">code from another</text>
-  <line x1="618" y1="506" x2="618" y2="486" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#mg-ah-churn)"/>
-  <text x="630" y="500" font-size="18.88" font-style="italic" fill="#b23b3b">forces</text>
+  <!-- ================= RUNG 4 · Tech lead ================= -->
+  <rect x="30" y="216" width="1034" height="140" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="46" y="244" font-size="19" font-weight="700" fill="#1c1917">4 · Tech lead</text>
+  <text x="46" y="266" font-size="14.5" font-style="italic" fill="#9a3f12">representation makes reasoning local</text>
+  <line x1="160" y1="276" x2="1050" y2="276" stroke="#c8d3de" stroke-width="1.2"/>
+  <text x="316" y="304" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">bounded work</text>
+  <text x="316" y="326" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">inside one zone</text>
+  <text x="628" y="315" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">named zones + boundary rules</text>
+  <text x="948" y="315" text-anchor="middle" font-size="16.5" fill="#57534e">system-level map + strategy</text>
+  <rect x="1040" y="288" width="20" height="76" rx="3" fill="#b23b3b" opacity="0.9"/>
 
-  <!-- ===== rung 3 · Review Lead ===== -->
-  <rect x="472" y="330" width="228" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="586" y="364" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">3 · Review Lead</text>
-  <text x="586" y="392" text-anchor="middle" font-size="18.88" fill="#57534e">specialist audits run per</text>
-  <text x="586" y="414" text-anchor="middle" font-size="18.13" fill="#57534e">zone; findings aimed and</text>
-  <text x="586" y="436" text-anchor="middle" font-size="18" fill="#57534e">ranked; the deterministic</text>
-  <text x="586" y="458" text-anchor="middle" font-size="18.88" fill="#57534e">half become lints</text>
+  <!-- ================= RUNG 3 · Review lead ================= -->
+  <rect x="30" y="370" width="1034" height="140" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="46" y="398" font-size="19" font-weight="700" fill="#1c1917">3 · Review lead</text>
+  <text x="46" y="420" font-size="14.5" font-style="italic" fill="#9a3f12">specialized, with the decidable residue determinized</text>
+  <line x1="160" y1="430" x2="1050" y2="430" stroke="#c8d3de" stroke-width="1.2"/>
+  <text x="316" y="458" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">specialized review,</text>
+  <text x="316" y="480" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">per region</text>
+  <text x="628" y="458" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">deterministic checks for</text>
+  <text x="628" y="480" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">the decidable findings</text>
+  <text x="948" y="469" text-anchor="middle" font-size="16.5" fill="#57534e">the semantic review a</text>
+  <text x="948" y="491" text-anchor="middle" font-size="16.5" fill="#57534e">check can't settle</text>
+  <rect x="1032" y="442" width="28" height="88" rx="3" fill="#b23b3b" opacity="0.9"/>
 
-  <!-- shortcoming 3 -->
-  <line x1="704" y1="410" x2="743" y2="410" stroke="#1c1917" stroke-width="2.5" marker-end="url(#mg-ah)"/>
-  <rect x="747" y="350" width="205" height="134" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
-  <text x="849" y="380" text-anchor="middle" font-size="18.88" font-style="italic" font-weight="600" fill="#b23b3b">the shortcoming</text>
-  <text x="849" y="410" text-anchor="middle" font-size="18.88" fill="#57534e">a finite-context agent</text>
-  <text x="849" y="430" text-anchor="middle" font-size="18.88" fill="#57534e">cannot hold the</text>
-  <text x="849" y="450" text-anchor="middle" font-size="18.88" fill="#57534e">whole codebase</text>
-  <line x1="850" y1="346" x2="850" y2="324" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#mg-ah-churn)"/>
-  <text x="862" y="340" font-size="18.88" font-style="italic" fill="#b23b3b">forces</text>
+  <!-- ================= RUNG 2 · QA ================= -->
+  <rect x="30" y="524" width="1034" height="140" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="46" y="552" font-size="19" font-weight="700" fill="#1c1917">2 · QA</text>
+  <text x="46" y="574" font-size="14.5" font-style="italic" fill="#9a3f12">evaluation delegated before authority</text>
+  <line x1="160" y1="584" x2="1050" y2="584" stroke="#c8d3de" stroke-width="1.2"/>
+  <text x="316" y="612" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">generation + a second</text>
+  <text x="316" y="634" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">agent's audit</text>
+  <text x="628" y="612" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">a probabilistic reviewer</text>
+  <text x="628" y="634" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">(episodic, advisory)</text>
+  <text x="948" y="612" text-anchor="middle" font-size="16.5" fill="#57534e">adjudicate findings ·</text>
+  <text x="948" y="634" text-anchor="middle" font-size="16.5" fill="#57534e">admit the change</text>
+  <rect x="1022" y="596" width="38" height="96" rx="3" fill="#b23b3b" opacity="0.9"/>
 
-  <!-- ===== rung 4 · Tech Lead ===== -->
-  <rect x="703" y="170" width="228" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="817" y="204" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">4 · Tech Lead</text>
-  <text x="817" y="232" text-anchor="middle" font-size="18.88" fill="#57534e">the code is partitioned</text>
-  <text x="817" y="254" text-anchor="middle" font-size="18.88" fill="#57534e">into named zones. An</text>
-  <text x="817" y="276" text-anchor="middle" font-size="17.88" fill="#57534e">agent reasons inside one,</text>
-  <text x="817" y="298" text-anchor="middle" font-size="18.88" fill="#57534e">fenced from the rest</text>
+  <!-- ================= RUNG 1 · Co-coder (base, bottom) ================= -->
+  <rect x="30" y="678" width="1034" height="150" rx="10" fill="#eef1f4" stroke="#2f5169" stroke-width="2"/>
+  <text x="46" y="706" font-size="19" font-weight="700" fill="#1c1917">1 · Co-coder</text>
+  <text x="46" y="728" font-size="14.5" font-style="italic" fill="#9a3f12">direct human inspection carries everything</text>
+  <line x1="160" y1="738" x2="1050" y2="738" stroke="#c8d3de" stroke-width="1.2"/>
+  <text x="316" y="774" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">code generation</text>
+  <text x="628" y="763" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">nothing durable beyond</text>
+  <text x="628" y="785" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">an ordinary repository</text>
+  <text x="948" y="763" text-anchor="middle" font-size="16.5" fill="#57534e">read every diff · hold the</text>
+  <text x="948" y="785" text-anchor="middle" font-size="16.5" fill="#57534e">map · admit the change</text>
+  <rect x="1010" y="690" width="50" height="126" rx="3" fill="#b23b3b" opacity="0.9"/>
 
-  <!-- shortcoming 4 -->
-  <line x1="935" y1="270" x2="954" y2="270" stroke="#1c1917" stroke-width="2.5" marker-end="url(#mg-ah)"/>
-  <rect x="958" y="230" width="205" height="134" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
-  <text x="1060" y="256" text-anchor="middle" font-size="18.88" font-style="italic" font-weight="600" fill="#b23b3b">the shortcoming</text>
-  <text x="1060" y="280" text-anchor="middle" font-size="18.88" fill="#57534e">hardcoded facts rot;</text>
-  <text x="1060" y="300" text-anchor="middle" font-size="18.88" fill="#57534e">the growing set of</text>
-  <text x="1060" y="320" text-anchor="middle" font-size="18.88" fill="#57534e">models drifts into</text>
-  <text x="1060" y="340" text-anchor="middle" font-size="18.88" fill="#57534e">stale ghosts</text>
-  <line x1="1060" y1="226" x2="1060" y2="204" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#mg-ah-churn)"/>
-  <text x="1072" y="220" font-size="18.88" font-style="italic" fill="#b23b3b">forces</text>
-
-  <!-- ===== rung 5 · Architect — the summit ===== -->
-  <rect x="934" y="6" width="228" height="194" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="1048" y="40" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">5 · Architect</text>
-  <text x="1048" y="66" text-anchor="middle" font-size="18.48" fill="#57534e">the system is committed</text>
-  <text x="1048" y="88" text-anchor="middle" font-size="18.88" fill="#57534e">to explicit models, one</text>
-  <text x="1048" y="110" text-anchor="middle" font-size="18.88" fill="#57534e">view per property, held</text>
-  <text x="1048" y="132" text-anchor="middle" font-size="18.88" fill="#57534e">honest by a traceability</text>
-  <text x="1048" y="154" text-anchor="middle" font-size="18.88" fill="#57534e">substrate</text>
-  <text x="1048" y="182" text-anchor="middle" font-size="18.19" font-weight="700" fill="#9a3f12">together they are MAGE</text>
+  <!-- footer legend: two supports + residual band -->
+  <line x1="30" y1="856" x2="1064" y2="856" stroke="#d6cfc6" stroke-width="1.5"/>
+  <rect x="30" y="874" width="20" height="20" rx="3" fill="#1f7a4d"/>
+  <text x="58" y="889" font-size="14.5" fill="#1c1917">The environment absorbs two kinds of work — <tspan font-weight="700" fill="#1f7a4d">representation</tspan> (Modeling) and <tspan font-weight="700" fill="#9a3f12">authority</tspan> (Alignment).</text>
+  <rect x="30" y="906" width="20" height="20" rx="3" fill="#b23b3b" opacity="0.9"/>
+  <text x="58" y="921" font-size="14.5" fill="#1c1917"><tspan font-weight="700" fill="#b23b3b">Residual human judgment</tspan> narrows up the climb — the tactical burden shrinks; it does not vanish.</text>
 </svg>

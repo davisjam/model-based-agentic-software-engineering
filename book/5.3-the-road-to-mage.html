@@ -722,11 +722,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
 <li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 25 · The Road to MAGE — MAGE"><header class="chap"><div class="kicker"><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">Part 5 — The Evidence</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 25</a></div><h1><span class="chap-num">5.3</span> The Road to MAGE</h1></header><blockquote class="concept-inset"><p class="inset-title" id="illustrates">This chapter illustrates</p>
-<p>✓ The Modeling Thesis · ✓ The Alignment Thesis · ✓ The Governed Engineering Environment · ✓ Governance Conversion</p></blockquote>
-<p>The last chapter told what the build cost. This one tells what it produced, and then how the method was forced out of it. Two halves. First, the system that ultimately shipped — enough of it that the destination is clear. Then the staircase: the order in which the pieces of MAGE appeared, each one demanded by a load the piece before it could no longer carry.</p>
+<p>✓ The Modeling Thesis · ✓ The Alignment Thesis · ✓ The Governed Engineering Environment · ✓ Residual Human Judgment</p></blockquote>
+<p>The Build established chronology and scale. This chapter asks what changed in the division of engineering labor as the environment matured. I will show the destination once, then trace a few structures whose histories matter, and finally reconstruct the delegation staircase: the sequence by which work moved out of direct human inspection and into a combination of explicit models, environmental authority, and residual human judgment.</p>
+<p>The distinction matters. A snapshot of the finished system can make its architecture look inevitable. The history shows which structures were designed cleanly, which were forced by failure, which later had to be hardened, and what each change allowed the engineer to stop doing by hand.</p>
 <h2><span class="sec-num">5.3.1</span> What ultimately got built</h2>
-<p>A user uploads a file. The system figures out what kind of document it is, breaks it into work, remediates each piece, checks the result against a real accessibility standard, stamps what it changed, and returns the corrected file with evidence that the job was done. Six responsibilities carry that load, and <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-1">Figure&nbsp;5.3-1</a> draws the whole path.</p>
-<ul><li><strong>A front door</strong> takes the upload, authenticates the user, meters usage against a quota, and puts the job on a queue.</li><li><strong>A dispatcher</strong> splits the document into chunks — slides, pages, sheets — so a hundred-slide deck finishes in about a minute instead of an hour.</li><li><strong>A remediation core</strong> does the repair. A typed command-line engine walks the document through a structured model of its format and, for each thing that needs fixing, applies a deterministic rule or asks a model.</li><li><strong>A check engine</strong> maps each remaining finding to a specific clause of the accessibility standard, so the system carries its own conformance vocabulary instead of outsourcing every verdict.</li><li><strong>A fidelity validator</strong> catches the file that came out more accessible and less true.</li><li><strong>A provenance layer</strong> stamps every insertion, giving the document the auditable trust a university requires.</li></ul>
+<p>A user uploads a file. The front door authenticates the request, meters quota, and queues the job; a dispatcher divides the document into chunks; the remediation core applies deterministic rules or bounded model calls through structured document representations; the check engine evaluates remaining findings against accessibility standards; a fidelity validator looks for content lost while accessibility improved; and provenance records what changed. The corrected artifact returns with the evidence those mechanisms produced. <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-1">Figure&nbsp;5.3-1</a> gives the path.</p>
 <figure id="fig-5-3-1" class="book-figure" data-label="system-overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 400" role="group" aria-labelledby="sysov-title sysov-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="sysov-title">What got built — one upload crosses six responsibilities to a stamped result</title>
   <desc id="sysov-desc">A left-to-right pipeline. A user uploads a document at the left. It flows through six responsibilities in order: a front door that authenticates the user, meters the quota, and enqueues the job; a dispatcher that splits the document into chunks so a large deck finishes in about a minute; a remediation core, a typed command-line engine that walks the document through a structured model of its format and, for each fix, either applies a deterministic rule or asks a frontier model; a check engine that maps each remaining finding to a specific clause of the accessibility standard; a fidelity validator that catches a file that came out more accessible and less true; and a provenance layer that stamps every insertion. The corrected file, with evidence that the job was done, returns at the right. Frontier models do only the steps that require understanding a slide; deterministic code does everything else and owns the boundaries between the stages.</desc>
@@ -825,11 +825,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <rect x="20" y="356" width="20" height="14" rx="3" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
     <text x="48" y="368" fill="#334155">deterministic code owns the boundaries</text>
   </g>
-</svg><figcaption data-short="What Got Built"><span class="fig-label">Figure 5.3-1.</span> <em>What Got Built.</em> One upload crosses six responsibilities — front door, dispatcher, remediation core, check engine, fidelity validator, provenance layer — and returns a corrected file with evidence. Frontier models do the parts that require understanding a slide; deterministic code does everything else, and owns the boundaries between them.</figcaption></figure>
-<p>Those six responsibilities are the product. What surrounds them is larger. The support apparatus — tests, lints, models, load-bearing documentation — runs about <strong>3.0 times</strong> the size of the production code. Call that inversion gold-plating if you like, but the more code the fleet produces, the smaller the fraction any human reads, and at this volume no one reads the diffs at all. The apparatus performs the repeatable checks that direct review cannot scale to provide. Its growth is drawn in <a href="5.2-the-build.html">the Build chapter</a>; here it is enough to say the environment around the product outweighs the product.</p>
-<h2 id="llm-as-function-call"><span class="sec-num">5.3.2</span> The LLM as a function call</h2>
-<p>A foundation model is a probabilistic component. Ask it the same question twice and you may get two answers. Ask it something slightly outside its training and it answers anyway, confidently, wrong. And yet it is the only component in the system that can look at an arbitrary figure and describe it. You have to build a reliable system out of an unreliable part.</p>
-<p>The pattern that makes this work treats the model as a <strong>typed function call</strong>. Deterministic code owns the workflow and decides <em>when</em> a step needs judgment rather than a rule. Only then does it reach for the model. It packs a bounded task into a typed input — this figure, this context, this question — and the model must answer in a typed output shape. A deterministic validator sits at the trust boundary: the model's answer is a candidate, not a result, and code checks it against the standard and the input's meaning before it is allowed in. The workflow is deterministic. The model is a subroutine inside it. <strong>The subroutine is never trusted on its word.</strong> The shape is old — proof engineering separates the untrusted work of writing a proof from the trusted kernel that checks it; the kernel, not the author's confidence, decides what is admitted <sup class="cite-ref"><a href="#wc-5-3-the-road-to-mage-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Talia Ringer et al., “QED at Large: A Survey of Engineering of Formally Verified Software,” <em>Foundations and Trends in Programming Languages</em> 5, nos. 2–3 (2019): 102–281, <a href="https://arxiv.org/abs/2003.06458">https://arxiv.org/abs/2003.06458</a>.</span>. MAGE's move is to compose that one boundary across a whole production line. <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-2">Figure&nbsp;5.3-2</a> draws the caller, the typed contract, and the validator.</p>
+</svg><figcaption data-short="What Got Built"><span class="fig-label">Figure 5.3-1.</span> <em>What Got Built.</em> One upload crosses six product responsibilities and returns with standards findings, fidelity evidence, and provenance. Probabilistic interpretation is bounded inside the remediation core; deterministic machinery owns the surrounding workflow and the checks it can actually decide.</figcaption></figure>
+<p>That is the product path. The larger engineering environment around it — the subject of the previous chapter — contains the models, tests, lints, orchestration, and other machinery that made this degree of delegation possible.</p>
+<h2 id="model-as-bounded-subroutine"><span class="sec-num">5.3.2</span> The model as a bounded subroutine</h2>
+<p>DocAble uses frontier models where the task genuinely requires probabilistic interpretation, but it does not let that component own the workflow around itself. Deterministic code decides when interpretation is needed, packages a bounded input, requires a typed output, and evaluates the candidate against whatever obligations the environment can decide mechanically before incorporating it.</p>
+<p>The model's answer is therefore a <strong>candidate</strong>, not a verdict. A schema can reject malformed output; a standards rule can reject a mechanically invalid claim; a fidelity check can catch some classes of destructive transformation. None of those proves that an alt-text description perfectly captures the meaning of a figure. The trust boundary is only as strong as the obligations the validator can actually evaluate. Semantic residuals remain probabilistic or human. <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-2">Figure&nbsp;5.3-2</a> draws the caller, the typed contract, and the validator.</p>
+<p>The architectural analogy to proof checking is useful but limited: separate the powerful producer from the smaller mechanism that decides what evidence is sufficient for admission <sup class="cite-ref"><a href="#wc-5-3-the-road-to-mage-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Talia Ringer et al., “QED at Large: A Survey of Engineering of Formally Verified Software,” <em>Foundations and Trends in Programming Languages</em> 5, nos. 2–3 (2019): 102–281, <a href="https://arxiv.org/abs/2003.06458">https://arxiv.org/abs/2003.06458</a>.</span>. The validator here is not a proof kernel and does not make probabilistic semantics formally true. Its value is that the producing component does not get to define success for itself.</p>
 <figure id="fig-5-3-2" class="book-figure" data-label="llm-function-call"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 430" role="group" aria-labelledby="lfc-title lfc-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="lfc-title">The LLM as a typed function call</title>
   <desc id="lfc-desc">A left-to-right pipeline in four stages. A deterministic caller owns the workflow and decides when a step needs judgment. It packs the task into a typed input contract and hands it to the probabilistic component, the model, drawn as a dashed box to mark that its output is not trusted. The model returns a candidate answer that must conform to a typed output contract. A deterministic validator then checks that candidate: on a pass, the result is incorporated and control returns to the caller; on a fail, the caller retries or falls back. The trust boundary sits at the validator, not at the model. The dashed model box and the solid caller and validator boxes together say the same thing the prose does: guidance aims, machinery holds.</desc>
@@ -890,181 +891,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- caption strip -->
   <text x="550" y="388" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">The model is called like a function: a typed task in, a typed answer out —</text>
   <text x="550" y="410" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">never trusted until a deterministic check has passed it.</text>
-</svg><figcaption data-short="LLM as a Function Call"><span class="fig-label">Figure 5.3-2.</span> <em>LLM as a Function Call.</em> A deterministic caller packs a task into a typed input; the model returns output under a typed contract; a validator passes it before use. A malformed or mechanically invalid generation costs a retry rather than entering the document unchecked; semantic error stays bounded by the checks the validator actually implements.</figcaption></figure>
-<p>Now zoom out one level. The coding <em>agents</em> that built DocAble are the same kind of component: powerful, probabilistic, capable of a confident wrong turn. The methods in the earlier chapters are this same pattern applied to <em>them</em> — bound the task, type the interface, validate before you trust. You have seen the move in the small, on a vision model writing alt text; the rest of the book is the move in the large.</p>
-<h2><span class="sec-num">5.3.3</span> Places the same idea surfaced</h2>
-<p>The system carries that discipline in more than one place. The first three surfaced as design choices, each banking a dividend it was never built for. The next two arrived under pressure: a failure dragged each into place, and the order it was built in is the lesson. Read the first three as structure and the last two as history.</p>
-<p><strong>The reactive seam.</strong> The back end is small services wired to react to events: an upload is split into chunks, a queue hands each chunk to a stateless worker, the worker publishes a completion, a fan-in step assembles the file. For most of the system's life those workers <em>polled</em> size-stratified queues under a custom autoscaler on a cluster that billed around the clock — the wrong cost shape for a bursty product. A serverless <em>push</em> plane replaced it and the business logic did not move: a reactive, stateless handler already <em>is</em> the serverless execution model, and no durable state lived in a worker for the recycle to lose. Prior structure made the migration a change of deployment target, not a rewrite. <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-3">Figure&nbsp;5.3-3</a> draws both carriers.</p>
-<figure id="fig-5-3-3" class="book-figure" data-label="reactive-seam"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 576" role="group" aria-labelledby="srv-title srv-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="srv-title">The reactive service topology, and why it made serverless natural</title>
-  <desc id="srv-desc">Two stacked panels compare the same event-driven flow under two deployment targets. The top panel, the reactive seam, reads left to right: the web front door accepts an upload and enqueues chunks onto a work queue; a queue hands each chunk to a stateless worker that remediates it and publishes a completion; a fan-in step collects the completions and assembles the finished document. Every arrow is an event, not a poll. A note reads: services are reactive and stateless; Redis carries communication, the database carries truth. The bottom panel shows the same flow realized two ways. On the left, the retired Kubernetes poll plane: workers reach into size-stratified Redis queues to claim work, and a custom autoscaler watches queue depth to add or remove worker pods. On the right, the serverless push plane: a managed task queue pushes each chunk to a worker that scales from zero, and a managed topic fans in completions, with no custom autoscaler at all. The takeaway, stated across the bottom: because the services were already reactive and stateless, moving from poll to push was a change of deployment target, not a rewrite. The reactive seam was the enabler.</desc>
-
-  <rect x="0" y="0" width="880" height="576" fill="#ffffff"/>
-
-  <defs>
-    <marker id="srv-arrow" markerWidth="10" markerHeight="10" refX="7.5" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- ===================== TOP PANEL: the reactive seam ===================== -->
-  <text x="30" y="40" font-size="21.12" font-weight="bold" fill="#2f5169">The reactive seam</text>
-
-  <!-- web front door -->
-  <rect x="24" y="70" width="178" height="90" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
-  <text x="113" y="105" text-anchor="middle" font-size="21.12" font-weight="bold" fill="#2f5169">Web</text>
-  <text x="113" y="132" text-anchor="middle" font-size="19" fill="#2f5169">front door;</text>
-  <text x="113" y="151" text-anchor="middle" font-size="19" fill="#2f5169">splits into chunks</text>
-
-  <!-- enqueue arrow -->
-  <line x1="202" y1="115" x2="267" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
-  <text x="236" y="103" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">enqueue</text>
-
-  <!-- queue -->
-  <rect x="271" y="70" width="132" height="90" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="1.8"/>
-  <text x="337" y="112" text-anchor="middle" font-size="21.12" font-weight="bold" fill="#7c6bb0">Queue</text>
-  <text x="337" y="139" text-anchor="middle" font-size="19" fill="#7c6bb0">chunk = task</text>
-
-  <!-- push arrow -->
-  <line x1="403" y1="115" x2="468" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
-  <text x="437" y="103" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">hands off</text>
-
-  <!-- worker -->
-  <rect x="472" y="70" width="200" height="90" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
-  <text x="572" y="105" text-anchor="middle" font-size="21.12" font-weight="bold" fill="#2f5169">Worker</text>
-  <text x="572" y="132" text-anchor="middle" font-size="19" fill="#2f5169">stateless;</text>
-  <text x="572" y="151" text-anchor="middle" font-size="19" fill="#2f5169">remediates a chunk</text>
-
-  <!-- publish arrow to fan-in -->
-  <line x1="672" y1="115" x2="738" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
-  <text x="707" y="103" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">publishes</text>
-
-  <!-- fan-in -->
-  <rect x="742" y="70" width="114" height="90" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="1.8"/>
-  <text x="799" y="106" text-anchor="middle" font-size="24" font-weight="bold" fill="#7c6bb0">Fan-in</text>
-  <text x="799" y="133" text-anchor="middle" font-size="19" fill="#7c6bb0">assembles</text>
-  <text x="799" y="151" text-anchor="middle" font-size="19" fill="#7c6bb0">the file</text>
-
-  <!-- reactive note -->
-  <text x="30" y="188" font-size="19" font-style="italic" fill="#57534e">Every arrow is an event, never a poll. Services stay reactive and stateless —</text>
-  <text x="30" y="210" font-size="19" font-style="italic" fill="#57534e">Redis carries communication, the database carries truth.</text>
-
-  <!-- divider -->
-  <line x1="24" y1="222" x2="856" y2="222" stroke="#e4e0d8" stroke-width="1.4"/>
-
-  <!-- ===================== BOTTOM PANEL: two realizations ===================== -->
-  <text x="30" y="262" font-size="21.12" font-weight="bold" fill="#2f5169">Same flow, two deployment targets</text>
-
-  <!-- LEFT: poll plane (retired) -->
-  <rect x="24" y="284" width="390" height="196" rx="4" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/>
-  <text x="219" y="314" text-anchor="middle" font-size="22" font-weight="bold" fill="#9a3f12">Kubernetes poll plane (retired)</text>
-
-  <rect x="48" y="332" width="156" height="70" rx="3" fill="#ffffff" stroke="#9a3f12" stroke-width="1.4"/>
-  <text x="126" y="360" text-anchor="middle" font-size="20" font-weight="bold" fill="#9a3f12">Worker pool</text>
-  <text x="126" y="384" text-anchor="middle" font-size="19" fill="#9a3f12">pulls work</text>
-
-  <rect x="234" y="332" width="156" height="70" rx="3" fill="#ffffff" stroke="#9a3f12" stroke-width="1.4"/>
-  <text x="312" y="356" text-anchor="middle" font-size="24" font-weight="bold" fill="#9a3f12">Custom</text>
-  <text x="312" y="378" text-anchor="middle" font-size="24" font-weight="bold" fill="#9a3f12">autoscaler</text>
-
-  <text x="48" y="432" font-size="17" fill="#9a3f12">Workers PULL from size-stratified Redis</text>
-  <text x="48" y="453" font-size="17" fill="#9a3f12">queues; a bespoke loop watches depth</text>
-  <text x="48" y="474" font-size="17" fill="#9a3f12">and adds or removes pods.</text>
-
-  <!-- RIGHT: push plane (serverless) -->
-  <rect x="466" y="284" width="390" height="196" rx="4" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.6"/>
-  <text x="661" y="314" text-anchor="middle" font-size="22" font-weight="bold" fill="#155c38">Serverless push plane</text>
-
-  <rect x="490" y="332" width="156" height="70" rx="3" fill="#ffffff" stroke="#1f7a4d" stroke-width="1.4"/>
-  <text x="568" y="356" text-anchor="middle" font-size="24" font-weight="bold" fill="#155c38">Managed</text>
-  <text x="568" y="378" text-anchor="middle" font-size="24" font-weight="bold" fill="#155c38">task queue</text>
-
-  <rect x="676" y="332" width="156" height="70" rx="3" fill="#ffffff" stroke="#1f7a4d" stroke-width="1.4"/>
-  <text x="754" y="356" text-anchor="middle" font-size="24" font-weight="bold" fill="#155c38">Worker,</text>
-  <text x="754" y="380" text-anchor="middle" font-size="18" font-weight="bold" fill="#155c38">scale-from-0</text>
-
-  <text x="490" y="432" font-size="17" fill="#155c38">The platform PUSHES each chunk to a</text>
-  <text x="490" y="453" font-size="17" fill="#155c38">worker that scales from zero; native</text>
-  <text x="490" y="474" font-size="17" fill="#155c38">autoscale — no custom scaler at all.</text>
-
-  <!-- takeaway strip -->
-  <text x="30" y="514" font-size="19" font-weight="bold" fill="#2f5169">The move was a change of deployment target, not a rewrite.</text>
-  <text x="30" y="540" font-size="19" font-style="italic" fill="#57534e">Because the services were already reactive and stateless, poll-to-push</text>
-  <text x="30" y="562" font-size="19" font-style="italic" fill="#57534e">was natural. The reactive seam was the enabler.</text>
-</svg><figcaption data-short="The Reactive Seam"><span class="fig-label">Figure 5.3-3.</span> <em>The Reactive Seam.</em> Top: the logical flow — the front door enqueues chunks, a queue hands each to a stateless worker that remediates and publishes a completion, a fan-in step assembles the file. Bottom: the same flow carried two ways — the retired polling plane under a custom autoscaler, and the serverless push plane that replaced it. Because a reactive, stateless handler already is the serverless execution model, the re-platforming deleted complexity rather than adding it.</figcaption></figure>
-<p><strong>The closed edit language.</strong> The editor never edits the document. A user gesture — change this alt text, reorder these elements — becomes one typed <strong>edit operation</strong> from a small, closed vocabulary, and the document model is the only thing that touches the document. A typed operation can be validated before it applies, stamped as it applies, and refused when it breaks a constraint; a lint keeps the vocabulary closed. That turns an edit surface into a governance boundary — and it is why the same seam carries the <em>pipeline's</em> output. When automated remediation decides a figure needs alt text, it emits the very <code>set-alt-text</code> a human would. One document model, one edit language, two producers — and the mapping that feeds the pipeline's side is itself the function call from the section above: task in, operation out, a bounded model call inside, a validator at the exit. <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-4">Figure&nbsp;5.3-4</a> draws both into it.</p>
-<figure id="fig-5-3-4" class="book-figure" data-label="editor-mvc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" role="group" aria-labelledby="mvc-title mvc-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mvc-title">The editor’s model-view-controller loop and the shared edit language</title>
-  <desc id="mvc-desc">A model-view-controller triangle sits over a document. The View is the two-pane editor the user sees: a rendered page on the left with overlay boxes marking structure, and a card list on the right with editable fields for alt text, role, and reading order. A user gesture flows from the View to the Controller. The Controller does not mutate the document directly. Instead it emits a typed edit operation drawn from a small, closed vocabulary: set alt text, set role, set decorative, reorder reading, set title, set language, set actual text. That operation is the Model’s only input. The Model applies the operation to the document intermediate representation and returns the updated state, which re-renders the View. The closed operation set is labeled the shared edit language. A note beneath it says: this same language is the target the automated remediation produces. The takeaway: the editor UI and the automated pipeline both speak one edit language, so one document model has exactly one way to be changed.</desc>
-
-  <rect x="0" y="0" width="900" height="540" fill="#fdfcf9"/>
-
-  <defs>
-    <marker id="mvc-arrow" markerWidth="10" markerHeight="10" refX="7.5" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <text x="30" y="42" font-size="21.6" font-weight="bold" fill="#2f5169">The editor: one MVC loop over the document</text>
-
-  <!-- VIEW box (two-pane) -->
-  <rect x="24" y="66" width="300" height="150" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
-  <text x="174" y="96" text-anchor="middle" font-size="19" font-weight="bold" fill="#2f5169">View — two-pane editor</text>
-  <!-- left mini-pane -->
-  <rect x="44" y="112" width="120" height="64" rx="2" fill="#ffffff" stroke="#2f5169" stroke-width="1.2"/>
-  <rect x="56" y="124" width="60" height="18" rx="2" fill="#e7edf3" stroke="#2f5169" stroke-width="1"/>
-  <rect x="56" y="150" width="90" height="14" rx="2" fill="#faf1e6" stroke="#9a3f12" stroke-width="1"/>
-  <text x="104" y="196" text-anchor="middle" font-size="19" fill="#2f5169">page + overlays</text>
-  <!-- right mini-pane -->
-  <rect x="184" y="112" width="120" height="64" rx="2" fill="#ffffff" stroke="#2f5169" stroke-width="1.2"/>
-  <rect x="196" y="122" width="96" height="20" rx="2" fill="#e7edf3" stroke="#2f5169" stroke-width="1"/>
-  <rect x="196" y="148" width="96" height="20" rx="2" fill="#e7edf3" stroke="#2f5169" stroke-width="1"/>
-  <text x="244" y="196" text-anchor="middle" font-size="19" fill="#2f5169">editable cards</text>
-
-  <!-- gesture arrow View -> Controller -->
-  <line x1="174" y1="216" x2="174" y2="272" stroke="#1c1917" stroke-width="1.6" marker-end="url(#mvc-arrow)"/>
-  <text x="186" y="248" text-anchor="start" font-size="19" font-style="italic" fill="#57534e">user gesture</text>
-
-  <!-- CONTROLLER box -->
-  <rect x="24" y="276" width="300" height="96" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
-  <text x="174" y="308" text-anchor="middle" font-size="25" font-weight="bold" fill="#2f5169">Controller</text>
-  <text x="174" y="336" text-anchor="middle" font-size="15" fill="#2f5169">emits one typed edit operation</text>
-  <text x="174" y="357" text-anchor="middle" font-size="19" fill="#2f5169">— never a raw mutation</text>
-
-  <!-- emit arrow Controller -> DSL -->
-  <line x1="324" y1="324" x2="424" y2="324" stroke="#1c1917" stroke-width="1.6" marker-end="url(#mvc-arrow)"/>
-  <text x="374" y="312" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">emits</text>
-
-  <!-- SHARED DSL box -->
-  <rect x="428" y="240" width="430" height="168" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="2"/>
-  <text x="643" y="270" text-anchor="middle" font-size="24" font-weight="bold" fill="#7c6bb0">The shared edit language</text>
-  <text x="643" y="292" text-anchor="middle" font-size="19" font-style="italic" fill="#7c6bb0">one closed set of edit operations</text>
-  <text x="448" y="320" font-size="19" fill="#7c6bb0">set-alt-text · set-role · set-decorative</text>
-  <text x="448" y="343" font-size="19" fill="#7c6bb0">reorder-reading · set-title · set-lang</text>
-  <text x="448" y="366" font-size="19" fill="#7c6bb0">set-actual-text</text>
-  <text x="643" y="394" text-anchor="middle" font-size="19" font-style="italic" fill="#9a3f12">also what the pipeline produces</text>
-
-  <!-- apply arrow DSL -> Model -->
-  <line x1="643" y1="408" x2="643" y2="456" stroke="#1c1917" stroke-width="1.6" marker-end="url(#mvc-arrow)"/>
-  <text x="655" y="436" text-anchor="start" font-size="19" font-style="italic" fill="#57534e">applies to</text>
-
-  <!-- MODEL box -->
-  <rect x="428" y="460" width="430" height="66" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
-  <text x="643" y="490" text-anchor="middle" font-size="25" font-weight="bold" fill="#2f5169">Model — the document IR</text>
-  <text x="643" y="514" text-anchor="middle" font-size="19" fill="#2f5169">applies the op, returns updated state</text>
-
-  <!-- re-render arrow Model -> View (long path up the left) -->
-  <path d="M428,493 L12,493 L12,141 L20,141" fill="none" stroke="#2f5169" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#mvc-arrow)"/>
-  <text x="40" y="470" text-anchor="start" font-size="19" font-style="italic" fill="#2f5169">re-render</text>
-
-  <!-- takeaway -->
-  <text x="30" y="410" font-size="19" font-weight="bold" fill="#2f5169">One model,</text>
-  <text x="30" y="432" font-size="19" font-weight="bold" fill="#2f5169">one way to change it.</text>
-</svg><figcaption data-short="Two Producers, One Language"><span class="fig-label">Figure 5.3-4.</span> <em>Two Producers, One Language.</em> A human gesture and the automated pipeline both emit the same closed edit vocabulary into one document model that applies and stamps each edit. The pipeline's task-to-edit mapping is an instance of LLM-as-function-call; it is partially implemented today, and the figure records the intended shape.</figcaption></figure>
-<p>The next two did not begin as a diagram. A method written after the fact can make its architecture look inevitable. It was not. Here is how each arrived — what broke first, what changed in response, and the class of failure it retired.</p>
-<p><strong>The format seam.</strong> An early path sliced a document with a scripting-language library, chosen because the operation was one line. It also stripped the document's internal tag tree, the structure that carries the accessibility the whole product exists to add. The delivered file opened, rendered, looked fine, and had quietly lost its remediation. The eye cannot catch that corruption; a customer finds it with a screen reader. Nothing had said the corrupting library was off-limits, nor that the canonical one already across the codebase was the only thing allowed to touch that format.</p>
-<p>The fix came in layers, each forced by the residual the last one left, and <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-5">Figure&nbsp;5.3-5</a> draws the climb — a policy naming one canonical library per format, a typed seam all mutation of that format must cross, a build-time ban on reaching the raw library from outside it. What the seam <em>is</em> today belongs to <a href="2.5-modeling-structure-and-ownership.html">Modeling Structure and Ownership</a>; here I care how it got there. The sharpest layer came from the enforcement itself. The ban check failed: a shared build daemon carried a stale notion of the repository root and laundered real violations into a passing result, so the gate reported green while the findings sat there. It had to be hardened after it was caught mis-reporting — the same lesson the next chapter banks from the other side, that a gate can report a success it did not earn. The mechanism that gives a model its authority is itself a system that can drift. <strong>A recurring judgment moved out of one engineer's memory and into the engineering environment; authority over a seam is maintained, not granted once.</strong></p>
-<figure id="fig-5-3-5" class="book-figure" data-label="pdf-seam"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600"
+</svg><figcaption data-short="Model as a Bounded Subroutine"><span class="fig-label">Figure 5.3-2.</span> <em>Model as a Bounded Subroutine.</em> A deterministic caller supplies a typed task; the model returns a typed candidate; independent validation rejects failures covered by the implemented obligations before the candidate is incorporated. Properties outside those checks remain outside the guarantee.</figcaption></figure>
+<p>The coding agents that built DocAble pose the same trust-boundary problem at a larger grain, but the full MAGE response adds more than typed I/O: explicit system representations, authority at appropriate boundaries, independent evidence, and governance conversion. You have seen the move in the small, on a vision model writing alt text. The rest of the book adds the structure that typed input and a validator do not, by themselves, supply.</p>
+<h2><span class="sec-num">5.3.3</span> Some structure banked options; some was forced by failure</h2>
+<p>Not every consequential structure was born from failure. The backend became reactive and stateless early: work moved through queues, workers carried no durable truth, and a fan-in step assembled the result. That choice later made the migration from a cluster that billed around the clock to a serverless carrier much cheaper than it might have been; the business logic largely survived while the deployment carrier changed. Likewise, the document editor routed both human gestures and automated remediation through one closed edit vocabulary over the same document representation. That seam later supported a second producer without creating a second mutation path. These were <strong>dividends of prior structure</strong>, not evidence that every useful abstraction must first be purchased by an incident.</p>
+<p>Other seams were different. Their histories begin with a concrete failure and let us trace the response in layers. Those are more informative for the method, because the finished boundary hides the sequence that produced it.</p>
+<p><strong>The format seam.</strong> An early path used a convenient scripting-language library to slice a document. The operation worked visually and silently destroyed the internal tag structure carrying the accessibility the product existed to add. The failure exposed two missing things: an architectural decision — one canonical implementation should own mutation of that format — and environmental authority capable of keeping other paths from bypassing it.</p>
+<p>The response came in layers, and <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-3">Figure&nbsp;5.3-3</a> draws the climb. A policy named the canonical library. A typed format model and API concentrated mutation through one seam. A build-time check refused raw access from elsewhere. Then the check itself failed: a stale repository root caused real findings to be reported as green. That second-order incident forced the gate to be hardened too. What the seam <em>is</em> today belongs to <a href="2.5-modeling-structure-and-ownership.html">Modeling Structure and Ownership</a>; here I care how it got there. <strong>The model stated the boundary; the API and check gave selected obligations over that boundary authority. The authority itself still had to be maintained.</strong></p>
+<figure id="fig-5-3-3" class="book-figure" data-label="pdf-seam"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600"
      role="group" aria-labelledby="pslTitle pslDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="pslTitle">The format seam, hardened in layers — each layer forced by a residual failure</title>
@@ -1124,133 +958,138 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="200" y1="455" x2="200" y2="483" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
 
   <text x="320" y="576" text-anchor="middle" font-size="13" fill="#57534e">An engineering history, not a system model.</text>
-</svg><figcaption data-short="One Seam, Hardened in Layers"><span class="fig-label">Figure 5.3-5.</span> <em>One Seam, Hardened in Layers.</em> A convenient call produces silent corruption; a library policy names one canonical library per format; a typed seam routes all mutation through one model; a build-time ban forbids raw access from outside it; and the ban check itself is later found mis-reporting and hardened. Each layer was forced by a residual failure, not designed up front. An engineering history, not a system model.</figcaption></figure>
-<p><strong>The service seam.</strong> The second seam a failure forced was between services. The bug class was a file path sent over the wire — a caller handing another service a string naming a file that lived only in the caller's world, so the call failed in a different process, far from the mistake. The fix made the failure unrepresentable: a typed client whose file-sending call cannot take a path at all, only the open bytes, paired with a declared graph of which service may call which. Then the second-order lesson, and a person caught it, not a test. A caller-side routing option could build a direct client and silently skip the shared protection layer — rate limiting, key rotation, failover, cost tracking — latent, off by default, invisible to both features' tests, with two efforts about to switch it on. A reviewer reading the as-built code found it; a second found another one layer down. <strong>A protection seam is useful only if every relevant path actually crosses it.</strong></p>
-<p>These are not new MAGE principles. They are one move materializing: <strong>represent the important boundary explicitly, then put the authority on it.</strong> Some seams surfaced as a clean choice and banked an option nobody planned — the reactive seam banked serverless, the edit language banked a second producer. Others were dragged into place by a corruption or a bad call and taught, in built order, that authority over a seam is maintained rather than granted once. The recurring shape, not the dividends, is the point.</p>
-<h2><span class="sec-num">5.3.4</span> The staircase</h2>
-<p>MAGE was never designed on a whiteboard. It accreted. Every model, every control arrived the same way: the codebase grew, the quality bar rose, the current system proved inadequate, and the next thing was demanded. Read what follows as a staircase, and watch the job title climb — co-coder, QA, review lead, tech lead, architect. Each rung names the center of gravity of my work, not a title I held. Each is a job the rung below could no longer do. And each was safe to climb only because the step under it first minted a control that caught what the delegation would otherwise have dropped.</p>
-<blockquote class="concept-inset"><p class="inset-title">Why the job title climbs</p>
-<p>The ladder rests on one hinge: <strong>governance</strong>. Every rung is a successive delegation. I hand the fleet a piece of the <em>tactics</em> — write this code, audit that diff, run this zone — and keep the <em>strategy</em>. That handoff is safe only because a control catches what the delegation drops: a lint reddens on the boundary I stopped watching, a gate refuses the commit I stopped reading, a model means I no longer hold the map in my head. <strong>Delegation climbs exactly as far as the controls will carry it, and no farther.</strong> Get the governance wrong and the ladder runs in reverse: the misses surface days later in some downstream gate, and I am pulled back down into the tactics to firefight, reading diffs again with no one minding the strategy.</p></blockquote>
-<p><strong>Co-coder — I reviewed every line.</strong> One format, a few hundred lines, and me. When the agent proposed a change I read the diff, judged it, merged it. The whole quality mechanism was one human reviewer, and it worked because the volume was small enough that one person could hold it in his head. That gate does not scale. Agents write code far faster than a human can read it, and the more they wrote the further behind I fell. The bottleneck was me.</p>
-<p><strong>QA — I dispatched an agent to audit the work.</strong> The first offload was to hand the review itself to a second agent that read the first one's diff and reported what it found. The checking left my hands. But an audit is the weakest kind of control: it runs when I remember to run it, over code that has already drifted, and it makes enforcement durable only after the fact. That planted the question that drove everything downstream: which of these findings could become a <em>lint</em> — cheap, deterministic, run at commit time — so I never have to look for that class again?</p>
-<p><strong>Review lead — one audit became a crew.</strong> A single generalist reviewer over a large codebase is a firehose with no aim: it never comes back empty, it cannot rank a nit against an architectural break, and it applies one region's rule to another. So I split it into specialists — duplication, architecture, naming, security — each run per region, so a finding carried two coordinates: which <em>kind</em> of concern and which <em>part</em> of the system. Then the cheaper move: a decidable question needs a lint, not a language model, so every decidable finding dropped to a lint and the crew kept the judgment a lint cannot make. Today's audit finding is tomorrow's lint.</p>
-<p><strong>Tech lead — named zones, so an agent can reason locally.</strong> A crew is still a crew of agents, and here the agent's nature bites. A cold-start agent with a finite context window cannot reach the tacit knowledge a human team keeps in its head: which file is canonical, which of two look-alikes is live. It has to be <em>told</em>, in the code, every time. So I partitioned the system into named <strong>zones</strong> and fenced each with a boundary lint that refuses an edit reaching across a zone it has no business touching. This was the first model I wrote for the <em>fleet</em> to read, not a piece of the product.</p>
-<p><strong>Architect — the codebase modeled.</strong> {#refactor-cost} By this rung I looked at code almost never. I stopped <em>holding the system in my head</em> and committed it to explicit models the fleet reasons <em>through</em> — a form a tool can read rather than documentation about the architecture. The refactoring got cheaper, because the models told me where to look and where to stop: a cross-format migration that touched fifty-eight files and rewrote five thousand lines took about five hours of agent time over a dinner break. When the cost of restructuring collapses, the economics invert — postponing the right shape becomes the expensive choice. The hard part was never touching fifty-eight files; it was knowing that fifty-eight files should be touched.</p>
-<blockquote class="aside-sidenote def-inset"><p><strong>Field note — the map that pointed at a ghost.</strong> A stack of models has its own failure mode: <strong>drift</strong>. One model named a code symbol; the symbol was later renamed and moved; nothing noticed. The model still <em>looked</em> authoritative while pointing at a ghost, the fleet read the ghost as truth, and the blow-up landed days later in a deploy step instead of at the change that caused it. That incident is what forced the models to grow a nervous system — a traceability substrate whose every edge re-resolves against a live symbol, so a broken reference reddens at the change that broke it. Part II carries the mechanism in full; here it is enough that the drift was real and the substrate was its answer.</p></blockquote>
-<blockquote class="aside-sidenote def-inset"><p><strong>Evidence — the derived floor under load.</strong> The incident was not a one-off. A later audit re-ran each closed unit of work's own checks against current code and found roughly twenty-seven genuine model-to-code drifts, at a signal-to-noise near one, that had escaped silently past a green definition of done — the prod-blocking pointer drift among them. The derived floor retired that class. Re-run at the current head it caught six fresh drifts the reading eye had missed, and across fifty-six closes nothing modeled and mechanically decidable reached a post-close reopen — held under load, some nine thousand lines of change across sixty-three commits to the models themselves. The full tables live in the Part-V evidence ledger: <a href="appendix-evidence-ledger.html">Appendix H</a>; the qualitative incident is the one <a href="2.3-the-executable-zoo.html#idx-def-traceability">2.3's account of reading the fix off real drift</a> points to.</p></blockquote>
-<p>The models were not bookkeeping. Turning the system's unmodeled regions into explicit models surfaced real, shipping bugs the green tests had missed.</p>
+</svg><figcaption data-short="One Seam, Hardened in Layers"><span class="fig-label">Figure 5.3-3.</span> <em>One Seam, Hardened in Layers.</em> A convenient scripting-language library call silently corrupted the very accessibility structure the product exists to add, and that failure motivated a canonical-library policy. Representation and a typed seam then make the boundary explicit, and a build-time ban gives selected obligations over it authority against the paths that would otherwise bypass it. Each layer answers a specific failure rather than a plan drawn in advance. Later the enforcement itself reported green when a stale repository root hid real findings, and that second-order incident forced the control to be hardened too. The figure is an engineering history, not a system model.</figcaption></figure>
+<p><strong>The service seam.</strong> Another failure sent a local file path across a service boundary, where it became meaningless in the callee's process. The replacement client could accept file content but not a local path, while an explicit service graph represented which services were permitted to call which. A later human review exposed a second problem: an optional direct-client path could bypass shared rate limiting, key rotation, failover, and cost tracking entirely. The lesson was not "model first, then gate." It was more precise: <strong>a protection boundary works only over the paths that actually cross it. Representation tells you what the boundary is meant to cover; independent inspection and controls are still needed to establish that reality crosses it.</strong></p>
+<h2><span class="sec-num">5.3.4</span> The delegation staircase</h2>
+<p>MAGE was not designed as a five-rung organization chart. The labels below are retrospective names for the changing center of gravity of my own work: <strong>co-coder, QA, review lead, tech lead, architect</strong>. What matters is not the title but what the engineering environment had become capable of carrying at each stage.</p>
+<p>The staircase has two interacting supports. <strong>Alignment</strong> moved repeatable authority out of direct human review: deterministic checks, permissions, boundaries, and gates could carry obligations I no longer inspected line by line. <strong>Modeling</strong> moved system knowledge out of my head: named zones and later explicit models let agents reason over larger engineering questions without reconstructing the whole repository each time. Human judgment did not disappear. It moved toward the gaps the environment could not yet represent or decide honestly.</p>
+<p>Delegation therefore climbed as far as the <strong>engineering environment</strong> could carry it. When representation was too weak, I fell back into reconstructing the map. When authority was too weak or unreliable, I fell back into reading diffs and verifying outcomes manually. A miss could send the staircase backward.</p>
+<p><strong>Co-coder — direct human inspection carried everything.</strong> The first system was small enough that I read the agent's changes, judged them, and merged them. The human supplied both the system context and the admission decision. That worked while the volume stayed inside one person's attention. It failed as an operating model once generation outran review.</p>
+<p><strong>QA — evaluation was delegated before authority was.</strong> I began dispatching a second agent to audit another agent's work. That removed some reading from my hands but did not make the result authoritative: the audit ran episodically, produced probabilistic findings, and still depended on someone to decide what followed. Its value was diagnostic. Repeated decidable findings revealed questions that no longer needed a language model at all.</p>
+<p><strong>Review lead — judgment was specialized and the decidable residue dropped into machinery.</strong> One generalist audit over a growing codebase produced too much undifferentiated advice, so review split by concern and by region. Architecture, security, duplication, and naming could be judged in the context where they mattered. When a finding turned out to be mechanically decidable, it became a deterministic check; the probabilistic reviewers retained the questions those checks could not settle.</p>
+<p><strong>Tech lead — representation made reasoning local.</strong> Specialized reviewers were still finite reasoners confronting an expanding repository. Named zones externalized ownership and architectural boundaries so an agent could reason inside one region without first recovering the whole system. Boundary checks constrained some cross-zone edits. This stage combined the two theses explicitly: the zone model reduced reconstruction; selected rules over that model received authority.</p>
+<p><strong>Architect — explicit models carried system-level knowledge.</strong> {#refactor-cost} By the final rung I rarely read implementation directly. Architectural, behavioral, ownership, and other models supplied the system views I needed for planning and review; agents used the same representations to localize changes. This did not make the models true by declaration. Model drift became its own failure class, which is why traceability and correspondence checks eventually became part of the environment. When the cost of restructuring collapses, the economics invert — a cross-format migration that touched fifty-eight files and rewrote five thousand lines took about five hours of agent time over a dinner break, and postponing the right shape becomes the expensive choice. The hard part was never touching fifty-eight files; it was knowing that fifty-eight files should be touched.</p>
+<blockquote class="aside-sidenote def-inset"><p><strong>Field note — the map that pointed at a ghost.</strong> One model named a code symbol that was later moved and renamed. Nothing invalidated the reference. The model continued to look authoritative, agents continued to reason from it, and the failure surfaced days later during deployment. That incident forced live trace resolution: model-to-code edges were re-resolved against current symbols so a stale pointer failed at the change that broke it rather than downstream. Part II carries the mechanism in full.</p></blockquote>
+<blockquote class="aside-sidenote def-inset"><p><strong>Evidence — a reasoning surface creates a maintenance obligation.</strong> A later audit showed that the incident represented a class rather than a one-off. Re-running closed work against current code found genuine model-to-code drifts that had escaped a green definition of done — the prod-blocking pointer drift among them; subsequent checks caught further drift that reading had missed. <a href="appendix-evidence-ledger.html">Appendix H</a> carries the counts. The within-case result is simpler: <strong>a model used as a reasoning surface created a new maintenance obligation, and mechanical correspondence checks retired a recurring class of stale-reference failure.</strong></p></blockquote>
+<p>Formalizing and instrumenting previously weakly represented seams also exposed live defects that green tests had not. The useful claim is not that "models find bugs." It is that <strong>forcing an engineering relation into an explicit representation creates new questions the environment can ask</strong>, and in these three cases those questions exposed shipping defects.</p>
 <blockquote class="aside-sidenote def-inset"><p><strong>What modeling found that green tests missed.</strong> Three live defects, each forced into view by the act of modeling a seam:</p>
-<ul><li><strong>A cross-runtime exit code</strong> one runtime emitted and the other had never enumerated, so a genuine failure was silently misfiled as a generic error.</li><li><strong>Incomplete cleanup on redelivery</strong> — a failure path purged a job's database rows and blobs but skipped the queue structures its sibling path always cleaned, leaking chunks on a rare edge.</li><li><strong>A last-write-wins editor race</strong> in which two concurrent saves silently discarded one's work.</li></ul>
+<ul><li><strong>A cross-runtime exit code</strong> one runtime emitted and the other had never enumerated, so a genuine failure was silently misfiled as a generic error.</li><li><strong>Asymmetric cleanup after redelivery</strong> — a failure path purged a job's database rows and blobs but skipped the queue structures its sibling path always cleaned, leaking chunks on a rare edge.</li><li><strong>A last-write-wins editor race</strong> in which two concurrent saves silently discarded one's work.</li></ul>
 <p>None was a hypothetical the model raised. Each was a live defect the modeling exposed.</p></blockquote>
-<p>Those defects came from a discipline that turns the brownfield problem inward: an instrument walks the tests that reach no model and names the regions still unmodeled, so the method eventually turned its own instruments back on the parts of itself it had not yet named. How it measures modeling completeness belongs to the <a href="4.2-brownfield.html">Brownfield chapter</a>. <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-6">Figure&nbsp;5.3-6</a> draws the five-rung climb.</p>
-<figure id="fig-5-3-6" class="book-figure" data-label="mage-staircase"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 815"
-     role="group" aria-labelledby="mgTitle mgDesc"
+<p><a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-4">Figure&nbsp;5.3-4</a> draws the five-rung climb.</p>
+<figure id="fig-5-3-4" class="book-figure" data-label="mage-staircase"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 940"
+     role="group" aria-labelledby="dsTitle dsDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mgTitle">The five-rung staircase from Co-coder to Architect — the top rung is MAGE</title>
-  <desc id="mgDesc">A five-rung staircase climbing left to right. Rung one, Co-coder: I read
-    every diff and merge by hand — the human is the quality gate. Its shortcoming, a review
-    queue one human cannot clear, forces rung two, QA: one agent audits the work; review has
-    left my hands. Its shortcoming — one generalist audit cannot rank findings or tell one
-    part of the code from another — forces rung three, Review Lead: specialist audits run per
-    zone; findings aimed and ranked, the deterministic half becoming lints. Its shortcoming —
-    a finite-context agent cannot hold the whole codebase — forces rung four, Tech Lead: the
-    code is partitioned into named zones and an agent reasons inside one, fenced from the
-    rest. Its shortcoming — hardcoded facts rot, and the growing set of models drifts into
-    stale ghosts — forces rung five, Architect: the system is committed to explicit models,
-    one view per property, held honest by a traceability substrate. Together they are MAGE.
-    The ladder ends at Architect.</desc>
+  <title id="dsTitle">The delegation staircase — five rungs from Co-coder to Architect, with a residual human-judgment band that narrows but never vanishes</title>
+  <desc id="dsDesc">A five-rung staircase climbing from bottom to top. Each rung shows three fields:
+    the work delegated, what the engineering environment now carries, and what remains human. Rung
+    one, Co-coder: delegated is code generation; the environment carries nothing durable beyond an
+    ordinary repository; remaining human is reading every diff, holding the map, and admitting the
+    change. Rung two, QA: delegated is generation plus a second agent's audit; the environment
+    carries a probabilistic reviewer that is episodic and advisory; remaining human is adjudicating
+    findings and admitting the change. Rung three, Review lead: delegated is specialized review per
+    region; the environment carries deterministic checks for the decidable findings; remaining human
+    is the semantic review a check cannot settle. Rung four, Tech lead: delegated is bounded work
+    inside one zone; the environment carries named zones and boundary rules; remaining human is the
+    system-level map and strategy. Rung five, Architect: delegated is model-guided work across the
+    system; the environment carries explicit models, traceability, and controls; remaining human is
+    residual semantics and strategy. Along the right, a red residual-human band narrows from wide at
+    the bottom rung to a sliver at the top — the human tactical burden shrinks but never reaches
+    zero. The environment absorbs two kinds of work: representation through Modeling and authority
+    through Alignment. A failure in either can push work back down the staircase.</desc>
 
   <defs>
-    <marker id="mg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    <marker id="ds-up" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,10 L5,0 L10,10 z" fill="#2f5169"/>
     </marker>
-    <marker id="mg-ah-churn" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
+    <marker id="ds-down" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L5,10 L10,0 z" fill="#b23b3b"/>
     </marker>
   </defs>
 
-  <!-- ===== rung 1 · Co-coder ===== -->
-  <rect x="10" y="650" width="228" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="124" y="684" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">1 · Co-coder</text>
-  <text x="124" y="712" text-anchor="middle" font-size="18.88" fill="#57534e">I read every diff and</text>
-  <text x="124" y="734" text-anchor="middle" font-size="18.88" fill="#57534e">merge by hand — the</text>
-  <text x="124" y="756" text-anchor="middle" font-size="17.95" fill="#57534e">human is the quality gate</text>
+  <!-- column header strip -->
+  <text x="316" y="30" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169" letter-spacing="0.4">DELEGATED WORK</text>
+  <text x="628" y="30" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1f7a4d" letter-spacing="0.4">WHAT THE ENVIRONMENT NOW CARRIES</text>
+  <text x="948" y="30" text-anchor="middle" font-size="16.5" font-weight="700" fill="#b23b3b" letter-spacing="0.4">WHAT REMAINS HUMAN</text>
+  <line x1="30" y1="40" x2="1064" y2="40" stroke="#d6cfc6" stroke-width="1.5"/>
 
-  <!-- shortcoming 1 -->
-  <line x1="242" y1="720" x2="281" y2="720" stroke="#1c1917" stroke-width="2.5" marker-end="url(#mg-ah)"/>
-  <rect x="285" y="670" width="205" height="134" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
-  <text x="387" y="698" text-anchor="middle" font-size="18.88" font-style="italic" font-weight="600" fill="#b23b3b">the shortcoming</text>
-  <text x="387" y="732" text-anchor="middle" font-size="18.88" fill="#57534e">a review queue one</text>
-  <text x="387" y="754" text-anchor="middle" font-size="18.88" fill="#57534e">human cannot clear</text>
-  <line x1="387" y1="666" x2="387" y2="644" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#mg-ah-churn)"/>
-  <text x="399" y="658" font-size="18.88" font-style="italic" fill="#b23b3b">forces</text>
+  <!-- ascending arrow: delegation climbs (left margin) -->
+  <line x1="1108" y1="880" x2="1108" y2="70" stroke="#2f5169" stroke-width="2.5" marker-end="url(#ds-up)"/>
+  <text x="1128" y="480" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169" transform="rotate(90 1128 480)" letter-spacing="0.5">delegation climbs</text>
+  <!-- descending caution: a miss sends it backward -->
+  <line x1="1150" y1="120" x2="1150" y2="840" stroke="#b23b3b" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#ds-down)"/>
+  <text x="1170" y="480" text-anchor="middle" font-size="13.5" font-style="italic" fill="#b23b3b" transform="rotate(90 1170 480)">a miss sends it backward</text>
 
-  <!-- ===== rung 2 · QA ===== -->
-  <rect x="241" y="490" width="228" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="355" y="524" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">2 · QA</text>
-  <text x="355" y="552" text-anchor="middle" font-size="18.88" fill="#57534e">one agent audits the</text>
-  <text x="355" y="574" text-anchor="middle" font-size="18.88" fill="#57534e">work; review has</text>
-  <text x="355" y="596" text-anchor="middle" font-size="18.88" fill="#57534e">left my hands</text>
+  <!-- ================= RUNG 5 · Architect (summit, top) ================= -->
+  <rect x="30" y="52" width="1034" height="150" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="46" y="80" font-size="19" font-weight="700" fill="#1c1917">5 · Architect</text>
+  <text x="46" y="102" font-size="14.5" font-style="italic" fill="#9a3f12">explicit models carry system-level knowledge</text>
+  <line x1="160" y1="112" x2="1050" y2="112" stroke="#bcd6c6" stroke-width="1.2"/>
+  <!-- fields -->
+  <text x="316" y="140" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">model-guided work</text>
+  <text x="316" y="162" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">across the system</text>
+  <text x="628" y="140" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">explicit models · traceability</text>
+  <text x="628" y="162" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">· controls</text>
+  <text x="948" y="151" text-anchor="middle" font-size="16.5" fill="#57534e">residual semantics + strategy</text>
+  <!-- residual-human band: narrowest -->
+  <rect x="1046" y="120" width="14" height="64" rx="3" fill="#b23b3b" opacity="0.9"/>
 
-  <!-- shortcoming 2 -->
-  <line x1="473" y1="570" x2="512" y2="570" stroke="#1c1917" stroke-width="2.5" marker-end="url(#mg-ah)"/>
-  <rect x="516" y="510" width="205" height="134" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
-  <text x="618" y="536" text-anchor="middle" font-size="18.88" font-style="italic" font-weight="600" fill="#b23b3b">the shortcoming</text>
-  <text x="618" y="560" text-anchor="middle" font-size="18.88" fill="#57534e">one generalist audit</text>
-  <text x="618" y="580" text-anchor="middle" font-size="18.88" fill="#57534e">cannot rank findings</text>
-  <text x="618" y="600" text-anchor="middle" font-size="18.88" fill="#57534e">or tell one part of the</text>
-  <text x="618" y="620" text-anchor="middle" font-size="18.88" fill="#57534e">code from another</text>
-  <line x1="618" y1="506" x2="618" y2="486" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#mg-ah-churn)"/>
-  <text x="630" y="500" font-size="18.88" font-style="italic" fill="#b23b3b">forces</text>
+  <!-- ================= RUNG 4 · Tech lead ================= -->
+  <rect x="30" y="216" width="1034" height="140" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="46" y="244" font-size="19" font-weight="700" fill="#1c1917">4 · Tech lead</text>
+  <text x="46" y="266" font-size="14.5" font-style="italic" fill="#9a3f12">representation makes reasoning local</text>
+  <line x1="160" y1="276" x2="1050" y2="276" stroke="#c8d3de" stroke-width="1.2"/>
+  <text x="316" y="304" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">bounded work</text>
+  <text x="316" y="326" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">inside one zone</text>
+  <text x="628" y="315" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">named zones + boundary rules</text>
+  <text x="948" y="315" text-anchor="middle" font-size="16.5" fill="#57534e">system-level map + strategy</text>
+  <rect x="1040" y="288" width="20" height="76" rx="3" fill="#b23b3b" opacity="0.9"/>
 
-  <!-- ===== rung 3 · Review Lead ===== -->
-  <rect x="472" y="330" width="228" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="586" y="364" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">3 · Review Lead</text>
-  <text x="586" y="392" text-anchor="middle" font-size="18.88" fill="#57534e">specialist audits run per</text>
-  <text x="586" y="414" text-anchor="middle" font-size="18.13" fill="#57534e">zone; findings aimed and</text>
-  <text x="586" y="436" text-anchor="middle" font-size="18" fill="#57534e">ranked; the deterministic</text>
-  <text x="586" y="458" text-anchor="middle" font-size="18.88" fill="#57534e">half become lints</text>
+  <!-- ================= RUNG 3 · Review lead ================= -->
+  <rect x="30" y="370" width="1034" height="140" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="46" y="398" font-size="19" font-weight="700" fill="#1c1917">3 · Review lead</text>
+  <text x="46" y="420" font-size="14.5" font-style="italic" fill="#9a3f12">specialized, with the decidable residue determinized</text>
+  <line x1="160" y1="430" x2="1050" y2="430" stroke="#c8d3de" stroke-width="1.2"/>
+  <text x="316" y="458" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">specialized review,</text>
+  <text x="316" y="480" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">per region</text>
+  <text x="628" y="458" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">deterministic checks for</text>
+  <text x="628" y="480" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">the decidable findings</text>
+  <text x="948" y="469" text-anchor="middle" font-size="16.5" fill="#57534e">the semantic review a</text>
+  <text x="948" y="491" text-anchor="middle" font-size="16.5" fill="#57534e">check can't settle</text>
+  <rect x="1032" y="442" width="28" height="88" rx="3" fill="#b23b3b" opacity="0.9"/>
 
-  <!-- shortcoming 3 -->
-  <line x1="704" y1="410" x2="743" y2="410" stroke="#1c1917" stroke-width="2.5" marker-end="url(#mg-ah)"/>
-  <rect x="747" y="350" width="205" height="134" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
-  <text x="849" y="380" text-anchor="middle" font-size="18.88" font-style="italic" font-weight="600" fill="#b23b3b">the shortcoming</text>
-  <text x="849" y="410" text-anchor="middle" font-size="18.88" fill="#57534e">a finite-context agent</text>
-  <text x="849" y="430" text-anchor="middle" font-size="18.88" fill="#57534e">cannot hold the</text>
-  <text x="849" y="450" text-anchor="middle" font-size="18.88" fill="#57534e">whole codebase</text>
-  <line x1="850" y1="346" x2="850" y2="324" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#mg-ah-churn)"/>
-  <text x="862" y="340" font-size="18.88" font-style="italic" fill="#b23b3b">forces</text>
+  <!-- ================= RUNG 2 · QA ================= -->
+  <rect x="30" y="524" width="1034" height="140" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="46" y="552" font-size="19" font-weight="700" fill="#1c1917">2 · QA</text>
+  <text x="46" y="574" font-size="14.5" font-style="italic" fill="#9a3f12">evaluation delegated before authority</text>
+  <line x1="160" y1="584" x2="1050" y2="584" stroke="#c8d3de" stroke-width="1.2"/>
+  <text x="316" y="612" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">generation + a second</text>
+  <text x="316" y="634" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">agent's audit</text>
+  <text x="628" y="612" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">a probabilistic reviewer</text>
+  <text x="628" y="634" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">(episodic, advisory)</text>
+  <text x="948" y="612" text-anchor="middle" font-size="16.5" fill="#57534e">adjudicate findings ·</text>
+  <text x="948" y="634" text-anchor="middle" font-size="16.5" fill="#57534e">admit the change</text>
+  <rect x="1022" y="596" width="38" height="96" rx="3" fill="#b23b3b" opacity="0.9"/>
 
-  <!-- ===== rung 4 · Tech Lead ===== -->
-  <rect x="703" y="170" width="228" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="817" y="204" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">4 · Tech Lead</text>
-  <text x="817" y="232" text-anchor="middle" font-size="18.88" fill="#57534e">the code is partitioned</text>
-  <text x="817" y="254" text-anchor="middle" font-size="18.88" fill="#57534e">into named zones. An</text>
-  <text x="817" y="276" text-anchor="middle" font-size="17.88" fill="#57534e">agent reasons inside one,</text>
-  <text x="817" y="298" text-anchor="middle" font-size="18.88" fill="#57534e">fenced from the rest</text>
+  <!-- ================= RUNG 1 · Co-coder (base, bottom) ================= -->
+  <rect x="30" y="678" width="1034" height="150" rx="10" fill="#eef1f4" stroke="#2f5169" stroke-width="2"/>
+  <text x="46" y="706" font-size="19" font-weight="700" fill="#1c1917">1 · Co-coder</text>
+  <text x="46" y="728" font-size="14.5" font-style="italic" fill="#9a3f12">direct human inspection carries everything</text>
+  <line x1="160" y1="738" x2="1050" y2="738" stroke="#c8d3de" stroke-width="1.2"/>
+  <text x="316" y="774" text-anchor="middle" font-size="16.5" fill="#2f5169" font-weight="600">code generation</text>
+  <text x="628" y="763" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">nothing durable beyond</text>
+  <text x="628" y="785" text-anchor="middle" font-size="16.5" fill="#1f7a4d" font-weight="600">an ordinary repository</text>
+  <text x="948" y="763" text-anchor="middle" font-size="16.5" fill="#57534e">read every diff · hold the</text>
+  <text x="948" y="785" text-anchor="middle" font-size="16.5" fill="#57534e">map · admit the change</text>
+  <rect x="1010" y="690" width="50" height="126" rx="3" fill="#b23b3b" opacity="0.9"/>
 
-  <!-- shortcoming 4 -->
-  <line x1="935" y1="270" x2="954" y2="270" stroke="#1c1917" stroke-width="2.5" marker-end="url(#mg-ah)"/>
-  <rect x="958" y="230" width="205" height="134" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
-  <text x="1060" y="256" text-anchor="middle" font-size="18.88" font-style="italic" font-weight="600" fill="#b23b3b">the shortcoming</text>
-  <text x="1060" y="280" text-anchor="middle" font-size="18.88" fill="#57534e">hardcoded facts rot;</text>
-  <text x="1060" y="300" text-anchor="middle" font-size="18.88" fill="#57534e">the growing set of</text>
-  <text x="1060" y="320" text-anchor="middle" font-size="18.88" fill="#57534e">models drifts into</text>
-  <text x="1060" y="340" text-anchor="middle" font-size="18.88" fill="#57534e">stale ghosts</text>
-  <line x1="1060" y1="226" x2="1060" y2="204" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#mg-ah-churn)"/>
-  <text x="1072" y="220" font-size="18.88" font-style="italic" fill="#b23b3b">forces</text>
-
-  <!-- ===== rung 5 · Architect — the summit ===== -->
-  <rect x="934" y="6" width="228" height="194" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="1048" y="40" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">5 · Architect</text>
-  <text x="1048" y="66" text-anchor="middle" font-size="18.48" fill="#57534e">the system is committed</text>
-  <text x="1048" y="88" text-anchor="middle" font-size="18.88" fill="#57534e">to explicit models, one</text>
-  <text x="1048" y="110" text-anchor="middle" font-size="18.88" fill="#57534e">view per property, held</text>
-  <text x="1048" y="132" text-anchor="middle" font-size="18.88" fill="#57534e">honest by a traceability</text>
-  <text x="1048" y="154" text-anchor="middle" font-size="18.88" fill="#57534e">substrate</text>
-  <text x="1048" y="182" text-anchor="middle" font-size="18.19" font-weight="700" fill="#9a3f12">together they are MAGE</text>
-</svg><figcaption data-short="The MAGE Staircase"><span class="fig-label">Figure 5.3-6.</span> <em>The MAGE Staircase.</em> Five rungs, each a job the one below could no longer do, and each safe to climb only because the step under it first minted the control the next would need. Co-coder: one human reviews every line, until volume outruns him. QA: an agent audits the work, until one generalist reviewer cannot rank or localize. Review lead: a crew of specialists runs per region. Tech lead: named zones let an agent reason locally, fenced by a boundary lint. Architect: the system is committed to explicit models the fleet reasons through, held honest by a traceability substrate — that is MAGE. The ladder runs in reverse the moment governance misses what a delegation dropped.</figcaption></figure>
-<h2><span class="sec-num">5.3.5</span> Delegation climbed as far as the controls carried it</h2>
-<p>The method that began with a human reading every line arrived at a system that models its own structure and dispatches work to close the gaps it finds. Nothing on the climb was planned. Each rung was demanded by a load the rung below could no longer carry, and each was safe to climb only because a control first caught what the delegation dropped. <strong>Delegation climbed exactly as far as the controls could carry it. The governed engineering environment is the accumulated structure that made successive delegation safe</strong> — the models, the controls, and the query surface grown until the apparatus outweighed the product it guards.</p>
-<p>None of it was drawn first and built to match. The clean version of MAGE — the one Parts II through IV teach — tells you what to do. This chapter tells you what it feels like before you know what to do, and why the method exists at all.</p>
-<p>This book opened on one diagram — <a href="0.1-the-mage-method-at-a-glance.html">The MAGE Method at a Glance</a> — that named every part before the argument had earned it. Each box is now a real thing in a system that ships: the fleet that prints code faster than anyone reads it, the explicit models it reasons through, every probabilistic part sealed in a bounded and validated call, and the controls minted one failure at a time. The case study was the evidence; whether the method transfers is the question <a href="6.1-toward-a-theory-of-mage.html">Part 6</a> takes up.</p><section class="works-cited" aria-labelledby="wc-5-3-the-road-to-mage-h"><h2 id="wc-5-3-the-road-to-mage-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-5-3-the-road-to-mage-1">Ringer, Talia, Karl Palmskog, Ilya Sergey, Milos Gligoric, and Zachary Tatlock. “QED at Large: A Survey of Engineering of Formally Verified Software.” <em>Foundations and Trends in Programming Languages</em> 5, nos. 2–3 (2019): 102–281. <a href="https://arxiv.org/abs/2003.06458">https://arxiv.org/abs/2003.06458</a>.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">« Beginning of part</a><a href="5.2-the-build.html" aria-label="Previous chapter — 24 · The Build">« Previous chapter</a></div><span class="chapnav-here" title="25 · The Road to MAGE">25 · The Road to MAGE</span><div class="chapnav-fwd"><a href="5.4-failures-that-became-infrastructure.html" aria-label="Next chapter — 26 · Failures That Became Infrastructure">Next chapter »</a><a href="part-6-intro.html" aria-label="Next part — Part 6 — The Profession">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+  <!-- footer legend: two supports + residual band -->
+  <line x1="30" y1="856" x2="1064" y2="856" stroke="#d6cfc6" stroke-width="1.5"/>
+  <rect x="30" y="874" width="20" height="20" rx="3" fill="#1f7a4d"/>
+  <text x="58" y="889" font-size="14.5" fill="#1c1917">The environment absorbs two kinds of work — <tspan font-weight="700" fill="#1f7a4d">representation</tspan> (Modeling) and <tspan font-weight="700" fill="#9a3f12">authority</tspan> (Alignment).</text>
+  <rect x="30" y="906" width="20" height="20" rx="3" fill="#b23b3b" opacity="0.9"/>
+  <text x="58" y="921" font-size="14.5" fill="#1c1917"><tspan font-weight="700" fill="#b23b3b">Residual human judgment</tspan> narrows up the climb — the tactical burden shrinks; it does not vanish.</text>
+</svg><figcaption data-short="The Delegation Staircase"><span class="fig-label">Figure 5.3-4.</span> <em>The Delegation Staircase.</em> Delegation increased as the engineering environment absorbed two kinds of work previously carried by one human: system knowledge through explicit representation, and repeatable authority through controls. Human judgment moved toward system-level strategy and residual semantic gaps rather than vanishing. A failure in either representation or authority could push work back down the staircase.</figcaption></figure>
+<h2><span class="sec-num">5.3.5</span> Delegation climbed as far as the environment carried it</h2>
+<p>The project began with one human reading every line and ended with most implementation moving through an environment I primarily inspected through models, evidence, and exceptions. No rung was planned as a stage of MAGE. Each appeared when the current division of labor stopped scaling: direct review became a queue; generalist audit became noise; finite-context reviewers needed bounded regions; hardcoded architectural knowledge rotted; explicit models themselves then created a drift problem that required traceability.</p>
+<p>The important result is not that the staircase always climbs. It is that delegation depends on what the surrounding engineering system can carry. <strong>Representation determines which larger questions no longer require reconstruction. Authority determines which repeatable obligations no longer require human admission. Human judgment fills the remaining gap.</strong> When one of those supports fails, the operator is pulled back into tactical work.</p>
+<p>Parts II–IV present the clean method that can now be taught directly. The case shows why those pieces exist and why they did not arrive as one package. The next chapter gets still closer to the source: individual failures and the durable assets they left behind.</p><section class="works-cited" aria-labelledby="wc-5-3-the-road-to-mage-h"><h2 id="wc-5-3-the-road-to-mage-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-5-3-the-road-to-mage-1">Ringer, Talia, Karl Palmskog, Ilya Sergey, Milos Gligoric, and Zachary Tatlock. “QED at Large: A Survey of Engineering of Formally Verified Software.” <em>Foundations and Trends in Programming Languages</em> 5, nos. 2–3 (2019): 102–281. <a href="https://arxiv.org/abs/2003.06458">https://arxiv.org/abs/2003.06458</a>.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">« Beginning of part</a><a href="5.2-the-build.html" aria-label="Previous chapter — 24 · The Build">« Previous chapter</a></div><span class="chapnav-here" title="25 · The Road to MAGE">25 · The Road to MAGE</span><div class="chapnav-fwd"><a href="5.4-failures-that-became-infrastructure.html" aria-label="Next chapter — 26 · Failures That Became Infrastructure">Next chapter »</a><a href="part-6-intro.html" aria-label="Next part — Part 6 — The Profession">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

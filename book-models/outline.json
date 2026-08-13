@@ -7,7 +7,7 @@
     "derived_ids": 213,
     "missing_topic_sentence": 7,
     "sections_drained": 131,
-    "paragraph_points": 438
+    "paragraph_points": 439
   },
   "chapters": [
     {
@@ -3452,181 +3452,186 @@
           "heading_text": "What ultimately got built",
           "topic_sentence": "A user uploads a file.",
           "id_source": "derived",
-          "block_index": 3,
+          "block_index": 5,
           "points": [
             {
               "slug": "system-remediates-end-to-end",
-              "text": "One upload flows through six responsibilities to a stamped result.",
-              "block_index": 5
+              "text": "One upload crosses six product responsibilities and returns with standards findings, fidelity evidence, and provenance.",
+              "block_index": 7
             },
             {
-              "slug": "apparatus-outweighs-the-product",
-              "text": "The support apparatus dwarfs the product and carries the review no human can.",
-              "block_index": 9
+              "slug": "the-environment-around-the-product",
+              "text": "The larger engineering environment around the product path contains the models, tests, and machinery that made this degree of delegation possible.",
+              "block_index": 10
             }
           ]
         },
         {
-          "section_id": "llm-as-function-call",
+          "section_id": "model-as-bounded-subroutine",
           "level": 2,
-          "heading_text": "The LLM as a function call",
-          "topic_sentence": "A foundation model is a probabilistic component.",
+          "heading_text": "The model as a bounded subroutine",
+          "topic_sentence": "DocAble uses frontier models where the task genuinely requires probabilistic interpretation, but it does not let that component own the workflow around itself.",
           "id_source": "explicit",
-          "block_index": 11,
+          "block_index": 12,
           "points": [
             {
-              "slug": "model-is-a-probabilistic-component",
-              "text": "A model is probabilistic; you build reliability out of an unreliable part.",
-              "block_index": 13
+              "slug": "model-is-a-bounded-subroutine",
+              "text": "Deterministic code decides when interpretation is needed, packages a bounded input, requires a typed output, and evaluates the candidate before incorporating it.",
+              "block_index": 14
             },
             {
-              "slug": "treat-the-model-as-a-typed-call",
-              "text": "Treat the model as a typed function call the workflow owns.",
-              "block_index": 15
+              "slug": "the-answer-is-a-candidate-not-a-verdict",
+              "text": "The model's answer is a candidate; the trust boundary is only as strong as the obligations the validator can actually evaluate, and semantic residuals remain probabilistic or human.",
+              "block_index": 16
             },
             {
-              "slug": "agents-are-the-same-wrapped-component",
-              "text": "The coding agents are the same probabilistic component, wrapped the same way.",
+              "slug": "proof-checking-analogy-is-useful-but-limited",
+              "text": "The analogy to proof checking is useful but limited: the validator is not a proof kernel; its value is that the producing component does not define success for itself.",
               "block_index": 18
+            },
+            {
+              "slug": "agents-are-the-same-boundary-at-a-larger-grain",
+              "text": "The coding agents pose the same trust-boundary problem at a larger grain, but the full MAGE response adds more than typed I/O.",
+              "block_index": 21
             }
           ]
         },
         {
-          "section_id": "places-the-same-idea-surfaced",
+          "section_id": "some-structure-banked-options-some-was-forced-by-failure",
           "level": 2,
-          "heading_text": "Places the same idea surfaced",
-          "topic_sentence": "The system carries that discipline in more than one place.",
+          "heading_text": "Some structure banked options; some was forced by failure",
+          "topic_sentence": "Not every consequential structure was born from failure.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 23,
           "points": [
             {
-              "slug": "the-move-recurs",
-              "text": "The boundary-then-authority move recurs; three seams surfaced as design, two a failure forced.",
-              "block_index": 22
+              "slug": "not-every-structure-was-born-from-failure",
+              "text": "Some consequential structure banked an option it was never built for; these are dividends of prior structure, not evidence every abstraction must be bought by an incident.",
+              "block_index": 25
             },
             {
-              "slug": "reactive-seam-banked-serverless",
-              "text": "A reactive, stateless seam made serverless a deployment change, not a rewrite.",
-              "block_index": 24
-            },
-            {
-              "slug": "closed-edit-language-one-boundary",
-              "text": "One closed edit language gives human and pipeline the same governable surface.",
+              "slug": "other-seams-begin-with-a-failure",
+              "text": "Other seams begin with a concrete failure and let us trace the response in layers; the finished boundary hides the sequence that produced it.",
               "block_index": 27
-            },
-            {
-              "slug": "two-seams-a-failure-forced",
-              "text": "Two more seams arrived not by design but under pressure, and the built order is the lesson.",
-              "block_index": 30
             },
             {
               "slug": "a-convenient-call-silently-corrupted-the-product",
               "text": "A convenient one-line call stripped the accessibility structure the product exists to add, and nothing caught it.",
-              "block_index": 32
+              "block_index": 29
             },
             {
               "slug": "the-format-seam-hardened-in-layers",
-              "text": "The seam hardened in layers, and the sharpest was the enforcement itself mis-reporting green.",
+              "text": "The response came in layers, and the sharpest was the enforcement itself mis-reporting green; the model stated the boundary, the API and check gave it authority, and the authority still had to be maintained.",
+              "block_index": 31
+            },
+            {
+              "slug": "a-protection-boundary-works-only-over-the-paths-that-cross-it",
+              "text": "A file path crossed a service boundary; a typed client made the mistake unrepresentable, and a human review found a bypass the tests missed — a boundary works only over the paths that actually cross it.",
               "block_index": 34
-            },
-            {
-              "slug": "a-path-crossed-a-boundary-that-did-not-share-it",
-              "text": "A caller handed another service a file path from its own world; a typed client made that mistake unrepresentable, and a reviewer caught the bypass the tests missed.",
-              "block_index": 37
-            },
-            {
-              "slug": "same-principle-materialized",
-              "text": "These seams are one move: represent the boundary, then put authority on it.",
-              "block_index": 39
             }
           ]
         },
         {
-          "section_id": "the-staircase",
+          "section_id": "the-delegation-staircase",
           "level": 2,
-          "heading_text": "The staircase",
-          "topic_sentence": "MAGE was never designed on a whiteboard.",
+          "heading_text": "The delegation staircase",
+          "topic_sentence": "MAGE was not designed as a five-rung organization chart.",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 36,
           "points": [
             {
-              "slug": "mage-was-demanded-not-designed",
-              "text": "MAGE accreted rung by rung as each quality mechanism stopped scaling.",
-              "block_index": 43
+              "slug": "mage-was-not-designed-as-an-org-chart",
+              "text": "The five rung labels are retrospective names for the changing center of gravity of my own work, not a career ladder.",
+              "block_index": 38
             },
             {
-              "slug": "delegation-climbs-with-the-controls",
-              "text": "Delegation climbs exactly as far as the controls carry it.",
-              "block_index": 45
+              "slug": "the-staircase-has-two-interacting-supports",
+              "text": "Alignment moved repeatable authority out of direct human review; Modeling moved system knowledge out of my head; human judgment moved toward the gaps the environment could not yet represent or decide.",
+              "block_index": 40
+            },
+            {
+              "slug": "delegation-climbed-as-far-as-the-environment-could-carry-it",
+              "text": "Delegation climbed as far as the engineering environment could carry it; when representation or authority was too weak, the operator fell back into tactical work.",
+              "block_index": 42
             },
             {
               "slug": "rung-co-coder",
-              "text": "Human review is the quality mechanism; it fails at agent volume.",
-              "block_index": 47
+              "text": "Direct human inspection carried everything; it failed as an operating model once generation outran review.",
+              "block_index": 44
             },
             {
               "slug": "rung-qa",
-              "text": "Delegate review to an agent; it fails because an audit is the weakest control.",
-              "block_index": 49
+              "text": "Evaluation was delegated before authority was; the audit's value was diagnostic, and its decidable findings revealed questions that no longer needed a language model.",
+              "block_index": 46
             },
             {
               "slug": "rung-review-lead",
-              "text": "Specialize the audits and determinize the repeatable findings into lints.",
-              "block_index": 51
+              "text": "Judgment was specialized and the decidable residue dropped into machinery; the probabilistic reviewers kept the questions the checks could not settle.",
+              "block_index": 48
             },
             {
               "slug": "rung-tech-lead",
-              "text": "Finite-context agents cannot hold the system; named zones externalize architecture.",
-              "block_index": 53
+              "text": "Representation made reasoning local; named zones externalized ownership so an agent could reason inside one region, and selected rules over the zone model received authority.",
+              "block_index": 50
             },
             {
               "slug": "rung-architect",
-              "text": "Zones become executable models the fleet reasons through, held honest by traceability.",
+              "text": "Explicit models carried system-level knowledge; declaration did not make them true, so model drift became its own failure class answered by traceability.",
+              "block_index": 52
+            },
+            {
+              "slug": "the-incident-represented-a-class",
+              "text": "A later audit showed the incident was a class, not a one-off; mechanical correspondence checks retired a recurring class of stale-reference failure.",
               "block_index": 55
             },
             {
-              "slug": "drift-floor-held-under-load",
-              "text": "A later measurement turned the drift note from a story into a result: the derived floor retired the silent-drift class under heavy churn.",
-              "block_index": 58
+              "slug": "modeling-found-real-bugs",
+              "text": "Forcing an engineering relation into an explicit representation creates new questions the environment can ask; in three cases those questions exposed shipping defects green tests had missed.",
+              "block_index": 57
             },
             {
-              "slug": "modeling-found-real-bugs",
-              "text": "Modeling exposed live defects that green tests had missed.",
+              "slug": "staircase-figure",
+              "text": "The staircase shows delegation increasing as the environment absorbed two kinds of work; human judgment moved toward strategy and residual semantics rather than vanishing.",
               "block_index": 60
             }
           ]
         },
         {
-          "section_id": "delegation-climbed-as-far-as-the-controls-carried-it",
+          "section_id": "delegation-climbed-as-far-as-the-environment-carried-it",
           "level": 2,
-          "heading_text": "Delegation climbed as far as the controls carried it",
-          "topic_sentence": "The method that began with a human reading every line arrived at a system that models its own structure and dispatches work to close the gaps it finds.",
+          "heading_text": "Delegation climbed as far as the environment carried it",
+          "topic_sentence": "The project began with one human reading every line and ended with most implementation moving through an environment I primarily inspected through models, evidence, and exceptions.",
           "id_source": "derived",
-          "block_index": 65,
+          "block_index": 63,
           "points": [
             {
-              "slug": "gee-is-the-accumulated-structure",
-              "text": "The GEE is the accumulated structure that made successive delegation safe.",
+              "slug": "no-rung-was-planned-as-a-stage-of-mage",
+              "text": "The project began with one human reading every line and ended with most implementation moving through an environment inspected through models, evidence, and exceptions; no rung was planned.",
+              "block_index": 65
+            },
+            {
+              "slug": "delegation-depends-on-what-the-environment-can-carry",
+              "text": "Representation determines which larger questions no longer require reconstruction; authority determines which repeatable obligations no longer require human admission; human judgment fills the remaining gap.",
               "block_index": 67
             },
             {
-              "slug": "the-messy-version-is-why-the-method-exists",
-              "text": "The clean method tells you what to do; this history tells you what it feels like before you know, and why the method exists.",
+              "slug": "the-case-shows-why-the-pieces-exist",
+              "text": "Parts II–IV present the clean method; the case shows why those pieces exist and why they did not arrive as one package.",
               "block_index": 69
-            },
-            {
-              "slug": "frontispiece-boxes-now-real",
-              "text": "The opening diagram's boxes now point to concrete artifacts in the case.",
-              "block_index": 71
             }
           ]
         }
       ],
       "preamble_points": [
         {
-          "slug": "chapter-joins-built-and-derived",
-          "text": "The build produced a system; the staircase shows how the method was forced out of it.",
+          "slug": "chapter-asks-what-changed-in-the-division-of-labor",
+          "text": "The Build gave chronology; this chapter asks what changed in the division of engineering labor, and reconstructs the delegation staircase.",
           "block_index": 1
+        },
+        {
+          "slug": "a-snapshot-makes-architecture-look-inevitable",
+          "text": "A snapshot makes architecture look inevitable; the history shows which structures were designed, forced, or hardened, and what each let the engineer stop doing by hand.",
+          "block_index": 3
         }
       ]
     },
