@@ -3762,7 +3762,7 @@ def _appendix_contents_md(ordered: list[dict]) -> str:
 # TOC/index group and — in the PDF — its own bookmark-parent divider page.
 _APPENDICES_DIVIDER_SLUG = "appendices-front-door"
 _APPENDICES_DIVIDER_TITLE = "Appendices"
-_APPENDICES_DIVIDER_SUBTITLE = "The Working Surface of MAGE"
+_APPENDICES_DIVIDER_SUBTITLE = "The Working References"
 
 
 def _appendices_divider_record(part: int) -> dict:
@@ -6740,7 +6740,7 @@ def build() -> int:
         # The browser-tab <title>: MAGE-branded, and de-doubled. For matter/divider pages the num_label IS
         # the chapter_title ("Preface"), so the naive `{num_label} · {chapter_title}` join printed "Preface ·
         # Preface"; collapse that to the single label. The divider keeps its mode-marker title, which already
-        # names MAGE ("Appendices — The Working Surface of MAGE"); every other page ends "— MAGE".
+        # names MAGE ("Appendices — The Working References"); every other page ends "— MAGE".
         if c.get("is_appendix_divider"):
             page_title = f'{_APPENDICES_DIVIDER_TITLE} — {_APPENDICES_DIVIDER_SUBTITLE}'
         else:

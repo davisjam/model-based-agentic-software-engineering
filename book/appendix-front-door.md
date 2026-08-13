@@ -1,25 +1,24 @@
-The argument ends here. What follows is the working surface of MAGE — the reference material you return to while building rather than read sequentially. These appendices package the book's ideas for repeated use: engineering stacks, engineering moves, model and operational references, implementation guidance. Like the Gang of Four, consult them when a problem arises; you need not read them cover to cover.
+The argument is over. What follows is the book's working apparatus.
 
-The map below shows how the parts fit, with the appendices as the working surface at its foot.
+The appendices do not add another layer to MAGE, and they are not meant to be read straight through. They preserve several different things that are useful after the method is understood: compositions you can adapt, worked problem–solution moves, technical model details, operating surfaces, construction guidance, external cases, and the empirical receipts behind the originating case.
 
-<!-- label: book-map-appendix -->
-<!-- figure: assets/book-map.svg | A map of the book. The appendices are the working surface at the foot of it — return here while building. -->
-
-[ref:where-to-look] sets each reference beside the job it does and the question that sends you to it.
+Start from the question in front of you.
 
 <!-- label: where-to-look -->
-<!-- table: The MAGE reference surfaces — each appendix and the online catalogue beside the job it does and the question that sends you to it. [short: The MAGE reference surfaces, their jobs, and the questions they answer] -->
-| Reference | What it's for | Reach here when you're asking |
-|---|---|---|
-| [appendix: appendix-stacks] — MAGE Engineering Stacks | Compose a capability from the mechanisms that travel together | *How should I build this capability?* |
-| [appendix: appendix-b-engineering-moves] — Engineering Moves | Worked examples: one recurring problem, one move, two realizations | *How does this judgment transfer?* |
-| [appendix: appendix-models] — Model Reference | The representative forms a model takes, with schemas and invariants | *What does this model look like?* |
-| [appendix: appendix-operators-reference] — Operator's Reference | Operate a governed environment: dashboards, health checks, the migration drill, release preflight, daily doctrine | *What should I watch or do while running the system?* |
-| [appendix: appendix-skill-recipe] — How to Write a Skill | Package a body of judgment into a skill an agent can reach for | *How do I build a skill?* |
-| [appendix: appendix-field-guide] — Field Guide | The six studied teams as one-page cards: who each is, the door it took into the design space, and the one lesson to carry | *Who was that team again?* |
-| [appendix: appendix-evidence-ledger] — Part-V Evidence Ledger | The raw count tables behind Part V's curves: support-ratio lines, per-path churn, control-growth totals | *What are the counts behind that curve?* |
-| *Online catalogue* | The complete reference for one mechanism — every entry as a full Gang-of-Four page | *How do I implement this mechanism?* |
+<!-- table: The MAGE working references — each appendix beside the question that sends you to it. [short: The MAGE working references and the questions they answer] -->
 
-**Working the appendices together.** The first three appendices read best in sequence, from the capability you want down to the detail you ship. Start in [appendix: appendix-stacks] with the stack that delivers the capability and the mechanisms that compose it; study in [appendix: appendix-b-engineering-moves] how one engineering move takes different forms; keep [appendix: appendix-models] open for the model schemas while you implement. When print runs out of room, the online catalogue carries the complete entry.
+| If you are asking… | Go to |
+|---|---|
+| How do several mechanisms compose into a useful engineering capability? | [appendix: appendix-stacks] — Engineering Stacks |
+| I've seen this problem before. What engineering move might travel? | [appendix: appendix-b-engineering-moves] — Engineering Moves |
+| What exactly does one of the book's teaching models contain or guarantee? | [appendix: appendix-models] — Model Reference |
+| What should I inspect or do while operating a governed engineering environment? | [appendix: appendix-operators-reference] — Operator's Reference |
+| How do I externalize a body of engineering judgment as a mastery-skill? | [appendix: appendix-skill-recipe] — How to Write a Skill |
+| What was that external organization doing, and how does MAGE read it? | [appendix: appendix-field-guide] — Field Guide |
+| What measurements support that DocAble claim? | [appendix: appendix-evidence-ledger] — Evidence Ledger |
 
-**The book and the online catalogue.** The book teaches the method and the engineering judgment behind MAGE — why the mechanisms take the shapes they do, and how they compose. The online catalogue is the exhaustive per-mechanism record: every mechanism as a full Gang-of-Four entry, with the implementation detail that does not fit in print.
+These references operate at different grains. Stacks compose mechanisms into capabilities. Moves expose transferable engineering judgment through unlike realizations. The Model Reference supplies technical depth for the representations used in the main text. The Operator's Reference and Skill appendix turn selected parts of the method into working artifacts. The Field Guide and Evidence Ledger preserve two different evidentiary views: independent practice outside DocAble and measurements inside it.
+
+The online MAGE Mechanism Catalog carries the material print is deliberately leaving out: the complete living repertoire of mechanisms, implementation variants, current substrate notes, and deeper case realizations.
+
+Use the book for the method and the engineering judgment. Use the catalogue when you need the machinery.
