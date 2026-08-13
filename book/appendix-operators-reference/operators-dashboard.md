@@ -12,7 +12,7 @@ single loop iteration, read this to steer or grade the whole program.
 | Metric | Mode | What it counts | When to watch | Healthy direction | Defined in |
 |---|---|---|---|---|---|
 | **Formative — measured during the work, to steer the next step** | | | | | |
-| **Missing-Model Metric** | formative | Fraction of tests whose exercised code traces to no model claim — the unmodelled surface — plus its drain curve. | After each model-loop Epic; steer the next at the biggest orphan cluster. | Drains toward 10%-or-under (56% to 7.89% over nine re-runs). | [4.4](4.4-operating-mage.html#mmm-drain) |
+| **Missing-Model Metric** | formative | Fraction of tests whose exercised code traces to no model claim — the unmodelled surface — plus its drain curve. | After each model-loop Epic; steer the next at the biggest orphan cluster. | Drains toward 10%-or-under (56% to 7.89% over nine re-runs). | [4.4](4.4-operating-mage.html) |
 | **Velocity** | formative | Commits per week. | Watch the dip where velocity buys hardening. | Roughly linear; a hardening dip is expected, not alarming. | [5.2](5.2-the-build.html#velocity) |
 | **Churn** | formative | Lines added and deleted per week per path. | Reads which build phase you are in. | Peaks at mechanization, then collapses as the environment stabilizes. | [5.2](5.2-the-build.html#churn) |
 | **Model-sync efficacy** | formative | Whether the drift and parity gates keep model equal to code. | Watch that map-equals-territory holds. | Gates stay green. | [5.3](5.3-the-road-to-mage.html) |

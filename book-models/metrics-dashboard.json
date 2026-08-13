@@ -20,7 +20,7 @@
       "counts": "Fraction of tests whose exercised code traces to no model claim — the unmodelled surface — plus its drain curve.",
       "informs": "After each model-loop Epic; steer the next at the biggest orphan cluster.",
       "healthy_direction": "Drains toward 10%-or-under (56% to 7.89% over nine re-runs).",
-      "defined_in": { "label": "operating-mage", "anchor": "mmm-drain" },
+      "defined_in": { "label": "operating-mage", "anchor": "" },
       "mode": "formative",
       "rationale": "Formative: you run the tracer after each model-loop Epic and aim the next Epic at the orphan cluster it surfaces. Feedback that shapes the next step, not a verdict."
     },
