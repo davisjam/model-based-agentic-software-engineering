@@ -5189,16 +5189,6 @@
         }
       ]
     },
-    "section-id:a-map-of-domains": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.2-scope-conditions::a-map-of-domains",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:a-picture-is-not-enough": {
       "kind": "section-id",
       "dependents": [
@@ -7234,22 +7224,32 @@
         }
       ]
     },
-    "section-id:two-gates": {
+    "section-id:two-tests-and-one-organizational-condition": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "6.2-scope-conditions::two-gates",
+          "element": "6.2-scope-conditions::two-tests-and-one-organizational-condition",
           "role": "section-anchor"
         }
       ]
     },
-    "section-id:two-ways-the-theory-runs-out": {
+    "section-id:two-ways-an-investment-fails": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "6.2-scope-conditions::two-ways-the-theory-runs-out",
+          "element": "6.2-scope-conditions::two-ways-an-investment-fails",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:typical-profiles-not-domain-verdicts": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.2-scope-conditions::typical-profiles-not-domain-verdicts",
           "role": "section-anchor"
         }
       ]
@@ -7374,16 +7374,6 @@
         }
       ]
     },
-    "section-id:what-one-case-can-bound": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.2-scope-conditions::what-one-case-can-bound",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:what-should-we-teach": {
       "kind": "section-id",
       "dependents": [
@@ -7410,6 +7400,16 @@
         {
           "view": "outline",
           "element": "5.2-the-build::what-the-build-required",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:what-the-evidence-can-bound": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.2-scope-conditions::what-the-evidence-can-bound",
           "role": "section-anchor"
         }
       ]

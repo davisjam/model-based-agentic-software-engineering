@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1455,
+    "total_sites": 1452,
     "by_projection": {
       "book-pdf": 19,
-      "book-web": 1042,
+      "book-web": 1039,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -157,7 +157,7 @@
           },
           {
             "file": "book/6.2-scope-conditions.html",
-            "occ": 4
+            "occ": 2
           },
           {
             "file": "book/6.3-mage-in-the-wild.html",
@@ -1122,10 +1122,6 @@
             "occ": 50
           },
           {
-            "file": "book/6.2-scope-conditions.html",
-            "occ": 1
-          },
-          {
             "file": "book/6.4-reorganization-of-se.html",
             "occ": 2
           },
@@ -1201,7 +1197,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 27
+            "occ": 26
           }
         ]
       },
@@ -1288,10 +1284,6 @@
             "occ": 13
           },
           {
-            "file": "book/6.2-scope-conditions.html",
-            "occ": 1
-          },
-          {
             "file": "book/appendix-a-observe-react-stack.html",
             "occ": 2
           },
@@ -1319,7 +1311,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 8
+            "occ": 7
           }
         ]
       },
@@ -1525,7 +1517,7 @@
           },
           {
             "file": "book/6.2-scope-conditions.html",
-            "occ": 19
+            "occ": 14
           },
           {
             "file": "book/6.3-mage-in-the-wild.html",
@@ -2191,7 +2183,7 @@
           },
           {
             "file": "book/6.2-scope-conditions.html",
-            "occ": 6
+            "occ": 2
           },
           {
             "file": "book/6.3-mage-in-the-wild.html",
@@ -2919,7 +2911,7 @@
           },
           {
             "file": "book/6.2-scope-conditions.html",
-            "occ": 27
+            "occ": 21
           },
           {
             "file": "book/6.3-mage-in-the-wild.html",
@@ -5385,7 +5377,7 @@
           },
           {
             "file": "book/6.2-scope-conditions.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/6.3-mage-in-the-wild.html",
@@ -6070,10 +6062,6 @@
             "occ": 4
           },
           {
-            "file": "book/6.2-scope-conditions.html",
-            "occ": 1
-          },
-          {
             "file": "book/6.4-reorganization-of-se.html",
             "occ": 3
           },
@@ -6133,7 +6121,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 23
+            "occ": 22
           }
         ]
       },
