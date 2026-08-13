@@ -1,22 +1,25 @@
 <!-- part-foreshadows: seat-moves, govern-the-environment, mage-becomes-practical -->
-Coding agents do not eliminate engineering. They relocate it. This final Part follows where — stating
-the theory plainly, naming the scope conditions where it holds and where it breaks, and locating MAGE
-against the history of software engineering.
+Coding agents do not eliminate engineering. They change where engineering effort pays. Parts I–V moved
+from the changed economics of implementation through Modeling, Alignment, the working method, and the
+originating case. This final Part turns outward. It states the theory that those pieces imply, names the
+conditions under which it should and should not hold, and asks whether independent engineering practice
+exhibits the same structure.
+
+From there the argument becomes professional. If implementation is no longer the dominant cost, what
+happens to software engineering itself? The answer is both newer and older than the agent story suggests.
+The practice reorganizes around representation, evidence, authority, and judgment, while the discipline
+moves toward an arrangement familiar from older engineering fields: engineers reason through models and
+analyses, delegate realization, and remain answerable for the result. The final chapters ask what that
+change means for professional competence, education, and research—and what still belongs to the engineer
+when implementation no longer does.
 
 <!-- thesisbox -->
 > ### PROFESSIONAL THESIS
 >
-> As implementation becomes abundant, engineering moves upward.
+> As implementation becomes abundant, the economics of engineering change.
 >
-> The engineer increasingly authors models, designs governed environments, and accumulates
-> engineering capital.
+> Engineering effort shifts toward representation, evidence, authority, and judgment: the work of
+> designing and maintaining the environment through which autonomous implementation proceeds.
 
-These chapters ask what survives once the method and its case are behind us. They state the theory
-plainly and name where it holds, then trace how software engineering reorganizes around it — and how,
-in reorganizing, the discipline rejoins the older engineering fields that always built from models.
-
-The industrial organizations return there as comparative analysis rather than as the Field Guide
-([appendix: appendix-field-guide]) — the question shifts from what you can learn from an organization to
-what pattern it instantiates. From that evidence the argument turns to the profession itself: the
-education, the research, and the open problems that a world of abundant implementation leaves unsettled.
-The question is no longer whether agents can write code. The question is what engineers should do next.
+<!-- new-here -->
+**New here:** Professional Thesis · Determinization frontier · Representation engineering · Software rejoins engineering
