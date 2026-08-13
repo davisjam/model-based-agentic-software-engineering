@@ -394,8 +394,14 @@
     "assets/velocity-commits-per-week.svg": {
       "tier": "B",
       "kind": "data-chart",
+      "location": "appendix-evidence-ledger",
+      "rationale": "the velocity curve (re-homed to the Part-V evidence ledger, R46)"
+    },
+    "assets/build-stages-timeline.svg": {
+      "tier": "B",
+      "kind": "timeline",
       "location": "part5",
-      "rationale": "the velocity curve"
+      "rationale": "the seven build stages as pressure->consequence (replaces the retired seven-stage table, R46)"
     },
     "assets/phased-timeline.svg": {
       "tier": "B",
