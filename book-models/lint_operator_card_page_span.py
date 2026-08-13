@@ -76,27 +76,48 @@ def _card_page(pages: "list[str]", title: str, question: str) -> "int | None":
     return None
 
 
+def _physical_entries() -> "list[tuple[str, str, str]]":
+    """(slug, display-title, operator_question) for EVERY physical Appendix-D page in print order — the
+    card deck PLUS the non-card pages (the Operator's Dashboard, the Brownfield Migration Drill) — read
+    from the builder's page list, the single source of truth for physical order. A card's question comes
+    from operator-cards.json; a non-card page has none (empty string, so it is located by its heading title
+    alone). The heavy builder module is imported lazily, only when a span computation actually needs it."""
+    import sys  # noqa: local — the physical page list is the builder's SSOT; keep the import off module load
+    book_dir = os.path.join(ROOT, "book")
+    if book_dir not in sys.path:
+        sys.path.insert(0, book_dir)
+    import build_book  # noqa: E402 — imported here so the sensor module itself stays cheap to import
+    q_by_slug = {cid: q for cid, _t, q in _declared_cards()}
+    return [(slug, title, q_by_slug.get(slug, "")) for slug, title in build_book._OPERATORS_REFERENCE_PAGES]
+
+
 def findings(pdf_path: "str | None" = None) -> "list[tuple[str, int, int]]":
     """(card-id, start_page, end_page) for every card whose rendered span exceeds one page. A card's span
-    ends one page before the NEXT card's title page; the last card is bounded by the compile-time assert,
-    not here. Empty when the PDF is absent (nothing to sense)."""
+    ends one page before the NEXT PHYSICAL page in print order — card OR non-card — not merely the next
+    deck card. WHY physical, not card, adjacency: a card can be followed in the printed appendix by a
+    multi-page non-card section (the Brownfield Migration Drill runs several pages); the next *card* then
+    sits several pages later, and bounding by it would charge those non-card pages to the earlier card as a
+    false overflow. Bounding by the next physical page still catches a card that genuinely spills onto the
+    following page. The last physical entry is bounded by the compile-time assert, not here. Empty when the
+    PDF is absent (nothing to sense)."""
     pdf = pdf_path or _DEFAULT_PDF
     if not os.path.isfile(pdf):
         return []
     pages = _per_page_text(pdf)
-    cards = _declared_cards()
-    located = [(cid, _card_page(pages, title, q)) for cid, title, q in cards]
+    entries = _physical_entries()
+    card_ids = {cid for cid, _t, _q in _declared_cards()}
+    located = [(slug, _card_page(pages, title, q)) for slug, title, q in entries]
     out: "list[tuple[str, int, int]]" = []
-    for idx, (cid, start) in enumerate(located):
-        if start is None:
-            continue
-        # bound by the NEXT located card's title page
+    for idx, (slug, start) in enumerate(located):
+        if slug not in card_ids or start is None:
+            continue  # only cards overflow; non-card pages serve as bounds, never as subjects
+        # bound by the NEXT located PHYSICAL entry (card OR non-card)
         nxt = next((p for _, p in located[idx + 1:] if p is not None), None)
         if nxt is None:
-            continue  # last located card — compile-time assert owns portrait overflow
+            continue  # last physical entry — compile-time assert owns portrait overflow
         end = nxt - 1
         if end > start:
-            out.append((cid, start, end))
+            out.append((slug, start, end))
     return out
 
 
