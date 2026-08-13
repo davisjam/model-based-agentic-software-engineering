@@ -421,6 +421,12 @@
       "location": "part4",
       "rationale": "recurring procedure typed into deterministic / bounded-judgment / irreducible steps and their forms"
     },
+    "assets/event-reaction-fire.svg": {
+      "tier": "B",
+      "kind": "process-flow",
+      "location": "part4",
+      "rationale": "binding a reaction to a lifecycle event: deterministic firing whose payload splits execute / delegate / escalate"
+    },
     "assets/deliver-context-two-layer.svg": {
       "tier": "A",
       "kind": "conceptual",

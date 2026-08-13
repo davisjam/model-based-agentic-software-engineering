@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RB Part-IV figure — event-reaction-fire.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="1000" height="520"
+     role="img" aria-labelledby="erTitle erDesc"
+     font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title id="erTitle">Bind reactions to lifecycle events — the firing is deterministic while the payload still contains judgment.</title>
+  <desc id="erDesc">A neutral lifecycle box flows down through an observable event into a solid rust
+    deterministic-fire node: the reaction fires on the event with no actor needing to notice. From the fire the
+    flow fans into three branches distinguished by outline style. The left branch, a solid rust execute step,
+    carries a known action. The middle branch, a dashed blue delegate step, carries bounded judgment. The right
+    branch, a dotted dark escalate step, carries human judgment. The three converge into a dark next-lifecycle-state
+    box, and a dashed rust loop returns to the lifecycle so the next transition binds again. Outline style — solid,
+    dashed, dotted — encodes the three kinds of payload so the distinction survives in grayscale. The point: the
+    firing can be deterministic while the payload still contains judgment.</desc>
+
+  <defs>
+    <marker id="er-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="er-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+  </defs>
+
+  <!-- lifecycle (neutral) -->
+  <rect x="380" y="34" width="240" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="500" y="66" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">LIFECYCLE</text>
+  <line x1="500" y1="86" x2="500" y2="122" stroke="#57534e" stroke-width="2" marker-end="url(#er-ah)"/>
+  <text x="512" y="108" text-anchor="start" font-size="13" font-style="italic" fill="#57534e">observable event</text>
+
+  <!-- deterministic fire (governance rust, SOLID + emphasis = the firing is deterministic) -->
+  <rect x="360" y="124" width="280" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="500" y="150" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">DETERMINISTIC FIRE</text>
+  <text x="500" y="170" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">the reaction fires on the event</text>
+  <text x="652" y="157" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">no actor need notice</text>
+
+  <!-- fan to three branches -->
+  <path d="M500 182 C 410 205 300 206 220 222" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#er-ah)"/>
+  <line x1="500" y1="182" x2="500" y2="222" stroke="#57534e" stroke-width="2" marker-end="url(#er-ah)"/>
+  <path d="M500 182 C 590 205 700 206 780 222" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#er-ah)"/>
+
+  <!-- EXECUTE = solid rust (known action) -->
+  <rect x="90" y="226" width="250" height="70" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="215" y="258" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">EXECUTE</text>
+  <text x="215" y="280" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">known action</text>
+  <!-- DELEGATE = dashed blue (bounded judgment) -->
+  <rect x="375" y="226" width="250" height="70" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="500" y="258" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">DELEGATE</text>
+  <text x="500" y="280" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">bounded judgment</text>
+  <!-- ESCALATE = dotted dark (human judgment) -->
+  <rect x="660" y="226" width="250" height="70" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2" stroke-dasharray="2 4"/>
+  <text x="785" y="258" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">ESCALATE</text>
+  <text x="785" y="280" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">human judgment</text>
+
+  <!-- converge to next lifecycle state -->
+  <path d="M215 296 C 215 330 430 338 486 354" fill="none" stroke="#57534e" stroke-width="2"/>
+  <line x1="500" y1="296" x2="500" y2="354" stroke="#57534e" stroke-width="2"/>
+  <path d="M785 296 C 785 330 570 338 514 354" fill="none" stroke="#57534e" stroke-width="2"/>
+  <line x1="500" y1="354" x2="500" y2="388" stroke="#57534e" stroke-width="2" marker-end="url(#er-ah)"/>
+
+  <!-- next lifecycle state (dark terminal) -->
+  <rect x="360" y="390" width="280" height="62" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
+  <text x="500" y="418" text-anchor="middle" font-size="16" font-weight="700" fill="#fdfcf9">NEXT LIFECYCLE</text>
+  <text x="500" y="438" text-anchor="middle" font-size="16" font-weight="700" fill="#fdfcf9">STATE</text>
+
+  <!-- dashed rust loop: the lifecycle advances and the next transition binds again -->
+  <path d="M640 421 H 935 V 60 H 622" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#er-ah-rust)"/>
+  <text x="787" y="413" text-anchor="middle" font-size="12" font-style="italic" fill="#9a3f12">advances &#8594; the next transition binds again</text>
+
+  <!-- thesis tagline (two lines) -->
+  <text x="500" y="484" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">The firing is deterministic; the payload still contains judgment.</text>
+  <text x="500" y="504" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Automate the arrival of the decision procedure &#8212; not the decision.</text>
+</svg>
