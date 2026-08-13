@@ -169,6 +169,12 @@
       "location": "part6",
       "rationale": "where engineering effort moves across an unchanged lifecycle; R47 replacement for the SDLC-to-SELC figure"
     },
+    "assets/why-software-modeled.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "the three economic variables (physical realization / implementation labor / synchronization cost) and the change that moves them; R47 replacement for why-software-came-last"
+    },
     "assets/governance-census.svg": {
       "tier": "B",
       "kind": "conceptual-illustration",

@@ -4809,97 +4809,82 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="500" y="502" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Implementation shifts to the fleet; human effort concentrates in intent, abstraction, evidence, tradeoffs, and adaptation.</text>
   <text x="500" y="530" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Delegation changes the allocation of work, not the engineer's accountability for the system.</text>
-</svg><figcaption data-short="Where Engineering Effort Moves"><span class="fig-label">Figure 6.4-1.</span> <em>Where Engineering Effort Moves.</em> The lifecycle does not acquire a new set of phases. Implementation shifts disproportionately toward the fleet, while human effort concentrates in intent, abstraction, evidence, tradeoffs, and adaptation. The governed environment carries repeatable structure across all phases. Delegation changes the allocation of work across those phases, not the engineer's accountability for the resulting system or the judgment that acceptance still demands.</figcaption></figure><p class="gallery-source">From <a href="6.4-reorganization-of-se.html#fig-6-4-1">30 · The Reorganization of Software Engineering</a></p></section><hr><section class="gallery-item"><figure id="fig-6-5-1-fig-6-5-1" class="book-figure" data-label="why-software-came-last"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 940"
-     role="group" aria-labelledby="fig-6-5-1-wsclTitle fig-6-5-1-wsclDesc"
+</svg><figcaption data-short="Where Engineering Effort Moves"><span class="fig-label">Figure 6.4-1.</span> <em>Where Engineering Effort Moves.</em> The lifecycle does not acquire a new set of phases. Implementation shifts disproportionately toward the fleet, while human effort concentrates in intent, abstraction, evidence, tradeoffs, and adaptation. The governed environment carries repeatable structure across all phases. Delegation changes the allocation of work across those phases, not the engineer's accountability for the resulting system or the judgment that acceptance still demands.</figcaption></figure><p class="gallery-source">From <a href="6.4-reorganization-of-se.html#fig-6-4-1">30 · The Reorganization of Software Engineering</a></p></section><hr><section class="gallery-item"><figure id="fig-6-5-1-fig-6-5-1" class="book-figure" data-label="why-software-modeled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 546"
+     role="group" aria-labelledby="fig-6-5-1-wsmTitle fig-6-5-1-wsmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-6-5-1-wsclTitle">Why software came last: the model-maintenance economics that kept software out of
-    engineering, and the change that let it in</title>
-  <desc id="fig-6-5-1-wsclDesc">A comparison over two columns, older engineering versus software historically, on four
-    rows. Realization: expensive versus cheap. Artifact: changes slowly versus changes constantly. Model
-    upkeep: amortized versus standing labour. Result: model first versus model drift and thin models. In
-    older engineering, building was costly but the artifact changed slowly, so a model, once made, stayed
-    true and paid for itself. In software, building was cheap but the code changed constantly, so keeping a
-    model synchronized was permanent labour that never amortized, and models drifted or were kept thin. A
-    single downward chain then resolves the anomaly: commodity intelligence makes implementation cheap and
-    reconciliation cheap, so live models become viable, and software rejoins engineering.</desc>
+  <title id="fig-6-5-1-wsmTitle">Why software modeled differently: three economic variables, and the change that made
+    live models economical more often</title>
+  <desc id="fig-6-5-1-wsmDesc">A comparison across three columns. Older physical engineering: physical realization is
+    expensive and slow, a design representation is necessary before realization, and model maintenance is
+    amortized over expensive build and test cycles. Software historically: physical reproduction and
+    execution are cheap, implementation and change labor are expensive, the code is itself an executable
+    representation, and maintaining a secondary model is a standing synchronization cost. Commodity
+    intelligence: implementation labor falls, derivation and reconciliation cost falls, and more live
+    representations become economical. Software was never model-free; the economics simply favored thin
+    models. A downward arrow resolves the three columns to a single claim: software can work through models
+    more often.</desc>
 
   <defs>
-    <marker id="fig-6-5-1-wsclArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
+    <marker id="fig-6-5-1-wsmArrow" markerWidth="10" markerHeight="10" refX="7" refY="3.4"
             orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c1917"/>
+      <path d="M0,0 L8.5,3.4 L0,6.8 Z" fill="#1c1917"/>
     </marker>
   </defs>
 
   <!-- ============================= TITLE ============================= -->
-  <text x="460" y="46" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917"
-        letter-spacing="1.5">WHY SOFTWARE CAME LAST</text>
+  <text x="490" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917"
+        letter-spacing="1.2">WHY SOFTWARE MODELED DIFFERENTLY</text>
 
-  <!-- ===================== COMPARISON (two columns, four rows) ===================== -->
-  <!-- column headers -->
-  <text x="415" y="102" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">Older engineering</text>
-  <text x="745" y="102" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">Software, historically</text>
-  <!-- header underlines (2-point lines) -->
-  <line x1="316" y1="114" x2="514" y2="114" stroke="#57534e" stroke-width="1.5"/>
-  <line x1="636" y1="114" x2="854" y2="114" stroke="#57534e" stroke-width="1.5"/>
+  <!-- ===================== THREE COLUMNS ===================== -->
+  <!-- column frames -->
+  <rect x="24"  y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <rect x="344" y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <rect x="664" y="72" width="292" height="330" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
 
-  <!-- central divider between the two compared columns (2-point line) -->
-  <line x1="590" y1="130" x2="590" y2="378" stroke="#d6d3d1" stroke-width="1.5"/>
+  <!-- column A header — Older physical engineering -->
+  <text x="170" y="104" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">Older physical</text>
+  <text x="170" y="126" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">engineering</text>
+  <line x1="48" y1="140" x2="292" y2="140" stroke="#57534e" stroke-width="1.5"/>
+  <text x="44" y="176" font-size="15.5" fill="#1c1917">physical realization:</text>
+  <text x="58" y="196" font-size="15.5" font-weight="700" fill="#1c1917">expensive / slow</text>
+  <text x="44" y="232" font-size="15.5" fill="#1c1917">design representation:</text>
+  <text x="58" y="252" font-size="15.5" font-weight="700" fill="#1c1917">necessary before realization</text>
+  <text x="44" y="288" font-size="15.5" fill="#1c1917">model maintenance:</text>
+  <text x="58" y="308" font-size="15.5" font-weight="700" fill="#1c1917">amortized over</text>
+  <text x="58" y="328" font-size="15.5" font-weight="700" fill="#1c1917">expensive build / test cycles</text>
 
-  <!-- row 1: Realization -->
-  <text x="45" y="168" font-size="17" font-weight="700" fill="#1c1917">Realization</text>
-  <text x="415" y="168" text-anchor="middle" font-size="17" fill="#1c1917">expensive</text>
-  <text x="745" y="168" text-anchor="middle" font-size="17" fill="#1c1917">cheap</text>
-  <line x1="30" y1="196" x2="880" y2="196" stroke="#ece9e4" stroke-width="1"/>
+  <!-- column B header — Software historically -->
+  <text x="490" y="104" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">Software,</text>
+  <text x="490" y="126" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">historically</text>
+  <line x1="368" y1="140" x2="612" y2="140" stroke="#57534e" stroke-width="1.5"/>
+  <text x="364" y="170" font-size="15.5" fill="#1c1917">reproduction / execution:</text>
+  <text x="378" y="190" font-size="15.5" font-weight="700" fill="#1c1917">cheap</text>
+  <text x="364" y="222" font-size="15.5" fill="#1c1917">implementation / change labor:</text>
+  <text x="378" y="242" font-size="15.5" font-weight="700" fill="#1c1917">expensive</text>
+  <text x="364" y="274" font-size="15.5" fill="#1c1917">code itself:</text>
+  <text x="378" y="294" font-size="15.5" font-weight="700" fill="#1c1917">an executable representation</text>
+  <text x="364" y="326" font-size="15.5" fill="#1c1917">secondary-model maintenance:</text>
+  <text x="378" y="346" font-size="15.5" font-weight="700" fill="#1c1917">standing synchronization cost</text>
 
-  <!-- row 2: Artifact -->
-  <text x="45" y="224" font-size="17" font-weight="700" fill="#1c1917">Artifact</text>
-  <text x="415" y="224" text-anchor="middle" font-size="17" fill="#1c1917">changes slowly</text>
-  <text x="745" y="224" text-anchor="middle" font-size="17" fill="#1c1917">changes constantly</text>
-  <line x1="30" y1="252" x2="880" y2="252" stroke="#ece9e4" stroke-width="1"/>
+  <!-- column C header — Commodity intelligence (accent, the pivot) -->
+  <text x="810" y="104" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">Commodity</text>
+  <text x="810" y="126" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">intelligence</text>
+  <line x1="688" y1="140" x2="932" y2="140" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="684" y="192" font-size="15.5" fill="#1c1917">implementation labor</text>
+  <text x="698" y="212" font-size="15.5" font-weight="700" fill="#1c1917">falls</text>
+  <text x="684" y="256" font-size="15.5" fill="#1c1917">derivation / reconciliation</text>
+  <text x="698" y="276" font-size="15.5" font-weight="700" fill="#1c1917">cost falls</text>
+  <text x="684" y="320" font-size="15.5" fill="#1c1917">additional live representations</text>
+  <text x="698" y="340" font-size="15.5" font-weight="700" fill="#1c1917">become economical</text>
 
-  <!-- row 3: Model upkeep -->
-  <text x="45" y="280" font-size="17" font-weight="700" fill="#1c1917">Model upkeep</text>
-  <text x="415" y="280" text-anchor="middle" font-size="17" fill="#1c1917">amortized</text>
-  <text x="745" y="280" text-anchor="middle" font-size="17" fill="#1c1917">standing labor</text>
-  <line x1="30" y1="308" x2="880" y2="308" stroke="#ece9e4" stroke-width="1"/>
+  <!-- resolving arrow from the three columns to the claim -->
+  <line x1="490" y1="410" x2="490" y2="452" stroke="#1c1917" stroke-width="2.5" marker-end="url(#fig-6-5-1-wsmArrow)"/>
 
-  <!-- row 4: Result (column B is two lines) -->
-  <text x="45" y="344" font-size="17" font-weight="700" fill="#1c1917">Result</text>
-  <text x="415" y="344" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">model first</text>
-  <text x="745" y="332" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">model drift,</text>
-  <text x="745" y="356" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">thin models</text>
-
-  <!-- table foot rule -->
-  <line x1="30" y1="380" x2="880" y2="380" stroke="#a8a29e" stroke-width="1.5"/>
-
-  <!-- bridge into the resolving chain -->
-  <line x1="460" y1="392" x2="460" y2="430" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-6-5-1-wsclArrow)"/>
-
-  <!-- ===================== THE DOWNWARD CAUSAL CHAIN ===================== -->
-  <!-- driver -->
-  <rect x="280" y="438" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="460" y="470" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Commodity intelligence</text>
-
-  <line x1="460" y1="490" x2="460" y2="528" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-6-5-1-wsclArrow)"/>
-
-  <!-- the two edges the driver opens -->
-  <rect x="250" y="536" width="420" height="66" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="460" y="562" text-anchor="middle" font-size="17" fill="#1c1917">implementation becomes cheap</text>
-  <text x="460" y="588" text-anchor="middle" font-size="17" fill="#1c1917">reconciliation becomes cheap</text>
-
-  <line x1="460" y1="602" x2="460" y2="640" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-6-5-1-wsclArrow)"/>
-
-  <!-- the consequence -->
-  <rect x="280" y="648" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="460" y="680" text-anchor="middle" font-size="18" fill="#1c1917">live models become viable</text>
-
-  <line x1="460" y1="700" x2="460" y2="738" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-6-5-1-wsclArrow)"/>
-
-  <!-- terminal — the claim, set dark for grayscale emphasis -->
-  <rect x="220" y="746" width="480" height="58" rx="9" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="460" y="782" text-anchor="middle" font-size="20" font-weight="700" fill="#f6f4ef"
-        letter-spacing="0.5">SOFTWARE REJOINS ENGINEERING</text>
-</svg><figcaption data-short="Why software came last"><span class="fig-label">Figure 6.5-1.</span> <em>Why software came last.</em> In the older disciplines the realizing step was expensive and the artifact changed slowly, so keeping a model current was amortized against a costly build — and the model came first. Software inverted every term: realization was cheap, the artifact changed by the hour, and holding a model equal to it demanded a person's standing labor, so models stayed thin and drifted. Commodity intelligence makes both implementation and reconciliation cheap, which makes a live model viable for the first time. The anomaly closes, and software rejoins the engineering disciplines it had always been the exception to.</figcaption></figure><p class="gallery-source">From <a href="6.5-software-rejoins-engineering.html#fig-6-5-1">31 · Software Rejoins Engineering</a></p></section><hr><section class="gallery-item"><figure id="fig-8-0-1-fig-8-0-1" class="book-figure" data-label="book-map-appendix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 850"
+  <!-- terminal — the claim, set dark for grayscale emphasis; deliberately NOT "software rejoins engineering" -->
+  <rect x="210" y="460" width="560" height="62" rx="10" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="490" y="499" text-anchor="middle" font-size="18" font-weight="700" fill="#f6f4ef"
+        letter-spacing="0.4">SOFTWARE CAN WORK THROUGH MODELS MORE OFTEN</text>
+</svg><figcaption data-short="Why software modeled differently"><span class="fig-label">Figure 6.5-1.</span> <em>Why software modeled differently.</em> Software was never model-free. Its implementation was already a cheap-to-reproduce executable representation, while additional models imposed synchronization cost. Read the three columns as an economics, not a verdict: older physical engineering paid for realization and amortized its models against the build; software paid for implementation labor and carried its secondary models as standing synchronization cost; commodity intelligence lowers both implementation labor and parts of the maintenance cost of secondary representations. The claim to draw is the bottom line — where those costs fall, live models repay their cost on more surfaces, so software can work through models more often.</figcaption></figure><p class="gallery-source">From <a href="6.5-software-rejoins-engineering.html#fig-6-5-1">31 · Software Rejoins Engineering</a></p></section><hr><section class="gallery-item"><figure id="fig-8-0-1-fig-8-0-1" class="book-figure" data-label="book-map-appendix"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 850"
      role="group" aria-labelledby="fig-8-0-1-bmTitle fig-8-0-1-bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-8-0-1-bmTitle">A map of the book — a single linear descent through six parts</title>

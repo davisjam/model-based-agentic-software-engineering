@@ -4221,7 +4221,7 @@
           "section_id": "the-disciplines-that-got-there-first",
           "level": 2,
           "heading_text": "The disciplines that got there first",
-          "topic_sentence": "The older fields crossed this threshold decades ago, each when its own realizing step got cheap enough that a model became the more economical place to answer engineering questions.",
+          "topic_sentence": "Older engineering disciplines had stronger reasons to separate representation from realization.",
           "id_source": "derived",
           "block_index": 2,
           "points": []
@@ -4230,7 +4230,7 @@
           "section_id": "the-mature-end",
           "level": 2,
           "heading_text": "The mature end",
-          "topic_sentence": "Siemens sits at the far end of that maturity.",
+          "topic_sentence": "Siemens shows what this looks like in a model-first engineering culture.",
           "id_source": "derived",
           "block_index": 5,
           "points": []
@@ -4239,16 +4239,16 @@
           "section_id": "why-software-came-last",
           "level": 2,
           "heading_text": "Why software came last",
-          "topic_sentence": "If the model-based way of engineering is so old, why did software resist it for fifty years?",
+          "topic_sentence": "Software's economics differed from those older disciplines in an important way.",
           "id_source": "derived",
           "block_index": 8,
           "points": []
         },
         {
-          "section_id": "models-are-the-universal-language-of-engineering",
+          "section_id": "models-are-a-common-language-of-mature-engineering",
           "level": 2,
-          "heading_text": "Models are the universal language of engineering",
-          "topic_sentence": "State the claim flat, now that the survey has earned it.",
+          "heading_text": "Models are a common language of mature engineering",
+          "topic_sentence": "Models are a common language of mature engineering because engineers rarely reason about every relevant property directly from the realized artifact.",
           "id_source": "derived",
           "block_index": 14,
           "points": []
@@ -4257,9 +4257,9 @@
           "section_id": "one-instance-of-a-larger-engineering",
           "level": 2,
           "heading_text": "One instance of a larger engineering",
-          "topic_sentence": "Follow the claim to its edge and a wider reading appears.",
+          "topic_sentence": "Follow the analogy one step further and a possibility appears.",
           "id_source": "derived",
-          "block_index": 22,
+          "block_index": 20,
           "points": []
         }
       ],

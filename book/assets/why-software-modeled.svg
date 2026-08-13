@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid): a causal comparison over THREE economic variables, not a data chart.
+     The figure repairs the older "realization expensive vs. cheap" framing. Three columns state the
+     economics: older physical engineering (expensive realization, model amortized over the build), software
+     historically (cheap reproduction/execution but expensive implementation LABOR, the code already an
+     executable representation, secondary models carrying a standing synchronization cost), and commodity
+     intelligence (implementation labor falls, derivation/reconciliation cost falls). A single downward arrow
+     resolves to the claim: software can work through models more often. Grayscale-legible: columns and
+     banner read from position + words, never colour. Accent #2f5169. -->
+<!-- semantic-families: neutral, agent -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 546" width="980" height="546"
+     role="group" aria-labelledby="wsmTitle wsmDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="wsmTitle">Why software modeled differently: three economic variables, and the change that made
+    live models economical more often</title>
+  <desc id="wsmDesc">A comparison across three columns. Older physical engineering: physical realization is
+    expensive and slow, a design representation is necessary before realization, and model maintenance is
+    amortized over expensive build and test cycles. Software historically: physical reproduction and
+    execution are cheap, implementation and change labor are expensive, the code is itself an executable
+    representation, and maintaining a secondary model is a standing synchronization cost. Commodity
+    intelligence: implementation labor falls, derivation and reconciliation cost falls, and more live
+    representations become economical. Software was never model-free; the economics simply favored thin
+    models. A downward arrow resolves the three columns to a single claim: software can work through models
+    more often.</desc>
+
+  <defs>
+    <marker id="wsmArrow" markerWidth="10" markerHeight="10" refX="7" refY="3.4"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8.5,3.4 L0,6.8 Z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ============================= TITLE ============================= -->
+  <text x="490" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917"
+        letter-spacing="1.2">WHY SOFTWARE MODELED DIFFERENTLY</text>
+
+  <!-- ===================== THREE COLUMNS ===================== -->
+  <!-- column frames -->
+  <rect x="24"  y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <rect x="344" y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <rect x="664" y="72" width="292" height="330" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+
+  <!-- column A header — Older physical engineering -->
+  <text x="170" y="104" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">Older physical</text>
+  <text x="170" y="126" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">engineering</text>
+  <line x1="48" y1="140" x2="292" y2="140" stroke="#57534e" stroke-width="1.5"/>
+  <text x="44" y="176" font-size="15.5" fill="#1c1917">physical realization:</text>
+  <text x="58" y="196" font-size="15.5" font-weight="700" fill="#1c1917">expensive / slow</text>
+  <text x="44" y="232" font-size="15.5" fill="#1c1917">design representation:</text>
+  <text x="58" y="252" font-size="15.5" font-weight="700" fill="#1c1917">necessary before realization</text>
+  <text x="44" y="288" font-size="15.5" fill="#1c1917">model maintenance:</text>
+  <text x="58" y="308" font-size="15.5" font-weight="700" fill="#1c1917">amortized over</text>
+  <text x="58" y="328" font-size="15.5" font-weight="700" fill="#1c1917">expensive build / test cycles</text>
+
+  <!-- column B header — Software historically -->
+  <text x="490" y="104" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">Software,</text>
+  <text x="490" y="126" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">historically</text>
+  <line x1="368" y1="140" x2="612" y2="140" stroke="#57534e" stroke-width="1.5"/>
+  <text x="364" y="170" font-size="15.5" fill="#1c1917">reproduction / execution:</text>
+  <text x="378" y="190" font-size="15.5" font-weight="700" fill="#1c1917">cheap</text>
+  <text x="364" y="222" font-size="15.5" fill="#1c1917">implementation / change labor:</text>
+  <text x="378" y="242" font-size="15.5" font-weight="700" fill="#1c1917">expensive</text>
+  <text x="364" y="274" font-size="15.5" fill="#1c1917">code itself:</text>
+  <text x="378" y="294" font-size="15.5" font-weight="700" fill="#1c1917">an executable representation</text>
+  <text x="364" y="326" font-size="15.5" fill="#1c1917">secondary-model maintenance:</text>
+  <text x="378" y="346" font-size="15.5" font-weight="700" fill="#1c1917">standing synchronization cost</text>
+
+  <!-- column C header — Commodity intelligence (accent, the pivot) -->
+  <text x="810" y="104" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">Commodity</text>
+  <text x="810" y="126" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">intelligence</text>
+  <line x1="688" y1="140" x2="932" y2="140" stroke="#2f5169" stroke-width="1.5"/>
+  <text x="684" y="192" font-size="15.5" fill="#1c1917">implementation labor</text>
+  <text x="698" y="212" font-size="15.5" font-weight="700" fill="#1c1917">falls</text>
+  <text x="684" y="256" font-size="15.5" fill="#1c1917">derivation / reconciliation</text>
+  <text x="698" y="276" font-size="15.5" font-weight="700" fill="#1c1917">cost falls</text>
+  <text x="684" y="320" font-size="15.5" fill="#1c1917">additional live representations</text>
+  <text x="698" y="340" font-size="15.5" font-weight="700" fill="#1c1917">become economical</text>
+
+  <!-- resolving arrow from the three columns to the claim -->
+  <line x1="490" y1="410" x2="490" y2="452" stroke="#1c1917" stroke-width="2.5" marker-end="url(#wsmArrow)"/>
+
+  <!-- terminal — the claim, set dark for grayscale emphasis; deliberately NOT "software rejoins engineering" -->
+  <rect x="210" y="460" width="560" height="62" rx="10" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="490" y="499" text-anchor="middle" font-size="18" font-weight="700" fill="#f6f4ef"
+        letter-spacing="0.4">SOFTWARE CAN WORK THROUGH MODELS MORE OFTEN</text>
+</svg>
