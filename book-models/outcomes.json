@@ -20,17 +20,17 @@
       "outcome": 29
     },
     "by_bloom": {
-      "know": 8,
+      "know": 7,
       "understand": 15,
       "apply": 9,
       "analyze": 14,
       "evaluate": 9,
-      "create": 15
+      "create": 16
     },
     "outcomes_with_elaborative_units": 15,
     "elaborative_links": 21,
     "units_serving_as_elaborative": 18,
-    "sections_total": 248,
+    "sections_total": 229,
     "sections_primary_of_an_outcome": 28,
     "modules": 7,
     "lessons": 34
@@ -244,17 +244,13 @@
           {
             "lesson": "4.1-the-mage-workflow",
             "own_outcomes": [],
-            "section_outcomes": [
-              "from-soft-to-hard::classify-a-mechanism-on-the-soft-to-hard-spectrum",
-              "the-two-modes::distinguish-one-shot-scripting-from-supervised-auton",
-              "where-the-emphasis-falls::judge-how-long-a-leash-a-task-can-run-on-from"
-            ]
+            "section_outcomes": []
           },
           {
             "lesson": "4.2-brownfield",
             "own_outcomes": [],
             "section_outcomes": [
-              "the-starting-point-and-the-destinations::name-the-starting-point-and-both-destinations"
+              "measure-what-the-map-still-cannot-explain::model-induction-has-a-stopping-problem-a-repre"
             ]
           },
           {
@@ -263,22 +259,16 @@
             "section_outcomes": []
           },
           {
-            "lesson": "4.4-the-skills",
+            "lesson": "4.4-operating-mage",
             "own_outcomes": [],
             "section_outcomes": [
-              "self-governance-the-catalogue-and-the-posture::use-the-self-governance-skill-convert-a-recu"
+              "measure-one-level-deeper::compute-a-metric-one-level-deeper-than-the-numbe"
             ]
           },
           {
-            "lesson": "4.5-operating-mage",
+            "lesson": "4.5-packaging-the-method-as-skills",
             "own_outcomes": [],
-            "section_outcomes": [
-              "the-judgment-parts-the-roughest-algorithm-that-still-fits::apply-the-roughest-algorithm-rule-to-a-judgmen",
-              "measure-one-level-deeper::compute-a-metric-one-level-deeper-than-the-numbe",
-              "the-flagship-coverage-measured-one-level-deeper::compute-coverage-measured-one-level-deeper-model",
-              "the-soft-end-doc-derived-tests::classify-a-soft-judgment-laden-metric-that-aims-a",
-              "the-model-runs-the-machinery::explain-why-a-structured-model-is-not-a-picture"
-            ]
+            "section_outcomes": []
           }
         ]
       },
@@ -1054,6 +1044,19 @@
       "gap_note": null
     },
     {
+      "outcome_id": "measure-what-the-map-still-cannot-explain::model-induction-has-a-stopping-problem-a-repre",
+      "granularity": "section",
+      "primary_unit": "measure-what-the-map-still-cannot-explain",
+      "secondary_units": [],
+      "verb": "model",
+      "obj": "induction has a stopping problem: a representation can describe …",
+      "statement": "After this section, the reader can model induction has a stopping problem: a representation can describe ….",
+      "bloom": "create",
+      "provenance": "derived",
+      "anchor": "ts: Model induction has a stopping problem: a representation can describe everything it knows ",
+      "gap_note": null
+    },
+    {
       "outcome_id": "runbooks-split-the-deterministic-from-the-judgment::author-a-runbook-that-gives-deterministic-steps",
       "granularity": "section",
       "primary_unit": "runbooks-split-the-deterministic-from-the-judgment",
@@ -1200,19 +1203,6 @@
       "bloom": "analyze",
       "provenance": "derived",
       "anchor": "point: a-doc-derived-test-pins-a-doc-claim-and-its-metric-is-genuinely-soft / the-soft-metric-is-inseparable-from-a-readiness-judgment-so-a-gate-would-manufacture-hollow-tests",
-      "gap_note": null
-    },
-    {
-      "outcome_id": "the-starting-point-and-the-destinations::name-the-starting-point-and-both-destinations",
-      "granularity": "section",
-      "primary_unit": "the-starting-point-and-the-destinations",
-      "secondary_units": [],
-      "verb": "name",
-      "obj": "the starting point and both destinations before you move",
-      "statement": "After this section, the reader can name the starting point and both destinations before you move.",
-      "bloom": "know",
-      "provenance": "derived",
-      "anchor": "ts: Name the starting point and both destinations before you move.",
       "gap_note": null
     },
     {

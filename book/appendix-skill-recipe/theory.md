@@ -1,6 +1,6 @@
 <!-- point: a-good-mastery-skill-turns-on-one-base-model | A good mastery-skill turns on one base model, layered and tied. | terms: mastery-skill, skill-soft-control -->
 This chapter states what a good mastery-skill is made of and how to build one. It is the construction
-method and its quality bar, not the case for why skills matter — the [Skills chapter](4.4-the-skills.html)
+method and its quality bar, not the case for why skills matter — the [Skills chapter](4.5-packaging-the-method-as-skills.html)
 carries that. Here every paragraph advances construction: the shell a skill wears, the three-step recipe
 that fills it, and the ways a skill fails so you can test against them before you ship.
 
@@ -97,7 +97,7 @@ skill turns on a clean fundamental model, another skill cites it by that model i
 content, so no copy drifts. **It adopts in layers:** take the fundamental model alone for most of the value,
 add facets as the need arises. The model without its facets still teaches a way of seeing; a facet without
 the tying principle still solves its slice. You do not have to swallow the skill whole to start. The shape
-has a name and a figure in the [Skills chapter](4.4-the-skills.html) — the *Skill Skeleton*; this chapter
+has a name and a figure in the [Skills chapter](4.5-packaging-the-method-as-skills.html) — the *Skill Skeleton*; this chapter
 is that skeleton turned into steps.
 
 ## How a mastery-skill fails — and how it fires

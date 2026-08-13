@@ -616,8 +616,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="4.1-the-mage-workflow.html">18&nbsp; The MAGE Workflow</a></li>
 <li><a class="" href="4.2-brownfield.html">19&nbsp; Migrating to MAGE</a></li>
 <li><a class="" href="4.3-validating-change.html">20&nbsp; Validating Change</a></li>
-<li><a class="" href="4.4-the-skills.html">21&nbsp; The Skills</a></li>
-<li><a class="" href="4.5-operating-mage.html">22&nbsp; Operating MAGE</a></li>
+<li><a class="" href="4.4-operating-mage.html">21&nbsp; Operating MAGE</a></li>
+<li><a class="" href="4.5-packaging-the-method-as-skills.html">22&nbsp; Packaging the Method as Skills</a></li>
 <li><a class="" href="4.6-portable-moves.html">Closing: The Portable Moves</a></li>
 <li class="part">Part 5 — The Evidence</li>
 <li><a class="" href="part-5-intro.html">The Evidence</a></li>
@@ -1086,7 +1086,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong><a class="gloss-site" href="3.3-constraints-sensors-validators-gates.html#idx-def-validator">Validator.</a></strong> Evaluates evidence against an engineering obligation.</p>
 <p><strong><a class="gloss-site" href="3.3-constraints-sensors-validators-gates.html#idx-def-gate">Gate.</a></strong> Controls whether work may proceed across a workflow boundary.</p>
 <p>A single implementation may participate in more than one role. A linter, for example, both produces the finding-evidence and judges it against the ban — a sensor and validator bundled — while the commit hook or CI pipeline is the gate that blocks the change from advancing.</p>
-<p><strong><a class="gloss-site" href="4.2-brownfield.html#idx-def-lint">Lint.</a></strong> An automated check that scans code for a banned pattern and fails the commit when it finds one, so a rule holds without a human remembering it.</p>
+<p><strong>Lint.</strong> An automated check that scans code for a banned pattern and fails the commit when it finds one, so a rule holds without a human remembering it.</p>
 <p><strong>Hook.</strong> A mechanism that fires automatically at a defined point in a workflow — before or after a step — to enforce policy without anyone remembering to. The harness's before/after-action hooks are one instance; Git, CI, build, and deploy hooks are others.</p>
 <p><strong><a class="gloss-site" href="2.3-the-executable-zoo.html#idx-def-invariant">Invariant.</a></strong> A predicate that must hold over a system, model, artifact, or process. Making the relevant state explicit determines whether the invariant can be checked mechanically and at what scale.</p>
 <p><strong><a class="gloss-site" href="2.3-the-executable-zoo.html#idx-def-model-drift">Model drift.</a></strong> A model and the system, evidence, or other representation to which it is meant to correspond cease to agree.</p>

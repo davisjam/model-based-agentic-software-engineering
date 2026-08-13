@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), label: representation-authority. R45b REDRAW of the former
+     Fig 4.2-2 (wiki-linkage), whose right panel ended at "typed · gate-enforced" and so implied a
+     single ladder in which representation culminates in enforcement. This figure separates the two
+     dimensions the corrected theory keeps apart:
+       TOP track  — REPRESENTATION strengthening: informal -> structured -> executable (consumed).
+       BOTTOM track — AUTHORITY attachment: optional context -> audited correspondence -> selected
+                      obligations under enforcement.
+     The claim is that the tracks are INDEPENDENT: a representation can move right (more structured,
+     more consumable) without every claim becoming a gate; authority attaches to SELECTED obligations
+     along a separate track, once the representation is trusted and the obligation warrants it. One
+     straight dashed vertical connector on the right shows that selective attachment — no crossing
+     strokes, so the C6 text-overlap and C7 stroke-cross-through gates have nothing to trip on.
+     Palette: governed green #1f7a4d / #e3f0e7 (representation, Modeling-leaning), accent #2f5169 /
+     #e7edf3 (authority, Alignment-leaning), source-red #b23b3b (the selective attachment), muted
+     #57534e, ink #1c1917, tints #eef7ee / #e7edf3. Grayscale-survivable: two labelled lanes and the
+     left-to-right order carry the reading, not colour alone. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470"
+     role="img" aria-labelledby="raTitle raDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="raTitle">Strengthening representation and authority are two independent tracks, not one ladder</title>
+  <desc id="raDesc">Two horizontal tracks stacked one above the other. The upper track is
+    representation strengthening, left to right: an informal model (prose, wiki, diagram), then a
+    structured model (a typed shape a tool can parse), then an executable model (one a tool actually
+    consumes). The lower track is authority attachment, left to right: optional context that is read
+    if useful, then audited correspondence where the join is checked and drift is surfaced, then
+    selected obligations placed under enforcement. The two tracks are independent: a representation
+    can strengthen along the upper track without every claim becoming a gate. A single dashed
+    connector runs down from the executable-representation stage to the under-enforcement stage,
+    marking that authority attaches to selected obligations separately, once the representation is
+    trusted and the obligation warrants it. The old picture that ended a single ladder at
+    gate-enforced collapsed these two dimensions into one; this figure keeps them apart.</desc>
+
+  <defs>
+    <marker id="ra-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+    <marker id="ra-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
+    </marker>
+  </defs>
+
+  <text x="480" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Two tracks, not one ladder</text>
+
+  <!-- ===================== TOP LANE — REPRESENTATION ===================== -->
+  <rect x="96" y="96" width="768" height="104" rx="12" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.2"/>
+  <text x="112" y="88" font-size="15" font-weight="700" fill="#1f7a4d">REPRESENTATION &#8594; stronger, more consumable</text>
+
+  <!-- rep chip 1: informal -->
+  <rect x="118" y="112" width="210" height="74" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="223" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Informal</text>
+  <text x="223" y="170" text-anchor="middle" font-size="13.5" fill="#57534e">prose &#183; wiki &#183; diagram</text>
+
+  <!-- rep chip 2: structured -->
+  <rect x="384" y="112" width="210" height="74" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="489" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structured</text>
+  <text x="489" y="170" text-anchor="middle" font-size="13.5" fill="#57534e">typed shape a tool can parse</text>
+
+  <!-- rep chip 3: executable -->
+  <rect x="650" y="112" width="210" height="74" rx="9" fill="#cfe6d6" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="755" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Executable</text>
+  <text x="755" y="170" text-anchor="middle" font-size="13.5" fill="#57534e">consumed by a tool</text>
+
+  <!-- rep arrows -->
+  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#ra-ah)">
+    <path d="M330,149 L382,149"/>
+    <path d="M596,149 L648,149"/>
+  </g>
+
+  <!-- ===================== BOTTOM LANE — AUTHORITY ===================== -->
+  <rect x="96" y="284" width="768" height="104" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="1.2"/>
+  <text x="112" y="276" font-size="15" font-weight="700" fill="#2f5169">AUTHORITY &#8594; attached to selected obligations</text>
+
+  <!-- auth chip 1: optional context -->
+  <rect x="118" y="300" width="210" height="74" rx="9" fill="#f6f4ef" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="223" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Optional context</text>
+  <text x="223" y="358" text-anchor="middle" font-size="13.5" fill="#57534e">read if useful</text>
+
+  <!-- auth chip 2: audited correspondence -->
+  <rect x="384" y="300" width="210" height="74" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="489" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Audited join</text>
+  <text x="489" y="358" text-anchor="middle" font-size="13.5" fill="#57534e">join checked &#183; drift surfaced</text>
+
+  <!-- auth chip 3: under enforcement -->
+  <rect x="650" y="300" width="210" height="74" rx="9" fill="#dbe6ef" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="755" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">Under enforcement</text>
+  <text x="755" y="358" text-anchor="middle" font-size="13.5" fill="#57534e">selected obligations gated</text>
+
+  <!-- auth arrows -->
+  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#ra-ah)">
+    <path d="M330,337 L382,337"/>
+    <path d="M596,337 L648,337"/>
+  </g>
+
+  <!-- ===================== SELECTIVE ATTACHMENT — one dashed vertical, no crossing ===================== -->
+  <path d="M755,186 L755,298" fill="none" stroke="#b23b3b" stroke-width="2.4"
+        stroke-dasharray="7 5" marker-end="url(#ra-ah-red)"/>
+  <text x="772" y="234" font-size="13.5" font-style="italic" fill="#b23b3b">authority attaches</text>
+  <text x="772" y="252" font-size="13.5" font-style="italic" fill="#b23b3b">to selected obligations —</text>
+  <text x="772" y="270" font-size="13.5" font-style="italic" fill="#b23b3b">when trusted and warranted</text>
+
+  <!-- reading line -->
+  <text x="480" y="430" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">Independent tracks: a representation can strengthen without every claim becoming a gate;</text>
+  <text x="480" y="450" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">only selected obligations acquire authority, and along a separate track.</text>
+</svg>

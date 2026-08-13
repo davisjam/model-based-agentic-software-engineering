@@ -32,8 +32,8 @@ book/
     4.1-the-mage-workflow.md
     4.2-brownfield.md
     4.3-validating-change.md
-    4.4-the-skills.md
-    4.5-operating-mage.md
+    4.4-operating-mage.md
+    4.5-packaging-the-method-as-skills.md
     4.6-portable-moves.md
   part5/  (Part 5 — The Evidence)
     5.1-the-problem-and-the-bar.md

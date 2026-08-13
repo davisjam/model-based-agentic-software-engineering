@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (ported from the chapter's mermaid fence, label: metric-spectrum).
-     Governance metrics laid on the book's hard-to-soft axis: two hard, machine-read metrics,
-     the flagship deeper cut in the middle, and a soft, judgment-laden one at the far end —
-     each card naming the decision it drives. Palette: Umber Monograph tokens
-     (fleet #2f5169 hard, accent #9a3f12 flagship, muted #57534e soft). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400"
+<!-- Hand-authored SVG (label: metric-spectrum). R45c REFRAME — from authority-hardness (hard→soft
+     "a machine can block on the hard end") to EVIDENCE-DECIDABILITY. The axis now runs
+     machine-decidable evidence ←→ judgment-dependent evidence. Authority is NOT on this axis: it
+     belongs to the validator or gate that consumes the evidence, not to the number itself. Palette:
+     Umber Monograph tokens (fleet #2f5169 machine-decidable, accent #9a3f12 flagship deeper cut,
+     muted #57534e judgment-dependent). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420"
      role="group" aria-labelledby="msTitle msDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="msTitle">The metric spectrum, hard to soft</title>
-  <desc id="msDesc">Four governance metrics laid on a left-to-right spectrum. On the hard,
-    deterministic, machine-read end sit cold-start latency, fed into the perf model, and the
-    component-distance grade, which decides whether a gate fires. In the middle sits the
-    flagship, entry-point-native coverage, the deeper cut that asks whether a model claim is
-    exercised and names the untested invariant. On the soft, judgment-laden end sits
-    doc-derived-test pinning, which asks whether a doc-claim is pinned by a test and nudges
-    what to test next. A spine arrow runs hard to soft: the harder the metric, the more a
-    machine can block on it alone; the softer, the more it can only aim a reader.</desc>
+  <title id="msTitle">Evidence and judgment: measurements by how far a machine can decide them</title>
+  <desc id="msDesc">Four measurements laid on a left-to-right axis of decidability, not authority. On
+    the machine-decidable end sit cold-start latency and the component-distance grade, evidence a
+    validator can evaluate the same way every time. In the middle sits the flagship deeper cut,
+    model-claim coverage, which names the untested invariant. On the judgment-dependent end sits
+    doc-derived-test pinning, which identifies where a person must still interpret meaning. A banner
+    states the axis rule: authority belongs to the validator or gate that consumes the evidence, not
+    to the number itself.</desc>
 
   <defs>
     <marker id="ms-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -24,40 +24,43 @@
   </defs>
 
   <!-- zone kickers + role-colored underlines -->
-  <text x="304" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#2f5169">HARD · deterministic · machine-read</text>
+  <text x="304" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#2f5169">MACHINE-DECIDABLE EVIDENCE</text>
   <line x1="25" y1="66" x2="584" y2="66" stroke="#2f5169" stroke-width="1.5"/>
   <text x="760" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">FLAGSHIP · the deeper cut</text>
   <line x1="600" y1="66" x2="920" y2="66" stroke="#9a3f12" stroke-width="1.5"/>
-  <text x="1065" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">SOFT · aims a reader</text>
+  <text x="1065" y="52" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">JUDGMENT-DEPENDENT EVIDENCE</text>
   <line x1="935" y1="66" x2="1195" y2="66" stroke="#57534e" stroke-width="1.5"/>
 
-  <!-- hard card 1: cold-start latency -->
+  <!-- machine-decidable card 1: cold-start latency -->
   <rect x="25" y="110" width="272" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="161" y="148" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">cold-start latency</text>
   <text x="161" y="180" text-anchor="middle" font-size="17.96" fill="#57534e">ms per service · longest-path Σ</text>
-  <text x="161" y="228" text-anchor="middle" font-size="19.2" font-style="italic" fill="#2f5169">→ fed into the perf model</text>
+  <text x="161" y="228" text-anchor="middle" font-size="18.63" font-style="italic" fill="#2f5169">→ evidence for a perf validator</text>
 
-  <!-- hard card 2: component-distance grade -->
+  <!-- machine-decidable card 2: component-distance grade -->
   <rect x="312" y="110" width="272" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="448" y="148" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">component-distance grade</text>
-  <text x="448" y="180" text-anchor="middle" font-size="19.2" fill="#57534e">HARD / SOFT / SILENT</text>
-  <text x="448" y="228" text-anchor="middle" font-size="18.63" font-style="italic" fill="#2f5169">→ decides whether a gate fires</text>
+  <text x="448" y="180" text-anchor="middle" font-size="18.2" fill="#57534e">block / report / suppress</text>
+  <text x="448" y="228" text-anchor="middle" font-size="18.2" font-style="italic" fill="#2f5169">→ evidence a gate acts on</text>
 
-  <!-- flagship card: entry-point-native coverage -->
+  <!-- flagship card: model-claim coverage -->
   <rect x="600" y="95" width="320" height="180" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="760" y="136" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">entry-point-native coverage</text>
+  <text x="760" y="136" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">model-claim coverage</text>
   <text x="760" y="172" text-anchor="middle" font-size="19.2" fill="#57534e">is the model claim exercised?</text>
   <text x="760" y="238" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">→ names the untested invariant</text>
 
-  <!-- soft card: doc-derived-test pinning -->
+  <!-- judgment-dependent card: doc-derived-test pinning -->
   <rect x="935" y="110" width="260" height="150" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="1065" y="148" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">doc-derived-test pinning</text>
   <text x="1065" y="176" text-anchor="middle" font-size="19.2" fill="#57534e">is this doc-claim</text>
   <text x="1065" y="196" text-anchor="middle" font-size="19.2" fill="#57534e">pinned by a test?</text>
-  <text x="1065" y="234" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">→ nudges what to test next</text>
+  <text x="1065" y="234" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">→ aims a reader, cannot admit</text>
 
-  <!-- the spine: hard to soft -->
+  <!-- the spine: machine-decidable to judgment-dependent -->
   <line x1="40" y1="320" x2="1160" y2="320" stroke="#1c1917" stroke-width="3" marker-end="url(#ms-ah)"/>
-  <text x="40" y="356" font-size="19.2" font-style="italic" fill="#57534e">a machine blocks on it alone</text>
-  <text x="1160" y="356" text-anchor="end" font-size="19.2" font-style="italic" fill="#57534e">a reader must still judge</text>
+  <text x="40" y="356" font-size="18.63" font-style="italic" fill="#57534e">a validator evaluates it the same way every time</text>
+  <text x="1160" y="356" text-anchor="end" font-size="18.63" font-style="italic" fill="#57534e">a person must still interpret it</text>
+
+  <!-- the axis rule banner -->
+  <text x="600" y="398" text-anchor="middle" font-size="18.2" font-weight="700" fill="#9a3f12">Authority belongs to the validator or gate that consumes the evidence — not to the number.</text>
 </svg>

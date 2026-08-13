@@ -1,22 +1,27 @@
 <!-- part-foreshadows: modeling-thesis, alignment-thesis, govern-the-environment, failures-become-machinery -->
-The previous Parts introduced the ideas one at a time. This Part joins them into a single engineering
-method: not a catalogue of isolated techniques, but one recurring cycle that every task turns through,
-each pass beginning from a stronger position than the last.
+
+Parts II and III developed Modeling and Alignment separately. This Part runs them together as a
+method. The ordering is deliberate but not a logical dependency: useful authority can act without a
+rich system model, while explicit models enlarge the range of properties the environment can reason
+about and govern. MAGE therefore begins by asking what should be made explicit, places authority
+where stable obligations become legible, and converts recurring judgment into durable engineering
+structure.
 
 <!-- thesisbox -->
 > ### THE MAGE CYCLE
 >
-> Model the intent. Give that intent authority. Convert recurring failures into engineering capital.
+> Model the intent. Give stable obligations authority. Convert recurring judgment into engineering capital.
 >
 > **Repeat.**
 
-Every turn of the cycle leaves the engineering environment more capable than before. Models grow
-richer, mechanisms grow stronger, and the environment accumulates engineering capital instead of
-paying the same reasoning costs over and over. These chapters answer a practical question: what does a
-normal day of engineering look like once a fleet writes most of the code?
+The result is a cycle rather than a catalogue. A task begins from the representations, controls, and
+evidence the environment already owns. Work exposes what those structures can and cannot answer. Some
+gaps earn better models; some earn sensors, validators, constraints, or gates; some remain judgment
+because the underlying obligation is still uncertain. Each useful conversion changes the starting
+conditions inherited by later work. That accumulated structure is engineering capital — but capital
+can drift, depreciate, and cost more to maintain than it returns, so this Part covers operation and
+retirement as well as accumulation.
 
-The method is not tied to one product. Through these chapters we step outside DocAble in passing —
-noting where the same moves surface at other engineering organizations, brief parallels that show a
-principle is not idiosyncratic rather than case studies to study in depth. We only point at those
-industrial systems here; Part VI sets them side by side as evidence for the theory. Every page keeps
-its eye on what you should do next.
+DocAble supplies the deep case because it exposes the method at working depth. Other organizations
+appear only where they sharpen a move or show that it travels; Part VI handles the comparative
+evidence. The question here is practical: **what should you do next?**

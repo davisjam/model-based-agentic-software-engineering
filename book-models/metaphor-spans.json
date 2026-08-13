@@ -4,7 +4,7 @@
   "ration_rule": "Each declared idea gets ONE canonical slogan (scope invoke-by-name) at its best location. Later appearances are blunt referential invocations, not fresh polished formulations. A `used-once` line appears exactly once; a `commandment` may recur as a refrain. Density/clustering caps ration polished occurrences. A slogan and a metaphor elaborating the SAME idea do not compete — only two invoke-by-name slogans on one idea do.",
   "ratified_counts": {
     "core": 9,
-    "local": 7,
+    "local": 6,
     "overlaps": 0,
     "slogans": 8,
     "commandments": 0,
@@ -175,11 +175,11 @@
       },
       "introduced_at": {
         "label": "the-mage-workflow",
-        "anchor": "kaizen-is-the-manufacturing-name-for-this-daily-loop"
+        "anchor": "the-improvement-loop-has-familiar-ancestors-the-changed-condition-is-abundance"
       },
       "pays_off_at": {
         "label": "the-mage-workflow",
-        "anchor": "kaizen-is-the-manufacturing-name-for-this-daily-loop"
+        "anchor": "the-improvement-loop-has-familiar-ancestors-the-changed-condition-is-abundance"
       },
       "stretch": "the-mage-workflow",
       "payoff": "Mistake-proofing: shape the work so the defect cannot happen.",
@@ -234,30 +234,6 @@
       "overlap_ok": false,
       "overlap_rationale": "",
       "notes": "Vehicle word 'staircase' is reused by mage-staircase (5.4) — see the vehicle-collision check. Renaming this to 'the evidence ladder/ratchet' (a DEFERRED editorial call, no content edit here) would free 'staircase' for the load-bearing 5.4 close."
-    },
-    {
-      "kind": "metaphor",
-      "name": "The coin",
-      "slug": "coin",
-      "recurrence": "local",
-      "vehicle": "two sides of one coin",
-      "elaborates": {
-        "model": "claims",
-        "id": "model-earns-keep-via-invariants"
-      },
-      "introduced_at": {
-        "label": "generative-validation",
-        "anchor": "model-claim-coverage-is-the-saturation-oracle"
-      },
-      "pays_off_at": {
-        "label": "generative-validation",
-        "anchor": "model-claim-coverage-is-the-saturation-oracle"
-      },
-      "stretch": "generative-validation",
-      "payoff": "Fuzzing and property testing draw one oracle from one spec.",
-      "overlap_ok": false,
-      "overlap_rationale": "",
-      "notes": "Carried by the figure 'The Coin Is the Model' in the same section."
     },
     {
       "kind": "metaphor",

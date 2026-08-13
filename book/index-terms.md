@@ -161,6 +161,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: fleet | The fleet
 - concept: printer-metaphor | The printer metaphor
 - concept: picture-vs-model | Picture vs. model
+- concept: oracle | Oracle
 - concept: descriptive-vs-prescriptive | Descriptive vs intent-bearing
 - concept: whose-fault | Whose fault is a bad build
 - concept: reasoning-horizon | Reasoning horizon
@@ -371,6 +372,7 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: long-horizon-task | section
 - term: one-shot-scripting | section
 - term: supervised-autonomy | section
+- term: strangler-fig | local
 - term: open-ended-technology | section
 - term: genre | section
 - term: build-instructions | section

@@ -2,12 +2,15 @@
 <!-- Hand-authored SVG (not Mermaid): the migration starting-conditions matrix. Two independent
      axes — how much system already EXISTS (rows) crossed with how much INTENT is settled
      (columns) — replace the greenfield/brownfield binary with four starting conditions, each
-     naming its proportionate first move. The right (settled) column is shaded a step stronger
-     than the left (uncertain) column to signal the chapter's rule: governance intensity tracks
-     how much you know, so the more settled the intent, the more modeling and enforcement the
-     start justifies. A pure grid — no curved connectors — so the C6 text-overlap and C7
-     stroke-cross-through gates have nothing to trip on. Accent #2f5169, source-red #b23b3b,
-     cream #f6f4ef, panel #e7edf3, ink #1c1917, muted #57534e. -->
+     naming its proportionate first move. R45b edit: the bottom-right move is "Recover, reconcile,
+     govern" (inherited representations can be wrong and inherited controls already exist, so the
+     estate is reconciled, not only recovered). The right (settled) column is shaded a step stronger
+     than the left, but the reading is per-OBLIGATION, not project-wide: the more settled a
+     PARTICULAR obligation, the more authority it can safely receive — so a security, legal, or
+     safety constraint may be settled even inside an otherwise exploratory product. A pure grid — no
+     curved connectors — so the C6 text-overlap and C7 stroke-cross-through gates have nothing to
+     trip on. Accent #2f5169, source-red #b23b3b, cream #f6f4ef, panel #e7edf3, ink #1c1917,
+     muted #57534e. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" width="920" height="620"
      role="img" aria-labelledby="mgTitle mgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -19,12 +22,14 @@
     explore — build enough to learn before you specify. Little implementation with settled intent:
     model early — a known contract earns heavy modeling from the start. Much implementation with
     uncertain intent: recover, then explore — surface the latent structure, then probe the open
-    intent. Much implementation with settled intent: recover, then govern — surface the latent
-    models and put them under enforcement. The settled column is shaded more strongly than the
-    uncertain column because governance intensity should track how much you know: the more settled
-    the intent, the more specification and enforcement the start justifies. How much system exists
-    fixes the representation you inherit; how much intent is settled fixes how hard you should
-    specify and govern it.</desc>
+    intent. Much implementation with settled intent: recover, reconcile, govern — surface the
+    latent models and controls, reconcile them with the code, and put settled obligations under
+    enforcement. The settled column is shaded more strongly than the uncertain column, but the
+    reading is per-obligation rather than project-wide: the more settled a particular obligation,
+    the more authority it can safely receive, so a security, legal, or safety constraint may be
+    settled and enforced even inside an otherwise exploratory product. How much system exists fixes
+    the representation and controls you inherit; how settled a given obligation is fixes how much of
+    it can safely be made explicit and authoritative.</desc>
 
   <text x="460" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Two axes fix where a migration starts</text>
 
@@ -47,7 +52,7 @@
     <rect x="268" y="188" width="294" height="196" rx="8"/>
     <rect x="268" y="400" width="294" height="196" rx="8"/>
   </g>
-  <!-- right (settled) column: stronger fill — governance tracks knowledge -->
+  <!-- right (settled) column: stronger fill — more-settled obligations can safely carry more authority -->
   <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
     <rect x="568" y="188" width="294" height="196" rx="8"/>
     <rect x="568" y="400" width="294" height="196" rx="8"/>
@@ -71,9 +76,9 @@
   <text x="415" y="542" text-anchor="middle" font-size="16" fill="#1c1917">surface the latent structure,</text>
   <text x="415" y="566" text-anchor="middle" font-size="16" fill="#1c1917">then probe the open intent</text>
 
-  <!-- bottom-right: much x settled -->
+  <!-- bottom-right: much x settled — R45b: recover, RECONCILE, govern -->
   <text x="715" y="442" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">much &#215; settled</text>
-  <text x="715" y="504" text-anchor="middle" font-size="27" font-weight="700" fill="#1c1917">Recover, govern</text>
-  <text x="715" y="542" text-anchor="middle" font-size="16" fill="#1c1917">surface the latent models,</text>
-  <text x="715" y="566" text-anchor="middle" font-size="16" fill="#1c1917">then put them under enforcement</text>
+  <text x="715" y="502" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Recover, reconcile, govern</text>
+  <text x="715" y="540" text-anchor="middle" font-size="16" fill="#1c1917">surface latent models and controls,</text>
+  <text x="715" y="564" text-anchor="middle" font-size="16" fill="#1c1917">reconcile them, then govern</text>
 </svg>

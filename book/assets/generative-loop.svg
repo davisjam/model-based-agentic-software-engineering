@@ -1,95 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (ported from the chapter's mermaid fence, label: generative-loop).
-     One generator, three oracles, all drawing from the shared structured model; every
-     counterexample shrinks or RCAs to a spec point, and coverage closes the loop — refining
-     the generator and joining model-claim coverage back to the model. Palette: Umber
-     Monograph tokens (accent #9a3f12 the model, fleet #2f5169 generator + oracles,
-     churn #b23b3b the counterexample, governed #1f7a4d coverage). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 670" width="1180" height="670"
+<!-- Hand-authored SVG (label: generative-loop). R45c REBUILD — recentered from "The Coin Is the
+     Model" to the INDEPENDENT ORACLE. One loop, whatever the oracle's source: a generator makes
+     inputs, the system runs them, an independent oracle judges each outcome, a counterexample feeds
+     back to shrink or diagnose, and coverage asks whether the search reached the claim before
+     refining the generator. The oracle may be a declared property, a robustness contract, a reference
+     implementation, or a structured model — the loop does not care which. Palette: Umber Monograph
+     tokens (accent #9a3f12 the independent oracle, fleet #2f5169 generator + system, churn #b23b3b
+     the counterexample, governed #1f7a4d coverage). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560" width="1180" height="560"
      role="group" aria-labelledby="glTitle glDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="glTitle">One generator, three oracles, one shared model — and a coverage loop</title>
-  <desc id="glDesc">A shared structured model — the specification — feeds two of three
-    oracles: the declared invariant of a property test, and the structured model itself in
-    fuzz plus MBSE. A single input generator feeds all three: the property-test invariant,
-    the never-crash fuzzing contract, and the model-based oracle. All three converge on one
-    outcome, a counterexample shrunk to its minimal form or RCA'd to the stable
-    specification point. That outcome flows into coverage — grammar, line and branch, and
-    model-claim — which feeds two dashed loops back: one refining the generator, one joining
-    model-claim coverage back to the model, where the metrics chapter owns it.</desc>
+  <title id="glTitle">Generate, judge, search again — around one independent oracle</title>
+  <desc id="glDesc">A left-to-right loop. A generator makes inputs; the system under test runs them;
+    an independent oracle judges each outcome. The oracle draws its verdict from one of several
+    independent sources — a declared property, a robustness contract, a reference implementation, or
+    a structured model — none of which is the system being judged. A failing outcome becomes a
+    counterexample, shrunk to its minimal form or diagnosed to the stable obligation it violated. That
+    outcome flows into coverage, which asks whether the search ever reached the semantic region the
+    claim is about. Two dashed loops close the cycle: one refines the generator, and where a
+    traceability graph exists, one joins model-claim coverage back to the claim.</desc>
 
   <defs>
     <marker id="gl-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
-    <marker id="gl-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="gl-ah-loop" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
   </defs>
 
-  <!-- ===== the shared model (cylinder, the coin) ===== -->
-  <g>
-    <path d="M 40,60 v 100 a 150,14 0 0 0 300,0 v -100" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-    <ellipse cx="190" cy="60" rx="150" ry="14" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-    <text x="190" y="112" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">shared structured model</text>
-    <text x="190" y="140" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">the specification</text>
-  </g>
+  <!-- ===== the forward spine: generator -> system -> oracle -> counterexample ===== -->
+  <!-- generator -->
+  <rect x="40" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="145" y="192" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">generator</text>
+  <text x="145" y="220" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">makes inputs</text>
 
-  <!-- ===== the input generator ===== -->
-  <rect x="100" y="430" width="220" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="210" y="473" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">input generator</text>
+  <!-- system -->
+  <rect x="310" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="415" y="192" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">system</text>
+  <text x="415" y="220" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">under test</text>
 
-  <!-- ===== the three oracles ===== -->
-  <rect x="430" y="60" width="330" height="400" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
-  <text x="450" y="92" font-size="18.88" font-style="italic" fill="#57534e">one move, three oracles</text>
+  <!-- independent oracle (accent) -->
+  <rect x="580" y="132" width="260" height="132" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="710" y="176" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">independent oracle</text>
+  <text x="710" y="204" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">judges the outcome</text>
+  <text x="710" y="236" text-anchor="middle" font-size="16.5" fill="#57534e">property · contract ·</text>
+  <text x="710" y="256" text-anchor="middle" font-size="16.5" fill="#57534e">reference impl · model · human</text>
 
-  <rect x="460" y="110" width="270" height="84" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="595" y="144" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">declared invariant</text>
-  <text x="595" y="172" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">property test</text>
+  <!-- counterexample (churn) -->
+  <rect x="900" y="132" width="240" height="132" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+  <text x="1020" y="176" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">counterexample</text>
+  <text x="1020" y="206" text-anchor="middle" font-size="17.5" fill="#b23b3b">shrink / diagnose to</text>
+  <text x="1020" y="228" text-anchor="middle" font-size="17.5" fill="#b23b3b">the stable obligation</text>
 
-  <rect x="460" y="225" width="270" height="84" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="595" y="259" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">never-crash contract</text>
-  <text x="595" y="287" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">fuzz</text>
-
-  <rect x="460" y="340" width="270" height="84" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="595" y="374" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">the structured model</text>
-  <text x="595" y="402" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">itself — fuzz + MBSE</text>
-
-  <!-- model -> oracles (the model is the oracle) -->
-  <path d="M344,120 C390,125 410,135 452,146" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#gl-ah)"/>
-  <path d="M250,180 C300,290 360,340 452,362" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#gl-ah)"/>
-
-  <!-- generator -> all three oracles -->
+  <!-- forward arrows -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M324,443 C390,370 415,240 452,178" marker-end="url(#gl-ah)"/>
-    <path d="M324,455 C395,420 420,310 452,272" marker-end="url(#gl-ah)"/>
-    <path d="M324,468 C380,450 410,420 452,402" marker-end="url(#gl-ah)"/>
+    <path d="M250,198 L306,198" marker-end="url(#gl-ah)"/>
+    <path d="M520,198 L576,198" marker-end="url(#gl-ah)"/>
+    <path d="M840,198 L896,198" marker-end="url(#gl-ah)"/>
   </g>
 
-  <!-- oracles -> the counterexample -->
-  <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M734,152 C790,160 800,180 844,200" marker-end="url(#gl-ah)"/>
-    <path d="M734,267 C790,260 800,245 844,228" marker-end="url(#gl-ah)"/>
-    <path d="M734,382 C800,360 810,300 848,286" marker-end="url(#gl-ah)"/>
-  </g>
-
-  <rect x="850" y="170" width="280" height="110" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="990" y="205" text-anchor="middle" font-size="19" font-weight="700" fill="#b23b3b">counterexample →</text>
-  <text x="990" y="232" text-anchor="middle" font-size="18.88" fill="#b23b3b">shrink / RCA to the</text>
-  <text x="990" y="256" text-anchor="middle" font-size="18.88" fill="#b23b3b">spec point</text>
+  <!-- ===== coverage (governed) ===== -->
+  <rect x="450" y="400" width="360" height="110" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="630" y="440" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">coverage: did we reach the claim?</text>
+  <text x="630" y="470" text-anchor="middle" font-size="17.5" fill="#57534e">input-space · line/branch · model-claim</text>
 
   <!-- counterexample -> coverage -->
-  <path d="M990,284 C985,340 980,390 978,436" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#gl-ah)"/>
+  <path d="M1020,266 C1015,340 900,420 812,448" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#gl-ah)"/>
 
-  <rect x="810" y="440" width="340" height="110" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="980" y="478" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">coverage: did we explore?</text>
-  <text x="980" y="508" text-anchor="middle" font-size="18.88" fill="#57534e">grammar · line/branch · model-claim</text>
+  <!-- the loop closes: coverage -> refine the generator -->
+  <path d="M448,470 C280,486 170,400 145,250" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-loop)"/>
+  <text x="250" y="400" text-anchor="middle" font-size="18.5" font-style="italic" fill="#57534e">refine the generator</text>
 
-  <!-- the loop closes: coverage refines the generator ... -->
-  <path d="M806,510 C560,570 300,560 195,504" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-mut)"/>
-  <text x="500" y="530" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">refine the generator</text>
-
-  <!-- ... and model-claim coverage joins back to the model -->
-  <path d="M806,540 C500,650 140,625 60,440 C 35,320 90,215 148,186" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-mut)"/>
-  <text x="430" y="652" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">model-claim coverage — the metrics chapter owns it</text>
+  <!-- coverage -> (where traceability exists) joins model-claim coverage back to the claim/oracle -->
+  <path d="M812,462 C930,452 895,330 838,270" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-loop)"/>
+  <text x="905" y="392" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">model-claim coverage</text>
+  <text x="905" y="414" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
 </svg>
