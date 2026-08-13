@@ -2,23 +2,23 @@
 <!-- Hand-authored SVG (label: part3-nav-arc). Part III Part-opener navigation figure: the five-chapter
      arc as five questions on one descending spine, each answered by the chapter beside it, and each
      raising the next. WHERE authority can act (3.1) -> WHAT it may enforce (3.2) -> HOW it enforces
-     (3.3) -> how the control system GROWs (3.4) -> how we GOVERN the control system (3.5). Distinct from
-     the whole-book subway nav; this one walks Part III only. Palette: Umber Monograph tokens —
-     governance #9a3f12 + tint #faf1e6 for the station nodes and spine (the Part's subject is authority),
-     ink #1c1917 questions, muted #57534e chapter titles + spine. Fonts in the 16-28 band at the 1000px
-     reference. -->
+     (3.3) -> how the environment GROWs, learning new obligations and controls (3.4) -> how we GOVERN the
+     control system (3.5). Distinct from the whole-book subway nav; this one walks Part III only. Palette:
+     Umber Monograph tokens — governance #9a3f12 + tint #faf1e6 for the station nodes and spine (the Part's
+     subject is authority), ink #1c1917 questions, muted #57534e chapter titles + spine. Fonts in the 16-28
+     band at the 1000px reference. -->
 <!-- semantic-families: governance, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840" width="1000" height="840"
      role="group" aria-labelledby="naTitle naDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="naTitle">Part III as five questions, one per chapter, on a single descending arc</title>
   <desc id="naDesc">Five numbered stations descend a vertical spine, each a chapter of Part III, and each
-    answers a question the one above it raises. Station 3.1, Where Authority Lives, asks where can
+    answers a question the one above it raises. Station 3.1, Where Authority Can Act, asks where can
     authority act. Station 3.2, From Intent to Obligation, asks what can it legitimately enforce. Station
     3.3, The Four Mechanism Roles, asks how does it enforce it. Station 3.4, Growing the Governed
-    Environment, asks how does the control system grow. Station 3.5, Governing the Governance, asks how do
-    we govern the control system itself. The arc runs from where authority can act down to governing the
-    controls that result.</desc>
+    Environment, asks how does the environment learn new obligations and controls. Station 3.5, Governing
+    the Governance, asks how do we govern the control system itself. The arc runs from where authority can
+    act down to governing the controls that result.</desc>
 
   <defs>
     <marker id="na-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -43,7 +43,7 @@
   <text x="150" y="173" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.1</text>
   <text x="205" y="143" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">WHERE</text>
   <text x="205" y="169" font-size="21" font-weight="700" fill="#1c1917">Where can authority act?</text>
-  <text x="205" y="195" font-size="16" fill="#57534e">3.1 · Where Authority Lives</text>
+  <text x="205" y="195" font-size="16" fill="#57534e">3.1 · Where Authority Can Act</text>
 
   <!-- 3.2 WHAT -->
   <circle cx="150" cy="315" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
@@ -63,7 +63,7 @@
   <circle cx="150" cy="615" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="623" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.4</text>
   <text x="205" y="593" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">GROW</text>
-  <text x="205" y="619" font-size="21" font-weight="700" fill="#1c1917">How does the control system grow?</text>
+  <text x="205" y="619" font-size="21" font-weight="700" fill="#1c1917">How does the environment learn new obligations and controls?</text>
   <text x="205" y="645" font-size="16" fill="#57534e">3.4 · Growing the Governed Environment</text>
 
   <!-- 3.5 GOVERN -->

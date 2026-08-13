@@ -466,7 +466,7 @@ _PART_OPENER_QUESTION_LABEL = "Question this Part answers"
 _PART_OPENER_QUESTIONS = {
     1: "What becomes the engineering problem when implementation becomes abundant?",
     2: "How do I identify useful models?",
-    3: "How do I encode authority into my environment?",
+    3: "How do I give engineering obligations authority in my environment?",
     4: "How do I practice MAGE?",
     5: "How did the clean method emerge from messy engineering?",
     6: "Where is the profession going?",

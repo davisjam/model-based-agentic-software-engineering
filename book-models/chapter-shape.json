@@ -356,8 +356,7 @@
       "exempt": null,
       "spine_advances": [
         "modeling-thesis",
-        "alignment-thesis",
-        "sync-cost-reduced"
+        "alignment-thesis"
       ]
     },
     {
@@ -543,44 +542,36 @@
         "failure_question": "explicit",
         "answer": "explicit",
         "thesis_link": "explicit",
-        "thesis_target": "argument-step"
+        "thesis_target": "alignment"
       },
       "closing": {
         "kind": "transition"
       },
-      "note": "Opens on the interposition frame back-linked to the 1.4 derivation; question 'where do you reach in?' answered by the four-layer stack. Closing ties stack to both theses AND hands off to the two following chapters — transition, not mere re-announcement (borderline; 2c could sharpen the last paragraph's first sentence).",
-      "opening_anchor": "A language model alone gives probabilistic recommendations. A harness turns some of",
-      "closing_anchor": "The two chapters that follow take one thesis each: modeling, then alignment.",
+      "note": "Renamed 'Where Authority Can Act'. Opens on guidance-vs-authority (Alignment), back-linked to the 1.4 derivation; four intervention boundaries as semantic grains, placement != strength. Closing hands to 3.2 (what deserves authority) — transition.",
+      "opening_anchor": "A foundation model produces probabilistic judgments. A harness turns selected judgments into",
+      "closing_anchor": "to be true before any surface, model-based or otherwise, deserves binding authority.",
       "delivers": {
         "concepts": [
           "agent",
-          "engineered-agent-loop",
-          "loop-engineering",
-          "success-metric",
-          "agent-stack",
-          "foundation-model",
-          "context-window",
-          "agentic-harness",
-          "skill-soft-control",
-          "hook-hard-control",
-          "tool-deterministic-action",
-          "engineering-environment",
-          "injection-point",
-          "thesis-alignment"
+          "reasoning-input",
+          "action-boundary",
+          "work-unit-boundary",
+          "artifact-runtime-boundary",
+          "intervention-boundary"
         ],
         "artifacts": [
           {
             "type": "framework",
-            "name": "the agent-stack layers figure (four-layer injection model)",
-            "anchor": "stack-layers"
+            "name": "the intervention-boundaries figure (four semantic-grain boundaries)",
+            "anchor": "intervention-boundaries"
           }
         ],
         "artifact_would_help": false
       },
       "exempt": null,
       "spine_advances": [
-        "govern-the-environment",
-        "modeling-thesis"
+        "alignment-thesis",
+        "govern-the-environment"
       ]
     },
     {
@@ -589,25 +580,25 @@
         "failure_question": "explicit",
         "answer": "explicit",
         "thesis_link": "implicit",
-        "thesis_target": "modeling"
+        "thesis_target": "alignment"
       },
       "closing": {
         "kind": "transition"
       },
-      "note": "Trap named (enforcing at the wrong level), answer (model = sweet spot, check where checking makes sense); Modeling Thesis carried by content, not named. Closes on two promissory notes routed to 3.3 and Part 3.",
-      "opening_anchor": "The last chapter gave you four places to inject a mechanism. This",
-      "closing_anchor": "every mechanism finally takes — the model and its gate among them.",
+      "note": "Two requirements for authority: an independent obligation + a boundary where it is legible. Lesson one, agreement is not correctness; lesson two, place at the earliest legible boundary (the semantic gap). Closes to 3.3 — what the mechanism at that boundary does.",
+      "opening_anchor": "Authority needs two things: **an obligation independent of the work being judged,",
+      "closing_anchor": "The next question is what the mechanism at that boundary actually does.",
       "delivers": {
         "concepts": [
-          "drift-caveat",
-          "mirror-vs-spec",
+          "agreement-vs-correctness",
+          "independent-obligation",
           "semantic-gap",
-          "right-level-of-enforcement"
+          "earliest-legible-boundary"
         ],
         "artifacts": [
           {
             "type": "framework",
-            "name": "the documentation-hierarchy and semantic-gap figures",
+            "name": "the semantic-gap figure",
             "anchor": "semantic-gap"
           }
         ],
@@ -629,11 +620,11 @@
         "thesis_target": "alignment"
       },
       "closing": {
-        "kind": "consequence"
+        "kind": "transition"
       },
-      "note": "R11 split from the-governed-environment (taxonomy half): constraint/sensor/validator/gate — the four canonical mechanism roles. W2 promotes the four-role spine and cuts the form-move 2x2.",
-      "opening_anchor": "A mechanism is one of two moves",
-      "closing_anchor": "The model supplies the policy; the consumption supplies the holding.",
+      "note": "The four mechanism roles: constraint, sensor (observes/produces evidence), validator (judges evidence), gate. Prevention and observation as the working pair; implementations bundle roles. Closes on the conversion problem — transition to 3.4.",
+      "opening_anchor": "MAGE uses four roles to describe how environmental authority operates. A mechanism",
+      "closing_anchor": "governed. That is the conversion problem, and it is the next chapter.",
       "delivers": {
         "concepts": [
           "governance-mechanism",
@@ -669,25 +660,25 @@
         "thesis_target": "alignment"
       },
       "closing": {
-        "kind": "consequence"
+        "kind": "transition"
       },
-      "note": "R11 split from the-governed-environment (conversion half): ex-ante/ex-post, the governance-conversion loop, control-growth, and the residual. Closes on the residual — a concrete consequence (your throughput ceiling). W2 recasts the opening seam.",
-      "opening_anchor": "One rule runs this whole chapter: **an ex-post failure becomes an ex-ante",
-      "closing_anchor": "pushes the human boundary the same way authoring a spec does here.",
+      "note": "Renamed 'Growing the Governed Environment'. Ex ante vs ex post; governance conversion is the hinge; the five-way conversion; engineering capital as a balance sheet; the honest gaps. Census moved out to 3.5. Closes handing the accumulated estate to 3.5 — transition.",
+      "opening_anchor": "No engineering team begins with a complete catalogue of everything its environment",
+      "closing_anchor": "of controls, and those controls can themselves become inconsistent, redundant, or orphaned.",
       "delivers": {
         "concepts": [
+          "governance-conversion",
           "ex-ante-governance",
           "specification-driven-development",
           "ex-post-governance",
-          "governance-conversion",
-          "governed-environment",
+          "engineering-capital",
           "residual"
         ],
         "artifacts": [
           {
             "type": "framework",
-            "name": "the governance-conversion loop and control-growth curve",
-            "anchor": "governance-conversion-loop"
+            "name": "the governance-conversion figure",
+            "anchor": "governance-conversion-fig"
           }
         ],
         "artifact_would_help": false
@@ -708,18 +699,23 @@
         "thesis_target": "modeling"
       },
       "closing": {
-        "kind": "consequence"
+        "kind": "transition"
       },
-      "note": "Failure vivid (two controls, incompatible demands, two real collisions); answer: model the space between controls; the modeling move implicit as thesis. Closes on descriptive-not-inventing limit — the governance-tower failure mode.",
-      "opening_anchor": "Every control in a system can be correct and the system of",
-      "closing_anchor": "is the model, and the next Part opens the zoo of them.",
+      "note": "Renamed 'Governing the Governance'. Alignment turned on itself: catalogue, interaction graph, and coverage (obligations against mechanisms) over one control estate; grow/reconcile/retire. End of Part III — closes on 'Part IV joins the two into practice.'",
+      "opening_anchor": "Every control in an environment can be reasonable in isolation and the",
+      "closing_anchor": "a gap neither thesis anticipated. **Part IV joins the two into practice.**",
       "delivers": {
         "concepts": [],
         "artifacts": [
           {
             "type": "framework",
-            "name": "the collision-edge figure and four-value collision taxonomy",
+            "name": "the collision-edge figure",
             "anchor": "collision-edge"
+          },
+          {
+            "type": "framework",
+            "name": "the three-views-of-one-control-estate figure",
+            "anchor": "census-trio"
           }
         ],
         "artifact_would_help": false

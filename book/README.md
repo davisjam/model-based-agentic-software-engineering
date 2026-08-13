@@ -23,7 +23,7 @@ book/
   part2/  (Part 2 — Modeling)
     2.1-context-is-the-first-modeling-problem.md … 2.7-scenarios-and-the-joined-model.md
   part3/  (Part 3 — The Governed Engineering Environment)
-    3.1-the-agent-stack.md
+    3.1-where-authority-can-act.md
     3.2-models-and-the-semantic-gap.md
     3.3-constraints-sensors-validators-gates.md
     3.4-governance-conversion.md

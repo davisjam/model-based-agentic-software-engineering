@@ -606,7 +606,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="2.8-joining-models-around-a-scenario.html">12&nbsp; Joining Models Around a Scenario</a></li>
 <li class="part">Part 3 — Alignment</li>
 <li><a class="current" href="part-3-intro.html">Alignment</a></li>
-<li><a class="" href="3.1-the-agent-stack.html">13&nbsp; Where Authority Lives</a></li>
+<li><a class="" href="3.1-where-authority-can-act.html">13&nbsp; Where Authority Can Act</a></li>
 <li><a class="" href="3.2-models-and-the-semantic-gap.html">14&nbsp; From Intent to Enforceable Obligation</a></li>
 <li><a class="" href="3.3-constraints-sensors-validators-gates.html">15&nbsp; The Four Mechanism Roles</a></li>
 <li><a class="" href="3.4-governance-conversion.html">16&nbsp; Growing the Governed Environment</a></li>
@@ -721,22 +721,23 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap part-page" aria-label="Part 3 · Alignment — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 3</a></div><h1>Alignment</h1></header><p>Models make engineering intent explicit. They do not, by themselves, ensure that intent is followed. A model that no mechanism enforces is still only advice.</p>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap part-page" aria-label="Part 3 · Alignment — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 3</a></div><h1>Alignment</h1></header><p>Part 2 made engineering knowledge and intent explicit. Those models already earn their keep: they let engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from lower-level detail. This Part asks a different question. <strong>Which of those properties should the environment itself hold as obligations, and how should it hold them?</strong></p>
+<p>Alignment is the move from guidance to authority. Some obligations require no rich system model: a permission can forbid network access, a type can rule out an illegal value, a sandbox can make an action unavailable. Explicit models extend that reach. Once architecture, ownership, behavior, measurement, or policy has been represented at the level where the property exists, the environment can govern questions that would otherwise need an agent or a human to reconstruct the missing semantics.</p>
 <blockquote class="thesis-box"><p class="inset-title">ALIGNMENT THESIS</p>
-<p>Give engineering intent authority by encoding obligations into authoritative mechanisms that constrain actions, produce evidence, validate that evidence, and control admission.</p>
-<p>Represented intent becomes authoritative.</p></blockquote>
-<p>This Part walks five questions, each a chapter; <a class="xref" href="part-3-intro.html#fig-3-0-1">Figure&nbsp;3.0-1</a> sets them on one descending arc.</p>
+<p>Give engineering intent authority by encoding obligations into authoritative mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.</p>
+<p>Represented intent becomes authoritative when the environment can act on it.</p></blockquote>
+<p>This Part answers five questions, each a chapter; <a class="xref" href="part-3-intro.html#fig-3-0-1">Figure&nbsp;3.0-1</a> gives them in order.</p>
 <figure id="fig-3-0-1" class="book-figure" data-label="part3-nav-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
      role="group" aria-labelledby="naTitle naDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="naTitle">Part III as five questions, one per chapter, on a single descending arc</title>
   <desc id="naDesc">Five numbered stations descend a vertical spine, each a chapter of Part III, and each
-    answers a question the one above it raises. Station 3.1, Where Authority Lives, asks where can
+    answers a question the one above it raises. Station 3.1, Where Authority Can Act, asks where can
     authority act. Station 3.2, From Intent to Obligation, asks what can it legitimately enforce. Station
     3.3, The Four Mechanism Roles, asks how does it enforce it. Station 3.4, Growing the Governed
-    Environment, asks how does the control system grow. Station 3.5, Governing the Governance, asks how do
-    we govern the control system itself. The arc runs from where authority can act down to governing the
-    controls that result.</desc>
+    Environment, asks how does the environment learn new obligations and controls. Station 3.5, Governing
+    the Governance, asks how do we govern the control system itself. The arc runs from where authority can
+    act down to governing the controls that result.</desc>
 
   <defs>
     <marker id="na-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -761,7 +762,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="150" y="173" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.1</text>
   <text x="205" y="143" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">WHERE</text>
   <text x="205" y="169" font-size="21" font-weight="700" fill="#1c1917">Where can authority act?</text>
-  <text x="205" y="195" font-size="16" fill="#57534e">3.1 · Where Authority Lives</text>
+  <text x="205" y="195" font-size="16" fill="#57534e">3.1 · Where Authority Can Act</text>
 
   <!-- 3.2 WHAT -->
   <circle cx="150" cy="315" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
@@ -781,7 +782,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <circle cx="150" cy="615" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="623" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.4</text>
   <text x="205" y="593" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">GROW</text>
-  <text x="205" y="619" font-size="21" font-weight="700" fill="#1c1917">How does the control system grow?</text>
+  <text x="205" y="619" font-size="21" font-weight="700" fill="#1c1917">How does the environment learn new obligations and controls?</text>
   <text x="205" y="645" font-size="16" fill="#57534e">3.4 · Growing the Governed Environment</text>
 
   <!-- 3.5 GOVERN -->
@@ -790,8 +791,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="205" y="743" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="2">GOVERN</text>
   <text x="205" y="769" font-size="21" font-weight="700" fill="#1c1917">How do we govern the control system?</text>
   <text x="205" y="795" font-size="16" fill="#57534e">3.5 · Governing the Governance</text>
-</svg><figcaption data-short="The five chapters of Part III as five questions on one descending arc, each…"><span class="fig-label">Figure 3.0-1.</span> The five chapters of Part III as five questions on one descending arc, each answered by the chapter beside it and each raising the next: WHERE authority can act (3.1) → WHAT it may legitimately enforce (3.2) → HOW it enforces (3.3) → how the control system GROWs (3.4) → how we GOVERN the resulting control system (3.5). The Part reads as an argument, not a catalogue.</figcaption></figure>
-<p>The last Part made intent explicit; this Part makes it binding. Constraints, sensors, validators, gates, and control graphs all serve one purpose: turning engineering judgment from something people remember into something the environment enforces. Reliability becomes a property of the engineering environment rather than of repeated human inspection — and as recurring failures are converted into mechanisms, governance itself grows into engineering capital.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 850"
+</svg><figcaption data-short="Figure 3.0-1"><span class="fig-label">Figure 3.0-1.</span> <em>Figure 3.0-1: Five questions organize Alignment.</em> WHERE authority can act (3.1) → WHAT obligation it should hold (3.2) → HOW — which mechanism role holds it (3.3) → how the environment GROWs, learning new obligations and controls (3.4) → how we GOVERN the resulting control system (3.5). The Part reads as an argument: from where authority acts, to what it may enforce, to how, to governing the result.</figcaption></figure>
+<p>Alignment externalizes selected engineering judgments into the environment. Constraints narrow what work can do; sensors produce evidence of what it did; validators evaluate that evidence against an obligation; gates decide what may advance. Some mechanisms can be designed before the work begins. Others emerge only when a failure reveals an obligation nobody encoded. As those lessons become durable structure, the environment accumulates engineering capital, and eventually enough machinery that the machinery itself must be engineered.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 850"
      role="group" aria-labelledby="bmTitle-nav bmDesc-nav"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="bmTitle-nav">A map of the book — a single linear descent through six parts</title>
@@ -854,4 +855,4 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="450" y="734" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
   <text x="450" y="760" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">theory · industrial comparison · scope</text>
   <text x="450" y="782" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">profession · open problems</text>
-</svg><ul class="visually-hidden roadmap-fallback"><li>Part 1 — The New Engineering Problem: <a href="part-1-intro.html">go to Part 1</a></li><li>Part 2 — Modeling: <a href="part-2-intro.html">go to Part 2</a></li><li aria-current="page">Part 3 — Alignment (current part)</li><li>Part 4 — The MAGE Method: <a href="part-4-intro.html">go to Part 4</a></li><li>Part 5 — The Evidence: <a href="part-5-intro.html">go to Part 5</a></li><li>Part 6 — The Profession: <a href="part-6-intro.html">go to Part 6</a></li></ul></nav><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="2.8-joining-models-around-a-scenario.html" aria-label="Previous chapter — 12 · Joining Models Around a Scenario">« Previous chapter</a></div><span class="chapnav-here" title="Alignment">Alignment</span><div class="chapnav-fwd"><a href="3.1-the-agent-stack.html" aria-label="Next chapter — 13 · Where Authority Lives">Next chapter »</a><a href="part-4-intro.html" aria-label="Next part — Part 4 — The MAGE Method">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+</svg><ul class="visually-hidden roadmap-fallback"><li>Part 1 — The New Engineering Problem: <a href="part-1-intro.html">go to Part 1</a></li><li>Part 2 — Modeling: <a href="part-2-intro.html">go to Part 2</a></li><li aria-current="page">Part 3 — Alignment (current part)</li><li>Part 4 — The MAGE Method: <a href="part-4-intro.html">go to Part 4</a></li><li>Part 5 — The Evidence: <a href="part-5-intro.html">go to Part 5</a></li><li>Part 6 — The Profession: <a href="part-6-intro.html">go to Part 6</a></li></ul></nav><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="2.8-joining-models-around-a-scenario.html" aria-label="Previous chapter — 12 · Joining Models Around a Scenario">« Previous chapter</a></div><span class="chapnav-here" title="Alignment">Alignment</span><div class="chapnav-fwd"><a href="3.1-where-authority-can-act.html" aria-label="Next chapter — 13 · Where Authority Can Act">Next chapter »</a><a href="part-4-intro.html" aria-label="Next part — Part 4 — The MAGE Method">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

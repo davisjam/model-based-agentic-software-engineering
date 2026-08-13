@@ -118,7 +118,7 @@
       },
       "introduced_at": {
         "label": "the-agent-stack",
-        "anchor": "loop-engineering"
+        "anchor": "every-boundary-determines-where-feedback-can-return"
       },
       "payoff": "Agent work is a loop you engineer at four control points.",
       "overlap_ok": false,
@@ -199,11 +199,11 @@
       },
       "introduced_at": {
         "label": "the-agent-stack",
-        "anchor": "controllable-not-controlled-is-why-authority-leaves-the-prompt"
+        "anchor": "agents-are-steerable-their-outputs-are-not-guaranteed"
       },
       "pays_off_at": {
         "label": "the-agent-stack",
-        "anchor": "controllable-not-controlled-is-why-authority-leaves-the-prompt"
+        "anchor": "agents-are-steerable-their-outputs-are-not-guaranteed"
       },
       "stretch": "the-agent-stack",
       "payoff": "A goal-directed agent takes indirect steps toward a target.",
@@ -223,11 +223,11 @@
       },
       "introduced_at": {
         "label": "constraints-sensors-validators-gates",
-        "anchor": "a-validator-weighs-evidence-a-gate-decides-admission"
+        "anchor": "a-validator-turns-evidence-into-a-judgment"
       },
       "pays_off_at": {
         "label": "constraints-sensors-validators-gates",
-        "anchor": "cheap-evidence-early-full-re-derivation-late-never-a-trusted-report"
+        "anchor": "cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing"
       },
       "stretch": "constraints-sensors-validators-gates",
       "payoff": "Cheap checks early bind an exact tree; later stages check the binding instead of trusting a self-report.",

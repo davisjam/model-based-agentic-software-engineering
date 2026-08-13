@@ -208,6 +208,15 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: map-and-territory | Map and territory
 - concept: model-drift | Model drift
 - concept: semantic-gap | The semantic gap
+- concept: intervention-boundary | Intervention boundary
+- concept: reasoning-input | Reasoning input
+- concept: action-boundary | Action boundary
+- concept: work-unit-boundary | Work-unit boundary
+- concept: artifact-runtime-boundary | Artifact/runtime boundary
+- concept: independent-obligation | Independent obligation
+- concept: agreement-vs-correctness | Agreement is not correctness
+- concept: earliest-legible-boundary | The earliest legible boundary
+- concept: engineering-capital | Engineering capital
 - concept: right-level-of-enforcement | The right level of enforcement
 - concept: measure-one-level-deeper | Measure one level deeper
 - concept: governed-environment | The governed environment
@@ -217,7 +226,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: compounding | Compounding
 - concept: constraints-and-sensors | Constraints and sensors
 - concept: residual | The residual (goals no mechanism reaches; stays-human)
-- concept: sensor | Sensor (detects drift)
+- concept: sensor | Sensor (observes drift, produces evidence)
 - concept: constraint | Constraint (prevents drift)
 - concept: validator | The validator
 - concept: gate | The gate

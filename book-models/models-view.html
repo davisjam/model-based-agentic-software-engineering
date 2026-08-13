@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>36</b> chapters · <b>251</b> sections · <b>79</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>36</b> chapters · <b>248</b> sections · <b>70</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -445,46 +445,37 @@
 <h2>Module 3 — Alignment</h2>
 <div class="outcomes"><div class="oc-h">After Module 3 — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After this Part, the reader can construct a governed engineering environment: place a control at the right layer of the agent stack, split ex-ante from ex-post, write lifecycles and runbooks, and measure one level deeper. <span class="prov">declared</span></span></li></ul></div>
 <div class="chapter">
-<h3 id="ch-3-1-the-agent-stack"><span class="tier-kick">Lesson</span><a href="../book/3.1-the-agent-stack.html" class="ch-link">3.1-the-agent-stack</a> <span class="ch-slug">3.1-the-agent-stack</span></h3>
-<div class="section s2" id="sec-3-1-the-agent-stack--the-four-layers">
-<div class="sec-h"><a href="../book/3.1-the-agent-stack.html">The four layers</a></div>
-<p class="topic">**At the bottom sits the foundation model** — a general language reasoner from a vendor or an open-weight release.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify each of the four layers of the agent stack, from the foundation model up, and name the kind of governance grip each one gives. <span class="prov">derived</span></span></li><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can identify each of the four layers of the agent stack. <span class="prov">derived</span></span></li></ul></div>
+<h3 id="ch-3-1-where-authority-can-act"><span class="tier-kick">Lesson</span><a href="../book/3.1-where-authority-can-act.html" class="ch-link">3.1-where-authority-can-act</a> <span class="ch-slug">3.1-where-authority-can-act</span></h3>
+<div class="section s2" id="sec-3-1-where-authority-can-act--four-intervention-boundaries">
+<div class="sec-h"><a href="../book/3.1-where-authority-can-act.html">Four intervention boundaries</a></div>
+<p class="topic">The first boundary is **reasoning input** — the context, representations, examples, and instructions put in front of the reasoner.</p>
 </div>
-<div class="section s2" id="sec-3-1-the-agent-stack--softest-to-hardest">
-<div class="sec-h"><a href="../book/3.1-the-agent-stack.html">Softest to hardest</a></div>
-<p class="topic">The four layers are not four strengths of grip; they are four *boundaries* at which the same intent can be bound, at a chosen distance from the act.</p>
+<div class="section s2" id="sec-3-1-where-authority-can-act--placement-and-strength-are-different-decisions">
+<div class="sec-h"><a href="../book/3.1-where-authority-can-act.html">Placement and strength are different decisions</a></div>
+<p class="topic">The four boundaries do not form a monotonic scale from weak to strong.</p>
 </div>
-<div class="section s2" id="sec-3-1-the-agent-stack--every-layer-is-a-place-to-steer">
-<div class="sec-h"><a href="../book/3.1-the-agent-stack.html">Every layer is a place to steer</a></div>
-<p class="topic">Read the stack as a list of opportunities, because that is what it is.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why each layer of the stack is an injection opportunity, all serving one goal — narrowing the agent&#x27;s search — and why the mechanisms placed there must themselves be governed for interplay. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-3-1-where-authority-can-act--every-boundary-is-a-place-to-close-the-loop">
+<div class="sec-h"><a href="../book/3.1-where-authority-can-act.html">Every boundary is a place to close the loop</a></div>
+<p class="topic">The boundaries also decide where feedback can return.</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-3-2-models-and-the-semantic-gap"><span class="tier-kick">Lesson</span><a href="../book/3.2-models-and-the-semantic-gap.html" class="ch-link">3.2-models-and-the-semantic-gap</a> <span class="ch-slug">3.2-models-and-the-semantic-gap</span></h3>
-<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--a-drift-check-proves-agreement-not-correctness">
-<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">A drift check proves agreement, not correctness</a></div>
-<p class="topic">Here is the trap the opener warned of.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain the precise guarantee a drift check gives — agreement, not correctness — and why only a model authored from intent, not derived from code, catches a wrong &quot;is&quot;. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--agreement-is-not-correctness">
+<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">Agreement is not correctness</a></div>
+<p class="topic">A drift check can establish a declared correspondence between two artifacts.</p>
 </div>
 <div class="section s2" id="sec-3-2-models-and-the-semantic-gap--the-semantic-gap">
 <div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">The semantic gap</a></div>
-<p class="topic">Enforce a property at the wrong level and it slips through; [ref:semantic-gap] shows the fix — lift the check to where the meaning is legible.</p>
+<p class="topic">The second failure is placement.</p>
 <div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-know">know</span><span class="oc-text">After this section, the reader can define the semantic gap — enforcing a property at the wrong level of abstraction — and identify the level where it becomes legible. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s2" id="sec-3-2-models-and-the-semantic-gap--a-second-worked-example-the-context-fullness-bank-hook">
-<div class="sec-h"><a href="../book/3.2-models-and-the-semantic-gap.html">A second worked example: the context-fullness bank-hook</a></div>
-<p class="topic">The gap shows up in the operator&#x27;s own loop too.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply the semantic-gap fix to a second, operator-loop instance: a hook that fires on context-fullness and record-staleness together, and can name why even a roughly-right rung beats a hook that sits too late. <span class="prov">derived</span></span></li></ul></div>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-3-3-constraints-sensors-validators-gates"><span class="tier-kick">Lesson</span><a href="../book/3.3-constraints-sensors-validators-gates.html" class="ch-link">3.3-constraints-sensors-validators-gates</a> <span class="ch-slug">3.3-constraints-sensors-validators-gates</span></h3>
-<div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--constraints-and-sensors">
-<div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Constraints and sensors</a></div>
-<p class="topic">Inside the loop a mechanism has one of two moves — prevent the mistake, or catch it — and [ref:constraint-vs-sensor] draws the split.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can distinguish a constraint (prevent, costs no iteration) from a sensor (catch, costs iterations), place both on the independent soft-versus-hard axis, and tag most real mechanisms as a package by their primary move. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--prevention-and-observation">
+<div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Prevention and observation</a></div>
+<p class="topic">Inside the loop a mechanism has one of two moves — prevent the mistake, or observe it — and [ref:constraint-vs-sensor] draws the split.</p>
 </div>
 <div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--validators-and-gates">
 <div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">Validators and gates</a></div>
@@ -496,57 +487,45 @@
 </div>
 <div class="section s2" id="sec-3-3-constraints-sensors-validators-gates--what-counts-as-a-mechanism">
 <div class="sec-h"><a href="../book/3.3-constraints-sensors-validators-gates.html">What counts as a mechanism</a></div>
-<p class="topic">The bounded definition settles a boundary this book leans on.</p>
+<p class="topic">Keep **policy**, **guidance**, and **governance mechanism** separate.</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-3-4-governance-conversion"><span class="tier-kick">Lesson</span><a href="../book/3.4-governance-conversion.html" class="ch-link">3.4-governance-conversion</a> <span class="ch-slug">3.4-governance-conversion</span></h3>
-<div class="section s2" id="sec-3-4-governance-conversion--ex-ante-everything-you-can-decide-up-front">
-<div class="sec-h"><a href="../book/3.4-governance-conversion.html">Ex-ante: everything you can decide up front</a></div>
-<p class="topic">Some things you genuinely know from the beginning, and you should write every one of them down.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-apply">apply</span><span class="oc-text">After this section, the reader can apply specification-driven development to what is knowable up front: write every known rule down and determinize it with a cheap deterministic check the agent itself writes. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-3-4-governance-conversion--ex-ante-encode-what-you-already-know">
+<div class="sec-h"><a href="../book/3.4-governance-conversion.html">Ex ante: encode what you already know</a></div>
+<p class="topic">Start with obligations you can state before the work begins and whose recurrence justifies making them durable.</p>
 </div>
-<div class="section s2" id="sec-3-4-governance-conversion--ex-post-everything-you-learn-by-building">
-<div class="sec-h"><a href="../book/3.4-governance-conversion.html">Ex-post: everything you learn by building</a></div>
-<p class="topic">But you will not know everything, and pretending otherwise is the mistake.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After this section, the reader can explain why governance is built ex-post — iteratively, as unforeseen failures reveal themselves — and why that is where most real mechanisms come from rather than a fallback for a weak plan. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-3-4-governance-conversion--ex-post-convert-what-the-work-teaches">
+<div class="sec-h"><a href="../book/3.4-governance-conversion.html">Ex post: convert what the work teaches</a></div>
+<p class="topic">The harder half begins when the system surprises you.</p>
 </div>
-<div class="section s2" id="sec-3-4-governance-conversion--what-it-adds-up-to">
-<div class="sec-h"><a href="../book/3.4-governance-conversion.html">What it adds up to</a></div>
-<p class="topic">Step back and the shape is simple: determinize what you can, then convert every recurring surprise into a constraint or a sensor.</p>
-</div>
-<div class="section s2" id="sec-3-4-governance-conversion--the-governance-census">
-<div class="sec-h"><a href="../book/3.4-governance-conversion.html">The governance census</a></div>
-<p class="topic">The governed environment is itself an object you can inventory, and the inventory turns a description of it into a diagnosis.</p>
+<div class="section s2" id="sec-3-4-governance-conversion--engineering-capital">
+<div class="sec-h"><a href="../book/3.4-governance-conversion.html">Engineering capital</a></div>
+<p class="topic">Governance conversion gives software engineering something it has long had difficulty naming: a concrete form of **engineering capital**.</p>
 </div>
 <div class="section s2" id="sec-3-4-governance-conversion--the-honest-gaps">
-<div class="sec-h"><a href="../book/3.4-governance-conversion.html">The honest gaps</a></div>
-<p class="topic">Not every goal lands on a mechanism.</p>
-</div>
-<div class="section s2" id="sec-3-4-governance-conversion--five-governed-two-gaps">
-<div class="sec-h"><a href="../book/3.4-governance-conversion.html">Five governed, two gaps</a></div>
-<p class="topic">The last Part closed by handing this one seven typed seams — six models and the scenario that joins them — each naming, in role and shape, an authority surface for this Part to build, as the closing handoff of [Joining Models Around a Scenario](2.8-joining-models-around-a-scenario.html) set out.</p>
+<div class="sec-h"><a href="../book/3.4-governance-conversion.html">The Honest Gaps</a></div>
+<p class="topic">Not every quality goal should end in a deterministic gate.</p>
 </div>
 </div>
 <div class="chapter">
 <h3 id="ch-3-5-when-guardrails-collide"><span class="tier-kick">Lesson</span><a href="../book/3.5-when-guardrails-collide.html" class="ch-link">3.5-when-guardrails-collide</a> <span class="ch-slug">3.5-when-guardrails-collide</span></h3>
-<div class="section s2" id="sec-3-5-when-guardrails-collide--drawing-what-lies-between-the-controls">
-<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Drawing what lies between the controls</a></div>
-<p class="topic">The Governance Graph draws it.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can analyze the space between controls with a governance graph — mechanisms as nodes tagged by event and resource, conflicts as edges in a closed contradiction/contention/ordering/precedence taxonomy joined by the shared resource — and route each edge to a lint or a human prompt by its type before the control ships. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-3-5-when-guardrails-collide--catalogue-the-controls">
+<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Catalogue the controls</a></div>
+<p class="topic">Start with the nodes.</p>
 </div>
-<div class="section s2" id="sec-3-5-when-guardrails-collide--the-other-question-a-list-can-t-answer">
-<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">The other question a list can&#x27;t answer</a></div>
-<p class="topic">The graph settled one question a flat list could not: which two controls collide.</p>
+<div class="section s2" id="sec-3-5-when-guardrails-collide--the-conflict-is-the-edge">
+<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">The conflict is the edge</a></div>
+<p class="topic">Two collisions from the case study make it concrete.</p>
 </div>
-<div class="section s2" id="sec-3-5-when-guardrails-collide--growing-controls-and-auditing-the-growth">
-<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Growing controls, and auditing the growth</a></div>
-<p class="topic">The census has a counterpart, and the two are true opposites over one graph.</p>
+<div class="section s2" id="sec-3-5-when-guardrails-collide--coverage-obligations-against-mechanisms">
+<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Coverage: obligations against mechanisms</a></div>
+<p class="topic">Interaction is only half of meta-governance.</p>
 </div>
-<div class="section s2" id="sec-3-5-when-guardrails-collide--keeping-the-model-honest">
-<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Keeping the model honest</a></div>
-<p class="topic">Two disciplines keep the model honest, and both are the book&#x27;s.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-evaluate">evaluate</span><span class="oc-text">After this section, the reader can justify the two disciplines that keep a governance graph honest — anchoring each node to its control&#x27;s code by symbol so a drift lint reddens an unmodeled control, and keeping the model descriptive rather than inventing conflict-lints for collisions that never happened. <span class="prov">derived</span></span></li></ul></div>
+<div class="section s2" id="sec-3-5-when-guardrails-collide--grow-reconcile-retire">
+<div class="sec-h"><a href="../book/3.5-when-guardrails-collide.html">Grow, reconcile, retire</a></div>
+<p class="topic">Governance conversion and the census pull in opposite directions, and a healthy environment needs both.</p>
 </div>
 </div>
 </section>

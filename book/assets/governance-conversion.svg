@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- R44c NEW — Figure 3.4-1 "Governance Conversion". Fold to book/assets/governance-conversion.svg. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740" width="1000" height="740"
+     role="img" aria-labelledby="gcTitle gcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="gcTitle">Governance conversion: a failure is diagnosed for what was missing, and the missing
+    piece is encoded as durable structure that future work inherits as engineering capital</title>
+  <desc id="gcDesc">A failure or surprise flows down into one question — what was missing — which fans
+    into five branches: missing knowledge, obligation, evidence, judgment, or consequence. Each branch
+    encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or gate. The
+    five converge into durable engineering structure, which future work inherits, accumulating as
+    engineering capital. The figure's point: a recurring failure is not automatically a request for
+    another gate — you diagnose what the environment lacked and encode that.</desc>
+
+  <defs>
+    <marker id="gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- failure -->
+  <rect x="375" y="24" width="250" height="52" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
+  <text x="500" y="56" text-anchor="middle" font-size="21" font-weight="700" fill="#8a2f2f">FAILURE / SURPRISE</text>
+  <line x1="500" y1="76" x2="500" y2="112" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
+
+  <!-- diagnosis question -->
+  <rect x="360" y="116" width="280" height="52" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
+  <text x="500" y="148" text-anchor="middle" font-size="20" font-weight="700" fill="#7a5c12">What was missing?</text>
+
+  <!-- fan lines to 5 branches -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#gc-ah)">
+    <path d="M500,168 C300,196 130,196 110,212"/>
+    <path d="M500,168 C420,196 320,196 305,212"/>
+    <line x1="500" y1="168" x2="500" y2="212"/>
+    <path d="M500,168 C580,196 680,196 695,212"/>
+    <path d="M500,168 C700,196 870,196 890,212"/>
+  </g>
+
+  <!-- 5 branch labels (what was missing) -->
+  <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <text x="110" y="230">knowledge</text>
+    <text x="305" y="230">obligation</text>
+    <text x="500" y="230">evidence</text>
+    <text x="695" y="230">judgment</text>
+    <text x="890" y="230">consequence</text>
+  </g>
+
+  <!-- connectors branch → encoded answer -->
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)">
+    <line x1="110" y1="240" x2="110" y2="286"/>
+    <line x1="305" y1="240" x2="305" y2="286"/>
+    <line x1="500" y1="240" x2="500" y2="286"/>
+    <line x1="695" y1="240" x2="695" y2="286"/>
+    <line x1="890" y1="240" x2="890" y2="286"/>
+  </g>
+
+  <!-- encoded answers -->
+  <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
+    <rect x="40"  y="290" width="140" height="46" rx="6"/>
+    <rect x="235" y="290" width="140" height="46" rx="6"/>
+    <rect x="430" y="290" width="140" height="46" rx="6"/>
+    <rect x="625" y="290" width="140" height="46" rx="6"/>
+    <rect x="812" y="290" width="156" height="46" rx="6"/>
+  </g>
+  <g font-size="17" fill="#1c1917" text-anchor="middle">
+    <text x="110" y="319">model</text>
+    <text x="305" y="319">invariant</text>
+    <text x="500" y="319">sensor</text>
+    <text x="695" y="319">validator</text>
+    <text x="890" y="319">constraint / gate</text>
+  </g>
+
+  <!-- converge to durable structure -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#gc-ah)">
+    <path d="M110,336 C110,380 380,392 452,404"/>
+    <path d="M305,336 C305,380 440,392 476,404"/>
+    <line x1="500" y1="336" x2="500" y2="404"/>
+    <path d="M695,336 C695,380 560,392 524,404"/>
+    <path d="M890,336 C890,380 620,392 548,404"/>
+  </g>
+
+  <rect x="270" y="408" width="460" height="54" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="500" y="441" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DURABLE ENGINEERING STRUCTURE</text>
+  <line x1="500" y1="462" x2="500" y2="502" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
+
+  <rect x="315" y="506" width="370" height="50" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
+  <text x="500" y="537" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5137">FUTURE WORK INHERITS IT</text>
+  <line x1="500" y1="556" x2="500" y2="596" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
+
+  <rect x="330" y="600" width="340" height="56" rx="10" fill="#3d6b4a" stroke="#2f5137" stroke-width="2"/>
+  <text x="500" y="635" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">ENGINEERING CAPITAL</text>
+
+  <text x="500" y="702" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a failure is not a request for another gate — diagnose what was missing, then encode it</text>
+</svg>

@@ -20,7 +20,7 @@
     },
     "distinctions": 11,
     "with_watch_phrases": 6,
-    "assertion_sites": 33,
+    "assertion_sites": 32,
     "relates_to_links": 28,
     "max_statement_words": 18
   },
@@ -86,17 +86,17 @@
     {
       "id": "constraint-prevents-sensor-detects",
       "kind": "distinction",
-      "statement": "A quality goal splits into a constraint that prevents the error and a sensor that detects it.",
+      "statement": "A quality goal splits into a constraint that prevents the error and a sensor that observes it.",
       "distinguishes": [
         "a constraint — prevents the error",
-        "a sensor — detects it after the fact"
+        "a sensor — observes it after the fact and produces evidence"
       ],
-      "home": "constraints-and-sensors",
+      "home": "prevention-and-observation",
       "asserted_at": [
         "what-the-method-turned-out-to-be",
-        "constraints-and-sensors"
+        "prevention-and-observation"
       ],
-      "contradicted_by": "Conflating the two — calling a detector a constraint, or a preventer a sensor.",
+      "contradicted_by": "Conflating the roles — calling a sensor a validator, or treating a preventer as a detector.",
       "watch_phrases": [],
       "relates_to": [
         "concept:constraint",
@@ -104,7 +104,7 @@
         "big-idea:alignment-thesis"
       ],
       "provenance": "stated",
-      "anchor": "Preface Alignment Thesis + 2.3 constraints-and-sensors: a quality goal splits into a constraint (prevent) and a sensor (catch); costly failures earn both.",
+      "anchor": "Preface Alignment Thesis + 3.3 prevention-and-observation: a quality goal splits into a constraint (prevent) and a sensor (observe); the sensor produces evidence, a validator judges it.",
       "word_count": 17
     },
     {
@@ -134,7 +134,7 @@
       "home": "governance-conversion-the-move-that-scales",
       "asserted_at": [
         "governance-conversion-the-move-that-scales",
-        "ex-post-everything-you-learn-by-building"
+        "ex-post-convert-what-the-work-teaches"
       ],
       "contradicted_by": "Prescribing up-front enumeration of all obligations as the method, or per-instance patching without retiring the class.",
       "watch_phrases": [],
@@ -429,8 +429,7 @@
       ],
       "home": "the-mage-workflow",
       "asserted_at": [
-        "the-mage-workflow",
-        "constraints-and-sensors"
+        "the-mage-workflow"
       ],
       "contradicted_by": "Treating a convention or brief as equivalent to a lint or gate, or claiming a convention 'holds the line'.",
       "watch_phrases": [],

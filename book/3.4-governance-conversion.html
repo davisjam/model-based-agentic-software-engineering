@@ -606,7 +606,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="2.8-joining-models-around-a-scenario.html">12&nbsp; Joining Models Around a Scenario</a></li>
 <li class="part">Part 3 — Alignment</li>
 <li><a class="" href="part-3-intro.html">Alignment</a></li>
-<li><a class="" href="3.1-the-agent-stack.html">13&nbsp; Where Authority Lives</a></li>
+<li><a class="" href="3.1-where-authority-can-act.html">13&nbsp; Where Authority Can Act</a></li>
 <li><a class="" href="3.2-models-and-the-semantic-gap.html">14&nbsp; From Intent to Enforceable Obligation</a></li>
 <li><a class="" href="3.3-constraints-sensors-validators-gates.html">15&nbsp; The Four Mechanism Roles</a></li>
 <li><a class="current" href="3.4-governance-conversion.html">16&nbsp; Growing the Governed Environment</a></li>
@@ -721,181 +721,192 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 16 · Growing the Governed Environment — MAGE"><header class="chap"><div class="kicker"><a href="part-3-intro.html" aria-label="Beginning of Part 3 — Alignment">Part 3 — Alignment</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 16</a></div><h1><span class="chap-num">3.4</span> Growing the Governed Environment</h1></header><p>One rule grows this whole environment: <strong>an ex-post failure becomes an ex-ante control when judgment classifies the recurrence and encodes it in the environment.</strong> That is the move that turns a mistake you caught once into a check the environment enforces on every agent after. You cannot write a trustworthy environment down in advance; the question is how trust grows from the failures no specification predicted.</p>
-<p>A governed environment therefore has two halves, because governance does. Some things you know before the first line of code and write into a specification up front; the rest you learn only by building part of the system and watching what it does. The promotion rule is the hinge between them — the one move that carries a lesson from the second half into the first, so a correction outlives the incident that taught it.</p>
-<h2><span class="sec-num">3.4.1</span> Ex-ante: everything you can decide up front</h2>
-<span id="idx-def-ex-ante-governance"></span><span id="idx-def-specification-driven-development"></span><p>Some things you genuinely know from the beginning, and you should write every one of them down. This is <strong>specification-driven development</strong>, and where you can do it, you should: name the property you can state in advance — a required output format, a forbidden call — and back it with a cheap deterministic check, or have the agent write the checker. Part IV teaches this half as a discipline; here it is only the near side of the hinge, the governance you install before the work starts.</p>
-<h2><span class="sec-num">3.4.2</span> Ex-post: everything you learn by building</h2>
-<p id="idx-def-ex-post-governance">But you will not know everything, and pretending otherwise is the mistake. So you build governance <strong>ex-post</strong>: after the fact, iteratively, strapping on mechanisms as failures reveal themselves and the software's real properties emerge. This is not a fallback for a weak plan. It is where most of the real mechanisms come from, because most of the real failures are the ones no specification predicted.</p>
-<p id="idx-def-governance-conversion">The engine of the whole discipline is what you do to hold a quality goal: <strong>you set up a mechanism that keeps it.</strong> Some mechanisms you place up front, from what you know about the domain; more you add in response to a recurring or consequential failure — a mistake caught in yesterday's manual audit becomes today's automatic check, enforced on every agent thereafter instead of re-caught by inspection. That conversion runs the printer loop's own shape (introduced in <a href="3.1-the-agent-stack.html">Engineering the Loop</a>), escalated: when the loop keeps hitting one wall, judgment turns the failure class into a durable mechanism. The full cycle — model, align, work, convert, repeat, with its conversion loop drawn whole — is the method <strong>Part IV</strong> teaches; this chapter installs only the rule that drives it. Conversions accrue, the positive dual of churn that Part VI names and bounds.</p>
-<blockquote class="aside-sidenote def-inset"><p><strong>Field note — the pipeline that ran open-loop.</strong> One of our document-remediation pipelines had every mark of a clean design: a single driver, one phase taxonomy, a typed contract on every pass, a startup sort that checked the order. It had drifted anyway. The declared order and the actual order had come apart at seven places, and the seven were not scattered — they sat exactly where the accessibility-AI loop churned hardest, each new trick wired straight into the run path, skipping the registry. The registry was a constraint that held for the passes routed through it; the inline additions routed around it, and my one guard only ever looked at registered passes. The repair was the missing sensor: a parity check that compares the passes that actually run against the declared graph and fails when an unregistered one appears. That is the conversion in miniature — a failure I could not afford to catch by hand became a check the environment now runs on every build.</p></blockquote>
-<h2><span class="sec-num">3.4.3</span> What it adds up to</h2>
-<p id="idx-def-governed-environment">Step back and the shape is simple: determinize what you can, then convert every recurring surprise into a constraint or a sensor. That combination <em>is</em> the <strong>governed engineering environment</strong> — the rules of the road the agents operate within, half written in advance and half grown from what the work revealed.</p>
-<p id="idx-ex-reasoning-horizon-2">One frame ties this chapter to the last Part. A model extends the reasoning horizon by externalizing <em>knowledge</em>; a governed environment extends the same horizon by externalizing <em>judgment</em>. The engineer decides once that some invariant must hold, encodes it as a constraint or a sensor, and the environment carries that obligation afterward — neither agent nor engineer keeps "don't break invariant X" in working memory, because the ground they stand on keeps it. Modeling externalizes knowledge and alignment externalizes judgment; both buy back the same scarce thing.</p>
-<h2><span class="sec-num">3.4.4</span> The governance census</h2>
-<p>The governed environment is itself an object you can inventory, and the inventory turns a description of it into a diagnosis. Set the obligations the environment must carry against the mechanisms that carry them, and both the silences and the surplus become visible. The move has six steps: inventory the obligations, map each to the representations and mechanisms that carry it, identify the gaps and the orphans, judge whether each gap merits governance, choose the cheapest adequate mechanism, and measure how the environment changed. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-1">Figure&nbsp;3.4-1</a> draws it — obligations on one side, mechanisms on the other, and the two diagnostic counts that fall out of matching them.</p>
-<figure id="fig-3-4-1" class="book-figure" data-label="governance-census"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
-     role="group" aria-labelledby="gcTitle gcDesc"
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 16 · Growing the Governed Environment — MAGE"><header class="chap"><div class="kicker"><a href="part-3-intro.html" aria-label="Beginning of Part 3 — Alignment">Part 3 — Alignment</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 16</a></div><h1><span class="chap-num">3.4</span> Growing the Governed Environment</h1></header><p id="idx-def-governed-environment">No engineering team begins with a complete catalogue of everything its environment will eventually need to govern. Some obligations are known in advance: an API must require authentication, a state transition is forbidden, a format mutation must cross a particular seam. Others become visible only when the work exposes a failure nobody represented or controlled. A governed environment therefore grows in two directions: <strong>ex ante from what engineering already knows, and ex post from what experience teaches.</strong></p>
+<p id="idx-def-governance-conversion">The hinge between them is <strong>governance conversion</strong>. A failure is observed; engineering judgment identifies the recurring class behind it; the missing knowledge, obligation, evidence, or authority is made durable; subsequent work inherits the result. The repair fixes this instance. Conversion changes the environment.</p>
+<h2><span class="sec-num">3.4.1</span> Ex ante: encode what you already know</h2>
+<span id="idx-def-ex-ante-governance"></span><span id="idx-def-specification-driven-development"></span><p>Start with obligations you can state before the work begins and whose recurrence justifies making them durable. A required output shape may become a schema; a forbidden dependency may become an architectural relation plus a validator; a service boundary may become a permission or narrow API; a legal lifecycle may become a closed transition table. The point is not to mechanize every preference. It is to avoid repeatedly paying human or probabilistic judgment for rules the environment can already carry cheaply.</p>
+<p>Part IV turns this into a method for starting and migrating systems. Here the important distinction is temporal: these are obligations the engineer can install before a failure forces the issue.</p>
+<h2><span class="sec-num">3.4.2</span> Ex post: convert what the work teaches</h2>
+<p id="idx-def-ex-post-governance">The harder half begins when the system surprises you. A recurring failure may reveal that the environment lacks a representation, that an obligation was never stated, that the relevant evidence is not observable, that a validator is too weak, or that a judgment exists but carries no authority. <strong>Do not assume every failure wants another gate. Diagnose what was missing.</strong></p>
+<p>The conversion can therefore land in several places:</p>
+<ol><li><strong>Missing knowledge or semantics → improve the model.</strong> Make the fact or relation durable at the abstraction where the question becomes answerable.</li><li><strong>Missing obligation → state the invariant or policy.</strong> Give future work something independent to be wrong against.</li><li><strong>Missing evidence → add a sensor or trace.</strong> Make the relevant state observable.</li><li><strong>Missing evaluation → strengthen the validator.</strong> Turn evidence into a repeatable judgment.</li><li><strong>Missing consequence → add or strengthen authority.</strong> Constrain the action or attach an appropriate gate.</li></ol>
+<p>This is why Modeling and Alignment form a feedback loop in practice without one being a logical prerequisite for the other. Alignment failures can expose missing representation; better representation can expose new properties worth aligning. The environment improves by moving recurring work out of episodic judgment and into durable structure. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-1">Figure&nbsp;3.4-1</a> draws the diagnosis.</p>
+<figure id="fig-3-4-1" class="book-figure" data-label="governance-conversion-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740"
+     role="img" aria-labelledby="gcTitle gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="gcTitle">The governance census: governed, under-governance, and governance debt are counts once obligations and mechanisms are enumerated</title>
-  <desc id="gcDesc">Two columns face each other. On the left, Obligations — what must be governed. On the
-    right, Mechanisms — the controls that meet them. A line joins each obligation to the mechanism that
-    covers it. Three quantities fall out of the match, shown as three large outputs. Governed: an obligation
-    met by a mechanism, in green. Under-governance: an obligation with no mechanism, a hole in governance, in
-    red. Governance debt: a mechanism with no obligation, an unjustified control, in muted grey. Once
-    obligations and mechanisms are enumerated, these three become counts rather than opinions — governance
-    becomes an engineering artifact. The figure is a bipartite graph, the requirements-traceability analogue.</desc>
+  <title id="gcTitle">Governance conversion: a failure is diagnosed for what was missing, and the missing
+    piece is encoded as durable structure that future work inherits as engineering capital</title>
+  <desc id="gcDesc">A failure or surprise flows down into one question — what was missing — which fans
+    into five branches: missing knowledge, obligation, evidence, judgment, or consequence. Each branch
+    encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or gate. The
+    five converge into durable engineering structure, which future work inherits, accumulating as
+    engineering capital. The figure's point: a recurring failure is not automatically a request for
+    another gate — you diagnose what the environment lacked and encode that.</desc>
 
   <defs>
-    <marker id="gc-cov" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
+    <marker id="gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The governance census</text>
-  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Governance becomes an engineering artifact — governed, under-governed, and debt are counts, not opinions.</text>
+  <!-- failure -->
+  <rect x="375" y="24" width="250" height="52" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
+  <text x="500" y="56" text-anchor="middle" font-size="21" font-weight="700" fill="#8a2f2f">FAILURE / SURPRISE</text>
+  <line x1="500" y1="76" x2="500" y2="112" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
 
-  <!-- column headers (both in the rust governance family) -->
-  <text x="228" y="118" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#9a3f12">OBLIGATIONS</text>
-  <text x="228" y="140" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">what must be governed</text>
-  <text x="772" y="118" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#9a3f12">MECHANISMS</text>
-  <text x="772" y="140" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the controls that meet them</text>
+  <!-- diagnosis question -->
+  <rect x="360" y="116" width="280" height="52" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
+  <text x="500" y="148" text-anchor="middle" font-size="20" font-weight="700" fill="#7a5c12">What was missing?</text>
 
-  <!-- match lines (green = coverage), drawn behind the chips -->
-  <g stroke="#1f7a4d" stroke-width="2.2" fill="none">
-    <path d="M356,190 L644,190" marker-end="url(#gc-cov)"/>
-    <path d="M356,246 L644,246" marker-end="url(#gc-cov)"/>
-    <path d="M356,302 L644,302" marker-end="url(#gc-cov)"/>
+  <!-- fan lines to 5 branches -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#gc-ah)">
+    <path d="M500,168 C300,196 130,196 110,212"/>
+    <path d="M500,168 C420,196 320,196 305,212"/>
+    <line x1="500" y1="168" x2="500" y2="212"/>
+    <path d="M500,168 C580,196 680,196 695,212"/>
+    <path d="M500,168 C700,196 870,196 890,212"/>
   </g>
 
-  <!-- obligation chips (left, rust) -->
-  <rect x="128" y="166" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="242" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
-  <rect x="128" y="222" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="242" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
-  <rect x="128" y="278" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="242" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
-  <!-- the under-governed obligation (no line to any mechanism) -->
-  <rect x="128" y="334" width="228" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.6"/>
-  <text x="242" y="364" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">Uncovered obligation</text>
+  <!-- 5 branch labels (what was missing) -->
+  <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <text x="110" y="230">knowledge</text>
+    <text x="305" y="230">obligation</text>
+    <text x="500" y="230">evidence</text>
+    <text x="695" y="230">judgment</text>
+    <text x="890" y="230">consequence</text>
+  </g>
 
-  <!-- mechanism chips (right, rust) -->
-  <rect x="644" y="166" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="758" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
-  <rect x="644" y="222" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="758" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
-  <rect x="644" y="278" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="758" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
-  <!-- the debt mechanism (no line to any obligation) -->
-  <rect x="644" y="334" width="228" height="48" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.6"/>
-  <text x="758" y="364" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">Unmatched mechanism</text>
+  <!-- connectors branch → encoded answer -->
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)">
+    <line x1="110" y1="240" x2="110" y2="286"/>
+    <line x1="305" y1="240" x2="305" y2="286"/>
+    <line x1="500" y1="240" x2="500" y2="286"/>
+    <line x1="695" y1="240" x2="695" y2="286"/>
+    <line x1="890" y1="240" x2="890" y2="286"/>
+  </g>
 
-  <!-- the three derived outputs, made large -->
-  <text x="500" y="424" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Three counts fall out of the match</text>
-  <rect x="40"  y="438" width="288" height="76" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="3"/>
-  <text x="184" y="474" text-anchor="middle" font-size="23" font-weight="700" fill="#1f7a4d">GOVERNED</text>
-  <text x="184" y="498" text-anchor="middle" font-size="16" fill="#57534e">obligation met by a mechanism</text>
-  <rect x="356" y="438" width="288" height="76" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="3"/>
-  <text x="500" y="474" text-anchor="middle" font-size="23" font-weight="700" fill="#b23b3b">UNDER-GOVERNANCE</text>
-  <text x="500" y="498" text-anchor="middle" font-size="16" fill="#57534e">obligation with no mechanism</text>
-  <rect x="672" y="438" width="288" height="76" rx="10" fill="#f3efe7" stroke="#57534e" stroke-width="3"/>
-  <text x="816" y="474" text-anchor="middle" font-size="23" font-weight="700" fill="#57534e">GOVERNANCE DEBT</text>
-  <text x="816" y="498" text-anchor="middle" font-size="16" fill="#57534e">mechanism with no obligation</text>
+  <!-- encoded answers -->
+  <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
+    <rect x="40"  y="290" width="140" height="46" rx="6"/>
+    <rect x="235" y="290" width="140" height="46" rx="6"/>
+    <rect x="430" y="290" width="140" height="46" rx="6"/>
+    <rect x="625" y="290" width="140" height="46" rx="6"/>
+    <rect x="812" y="290" width="156" height="46" rx="6"/>
+  </g>
+  <g font-size="17" fill="#1c1917" text-anchor="middle">
+    <text x="110" y="319">model</text>
+    <text x="305" y="319">invariant</text>
+    <text x="500" y="319">sensor</text>
+    <text x="695" y="319">validator</text>
+    <text x="890" y="319">constraint / gate</text>
+  </g>
 
-  <text x="500" y="544" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Governance as a bipartite graph — the requirements-traceability analogue.</text>
-</svg><figcaption data-short="The Governance Census"><span class="fig-label">Figure 3.4-1.</span> <em>The Governance Census.</em> Set the obligations that must be governed against the mechanisms that govern them, and two diagnostics become counts, not opinions: a gap is an obligation no mechanism carries (under-governance); an orphan is a mechanism tracing to no obligation (governance debt). Governed is the matched middle. The inventory turns a description of an environment into a diagnosis of it.</figcaption></figure>
-<p>Two counts do the diagnostic work.</p>
-<ul><li><strong>A gap</strong> is an obligation or property you care about for which no adequate mechanism carries authority or evidence. A gap is under-governance — a place the environment is silent where it should speak.</li><li><strong>An orphan</strong> is a mechanism that exists but traces to no current obligation, failure class, or purpose. An orphan is accumulated governance debt — machinery that outlived its reason.</li></ul>
-<p>The census asks a sharper question than "how much do you govern?" It asks <em>what properties of the environment are represented? Which are governed? By what mechanism? Where is there no mechanism? Where does a mechanism exist without a clearly identified obligation?</em> The answers are counts, not opinions.</p>
-<p>The counterweight matters as much as the inventory. The conversion loop pushes toward accumulating controls forever; the census pushes back. <strong>A mature governed environment is not the one with the most mechanisms. It is the one whose important obligations are covered by appropriate mechanisms, whose mechanisms have clear purposes, and whose unnecessary machinery has been reconciled or retired.</strong> Strengthen, reconcile, retire — the discipline that keeps the environment from silting up with controls no failure still needs.</p>
-<p>The census points inward, too. Run it over the catalogue this book draws on: its obligations, its mechanisms, the entries that carry them. A governed environment's own governance is itself checkable against the census — the diagnosis it recommends, applied to the diagnosing.</p>
-<h2><span class="sec-num">3.4.5</span> The honest gaps</h2>
-<p>Not every goal lands on a mechanism. The synthesis reads as if it settles everything; it does not. Where a goal falls depends on three questions — is the obligation modeled at all, can a check evaluate it mechanically, and does a gate act on the reading — and only two of the four outcomes need a name; <a class="xref" href="3.4-governance-conversion.html#fig-3-4-2">Figure&nbsp;3.4-2</a> walks the three questions and the four leaves.</p>
-<figure id="fig-3-4-2" class="book-figure" data-label="residual-decision-tree"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 660"
-     role="group" aria-labelledby="rdtTitle rdtDesc"
+  <!-- converge to durable structure -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#gc-ah)">
+    <path d="M110,336 C110,380 380,392 452,404"/>
+    <path d="M305,336 C305,380 440,392 476,404"/>
+    <line x1="500" y1="336" x2="500" y2="404"/>
+    <path d="M695,336 C695,380 560,392 524,404"/>
+    <path d="M890,336 C890,380 620,392 548,404"/>
+  </g>
+
+  <rect x="270" y="408" width="460" height="54" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="500" y="441" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DURABLE ENGINEERING STRUCTURE</text>
+  <line x1="500" y1="462" x2="500" y2="502" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
+
+  <rect x="315" y="506" width="370" height="50" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
+  <text x="500" y="537" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5137">FUTURE WORK INHERITS IT</text>
+  <line x1="500" y1="556" x2="500" y2="596" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
+
+  <rect x="330" y="600" width="340" height="56" rx="10" fill="#3d6b4a" stroke="#2f5137" stroke-width="2"/>
+  <text x="500" y="635" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">ENGINEERING CAPITAL</text>
+
+  <text x="500" y="702" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a failure is not a request for another gate — diagnose what was missing, then encode it</text>
+</svg><figcaption data-short="Governance Conversion"><span class="fig-label">Figure 3.4-1.</span> <em>Governance Conversion.</em> A recurring failure is not automatically a request for another gate. Diagnose what the environment lacked — knowledge, an obligation, evidence, a judgment, or a consequence — encode the missing representation or control, and let future work inherit the result. The inherited structure is engineering capital.</figcaption></figure>
+<p>Read the branches as a diagnosis, not a reflex: a failure surfaces, you ask <em>what was missing</em>, and the answer routes to a model, an invariant, a sensor, a validator, or a constraint or gate. Whichever branch you take, the output is the same in kind — durable engineering structure that future work inherits without rediscovering the lesson.</p>
+<blockquote class="aside-sidenote def-inset"><p><strong>Field note — the pipeline that ran open-loop.</strong> A document-remediation pipeline had a declared phase registry and a startup check, yet seven production passes had been wired directly into the run path around the registry. The existing constraint held only for work that already crossed the modeled seam. The repair was a parity sensor: compare the passes that actually run with the declared graph and fail when one is unregistered. The incident changed the diagnosis from "remember to use the registry" to "the environment cannot see bypasses." One repeated judgment became a durable check.</p></blockquote>
+<h2><span class="sec-num">3.4.3</span> Engineering capital</h2>
+<p id="idx-def-engineering-capital">Governance conversion gives software engineering something it has long had difficulty naming: a concrete form of <strong>engineering capital</strong>. The field has a mature metaphor for the opposite condition. Technical debt is a liability carried forward: an expedient decision today imposes interest on future change. Engineering capital is the positive stock. It is engineering work performed once that reduces the cost, uncertainty, or judgment required by work that follows.</p>
+<p>The asset is not an abstract claim that "the team learned." It is something you can point to. A structural model saves later engineers and agents from reconstructing the same architecture from code. A constraint removes a failure class from the available action space. A sensor makes a previously invisible condition observable. A validator turns recurring judgment into a repeatable decision. A gate gives that decision consequence. Traceability preserves the relationship between the representation and the thing it describes. Each mechanism changes the starting conditions inherited by the next task.</p>
+<p>Capital earns a return. The return appears as lower marginal engineering cost: fewer facts rediscovered, fewer failures repeated, fewer reviews spent on mechanically decidable questions, less rework after violations, and larger units of autonomous work that can proceed without surrendering assurance. Governance conversion is therefore not merely "learning from failure." It is <strong>capital formation</strong>: turning an episode of engineering judgment into productive structure that continues to pay after the episode is over.</p>
+<p>Capital also <strong>depreciates</strong>. A model can drift from the system it represents. A validator can encode an assumption the architecture has outgrown. A sensor can become noisy; a gate can impose more delay than the failure it prevents; a once-important control can survive long after its obligation disappears. Maintenance preserves useful capital; reconciliation repairs impaired capital; retirement removes assets whose carrying cost now exceeds their return. This is why accumulation cannot be the objective. A governed environment with more mechanisms is not necessarily richer than one with fewer. What matters is the future engineering value those mechanisms continue to produce.</p>
+<p>This gives technical debt and engineering capital a useful symmetry. Debt makes future work pay again for today's expedience. Capital lets future work inherit today's judgment. Both are stocks accumulated over time, both affect the economics of later change, and both can compound. The governance-conversion loop is the mechanism by which engineering effort moves from being consumed once to becoming an asset the environment can reuse.</p>
+<h2><span class="sec-num">3.4.4</span> The Honest Gaps</h2>
+<p>Not every quality goal should end in a deterministic gate. Where a goal lands depends on three questions — is the obligation explicit in a form the environment can use, can it be mechanically evaluated adequately, and does authority act on the result — and <a class="xref" href="3.4-governance-conversion.html#fig-3-4-2">Figure&nbsp;3.4-2</a> walks the three questions and the four outcomes.</p>
+<figure id="fig-3-4-2" class="book-figure" data-label="honest-gaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+     role="img" aria-labelledby="hgTitle hgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="rdtTitle">The residual decision tree — where a goal lands relative to the mechanisms</title>
-  <desc id="rdtDesc">A decision tree with three questions and four outcomes. First question:
-    is the obligation represented — modeled at all? If no, the goal is the RESIDUAL, an absence
-    nobody specified; there is nothing to point to and a human must know the check should be
-    there. If yes, second question: can a check mechanically evaluate it? If no, it is a
-    judgment call — a human must look, the residual's modeled cousin. If yes, third question:
-    is a gate acting on the reading? If no, the goal is OBSERVED ONLY — modeled, sensed, and
-    logged, but not yet governed; a sensor without a gate. If yes, the loop is closed and the
-    goal is governed. Only RESIDUAL and OBSERVED ONLY are named; the other two are described.</desc>
+  <title id="hgTitle">The honest gaps: three questions place any obligation in one of four states —
+    residual, judgment required, observed only, or governed</title>
+  <desc id="hgDesc">A staircase of three questions. First: is the obligation explicit in a form the
+    environment can use? No leads to RESIDUAL — a human or agent must reconstruct it. Yes leads to the
+    second question: can it be mechanically evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads
+    to the third: does authority act on the result? No leads to OBSERVED ONLY — evaluated but un-gated.
+    Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different obligations
+    stop in different places.</desc>
 
   <defs>
-    <marker id="rdt-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    <marker id="hg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
 
   <!-- Q1 -->
-  <rect x="190" y="34" width="270" height="66" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
-  <text x="325" y="62" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Is the obligation</text>
-  <text x="325" y="86" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">modeled at all?</text>
+  <rect x="360" y="30" width="320" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="520" y="55" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Is the obligation explicit in a</text>
+  <text x="520" y="77" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">form the environment can use?</text>
+
+  <!-- Q1 no -> RESIDUAL -->
+  <path d="M380,88 L380,120 L175,120 L175,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <text x="300" y="112" text-anchor="middle" font-size="15" font-style="italic" fill="#8a2f2f">no</text>
+  <rect x="70" y="152" width="210" height="66" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
+  <text x="175" y="181" text-anchor="middle" font-size="18" font-weight="800" fill="#8a2f2f">RESIDUAL</text>
+  <text x="175" y="203" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">human must reconstruct it</text>
+
+  <!-- Q1 yes -> Q2 -->
+  <path d="M560,88 L560,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <text x="576" y="120" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
 
   <!-- Q2 -->
-  <rect x="400" y="196" width="270" height="66" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
-  <text x="535" y="224" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Can a check</text>
-  <text x="535" y="248" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">mechanically evaluate it?</text>
+  <rect x="410" y="152" width="320" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="570" y="177" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Can it be mechanically</text>
+  <text x="570" y="199" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">evaluated adequately?</text>
+
+  <!-- Q2 no -> JUDGMENT REQUIRED -->
+  <path d="M430,210 L430,242 L245,242 L245,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <text x="352" y="234" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
+  <rect x="120" y="274" width="250" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
+  <text x="245" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">JUDGMENT REQUIRED</text>
+  <text x="245" y="325" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">an honest boundary, not failed Alignment</text>
+
+  <!-- Q2 yes -> Q3 -->
+  <path d="M610,210 L610,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <text x="626" y="242" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
 
   <!-- Q3 -->
-  <rect x="560" y="358" width="270" height="66" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
-  <text x="695" y="386" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Is a gate acting</text>
-  <text x="695" y="410" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">on the reading?</text>
+  <rect x="460" y="274" width="320" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
+  <text x="620" y="299" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Does authority act</text>
+  <text x="620" y="321" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">on the result?</text>
 
-  <!-- Leaf: RESIDUAL (named) -->
-  <rect x="36" y="180" width="232" height="96" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
-  <text x="152" y="214" text-anchor="middle" font-size="21" font-weight="700" fill="#b23b3b">RESIDUAL</text>
-  <text x="152" y="240" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">an absence nobody specified —</text>
-  <text x="152" y="259" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a human must know it belongs</text>
+  <!-- Q3 no -> OBSERVED ONLY -->
+  <path d="M480,332 L480,364 L360,364 L360,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <text x="410" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
+  <rect x="240" y="396" width="240" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
+  <text x="360" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">OBSERVED ONLY</text>
+  <text x="360" y="447" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">evaluated, yet un-gated</text>
 
-  <!-- Leaf: judgment (described, unnamed) -->
-  <rect x="250" y="344" width="232" height="96" rx="8" fill="#f5f1ea" stroke="#57534e" stroke-width="2"/>
-  <text x="366" y="382" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">A human must judge</text>
-  <text x="366" y="408" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the residual's modeled</text>
-  <text x="366" y="428" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">cousin — no cheap check</text>
+  <!-- Q3 yes -> GOVERNED -->
+  <path d="M660,332 L660,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <text x="676" y="364" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
+  <rect x="560" y="396" width="230" height="66" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2.4"/>
+  <text x="675" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#2f5137">GOVERNED</text>
+  <text x="675" y="447" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">authoritative consequence</text>
 
-  <!-- Leaf: OBSERVED ONLY (named) -->
-  <rect x="432" y="506" width="232" height="96" rx="8" fill="#f7efe0" stroke="#a86a1f" stroke-width="2.5"/>
-  <text x="548" y="540" text-anchor="middle" font-size="21" font-weight="700" fill="#a86a1f">OBSERVED ONLY</text>
-  <text x="548" y="566" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">modeled but not yet governed</text>
-  <text x="548" y="586" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a sensor without a gate</text>
-
-  <!-- Leaf: governed (described, unnamed) -->
-  <rect x="712" y="506" width="232" height="96" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="828" y="546" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">The loop is closed</text>
-  <text x="828" y="572" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">governed — a gate refuses</text>
-  <text x="828" y="592" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the divergence</text>
-
-  <!-- edges -->
-  <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M255,100 L175,176" marker-end="url(#rdt-ah)"/>   <!-- Q1 no -> RESIDUAL -->
-    <path d="M430,100 L490,192" marker-end="url(#rdt-ah)"/>   <!-- Q1 yes -> Q2 -->
-    <path d="M472,262 L400,340" marker-end="url(#rdt-ah)"/>   <!-- Q2 no -> judgment -->
-    <path d="M628,262 L660,354" marker-end="url(#rdt-ah)"/>   <!-- Q2 yes -> Q3 -->
-    <path d="M632,424 L560,502" marker-end="url(#rdt-ah)"/>   <!-- Q3 no -> OBSERVED ONLY -->
-    <path d="M784,424 L818,502" marker-end="url(#rdt-ah)"/>   <!-- Q3 yes -> governed -->
-  </g>
-
-  <!-- edge labels -->
-  <g font-size="16" font-weight="700">
-    <text x="196" y="146" text-anchor="middle" fill="#b23b3b">no</text>
-    <text x="470" y="150" text-anchor="middle" fill="#57534e">yes</text>
-    <text x="410" y="312" text-anchor="middle" fill="#57534e">no</text>
-    <text x="662" y="316" text-anchor="middle" fill="#57534e">yes</text>
-    <text x="572" y="474" text-anchor="middle" fill="#a86a1f">no</text>
-    <text x="812" y="476" text-anchor="middle" fill="#1f7a4d">yes</text>
-  </g>
-</svg><figcaption data-short="The residual decision tree"><span class="fig-label">Figure 3.4-2.</span> <em>The residual decision tree.</em> Three questions place any goal relative to the mechanisms: is the obligation modeled, can a check evaluate it mechanically, and does a gate act on the reading? An unmodeled goal is the RESIDUAL — an absence nobody specified, so a human must know the check belongs. A modeled goal no check can evaluate is a judgment call, still a human's to make. A checkable goal with no gate is OBSERVED ONLY — modeled, sensed, and logged, yet ungated; with a gate, the loop is closed and the goal is governed. Only RESIDUAL and OBSERVED ONLY carry a name; the other two are described, not christened.</figcaption></figure>
-<p id="idx-def-residual">The first named gap is the <strong>residual</strong> — an absence nobody specified. Security remediation is the clean case. A missing authorization check has <strong>no failing test, by definition</strong>: if a test caught it, the check was specified, and if it was specified, it would not be missing. The gap is invisible because nothing ever named it, so the goal stays a <strong>human</strong> job — someone has to look at the system and <em>know</em> the check belongs there. Which of your goals land in the residual sets your real throughput ceiling: the mechanized goals run at fleet speed, and these run at yours. Nor is the residual a fixed wall. You can pull a goal out of it by <strong>authoring the missing spec</strong> — the same absence that defeats a sensor also defeats a <em>derived</em> model, which records the missing check as correctly absent (2.2), until a human writes the terminal assertion that says what <em>done</em> means (3.5).</p>
-<p>The second named gap is its opposite. Where the residual is an absence nobody specified, this one is a property that <strong>is</strong> specified, <strong>is</strong> sensed, and <strong>is</strong> logged, yet still admits the violation, because no gate turns the reading into a refusal — a property <strong>observed only</strong>, watched and reported but not enforced. Why leave a property there rather than gate it at once? Because authority is graduated, and a gate is a commitment. <strong>A premature gate can be worse than no gate. A poorly calibrated model given blocking authority converts uncertainty into outages.</strong> The path from a modeled property to a binding one runs modeled → sensed → reported before anything gates on it — <strong>a progression, not a definition.</strong> Not every useful model deserves immediate blocking authority; alignment does not mean turning every belief into a prohibition. It means deciding how much authority an obligation has earned, given the evidence behind it and the cost of a false refusal.</p>
-<p>Two of the surfaces the last Part handed forward land in the observed-only leaf, un-gated on purpose:</p>
-<ul><li><strong>The production cost ceiling is report-only.</strong> The measurement model is fully built — the ceiling is declared, instrumentation emits the measured quantities, every run appends its cost — yet in the live path that reading is logged, not refused. The sensor produces the evidence; no gate acts on it.</li><li><strong>The end-to-end scenario has no central reachability proof.</strong> The composite's authority is the conjunction of the six per-model surfaces, asserted together by a single whole-pipeline smoke; no typed state-graph is walked to prove that <em>every</em> path reaches completion through legal states.</li></ul>
-<p>Neither is a hole the book patches with a gate it does not have. The conversion rule this chapter named is exactly the machine that closes the first: run it forward and the report-only cost reading becomes the throttle that acts on it, once an overrun recurs often enough to earn the gate. The second waits on a different tool — the exhaustive state-walk a later Part builds. Naming both as <em>modeled but not yet governed</em>, and naming the residual as what the method never specified at all, is the honest edge that makes the mechanized core credible: a method that claims to mechanize everything is the one to distrust.</p>
-<h2><span class="sec-num">3.4.6</span> Five governed, two gaps</h2>
-<p>The last Part closed by handing this one seven typed seams — six models and the scenario that joins them — each naming, in role and shape, an authority surface for this Part to build, as the closing handoff of <a href="2.8-joining-models-around-a-scenario.html">Joining Models Around a Scenario</a> set out. This Part built them. It received each property where Part II stopped, at the stated predicate, and gave it authority: a constraint that makes the violation unexpressible, a sensor that produces the evidence, a validator that evaluates it, a gate that refuses the divergence before it ships.</p>
-<p>Five of the seven close into a gate that holds. Two stay <strong>open</strong> — the production cost ceiling, sensed but report-only, and the end-to-end scenario, which has no single reachability proof. Both are open in the exact, bounded sense the honest gaps just drew: modeled and sensed, not yet gated. The full row-by-row receipt — every model's constraint · sensor · validator · gate set beside the property Part II handed forward, the two open rows marked and pointed back to that gap — is <a href="appendix-g-surfaces-built-reference.html">Appendix G</a>. Read it against the model-and-property pairing that <a href="2.8-joining-models-around-a-scenario.html">Part II handed forward</a> and the story runs continuous across the Part boundary: the model and the property unchanged, the authority now built rather than promised.</p>
-<p>The Part's work of giving each modeled property its authority is done. But a fleet that fills every layer soon has controls enough that they begin to touch one another — one refusing what another requires, two firing on the same moment with no order between them. The surfaces are built; the pile of them is now itself an artifact, and the last chapter turns the Part's own move on it.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-3-intro.html" aria-label="Beginning of Part 3 — Alignment">« Beginning of part</a><a href="3.3-constraints-sensors-validators-gates.html" aria-label="Previous chapter — 15 · The Four Mechanism Roles">« Previous chapter</a></div><span class="chapnav-here" title="16 · Growing the Governed Environment">16 · Growing the Governed Environment</span><div class="chapnav-fwd"><a href="3.5-when-guardrails-collide.html" aria-label="Next chapter — 17 · Governing the Governance">Next chapter »</a><a href="part-4-intro.html" aria-label="Next part — Part 4 — The MAGE Method">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+  <text x="500" y="512" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a design space, not a maturity ladder — different obligations stop in different places</text>
+</svg><figcaption data-short="The Honest Gaps"><span class="fig-label">Figure 3.4-2.</span> <em>The Honest Gaps.</em> An obligation may remain implicit (the RESIDUAL — a human or agent must reconstruct it), may be explicit but resist cheap mechanical evaluation (JUDGMENT REQUIRED), may be mechanically evaluated with no gate acting on the result (OBSERVED ONLY), or may carry an authoritative response (GOVERNED). Modeling can move an obligation rightward by making its semantics explicit; Alignment decides what authority the environment attaches once the obligation can be acted on. The progression is a design space, not a maturity ladder.</figcaption></figure>
+<p id="idx-def-residual">Not every quality goal should end in a deterministic gate. The first gap is the <strong>residual</strong>: an obligation nobody has made explicit enough for the environment to use. The system may still depend on it, but an engineer, reviewer, or agent has to reconstruct the missing judgment. This is one place where weak representation turns directly into human work.</p>
+<p>An explicit obligation may still resist cheap mechanical evaluation. Architecture may be represented while a design trade-off remains contextual; a requirement may be clear while satisfaction still requires expert judgment. That is not failed Alignment. It is an honest boundary on what the available mechanism can establish.</p>
+<p>A third state is <strong>observed only</strong>. The obligation is explicit, the environment can produce and evaluate relevant evidence, but no gate acts on the result. A production cost ceiling is deliberately in this state in one of the running examples: the system measures and reports cost without refusing production work. That may be the right design. <strong>A gate is a commitment</strong>, and a poorly calibrated validator given blocking authority converts uncertainty into outages.</p>
+<p>Finally, a governed obligation has an authoritative consequence appropriate to its risk: the action is constrained, the violation is refused, or admission depends on the validator's result. The progression from implicit to explicit to observable to binding is a design space, not a maturity ladder. Different obligations should stop in different places.</p>
+<p>A missing authorization requirement gives the shape. If no system-specific requirement, invariant, or general policy makes the obligation visible to the environment, a derived model may faithfully record the missing check as absent and no local test need fail. Someone still has to know that authorization belongs there. Once that obligation is stated independently, the gap can move into the mechanically governed region.</p>
+<p>The point is not to drive every obligation to the rightmost leaf. It is to know where each one sits and why. Some residuals justify better models; some judgment should remain human; some observed properties have not earned a gate. Governance conversion closes recurring gaps when doing so is worth the cost. It also creates the next problem: the environment now contains an expanding portfolio of controls, and those controls can themselves become inconsistent, redundant, or orphaned.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-3-intro.html" aria-label="Beginning of Part 3 — Alignment">« Beginning of part</a><a href="3.3-constraints-sensors-validators-gates.html" aria-label="Previous chapter — 15 · The Four Mechanism Roles">« Previous chapter</a></div><span class="chapnav-here" title="16 · Growing the Governed Environment">16 · Growing the Governed Environment</span><div class="chapnav-fwd"><a href="3.5-when-guardrails-collide.html" aria-label="Next chapter — 17 · Governing the Governance">Next chapter »</a><a href="part-4-intro.html" aria-label="Next part — Part 4 — The MAGE Method">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

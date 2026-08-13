@@ -210,17 +210,17 @@
 <p><strong>Claim</strong> — Enforced mechanisms hold work to intent across later changes. Constrain first so the wrong move is unavailable; where prevention falls short, a sensor catches the drift.</p>
 <table><thead><tr><th>Concept</th><th>Big idea 3 · Thesis 2</th></tr></thead><tbody><tr><td>Claim</td><td>Enforced mechanisms hold work to intent across later changes. Constrain first so the wrong move is unavailable; where prevention falls short, a sensor catches the drift.</td></tr><tr><td>Mechanisms</td><td>Typed ViolationCategory / FailureCategory enums · The Audit-to-Lint mechanism · ContentValidator · F10 mutator-stamp-wiring lint</td></tr><tr><td>Related</td><td>Documentation, taken to its limit, is a structured model · Convert recurring failures into controls</td></tr><tr><td>In the book</td><td>book/3.3-constraints-sensors-validators-gates.html</td></tr></tbody></table>
 <h2>The idea</h2>
-<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
+<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
      role="group" aria-labelledby="caTitle caDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="cf-1-caTitle">Two forms a quality goal splits into: a constraint or a sensor</title>
-  <desc id="cf-1-caDesc">A quality goal you want to hold splits into two moves — prevent the mistake, or
-    catch it — however you arrived at the goal, up front from the domain or in response to a failure.
-    On the left, a constraint: it makes the whole class of mistake impossible by scoping the action space,
-    like choosing a typed enumeration over free-form strings so an unlisted value cannot be represented,
-    like a firewall. On the right, a sensor: it lets the mistake happen but detects it and surfaces it
-    in time to stop the damage, like a test suite in CI or a smoke detector. The wall forbids the bug;
-    the sensor watches for it. The wall is cheaper to live behind than the sensor is to keep reading.</desc>
+  <title id="cf-1-caTitle">Constraint or sensor: prevent the mistake, or observe it</title>
+  <desc id="cf-1-caDesc">An engineering property you want to hold splits into two moves. On the left, a
+    constraint: it narrows what can happen by scoping the action space, so the wrong move is unavailable
+    within the iteration — a typed enumeration over free-form strings, a permission, a narrow API — and it
+    costs no failed loop. On the right, a sensor: it observes what did happen and produces evidence — a
+    metric, a trace, a call scan, a log — and acting on that evidence costs at least one iteration. A
+    sensor does not judge what it saw. Detecting a violation is a further step: it takes a validator to
+    interpret the evidence against an obligation.</desc>
 
   <defs>
     <marker id="cf-1-caArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
@@ -229,46 +229,50 @@
     </marker>
   </defs>
 
-  <!-- source: quality goal -->
-  <rect x="330" y="30" width="300" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="480" y="63" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Quality goal</text>
-  <text x="480" y="88" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">prevent the mistake, or catch it</text>
+  <!-- source: engineering property -->
+  <rect x="320" y="26" width="320" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="480" y="59" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Engineering property</text>
+  <text x="480" y="84" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">prevent the mistake, or observe it</text>
 
   <!-- fork edges -->
   <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-caArrow)">
-    <path d="M400,96 C360,128 300,132 250,158"/>
-    <path d="M560,96 C600,128 660,132 710,158"/>
+    <path d="M400,92 C360,124 300,128 250,156"/>
+    <path d="M560,92 C600,124 660,128 710,156"/>
   </g>
 
-  <!-- ================= LEFT — constraint / wall ================= -->
-  <rect x="70" y="164" width="360" height="228" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="250" y="200" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">Constraint — prevents</text>
+  <!-- ================= LEFT — constraint / narrows what can happen ================= -->
+  <rect x="70" y="162" width="360" height="226" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="250" y="198" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">Constraint — prevents</text>
 
   <!-- wall icon: brick courses -->
   <g stroke="#2f5169" stroke-width="2" fill="none">
-    <rect x="216" y="230" width="68" height="44"/>
-    <line x1="216" y1="252" x2="284" y2="252"/>
-    <line x1="250" y1="230" x2="250" y2="252"/>
-    <line x1="233" y1="252" x2="233" y2="274"/>
-    <line x1="267" y1="252" x2="267" y2="274"/>
+    <rect x="216" y="228" width="68" height="44"/>
+    <line x1="216" y1="250" x2="284" y2="250"/>
+    <line x1="250" y1="228" x2="250" y2="250"/>
+    <line x1="233" y1="250" x2="233" y2="272"/>
+    <line x1="267" y1="250" x2="267" y2="272"/>
   </g>
 
-  <text x="250" y="312" text-anchor="middle" font-size="20" fill="#1c1917">Makes the whole class</text>
-  <text x="250" y="337" text-anchor="middle" font-size="20" fill="#1c1917">of mistake impossible.</text>
-  <text x="250" y="372" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">typed enum over strings · firewall</text>
+  <text x="250" y="308" text-anchor="middle" font-size="20" fill="#1c1917">Narrows what</text>
+  <text x="250" y="333" text-anchor="middle" font-size="20" fill="#1c1917">can happen.</text>
+  <text x="250" y="368" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
 
-  <!-- ================= RIGHT — sensor / detector ================= -->
-  <rect x="530" y="164" width="360" height="228" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="710" y="200" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">Sensor — detects</text>
+  <!-- ================= RIGHT — sensor / observes what did happen ================= -->
+  <rect x="530" y="162" width="360" height="226" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="710" y="198" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">Sensor — observes</text>
 
-  <!-- sensor icon: a dish detecting a spark -->
-  <circle cx="710" cy="252" r="26" fill="none" stroke="#2f5169" stroke-width="2.5"/>
-  <circle cx="710" cy="252" r="6" fill="#2f5169"/>
-  <path d="M710,226 A26,26 0 0,1 736,252" fill="none" stroke="#b23b3b" stroke-width="3"/>
+  <!-- sensor icon: a dish reading the state (no verdict) -->
+  <circle cx="710" cy="250" r="26" fill="none" stroke="#2f5169" stroke-width="2.5"/>
+  <circle cx="710" cy="250" r="6" fill="#2f5169"/>
+  <path d="M710,224 A26,26 0 0,1 736,250" fill="none" stroke="#2f5169" stroke-width="3"/>
 
-  <text x="710" y="312" text-anchor="middle" font-size="20" fill="#1c1917">Lets the mistake happen,</text>
-  <text x="710" y="337" text-anchor="middle" font-size="20" fill="#1c1917">detects it before it ships.</text>
-  <text x="710" y="372" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">test suite in CI · smoke detector</text>
+  <text x="710" y="308" text-anchor="middle" font-size="20" fill="#1c1917">Observes what did happen</text>
+  <text x="710" y="333" text-anchor="middle" font-size="20" fill="#1c1917">and produces evidence.</text>
+  <text x="710" y="368" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
+
+  <!-- ================= footer: protect the taxonomy ================= -->
+  <text x="480" y="428" text-anchor="middle" font-size="17" fill="#1c1917">A constraint costs no failed loop; acting on a sensor's evidence costs at least one iteration.</text>
+  <text x="480" y="452" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">Detecting a violation is a further step — a validator interprets the evidence against an obligation.</text>
 </svg></figure>
 <p>A probabilistic reasoner cannot certify its own output, and its confidence is not evidence. The same prompt can yield a right answer today and a wrong one tomorrow, and the model reports both with the same assurance. So correctness cannot rest on the agent's promise. It has to rest on a mechanism outside the agent — decided once, and checked on every later change no matter who made it.</p>
 <p>Two moves cover the ground, in order. <strong>Constrain first:</strong> make the wrong move unavailable. A typed seam, a banned raw API, an action surface that offers only sanctioned operations — the failing state never gets built because the environment does not expose the path to it. <strong>Then sense the rest:</strong> where prevention cannot reach, catch the drift after the fact with a lint, a validator, or a gate that refuses to let the violation advance.</p>

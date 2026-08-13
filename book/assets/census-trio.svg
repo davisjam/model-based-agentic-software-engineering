@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- R44c REDESIGN — Figure 3.5-2 "Three Views of One Control Estate". Coverage panel = obligation↔mechanism bipartite (GAP + ORPHAN), replacing the agent/models/product target bins. Fold to book/assets/census-trio.svg (label kept stable: census-trio). -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 600" width="1280" height="600"
      role="img" aria-labelledby="ctTitle ctDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ctTitle">One control set, three re-views: catalogue, interaction graph, and coverage census</title>
-  <desc id="ctDesc">Three panels over the same three control chips — squash-rule, brief-guard, and
-    lint-gate. Left panel, the catalogue, lists the three controls that exist. Middle panel, the
-    interaction graph, draws the same three as nodes with one red dashed edge marking the collision
-    between squash-rule and brief-guard; lint-gate has no edge. Right panel, the coverage census, bins
-    the same three by the target each guards — all three fall under the agent target, while the models
-    target and the product target hold none, and each empty cell is flagged as a finding. The point:
-    one node-set, viewed three ways. The graph and the census add no new data; they re-view the list.</desc>
+  <title id="ctTitle">Three views of one control estate: catalogue, interaction graph, and coverage of
+    obligations against mechanisms</title>
+  <desc id="ctDesc">Three panels over the same three controls — squash-rule, brief-guard, and lint-gate.
+    Left panel, the catalogue, lists the three controls that exist. Middle panel, the interaction graph,
+    draws the same three as nodes with one red dashed edge marking the collision between squash-rule and
+    brief-guard. Right panel, the coverage relation, joins obligations on the left to the controls that
+    carry them on the right: scope-bounded traces to squash-rule and brief-followed to brief-guard, while
+    the cost-ceiling obligation has no control — a GAP, or under-governance — and lint-gate traces to no
+    obligation — an ORPHAN, or governance debt. One node-set, three questions; the graph and the coverage
+    view add no new data, they re-view the catalogue.</desc>
 
   <defs>
     <marker id="ct-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
@@ -21,6 +24,7 @@
   <line x1="427" y1="30" x2="427" y2="500" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="6 6"/>
   <line x1="853" y1="30" x2="853" y2="500" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="6 6"/>
 
+  <!-- ============ Panel 1: CATALOGUE ============ -->
   <text x="213" y="52" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Catalogue</text>
   <text x="213" y="80" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">what exists</text>
 
@@ -36,11 +40,11 @@
   </g>
   <text x="213" y="404" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the controls, listed</text>
 
+  <!-- ============ Panel 2: INTERACTION GRAPH ============ -->
   <text x="640" y="52" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Interaction graph</text>
   <text x="640" y="80" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">what collides</text>
 
   <text x="645" y="150" text-anchor="middle" font-size="16" font-weight="700" fill="#b23b3b">collision</text>
-  
   <line x1="597" y1="186" x2="693" y2="186" stroke="#b23b3b" stroke-width="2.4" stroke-dasharray="7 6"
         marker-start="url(#ct-ah)" marker-end="url(#ct-ah)"/>
 
@@ -56,32 +60,50 @@
   </g>
   <text x="640" y="404" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">same controls — now the edges</text>
 
-  <text x="1066" y="52" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Coverage census</text>
-  <text x="1066" y="80" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">what lacks coverage</text>
+  <!-- ============ Panel 3: COVERAGE (obligation ↔ mechanism) ============ -->
+  <text x="1066" y="52" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Coverage</text>
+  <text x="1066" y="80" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">obligations against mechanisms</text>
 
-  
-  <text x="928" y="145" text-anchor="start" font-size="18" font-weight="700" fill="#2f5169">agent</text>
-  <g fill="#e7edf3" stroke="#2f5169" stroke-width="1.6">
-    <rect x="928" y="158" width="98" height="34" rx="5"/>
-    <rect x="1034" y="158" width="98" height="34" rx="5"/>
-    <rect x="1140" y="158" width="98" height="34" rx="5"/>
-  </g>
-  <g font-size="15" fill="#1c1917" text-anchor="middle">
-    <text x="977" y="180">squash</text>
-    <text x="1083" y="180">brief</text>
-    <text x="1189" y="180">lint</text>
+  <text x="945" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">obligation</text>
+  <text x="1185" y="122" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">mechanism</text>
+
+  <!-- matched edges -->
+  <g stroke="#2f5169" stroke-width="2.2">
+    <line x1="1000" y1="157" x2="1130" y2="157"/>
+    <line x1="1000" y1="227" x2="1130" y2="227"/>
   </g>
 
-  <text x="928" y="245" text-anchor="start" font-size="18" font-weight="700" fill="#2f5169">models</text>
-  <rect x="928" y="258" width="310" height="34" rx="5" fill="#ffffff" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
-  <text x="1083" y="280" text-anchor="middle" font-size="16" font-weight="700" fill="#b23b3b">no coverage — finding</text>
+  <!-- obligation nodes (left) -->
+  <g fill="#eef2f6" stroke="#2f5169" stroke-width="1.8">
+    <rect x="890" y="139" width="110" height="36" rx="5"/>
+    <rect x="890" y="209" width="110" height="36" rx="5"/>
+  </g>
+  <rect x="890" y="279" width="110" height="36" rx="5" fill="#ffffff" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <text x="945" y="162" font-size="12">scope-bounded</text>
+    <text x="945" y="232">brief-followed</text>
+    <text x="945" y="302" font-weight="700" fill="#8a2f2f">cost-ceiling</text>
+  </g>
 
-  <text x="928" y="345" text-anchor="start" font-size="18" font-weight="700" fill="#2f5169">product</text>
-  <rect x="928" y="358" width="310" height="34" rx="5" fill="#ffffff" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
-  <text x="1083" y="380" text-anchor="middle" font-size="16" font-weight="700" fill="#b23b3b">no coverage — finding</text>
+  <!-- mechanism nodes (right) -->
+  <g fill="#e7edf3" stroke="#2f5169" stroke-width="1.8">
+    <rect x="1130" y="139" width="110" height="36" rx="5"/>
+    <rect x="1130" y="209" width="110" height="36" rx="5"/>
+  </g>
+  <rect x="1130" y="279" width="110" height="36" rx="5" fill="#ffffff" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <g font-size="14" fill="#1c1917" text-anchor="middle">
+    <text x="1185" y="162">squash-rule</text>
+    <text x="1185" y="232">brief-guard</text>
+    <text x="1185" y="302" font-weight="700" fill="#8a2f2f">lint-gate</text>
+  </g>
 
-  <text x="1066" y="430" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">same controls — binned by target</text>
+  <!-- GAP + ORPHAN flags -->
+  <text x="945" y="338" text-anchor="middle" font-size="14" font-weight="700" fill="#b23b3b">GAP — under-governance</text>
+  <text x="1185" y="338" text-anchor="middle" font-size="14" font-weight="700" fill="#b23b3b">ORPHAN — governance debt</text>
 
-  <text x="640" y="540" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">One control set, three re-views</text>
-  <text x="640" y="568" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the graph and the census add no data — they re-view the list</text>
+  <text x="1066" y="404" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">same controls — traced to obligations</text>
+
+  <!-- ============ footer ============ -->
+  <text x="640" y="540" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">One control estate, three questions</text>
+  <text x="640" y="568" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the graph and the coverage view add no data — they re-view the catalogue</text>
 </svg>
