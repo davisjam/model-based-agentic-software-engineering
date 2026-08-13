@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: where-effort-moves). REPLACES sdlc-to-selc.svg. The old figure renamed the
+     lifecycle SDLC->SELC on the premise that "the D is delegated"; the SELC acronym and its argument are
+     deleted (development never meant merely typing implementation, and a new acronym this late buys little).
+     This figure keeps the salvageable content: the lifecycle does NOT acquire new phases; implementation
+     shifts disproportionately to the fleet, and human effort concentrates in intent, abstraction, evidence,
+     tradeoffs, and adaptation, while a governed environment carries repeatable structure across all phases.
+     Top row: the five lifecycle phases, unchanged. Below: three bands — Human engineering judgment (rust),
+     Fleet (blue), Governed environment (green) — each listing what it carries across the phases. No new
+     lifecycle name. Caption: delegation changes the allocation of work, not the engineer's accountability.
+     Palette: Umber Monograph tokens (ink #1c1917 phase names, muted #57534e detail, accent #9a3f12 + tint
+     #faf1e6 the human-judgment band, blue #2f5169 + tint #e7edf3 the fleet band, governed green
+     #1f7a4d/#155c38 + tint #e3f0e7 the environment band, neutral #f6f4ef phase boxes, rule #e4e0d8, page
+     #fdfcf9). Fonts 13-26 band at 1000px reference. -->
+<!-- semantic-families: governance, modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
+     role="group" aria-labelledby="wemTitle wemDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="wemTitle">Where engineering effort moves across the lifecycle</title>
+  <desc id="wemDesc">Across the top, the five lifecycle phases in order — Requirements, Design,
+    Implementation, Validation, Operation and maintenance — connected by arrows; the lifecycle keeps its
+    phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The
+    human engineering judgment band, in rust, carries intent, abstractions, tradeoffs, acceptance, and
+    adaptation. The fleet band, in blue, carries implementation, analysis, transformation, and routine
+    remediation, concentrated under the Implementation phase. The governed environment band, in green,
+    carries models and context, permissions and constraints, evidence and validators, admission, and
+    operational controls across all phases. Implementation shifts disproportionately toward the fleet while
+    human effort concentrates in intent, abstraction, evidence, tradeoffs, and adaptation. Delegation
+    changes the allocation of work, not the engineer's accountability for the resulting system.</desc>
+
+  <defs>
+    <marker id="wem-ah" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where engineering effort moves</text>
+  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The lifecycle keeps its phases. The allocation of work across them changes.</text>
+
+  <!-- ===== top row: the five lifecycle phases (unchanged) ===== -->
+  <g font-size="16" text-anchor="middle" fill="#1c1917">
+    <rect x="40"  y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <text x="124" y="124">Requirements</text>
+    <rect x="228" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <text x="312" y="124">Design</text>
+    <rect x="416" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <text x="500" y="124">Implementation</text>
+    <rect x="604" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <text x="688" y="124">Validation</text>
+    <rect x="792" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <text x="876" y="118">Operation /</text>
+    <text x="876" y="136">maintenance</text>
+  </g>
+  <g stroke="#57534e" stroke-width="1.5">
+    <line x1="208" y1="119" x2="226" y2="119" marker-end="url(#wem-ah)"/>
+    <line x1="396" y1="119" x2="414" y2="119" marker-end="url(#wem-ah)"/>
+    <line x1="584" y1="119" x2="602" y2="119" marker-end="url(#wem-ah)"/>
+    <line x1="772" y1="119" x2="790" y2="119" marker-end="url(#wem-ah)"/>
+  </g>
+
+  <!-- ===== band 1: Human engineering judgment (rust) ===== -->
+  <rect x="40" y="168" width="920" height="86" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="60" y="196" font-size="17" font-weight="700" fill="#9a3f12">Human engineering judgment</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="60" y="228">intent</text>
+    <text x="230" y="228">abstractions</text>
+    <text x="440" y="228">tradeoffs</text>
+    <text x="620" y="228">acceptance</text>
+    <text x="820" y="228">adaptation</text>
+  </g>
+
+  <!-- ===== band 2: Fleet (blue), weighted under Implementation ===== -->
+  <rect x="40" y="266" width="920" height="86" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="60" y="294" font-size="17" font-weight="700" fill="#2f5169">Fleet</text>
+  <!-- emphasis block under the Implementation phase column -->
+  <rect x="416" y="304" width="168" height="34" rx="6" fill="#fdfcf9" stroke="#2f5169" stroke-width="1.6"/>
+  <text x="500" y="326" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">implementation</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="60" y="326">analysis</text>
+    <text x="230" y="326">transformation</text>
+    <text x="620" y="326">routine</text>
+    <text x="620" y="344" font-size="13.5" fill="#57534e">remediation</text>
+  </g>
+
+  <!-- ===== band 3: Governed environment (green), spans all phases ===== -->
+  <rect x="40" y="364" width="920" height="98" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="60" y="392" font-size="17" font-weight="700" fill="#155c38">Governed environment</text>
+  <text x="470" y="392" font-size="14.5" font-style="italic" fill="#57534e">carries repeatable structure across every phase</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="60" y="426">models / context</text>
+    <text x="270" y="426">permissions /</text>
+    <text x="270" y="444" font-size="13.5" fill="#57534e">constraints</text>
+    <text x="470" y="426">evidence /</text>
+    <text x="470" y="444" font-size="13.5" fill="#57534e">validators</text>
+    <text x="650" y="426">admission</text>
+    <text x="800" y="426">operational</text>
+    <text x="800" y="444" font-size="13.5" fill="#57534e">controls</text>
+  </g>
+
+  <text x="500" y="502" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Implementation shifts to the fleet; human effort concentrates in intent, abstraction, evidence, tradeoffs, and adaptation.</text>
+  <text x="500" y="530" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Delegation changes the allocation of work, not the engineer's accountability for the system.</text>
+</svg>

@@ -163,6 +163,12 @@
       "location": "part6",
       "rationale": "the two paths to mechanization (direct vs representation shift); R47 replacement for the determinization ladder"
     },
+    "assets/where-effort-moves.svg": {
+      "tier": "A",
+      "kind": "conceptual-framework",
+      "location": "part6",
+      "rationale": "where engineering effort moves across an unchanged lifecycle; R47 replacement for the SDLC-to-SELC figure"
+    },
     "assets/governance-census.svg": {
       "tier": "B",
       "kind": "conceptual-illustration",
@@ -666,12 +672,6 @@
       "kind": "framework",
       "location": "part6",
       "rationale": "typical profiles by setting against the recurs/governable gates — where investment pays and residual judgment stays"
-    },
-    "reorganization-of-se::Four paradigms, two questions": {
-      "tier": "B",
-      "kind": "comparison-summary",
-      "location": "part6",
-      "rationale": "Waterfall/Agile/DevOps/MAGE against the same two questions"
     },
     "mage-in-the-wild::The Modeling Ceiling": {
       "tier": "B",
