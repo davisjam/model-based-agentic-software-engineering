@@ -133,7 +133,7 @@
         "0.4-preface",
         "1.2-mage-by-example",
         "5.3-the-road-to-mage",
-        "6.3-reorganization-of-se"
+        "6.4-reorganization-of-se"
       ],
       "body_depth": 2,
       "front_loaded": false,
@@ -233,7 +233,7 @@
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "5.4-failures-that-became-infrastructure",
-        "6.3-reorganization-of-se",
+        "6.4-reorganization-of-se",
         "lifecycles-and-runbooks"
       ],
       "body_depth": 9,
@@ -456,7 +456,7 @@
       "advanced_by": [
         "0.4-preface",
         "2.8-joining-models-around-a-scenario",
-        "6.3-reorganization-of-se",
+        "6.4-reorganization-of-se",
         "6.6-education-research-open-problems",
         "6.7-conclusion"
       ],
@@ -488,7 +488,7 @@
       "advanced_by": [
         "5.3-the-road-to-mage",
         "5.4-failures-that-became-infrastructure",
-        "6.3-reorganization-of-se",
+        "6.4-reorganization-of-se",
         "6.7-conclusion"
       ],
       "body_depth": 4,
@@ -557,7 +557,7 @@
       "statement_hash": "3d5cdcd1963c",
       "advanced_by": [
         "6.1-toward-a-theory-of-mage",
-        "6.3-reorganization-of-se",
+        "6.4-reorganization-of-se",
         "6.7-conclusion"
       ],
       "body_depth": 3,
@@ -819,7 +819,12 @@
       "exempt": "discussion"
     },
     {
-      "slug": "6.3-reorganization-of-se",
+      "slug": "6.3-mage-in-the-wild",
+      "advances": [],
+      "exempt": "discussion"
+    },
+    {
+      "slug": "6.4-reorganization-of-se",
       "advances": [
         "oversight-does-not-scale",
         "govern-the-environment",
@@ -830,14 +835,9 @@
       "exempt": "discussion"
     },
     {
-      "slug": "6.4-software-rejoins-engineering",
+      "slug": "6.5-software-rejoins-engineering",
       "advances": [],
       "exempt": null
-    },
-    {
-      "slug": "6.5-mage-in-the-wild",
-      "advances": [],
-      "exempt": "discussion"
     },
     {
       "slug": "6.6-education-research-open-problems",
@@ -890,7 +890,7 @@
         "advances": 0
       },
       {
-        "chapter": "6.4-software-rejoins-engineering",
+        "chapter": "6.5-software-rejoins-engineering",
         "advances": 0
       },
       {
@@ -948,7 +948,7 @@
           "4.1-the-mage-workflow",
           "4.2-brownfield",
           "5.4-failures-that-became-infrastructure",
-          "6.3-reorganization-of-se",
+          "6.4-reorganization-of-se",
           "lifecycles-and-runbooks"
         ]
       },

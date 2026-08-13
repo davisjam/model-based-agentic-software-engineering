@@ -1061,37 +1061,6 @@
       ]
     },
     {
-      "slug": "reorganization-of-se",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "implicit",
-        "thesis_target": "both"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "note": "Discussion chapter. Opens by placing MAGE among the software-engineering traditions it descends from and departs from (Software Engineering at Google, the Gang of Four, the modeling tradition); closes on the Kuhnian economics claim — the foundations held, they were only too expensive to stand on until now. (Round-4 R1: re-keyed from where-mage-fits — this record always assessed 6.3's traditions chapter, not 6.6; 6.6's comparative record is authored separately below. 6.3 is now marked exempt as a discussion chapter in the argument-spine, so it no longer fires DV4/thesis-mismatch.)",
-      "opening_anchor": "Thomas Kuhn observed that scientific disciplines periodically reorganize around new paradigms that",
-      "closing_anchor": "sound. They were simply too expensive to stand on, until they weren't.",
-      "delivers": {
-        "concepts": [
-          "engineers-seat",
-          "selc"
-        ],
-        "artifacts": [],
-        "artifact_would_help": false
-      },
-      "exempt": "discussion",
-      "spine_advances": [
-        "oversight-does-not-scale",
-        "govern-the-environment",
-        "mage-becomes-practical",
-        "seat-moves",
-        "conversions-compound"
-      ]
-    },
-    {
       "slug": "mage-in-the-wild",
       "opening": {
         "failure_question": "implicit",
@@ -1128,6 +1097,36 @@
       },
       "exempt": "discussion",
       "spine_advances": []
+    },
+    {
+      "slug": "reorganization-of-se",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "implicit",
+        "thesis_target": "both"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "Discussion chapter. Opens by placing MAGE among the software-engineering traditions it descends from and departs from (Software Engineering at Google, the Gang of Four, the modeling tradition); closes on the Kuhnian economics claim — the foundations held, they were only too expensive to stand on until now. (Round-4 R1: re-keyed from where-mage-fits — this record always assessed 6.3's traditions chapter, not 6.6; 6.6's comparative record is authored separately below. 6.3 is now marked exempt as a discussion chapter in the argument-spine, so it no longer fires DV4/thesis-mismatch.)",
+      "opening_anchor": "Thomas Kuhn observed that scientific disciplines periodically reorganize around new paradigms that",
+      "closing_anchor": "sound. They were simply too expensive to stand on, until they weren't.",
+      "delivers": {
+        "concepts": [
+          "engineers-seat"
+        ],
+        "artifacts": [],
+        "artifact_would_help": false
+      },
+      "exempt": "discussion",
+      "spine_advances": [
+        "oversight-does-not-scale",
+        "govern-the-environment",
+        "mage-becomes-practical",
+        "seat-moves",
+        "conversions-compound"
+      ]
     },
     {
       "slug": "conclusion",

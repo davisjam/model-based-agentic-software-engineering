@@ -222,7 +222,7 @@
         true,
         true
       ],
-      "landed_appears": true
+      "landed_appears": false
     },
     {
       "id": "deterministic-verification",
@@ -773,7 +773,7 @@
       "theses_resolve": [
         true
       ],
-      "landed_appears": true
+      "landed_appears": false
     },
     {
       "id": "agile-accidental-complexity",

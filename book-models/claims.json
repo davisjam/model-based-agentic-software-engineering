@@ -22,7 +22,7 @@
     "with_watch_phrases": 6,
     "assertion_sites": 32,
     "relates_to_links": 28,
-    "max_statement_words": 18
+    "max_statement_words": 20
   },
   "taxonomy": {
     "kinds": [
@@ -324,7 +324,7 @@
     {
       "id": "models-are-universal-language",
       "kind": "thesis",
-      "statement": "Models are engineering's universal language; software could not afford them until agents cut the recurring sync cost.",
+      "statement": "Models are a common language of mature engineering; software could not afford them until agents cut the recurring sync cost.",
       "distinguishes": [],
       "home": "models-are-the-universal-language-of-engineering",
       "asserted_at": [
@@ -338,8 +338,8 @@
         "definition:model"
       ],
       "provenance": "stated",
-      "anchor": "Preface universal-language touchstone + 6.0 'models as the universal language of engineering' + conclusion.",
-      "word_count": 17
+      "anchor": "Preface universal-language touchstone + 6.0 'models as a common language of mature engineering' + conclusion.",
+      "word_count": 20
     },
     {
       "id": "printer-not-coder",
@@ -385,14 +385,14 @@
     {
       "id": "seat-moves-not-lifecycle",
       "kind": "distinction",
-      "statement": "SDLC becomes SELC: the lifecycle stays intact; only the developer's seat moves to the fleet.",
+      "statement": "The lifecycle stays intact and gains no phases; only the developer's implementation seat moves to the fleet.",
       "distinguishes": [
         "the developer's seat moves to the fleet",
         "the lifecycle itself changes"
       ],
-      "home": "the-reassigned-seat",
+      "home": "where-engineering-effort-moves",
       "asserted_at": [
-        "the-reassigned-seat"
+        "where-engineering-effort-moves"
       ],
       "contradicted_by": "Claiming agents replace the whole lifecycle, or that the lifecycle itself changes.",
       "watch_phrases": [],
@@ -401,7 +401,7 @@
       ],
       "provenance": "stated",
       "anchor": "6.5 implications-for-se: SDLC → SELC — the human keeps requirements/spec/design/validation; only the coding seat moves to the fleet.",
-      "word_count": 15
+      "word_count": 17
     },
     {
       "id": "single-case-humility",

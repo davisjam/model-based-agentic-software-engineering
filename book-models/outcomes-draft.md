@@ -134,7 +134,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ## Module 6 — The Profession
 
-- **[DECLARED]** (evaluate) After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become the universal language of engineering. _(primary: Module 6 · elaborated by: conclusion, mage-in-the-wild)_ — _anchor: reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours._
+- **[DECLARED]** (evaluate) After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become a common language of mature engineering. _(primary: Module 6 · elaborated by: conclusion, mage-in-the-wild)_ — _anchor: reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours._
 
 ### Lesson 6.1-toward-a-theory-of-mage
 
