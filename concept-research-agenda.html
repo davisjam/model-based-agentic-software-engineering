@@ -210,121 +210,202 @@
 <p><strong>Claim</strong> — Three open frontiers: how far judgment can migrate into deterministic machinery, how to census a governed environment's coverage and gaps, and what stronger models unlock.</p>
 <table><thead><tr><th>Concept</th><th>Big idea 6 · the frontier</th></tr></thead><tbody><tr><td>Claim</td><td>Three open frontiers: how far judgment can migrate into deterministic machinery, how to census a governed environment's coverage and gaps, and what stronger models unlock.</td></tr><tr><td>Mechanisms</td><td>Control-coverage census · Governance graph · Formal invariant verification</td></tr><tr><td>Related</td><td>Convert recurring failures into controls · Documentation, taken to its limit, is a structured model</td></tr><tr><td>In the book</td><td>book/6.6-education-research-open-problems.html</td></tr></tbody></table>
 <h2>The idea</h2>
-<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 570"
-     role="group" aria-labelledby="dfTitle dfDesc"
+<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720"
+     role="group" aria-labelledby="ofTitle ofDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="cf-1-dfTitle">The determinization frontier: how far engineering judgment can be compiled into machinery</title>
-  <desc id="cf-1-dfDesc">An eight-rung staircase climbs from left to right. The first four rungs are gray and
-    implementation-level: Prompt, which reasons over text; Skill, over workflow; Rule, over policy; Lint,
-    over syntax. The fifth rung, Structured Model, is green — the representation layer — and reasons over
-    semantics. The last three rungs are rust and deterministic: Model contract, which reasons over
-    constraints; Simulation, over behavior; Proof, over mathematics. The gray-and-green left aims the agent
-    and remains probabilistic; the rust right holds the line and is deterministic. A green arrow runs from
-    the Structured Model rung up toward Simulation and Proof, labelled "expands the frontier": richer models
-    push determinizability further up the ladder. The frontier is how far a recurring judgment call has been
-    compiled up into machinery the agent cannot talk past.</desc>
+  <title id="cf-1-ofTitle">Where the frontier goes next: the open work of MAGE partitions into four kinds, each anchored to the hypothesis that makes it falsifiable</title>
+  <desc id="cf-1-ofDesc">A research-program map. The open work of MAGE sorts into four kinds, drawn as four
+    regions, and every item is a titled box joined by a thin dropper edge down to the eight hypotheses that
+    make it testable. FRONTIERS holds four items: Determinization frontier — how far judgment compiles into
+    machinery — open, rust, anchored to H3 mechanized-assurance and H4 representation-leverage, home section
+    6.5; Modeling moves the frontier — richer models expand what alignment can determinize — open, green,
+    anchored to H4, home 6.1; Assurance frontier, the MAGE-II conjecture — conjectured, dashed, rust,
+    anchored to H3, home 6.2; Development completeness and supply chain — open, green, anchored to H7
+    conversion-conditions, home 6.2. MEASUREMENT holds one item: the Governance census — established, rust,
+    the one node that expands into three metric chips, Coverage, Under-governance, and Governance-debt, plus
+    one dashed conjectured chip, propagation-latency, the proposed fourth metric — anchored to H3, H6
+    oversight-amortization, and H8 learning-propagation, home 6.5. DYNAMICS holds one item: Learning
+    propagation and organizational scaling — open, blue, anchored to H1 failure-class-exposure, H7, and H8,
+    homes 6.1 and 6.5. GENERALIZATION holds one item: Generalization beyond software, MBAE — conjectured,
+    dashed, green, anchored to H4, home 6.5. Two inter-item edges carry book claims: Modeling moves the
+    frontier points to the Determinization frontier, labelled richer models move it; and the census's
+    propagation-latency chip points to Learning propagation, labelled future metric. The anchor rail across
+    the foot names the eight hypotheses: H1 exposure, H2 moderation, H3 assurance, H4 leverage, H5
+    deficiency, H6 amortization, H7 conversion, H8 propagation. Border style encodes status: solid for open
+    and established, dashed for a conjecture the book states but does not prove. None is settled here.</desc>
 
   <defs>
-    <marker id="cf-1-df-climb" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    <marker id="cf-1-of-drop" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#a8a29e"/>
     </marker>
-    <marker id="cf-1-df-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="cf-1-of-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
     </marker>
-    <marker id="cf-1-df-cap" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    <marker id="cf-1-of-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
-    <linearGradient id="cf-1-dfRamp" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#f3efe7"/>
-      <stop offset="0.5" stop-color="#e3f0e7"/>
-      <stop offset="1" stop-color="#9a3f12"/>
-    </linearGradient>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="570" fill="#fdfcf9"/>
-  <text x="500" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The determinization frontier</text>
-  <text x="500" y="68" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">How far can engineering judgment be compiled into machinery?</text>
+  <rect x="0" y="0" width="1000" height="720" fill="#fdfcf9"/>
+  <text x="500" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where the frontier goes next</text>
+  <text x="500" y="64" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The open work of MAGE sorts into four kinds — each welded to the hypothesis that makes it falsifiable.</text>
 
-  <text x="90" y="108" font-size="16" fill="#57534e">SOFT · aims the agent · probabilistic</text>
-  <text x="910" y="108" text-anchor="end" font-size="16" fill="#9a3f12">DETERMINISTIC · holds the line</text>
+  <!-- legend: status border key (left) + colour key (right) -->
+  <g font-size="16" fill="#57534e">
+    <rect x="40" y="80" width="26" height="16" rx="3" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8" stroke-dasharray="6 4"/>
+    <text x="72" y="93">conjectured</text>
+    <rect x="182" y="80" width="26" height="16" rx="3" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8"/>
+    <text x="214" y="93">open</text>
+    <rect x="266" y="80" width="26" height="16" rx="3" fill="#fdfcf9" stroke="#57534e" stroke-width="2.6"/>
+    <text x="298" y="93">established</text>
+    <circle cx="566" cy="88" r="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+    <text x="580" y="93">modeling</text>
+    <circle cx="690" cy="88" r="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+    <text x="704" y="93">governance</text>
+    <circle cx="836" cy="88" r="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+    <text x="850" y="93">autonomy</text>
+  </g>
 
-  <!-- subtle economic note in the open band above the low rungs -->
+  <!-- ============ REGION 1: FRONTIERS (four items across the top) ============ -->
+  <line x1="40" y1="119" x2="360" y2="119" stroke="#e4e0d8" stroke-width="1.5"/>
+  <line x1="640" y1="119" x2="960" y2="119" stroke="#e4e0d8" stroke-width="1.5"/>
+  <text x="500" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="2" fill="#57534e">FRONTIERS</text>
+
+  <!-- A1 Determinization frontier — open, rust -->
+  <rect x="40" y="140" width="216" height="72" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="148" y="171" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Determinization</text>
+  <text x="148" y="193" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">frontier</text>
+
+  <!-- A2 Modeling moves the frontier — open, green -->
+  <rect x="268" y="140" width="216" height="72" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+  <text x="376" y="171" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Modeling moves</text>
+  <text x="376" y="193" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">the frontier</text>
+
+  <!-- A3 Assurance frontier (MAGE-II) — conjectured, rust, dashed -->
+  <rect x="496" y="140" width="216" height="72" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <text x="604" y="171" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Assurance frontier</text>
+  <text x="604" y="193" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the MAGE-II conjecture</text>
+
+  <!-- A4 Development completeness & supply chain — open, green -->
+  <rect x="724" y="140" width="216" height="72" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+  <text x="832" y="164" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Development</text>
+  <text x="832" y="185" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">completeness &amp;</text>
+  <text x="832" y="206" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">supply chain</text>
+
+  <!-- A2 -> A1 inter-item edge: "richer models move it" (green, a book claim) -->
+  <!-- Label painted later, ON TOP of the dropper web + on a canvas halo (see "edge-label plate" below). -->
+  <path d="M368,212 C300,262 224,262 156,212" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#cf-1-of-green)"/>
+
+  <!-- ============ REGION 2/3/4 labels ============ -->
+  <text x="255" y="330" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="2" fill="#57534e">MEASUREMENT</text>
+  <text x="622" y="330" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="2" fill="#57534e">DYNAMICS</text>
+  <text x="859" y="330" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="1.5" fill="#57534e">GENERALIZATION</text>
+
+  <!-- A5 Governance census — established, rust; the ONE node that expands -->
+  <rect x="40" y="342" width="430" height="118" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="255" y="368" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Governance census</text>
+  <text x="255" y="388" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">counts, not opinions</text>
+  <!-- three established metric chips + one dashed conjectured chip -->
+  <rect x="48" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="99" y="430" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Coverage</text>
+  <rect x="154" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="205" y="421" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Under-</text>
+  <text x="205" y="441" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">governance</text>
+  <rect x="260" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="311" y="421" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Governance</text>
+  <text x="311" y="441" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">debt</text>
+  <rect x="366" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <text x="417" y="421" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">Propagation</text>
+  <text x="417" y="441" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">-latency</text>
+
+  <!-- A6 Learning propagation + organizational scaling — open, blue -->
+  <rect x="512" y="342" width="220" height="100" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <text x="622" y="375" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Learning</text>
+  <text x="622" y="396" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">propagation +</text>
+  <text x="622" y="417" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">organizational</text>
+  <text x="622" y="438" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">scaling</text>
+
+  <!-- A7 Generalization beyond software (MBAE) — conjectured, green, dashed -->
+  <rect x="762" y="342" width="194" height="100" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <text x="859" y="384" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Generalization</text>
+  <text x="859" y="406" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">beyond software</text>
+  <text x="859" y="428" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">(MBAE)</text>
+
+  <!-- census propagation-latency chip ⇢ A6 : "future metric" (dashed, the one place regions touch) -->
+  <!-- Label painted later, ON TOP of the dropper web + on a canvas halo (see "edge-label plate" below). -->
+  <path d="M417,398 C450,360 486,360 512,388" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#cf-1-of-rust)"/>
+
+  <!-- ============ DROPPER EDGES: each item -> the hypotheses it tests ============ -->
+  <g fill="none" stroke="#c7c2b9" stroke-width="1.3">
+    <!-- FRONTIERS funnel through the clear right-of-census channel, then to badges under the census -->
+    <path d="M140,212 C140,300 486,330 486,430 C486,505 323,505 323,558" marker-end="url(#cf-1-of-drop)"/>   <!-- A1->H3 -->
+    <path d="M156,212 C156,300 498,332 498,432 C498,505 439,510 439,558" marker-end="url(#cf-1-of-drop)"/>   <!-- A1->H4 -->
+    <path d="M376,212 C376,300 508,332 508,432 C508,505 449,512 439,558" marker-end="url(#cf-1-of-drop)"/>   <!-- A2->H4 -->
+    <path d="M596,212 C596,300 478,332 478,430 C478,505 331,505 323,558" marker-end="url(#cf-1-of-drop)"/>   <!-- A3->H3 -->
+    <path d="M832,212 C832,300 747,332 747,432 C747,505 787,512 787,558" marker-end="url(#cf-1-of-drop)"/>   <!-- A4->H7 -->
+    <!-- MEASUREMENT: census -> H3, H6, H8 (drop into the clear band below every box) -->
+    <path d="M180,460 C180,512 300,516 323,558" marker-end="url(#cf-1-of-drop)"/>                            <!-- A5->H3 -->
+    <path d="M300,460 C300,516 620,516 671,558" marker-end="url(#cf-1-of-drop)"/>                            <!-- A5->H6 -->
+    <path d="M430,460 C430,522 862,522 903,558" marker-end="url(#cf-1-of-drop)"/>                            <!-- A5->H8 -->
+    <!-- DYNAMICS: A6 -> H1, H7, H8 -->
+    <path d="M560,442 C560,505 200,512 91,558" marker-end="url(#cf-1-of-drop)"/>                             <!-- A6->H1 -->
+    <path d="M622,442 C622,506 760,514 787,558" marker-end="url(#cf-1-of-drop)"/>                            <!-- A6->H7 -->
+    <path d="M676,442 C676,506 882,514 903,558" marker-end="url(#cf-1-of-drop)"/>                            <!-- A6->H8 -->
+    <!-- GENERALIZATION: A7 -> H4 -->
+    <path d="M860,442 C860,510 470,518 439,558" marker-end="url(#cf-1-of-drop)"/>                            <!-- A7->H4 -->
+  </g>
+
+  <!-- ============ EDGE-LABEL PLATE ============ -->
+  <!-- The two inter-item edge labels ride ON TOP of the faint dropper web, each on a canvas-coloured halo
+       so a pale connector line never crosses the glyphs (a stroke-through-label legibility fix). The
+       "future metric" label sits just above the census box's top border so its halo does not break it. -->
   <g>
-    <path d="M130,300 L462,240" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#cf-1-df-cap)"/>
-    <text x="292" y="258" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e"
-          transform="rotate(-10.3 292 258)">increasing reusable engineering capital</text>
+    <rect x="160" y="270" width="196" height="21" rx="5" fill="#fdfcf9"/>
+    <text x="258" y="284" text-anchor="middle" font-size="16" font-style="italic" font-weight="700" fill="#1f7a4d">richer models move it</text>
+    <rect x="398" y="327" width="128" height="14" rx="5" fill="#fdfcf9"/>
+    <text x="462" y="340" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">future metric</text>
   </g>
 
-  <!-- connectors from each rung down to the ramp -->
-  <g stroke="#e4e0d8" stroke-width="1.5">
-    <line x1="82"  y1="432" x2="82"  y2="470"/>
-    <line x1="200" y1="406" x2="200" y2="470"/>
-    <line x1="318" y1="380" x2="318" y2="470"/>
-    <line x1="436" y1="354" x2="436" y2="470"/>
-    <line x1="554" y1="328" x2="554" y2="470"/>
-    <line x1="672" y1="302" x2="672" y2="470"/>
-    <line x1="790" y1="276" x2="790" y2="470"/>
-    <line x1="908" y1="250" x2="908" y2="470"/>
+  <!-- ============ H1-H8 ANCHOR RAIL (id + one-word name) ============ -->
+  <line x1="40" y1="556" x2="956" y2="556" stroke="#e4e0d8" stroke-width="1.5"/>
+  <g>
+    <rect x="40"  y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="156" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="272" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="388" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="504" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="620" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="736" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="852" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
   </g>
-
-  <!-- climbing arrows rung-to-rung (migrate up one rung) -->
-  <g fill="none" stroke="#9a3f12" stroke-width="2">
-    <path d="M140,400 C150,392 152,388 162,380" marker-end="url(#cf-1-df-climb)"/>
-    <path d="M258,374 C268,366 270,362 280,354" marker-end="url(#cf-1-df-climb)"/>
-    <path d="M376,348 C386,340 388,336 398,328" marker-end="url(#cf-1-df-climb)"/>
-    <path d="M494,322 C504,314 506,310 516,302" marker-end="url(#cf-1-df-climb)"/>
-    <path d="M612,296 C622,288 624,284 634,276" marker-end="url(#cf-1-df-climb)"/>
-    <path d="M730,270 C740,262 742,258 752,250" marker-end="url(#cf-1-df-climb)"/>
+  <g font-size="18" font-weight="700" fill="#1c1917" text-anchor="middle">
+    <text x="91"  y="586">H1</text>
+    <text x="207" y="586">H2</text>
+    <text x="323" y="586">H3</text>
+    <text x="439" y="586">H4</text>
+    <text x="555" y="586">H5</text>
+    <text x="671" y="586">H6</text>
+    <text x="787" y="586">H7</text>
+    <text x="903" y="586">H8</text>
   </g>
-
-  <!-- the green "expands the frontier" arrow: models push determinizability up the ladder -->
-  <path d="M560,262 C660,196 760,180 872,178" fill="none" stroke="#1f7a4d" stroke-width="2.6"
-        stroke-dasharray="1 0" marker-end="url(#cf-1-df-green)"/>
-  <text x="712" y="168" text-anchor="middle" font-size="16" font-weight="700" font-style="italic" fill="#1f7a4d">expands the frontier</text>
-
-  <!-- rungs 1-4: implementation-level (gray) -->
-  <rect x="26"  y="372" width="112" height="60" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="82"  y="408" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Prompt</text>
-  <rect x="144" y="346" width="112" height="60" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="200" y="382" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Skill</text>
-  <rect x="262" y="320" width="112" height="60" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="318" y="356" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Rule</text>
-  <rect x="380" y="294" width="112" height="60" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="436" y="330" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Lint</text>
-
-  <!-- rung 5: the representation layer (green) -->
-  <rect x="498" y="268" width="112" height="60" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="554" y="293" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Structured</text>
-  <text x="554" y="313" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Model</text>
-
-  <!-- rungs 6-8: deterministic machinery (rust) -->
-  <rect x="616" y="242" width="112" height="60" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="672" y="267" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Model</text>
-  <text x="672" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">contract</text>
-  <rect x="734" y="216" width="112" height="60" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="790" y="252" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Simulation</text>
-  <rect x="852" y="190" width="112" height="60" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
-  <text x="908" y="226" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">Proof</text>
-
-  <!-- the ramp -->
-  <rect x="26" y="470" width="938" height="24" rx="7" fill="url(#cf-1-dfRamp)" stroke="#e4e0d8" stroke-width="1.2"/>
-
-  <!-- bottom labels: what each layer reasons over -->
   <g font-size="16" fill="#57534e" text-anchor="middle">
-    <text x="82"  y="516">text</text>
-    <text x="200" y="516">workflow</text>
-    <text x="318" y="516">policy</text>
-    <text x="436" y="516">syntax</text>
-    <text x="554" y="516">semantics</text>
-    <text x="672" y="516">constraints</text>
-    <text x="790" y="516">behavior</text>
-    <text x="908" y="516">mathematics</text>
+    <text x="91"  y="620">exposure</text>
+    <text x="207" y="620">moderation</text>
+    <text x="323" y="620">assurance</text>
+    <text x="439" y="620">leverage</text>
+    <text x="555" y="620">deficiency</text>
+    <text x="671" y="620">amortization</text>
+    <text x="787" y="620">conversion</text>
+    <text x="903" y="620">propagation</text>
   </g>
 
-  <text x="500" y="552" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The second time a soft rule fails, move it one rung toward machinery the agent cannot talk past.</text>
+  <!-- caption: names the four kinds, the honesty bound, and the home sections (index, don't duplicate) -->
+  <text x="500" y="652" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Dashed = a conjecture the book states but does not prove. The map indexes; the prose expands. None is settled here.</text>
+  <text x="500" y="675" text-anchor="middle" font-size="16" fill="#57534e">Homes — §6.5: determinization, census, organizational topology · §6.2: assurance, development completeness</text>
+  <text x="500" y="697" text-anchor="middle" font-size="16" fill="#57534e">§6.1: modeling moves the frontier, learning propagation.</text>
 </svg></figure>
 <p>A theory earns its keep by the questions it opens, not the ones it closes. This one closes the argument that the engineer's object of work is now the environment. It opens a research program about how far that environment can be pushed, how you would know, and what the next tier of models changes. Three frontiers carry the open work.</p>
-<p>These frontiers are not loose ends; they are where the method turns testable. Each names something you could measure against real systems rather than assert — how far an obligation can be pushed toward proof, what a governed environment's coverage actually is, and what the next tier of models makes cheap enough to retire by hand.</p>
+<p>These frontiers are not loose ends; they are where the method turns testable. Each names something you could measure against real systems rather than assert — how far an obligation can be pushed toward proof, what a governed environment's coverage actually is, and what the next tier of models makes cheap enough to retire by hand. The last is the model floor: a stronger environment makes cheaper models viable, so the sharp question becomes whether you can swap models without quality collapse.</p>
 <h2>The determinization frontier</h2>
 <p>Every obligation an agent must honor sits somewhere on a ladder from soft to hard. At the soft end a prompt or a convention aims the agent and hopes. Climb the ladder and the same obligation becomes a skill, then a rule, then a lint that blocks the commit, then an invariant a model checks, then a property a simulation exercises. Each rung trades flexibility for a guarantee the agent cannot talk past.</p>
 <p>The open question is how far any given obligation can climb. Some reach proof; some stall at a lint because their meaning resists formalizing; some stay human judgment because nothing mechanical yet captures them. Where each obligation can settle, and what it costs to move it one rung, is empirical — a frontier to measure against real systems rather than a line to assert.</p>

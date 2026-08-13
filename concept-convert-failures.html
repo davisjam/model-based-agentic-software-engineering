@@ -210,70 +210,100 @@
 <p><strong>Claim</strong> — Velocity surfaces the failures you could not foresee. Convert each recurring one into a mechanism, pushed as far toward hard enforcement as it will go.</p>
 <table><thead><tr><th>Concept</th><th>Big idea 5 · the practice</th></tr></thead><tbody><tr><td>Claim</td><td>Velocity surfaces the failures you could not foresee. Convert each recurring one into a mechanism, pushed as far toward hard enforcement as it will go.</td></tr><tr><td>Mechanisms</td><td>Self-governance · The Audit-to-Lint mechanism · Cross-source coherence lints · DDT pin-trailers</td></tr><tr><td>Related</td><td>Hold intent with a mechanism: prevent first, sense the rest · The lifecycle stays, but now agents sit in the developer's seat</td></tr><tr><td>In the book</td><td>book/3.4-governance-conversion.html</td></tr></tbody></table>
 <h2>The idea</h2>
-<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1250 430"
-     role="group" aria-labelledby="gcTitle gcDesc"
+<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740"
+     role="img" aria-labelledby="gcTitle gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="cf-1-gcTitle">Governance conversion — the loop that hardens the environment</title>
-  <desc id="cf-1-gcDesc">A five-step loop drawn left to right. Velocity rises as the fleet
-    accelerates. A failure recurs — the same wall hit twice. Judgment diagnoses the class,
-    naming the class rather than the instance. A mechanism is encoded — a type, a lint, a
-    gate, or a sensor. The class then cannot recur; it is prevented by construction. A dashed
-    return path runs back from prevention to rising velocity, labeled: the environment is now
-    harder to break, and velocity climbs again. This is the same loop shape as the printer
-    loop, escalated — it fires when the printer loop keeps hitting one wall.</desc>
+  <title id="cf-1-gcTitle">Governance conversion: a failure is diagnosed for what was missing, and the missing
+    piece is encoded as durable structure that future work inherits as engineering capital</title>
+  <desc id="cf-1-gcDesc">A failure or surprise flows down into one question — what was missing — which fans
+    into five branches: missing knowledge, obligation, evidence, judgment, or consequence. Each branch
+    encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or gate. The
+    five converge into durable engineering structure, which future work inherits, accumulating as
+    engineering capital. The figure's point: a recurring failure is not automatically a request for
+    another gate — you diagnose what the environment lacked and encode that.</desc>
 
   <defs>
-    <marker id="cf-1-gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-    <marker id="cf-1-gc-ah-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    <marker id="cf-1-gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
 
-  <!-- 1. velocity rises (center 135) -->
-  <rect x="30" y="70" width="210" height="104" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="135" y="116" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Velocity rises</text>
-  <text x="135" y="142" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the fleet accelerates</text>
+  <!-- failure -->
+  <rect x="375" y="24" width="250" height="52" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
+  <text x="500" y="56" text-anchor="middle" font-size="21" font-weight="700" fill="#8a2f2f">FAILURE / SURPRISE</text>
+  <line x1="500" y1="76" x2="500" y2="112" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cf-1-gc-ah)"/>
 
-  <!-- 2. a failure recurs (center 380) -->
-  <rect x="275" y="70" width="210" height="104" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="380" y="116" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">A failure recurs</text>
-  <text x="380" y="142" text-anchor="middle" font-size="20" font-style="italic" fill="#b23b3b">the same wall, twice</text>
+  <!-- diagnosis question -->
+  <rect x="360" y="116" width="280" height="52" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
+  <text x="500" y="148" text-anchor="middle" font-size="20" font-weight="700" fill="#7a5c12">What was missing?</text>
 
-  <!-- 3. diagnose the class (center 625) -->
-  <rect x="520" y="70" width="210" height="104" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="625" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Diagnose</text>
-  <text x="625" y="134" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the class, not</text>
-  <text x="625" y="154" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the instance</text>
-
-  <!-- 4. encode a mechanism (center 870) -->
-  <rect x="765" y="70" width="210" height="104" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="870" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Encode a</text>
-  <text x="870" y="134" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">mechanism</text>
-  <text x="870" y="158" text-anchor="middle" font-size="18.11" font-style="italic" fill="#57534e">type · lint · gate · sensor</text>
-
-  <!-- 5. the class cannot recur (center 1115) -->
-  <rect x="1010" y="70" width="210" height="104" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="1115" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">The class</text>
-  <text x="1115" y="134" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">can't recur</text>
-  <text x="1115" y="158" text-anchor="middle" font-size="16.43" font-style="italic" fill="#57534e">prevented by construction</text>
-
-  <!-- forward arrows -->
-  <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M240,122 L271,122" marker-end="url(#cf-1-gc-ah)"/>
-    <path d="M485,122 L516,122" marker-end="url(#cf-1-gc-ah)"/>
-    <path d="M730,122 L761,122" marker-end="url(#cf-1-gc-ah)"/>
-    <path d="M975,122 L1006,122" marker-end="url(#cf-1-gc-ah)"/>
+  <!-- fan lines to 5 branches -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#cf-1-gc-ah)">
+    <path d="M500,168 C300,196 130,196 110,212"/>
+    <path d="M500,168 C420,196 320,196 305,212"/>
+    <line x1="500" y1="168" x2="500" y2="212"/>
+    <path d="M500,168 C580,196 680,196 695,212"/>
+    <path d="M500,168 C700,196 870,196 890,212"/>
   </g>
 
-  <!-- dashed return path: prevention -> velocity -->
-  <path d="M1115,174 C1115,300 640,330 135,300 L135,178"
-        fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#cf-1-gc-ah-mut)"/>
-  <text x="625" y="345" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the environment is now harder to break — and velocity climbs again</text>
+  <!-- 5 branch labels (what was missing) -->
+  <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <text x="110" y="230">knowledge</text>
+    <text x="305" y="230">obligation</text>
+    <text x="500" y="230">evidence</text>
+    <text x="695" y="230">judgment</text>
+    <text x="890" y="230">consequence</text>
+  </g>
+
+  <!-- connectors branch → encoded answer -->
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#cf-1-gc-ah)">
+    <line x1="110" y1="240" x2="110" y2="286"/>
+    <line x1="305" y1="240" x2="305" y2="286"/>
+    <line x1="500" y1="240" x2="500" y2="286"/>
+    <line x1="695" y1="240" x2="695" y2="286"/>
+    <line x1="890" y1="240" x2="890" y2="286"/>
+  </g>
+
+  <!-- encoded answers -->
+  <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
+    <rect x="40"  y="290" width="140" height="46" rx="6"/>
+    <rect x="235" y="290" width="140" height="46" rx="6"/>
+    <rect x="430" y="290" width="140" height="46" rx="6"/>
+    <rect x="625" y="290" width="140" height="46" rx="6"/>
+    <rect x="812" y="290" width="156" height="46" rx="6"/>
+  </g>
+  <g font-size="17" fill="#1c1917" text-anchor="middle">
+    <text x="110" y="319">model</text>
+    <text x="305" y="319">invariant</text>
+    <text x="500" y="319">sensor</text>
+    <text x="695" y="319">validator</text>
+    <text x="890" y="319">constraint / gate</text>
+  </g>
+
+  <!-- converge to durable structure -->
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#cf-1-gc-ah)">
+    <path d="M110,336 C110,380 380,392 452,404"/>
+    <path d="M305,336 C305,380 440,392 476,404"/>
+    <line x1="500" y1="336" x2="500" y2="404"/>
+    <path d="M695,336 C695,380 560,392 524,404"/>
+    <path d="M890,336 C890,380 620,392 548,404"/>
+  </g>
+
+  <rect x="270" y="408" width="460" height="54" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="500" y="441" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DURABLE ENGINEERING STRUCTURE</text>
+  <line x1="500" y1="462" x2="500" y2="502" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cf-1-gc-ah)"/>
+
+  <rect x="315" y="506" width="370" height="50" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
+  <text x="500" y="537" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5137">FUTURE WORK INHERITS IT</text>
+  <line x1="500" y1="556" x2="500" y2="596" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cf-1-gc-ah)"/>
+
+  <rect x="330" y="600" width="340" height="56" rx="10" fill="#3d6b4a" stroke="#2f5137" stroke-width="2"/>
+  <text x="500" y="635" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">ENGINEERING CAPITAL</text>
+
+  <text x="500" y="702" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a failure is not a request for another gate — diagnose what was missing, then encode it</text>
 </svg></figure>
 <p>You cannot foresee every failure a fast fleet will find. Velocity is what surfaces them: agents moving at scale reach edges no specification named and no designer pictured. Trying to enumerate them all up front is a losing game. The practice is the opposite — let velocity expose the failures, then convert each recurring one into a mechanism the environment enforces.</p>
-<p>Mechanisms sit on a spectrum from soft to hard: a convention or a brief aims the agent but cannot block it; a lint or a gate holds the line whether the agent cooperates or not. The second time a soft rule fails, move it right — the documented rule becomes a lint the agent cannot talk past.</p>
+<p>You cannot foresee every failure a fast fleet will find; velocity is what surfaces them. The practice is to let velocity expose a recurring failure, then diagnose what the environment lacked and convert it — the fix repairs this instance, the conversion changes the environment. The conversion lands wherever the gap is: a missing model, a stated invariant, a sensor, a stronger validator, or new authority — not reflexively another gate. Whatever the branch, the output is the same in kind: durable structure future work inherits, which is <strong>engineering capital</strong>. Two loops reinforce: a knowledge loop turns intent into models into machine-checkable obligations, and a governance loop turns failures into authority into durable controls. Capital is not a ledger that only grows — it forms, is maintained, <strong>depreciates</strong> as the system it guarded moves on, and is retired when its carrying cost outruns its return. So mature adaptation reconciles and retires as well as adds.</p>
 <p>The place a failure lands is a point on a spectrum, and the practice is a direction along it. A convention or a brief aims the agent but cannot block it; a lint or a gate holds the line whether the agent cooperates or not. When a soft rule fails a second time, that recurrence is the signal to move it right: the documented rule becomes a lint the agent cannot talk past, or a gate the deploy cannot skip.</p>
 <figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1250 430"
      role="group" aria-labelledby="gcTitle gcDesc"

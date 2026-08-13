@@ -508,7 +508,7 @@
   <div class="ih-words">
     <p class="s-kick">Big idea 1 · the problem</p>
     <h2 class="s-title">The New Engineering Problem</h2>
-    <p class="s-claim">When intelligence becomes a commodity, implementation stops being scarce. What is scarce is trust — so the engineer's object of work shifts from code to environment.</p>
+    <p class="s-claim">Implementation became abundant; trustworthy judgment did not. The scarce work moved upstream: what to build, how to represent and validate it, not typing the code.</p>
     <a class="s-concept" href="concept-new-problem.html">→ read the concept</a>
   </div>
 </div>
@@ -516,69 +516,82 @@
   <hr class="i-sep" />
 
   <div class="slot" id="bi-churn">
-  <figure class="s-fig"><svg id="bi-churn-mageSign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
-     role="img" aria-labelledby="mageSign-t mageSign-d"
+  <figure class="s-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700"
+     role="group" aria-labelledby="rhTitle rhDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bi-churn-mageSign-t">Churn and Compounding: two feedback regimes with opposite signs</title>
-  <desc id="bi-churn-mageSign-d">Two panels side by side, the same environment under opposite signs. The
-    left panel, Churn, is a negative or balancing regime read downward: more agentic effort leads
-    to work outrunning a weak environment, then to rediscovering context, undoing recent work, and
-    reconciling, then to less durable progress, and a feedback arrow shows the same failure class
-    recurring. Its arms are drawn in red. The right panel, Compounding, is a positive or reinforcing
-    regime read upward: more agentic effort turns failure into judgment into conversion, which banks
-    engineering capital as a durable mechanism, which makes the environment more capable while the
-    capital stays fit, which supports more ambitious work at a falling per-change cost, and a
-    feedback arrow shows the gain reinforcing. Its arms are drawn in green. The contrast is the
-    point: effort dissipates on the left and accrues as engineering capital on the right.</desc>
+  <title id="bi-churn-rhTitle">The reasoning horizon</title>
+  <desc id="bi-churn-rhDesc">At sufficient scale a task requires more reasoning state than a finite reasoner can
+    keep active, so some state must be reconstructed. The figure forks on the representation the reasoner
+    works through. On the left, raw implementation as the working substrate carries a large active state,
+    forces repeated reconstruction, and easily loses relevant structure, ending in churn. On the right,
+    a purposeful abstraction keeps the question-relevant state smaller, lowers the reconstruction burden,
+    and sustains longer coherent reasoning. The representation decides how much of the state must be
+    reconstructed.</desc>
 
   <defs>
-    <marker id="bi-churn-mageSign-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
-    </marker>
-    <marker id="bi-churn-mageSign-grn" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
+    <marker id="bi-churn-rhArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c1917"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1000" height="700" fill="#fdfcf9"/>
 
-  <text x="500" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Churn and Compounding: two feedback regimes</text>
-  <text x="500" y="70" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The same environment, opposite signs — effort dissipates, or accrues as engineering capital.</text>
+  <!-- ===== shared top: the horizon condition ===== -->
+  <rect x="270" y="26" width="460" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="500" y="52" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">A task exceeds the finite active state</text>
+  <text x="500" y="74" text-anchor="middle" font-size="16" fill="#57534e">some reasoning state must be reconstructed</text>
 
-  <!-- divider -->
-  <line x1="500" y1="92" x2="500" y2="532" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <!-- hinge label -->
+  <text x="500" y="112" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">The representation decides how much must be reconstructed</text>
 
-  <!-- ================= LEFT: CHURN (negative, read downward) ================= -->
-  <text x="250" y="118" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">CHURN − effort dissipates</text>
+  <!-- fork arrows from top node to the two branch heads -->
+  <line x1="440" y1="88" x2="250" y2="158" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-churn-rhArrow)"/>
+  <line x1="560" y1="88" x2="750" y2="158" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-churn-rhArrow)"/>
 
-  <text x="250" y="168" text-anchor="middle" font-size="17" fill="#1c1917">more agentic effort</text>
-  <line x1="250" y1="180" x2="250" y2="212" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#bi-churn-mageSign-red)"/>
-  <text x="250" y="238" text-anchor="middle" font-size="17" fill="#1c1917">work outruns a weak environment</text>
-  <line x1="250" y1="250" x2="250" y2="282" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#bi-churn-mageSign-red)"/>
-  <text x="250" y="308" text-anchor="middle" font-size="17" fill="#1c1917">rediscover · undo · reconcile</text>
-  <line x1="250" y1="320" x2="250" y2="352" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#bi-churn-mageSign-red)"/>
-  <text x="250" y="378" text-anchor="middle" font-size="17" font-weight="600" fill="#b23b3b">less durable progress</text>
+  <!-- ================= LEFT BRANCH: raw implementation -> churn ================= -->
+  <rect x="90" y="160" width="320" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="250" y="184" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Raw implementation as</text>
+  <text x="250" y="205" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">working substrate</text>
+  <line x1="250" y1="216" x2="250" y2="246" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-churn-rhArrow)"/>
 
-  <!-- churn feedback: the class recurs -->
-  <path d="M150,376 C104,320 104,220 150,166" fill="none" stroke="#b23b3b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#bi-churn-mageSign-red)"/>
-  <text x="250" y="430" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the same failure class recurs</text>
+  <rect x="90" y="248" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="250" y="279" text-anchor="middle" font-size="17" fill="#1c1917">Large active state</text>
+  <line x1="250" y1="298" x2="250" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-churn-rhArrow)"/>
 
-  <!-- ================= RIGHT: COMPOUNDING (positive, read upward) ================= -->
-  <text x="750" y="118" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">COMPOUNDING + effort accrues</text>
+  <rect x="90" y="330" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="250" y="361" text-anchor="middle" font-size="17" fill="#1c1917">Repeated reconstruction</text>
+  <line x1="250" y1="380" x2="250" y2="410" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-churn-rhArrow)"/>
 
-  <text x="750" y="430" text-anchor="middle" font-size="17" fill="#1c1917">more agentic effort</text>
-  <line x1="750" y1="418" x2="750" y2="392" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#bi-churn-mageSign-grn)"/>
-  <text x="750" y="378" text-anchor="middle" font-size="17" fill="#1c1917">failure → judgment → conversion</text>
-  <line x1="750" y1="366" x2="750" y2="340" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#bi-churn-mageSign-grn)"/>
-  <text x="750" y="326" text-anchor="middle" font-size="17" font-weight="600" fill="#1f7a4d">+ engineering capital (a durable mechanism)</text>
-  <line x1="750" y1="314" x2="750" y2="288" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#bi-churn-mageSign-grn)"/>
-  <text x="750" y="274" text-anchor="middle" font-size="17" fill="#1c1917">environment more capable — while the capital stays fit</text>
-  <line x1="750" y1="262" x2="750" y2="236" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#bi-churn-mageSign-grn)"/>
-  <text x="750" y="222" text-anchor="middle" font-size="17" fill="#1c1917">more ambitious work, at a falling per-change cost</text>
+  <rect x="90" y="412" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="250" y="443" text-anchor="middle" font-size="17" fill="#1c1917">Relevant structure easily lost</text>
+  <line x1="250" y1="462" x2="250" y2="492" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-churn-rhArrow)"/>
 
-  <!-- compounding feedback: the gain reinforces -->
-  <path d="M858,224 C904,290 904,360 858,424" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#bi-churn-mageSign-grn)"/>
-  <text x="750" y="470" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the gain reinforces — in the well-fit region</text>
+  <rect x="150" y="494" width="200" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
+  <text x="250" y="529" text-anchor="middle" font-size="21" font-weight="700" fill="#b23b3b">Churn</text>
+
+  <!-- ================= RIGHT BRANCH: purposeful abstraction -> longer coherent reasoning ================= -->
+  <rect x="590" y="160" width="320" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="750" y="194" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Purposeful abstraction</text>
+  <line x1="750" y1="216" x2="750" y2="246" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-churn-rhArrow)"/>
+
+  <rect x="590" y="248" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="750" y="279" text-anchor="middle" font-size="17" fill="#1c1917">Smaller question-relevant state</text>
+  <line x1="750" y1="298" x2="750" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-churn-rhArrow)"/>
+
+  <rect x="590" y="330" width="320" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="750" y="361" text-anchor="middle" font-size="17" fill="#1c1917">Lower reconstruction burden</text>
+  <line x1="750" y1="380" x2="750" y2="410" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-churn-rhArrow)"/>
+
+  <rect x="620" y="412" width="260" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="750" y="437" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Longer coherent</text>
+  <text x="750" y="458" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">reasoning</text>
+
+  <!-- caption (rendered by the build from the figure marker; repeated here for standalone viewing) -->
+  <text x="500" y="596" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Figure 1.3-1: The reasoning horizon. At sufficient scale, a task requires more state than a finite</text>
+  <text x="500" y="617" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">reasoner can keep active. The representation determines how much of that state must be reconstructed:</text>
+  <text x="500" y="638" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">raw implementation carries expensive irrelevant detail, while purposeful abstraction can keep the</text>
+  <text x="500" y="659" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">question-relevant state smaller.</text>
 </svg></figure>
   <div class="s-words">
     <p class="s-kick">Big idea 2 · the stakes</p>
@@ -702,7 +715,7 @@
 </svg></figure>
   <p class="s-kick">Big idea 3 · Thesis 1</p>
   <h2 class="s-title">Documentation, taken to its limit, is a structured model</h2>
-  <p class="s-claim">A context-bounded agent can't hold the whole system. Externalize what it must know, from context to drift-checked models, and the reasoning fits the window.</p>
+  <p class="s-claim">A context-bounded agent can't hold the whole system. Externalize what it must know into structured, drift-checked models, purposeful compression, and the reasoning fits the window.</p>
   <a class="s-concept" href="concept-modeling-thesis.html">→ read the concept</a>
 </div>
   <div class="pair-arrow" aria-hidden="true">creates surfaces for &#8594;</div>
@@ -772,8 +785,8 @@
   <text x="480" y="452" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">Detecting a violation is a further step — a validator interprets the evidence against an obligation.</text>
 </svg></figure>
   <p class="s-kick">Big idea 3 · Thesis 2</p>
-  <h2 class="s-title">Hold intent with a mechanism: prevent first, sense the rest</h2>
-  <p class="s-claim">Give engineering intent authority over the fleet's work: constrain first so the wrong move is unavailable, and where prevention falls short, a sensor catches the drift.</p>
+  <h2 class="s-title">Give intent authority: constrain, sense, validate, gate</h2>
+  <p class="s-claim">Give intent authority over the fleet: constrain the wrong move away, then sense evidence, validate it, and gate what may advance — sensor produces, validator judges.</p>
   <a class="s-concept" href="concept-alignment-thesis.html">→ read the concept</a>
 </div>
 </div>
@@ -864,7 +877,7 @@
   <div class="s-words">
     <p class="s-kick">Big idea 4 · the object</p>
     <h2 class="s-title">The Engineered Environment</h2>
-    <p class="s-claim">The environment is the object of engineering. Encode each obligation as a mechanism it enforces, so quality is a property of the ground agents stand on.</p>
+    <p class="s-claim">Engineer the environment, not the agent. Encode each obligation as a mechanism the ground enforces, so quality becomes a property of where agents act.</p>
     <a class="s-concept" href="concept-governance-centric.html">→ read the concept</a>
   </div>
 </div>
@@ -872,113 +885,108 @@
   <hr class="i-sep" />
 
   <div class="slot" id="bi-independent-convergence">
-  <figure class="s-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740"
-     role="group" aria-labelledby="scmTitle scmDesc"
+  <figure class="s-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720"
+     role="group" aria-labelledby="sepTitle sepDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bi-independent-convergence-scmTitle">Independent reconstructions of the theory: six industrial systems reconstruct regions of one theory of MAGE</title>
-  <desc id="bi-independent-convergence-scmDesc">A table shows six industrial systems, each entering the design space through a
-    different problem yet landing on a region of the same theory, named in MAGE vocabulary in the last
-    column. Cloudflare starts from policy-first governance, invests in policy bound into mechanisms, and
-    lands on the Alignment Thesis. Spotify starts from fleet-first autonomy, invests in fleet-scale
-    verification, and lands on the Governed Engineering Environment. Shopify starts from a shared
-    agent-ready environment, invests in organizational knowledge, and lands on the Engineering Environment.
-    Docker starts from authority boundaries and evaluation loops, invests in runtime authority, and lands on
-    Governance Conversion. Siemens starts from model-first engineering, invests in models as the development
-    surface, and lands on the Modeling Thesis. Zenseact starts from autonomous knowledge work, invests in
-    context and delegation, and lands on the Reasoning Horizon. A closing synthesis row reads: MAGE assembles
-    a unified vocabulary into an engineering theory that spans the whole landscape. Badge colours key each
-    landing to the house semantic language: rust for governance and alignment, green for modeling, knowledge,
-    and environment. No two organizations began with the same problem, yet they converge.</desc>
+  <title id="bi-independent-convergence-sepTitle">Six entry points into a shared design space: where each organization begins and where it invests</title>
+  <desc id="bi-independent-convergence-sepDesc">A table of six industrial systems, each entering the agentic engineering design space
+    through a different problem and investing in a different part of the environment. Cloudflare begins from
+    institutional policy and invests in machine-readable requirements and review mechanisms — a governance
+    emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission —
+    a governance emphasis. Shopify begins from organizational knowledge and invests in shared context and
+    reusable agent infrastructure — a knowledge emphasis. Docker begins from delegated runtime authority and
+    invests in scoped roles, tools, and evaluation — a governance emphasis. Siemens begins from model-first
+    engineering and invests in persistent executable engineering representations — a modeling emphasis.
+    Zenseact begins from distributed autonomous work and invests in platform boundaries, context, and
+    delegation — a knowledge emphasis. A closing band reads: MAGE is the vocabulary used here to compare the
+    observed structures, not a seventh case. Badge colour keys emphasis to the house semantic language: rust
+    for governance and alignment, green for modeling and knowledge. The figure locates emphasis; it does not
+    rank maturity or claim any source implements the complete method.</desc>
 
   <defs>
-    <linearGradient id="bi-independent-convergence-scmSynth" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="bi-independent-convergence-sepSynth" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#e3f0e7"/>
       <stop offset="1" stop-color="#faf1e6"/>
     </linearGradient>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="740" fill="#fdfcf9"/>
-  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Independent reconstructions of the theory</text>
-  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Different entry points, common destination — each durable investment lands on a region of one theory.</text>
+  <rect x="0" y="0" width="1000" height="720" fill="#fdfcf9"/>
+  <text x="500" y="44" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Six entry points into a shared design space</text>
+  <text x="500" y="72" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Each organization begins with a different problem and invests in a different part of the environment.</text>
 
-  <!-- legend: badge colour keys to the house semantic language -->
-  <g font-size="16" fill="#57534e">
-    <rect x="212" y="90" width="18" height="18" rx="3" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-    <text x="238" y="105">Modeling · knowledge · environment</text>
-    <rect x="590" y="90" width="18" height="18" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-    <text x="616" y="105">Governance · alignment</text>
+  <!-- legend: badge colour keys emphasis to the house semantic language -->
+  <g font-size="15" fill="#57534e">
+    <rect x="250" y="92" width="18" height="18" rx="3" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+    <text x="276" y="107">Modeling · knowledge emphasis</text>
+    <rect x="612" y="92" width="18" height="18" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+    <text x="638" y="107">Governance · alignment emphasis</text>
   </g>
 
   <!-- header row -->
-  <text x="48"  y="150" font-size="16" font-weight="700" letter-spacing="1" fill="#57534e">ORGANIZATION</text>
-  <text x="210" y="150" font-size="16" font-weight="700" letter-spacing="1" fill="#57534e">DISTINCTIVE STARTING POINT</text>
-  <text x="486" y="150" font-size="16" font-weight="700" letter-spacing="1" fill="#57534e">DURABLE INVESTMENT</text>
-  <text x="839" y="150" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="1" fill="#57534e">LANDS ON THE THEORY</text>
+  <text x="48"  y="152" font-size="15" font-weight="700" letter-spacing="1" fill="#57534e">ORGANIZATION</text>
+  <text x="214" y="152" font-size="15" font-weight="700" letter-spacing="1" fill="#57534e">STARTING PROBLEM</text>
+  <text x="470" y="152" font-size="15" font-weight="700" letter-spacing="1" fill="#57534e">WHERE IT INVESTS</text>
+  <text x="860" y="152" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#57534e">EMPHASIS</text>
 
   <!-- row rules -->
   <g stroke="#e4e0d8" stroke-width="1.5">
-    <line x1="40" y1="164" x2="960" y2="164"/>
-    <line x1="40" y1="236" x2="960" y2="236"/>
-    <line x1="40" y1="308" x2="960" y2="308"/>
-    <line x1="40" y1="380" x2="960" y2="380"/>
-    <line x1="40" y1="452" x2="960" y2="452"/>
-    <line x1="40" y1="524" x2="960" y2="524"/>
+    <line x1="40" y1="166" x2="960" y2="166"/>
+    <line x1="40" y1="238" x2="960" y2="238"/>
+    <line x1="40" y1="310" x2="960" y2="310"/>
+    <line x1="40" y1="382" x2="960" y2="382"/>
+    <line x1="40" y1="454" x2="960" y2="454"/>
+    <line x1="40" y1="526" x2="960" y2="526"/>
   </g>
 
-  <!-- Cloudflare -> Alignment Thesis (rust) -->
-  <text x="48"  y="206" font-size="20" font-weight="700" fill="#1c1917">Cloudflare</text>
-  <text x="210" y="206" font-size="17" fill="#57534e">Policy-first governance</text>
-  <text x="486" y="206" font-size="18" font-weight="700" fill="#1c1917">Policy → mechanisms</text>
-  <rect x="726" y="179" width="226" height="42" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="839" y="206" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">Alignment Thesis</text>
+  <!-- Cloudflare -> governance (rust) -->
+  <text x="48"  y="208" font-size="20" font-weight="700" fill="#1c1917">Cloudflare</text>
+  <text x="214" y="208" font-size="16" fill="#57534e">Institutional policy</text>
+  <text x="470" y="208" font-size="16" font-weight="600" fill="#1c1917">Machine-readable requirements + review</text>
+  <rect x="770" y="182" width="180" height="42" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="860" y="209" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">Governance</text>
 
-  <!-- Spotify -> Governed Engineering Environment (green, emphasized) -->
-  <text x="48"  y="278" font-size="20" font-weight="700" fill="#1c1917">Spotify</text>
-  <text x="210" y="278" font-size="17" fill="#57534e">Fleet-first autonomy</text>
-  <text x="486" y="278" font-size="18" font-weight="700" fill="#1c1917">Fleet-scale verification</text>
-  <rect x="726" y="251" width="226" height="42" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
-  <text x="839" y="270" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Governed Engineering</text>
-  <text x="839" y="288" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Environment</text>
+  <!-- Spotify -> governance (rust) -->
+  <text x="48"  y="280" font-size="20" font-weight="700" fill="#1c1917">Spotify</text>
+  <text x="214" y="280" font-size="16" fill="#57534e">Fleet-scale change</text>
+  <text x="470" y="280" font-size="16" font-weight="600" fill="#1c1917">Targeting, verification, admission</text>
+  <rect x="770" y="254" width="180" height="42" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="860" y="281" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">Governance</text>
 
-  <!-- Shopify -> Engineering Environment (green) -->
-  <text x="48"  y="350" font-size="20" font-weight="700" fill="#1c1917">Shopify</text>
-  <text x="210" y="350" font-size="17" fill="#57534e">Shared agent-ready env.</text>
-  <text x="486" y="350" font-size="18" font-weight="700" fill="#1c1917">Organizational knowledge</text>
-  <rect x="726" y="323" width="226" height="42" rx="8" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.4"/>
-  <text x="839" y="342" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">Engineering</text>
-  <text x="839" y="360" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">Environment</text>
+  <!-- Shopify -> knowledge (green) -->
+  <text x="48"  y="352" font-size="20" font-weight="700" fill="#1c1917">Shopify</text>
+  <text x="214" y="352" font-size="16" fill="#57534e">Organizational knowledge</text>
+  <text x="470" y="352" font-size="16" font-weight="600" fill="#1c1917">Shared context + reusable agent infra</text>
+  <rect x="770" y="326" width="180" height="42" rx="8" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="860" y="353" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">Knowledge</text>
 
-  <!-- Docker -> Governance Conversion (rust) -->
-  <text x="48"  y="422" font-size="20" font-weight="700" fill="#1c1917">Docker</text>
-  <text x="210" y="422" font-size="17" fill="#57534e">Authority + eval loops</text>
-  <text x="486" y="422" font-size="18" font-weight="700" fill="#1c1917">Runtime authority</text>
-  <rect x="726" y="395" width="226" height="42" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="839" y="414" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">Governance</text>
-  <text x="839" y="432" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">Conversion</text>
+  <!-- Docker -> governance (rust) -->
+  <text x="48"  y="424" font-size="20" font-weight="700" fill="#1c1917">Docker</text>
+  <text x="214" y="424" font-size="16" fill="#57534e">Delegated runtime authority</text>
+  <text x="470" y="424" font-size="16" font-weight="600" fill="#1c1917">Scoped roles, tools, evaluation</text>
+  <rect x="770" y="398" width="180" height="42" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="860" y="425" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">Governance</text>
 
-  <!-- Siemens -> Modeling Thesis (green) -->
-  <text x="48"  y="494" font-size="20" font-weight="700" fill="#1c1917">Siemens</text>
-  <text x="210" y="494" font-size="17" fill="#57534e">Model-first engineering</text>
-  <text x="486" y="494" font-size="18" font-weight="700" fill="#1c1917">Models as the surface</text>
-  <rect x="726" y="467" width="226" height="42" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="839" y="494" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">Modeling Thesis</text>
+  <!-- Siemens -> modeling (green, emphasized) -->
+  <text x="48"  y="496" font-size="20" font-weight="700" fill="#1c1917">Siemens</text>
+  <text x="214" y="496" font-size="16" fill="#57534e">Model-first engineering</text>
+  <text x="470" y="496" font-size="16" font-weight="600" fill="#1c1917">Persistent executable representations</text>
+  <rect x="770" y="470" width="180" height="42" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
+  <text x="860" y="497" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Modeling</text>
 
-  <!-- Zenseact -> Reasoning Horizon (green) -->
-  <text x="48"  y="566" font-size="20" font-weight="700" fill="#1c1917">Zenseact</text>
-  <text x="210" y="566" font-size="17" fill="#57534e">Autonomous knowledge work</text>
-  <text x="486" y="566" font-size="18" font-weight="700" fill="#1c1917">Context + delegation</text>
-  <rect x="726" y="539" width="226" height="42" rx="8" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.4"/>
-  <text x="839" y="566" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">Reasoning Horizon</text>
+  <!-- Zenseact -> knowledge (green) -->
+  <text x="48"  y="568" font-size="20" font-weight="700" fill="#1c1917">Zenseact</text>
+  <text x="214" y="568" font-size="16" fill="#57534e">Distributed autonomous work</text>
+  <text x="470" y="568" font-size="16" font-weight="600" fill="#1c1917">Platform boundaries, context, delegation</text>
+  <rect x="770" y="542" width="180" height="42" rx="8" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="860" y="569" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">Knowledge</text>
 
-  <!-- synthesis row: MAGE assembles the pieces -->
-  <line x1="40" y1="596" x2="960" y2="596" stroke="#57534e" stroke-width="2"/>
-  <rect x="40" y="600" width="920" height="60" rx="9" fill="url(#bi-independent-convergence-scmSynth)" stroke="#e4e0d8" stroke-width="1.2"/>
-  <text x="64"  y="637" font-size="20" font-weight="700" fill="#1c1917">MAGE</text>
-  <text x="210" y="637" font-size="18" fill="#57534e">unified vocabulary</text>
-  <text x="486" y="637" font-size="18" font-weight="700" fill="#1c1917">engineering theory</text>
-  <text x="839" y="637" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">the whole landscape</text>
+  <!-- synthesis band: MAGE is the comparing vocabulary, not a seventh case -->
+  <line x1="40" y1="598" x2="960" y2="598" stroke="#57534e" stroke-width="2"/>
+  <rect x="40" y="602" width="920" height="58" rx="9" fill="url(#bi-independent-convergence-sepSynth)" stroke="#e4e0d8" stroke-width="1.2"/>
+  <text x="64"  y="638" font-size="20" font-weight="700" fill="#1c1917">MAGE</text>
+  <text x="214" y="638" font-size="17" fill="#57534e">the vocabulary used here to compare the observed structures</text>
 
-  <text x="500" y="700" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">No two organizations began with the same problem — yet they converge.</text>
+  <text x="500" y="700" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The figure locates emphasis; it does not rank maturity or claim any source implements the whole method.</text>
 </svg></figure>
   <div class="s-words">
     <p class="s-kick">Big idea 5 · the corroboration</p>
@@ -991,118 +999,199 @@
   <hr class="i-sep" />
 
   <div class="slot slot-bigfig" id="bi-research-agenda">
-  <figure class="s-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 570"
-     role="group" aria-labelledby="dfTitle dfDesc"
+  <figure class="s-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720"
+     role="group" aria-labelledby="ofTitle ofDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bi-research-agenda-dfTitle">The determinization frontier: how far engineering judgment can be compiled into machinery</title>
-  <desc id="bi-research-agenda-dfDesc">An eight-rung staircase climbs from left to right. The first four rungs are gray and
-    implementation-level: Prompt, which reasons over text; Skill, over workflow; Rule, over policy; Lint,
-    over syntax. The fifth rung, Structured Model, is green — the representation layer — and reasons over
-    semantics. The last three rungs are rust and deterministic: Model contract, which reasons over
-    constraints; Simulation, over behavior; Proof, over mathematics. The gray-and-green left aims the agent
-    and remains probabilistic; the rust right holds the line and is deterministic. A green arrow runs from
-    the Structured Model rung up toward Simulation and Proof, labelled "expands the frontier": richer models
-    push determinizability further up the ladder. The frontier is how far a recurring judgment call has been
-    compiled up into machinery the agent cannot talk past.</desc>
+  <title id="bi-research-agenda-ofTitle">Where the frontier goes next: the open work of MAGE partitions into four kinds, each anchored to the hypothesis that makes it falsifiable</title>
+  <desc id="bi-research-agenda-ofDesc">A research-program map. The open work of MAGE sorts into four kinds, drawn as four
+    regions, and every item is a titled box joined by a thin dropper edge down to the eight hypotheses that
+    make it testable. FRONTIERS holds four items: Determinization frontier — how far judgment compiles into
+    machinery — open, rust, anchored to H3 mechanized-assurance and H4 representation-leverage, home section
+    6.5; Modeling moves the frontier — richer models expand what alignment can determinize — open, green,
+    anchored to H4, home 6.1; Assurance frontier, the MAGE-II conjecture — conjectured, dashed, rust,
+    anchored to H3, home 6.2; Development completeness and supply chain — open, green, anchored to H7
+    conversion-conditions, home 6.2. MEASUREMENT holds one item: the Governance census — established, rust,
+    the one node that expands into three metric chips, Coverage, Under-governance, and Governance-debt, plus
+    one dashed conjectured chip, propagation-latency, the proposed fourth metric — anchored to H3, H6
+    oversight-amortization, and H8 learning-propagation, home 6.5. DYNAMICS holds one item: Learning
+    propagation and organizational scaling — open, blue, anchored to H1 failure-class-exposure, H7, and H8,
+    homes 6.1 and 6.5. GENERALIZATION holds one item: Generalization beyond software, MBAE — conjectured,
+    dashed, green, anchored to H4, home 6.5. Two inter-item edges carry book claims: Modeling moves the
+    frontier points to the Determinization frontier, labelled richer models move it; and the census's
+    propagation-latency chip points to Learning propagation, labelled future metric. The anchor rail across
+    the foot names the eight hypotheses: H1 exposure, H2 moderation, H3 assurance, H4 leverage, H5
+    deficiency, H6 amortization, H7 conversion, H8 propagation. Border style encodes status: solid for open
+    and established, dashed for a conjecture the book states but does not prove. None is settled here.</desc>
 
   <defs>
-    <marker id="bi-research-agenda-df-climb" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    <marker id="bi-research-agenda-of-drop" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#a8a29e"/>
     </marker>
-    <marker id="bi-research-agenda-df-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="bi-research-agenda-of-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
     </marker>
-    <marker id="bi-research-agenda-df-cap" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    <marker id="bi-research-agenda-of-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
-    <linearGradient id="bi-research-agenda-dfRamp" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#f3efe7"/>
-      <stop offset="0.5" stop-color="#e3f0e7"/>
-      <stop offset="1" stop-color="#9a3f12"/>
-    </linearGradient>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="570" fill="#fdfcf9"/>
-  <text x="500" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The determinization frontier</text>
-  <text x="500" y="68" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">How far can engineering judgment be compiled into machinery?</text>
+  <rect x="0" y="0" width="1000" height="720" fill="#fdfcf9"/>
+  <text x="500" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where the frontier goes next</text>
+  <text x="500" y="64" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The open work of MAGE sorts into four kinds — each welded to the hypothesis that makes it falsifiable.</text>
 
-  <text x="90" y="108" font-size="16" fill="#57534e">SOFT · aims the agent · probabilistic</text>
-  <text x="910" y="108" text-anchor="end" font-size="16" fill="#9a3f12">DETERMINISTIC · holds the line</text>
+  <!-- legend: status border key (left) + colour key (right) -->
+  <g font-size="16" fill="#57534e">
+    <rect x="40" y="80" width="26" height="16" rx="3" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8" stroke-dasharray="6 4"/>
+    <text x="72" y="93">conjectured</text>
+    <rect x="182" y="80" width="26" height="16" rx="3" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8"/>
+    <text x="214" y="93">open</text>
+    <rect x="266" y="80" width="26" height="16" rx="3" fill="#fdfcf9" stroke="#57534e" stroke-width="2.6"/>
+    <text x="298" y="93">established</text>
+    <circle cx="566" cy="88" r="7" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+    <text x="580" y="93">modeling</text>
+    <circle cx="690" cy="88" r="7" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+    <text x="704" y="93">governance</text>
+    <circle cx="836" cy="88" r="7" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+    <text x="850" y="93">autonomy</text>
+  </g>
 
-  <!-- subtle economic note in the open band above the low rungs -->
+  <!-- ============ REGION 1: FRONTIERS (four items across the top) ============ -->
+  <line x1="40" y1="119" x2="360" y2="119" stroke="#e4e0d8" stroke-width="1.5"/>
+  <line x1="640" y1="119" x2="960" y2="119" stroke="#e4e0d8" stroke-width="1.5"/>
+  <text x="500" y="125" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="2" fill="#57534e">FRONTIERS</text>
+
+  <!-- A1 Determinization frontier — open, rust -->
+  <rect x="40" y="140" width="216" height="72" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="148" y="171" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Determinization</text>
+  <text x="148" y="193" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">frontier</text>
+
+  <!-- A2 Modeling moves the frontier — open, green -->
+  <rect x="268" y="140" width="216" height="72" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+  <text x="376" y="171" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Modeling moves</text>
+  <text x="376" y="193" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">the frontier</text>
+
+  <!-- A3 Assurance frontier (MAGE-II) — conjectured, rust, dashed -->
+  <rect x="496" y="140" width="216" height="72" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <text x="604" y="171" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Assurance frontier</text>
+  <text x="604" y="193" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the MAGE-II conjecture</text>
+
+  <!-- A4 Development completeness & supply chain — open, green -->
+  <rect x="724" y="140" width="216" height="72" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+  <text x="832" y="164" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Development</text>
+  <text x="832" y="185" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">completeness &amp;</text>
+  <text x="832" y="206" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">supply chain</text>
+
+  <!-- A2 -> A1 inter-item edge: "richer models move it" (green, a book claim) -->
+  <!-- Label painted later, ON TOP of the dropper web + on a canvas halo (see "edge-label plate" below). -->
+  <path d="M368,212 C300,262 224,262 156,212" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#bi-research-agenda-of-green)"/>
+
+  <!-- ============ REGION 2/3/4 labels ============ -->
+  <text x="255" y="330" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="2" fill="#57534e">MEASUREMENT</text>
+  <text x="622" y="330" text-anchor="middle" font-size="22" font-weight="700" letter-spacing="2" fill="#57534e">DYNAMICS</text>
+  <text x="859" y="330" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="1.5" fill="#57534e">GENERALIZATION</text>
+
+  <!-- A5 Governance census — established, rust; the ONE node that expands -->
+  <rect x="40" y="342" width="430" height="118" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="255" y="368" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Governance census</text>
+  <text x="255" y="388" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">counts, not opinions</text>
+  <!-- three established metric chips + one dashed conjectured chip -->
+  <rect x="48" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="99" y="430" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Coverage</text>
+  <rect x="154" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="205" y="421" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Under-</text>
+  <text x="205" y="441" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">governance</text>
+  <rect x="260" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="311" y="421" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Governance</text>
+  <text x="311" y="441" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">debt</text>
+  <rect x="366" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <text x="417" y="421" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">Propagation</text>
+  <text x="417" y="441" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">-latency</text>
+
+  <!-- A6 Learning propagation + organizational scaling — open, blue -->
+  <rect x="512" y="342" width="220" height="100" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <text x="622" y="375" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Learning</text>
+  <text x="622" y="396" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">propagation +</text>
+  <text x="622" y="417" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">organizational</text>
+  <text x="622" y="438" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">scaling</text>
+
+  <!-- A7 Generalization beyond software (MBAE) — conjectured, green, dashed -->
+  <rect x="762" y="342" width="194" height="100" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <text x="859" y="384" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Generalization</text>
+  <text x="859" y="406" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">beyond software</text>
+  <text x="859" y="428" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">(MBAE)</text>
+
+  <!-- census propagation-latency chip ⇢ A6 : "future metric" (dashed, the one place regions touch) -->
+  <!-- Label painted later, ON TOP of the dropper web + on a canvas halo (see "edge-label plate" below). -->
+  <path d="M417,398 C450,360 486,360 512,388" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#bi-research-agenda-of-rust)"/>
+
+  <!-- ============ DROPPER EDGES: each item -> the hypotheses it tests ============ -->
+  <g fill="none" stroke="#c7c2b9" stroke-width="1.3">
+    <!-- FRONTIERS funnel through the clear right-of-census channel, then to badges under the census -->
+    <path d="M140,212 C140,300 486,330 486,430 C486,505 323,505 323,558" marker-end="url(#bi-research-agenda-of-drop)"/>   <!-- A1->H3 -->
+    <path d="M156,212 C156,300 498,332 498,432 C498,505 439,510 439,558" marker-end="url(#bi-research-agenda-of-drop)"/>   <!-- A1->H4 -->
+    <path d="M376,212 C376,300 508,332 508,432 C508,505 449,512 439,558" marker-end="url(#bi-research-agenda-of-drop)"/>   <!-- A2->H4 -->
+    <path d="M596,212 C596,300 478,332 478,430 C478,505 331,505 323,558" marker-end="url(#bi-research-agenda-of-drop)"/>   <!-- A3->H3 -->
+    <path d="M832,212 C832,300 747,332 747,432 C747,505 787,512 787,558" marker-end="url(#bi-research-agenda-of-drop)"/>   <!-- A4->H7 -->
+    <!-- MEASUREMENT: census -> H3, H6, H8 (drop into the clear band below every box) -->
+    <path d="M180,460 C180,512 300,516 323,558" marker-end="url(#bi-research-agenda-of-drop)"/>                            <!-- A5->H3 -->
+    <path d="M300,460 C300,516 620,516 671,558" marker-end="url(#bi-research-agenda-of-drop)"/>                            <!-- A5->H6 -->
+    <path d="M430,460 C430,522 862,522 903,558" marker-end="url(#bi-research-agenda-of-drop)"/>                            <!-- A5->H8 -->
+    <!-- DYNAMICS: A6 -> H1, H7, H8 -->
+    <path d="M560,442 C560,505 200,512 91,558" marker-end="url(#bi-research-agenda-of-drop)"/>                             <!-- A6->H1 -->
+    <path d="M622,442 C622,506 760,514 787,558" marker-end="url(#bi-research-agenda-of-drop)"/>                            <!-- A6->H7 -->
+    <path d="M676,442 C676,506 882,514 903,558" marker-end="url(#bi-research-agenda-of-drop)"/>                            <!-- A6->H8 -->
+    <!-- GENERALIZATION: A7 -> H4 -->
+    <path d="M860,442 C860,510 470,518 439,558" marker-end="url(#bi-research-agenda-of-drop)"/>                            <!-- A7->H4 -->
+  </g>
+
+  <!-- ============ EDGE-LABEL PLATE ============ -->
+  <!-- The two inter-item edge labels ride ON TOP of the faint dropper web, each on a canvas-coloured halo
+       so a pale connector line never crosses the glyphs (a stroke-through-label legibility fix). The
+       "future metric" label sits just above the census box's top border so its halo does not break it. -->
   <g>
-    <path d="M130,300 L462,240" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#bi-research-agenda-df-cap)"/>
-    <text x="292" y="258" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e"
-          transform="rotate(-10.3 292 258)">increasing reusable engineering capital</text>
+    <rect x="160" y="270" width="196" height="21" rx="5" fill="#fdfcf9"/>
+    <text x="258" y="284" text-anchor="middle" font-size="16" font-style="italic" font-weight="700" fill="#1f7a4d">richer models move it</text>
+    <rect x="398" y="327" width="128" height="14" rx="5" fill="#fdfcf9"/>
+    <text x="462" y="340" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">future metric</text>
   </g>
 
-  <!-- connectors from each rung down to the ramp -->
-  <g stroke="#e4e0d8" stroke-width="1.5">
-    <line x1="82"  y1="432" x2="82"  y2="470"/>
-    <line x1="200" y1="406" x2="200" y2="470"/>
-    <line x1="318" y1="380" x2="318" y2="470"/>
-    <line x1="436" y1="354" x2="436" y2="470"/>
-    <line x1="554" y1="328" x2="554" y2="470"/>
-    <line x1="672" y1="302" x2="672" y2="470"/>
-    <line x1="790" y1="276" x2="790" y2="470"/>
-    <line x1="908" y1="250" x2="908" y2="470"/>
+  <!-- ============ H1-H8 ANCHOR RAIL (id + one-word name) ============ -->
+  <line x1="40" y1="556" x2="956" y2="556" stroke="#e4e0d8" stroke-width="1.5"/>
+  <g>
+    <rect x="40"  y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="156" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="272" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="388" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="504" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="620" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="736" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
+    <rect x="852" y="560" width="102" height="40" rx="6" fill="#f1f0ec" stroke="#78716c" stroke-width="1.6"/>
   </g>
-
-  <!-- climbing arrows rung-to-rung (migrate up one rung) -->
-  <g fill="none" stroke="#9a3f12" stroke-width="2">
-    <path d="M140,400 C150,392 152,388 162,380" marker-end="url(#bi-research-agenda-df-climb)"/>
-    <path d="M258,374 C268,366 270,362 280,354" marker-end="url(#bi-research-agenda-df-climb)"/>
-    <path d="M376,348 C386,340 388,336 398,328" marker-end="url(#bi-research-agenda-df-climb)"/>
-    <path d="M494,322 C504,314 506,310 516,302" marker-end="url(#bi-research-agenda-df-climb)"/>
-    <path d="M612,296 C622,288 624,284 634,276" marker-end="url(#bi-research-agenda-df-climb)"/>
-    <path d="M730,270 C740,262 742,258 752,250" marker-end="url(#bi-research-agenda-df-climb)"/>
+  <g font-size="18" font-weight="700" fill="#1c1917" text-anchor="middle">
+    <text x="91"  y="586">H1</text>
+    <text x="207" y="586">H2</text>
+    <text x="323" y="586">H3</text>
+    <text x="439" y="586">H4</text>
+    <text x="555" y="586">H5</text>
+    <text x="671" y="586">H6</text>
+    <text x="787" y="586">H7</text>
+    <text x="903" y="586">H8</text>
   </g>
-
-  <!-- the green "expands the frontier" arrow: models push determinizability up the ladder -->
-  <path d="M560,262 C660,196 760,180 872,178" fill="none" stroke="#1f7a4d" stroke-width="2.6"
-        stroke-dasharray="1 0" marker-end="url(#bi-research-agenda-df-green)"/>
-  <text x="712" y="168" text-anchor="middle" font-size="16" font-weight="700" font-style="italic" fill="#1f7a4d">expands the frontier</text>
-
-  <!-- rungs 1-4: implementation-level (gray) -->
-  <rect x="26"  y="372" width="112" height="60" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="82"  y="408" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Prompt</text>
-  <rect x="144" y="346" width="112" height="60" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="200" y="382" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Skill</text>
-  <rect x="262" y="320" width="112" height="60" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="318" y="356" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Rule</text>
-  <rect x="380" y="294" width="112" height="60" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="436" y="330" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Lint</text>
-
-  <!-- rung 5: the representation layer (green) -->
-  <rect x="498" y="268" width="112" height="60" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="554" y="293" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Structured</text>
-  <text x="554" y="313" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Model</text>
-
-  <!-- rungs 6-8: deterministic machinery (rust) -->
-  <rect x="616" y="242" width="112" height="60" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="672" y="267" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Model</text>
-  <text x="672" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">contract</text>
-  <rect x="734" y="216" width="112" height="60" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="790" y="252" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Simulation</text>
-  <rect x="852" y="190" width="112" height="60" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
-  <text x="908" y="226" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">Proof</text>
-
-  <!-- the ramp -->
-  <rect x="26" y="470" width="938" height="24" rx="7" fill="url(#bi-research-agenda-dfRamp)" stroke="#e4e0d8" stroke-width="1.2"/>
-
-  <!-- bottom labels: what each layer reasons over -->
   <g font-size="16" fill="#57534e" text-anchor="middle">
-    <text x="82"  y="516">text</text>
-    <text x="200" y="516">workflow</text>
-    <text x="318" y="516">policy</text>
-    <text x="436" y="516">syntax</text>
-    <text x="554" y="516">semantics</text>
-    <text x="672" y="516">constraints</text>
-    <text x="790" y="516">behavior</text>
-    <text x="908" y="516">mathematics</text>
+    <text x="91"  y="620">exposure</text>
+    <text x="207" y="620">moderation</text>
+    <text x="323" y="620">assurance</text>
+    <text x="439" y="620">leverage</text>
+    <text x="555" y="620">deficiency</text>
+    <text x="671" y="620">amortization</text>
+    <text x="787" y="620">conversion</text>
+    <text x="903" y="620">propagation</text>
   </g>
 
-  <text x="500" y="552" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The second time a soft rule fails, move it one rung toward machinery the agent cannot talk past.</text>
+  <!-- caption: names the four kinds, the honesty bound, and the home sections (index, don't duplicate) -->
+  <text x="500" y="652" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Dashed = a conjecture the book states but does not prove. The map indexes; the prose expands. None is settled here.</text>
+  <text x="500" y="675" text-anchor="middle" font-size="16" fill="#57534e">Homes — §6.5: determinization, census, organizational topology · §6.2: assurance, development completeness</text>
+  <text x="500" y="697" text-anchor="middle" font-size="16" fill="#57534e">§6.1: modeling moves the frontier, learning propagation.</text>
 </svg></figure>
   <div class="s-words">
     <p class="s-kick">Big idea 6 · the frontier</p>

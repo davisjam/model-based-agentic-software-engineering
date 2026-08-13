@@ -3,14 +3,14 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1434,
+    "total_sites": 1432,
     "by_projection": {
       "book-pdf": 20,
       "book-web": 1021,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
-      "website-landing": 13,
+      "website-landing": 11,
       "website-misc": 49,
       "website-theory": 10
     }
@@ -551,7 +551,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 21
+            "occ": 20
           }
         ],
         "website-concepts": [
@@ -565,19 +565,19 @@
           },
           {
             "file": "concept-convert-failures.html",
-            "occ": 9
+            "occ": 6
           },
           {
             "file": "concept-governance-centric.html",
-            "occ": 22
+            "occ": 25
           },
           {
             "file": "concept-independent-convergence.html",
-            "occ": 2
+            "occ": 4
           },
           {
             "file": "concept-modeling-thesis.html",
-            "occ": 8
+            "occ": 7
           },
           {
             "file": "concept-new-problem.html",
@@ -585,11 +585,11 @@
           },
           {
             "file": "concept-research-agenda.html",
-            "occ": 7
+            "occ": 3
           },
           {
             "file": "concept-seat-moves.html",
-            "occ": 4
+            "occ": 3
           }
         ],
         "website-catalogue": [
@@ -1038,18 +1038,6 @@
         ]
       },
       "website": {
-        "website-landing": [
-          {
-            "file": "index.html",
-            "occ": 3
-          }
-        ],
-        "website-concepts": [
-          {
-            "file": "concept-independent-convergence.html",
-            "occ": 3
-          }
-        ],
         "website-misc": [
           {
             "file": "constructing-the-gee.html",
@@ -1181,13 +1169,13 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 11
+            "occ": 8
           }
         ],
         "website-concepts": [
           {
             "file": "concept-churn.html",
-            "occ": 23
+            "occ": 16
           },
           {
             "file": "concept-governance-centric.html",
@@ -1279,13 +1267,13 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 7
+            "occ": 1
           }
         ],
         "website-concepts": [
           {
             "file": "concept-churn.html",
-            "occ": 18
+            "occ": 13
           },
           {
             "file": "concept-governance-centric.html",
@@ -1871,7 +1859,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 56
+            "occ": 41
           }
         ],
         "website-concepts": [
@@ -1881,7 +1869,11 @@
           },
           {
             "file": "concept-churn.html",
-            "occ": 12
+            "occ": 9
+          },
+          {
+            "file": "concept-convert-failures.html",
+            "occ": 6
           },
           {
             "file": "concept-governance-centric.html",
@@ -1889,7 +1881,7 @@
           },
           {
             "file": "concept-independent-convergence.html",
-            "occ": 11
+            "occ": 5
           },
           {
             "file": "concept-modeling-thesis.html",
@@ -1897,15 +1889,15 @@
           },
           {
             "file": "concept-new-problem.html",
-            "occ": 32
+            "occ": 33
           },
           {
             "file": "concept-research-agenda.html",
-            "occ": 5
+            "occ": 2
           },
           {
             "file": "concept-seat-moves.html",
-            "occ": 4
+            "occ": 7
           }
         ],
         "website-catalogue": [
@@ -2533,13 +2525,17 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 7
+            "occ": 2
           }
         ],
         "website-concepts": [
           {
             "file": "concept-churn.html",
-            "occ": 12
+            "occ": 9
+          },
+          {
+            "file": "concept-convert-failures.html",
+            "occ": 4
           },
           {
             "file": "concept-governance-centric.html",
@@ -2548,10 +2544,6 @@
           {
             "file": "concept-new-problem.html",
             "occ": 2
-          },
-          {
-            "file": "concept-research-agenda.html",
-            "occ": 1
           }
         ],
         "website-misc": [
@@ -3253,7 +3245,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 21
+            "occ": 16
           }
         ],
         "website-concepts": [
@@ -3263,11 +3255,11 @@
           },
           {
             "file": "concept-churn.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "concept-convert-failures.html",
-            "occ": 1
+            "occ": 4
           },
           {
             "file": "concept-governance-centric.html",
@@ -3279,7 +3271,7 @@
           },
           {
             "file": "concept-modeling-thesis.html",
-            "occ": 38
+            "occ": 41
           },
           {
             "file": "concept-new-problem.html",
@@ -3287,7 +3279,7 @@
           },
           {
             "file": "concept-research-agenda.html",
-            "occ": 10
+            "occ": 6
           },
           {
             "file": "concept-seat-moves.html",
@@ -3864,20 +3856,10 @@
         ]
       },
       "website": {
-        "website-landing": [
-          {
-            "file": "index.html",
-            "occ": 3
-          }
-        ],
         "website-concepts": [
           {
             "file": "concept-churn.html",
             "occ": 1
-          },
-          {
-            "file": "concept-independent-convergence.html",
-            "occ": 3
           }
         ],
         "website-misc": [
@@ -4458,8 +4440,12 @@
       "website": {
         "website-concepts": [
           {
+            "file": "concept-churn.html",
+            "occ": 2
+          },
+          {
             "file": "concept-convert-failures.html",
-            "occ": 4
+            "occ": 2
           },
           {
             "file": "concept-seat-moves.html",
@@ -4525,7 +4511,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 3
+            "occ": 2
           }
         ],
         "website-concepts": [
@@ -4534,12 +4520,8 @@
             "occ": 3
           },
           {
-            "file": "concept-independent-convergence.html",
-            "occ": 3
-          },
-          {
             "file": "concept-modeling-thesis.html",
-            "occ": 7
+            "occ": 8
           }
         ],
         "website-misc": [
@@ -5713,7 +5695,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 8
+            "occ": 6
           }
         ],
         "website-concepts": [
@@ -5739,7 +5721,7 @@
           },
           {
             "file": "concept-research-agenda.html",
-            "occ": 5
+            "occ": 2
           }
         ],
         "website-catalogue": [
@@ -6062,8 +6044,12 @@
       "website": {
         "website-concepts": [
           {
+            "file": "concept-churn.html",
+            "occ": 1
+          },
+          {
             "file": "concept-convert-failures.html",
-            "occ": 2
+            "occ": 1
           }
         ],
         "website-catalogue": [

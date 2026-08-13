@@ -210,100 +210,96 @@
 <p><strong>Claim</strong> — SDLC becomes SELC: one seat reassigned, the lifecycle otherwise intact. The fleet writes the code; the engineer keeps the seats that were always the engineering.</p>
 <table><thead><tr><th>Concept</th><th>Big idea 6 · the seat</th></tr></thead><tbody><tr><td>Claim</td><td>SDLC becomes SELC: one seat reassigned, the lifecycle otherwise intact. The fleet writes the code; the engineer keeps the seats that were always the engineering.</td></tr><tr><td>Mechanisms</td><td>Independent pre-implementation design review · Epic &amp; design-doc templates · Epic Definition-of-Done</td></tr><tr><td>Related</td><td>Convert recurring failures into controls</td></tr><tr><td>In the book</td><td>book/6.4-reorganization-of-se.html</td></tr></tbody></table>
 <h2>The idea</h2>
-<figure class="cc-body-fig"><svg viewBox="0 0 940 392" xmlns="http://www.w3.org/2000/svg" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" role="img" aria-labelledby="s2s-title s2s-desc">
-  <title id="cf-1-s2s-title">SDLC to SELC: one seat reassigned</title>
-  <desc id="cf-1-s2s-desc">Two lanes of the same six lifecycle activities — requirements, specification, design, implementation, validation, maintenance. Top lane, the conventional SDLC, has every seat held by one engineering role, with implementation marked as the seat that consumes the calendar. Bottom lane, the SELC, reassigns the implementation seat to the agent fleet, drawn in the accent colour; the engineer flanks the fleet, authoring intent on the left and judging and governing the output on the right, and a governance band beneath holds every seat’s output. A dashed arc returns from the last activity to the first, the cycle in “life cycle.”</desc>
+<figure class="cc-body-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+     role="group" aria-labelledby="wemTitle wemDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="cf-1-wemTitle">Where engineering effort moves across the lifecycle</title>
+  <desc id="cf-1-wemDesc">Across the top, the five lifecycle phases in order — Requirements, Design,
+    Implementation, Validation, Operation and maintenance — connected by arrows; the lifecycle keeps its
+    phases and gains no new ones. Below the phases, three horizontal bands show where the work sits. The
+    human engineering judgment band, in rust, carries intent, abstractions, tradeoffs, acceptance, and
+    adaptation. The fleet band, in blue, carries implementation, analysis, transformation, and routine
+    remediation, concentrated under the Implementation phase. The governed environment band, in green,
+    carries models and context, permissions and constraints, evidence and validators, admission, and
+    operational controls across all phases. Implementation shifts disproportionately toward the fleet while
+    human effort concentrates in intent, abstraction, evidence, tradeoffs, and adaptation. Delegation
+    changes the allocation of work, not the engineer's accountability for the resulting system.</desc>
+
   <defs>
-    <marker id="cf-1-arr-ink" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="cf-1-wem-ah" viewBox="0 0 8 8" markerWidth="8" markerHeight="8" refX="6.5" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L7,3.5 L0,7 Z" fill="#57534e"/>
-    </marker>
-    <marker id="cf-1-arr-accent" viewBox="0 0 9 9" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#9a3f12"/>
-    </marker>
-    <marker id="cf-1-arr-cycle" viewBox="0 0 7 7" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L6,3 L0,6 Z" fill="#57534e"/>
     </marker>
   </defs>
 
-  <!-- ======== LANE 1: SDLC ======== -->
-  <text x="26" y="22" font-size="15.04" font-weight="700" fill="#57534e" letter-spacing="1.5">SDLC — CONVENTIONAL</text>
-  <path d="M 850 46 C 850 30, 90 30, 90 44" fill="none" stroke="#57534e" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#cf-1-arr-cycle)"/>
+  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where engineering effort moves</text>
+  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The lifecycle keeps its phases. The allocation of work across them changes.</text>
 
-  <g font-size="15.04" text-anchor="middle" fill="#1c1917" word-spacing="1.2">
-    <rect x="26"  y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
-    <text x="90"  y="74">Requirements</text>
-    <rect x="178" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
-    <text x="242" y="74">Specification</text>
-    <rect x="330" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
-    <text x="394" y="74">Design</text>
-    <rect x="482" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/>
-    <text font-size="14.45" x="546" y="68" font-weight="600">Implementation</text>
-    <text x="546" y="84" font-size="14.41" fill="#57534e">eats the calendar</text>
-    <rect x="634" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
-    <text x="698" y="74">Validation</text>
-    <rect x="786" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
-    <text x="850" y="74">Maintenance</text>
+  <!-- ===== top row: the five lifecycle phases (unchanged) ===== -->
+  <g font-size="16" text-anchor="middle" fill="#1c1917">
+    <rect x="40"  y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <text x="124" y="124">Requirements</text>
+    <rect x="228" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <text x="312" y="124">Design</text>
+    <rect x="416" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <text x="500" y="124">Implementation</text>
+    <rect x="604" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <text x="688" y="124">Validation</text>
+    <rect x="792" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <text x="876" y="118">Operation /</text>
+    <text x="876" y="136">maintenance</text>
   </g>
-  <g stroke="#57534e" stroke-width="1.4">
-    <line x1="154" y1="70" x2="172" y2="70" marker-end="url(#cf-1-arr-ink)"/>
-    <line x1="306" y1="70" x2="324" y2="70" marker-end="url(#cf-1-arr-ink)"/>
-    <line x1="458" y1="70" x2="476" y2="70" marker-end="url(#cf-1-arr-ink)"/>
-    <line x1="610" y1="70" x2="628" y2="70" marker-end="url(#cf-1-arr-ink)"/>
-    <line x1="762" y1="70" x2="780" y2="70" marker-end="url(#cf-1-arr-ink)"/>
-  </g>
-  <path d="M 26 102 L 26 108 L 914 108 L 914 102" fill="none" stroke="#57534e" stroke-width="1.2"/>
-  <text x="470" y="126" font-size="15.04" text-anchor="middle" fill="#1c1917" font-weight="600">the engineering role — every seat, and above all the developer’s</text>
-
-  <!-- ======== REASSIGNMENT ARROW ======== -->
-  <line x1="546" y1="136" x2="546" y2="186" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#cf-1-arr-accent)"/>
-  <text x="560" y="158" font-size="15.04" fill="#9a3f12" font-weight="700">one seat reassigned:</text>
-  <text x="560" y="174" font-size="15.04" fill="#9a3f12">the D is delegated to the fleet</text>
-
-  <!-- ======== LANE 2: SELC ======== -->
-  <text x="26" y="182" font-size="15.04" font-weight="700" fill="#57534e" letter-spacing="1.5">SELC — MAGE</text>
-  <path d="M 850 202 C 850 188, 90 188, 90 200" fill="none" stroke="#57534e" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#cf-1-arr-cycle)"/>
-
-  <g font-size="15.04" text-anchor="middle" fill="#1c1917" word-spacing="1.2">
-    <rect x="26"  y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
-    <text x="90"  y="232">Requirements</text>
-    <rect x="178" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
-    <text x="242" y="226">Specification</text>
-    <text x="242" y="242" font-size="12.65" fill="#57534e">authored as models</text>
-    <rect x="330" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
-    <text x="394" y="226">Design</text>
-    <text x="394" y="242" font-size="12.65" fill="#57534e">authored as models</text>
-    <rect x="482" y="206" width="128" height="44" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
-    <text font-size="14.45" x="546" y="226" font-weight="600" fill="#2f5169">Implementation</text>
-    <text x="546" y="242" font-size="15.04" fill="#2f5169">the agents</text>
-    <rect x="634" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
-    <text x="698" y="226">Validation</text>
-    <text x="698" y="242" font-size="13.82" fill="#57534e">gates, not reading</text>
-    <rect x="786" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
-    <text x="850" y="226">Maintenance</text>
-    <text x="850" y="242" font-size="13.6" fill="#57534e">run as governance</text>
-  </g>
-  <g stroke="#57534e" stroke-width="1.4">
-    <line x1="154" y1="228" x2="172" y2="228" marker-end="url(#cf-1-arr-ink)"/>
-    <line x1="306" y1="228" x2="324" y2="228" marker-end="url(#cf-1-arr-ink)"/>
-    <line x1="458" y1="228" x2="476" y2="228" marker-end="url(#cf-1-arr-ink)"/>
-    <line x1="610" y1="228" x2="628" y2="228" marker-end="url(#cf-1-arr-ink)"/>
-    <line x1="762" y1="228" x2="780" y2="228" marker-end="url(#cf-1-arr-ink)"/>
+  <g stroke="#57534e" stroke-width="1.5">
+    <line x1="208" y1="119" x2="226" y2="119" marker-end="url(#cf-1-wem-ah)"/>
+    <line x1="396" y1="119" x2="414" y2="119" marker-end="url(#cf-1-wem-ah)"/>
+    <line x1="584" y1="119" x2="602" y2="119" marker-end="url(#cf-1-wem-ah)"/>
+    <line x1="772" y1="119" x2="790" y2="119" marker-end="url(#cf-1-wem-ah)"/>
   </g>
 
-  <path d="M 26 260 L 26 266 L 458 266 L 458 260" fill="none" stroke="#9a3f12" stroke-width="1.2"/>
-  <text x="242" y="284" font-size="15.04" text-anchor="middle" fill="#9a3f12" font-weight="600">the engineer — authors the intent</text>
-  <path d="M 482 260 L 482 266 L 610 266 L 610 260" fill="none" stroke="#2f5169" stroke-width="1.2"/>
-  <text x="546" y="284" font-size="15.04" text-anchor="middle" fill="#2f5169" font-weight="600">the fleet — develops</text>
-  <path d="M 634 260 L 634 266 L 914 266 L 914 260" fill="none" stroke="#9a3f12" stroke-width="1.2"/>
-  <text x="774" y="284" font-size="15.04" text-anchor="middle" fill="#9a3f12" font-weight="600">the engineer — judges and governs</text>
+  <!-- ===== band 1: Human engineering judgment (rust) ===== -->
+  <rect x="40" y="168" width="920" height="86" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="60" y="196" font-size="17" font-weight="700" fill="#9a3f12">Human engineering judgment</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="60" y="228">intent</text>
+    <text x="230" y="228">abstractions</text>
+    <text x="440" y="228">tradeoffs</text>
+    <text x="620" y="228">acceptance</text>
+    <text x="820" y="228">adaptation</text>
+  </g>
 
-  <rect x="26" y="304" width="888" height="34" rx="6" fill="#e3f0e7" stroke="#1f7a4d"/>
-  <text x="470" y="326" font-size="15.04" text-anchor="middle" fill="#155c38" font-weight="600">governance — the environment holds every seat’s output to the standard the engineer set (Part Two)</text>
+  <!-- ===== band 2: Fleet (blue), weighted under Implementation ===== -->
+  <rect x="40" y="266" width="920" height="86" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="60" y="294" font-size="17" font-weight="700" fill="#2f5169">Fleet</text>
+  <!-- emphasis block under the Implementation phase column -->
+  <rect x="416" y="304" width="168" height="34" rx="6" fill="#fdfcf9" stroke="#2f5169" stroke-width="1.6"/>
+  <text x="500" y="326" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">implementation</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="60" y="326">analysis</text>
+    <text x="230" y="326">transformation</text>
+    <text x="620" y="326">routine</text>
+    <text x="620" y="344" font-size="13.5" fill="#57534e">remediation</text>
+  </g>
 
-  <text x="470" y="368" font-size="15.04" text-anchor="middle" fill="#57534e" font-style="italic">the keystrokes are delegated; the accountability is not</text>
+  <!-- ===== band 3: Governed environment (green), spans all phases ===== -->
+  <rect x="40" y="364" width="920" height="98" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="60" y="392" font-size="17" font-weight="700" fill="#155c38">Governed environment</text>
+  <text x="470" y="392" font-size="14.5" font-style="italic" fill="#57534e">carries repeatable structure across every phase</text>
+  <g font-size="15" fill="#1c1917">
+    <text x="60" y="426">models / context</text>
+    <text x="270" y="426">permissions /</text>
+    <text x="270" y="444" font-size="13.5" fill="#57534e">constraints</text>
+    <text x="470" y="426">evidence /</text>
+    <text x="470" y="444" font-size="13.5" fill="#57534e">validators</text>
+    <text x="650" y="426">admission</text>
+    <text x="800" y="426">operational</text>
+    <text x="800" y="444" font-size="13.5" fill="#57534e">controls</text>
+  </g>
+
+  <text x="500" y="502" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Implementation shifts to the fleet; human effort concentrates in intent, abstraction, evidence, tradeoffs, and adaptation.</text>
+  <text x="500" y="530" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Delegation changes the allocation of work, not the engineer's accountability for the system.</text>
 </svg></figure>
 <p>The software lifecycle does not dissolve when agents write the code. Requirements, specification, design, implementation, validation — the stages stay, and the work each names still has to happen. What changes is who fills one seat. The fleet takes implementation; the rest of the seats stay with the engineer. SDLC becomes SELC, one seat reassigned and the lifecycle otherwise intact.</p>
-<p>The engineer flanks the fleet: models carry intent in on one side, judgment meets the output on the other. The seats the human keeps — requirements, specification, design, validation — were always the consequential ones; now they are the job.</p>
+<p>The engineer flanks the fleet: models carry intent in on one side, judgment meets the output on the other. The seats the human keeps — requirements, specification, design, validation — were always the consequential ones; now they are the job. Review itself moves with the weight: away from inspecting each change and toward mechanism design, catching a class of failure once rather than every instance by eye.</p>
 <p>The engineer flanks the fleet. On one side, models carry intent <em>in</em> — the specification of what a right answer looks like, the design of the structure the fleet reasons through. On the other, judgment meets the output — validation against the metric, the call on whether the work advances. The seats the human keeps are the ones that decide what gets built and whether it is right, and those were always the consequential seats. Now they are the whole job.</p>
 <p>So the reassignment is narrow and its consequence is wide. Exactly one activity moved, the typing of the code, and it was never the hard part. The engineer specifies, designs the model, and judges the result; the fleet fills in between. The lifecycle a working engineer already knows is the lifecycle that stays.</p>
 <h2>Why it's more than the same job with faster typing</h2>
