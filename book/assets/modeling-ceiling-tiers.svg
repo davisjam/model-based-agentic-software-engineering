@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: modeling-ceiling-tiers). REPLACES the 12-column modeling-ceiling matrix in
+     the mainline (the full 12xN audit matrix moves to Appendix F). The matrix read as a scoreboard — a
+     12/12 MAGE row beside everyone else's blanks. This figure states the actual comparative finding as
+     THREE TIERS and marks where the SOURCE EVIDENCE sits, not where organizational capability sits. Three
+     stacked bands, bottom to top: Tier 1 Engineering knowledge (green, the knowledge-representation tier
+     where the software-first corpus concentrates); Tier 2 Executable system models (a warm turn, where
+     Siemens clearly reaches); Tier 3 Governed correspondence (rust, mechanical checks over the relation a
+     model claims — the originating case experiments here, the public reconstructions do not reach it). The
+     right margin carries three evidence markers, not org-capability ratings. Caption says SOURCE EVIDENCE,
+     not organizational capability; a source silent at a tier is not an organization that lacks it.
+     Palette: Umber Monograph tokens (governed green #1f7a4d/#155c38 + tints #e3f0e7/#eef7f0 the knowledge
+     tier, neutral #f3efe7 the model tier turn, accent #9a3f12 + tint #faf1e6 the correspondence tier, ink
+     #1c1917 names, muted #57534e detail + captions, rule #e4e0d8, page #fdfcf9). Fonts 12-26 band at 1000px. -->
+<!-- semantic-families: modeling, governance, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620"
+     role="group" aria-labelledby="mctTitle mctDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mctTitle">The modeling ceiling in three tiers: where the source evidence concentrates</title>
+  <desc id="mctDesc">Three stacked tiers of modeling, drawn bottom to top. Tier 1, Engineering knowledge,
+    is green and holds topology, ownership, policy, infrastructure, lineage, and context; the five
+    software-first sources concentrate here. Tier 2, Executable system models, is a warm neutral and holds
+    behavior, process, scenarios, invariants, and traceability; Siemens clearly reaches this tier from a
+    model-first engineering tradition. Tier 3, Governed correspondence, is rust and holds mechanical checks
+    over the relation a model claims to the implemented system; the originating case experiments here, and
+    the public software-first reconstructions do not reach it. The right margin marks where the source
+    evidence sits, tier by tier, not where any organization's capability sits. A source silent at a tier is
+    not evidence the organization lacks the capability.</desc>
+
+  <rect x="0" y="0" width="1000" height="620" fill="#fdfcf9"/>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The modeling ceiling, in three tiers</text>
+  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Where the source evidence concentrates — not a rating of any organization's capability.</text>
+
+  <!-- Tier 3 (top) — Governed correspondence (rust) -->
+  <rect x="70" y="108" width="620" height="112" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
+  <text x="94" y="146" font-size="15" font-weight="700" letter-spacing="1" fill="#9a3f12">TIER 3</text>
+  <text x="176" y="146" font-size="20" font-weight="700" fill="#1c1917">Governed correspondence</text>
+  <text x="94" y="176" font-size="15" fill="#57534e">Mechanical checks over the relation a model claims</text>
+  <text x="94" y="198" font-size="15" fill="#57534e">to the implemented system.</text>
+  <rect x="706" y="108" width="244" height="112" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="828" y="150" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">Originating case</text>
+  <text x="828" y="174" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">experiments here —</text>
+  <text x="828" y="194" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">no public reconstruction reaches it</text>
+
+  <!-- Tier 2 (middle) — Executable system models (neutral turn) -->
+  <rect x="70" y="236" width="620" height="112" rx="10" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="94" y="274" font-size="15" font-weight="700" letter-spacing="1" fill="#57534e">TIER 2</text>
+  <text x="176" y="274" font-size="20" font-weight="700" fill="#1c1917">Executable system models</text>
+  <text x="94" y="304" font-size="15" fill="#57534e">behavior · process · scenarios · invariants ·</text>
+  <text x="94" y="326" font-size="15" fill="#57534e">traceability</text>
+  <rect x="706" y="236" width="244" height="112" rx="10" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="828" y="284" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Siemens</text>
+  <text x="828" y="308" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">reaches this tier from a</text>
+  <text x="828" y="328" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">model-first tradition</text>
+
+  <!-- Tier 1 (bottom) — Engineering knowledge (green) -->
+  <rect x="70" y="364" width="620" height="112" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.8"/>
+  <text x="94" y="402" font-size="15" font-weight="700" letter-spacing="1" fill="#155c38">TIER 1</text>
+  <text x="176" y="402" font-size="20" font-weight="700" fill="#1c1917">Engineering knowledge</text>
+  <text x="94" y="432" font-size="15" fill="#57534e">topology · ownership · policy · infrastructure ·</text>
+  <text x="94" y="454" font-size="15" fill="#57534e">lineage · context</text>
+  <rect x="706" y="364" width="244" height="112" rx="10" fill="#eef7f0" stroke="#1f7a4d" stroke-width="1.8"/>
+  <text x="828" y="406" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Software-first sources</text>
+  <text x="828" y="430" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">concentrate here —</text>
+  <text x="828" y="450" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">the knowledge tier</text>
+
+  <!-- ceiling line: the software-first corpus falls silent above Tier 1 -->
+  <line x1="70" y1="356" x2="690" y2="356" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="4 4"/>
+  <text x="380" y="350" text-anchor="middle" font-size="14.5" font-style="italic" font-weight="700" fill="#9a3f12">the software-first ceiling — the corpus falls quiet above the knowledge tier</text>
+
+  <!-- upward reach arrow on the left margin -->
+  <text x="40" y="470" font-size="13.5" fill="#1f7a4d" transform="rotate(-90 40 470)">richer representation ▲</text>
+
+  <text x="500" y="520" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Siemens shows the executable-model tier is normal in model-based engineering, not a MAGE invention;</text>
+  <text x="500" y="542" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the correspondence tier is a frontier the public evidence does not settle as generally cheap.</text>
+  <text x="500" y="576" text-anchor="middle" font-size="14.5" fill="#57534e">Tiers mark where the SOURCE EVIDENCE sits. A source silent at a tier is not an organization that lacks it.</text>
+</svg>
