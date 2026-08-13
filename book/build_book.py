@@ -6667,12 +6667,21 @@ def build_pdf() -> int:
 
 #: The exact section filenames the reviewer asked for (`mage-book-<Section>.pdf`).
 def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
-    """The ONE canonical grouping of the book's ordered chapters into the 9 review sections, keyed off the
+    """The ONE canonical grouping of the book's ordered chapters into the review sections, keyed off the
     same `part` field the whole-book render iterates:
       part 0 → FrontMatter · parts 1-6 → Part1…Part6 · part 7 → BackMatter · parts ≥ 8 → Appendices
     (the appendices front-door divider plus every appendix chapter). It reuses the IR chapter order, so each
     section is a contiguous slice of the whole-book reading order — there is no second section model that
-    could drift from the full projection. Returns ordered `(filename-suffix, [slug, …])` pairs."""
+    could drift from the full projection.
+
+    ADDITIVELY, each individual lettered appendix part (every distinct `part ≥ 8` that carries an appendix
+    letter — A, B, C, …) ALSO becomes its own section, `Appendix<letter>`, appended AFTER the combined
+    `Appendices` entry. The combined `Appendices` PDF stays unchanged; the per-appendix PDFs are extra review
+    aids. The appendix letter is derived from the appendix's front-door chapter, whose `fig_prefix` is the
+    bare single letter (`A`, `B`, …) — the same lettering the web build stamps; a part with no letter (the
+    umbrella `Appendices` front-door divider) rides the combined PDF only and gets no per-appendix entry.
+    Both the combined and per-appendix sections project through the SAME split path, so no second model
+    drifts. Returns ordered `(filename-suffix, [slug, …])` pairs."""
     def _bucket(part: int) -> str:
         if part == 0:
             return "FrontMatter"
@@ -6684,13 +6693,34 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
 
     buckets: "dict[str, list[str]]" = {}
     order: "list[str]" = []
+    appendix_slugs: "dict[int, list[str]]" = {}   # appendix part-number → its chapter slugs
+    appendix_order: "list[int]" = []              # appendix part-numbers in reading order
+    appendix_letter: "dict[int, str]" = {}        # appendix part-number → its bare letter (A, B, …)
     for ch in doc.chapters:  # type: ignore[attr-defined]
         key = _bucket(ch.part)
         if key not in buckets:
             buckets[key] = []
             order.append(key)
         buckets[key].append(ch.slug)
-    return [(k, buckets[k]) for k in order]
+        if ch.part >= 8:
+            if ch.part not in appendix_slugs:
+                appendix_slugs[ch.part] = []
+                appendix_order.append(ch.part)
+            appendix_slugs[ch.part].append(ch.slug)
+            # The appendix front-door chapter carries the bare letter as its float-numbering prefix
+            # ("A", "B", …); subordinate chapters carry "A.1"/"B.24"/… A part with no bare-letter chapter
+            # (the umbrella "Appendices" front-door divider) yields no per-appendix section.
+            fp = getattr(ch, "fig_prefix", None)
+            if fp and re.fullmatch(r"[A-Z]", fp):
+                appendix_letter[ch.part] = fp
+
+    sections: "list[tuple[str, list[str]]]" = [(k, buckets[k]) for k in order]
+    for part in appendix_order:
+        letter = appendix_letter.get(part)
+        if not letter:
+            continue  # the umbrella Appendices front-door divider — no standalone per-appendix PDF
+        sections.append((f"Appendix{letter}", appendix_slugs[part]))
+    return sections
 
 
 def build_pdf_split() -> int:
