@@ -78,25 +78,25 @@
         {
           "file": "book/0.1-the-mage-method-at-a-glance.html",
           "anchor": "mmDesc",
-          "occ": 1,
+          "occ": 2,
           "variant": "canonical"
         },
         {
           "file": "book/0.1-the-mage-method-at-a-glance.html",
           "anchor": "mm2-ah-mute",
-          "occ": 2,
-          "variant": "canonical"
-        },
-        {
-          "file": "book/figures.html",
-          "anchor": "fig-0-1-1-mmDesc",
           "occ": 1,
           "variant": "canonical"
         },
         {
           "file": "book/figures.html",
-          "anchor": "fig-0-1-1-mm2-ah-mute",
+          "anchor": "fig-0-1-1-mmDesc",
           "occ": 2,
+          "variant": "canonical"
+        },
+        {
+          "file": "book/figures.html",
+          "anchor": "fig-0-1-1-mm2-ah-mute",
+          "occ": 1,
           "variant": "canonical"
         }
       ]
