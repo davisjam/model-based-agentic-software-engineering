@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RB Part-IV figure — obligation-census.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620"
+     role="img" aria-labelledby="ocTitle ocDesc"
+     font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title id="ocTitle">Derive the obligation set first — name what must hold before measuring coverage.</title>
+  <desc id="ocDesc">A single green spine descends: a model or specification derives obligations — what must hold —
+    into an obligation census. A dashed rust choose-evidence step follows, fanning into three neutral evidence
+    artifacts: test, lint, and search or proof. They merge into a green claim-coverage box that asks what has
+    evidence and what does not. The compact form of the models-to-evidence figure: coverage becomes meaningful
+    only after the obligations are named.</desc>
+
+  <defs>
+    <marker id="oc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+  </defs>
+
+  <rect x="370" y="40" width="260" height="54" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="500" y="73" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">MODEL / SPECIFICATION</text>
+  <line x1="500" y1="94" x2="500" y2="128" stroke="#57534e" stroke-width="2" marker-end="url(#oc-ah)"/>
+
+  <rect x="370" y="130" width="260" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="500" y="158" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">DERIVE OBLIGATIONS</text>
+  <text x="500" y="178" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">what must hold?</text>
+  <line x1="500" y1="188" x2="500" y2="222" stroke="#57534e" stroke-width="2" marker-end="url(#oc-ah)"/>
+
+  <rect x="370" y="224" width="260" height="54" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="500" y="257" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">OBLIGATION CENSUS</text>
+  <line x1="500" y1="278" x2="500" y2="312" stroke="#57534e" stroke-width="2" marker-end="url(#oc-ah)"/>
+
+  <!-- choose evidence = dashed rust governance step -->
+  <rect x="370" y="314" width="260" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="500" y="342" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">CHOOSE EVIDENCE</text>
+  <text x="500" y="362" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">appropriate to the claim</text>
+
+  <!-- fan to three artifacts -->
+  <path d="M500 372 C 440 400 380 404 350 428" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#oc-ah)"/>
+  <line x1="500" y1="372" x2="500" y2="428" stroke="#57534e" stroke-width="2" marker-end="url(#oc-ah)"/>
+  <path d="M500 372 C 560 400 620 404 660 428" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#oc-ah)"/>
+
+  <rect x="280" y="430" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="350" y="460" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">TEST</text>
+  <rect x="430" y="430" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="500" y="460" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">LINT</text>
+  <rect x="590" y="430" width="160" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="670" y="454" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">SEARCH /</text>
+  <text x="670" y="471" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">PROOF</text>
+
+  <!-- merge to claim coverage -->
+  <path d="M350 480 C 390 508 450 512 486 538" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#oc-ah)"/>
+  <line x1="500" y1="480" x2="500" y2="540" stroke="#57534e" stroke-width="2" marker-end="url(#oc-ah)"/>
+  <path d="M670 480 C 630 508 550 512 514 538" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#oc-ah)"/>
+
+  <rect x="360" y="542" width="280" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="500" y="570" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">CLAIM COVERAGE</text>
+  <text x="500" y="588" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">what has evidence? what does not?</text>
+</svg>

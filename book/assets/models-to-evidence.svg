@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RB Part-IV figure — models-to-evidence.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840" width="1000" height="840"
+     role="img" aria-labelledby="meTitle meDesc"
+     font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title id="meTitle">From models to evidence — a model derives both current facts and the obligation set.</title>
+  <desc id="meDesc">A green model-or-specification box splits into two branches. The left branch derives facts
+    and relations, ending in a current view. The right branch derives obligations — what must hold — into an
+    obligation census. The census flows into a dashed rust select-evidence step, which fans into three neutral
+    evidence artifacts: test, lint, and search or proof. These merge into a green claim-coverage box. An
+    uncovered claim flows on to a dashed red visible-debt box. The point: coverage is meaningful only after the
+    obligations are named, and each claim is matched to evidence appropriate to its shape.</desc>
+
+  <defs>
+    <marker id="me-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="me-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#b23b3b"/></marker>
+  </defs>
+
+  <text x="500" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">II &#183; From Models to Evidence</text>
+
+  <!-- model / spec (green = modeling) -->
+  <rect x="360" y="66" width="280" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="500" y="100" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">MODEL / SPECIFICATION</text>
+
+  <!-- split into facts branch and obligations branch -->
+  <path d="M500 122 C 430 148 340 148 282 166" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <path d="M500 122 C 570 148 660 148 718 166" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+
+  <rect x="150" y="170" width="260" height="66" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="280" y="198" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">DERIVE FACTS</text>
+  <text x="280" y="218" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">&amp; RELATIONS</text>
+
+  <rect x="590" y="170" width="260" height="66" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="720" y="196" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">DERIVE OBLIGATIONS</text>
+  <text x="720" y="216" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">what must hold?</text>
+
+  <!-- facts branch -> current view (terminal side output, neutral) -->
+  <line x1="280" y1="236" x2="280" y2="282" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <rect x="170" y="284" width="220" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="280" y="316" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CURRENT VIEW</text>
+
+  <!-- obligations branch -> census -->
+  <line x1="720" y1="236" x2="720" y2="282" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <rect x="590" y="284" width="260" height="52" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="720" y="316" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">OBLIGATION CENSUS</text>
+
+  <!-- census -> select evidence (dashed rust = governance choice) -->
+  <line x1="720" y1="336" x2="720" y2="382" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <rect x="590" y="384" width="260" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="720" y="412" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">SELECT EVIDENCE</text>
+  <text x="720" y="432" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">for claim shape</text>
+
+  <!-- fan to three evidence artifacts (neutral) -->
+  <path d="M720 442 C 660 466 600 470 560 490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <line x1="720" y1="442" x2="720" y2="490" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <path d="M720 442 C 790 466 850 470 885 490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+
+  <rect x="490" y="492" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="560" y="522" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">TEST</text>
+  <rect x="650" y="492" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="720" y="522" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">LINT</text>
+  <rect x="805" y="492" width="160" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="885" y="516" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">SEARCH /</text>
+  <text x="885" y="533" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">PROOF</text>
+
+  <!-- merge to claim coverage (green emphasis) -->
+  <path d="M560 542 C 600 570 660 574 700 594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <line x1="720" y1="542" x2="720" y2="594" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <path d="M885 542 C 845 570 780 574 740 594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+
+  <rect x="580" y="596" width="280" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="720" y="630" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">CLAIM COVERAGE</text>
+
+  <!-- uncovered claim -> visible debt (dotted red = failure) -->
+  <line x1="720" y1="654" x2="720" y2="690" stroke="#b23b3b" stroke-width="2" marker-end="url(#me-ah-red)"/>
+  <text x="738" y="676" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">uncovered claim?</text>
+  <rect x="600" y="692" width="240" height="54" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2" stroke-dasharray="2 4"/>
+  <text x="720" y="724" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">VISIBLE DEBT</text>
+
+  <text x="500" y="800" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Coverage means nothing until the obligations are named.</text>
+</svg>

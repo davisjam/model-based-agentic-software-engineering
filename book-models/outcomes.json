@@ -30,7 +30,7 @@
     "outcomes_with_elaborative_units": 15,
     "elaborative_links": 21,
     "units_serving_as_elaborative": 18,
-    "sections_total": 200,
+    "sections_total": 206,
     "sections_primary_of_an_outcome": 28,
     "modules": 7,
     "lessons": 33
@@ -262,9 +262,7 @@
           {
             "lesson": "4.4-operating-mage",
             "own_outcomes": [],
-            "section_outcomes": [
-              "measure-one-level-deeper::compute-a-metric-one-level-deeper-than-the-numbe"
-            ]
+            "section_outcomes": []
           },
           {
             "lesson": "4.5-packaging-the-method-as-skills",

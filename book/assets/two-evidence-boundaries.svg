@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RB Part-IV figure — two-evidence-boundaries.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" width="1000" height="340"
+     role="img" aria-labelledby="tbTitle tbDesc"
+     font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <title id="tbTitle">Two evidence boundaries — earliest legible, and last safe before consequence.</title>
+  <desc id="tbDesc">A horizontal timeline runs from work begins on the left to consequence on the right. Two rust
+    diamond markers sit on the axis. The left diamond is the earliest legible boundary, where a property is
+    caught cheaply near its cause. The right diamond is the last safe boundary, where required evidence is
+    re-established before exposure. Between them, a note reads: relevant state may change between checks. The
+    two boundaries answer different questions — when can this be decided honestly, and what is the last point a
+    stale check can still be caught.</desc>
+
+  <defs>
+    <marker id="tb-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+  </defs>
+
+  <!-- top anchors -->
+  <text x="200" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">work begins</text>
+  <line x1="200" y1="64" x2="200" y2="150" stroke="#57534e" stroke-width="2" marker-end="url(#tb-ah)"/>
+  <text x="800" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">consequence</text>
+  <line x1="800" y1="64" x2="800" y2="150" stroke="#57534e" stroke-width="2" marker-end="url(#tb-ah)"/>
+
+  <!-- between-checks note -->
+  <text x="500" y="148" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">relevant state may change between checks</text>
+
+  <!-- the axis -->
+  <line x1="90" y1="176" x2="915" y2="176" stroke="#57534e" stroke-width="2.5" marker-end="url(#tb-ah)"/>
+
+  <!-- boundary markers: rust diamonds (shape encodes 'governance boundary') -->
+  <path d="M200 162 L214 176 L200 190 L186 176 Z" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <path d="M800 162 L814 176 L800 190 L786 176 Z" fill="#9a3f12" stroke="#9a3f12" stroke-width="2.5"/>
+
+  <!-- lower labels -->
+  <text x="200" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">EARLIEST LEGIBLE</text>
+  <text x="200" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">BOUNDARY</text>
+  <text x="200" y="272" text-anchor="middle" font-size="12" fill="#57534e">catch cheaply near the cause</text>
+
+  <text x="800" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">LAST SAFE</text>
+  <text x="800" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">BOUNDARY</text>
+  <text x="800" y="272" text-anchor="middle" font-size="12" fill="#57534e">re-establish what must hold</text>
+</svg>

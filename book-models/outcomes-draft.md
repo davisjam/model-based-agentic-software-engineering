@@ -110,7 +110,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 4.4-operating-mage
 
-  - **[DERIVED]** (apply) After this section, the reader can apply Ousterhout's rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. _(primary: measure-one-level-deeper · elaborated by: the-flagship-coverage-measured-one-level-deeper)_ — _anchor: point: measure-one-level-deeper-because-the-surface-number-cannot-act / a-cloud-bill-reports-but-splitting-it-by-service-acts / boot-time-one-level-deeper-turns-scale-out-into-fix-the-slow-phase / line-coverage-is-the-invoice-level-number-and-the-flagship-is-coverage-one-level-deeper / metrics-run-a-hard-to-soft-spectrum-and-the-mistake-is-treating-one-as-the-other_
 
 ### Lesson 4.5-packaging-the-method-as-skills
 

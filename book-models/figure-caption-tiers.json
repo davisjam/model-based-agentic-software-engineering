@@ -397,6 +397,42 @@
       "location": "part4",
       "rationale": "the skill skeleton; supports three-skills (sibling of the anchor)"
     },
+    "assets/derive-dont-copy.svg": {
+      "tier": "B",
+      "kind": "conceptual",
+      "location": "part4",
+      "rationale": "derive-don't-copy — one authority, consumers query/join/generate; two authorities, a parity check"
+    },
+    "assets/two-evidence-boundaries.svg": {
+      "tier": "B",
+      "kind": "conceptual",
+      "location": "part4",
+      "rationale": "the earliest-legible and last-safe evidence boundaries on one work-to-consequence timeline"
+    },
+    "assets/governed-action.svg": {
+      "tier": "B",
+      "kind": "conceptual",
+      "location": "part4",
+      "rationale": "the whole governed action — environment shapes the agent, prevention closes the action space, evidence guards the consequence"
+    },
+    "assets/models-to-evidence.svg": {
+      "tier": "B",
+      "kind": "conceptual",
+      "location": "part4",
+      "rationale": "from models to evidence — derive obligations, take the census, choose evidence, then claim coverage"
+    },
+    "assets/externalizing-judgment.svg": {
+      "tier": "B",
+      "kind": "framework",
+      "location": "part4",
+      "rationale": "recurring procedure typed into deterministic / bounded-judgment / irreducible steps and their forms"
+    },
+    "assets/deliver-context-two-layer.svg": {
+      "tier": "A",
+      "kind": "conceptual",
+      "location": "part4",
+      "rationale": "context delivery as two layers — a small standing context and a task-relevant slice; the section anchor, caption walks both layers"
+    },
     "assets/transformations-pipeline.svg": {
       "tier": "B",
       "kind": "process-synthesis",

@@ -238,6 +238,10 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: failure-mode-effects-analysis | Failure mode and effects analysis
 - concept: runbook | Runbook
 - concept: deterministic-vs-judgment-split | Deterministic vs. judgment split
+- concept: lifecycle-event-binding | Lifecycle-event binding
+- concept: deterministic-firing | Deterministic firing
+- concept: operational-playbook | Operational playbook
+- concept: resource-mediation | Resource mediation
 - concept: rubric | Rubric
 - concept: pre-canned-brief | The pre-canned brief
 - concept: model-zoo | The model zoo
@@ -245,6 +249,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: rag | RAG (retrieval-augmented generation)
 - concept: graphrag | GraphRAG
 - concept: context-engineering | Context engineering
+- concept: standing-context | Standing context
 - concept: knowledge-representation | Knowledge representation
 - concept: externalized-knowledge | Externalized knowledge
 - concept: structured-relationships | Structured relationships

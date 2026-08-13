@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1439,
+    "total_sites": 1440,
     "by_projection": {
       "book-pdf": 20,
-      "book-web": 1028,
+      "book-web": 1029,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -121,15 +121,15 @@
           },
           {
             "file": "book/4.3-validating-change.html",
-            "occ": 5
+            "occ": 14
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 18
+            "occ": 21
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
-            "occ": 24
+            "occ": 30
           },
           {
             "file": "book/4.6-portable-moves.html",
@@ -509,7 +509,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 41
+            "occ": 54
           },
           {
             "file": "book/index.html",
@@ -517,7 +517,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 3
+            "occ": 5
           },
           {
             "file": "book/part-1-intro.html",
@@ -1244,6 +1244,10 @@
       "book": {
         "book-web": [
           {
+            "file": "book/4.3-validating-change.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-a-observe-react-stack.html",
             "occ": 2
           },
@@ -1263,7 +1267,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 4
+            "occ": 5
           }
         ]
       },
@@ -1437,15 +1441,15 @@
           },
           {
             "file": "book/4.3-validating-change.html",
-            "occ": 15
+            "occ": 19
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 21
+            "occ": 28
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
-            "occ": 21
+            "occ": 26
           },
           {
             "file": "book/4.6-portable-moves.html",
@@ -1825,7 +1829,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 148
+            "occ": 154
           },
           {
             "file": "book/index.html",
@@ -2823,23 +2827,23 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 38
+            "occ": 39
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 64
+            "occ": 76
           },
           {
             "file": "book/4.3-validating-change.html",
-            "occ": 29
+            "occ": 40
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 38
+            "occ": 41
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
-            "occ": 28
+            "occ": 30
           },
           {
             "file": "book/4.6-portable-moves.html",
@@ -3219,7 +3223,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 213
+            "occ": 220
           },
           {
             "file": "book/index.html",
@@ -3227,7 +3231,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 24
+            "occ": 25
           },
           {
             "file": "book/part-1-intro.html",
@@ -3679,7 +3683,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 37
+            "occ": 39
           },
           {
             "file": "catalogue-figure.html",
@@ -4735,7 +4739,7 @@
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
@@ -5305,7 +5309,7 @@
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
@@ -6011,7 +6015,7 @@
           },
           {
             "file": "book/4.3-validating-change.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/4.4-operating-mage.html",
@@ -6059,7 +6063,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 2
+            "occ": 3
           }
         ],
         "book-pdf": [
