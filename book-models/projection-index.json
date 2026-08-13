@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 23,
-    "total_sites": 1464,
+    "total_sites": 1463,
     "by_projection": {
       "book-pdf": 20,
-      "book-web": 1050,
+      "book-web": 1049,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -149,7 +149,7 @@
           },
           {
             "file": "book/5.4-failures-that-became-infrastructure.html",
-            "occ": 18
+            "occ": 11
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -1122,10 +1122,6 @@
             "occ": 2
           },
           {
-            "file": "book/5.4-failures-that-became-infrastructure.html",
-            "occ": 2
-          },
-          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 50
           },
@@ -1213,7 +1209,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 29
+            "occ": 28
           }
         ]
       },
@@ -1405,483 +1401,483 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 27
+            "occ": 28
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
-            "occ": 24
+            "occ": 25
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 57
+            "occ": 58
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 56
+            "occ": 57
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 20
-          },
-          {
-            "file": "book/0.6-acknowledgments.html",
-            "occ": 12
-          },
-          {
-            "file": "book/1.1-the-printer.html",
-            "occ": 41
-          },
-          {
-            "file": "book/1.2-mage-by-example.html",
-            "occ": 17
-          },
-          {
-            "file": "book/1.3-the-agentic-substrate.html",
-            "occ": 41
-          },
-          {
-            "file": "book/1.4-the-new-engineering-problem.html",
             "occ": 21
           },
           {
+            "file": "book/0.6-acknowledgments.html",
+            "occ": 13
+          },
+          {
+            "file": "book/1.1-the-printer.html",
+            "occ": 42
+          },
+          {
+            "file": "book/1.2-mage-by-example.html",
+            "occ": 18
+          },
+          {
+            "file": "book/1.3-the-agentic-substrate.html",
+            "occ": 42
+          },
+          {
+            "file": "book/1.4-the-new-engineering-problem.html",
+            "occ": 22
+          },
+          {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 32
-          },
-          {
-            "file": "book/2.2-from-context-to-control.html",
-            "occ": 32
-          },
-          {
-            "file": "book/2.3-the-executable-zoo.html",
-            "occ": 20
-          },
-          {
-            "file": "book/2.4-views-are-projections.html",
-            "occ": 17
-          },
-          {
-            "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 13
-          },
-          {
-            "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 12
-          },
-          {
-            "file": "book/2.7-modeling-measurement-and-evidence.html",
-            "occ": 14
-          },
-          {
-            "file": "book/2.8-joining-models-around-a-scenario.html",
-            "occ": 25
-          },
-          {
-            "file": "book/3.1-where-authority-can-act.html",
-            "occ": 15
-          },
-          {
-            "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 14
-          },
-          {
-            "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 23
-          },
-          {
-            "file": "book/3.4-governance-conversion.html",
-            "occ": 30
-          },
-          {
-            "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 16
-          },
-          {
-            "file": "book/4.1-the-mage-workflow.html",
-            "occ": 26
-          },
-          {
-            "file": "book/4.2-brownfield.html",
-            "occ": 25
-          },
-          {
-            "file": "book/4.3-validating-change.html",
-            "occ": 14
-          },
-          {
-            "file": "book/4.4-operating-mage.html",
-            "occ": 20
-          },
-          {
-            "file": "book/4.5-packaging-the-method-as-skills.html",
-            "occ": 20
-          },
-          {
-            "file": "book/4.6-portable-moves.html",
-            "occ": 13
-          },
-          {
-            "file": "book/5.1-the-problem-and-the-bar.html",
-            "occ": 12
-          },
-          {
-            "file": "book/5.2-the-build.html",
-            "occ": 26
-          },
-          {
-            "file": "book/5.3-the-road-to-mage.html",
-            "occ": 26
-          },
-          {
-            "file": "book/5.4-failures-that-became-infrastructure.html",
-            "occ": 14
-          },
-          {
-            "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 54
-          },
-          {
-            "file": "book/6.2-scope-conditions.html",
-            "occ": 19
-          },
-          {
-            "file": "book/6.3-reorganization-of-se.html",
-            "occ": 59
-          },
-          {
-            "file": "book/6.4-software-rejoins-engineering.html",
-            "occ": 43
-          },
-          {
-            "file": "book/6.5-mage-in-the-wild.html",
-            "occ": 41
-          },
-          {
-            "file": "book/6.6-education-research-open-problems.html",
-            "occ": 61
-          },
-          {
-            "file": "book/6.7-conclusion.html",
             "occ": 33
           },
           {
-            "file": "book/7.1-about-the-author.html",
-            "occ": 13
+            "file": "book/2.2-from-context-to-control.html",
+            "occ": 33
           },
           {
-            "file": "book/7.2-colophon.html",
-            "occ": 29
+            "file": "book/2.3-the-executable-zoo.html",
+            "occ": 21
           },
           {
-            "file": "book/appendices-front-door.html",
-            "occ": 22
+            "file": "book/2.4-views-are-projections.html",
+            "occ": 18
           },
           {
-            "file": "book/appendix-a-context-management-stack.html",
-            "occ": 13
-          },
-          {
-            "file": "book/appendix-a-governance-of-governance-stack.html",
-            "occ": 13
-          },
-          {
-            "file": "book/appendix-a-model-coherence-stack.html",
+            "file": "book/2.5-modeling-structure-and-ownership.html",
             "occ": 14
           },
           {
-            "file": "book/appendix-a-observe-react-stack.html",
+            "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 13
           },
           {
-            "file": "book/appendix-a-provenance-fidelity-stack.html",
-            "occ": 14
-          },
-          {
-            "file": "book/appendix-a-resource-mediation-stack.html",
-            "occ": 13
-          },
-          {
-            "file": "book/appendix-a-specification-verification-stack.html",
-            "occ": 13
-          },
-          {
-            "file": "book/appendix-b-agent-registry.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-brief-linting.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-claude-md-rule-index.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-composed-state-machine-model.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-content-validator.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-control-substrate-dependency.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-coverage-model-mapping.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-drift-parity-gates.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-dynamic-context-injection.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-epic-definition-of-done.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-executable-source-of-truth.html",
-            "occ": 13
-          },
-          {
-            "file": "book/appendix-b-flagship-mechanisms.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-formal-invariant-verification.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-fuzz-campaigns.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-governance-graph.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-lifecycle-hooks.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-meta-model-consumption.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-model-derived-test-obligation-census.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-mutator-stamps.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-operational-playbooks.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-pdf-model.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-remediation-verbs.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-resource-pressure-gating.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-self-governance.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-semantic-lints.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-staged-deploy-gates.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-symbol-anchored-traceability-graph.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-synchronization-model.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-test-serializer.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-b-typed-event-bus.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-c-mechanism-catalog.html",
-            "occ": 45
-          },
-          {
-            "file": "book/appendix-d-brownfield-progress.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-d-daily-review.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-d-engineering-capital.html",
-            "occ": 17
-          },
-          {
-            "file": "book/appendix-d-evidence-quality.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-d-from-drifted-wiki-to-trusted-model.html",
+            "file": "book/2.7-modeling-measurement-and-evidence.html",
             "occ": 15
           },
           {
-            "file": "book/appendix-d-governance-conversion.html",
-            "occ": 12
-          },
-          {
-            "file": "book/appendix-d-human-judgment.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-d-model-health.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-d-operating-doctrine.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-d-operators-dashboard.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-d-release-readiness.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-d-system-health.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 16
-          },
-          {
-            "file": "book/appendix-e-theory.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-evidence-ledger.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-field-guide.html",
-            "occ": 22
-          },
-          {
-            "file": "book/appendix-g-agent-orchestration-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-bill-of-materials-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-component-zone-reference.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-g-control-substrate-dependency-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-coverage-node-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-deployment-topology-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-domain-registries-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-invariant-dag-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-journey-criticality-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-ltl-primer.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-mediator-registry-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-service-flow-reference.html",
-            "occ": 11
-          },
-          {
-            "file": "book/appendix-g-single-writer-registry-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-surfaces-built-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-synchronization-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-task-closure-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-g-user-journey-reference.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-models.html",
-            "occ": 12
-          },
-          {
-            "file": "book/appendix-operators-reference.html",
-            "occ": 13
-          },
-          {
-            "file": "book/appendix-skill-recipe.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-stacks.html",
+            "file": "book/2.8-joining-models-around-a-scenario.html",
             "occ": 26
           },
           {
+            "file": "book/3.1-where-authority-can-act.html",
+            "occ": 16
+          },
+          {
+            "file": "book/3.2-models-and-the-semantic-gap.html",
+            "occ": 15
+          },
+          {
+            "file": "book/3.3-constraints-sensors-validators-gates.html",
+            "occ": 24
+          },
+          {
+            "file": "book/3.4-governance-conversion.html",
+            "occ": 31
+          },
+          {
+            "file": "book/3.5-when-guardrails-collide.html",
+            "occ": 17
+          },
+          {
+            "file": "book/4.1-the-mage-workflow.html",
+            "occ": 27
+          },
+          {
+            "file": "book/4.2-brownfield.html",
+            "occ": 26
+          },
+          {
+            "file": "book/4.3-validating-change.html",
+            "occ": 15
+          },
+          {
+            "file": "book/4.4-operating-mage.html",
+            "occ": 21
+          },
+          {
+            "file": "book/4.5-packaging-the-method-as-skills.html",
+            "occ": 21
+          },
+          {
+            "file": "book/4.6-portable-moves.html",
+            "occ": 14
+          },
+          {
+            "file": "book/5.1-the-problem-and-the-bar.html",
+            "occ": 13
+          },
+          {
+            "file": "book/5.2-the-build.html",
+            "occ": 27
+          },
+          {
+            "file": "book/5.3-the-road-to-mage.html",
+            "occ": 28
+          },
+          {
+            "file": "book/5.4-failures-that-became-infrastructure.html",
+            "occ": 34
+          },
+          {
+            "file": "book/6.1-toward-a-theory-of-mage.html",
+            "occ": 55
+          },
+          {
+            "file": "book/6.2-scope-conditions.html",
+            "occ": 20
+          },
+          {
+            "file": "book/6.3-reorganization-of-se.html",
+            "occ": 60
+          },
+          {
+            "file": "book/6.4-software-rejoins-engineering.html",
+            "occ": 44
+          },
+          {
+            "file": "book/6.5-mage-in-the-wild.html",
+            "occ": 42
+          },
+          {
+            "file": "book/6.6-education-research-open-problems.html",
+            "occ": 62
+          },
+          {
+            "file": "book/6.7-conclusion.html",
+            "occ": 34
+          },
+          {
+            "file": "book/7.1-about-the-author.html",
+            "occ": 14
+          },
+          {
+            "file": "book/7.2-colophon.html",
+            "occ": 30
+          },
+          {
+            "file": "book/appendices-front-door.html",
+            "occ": 23
+          },
+          {
+            "file": "book/appendix-a-context-management-stack.html",
+            "occ": 14
+          },
+          {
+            "file": "book/appendix-a-governance-of-governance-stack.html",
+            "occ": 14
+          },
+          {
+            "file": "book/appendix-a-model-coherence-stack.html",
+            "occ": 15
+          },
+          {
+            "file": "book/appendix-a-observe-react-stack.html",
+            "occ": 14
+          },
+          {
+            "file": "book/appendix-a-provenance-fidelity-stack.html",
+            "occ": 15
+          },
+          {
+            "file": "book/appendix-a-resource-mediation-stack.html",
+            "occ": 14
+          },
+          {
+            "file": "book/appendix-a-specification-verification-stack.html",
+            "occ": 14
+          },
+          {
+            "file": "book/appendix-b-agent-registry.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-brief-linting.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-claude-md-rule-index.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-composed-state-machine-model.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-content-validator.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-control-substrate-dependency.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-coverage-model-mapping.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-drift-parity-gates.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-dynamic-context-injection.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-epic-definition-of-done.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-executable-source-of-truth.html",
+            "occ": 14
+          },
+          {
+            "file": "book/appendix-b-flagship-mechanisms.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-formal-invariant-verification.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-fuzz-campaigns.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-governance-graph.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-lifecycle-hooks.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-meta-model-consumption.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-model-derived-test-obligation-census.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-mutator-stamps.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-operational-playbooks.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-pdf-model.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-remediation-verbs.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-resource-pressure-gating.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-self-governance.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-semantic-lints.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-staged-deploy-gates.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-symbol-anchored-traceability-graph.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-synchronization-model.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-test-serializer.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-b-typed-event-bus.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-c-mechanism-catalog.html",
+            "occ": 46
+          },
+          {
+            "file": "book/appendix-d-brownfield-progress.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-d-daily-review.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-d-engineering-capital.html",
+            "occ": 18
+          },
+          {
+            "file": "book/appendix-d-evidence-quality.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-d-from-drifted-wiki-to-trusted-model.html",
+            "occ": 16
+          },
+          {
+            "file": "book/appendix-d-governance-conversion.html",
+            "occ": 13
+          },
+          {
+            "file": "book/appendix-d-human-judgment.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-d-model-health.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-d-operating-doctrine.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-d-operators-dashboard.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-d-release-readiness.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-d-system-health.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-e-applying-the-recipe.html",
+            "occ": 17
+          },
+          {
+            "file": "book/appendix-e-theory.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-field-guide.html",
+            "occ": 23
+          },
+          {
+            "file": "book/appendix-g-agent-orchestration-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-bill-of-materials-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-component-zone-reference.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-g-control-substrate-dependency-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-coverage-node-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-deployment-topology-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-domain-registries-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-invariant-dag-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-journey-criticality-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-ltl-primer.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-mediator-registry-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-service-flow-reference.html",
+            "occ": 12
+          },
+          {
+            "file": "book/appendix-g-single-writer-registry-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-surfaces-built-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-synchronization-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-task-closure-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-g-user-journey-reference.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-models.html",
+            "occ": 13
+          },
+          {
+            "file": "book/appendix-operators-reference.html",
+            "occ": 14
+          },
+          {
+            "file": "book/appendix-skill-recipe.html",
+            "occ": 11
+          },
+          {
+            "file": "book/appendix-stacks.html",
+            "occ": 27
+          },
+          {
             "file": "book/bibliography.html",
-            "occ": 49
+            "occ": 50
           },
           {
             "file": "book/book-index.html",
-            "occ": 18
+            "occ": 19
           },
           {
             "file": "book/catalogue-figure.html",
@@ -1889,39 +1885,39 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 152
+            "occ": 154
           },
           {
             "file": "book/index.html",
-            "occ": 12
+            "occ": 13
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 12
+            "occ": 13
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 32
+            "occ": 33
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 30
+            "occ": 31
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 20
+            "occ": 21
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 20
+            "occ": 21
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 23
+            "occ": 25
           }
         ],
         "book-pdf": [
@@ -2071,519 +2067,519 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 12
+            "occ": 13
           },
           {
             "file": "book/0.4-preface.html",
-            "occ": 5
+            "occ": 6
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/0.6-acknowledgments.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/1.2-mage-by-example.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/1.3-the-agentic-substrate.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/2.2-from-context-to-control.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/2.3-the-executable-zoo.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/2.4-views-are-projections.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/2.7-modeling-measurement-and-evidence.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/2.8-joining-models-around-a-scenario.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/3.1-where-authority-can-act.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 9
+            "occ": 10
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/4.3-validating-change.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
-            "occ": 4
-          },
-          {
-            "file": "book/4.6-portable-moves.html",
-            "occ": 2
-          },
-          {
-            "file": "book/5.1-the-problem-and-the-bar.html",
-            "occ": 1
-          },
-          {
-            "file": "book/5.2-the-build.html",
-            "occ": 2
-          },
-          {
-            "file": "book/5.3-the-road-to-mage.html",
-            "occ": 1
-          },
-          {
-            "file": "book/5.4-failures-that-became-infrastructure.html",
-            "occ": 2
-          },
-          {
-            "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 15
-          },
-          {
-            "file": "book/6.2-scope-conditions.html",
             "occ": 5
           },
           {
+            "file": "book/4.6-portable-moves.html",
+            "occ": 3
+          },
+          {
+            "file": "book/5.1-the-problem-and-the-bar.html",
+            "occ": 2
+          },
+          {
+            "file": "book/5.2-the-build.html",
+            "occ": 3
+          },
+          {
+            "file": "book/5.3-the-road-to-mage.html",
+            "occ": 3
+          },
+          {
+            "file": "book/5.4-failures-that-became-infrastructure.html",
+            "occ": 13
+          },
+          {
+            "file": "book/6.1-toward-a-theory-of-mage.html",
+            "occ": 16
+          },
+          {
+            "file": "book/6.2-scope-conditions.html",
+            "occ": 6
+          },
+          {
             "file": "book/6.3-reorganization-of-se.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/6.4-software-rejoins-engineering.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/6.5-mage-in-the-wild.html",
-            "occ": 8
+            "occ": 9
           },
           {
             "file": "book/6.6-education-research-open-problems.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/6.7-conclusion.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/7.1-about-the-author.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/7.2-colophon.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendices-front-door.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-a-context-management-stack.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-a-governance-of-governance-stack.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-a-model-coherence-stack.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-a-observe-react-stack.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-a-provenance-fidelity-stack.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-a-resource-mediation-stack.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-a-specification-verification-stack.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-agent-registry.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-brief-linting.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-claude-md-rule-index.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-composed-state-machine-model.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-content-validator.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-control-substrate-dependency.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-coverage-model-mapping.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-drift-parity-gates.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-dynamic-context-injection.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-epic-definition-of-done.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-executable-source-of-truth.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-flagship-mechanisms.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-formal-invariant-verification.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-fuzz-campaigns.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-governance-graph.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-lifecycle-hooks.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-meta-model-consumption.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-model-derived-test-obligation-census.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-mutator-stamps.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-operational-playbooks.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-pdf-model.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-remediation-verbs.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-resource-pressure-gating.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-self-governance.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-semantic-lints.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-staged-deploy-gates.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-symbol-anchored-traceability-graph.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-synchronization-model.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-test-serializer.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-b-typed-event-bus.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-c-mechanism-catalog.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-d-brownfield-progress.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-d-daily-review.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-d-engineering-capital.html",
-            "occ": 8
+            "occ": 9
           },
           {
             "file": "book/appendix-d-evidence-quality.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-d-from-drifted-wiki-to-trusted-model.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-d-governance-conversion.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/appendix-d-human-judgment.html",
-            "occ": 2
-          },
-          {
-            "file": "book/appendix-d-model-health.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-d-operating-doctrine.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-d-operators-dashboard.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-d-release-readiness.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-d-system-health.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-e-theory.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-evidence-ledger.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-field-guide.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-agent-orchestration-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-bill-of-materials-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-component-zone-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-control-substrate-dependency-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-coverage-node-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-deployment-topology-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-domain-registries-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-invariant-dag-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-journey-criticality-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-ltl-primer.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-mediator-registry-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-service-flow-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-single-writer-registry-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-surfaces-built-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-synchronization-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-task-closure-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-g-user-journey-reference.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-models.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-operators-reference.html",
-            "occ": 2
-          },
-          {
-            "file": "book/appendix-skill-recipe.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-stacks.html",
-            "occ": 1
-          },
-          {
-            "file": "book/bibliography.html",
-            "occ": 1
-          },
-          {
-            "file": "book/book-index.html",
-            "occ": 2
-          },
-          {
-            "file": "book/figures.html",
-            "occ": 25
-          },
-          {
-            "file": "book/index.html",
-            "occ": 1
-          },
-          {
-            "file": "book/list-of-figures.html",
-            "occ": 1
-          },
-          {
-            "file": "book/part-1-intro.html",
-            "occ": 1
-          },
-          {
-            "file": "book/part-2-intro.html",
-            "occ": 1
-          },
-          {
-            "file": "book/part-3-intro.html",
-            "occ": 2
-          },
-          {
-            "file": "book/part-4-intro.html",
             "occ": 3
           },
           {
+            "file": "book/appendix-d-model-health.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-d-operating-doctrine.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-d-operators-dashboard.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-d-release-readiness.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-d-system-health.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-e-applying-the-recipe.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-e-theory.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-evidence-ledger.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-field-guide.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-agent-orchestration-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-bill-of-materials-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-component-zone-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-control-substrate-dependency-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-coverage-node-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-deployment-topology-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-domain-registries-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-invariant-dag-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-journey-criticality-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-ltl-primer.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-mediator-registry-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-service-flow-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-single-writer-registry-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-surfaces-built-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-synchronization-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-task-closure-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-g-user-journey-reference.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-models.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-operators-reference.html",
+            "occ": 3
+          },
+          {
+            "file": "book/appendix-skill-recipe.html",
+            "occ": 2
+          },
+          {
+            "file": "book/appendix-stacks.html",
+            "occ": 2
+          },
+          {
+            "file": "book/bibliography.html",
+            "occ": 2
+          },
+          {
+            "file": "book/book-index.html",
+            "occ": 3
+          },
+          {
+            "file": "book/figures.html",
+            "occ": 27
+          },
+          {
+            "file": "book/index.html",
+            "occ": 2
+          },
+          {
+            "file": "book/list-of-figures.html",
+            "occ": 2
+          },
+          {
+            "file": "book/part-1-intro.html",
+            "occ": 2
+          },
+          {
+            "file": "book/part-2-intro.html",
+            "occ": 2
+          },
+          {
+            "file": "book/part-3-intro.html",
+            "occ": 3
+          },
+          {
+            "file": "book/part-4-intro.html",
+            "occ": 4
+          },
+          {
             "file": "book/part-5-intro.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 2
+            "occ": 4
           }
         ],
         "book-pdf": [
@@ -2700,6 +2696,10 @@
             "occ": 6
           },
           {
+            "file": "book/5.4-failures-that-became-infrastructure.html",
+            "occ": 1
+          },
+          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 1
           },
@@ -2735,7 +2735,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 13
+            "occ": 14
           }
         ]
       },
@@ -2939,7 +2939,7 @@
           },
           {
             "file": "book/5.4-failures-that-became-infrastructure.html",
-            "occ": 43
+            "occ": 47
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -5413,7 +5413,7 @@
           },
           {
             "file": "book/5.4-failures-that-became-infrastructure.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
@@ -6102,10 +6102,6 @@
             "occ": 3
           },
           {
-            "file": "book/5.4-failures-that-became-infrastructure.html",
-            "occ": 1
-          },
-          {
             "file": "book/6.1-toward-a-theory-of-mage.html",
             "occ": 4
           },
@@ -6177,7 +6173,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 25
+            "occ": 24
           }
         ]
       },
