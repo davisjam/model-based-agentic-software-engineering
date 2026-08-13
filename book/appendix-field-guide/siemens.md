@@ -1,12 +1,25 @@
 ### Siemens
 
+*Industrial and model-based engineering · persistent models as development surfaces*
+
+#### Verso — Evidence
+
+**What the public record shows.** Siemens supplies the comparison the book needs from outside software-first engineering. Persistent engineering representations carry requirements, behavioral structure, simulation, traceability, and other system semantics; software generation can occur downstream of those representations. Part VI treats Siemens as evidence that the strong end of MAGE's Modeling Thesis is not a novel invention — richer executable representations are already ordinary practice in model-based engineering.[^siemens-part6]
+
+The manuscript summarizes the pattern concretely: SysML and CAD models, simulation, virtual ECUs, and bill-of-materials structures can be artifacts engineers work *through*, with code and verification downstream of the models.[^siemens-recon]
+
+**Boundary of the evidence.** The public material examined here does not establish a generalized admission mechanism — one that rejects an agent-generated change whenever a declared model↔implementation correspondence is violated. That is a boundary of *this source corpus*, not a claim about what Siemens can do. Part VI is careful on this: no public reconstruction establishes that correspondence tier, and source silence does not establish organizational absence.[^siemens-part6]
+
+**Portable lesson.** Software need not be the primary surface of engineering reasoning. Mature engineering disciplines routinely place richer representations upstream of realization.
+
+[^siemens-part6]: Siemens as evidence that richer executable representations are ordinary practice in model-based engineering, and that no public reconstruction establishes a generalized model↔code correspondence gate (source silence is not organizational absence): Siemens Digital Industries Software, "A3E: Autonomous, Agentic Assistance for Engineering," Siemens Digital Industries Software, 2026, https://blogs.sw.siemens.com/.
+[^siemens-recon]: SysML/CAD and simulation models, virtual ECUs, and bill-of-materials structures as artifacts engineers work through, with code and verification downstream — as described in the same source: Siemens Digital Industries Software, "A3E: Autonomous, Agentic Assistance for Engineering," Siemens Digital Industries Software, 2026, https://blogs.sw.siemens.com/.
+
+#### Recto — MAGE interpretation
+
 <!-- label: field-guide-siemens -->
-<!-- figure: assets/field-guide-siemens.svg | *Siemens.* A model-first team: reaches the executable-model tier, stops one rung below the drift gate — the Modeling-Thesis door. -->
+<!-- figure: assets/field-guide-siemens.svg | *Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model↔code admission. -->
 
-**What they are.** An industrial-engineering organization with decades of model-based practice — a digital thread that carries a design across engineering domains. The public record describes a model-first house, not a software-first one.
+**MAGE reading.** Siemens validates the premise behind the strong end of Modeling: engineers can reason through persistent semantic representations and treat implementation as downstream realization. It also disciplines the book's novelty claim. MAGE did not invent model-first engineering. Its contribution is to bring that engineering instinct into agentic software engineering and to connect representation explicitly to the authority surfaces of the governed environment.
 
-**Where they enter.** Through the model. Siemens treats models as the development surface where intent is stated, and lands on the **Modeling Thesis**.
-
-**The MAGE reading.** Siemens is the exception that proves the executable-model frontier is reachable. For decades its engineers state intent as models, and the practice reaches the executable-model tier: behavioral and state models, process and concurrency, scenario models, an explicit invariant registry, and bidirectional traceability — the five rungs exactly one external case in the corpus reaches. Its digital thread synchronizes and propagates across domains. And it stops one rung short. The sources do not describe a generalized deterministic gate that *blocks* model↔code divergence over agent edits. That single rung — a gate that refuses the edit until model and code agree — is the one the model-first company does not reach, and it is exactly MAGE's most distinctive move. 6.7 does not inflate the cell to close the gap: "the gap is the point."
-
-**What you take away.** The strong end of the modeling ladder is already normal in model-based engineering; the rung left is the gate that refuses the edit until model and code agree.
+**Interpretive boundary.** Do not read the absent correspondence gate as a capability Siemens lacks. The public sources examined here do not establish it — a statement about where source evidence concentrates, not about what Siemens can do.

@@ -1,12 +1,26 @@
 ### Spotify
 
+*Audio streaming · fleet-scale autonomous migration*
+
+#### Verso — Evidence
+
+**What the public record shows.** Spotify's Honk system moves large-scale code migration from distributed manual implementation toward centrally scoped, fleet-executed work. A migration that could previously involve hundreds of teams over weeks can instead be scoped by one engineer over a few days; tooling identifies and schedules targets, agents execute changes concurrently, and the engineer supervises the fleet and handles exceptions.[^sp-honk]
+
+Spotify's surrounding engineering estate also matters. The book records its System Model and Backstage catalog as carrying service identities, ownership, dependencies, endpoints, and lineage, giving fleet tooling a representation of the estate through which migrations can be targeted rather than requiring each agent to rediscover the repository landscape.[^sp-estate]
+
+**Boundary of the evidence.** Reported activity increases — including the manuscript's 76% PR-frequency figure — are evidence of implementation activity, not by themselves evidence of durable throughput.[^sp-prfreq] Keep that number only with its source immediately attached and do not let it carry the argument. Part VI itself correctly distinguishes raw activity from durable progress. The stronger receipt is the changed allocation of human and agent work: judgment moves upstream to scoping and supervision.
+
+**Portable lesson.** Fleet-scale autonomy moves scarce human judgment toward scoping, targeting, supervision, and exception handling.
+
+[^sp-honk]: Max Charas and Marc Bruggmann, "Honk: Autonomous Code Migration at Spotify," Spotify Engineering, 2026. Already in the manuscript bibliography.
+[^sp-estate]: Spotify System Model and Backstage service catalog, as recorded in the Part VI reconstruction (service identities, ownership, dependencies, endpoints, lineage).
+[^sp-prfreq]: 76% PR-frequency figure as reported in the Honk account; cited here strictly as an activity measure, not as evidence of durable throughput.
+
+#### Recto — MAGE interpretation
+
 <!-- label: field-guide-spotify -->
-<!-- figure: assets/field-guide-spotify.svg | *Spotify.* A fleet-first team: human judgment moves upstream — one engineer scopes a migration a fleet then executes — the Governed-Environment door. -->
+<!-- figure: assets/field-guide-spotify.svg | *Spotify projected onto MAGE.* Persistent estate representation feeds targeting, concurrent execution, and fleet-level supervision; the reading is judgment moving upstream, not the PR count. -->
 
-**What they are.** An audio-streaming platform. Public reports describe a fleet-scale autonomous-migration program running across many teams.
+**MAGE reading.** Spotify is useful precisely because it does not fit one "door." Representation and governance compose. A model of the service estate helps determine where work belongs; verification and admission machinery determine whether generated changes can proceed; fleet execution makes one engineer's upstream decisions consequential across many repositories. This is the Professional Thesis made operational: implementation scales faster than human judgment, so the engineering environment has to amplify the latter.
 
-**Where they enter.** Through the fleet. Spotify invests in fleet-scale verification and coordination, and lands on the **Governed Engineering Environment**.
-
-**The MAGE reading.** A fleet-wide migration that once drew in hundreds of teams over weeks is now scoped by one engineer over a few days. The tooling targets and schedules the work, the agents implement it concurrently, and the engineer watches the fleet and handles the exceptions. Human judgment moves upstream: the engineer stops typing each change and starts deciding what, where, when, and whether. As coding velocity rises the constraint rises with it. Spotify reports a **76% jump in PR frequency**, which forces the question of where a human review still earns its cost. A pre-agent automerger already crosses the automatic-admission frontier, and agent work is wrapped in verifiers.
-
-**What you take away.** Automate implementation and the scarce resource becomes the human decision — what, where, when, and whether — placed where the environment can amplify it.
+**Interpretive boundary.** Do not infer that every Spotify migration is model-driven or automatically admitted. State only the mechanisms the public account establishes.

@@ -1,12 +1,24 @@
 ### Cloudflare
 
+*Internet infrastructure · policy-first governance at organizational scale*
+
+#### Verso — Evidence
+
+**What the public record shows.** Cloudflare describes an engineering-standards system in which requirements originating in RFCs are extracted into structured, machine-readable form. Requirements that can be checked mechanically can become custom checks; obligations requiring semantic judgment remain review questions. This separates the authority to establish policy from the machinery that applies it repeatedly.[^cf-reimann]
+
+The important engineering move is not "AI reviews code." It is policy becoming an artifact that later work can inherit. A requirement can move from prose into a machine-checkable mechanism and then act across many subsequent changes. Part VI accordingly treats Cloudflare as the cleanest policy-first example: institutional knowledge is externalized, mechanically checkable obligations move into custom checks, and humans retain policy authority.
+
+**Boundary of the evidence.** The public account is much stronger on representation and enforcement of obligations than on explicit executable models of the software being governed. Nor does it provide the longitudinal recurrence evidence needed to establish the complete MAGE governance-conversion loop. We can observe policy → representation → mechanism; we should not manufacture failure → diagnosis → environmental adaptation from source silence.
+
+**Portable lesson.** A policy decision gains multiplicative reach when the environment can apply it without requiring another person to reconstruct it.
+
+[^cf-reimann]: Timo Reimann, "How Cloudflare Enforces Engineering Standards Using AI," Cloudflare, Aug. 4, 2026. Already in the manuscript bibliography.
+
+#### Recto — MAGE interpretation
+
 <!-- label: field-guide-cloudflare -->
-<!-- figure: assets/field-guide-cloudflare.svg | *Cloudflare.* A policy-first team: one machine-checkable policy, authored once, acts on thousands of later changes — the Alignment-Thesis door. -->
+<!-- figure: assets/field-guide-cloudflare.svg | *Cloudflare projected onto MAGE.* Public evidence strongly supports structured policy, machine-checkable enforcement, and organizational-scale reuse; the governance-conversion loop stays interpretive. -->
 
-**What they are.** An internet-infrastructure company — CDN, edge, and security at global scale. Public reports describe an internal agentic stack that reaches hundreds of teams over one shared substrate.
+**MAGE reading.** Cloudflare is strong evidence for the Alignment side of MAGE, but it also contains a modest Modeling move: obligations that once lived in RFC prose acquire structured identities that machinery can consume. The important transition is from institutional judgment to durable authority. One decision can then govern many later changes. The public record supports that policy-to-mechanism path; it does not establish the full recurrence-closing loop by which repeated failures are diagnosed and converted into new environmental structure.
 
-**Where they enter.** Through policy. Cloudflare invests in policy bound into mechanisms rather than left in prose, and lands on the **Alignment Thesis**: authority is allocated at the sanctioned tool seam, not in the prompt.
-
-**The MAGE reading.** Cloudflare makes institutional policy machine-checkable and enforces it at review time. A requirement that once lived in a semantic review migrates into a custom linter; a policy travels an `approved → enforced` lifecycle, and one policy then governs thousands of changes. When an RFC changes, the obligations re-extract. This is the density the census names for Cloudflare — policy-to-mechanism, authored once and applied at fleet scale. 6.7 keeps the honest limit: the source shows the front half of governance conversion, classify-and-enforce, but not a recurrence-closing loop, so its "change the system" and "failure to improvement" cells read partial.
-
-**What you take away.** One machine-checkable policy, authored once, governs thousands of later changes.
+**Interpretive boundary.** This is evidence of policy externalization and mechanized authority, not evidence that Cloudflare maintains a rich executable model of the governed software.

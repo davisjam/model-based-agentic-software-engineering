@@ -1,7 +1,25 @@
-**Six teams, six one-page cards**
+**Six organizations, six evidentiary reconstructions**
 
-Six industry organizations recur through this book. Section 6.7 sets them side by side and reads the pattern across all six at once. Part IV borrows one team at a time to illustrate a single idea. This appendix does the third job. It gives each team its own card, so you can answer *"who was that team again?"* without hunting for the passage that named it.
+Part VI asks whether engineering structures induced from the DocAble case recur in systems developed independently under different technical and organizational pressures. This appendix carries the evidence behind that comparison.
 
-Read a card as a deck entry, not a case study. Each follows the same beats: **what they are** (domain and scale, from public record), **where they enter** (the door the team took into the design space), **the MAGE reading** (what the team makes explicit and where it stops, traced to Section 6.7), and **what you take away** (the one portable lesson). The illustration carries the same shape — a door on the left, the team's move in the middle, its MAGE landing on the right — so the six read as one deck.
+These are reconstructions, not additional case studies. Public accounts reveal selected mechanisms and design decisions, not the engineering history available in the originating case. They can show that a comparable structure exists, reveal another way to realize it, or expose a boundary that MAGE must respect. They cannot establish causation, and silence in a public source does not establish that an organization lacks a capability (see §6.1.6 and §6.3). That is already the evidentiary posture of Part VI.
 
-The cards keep the book's caveats. Where a team reaches part of a frontier and no further — Cloudflare's half-closed loop, Docker's short evidence horizon, Siemens's missing drift gate — the card says so. These are real teams at a real frontier, not finished proofs, and the honesty is what makes them worth studying.
+Each organization therefore gets a two-page spread. The verso stays close to the public record: what the organization says it built, the evidence available for that account, and the boundary of what those sources establish. The recto is the MAGE reconstruction: the same evidence projected onto the book's common vocabulary of Modeling, Alignment, the Governed Engineering Environment, governance conversion, and engineering capital.
+
+Read the diagrams as mappings, not ratings. A strongly marked relation is directly supported by the cited account. A partial relation is our interpretation of what the observed structure may imply. An unmarked part of MAGE means only that the source does not establish it. No card claims that an organization implements MAGE as a whole.
+
+The point is comparison without flattening. Cloudflare begins from institutional policy; Spotify from fleet-scale change; Shopify from organizational knowledge; Docker from delegated runtime authority; Siemens from model-first engineering; Zenseact from distributed autonomous work. The six systems differ. What matters is which engineering moves survive the difference.
+
+### How to read the recto diagrams
+
+Every recto uses one geometry — a simplified projection of Figure 0.1-1 running from engineering pressure through Modeling, Alignment, the Governed Engineering Environment, and engineering capital, with the governance-conversion loop returning a recurring lesson to durable structure. What changes from organization to organization is only the overlay marking which relations the public evidence supports.
+
+The overlay uses exactly three epistemic states:
+
+| Mark | Meaning |
+|------|---------|
+| ████ solid | directly supported by the public account |
+| - - - dashed | MAGE interpretation / partial support |
+| ░░░░ pale | part of MAGE, but not established by this source |
+
+**A pale node means "not established by the public evidence," not "the organization lacks this capability."** Part VI draws exactly this distinction, including in its modeling-ceiling figure. The diagrams are not audits against a MAGE checklist and not a maturity ordering; these are independently evolved systems, read for the moves they share.

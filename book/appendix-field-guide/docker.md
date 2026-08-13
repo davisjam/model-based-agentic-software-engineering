@@ -1,12 +1,24 @@
 ### Docker
 
+*Developer tooling · delegated autonomy with explicit authority boundaries*
+
+#### Verso — Evidence
+
+**What the public record shows.** Docker's system separates delegated roles, tool permissions, implementation, and evaluation. The reconstruction identifies **seven permission-backed roles** and an **independent reviewer using a separate model invocation**, while **deterministic tests** supply repeatable evidence. Final admission remains human: the system deliberately does not mechanize every consequential judgment.[^docker-record]
+
+That makes Docker particularly valuable, because it resists the crude reading of MAGE as "automate every gate." A human admission boundary may be exactly right where a decision stays semantic or consequential.
+
+**Boundary of the evidence.** The public account has the shortest evidentiary horizon of the six. Do not use it as evidence of longitudinal governance conversion or engineering-capital returns. Its value is architectural: it demonstrates bounded authority, separation of generation from evaluation, deterministic evidence where appropriate, and deliberately retained human judgment.
+
+**Portable lesson.** Mechanize what is adequately decidable; retaining human authority over the residue can be an engineered boundary rather than unfinished automation.
+
+[^docker-record]: The permission-backed role graph, the independent reviewer on a separate model invocation, the deterministic tests, and the retained human final admission are from Docker's public account: Manuel de la Peña, "A Virtual Agent Team at Docker," Docker, 2026, https://www.docker.com/blog/.
+
+#### Recto — MAGE interpretation
+
 <!-- label: field-guide-docker -->
-<!-- figure: assets/field-guide-docker.svg | *Docker.* An authority-boundary team: determinize the decidable, keep a human on the admission gate you choose to leave open — the Governance-Conversion door. -->
+<!-- figure: assets/field-guide-docker.svg | *Docker projected onto MAGE.* Strong direct Alignment with deliberately residual human authority; the unhighlighted Modeling and conversion regions mark source-silence, not absence. -->
 
-**What they are.** A developer-tooling company built around containers. Public reports describe an autonomous coding fleet governed by a permission-backed role graph.
+**MAGE reading.** Docker is the cleanest demonstration of the direct/local Alignment path in the theory. Strong authority does not require rich explicit system models. Permissions can bound action, tests can produce repeatable evidence, and an independent reviewer can separate generation from evaluation. Where the remaining admission decision is judgment-laden, Docker keeps a person in authority. That is not failed Alignment. It is the "judgment required" branch of the book's honest-gaps argument.
 
-**Where they enter.** Through authority boundaries and evaluation loops. Docker invests in runtime authority — who may do what — and lands on **Governance Conversion**.
-
-**The MAGE reading.** **Seven permission-backed roles** govern a delegation graph, and an independent reviewer with its own model invocation separates generation from evaluation. Docker determinizes its tests eagerly, then declines to determinize *admission*: that gate stays deliberately probabilistic, with a human on every merge. 6.7 reads Docker as the instructive counter-case — a boundary the determinization argument has to respect, not a refutation of it. Its evidence horizon is the shortest in the set, and it engineers context less than the others, so its "engineer context" cell reads partial. The lesson holds anyway: some judgment is worth keeping human on purpose.
-
-**What you take away.** Determinize the decidable eagerly; keep a human on the judgment you deliberately choose not to close.
+**Interpretive boundary.** The available evidence does not warrant reading Docker as an instance of governance conversion. The unhighlighted Modeling and conversion regions of the figure mark source-silence, not organizational absence.
