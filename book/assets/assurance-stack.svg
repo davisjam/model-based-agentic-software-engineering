@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- R56-A figure round — assurance-stack.svg, shared vocabulary per R56-FIGURE-MANIFEST. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600" width="820" height="600"
+     role="img" aria-labelledby="asTitle asDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="asTitle">The Assurance stack: a spec becomes a census of obligations, each discharged by
+    appropriate evidence, joined back into coverage</title>
+  <desc id="asDesc">A solid load-bearing spine runs top to bottom. SPEC states the obligations. CENSUS
+    establishes what population must be discharged. The discharge move fans into three lanes — TEST for
+    examples, LINT for structure, PROVE for semantics — applied as appropriate to each obligation. The three
+    converge into COVERAGE, which joins every obligation back to its evidence so omissions become visible.
+    Every rung is load-bearing; there is no dashed enhancement in this stack. Discharge each obligation at
+    the semantic level where the property becomes legible — a placement rule folded into prose, not a node.</desc>
+
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- SPEC -->
+  <rect x="315" y="28" width="190" height="62" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="410" y="56" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">SPEC</text>
+  <text x="410" y="78" text-anchor="middle" font-size="13" fill="#57534e">state the obligations</text>
+
+  <line x1="410" y1="90" x2="410" y2="132" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+
+  <!-- CENSUS -->
+  <rect x="305" y="134" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="410" y="164" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">CENSUS</text>
+  <text x="410" y="186" text-anchor="middle" font-size="13" fill="#57534e">what must be discharged?</text>
+
+  <!-- fan to three discharge lanes -->
+  <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
+    <path d="M410,200 C300,232 220,236 200,256"/>
+    <line x1="410" y1="200" x2="410" y2="256"/>
+    <path d="M410,200 C520,232 600,236 620,256"/>
+  </g>
+  <rect x="252" y="216" width="316" height="18" fill="#fdfcf9"/>
+  <text x="410" y="228" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">discharge with evidence appropriate to the property</text>
+
+  <!-- TEST / LINT / PROVE -->
+  <rect x="120" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="200" y="288" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">TEST</text>
+  <text x="200" y="310" text-anchor="middle" font-size="13" fill="#57534e">examples</text>
+
+  <rect x="330" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="410" y="288" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">LINT</text>
+  <text x="410" y="310" text-anchor="middle" font-size="13" fill="#57534e">structure</text>
+
+  <rect x="540" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="620" y="288" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">PROVE</text>
+  <text x="620" y="310" text-anchor="middle" font-size="13" fill="#57534e">semantics</text>
+
+  <!-- converge to COVERAGE -->
+  <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
+    <path d="M200,328 C200,368 320,376 360,392"/>
+    <line x1="410" y1="328" x2="410" y2="392"/>
+    <path d="M620,328 C620,368 500,376 460,392"/>
+  </g>
+
+  <!-- COVERAGE (green) -->
+  <rect x="300" y="394" width="220" height="70" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="410" y="424" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">COVERAGE</text>
+  <text x="410" y="446" text-anchor="middle" font-size="13" fill="#57534e">obligation &#8594; evidence</text>
+
+  <!-- legend (all-solid note) -->
+  <line x1="90" y1="504" x2="134" y2="504" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <text x="142" y="509" font-size="13" fill="#57534e">load-bearing (required)</text>
+  <text x="90" y="532" font-size="13" font-style="italic" fill="#57534e">no dashed rung &#8212; every step required</text>
+
+  <!-- caption -->
+  <text x="410" y="572" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. Discharge an obligation at the level where the property becomes legible.</text>
+</svg>

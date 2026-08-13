@@ -1,15 +1,80 @@
 {
   "_note": "Concept model — the SSOT for the book's core concepts and their site realization. Keyed by the SAME slug as the `- concept:` registry in index-terms.md (the join key). `book_home` is NOT stored here — it is DERIVED at check time from the index-def tags via build_book._harvest_concept_tags, so it cannot drift. `name` is likewise DERIVED from the registry, never stored. This file holds ONLY what the registry cannot: the concept's kind, its SITE realization, and its status. A slug here SHOULD be registered in index-terms.md; a slug that is not (or that has no index-def in prose) is a FINDING the four audit-only lints (L1-L4 in tests/html.py) report — the seeding is SUPPOSED to surface gaps, which become the Phase-2 drain worklist. `kind` in {thesis, axis, family, mechanism-class, caveat, core-construct}; `status` in {both, book-only, site-only, book-expands-site-missing, planned}. `core-construct` marks the six foundational constructs the `_hierarchy` block orders (the CORE-CONCEPTS pass, directive 260802); a core-construct has no landing card by design (site_home N/A), so L2/L3 skip it and L1 alone holds its book home. Queryable via `catalog.py concepts`.",
-
   "_hierarchy": {
     "_note": "The book's CONCEPT HIERARCHY — the SSOT for how the core constructs fit together (the capstone of the CORE-CONCEPTS pass, directive 260802). Six levels, premise to repertoire; each names the construct slugs (records below / registry entries) it is made of and the argument-spine claim ids (book-models/argument-spine.json) it reconciles with. The spine and this hierarchy are the SAME object at two grains: the spine is the book's linear ARGUMENT (14 ordered claims, front to back); this is its conceptual CONTAINMENT (what kind of thing each construct is, and which relations join them). Orders therefore differ — the spine argues govern-the-environment (spine order 6) before the theses; the hierarchy places the governed engineering environment AFTER the method that produces it — and that is a difference of grain, not a contradiction. The two theses are the RELATIONS among the constructs, not constructs themselves. Cross-refs are held by the audit-only L5 check (check_concepts_hierarchy in tests/html.py): every construct slug resolves to a record here, every spine id to a spine claim.",
     "levels": [
-      {"level": "premise", "order": 1, "statement": "Implementation is abundant; judgment remains scarce.", "constructs": [], "spine_claims": ["abundant-implementation", "fault-lies-in-instructions", "oversight-does-not-scale"]},
-      {"level": "failure-mode", "order": 2, "statement": "Ungoverned, the abundance decays into churn — effort spent rediscovering, undoing, repairing, and reconciling rather than advancing.", "constructs": ["churn"], "spine_claims": ["churn-is-the-limit", "three-not-knowings-cause-churn"]},
-      {"level": "theses", "order": 3, "statement": "Two theses divide churn's causes: the Modeling Thesis treats what-to-build and how-to-realize; the Alignment Thesis treats how-to-change-safely.", "constructs": [], "relations": ["thesis-modeling", "thesis-alignment"], "spine_claims": ["modeling-thesis", "alignment-thesis", "theses-treat-the-causes"]},
-      {"level": "method", "order": 4, "statement": "The governance-conversion loop: velocity surfaces a failure; judgment converts each recurrence into a mechanism the environment enforces.", "constructs": ["governance-conversion"], "spine_claims": ["failures-become-machinery"]},
-      {"level": "resulting-system", "order": 5, "statement": "The conversions accumulate into the governed engineering environment — quality as a property of the ground the agents stand on.", "constructs": ["governed-environment"], "spine_claims": ["govern-the-environment", "sync-cost-reduced", "mage-becomes-practical"]},
-      {"level": "construction-repertoire", "order": 6, "statement": "The catalogue is the construction repertoire the environment is built from: models, mechanisms, compositions, and known uses.", "constructs": [], "spine_claims": ["seat-moves", "grounded-in-one-case"]}
+      {
+        "level": "premise",
+        "order": 1,
+        "statement": "Implementation is abundant; judgment remains scarce.",
+        "constructs": [],
+        "spine_claims": [
+          "abundant-implementation",
+          "fault-lies-in-instructions",
+          "oversight-does-not-scale"
+        ]
+      },
+      {
+        "level": "failure-mode",
+        "order": 2,
+        "statement": "Ungoverned, the abundance decays into churn — effort spent rediscovering, undoing, repairing, and reconciling rather than advancing.",
+        "constructs": [
+          "churn"
+        ],
+        "spine_claims": [
+          "churn-is-the-limit",
+          "three-not-knowings-cause-churn"
+        ]
+      },
+      {
+        "level": "theses",
+        "order": 3,
+        "statement": "Two theses divide churn's causes: the Modeling Thesis treats what-to-build and how-to-realize; the Alignment Thesis treats how-to-change-safely.",
+        "constructs": [],
+        "relations": [
+          "thesis-modeling",
+          "thesis-alignment"
+        ],
+        "spine_claims": [
+          "modeling-thesis",
+          "alignment-thesis",
+          "theses-treat-the-causes"
+        ]
+      },
+      {
+        "level": "method",
+        "order": 4,
+        "statement": "The governance-conversion loop: velocity surfaces a failure; judgment converts each recurrence into a mechanism the environment enforces.",
+        "constructs": [
+          "governance-conversion"
+        ],
+        "spine_claims": [
+          "failures-become-machinery"
+        ]
+      },
+      {
+        "level": "resulting-system",
+        "order": 5,
+        "statement": "The conversions accumulate into the governed engineering environment — quality as a property of the ground the agents stand on.",
+        "constructs": [
+          "governed-environment"
+        ],
+        "spine_claims": [
+          "govern-the-environment",
+          "sync-cost-reduced",
+          "mage-becomes-practical"
+        ]
+      },
+      {
+        "level": "construction-repertoire",
+        "order": 6,
+        "statement": "The catalogue is the construction repertoire the environment is built from: models, mechanisms, compositions, and known uses.",
+        "constructs": [],
+        "spine_claims": [
+          "seat-moves",
+          "grounded-in-one-case"
+        ]
+      }
     ],
     "core_constructs": {
       "_note": "The six foundational constructs (say 'core construct' / 'core concept', never 'primitive' — 'primitive' is RESERVED for implementation-level code operations, the dense-primitive-region sense). The construct is the governance-conversion loop; its registered concept slug is `governance-conversion` (renamed 260804 from the earlier `failure-to-mechanism` so the slug matches the display name the prose uses).",
@@ -21,41 +86,213 @@
       "governed-environment": "The governed engineering environment: the resulting system — the accumulated mechanisms the fleet works inside. Defined in 2.3."
     },
     "relations": [
-      {"thesis": "thesis-modeling", "joins": ["model", "engineered-agent-loop"], "statement": "The Modeling Thesis relates the model to the loop's first lever: the environment supplies a MODELED state, compact enough to reason through, analyzable enough to specify and predict with."},
-      {"thesis": "thesis-alignment", "joins": ["governance-mechanism", "engineered-agent-loop"], "statement": "The Alignment Thesis relates governance mechanisms to the loop's other three levers: the action surface constrained, progress measured against an explicit criterion, and the result admitted only when it passes."}
+      {
+        "thesis": "thesis-modeling",
+        "joins": [
+          "model",
+          "engineered-agent-loop"
+        ],
+        "statement": "The Modeling Thesis relates the model to the loop's first lever: the environment supplies a MODELED state, compact enough to reason through, analyzable enough to specify and predict with."
+      },
+      {
+        "thesis": "thesis-alignment",
+        "joins": [
+          "governance-mechanism",
+          "engineered-agent-loop"
+        ],
+        "statement": "The Alignment Thesis relates governance mechanisms to the loop's other three levers: the action surface constrained, progress measured against an explicit criterion, and the result admitted only when it passes."
+      }
     ],
     "substrate_derivation": {
       "_note": "The technology derivation (directive 260802 Task 6): MAGE as true engineering of a NEW MATERIAL — foundation models + agentic harnesses — whose properties imply the method. Eight substrate properties (grouped foundation-model / harness), seven derived engineering consequences, and the derivation of the two theses + the governed engineering environment from them. This block supplies the WHY under the hierarchy's theses level: the theses the levels above STATE, this derivation SHOWS follow from the machine. Book home: Part 1's 'Why MAGE Follows from the Machine' chapter (1.4-why-mage-follows-from-the-machine); the property table there is this block projected to prose. Held by the audit-only L5 check (check_concepts_hierarchy): property ids unique + groups closed; every consequence `from` id resolves to a property; every derivation `target`/`combines` slug resolves to a concept record; every `spine_claims` id resolves to book-models/argument-spine.json.",
       "properties": [
-        {"id": "broad-semantic-reasoning", "group": "foundation-model", "statement": "Broad semantic reasoning: the model interprets, synthesizes, searches, and builds across open-ended domains."},
-        {"id": "probabilistic-execution", "group": "foundation-model", "statement": "Probabilistic execution: the same input does not yield the same behavior, and confidence is not evidence."},
-        {"id": "bounded-reconstructed-context", "group": "foundation-model", "statement": "Bounded, reconstructed working state: no complete durable understanding of the system persists from task to task."},
-        {"id": "cheap-repeated-cognition", "group": "foundation-model", "statement": "Cheap repeated cognition and implementation: search, generation, repair, and reconciliation at formerly prohibitive scale."},
-        {"id": "tool-mediated-action", "group": "harness", "statement": "Tool-mediated action: the agent acts on the world only through identifiable interfaces."},
-        {"id": "interposition", "group": "harness", "statement": "Interposition: hooks and wrappers can inspect, constrain, redirect, or deny an action at the interface it crosses."},
-        {"id": "lifecycle-visibility", "group": "harness", "statement": "Lifecycle visibility: dispatch, tool calls, compaction, completion, merge, and deploy are machine-observable events."},
-        {"id": "parallel-execution", "group": "harness", "statement": "Parallel execution: many independent reasoning loops run at once."}
+        {
+          "id": "broad-semantic-reasoning",
+          "group": "foundation-model",
+          "statement": "Broad semantic reasoning: the model interprets, synthesizes, searches, and builds across open-ended domains."
+        },
+        {
+          "id": "probabilistic-execution",
+          "group": "foundation-model",
+          "statement": "Probabilistic execution: the same input does not yield the same behavior, and confidence is not evidence."
+        },
+        {
+          "id": "bounded-reconstructed-context",
+          "group": "foundation-model",
+          "statement": "Bounded, reconstructed working state: no complete durable understanding of the system persists from task to task."
+        },
+        {
+          "id": "cheap-repeated-cognition",
+          "group": "foundation-model",
+          "statement": "Cheap repeated cognition and implementation: search, generation, repair, and reconciliation at formerly prohibitive scale."
+        },
+        {
+          "id": "tool-mediated-action",
+          "group": "harness",
+          "statement": "Tool-mediated action: the agent acts on the world only through identifiable interfaces."
+        },
+        {
+          "id": "interposition",
+          "group": "harness",
+          "statement": "Interposition: hooks and wrappers can inspect, constrain, redirect, or deny an action at the interface it crosses."
+        },
+        {
+          "id": "lifecycle-visibility",
+          "group": "harness",
+          "statement": "Lifecycle visibility: dispatch, tool calls, compaction, completion, merge, and deploy are machine-observable events."
+        },
+        {
+          "id": "parallel-execution",
+          "group": "harness",
+          "statement": "Parallel execution: many independent reasoning loops run at once."
+        }
       ],
       "consequences": [
-        {"id": "agents-use-models", "from": ["broad-semantic-reasoning"], "spine_claims": ["modeling-thesis"], "statement": "Broad reasoning lets agents work from models, not rigid scripts."},
-        {"id": "models-compact-structured", "from": ["bounded-reconstructed-context"], "spine_claims": ["modeling-thesis"], "statement": "Bounded context forces the models to be compact and structured."},
-        {"id": "deterministic-envelopes", "from": ["probabilistic-execution"], "spine_claims": ["alignment-thesis"], "statement": "Probabilistic behavior means action and admission need deterministic envelopes."},
-        {"id": "enforced-at-authority-boundaries", "from": ["tool-mediated-action", "interposition"], "spine_claims": ["alignment-thesis"], "statement": "Tool mediation lets the envelopes be enforced at real authority boundaries."},
-        {"id": "continuous-maintenance", "from": ["cheap-repeated-cognition"], "spine_claims": ["sync-cost-reduced"], "statement": "Cheap labor makes models, tests, projections, and drift checks continuously maintainable."},
-        {"id": "oversight-saturates", "from": ["parallel-execution"], "spine_claims": ["oversight-does-not-scale"], "statement": "Parallel velocity saturates human per-change oversight."},
-        {"id": "policy-in-environment", "from": ["bounded-reconstructed-context", "parallel-execution", "lifecycle-visibility"], "spine_claims": ["govern-the-environment"], "statement": "Cold task starts and machine-scale throughput put policy in the environment — not in remembered training or managerial expectation."},
-        {"id": "locally-plausible-failure", "from": ["broad-semantic-reasoning", "probabilistic-execution", "bounded-reconstructed-context"], "spine_claims": ["alignment-thesis"], "statement": "The properties compose into a hazard: a change can look right while violating a global property the agent never saw — met with invariants, composed models, and end-to-end preservation checks."}
+        {
+          "id": "agents-use-models",
+          "from": [
+            "broad-semantic-reasoning"
+          ],
+          "spine_claims": [
+            "modeling-thesis"
+          ],
+          "statement": "Broad reasoning lets agents work from models, not rigid scripts."
+        },
+        {
+          "id": "models-compact-structured",
+          "from": [
+            "bounded-reconstructed-context"
+          ],
+          "spine_claims": [
+            "modeling-thesis"
+          ],
+          "statement": "Bounded context forces the models to be compact and structured."
+        },
+        {
+          "id": "deterministic-envelopes",
+          "from": [
+            "probabilistic-execution"
+          ],
+          "spine_claims": [
+            "alignment-thesis"
+          ],
+          "statement": "Probabilistic behavior means action and admission need deterministic envelopes."
+        },
+        {
+          "id": "enforced-at-authority-boundaries",
+          "from": [
+            "tool-mediated-action",
+            "interposition"
+          ],
+          "spine_claims": [
+            "alignment-thesis"
+          ],
+          "statement": "Tool mediation lets the envelopes be enforced at real authority boundaries."
+        },
+        {
+          "id": "continuous-maintenance",
+          "from": [
+            "cheap-repeated-cognition"
+          ],
+          "spine_claims": [
+            "sync-cost-reduced"
+          ],
+          "statement": "Cheap labor makes models, tests, projections, and drift checks continuously maintainable."
+        },
+        {
+          "id": "oversight-saturates",
+          "from": [
+            "parallel-execution"
+          ],
+          "spine_claims": [
+            "oversight-does-not-scale"
+          ],
+          "statement": "Parallel velocity saturates human per-change oversight."
+        },
+        {
+          "id": "policy-in-environment",
+          "from": [
+            "bounded-reconstructed-context",
+            "parallel-execution",
+            "lifecycle-visibility"
+          ],
+          "spine_claims": [
+            "govern-the-environment"
+          ],
+          "statement": "Cold task starts and machine-scale throughput put policy in the environment — not in remembered training or managerial expectation."
+        },
+        {
+          "id": "locally-plausible-failure",
+          "from": [
+            "broad-semantic-reasoning",
+            "probabilistic-execution",
+            "bounded-reconstructed-context"
+          ],
+          "spine_claims": [
+            "alignment-thesis"
+          ],
+          "statement": "The properties compose into a hazard: a change can look right while violating a global property the agent never saw — met with invariants, composed models, and end-to-end preservation checks."
+        }
       ],
       "derives": [
-        {"target": "thesis-modeling", "from_properties": ["broad-semantic-reasoning", "bounded-reconstructed-context", "cheap-repeated-cognition"], "spine_claims": ["modeling-thesis"], "statement": "The Modeling Thesis follows primarily from broad reasoning, bounded context, and cheap reconciliation."},
-        {"target": "thesis-alignment", "from_properties": ["probabilistic-execution", "tool-mediated-action", "parallel-execution"], "spine_claims": ["alignment-thesis"], "statement": "The Alignment Thesis follows from probabilistic behavior, tool-mediated action, and machine-scale throughput."},
-        {"target": "governed-environment", "from_properties": [], "combines": ["thesis-modeling", "thesis-alignment"], "spine_claims": ["govern-the-environment"], "statement": "The governed engineering environment is what the combination of the two derivations requires."}
+        {
+          "target": "thesis-modeling",
+          "from_properties": [
+            "broad-semantic-reasoning",
+            "bounded-reconstructed-context",
+            "cheap-repeated-cognition"
+          ],
+          "spine_claims": [
+            "modeling-thesis"
+          ],
+          "statement": "The Modeling Thesis follows primarily from broad reasoning, bounded context, and cheap reconciliation."
+        },
+        {
+          "target": "thesis-alignment",
+          "from_properties": [
+            "probabilistic-execution",
+            "tool-mediated-action",
+            "parallel-execution"
+          ],
+          "spine_claims": [
+            "alignment-thesis"
+          ],
+          "statement": "The Alignment Thesis follows from probabilistic behavior, tool-mediated action, and machine-scale throughput."
+        },
+        {
+          "target": "governed-environment",
+          "from_properties": [],
+          "combines": [
+            "thesis-modeling",
+            "thesis-alignment"
+          ],
+          "spine_claims": [
+            "govern-the-environment"
+          ],
+          "statement": "The governed engineering environment is what the combination of the two derivations requires."
+        }
       ]
     }
   },
-
-  "_site_only_cards": ["card-quick-start", "card-references", "card-abstractions-glossary", "card-starter-claude-md", "card-agent-brief-template", "card-design-doc-template", "card-epic-template", "card-op-playbook-template", "card-governance-lint-example", "card-ways-note", "card-governed-environment-figure", "card-views-of-the-governance-catalogue", "card-skill-self-communicate", "card-skill-self-governance", "card-skill-self-operations", "card-skills-loop", "card-both-halves"],
-
+  "_site_only_cards": [
+    "card-quick-start",
+    "card-references",
+    "card-abstractions-glossary",
+    "card-starter-claude-md",
+    "card-agent-brief-template",
+    "card-design-doc-template",
+    "card-epic-template",
+    "card-op-playbook-template",
+    "card-governance-lint-example",
+    "card-ways-note",
+    "card-governed-environment-figure",
+    "card-views-of-the-governance-catalogue",
+    "card-skill-self-communicate",
+    "card-skill-self-governance",
+    "card-skill-self-operations",
+    "card-skills-loop",
+    "card-both-halves"
+  ],
   "thesis-modeling": {
     "kind": "thesis",
     "site_home": "card-thesis-modeling",
@@ -144,19 +381,19 @@
     "kind": "axis",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "realized as the catalogue's three top-level role sections (agent/ models-bridge/ product/) + the catalogue-views grouping; discussed in the book; no standalone landing card. Governance target (a) — the agent/fleet + the substrate that PRODUCES work. Book index-def tagged at Appendix C's C.1 Agent zone section (the mechanism-catalogue zone that introduces this target)."
+    "note": "realized as the catalogue's three top-level role sections (agent/ models-bridge/ product/) + the catalogue-views grouping; discussed in the book; no standalone landing card. Governance target (a) — the agent/fleet + the substrate that PRODUCES work. Book index-def tagged on the target-axis bullet of the skill-recipe appendix (“The target axis — agent, models-bridge, product”), where the three governance targets survive as a named axis after the nine-capability grouping was retired."
   },
   "governance-target-models-bridge": {
     "kind": "axis",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "realized as the catalogue's three top-level role sections (agent/ models-bridge/ product/) + the catalogue-views grouping; discussed in the book; no standalone landing card. Governance target (b) — the structured MBSE models the fleet reasons THROUGH. Book index-def tagged at Appendix C's C.2 Models-bridge zone section (the mechanism-catalogue zone that introduces this target)."
+    "note": "realized as the catalogue's three top-level role sections (agent/ models-bridge/ product/) + the catalogue-views grouping; discussed in the book; no standalone landing card. Governance target (b) — the structured MBSE models the fleet reasons THROUGH. Book index-def tagged on the target-axis bullet of the skill-recipe appendix (“The target axis — agent, models-bridge, product”), where the three governance targets survive as a named axis after the nine-capability grouping was retired."
   },
   "governance-target-product": {
     "kind": "axis",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "realized as the catalogue's three top-level role sections (agent/ models-bridge/ product/) + the catalogue-views grouping; discussed in the book; no standalone landing card. Governance target (c) — the shipped artifact the fleet PRODUCES. Book index-def tagged at Appendix C's C.3 Product zone section (the mechanism-catalogue zone that introduces this target)."
+    "note": "realized as the catalogue's three top-level role sections (agent/ models-bridge/ product/) + the catalogue-views grouping; discussed in the book; no standalone landing card. Governance target (c) — the shipped artifact the fleet PRODUCES. Book index-def tagged on the target-axis bullet of the skill-recipe appendix (“The target axis — agent, models-bridge, product”), where the three governance targets survive as a named axis after the nine-capability grouping was retired."
   },
   "engineered-agent-loop": {
     "kind": "core-construct",

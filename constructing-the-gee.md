@@ -177,7 +177,7 @@ code becomes the source and the model only its derived view.
 - **[rule-metadata registry](models-bridge/system-models/rule-metadata-registry.md) —
   prose-as-queryable-model facet.** Governance prose lifted into typed rows a lint can query, so "which
   rules govern this path?" is a lookup. Deep dive →
-  [the governance-of-governance stack](book/appendix-a-governance-of-governance-stack.html) (alt appendix).
+  [the governance-conversion stack](book/appendix-a-governance-conversion-stack.html) (alt appendix).
 - **[concurrency contracts](models-bridge/system-models/concurrency-contracts.md) — declared-coverage
   facet.** The model side of resource mediation: every permitted concurrent seam declared, so a coverage
   lint detects any unmediated bypass. Deep dive →
@@ -260,7 +260,7 @@ discovered in production.
 Composition explodes the state space, so the checker is routed by the invariant's temporal shape rather
 than run whole.
 
-*Deep dive:* [the specification-and-verification stack](book/appendix-a-specification-verification-stack.html)
+*Deep dive:* [the assurance stack](book/appendix-a-assurance-stack.html)
 (alt appendix) — its SPEC member.
 *Related:* Bridge — [Model-Derived Assurance Coverage](#cap-complete) (the checker it feeds) · Enabler —
 [formal invariant verification](models-bridge/system-models/formal-invariant-verification.md).
@@ -435,7 +435,7 @@ review them, which is exactly why the memory must move into the substrate. A lin
 cannot actually decide becomes the hazard — the fix belongs at the property's real semantic level, not in a
 cleverer regex.
 
-*Deep dive:* [the specification-and-verification stack](book/appendix-a-specification-verification-stack.html)
+*Deep dive:* [the assurance stack](book/appendix-a-assurance-stack.html)
 (alt appendix) — its LINT member.
 *Related:* Generalization — principle P5 (convert recurring failures into enforced controls) · Counterpart —
 [Machine-Enforced Semantic Policy at the right level](agent/governance-doc-controls/semantic-level-enforcement.md)
@@ -482,7 +482,7 @@ limit the planning-template example below carries in its own Forces note.
 - **[the mandatory-snippet table](agent/governance-doc-controls/mandatory-snippet-table.md) —
   standing-boilerplate facet.** The registry the dispatch lint reads to know which snippets a brief owes;
   it is both this pattern's check-source and a context-management member in its own right. Deep dive →
-  [the context-management stack](book/appendix-a-context-management-stack.html) (alt appendix).
+  [the context-delivery stack](book/appendix-a-context-delivery-stack.html) (alt appendix).
 
 *Deep dive:* [the safe-launch composition](#compositions) pairs this with Closed Action Vocabulary — a
 well-formed order plus bounded authority.
@@ -599,16 +599,16 @@ a real test written at the right tier and strength.
 
 - **[coverage-to-model-node mapping](models-bridge/system-models/coverage-model-mapping.md) — granularity
   facet.** Per-node "is *this* obligation exercised?", the finest grain of the census. Deep dive →
-  [the specification-and-verification stack](book/appendix-a-specification-verification-stack.html) (alt
+  [the assurance stack](book/appendix-a-assurance-stack.html) (alt
   appendix).
 - **[formal invariant verification](models-bridge/system-models/formal-invariant-verification.md) — method
   facet.** Which *checker* an obligation is owed — routing each invariant by its temporal shape to a proof
   over bounded interleavings or a counterexample. The proof pole to the census's exercise pole; a borderline
   fold, see [the folds note](#folds). Deep dive →
-  [the specification-and-verification stack](book/appendix-a-specification-verification-stack.html) (alt
+  [the assurance stack](book/appendix-a-assurance-stack.html) (alt
   appendix).
 
-*Deep dive:* [the specification-and-verification stack](book/appendix-a-specification-verification-stack.html)
+*Deep dive:* [the assurance stack](book/appendix-a-assurance-stack.html)
 (alt appendix) — its CENSUS member, fed by the Composed State-Machine Model as specification.
 *Related:* Consumer — [Composed State-Machine Model](#cap-know) (the spec it verifies against) · Bridge —
 [Re-Derived Definition of Done](#cap-complete).
@@ -669,7 +669,7 @@ the meaning; the per-stage variant costs a validation between every pass, so it 
 localization is worth the tax. It pairs with One Door Enforced: the door makes damage rare, this catches
 what still gets through.
 
-*Deep dive:* [the provenance-and-fidelity stack](book/appendix-a-provenance-fidelity-stack.html) (alt
+*Deep dive:* [the auditable-transformation stack](book/appendix-a-auditable-transformation-stack.html) (alt
 appendix) — its GATE member, the fidelity backstop to the provenance chain.
 *Related:* Counterpart — [One Door Enforced](#cap-constrain) (rarity vs. detection) · Consumer —
 [Caused-By Provenance](#cap-provenance) (a caught loss is traced to its stamped cause).
@@ -721,7 +721,7 @@ finite set to prove coverage over. Stamps add bytes to every artifact — a cost
   reconstructable as the product's. Shows the pattern is about the *relation* (durable attribution over a
   closed set), not the document domain it was first built in.
 
-*Deep dive:* [the provenance-and-fidelity stack](book/appendix-a-provenance-fidelity-stack.html) (alt
+*Deep dive:* [the auditable-transformation stack](book/appendix-a-auditable-transformation-stack.html) (alt
 appendix) — the MARK, EMIT, COVER, and READ components are its parts, deep-treated there.
 *Related:* Enabler — [One Door Enforced](#cap-constrain) + [Closed Action Vocabulary](#cap-constrain) (both
 preconditions) · Counterpart — [Preservation Invariant](#cap-preserve) (the fidelity backstop).
@@ -861,14 +861,14 @@ part stays hard and the soft part stays honestly soft.
 - **[dynamic context injection](agent/context-and-dispatch/dynamic-context-injection.md) — feed-forward
   facet.** Slice the meta-substrate to just the rules governing the change-target and push them forward at
   the point of action, so the actor meets exactly the policy its edit implicates. Deep dive →
-  [the context-management stack](book/appendix-a-context-management-stack.html) (alt appendix).
+  [the context-delivery stack](book/appendix-a-context-delivery-stack.html) (alt appendix).
 - **[the reflection-facet substrate](agent/lifecycle-and-observability/reflection-facet-substrate.md) —
   feed-back facet.** Soft nudges fed back under one shared attention budget — kept deliberately as the
   book's durable-versus-transient exemplar, a design whose *shape* outlasts the particular 2026 harness it
-  runs on. Deep dive → [the context-management stack](book/appendix-a-context-management-stack.html) (alt
+  runs on. Deep dive → [the context-delivery stack](book/appendix-a-context-delivery-stack.html) (alt
   appendix).
 
-*Deep dive:* [the context-management stack](book/appendix-a-context-management-stack.html) (alt appendix) —
+*Deep dive:* [the context-delivery stack](book/appendix-a-context-delivery-stack.html) (alt appendix) —
 lifecycle hooks are its HOOK member.
 *Related:* Enabler — [Governed Knowledge Base](#cap-govern) (the substrate it slices) · Sibling —
 [Fleet Observability Surface](#cap-manage) (both hang off the runtime lifecycle).
@@ -908,13 +908,13 @@ proliferate — for a handful, the graph is ceremony.
 - **[the control-coverage census](models-bridge/system-models/control-coverage-census.md) — coverage-lens
   facet.** The same governance-of-governance subject read for *coverage* rather than conflict: which
   failure classes have a control and which sit uncovered. Deep dive →
-  [the governance-of-governance stack](book/appendix-a-governance-of-governance-stack.html) (alt appendix).
+  [the governance-conversion stack](book/appendix-a-governance-conversion-stack.html) (alt appendix).
 - **[the orphan-coverage metric](models-bridge/system-models/orphan-coverage-metric.md) — inverse-walk
   facet.** The same coverage subject walked the other direction: point a tracer at the *code* and score the
   sites no model or control reaches, so an un-governed region surfaces as a ranked orphan cluster rather
   than an empty target cell. The census asks which target is thin; this asks which code is un-covered.
 
-*Deep dive:* [the governance-of-governance stack](book/appendix-a-governance-of-governance-stack.html) (alt
+*Deep dive:* [the governance-conversion stack](book/appendix-a-governance-conversion-stack.html) (alt
 appendix) — its GRAPH member.
 *Related:* Sibling — [Computed Control Blast Radius](#cap-govern) · Consumer —
 [Governed Knowledge Base](#cap-govern).
@@ -938,7 +938,7 @@ radius, so the fact must be co-located with the control it describes. This is bo
 pattern and the RADIUS member of the six-part governance-of-governance stack: the stack *expanded* to add
 self-governance as its INTERPRET member, it did not swap blast-radius out.
 
-*Deep dive:* [the governance-of-governance stack](book/appendix-a-governance-of-governance-stack.html)
+*Deep dive:* [the governance-conversion stack](book/appendix-a-governance-conversion-stack.html)
 (alt appendix) — its RADIUS member, computing what a substrate change breaks across the estate.
 *Related:* Sibling — [Governance Graph](#cap-govern) (conflict vs. dependency lens on the same estate).
 
@@ -962,8 +962,8 @@ green build. The boundary: it governs the *index's* integrity, not whether each 
 — which is the point, but it means a genuinely new rule displaces an old one rather than accreting. The
 index is read on every agent boot, so its bloat taxes the whole fleet.
 
-*Deep dive:* the [governance-of-governance stack](book/appendix-a-governance-of-governance-stack.html) (its
-INDEX member) and [the context-management stack](book/appendix-a-context-management-stack.html) (the same
+*Deep dive:* the [governance-conversion stack](book/appendix-a-governance-conversion-stack.html) (its
+INDEX member) and [the context-delivery stack](book/appendix-a-context-delivery-stack.html) (the same
 INDEX, its boot-context lens) — a deliberate two-facet dual placement (alt appendix).
 *Related:* Consumer — [Validated Dispatch](#cap-admit) + [Point-of-Action Policy Delivery](#cap-manage)
 (both read the substrate it governs) · Enabler — [Self-governance](#cap-govern) (where converted failures
@@ -1024,7 +1024,7 @@ soft judgment — the skill proposes and scaffolds, it does not install the cont
 one-offs and the estate bloats — right-sizing is the taste the intent names. This is the generative engine
 the whole catalogue is an output of: every entry here is, in effect, one conversion's output.
 
-*Deep dive:* [the governance-of-governance stack](book/appendix-a-governance-of-governance-stack.html) (alt
+*Deep dive:* [the governance-conversion stack](book/appendix-a-governance-conversion-stack.html) (alt
 appendix) — its INTERPRET member, the beating heart of governing the control estate.
 *Related:* Sibling — [the operator runbook skill](agent/governance-doc-controls/operator-runbook-skill.md)
 (executes *within* the estate; self-governance *grows* it) · Enabler —

@@ -640,13 +640,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendices-front-door.html">Appendices</a></li>
 <li class="part">Appendix A — MAGE Engineering Stacks</li>
 <li><a class="" href="appendix-stacks.html">Appendix A — MAGE Engineering Stacks</a></li>
-<li><a class="" href="appendix-a-provenance-fidelity-stack.html">Appendix A - 1. The Provenance stack</a></li>
-<li><a class="" href="appendix-a-model-coherence-stack.html">Appendix A - 2. The model-coherence stack</a></li>
-<li><a class="" href="appendix-a-specification-verification-stack.html">Appendix A - 3. The Assurance stack</a></li>
-<li><a class="" href="appendix-a-observe-react-stack.html">Appendix A - 4. The observe → react loop</a></li>
-<li><a class="" href="appendix-a-resource-mediation-stack.html">Appendix A - 5. The Mediation stack</a></li>
-<li><a class="" href="appendix-a-governance-of-governance-stack.html">Appendix A - 6. The governance-of-governance stack</a></li>
-<li><a class="" href="appendix-a-context-management-stack.html">Appendix A - 7. The Briefing stack</a></li>
+<li><a class="" href="appendix-a-model-coherence-stack.html">A.1 Model Coherence</a></li>
+<li><a class="" href="appendix-a-assurance-stack.html">A.2 Assurance</a></li>
+<li><a class="" href="appendix-a-auditable-transformation-stack.html">A.3 Auditable Transformation</a></li>
+<li><a class="" href="appendix-a-observe-react-stack.html">A.4 Observe → React</a></li>
+<li><a class="" href="appendix-a-resource-mediation-stack.html">A.5 Resource Mediation</a></li>
+<li><a class="" href="appendix-a-governance-conversion-stack.html">A.6 Governance Conversion</a></li>
+<li><a class="" href="appendix-a-context-delivery-stack.html">A.7 Context Delivery</a></li>
+<li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
 <li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make the important fact authoritative</a></li>
@@ -719,7 +720,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Two kinds of governance move.</strong> A mechanism either <strong>prevents</strong> — a <em>constraint</em> that scopes the action space so the wrong move cannot be picked — or <strong>detects</strong> — a <em>sensor</em> that fires after the fact: a lint, gate, or test. That single distinction decides, for any failure, what you build.</p>
 <h3>Orthogonal models</h3>
 <ul><li><strong>The mechanism census</strong> (<code>reference/INDEX.md</code> plus <code>reference/&lt;role&gt;/&lt;family&gt;/&lt;mechanism&gt;.md</code>) — the catalogue of patterns you draw from.</li><li><strong>Soft-vs-hard enforcement</strong> — the form's strength.</li><li><strong>The target axis</strong> — agent, models-bridge, product.</li><li><strong>The form taxonomy</strong> — the nine structural forms.</li><li><strong>Ambient principles</strong> (<code>principles.md</code>) — the reflexes applied on every touch.</li><li><strong>The two modes</strong> — AUDIT and INTERPRET-FAILURE — plus the <strong>MBSE starter kit</strong> (<code>templates/</code>).</li></ul>
-<p>Why a catalogue with cross-cutting columns rather than one large reference doc: the <strong>move</strong> (constraint, sensor) is independent of the <strong>form</strong> (soft, hard) — a constraint can be soft (a model that aims) or hard (a compiler-enforced enum); a sensor can be soft (a convention) or hard (a blocking lint) — and both are independent of <strong>target</strong> and of the <strong>form taxonomy</strong>. Because the axes are orthogonal, any mechanism is a <em>point</em> in that space, which is why the census is a queryable table ("missing prevention? scan the constraint rows"), not a flat list. The principles are a separate ambient layer that does not live in the census.</p>
+<span id="idx-def-governance-target-agent"></span><span id="idx-def-governance-target-product"></span><span id="idx-def-governance-target-models-bridge"></span><p>Why a catalogue with cross-cutting columns rather than one large reference doc: the <strong>move</strong> (constraint, sensor) is independent of the <strong>form</strong> (soft, hard) — a constraint can be soft (a model that aims) or hard (a compiler-enforced enum); a sensor can be soft (a convention) or hard (a blocking lint) — and both are independent of <strong>target</strong> and of the <strong>form taxonomy</strong>. Because the axes are orthogonal, any mechanism is a <em>point</em> in that space, which is why the census is a queryable table ("missing prevention? scan the constraint rows"), not a flat list. The principles are a separate ambient layer that does not live in the census.</p>
 <h3>Governing principle</h3>
 <p><em>Convert recurring failures into durable guardrails; guidance aims, machinery holds.</em> Three reflexes follow: <strong>architecture before sensors</strong> (prefer the constraint that makes the error impossible), <strong>right-size the fix</strong> (the smallest sound change; float the larger scheme), and <strong>propose, don't install</strong> — a skill is soft, so hard mechanisms are scaffolded and handed to a human or harness; never claim <em>enforced</em> when you have only <em>recommended</em>.</p>
 <h3>Layout</h3>

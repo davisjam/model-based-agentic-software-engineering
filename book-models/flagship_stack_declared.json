@@ -3,13 +3,19 @@
   "_note": "A flagship stack is a PACKAGE of catalogue entries that together make one or more governed capabilities — the alternative-appendix deep-dives. Each record carries the stack's goal, the GEE capabilities it serves (a list of >= 1; most stacks serve one, some span two), an overview figure, and one entry per PART with the six fields the deep-dive template renders: role, failure, mechanism, seam (the interlock with adjacent parts), and durability. This file holds all seven finalized flagship stacks (reframe 260803).",
   "stacks": [
     {
-      "id": "provenance-and-fidelity",
-      "name": "The Provenance stack",
+      "id": "auditable-transformation",
+      "name": "Auditable Transformation",
       "goal": "Reconstruct a remediated document's mutation history from the artifact itself, and catch any damage done through the sanctioned door — who and why for every change, and nothing silently lost.",
-      "capabilities": ["Track provenance and trace causes", "Preserve product semantics"],
-      "overview_figure": "book/assets/provenance-fidelity-stack.svg",
-      "page_source": "book/appendix-stacks/provenance-fidelity-stack.md",
-      "cross_links": ["model-coherence", "specification-and-verification"],
+      "capabilities": [
+        "Track provenance and trace causes",
+        "Preserve product semantics"
+      ],
+      "overview_figure": "book/assets/auditable-transformation-stack.svg",
+      "page_source": "book/appendix-stacks/auditable-transformation-stack.md",
+      "cross_links": [
+        "model-coherence",
+        "assurance"
+      ],
       "parts": [
         {
           "slug": "a11y-prefix",
@@ -55,12 +61,18 @@
     },
     {
       "id": "model-coherence",
-      "name": "The model-coherence stack",
+      "name": "Model Coherence",
       "goal": "Let a context-bounded agent reason through a typed map of the system instead of the whole territory — and keep the map equal to the territory, so what the agent queries is what is true. The models are executable data, read live, held equal to the code by a gate, derived where a derived edge cannot drift, and generated back into the system.",
-      "capabilities": ["Maintain authoritative system knowledge", "Keep representations equal to reality"],
+      "capabilities": [
+        "Maintain authoritative system knowledge",
+        "Keep representations equal to reality"
+      ],
       "overview_figure": "book/assets/model-coherence-stack.svg",
       "page_source": "book/appendix-stacks/model-coherence-stack.md",
-      "cross_links": ["provenance-and-fidelity", "specification-and-verification"],
+      "cross_links": [
+        "auditable-transformation",
+        "assurance"
+      ],
       "parts": [
         {
           "slug": "executable-source-of-truth",
@@ -113,13 +125,19 @@
       ]
     },
     {
-      "id": "specification-and-verification",
-      "name": "The Assurance stack",
+      "id": "assurance",
+      "name": "Assurance",
       "goal": "Turn a concurrent behavioral spec into checked assurance: model the lifecycle as composed state machines, derive from it every test obligation, discharge each at the rigor its shape demands — an exhaustive proof for a safety or liveness invariant, a deterministic lint for a linear one — then map coverage back onto the model so an unexercised invariant is a visible gap, not a guess.",
-      "capabilities": ["Establish completion on re-derived evidence", "Constrain where and how agents act"],
-      "overview_figure": "book/assets/specification-verification-stack.svg",
-      "page_source": "book/appendix-stacks/specification-verification-stack.md",
-      "cross_links": ["model-coherence", "observe-and-react"],
+      "capabilities": [
+        "Establish completion on re-derived evidence",
+        "Constrain where and how agents act"
+      ],
+      "overview_figure": "book/assets/assurance-stack.svg",
+      "page_source": "book/appendix-stacks/assurance-stack.md",
+      "cross_links": [
+        "model-coherence",
+        "observe-and-react"
+      ],
       "parts": [
         {
           "slug": "composed-state-machine-model",
@@ -173,12 +191,18 @@
     },
     {
       "id": "observe-and-react",
-      "name": "The observe → react loop",
+      "name": "Observe → React",
       "goal": "Make the fleet's live state legible and every bad state actionable, so an operator — human or agent — drives from typed signals plus written responses instead of scraping logs and reasoning from memory. Turn a running-but-wrong pipeline, the worst failure because it is invisible, into a named signal and a procedure that answers it.",
-      "capabilities": ["Manage work, state, and resources", "Govern the control estate itself"],
+      "capabilities": [
+        "Manage work, state, and resources",
+        "Govern the control estate itself"
+      ],
       "overview_figure": "book/assets/observe-react-stack.svg",
       "page_source": "book/appendix-stacks/observe-react-stack.md",
-      "cross_links": ["specification-and-verification", "governance-of-governance"],
+      "cross_links": [
+        "assurance",
+        "governance-conversion"
+      ],
       "parts": [
         {
           "slug": "typed-event-bus",
@@ -224,12 +248,17 @@
     },
     {
       "id": "resource-mediation",
-      "name": "The Mediation stack",
+      "name": "Resource Mediation",
       "goal": "Share one machine among dozens of concurrent agent worktrees without letting them trample each other or drown the host. Declare which work must be serialized and which may run in parallel, hold each declaration with a host-level mediator, and govern the whole with a live pressure signal that refuses new heavy work before it starts and sheds running work when the host spikes.",
-      "capabilities": ["Manage work, state, and resources"],
+      "capabilities": [
+        "Manage work, state, and resources"
+      ],
       "overview_figure": "book/assets/resource-mediation-stack.svg",
       "page_source": "book/appendix-stacks/resource-mediation-stack.md",
-      "cross_links": ["observe-and-react", "context-management"],
+      "cross_links": [
+        "observe-and-react",
+        "context-delivery"
+      ],
       "parts": [
         {
           "slug": "concurrency-contracts",
@@ -266,13 +295,18 @@
       ]
     },
     {
-      "id": "governance-of-governance",
-      "name": "The governance-of-governance stack",
+      "id": "governance-conversion",
+      "name": "Governance Conversion",
       "goal": "Treat the governance system as its own subject of governance: model the controls as a graph so two guardrails cannot silently collide, census which targets are covered and which are blind, compute the blast radius of a substrate change before making it, convert each recurring failure into a proportionate new control so the estate grows by design, and hold the governing document itself as enforced, queryable infrastructure rather than prose that rots.",
-      "capabilities": ["Govern the control estate itself"],
-      "overview_figure": "book/assets/governance-of-governance-stack.svg",
-      "page_source": "book/appendix-stacks/governance-of-governance-stack.md",
-      "cross_links": ["observe-and-react", "context-management"],
+      "capabilities": [
+        "Govern the control estate itself"
+      ],
+      "overview_figure": "book/assets/governance-conversion-stack.svg",
+      "page_source": "book/appendix-stacks/governance-conversion-stack.md",
+      "cross_links": [
+        "observe-and-react",
+        "context-delivery"
+      ],
       "parts": [
         {
           "slug": "governance-graph",
@@ -325,13 +359,18 @@
       ]
     },
     {
-      "id": "context-management",
-      "name": "The Briefing stack",
+      "id": "context-delivery",
+      "name": "Context Delivery",
       "goal": "Get the right policy and context to an agent at the moment a decision is due: map the files it is about to touch to the constraints that govern them, paste the standing safety boilerplate into its brief, load the numbered rule index into its boot context, fire the steps it would otherwise omit off the runtime lifecycle, and nudge a standing discipline at the right cadence — so the agent acts on the relevant slice, not the whole corpus and not its memory. This stack is the book's explicit durable-versus-2026-transient exemplar: each part is marked for whether it is infrastructure that endures or a crutch a stronger model eases.",
-      "capabilities": ["Manage work, state, and resources"],
-      "overview_figure": "book/assets/context-management-stack.svg",
-      "page_source": "book/appendix-stacks/context-management-stack.md",
-      "cross_links": ["governance-of-governance", "resource-mediation"],
+      "capabilities": [
+        "Manage work, state, and resources"
+      ],
+      "overview_figure": "book/assets/context-delivery-stack.svg",
+      "page_source": "book/appendix-stacks/context-delivery-stack.md",
+      "cross_links": [
+        "governance-conversion",
+        "resource-mediation"
+      ],
       "parts": [
         {
           "slug": "dynamic-context-injection",

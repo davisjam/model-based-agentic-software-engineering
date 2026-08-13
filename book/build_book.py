@@ -2957,87 +2957,6 @@ def _catalogue_web_url() -> str:
     return "index.html"
 
 
-def _appendix_intro_extras_md() -> str:
-    """The two DERIVED intro sections that sit between the opening frame and the stack summary: the
-    lifted-to-L1 placement principle (the manifest's `intro_l1_principles`, resolved through each slug's
-    disposition to its L1 principle claim in catalogue-classification.json) and the nine-capability map
-    (`gee_capabilities`, name + gloss). The framing PROSE is authored in `appendix-stacks/_lifted-principle.md`
-    and `_nine-capabilities-intro.md` (B2 lift); the model VALUES — the lifted principle's name + claim, the
-    nine capability names + glosses — stay projected from the classification model, not hand-copied, so they
-    cannot drift from the curation signal the rest of the projection reads. Fail-loud if the model is missing
-    (same contract as `_load_classification`)."""
-    if not _CLASSIFICATION_PATH.is_file():
-        raise SystemExit(f"appendix intro needs {_CLASSIFICATION_PATH} — it is missing")
-    data = json.loads(_CLASSIFICATION_PATH.read_text(encoding="utf-8"))
-    dispositions = data.get("dispositions", {})
-    principles = {p.get("id"): p for p in data.get("L1_principles", [])}
-    capabilities = data.get("gee_capabilities", [])
-    cap_groups = data.get("gee_capability_groups", [])
-    manifest = _load_print_manifest()
-
-    parts: list[str] = []
-
-    # ── The lifted placement principle. Each `intro_l1_principles` slug names an entry LIFTED out of the
-    #    pattern set to an L1 principle; resolve slug → its disposition string → the `P<n>` token → the
-    #    principle record, and render its claim. (Default manifest lifts one: semantic-level-enforcement → P8.)
-    lifted: list[dict] = []
-    for slug in manifest.get("intro_l1_principles", []):
-        full = next((fs for fs in dispositions if fs.rsplit("/", 1)[-1] == slug), None)
-        if full is None:
-            continue
-        m = re.search(r"\bP\d+\b", dispositions[full].get("disposition", ""))
-        pid = m.group(0) if m else None
-        if pid and pid in principles:
-            lifted.append(principles[pid])
-    if lifted:
-        # B2: the section heading is a structural label (stays in code); the authored per-principle prose
-        # lives in `_lifted-principle.md`, with the model-projected principle name + claim slotted in.
-        parts += ["## Where every mechanism sits", ""]
-        for p in lifted:
-            parts += [
-                _load_opening(_STACKS_DIR / "_lifted-principle.md",
-                              principle_name=p["name"].lower(), principle_claim=p["claim"]),
-                "",
-            ]
-
-    # ── The nine-capability map. The `gee_capabilities` groups the whole catalogue under nine jobs a
-    #    governed environment must do; the patterns below are the shapes that do them. The nine are rendered
-    #    under the book's own agent / models-bridge / product triad (`gee_capability_groups`) — three retained
-    #    chunks (2 / 4 / 3) beat nine flat peers for memorability, and the grouping is the frame the rest of
-    #    the book already teaches rather than a fourth taxonomy.
-    if capabilities:
-        # B2: the authored heading + framing paragraph live in `_nine-capabilities-intro.md`; the nine
-        # capability names + glosses below stay COMPUTED off the classification model.
-        parts += [_load_opening(_STACKS_DIR / "_nine-capabilities-intro.md"), ""]
-        if cap_groups:
-            # Group order + labels come from the model; each capability carries its `group` id. Fail-loud on a
-            # capability whose group is unknown, so a model edit cannot silently drop one from the map.
-            known = {g.get("id") for g in cap_groups}
-            ungrouped = [c.get("id") for c in capabilities if c.get("group") not in known]
-            if ungrouped:
-                raise SystemExit(f"nine-capability map: capabilities with no known group: {ungrouped}")
-            for grp in cap_groups:
-                gid = grp.get("id")
-                label = grp.get("label", "").strip()
-                subtitle = grp.get("subtitle", "").strip()
-                parts += [f"**{label} — {subtitle}.**", ""]
-                for cap in capabilities:
-                    if cap.get("group") != gid:
-                        continue
-                    name = cap.get("name", "").strip()
-                    gloss = cap.get("gloss", "").strip()
-                    parts.append(f"- **{name}.** {gloss}")
-                parts.append("")
-        else:
-            for cap in capabilities:
-                name = cap.get("name", "").strip()
-                gloss = cap.get("gloss", "").strip()
-                parts.append(f"- **{name}.** {gloss}")
-            parts.append("")
-
-    return "\n".join(parts).strip()
-
-
 # Authored chapter links to an appendix pattern page: `](appendix-<a..e>-<slug>.html[#frag])`. The main
 # narrative cross-references mechanisms by their in-book page; when a mechanism is non-flagship (its page is
 # dropped from the print projection), the link is redirected to the live WEB catalogue entry — the SAME
@@ -3253,17 +3172,21 @@ _APPENDIX_STACKS_OPENING_SLUG = "appendix-stacks"
 # Stack files in reading order → (page-slug stem, display title). Each becomes one D.N page; the opening
 # front-door page (D's chapter 0) precedes them. A file listed here but absent on disk is skipped.
 _STACKS: list[tuple[str, str]] = [
-    # The seven flagship stacks, each authored as a two-page synthesis (AC-2 260804): capability created ·
-    # failure classes covered · composition diagram (the overview_figure SVG) · constituent patterns
-    # (role:<slug> tokens) · one worked example · tradeoffs + adoption order · web links. Grounded in
-    # book-models/flagship_stack_declared.json; the earlier part-by-part six-field deep-dive was folded in.
-    ("provenance-fidelity-stack", "The Provenance stack"),
-    ("model-coherence-stack", "The model-coherence stack"),
-    ("specification-verification-stack", "The Assurance stack"),
-    ("observe-react-stack", "The observe → react loop"),
-    ("resource-mediation-stack", "The Mediation stack"),
-    ("governance-of-governance-stack", "The governance-of-governance stack"),
-    ("context-management-stack", "The Briefing stack"),
+    # The seven reference engineering stacks, each authored as a two-page synthesis (R56 restructure
+    # 260813): capability · composition diagram (the overview_figure SVG) · constituent MOVES table · why
+    # those guarantees travel together · web-catalogue deep-dive footer. Reading order runs Model Coherence
+    # → Assurance / Auditable Transformation → Observe → React → Governance Conversion, with Resource
+    # Mediation + Context Delivery presented as independently useful (source §4). Titles carry no "A.N"
+    # locator — `locator_heading=True` on the v2 call injects it ("A.1 Model Coherence"). A.8 "Composing a
+    # Stack" is a hand-authored TAIL page appended after these, NOT a `_STACKS` entry, so `stack_count`
+    # (and the flagship model's `expected_stacks:7`) stay honest.
+    ("model-coherence-stack", "Model Coherence"),
+    ("assurance-stack", "Assurance"),
+    ("auditable-transformation-stack", "Auditable Transformation"),
+    ("observe-react-stack", "Observe → React"),
+    ("resource-mediation-stack", "Resource Mediation"),
+    ("governance-conversion-stack", "Governance Conversion"),
+    ("context-delivery-stack", "Context Delivery"),
 ]
 
 
@@ -3449,6 +3372,7 @@ def build_hand_authored_appendix(
 def build_stack_chapters(part: int, page_by_slug: dict[str, dict],
                          letter: str = "D", part_name: str = "Mechanism Stacks",
                          locator_figs: bool = False, inline_legend: bool = False,
+                         locator_heading: bool = False,
                          opening_extras_md: str = "") -> list[dict]:
     """Build the Mechanism-Stacks chapter records: one opening front-door page (chapter 0), then one page per
     stack (D.1, D.2, …), via the shared hand-authored-appendix scaffold. `page_by_slug` resolves each stack's
@@ -3458,9 +3382,11 @@ def build_stack_chapters(part: int, page_by_slug: dict[str, dict],
     `letter`/`part_name` letter the appendix: `D`/`Mechanism Stacks` in the legacy projection, `A`/`MAGE
     Engineering Stacks` in the value-ordered v2 projection (where the stacks lead the appendix). `locator_figs`
     (v2 only) stamps each page a `fig_prefix` for D80 monotonic figure numbering; the legacy path leaves it
-    unset, so the default projection stays byte-identical. `opening_extras_md` (v2 only) carries the DERIVED
-    nine-capability map + lifted L1 principle + the vendor-agnostic note onto the front-door, so the
-    value-ordered Appendix A opens with the whole capability lens (§2.1); the legacy projection leaves it ""."""
+    unset, so the default projection stays byte-identical. `locator_heading` (v2 only) renders the clean
+    "A.<i> <title>" page heading ("A.1 Model Coherence") rather than the legacy "Appendix A - <i>. <title>".
+    `opening_extras_md` (v2 only) carries the vendor-agnostic note onto the front-door (the capability map is
+    authored directly in `_opening.md`; the nine-capability taxonomy and dependency figure were removed in
+    the R56 restructure); the legacy projection leaves it ""."""
     low = letter.lower()
 
     def _stack_body(raw: str, stem: str, i: int) -> str:
@@ -3477,7 +3403,8 @@ def build_stack_chapters(part: int, page_by_slug: dict[str, dict],
         opening_slug=_APPENDIX_STACKS_OPENING_SLUG,
         opening_prose=_load_opening(_STACKS_DIR / "_opening.md"),
         content_dir=_STACKS_DIR, pages_source=_STACKS,
-        locator_figs=locator_figs, opening_extras_md=opening_extras_md,
+        locator_figs=locator_figs, locator_heading=locator_heading,
+        opening_extras_md=opening_extras_md,
         page_body_fn=_stack_body)
 
 
@@ -4702,16 +4629,37 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
     chapters: list[dict] = []
 
     # ── APPENDIX A — MAGE Engineering Stacks. Leads the appendix: adopt a capability as a whole stack. The
-    #    opening front-door + one page per stack, figures numbered A.<i>-N.
-    chapters += build_stack_chapters(
+    #    opening front-door + one page per stack (A.1–A.7), figures numbered A.<i>-N. The R56 restructure
+    #    replaced the per-constituent deep-dive with a compact two-page synthesis (capability · composition
+    #    figure · MOVES table · why-together · web footer), so the legend/stub injection (`inline_legend`) is
+    #    OFF and the opening carries only the vendor-agnostic note — the capability map is authored directly in
+    #    `_opening.md`; the nine-capability taxonomy and the stack-dependency figure were removed (source §2.2,
+    #    §2.6). Clean "A.<i>" page headings via `locator_heading`.
+    stack_chapters = build_stack_chapters(
         part=next_part, page_by_slug=page_by_slug,
-        letter="A", part_name="MAGE Engineering Stacks", locator_figs=True, inline_legend=True,
-        # A's opening carries the whole capability lens: the nine-capability map + lifted L1 principle (DERIVED
-        # from the classification model), the vendor-agnostic note (§2.1, §2.4), then the stack-dependency
-        # figure (HIGH-1) as the tail — the reader sees how the stacks depend before meeting them one by one.
-        opening_extras_md=(_appendix_intro_extras_md() + "\n\n"
-                           + _load_opening(_STACKS_DIR / "_vendor-note.md") + "\n\n"
-                           + _load_opening(_STACKS_DIR / "_depgraph-figure.md")))
+        letter="A", part_name="MAGE Engineering Stacks", locator_figs=True, inline_legend=False,
+        locator_heading=True,
+        opening_extras_md=_load_opening(_STACKS_DIR / "_vendor-note.md"))
+    chapters += stack_chapters
+
+    # ── A.8 Composing a Stack — hand-authored TAIL page appended AFTER the seven stack pages, NOT a `_STACKS`
+    #    entry (F4): the reusable skill is composition, not a stack, so keeping it out of `_STACKS` keeps
+    #    `stack_count`/`expected_stacks:7` honest and off the flagship model. Numbered as the next chapter in
+    #    the A Part (A.8), with `fig_prefix` "A.8" so its method diagram numbers "Figure A.8-N". Reuses the
+    #    same record shape the stack pages carry; the pager chains it after A.7 (so it is reachable).
+    _a8_i = max(c["chapter"] for c in stack_chapters) + 1
+    _a8_raw = (_STACKS_DIR / "composing-a-stack.md").read_text(encoding="utf-8")
+    chapters.append({
+        "slug": "appendix-a-composing-a-stack",
+        "part": next_part,
+        "part_title": stack_chapters[0]["part_title"],
+        "chapter": _a8_i,
+        "chapter_title": f"A.{_a8_i} Composing a Stack",
+        "body_md": _fold_wrapped_bullets(_a8_raw.strip()),
+        "is_appendix": True,
+        "mermaid": False,
+        "fig_prefix": f"A.{_a8_i}",
+    })
 
     # ── APPENDIX B — Engineering Moves. Hand-authored worked examples: one page per recurring engineering
     #    problem and the transferable MOVE that addresses it, each shown through two materially different

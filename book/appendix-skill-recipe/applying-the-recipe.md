@@ -91,6 +91,10 @@ gate, or test. That single distinction decides, for any failure, what you build.
 - **Ambient principles** (`principles.md`) — the reflexes applied on every touch.
 - **The two modes** — AUDIT and INTERPRET-FAILURE — plus the **MBSE starter kit** (`templates/`).
 
+<!-- index-def: governance-target-agent -->
+<!-- index-def: governance-target-models-bridge -->
+<!-- index-def: governance-target-product -->
+
 Why a catalogue with cross-cutting columns rather than one large reference doc: the **move** (constraint,
 sensor) is independent of the **form** (soft, hard) — a constraint can be soft (a model that aims) or hard
 (a compiler-enforced enum); a sensor can be soft (a convention) or hard (a blocking lint) — and both are

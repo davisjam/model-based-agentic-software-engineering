@@ -1,88 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (not Mermaid): the model-coherence flagship stack as a left-to-right pipeline of
-     six parts. Two capability lanes by colour: authoritative knowledge (fleet blue — DATA, CONSUME, EMIT)
-     and equal-to-reality (governed green — PARITY, DERIVE); the SEAL part (accent umber) is the product-
-     side canonical seam. Mermaid can draw the flow but not carry the two-capability colour legend and the
-     per-part action row in register. Palette: Umber Monograph tokens only (fleet #2f5169/#e7edf3, governed
-     #1f7a4d/#e3f0e7, accent #9a3f12/#faf1e6, ink #1c1917, muted #57534e, rule #e4e0d8). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360"
-     role="group" aria-labelledby="mcTitle mcDesc"
+<!-- R56-A figure round — model-coherence-stack.svg, shared vocabulary per R56-FIGURE-MANIFEST. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 640" width="820" height="640"
+     role="img" aria-labelledby="mcTitle mcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mcTitle">The model-coherence stack: reason through the map, keep it equal to the territory</title>
-  <desc id="mcDesc">Six parts run left to right in two capability lanes. Authoritative knowledge (fleet
-    blue): DATA models the system as executable typed data; CONSUME reads the model live and never copies a
-    snapshot; EMIT generates real artifacts back from the model. Equal to reality (governed green): PARITY
-    fails the build when a model and reality disagree in either direction; DERIVE anchors every model-to-code
-    edge on a resolvable symbol a lint re-checks, so a derived edge cannot drift. The final part, SEAL
-    (accent umber), routes all mutation of a shipped format through one typed model held sole by a ban-lint —
-    model coherence applied to the product. Read together: the map is executable, read live, held equal to
-    the territory, and generated back into it.</desc>
+  <title id="mcTitle">The Model-Coherence stack: an authored model, consumed live, checked against reality,
+    and gated on disagreement</title>
+  <desc id="mcDesc">A model of an authored fact sits at the top. The load-bearing solid path runs MODEL to
+    CONSUME (read the model live rather than copy its facts) to CORRESPONDENCE (compare model against the
+    world) to a disagreement decision that gates the disagreement or passes it as valid. Two enhancements
+    attach as dashed, open-arrowed strengtheners: EMIT (generate downstream artifacts from the model) and
+    DERIVE (compute correspondence from stable identities). They are useful but not required: a descriptive
+    model may stay advisory.</desc>
 
   <defs>
-    <marker id="mcArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c1917"/>
+    <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="aho" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0.5,0.5 L9.5,5 L0.5,9.5" fill="none" stroke="#57534e" stroke-width="1.6"/>
     </marker>
   </defs>
 
-  <!-- header -->
-  <text x="44" y="36" font-size="19.2" font-weight="700" fill="#1c1917">The model-coherence stack — reason through the map, keep it equal to the territory</text>
+  <!-- MODEL -->
+  <rect x="310" y="30" width="200" height="66" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="410" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL</text>
+  <text x="410" y="82" text-anchor="middle" font-size="13" fill="#57534e">authored fact</text>
 
-  <!-- capability legend (stacked rows: three keys crammed on one 1200u row over-ran each other) -->
-  <rect x="44" y="48" width="15" height="15" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.5"/>
-  <text x="66" y="60" font-size="19.2" fill="#57534e">authoritative knowledge — the model is the source of truth</text>
-  <rect x="44" y="76" width="15" height="15" rx="3" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.5"/>
-  <text x="66" y="88" font-size="19.2" fill="#57534e">equal to reality — the map cannot silently drift</text>
-  <rect x="44" y="104" width="15" height="15" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.5"/>
-  <text x="66" y="116" font-size="19.2" fill="#57534e">product seam — one typed door</text>
+  <!-- MODEL -> CONSUME (solid, load-bearing) -->
+  <path d="M410,96 C360,124 320,128 300,146" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <!-- MODEL -> EMIT (dashed, enhancement) -->
+  <path d="M410,96 C470,124 540,128 560,146" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
 
-  <!-- ============ stage boxes ============ -->
-  <!-- 1 DATA -->
-  <rect x="44" y="150" width="168" height="78" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="128" y="186" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">DATA</text>
-  <text x="128" y="210" text-anchor="middle" font-size="19.2" font-weight="600" fill="#2f5169">executable data</text>
-  <!-- 2 CONSUME -->
-  <rect x="228" y="150" width="168" height="78" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="312" y="186" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">CONSUME</text>
-  <text x="312" y="210" text-anchor="middle" font-size="19.2" font-weight="600" fill="#2f5169">live-query</text>
-  <!-- 3 PARITY -->
-  <rect x="412" y="150" width="168" height="78" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="496" y="186" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">PARITY</text>
-  <text x="496" y="210" text-anchor="middle" font-size="19.2" font-weight="600" fill="#1f7a4d">parity gate</text>
-  <!-- 4 DERIVE -->
-  <rect x="596" y="150" width="168" height="78" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="680" y="186" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">DERIVE</text>
-  <text x="680" y="210" text-anchor="middle" font-size="19.2" font-weight="600" fill="#1f7a4d">derived edges</text>
-  <!-- 5 EMIT -->
-  <rect x="780" y="150" width="168" height="78" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="864" y="186" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">EMIT</text>
-  <text x="864" y="210" text-anchor="middle" font-size="19.2" font-weight="600" fill="#2f5169">codegen</text>
-  <!-- 6 SEAL -->
-  <rect x="964" y="150" width="168" height="78" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="1048" y="186" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">SEAL</text>
-  <text x="1048" y="210" text-anchor="middle" font-size="19.2" font-weight="600" fill="#9a3f12">one-door seam</text>
+  <!-- CONSUME (solid) -->
+  <rect x="210" y="148" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="300" y="178" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">CONSUME</text>
+  <text x="300" y="200" text-anchor="middle" font-size="13" fill="#57534e">read the model live</text>
 
-  <!-- ============ per-part action row (free-floating) ============ -->
-  <g font-size="19.2" font-style="italic" fill="#57534e" text-anchor="middle">
-    <text x="128" y="252">structure as data</text>
-    <text x="312" y="252">read, never copy</text>
-    <text x="496" y="252">map equals territory</text>
-    <text x="680" y="252">derive the join</text>
-    <text x="864" y="252">model makes the code</text>
-    <text x="1048" y="252">one mutation door</text>
-  </g>
+  <!-- EMIT (dashed enhancement) -->
+  <rect x="470" y="148" width="180" height="66" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="560" y="178" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">EMIT</text>
+  <text x="560" y="200" text-anchor="middle" font-size="13" fill="#57534e">generate artifacts</text>
 
-  <!-- ============ arrows ============ -->
-  <g fill="none" stroke="#1c1917" stroke-width="2.2" marker-end="url(#mcArrow)">
-    <path d="M14,189 L42,189"/>
-    <path d="M212,189 L226,189"/>
-    <path d="M396,189 L410,189"/>
-    <path d="M580,189 L594,189"/>
-    <path d="M764,189 L778,189"/>
-    <path d="M948,189 L962,189"/>
-  </g>
+  <!-- CONSUME -> CORRESPONDENCE (solid) -->
+  <line x1="300" y1="214" x2="300" y2="256" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
-  <!-- synthesis caption -->
-  <text x="600" y="308" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">The map is executable, read live, and held equal to the territory —</text>
-  <text x="600" y="328" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">so a context-bounded agent can trust what it queries.</text>
+  <!-- CORRESPONDENCE (solid, green) -->
+  <rect x="200" y="258" width="200" height="66" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="300" y="288" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">CORRESPONDENCE</text>
+  <text x="300" y="310" text-anchor="middle" font-size="13" fill="#57534e">model &#8596; world</text>
+
+  <!-- DERIVE (dashed enhancement) -> CORRESPONDENCE -->
+  <rect x="470" y="258" width="200" height="66" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="570" y="284" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">DERIVE</text>
+  <text x="570" y="306" text-anchor="middle" font-size="13" fill="#57534e">join where possible</text>
+  <path d="M470,291 L406,291" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+
+  <!-- CORRESPONDENCE -> decision (solid) -->
+  <line x1="300" y1="324" x2="300" y2="366" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+
+  <!-- decision diamond -->
+  <polygon points="300,368 372,424 300,480 228,424" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
+  <text x="300" y="429" text-anchor="middle" font-size="14" font-weight="700" fill="#7a5c12">disagreement?</text>
+
+  <!-- decision -> GATE (solid) -->
+  <path d="M258,452 C224,478 210,486 200,500" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <!-- decision -> valid (solid) -->
+  <path d="M342,452 C376,478 390,486 400,500" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+
+  <!-- GATE (rust) -->
+  <rect x="120" y="502" width="150" height="58" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="195" y="530" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">GATE</text>
+  <text x="195" y="550" text-anchor="middle" font-size="13" fill="#57534e">reject disagreement</text>
+
+  <!-- valid (green) -->
+  <rect x="335" y="502" width="130" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="400" y="536" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">valid</text>
+
+  <!-- legend -->
+  <line x1="480" y1="524" x2="524" y2="524" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <text x="532" y="529" font-size="13" fill="#57534e">load-bearing (required)</text>
+  <line x1="480" y1="550" x2="524" y2="550" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>
+  <text x="532" y="555" font-size="13" fill="#57534e">enhancement (not required)</text>
+
+  <!-- caption -->
+  <text x="410" y="608" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability.</text>
 </svg>

@@ -1,6 +1,6 @@
 {
   "_provenance": "Declared print-appendix projection scope. Base flagship set is DERIVED at build time from catalogue-classification.json (disposition == keep-as-L2); this file declares ONLY the deviations. Consumed by book/build_book.py:_load_print_manifest / _flagship_slugs. Hand-authored — edit in place.",
-  "_derivation": "flagship_slugs = {keep-as-L2 slugs (24)} UNION print_promotions (5) MINUS appendix_exclude = 29. appendix_exclude names a move-to-book-case entry (already outside keep-as-L2) so it is a no-op guard, not a subtraction; intro_l1_principles names the lift-to-L1 entry represented in the intro rather than as a flagship page. The 'two excludes' (standards-rule-engine to Part-5 case, semantic-level-enforcement to L1 intro) are already outside the 24 keep-as-L2, so 24 + 5 = 29.",
+  "_derivation": "flagship_slugs = {keep-as-L2 slugs (24)} UNION print_promotions (5) MINUS appendix_exclude = 29. appendix_exclude names a move-to-book-case entry (already outside keep-as-L2) so it is a no-op guard, not a subtraction. The 'two excludes' (standards-rule-engine to Part-5 case, semantic-level-enforcement folded into the Appendix A Assurance-stack body as a placement rule) are already outside the 24 keep-as-L2, so 24 + 5 = 29.",
   "_claude_md_rule_index_dial": "The claude-md-rule-index (Governed Knowledge Base) keep-as-L2 stays a PRINT flagship by default (design 260803 §1b/§2c). The editorial dial that sends it web-only would add it to appendix_exclude, dropping print flagships from 29 to 28; NOT pulled here.",
   "print_promotions": [
     "dynamic-context-injection",
@@ -8,9 +8,6 @@
     "coverage-model-mapping",
     "formal-invariant-verification",
     "synchronization-model"
-  ],
-  "intro_l1_principles": [
-    "semantic-level-enforcement"
   ],
   "appendix_exclude": [
     "standards-rule-engine"
