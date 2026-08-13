@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RB Engineering-Moves figure — c5-earliest-legible-last-safe.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470"
+     role="img" aria-labelledby="c5Title c5Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="c5Title">C.5 Put authority where the property becomes legible: check at the earliest legible boundary, re-check at the last safe one</title>
+  <desc id="c5Desc">A timeline running from where work begins to where consequence occurs. Too early, the property is
+    not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the
+    obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe
+    boundary — the last point before the point of no return. The consequence sits at the end of the line.</desc>
+
+  <defs>
+    <marker id="c5-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <!-- endpoint labels -->
+  <text x="100" y="120" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">work begins</text>
+  <text x="900" y="120" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">consequence</text>
+  <line x1="100" y1="132" x2="100" y2="212" stroke="#57534e" stroke-width="2" marker-end="url(#c5-ah)"/>
+  <line x1="900" y1="132" x2="900" y2="212" stroke="#b23b3b" stroke-width="2" marker-end="url(#c5-ah)"/>
+
+  <!-- axis -->
+  <line x1="80" y1="230" x2="920" y2="230" stroke="#1c1917" stroke-width="2.5"/>
+
+  <!-- too early: open node -->
+  <circle cx="250" cy="230" r="11" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <text x="250" y="272" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">too early</text>
+  <text x="250" y="292" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">property not yet</text>
+  <text x="250" y="310" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">legible</text>
+
+  <!-- earliest legible: filled green node, CHECK -->
+  <circle cx="440" cy="230" r="13" fill="#1f7a4d" stroke="#155c38" stroke-width="2.5"/>
+  <text x="440" y="272" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">earliest legible</text>
+  <text x="440" y="291" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">boundary</text>
+  <text x="440" y="200" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">CHECK</text>
+
+  <!-- last safe: rust node (dashed ring to differ in grayscale), RE-CHECK -->
+  <circle cx="740" cy="230" r="13" fill="#9a3f12" stroke="#9a3f12" stroke-width="2.5"/>
+  <circle cx="740" cy="230" r="20" fill="none" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <text x="740" y="272" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">last safe</text>
+  <text x="740" y="291" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">boundary</text>
+  <text x="740" y="200" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">RE-CHECK</text>
+  <text x="740" y="322" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">point of no return</text>
+
+  <!-- consequence X -->
+  <g stroke="#b23b3b" stroke-width="3.5" stroke-linecap="round">
+    <line x1="890" y1="220" x2="910" y2="240"/>
+    <line x1="910" y1="220" x2="890" y2="240"/>
+  </g>
+
+  <!-- footer / TOCTOU -->
+  <text x="500" y="392" text-anchor="middle" font-size="16" fill="#1c1917">Enforce at the earliest boundary that can decide the property; if later work can invalidate the evidence, re-establish it at the last.</text>
+  <text x="500" y="430" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Like time-of-check / time-of-use: a valid check does not justify a later action if state can change between them &#8212; and the</text>
+  <text x="500" y="450" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">intervening change need not be concurrency; it may be another commit, a generated artifact, or a deployment transition.</text>
+</svg>

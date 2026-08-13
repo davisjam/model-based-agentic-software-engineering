@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RB Engineering-Moves figure — c6-close-action-surface.svg. Fold to book/assets/.
+     Colorblind-safe + grayscale-survivable: OPEN vs CLOSED read by SHAPE, DASH, and WEIGHT
+     (scattered thin dashed routes vs one heavy solid funnel through a bold seam), never by hue. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" width="1000" height="540"
+     role="img" aria-labelledby="c6Title c6Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="c6Title">C.6 Close the action surface: replace open-ended routes with one bounded, named interface</title>
+  <desc id="c6Desc">On the left, an open surface: an actor reaches a consequential resource by arbitrary routes —
+    a raw surface, another raw surface, a helper, and unknown paths — drawn as scattered thin dashed arrows, so
+    governance must reason about an open-ended set of ways a change could happen. On the right, a closed surface:
+    the actor reaches the resource only through one heavy, named seam that fans into a finite set of verbs, each of
+    which can stamp provenance, validate, constrain, and observe. The two states are distinguished by shape, dash,
+    and line weight, not by colour, so the contrast survives grayscale and colour-blindness.</desc>
+
+  <defs>
+    <marker id="c6-ah-open" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="c6-ah-closed" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ================= OPEN ================= -->
+  <text x="60" y="52" font-size="17" font-weight="700" letter-spacing="0.06em" fill="#1c1917">OPEN &#183; any route</text>
+
+  <!-- actor -->
+  <rect x="60" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <text x="115" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">actor</text>
+
+  <!-- scattered thin DASHED routes (chaos read by dash + fan) -->
+  <g fill="none" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#c6-ah-open)">
+    <path d="M170,244 C240,150 300,132 360,120"/>
+    <path d="M170,252 C250,214 300,206 360,200"/>
+    <path d="M170,262 C250,286 300,290 360,296"/>
+    <path d="M170,272 C240,360 300,378 360,388"/>
+  </g>
+
+  <g font-size="15" fill="#1c1917">
+    <rect x="364" y="100" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <text x="439" y="125" text-anchor="middle">raw surface</text>
+    <rect x="364" y="180" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <text x="439" y="205" text-anchor="middle">raw surface</text>
+    <rect x="364" y="276" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <text x="439" y="301" text-anchor="middle">helper</text>
+    <rect x="364" y="368" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <text x="439" y="393" text-anchor="middle" font-weight="700">? ? ? ?</text>
+  </g>
+
+  <text x="290" y="452" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">open-ended &#8212; governance must reason about every possible path</text>
+
+  <!-- divider -->
+  <line x1="530" y1="70" x2="530" y2="470" stroke="#e4e0d8" stroke-width="1.5"/>
+
+  <!-- ================= CLOSED ================= -->
+  <text x="560" y="52" font-size="17" font-weight="700" letter-spacing="0.06em" fill="#1c1917">CLOSED &#183; one named seam</text>
+
+  <!-- actor -->
+  <rect x="560" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <text x="615" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">actor</text>
+
+  <!-- solid HEAVY funnel to a bold SEAM -->
+  <line x1="670" y1="256" x2="712" y2="256" stroke="#1c1917" stroke-width="3" marker-end="url(#c6-ah-closed)"/>
+  <rect x="718" y="222" width="112" height="68" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="4"/>
+  <text x="774" y="262" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">SEAM</text>
+
+  <!-- fan to three verbs, solid heavy -->
+  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#c6-ah-closed)">
+    <path d="M830,240 C868,196 878,184 900,168"/>
+    <line x1="830" y1="256" x2="898" y2="256"/>
+    <path d="M830,272 C868,316 878,328 900,344"/>
+  </g>
+
+  <g font-size="16" font-weight="700" fill="#1c1917">
+    <rect x="866" y="148" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <text x="913" y="173" text-anchor="middle">VERB A</text>
+    <rect x="866" y="236" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <text x="913" y="261" text-anchor="middle">VERB B</text>
+    <rect x="866" y="324" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <text x="913" y="349" text-anchor="middle">VERB C</text>
+  </g>
+
+  <text x="774" y="322" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">stamp &#183; validate</text>
+  <text x="774" y="342" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">constrain &#183; observe</text>
+
+  <text x="760" y="452" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a finite verb set &#8212; each move can carry policy, evidence, validation</text>
+
+  <!-- footer note: the distinction is not colour -->
+  <text x="500" y="508" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Read the contrast by shape, dash, and weight &#8212; scattered thin dashed routes vs one heavy funnel &#8212; not by colour.</text>
+</svg>

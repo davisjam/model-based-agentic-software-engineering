@@ -3050,14 +3050,14 @@ _WEB_REDIRECT_CACHE: dict[str, str] | None = None
 
 
 def _web_redirect_map() -> dict[str, str]:
-    """`{slug: web-catalogue-URL}` for every NON-FLAGSHIP mechanism (the ones the print appendix omits).
-    Computed once from the entry records + the flagship set, then cached — the redirect below consults it per
-    authored link."""
+    """`{slug: web-catalogue-URL}` for EVERY catalogue mechanism. The print appendix no longer emits a
+    per-mechanism page (the Flagship-Mechanisms Part was retired in the apparatus restructure), so an
+    authored `](appendix-b-<mechanism>.html)` cross-reference redirects to the live WEB entry uniformly —
+    the flagship exclusion is dropped. Computed once from the entry records, then cached."""
     global _WEB_REDIRECT_CACHE
     if _WEB_REDIRECT_CACHE is None:
-        flag = _flagship_slugs()
         _WEB_REDIRECT_CACHE = {rec["slug"]: rec["catalogue_html"]
-                               for rec in _appendix_entries() if rec["slug"] not in flag}
+                               for rec in _appendix_entries()}
     return _WEB_REDIRECT_CACHE
 
 
@@ -3623,6 +3623,26 @@ _MODEL_PAGES: list[tuple[str, str]] = [
     ("representation-to-authority",   "From Representation to Authority"),
 ]
 
+# APPENDIX B — Engineering Moves. Hand-authored worked examples: one page per recurring engineering
+# problem and the transferable MOVE that addresses it, each realized through two materially different
+# mechanisms (problem → move → two realizations). Routed through the shared hand-authored appendix builder
+# like the Model Reference — no bespoke builder. The front-door opening carries the C.0 prose + the
+# problem→move overview map (Figure B.0-1); content-page slugs are `appendix-b-<move>`.
+_ENGINEERING_MOVES_DIR = HERE / "appendix-engineering-moves"
+_APPENDIX_ENGINEERING_MOVES_OPENING_SLUG = "appendix-b-engineering-moves"
+_ENGINEERING_MOVES_PAGES: list[tuple[str, str]] = [
+    ("make-fact-authoritative",       "Make the important fact authoritative"),
+    ("derive-dont-copy",              "Derive; don't copy"),
+    ("check-correspondence",          "Keep representation and reality in correspondence"),
+    ("derive-the-obligation-set",     "Derive what must be assured"),
+    ("put-authority-where-legible",   "Put authority where the property becomes legible"),
+    ("close-the-action-surface",      "Close the action surface"),
+    ("deliver-knowledge-at-decision", "Deliver knowledge where the decision occurs"),
+    ("carry-cause-with-consequence",  "Make cause travel with consequence"),
+    ("externalize-judgment",          "Externalize recurring operational judgment"),
+    ("make-dependencies-queryable",   "Make hidden dependencies queryable"),
+]
+
 
 # APPENDIX D — Operator's Reference. Hand-authored, like the stacks Part and the skill recipe: a front-door
 # page whose opening prose lives here, then one authored markdown page per operational reference card under
@@ -3868,77 +3888,6 @@ def build_backmatter_chapters(next_part: int) -> list[dict]:
         rec["part_title"] = _BACKMATTER_PART_TITLE
         out.append(rec)
     return out
-
-
-# ─────────────────────────── Appendix v2 — the value-ordered A/B/C/D projection ───────────────
-# The stub content the C.1/C.2/C.3 brick grid and the compressed A constituents / B notes REPLACE in later
-# assembly sub-waves. This wave builds the STRUCTURE only: the A/B/C/D letters + order, the derived monotonic
-# locators, the D80 figure-prefix fields, and buildable (orphan-free) pages. The A constituent prose, the B
-# compression, and the C bricks land when those sub-waves assemble the drafts under `book/_design/drafts/`.
-_APPENDIX_V2_B_OPENING_SLUG = "appendix-b-flagship-mechanisms"
-# GENRE-EXEMPT (machine-text standard): Appendix C, the mechanism catalog, is a GENERATED REFERENCE INDEX
-# (census-ordered bricks + the derived technique index) — the sanctioned exception to "no machine-generated
-# reader prose": an index is structural reference, not authored manuscript, and its framing sentences ARE
-# authored in appendix-c/_opening.md + _technique-index.md. Not a violation; do not "fix" by inlining prose.
-_APPENDIX_V2_C_OPENING_SLUG = "appendix-c-mechanism-catalog"
-
-def _appendix_v2_b_opening_prose() -> str:
-    """Appendix B's opening frame (B1 lift). The prose is authored in `appendix-notes/_opening-b.md` so a
-    manuscript editor revises it in place; the build slots in the governed published-catalogue URL
-    (`_catalogue_web_url`) for the three `online catalogue` links, so the exhaustive per-mechanism detail
-    this selective appendix does not duplicate stays a live cross-reference."""
-    return _load_opening(_APPENDIX_NOTES_DIR / "_opening-b.md", catalogue_url=_catalogue_web_url())
-
-
-def _technique_index_md() -> str:
-    """A compact DERIVED 'methods map' for the appendix opening — every technique (its `abstract_name`) with
-    its in-book advanced-example count, in descending count order. The framing sentence is authored in
-    `appendix-c/_technique-index.md`; the technique COUNT and the technique LIST stay COMPUTED off the
-    classification spine (never baked into prose), slotted in as `{{technique_count}}`/`{{technique_items}}`
-    so the index cannot drift from the spine."""
-    spine = _technique_spine()
-    techs = sorted(
-        ((len(spine["examples"].get(slug, [])), name) for slug, name in spine["abstract"].items()),
-        key=lambda t: (-t[0], t[1]))
-    items = " · ".join(f"**{name}**" + (f" ({n})" if n else "") for n, name in techs)
-    return _load_opening(HERE / "appendix-c" / "_technique-index.md",
-                         technique_count=str(len(techs)), technique_items=items) + "\n"
-
-
-def _appendix_v2_c_opening_prose() -> str:
-    """Appendix C's opening frame (B1 lift). The framing prose — the *browse, don't read* instruction, the
-    four-surface relationship table, and the brick legend — is authored in `appendix-c/_opening.md`; the
-    build slots in the governed catalogue URL and the COMPUTED technique index (`{{technique_index}}`). The
-    A/B/C references stay `[appendix: <slug>]` markers (letter-agnostic across a re-lettering)."""
-    return _load_opening(HERE / "appendix-c" / "_opening.md",
-                         catalogue_url=_catalogue_web_url(), technique_index=_technique_index_md())
-
-
-def _appendix_v2_role_subsections() -> list[tuple[str, str]]:
-    """The (letter-suffix, role-group) pairs for Appendix C's three brick sections (C.1 Agent · C.2
-    Models-bridge · C.3 Product), in the canonical role order `_APPENDIX_ROLES` declares."""
-    return [(str(i + 1), group) for i, (_r, group) in enumerate(_APPENDIX_ROLES)]
-
-
-# The one-sentence definition of each catalogue zone — the agent / models-bridge / product governance
-# triad (the three complementary targets a mature governance system covers: the fleet that PRODUCES the
-# work, the models it reasons THROUGH, the artifact it SHIPS). Each heads its Appendix C section, so the
-# section that introduces a zone is also the concept model's canonical `index-def` home for
-# `governance-target-<zone>` — the derived `book_home` the concepts-model gate reads. The KEYS (the role
-# groups) stay in code (`_APPENDIX_ROLES`); the gloss SENTENCES are authored in `appendix-c/_zone-gloss.md`
-# (B1 lift, partly-structural), one per line in role order, so an editor revises them in the manuscript.
-@functools.lru_cache(maxsize=1)
-def _appendix_v2_zone_gloss() -> dict[str, str]:
-    path = HERE / "appendix-c" / "_zone-gloss.md"
-    if not path.is_file():
-        raise SystemExit(f"zone gloss prose missing: {path}")
-    lines = [ln.strip() for ln in path.read_text(encoding="utf-8").splitlines() if ln.strip()]
-    groups = [group for _r, group in _APPENDIX_ROLES]
-    if len(lines) != len(groups):
-        raise SystemExit(
-            f"zone gloss {path}: expected {len(groups)} sentences (one per role group {groups}), "
-            f"got {len(lines)}")
-    return dict(zip(groups, lines))
 
 
 # ═══════════════════════ Appendix v2 render mechanisms (restructure sub-wave 2) ════════════════
@@ -4731,61 +4680,29 @@ def _brick_grid_html(group: str) -> str:
 
 
 def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list[dict]:
-    """The value-ordered appendix (build flag ON): **A** MAGE Engineering Stacks · **B** Flagship Mechanisms
-    (one Part, role subsections, monotonic B.N) · **C** Mechanism Catalog (C.1/C.2/C.3 brick grid — STUBBED
-    this sub-wave) · **D** Operator's Reference (hand-authored operational cards; the Operator's Dashboard is
-    D.1) · **E** How to Write a Skill (relettered D → E when the Operator's Reference took D). Figure numbers
-    derive monotonically off each page's A.X / B.N locator (`fig_prefix`), killing the legacy 8.608 sort-key garbage
-    (D80). Reads all 83 entries (`_appendix_entries`); the 29 flagships (`_flagship_slugs`) each get a B page
-    and a monotonic B.N; every entry appears in the C reference index (flagship → its B page, the rest →
-    online). The `[appendix: <slug>]` markers resolve to the NEW letters automatically — the letter map reads
-    each page's `part_title`, which now says 'Appendix A/B/C/D'."""
+    """The value-ordered appendix (build flag ON), in reading order: **A** MAGE Engineering Stacks ·
+    **B** Engineering Moves (hand-authored worked examples — problem → move → two realizations) ·
+    **C** Model Reference · **D** Operator's Reference · **E** How to Write a Skill · **F** Field Guide ·
+    **G** Evidence Ledger. Each Part is routed through the shared hand-authored appendix scaffold, so its
+    TOC/pager/index render with no special-casing; figure numbers derive monotonically off each page's
+    `<letter>.<i>` locator (`fig_prefix`, D80). The `[appendix: <slug>]` markers resolve to the letters
+    automatically — the letter map reads each page's `part_title`. `_appendix_entries` is still read so the
+    stacks' `role:<slug>` member tokens resolve (a former-flagship member now links to its live WEB entry —
+    the print appendix emits no per-mechanism page; the complete catalogue lives online)."""
     entries = _appendix_entries()
     if not entries:
         return []
-    flagship = _flagship_slugs()
 
-    family_order = _family_order_from_index()
-    role_index = {group: i for i, (_r, group) in enumerate(_APPENDIX_ROLES)}
-
-    # Role → family census number → within-family slug: the census-map hierarchy, same as legacy.
-    def _sort_key(rec: dict) -> tuple:
-        return (
-            role_index.get(rec["group"], 99),
-            family_order.get(rec["family"], 999),
-            rec["family"],
-            rec["slug"],
-        )
-    ordered = sorted(entries, key=_sort_key)
-
-    # APPENDIX B locators — a single MONOTONIC run B.1…B.29 across every flagship in role→family→slug order
-    # (Agent, then Models-bridge, then Product), so a locator is stable regardless of zone. All flagships sit
-    # in Appendix B, so the record's letter is "B" for all 29; `page_slug`/`appendix_letter`/`appendix_num`
-    # drive the stack-member links, the anchor map, and the reference index — the same fields the legacy path
-    # set, only with one shared letter. A non-flagship carries none of them (absence = the flagship signal).
-    b_counter = 0
-    for rec in ordered:
-        if rec["slug"] not in flagship:
-            continue
-        b_counter += 1
-        rec["page_slug"] = f"appendix-b-{rec['slug']}"
-        rec["appendix_letter"] = "B"
-        rec["appendix_num"] = b_counter
-
-    # The rewired mechanism-map figure: flagship chip → its Appendix-B page, non-flagship chip → its web
-    # entry (via the anchor map, from the `page_slug` fields just set). Embedded on the Appendix-C opening.
-    anchor_map = _appendix_anchor_map(ordered)
-    _emit_rewired_figure(anchor_map)
-
-    counts = _appendix_counts(ordered)
-    # Stacks now live in Appendix A, so the member→stack back-links point at `appendix-a-<stem>` pages.
-    stack_membership = _stack_membership_index(page_letter="a")
-    page_by_slug = {rec["slug"]: rec for rec in ordered}
+    # Every appendix mechanism record — the stacks' `role:<slug>` member tokens resolve against this. No
+    # record carries `appendix_num` now (the print projection emits no per-mechanism page), so
+    # `_resolve_stack_members` routes every member to its live web entry (uniform web-redirect posture; the
+    # former Flagship-Mechanisms pages were retired in the apparatus restructure).
+    page_by_slug = {rec["slug"]: rec for rec in entries}
 
     chapters: list[dict] = []
 
-    # ── APPENDIX A — MAGE Engineering Stacks (was legacy Appendix D). Leads the appendix: adopt a capability
-    #    as a whole stack. The opening front-door + one page per stack, figures numbered A.<i>-N.
+    # ── APPENDIX A — MAGE Engineering Stacks. Leads the appendix: adopt a capability as a whole stack. The
+    #    opening front-door + one page per stack, figures numbered A.<i>-N.
     chapters += build_stack_chapters(
         part=next_part, page_by_slug=page_by_slug,
         letter="A", part_name="MAGE Engineering Stacks", locator_figs=True, inline_legend=True,
@@ -4796,129 +4713,41 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
                            + _load_opening(_STACKS_DIR / "_vendor-note.md") + "\n\n"
                            + _load_opening(_STACKS_DIR / "_depgraph-figure.md")))
 
-    # ── APPENDIX B — Flagship Mechanisms. ONE Part; role SUBSECTIONS (Agent → Models-bridge → Product); the
-    #    29 notes numbered straight through B.1…B.29. Opening frame carries the nine-capability lens + a
-    #    pointer to the stacks in Appendix A.
-    b_part = next_part + 1
-    b_part_title = "Appendix B — Flagship Mechanisms"
-    # The 'Adopt by capability: the stacks' summary block belongs to Appendix A, so B's opening does not
-    # repeat it (removing the lone `## Adopt by capability` H2 also makes B's H1 a leaf — the only-child
-    # front-door shape A and C already have). The nine-capability map + lifted L1 principle likewise front
-    # the stacks in Appendix A.
-    b_opening_body = [
-        _appendix_v2_b_opening_prose(),
-    ]
-    chapters.append({
-        "slug": _APPENDIX_V2_B_OPENING_SLUG,
-        "part": b_part,
-        "part_title": b_part_title,
-        "chapter": 0,                          # sorts before every note
-        "chapter_title": b_part_title,
-        "body_md": "\n".join(b_opening_body).strip(),
-        "is_appendix": True,
-        "mermaid": False,
-        "fig_prefix": "B",
-    })
-    # ONE PAGE PER FLAGSHIP — role order preserved by `ordered`, monotonic B.N as the chapter sort key, so the
-    # pager walks B.1…B.29 after the opening. The note body reuses the GoF pattern-page render (full this
-    # sub-wave; the ≤1pp/≤2pp compression is a later assembly wave).
-    for rec in (r for r in ordered if r["slug"] in flagship):
-        num = rec["appendix_num"]
-        chapters.append({
-            "slug": rec["page_slug"],
-            "part": b_part,
-            "part_title": b_part_title,
-            "chapter": num,                    # monotonic 1…29 — sorts after the opening's chapter 0
-            "chapter_title": f"Appendix B - {num}. {rec['name']}",
-            "body_md": _appendix_b_note_md(rec, stack_membership, for_print),
-            "is_appendix": True,
-            "mermaid": True,
-            "fig_prefix": f"B.{num}",          # D80: "Figure B.<num>-N", monotonic off the locator
-            "role_group": rec["group"],        # for the later role-subsection grouping in the TOC
-        })
-
-    # ── APPENDIX C — Mechanism Catalog. Opening carries the complete reference index (every mechanism:
-    #    flagship → its B page, the rest → online) + the rewired clickable map, then the C.1/C.2/C.3 role
-    #    sections each render as a PACKED BRICK GRID (§14) over that zone's entries. Brick thumbnails are
-    #    UNNUMBERED by construction (§5.4) — the cells are bare cards, no <figure>/caption, so none enter the
-    #    float stream. The three-sentence summaries + real thumbnails fill in the C assembly sub-wave.
-    c_part = next_part + 2
-    c_part_title = "Appendix C — Mechanism Catalog"
-    c_body = [
-        _appendix_v2_c_opening_prose(),
-        "",
-        # The clickable map — every mechanism chip routed to its Appendix-B page or its web entry.
-        f"<!-- figure-iframe: {_BOOK_FIGURE_NAME} | The governance mechanism map — every mechanism in the "
-        "catalogue, organized by target zone and family. Click a mechanism to open its flagship deep dive or "
-        "its online entry. | The governance mechanism map: click any mechanism to open its treatment. -->",
-        "",
-    ]
-    # C.1 / C.2 / C.3 — each a packed brick grid over the zone's entries (the `brick-grid` directive renders
-    # the CSS-grid / #grid; the packer runs at render time from the one `_appendix_entries` read).
-    for suffix, group in _appendix_v2_role_subsections():
-        n_in_role = sum(1 for r in ordered if r["group"] == group)
-        # This section introduces its governance zone — the agent / models-bridge / product triad — so it
-        # carries that concept's canonical `index-def`. The anchor attaches to the defining sentence that
-        # follows it, giving `governance-target-<zone>` a resolved book home under the v2 projection.
-        zone_slug = f"governance-target-{group.lower()}"
-        c_body += [
-            f"### C.{suffix} {group}",
-            "",
-            f"<!-- index-def: {zone_slug} -->",
-            f"**{group} —** {_appendix_v2_zone_gloss()[group]}",
-            "",
-            f"*{n_in_role} mechanisms. Each brick links to its full Gang-of-Four entry in the online "
-            "catalogue; a flagship also carries a deep-dive note in Appendix B.*",
-            "",
-            f"<!-- brick-grid: {group} -->",
-            "",
-        ]
-    c_body += [_appendix_contents_md(ordered)]  # the complete all-83 reference index (flagship + online)
-    chapters.append({
-        "slug": _APPENDIX_V2_C_OPENING_SLUG,
-        "part": c_part,
-        "part_title": c_part_title,
-        "chapter": 0,
-        "chapter_title": c_part_title,
-        "body_md": "\n".join(c_body).strip(),
-        "is_appendix": True,
-        "mermaid": False,                      # the map is an <iframe>, not an inline mermaid block
-        "fig_prefix": "C",
-    })
-
-    # ── APPENDIX D — Operator's Reference. Hand-authored operational reference cards (the Operator's Dashboard
-    #    is D.1, the relocated back-matter dashboard). Sits BEFORE the skill recipe so the reference the
-    #    operator reaches for mid-build leads the two hand-authored tail appendices.
-    d_part = next_part + 3
-    chapters += build_operators_reference_chapters(
-        part=d_part, for_print=for_print, letter="D", locator_figs=True)
-
-    # ── APPENDIX E — How to Write a Skill (was Appendix D this restructure; legacy Appendix E before the
-    #    value-ordered cutover). Full content retained (design §13.7). The appendices end at E; "A Theory of
-    #    MAGE" was relocated out of the appendices to a numbered main-text chapter (backmatter, after
-    #    "Implications for Software Engineering").
-    e_part = next_part + 4
-    chapters += build_skill_recipe_chapters(
-        part=e_part, for_print=for_print, letter="E", locator_figs=True)
-
-    # ── APPENDIX F — Field Guide. The six studied teams as one-page reference cards (a single deck page). A
-    #    team-first reference ("who was that team again?"), distinct from Section 6.6's comparative read and
-    #    the Part-IV concept-first micro-cases. Appended last: a reference surface the reader reaches for by
-    #    team name. Authored `.md` one-pagers, zero operator-card rows.
-    f_part = next_part + 5
-    chapters += build_field_guide_chapters(part=f_part, letter="F", locator_figs=True)
+    # ── APPENDIX B — Engineering Moves. Hand-authored worked examples: one page per recurring engineering
+    #    problem and the transferable MOVE that addresses it, each shown through two materially different
+    #    realizations. The front-door opening carries the C.0 prose + the problem→move overview map
+    #    (Figure B.0-1); content-page slugs are `appendix-b-<move>`. This REPLACES the retired print
+    #    Flagship-Mechanisms + Mechanism-Catalog blocks — the complete per-mechanism catalogue is web-only.
+    chapters += build_hand_authored_appendix(
+        next_part + 1, letter="B", part_name="Engineering Moves",
+        opening_slug=_APPENDIX_ENGINEERING_MOVES_OPENING_SLUG,
+        opening_prose=_load_opening(_ENGINEERING_MOVES_DIR / "_opening.md"),
+        content_dir=_ENGINEERING_MOVES_DIR, pages_source=_ENGINEERING_MOVES_PAGES,
+        locator_figs=True, locator_heading=True)
 
     # ── APPENDIX C — Model Reference. A compact teaching pattern-book: seven sections showing the
     #    representative forms a model takes (collapsed from the earlier 17 per-model cards, round-54).
     #    Routed through the shared hand-authored appendix builder — no near-clone builder. Content-page
-    #    slugs are net-new `appendix-c-<section>` stems; the front-door slug stays `appendix-models`.
-    g_part = next_part + 6
+    #    slugs are `appendix-c-<section>` stems; the front-door slug stays `appendix-models`.
     chapters += build_hand_authored_appendix(
-        g_part, letter="C", part_name="Model Reference",
+        next_part + 2, letter="C", part_name="Model Reference",
         opening_slug=_APPENDIX_MODELS_OPENING_SLUG,
         opening_prose=_load_opening(_MODELS_DIR / "_opening.md"),
         content_dir=_MODELS_DIR, pages_source=_MODEL_PAGES,
         locator_figs=True, locator_heading=True)
+
+    # ── APPENDIX D — Operator's Reference. Hand-authored operational reference cards (the Operator's Dashboard
+    #    is D.1, the relocated back-matter dashboard).
+    chapters += build_operators_reference_chapters(
+        part=next_part + 3, for_print=for_print, letter="D", locator_figs=True)
+
+    # ── APPENDIX E — How to Write a Skill. Full content retained (design §13.7).
+    chapters += build_skill_recipe_chapters(
+        part=next_part + 4, for_print=for_print, letter="E", locator_figs=True)
+
+    # ── APPENDIX F — Field Guide. The six studied teams as one-page reference cards (a single deck page). A
+    #    team-first reference ("who was that team again?"), distinct from Section 6.6's comparative read.
+    chapters += build_field_guide_chapters(part=next_part + 5, letter="F", locator_figs=True)
 
     # ── APPENDIX G — Evidence Ledger: The DocAble Case (fork G7; re-lettered from H). The raw count tables
     #    behind Part V's curves (support-ratio LoC, per-path churn, control-growth counts). Appended LAST so
@@ -4928,9 +4757,8 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
     #    a single-page evidence ledger is a legitimate shape, so give it the genuine single-page form
     #    rather than splitting the three tables artificially). The Part-V "The Build" chapter links the
     #    front-door via `[appendix: appendix-evidence-ledger]`, the slug single_deck preserves.
-    h_part = next_part + 7
     chapters += build_hand_authored_appendix(
-        h_part, letter="G", part_name="Evidence Ledger: The DocAble Case",
+        next_part + 6, letter="G", part_name="Evidence Ledger: The DocAble Case",
         opening_slug=_APPENDIX_EVIDENCE_LEDGER_OPENING_SLUG,
         opening_prose=_load_opening(_EVIDENCE_LEDGER_DIR / "_opening.md"),
         content_dir=_EVIDENCE_LEDGER_DIR, pages_source=_EVIDENCE_LEDGER_PAGES,
@@ -5920,7 +5748,7 @@ def expected_page_slugs() -> set[str]:
     chapters += build_appendix_chapters(next_part=max(c["part"] for c in chapters) + 1)
     chapters += build_backmatter_chapters(next_part=max(c["part"] for c in chapters) + 1)
     return ({c["slug"] for c in chapters} | set(_GENERATED_PAGE_SLUGS)
-            | {"index", "book-index", "catalogue-figure", _FIGURES_GALLERY_SLUG, _BIBLIOGRAPHY_SLUG})
+            | {"index", "book-index", _FIGURES_GALLERY_SLUG, _BIBLIOGRAPHY_SLUG})
 
 
 # The rendered PDF is gated on CONTENT INTEGRITY, not just a page count. The failure modes are a runaway

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RB Engineering-Moves figure — c8-cause-travels-with-consequence.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="1000" height="480"
+     role="img" aria-labelledby="c8Title c8Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="c8Title">C.8 Make cause travel with consequence: mint identity at the causal event and carry it through the artifacts</title>
+  <desc id="c8Desc">A causal event mints an identity, then that identity travels alongside the work. The action
+    produces a change, the change produces an artifact, and the same identity is carried under all three as a
+    provenance rail. Because the identity moved with the work rather than being inferred afterward, the final
+    artifact can reconstruct why it changed, not merely what changed.</desc>
+
+  <defs>
+    <marker id="c8-ah-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="c8-ah-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="c8-ah-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/>
+    </marker>
+  </defs>
+
+  <!-- CAUSE (provenance origin) -->
+  <rect x="90" y="34" width="180" height="56" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="180" y="69" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">CAUSE</text>
+  <line x1="180" y1="90" x2="180" y2="146" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#c8-ah-r)"/>
+  <text x="192" y="124" font-size="14" font-style="italic" fill="#9a3f12">mint identity</text>
+
+  <!-- chain: ACTION -> CHANGE -> ARTIFACT -->
+  <g>
+    <rect x="100" y="150" width="160" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="180" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ACTION</text>
+    <rect x="420" y="150" width="160" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="500" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHANGE</text>
+    <rect x="740" y="150" width="180" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="830" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ARTIFACT</text>
+  </g>
+  <g stroke="#57534e" stroke-width="2.2" marker-end="url(#c8-ah-n)">
+    <line x1="260" y1="179" x2="414" y2="179"/>
+    <line x1="580" y1="179" x2="734" y2="179"/>
+  </g>
+
+  <!-- provenance rail: identity carried under all three -->
+  <g stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4">
+    <line x1="180" y1="208" x2="180" y2="272"/>
+    <line x1="500" y1="208" x2="500" y2="272"/>
+    <line x1="830" y1="208" x2="830" y2="272"/>
+    <line x1="180" y1="272" x2="830" y2="272"/>
+  </g>
+  <g font-size="14" font-weight="700" fill="#9a3f12" text-anchor="middle">
+    <text x="340" y="264">id</text>
+    <text x="665" y="264">id</text>
+  </g>
+  <text x="500" y="300" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">the identity travels with the work &#8212; and can be checked for completeness</text>
+
+  <!-- reconstruct WHY (knowledge recovered) -->
+  <line x1="830" y1="272" x2="830" y2="330" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#c8-ah-g)"/>
+  <rect x="700" y="334" width="260" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <text x="830" y="370" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">reconstruct WHY</text>
+
+  <!-- footer -->
+  <text x="60" y="440" font-size="16" fill="#1c1917">Capture provenance at the causal event and carry it forward with the resulting change.</text>
+  <text x="60" y="466" font-size="15" font-style="italic" fill="#57534e">Later evidence says what changed; provenance that travelled with the work still says why.</text>
+</svg>

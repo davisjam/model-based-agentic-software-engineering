@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RB Engineering-Moves figure — c2-derive-dont-copy.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="1000" height="520"
+     role="img" aria-labelledby="c2Title c2Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="c2Title">C.2 Derive, don't copy: a snapshot goes stale while a live query stays current</title>
+  <desc id="c2Desc">Two ways a consumer reads an authoritative model. In the bad path, the consumer copies values
+    into a snapshot and checks against the snapshot; when the model changes, the snapshot does not, so the check
+    runs against a stale answer. In the good path, the consumer queries the model directly; when the model changes,
+    the next check sees the change because the consumer is coupled to the model's interface, not to yesterday's
+    answer.</desc>
+
+  <defs>
+    <marker id="c2-ah-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b23b3b"/>
+    </marker>
+    <marker id="c2-ah-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/>
+    </marker>
+    <marker id="c2-ah-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <!-- ============ BAD ============ -->
+  <text x="60" y="56" font-size="16" font-weight="700" letter-spacing="0.06em" fill="#b23b3b">BAD &#183; copy out a snapshot</text>
+
+  <rect x="60" y="80" width="150" height="56" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <text x="135" y="114" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL</text>
+
+  <line x1="210" y1="108" x2="360" y2="108" stroke="#57534e" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#c2-ah-n)"/>
+  <text x="285" y="98" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">copy</text>
+
+  <rect x="366" y="80" width="160" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+  <text x="446" y="114" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">SNAPSHOT</text>
+
+  <line x1="526" y1="108" x2="640" y2="108" stroke="#57534e" stroke-width="2" marker-end="url(#c2-ah-n)"/>
+  <rect x="646" y="80" width="150" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="721" y="114" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">CHECK</text>
+
+  <!-- model changes; snapshot doesn't -->
+  <path d="M135,136 C135,180 135,190 200,196" fill="none" stroke="#b23b3b" stroke-width="2" marker-end="url(#c2-ah-r)"/>
+  <text x="150" y="176" font-size="14" fill="#b23b3b">the model changes&#8230;</text>
+  <text x="366" y="200" font-size="15" font-weight="700" fill="#b23b3b">&#8230; the snapshot does not &#8212; the check trusts a stale answer</text>
+
+  <!-- divider -->
+  <line x1="60" y1="252" x2="940" y2="252" stroke="#e4e0d8" stroke-width="1.5"/>
+
+  <!-- ============ GOOD ============ -->
+  <text x="60" y="300" font-size="16" font-weight="700" letter-spacing="0.06em" fill="#1f7a4d">GOOD &#183; query at the point of use</text>
+
+  <rect x="60" y="324" width="150" height="56" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <text x="135" y="358" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL</text>
+
+  <line x1="210" y1="352" x2="640" y2="352" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#c2-ah-g)"/>
+  <text x="425" y="342" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#1f7a4d">query &#8212; no second editable truth</text>
+
+  <rect x="646" y="324" width="150" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="721" y="358" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">CHECK</text>
+
+  <path d="M135,380 C135,420 135,430 200,436" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#c2-ah-g)"/>
+  <text x="150" y="416" font-size="14" fill="#1f7a4d">the model changes&#8230;</text>
+  <text x="366" y="440" font-size="15" font-weight="700" fill="#155c38">&#8230; the next check sees it &#8212; coupled to the interface, not yesterday's answer</text>
+
+  <!-- footer -->
+  <text x="500" y="496" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Consume authority by query or derivation; a snapshot is a new truth free to drift.</text>
+</svg>

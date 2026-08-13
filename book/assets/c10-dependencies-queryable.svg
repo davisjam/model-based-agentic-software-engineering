@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RB Engineering-Moves figure — c10-dependencies-queryable.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
+     role="img" aria-labelledby="c10Title c10Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="c10Title">C.10 Make hidden dependencies queryable: compute what a substrate change touches before it lands</title>
+  <desc id="c10Desc">A proposed change targets a substrate node. Three things depend on that node and interpret the
+    change differently: one control blocks it, another control is unaffected, and a model derives from it. Because
+    each dependent declares its assumption explicitly, the set of affected dependents — the blast radius — is a
+    query computed before the change lands, rather than a grep-and-read exercise afterward.</desc>
+
+  <defs>
+    <marker id="c10-ah-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="c10-ah-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="c10-ah-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/>
+    </marker>
+  </defs>
+
+  <!-- CHANGE X -->
+  <rect x="400" y="30" width="200" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHANGE X</text>
+  <text x="500" y="76" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">proposed</text>
+  <line x1="500" y1="84" x2="500" y2="132" stroke="#57534e" stroke-width="2.2" marker-end="url(#c10-ah-n)"/>
+
+  <!-- SUBSTRATE NODE -->
+  <rect x="350" y="136" width="300" height="58" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="500" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">SUBSTRATE NODE</text>
+
+  <!-- fan to three dependents -->
+  <path d="M420,194 C320,222 250,232 214,250" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#c10-ah-r)"/>
+  <line x1="500" y1="194" x2="500" y2="250" stroke="#57534e" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#c10-ah-n)"/>
+  <path d="M580,194 C680,222 750,232 786,250" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#c10-ah-g)"/>
+
+  <!-- CONTROL A (blocks) -->
+  <rect x="110" y="254" width="200" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="210" y="282" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">CONTROL A</text>
+  <text x="210" y="304" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">blocks</text>
+
+  <!-- CONTROL B (unaffected) -->
+  <rect x="400" y="254" width="200" height="64" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="500" y="282" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">CONTROL B</text>
+  <text x="500" y="304" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">unaffected</text>
+
+  <!-- MODEL C (derives) -->
+  <rect x="690" y="254" width="200" height="64" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <text x="790" y="282" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">MODEL C</text>
+  <text x="790" y="304" text-anchor="middle" font-size="14" font-weight="700" fill="#155c38">derives</text>
+
+  <!-- converge to BLAST RADIUS -->
+  <path d="M210,318 C210,362 400,378 452,398" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c10-ah-n)"/>
+  <line x1="500" y1="318" x2="500" y2="398" stroke="#57534e" stroke-width="2" marker-end="url(#c10-ah-n)"/>
+  <path d="M790,318 C790,362 600,378 548,398" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c10-ah-n)"/>
+
+  <rect x="340" y="402" width="320" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
+  <text x="500" y="439" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">BLAST RADIUS</text>
+
+  <!-- footer -->
+  <text x="500" y="510" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Declare each dependency as typed metadata on the dependent.</text>
+  <text x="500" y="536" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">&#8220;What will this migration invalidate?&#8221; becomes a graph query, not a grep-and-read.</text>
+</svg>

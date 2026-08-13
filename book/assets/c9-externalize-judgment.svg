@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RB Engineering-Moves figure — c9-externalize-judgment.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620"
+     role="img" aria-labelledby="c9Title c9Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="c9Title">C.9 Externalize recurring operational judgment: derive an operational model from the system model, then serve the operator</title>
+  <desc id="c9Desc">A system model carries what healthy looks like, the states a subsystem can be in, and the
+    relations among subsystems. Those feed an operational model, which splits the recurring judgment into what can
+    be generated — a procedure — and what still needs contextual reasoning — guidance. Both reach the operator.
+    Because the operational model is tied to the system model, the procedure does not drift away from the system it
+    is meant to explain.</desc>
+
+  <defs>
+    <marker id="c9-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="c9-ah-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- SYSTEM MODEL -->
+  <rect x="360" y="34" width="280" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <text x="500" y="70" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">SYSTEM MODEL</text>
+
+  <!-- fan to three aspects -->
+  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)">
+    <path d="M440,92 C340,118 250,120 218,146"/>
+    <line x1="500" y1="92" x2="500" y2="146"/>
+    <path d="M560,92 C660,118 750,120 782,146"/>
+  </g>
+
+  <g>
+    <rect x="130" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+    <text x="210" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">healthy?</text>
+    <rect x="420" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+    <text x="500" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">states</text>
+    <rect x="710" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+    <text x="790" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">relations</text>
+  </g>
+
+  <!-- converge to OPERATIONAL MODEL -->
+  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)">
+    <path d="M210,198 C210,238 380,250 432,266"/>
+    <line x1="500" y1="198" x2="500" y2="266"/>
+    <path d="M790,198 C790,238 620,250 568,266"/>
+  </g>
+
+  <rect x="330" y="270" width="340" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <text x="500" y="306" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">OPERATIONAL MODEL</text>
+
+  <!-- split: generated procedure / reasoning guidance -->
+  <path d="M420,328 C340,364 320,376 300,394" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
+  <path d="M580,328 C660,364 680,376 700,394" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
+
+  <rect x="180" y="398" width="240" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="300" y="426" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">generated</text>
+  <text x="300" y="448" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">procedure</text>
+
+  <rect x="580" y="398" width="240" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="700" y="426" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">reasoning</text>
+  <text x="700" y="448" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">guidance</text>
+
+  <!-- converge to OPERATOR -->
+  <path d="M300,458 C300,494 430,504 452,514" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
+  <path d="M700,458 C700,494 570,504 548,514" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
+
+  <rect x="390" y="518" width="220" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="500" y="554" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">OPERATOR</text>
+
+  <!-- footer -->
+  <text x="500" y="606" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Separate what can be generated or executed from what still needs judgment &#8212; and keep the representation tied to the system it describes.</text>
+</svg>
