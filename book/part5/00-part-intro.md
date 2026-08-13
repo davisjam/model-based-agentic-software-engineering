@@ -1,34 +1,39 @@
-<!-- part-foreshadows: modeling-thesis, seat-moves -->
-A theory earns credibility only when it explains a real engineering system. This Part follows the
-construction of DocAble — a production document-accessibility platform built almost entirely by
-directing a fleet of coding agents — from a five-minute experiment in a committee meeting to a
-deployed service. Not because document accessibility is uniquely important, but because one deeply
-observed system shows where the clean method came from in a way isolated examples cannot.
+<!-- part-foreshadows: modeling-thesis, alignment-thesis, seat-moves -->
+
+A method earns credibility when it can explain the engineering history from which it was induced.
+This Part follows DocAble — a production document-accessibility system built largely by directing
+coding agents — from a five-minute feasibility experiment to a deployed service. The point is not
+that document accessibility is uniquely revealing. It is that one system observed from the inside
+and from the beginning lets us reconstruct something a finished architecture cannot: what pressures
+appeared, what engineering response followed, what survived, and what had to be revised again.
+
+The clean method arrived last. As the system grew, missing representation became expensive in some
+places; missing authority became dangerous in others; repeated operational surprises exposed
+properties nobody had modeled at all. Some obligations were encoded before failure. Some models
+arose from clean design choices and simply held. Others were forged in incidents and hardened
+through recurrence. Part V preserves those differences rather than forcing every event through the
+finished theory.
 
 <!-- thesisbox -->
 > ### THE ORIGINATING CASE
 >
 > MAGE was not designed on a whiteboard.
 >
-> It emerged as a small team repeatedly encountered failures that agentic velocity made impossible to
-> manage by attention alone.
+> It emerged from one engineer directing an agent fleet through a production build whose pace made
+> repeated human reconstruction and review unsustainable.
 >
-> The method is the structure left behind.
+> **The method is the durable structure the work left behind.**
 
-The clean method arrived last, not first. Models appear in these chapters because reasoning demanded
-them; mechanisms appear because failures demanded them. Part V walks the build in the order it
-happened: the problem that set the bar, the stages the system grew through, the road by which
-delegation climbed from co-coder to architect, the seams that arrived under pressure, and the failures
-that were each converted into a piece of permanent structure.
+Read the chapters that follow as **process evidence, not a controlled comparison**. The case can
+establish sequence: this failure occurred, this response followed, and this later evidence showed
+whether the response held over the surface it claimed to govern. It can show recurrence within one
+system and let us reconstruct how particular engineering structures emerged. It cannot establish
+that MAGE caused every improvement, that another organization would encounter the same failures, or
+that the resulting quantities are universal targets.
 
-Read the chapters that follow as a path, not a destination. The evidence is not that DocAble ended with
-models and gates — a finished architecture could be designed that way from the start, and would show
-nothing about how the method was found. The evidence is the order of events: which failure appeared
-first, what changed in response, and whether the change retired the failure class or only postponed it.
-That is the difference between a case and an advertisement.
-
-In Part IV the industrial organizations served as portability demonstrations — proof that the moves
-travel. Here the direction reverses. DocAble is not merely an example of MAGE; it is the deep
-originating case, the investigation from which MAGE was induced. Only a system watched this closely,
-from the inside and from the start, can show the wrong turns and the reasoning behind the finished
-mechanisms — the evidence a retrospective of someone else's platform never has.
+Parts II–IV presented the compressed method. Here the direction reverses. DocAble is not merely an
+example decorated with MAGE terminology; it is the originating case from which much of that
+terminology was induced. That is why the wrong turns matter. A finished architecture can show what
+exists. A longitudinal case can show **why it exists and what it replaced**. Part VI will ask a
+different question: which parts of the induced theory recur when other organizations solve related
+problems independently?

@@ -7,7 +7,7 @@
     "derived_ids": 213,
     "missing_topic_sentence": 7,
     "sections_drained": 133,
-    "paragraph_points": 439
+    "paragraph_points": 438
   },
   "chapters": [
     {
@@ -3254,7 +3254,7 @@
           "section_id": "nearly-free",
           "level": 2,
           "heading_text": "What it costs to make one document accessible",
-          "topic_sentence": "The cost is easiest to feel on a single deck.",
+          "topic_sentence": "The cost is easiest to see in one deck.",
           "id_source": "explicit",
           "block_index": 12,
           "points": [
@@ -3276,31 +3276,26 @@
           "heading_text": "Why a document is not just a file",
           "topic_sentence": "Underneath the institutional bind sits a technical problem deeper than it looks — the reason this became a software project worth building rather than a policy memo worth writing.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 19,
           "points": [
             {
               "slug": "a-document-is-a-semantic-artifact",
               "text": "A document is a visual and semantic artifact.",
-              "block_index": 20
+              "block_index": 21
             },
             {
-              "slug": "vlms-recover-document-meaning",
-              "text": "Vision-language models now recover a slide's semantic content.",
-              "block_index": 22
-            },
-            {
-              "slug": "capability-is-not-a-system",
-              "text": "Raw model capability is not a compliance strategy.",
+              "slug": "vlms-changed-the-boundary-not-the-system",
+              "text": "VLMs changed the feasible boundary; they did not make a production system.",
               "block_index": 23
             },
             {
-              "slug": "novelty-and-consequence-both-raise-required-structure",
-              "text": "Novelty and consequence both raise the structure you owe.",
+              "slug": "the-missing-work-was-engineering",
+              "text": "The missing work was engineering around the model.",
               "block_index": 25
             },
             {
-              "slug": "context-is-law-deadline-cost-and-gap",
-              "text": "The context: real law, deadline, cost, bridgeable gap.",
+              "slug": "an-uneven-capability-surface-raised-required-structure",
+              "text": "An uneven capability surface raised the structure the system owed.",
               "block_index": 27
             }
           ]
@@ -3309,7 +3304,7 @@
       "preamble_points": [
         {
           "slug": "problem-comes-before-method",
-          "text": "The problem comes first; engineering earned its keep.",
+          "text": "The problem comes first; it sets the bar the system had to clear.",
           "block_index": 2
         },
         {
