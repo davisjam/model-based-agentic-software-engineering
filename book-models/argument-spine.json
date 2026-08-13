@@ -369,7 +369,7 @@
     {
       "id": "failures-become-machinery",
       "order": 10,
-      "statement": "Velocity surfaces the unforeseeable failure; the engineer's recurring task converts each recurrence into durable machinery.",
+      "statement": "Velocity surfaces the unforeseeable failure; the recurring engineering task is to convert selected recurrences into durable engineering capital — machinery where authority is justified, a model, decision rule, or measurement where it is not.",
       "seeds": [
         6,
         7
@@ -383,12 +383,12 @@
       "reconciles_argues_claims": [],
       "feeds": [],
       "exempt": null,
-      "reviewed_hash": "d05da605e04d",
+      "reviewed_hash": "820575f71f58",
       "quantifiable": true,
       "reality_claim": true,
       "measurand": "recurrences converted to durable controls; real bugs caught by the model and lint loop",
-      "word_count": 15,
-      "statement_hash": "d05da605e04d",
+      "word_count": 34,
+      "statement_hash": "820575f71f58",
       "advanced_by": [
         "0.4-preface",
         "1.2-mage-by-example",
