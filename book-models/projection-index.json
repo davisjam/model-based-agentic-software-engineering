@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1432,
+    "total_sites": 1433,
     "by_projection": {
       "book-pdf": 20,
-      "book-web": 1021,
+      "book-web": 1022,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -393,11 +393,11 @@
           },
           {
             "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 5
+            "occ": 7
           },
           {
             "file": "book/appendix-e-theory.html",
-            "occ": 14
+            "occ": 12
           },
           {
             "file": "book/appendix-evidence-ledger.html",
@@ -485,7 +485,7 @@
           },
           {
             "file": "book/appendix-skill-recipe.html",
-            "occ": 4
+            "occ": 15
           },
           {
             "file": "book/appendix-stacks.html",
@@ -1705,7 +1705,7 @@
           },
           {
             "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 17
+            "occ": 16
           },
           {
             "file": "book/appendix-e-theory.html",
@@ -1797,7 +1797,7 @@
           },
           {
             "file": "book/appendix-skill-recipe.html",
-            "occ": 11
+            "occ": 17
           },
           {
             "file": "book/appendix-stacks.html",
@@ -3091,11 +3091,11 @@
           },
           {
             "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 30
+            "occ": 31
           },
           {
             "file": "book/appendix-e-theory.html",
-            "occ": 31
+            "occ": 26
           },
           {
             "file": "book/appendix-evidence-ledger.html",
@@ -3183,7 +3183,7 @@
           },
           {
             "file": "book/appendix-skill-recipe.html",
-            "occ": 19
+            "occ": 22
           },
           {
             "file": "book/appendix-stacks.html",
@@ -4496,6 +4496,10 @@
             "occ": 3
           },
           {
+            "file": "book/appendix-skill-recipe.html",
+            "occ": 1
+          },
+          {
             "file": "book/book-index.html",
             "occ": 1
           },
@@ -4507,7 +4511,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 9
+            "occ": 10
           }
         ]
       },
@@ -5549,7 +5553,7 @@
           },
           {
             "file": "book/appendix-e-theory.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/appendix-evidence-ledger.html",
