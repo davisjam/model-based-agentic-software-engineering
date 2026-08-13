@@ -35,7 +35,7 @@
       "page_geometry": "portrait",
       "one_page": true,
       "status": "derive-meta",
-      "_note": "Meta-card: the five questions cross-link Cards model-health/governance-conversion/system-health/human-judgment (internal deck NAV, not evidence_refs — nav links are not gate-resolved). LIFE:L6 backs the ~30-min windowed hook. ORDER: leads the sensed cards (D.3) so the deck teaches its own loop — MUST stay in lockstep with _OPERATORS_REFERENCE_PAGES (the page-span sensor derives adjacency from this cards[] order)."
+      "_note": "Meta-card: the five questions cross-link Cards model-health/governance-conversion/system-health/human-judgment (internal deck NAV, not evidence_refs — nav links are not gate-resolved). LIFE:L6 backs the ~30-min windowed hook. ORDER: sits at D.2, leading the sensed cards so the deck teaches its own loop — MUST stay in lockstep with _OPERATORS_REFERENCE_PAGES (the page-span sensor derives adjacency from this cards[] order)."
     },
     {
       "card-id": "system-health",
@@ -57,9 +57,9 @@
     },
     {
       "card-id": "model-health",
-      "title": "Model Health",
+      "title": "Representation Health",
       "family": "steering",
-      "operator_question": "Are my models still equal to the code?",
+      "operator_question": "Can I trust this representation for the question I am asking?",
       "evidence_refs": [
         "DASH:model-sync-efficacy",
         "DASH:missing-model-metric",
@@ -77,7 +77,7 @@
       "card-id": "human-judgment",
       "title": "Human Judgment",
       "family": "steering",
-      "operator_question": "Where is human attention going, and what do we decide repeatedly?",
+      "operator_question": "Where is human attention going, and what do we keep deciding again?",
       "evidence_refs": [
         "THEORY:human-attention-burden",
         "THEORY:H6-oversight-amortization",
@@ -95,7 +95,7 @@
       "card-id": "engineering-capital",
       "title": "Engineering Capital",
       "family": "compounding",
-      "operator_question": "Is accumulated governance reducing future reasoning cost?",
+      "operator_question": "Is accumulated engineering structure producing value for later work?",
       "evidence_refs": [
         "THEORY:compounding-governance-proposition",
         "CONC:compounding",
@@ -117,7 +117,7 @@
       "card-id": "governance-conversion",
       "title": "Governance Conversion",
       "family": "compounding",
-      "operator_question": "Which recurring failures are still waiting to become infrastructure?",
+      "operator_question": "What should the environment learn from this recurrence?",
       "evidence_refs": [
         "CONC:governance-conversion",
         "THEORY:L3-governance-adaptation",
@@ -131,6 +131,22 @@
       "one_page": true,
       "status": "derive-assessment",
       "_note": "The draft's CAT 'self-governance conversion loop' ref is DROPPED — no such catalogue slug at HEAD (D-3). Sourced instead via CONC:governance-conversion + CH:2.3 + THEORY L3/H1/H7. conversion-rate rides the control-growth count as its declared proxy."
+    },
+    {
+      "card-id": "brownfield-progress",
+      "title": "Brownfield Progress",
+      "family": "doctrine",
+      "operator_question": "Where is the next high-value gap?",
+      "evidence_refs": [
+        "CH:4.2-brownfield",
+        "DASH:missing-model-metric",
+        "PAGE:from-drifted-wiki-to-trusted-model"
+      ],
+      "assessment_signals": ["tribal-knowledge-remaining"],
+      "page_geometry": "landscape",
+      "one_page": true,
+      "status": "derive",
+      "_note": "PAGE:from-drifted-wiki-to-trusted-model is a sibling operator-reference page (in _OPERATORS_REFERENCE_PAGES) — resolves against the operators-reference card list, NOT catalogue-cards. The Sizing Matrix + four stages both live in CH:4.2-brownfield. page_geometry landscape (before/after bars)."
     },
     {
       "card-id": "release-readiness",
@@ -157,7 +173,7 @@
       "card-id": "evidence-quality",
       "title": "Evidence Quality",
       "family": "shipping",
-      "operator_question": "How much confidence do we actually have?",
+      "operator_question": "What justifies this claim?",
       "evidence_refs": [
         "EVID:claims.json",
         "EVID:data-claims.json",
@@ -173,26 +189,10 @@
       "_note": "EVID:claims.json = the claim universe (population). EVID:data-claims.json = the metric->claim ledger (middle tier). EVID:substantiation:soapbox-band is an apparatus-concept (code in substantiation.py, NOT a keyed registry) — the gate treats a `substantiation:` EVID ref as explicitly-no-registry. page_geometry landscape (pyramid is a wide visual)."
     },
     {
-      "card-id": "brownfield-progress",
-      "title": "Brownfield Progress Gauge",
-      "family": "doctrine",
-      "operator_question": "Where is governance weakest, and where should the next conversion happen?",
-      "evidence_refs": [
-        "CH:4.2-brownfield",
-        "DASH:missing-model-metric",
-        "PAGE:from-drifted-wiki-to-trusted-model"
-      ],
-      "assessment_signals": ["tribal-knowledge-remaining"],
-      "page_geometry": "landscape",
-      "one_page": true,
-      "status": "derive",
-      "_note": "PAGE:from-drifted-wiki-to-trusted-model is a sibling operator-reference page (in _OPERATORS_REFERENCE_PAGES) — resolves against the operators-reference card list, NOT catalogue-cards. The Sizing Matrix + four stages both live in CH:4.2-brownfield. page_geometry landscape (before/after bars)."
-    },
-    {
       "card-id": "operating-doctrine",
       "title": "Operating Doctrine",
       "family": "doctrine",
-      "operator_question": "How do I run the method — and what is it all for?",
+      "operator_question": "How do I run MAGE without turning the machinery into the work?",
       "evidence_refs": [
         "LIFE:principle:orient-positive-route-to-class",
         "LIFE:L1-manage-agents",

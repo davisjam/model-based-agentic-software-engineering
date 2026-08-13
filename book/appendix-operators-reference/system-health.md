@@ -1,44 +1,36 @@
 *Is the environment operating correctly right now?*
 
-Read the churn curve first — it tells you which build phase you are in — then confirm the drift gates are
-green and the validators still exercise the corpus. Healthy is a collapsing churn curve past mechanization,
-green sync gates, and coverage that keeps rising.
+Begin with outcomes, not mechanism counts. Is accepted work landing? Are governed
+obligations holding? Are validators and gates still exercising the surfaces they claim to
+protect? Has human intervention or rollback risen unexpectedly? Only then reach for churn,
+coverage, drift, and other local measures to diagnose the change.
 
-### What to read
+### Three readings
 
-- **Churn — the flagship.** Lines added and deleted per week per path. Healthy churn peaks at mechanization,
-  then collapses as the environment stabilizes. It is the operational manifestation of the whole theory: the
-  reinforcing loop that drives early rework subsides as recurring judgment converts into infrastructure. The
-  gauge and its sparkline carry the card.
-- **Drift — the confirmation.** Model-sync efficacy: the drift and parity gates keep the models equal to the
-  code. Healthy is gates staying green.
-- **Validation — the second confirmation.** Grammar coverage and model-claim coverage rise toward full
-  exercise of the input space. A stalled coverage line is a corpus hole no line-coverage number reveals.
+- **Durable throughput.** Work reaches a durable accepted state — it lands without
+  reopening, rollback, or repeated repair.
+- **Defect and policy escape.** An obligation crossed the boundary meant to catch it.
+- **Intervention burden.** Humans get pulled back into repeated reconstruction, review, or
+  emergency repair.
 
-The two status pips confirm the sparkline; they are not co-headlines.
+A local diagnostic — churn, validator coverage, a correspondence failure, queue pressure —
+earns attention when it explains movement in one of those three readings, not on its own.
 
 ```
-  SYSTEM HEALTH                          "Am I healthy?"
-  ─────────────────────────────────────────────────────
-  Churn      ▁▃▆█▇▅▃▂▁     collapsing = healthy
-             peaked at mechanization, now settling
-             healthy: down over time · watch: daily
-  ─────────────────────────────────────────────────────
-  Drift gates   green        Validation   rising
-  example reading — the sparkline shows churn's shape, not your numbers
+  SYSTEM HEALTH               "Is the environment healthy right now?"
+  ───────────────────────────────────────────────────────────────────
+  Durable throughput       accepted work survives
+  Defect / policy escape   governed obligations hold
+  Human intervention       repeated attention is bounded
+  ───────────────────────────────────────────────────────────────────
+  Diagnose with:
+  churn · correspondence · validator reach · resource pressure
 ```
 
-One reading rule governs every card in this deck: a bar whose length carries no declared measure is a status,
-not a quantity — size it from experience, never fabricate a number for it.
+### Read churn as motion, not health
 
-### The soft-gap read
-
-A "recurring failures?" glance belongs on the daily read, but it has no declared count — it is a
-failure-class construct, not a dashboard metric. Read it as a green / yellow / red operator self-assessment
-in the card's footer. Do not invent a number for it.
-
-### What this projects
-
-The Churn metric (see [Chapter 5.2](5.2-the-build.html)), carried by the *churn* concept and
-the churn feedback relation; drift from Model-sync efficacy ([Chapter 5.3](5.3-the-road-to-mage.html));
-validation from Grammar coverage and Model-claim coverage ([Chapter 4.3](4.3-validating-change.html)).
+A green environment need not have low churn. A deliberate migration or architectural rewrite
+throws off enormous code motion while the system stays healthy. A quiet repository can hide
+stale representations or repeated human adjudication behind its calm. Read churn as motion,
+not health. Appendix H shows the particular churn shape observed during DocAble; this card
+does not generalize that silhouette into a law.

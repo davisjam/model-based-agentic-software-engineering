@@ -1,12 +1,7 @@
 **Operational reference for running a Governed Engineering Environment**
 
-This appendix collects operational reference material used while running a Governed Engineering Environment. The chapters teach the method; these pages support *practicing* it. You do not read them once and move on — you come back to them mid-build, the way you keep a wiring diagram at the bench.
+This appendix collects the pages meant to stay open while you work. The chapters explain the method; these cards help operate it. Treat them as a wiring diagram at the bench: consult the page that answers the question in front of you, then return to the work.
 
-The deck answers standing operational questions, one scannable surface each, grouped by the job you are doing:
+The deck follows four jobs. Orient with the Operator's Dashboard and Daily Operator Review. Diagnose with System Health, Representation Health, Human Judgment, and Engineering Capital. Act with Governance Conversion, the Brownfield Migration Drill, and Brownfield Progress. Certify with Release Readiness and Evidence Quality. Operating Doctrine closes the deck with the few rules that govern the rest.
 
-- **Orient** — *The Operator's Dashboard* (the metrics you steer by and certify with) and *The Daily Operator Review* (the morning pass that routes you into the rest).
-- **Diagnose** — *System Health*, *Model Health*, *Human Judgment*, and *Engineering Capital*: is the machine healthy, is the map healthy, am I spending judgment correctly, is the environment compounding?
-- **Act** — *Governance Conversion*, the *Brownfield Migration Drill*, and *Brownfield Progress*: convert recurring failures into infrastructure and drive a legacy codebase toward a governed model.
-- **Certify** — *Release Readiness* and *Evidence Quality*: can I ship, and how much do I actually trust the claims?
-
-*Operating Doctrine* closes the deck: the three stances that govern all of the above. Together these are the laminated reference for running the environment — the pages you consult while operating, kept apart from the narrative that explains why they read the way they do.
+These are operating surfaces, not universal benchmarks. A metric earns a place when it helps steer or evaluate a particular engineering claim. DocAble values appear where useful as observed reference points, not targets another organization should reproduce. Likewise, a green card does not mean "more machinery." The governing question is whether the environment is making future work more capable, more trustworthy, or less dependent on repeated human reconstruction than the machinery costs to maintain.

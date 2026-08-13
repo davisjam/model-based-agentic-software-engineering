@@ -684,16 +684,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Appendix D — Operator&#x27;s Reference</li>
 <li><a class="" href="appendix-operators-reference.html">Appendix D — Operator's Reference</a></li>
 <li><a class="" href="appendix-d-operators-dashboard.html">D.1 The Operator's Dashboard</a></li>
-<li><a class="" href="appendix-d-from-drifted-wiki-to-trusted-model.html">D.2 Brownfield Migration Drill</a></li>
-<li><a class="" href="appendix-d-daily-review.html">D.3 Daily Operator Review</a></li>
-<li><a class="" href="appendix-d-system-health.html">D.4 System Health</a></li>
-<li><a class="" href="appendix-d-model-health.html">D.5 Model Health</a></li>
-<li><a class="" href="appendix-d-human-judgment.html">D.6 Human Judgment</a></li>
-<li><a class="" href="appendix-d-engineering-capital.html">D.7 Engineering Capital</a></li>
-<li><a class="" href="appendix-d-governance-conversion.html">D.8 Governance Conversion</a></li>
-<li><a class="" href="appendix-d-release-readiness.html">D.9 Release Readiness</a></li>
-<li><a class="" href="appendix-d-evidence-quality.html">D.10 Evidence Quality</a></li>
-<li><a class="" href="appendix-d-brownfield-progress.html">D.11 Brownfield Progress Gauge</a></li>
+<li><a class="" href="appendix-d-daily-review.html">D.2 Daily Operator Review</a></li>
+<li><a class="" href="appendix-d-system-health.html">D.3 System Health</a></li>
+<li><a class="" href="appendix-d-model-health.html">D.4 Representation Health</a></li>
+<li><a class="" href="appendix-d-human-judgment.html">D.5 Human Judgment</a></li>
+<li><a class="" href="appendix-d-engineering-capital.html">D.6 Engineering Capital</a></li>
+<li><a class="" href="appendix-d-governance-conversion.html">D.7 Governance Conversion</a></li>
+<li><a class="" href="appendix-d-from-drifted-wiki-to-trusted-model.html">D.8 Brownfield Migration Drill</a></li>
+<li><a class="" href="appendix-d-brownfield-progress.html">D.9 Brownfield Progress</a></li>
+<li><a class="" href="appendix-d-release-readiness.html">D.10 Release Readiness</a></li>
+<li><a class="" href="appendix-d-evidence-quality.html">D.11 Evidence Quality</a></li>
 <li><a class="current" href="appendix-d-operating-doctrine.html">D.12 Operating Doctrine</a></li>
 <li class="part">Appendix E — How to Write a Skill</li>
 <li><a class="" href="appendix-skill-recipe.html">Appendix E — How to Write a Skill</a></li>
@@ -721,23 +721,25 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-g-task-closure-reference.html">G.16 Task-Closure Model</a></li>
 <li><a class="" href="appendix-g-surfaces-built-reference.html">G.17 The Surfaces Built — the II→III Receipt</a></li>
 <li class="part">Appendix H — Part-V Evidence Ledger</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · D.12 Operating Doctrine — MAGE"><header class="chap"><div class="kicker"><a href="appendix-operators-reference.html" aria-label="Beginning of Appendix D — Operator&#x27;s Reference">Appendix D — Operator&#x27;s Reference</a></div><h1>D.12 Operating Doctrine</h1></header><p><em>How do I run the method — and what is it all for?</em></p>
-<p>Orient to the healthy state first, then route a break to its class. Run the fleet as cattle, not pets. Automate by cost times frequency, and leave the cheap-and-rare failure to judgment rather than build the first brick of a teetering tower. Bank your context so a fresh session rebuilds it. Do all this and the payoff is the book's whole argument: a governed environment produces trustworthy software, because the discipline lives in the environment, not in anyone's head.</p>
-<p>This is the doctrine card — the deck's frame, not another gauge. It carries three stances for running the method and closes on the synthesis every other card serves.</p>
-<h3>Three stances</h3>
-<ul><li><strong>Running many agents.</strong> Operate the herd with runbooks, gates, and controls — cattle, not pets. Agents stay at or under the pool cap, each has a live record, landed work is cleaned up. A misbehaving agent is replaced, not coaxed. Reads the manage-agents lifecycle.</li><li><strong>When not to automate.</strong> Govern by cost times frequency. The cheap-and-rare failure is left to judgment; a mechanism there is the first brick in a tower whose upkeep becomes the work itself. Price a control's upkeep before you build it. Reads the Sizing Matrix.</li><li><strong>Operating near context limits.</strong> Bank in-flight state so a fresh session reconstructs it; compaction is safe when the state is saved, and idle capacity with queued work is its own signal. Reads the manage-context lifecycle.</li></ul>
-<pre><code>  OPERATING DOCTRINE                "How do I run the method — and what for?"
-  ──────────────────────────────────────────────────────────────────────────
-  Run many agents  ─┐
-  (cattle not pets) │
-  Don't over-govern ├─▶  orient positive first, route a break to its class
-  (teetering tower) │
-  Bank your context ─┘
-  ──────────────────────────────────────────────────────────────────────────
-        Governed environment  ─────▶  Trustworthy software
-        (discipline in the environment, not in anyone's head)</code></pre>
-<p>The doctrine turns on two axes — failure cost and failure frequency — the Sizing Matrix's product. Reach grows with cost times frequency.</p>
-<h3>The closing frame</h3>
-<p>The Modeling Thesis supplies the map; the Alignment Thesis holds it true; together they yield the governed engineering environment — fast, forgetful, capable machines producing trustworthy software because the discipline lives in the environment, not in anyone's head. Every other card in the deck is an instrument reading of that one claim.</p>
-<h3>What this projects</h3>
-<p>The self-operate principle "orient positive first, then route a break to its class"; the cattle-not-pets frame; the teetering-tower heuristic and the Sizing Matrix (<a href="4.2-brownfield.html">Chapter 4.2</a>); the manage-agents and manage-context lifecycles; and the synthesis governed environment to trustworthy software, carried by the <em>governed-environment</em> concept, which absorbs the exploratory Trustworthiness frame as this doctrine's close.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-operators-reference.html" aria-label="Beginning of Appendix D — Operator&#x27;s Reference">« Beginning of part</a><a href="appendix-d-brownfield-progress.html" aria-label="Previous chapter — D.11 Brownfield Progress Gauge">« Previous chapter</a></div><span class="chapnav-here" title="D.12 Operating Doctrine">D.12 Operating Doctrine</span><div class="chapnav-fwd"><a href="appendix-skill-recipe.html" aria-label="Next chapter — Appendix E — How to Write a Skill">Next chapter »</a><a href="appendix-skill-recipe.html" aria-label="Next part — Appendix E — How to Write a Skill">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Part-V Evidence Ledger</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · D.12 Operating Doctrine — MAGE"><header class="chap"><div class="kicker"><a href="appendix-operators-reference.html" aria-label="Beginning of Appendix D — Operator&#x27;s Reference">Appendix D — Operator&#x27;s Reference</a></div><h1>D.12 Operating Doctrine</h1></header><p><em>How do I run MAGE without turning the machinery into the work?</em></p>
+<p>Four rules govern the deck.</p>
+<ul><li><strong>Model to answer a question.</strong> Externalize the knowledge and intent that let humans and agents reason at the scale the work requires. Stop when another layer of representation costs more than the reasoning it saves.</li><li><strong>Put authority where the obligation becomes legible.</strong> Constraints, sensors, validators, and gates act at different boundaries. Use the earliest boundary that can actually observe the required property. Direct local authority does not require a rich system model; better representations can make larger properties governable.</li><li><strong>Make useful judgment durable.</strong> When a costly lesson recurs, classify it and decide whether future work should inherit something from it: a representation, control, procedure, architecture, or other engineering structure. Conversion is selective, not automatic.</li><li><strong>Maintain the portfolio.</strong> Engineering capital earns its name only while it produces future value. Reconcile what must stay true, measure carrying cost, repair depreciation, and retire machinery that has outlived its return.</li></ul>
+<p>The goal is not maximum automation, maximum modeling, or minimum human involvement. It is a governed engineering environment in which commodity intelligence can take on more useful work without requiring engineering judgment to be reconstructed from scratch at every turn.</p>
+<pre><code>  OPERATING DOCTRINE                                   "How do I run MAGE?"
+  ─────────────────────────────────────────────────────────────────────────
+  MODEL
+  Answer the engineering question at the right abstraction.
+  ALIGN
+  Give selected obligations authority where they become legible.
+  CONVERT
+  Make recurring, valuable judgment durable.
+  MAINTAIN
+  Measure return, reconcile drift, retire depreciation.
+  ─────────────────────────────────────────────────────────────────────────
+        Governed Engineering Environment
+                ↓
+        more trustworthy delegation
+                ↓
+        durable engineering throughput</code></pre>
+<p>Modeling and Alignment are complementary, not prerequisite stages. Modeling enlarges what can be reasoned about and can expose richer surfaces for authority. Alignment can also act directly on actions and artifacts. Governance Conversion changes the environment when experience reveals a worthwhile lesson; Engineering Capital is the productive capacity later work inherits from those changes. The operator's job is to keep all four economically and epistemically honest.</p>
+<p><strong>A note on running the fleet.</strong> Day to day, these rules show up as operating habits: run many agents as cattle, not pets, so a misbehaving one is replaced rather than coaxed; bank in-flight context so a fresh session reconstructs it. Useful advice, but subordinate — the durable method is the four rules above, not any one operating trick. The manage-agents and manage-context lifecycles carry the detail.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-operators-reference.html" aria-label="Beginning of Appendix D — Operator&#x27;s Reference">« Beginning of part</a><a href="appendix-d-evidence-quality.html" aria-label="Previous chapter — D.11 Evidence Quality">« Previous chapter</a></div><span class="chapnav-here" title="D.12 Operating Doctrine">D.12 Operating Doctrine</span><div class="chapnav-fwd"><a href="appendix-skill-recipe.html" aria-label="Next chapter — Appendix E — How to Write a Skill">Next chapter »</a><a href="appendix-skill-recipe.html" aria-label="Next part — Appendix E — How to Write a Skill">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

@@ -1,41 +1,42 @@
-*Which recurring failures are still waiting to become infrastructure?*
+*What should the environment learn from this recurrence?*
 
-Every recurring failure recognized as a class, converted into a mechanism, then retired from human attention
-for good. Read the pipeline, not a rate: the state that matters is not how fast conversions happen but which
-classes are still waiting — a failure that has recurred three times and nobody has converted it.
+A recurring failure is evidence, not an automatic work order. First classify what actually recurred. Was
+knowledge missing? Was the representation too weak? Was the obligation implicit? Did evidence arrive too
+late? Was authority placed at the wrong boundary? Did a mechanism fail — or has an old mechanism become
+part of the problem? Only then decide what, if anything, should become durable.
 
-Where engineering capital asks whether the stock is growing, this card shows the engine that grows it: the
-failure-to-mechanism-to-retired-forever pipeline.
+Where engineering capital asks whether the stock still earns its keep, this card governs how that stock
+grows: by selective conversion, priced case by case.
 
-Healthy direction: the Observed and Classified queues stay short — failures convert into infrastructure faster
-than new classes appear.
-*DocAble reference:* controls accreted 0 → 747 lints, 0 → 102 gates — one observed run; each control is one
-class that stopped recurring.
+The conversion decision has three stages:
 
-### What to read
-
-- **The three queues.** Where each recurring failure sits: seen but unnamed, named but not yet built, or converted into a durable control.
-- **Oldest unresolved class.** The failure that has recurred longest without a mechanism — the next conversion owed.
+- **Classify the gap.** Name the recurring structure, not the latest symptom. Knowledge, representation,
+  obligation, evidence, authority, mechanism, architecture — or a control that has itself gone obsolete.
+- **Choose the durable response.** The answer may be a representation, constraint, sensor, validator, gate,
+  procedure, architectural change, retirement of stale machinery, or the deliberate choice to keep a human
+  in the loop.
+- **Price the investment.** Build the response only when the expected recurrence cost and consequence
+  justify its construction and its carrying cost.
 
 ```
-  GOVERNANCE CONVERSION   "Which failures are still waiting to become infrastructure?"
-  ──────────────────────────────────────────────────────────────────────────────────
-  Observed    ▸ failures seen recurring, not yet named as a class
-  Classified  ▸ recognized as one structural class, mechanism not yet built
-  Converted   ▸ lint / gate / typed seam / test — retired from human attention
-  ──────────────────────────────────────────────────────────────────────────────────
-  Oldest unresolved class → the failure that has recurred longest un-converted
+GOVERNANCE CONVERSION
+"What should the environment learn?"
+Recurring event
+      ↓
+CLASSIFY THE GAP
+knowledge · representation · obligation · evidence
+authority · mechanism · architecture · obsolete control
+      ↓
+CHOOSE THE RESPONSE
+model · constraint · sensor · validator · gate
+procedure · redesign · retire · keep human
+      ↓
+PRICE THE INVESTMENT
+future value > construction + carrying cost ?
 ```
 
-### The soft-gap read
+The healthy direction is not a short queue of unconverted failures at any price. It is fewer expensive
+recurrences and a portfolio of durable responses that continue to earn their keep. Some cheap-and-rare
+failures should remain cheap-and-rare failures.
 
-The **conversion queues** are a ratified soft-gap — a rich loop-and-hypothesis construct with no declared rate
-metric. Read green / yellow / red: green when classes convert steadily and the Observed queue stays short; red
-when the same failures recur un-converted. Anchor it on the control-growth proxy, never a fabricated rate.
-
-### What this projects
-
-The *governance-conversion* concept — the loop by which the environment evolves, each recurring failure
-converted into a durable mechanism (see [Chapter 3.4](3.4-governance-conversion.html)) — plus the
-governance-adaptation loop, the failure-class-exposure hypothesis (how fast a class is recognized), and the
-conversion-conditions hypothesis (conversions stick when diagnosis capability and change authority sit together).
+See [Chapter 3.4](3.4-governance-conversion.html) for the full treatment.

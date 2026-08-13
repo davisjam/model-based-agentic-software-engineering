@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (not Mermaid), label: brownfield-progress-2x2. The single best corrective
+     figure in Appendix D. It replaces the old "ungoverned drains to governed" gauge, which reinstated
+     the false Modeling->Alignment dependency (treating "unmodelled" as "ungoverned"). The corrected
+     picture keeps two INDEPENDENT axes:
+       COLUMNS — AUTHORITY REACH: how much of the important obligation surface is constrained, sensed,
+                 validated, or gated at a boundary (thin -> strong).
+       ROWS    — REPRESENTATION REACH: how much of the important system can be reasoned about through
+                 trustworthy externalized structure (thin -> rich).
+     The axes are drawn PERPENDICULAR precisely because the dimensions are orthogonal: a system can be
+     rich in representation yet thin in authority (understands, humans enforce), or thin in
+     representation yet strong in authority (direct / local alignment — tests, sandboxes, permissions
+     govern what they observe directly, no rich model required). Cells are deliberately UNIFORM (no
+     northeast gradient) so no quadrant reads as "the goal"; the reading line says the next move is the
+     highest-value gap, not "go northeast at all costs." Edge accents encode each cell's mix: a green
+     top edge marks representation reach (top row), a blue right edge marks authority reach (right
+     column) — so the thin+strong cell reads as genuinely governed (blue) despite thin modeling (no
+     green). Pure grid, no crossing strokes: the C6 text-overlap and C7 stroke-cross-through gates have
+     nothing to trip on. Umber Monograph palette: ink #1c1917, muted #57534e, authority-blue #2f5169,
+     representation-green #1f7a4d, cream #f6f4ef, panel #e4e0d8. Grayscale-survivable: labelled axes and
+     cell positions carry the reading, not colour alone. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 700" width="940" height="700"
+     role="group" aria-labelledby="bpTitle bpDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="bpTitle">Two independent axes of brownfield progress: representation reach crossed with authority reach</title>
+  <desc id="bpDesc">A two-by-two matrix with two independent axes. The columns are authority reach —
+    how much of the obligation surface is constrained, sensed, validated, or gated at a boundary —
+    running thin on the left to strong on the right. The rows are representation reach — how much of the
+    important system can be reasoned about through trustworthy externalized structure — running rich on
+    the top to thin on the bottom. The four cells name a real state rather than a maturity score. Rich
+    representation with thin authority: the organization understands the system, but humans still catch
+    the violations. Rich representation with strong authority: a rich governed surface, trustworthy
+    models and authority at the right boundary. Thin representation with thin authority: reconstruction
+    plus a human gap, little externalized structure and little authority, so humans carry both. Thin
+    representation with strong authority: direct or local alignment, where tests, sandboxes, and
+    permissions govern what they observe directly and no rich model is required. The two axes are
+    orthogonal and drawn perpendicular: modeling reach and alignment reach vary independently, so thin
+    representation with strong authority is a real, healthy quadrant, not a way-station toward richer
+    modeling. The cells are uniform, with no gradient toward the top-right, because the next move is the
+    highest-value gap rather than a march northeast at all costs. A green top edge marks the cells with
+    representation reach; a blue right edge marks the cells with authority reach.</desc>
+
+  <text x="470" y="46" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Two independent axes of brownfield progress</text>
+
+  <!-- ===================== COLUMN AXIS — AUTHORITY REACH ===================== -->
+  <text x="565" y="98" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">AUTHORITY REACH</text>
+  <text x="415" y="136" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">thin</text>
+  <text x="415" y="158" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">few obligations enforced</text>
+  <text x="715" y="136" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">strong</text>
+  <text x="715" y="158" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">obligations gated at a boundary</text>
+
+  <!-- ===================== ROW AXIS — REPRESENTATION REACH ===================== -->
+  <text x="34" y="400" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d" transform="rotate(-90 34 400)">REPRESENTATION REACH</text>
+  <text x="150" y="286" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Rich</text>
+  <text x="150" y="308" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">much of the system is</text>
+  <text x="150" y="326" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">externalized &amp; trustworthy</text>
+  <text x="150" y="494" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Thin</text>
+  <text x="150" y="516" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">little externalized</text>
+  <text x="150" y="534" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">structure</text>
+
+  <!-- ===================== FOUR CELLS (uniform fill — no northeast gradient) ===================== -->
+  <g fill="#f6f4ef" stroke="#57534e" stroke-width="1.6">
+    <rect x="268" y="200" width="294" height="192" rx="8"/>
+    <rect x="568" y="200" width="294" height="192" rx="8"/>
+    <rect x="268" y="408" width="294" height="192" rx="8"/>
+    <rect x="568" y="408" width="294" height="192" rx="8"/>
+  </g>
+
+  <!-- edge accents: green top = representation reach (top row); blue right = authority reach (right col) -->
+  <g fill="none" stroke="#1f7a4d" stroke-width="5">
+    <path d="M280,200 H550"/>
+    <path d="M580,200 H850"/>
+  </g>
+  <g fill="none" stroke="#2f5169" stroke-width="5">
+    <path d="M862,212 V380"/>
+    <path d="M862,420 V588"/>
+  </g>
+
+  <!-- top-left: rich x thin authority -->
+  <text x="415" y="236" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">rich &#215; thin authority</text>
+  <text x="415" y="288" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Understands &#8212;</text>
+  <text x="415" y="314" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">humans enforce</text>
+  <text x="415" y="348" text-anchor="middle" font-size="14.5" fill="#1c1917">rich models, but people</text>
+  <text x="415" y="368" text-anchor="middle" font-size="14.5" fill="#1c1917">still catch the violations</text>
+
+  <!-- top-right: rich x strong authority -->
+  <text x="715" y="236" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">rich &#215; strong authority</text>
+  <text x="715" y="294" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Rich governed surface</text>
+  <text x="715" y="336" text-anchor="middle" font-size="14.5" fill="#1c1917">trustworthy models and</text>
+  <text x="715" y="356" text-anchor="middle" font-size="14.5" fill="#1c1917">authority at the right boundary</text>
+
+  <!-- bottom-left: thin x thin authority -->
+  <text x="415" y="444" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">thin &#215; thin authority</text>
+  <text x="415" y="500" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Reconstruction</text>
+  <text x="415" y="526" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">+ human gap</text>
+  <text x="415" y="560" text-anchor="middle" font-size="14.5" fill="#1c1917">little structure, little authority &#8212;</text>
+  <text x="415" y="580" text-anchor="middle" font-size="14.5" fill="#1c1917">humans carry both</text>
+
+  <!-- bottom-right: thin x strong authority -->
+  <text x="715" y="444" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">thin &#215; strong authority</text>
+  <text x="715" y="500" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Direct / local alignment</text>
+  <text x="715" y="544" text-anchor="middle" font-size="14.5" fill="#1c1917">tests, sandboxes, permissions</text>
+  <text x="715" y="564" text-anchor="middle" font-size="14.5" fill="#1c1917">govern what they observe &#8212;</text>
+  <text x="715" y="584" text-anchor="middle" font-size="14.5" fill="#1c1917">no rich model required</text>
+
+  <!-- ===================== READING LINES ===================== -->
+  <text x="470" y="644" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">Next move = the highest-value gap, not &#8220;go northeast at all costs.&#8221;</text>
+  <text x="470" y="670" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">Thin representation with strong authority is a real, healthy quadrant.</text>
+</svg>

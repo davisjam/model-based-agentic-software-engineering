@@ -1,41 +1,35 @@
-*How much confidence do we actually have?*
+*What justifies this claim?*
 
-Read the pyramid bottom-up. A claim is only as trustworthy as the layer holding it up: validators beneath
-measurements beneath claims. A claim with a validator under it is proven; one with only a measurement is
-grounded; one with neither is an assertion — and an asserted reality-claim with no backing of any kind is the
-confidence hole to close before you trust it.
+Start with the claim, then ask what evidence could actually settle it. Different properties require different
+evidence. A deterministic structural invariant may be checked exhaustively. A performance claim may require
+measurement. A semantic-fidelity claim may require generative evaluation and residual human judgment. A formal
+proof establishes a property only under the model and assumptions encoded in the proof.
 
-Point this at your own system. Ask it of the claims your system makes: which rest on measurements, which are
-continuously revalidated, which are still bare? This book's own evidence apparatus is one worked use — its
-spine claims, theory nodes, and discussion-claims run through the same three layers.
+Evidence quality therefore has four questions:
 
-### The three layers
-
-- **Claims (top).** Every reality-asserting statement the system stands behind — the population the confidence question is asked over.
-- **Measurements (middle).** Each claim bound to the datum that supports it, with its observable, its source and provenance, and its honest limitation. A measurement lifts a claim off the page onto the ground.
-- **Validators (bottom).** The coverage oracles plus the correctness and conformance validators — the strongest footing, re-checking the claim on every run.
+- **Claim.** What exactly is being asserted, and over what scope?
+- **Evidence.** What observation, measurement, proof, test, or other artifact bears on that claim?
+- **Evaluation.** What procedure interprets the evidence, and what can that procedure miss?
+- **Authority.** What consequence, if any, should the result have? Evidence may inform a human, produce a
+  warning, or justify a blocking gate. Strong evidence does not automatically imply blocking authority.
 
 ```
-  EVIDENCE QUALITY                      "How much confidence do we have?"
+  EVIDENCE QUALITY                            "What justifies this claim?"
   ──────────────────────────────────────────────────────────────────────
-                        /  Claims  \            asserted
-                      /--------------\            ^
-                    /   Measurements   \          |  confidence rises
-                  /----------------------\        |  with the layer
-                /       Validators         \      |  beneath
-              /------------------------------\   proven
+  CLAIM
+    ↓  what would settle it?
+  EVIDENCE
+    ↓  how is it interpreted?
+  EVALUATION
+    ↓  what does the result deserve?
+  AUTHORITY
+    advisory · warning · validator result · gate · human decision
   ──────────────────────────────────────────────────────────────────────
-  Confidence hole:  claims asserted with no backing → must be 0
-  Validator reach:  coverage oracles exercised toward full
+  No backing      →  unsupported claim
+  Weak backing    →  state the limit
+  Strong backing  →  still choose authority deliberately
 ```
 
-The confidence hole — reality-claims asserted with zero backing — is the gauge, and it is driven to empty; a
-non-empty band fails the system's own no-backing check. The second reading is validator reach: how completely
-the validators exercise what they guard.
-
-### What this projects
-
-A system's substantiation apparatus — the claim universe with its three evidence legs nested under each claim,
-projected as Claims, Measurements, Validators; the metric-to-claim ledger (the middle tier); and generative
-validation ([Chapter 4.3](4.3-validating-change.html)) as the base tier. This book is the worked instance:
-its soapbox gate is the no-backing check, rendered as the card's confidence gauge.
+The key failure is not "a claim without a validator." It is a consequential claim whose stated confidence
+exceeds its actual backing. Keep provenance for the evidence, state its limitations, and distinguish what the
+evidence establishes from what the organization chooses to do with it.

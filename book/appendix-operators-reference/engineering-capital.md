@@ -1,42 +1,42 @@
-*Is accumulated governance reducing future reasoning cost?*
+*Is accumulated engineering structure producing value for later work?*
 
-Not a single metric — an operator's read across five indicators. Green: recurring failures disappear into
-reused mechanisms while per-change attention falls; Red: the apparatus outgrew its fit or holds capital that
-outlived it. The five indicators are evidence for one proposition: accumulated governance lowers the reasoning
-a future change demands.
+Engineering structure becomes capital when later work inherits productive capacity from it. A
+model that prevents reconstruction, a validator that repeatedly discharges the same obligation,
+a reusable procedure, a trusted generator, a gate that removes routine adjudication — each can
+be capital. Existence alone does not make it so. Each also carries construction, maintenance,
+reconciliation, execution, and cognitive cost.
 
-Healthy direction: support apparatus leads production and settles to a stable multiple, recurring classes disappearing.
-*DocAble reference:* support ratio ~3× at maturity; controls 0 → 747 lints, 0 → 102 gates — one observed run.
+Read capital through five questions:
 
-### The five indicators
-
-1. **Support ratio.** Support-apparatus over production lines — a structural stock. Green is a stable multiple, not a climbing one.
-2. **Mechanism reuse.** Reused across sites, not re-invented. Soft-gap; proxy is the known-uses count.
-3. **Recurring failures.** The same classes disappearing. Soft-gap, no count.
-4. **Manual judgment.** Per-change attention falling as classes convert. Reads oversight amortization.
-5. **Drift stability.** The sync gates holding steady green. Reads Model-sync efficacy.
+- **Return.** What future work became cheaper, safer, faster, or newly possible because this
+  structure exists?
+- **Inheritance.** Do later engineers and agents actually reuse the capability, or does each
+  task reconstruct an equivalent solution?
+- **Carrying cost.** What does the structure cost to run, understand, reconcile, and maintain?
+- **Depreciation.** Has the system, obligation, model substrate, or surrounding workflow moved
+  far enough that the structure's return is falling?
+- **Retirement.** Which structure now costs more to carry than the future value it preserves?
 
 ```
-  ENGINEERING CAPITAL        "Is governance lowering future reasoning cost?"
-  ═══════════════════════════════════════════════════════════════════════════
-      [ GROWING ]   stable   depreciating                    ← banner
-  ═══════════════════════════════════════════════════════════════════════════
-  Support ratio        stable multiple, not climbing
-  Mechanism reuse      reused, not re-invented   (proxy: known-uses)
-  Recurring failures   same classes disappearing
-  Manual judgment      per-change review falling
-  Drift stability      gates steady green
-  ═══════════════════════════════════════════════════════════════════════════
-  Green when all five hold together; one drifting up is the early warning.
+  ENGINEERING CAPITAL          "Is accumulated structure still earning its keep?"
+  ────────────────────────────────────────────────────────────────────────────
+  RETURN        later work gains capability
+  INHERITANCE   value is reused, not reconstructed
+  CARRYING      upkeep remains proportionate
+  DEPRECIATION  fit and return are watched
+  RETIREMENT    stale capital is removed
+  ────────────────────────────────────────────────────────────────────────────
+  Capital = productive structure, not apparatus quantity.
 ```
 
-### Reading the banner
+A growing support ratio or control count is investment, not proof of capital formation. A
+stable ratio is not inherently healthy; a falling ratio is not inherently unhealthy. The test
+that matters is return net of carrying cost. Appendix H records DocAble's support apparatus and
+control growth as observed stocks; this card asks the harder economic question — what did that
+stock let future work inherit?
 
-- **Green — growing.** Failures disappearing, mechanisms reused, reviews shrinking, gates steady.
-- **Yellow — bureaucracy risk.** Duplicate mechanisms, stale constraints, support ratio climbing with no payoff.
-- **Red — decaying.** Retired mechanisms never removed; the apparatus past its fit; capital no longer reconciled.
-
-### What this projects
-
-The compounding-governance proposition: as recurring judgment converts into durable mechanisms, more future
-effort extends capability. Its caveat sets the Red band — returns attach to capital quality, not quantity.
+One research-grade probe holds the task family and the commodity reasoner approximately fixed
+and varies the environment. If the same intelligence answers larger questions, reconstructs
+less context, needs less intervention, or produces more durable throughput in one environment
+than another, some of that difference is productive capacity stored outside the agent. That is
+one way engineering capital becomes empirically visible.

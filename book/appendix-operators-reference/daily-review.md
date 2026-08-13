@@ -1,38 +1,22 @@
 *The morning five questions.*
 
-Five questions, asked every morning, each resolving to a card you already have. This is the meta-card — the
-one that goes dog-eared. Its job is to route your attention into the deck, not to hold a reading of its own.
-It is the human-facing morning complement to the automated reflex the loop already fires between sessions.
+This is the card that should become dog-eared. It adds no new measurement; it routes attention to the rest of the deck. Ask the same five questions at a regular cadence and after consequential changes.
 
-### The five questions
-
-1. **Are the models healthy?** → Model Health: drift, coverage, freshness, traceability.
-2. **Any recurring failures?** → Governance Conversion: a class recurring un-converted is a mechanism owed.
-3. **Did anything move the wrong way since yesterday?** → drift, validation, and the churn curve: did any
-   of them move against you since the last check?
-4. **Any regressions?** → System Health: did the validators or the churn curve move the wrong way?
-5. **Anything that should become infrastructure?** → Human Judgment: a decision made repeatedly is a
-   conversion candidate.
+1. **Did durable work move forward?** → Dashboard and System Health. Look for accepted capability, reopenings, rollbacks, and unexpected churn.
+2. **Did any trusted representation become doubtful?** → Representation Health. Check the correspondence claims that current work actually depends on.
+3. **Did an obligation escape the authority that should have caught it?** → System Health and Release Readiness. Identify the boundary, evidence, validator, or gate that failed—or confirm that the obligation was deliberately left to judgment.
+4. **What did a human have to reconstruct or decide again?** → Human Judgment. Repeated semantic work is a candidate for externalization, not an automatic mandate to automate it.
+5. **What should the environment learn from yesterday?** → Governance Conversion and Engineering Capital. Decide whether the lesson deserves a representation, control, procedure, architectural change, retirement of stale machinery, or no durable change at all.
 
 ```
-  DAILY OPERATOR REVIEW                          "The morning five questions"
+  DAILY OPERATOR REVIEW                            "The morning five questions"
   ──────────────────────────────────────────────────────────────────────────
-  1  Are the models healthy?          → Model Health
-  2  Any recurring failures?          → Governance Conversion
-  3  Anything move the wrong way?     → drift · validation · churn
-  4  Any regressions?                 → System Health
-  5  Anything → infrastructure?       → Human Judgment
+  1  Did durable work move forward?               → Dashboard / System Health
+  2  Did a trusted representation become doubtful? → Representation Health
+  3  Did an obligation escape its authority?       → System Health / Release Readiness
+  4  What did a human have to decide again?        → Human Judgment
+  5  What should the environment learn?            → Governance Conversion / Capital
   ──────────────────────────────────────────────────────────────────────────
-  Automated complement: a recurring loop hook asks the same, between sessions.
 ```
 
-Each question resolves to a specific card's reading — the morning review is not a sixth gauge, it is a
-routing pass over five existing ones. Its automated complement is the operator-loop hook that recurs often
-enough to catch a repeat while its cause is fresh and asks whether, since the last check, the work hit a
-recurring failure or solved one problem several different ways — the same instincts, fired without waiting
-for a human to remember.
-
-### What this projects
-
-The self-operate daily loop and the govern-your-own-loop lifecycle — the operator's own decision loop, backed
-by a fail-open, windowed hook — plus the *governance-conversion* loop, which is question five's engine.
+The automated complement may ask some of these questions at lifecycle boundaries, but automation does not make the answers authoritative. A hook can reliably trigger the review; deciding what a recurrence means may remain semantic work.

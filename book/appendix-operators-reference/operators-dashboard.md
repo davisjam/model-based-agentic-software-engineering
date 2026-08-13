@@ -1,28 +1,19 @@
-The dashboard collects the primary metrics used to operate a Governed Engineering Environment. Formative
-metrics steer work while it is in progress. Summative metrics certify the finished system. Some metrics
-serve both purposes.
+The dashboard answers one question: is the engineering environment turning autonomous activity into durable, trustworthy progress? Read outcomes first, then use diagnostic measures to explain movement in those outcomes. A healthy environment is not the one with the most models, controls, tests, or support code. It is the one in which useful work lands, failures escape less often, human attention is spent where judgment adds value, and the machinery carrying that work continues to repay its cost.
 
-[ref:operators-dashboard] gives each metric in two bands — the formative metrics above the divider, the
-summative verdicts below — with what each one counts, when to read it, and its healthy direction. Scan the
-band you need. The [4.4](4.4-operating-mage.html) reference is the companion one level down: read it to steer a
-single loop iteration, read this to steer or grade the whole program.
+The primary readings are durable throughput, defect escape, human-attention burden, representation health, and engineering-capital return. The first three describe what the environment produces; the last two help explain whether the environment itself can sustain that performance. Measures such as churn, model coverage, support ratio, control count, grammar coverage, and navigation cost are diagnostic instruments. Use them when they illuminate one of the primary readings; do not optimize them for their own sake.
+
+[ref:operators-dashboard] sets each reading against the question it answers, its healthy direction, and the diagnostics that explain movement in it.
 
 <!-- label: operators-dashboard -->
-<!-- table: The Operator's Dashboard — every metric the build acts on, in two mode bands: the formative metrics you steer by while the work is in flight, then the summative verdicts you certify the result with at maturity. [short: The Operator's Dashboard — formative and summative metrics] -->
-| Metric | Mode | What it counts | When to watch | Healthy direction | Defined in |
-|---|---|---|---|---|---|
-| **Formative — measured during the work, to steer the next step** | | | | | |
-| **Missing-Model Metric** | formative | Fraction of tests whose exercised code traces to no model claim — the unmodelled surface — plus its drain curve. | After each model-loop Epic; steer the next at the biggest orphan cluster. | Drains toward 10%-or-under (56% to 7.89% over nine re-runs). | [5.3](5.3-the-road-to-mage.html) |
-| **Velocity** | formative | Commits per week. | Watch the dip where velocity buys hardening. | Roughly linear; a hardening dip is expected, not alarming. | [5.2](5.2-the-build.html) |
-| **Churn** | formative | Lines added and deleted per week per path. | Reads which build phase you are in. | Peaks at mechanization, then collapses as the environment stabilizes. | [5.2](5.2-the-build.html) |
-| **Model-sync efficacy** | formative | Whether the drift and parity gates keep model equal to code. | Watch that map-equals-territory holds. | Gates stay green. | [5.3](5.3-the-road-to-mage.html) |
-| **Grammar coverage** | formative | Whether the generator exercised every production of the input grammar. | Watch for corpus holes no line-coverage number reveals. | Rises toward full grammar exercise. | [4.3](4.3-validating-change.html) |
-| **Model-claim coverage** | formative | Whether generated inputs drove every declared invariant, transition, and edge. | The saturation oracle for generative validation. | Rises toward full claim exercise. | [4.3](4.3-validating-change.html) |
-| **Summative — measured at maturity, a verdict on the result** | | | | | |
-| **MBSE navigation token-savings** | summative | Tokens spent to reach an answer, model on versus off. | Certify the model earned its context budget. | Lower with the model on. | [2.3](2.3-the-executable-zoo.html) |
-| **Support ratio** | both | Support-apparatus LoC (tests, lints, docs, infra, tooling) over production LoC. | Watch the apparatus keeps leading as feature work resumes. | Leads production; settles around 3x it at maturity. | [5.2](5.2-the-build.html#support-ratio-curve) |
-| **Control growth** | both | Project-specific lint files and gate scripts, per window. | Watch the environment still accrete controls. | Climbs steadily (lints 0 to 747; gates 0 to 102). | [5.2](5.2-the-build.html#control-growth) |
-| **Epic-closure rate** | both | Epics moved into the closed set per week — the finishing rate, not the commit rate. | Whether an operating-mode shift converts to durable throughput rather than raw output. | Rises when the environment absorbs autonomous loops; flat velocity beside a rising closure rate is the healthy anti-decay shape. | [5.2](5.2-the-build.html) |
+<!-- table: The Operator's Dashboard — the five primary readings the build steers and certifies by: for each, the question to ask, the healthy direction of travel, and the diagnostic measures that explain movement in it. [short: The Operator's Dashboard — five primary readings] -->
+| Reading | What to ask | Healthy direction | Useful diagnostics |
+|---|---|---|---|
+| **Durable throughput** | How much accepted work survives without reopening, rollback, or repeated repair? | More accepted capability without proportional growth in intervention | closure rate; reopen rate; change cadence; churn |
+| **Defect escape** | What incorrect or policy-violating work crosses the boundary that was supposed to catch it? | Falls for governed obligations | validator findings; escaped defects; rollback/incident rate |
+| **Human-attention burden** | How much repeated reconstruction, review, or adjudication does each unit of durable work require? | Falls where judgment has become externalizable; remains where semantic judgment is deliberately human | interventions per landed change; review time; recurring decisions |
+| **Representation health** | Can the representations being relied upon still answer the questions they claim to answer? | Claimed correspondence holds; stale or uncovered surfaces remain explicit | drift checks; traceability; freshness; coverage/relevance |
+| **Engineering-capital return** | Is accumulated structure making later work more capable or cheaper to reason about than it costs to carry? | Reuse and inherited capability rise while carrying cost remains justified | mechanism reuse; recurring-class disappearance; maintenance burden; retirement candidates |
 
-Each metric's mode and the rationale for its formative-or-summative call live in the dashboard's model file,
-which projects this table and holds the page equal to it.
+Diagnostic instruments are not goals. DocAble's support ratio, control count, Missing-Model drain, navigation pilot, and churn curves are evidence about one build. They can suggest measurements for another environment, but their values are not operating targets. Appendix H carries the raw DocAble receipts and their limitations.
+
+A visual mark without a declared measure is status, not quantity. Never infer precision from its size.

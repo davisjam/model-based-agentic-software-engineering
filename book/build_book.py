@@ -3640,22 +3640,25 @@ _APPENDIX_OPERATORS_REFERENCE_OPENING_SLUG = "appendix-operators-reference"
 # is the first (D.1); absent-on-disk files are skipped, so the front-door alone still renders without them.
 _OPERATORS_REFERENCE_PAGES: list[tuple[str, str]] = [
     ("operators-dashboard", "The Operator's Dashboard"),
-    ("from-drifted-wiki-to-trusted-model", "Brownfield Migration Drill"),
     # The operator-card deck (Appendix-D). One card = one page; the deck is declared in
     # book-models/operator-cards.json and its evidence-resolution gate is BLOCKING in `catalog.py validate`.
     # The Daily Operator Review leads the sensed cards so the deck teaches its own loop
     # (Dashboard -> Daily Review -> specialist cards -> Doctrine). This print order MUST match the
     # operator-cards.json `cards[]` order in lockstep — the page-span sensor derives each card's page bound
     # from the NEXT card in json order, so a reorder here without the same move there stales the sensor.
+    # The physical deck runs Orient -> Diagnose -> Act -> Certify. The Brownfield Migration Drill is a page
+    # (not a deck card, so it is absent from operator-cards.json); it sits in the Act job after Governance
+    # Conversion and before Brownfield Progress.
     ("daily-review", "Daily Operator Review"),
     ("system-health", "System Health"),
-    ("model-health", "Model Health"),
+    ("model-health", "Representation Health"),   # slug kept (Path A); display title retitled
     ("human-judgment", "Human Judgment"),
     ("engineering-capital", "Engineering Capital"),
     ("governance-conversion", "Governance Conversion"),
+    ("from-drifted-wiki-to-trusted-model", "Brownfield Migration Drill"),
+    ("brownfield-progress", "Brownfield Progress"),
     ("release-readiness", "Release Readiness"),
     ("evidence-quality", "Evidence Quality"),
-    ("brownfield-progress", "Brownfield Progress Gauge"),
     ("operating-doctrine", "Operating Doctrine"),
 ]
 
