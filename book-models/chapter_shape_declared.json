@@ -532,8 +532,8 @@
         "artifact_would_help": false
       },
       "note": "Failure: most readers stare at brownfield + agent-worsened sprawl; answer: start from the wiki you already have — treat the drifted wiki as an immature model, connect it round-trip, then mature it (Audit/Synchronize/Govern/Extend) toward the executable models the earlier Parts built; 'model-based engineering environment' implicit thesis-link (modeling). (Round-4 W3: the worked-examples teasers + field-guide section left 4.2; the chapter now closes inside the DocAble-retrofit field note on the bootstrap-governance takeaway — synthesis. closing_anchor re-frozen from that close, M3.)",
-      "opening_anchor": "You have the mindset, the governed environment, and the models; this Part",
-      "closing_anchor": "and mature it in place until an agent can reason through it."
+      "opening_anchor": "Most readers do not begin on a blank page. You inherit some",
+      "closing_anchor": "and mature both in place until an agent can reason through it."
     },
     {
       "slug": "the-skills",
@@ -550,15 +550,15 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the three-skills and recipe figures with the by-construction-layer tables",
-            "anchor": "three-skills"
+            "name": "the Skill Skeleton figure (base model + orthogonal models + top-level procedure)",
+            "anchor": "skill-recipe"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Phase-2c added the motivating failure: a method left as prose must be re-taught to every fresh agent, and a discipline that lives in memory rather than the environment is the first thing velocity drops — the batteries (three installable skills) answer that. Packaged-methodology role implicit (govern-the-environment). Round-6: the dissolved field guide re-homes here as the Part's synthesis close (portable-moves index + The Engineer's Day), so the ending is now the canonical Part-4 -> Part-5 handoff.",
-      "opening_anchor": "Up to this point we have treated MAGE as a human engineering",
-      "closing_anchor": "real deadline. The next Part tells that system's story from the beginning."
+      "note": "Phase-R45 retitle 'Packaging the Method as Skills': packaging is ONE form of engineering capital, not a canonical MAGE constituent. Motivating failure: a recurring procedure re-taught to every fresh agent. Distinguishes knowledge capital (the guidance a skill preserves) from authority (only the surrounding tools/hooks/gates carry it) — guidance aims, authority binds. One architecture figure (the Skill Skeleton); the three shipped skills are instances, not required parts. Self-governance + self-operate are the primary instances; self-communicate is the boundary test that shows the architecture generalizes. Closing transition hands to the portable-moves coda.",
+      "opening_anchor": "The method so far has been described as engineering practice: model the",
+      "closing_anchor": "The method does not depend on the file format, harness, or name."
     },
     {
       "slug": "generative-validation",
@@ -582,8 +582,8 @@
         "artifact_would_help": false
       },
       "note": "Exemplar opening: dot-test failure, the generate-and-falsify move, then BOTH theses named. Daily-practice + old Part-close coda relocated (r3, A2b -> 4.1); the chapter now closes on the worked-examples gallery, whose takeaway bridges to Part 5.",
-      "opening_anchor": "Every engineering process eventually reaches the same question: How do we know",
-      "closing_anchor": "a change is the last party you would trust to grade it."
+      "opening_anchor": "Every engineering process eventually asks the same question: **what evidence is sufficient",
+      "closing_anchor": "The old techniques become more central because the economics around them changed."
     },
     {
       "slug": "the-ada-context",
@@ -853,14 +853,14 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the MAGE cycle (model the intent, give it authority, convert recurring failures, repeat)"
+            "name": "the MAGE cycle (model the intent, give stable obligations authority, convert recurring judgment, repeat)"
           }
         ],
         "artifact_would_help": false
       },
       "note": "Opens by naming the gap the previous Parts left — ideas introduced one at a time, not yet joined into a method you run. Answer: the MAGE cycle, walked one turn at a time, with both theses named. Closes handing the assembled method to the rest of the Part.",
-      "opening_anchor": "The previous Parts introduced the ideas one at a time. This Part",
-      "closing_anchor": "and the models; the rest of this Part puts them to work."
+      "opening_anchor": "MAGE has three recurring moves: **Model, Align, Convert**. Model the engineering knowledge",
+      "closing_anchor": "tools, and the companion repository and leaves only the moves that port."
     },
     {
       "slug": "failures",

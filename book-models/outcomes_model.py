@@ -65,7 +65,7 @@ BLOOM_VERBS: "dict[str, tuple[str, ...]]" = {
     # EVALUATE — judge; size a decision; choose among options.
     "evaluate": ("evaluate", "judge", "size", "critique", "justify", "choose", "weigh", "assess"),
     # CREATE — build a new artifact of the taught kind.
-    "create": ("design", "construct", "author", "compose", "derive", "build", "model", "generate"),
+    "create": ("design", "construct", "author", "compose", "derive", "build", "model", "generate", "package"),
 }
 _VERB_TO_BLOOM: "dict[str, str]" = {v: b for b, vs in BLOOM_VERBS.items() for v in vs}
 _ALL_VERBS: frozenset = frozenset(_VERB_TO_BLOOM)

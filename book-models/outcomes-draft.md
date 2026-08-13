@@ -100,30 +100,20 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 4.1-the-mage-workflow
 
-  - **[DERIVED]** (analyze) After this section, the reader can classify a governance mechanism on the soft-to-hard spectrum — guidance that aims versus machinery that holds. _(primary: from-soft-to-hard · elaborated by: prevention-and-observation)_ — _anchor: Heading text: 'From soft to hard' (in the MAGE Workflow chapter — re-homed from the dissolved governance-conversion chapter in round-6)._
-  - _elaborates (owned by the program):_ (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for.
-  - **[DERIVED]** (understand) After this section, the reader can distinguish one-shot scripting from supervised autonomy and name what each supplies to the agent. — _anchor: point: two-modes-fork-on-size-and-difficulty / one-shot-for-small-unsubtle-tasks / supervised-autonomy-supplies-four-things_
-  - **[DERIVED]** (evaluate) After this section, the reader can judge how long a leash a task can run on from two factors — how densely the model's training data covers the work and how capable the model is at it — and see why misjudging the mode is costly either way. — _anchor: point: leash-length-from-data-density-and-capability / mode-misjudgment-is-costly-both-ways_
 
 ### Lesson 4.2-brownfield
 
-  - **[DERIVED]** (know) After this section, the reader can name the starting point and both destinations before you move. — _anchor: ts: Name the starting point and both destinations before you move._
+  - **[DERIVED]** (create) After this section, the reader can model induction has a stopping problem: a representation can describe …. — _anchor: ts: Model induction has a stopping problem: a representation can describe everything it knows _
 
 ### Lesson 4.3-validating-change
 
 
-### Lesson 4.4-the-skills
+### Lesson 4.4-operating-mage
 
-  - **[DERIVED]** (apply) After this section, the reader can use the self-governance signal — a bad thing happened twice — to mint a control instead of re-patching the instance. — _anchor: ts: 'the second skill, self-governance, triggers on a simple signal: a bad thing happened more'._
-
-### Lesson 4.5-operating-mage
-
-  - **[DERIVED]** (apply) After this section, the reader can apply the roughest-algorithm-that-still-fits rule to a judgment step — giving a well-constrained decision an algorithm, an open-ended one only hints, a measurement a rubric, and a delegated task a pre-canned brief. — _anchor: point: judgment-parts-get-the-roughest-algorithm-that-still-fits / a-judgment-that-is-a-measurement-gets-a-rubric / the-pre-canned-brief-is-the-strongest-form-templating-delegation-itself_
   - **[DERIVED]** (apply) After this section, the reader can apply Ousterhout's rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried. _(primary: measure-one-level-deeper · elaborated by: the-flagship-coverage-measured-one-level-deeper)_ — _anchor: point: measure-one-level-deeper-because-the-surface-number-cannot-act / a-cloud-bill-reports-but-splitting-it-by-service-acts / boot-time-one-level-deeper-turns-scale-out-into-fix-the-slow-phase / line-coverage-is-the-invoice-level-number-and-the-flagship-is-coverage-one-level-deeper / metrics-run-a-hard-to-soft-spectrum-and-the-mistake-is-treating-one-as-the-other_
-  - **[DERIVED]** (apply) After this section, the reader can compute coverage measured one level deeper — joining a traceability graph's claim-to-anchor edges with the coverage oracle so the metric counts model claims instead of lines, names an unexercised invariant instead of a percentage, and reports an honest exercised/unmeasurable/out-of-surface breakdown. — _anchor: point: line-coverage-answers-a-syntactic-question-not-the-semantic-one / the-fix-joins-a-traceability-graph-to-the-coverage-oracle / the-composition-counts-model-claims-and-reports-a-named-verdict / the-genre-check-names-this-requirements-based-coverage / one-primitive-supports-several-aggregations-each-a-different-decision / the-honesty-layer-reports-a-breakdown-so-the-number-affords-engineering / measuring-one-level-deeper-cost-a-join-not-a-rebuild_
-  - _elaborates (owned by measure-one-level-deeper):_ (apply) After this section, the reader can apply Ousterhout's rule and measure one level deeper than the surface number — reading a per-service cost split or a boot-time breakdown as a decision the invoice-level number buried.
-  - **[DERIVED]** (analyze) After this section, the reader can classify a soft metric — a doc-derived test's coverage-of-doc-claims — as one that aims a reader rather than deciding, recognize why its softness is inseparable from a readiness judgment about the seam, and see why wiring it to a blocking gate manufactures hollow tests. — _anchor: point: a-doc-derived-test-pins-a-doc-claim-and-its-metric-is-genuinely-soft / the-soft-metric-is-inseparable-from-a-readiness-judgment-so-a-gate-would-manufacture-hollow-tests_
-  - **[DERIVED]** (understand) After this section, the reader can explain why the MBSE models are consumed at runtime to produce the metrics — the cold-start numbers and the coverage graph both read at check time — so a component-distance grade read from the model drives a pre-commit gate three ways, the model being the machinery rather than a picture of it. _(primary: the-model-runs-the-machinery · elaborated by: when-guardrails-collide)_ — _anchor: point: the-model-is-not-a-picture-of-the-machinery-it-is-the-machinery / a-component-distance-grade-is-a-metric-that-drives-a-gate-three-ways / the-grade-is-a-metric-read-from-the-model-that-drives-a-sensors-decision_
+
+### Lesson 4.5-packaging-the-method-as-skills
+
 
 ## Module 5 — The Evidence
 
