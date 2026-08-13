@@ -6,7 +6,7 @@
      surfaces as governance pressure; pressure is diagnosed as local or structural; a
      structural diagnosis triggers governance adaptation; adaptation reshapes E; a stronger
      E amplifies capacity and reopens the loop. Prior engineering knowledge bootstraps E
-     before any failure. The four dynamics: [1] bootstrap (blue, an input), [2] churn/discovery (red),
+     before any failure. The four dynamics: [1] bootstrap (blue, an input), [2] pressure/discovery (red),
      [3] governance-adaptation (green), [4] capability-amplification (purple). Colour is
      redundant: each loop carries a numbered badge, a name, and a legend row, so the figure
      reads in grayscale. Palette: fleet blue #2f5169, churn red #b23b3b, governed green
@@ -21,16 +21,16 @@
     requirements, brownfield assets, and prior lessons — sits at the top and feeds the
     governed environment E through item 1, the blue bootstrap input. Agentic capacity, on the
     left, exercises the governed environment E, the green hub on the right whose quality is
-    representation quality, enforcement coverage, coherence, and economy. Agentic capacity
+    representation quality, obligation coverage, coherence, and economy. Agentic capacity
     also drives agentic work; the environment E shapes realized performance; agentic work
     produces realized performance — durable throughput, defect escape, and human attention.
     A mismatch between work and environment, together with the realized-performance gap,
     surfaces as governance pressure: churn, recurring failure, escaped defect, repeated
-    intervention, and control friction. Loop 2, the red churn-or-discovery loop, carries
+    intervention, and control friction. Loop 2, the red pressure-or-discovery loop, carries
     governance pressure into structural diagnosis, which asks whether a failure is a local
-    defect or evidence of a missing model, abstraction, or mechanism. Loop 3, the green
+    defect, a missing representation, weak authority, or a stale mechanism. Loop 3, the green
     governance-adaptation loop, carries a structural diagnosis into governance adaptation —
-    model, convert, strengthen, reconcile, retire — and its return arrow reshapes the
+    represent, constrain, validate, strengthen, reconcile, retire — and its return arrow reshapes the
     environment E as a new, better E for the next round. Loop 4, the purple
     capability-amplification loop, runs from the improved environment back up to agentic
     capacity: a stronger environment enables bigger tasks and more concurrency, which reopens
@@ -120,7 +120,7 @@
     <path d="M410,765 L410,801" fill="none" stroke="#b23b3b" stroke-width="3" marker-end="url(#mageDM-dm-red)"/>
     <circle cx="452" cy="784" r="15" fill="#fdfcf9" stroke="#b23b3b" stroke-width="2.5"/>
     <text x="452" y="790" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">2</text>
-    <text x="486" y="789" text-anchor="start" font-size="14.08" font-style="italic" font-weight="600" fill="#b23b3b">Churn / discovery</text>
+    <text x="486" y="789" text-anchor="start" font-size="14.08" font-style="italic" font-weight="600" fill="#b23b3b">Pressure / discovery</text>
   </g>
 
   <!-- ============ [3] GREEN governance-adaptation edge ============ -->
@@ -150,7 +150,7 @@
   <text x="685" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">environment</text>
   <text x="685" y="330" text-anchor="middle" font-size="21" font-weight="700" fill="#1f7a4d">E</text>
   <text x="685" y="356" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">representation quality</text>
-  <text x="685" y="374" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">enforcement coverage</text>
+  <text x="685" y="374" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">obligation coverage</text>
   <text x="685" y="392" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">coherence &#183; economy</text>
 
   <!-- Agentic work -->
@@ -175,12 +175,12 @@
   <!-- Structural diagnosis -->
   <rect x="150" y="805" width="520" height="80" rx="9" fill="#fdfcf9" stroke="#57534e" stroke-width="2.2"/>
   <text x="410" y="840" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structural diagnosis</text>
-  <text x="410" y="866" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">local defect, or missing model / abstraction / mechanism?</text>
+  <text x="410" y="866" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">local defect &#183; missing representation &#183; weak authority &#183; stale mechanism?</text>
 
   <!-- Governance adaptation -->
   <rect x="150" y="925" width="520" height="95" rx="9" fill="#fdfcf9" stroke="#1f7a4d" stroke-width="2.4"/>
   <text x="410" y="962" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Governance adaptation</text>
-  <text x="410" y="990" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">model &#183; convert &#183; strengthen &#183; reconcile &#183; retire</text>
+  <text x="410" y="990" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">represent &#183; constrain &#183; validate &#183; strengthen &#183; reconcile &#183; retire</text>
   <text x="410" y="1010" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">changes the shape of future work</text>
 
   <!-- ============ R / B loop-typing badges (system-dynamics convention; full-strength in every crop) ==== -->
@@ -202,7 +202,7 @@
 
   <circle cx="270" cy="1078" r="14" fill="#fdfcf9" stroke="#b23b3b" stroke-width="2.4"/>
   <text x="270" y="1084" text-anchor="middle" font-size="16" font-weight="700" fill="#b23b3b">2</text>
-  <text x="292" y="1076" text-anchor="start" font-size="14.08" font-weight="700" fill="#1c1917">Churn / discovery loop</text>
+  <text x="292" y="1076" text-anchor="start" font-size="14.08" font-weight="700" fill="#1c1917">Pressure / discovery loop</text>
   <text x="292" y="1096" text-anchor="start" font-size="14.08" fill="#57534e">pressure reveals</text>
   <text x="292" y="1113" text-anchor="start" font-size="14.08" fill="#57534e">missing structure</text>
 

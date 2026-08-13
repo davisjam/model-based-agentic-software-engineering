@@ -1,10 +1,7 @@
 {
   "_provenance": "HAND-AUTHORED declared source for the 'Toward a Theory of MAGE' back-matter chapter (book/part6/6.1-toward-a-theory-of-mage.md). This file IS edited by hand; it is the single source of truth for the chapter's dynamic model — the latent CONSTRUCTS, the four FEEDBACK LOOPS (with system-dynamics R/B typing), the path-specific MODERATORS, the three OUTCOMES, the eight falsifiable HYPOTHESES (H1-H8, replacing the legacy P1-P15), the corollaries, and the two directional relations. The chapter was relocated out of the appendices (legacy Appendix E) to a numbered main-text chapter this wave; the model was rewritten from the fifteen-prediction inventory to the eight-hypothesis dynamic model to match. Sibling in the book-models declared->generated idiom (see argument_spine_declared.json / claims_declared.json). WIRED: theory_of_mage_model.py projects the eight-hypotheses table into the chapter and drift-checks it against the authored prose (parity + structural TM1-TM7 + the ratified count guard), exactly as metrics_dashboard_model.py does for the Operator's Dashboard; the check lands AUDIT-ONLY in catalog.py validate. Regen discipline: edit HERE, then regenerate the projected table with `python3 book-models/theory_of_mage_model.py hypotheses-table`; never hand-edit the projection.",
-
   "_intent": "Encode the book's argument as a middle-range DYNAMIC model in the causal-loop convention of system dynamics: latent CONSTRUCTS connected by four numbered feedback loops over one shared spine, path-specific MODERATORS attached to single transitions, three OUTCOMES, and seven falsifiable HYPOTHESES that follow from the loops. Single-case (DocAble); directional, not proven; no path coefficients are claimed.",
-
   "hedge": "N=1: one repository, one fleet, one operator, ~20 weeks focused. These are ANALYTIC-generalization claims (about a mechanism and its scope conditions), not statistical generalization to a population. They are stated so future multi-case / longitudinal / controlled work can test them. Directional and middle-range, not fitted.",
-
   "spine": {
     "_note": "The shared left-to-right system the four loops run over, read clockwise. Each construct id is reused by the loops, moderators, and hypotheses below.",
     "order": [
@@ -17,7 +14,6 @@
       "governance-adaptation"
     ]
   },
-
   "constructs": [
     {
       "id": "agentic-capacity",
@@ -31,10 +27,22 @@
       "name": "Effective governed-environment quality (E)",
       "gloss": "The degree to which the environment gives agents a current, task-relevant representation of the system together with coherent, proportionate, machine-actionable coverage of its important obligations. A QUALITY, not a quantity — apparatus count is an indicator, not a substitute. Read E as a conceptual STATE VECTOR E = (R, C, H, Q) over its four dimensions — representation quality, enforcement coverage, coherence, and economy — not a measured scalar index the case could report; a large apparatus raises a dimension of E only when it is coherent, economical, and actually covers the obligations that matter, and can instead be duplicated machinery, stale enforcement, or a tower of governance that lowers E while the control count climbs.",
       "dimensions": [
-        {"id": "representation-quality", "question": "Are the relevant properties legible in the environment's current models?"},
-        {"id": "enforcement-coverage", "question": "Are important obligations covered by controls proportionate to their decidability and risk — hard mechanisms where they fit, judgment-based review where they do not?"},
-        {"id": "coherence", "question": "Do the mechanisms compose without harmful collision or duplication?"},
-        {"id": "economy", "question": "Is the governance burden proportionate to the risk and value it controls?"}
+        {
+          "id": "representation-quality",
+          "question": "Are the relevant properties legible in the environment's current models?"
+        },
+        {
+          "id": "enforcement-coverage",
+          "question": "Are important obligations covered by controls proportionate to their decidability and risk — hard mechanisms where they fit, judgment-based review where they do not?"
+        },
+        {
+          "id": "coherence",
+          "question": "Do the mechanisms compose without harmful collision or duplication?"
+        },
+        {
+          "id": "economy",
+          "question": "Is the governance burden proportionate to the risk and value it controls?"
+        }
       ]
     },
     {
@@ -68,7 +76,6 @@
       "gloss": "The repertoire that changes E: represent (make structure legible), convert (a recurring failure into a durable mechanism), strengthen (weak guidance into harder enforcement), reconcile (duplicated/conflicting controls), retire (stale or net-harmful governance). Subtractive as well as additive."
     }
   ],
-
   "loops": [
     {
       "id": "L1-bootstrap",
@@ -107,55 +114,93 @@
       "reading": "A stronger environment raises DEPLOYED agentic capacity — feasible task size, more concurrency, more ambitious requirements, cheaper refactoring, denser use of capacity — the frontier the operator dares attempt, NOT the foundation model's intrinsic capability. The expanded frontier exposes new failure classes and reopens the loop. This is why MAGE does not terminate."
     }
   ],
-
   "loop_typing": {
     "_note": "System-dynamics causal-loop typing (Meadows convention). Naming the types sharpens the non-terminating claim: the balancing loop drives the environment toward fit; the reinforcing loop moves the target the moment it is reached.",
-    "B": {"loops": ["L2-churn-discovery", "L3-governance-adaptation"], "kind": "balancing", "reading": "churn -> diagnosis -> adaptation -> less churn: goal-seeking, self-damping, toward fit."},
-    "R": {"loops": ["L4-capability-amplification"], "kind": "reinforcing", "reading": "better E -> more ambition -> new frontier: self-amplifying, reopens the loop."},
-    "input": {"loops": ["L1-bootstrap"], "kind": "input", "reading": "seeds E before any failure; not a feedback loop."}
+    "B": {
+      "loops": [
+        "L2-churn-discovery",
+        "L3-governance-adaptation"
+      ],
+      "kind": "balancing",
+      "reading": "churn -> diagnosis -> adaptation -> less churn: goal-seeking, self-damping, toward fit."
+    },
+    "R": {
+      "loops": [
+        "L4-capability-amplification"
+      ],
+      "kind": "reinforcing",
+      "reading": "better E -> more ambition -> new frontier: self-amplifying, reopens the loop."
+    },
+    "input": {
+      "loops": [
+        "L1-bootstrap"
+      ],
+      "kind": "input",
+      "reading": "seeds E before any failure; not a feedback loop."
+    }
   },
-
   "moderators": [
-    {"id": "diagnostic-capability-fit", "operates_on": "governance-pressure -> structural-diagnosis", "reading": "Fit between the work and the DIAGNOSTIC capability a structural reading needs — largely a human/organizational capacity to read a signal as structural, not the fleet's implementation capability (do not read it as the model/task fit of Part 4). Below fit, pressure arrives but no diagnosis converts it — motion without direction."},
-    {"id": "authority", "operates_on": "structural-diagnosis -> governance-adaptation", "reading": "Ability or organizational path to modify shared architecture and controls. Need not live in one architect; the failure is a path that terminates in a local patch, leaving the class to recur."},
-    {"id": "domain-governability", "operates_on": "governed-environment-quality -> outcomes", "reading": "Degree to which important properties can be represented and mechanically checked."},
-    {"id": "control-estate-coherence", "operates_on": "apparatus -> governed-environment-quality", "reading": "Degree to which mechanisms compose without harmful interaction; the guard against a tower of governance."}
+    {
+      "id": "diagnostic-capability-fit",
+      "operates_on": "governance-pressure -> structural-diagnosis",
+      "reading": "Fit between the work and the DIAGNOSTIC capability a structural reading needs — largely a human/organizational capacity to read a signal as structural, not the fleet's implementation capability (do not read it as the model/task fit of Part 4). Below fit, pressure arrives but no diagnosis converts it — motion without direction."
+    },
+    {
+      "id": "authority",
+      "operates_on": "structural-diagnosis -> governance-adaptation",
+      "reading": "Ability or organizational path to modify shared architecture and controls. Need not live in one architect; the failure is a path that terminates in a local patch, leaving the class to recur."
+    },
+    {
+      "id": "domain-governability",
+      "operates_on": "governed-environment-quality -> outcomes",
+      "reading": "Degree to which important properties can be represented and mechanically checked."
+    },
+    {
+      "id": "control-estate-coherence",
+      "operates_on": "apparatus -> governed-environment-quality",
+      "reading": "Degree to which mechanisms compose without harmful interaction; the guard against a tower of governance."
+    }
   ],
-
   "outcomes": [
-    {"id": "durable-throughput", "name": "Durable throughput", "measures": "Raw implementation converted into lasting system progress.", "observables": ["landed changes net of rework", "churn share", "slope of sustained throughput"]},
-    {"id": "defect-escape", "name": "Defect escape", "measures": "Relevant failures reaching later lifecycle stages or production.", "observables": ["escaped-defect rate", "reopen rate", "silent-corruption escape"]},
-    {"id": "human-attention-burden", "name": "Human-attention burden", "measures": "Human judgment required per unit of durable output. State as a RATE, not a ceiling — per-change attention amortizes even while total governance work grows.", "observables": ["interventions per landed change", "review time", "conversion effort"]}
+    {
+      "id": "durable-throughput",
+      "name": "Durable throughput",
+      "measures": "Raw implementation converted into lasting system progress.",
+      "observables": [
+        "landed changes net of rework",
+        "churn share",
+        "slope of sustained throughput"
+      ]
+    },
+    {
+      "id": "defect-escape",
+      "name": "Defect escape",
+      "measures": "Relevant failures reaching later lifecycle stages or production.",
+      "observables": [
+        "escaped-defect rate",
+        "reopen rate",
+        "silent-corruption escape"
+      ]
+    },
+    {
+      "id": "human-attention-burden",
+      "name": "Human-attention burden",
+      "measures": "Human judgment required per unit of durable output. State as a RATE, not a ceiling — per-change attention amortizes even while total governance work grows.",
+      "observables": [
+        "interventions per landed change",
+        "review time",
+        "conversion effort"
+      ]
+    }
   ],
-
   "apparatus_measures_caveat": "Support ratio, model-coverage fraction, control count, gate count, model-sync rate, control-interaction findings, stale-control rate measure INVESTMENT or ACCUMULATION, not quality. A large apparatus can be effective governance OR duplicated machinery / accidental complexity / stale enforcement / a tower of governance. Each is an input or indicator; effective quality is what the OUTCOMES reveal.",
-
   "hypotheses": [
-    {
-      "id": "H1-failure-class-exposure",
-      "name": "Failure-class exposure",
-      "statement": "Higher agentic velocity shortens the elapsed time to recognize recurring failures as one shared structural class, controlling for the opportunities to trigger the class.",
-      "falsifier": "Recognition latency does not improve with velocity once exposure opportunities are controlled.",
-      "loops": ["L2-churn-discovery"]
-    },
-    {
-      "id": "H2-governance-moderation",
-      "name": "Governance moderation",
-      "statement": "Governed-environment quality sets the sign of velocity's effect: higher velocity raises churn in low-quality environments and durable throughput in high-quality ones.",
-      "falsifier": "Velocity relates to durable throughput the same way regardless of environment quality.",
-      "loops": ["L2-churn-discovery", "L3-governance-adaptation"]
-    },
-    {
-      "id": "H3-mechanized-assurance",
-      "name": "Mechanized assurance",
-      "statement": "Greater risk-weighted coverage of relevant failure classes by effective repeatable mechanisms lowers defect escape, and its advantage over attention-based control widens as velocity rises — for adequately scoped mechanisms.",
-      "falsifier": "Mechanized coverage adds no protection, or its advantage over review does not widen as human attention saturates.",
-      "loops": ["L3-governance-adaptation"]
-    },
     {
       "id": "H4-representation-leverage",
       "name": "Representation leverage",
-      "statement": "Task-relevant structured models extend the effective reasoning horizon — cutting context cost and churn without lowering task quality by replacing implementation-level state with abstractions that survive compaction with less loss — and synchronized models carry predictive information beyond conventional code-coverage measures.",
+      "family": "Representation",
+      "core_quantity": "reasoning/context cost at matched quality",
+      "statement": "For tasks whose required reasoning state exceeds comfortable implementation-level inspection, a task-relevant and trustworthy model will reduce reconstruction/context cost or increase the scale of work completed at matched quality relative to reasoning from lower-level artifacts alone. The advantage should increase as the required reasoning state grows.",
       "falsifier": "Model use at matched recall yields no efficiency gain, lowers quality, adds no predictive power over coverage, or shows no advantage that widens as the required reasoning state grows.",
       "sub_hypotheses": [
         {
@@ -171,42 +216,94 @@
           "falsifier": "Synchronization measures add no predictive power over conventional code-coverage measures."
         }
       ],
-      "loops": ["L3-governance-adaptation"]
+      "loops": [
+        "L3-governance-adaptation"
+      ]
     },
     {
       "id": "H5-local-model-deficiency",
-      "name": "Local model deficiency",
-      "statement": "Unmodelled or drifted architectural surface predicts later churn or escape in the same subsystem.",
+      "name": "Representation integrity",
+      "family": "Representation",
+      "core_quantity": "drift/coverage → churn or escape",
+      "statement": "Stale, irrelevant, or poorly chosen models will reduce or reverse the benefit in H1; measures of model correspondence and obligation coverage should therefore predict later churn or defect escape beyond conventional implementation-level metrics.",
       "falsifier": "Orphaned or drifted surfaces are no more likely than modelled ones to see later churn or escape.",
-      "loops": ["L2-churn-discovery"]
+      "loops": [
+        "L2-churn-discovery"
+      ]
+    },
+    {
+      "id": "H1-failure-class-exposure",
+      "name": "Determinization frontier",
+      "family": "Representation",
+      "core_quantity": "semantic judgment → repeatable predicate",
+      "statement": "For some system-level obligations, changing from raw implementation to an explicit representation of the relevant state or relation will make a repeatable predicate feasible where per-change evaluation over the implementation otherwise requires semantic reconstruction.",
+      "falsifier": "Recognition latency does not improve with velocity once exposure opportunities are controlled.",
+      "loops": [
+        "L2-churn-discovery"
+      ]
+    },
+    {
+      "id": "H3-mechanized-assurance",
+      "name": "Mechanized assurance",
+      "family": "Governance",
+      "core_quantity": "defect escape vs throughput",
+      "statement": "For obligations that are sufficiently decidable and adequately covered, repeatable independent mechanisms will reduce defect escape relative to assurance that requires proportional per-change human attention; the advantage should widen as autonomous throughput increases.",
+      "falsifier": "Mechanized coverage adds no protection, or its advantage over review does not widen as human attention saturates.",
+      "loops": [
+        "L3-governance-adaptation"
+      ]
     },
     {
       "id": "H6-oversight-amortization",
-      "name": "Oversight amortization",
-      "statement": "As recurring failure classes convert into durable governance, human attention per unit of durable output declines — even if total governance work keeps growing.",
+      "name": "Governance conversion",
+      "family": "Governance",
+      "core_quantity": "class recurrence + carrying cost",
+      "statement": "For recurring failure classes, structural interventions targeted at the class will reduce subsequent recurrence or repeated human attention relative to local repair alone, net of the intervention's carrying cost. The relationship will become non-monotonic when controls accumulate beyond their useful fit.",
       "falsifier": "Interventions per durable change stay flat or rise as effective conversion coverage grows.",
-      "loops": ["L3-governance-adaptation"]
-    },
-    {
-      "id": "H7-conversion-conditions",
-      "name": "Conversion conditions",
-      "statement": "Structural failures convert into shared governance faster and more durably when the capability to diagnose structure and the authority to change the environment are colocated, or connected by a working organizational pathway.",
-      "falsifier": "Split-authority or low-fit settings convert at the same rate and durability as high-fit, effective-authority ones.",
-      "moderated_by": ["diagnostic-capability-fit", "authority"],
-      "loops": ["L3-governance-adaptation"]
+      "loops": [
+        "L3-governance-adaptation"
+      ]
     },
     {
       "id": "H8-learning-propagation",
       "name": "Learning propagation",
-      "statement": "Greater externalization of engineering knowledge into shared, machine-actionable environment structures reduces the latency, and raises the consistency, with which locally acquired engineering insight reaches subsequent relevant work.",
+      "family": "Governance",
+      "core_quantity": "propagation latency/consistency",
+      "statement": "Engineering lessons will reach later relevant work faster and more consistently when diagnosis is connected to authority over shared, machine-actionable environmental structure than when the lesson remains local or must propagate primarily through interpersonal communication.",
       "falsifier": "Increasing environment explicitness or machine-actionability does not reduce propagation latency or increase adoption consistency once communication opportunity is controlled.",
       "loops": [
         "L3-governance-adaptation",
         "L1-bootstrap"
       ]
+    },
+    {
+      "id": "H2-governance-moderation",
+      "name": "Environment moderation",
+      "family": "Economics",
+      "core_quantity": "capacity × environment interaction",
+      "statement": "The effect of increasing agentic capacity on durable throughput, defect escape, and human-attention burden will depend on effective environment quality: capacity gains should translate into more durable progress in stronger environments and into more churn or intervention in weaker ones.",
+      "falsifier": "Velocity relates to durable throughput the same way regardless of environment quality.",
+      "loops": [
+        "L2-churn-discovery",
+        "L3-governance-adaptation"
+      ]
+    },
+    {
+      "id": "H7-conversion-conditions",
+      "name": "Capital return/depreciation",
+      "family": "Economics",
+      "core_quantity": "return and carrying cost over time",
+      "statement": "Useful models, mechanisms, architectures, and procedures will produce measurable reductions in future reconstruction, human attention, rework, or risk over the surfaces they cover; those returns will decline as the assets lose fit, and environments that reconcile or retire depreciated assets will outperform otherwise comparable environments that only accumulate machinery.",
+      "falsifier": "Split-authority or low-fit settings convert at the same rate and durability as high-fit, effective-authority ones.",
+      "moderated_by": [
+        "diagnostic-capability-fit",
+        "authority"
+      ],
+      "loops": [
+        "L3-governance-adaptation"
+      ]
     }
   ],
-
   "propositions": [
     {
       "id": "reasoning-horizon-proposition",
@@ -229,16 +326,32 @@
       "reading": "The named theory STATEMENT that H6 encodes as a falsifiable HYPOTHESIS. The proposition names the compounding-governance mechanism — conversions bank engineering capital that lowers the recurring reasoning a future change demands; H6 supplies one testable signature of it (per-change human attention falls as classes convert). H6 is anchored on L3, the green governance-adaptation loop (failure to judgment to conversion to a more capable environment); the full compounding dynamic is the L3-to-L4 (green-to-purple) COMPOSITION, where the more-capable environment raises ambition onto a new frontier. So it is wider than H6's single observable and does not mean the fleet does less — it means higher-leverage, more-ambitious work at a falling per-change cost. Registered offered-for-replication (the chapter's global hedge), honestly situated, not asserted; parallel in form to the Reasoning-Horizon Proposition (different mechanism — H6 amortization vs H4 representation leverage — different falsifier)."
     }
   ],
-
   "corollaries": [
-    {"claim": "Speed and stability do not trade", "status": "Corollary of H2 and H3"},
-    {"claim": "Conversion gets faster as tooling matures", "status": "Learning-curve specialization of H7"},
-    {"claim": "The substrate heals faster as it accretes controls", "status": "Consequence of H3 and H6"},
-    {"claim": "Grammar coverage better predicts format-space escapes", "status": "Domain-specific instance of H4"},
-    {"claim": "A fidelity gate reduces silent corruption", "status": "Product-specific instance of H3"},
-    {"claim": "Deployment pain stays bounded", "status": "Subjective consequence of H6; future work"}
+    {
+      "claim": "Speed and stability do not trade",
+      "status": "Corollary of H2 and H3"
+    },
+    {
+      "claim": "Conversion gets faster as tooling matures",
+      "status": "Learning-curve specialization of H7"
+    },
+    {
+      "claim": "The substrate heals faster as it accretes controls",
+      "status": "Consequence of H3 and H6"
+    },
+    {
+      "claim": "Grammar coverage better predicts format-space escapes",
+      "status": "Domain-specific instance of H4"
+    },
+    {
+      "claim": "A fidelity gate reduces silent corruption",
+      "status": "Product-specific instance of H3"
+    },
+    {
+      "claim": "Deployment pain stays bounded",
+      "status": "Subjective consequence of H6; future work"
+    }
   ],
-
   "relations": [
     {
       "id": "R1-churn",
@@ -246,24 +359,55 @@
       "form": "V_durable = V_raw * (1 - c)",
       "substantive_claim": "dc/dE < 0, read as a directional sign over one dimension-bundle of the E-vector (not a fitted slope): churn share falls monotonically as effective environment quality E climbs, and keeps falling even in an overgrown estate — because overgrowth is precisely what LOWERS E. The non-monotonic churn curve is drawn against a DIFFERENT x-axis — governance-apparatus QUANTITY, not E: push apparatus past fit and churn rises again from collisions, false positives, latency, context burden, and constraints that block legitimate work, because quantity does not monotonically raise E. Churn is monotone in E, non-monotone in apparatus quantity; the two axes must not be conflated.",
       "shape": "in E (monotone): churn falls as E rises, through the fit point and beyond. in apparatus QUANTITY (a different, non-monotone axis): under-governed -> churn high ; well-fit -> churn lowest ; overgrown -> churn rises from friction, because quantity past fit lowers E",
-      "ties_to": ["H2-governance-moderation", "H5-local-model-deficiency"]
+      "ties_to": [
+        "H2-governance-moderation",
+        "H5-local-model-deficiency"
+      ]
     },
     {
       "id": "R2-two-regime-escape",
       "name": "Attention-based versus mechanized control",
       "form": "eps_review ~= p*(1 - r(V)) ;  eps_control ~= p*(1 - kappa)",
       "substantive_claim": "p = risk-weighted defect-opportunity rate; r(V) = finite-review coverage, which falls as velocity rises so eps_review climbs toward p; kappa = mechanized-coverage fraction, which a mechanism applies every change regardless of throughput. For adequately scoped mechanisms kappa is LESS sensitive to throughput than r(V), so the escape gap widens with velocity. kappa counts effective REPEATABLE mechanisms, of which determinism is one strong class — anomaly detection, metamorphic and differential testing, and model-based semantic review are statistical yet repeatable and count toward kappa when adequately scoped.",
-      "ties_to": ["H3-mechanized-assurance"]
+      "ties_to": [
+        "H3-mechanized-assurance"
+      ]
     }
   ],
-
   "research_agenda": [
-    {"study_design": "Multi-project longitudinal panel with environment-quality variation", "hypotheses": ["H2", "H3", "H4", "H6"]},
-    {"study_design": "Subsystem-level panel tracking model gaps, churn, and escapes", "hypotheses": ["H1", "H5"]},
-    {"study_design": "Organizational comparison of diagnosis and authority pathways", "hypotheses": ["H7", "H8"]},
-    {"study_design": "Instrument one failure class from first occurrence through recurrence -> structural recognition -> governance intervention -> later recurrence or escape (tests the discovery and adaptation loops directly)", "hypotheses": ["H1", "H2", "H3", "H6"]}
+    {
+      "study_design": "Multi-project longitudinal panel with environment-quality variation",
+      "hypotheses": [
+        "H2",
+        "H3",
+        "H4",
+        "H6"
+      ]
+    },
+    {
+      "study_design": "Subsystem-level panel tracking model gaps, churn, and escapes",
+      "hypotheses": [
+        "H1",
+        "H5"
+      ]
+    },
+    {
+      "study_design": "Organizational comparison of diagnosis and authority pathways",
+      "hypotheses": [
+        "H7",
+        "H8"
+      ]
+    },
+    {
+      "study_design": "Instrument one failure class from first occurrence through recurrence -> structural recognition -> governance intervention -> later recurrence or escape (tests the discovery and adaptation loops directly)",
+      "hypotheses": [
+        "H1",
+        "H2",
+        "H3",
+        "H6"
+      ]
+    }
   ],
-
   "evolution": {
     "_note": "The empirical kernel and the later extensions are epistemically different and must not be blurred.",
     "kernel": {
@@ -283,7 +427,6 @@
       "The process became visibly multi-loop (bootstrap / churn / adaptation / amplification)."
     ]
   },
-
   "figures": {
     "master": "assets/mage-dynamic-model.svg",
     "loop_crops": [
@@ -293,5 +436,6 @@
       "assets/mage-loop-4-amplification.svg"
     ],
     "churn_curve": "assets/mage-churn-curve.svg"
-  }
+  },
+  "_note_r47_hypothesis_crosswalk": "R47 restated the eight hypotheses to the named three-family research program (§6.6 / R47-FALSIFIABILITY-EVIDENCE-SPEC PART B). The eight JOIN-KEY ids are FROZEN (research_agenda related_hypotheses[] + reverse_index reference them); only name/family/core_quantity/statement were restated, and the table now numbers H1..H8 by three-family POSITION, not by the id's own number. Crosswalk (spec row -> frozen id): H1 Representation leverage=H4-representation-leverage; H2 Representation integrity=H5-local-model-deficiency; H3 Determinization frontier=H1-failure-class-exposure; H4 Mechanized assurance=H3-mechanized-assurance; H5 Governance conversion=H6-oversight-amortization; H6 Learning propagation=H8-learning-propagation; H7 Environment moderation=H2-governance-moderation; H8 Capital return/depreciation=H7-conversion-conditions. TWO rows are relabels the deferred pass should reconcile at the id level (NOT forced here, per the round brief, to avoid breaking related_hypotheses / reverse_index joins): (a) spec-H3 determinization sits on H1-failure-class-exposure (the proper move is a distinct determinization id split from H3-mechanized-assurance); (b) spec-H8 capital-return-and-depreciation sits on H7-conversion-conditions (the proper move is a newly minted depreciation id). The §6.6 prose + summary table are the reader-facing canonical set; this model reconciles cleanly in a later dedicated pass."
 }

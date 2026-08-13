@@ -45,7 +45,7 @@ _DECLARED = os.path.join(_HERE, "theory_of_mage_declared.json")
 #: The page the hypotheses table is authored into (parity target).
 # The theory chapter, resolved through the chapter-identity model — a renumber of 6.1 updates this
 # automatically (the label is frozen; the filename is the one field a reorg edits).
-_PAGE_REL = chapter_identity.filename("toward-a-theory-of-mage")
+_PAGE_REL = chapter_identity.filename("education-research-open-problems")
 
 #: The ratified counts — encode the author's set so a silent add/drop/reclassify reddens (the dashboard
 #: model's C5-analogue: the count guard is the backstop against silent H-table drift).
@@ -53,7 +53,10 @@ EXPECT_HYPOTHESES = 8
 EXPECT_SUBHYP = 2
 
 #: The hypotheses-table columns (the header the projection emits and the page carries; parity is exact).
-_COLUMNS = ("ID", "Hypothesis", "Key falsifier")
+#: R47: the §6.6 research-program summary table — Family / Hypothesis / Core quantity, no falsifier cell
+#: (the falsifiers stay on the model, internal). The Hypothesis cell numbers by POSITION (H1..H8), so the
+#: reader-facing H-number is the row's place in the three-family order, not the frozen join-key id's number.
+_COLUMNS = ("Family", "Hypothesis", "Core quantity")
 _TABLE_HEADER = "| " + " | ".join(_COLUMNS) + " |"
 _TABLE_RULE = "|" + "---|" * len(_COLUMNS)
 
@@ -84,6 +87,8 @@ class Hypothesis:
     statement: str
     falsifier: str
     sub_hypotheses: "list[SubHypothesis]"
+    family: str = ""
+    core_quantity: str = ""
 
     @property
     def short(self) -> str:
@@ -129,6 +134,7 @@ def derive_model(raw: "dict | None" = None) -> TheoryModel:
             id=h.get("id", ""), name=h.get("name", ""),
             statement=h.get("statement", ""), falsifier=h.get("falsifier", ""),
             sub_hypotheses=subs,
+            family=h.get("family", ""), core_quantity=h.get("core_quantity", ""),
         ))
     return TheoryModel(hypotheses=hyps)
 
@@ -161,10 +167,15 @@ def _hypothesis_row(h: Hypothesis) -> str:
 
 
 def render_table_rows(model: "TheoryModel | None" = None) -> "list[str]":
-    """The hypotheses as markdown table lines (no header) — the page carries exactly these."""
+    """The hypotheses as markdown table lines (no header) — the page carries exactly these. R47: one row per
+    top-level hypothesis as `| <family> | H<n> <name> | <core quantity> |`, numbered by POSITION in the
+    three-family order (the reader-facing H1..H8), not by the frozen join-key id's own number."""
     if model is None:
         model = derive_model()
-    return [_hypothesis_row(h) for h in model.hypotheses]
+    return [
+        f"| {h.family} | H{n} {h.name} | {h.core_quantity} |"
+        for n, h in enumerate(model.hypotheses, 1)
+    ]
 
 
 def render_hypotheses_table_md(model: "TheoryModel | None" = None) -> str:
