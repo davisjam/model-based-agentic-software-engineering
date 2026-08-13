@@ -2563,11 +2563,12 @@ def _thesis_cell(rec: dict, concept_id: str) -> str:
 
 
 def _landing_big_ideas() -> str:
-    """The six Big Ideas of the website-v2 argument, rendered from problem to research frontier: idea 1
+    """The Big Ideas of the website argument, rendered from problem to research frontier: idea 1
     (the New Engineering Problem) as the full-width lead band under the hero; Engineering Capital as one
     band; the Two Theses as a CAUSAL pair — Modeling *creates surfaces for* Alignment (the labeled connector
-    is the new intellectual content); the Engineered Environment as a band;
-    then Independent Convergence and the Research Agenda. new-problem / independent-convergence /
+    is the new intellectual content); Governance-Conversion as its own band (the third named move, promoted
+    onto the main spine so the landing reads Modeling → Alignment → Governance-Conversion); the Engineered
+    Environment as a band; then Independent Convergence and the Research Agenda. new-problem / independent-convergence /
     research-agenda render in bespoke band shapes fetched via `_big_idea_rec`; all nine ideas are now in
     `_order` with a concept-<slug>.html ENTRY, so every band — these three, churn, the Engineered
     Environment, and both thesis cells — links '→ read the concept'. The thesis pair cells carry the thesis
@@ -2600,13 +2601,17 @@ def _landing_big_ideas() -> str:
         + _thesis_cell(by_slug["alignment-thesis"], "card-thesis-alignment") + "\n"
         + '</div>')
     parts.append('<hr class="i-sep" />')
-    # Idea 4 — the Engineered Environment (the environment is the object of engineering) — one band.
+    # Idea 4 — Governance-Conversion (convert recurring failures into controls) — the third named move,
+    # promoted onto the main spine so the landing reads Modeling → Alignment → Governance-Conversion.
+    parts.append(_big_idea_band(by_slug["convert-failures"]))
+    parts.append('<hr class="i-sep" />')
+    # Idea 5 — the Engineered Environment (the environment is the object of engineering) — one band.
     parts.append(_big_idea_band(by_slug["governance-centric"], figright=True))
     parts.append('<hr class="i-sep" />')
-    # Idea 5 — Independent Convergence — one band (folded into _order → concept).
+    # Idea 6 — Independent Convergence — one band (folded into _order → concept).
     parts.append(_big_idea_band(ic, link_html=_concept_link(ic.get("_slug", ""))))
     parts.append('<hr class="i-sep" />')
-    # Idea 6 — the Research Agenda — enlarged full-width figure (folded into _order → concept).
+    # Idea 7 — the Research Agenda — enlarged full-width figure (folded into _order → concept).
     parts.append(_big_idea_band(ra, bigfig=True, link_html=_concept_link(ra.get("_slug", ""))))
     return "\n\n  ".join(parts)
 
@@ -2642,22 +2647,22 @@ def _landing_closing() -> str:
 
 
 def _landing_demoted_ideas() -> str:
-    """The small back-matter strip for the two ideas the website-v2 reorg moved off the six main bands —
-    convert-failures and seat-moves. Each renders as an anchored card carrying its `bi-<slug>` id, so the
-    Big-Ideas projection-drift check keeps passing (every non-gateway record's id must resolve on the
-    landing), and links its Concept entry — the inbound edge the orphan gate needs once the idea no longer
-    has a main brick. Deliberately minimal: two cards reusing the reference-strip chrome, not a masonry."""
+    """The small back-matter strip for the idea the website reorg keeps off the main spine — seat-moves
+    (convert-failures was promoted onto the main spine). It renders as an anchored card carrying its
+    `bi-<slug>` id, so the Big-Ideas projection-drift check keeps passing (every non-gateway record's id
+    must resolve on the landing), and links its Concept entry — the inbound edge the orphan gate needs once
+    the idea has no main brick. Deliberately minimal: a card reusing the reference-strip chrome, not a masonry."""
     by_slug = {r["_slug"]: r for r in _big_ideas_ordered()}
     items = "\n      ".join(
         f'<a class="deep-item" id="{_attr(by_slug[s]["id"])}" href="concept-{_attr(s)}.html">'
         f'<b>{_esc(by_slug[s]["title"])}</b><span>{_esc(by_slug[s]["claim"])}</span></a>'
-        for s in ("convert-failures", "seat-moves") if s in by_slug)
+        for s in ("seat-moves",) if s in by_slug)
     if not items:
         return ""
     return (
         '<section class="reference" aria-labelledby="demoted-h">\n'
-        '  <h2 id="demoted-h" class="deep-h">Two more ideas, expanded in the book</h2>\n'
-        '  <p class="deep-note">Off the six-idea spine, but part of the method — each expanded in the book '
+        '  <h2 id="demoted-h" class="deep-h">One more idea, expanded in the book</h2>\n'
+        '  <p class="deep-note">Off the main spine, but part of the method — expanded in the book '
         'and kept in the catalogue.</p>\n'
         '  <div class="deep-grp">\n'
         f'    <div class="deep-row">\n      {items}\n    </div>\n'

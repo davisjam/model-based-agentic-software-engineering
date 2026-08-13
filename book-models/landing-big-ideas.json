@@ -9,7 +9,7 @@
 
   "_order": ["new-problem", "churn", "modeling-thesis", "alignment-thesis", "convert-failures", "governance-centric", "seat-moves", "independent-convergence", "research-agenda"],
 
-  "_order_note": "Reading arc = the blog's argument order. The VISIBLE LANDING band layout is currently hardcoded in catalog.py:_landing_big_ideas() (six main bands: new-problem hero, churn, the thesis pair, governance-centric, independent-convergence, research-agenda) with convert-failures + seat-moves in the back-matter reference strip (_landing_demoted_ideas). `_order` drives the concept two-tier model, related-idea adjacency seeding, the core-question join (answered_by ⊆ _order), and the spine report — NOT the band placement. The `order` int and `kicker` per record keep the LANDING-BAND numbering (main bands read 1–6, the two demoted ideas reuse 5/6 on their entry pages) so the visible landing still reads cleanly; the reading-arc position is carried by `_order` alone. A PROPOSED catalog.py band change (promote convert-failures into a main band so the landing shows the three named moves Modeling→Alignment→Governance-Conversion) is surfaced in SUMMARY.md; it is not required for the gates.",
+  "_order_note": "Reading arc = the blog's argument order. The VISIBLE LANDING band layout is hardcoded in catalog.py:_landing_big_ideas() (seven main bands: new-problem hero, churn, the thesis pair, convert-failures, governance-centric, independent-convergence, research-agenda) with only seat-moves in the back-matter reference strip (_landing_demoted_ideas). `_order` drives the concept two-tier model, related-idea adjacency seeding, the core-question join (answered_by ⊆ _order), and the spine report — NOT the band placement. The `kicker` per record carries the LANDING-BAND numbering: the main bands read 1–7 gap-free (the thesis pair shares 'Big idea 3' by design, so Governance-Conversion promotes to 'Big idea 4' and the rest shift up), with demoted seat-moves reusing 6 on its entry page only (the demoted strip renders no kicker). Option B (promote convert-failures onto the main spine so the landing shows the three named moves Modeling→Alignment→Governance-Conversion) is now APPLIED; SUMMARY.md carries the ratified plan.",
 
   "new-problem": {
     "id": "bi-new-problem",
@@ -81,7 +81,7 @@
     "id": "bi-convert-failures",
     "role": "practice",
     "order": 5,
-    "kicker": "Big idea 5 · the practice",
+    "kicker": "Big idea 4 · the practice",
     "title": "Convert recurring failures into controls",
     "figure": "governance-conversion.svg",
     "book_home": "governance-conversion",
@@ -98,7 +98,7 @@
     "id": "bi-governance-centric",
     "role": "stance",
     "order": 4,
-    "kicker": "Big idea 4 · the object",
+    "kicker": "Big idea 5 · the object",
     "title": "The Engineered Environment",
     "figure": "environment-as-object.svg",
     "book_home": "governance-conversion",
@@ -128,7 +128,7 @@
     "id": "bi-independent-convergence",
     "role": "corroboration",
     "order": 5,
-    "kicker": "Big idea 5 · the corroboration",
+    "kicker": "Big idea 6 · the corroboration",
     "title": "Independent Convergence",
     "figure": "six-entry-points.svg",
     "book_home": "mage-in-the-wild",
@@ -143,7 +143,7 @@
     "id": "bi-research-agenda",
     "role": "frontier",
     "order": 6,
-    "kicker": "Big idea 6 · the frontier",
+    "kicker": "Big idea 7 · the frontier",
     "title": "The Research Agenda",
     "figure": "open-frontiers.svg",
     "book_home": "education-research-open-problems",
