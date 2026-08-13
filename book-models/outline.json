@@ -4164,7 +4164,104 @@
       "preamble_points": []
     },
     {
-      "slug": "6.3-reorganization-of-se",
+      "slug": "6.3-mage-in-the-wild",
+      "part": 6,
+      "sections": [
+        {
+          "section_id": "reading-one-system-through-the-theory",
+          "level": 2,
+          "heading_text": "Reading one system through the theory",
+          "topic_sentence": "The theory earns its keep only if it reads systems it did not invent.",
+          "id_source": "derived",
+          "block_index": 5,
+          "points": []
+        },
+        {
+          "section_id": "the-modeling-ceiling",
+          "level": 2,
+          "heading_text": "The modeling ceiling",
+          "topic_sentence": "Here is the sharpest comparative result.",
+          "id_source": "derived",
+          "block_index": 11,
+          "points": []
+        },
+        {
+          "section_id": "three-buckets-of-convergence",
+          "level": 2,
+          "heading_text": "Three buckets of convergence",
+          "topic_sentence": "Set the six practices side by side and the mechanisms sort into three buckets: what every source establishes, what several discovered independently and MAGE generalizes, and what the corpus does not describe in the form MAGE proposes.",
+          "id_source": "derived",
+          "block_index": 19,
+          "points": []
+        },
+        {
+          "section_id": "what-everyone-does",
+          "level": 3,
+          "heading_text": "What everyone does",
+          "topic_sentence": "Nine patterns appear across all six sources — the shared grammar beneath very different systems.",
+          "id_source": "derived",
+          "block_index": 21,
+          "points": []
+        },
+        {
+          "section_id": "what-industry-discovered-independently",
+          "level": 3,
+          "heading_text": "What industry discovered independently",
+          "topic_sentence": "Six more patterns are not universal.",
+          "id_source": "derived",
+          "block_index": 31,
+          "points": []
+        },
+        {
+          "section_id": "what-none-of-the-six-sites-does",
+          "level": 3,
+          "heading_text": "What none of the six sites does",
+          "topic_sentence": "The third bucket is not a table.",
+          "id_source": "derived",
+          "block_index": 40,
+          "points": []
+        },
+        {
+          "section_id": "the-determinization-frontier",
+          "level": 2,
+          "heading_text": "The determinization frontier",
+          "topic_sentence": "One pattern is universal — combine probabilistic reasoning with deterministic machinery — and it repays a closer look, because agents change its economics.",
+          "id_source": "derived",
+          "block_index": 45,
+          "points": []
+        },
+        {
+          "section_id": "under-governance-and-governance-debt",
+          "level": 2,
+          "heading_text": "Under-governance and governance debt",
+          "topic_sentence": "Two diagnostics turn the comparison from opinion into counts.",
+          "id_source": "derived",
+          "block_index": 54,
+          "points": []
+        },
+        {
+          "section_id": "the-organizational-topology",
+          "level": 2,
+          "heading_text": "The organizational topology",
+          "topic_sentence": "The comparison has one result the single case could not have produced.",
+          "id_source": "derived",
+          "block_index": 58,
+          "points": []
+        },
+        {
+          "section_id": "common-destination-different-entry-points",
+          "level": 2,
+          "heading_text": "Common destination, different entry points",
+          "topic_sentence": "The comparison ends where it began, on a distinction.",
+          "id_source": "derived",
+          "block_index": 67,
+          "points": []
+        }
+      ],
+      "preamble_points": []
+    },
+    {
+      "slug": "6.4-reorganization-of-se",
       "part": 6,
       "sections": [
         {
@@ -4279,7 +4376,7 @@
       "preamble_points": []
     },
     {
-      "slug": "6.4-software-rejoins-engineering",
+      "slug": "6.5-software-rejoins-engineering",
       "part": 6,
       "sections": [
         {
@@ -4325,103 +4422,6 @@
           "topic_sentence": "Follow the claim to its edge and a wider reading appears.",
           "id_source": "derived",
           "block_index": 22,
-          "points": []
-        }
-      ],
-      "preamble_points": []
-    },
-    {
-      "slug": "6.5-mage-in-the-wild",
-      "part": 6,
-      "sections": [
-        {
-          "section_id": "reading-one-system-through-the-theory",
-          "level": 2,
-          "heading_text": "Reading one system through the theory",
-          "topic_sentence": "The theory earns its keep only if it reads systems it did not invent.",
-          "id_source": "derived",
-          "block_index": 5,
-          "points": []
-        },
-        {
-          "section_id": "the-modeling-ceiling",
-          "level": 2,
-          "heading_text": "The modeling ceiling",
-          "topic_sentence": "Here is the sharpest comparative result.",
-          "id_source": "derived",
-          "block_index": 11,
-          "points": []
-        },
-        {
-          "section_id": "three-buckets-of-convergence",
-          "level": 2,
-          "heading_text": "Three buckets of convergence",
-          "topic_sentence": "Set the six practices side by side and the mechanisms sort into three buckets: what every source establishes, what several discovered independently and MAGE generalizes, and what the corpus does not describe in the form MAGE proposes.",
-          "id_source": "derived",
-          "block_index": 19,
-          "points": []
-        },
-        {
-          "section_id": "what-everyone-does",
-          "level": 3,
-          "heading_text": "What everyone does",
-          "topic_sentence": "Nine patterns appear across all six sources — the shared grammar beneath very different systems.",
-          "id_source": "derived",
-          "block_index": 21,
-          "points": []
-        },
-        {
-          "section_id": "what-industry-discovered-independently",
-          "level": 3,
-          "heading_text": "What industry discovered independently",
-          "topic_sentence": "Six more patterns are not universal.",
-          "id_source": "derived",
-          "block_index": 31,
-          "points": []
-        },
-        {
-          "section_id": "what-none-of-the-six-sites-does",
-          "level": 3,
-          "heading_text": "What none of the six sites does",
-          "topic_sentence": "The third bucket is not a table.",
-          "id_source": "derived",
-          "block_index": 40,
-          "points": []
-        },
-        {
-          "section_id": "the-determinization-frontier",
-          "level": 2,
-          "heading_text": "The determinization frontier",
-          "topic_sentence": "One pattern is universal — combine probabilistic reasoning with deterministic machinery — and it repays a closer look, because agents change its economics.",
-          "id_source": "derived",
-          "block_index": 45,
-          "points": []
-        },
-        {
-          "section_id": "under-governance-and-governance-debt",
-          "level": 2,
-          "heading_text": "Under-governance and governance debt",
-          "topic_sentence": "Two diagnostics turn the comparison from opinion into counts.",
-          "id_source": "derived",
-          "block_index": 54,
-          "points": []
-        },
-        {
-          "section_id": "the-organizational-topology",
-          "level": 2,
-          "heading_text": "The organizational topology",
-          "topic_sentence": "The comparison has one result the single case could not have produced.",
-          "id_source": "derived",
-          "block_index": 58,
-          "points": []
-        },
-        {
-          "section_id": "common-destination-different-entry-points",
-          "level": 2,
-          "heading_text": "Common destination, different entry points",
-          "topic_sentence": "The comparison ends where it began, on a distinction.",
-          "id_source": "derived",
-          "block_index": 67,
           "points": []
         }
       ],
