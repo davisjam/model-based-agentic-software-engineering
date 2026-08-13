@@ -16,9 +16,9 @@ when implementation no longer does.
 <!-- thesisbox -->
 > ### PROFESSIONAL THESIS
 >
-> As implementation becomes abundant, the economics of engineering change.
+> As implementation capacity becomes abundant, engineering moves upward.
 >
 > Engineering effort shifts toward representation, evidence, authority, and judgment: the work of
-> designing and maintaining the environment through which autonomous implementation proceeds.
+> designing and maintaining the environment through which autonomous realization proceeds.
 
 **New here:** Professional Thesis · Determinization frontier · Representation engineering · Software rejoins engineering
