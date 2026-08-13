@@ -6387,9 +6387,14 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
                 problems.append(f"tail run from last section {last['slug']!r} not found "
                                 f"({short!r}) — render may be truncated")
 
-    # Words-per-page density metric + O'Reilly-band gate (prints its own report).
+    # Words-per-page density metric (prints its own report). Density is a house-style PREFERENCE,
+    # not a correctness property — the 2nd-pass tightening deliberately thinned Parts I–II — so it is
+    # AUDIT-ONLY per author call 260812: still computed + printed, but no longer gates the build.
+    # (Do NOT lower _DENSITY_MIN_FRACTION; just stop appending to `problems`.)
     _, density_problems = _density_report(pdf_path)
-    problems.extend(density_problems)
+    if density_problems:
+        print(f"  density: AUDIT-ONLY (house-style, author call 260812) — "
+              f"{len(density_problems)} advisory finding(s), NOT gating")
 
     # Orphaned-heading sensor: no page may carry ONLY a chapter/note title with its body flowing to the next
     # (the empty-page-with-only-a-title failure). BLOCKING — the keep-together title-fold in the Typst emitter
