@@ -561,7 +561,7 @@
           },
           {
             "file": "concept-churn.html",
-            "occ": 7
+            "occ": 2
           },
           {
             "file": "concept-convert-failures.html",
@@ -569,7 +569,7 @@
           },
           {
             "file": "concept-governance-centric.html",
-            "occ": 25
+            "occ": 30
           },
           {
             "file": "concept-independent-convergence.html",
@@ -581,7 +581,7 @@
           },
           {
             "file": "concept-new-problem.html",
-            "occ": 21
+            "occ": 20
           },
           {
             "file": "concept-research-agenda.html",
@@ -1175,7 +1175,7 @@
         "website-concepts": [
           {
             "file": "concept-churn.html",
-            "occ": 16
+            "occ": 15
           },
           {
             "file": "concept-governance-centric.html",
@@ -1273,7 +1273,11 @@
         "website-concepts": [
           {
             "file": "concept-churn.html",
-            "occ": 13
+            "occ": 10
+          },
+          {
+            "file": "concept-convert-failures.html",
+            "occ": 2
           },
           {
             "file": "concept-governance-centric.html",
@@ -1873,11 +1877,11 @@
           },
           {
             "file": "concept-convert-failures.html",
-            "occ": 6
+            "occ": 7
           },
           {
             "file": "concept-governance-centric.html",
-            "occ": 14
+            "occ": 13
           },
           {
             "file": "concept-independent-convergence.html",
@@ -1885,11 +1889,11 @@
           },
           {
             "file": "concept-modeling-thesis.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "concept-new-problem.html",
-            "occ": 33
+            "occ": 35
           },
           {
             "file": "concept-research-agenda.html",
@@ -2535,7 +2539,7 @@
           },
           {
             "file": "concept-convert-failures.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "concept-governance-centric.html",
@@ -3251,11 +3255,11 @@
         "website-concepts": [
           {
             "file": "concept-alignment-thesis.html",
-            "occ": 6
+            "occ": 9
           },
           {
             "file": "concept-churn.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "concept-convert-failures.html",
@@ -3263,7 +3267,7 @@
           },
           {
             "file": "concept-governance-centric.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "concept-independent-convergence.html",
@@ -3271,7 +3275,7 @@
           },
           {
             "file": "concept-modeling-thesis.html",
-            "occ": 41
+            "occ": 36
           },
           {
             "file": "concept-new-problem.html",
@@ -3756,6 +3760,12 @@
         ]
       },
       "website": {
+        "website-concepts": [
+          {
+            "file": "concept-governance-centric.html",
+            "occ": 1
+          }
+        ],
         "website-industry-cases": [
           {
             "file": "comparative-analysis.html",
@@ -3856,12 +3866,6 @@
         ]
       },
       "website": {
-        "website-concepts": [
-          {
-            "file": "concept-churn.html",
-            "occ": 1
-          }
-        ],
         "website-misc": [
           {
             "file": "book-models/models-view.html",
@@ -4521,7 +4525,7 @@
           },
           {
             "file": "concept-modeling-thesis.html",
-            "occ": 8
+            "occ": 6
           }
         ],
         "website-misc": [
@@ -5705,11 +5709,7 @@
           },
           {
             "file": "concept-churn.html",
-            "occ": 1
-          },
-          {
-            "file": "concept-governance-centric.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "concept-independent-convergence.html",
@@ -5717,7 +5717,7 @@
           },
           {
             "file": "concept-modeling-thesis.html",
-            "occ": 10
+            "occ": 9
           },
           {
             "file": "concept-research-agenda.html",
