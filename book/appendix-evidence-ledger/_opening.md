@@ -1,4 +1,4 @@
-## H.1 How to Read This Ledger
+## G.1 How to Read This Ledger
 
 Part V presents the DocAble case as a longitudinal engineering narrative. This appendix carries the
 quantitative and repository-level receipts behind the numerical claims in that narrative.

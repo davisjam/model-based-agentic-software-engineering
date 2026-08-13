@@ -17,6 +17,6 @@ do not have to model before you can align, and you do not have to align everythi
 
 Use the Audit → Synchronize → Govern → Extend track to move a chosen surface, not the whole organization. The
 Missing-Model Metric measures representation reach over an exercised surface, not governance coverage — a
-sandbox may supply real authority without moving it. Appendix H carries the observed drain.
+sandbox may supply real authority without moving it. Appendix G carries the observed drain.
 
 See [Chapter 4.2](4.2-brownfield.html) for the full treatment.

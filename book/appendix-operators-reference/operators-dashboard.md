@@ -14,6 +14,6 @@ The primary readings are durable throughput, defect escape, human-attention burd
 | **Representation health** | Can the representations being relied upon still answer the questions they claim to answer? | Claimed correspondence holds; stale or uncovered surfaces remain explicit | drift checks; traceability; freshness; coverage/relevance |
 | **Engineering-capital return** | Is accumulated structure making later work more capable or cheaper to reason about than it costs to carry? | Reuse and inherited capability rise while carrying cost remains justified | mechanism reuse; recurring-class disappearance; maintenance burden; retirement candidates |
 
-Diagnostic instruments are not goals. DocAble's support ratio, control count, Missing-Model drain, navigation pilot, and churn curves are evidence about one build. They can suggest measurements for another environment, but their values are not operating targets. Appendix H carries the raw DocAble receipts and their limitations.
+Diagnostic instruments are not goals. DocAble's support ratio, control count, Missing-Model drain, navigation pilot, and churn curves are evidence about one build. They can suggest measurements for another environment, but their values are not operating targets. Appendix G carries the raw DocAble receipts and their limitations.
 
 A visual mark without a declared measure is status, not quantity. Never infer precision from its size.

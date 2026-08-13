@@ -36,4 +36,4 @@ contract. A red reading means the model cannot safely carry the reasoning curren
 to it. It does not tell you which side should change — the model or the territory.
 
 *Observed in DocAble:* the Missing-Model surface drained from 56% to 7.89% over nine passes —
-one run's coverage receipt, not a healthy direction to reproduce (Appendix H).
+one run's coverage receipt, not a healthy direction to reproduce (Appendix G).

@@ -32,5 +32,5 @@ earns attention when it explains movement in one of those three readings, not on
 A green environment need not have low churn. A deliberate migration or architectural rewrite
 throws off enormous code motion while the system stays healthy. A quiet repository can hide
 stale representations or repeated human adjudication behind its calm. Read churn as motion,
-not health. Appendix H shows the particular churn shape observed during DocAble; this card
+not health. Appendix G shows the particular churn shape observed during DocAble; this card
 does not generalize that silhouette into a law.

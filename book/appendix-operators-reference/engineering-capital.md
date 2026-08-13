@@ -31,7 +31,7 @@ Read capital through five questions:
 
 A growing support ratio or control count is investment, not proof of capital formation. A
 stable ratio is not inherently healthy; a falling ratio is not inherently unhealthy. The test
-that matters is return net of carrying cost. Appendix H records DocAble's support apparatus and
+that matters is return net of carrying cost. Appendix G records DocAble's support apparatus and
 control growth as observed stocks; this card asks the harder economic question — what did that
 stock let future work inherit?
 

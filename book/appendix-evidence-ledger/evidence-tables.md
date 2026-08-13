@@ -1,6 +1,6 @@
-## H.2 Build Scale and Repository Motion
+## G.2 Build Scale and Repository Motion
 
-### H.2.1 Weekly commit volume {#velocity}
+### G.2.1 Weekly commit volume {#velocity}
 
 Weekly commit volume rose sharply as the agent fleet expanded and reached roughly 1,000 commits per
 week during sustained high-volume periods. Volume declined through the interval Part V identifies as
@@ -16,7 +16,7 @@ series.
 
 <!-- FUTURE: When available, add Epics-closed/week and reopens/week — either onto Figure H-1 or immediately after it. Commits measure activity; completed engineering units are a complementary measure closer to durable throughput. Insert the planned reviewer-capacity bound here once measured, and keep it a sensitivity analysis rather than an assertion about actual review speed. -->
 
-### H.2.2 Support-apparatus ratio {#support-ratio}
+### G.2.2 Support-apparatus ratio {#support-ratio}
 
 Production source and support-apparatus source were counted at four dated repository states, using the
 fail-loud census over the seven primary source roots. These counts are the source for the support-ratio
@@ -35,7 +35,7 @@ snapshot, peaked at 3.68× during hardening, and stood at 3.06× at the final sn
 These counts describe how source was distributed in this repository. The ratio is not a measure of
 engineering value, engineering-capital return, or a recommended target for another project.
 
-### H.2.3 Product-path line motion {#churn}
+### G.2.3 Product-path line motion {#churn}
 
 Lines added and deleted over four windows for the two principal product paths:
 
@@ -62,7 +62,7 @@ describes that bounded inflation.
 <!-- label: churn-per-path -->
 <!-- figure: assets/churn-per-path.svg | *Product-Path Line Motion.* Lines added above the baseline and deleted below it, by path and study window. Mechanization contains the largest restructuring signal. The later reduction in deletions is consistent with less structural rewriting but does not establish its cause. -->
 
-### H.2.4 Growth of countable controls {#control-growth}
+### G.2.4 Growth of countable controls {#control-growth}
 
 Project-specific lint files and gate scripts were counted at four repository states, using `git ls-tree`
 at the corresponding window SHA.
@@ -91,16 +91,16 @@ resulting mechanisms.
 
 <!-- FUTURE: If practical, add the exact counting rule for fix-and-lint tags and incident-linked lints. A useful later complement would be the number of controls exercised after introduction — inventory and realized use are different quantities. -->
 
-## H.3 Model Correspondence and Drift
+## G.3 Model Correspondence and Drift
 
 The measurements in this section concern model↔code correspondence only. Documentation drift is counted
-separately in H.3.5 and is excluded from the model-sync claim.
+separately in G.3.5 and is excluded from the model-sync claim.
 
 The underlying question is narrow. After explicit models became reasoning surfaces, did
 model↔implementation drift occur, could derived checks detect it, and did the observed class recur after
 close?
 
-### H.3.1–H.3.4 Correspondence results {#model-sync-evidence}
+### G.3.1–G.3.4 Correspondence results {#model-sync-evidence}
 
 | Claim | Measurement | Result | Limitation |
 |---|---|---|---|
@@ -124,7 +124,7 @@ of the modeled-and-mechanically-decidable class was observed across 56 closes du
 window. The measurements do not support the stronger readings that the class was eliminated or that the
 mechanism prevents model drift; each of those is a universal claim the data do not reach.
 
-### H.3.5 Documentation drift — excluded from the model-sync claim {#doc-hygiene-aside}
+### G.3.5 Documentation drift — excluded from the model-sync claim {#doc-hygiene-aside}
 
 Stale headers and stale prose numbers are documentation drift, not model↔code drift. They are counted
 separately because folding them into the correspondence measurements would inflate the model-sync
@@ -138,7 +138,7 @@ evidence.
 These observations concern prose that no derived correspondence check parses. They therefore say nothing
 about whether a model remains synchronized with implementation.
 
-### H.3.6 Scope of the model-sync claim {#model-sync-honest-reading}
+### G.3.6 Scope of the model-sync claim {#model-sync-honest-reading}
 
 The evidence above is intentionally narrow. The observed N is small. The correspondence mechanisms cover
 modeled and mechanically decidable relationships. A semantic mismatch whose anchors still resolve may
@@ -153,7 +153,7 @@ proof of model correctness. Three cases stay distinct:
 
 The documentation counts remain separate because they exercise a different control layer.
 
-## H.4 Model Coverage {#missing-model-drain}
+## G.4 Model Coverage {#missing-model-drain}
 
 The traceability tracer measures the fraction of exercised code that traces back to no model claim.
 Repeated runs identified portions of the exercised surface that stayed outside the explicit model
@@ -179,7 +179,7 @@ Three qualifications matter.
 
 <!-- FUTURE: Recover and publish all nine measurements, including denominator or relevant traceability counts if available. The present endpoint-only series supports the endpoint claim but is not yet the raw series the ledger ideally promises. -->
 
-## H.5 Representation and Navigation Cost {#nav-pilot}
+## G.5 Representation and Navigation Cost {#nav-pilot}
 
 A small exploratory pilot tested whether a model-derived navigation surface reduced the context an agent
 consumed while determining where to look in the repository.
@@ -200,7 +200,7 @@ representation may reduce the lower-level reconstruction an agent performs befor
 
 <!-- FUTURE: Supersede this subsection with the larger paired experiment already specified for the orchestrator — do not supplement it with another subsection. When those results exist, report task-level paired observations, tokens, tool/navigation calls, files opened, wall-clock time, and independently judged task success. -->
 
-## H.6 Cost Receipts {#cost-receipt}
+## G.6 Cost Receipts {#cost-receipt}
 
 The following values support the order-of-magnitude cost discussion in Part V. They are not matched
 economic comparisons and should not be read as audited accounting.
@@ -222,12 +222,12 @@ development-cost figure is an order-of-magnitude direct-cost estimate, not audit
 
 <!-- FUTURE: Expand the ≈$20,000 estimate into its actual arithmetic once the underlying values are recovered. Attach provenance to the $3–$40/page vendor range. Break the ≈$60,000 direct-development estimate into salary, model/API, cloud, and other direct costs if those records are available. Add paired institutional-checker outcomes if available, and keep the resulting claim narrow — checker improvement is evidence about checker-detectable accessibility properties, not the complete experience of a disabled user. -->
 
-## H.7 Measurement Without Authority {#measurement-seed}
+## G.7 Measurement Without Authority {#measurement-seed}
 
 These final receipts turn on a distinction Part V draws: a measurement can be useful before it deserves
 authority.
 
-### H.7.1 Provisional cost-and-time model
+### G.7.1 Provisional cost-and-time model
 
 A per-chunk worst-case cost-and-time estimate was externalized as a timestamped provisional model, not
 embedded as a permanent code constant.
@@ -243,7 +243,7 @@ environment without immediately becoming a gate.
 
 <!-- FUTURE: If the exact seed observations become stable enough to publish, add them here. Otherwise retain this subsection as a provenance note, and do not imply quantitative calibration the ledger does not contain. -->
 
-### H.7.2 Cold-start contrast case
+### G.7.2 Cold-start contrast case
 
 The contrasting case did mature into an engineering decision.
 
@@ -259,7 +259,7 @@ architectural action.
 
 <!-- FUTURE: If retained as a quantitative receipt, document the measurement conditions for 4,057 ms and 109 ms — deployment state, hardware/service conditions, number of observations if available, and whether the reported values are single observations, maxima, medians, or another statistic. -->
 
-## H.8 What This Ledger Does Not Measure {#does-not-measure}
+## G.8 What This Ledger Does Not Measure {#does-not-measure}
 
 Most quantities in this appendix are activity, structural, or within-case mechanism measures:
 
