@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1164,
+    "total_sites": 1162,
     "by_projection": {
       "book-pdf": 18,
-      "book-web": 755,
+      "book-web": 753,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -93,7 +93,7 @@
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 12
+            "occ": 6
           },
           {
             "file": "book/4.3-validating-change.html",
@@ -1089,7 +1089,7 @@
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 28
+            "occ": 27
           },
           {
             "file": "book/4.3-validating-change.html",
@@ -2040,10 +2040,6 @@
             "occ": 1
           },
           {
-            "file": "book/4.2-brownfield.html",
-            "occ": 1
-          },
-          {
             "file": "book/4.4-operating-mage.html",
             "occ": 6
           },
@@ -2063,7 +2059,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 8
+            "occ": 7
           }
         ]
       },
@@ -2231,7 +2227,7 @@
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 67
+            "occ": 44
           },
           {
             "file": "book/4.3-validating-change.html",
@@ -2503,7 +2499,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 257
+            "occ": 256
           },
           {
             "file": "book/index.html",
@@ -2963,7 +2959,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 41
+            "occ": 42
           },
           {
             "file": "catalogue-figure.html",
@@ -4321,7 +4317,7 @@
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 12
+            "occ": 8
           },
           {
             "file": "book/4.3-validating-change.html",
@@ -4914,10 +4910,6 @@
             "occ": 1
           },
           {
-            "file": "book/4.2-brownfield.html",
-            "occ": 1
-          },
-          {
             "file": "book/4.3-validating-change.html",
             "occ": 4
           },
@@ -4953,7 +4945,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 13
+            "occ": 12
           }
         ]
       },
