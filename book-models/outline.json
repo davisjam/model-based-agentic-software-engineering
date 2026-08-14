@@ -4431,7 +4431,7 @@
           "heading_text": "Working at the model level",
           "topic_sentence": "A useful model changes the grain of work.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 16,
           "points": []
         },
         {
@@ -4440,7 +4440,7 @@
           "heading_text": "Keeping meaning synchronized",
           "topic_sentence": "Agentic environments also make semantic inconsistency more expensive.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 19,
           "points": []
         },
         {
@@ -4449,7 +4449,7 @@
           "heading_text": "Reasoning compiled into the environment",
           "topic_sentence": "Portions of recurring reasoning can be moved into the environment itself.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 21,
           "points": []
         },
         {
@@ -4458,7 +4458,7 @@
           "heading_text": "Where engineering effort moves",
           "topic_sentence": "Implementation moved.",
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 24,
           "points": []
         },
         {
@@ -4467,7 +4467,7 @@
           "heading_text": "Review after implementation becomes abundant",
           "topic_sentence": "Code review does not disappear when agents produce the code.",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 30,
           "points": []
         },
         {
@@ -4476,7 +4476,7 @@
           "heading_text": "Consequences for software engineering",
           "topic_sentence": "Take the migrations together and the discipline's center of gravity shifts from the code to the environment that governs it.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 40,
           "points": []
         }
       ],
@@ -4562,7 +4562,7 @@
           "heading_text": "Sign-off moves toward models and evidence",
           "topic_sentence": "Imagine an agentic system in which the fleet constructs most of the implementation, maintains selected engineering representations, runs validators, and assembles evidence for the claims the design is supposed to satisfy.",
           "id_source": "derived",
-          "block_index": 7,
+          "block_index": 9,
           "points": []
         },
         {
@@ -4571,7 +4571,7 @@
           "heading_text": "What should we teach?",
           "topic_sentence": "If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly.",
           "id_source": "derived",
-          "block_index": 17,
+          "block_index": 19,
           "points": []
         },
         {
@@ -4580,7 +4580,7 @@
           "heading_text": "No course called Agent Tooling",
           "topic_sentence": "One omission should be deliberate.",
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 25,
           "points": []
         },
         {
@@ -4589,7 +4589,7 @@
           "heading_text": "What the shift asks of an education",
           "topic_sentence": "There is a harder workforce implication, best stated as a risk rather than a forecast.",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 28,
           "points": []
         },
         {
@@ -4598,7 +4598,7 @@
           "heading_text": "From theory to research",
           "topic_sentence": "A theory earns its keep twice: first by explaining the evidence that produced it, and again by handing the field claims that could turn out to be wrong.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 32,
           "points": []
         },
         {
@@ -4607,7 +4607,7 @@
           "heading_text": "Trustworthy representations",
           "topic_sentence": "Brownfield software raises the first problem immediately: can a useful engineering model be recovered from a system that was never built around one?",
           "id_source": "derived",
-          "block_index": 33,
+          "block_index": 35,
           "points": []
         },
         {
@@ -4616,7 +4616,7 @@
           "heading_text": "Adaptive governance",
           "topic_sentence": "Governance conversion remains primarily a judgment operation.",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 43,
           "points": []
         },
         {
@@ -4625,7 +4625,7 @@
           "heading_text": "Engineering economics",
           "topic_sentence": "The economics family is the least settled of the three.",
           "id_source": "derived",
-          "block_index": 48,
+          "block_index": 50,
           "points": []
         },
         {
@@ -4634,7 +4634,7 @@
           "heading_text": "Study designs",
           "topic_sentence": "The hypotheses do not require eight unrelated studies.",
           "id_source": "derived",
-          "block_index": 62,
+          "block_index": 64,
           "points": []
         },
         {
@@ -4643,7 +4643,7 @@
           "heading_text": "Why this may now be experimentally tractable",
           "topic_sentence": "Agentic engineering creates an unusual empirical opportunity.",
           "id_source": "derived",
-          "block_index": 71,
+          "block_index": 73,
           "points": []
         }
       ],
