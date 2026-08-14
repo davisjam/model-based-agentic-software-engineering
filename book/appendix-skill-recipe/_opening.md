@@ -1,6 +1,6 @@
 **Modeling a domain for an agent**
 
-Skills come in two broad kinds. A *tool-skill* gives an agent access to a capability: a CLI, API, MCP server, or other tool. A *mastery-skill* gives an agent a way to reason about a domain: the abstractions, distinctions, and engineering judgment it should bring to the work.
+Skills come in two broad kinds. A *tool-skill* gives an agent access to a capability: a CLI, API, MCP server, or other tool. A *mastery-skill* gives an agent a way to reason about a domain: the abstractions, distinctions, and engineering judgment it should bring to the work. A mastery-skill specializes commodity intelligence with institutional engineering judgment — it makes a general reasoner expert in one domain by supplying the judgment an experienced engineer would bring to it.
 
 This appendix focuses on mastery-skills.
 

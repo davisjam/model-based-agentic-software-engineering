@@ -3219,17 +3219,17 @@
           "heading_text": "The skill skeleton",
           "topic_sentence": "The three examples share a construction pattern, drawn in [ref:skill-recipe].",
           "id_source": "derived",
-          "block_index": 10,
+          "block_index": 12,
           "points": [
             {
               "slug": "the-three-examples-share-one-construction-pattern",
               "text": "The three examples share one skeleton: base model, orthogonal models, a top-level procedure.",
-              "block_index": 12
+              "block_index": 14
             },
             {
               "slug": "the-skeleton-matters-more-than-the-three-names",
               "text": "The skeleton matters more than the three shipped names.",
-              "block_index": 14
+              "block_index": 16
             }
           ]
         },
@@ -3239,42 +3239,42 @@
           "heading_text": "Deliver the right context—and measure it",
           "topic_sentence": "A reusable procedure helps only if the actor reaches it when it matters.",
           "id_source": "derived",
-          "block_index": 17,
+          "block_index": 19,
           "points": [
             {
               "slug": "a-reusable-procedure-helps-only-if-the-actor-reaches-it-when-it-matters",
               "text": "A reusable procedure helps only if the actor reaches it when it matters; packaging knowledge is not the same as delivering it.",
-              "block_index": 19
+              "block_index": 21
             },
             {
               "slug": "loading-everything-just-moves-the-navigation-problem",
               "text": "The naive answer — load everything into standing context — merely moves the navigation problem inside the reasoner.",
-              "block_index": 21
+              "block_index": 23
             },
             {
               "slug": "keep-standing-context-small-enough-to-genuinely-remain-standing",
               "text": "Keep standing context small enough that it can genuinely remain standing; retrieve richer slices according to the work.",
-              "block_index": 24
+              "block_index": 26
             },
             {
               "slug": "context-has-a-cost-more-guidance-is-not-automatically-better",
               "text": "Context has a cost: it consumes tokens, attention, and reasoning capacity, and stale guidance can actively misdirect work.",
-              "block_index": 27
+              "block_index": 29
             },
             {
               "slug": "treat-context-delivery-as-an-engineering-intervention-and-measure-its-effect",
               "text": "Treat context delivery as an engineering intervention and measure its effect: compare with and without, task success first, then diagnostics.",
-              "block_index": 29
+              "block_index": 31
             },
             {
               "slug": "the-model-based-pilot-is-one-example-of-testing-whether-engineered-context-does-what-we-claim",
               "text": "The model-based engineering pilot is one example of testing whether engineered context does what we claim, not the point itself.",
-              "block_index": 31
+              "block_index": 33
             },
             {
               "slug": "context-delivery-changes-what-the-reasoner-can-see-not-what-the-environment-permits",
               "text": "Context delivery changes what the reasoner can see; it does not, by itself, change what the environment will permit — the bridge back to Part III.",
-              "block_index": 33
+              "block_index": 35
             }
           ]
         },
@@ -3284,32 +3284,32 @@
           "heading_text": "Self-governance: apply the method to the agent's own work",
           "topic_sentence": "Self-governance packages the method itself: **Modeling and Alignment turned on the agent's own engineering work.** It is not a third activity beside those two, and not a third thesis — it is the discipline of applying both to the work as it is produced.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 37,
           "points": [
             {
               "slug": "recurrence-is-evidence-the-environment-may-be-missing-something-durable",
               "text": "Recurrence is evidence the environment may be missing something durable — not always a new control.",
-              "block_index": 37
+              "block_index": 39
             },
             {
               "slug": "the-skill-carries-a-catalogue-and-a-procedure-for-fitting-it",
               "text": "The skill carries a catalogue of mechanisms and a procedure for deciding which one fits.",
-              "block_index": 40
+              "block_index": 42
             },
             {
               "slug": "rules-bind-only-where-a-mechanism-gives-them-consequence",
               "text": "Rules in boot context bind only where a mechanism gives them consequence.",
-              "block_index": 43
+              "block_index": 45
             },
             {
               "slug": "a-passive-skill-needs-a-hook-and-surfaces-the-design-forks",
               "text": "A passive skill needs a hook to fire it; it resolves the classifiable cases and surfaces the design forks.",
-              "block_index": 47
+              "block_index": 49
             },
             {
               "slug": "avoid-a-teetering-tower-capital-can-depreciate",
               "text": "Governance is capital that can depreciate: watch for the teetering tower.",
-              "block_index": 49
+              "block_index": 51
             }
           ]
         },
@@ -3319,17 +3319,17 @@
           "heading_text": "Self-operate: package the operating discipline",
           "topic_sentence": "Self-operate packages the previous chapter's lifecycles, recovery paths, runbook step types, and operating heuristics.",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 55,
           "points": [
             {
               "slug": "self-operate-packages-the-previous-chapters-operating-discipline",
               "text": "Self-operate packages the previous chapter's lifecycles, recovery paths, and runbook step types.",
-              "block_index": 55
+              "block_index": 57
             },
             {
               "slug": "the-skill-makes-operating-procedure-repeatable-not-authoritative",
               "text": "The skill makes operating procedure repeatable; it does not replace the underlying tools or gates.",
-              "block_index": 58
+              "block_index": 60
             }
           ]
         },
@@ -3339,17 +3339,17 @@
           "heading_text": "Self-communicate: a boundary test",
           "topic_sentence": "Self-communicate packages a different craft: engineer-facing prose and technical drawing.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 66,
           "points": [
             {
               "slug": "self-communicate-packages-a-farther-craft-through-the-same-skeleton",
               "text": "Self-communicate packages a farther craft — prose and drawing — through the same skeleton.",
-              "block_index": 66
+              "block_index": 68
             },
             {
               "slug": "the-third-skill-is-a-boundary-test-not-a-third-pillar",
               "text": "The third skill is a boundary test for the architecture, not a third pillar of MAGE.",
-              "block_index": 69
+              "block_index": 71
             }
           ]
         },
@@ -3359,7 +3359,7 @@
           "heading_text": "Worked examples",
           "topic_sentence": "Reusable agent procedures are one concrete form of engineering capital, and the industry is finding the pattern in parallel.",
           "id_source": "derived",
-          "block_index": 71,
+          "block_index": 73,
           "points": []
         }
       ],
