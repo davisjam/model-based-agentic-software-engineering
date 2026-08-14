@@ -475,7 +475,7 @@ _PART_OPENER_QUESTIONS = {
     2: "How do I identify useful models?",
     3: "How do I give engineering obligations authority in my environment?",
     4: "How do I practice MAGE?",
-    5: "How did the clean method emerge from messy engineering?",
+    5: "What evidence supports MAGE?",
     6: "Where is the profession going?",
 }
 

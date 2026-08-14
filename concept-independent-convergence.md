@@ -7,7 +7,7 @@
 | Claim | Six industrial systems, engineered independently, land on one set of principles. None generalizes the whole theory, yet each instantiates a distinct arm — convergence, not derivation. |
 | Mechanisms | Executable source-of-truth models · Pre-commit hook · Self-governance |
 | Related | The Engineered Environment · Convert recurring failures into controls |
-| In the book | book/6.3-mage-in-the-wild.html |
+| In the book | book/5.5-mage-in-the-wild.html |
 
 ## The idea
 
@@ -66,4 +66,4 @@ into a control. The catalogue is one system's version of the primitives the othe
 
 ## Read in the book →
 
-[Read in the book →](book/6.3-mage-in-the-wild.html)
+[Read in the book →](book/5.5-mage-in-the-wild.html)

@@ -30,7 +30,7 @@
     "outcomes_with_elaborative_units": 15,
     "elaborative_links": 21,
     "units_serving_as_elaborative": 18,
-    "sections_total": 208,
+    "sections_total": 207,
     "sections_primary_of_an_outcome": 27,
     "modules": 7,
     "lessons": 33
@@ -296,6 +296,11 @@
             "lesson": "5.4-failures-that-became-infrastructure",
             "own_outcomes": [],
             "section_outcomes": []
+          },
+          {
+            "lesson": "5.5-mage-in-the-wild",
+            "own_outcomes": [],
+            "section_outcomes": []
           }
         ]
       },
@@ -314,11 +319,6 @@
           },
           {
             "lesson": "6.2-scope-conditions",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "6.3-mage-in-the-wild",
             "own_outcomes": [],
             "section_outcomes": []
           },
