@@ -117,6 +117,10 @@ _WEX_TAKEAWAY_RE = re.compile(r"^<!--\s*takeaway\s*-->\s*$", re.I)
 #: against the matrix (WE1) and EXEMPTS `other`; `counter-example` is the sanctioned below-partial opt-in.
 WEX_EXAMPLE_RE = re.compile(r"^#{3,4}\s+Example\s*[—–-]\s*(?P<label>.+?)\s*$", re.I)
 _WEX_TAG_RE = re.compile(r"^(?P<label>.*?)\s*\{(?P<tag>other|counter-example)\}\s*$", re.I)
+#: A literal "Takeaway." label at the head of the takeaway prose. Both renderers auto-prepend the label
+#: (PDF `#strong[Takeaway.]`, HTML `<span class="wex-tk-label">`), so a source that writes its own leading
+#: `**Takeaway.**` renders it DOUBLED ("Takeaway. Takeaway."). This sensor fails the build fast on that.
+_WEX_TAKEAWAY_LABEL_RE = re.compile(r"^\s*(\*\*|__)?\s*takeaway[.:]", re.I)
 
 
 @dataclass
@@ -172,8 +176,16 @@ def parse_worked_examples(construct_key: str, inner_md: str) -> WorkedExamples:
         if cases:
             cur_prose.append(raw)
             cases[-1].prose_md = "\n".join(cur_prose).strip()
+    takeaway_md = "\n".join(takeaway_lines).strip()
+    # Fail-loud: the source must NOT write its own "Takeaway." label — both renderers auto-prepend it,
+    # so a literal label doubles it. Blocks both the PDF and HTML build paths on any regression.
+    if _WEX_TAKEAWAY_LABEL_RE.match(takeaway_md):
+        raise ValueError(
+            f"Worked-examples takeaway for construct '{construct_key.strip()}' begins with a literal "
+            f"'Takeaway.' label; the renderer auto-prepends the label, so remove the leading "
+            f"'**Takeaway.**' from the source. Offending text: {takeaway_md[:80]!r}")
     return WorkedExamples(construct_key=construct_key.strip(), cases=cases,
-                          takeaway_md="\n".join(takeaway_lines).strip())
+                          takeaway_md=takeaway_md)
 
 
 @dataclass
