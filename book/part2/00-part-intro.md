@@ -64,7 +64,7 @@ The same object wears every hat. A single worker in that pipeline is several dif
 depending only on which question you bring to it — a phenomenon Part I walks in the concrete. Hold the
 image: one object, several true pictures, and none of them *is* the worker.
 
-<!-- point: part-2-moves-through-five-model-classes | Part II moves through six classes of model, not a taxonomy to memorize. | terms: model-zoo, four-plus-one-views -->
+<!-- point: part-2-moves-through-five-model-classes | Part II moves through six classes of model, not a taxonomy to memorize. | terms: model-zoo, model-classes -->
 The examples ahead fall into six broad classes that the rest of the book will reuse:
 
 - **Structural** — what parts exist, and which may depend on which.

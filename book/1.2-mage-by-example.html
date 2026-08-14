@@ -785,8 +785,98 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">1.2.4</span> DocAble Vocabulary</h2>
 <p>To follow those questions you need a handful of names that stay put. Here they are, kept deliberately plain — not architecture, just enough territory that later chapters can redraw the map without laying the ground again each time.</p>
 <span id="idx-def-remediation-job"></span><span id="idx-def-accessibility-obligation"></span><span id="idx-def-evidence-record"></span><span id="idx-def-work-queue"></span><span id="idx-def-remediation-service"></span><span id="idx-def-chunk"></span><span id="idx-def-worker"></span><ul><li>A <strong>job</strong> is one document's trip through the system, from upload to delivered result.</li><li>A <strong>worker</strong> is the process that does the remediation work on one piece of a job.</li><li>A <strong>chunk</strong> is that piece: a job split into parts so several workers can run at once.</li><li>A <strong>service</strong> is a specialized helper a worker calls for one narrow task: describing an image, converting a format, rendering a page.</li><li><strong>Queues and infrastructure</strong> are the plumbing that holds work between hand-offs: where a job waits, how a worker is handed its next chunk.</li><li>The <strong>remediated document and its evidence record</strong> are what comes back — the fixed file, plus the changelog of every edit and the map from each remaining finding to the clause it answers.</li><li>The <strong>accessibility obligations</strong> are the standard the document must meet: the specific, checkable requirements a screen-reader user depends on.</li></ul>
-<p><strong>A worker can be viewed as a deployable component, an actor in a job's lifecycle, an owner of a resource, a subject of an access policy, or a source of measurements.</strong> One worker, five true pictures. Each names the same worker; none of them <em>is</em> the worker; each makes a different fact cheap to see. The same piece of reality supports several models, and the question decides which you build. Hold the worker in mind. You will watch it change shape five times.</p>
+<p><strong>A worker can be viewed as a deployable component, an actor in a job's lifecycle, an owner of a resource, a subject of an access policy, or a source of measurements.</strong> One worker, several true pictures. Each names the same worker; none of them <em>is</em> the worker; each makes a different fact cheap to see. The same piece of reality supports several models, and the question decides which you build. Hold the worker in mind. You will watch it change shape several times.</p>
+<p>One ordinary job supplies the landmarks the next two Parts reuse. A submitted document becomes a job and may be divided into chunks so several workers can process it concurrently. Workers claim work from the system and call specialized services when remediation needs a capability such as image description, rendering, conversion, or OCR. Their results eventually rejoin, the resulting artifact is validated, and the system returns both the remediated document and evidence describing the consequential changes. This is deliberately not the architecture model of DocAble; it is only enough territory to locate the models that follow. <a class="xref" href="1.2-mage-by-example.html#fig-1-2-2">Figure&nbsp;1.2-2</a> traces that path.</p>
+<figure id="fig-1-2-2" class="book-figure" data-label="one-docable-job"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 700"
+     role="img" aria-labelledby="ojTitle ojDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="ojTitle">One DocAble job, as territory rather than model</title>
+  <desc id="ojDesc">A submitted document becomes a job. The job may be split into chunks so several workers
+    process it concurrently. Workers claim work and call specialized services — generation, render, OCR,
+    and document/format machinery — when remediation needs those capabilities. Repaired pieces are merged
+    and reassembled, the result is validated, and the system returns both the remediated document and
+    evidence describing consequential changes. This is territory, not a model of DocAble's architecture.</desc>
+
+  <defs>
+    <marker id="oj-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <text x="380" y="20" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="#57534e">ONE DOCABLE JOB &#8212; TERRITORY, NOT MODEL</text>
+
+  <!-- upload -->
+  <rect x="280" y="34" width="200" height="46" rx="23" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="380" y="62" text-anchor="middle" font-size="16" fill="#1c1917">user uploads document</text>
+  <line x1="380" y1="80" x2="380" y2="104" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+
+  <!-- job -->
+  <rect x="315" y="106" width="130" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="380" y="134" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">job</text>
+  <line x1="380" y1="152" x2="380" y2="176" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <text x="392" y="170" font-size="13.5" font-style="italic" fill="#57534e">split for parallel work</text>
+
+  <!-- chunks row -->
+  <g fill="#f6f4ef" stroke="#57534e" stroke-width="2">
+    <rect x="200" y="178" width="120" height="42" rx="9"/>
+    <rect x="320" y="178" width="120" height="42" rx="9"/>
+    <rect x="440" y="178" width="120" height="42" rx="9"/>
+  </g>
+  <text x="260" y="204" text-anchor="middle" font-size="15" fill="#1c1917">chunk</text>
+  <text x="380" y="204" text-anchor="middle" font-size="15" fill="#1c1917">chunk</text>
+  <text x="500" y="204" text-anchor="middle" font-size="15" fill="#1c1917">chunk</text>
+  <line x1="380" y1="220" x2="380" y2="246" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+
+  <!-- workers claim -->
+  <rect x="290" y="248" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="380" y="275" text-anchor="middle" font-size="16" fill="#1c1917">workers claim work</text>
+  <line x1="380" y1="292" x2="380" y2="316" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <text x="392" y="310" font-size="13.5" font-style="italic" fill="#57534e">call specialized services</text>
+
+  <!-- services row (4) -->
+  <g fill="#f6f4ef" stroke="#57534e" stroke-width="2">
+    <rect x="40" y="318" width="160" height="48" rx="9"/>
+    <rect x="212" y="318" width="130" height="48" rx="9"/>
+    <rect x="354" y="318" width="110" height="48" rx="9"/>
+    <rect x="476" y="318" width="244" height="48" rx="9"/>
+  </g>
+  <text x="120" y="347" text-anchor="middle" font-size="15" fill="#1c1917">generation</text>
+  <text x="277" y="347" text-anchor="middle" font-size="15" fill="#1c1917">render</text>
+  <text x="409" y="347" text-anchor="middle" font-size="15" fill="#1c1917">OCR</text>
+  <text x="598" y="347" text-anchor="middle" font-size="15" fill="#1c1917">document / format machinery</text>
+  <line x1="380" y1="366" x2="380" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+
+  <!-- repaired pieces -->
+  <rect x="295" y="394" width="170" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="380" y="421" text-anchor="middle" font-size="16" fill="#1c1917">repaired pieces</text>
+  <line x1="380" y1="438" x2="380" y2="462" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+
+  <!-- merge -->
+  <rect x="290" y="464" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="380" y="491" text-anchor="middle" font-size="16" fill="#1c1917">merge / reassemble</text>
+  <line x1="380" y1="508" x2="380" y2="532" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+
+  <!-- validate -->
+  <rect x="315" y="534" width="130" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="380" y="561" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">validate</text>
+
+  <!-- outputs (2) -->
+  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)">
+    <path d="M340,578 C300,600 250,604 225,624"/>
+    <path d="M420,578 C460,600 510,604 535,624"/>
+  </g>
+  <rect x="90" y="626" width="270" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="225" y="654" text-anchor="middle" font-size="15.5" fill="#1c1917">remediated document</text>
+  <rect x="400" y="626" width="270" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="535" y="654" text-anchor="middle" font-size="15.5" fill="#1c1917">evidence / provenance</text>
+
+  <!-- footer: protect "territory, not model" -->
+  <text x="380" y="694" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Just enough territory to locate the models that follow &#8212; Parts II and III redraw selected pieces of this path.</text>
+</svg><figcaption data-short="One DocAble job, as territory rather than model"><span class="fig-label">Figure 1.2-2.</span> <em>One DocAble job, as territory rather than model.</em> A document becomes a job, may be divided into chunks, is processed by workers using specialized services, then reassembled, validated, and returned with evidence. Parts II and III will redraw selected pieces of this path as different models and authority mechanisms.</figcaption></figure>
+<p>Later views will ask different questions of this same territory:</p>
+<blockquote class="aside-sidenote"><ul><li><strong>structure</strong> — where may document mutation occur?</li><li><strong>behavior</strong> — what recovery order is legal?</li><li><strong>ownership</strong> — who currently controls this work?</li><li><strong>decision</strong> — which services may communicate?</li><li><strong>measurement</strong> — what cost and capacity envelope applies?</li><li><strong>provenance</strong> — what consequential changes occurred?</li></ul></blockquote>
+<p>Parts II and III will repeatedly redraw pieces of this path: the boundaries around document mutation, the legal ordering of recovery, ownership of in-flight work, permitted service relationships, cost and capacity, and the provenance of changes.</p>
 <h2><span class="sec-num">1.2.5</span> Why DocAble Serves as the Running Case</h2>
 <p>Why hang a whole book on one system? Because a single example, opened as far as the question needs, teaches more than a survey of many kept shallow. DocAble is real, it shipped, and its insides can be shown at the resolution an engineer would actually work at. It is a single case, with the corresponding limits on generalization, but one that can be inspected at engineering depth.</p>
-<p>The book uses it two ways and keeps them apart on purpose. Parts II and III meet DocAble as it stands: a working system, held still while the engineering question varies. What is it made of? What states can a job occupy? What may call what? Part II asks which representations make those properties tractable; Part III asks how selected obligations acquire authority over the work. Part V tells the other story — how the system came to be, what broke along the way, and which failures hardened into the machinery the earlier Parts describe. <strong>Same system, two tenses: the present tense here, the past tense later.</strong></p>
+<p>The book uses it two ways and keeps them apart on purpose. Parts II and III meet DocAble as it stands: a working system, held still while the engineering question varies. Where may document mutation occur? What recovery order is legal? Who currently owns a unit of work? What services may communicate? Part II asks which representations make those properties tractable; Part III asks how selected obligations acquire authority over the work. Part V tells the other story — how the system came to be, what broke along the way, and which failures hardened into the machinery the earlier Parts describe. <strong>Same system, two tenses: the present tense here, the past tense later.</strong></p>
 <p>The landmarks are in place, along with the system the book will repeatedly redraw and govern. Before deciding what representations or controls it needs, we have to inspect the productive substrate doing the work.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-1-intro.html" aria-label="Beginning of Part 1 — The New Engineering Problem">« Beginning of part</a><a href="1.1-the-printer.html" aria-label="Previous chapter — 1 · The Printer">« Previous chapter</a></div><span class="chapnav-here" title="2 · MAGE by Example: Summary of the DocAble Case">2 · MAGE by Example: Summary of the DocAble Case</span><div class="chapnav-fwd"><a href="1.3-the-agentic-substrate.html" aria-label="Next chapter — 3 · The Agentic Substrate">Next chapter »</a><a href="part-2-intro.html" aria-label="Next part — Part 2 — Modeling">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

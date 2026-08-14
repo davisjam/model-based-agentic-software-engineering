@@ -7,7 +7,7 @@
     "derived_ids": 148,
     "missing_topic_sentence": 0,
     "sections_drained": 105,
-    "paragraph_points": 423
+    "paragraph_points": 424
   },
   "chapters": [
     {
@@ -305,8 +305,13 @@
             },
             {
               "slug": "one-worker-five-views",
-              "text": "A worker is one thing in the system and five things to an engineer, depending on the question.",
+              "text": "A worker is one thing in the system and several things to an engineer, depending on the question.",
               "block_index": 35
+            },
+            {
+              "slug": "one-docable-job-is-territory-not-model",
+              "text": "One ordinary job supplies the landmarks Parts II and III reuse; it is territory to locate the models against, not the architecture model itself.",
+              "block_index": 37
             }
           ]
         },
@@ -316,22 +321,22 @@
           "heading_text": "Why DocAble Serves as the Running Case",
           "topic_sentence": "Why hang a whole book on one system?",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 43,
           "points": [
             {
               "slug": "why-one-system-opened-deep",
               "text": "One example, opened as far as the question needs, teaches more than a shallow survey.",
-              "block_index": 39
+              "block_index": 45
             },
             {
               "slug": "synchronic-here-diachronic-in-part-v",
               "text": "Parts II/III meet DocAble held still: Part II asks which representations make its properties tractable, Part III how selected obligations acquire authority; Part V tells how it came to be and what broke.",
-              "block_index": 41
+              "block_index": 47
             },
             {
               "slug": "enough-for-now-bridge-to-part-two",
               "text": "Enough of DocAble for now; the landmarks and the governed system are in place — before deciding what representations or controls it needs, inspect the productive substrate doing the work.",
-              "block_index": 43
+              "block_index": 49
             }
           ]
         }
