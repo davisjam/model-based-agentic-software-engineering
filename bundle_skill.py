@@ -7,7 +7,7 @@ half of the plugin, and it is **registry-driven**: each `SkillSpec` in `SPECS` d
 needs, and the same machinery bundles every spec — so adding a skill is "add a `SkillSpec`," not a fork.
 
 For a skill that mirrors the catalogue (e.g. `self-governance`), it copies the requested roles' entries
-into `reference/`, emits a scoped `INDEX.md`, vendors any referenced download templates, and lifts Part A
+into `alignment/mechanisms/`, emits a scoped `INDEX.md`, vendors any referenced download templates, and lifts Part A
 of a starter governance doc into `principles.md`. A skill with no mirror (`include_roles=()`) gets just
 its `principles.md` — its own reference material ships in the authored `SKILL.md` half.
 
@@ -18,7 +18,7 @@ can't drift from the catalogue. Runs on every commit via `hooks/pre-commit`. Std
 Two modes, one registry (`SPECS`):
 
   * **build** (no args) — the generation half above: regenerate every GENERATED skill's `principles.md`,
-    `reference/`, and `templates/` from the catalogue sources. This is what the pre-commit hook runs.
+    `alignment/mechanisms/`, and `templates/` from the catalogue sources. This is what the pre-commit hook runs.
   * **install / refresh** (`--install SKILL DEST` / `--refresh SKILL DEST`) — the ADOPTER half: copy a
     managed skill out of the plugin (the upstream SSOT) into an adopter's skills dir, under a **disjoint
     partition**. Every installed file is owned by exactly one side: *upstream-owned* (anything NOT named
@@ -61,7 +61,7 @@ class SkillSpec(NamedTuple):
     """
     name: str                 # the skill dir name under the plugin's skills/
     starter_doc: str = ""     # abs path to the Part-A source doc (Part A → principles.md); "" = not generated
-    include_roles: tuple = ()  # catalogue roles mirrored into reference/ ; () = no mirror
+    include_roles: tuple = ()  # catalogue roles mirrored into alignment/mechanisms/ ; () = no mirror
     principles_intro: str = ""  # preamble prepended to the lifted Part A in principles.md
     vendor_downloads: tuple = ()  # downloads/ templates shipped in <skill>/templates/ — explicit, so a
     #                               skill with no bundled entries (no reference-based vendoring) still gets them
@@ -71,8 +71,9 @@ class SkillSpec(NamedTuple):
         return os.path.join(PLUGIN_SKILLS, self.name)
 
     @property
-    def ref_dir(self) -> str:
-        return os.path.join(self.skill_dir, "reference")
+    def mechanisms_dir(self) -> str:
+        # the GENERATED census now lives BENEATH the hand-authored alignment/ facet
+        return os.path.join(self.skill_dir, "alignment", "mechanisms")
 
     @property
     def is_generated(self) -> bool:
@@ -92,7 +93,7 @@ SELF_GOVERNANCE = SkillSpec(
         "mature CLAUDE.md). The copyright / attribution header below is retained verbatim. -->\n\n"
         "# Operating principles — the Davis AI-First Engineering Method\n\n"
         "*These portable principles are the operating stance of the `self-governance` skill. "
-        "The catalogue in `reference/` is the set of concrete controls; these principles are the "
+        "The catalogue in `alignment/mechanisms/` is the set of concrete controls; these principles are the "
         "reasoning that decides when to reach for one.*\n\n---\n\n"
     ),
     # The model-based-software-engineering starter kit: fill-in scaffolds for authoring the 4+1
@@ -124,7 +125,7 @@ SELF_OPERATIONS = SkillSpec(
     ),
     # The operate skill authors design docs + Epics (infra changes, the feature-dev flow) — ship the
     # templates locally so it never has to reach outside its own dir (self-governance already vendors
-    # these via its reference/downloads/ mirror).
+    # these via its alignment/mechanisms/downloads/ mirror).
     vendor_downloads=(
         "EPIC-TEMPLATE-starter.md",
         "design-doc-template-starter.md",
@@ -162,9 +163,9 @@ def _write_copy(src: str, dst: str) -> None:
 
 
 def _mirror_entries(spec: SkillSpec) -> int:
-    """Copy each included role's entries + role README verbatim into reference/."""
+    """Copy each included role's entries + role README verbatim into alignment/mechanisms/."""
     for role in spec.include_roles:
-        dst = os.path.join(spec.ref_dir, role)
+        dst = os.path.join(spec.mechanisms_dir, role)
         if os.path.isdir(dst):
             shutil.rmtree(dst)
     n = 0
@@ -172,20 +173,20 @@ def _mirror_entries(spec: SkillSpec) -> int:
         role = e.path.split(os.sep)[0]
         if role not in spec.include_roles:
             continue
-        dst = os.path.join(spec.ref_dir, e.path)
+        dst = os.path.join(spec.mechanisms_dir, e.path)
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         shutil.copyfile(os.path.join(ROOT, e.path), dst)
         n += 1
     for role in spec.include_roles:  # role READMEs aren't entries but ground the family structure
         src = os.path.join(ROOT, role, "README.md")
         if os.path.isfile(src):
-            shutil.copyfile(src, os.path.join(spec.ref_dir, role, "README.md"))
-    shutil.copyfile(os.path.join(ROOT, "ABSTRACTIONS.md"), os.path.join(spec.ref_dir, "ABSTRACTIONS.md"))
+            shutil.copyfile(src, os.path.join(spec.mechanisms_dir, role, "README.md"))
+    shutil.copyfile(os.path.join(ROOT, "ABSTRACTIONS.md"), os.path.join(spec.mechanisms_dir, "ABSTRACTIONS.md"))
     return n
 
 
 def _filtered_index(spec: SkillSpec) -> None:
-    """Emit reference/INDEX.md = the census truncated to the included roles."""
+    """Emit alignment/mechanisms/INDEX.md = the census truncated to the included roles."""
     full = open(os.path.join(ROOT, "INDEX.md"), encoding="utf-8").read()
     cut = full.find("# Product target")  # everything above product is agent + models-bridge
     body = full[:cut].rstrip() if cut != -1 else full.rstrip()
@@ -200,7 +201,7 @@ def _filtered_index(spec: SkillSpec) -> None:
         + "<!-- Scope: the agent + models-bridge roles only. The product role is "
         "excluded from this skill; see the full catalogue for it. -->\n\n"
     )
-    _write(os.path.join(spec.ref_dir, "INDEX.md"), header + body + "\n")
+    _write(os.path.join(spec.mechanisms_dir, "INDEX.md"), header + body + "\n")
 
 
 def _principles(spec: SkillSpec) -> None:
@@ -216,7 +217,7 @@ def _principles(spec: SkillSpec) -> None:
 
 def _reference_readme(spec: SkillSpec, n: int) -> None:
     _write(
-        os.path.join(spec.ref_dir, "README.md"),
+        os.path.join(spec.mechanisms_dir, "README.md"),
         GEN_NOTE
         + "\n# Reference catalogue (bundled)\n\n"
         f"A vendored copy of the **agent** and **models-bridge** roles of the "
@@ -228,16 +229,16 @@ def _reference_readme(spec: SkillSpec, n: int) -> None:
 
 
 def _vendor_referenced_downloads(spec: SkillSpec) -> int:
-    """Copy any downloads/ template a BUNDLED entry references into reference/downloads/, so the
+    """Copy any downloads/ template a BUNDLED entry references into alignment/mechanisms/downloads/, so the
     'Adopt it ->' handoff links resolve when the skill is installed (the plugin cache can't reach
     outside its own dir). Only templates referenced by the bundled entries are vendored. The relative
-    depth matches: `../../downloads/X` from `reference/<role>/<family>/<control>.md` lands in
-    reference/downloads/."""
-    dst_dir = os.path.join(spec.ref_dir, "downloads")
+    depth matches: `../../downloads/X` from `alignment/mechanisms/<role>/<family>/<control>.md` lands in
+    alignment/mechanisms/downloads/."""
+    dst_dir = os.path.join(spec.mechanisms_dir, "downloads")
     if os.path.isdir(dst_dir):
         shutil.rmtree(dst_dir)  # regenerate fresh so a de-referenced template doesn't linger
     referenced: set[str] = set()
-    for f in glob.glob(os.path.join(spec.ref_dir, "**", "*.md"), recursive=True):
+    for f in glob.glob(os.path.join(spec.mechanisms_dir, "**", "*.md"), recursive=True):
         with open(f, encoding="utf-8") as fh:
             referenced.update(re.findall(r"\]\([^)]*downloads/([^)\s#]+)\)", fh.read()))
     n = 0
@@ -271,7 +272,7 @@ def _rewrite_outbound_links(spec: SkillSpec) -> None:
     """Repoint links that leave the bundle so none dangles once installed: excluded-product cross-refs
     -> the live public product pages; source-project-internal `docs/` pointers -> plain text (no public
     target). Intra-bundle links (other entries, vendored downloads) are left untouched."""
-    targets = glob.glob(os.path.join(spec.ref_dir, "**", "*.md"), recursive=True) + [os.path.join(spec.skill_dir, "principles.md")]
+    targets = glob.glob(os.path.join(spec.mechanisms_dir, "**", "*.md"), recursive=True) + [os.path.join(spec.skill_dir, "principles.md")]
     for f in targets:
         if not os.path.isfile(f):
             continue

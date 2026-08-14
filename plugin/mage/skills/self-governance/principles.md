@@ -3,7 +3,7 @@
 
 # Operating principles — the Davis AI-First Engineering Method
 
-*These portable principles are the operating stance of the `self-governance` skill. The catalogue in `reference/` is the set of concrete controls; these principles are the reasoning that decides when to reach for one.*
+*These portable principles are the operating stance of the `self-governance` skill. The catalogue in `alignment/mechanisms/` is the set of concrete controls; these principles are the reasoning that decides when to reach for one.*
 
 ---
 
