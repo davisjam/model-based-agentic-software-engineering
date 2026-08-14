@@ -5489,6 +5489,16 @@
         }
       ]
     },
+    "section-id:audit-drain-promote": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::audit-drain-promote",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:authority-follows-competence": {
       "kind": "section-id",
       "dependents": [
@@ -5965,16 +5975,6 @@
         {
           "view": "outline",
           "element": "2.1-context-is-the-first-modeling-problem::industry-already-lives-here",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:introduce-new-authority-safely-audit-drain-promote": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::introduce-new-authority-safely-audit-drain-promote",
           "role": "section-anchor"
         }
       ]
