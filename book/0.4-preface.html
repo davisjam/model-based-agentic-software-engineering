@@ -704,90 +704,99 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Engineering starts from goals, limited resources, and competing requirements, and it asks what properties a proposed solution will have and what evidence supports that belief. Engineers do not assess the limit of a bridge by driving larger and larger trucks over it until something fails. They calculate what it should carry and understand the assumptions behind that calculation. Software built with agents deserves the same standard. A system may work, and may even work impressively, with little explicit modeling; MAGE does not dispute that. <strong>Success by observation is not engineering assurance.</strong></p>
 <h2>Where the theory came from</h2>
 <p>This book began with one hard engineering problem, watched closely over months of building a real production system. The initial MAGE theory emerged from that one deeply studied case, not from surveying many teams and distilling common themes. Only later did I turn its vocabulary outward, reconstructing independently described systems from Cloudflare, Docker, Shopify, Spotify, Siemens, and Zenseact and asking where the theory fit, where it failed, and what it had missed. Those comparisons supplied variation the originating case could not. Part V presents both views of the evidence: DocAble in depth, then the industrial reconstructions in breadth. Part VI asks what general account can explain both. <a class="xref" href="0.4-preface.html#fig-0-4-1">Figure&nbsp;0.4-1</a> shows the evidentiary path.</p>
-<figure id="fig-0-4-1" class="book-figure book-figure--wide" data-label="research-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700"
+<figure id="fig-0-4-1" class="book-figure book-figure--wide" data-label="research-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740"
      role="group" aria-labelledby="raTitle raDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="raTitle">Where the theory came from: the research provenance, one procedure read top to bottom</title>
-  <desc id="raDesc">A single vertical chain of six stages, read from top to bottom, each a titled box joined to
-    the next by a downward arrow. This is where the theory came from — its research provenance, in the true
-    order the evidence produced it, which is not the order in which the book later teaches the method.
-    Stage one, DocAble — one production system, studied deeply over months.
-    Stage two, Induced MAGE — the theory proposed from that one case: the two theses, governance conversion,
-    engineering capital. Stage three, Industry reports — six independent organizations. Stage four,
-    Comparison — each system reconstructed in MAGE's vocabulary and put to three questions. Stage five,
-    Refinement — the theory corroborated, refined where the outside cases press, and occasionally extended.
-    Stage six, Theory — the refined MAGE theory the closing chapters carry. A thin dashed green feedback edge
-    returns from Refinement up to Induced MAGE, labelled the theory changed, marking that the comparison
-    altered the constructs rather than merely confirming them. The theory stages are green (modeling); the
-    evidence and procedure stages and the spine are gray (neutral). One deep case supplies mechanism; the
-    independent cases supply variation.</desc>
+  <title id="raTitle">Where the theory came from: the research provenance, one procedure read top to bottom, closing on depth and breadth</title>
+  <desc id="raDesc">A single vertical chain of five stages, read from top to bottom, each a titled box joined to
+    the next by a downward arrow, closing on a depth-and-breadth split. This is where the theory came from —
+    its research provenance, in the true order the evidence produced it, which is not the order in which the
+    book later teaches the method.
+    Stage one, DocAble — one production system, observed deeply over months.
+    Stage two, Early MAGE — the theory induced from that one case: Modeling, Alignment, governance
+    conversion, engineering capital. Stage three, Industry reports — six independent organizations. Stage
+    four, Comparison — each system reconstructed in MAGE's vocabulary: recurring moves, variation, limits.
+    That comparison refines — not tests — the theory. Stage five, MAGE theory — the account developed in
+    Part VI. Beneath it a split: the originating case gives DEPTH (mechanism and sequence); the industrial
+    reconstructions give BREADTH (variation and alternatives); together they converge on a stronger basis for
+    theory. The theory stages are green (modeling); the evidence and procedure stages and the spine are gray
+    (neutral).</desc>
 
   <defs>
     <marker id="ra-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
-    <marker id="ra-fb" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
-    </marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="700" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1000" height="740" fill="#fdfcf9"/>
   <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where the theory came from</text>
   <text x="500" y="68" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">How the book knows what it claims — one procedure, read top to bottom.</text>
 
   <!-- spine arrows (neutral) + edge labels naming the inference -->
   <g stroke="#57534e" stroke-width="2.2" fill="none">
-    <line x1="500" y1="147" x2="500" y2="178" marker-end="url(#ra-ah)"/>
-    <line x1="500" y1="239" x2="500" y2="270" marker-end="url(#ra-ah)"/>
-    <line x1="500" y1="331" x2="500" y2="362" marker-end="url(#ra-ah)"/>
-    <line x1="500" y1="423" x2="500" y2="454" marker-end="url(#ra-ah)"/>
-    <line x1="500" y1="515" x2="500" y2="546" marker-end="url(#ra-ah)"/>
+    <line x1="500" y1="150" x2="500" y2="180" marker-end="url(#ra-ah)"/>
+    <line x1="500" y1="242" x2="500" y2="272" marker-end="url(#ra-ah)"/>
+    <line x1="500" y1="334" x2="500" y2="364" marker-end="url(#ra-ah)"/>
+    <line x1="500" y1="426" x2="500" y2="456" marker-end="url(#ra-ah)"/>
   </g>
   <g font-size="13" font-style="italic" fill="#57534e" text-anchor="start">
-    <text x="516" y="167">induces</text>
-    <text x="516" y="259">turned outward</text>
-    <text x="516" y="351">reconstructed</text>
-    <text x="516" y="443">tested against</text>
-    <text x="516" y="535">refined into</text>
+    <text x="516" y="169">induces</text>
+    <text x="516" y="261">turned outward</text>
+    <text x="516" y="353">reconstructed</text>
+    <text x="516" y="445">refines</text>
   </g>
 
   <!-- N1 DocAble (neutral: the deep case) -->
-  <rect x="240" y="88" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="114" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DocAble</text>
-  <text x="500" y="135" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">one production system, studied deeply over months</text>
+  <rect x="240" y="90" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="116" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DocAble</text>
+  <text x="500" y="137" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">one production system, observed deeply over months</text>
 
-  <!-- N2 Induced MAGE (modeling: the proposed theory) -->
-  <rect x="240" y="180" width="520" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="500" y="206" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Induced MAGE</text>
-  <text x="500" y="227" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the two theses, governance conversion, engineering capital</text>
+  <!-- N2 Early MAGE (modeling: the induced theory) -->
+  <rect x="240" y="182" width="520" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="500" y="208" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Early MAGE</text>
+  <text x="500" y="229" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Modeling · Alignment · conversion · capital</text>
 
   <!-- N3 Industry reports (neutral: external evidence) -->
-  <rect x="240" y="272" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="298" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Industry reports</text>
-  <text x="500" y="319" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">six independent organizations</text>
+  <rect x="240" y="274" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="300" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Industry reports</text>
+  <text x="500" y="321" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">six independent organizations</text>
 
   <!-- N4 Comparison (neutral: procedure) -->
-  <rect x="240" y="364" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="390" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Comparison</text>
-  <text x="500" y="411" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">each reconstructed in MAGE's vocabulary, put to three questions</text>
+  <rect x="240" y="366" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="392" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Comparison</text>
+  <text x="500" y="413" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">recurring moves · variation · limits</text>
 
-  <!-- N5 Refinement (neutral: the test) -->
-  <rect x="240" y="456" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="482" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Refinement</text>
-  <text x="500" y="503" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">corroborated, refined where they press, occasionally extended</text>
+  <!-- N5 MAGE theory (modeling, emphasis: the refined theory) -->
+  <rect x="240" y="458" width="520" height="64" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+  <text x="500" y="486" text-anchor="middle" font-size="21" font-weight="700" fill="#155c38">MAGE theory</text>
+  <text x="500" y="508" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the account developed in Part VI</text>
 
-  <!-- N6 Theory (modeling, emphasis: the refined theory) -->
-  <rect x="240" y="548" width="520" height="64" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
-  <text x="500" y="576" text-anchor="middle" font-size="21" font-weight="700" fill="#155c38">Theory</text>
-  <text x="500" y="598" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the refined MAGE theory the closing chapters carry</text>
+  <!-- DEPTH / BREADTH split: what each evidence source contributes -->
+  <!-- theory -> split hub -->
+  <g stroke="#57534e" stroke-width="2" fill="none">
+    <line x1="500" y1="522" x2="500" y2="540"/>
+    <path d="M500,540 L310,540 L310,560" marker-end="url(#ra-ah)"/>
+    <path d="M500,540 L690,540 L690,560" marker-end="url(#ra-ah)"/>
+  </g>
 
-  <!-- feedback edge: Refinement -> Induced MAGE, "the theory changed" (dashed, thin, green, offset right) -->
-  <path d="M760,485 C824,470 824,225 760,209" fill="none" stroke="#1f7a4d" stroke-width="1.6"
-        stroke-dasharray="6 4" marker-end="url(#ra-fb)"/>
-  <text transform="rotate(-90 838 347)" x="838" y="347" text-anchor="middle" font-size="13"
-        font-style="italic" fill="#1f7a4d" paint-order="stroke" stroke="#ffffff" stroke-width="3">the theory changed</text>
+  <!-- DEPTH cell (from the originating case) -->
+  <rect x="150" y="562" width="320" height="56" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <text x="310" y="586" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">DEPTH</text>
+  <text x="310" y="606" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">mechanism · sequence</text>
 
-  <text x="500" y="668" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">One deep case supplies mechanism; the independent cases supply variation — together they reach further than either alone.</text>
+  <!-- BREADTH cell (from the industrial reconstructions) -->
+  <rect x="530" y="562" width="320" height="56" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <text x="690" y="586" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">BREADTH</text>
+  <text x="690" y="606" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">variation · alternatives</text>
+
+  <!-- converge to the conclusion -->
+  <g stroke="#57534e" stroke-width="2" fill="none">
+    <path d="M310,618 L310,640 L500,640"/>
+    <path d="M690,618 L690,640 L500,640"/>
+    <line x1="500" y1="640" x2="500" y2="662" marker-end="url(#ra-ah)"/>
+  </g>
+  <rect x="330" y="664" width="340" height="48" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
+  <text x="500" y="694" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">a stronger basis for theory</text>
 </svg><figcaption data-short="From case to theory"><span class="fig-label">Figure 0.4-1.</span> <em>From case to theory.</em> MAGE was induced from one deeply observed production system, then compared with six independently evolved industrial systems. The originating case supplies mechanism and sequence; the industrial reconstructions supply variation and alternative realizations.</figcaption></figure>
 <h2>What changed</h2>
 <blockquote id="idx-def-fleet" class="aside-sidenote def-inset"><p><strong>Fleet.</strong> The set of coding agents working the codebase — the agentic-era workforce this book governs, in place of a team of human engineers.</p></blockquote>

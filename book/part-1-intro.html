@@ -697,7 +697,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <blockquote class="thesis-box"><p class="inset-title">FOUNDING PREMISE</p>
 <p>Commodity intelligence makes implementation abundant relative to engineering judgment.</p>
 <p>Engineering effort concentrates around what limits reliable production. As implementation capacity becomes cheaper and more abundant, judgment, representation, evidence, and authority become relatively scarcer. Engineering effort should move with the constraint.</p></blockquote>
-<p>Abundance does not make implementation unimportant; it changes where additional engineering effort earns the greatest return. A factory with unlimited machine capacity and one inspector has not stopped manufacturing; inspection has become the throughput constraint. In software, agents can now produce changes faster than engineers can specify, understand, validate, and govern them. Models amortize representation and judgment across many acts of implementation; validators and gates can amortize selected judgments about acceptance. Rational effort therefore moves upstream into representation and outward into the engineering environment. This Part asks what follows from that shift: what remains hard, which properties of the new substrate matter, and what engineering problems they leave us to solve.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1300"
+<p>Abundance does not make implementation unimportant; it changes where additional engineering effort earns the greatest return. A factory with unlimited machine capacity and one inspector has not stopped manufacturing; inspection has become the throughput constraint. In software, agents can now produce changes faster than engineers can specify, understand, validate, and govern them. Models amortize representation and judgment across many acts of implementation; validators and gates can amortize selected judgments about acceptance. Rational effort therefore moves upstream into representation and outward into the engineering environment. This Part asks what follows from that shift: what remains hard, which properties of the new substrate matter, and what engineering problems they leave us to solve.</p><nav class="roadmap-nav" aria-label="Book roadmap — jump to a part"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1340"
      role="group" aria-labelledby="bmTitle-nav bmDesc-nav"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="bmTitle-nav">A map of the book — a question posed in the Preface, answered in the Conclusion, across six Parts</title>
@@ -708,13 +708,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     develops the Modeling Thesis: make knowledge and intent explicit. That leads to Part III, Alignment, which
     develops the Alignment Thesis: give obligations authority. Modeling comes first as a principled progression
     from representation to authority, not as a dependency. That leads to Part IV, The MAGE Method, which joins
-    the two theses — model, align, convert, repeat. That leads to Part V, The Evidence: DocAble end to end,
-    where the method came from. That leads to Part VI, The Profession: theory, industrial comparison, scope,
-    the profession, and open problems. The book then reaches the Conclusion, The Part That Stays Yours — an
-    unnumbered section parallel to the Preface — which returns to the Preface's question, gives the compact
-    answer, and asks the converse: what cannot be delegated? Responsibility. After the argument is over, the
-    book's apparatus follows in a muted tail: the Appendices, then the Colophon (Dogfooding MAGE), then About
-    the Author.</desc>
+    the two theses — model, align, convert, repeat. That leads to Part V, The Evidence, which supplies both
+    views: DocAble in depth — mechanism and sequence — then the industrial reconstructions in breadth —
+    variation across independently evolved systems. That leads to Part VI, The Profession, which develops the
+    theory, its scope conditions, and testable predictions, then follows the implications outward to software
+    engineering, engineering heritage, and the engineer. The book then reaches the Conclusion, The Part That
+    Stays Yours — an unnumbered section parallel to the Preface — which returns to the Preface's question,
+    gives the compact answer, and asks the converse: what cannot be delegated? Responsibility. After the
+    argument is over, the book's apparatus follows in a muted tail: the Appendices, then the Colophon
+    (Dogfooding MAGE), then About the Author.</desc>
 
   <defs>
     <marker id="bm2-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -728,12 +730,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="900" height="1300" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="900" height="1340" fill="#fdfcf9"/>
 
   <!-- CALL-AND-RESPONSE ARC — Preface (call) tied to Conclusion (response), down the left margin -->
-  <path d="M 190 104 C 58 280, 58 760, 190 926" fill="none" stroke="#9a3f12" stroke-width="1.8"
+  <path d="M 190 104 C 55 300, 55 820, 190 968" fill="none" stroke="#9a3f12" stroke-width="1.8"
         stroke-dasharray="1 0" marker-end="url(#bm2-ah-rust)" opacity="0.85"/>
-  <text x="60" y="515" transform="rotate(-90 60 515)" text-anchor="middle" font-size="13"
+  <text x="58" y="536" transform="rotate(-90 58 536)" text-anchor="middle" font-size="13"
         font-style="italic" fill="#9a3f12">call → response · the question returns, and turns</text>
 
   <!-- PREFACE — the call (unnumbered matter) -->
@@ -772,44 +774,47 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="450" y="611" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">workflow · migration · validation · skills</text>
   <line x1="450" y1="618" x2="450" y2="642" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
-  <!-- PART V — The Evidence (fleet blue) -->
-  <rect x="190" y="644" width="520" height="86" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="450" y="680" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
-  <text x="450" y="708" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5169">DocAble, end to end · where the method came from</text>
-  <line x1="450" y1="730" x2="450" y2="754" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <!-- PART V — The Evidence (fleet blue) · depth + breadth -->
+  <rect x="190" y="644" width="520" height="108" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="450" y="678" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
+  <text x="450" y="702" text-anchor="middle" font-size="15" font-weight="600" fill="#2f5169">depth + breadth</text>
+  <text x="450" y="723" text-anchor="middle" font-size="14" font-style="italic" fill="#2f5169">DocAble · mechanism · sequence</text>
+  <text x="450" y="743" text-anchor="middle" font-size="14" font-style="italic" fill="#2f5169">industrial reconstructions · variation</text>
+  <line x1="450" y1="752" x2="450" y2="776" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
-  <!-- PART VI — The Profession (purple) -->
-  <rect x="190" y="756" width="520" height="94" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
-  <text x="450" y="790" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
-  <text x="450" y="816" text-anchor="middle" font-size="15" font-style="italic" fill="#5b4a72">theory · industrial comparison · scope</text>
-  <text x="450" y="836" text-anchor="middle" font-size="15" font-style="italic" fill="#5b4a72">the profession · open problems</text>
-  <line x1="450" y1="850" x2="450" y2="874" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <!-- PART VI — The Profession (purple) · theory then outward -->
+  <rect x="190" y="778" width="520" height="112" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <text x="450" y="812" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
+  <text x="450" y="838" text-anchor="middle" font-size="15" font-style="italic" fill="#5b4a72">theory · scope · testable predictions</text>
+  <text x="450" y="859" text-anchor="middle" font-size="15" font-style="italic" fill="#5b4a72">software engineering · engineering heritage</text>
+  <text x="450" y="879" text-anchor="middle" font-size="15" font-weight="600" fill="#5b4a72">the engineer</text>
+  <line x1="450" y1="890" x2="450" y2="914" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- CONCLUSION — the response (unnumbered matter, parallel to the Preface) -->
-  <rect x="190" y="876" width="520" height="106" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="450" y="910" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
-  <text x="450" y="934" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">The Part That Stays Yours</text>
-  <text x="450" y="956" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
-  <text x="450" y="975" text-anchor="middle" font-size="14" font-style="italic" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — Responsibility</text>
+  <rect x="190" y="916" width="520" height="106" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="450" y="950" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
+  <text x="450" y="974" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">The Part That Stays Yours</text>
+  <text x="450" y="996" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
+  <text x="450" y="1015" text-anchor="middle" font-size="14" font-style="italic" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" font-style="normal" fill="#9a3f12">RESPONSIBILITY</tspan></text>
 
   <!-- transition out of the argument into the apparatus (muted, dashed) -->
-  <line x1="450" y1="982" x2="450" y2="1032" stroke="#a8a29e" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#bm2-ah-muted)"/>
-  <text x="480" y="1001" text-anchor="start" font-size="12.5" font-style="italic" fill="#78716c">the argument is over —</text>
-  <text x="480" y="1017" text-anchor="start" font-size="12.5" font-style="italic" fill="#78716c">what follows is the book's apparatus</text>
+  <line x1="450" y1="1022" x2="450" y2="1072" stroke="#a8a29e" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#bm2-ah-muted)"/>
+  <text x="480" y="1041" text-anchor="start" font-size="12.5" font-style="italic" fill="#78716c">the argument is over —</text>
+  <text x="480" y="1057" text-anchor="start" font-size="12.5" font-style="italic" fill="#78716c">what follows is the book's apparatus</text>
 
   <!-- APPENDICES (apparatus tail — muted) -->
-  <rect x="190" y="1034" width="520" height="60" rx="8" fill="#f5f3ee" stroke="#a8a29e" stroke-width="1.8"/>
-  <text x="450" y="1062" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">Appendices</text>
-  <text x="450" y="1082" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">build · operate · inspect the evidence</text>
-  <line x1="450" y1="1094" x2="450" y2="1114" stroke="#a8a29e" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#bm2-ah-muted)"/>
+  <rect x="190" y="1074" width="520" height="60" rx="8" fill="#f5f3ee" stroke="#a8a29e" stroke-width="1.8"/>
+  <text x="450" y="1102" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">Appendices</text>
+  <text x="450" y="1122" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">build · operate · inspect the evidence</text>
+  <line x1="450" y1="1134" x2="450" y2="1154" stroke="#a8a29e" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#bm2-ah-muted)"/>
 
   <!-- COLOPHON (apparatus tail — muted; precedes About the Author) -->
-  <rect x="190" y="1116" width="520" height="60" rx="8" fill="#f5f3ee" stroke="#a8a29e" stroke-width="1.8"/>
-  <text x="450" y="1144" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">Colophon — Dogfooding MAGE</text>
-  <text x="450" y="1164" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">the book itself, maintained as a modeled, governed artifact</text>
-  <line x1="450" y1="1176" x2="450" y2="1196" stroke="#a8a29e" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#bm2-ah-muted)"/>
+  <rect x="190" y="1156" width="520" height="60" rx="8" fill="#f5f3ee" stroke="#a8a29e" stroke-width="1.8"/>
+  <text x="450" y="1184" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">Colophon — Dogfooding MAGE</text>
+  <text x="450" y="1204" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">the book itself, maintained as a modeled, governed artifact</text>
+  <line x1="450" y1="1216" x2="450" y2="1236" stroke="#a8a29e" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#bm2-ah-muted)"/>
 
   <!-- ABOUT THE AUTHOR (apparatus tail — the terminal book-object page) -->
-  <rect x="190" y="1198" width="520" height="56" rx="8" fill="#f5f3ee" stroke="#a8a29e" stroke-width="1.8"/>
-  <text x="450" y="1231" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">About the Author</text>
+  <rect x="190" y="1238" width="520" height="56" rx="8" fill="#f5f3ee" stroke="#a8a29e" stroke-width="1.8"/>
+  <text x="450" y="1271" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">About the Author</text>
 </svg><ul class="visually-hidden roadmap-fallback"><li aria-current="page">Part 1 — Introduction: The New Engineering Problem (current part)</li><li>Part 2 — Modeling: <a href="part-2-intro.html">go to Part 2</a></li><li>Part 3 — Alignment: <a href="part-3-intro.html">go to Part 3</a></li><li>Part 4 — The MAGE Method: <a href="part-4-intro.html">go to Part 4</a></li><li>Part 5 — The Evidence: <a href="part-5-intro.html">go to Part 5</a></li><li>Part 6 — The Profession: <a href="part-6-intro.html">go to Part 6</a></li></ul></nav><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="0.6-acknowledgments.html" aria-label="Previous chapter — Acknowledgments">« Previous chapter</a></div><span class="chapnav-here" title="Introduction: The New Engineering Problem">Introduction: The New Engineering Problem</span><div class="chapnav-fwd"><a href="1.1-the-printer.html" aria-label="Next chapter — 1 · The Printer">Next chapter »</a><a href="part-2-intro.html" aria-label="Next part — Part 2 — Modeling">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
