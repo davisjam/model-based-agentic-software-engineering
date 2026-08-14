@@ -117,6 +117,39 @@ depreciates. A model must be reconciled, a validator recalibrated, a lint mainta
 upkeep exceeds the failure it prevents has become overhead. **Build the smallest asset that retires the
 recurring cost, and retire the asset when it stops paying.**
 
+## When search stalls
+
+Some engineering work does not resolve in one deliberate step. It runs as a tight loop instead:
+propose a candidate, evaluate it, keep what improves, continue. Call this **agentic search** — a
+specific way of running the engineering loop's act-and-weigh-the-evidence cycle (`SKILL.md`) many
+times in succession, not a third MAGE activity beside Model and Align. When enough of the
+consequential intent is explicit and the environment can evaluate a candidate mechanically, MAGE can
+turn that closed question into a search problem. Most engineering work does not reach this bar, and
+the generator is a learned heuristic over a structured space, not exhaustive enumeration — the loop
+only searches as far as the environment can bound the candidates and judge them.
+
+When the loop stalls — candidates stop improving, or nothing satisfactory appears — diagnose *which*
+ingredient is missing before reaching for more of anything. Each miss calls for a different move:
+
+| Missing ingredient | Ask | Response | Route |
+|---|---|---|---|
+| **Searcher** | Can the available intelligence find a good candidate at all? | Reach for a stronger or more specialized model or tool. | `skills/repertoire.md` |
+| **Model** | Is structure that matters absent from the problem's representation? | Externalize it — make the missing structure explicit and queryable. | `modeling/moves.md`, `modeling/repertoire.md` |
+| **Oracle** | Can the environment tell a good candidate from a bad one? | Strengthen the evidence: validation, a differential oracle, simulation. | `alignment/repertoire.md` |
+| **Target** | Do we actually know what "good" means here? | Stop implementing and learn — this is a product or requirements question, not an engineering one. | irreducible judgment, below |
+
+These are not interchangeable repairs. A stronger model does not repair an unknown requirement.
+Another validator does not repair a missing abstraction. More modeling does not settle a product
+question whose answer must come from users or deployment. Diagnose what is actually limiting
+progress before adding machinery — the same proportionality that governs every other move in this
+facet applies here: the right fix is the ingredient that is missing, not the one that is cheapest to
+reach for.
+
+The **Target** branch earns the same discipline as any irreducible judgment: an agent's confidence
+that the target is known is not evidence that it is. Treat "we don't actually know what good means"
+as a genuine finding and escalate or gather evidence, not as a search failure to grind through with
+more candidates.
+
 ## When judgment is irreducible
 
 Some calls are genuinely judgments — novel, high-consequence, no decidable property. Here the failure

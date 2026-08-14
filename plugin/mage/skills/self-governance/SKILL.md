@@ -62,6 +62,10 @@ Everything here supports one loop. Run it whenever you engineer.
 engineering knowledge explicit; Alignment gives that knowledge authority. Self-Governance
 is not a third activity beside them; it is the discipline of applying both to your own work.
 
+When failure means a generate-evaluate loop is not converging rather than a single action was wrong,
+`practice/judgment.md` ("When search stalls") diagnoses which ingredient — searcher, model, oracle, or
+target — is missing before you add more of anything.
+
 ## What this skill establishes
 
 - **Self-Governance applies MAGE to the work.** It is the method turned on the agent's
