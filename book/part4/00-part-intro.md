@@ -22,6 +22,5 @@ conditions inherited by later work. That accumulated structure is engineering ca
 can drift, depreciate, and cost more to maintain than it returns, so this Part covers operation and
 retirement as well as accumulation.
 
-DocAble supplies the deep case because it exposes the method at working depth. Other organizations
-appear only where they sharpen a move or show that it travels; Part VI handles the comparative
-evidence. The question here is practical: **what should you do next?**
+DocAble supplies the deep case. Other organizations appear where they sharpen a move. The question
+here is practical: **what should you do next?**
