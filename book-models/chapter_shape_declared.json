@@ -342,9 +342,9 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "On-ramp chapter. Opening states the failure (a commodity reasoner arrives knowing almost nothing about your system) and its answer (externalize the system's entities and relations into a durable, retrievable artifact); the Modeling-Thesis link is explicit — externalized knowledge is its first rung. Closes by handing forward: legibility is only the first rung, and structured knowledge begins to turn modeling into control.",
-      "opening_anchor": "A commodity reasoner arrives knowing almost nothing about your system. Its training",
-      "closing_anchor": "next step, and it is where modeling begins to turn into control."
+      "note": "Reframed intro chapter (one-model-class-per-chapter reconstruction). Opening states the failure (a foundation model knows the languages but not your system) and its answer (externalize engineering knowledge that should not have to be rediscovered); the Modeling-Thesis link is explicit. Folds the former ladder/zoo/views essentials and introduces the six-class working ontology. Closes on the modeling→Alignment boundary that Part III begins from.",
+      "opening_anchor": "A foundation model knows Python, React, queues, databases, and common architectural patterns.",
+      "closing_anchor": "Modeling makes an engineering property explicit. Alignment gives selected properties consequence."
     },
     {
       "slug": "from-context-to-control",

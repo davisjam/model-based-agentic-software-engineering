@@ -62,20 +62,21 @@ complicated than the views ahead. Each view keeps only what its question needs.
 
 The same object wears every hat. A single worker in that pipeline is several different things at once,
 depending only on which question you bring to it — a phenomenon Part I walks in the concrete. Hold the
-image: one object, five true pictures, and none of them *is* the worker.
+image: one object, several true pictures, and none of them *is* the worker.
 
-<!-- point: part-2-moves-through-five-model-classes | Part II moves through five classes of model, not a taxonomy to memorize. | terms: model-zoo, four-plus-one-views -->
-The examples ahead fall into five broad classes that the rest of the book will reuse:
+<!-- point: part-2-moves-through-five-model-classes | Part II moves through six classes of model, not a taxonomy to memorize. | terms: model-zoo, four-plus-one-views -->
+The examples ahead fall into six broad classes that the rest of the book will reuse:
 
-- **Behavioral** — what states a thing occupies, and how it moves between them.
 - **Structural** — what parts exist, and which may depend on which.
+- **Behavioral** — what states a thing occupies, and how it moves between them.
+- **Ownership** — who controls a unit of work, and for how long.
 - **Decision** — who is permitted to do what, or to reach what.
-- **Measurement** — what quantities the system promises to hold, and to what bound.
-- **Documentation** — what explanation must stay true to what the code did.
+- **Measurement** — what quantities the system holds, and against what bound.
+- **Provenance** — what happened to an artifact, and what evidence records it.
 
 <!-- point: there-is-no-model-of-the-system-only-purposeful-reductions | There is no model of the system, only purposeful reductions that each answer one question. | terms: model-as-map, scope-of-modeling, map-and-territory -->
-These five classes organize recurring engineering questions; they are not an exhaustive taxonomy or a
-checklist. There is no single "model of the system," only purposeful reductions built to expose particular
+These six classes organize recurring engineering questions; they are not an exhaustive taxonomy or a
+checklist. They can overlap: one represented object may participate in several classes at once. There is no single "model of the system," only purposeful reductions built to expose particular
 properties. A model earns its place by the question it settles, not by how much of the system it draws.
 
 > #### Four questions, once per model

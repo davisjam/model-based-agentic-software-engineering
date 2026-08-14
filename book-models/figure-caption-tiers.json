@@ -91,11 +91,17 @@
       "location": "appendix",
       "rationale": "Field Guide card — Zenseact: autonomous knowledge work to the Reasoning Horizon; reference/nav card art, short caption"
     },
+    "assets/model-ontology.svg": {
+      "tier": "B",
+      "kind": "taxonomy",
+      "location": "part2",
+      "rationale": "the six-class working ontology — the 2.1 twin of front-matter Figure 0.3-2; a conceptual reference caption naming the classifying axis"
+    },
     "assets/model-classes.svg": {
       "tier": "C",
       "kind": "taxonomy",
       "location": "frontmatter",
-      "rationale": "the five model-classes taxonomy — glossary Model-entry reference chrome; short nav/reference caption"
+      "rationale": "the six model-classes taxonomy — glossary Model-entry reference chrome; short nav/reference caption"
     },
     "assets/gloss-core-ideas.svg": {
       "tier": "C",

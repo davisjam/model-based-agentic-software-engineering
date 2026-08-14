@@ -3,7 +3,7 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1159,
+    "total_sites": 1158,
     "by_projection": {
       "book-pdf": 18,
       "book-web": 750,
@@ -11,7 +11,7 @@
       "website-concepts": 56,
       "website-industry-cases": 46,
       "website-landing": 11,
-      "website-misc": 49,
+      "website-misc": 48,
       "website-theory": 10
     }
   },
@@ -41,7 +41,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 18
+            "occ": 12
           },
           {
             "file": "book/2.2-from-context-to-control.html",
@@ -577,7 +577,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 15
+            "occ": 14
           },
           {
             "file": "catalogue-figure.html",
@@ -1001,7 +1001,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 69
+            "occ": 75
           },
           {
             "file": "book/0.4-preface.html",
@@ -1033,7 +1033,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 33
+            "occ": 37
           },
           {
             "file": "book/2.2-from-context-to-control.html",
@@ -1353,7 +1353,7 @@
           },
           {
             "file": "book/book-index.html",
-            "occ": 20
+            "occ": 17
           },
           {
             "file": "book/colophon.html",
@@ -1361,7 +1361,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 216
+            "occ": 224
           },
           {
             "file": "book/index.html",
@@ -1369,7 +1369,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 18
+            "occ": 19
           },
           {
             "file": "book/part-1-intro.html",
@@ -2135,7 +2135,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 59
+            "occ": 60
           },
           {
             "file": "book/0.4-preface.html",
@@ -2167,7 +2167,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 14
+            "occ": 52
           },
           {
             "file": "book/2.2-from-context-to-control.html",
@@ -2495,7 +2495,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 268
+            "occ": 274
           },
           {
             "file": "book/index.html",
@@ -2503,7 +2503,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 12
+            "occ": 13
           },
           {
             "file": "book/part-1-intro.html",
@@ -2955,7 +2955,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 40
+            "occ": 44
           },
           {
             "file": "catalogue-figure.html",
@@ -3141,10 +3141,6 @@
       },
       "website": {
         "website-misc": [
-          {
-            "file": "book-models/models-view.html",
-            "occ": 1
-          },
           {
             "file": "constructing-the-gee.html",
             "occ": 1
@@ -3803,7 +3799,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/2.2-from-context-to-control.html",
@@ -4123,7 +4119,7 @@
           },
           {
             "file": "book/book-index.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/colophon.html",
@@ -4257,7 +4253,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 4
+            "occ": 7
           },
           {
             "file": "book/2.2-from-context-to-control.html",
