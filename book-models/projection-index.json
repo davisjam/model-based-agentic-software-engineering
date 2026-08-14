@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1166,
+    "total_sites": 1164,
     "by_projection": {
-      "book-pdf": 19,
-      "book-web": 756,
+      "book-pdf": 18,
+      "book-web": 755,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -81,7 +81,7 @@
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
@@ -213,7 +213,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 42
+            "occ": 41
           },
           {
             "file": "book/list-of-figures.html",
@@ -1077,11 +1077,11 @@
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 36
+            "occ": 35
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 19
+            "occ": 18
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
@@ -2037,7 +2037,7 @@
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 4
+            "occ": 1
           },
           {
             "file": "book/4.2-brownfield.html",
@@ -2219,11 +2219,11 @@
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 12
+            "occ": 10
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 14
+            "occ": 13
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
@@ -2963,7 +2963,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 40
+            "occ": 41
           },
           {
             "file": "catalogue-figure.html",
@@ -3173,20 +3173,6 @@
       }
     },
     "new-problem": {
-      "book": {
-        "book-web": [
-          {
-            "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 1
-          }
-        ],
-        "book-pdf": [
-          {
-            "file": "book/mage-book.pdf",
-            "occ": 1
-          }
-        ]
-      },
       "website": {
         "website-concepts": [
           {

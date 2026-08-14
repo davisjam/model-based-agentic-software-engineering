@@ -7,7 +7,7 @@
     "derived_ids": 193,
     "missing_topic_sentence": 7,
     "sections_drained": 137,
-    "paragraph_points": 486
+    "paragraph_points": 485
   },
   "chapters": [
     {
@@ -2091,77 +2091,72 @@
           "heading_text": "Engineering capital",
           "topic_sentence": "Governance conversion gives software engineering something it has long had difficulty naming: a concrete form of **engineering capital**.",
           "id_source": "derived",
-          "block_index": 25,
+          "block_index": 24,
           "points": [
             {
               "slug": "governance-conversion-forms-engineering-capital-the-positive-stock",
               "text": "Governance conversion forms engineering capital — the concrete positive stock software engineering has lacked a name for.",
-              "block_index": 27
+              "block_index": 26
             },
             {
               "slug": "the-asset-is-something-you-can-point-at",
               "text": "The asset is not \"the team learned\" — it is something you can point at.",
-              "block_index": 30
+              "block_index": 29
             },
             {
               "slug": "capital-earns-a-return-lower-marginal-engineering-cost",
               "text": "Capital earns a return: lower marginal engineering cost. Conversion is capital formation.",
-              "block_index": 32
+              "block_index": 31
             },
             {
               "slug": "capital-depreciates-so-accumulation-cannot-be-the-objective",
               "text": "Capital depreciates; maintenance, reconciliation, and retirement manage it, so accumulation cannot be the objective.",
-              "block_index": 34
+              "block_index": 33
             },
             {
               "slug": "debt-and-capital-are-symmetric-stocks-that-compound",
               "text": "Technical debt and engineering capital are symmetric stocks — both accumulate, both change the economics of later change, both compound.",
-              "block_index": 37
+              "block_index": 36
             }
           ]
         },
         {
-          "section_id": "the-honest-gaps",
+          "section_id": "where-authority-stops",
           "level": 2,
-          "heading_text": "The Honest Gaps",
+          "heading_text": "Where Authority Stops",
           "topic_sentence": "Not every quality goal should end in a deterministic gate.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 38,
           "points": [
             {
               "slug": "where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form",
               "text": "Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use.",
-              "block_index": 41
+              "block_index": 40
             },
             {
               "slug": "the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use",
               "text": "The residual is an obligation nobody made explicit enough for the environment to use.",
-              "block_index": 44
+              "block_index": 43
             },
             {
               "slug": "an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation",
               "text": "An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment.",
-              "block_index": 47
+              "block_index": 46
             },
             {
               "slug": "observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment",
               "text": "Observed only: explicit and evaluated, yet un-gated — because a gate is a commitment.",
-              "block_index": 49
+              "block_index": 48
             },
             {
               "slug": "a-governed-obligation-carries-an-authoritative-consequence-appropriate-to-its-risk",
               "text": "A governed obligation carries an authoritative consequence appropriate to its risk; the four states are a design space, not a ladder.",
-              "block_index": 51
-            },
-            {
-              "slug": "a-missing-authorization-requirement-gives-the-shape-of-the-residual",
-              "text": "A missing authorization requirement gives the shape: with no requirement stated, a derived model faithfully records the missing check as absent.",
-              "block_index": 53
+              "block_index": 50
             },
             {
               "slug": "the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why",
               "text": "The point is not to drive every obligation to the rightmost leaf; it is to know where each sits and why — and conversion has now created an estate to govern.",
-              "block_index": 55
+              "block_index": 52
             }
           ]
         }
@@ -2229,7 +2224,7 @@
             {
               "slug": "the-graph-makes-mechanisms-compose-explicit-and-checkable",
               "text": "A governed environment is a claim that its mechanisms compose; the graph makes that claim explicit and checkable at authoring time.",
-              "block_index": 25
+              "block_index": 24
             }
           ]
         },
@@ -2239,22 +2234,22 @@
           "heading_text": "Coverage: obligations against mechanisms",
           "topic_sentence": "Interaction is only half of meta-governance.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 26,
           "points": [
             {
               "slug": "a-catalogue-and-a-graph-do-not-say-what-should-be-governed-but-is-not",
               "text": "A catalogue says what exists and a graph says where controls collide; neither says what should be governed but is not.",
-              "block_index": 29
+              "block_index": 28
             },
             {
               "slug": "coverage-is-a-requirements-traceability-problem-gap-vs-orphan",
               "text": "Coverage is a small requirements-traceability problem: an obligation with no adequate mechanism is under-governance; a mechanism with no obligation is an orphan.",
-              "block_index": 31
+              "block_index": 30
             },
             {
               "slug": "gap-is-under-governance-orphan-is-governance-debt-neither-automatically-bad",
               "text": "A gap is under-governance; an orphan is governance debt. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete.",
-              "block_index": 34
+              "block_index": 33
             }
           ]
         },
@@ -2262,29 +2257,29 @@
           "section_id": "grow-reconcile-retire",
           "level": 2,
           "heading_text": "Grow, reconcile, retire",
-          "topic_sentence": "Governance conversion and the census pull in opposite directions, and a healthy environment needs both.",
+          "topic_sentence": "Governance conversion and coverage auditing pull in opposite directions, and a healthy environment needs both.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 36,
           "points": [
             {
               "slug": "conversion-is-reactive-coverage-is-proactive-a-healthy-environment-needs-both",
               "text": "Governance conversion is reactive and coverage auditing is proactive; a healthy environment needs both.",
-              "block_index": 40
+              "block_index": 38
             },
             {
               "slug": "the-same-audit-pushes-against-permanent-accumulation-capital-is-not-the-number-of-controls",
               "text": "The same audit pushes against permanent accumulation: engineering capital is not the number of controls.",
-              "block_index": 42
+              "block_index": 40
             },
             {
               "slug": "the-meta-model-stays-honest-by-symbol-anchoring-so-the-map-cannot-drift-from-the-territory",
               "text": "The meta-model stays honest by symbol-anchoring: control entries are re-resolved to their implementations so the catalogue cannot retain controls that no longer exist.",
-              "block_index": 44
+              "block_index": 42
             },
             {
               "slug": "stop-the-recursion-unless-experience-earns-more-model-the-estate-that-exists",
               "text": "Stop the recursion unless experience earns more: a governance model can itself become bureaucracy.",
-              "block_index": 47
+              "block_index": 44
             }
           ]
         }

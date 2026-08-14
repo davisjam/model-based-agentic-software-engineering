@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- R44c REBUILD — Figure 3.4-2 "The Honest Gaps". First question = "explicit in a form the environment can use?" (NOT "modeled?"). Fold to book/assets/residual-decision-tree.svg (label kept stable: honest-gaps ref → this asset). -->
+<!-- R44c REBUILD — Figure 3.4-2 "Where Authority Stops". First question = "explicit in a form the environment can use?" (NOT "modeled?"). Fold to book/assets/residual-decision-tree.svg (label kept stable: honest-gaps ref → this asset). -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
      role="img" aria-labelledby="hgTitle hgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="hgTitle">The honest gaps: three questions place any obligation in one of four states —
+  <title id="hgTitle">Where authority stops: three questions place any obligation in one of four states —
     residual, judgment required, observed only, or governed</title>
   <desc id="hgDesc">A staircase of three questions. First: is the obligation explicit in a form the
     environment can use? No leads to RESIDUAL — a human or agent must reconstruct it. Yes leads to the
@@ -45,7 +45,7 @@
   <text x="352" y="234" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
   <rect x="120" y="274" width="250" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="245" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">JUDGMENT REQUIRED</text>
-  <text x="245" y="325" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">an honest boundary, not failed Alignment</text>
+  <text x="245" y="325" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">mechanical evaluation is inadequate</text>
 
   <!-- Q2 yes -> Q3 -->
   <path d="M610,210 L610,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
