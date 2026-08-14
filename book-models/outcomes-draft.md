@@ -45,27 +45,11 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 2.1-context-is-the-first-modeling-problem
 
 
-### Lesson 2.2-from-context-to-control
+### Lesson 2.3-behavioral
 
 
-### Lesson 2.3-the-executable-zoo
+### Lesson 2.8-system-knowledge
 
-
-### Lesson 2.4-views-are-projections
-
-
-### Lesson 2.5-modeling-structure-and-ownership
-
-
-### Lesson 2.6-modeling-behavior-and-execution
-
-
-### Lesson 2.7-modeling-measurement-and-evidence
-
-
-### Lesson 2.8-joining-models-around-a-scenario
-
-  - **[DERIVED]** (analyze) After this section, the reader can trace a single request. — _anchor: ts: Trace a single request._
 
 ## Module 3 — Alignment
 
