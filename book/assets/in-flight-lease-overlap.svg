@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2.4 Ownership primary model (part2-content-revision-260814; folds to book/assets/).
+     The in-flight lease shows that model classes OVERLAP: one represented fact answers three different
+     engineering questions at once. The lease (blue) is asked an ownership question (who owns it?), a
+     behavioral question (when does ownership expire?), and a measurement question (how much work is in
+     flight?) — all three views resolve to one shared represented fact. Grammar: blue #2f5169 = the lease
+     and its class views (the model); gray #57534e = the single shared represented fact the views classify.
+     Hand-authored (a one-to-many fan converging on a shared object, not a flowchart). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" width="720" height="440"
+     role="img" aria-labelledby="ilTitle ilDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="ilTitle">One in-flight lease participates in ownership, behavioral, and measurement models</title>
+  <desc id="ilDesc">An in-flight lease is asked three questions at once. As an ownership model: who owns this
+    work? As a behavioral model: when does that ownership expire? As a measurement model: how much work is
+    genuinely in flight? All three views resolve to one shared represented fact. Model classes classify
+    engineering questions, not mutually exclusive storage objects.</desc>
+
+  <defs>
+    <marker id="il-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="il-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <!-- lease (blue, top) -->
+  <rect x="270" y="26" width="180" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="360" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">in-flight lease</text>
+
+  <!-- fan to three class views -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#il-b)">
+    <path d="M300,78 C220,104 175,110 150,140"/>
+    <path d="M360,78 L360,140"/>
+    <path d="M420,78 C500,104 545,110 570,140"/>
+  </g>
+
+  <!-- ownership -->
+  <rect x="45" y="142" width="210" height="88" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="150" y="172" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">OWNERSHIP</text>
+  <text x="150" y="196" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">who owns</text>
+  <text x="150" y="214" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">this work?</text>
+
+  <!-- behavior -->
+  <rect x="255" y="142" width="210" height="88" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="360" y="172" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">BEHAVIOR</text>
+  <text x="360" y="196" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">when does</text>
+  <text x="360" y="214" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">ownership expire?</text>
+
+  <!-- measurement -->
+  <rect x="465" y="142" width="210" height="88" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="570" y="172" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">MEASUREMENT</text>
+  <text x="570" y="196" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">how much work</text>
+  <text x="570" y="214" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">is in flight?</text>
+
+  <!-- converge to shared represented fact (gray) -->
+  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#il-k)">
+    <path d="M150,230 C175,286 250,300 300,316"/>
+    <path d="M360,230 L360,316"/>
+    <path d="M570,230 C545,286 470,300 420,316"/>
+  </g>
+
+  <rect x="240" y="318" width="240" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="360" y="350" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">shared represented fact</text>
+
+  <!-- footer: protect the overlap point -->
+  <text x="360" y="404" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Model classes classify questions, not storage objects &#8212; one lease answers three.</text>
+</svg>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part I orientation bridge (1.2-mage-by-example; part2-content-revision-260814; folds to book/assets/).
+     "One DocAble job" as TERRITORY, not model. The path a document travels: upload -> job -> split into
+     chunks -> workers claim work -> specialized services -> repaired pieces -> merge -> validate ->
+     {remediated document, evidence/provenance} -> returned. Deliberately the WHOLE territory palette
+     (gray #57534e / ink #1c1917), NOT the blue model palette: Parts II and III will redraw selected pieces
+     of THIS path as different models. The figure earns its keep by locating the later specimens, not by
+     teaching architecture early. Hand-authored (a pipeline with two fan-out rows, not a flowchart). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 700" width="760" height="700"
+     role="img" aria-labelledby="ojTitle ojDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="ojTitle">One DocAble job, as territory rather than model</title>
+  <desc id="ojDesc">A submitted document becomes a job. The job may be split into chunks so several workers
+    process it concurrently. Workers claim work and call specialized services — generation, render, OCR,
+    and document/format machinery — when remediation needs those capabilities. Repaired pieces are merged
+    and reassembled, the result is validated, and the system returns both the remediated document and
+    evidence describing consequential changes. This is territory, not a model of DocAble's architecture.</desc>
+
+  <defs>
+    <marker id="oj-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <text x="380" y="20" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="#57534e">ONE DOCABLE JOB &#8212; TERRITORY, NOT MODEL</text>
+
+  <!-- upload -->
+  <rect x="280" y="34" width="200" height="46" rx="23" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="380" y="62" text-anchor="middle" font-size="16" fill="#1c1917">user uploads document</text>
+  <line x1="380" y1="80" x2="380" y2="104" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+
+  <!-- job -->
+  <rect x="315" y="106" width="130" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="380" y="134" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">job</text>
+  <line x1="380" y1="152" x2="380" y2="176" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <text x="392" y="170" font-size="13.5" font-style="italic" fill="#57534e">split for parallel work</text>
+
+  <!-- chunks row -->
+  <g fill="#f6f4ef" stroke="#57534e" stroke-width="2">
+    <rect x="200" y="178" width="120" height="42" rx="9"/>
+    <rect x="320" y="178" width="120" height="42" rx="9"/>
+    <rect x="440" y="178" width="120" height="42" rx="9"/>
+  </g>
+  <text x="260" y="204" text-anchor="middle" font-size="15" fill="#1c1917">chunk</text>
+  <text x="380" y="204" text-anchor="middle" font-size="15" fill="#1c1917">chunk</text>
+  <text x="500" y="204" text-anchor="middle" font-size="15" fill="#1c1917">chunk</text>
+  <line x1="380" y1="220" x2="380" y2="246" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+
+  <!-- workers claim -->
+  <rect x="290" y="248" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="380" y="275" text-anchor="middle" font-size="16" fill="#1c1917">workers claim work</text>
+  <line x1="380" y1="292" x2="380" y2="316" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <text x="392" y="310" font-size="13.5" font-style="italic" fill="#57534e">call specialized services</text>
+
+  <!-- services row (4) -->
+  <g fill="#f6f4ef" stroke="#57534e" stroke-width="2">
+    <rect x="40" y="318" width="160" height="48" rx="9"/>
+    <rect x="212" y="318" width="130" height="48" rx="9"/>
+    <rect x="354" y="318" width="110" height="48" rx="9"/>
+    <rect x="476" y="318" width="244" height="48" rx="9"/>
+  </g>
+  <text x="120" y="347" text-anchor="middle" font-size="15" fill="#1c1917">generation</text>
+  <text x="277" y="347" text-anchor="middle" font-size="15" fill="#1c1917">render</text>
+  <text x="409" y="347" text-anchor="middle" font-size="15" fill="#1c1917">OCR</text>
+  <text x="598" y="347" text-anchor="middle" font-size="15" fill="#1c1917">document / format machinery</text>
+  <line x1="380" y1="366" x2="380" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+
+  <!-- repaired pieces -->
+  <rect x="295" y="394" width="170" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="380" y="421" text-anchor="middle" font-size="16" fill="#1c1917">repaired pieces</text>
+  <line x1="380" y1="438" x2="380" y2="462" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+
+  <!-- merge -->
+  <rect x="290" y="464" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="380" y="491" text-anchor="middle" font-size="16" fill="#1c1917">merge / reassemble</text>
+  <line x1="380" y1="508" x2="380" y2="532" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+
+  <!-- validate -->
+  <rect x="315" y="534" width="130" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="380" y="561" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">validate</text>
+
+  <!-- outputs (2) -->
+  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)">
+    <path d="M340,578 C300,600 250,604 225,624"/>
+    <path d="M420,578 C460,600 510,604 535,624"/>
+  </g>
+  <rect x="90" y="626" width="270" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="225" y="654" text-anchor="middle" font-size="15.5" fill="#1c1917">remediated document</text>
+  <rect x="400" y="626" width="270" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="535" y="654" text-anchor="middle" font-size="15.5" fill="#1c1917">evidence / provenance</text>
+
+  <!-- footer: protect "territory, not model" -->
+  <text x="380" y="694" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Just enough territory to locate the models that follow &#8212; Parts II and III redraw selected pieces of this path.</text>
+</svg>

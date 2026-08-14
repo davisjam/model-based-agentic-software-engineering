@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Figure 2.6 inset (part2-content-revision-260814; folds to book/assets/).
+     A measurement model does not report a raw number; it names a quantity and the reference envelope the
+     quantity is judged against, then compares them. One MEASURED QUANTITY resolves into a current-state
+     reading and a reference envelope; the comparison of the two is the decidable fact — is the current
+     state inside the envelope? Grammar: blue #2f5169 = the modeled quantity, its two readings, and their
+     comparison. A small inset (a converging diamond, not a flow). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" width="560" height="360"
+     role="img" aria-labelledby="mqTitle mqDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mqTitle">A measured quantity is judged by comparing current state against a reference envelope</title>
+  <desc id="mqDesc">One measured quantity splits into two readings: current state and reference envelope. The
+    two converge into a comparison. A measurement model names not just the number but the envelope the number
+    is judged against.</desc>
+
+  <defs>
+    <marker id="mq-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+  </defs>
+
+  <!-- top: measured quantity -->
+  <rect x="180" y="30" width="200" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="280" y="62" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">MEASURED QUANTITY</text>
+
+  <!-- split to two readings -->
+  <path d="M240,82 C210,108 165,112 140,140" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mq-b)"/>
+  <path d="M320,82 C350,108 395,112 420,140" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mq-b)"/>
+
+  <!-- current state -->
+  <rect x="40" y="142" width="200" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="140" y="172" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">current state</text>
+  <text x="140" y="194" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">what is now</text>
+
+  <!-- reference envelope -->
+  <rect x="320" y="142" width="200" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="420" y="172" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">reference envelope</text>
+  <text x="420" y="194" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">what is allowed</text>
+
+  <!-- converge to comparison -->
+  <path d="M140,208 C165,250 235,258 262,280" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mq-b)"/>
+  <path d="M420,208 C395,250 325,258 298,280" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mq-b)"/>
+
+  <!-- comparison -->
+  <rect x="180" y="282" width="200" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="280" y="314" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">comparison</text>
+</svg>

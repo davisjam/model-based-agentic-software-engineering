@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Figure 2.8-2 concept (part2-content-revision-260814; folds to book/assets/).
+     Models are joined by identity, not forced into one universal graph. A single SYSTEM ENTITY (gray) is the
+     shared name; three blue models hang from it directly (structural, behavioral, decision); through a gray
+     "stable identity" hub the same name reaches three more (ownership, measurement, provenance). The six
+     stay heterogeneous — the connection is semantic (a shared identity) rather than syntactic (one merged
+     representation). The footer states the working rule: derive where possible, trace where necessary, and
+     check only what is decidable (the check line in accent). Grammar: gray #57534e = the system entity and
+     the stable-identity hub that join the models; blue #2f5169 = the heterogeneous typed models; rust
+     #9a3f12 = the "check only what is decidable" limit. Hand-authored (an identity-joined fan). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" width="760" height="470"
+     role="img" aria-labelledby="jiTitle jiDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="jiTitle">Six models joined by a stable identity, not collapsed into one universal graph</title>
+  <desc id="jiDesc">A single system entity, in gray, is the shared name. Three blue models hang from it:
+    structural, behavioral, decision. Through a gray stable-identity hub the same name reaches three more:
+    ownership, measurement, provenance. The models stay heterogeneous; they are joined by shared identity,
+    not merged into one representation. The working rule: derive where possible, trace where necessary, check
+    only what is decidable.</desc>
+
+  <defs>
+    <marker id="ji-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="ji-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <!-- SYSTEM ENTITY (gray) -->
+  <rect x="290" y="24" width="180" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <text x="380" y="55" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">SYSTEM ENTITY</text>
+
+  <!-- fan to first three models (blue) -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ji-b)">
+    <path d="M310,74 C210,100 155,106 130,132"/>
+    <path d="M380,74 L380,132"/>
+    <path d="M450,74 C550,100 605,106 630,132"/>
+  </g>
+  <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
+    <rect x="35" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="130" y="163">structural model</text>
+    <rect x="285" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="380" y="163">behavioral model</text>
+    <rect x="535" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="630" y="163">decision model</text>
+  </g>
+
+  <!-- converge to stable identity hub (gray) -->
+  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#ji-k)">
+    <path d="M130,182 C155,220 310,230 320,246"/>
+    <path d="M380,182 L380,246"/>
+    <path d="M630,182 C605,220 450,230 440,246"/>
+  </g>
+  <rect x="270" y="248" width="220" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <text x="380" y="278" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">stable identity</text>
+
+  <!-- fan to second three models (blue) -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ji-b)">
+    <path d="M320,296 C210,322 155,328 130,354"/>
+    <path d="M380,296 L380,354"/>
+    <path d="M440,296 C550,322 605,328 630,354"/>
+  </g>
+  <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
+    <rect x="35" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="130" y="385">ownership model</text>
+    <rect x="285" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="380" y="385">measurement model</text>
+    <rect x="535" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="630" y="385">provenance model</text>
+  </g>
+
+  <!-- footer: the working rule (check line in rust) -->
+  <text x="380" y="436" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">derive where possible &#183; trace where necessary &#183; <tspan fill="#9a3f12" font-weight="700">check only what is decidable</tspan></text>
+  <text x="380" y="458" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Heterogeneous models joined by shared identity &#8212; not one universal graph.</text>
+</svg>

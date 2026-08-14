@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Figure 2.8-2.8.3 concept (part2-content-revision-260814; folds to book/assets/).
+     Three ways a model and the territory relate, one panel each. DERIVE: where the implementation is the
+     source of truth, read the model up from it (gray impl -> blue model). GENERATE: where the model is
+     authoritative, project downstream artifacts from it (blue model -> gray impl/config). TRACE: where
+     neither derives fully from the other, hold them by traceability and check the predicates that are
+     mechanically decidable — the rust drift-check on the two-way link. Grammar: gray #57534e = territory/
+     implementation; blue #2f5169 = model; rust #9a3f12 = the drift check on the maintained correspondence.
+     Hand-authored (three small map-territory panels, not a flow). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" width="960" height="300"
+     role="img" aria-labelledby="dgTitle dgDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="dgTitle">Derive, generate, trace: three relations between a model and the territory</title>
+  <desc id="dgDesc">Three panels. Derive: implementation in gray flows up to a model in blue, when the
+    implementation is the source of truth. Generate: a model in blue projects down to implementation or
+    configuration in gray, when the model is authoritative. Trace: a model and territory are linked two-ways
+    with a rust drift-check, when neither can be fully derived from the other, checking only the predicates
+    that are mechanically decidable.</desc>
+
+  <defs>
+    <marker id="dg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="dg-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="dg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- dividers -->
+  <line x1="320" y1="44" x2="320" y2="252" stroke="#d9d3c8" stroke-width="1.6"/>
+  <line x1="640" y1="44" x2="640" y2="252" stroke="#d9d3c8" stroke-width="1.6"/>
+
+  <!-- ===== Panel 1: DERIVE ===== -->
+  <text x="160" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">DERIVE</text>
+  <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation is source of truth</text>
+  <rect x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="160" y="219" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">implementation</text>
+  <line x1="160" y1="188" x2="160" y2="128" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dg-b)"/>
+  <text x="172" y="162" font-size="13.5" font-style="italic" fill="#2f5169">derive</text>
+  <rect x="55" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="160" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
+
+  <!-- ===== Panel 2: GENERATE ===== -->
+  <text x="480" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">GENERATE</text>
+  <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model is authoritative</text>
+  <rect x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="480" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
+  <line x1="480" y1="128" x2="480" y2="188" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dg-k)"/>
+  <text x="492" y="162" font-size="13.5" font-style="italic" fill="#2f5169">generate</text>
+  <rect x="375" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="219" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">implementation / config</text>
+
+  <!-- ===== Panel 3: TRACE ===== -->
+  <text x="800" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE</text>
+  <text x="800" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">neither fully derives the other</text>
+  <rect x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="800" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
+  <!-- two-way link with rust drift check -->
+  <line x1="800" y1="136" x2="800" y2="180" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#dg-r)" marker-end="url(#dg-r)"/>
+  <text x="812" y="163" font-size="13" font-weight="700" fill="#9a3f12">drift check</text>
+  <rect x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="800" y="211" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">territory</text>
+
+  <!-- footer: protect the point -->
+  <text x="480" y="284" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Derive where the code leads, generate where the model leads, trace-and-check where neither fully derives the other.</text>
+</svg>

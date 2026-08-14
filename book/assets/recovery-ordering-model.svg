@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2.3 Behavioral primary model (part2-content-revision-260814; folds to book/assets/).
+     DocAble's recovery-ordering model: three states in legal sequence (FALLBACK_STAGED -> FALLBACK_UPLOADED
+     -> DB_UPDATED) and the single most important fact — the edge that does NOT exist. Recovery may not
+     publish durable state (DB_UPDATED) naming a fallback artifact it has not yet made durable (skipping
+     UPLOADED). Grammar: blue #2f5169 = the legal states/transitions (the behavioral model); rust #9a3f12 =
+     the forbidden edge STAGED -> DB_UPDATED, the temporal obligation the model makes explicit. Hand-authored
+     (a state chain with a forbidden bypass arc, not a flowchart). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 470" width="680" height="470"
+     role="img" aria-labelledby="roTitle roDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="roTitle">Recovery-ordering model: three legal states and one forbidden edge</title>
+  <desc id="roDesc">Three states in legal order. FALLBACK_STAGED transitions on upload success to
+    FALLBACK_UPLOADED, which transitions when durable state is updated to DB_UPDATED. The load-bearing fact
+    is a forbidden edge: FALLBACK_STAGED may not go directly to DB_UPDATED. Durable state may not name an
+    artifact recovery has not yet published.</desc>
+
+  <defs>
+    <marker id="ro-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="ro-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <text x="285" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">RECOVERY MODEL</text>
+
+  <!-- state 1 -->
+  <rect x="150" y="46" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="285" y="79" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">FALLBACK_STAGED</text>
+  <line x1="285" y1="100" x2="285" y2="158" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ro-b)"/>
+  <text x="297" y="134" font-size="14" font-style="italic" fill="#57534e">upload succeeds</text>
+
+  <!-- state 2 -->
+  <rect x="150" y="160" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="285" y="193" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">FALLBACK_UPLOADED</text>
+  <line x1="285" y1="214" x2="285" y2="272" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ro-b)"/>
+  <text x="297" y="248" font-size="14" font-style="italic" fill="#57534e">durable state updated</text>
+
+  <!-- state 3 -->
+  <rect x="150" y="274" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="285" y="307" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">DB_UPDATED</text>
+
+  <!-- forbidden bypass edge (rust), STAGED -> DB_UPDATED down the right side -->
+  <path d="M420,73 C560,110 560,250 442,296" fill="none" stroke="#9a3f12" stroke-width="2.6"
+        stroke-dasharray="9 6" marker-end="url(#ro-r)"/>
+  <!-- X mark on the arc -->
+  <g stroke="#9a3f12" stroke-width="3.4" stroke-linecap="round">
+    <line x1="547" y1="176" x2="569" y2="198"/>
+    <line x1="569" y1="176" x2="547" y2="198"/>
+  </g>
+  <text x="558" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">NOT LEGAL</text>
+  <text x="558" y="228" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">may not skip</text>
+  <text x="558" y="245" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">durable publication</text>
+
+  <!-- footer: protect the point -->
+  <text x="340" y="384" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The load-bearing fact is the edge that does not exist.</text>
+  <text x="340" y="408" text-anchor="middle" font-size="15.5" font-style="italic" fill="#9a3f12">Fallback publication precedes the durable state that refers to it.</text>
+</svg>

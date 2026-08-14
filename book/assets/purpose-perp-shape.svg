@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Figure 2.8-2.8.2 concept (part2-content-revision-260814; folds to book/assets/).
+     Purpose and representation shape are orthogonal axes. What a model is FOR (its purpose — structure,
+     behavior, decision, ownership) is chosen independently of the SHAPE used to encode it (registry, state
+     machine, contract). The crossing lines show the relation is many-to-many: one purpose can be carried by
+     several shapes, and one shape can serve several purposes. Grammar: blue #2f5169 = the PURPOSE axis (the
+     engineering question the model answers); gray #57534e = the REPRESENTATION SHAPE axis (the encoding
+     form). Hand-authored (two orthogonal axes with crossing links, not a flow). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" width="900" height="360"
+     role="img" aria-labelledby="ppTitle ppDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="ppTitle">Purpose is perpendicular to representation shape: a many-to-many relation</title>
+  <desc id="ppDesc">Two orthogonal axes. The gray representation-shape axis on top — registry, state machine,
+    contract. The blue purpose axis on the bottom — structure, behavior, decision, ownership. Crossing lines
+    connect them many-to-many: one purpose can use several shapes, one shape can serve several purposes. What
+    a model is for is chosen independently of the form used to encode it.</desc>
+
+  <!-- top axis: REPRESENTATION SHAPE (gray) -->
+  <text x="450" y="38" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">REPRESENTATION SHAPE &#183; how it is encoded</text>
+  <g font-size="15.5" font-weight="700" text-anchor="middle" fill="#57534e">
+    <rect x="150" y="54" width="180" height="48" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+    <text x="240" y="84">registry</text>
+    <rect x="360" y="54" width="180" height="48" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+    <text x="450" y="84">state machine</text>
+    <rect x="570" y="54" width="180" height="48" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+    <text x="660" y="84">contract</text>
+  </g>
+
+  <!-- crossing many-to-many links -->
+  <g stroke="#9a3f12" stroke-width="1.7" opacity="0.85">
+    <line x1="240" y1="102" x2="150" y2="232"/>
+    <line x1="240" y1="102" x2="360" y2="232"/>
+    <line x1="450" y1="102" x2="360" y2="232"/>
+    <line x1="450" y1="102" x2="560" y2="232"/>
+    <line x1="450" y1="102" x2="150" y2="232"/>
+    <line x1="660" y1="102" x2="560" y2="232"/>
+    <line x1="660" y1="102" x2="760" y2="232"/>
+    <line x1="240" y1="102" x2="560" y2="232"/>
+  </g>
+  <text x="792" y="170" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">many-to-many</text>
+
+  <!-- bottom axis: PURPOSE (blue) -->
+  <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
+    <rect x="65" y="234" width="170" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="150" y="264">structure</text>
+    <rect x="275" y="234" width="170" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="360" y="264">behavior</text>
+    <rect x="475" y="234" width="170" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="560" y="264">decision</text>
+    <rect x="675" y="234" width="170" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="760" y="264">ownership</text>
+  </g>
+  <text x="450" y="304" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">PURPOSE &#183; what it answers</text>
+
+  <!-- footer: protect the point -->
+  <text x="450" y="342" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">What a model is for is chosen independently of the shape used to encode it.</text>
+</svg>

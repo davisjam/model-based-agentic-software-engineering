@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2.5 Decision primary model (part2-content-revision-260814; folds to book/assets/).
+     DocAble's service-flow model: a declared graph of which services MAY communicate. The Internet reaches
+     web; web reaches worker, document editor, and other; worker reaches generation, render, and OCR. An
+     edge means the relationship is part of the declared architecture; an absent edge means the model does
+     not declare such a relationship (not that it is physically impossible — that is Part III's question).
+     Grammar: blue #2f5169 = declared edges and the services they connect (the decision model); the Internet
+     node is gray #57534e as an external entity, not part of the declared internal flow. Hand-authored (a
+     declared directed graph, not an auto-laid flowchart). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" width="720" height="470"
+     role="img" aria-labelledby="sfTitle sfDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="sfTitle">DocAble's service-flow model: which services may communicate</title>
+  <desc id="sfDesc">A declared directed graph. The Internet reaches the web service. Web reaches worker,
+    document editor, and other. Worker reaches generation, render, and OCR. Each edge is a declared,
+    permitted relationship; an absent edge means the model does not declare that relationship.</desc>
+
+  <defs>
+    <marker id="sf-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="sf-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+  </defs>
+
+  <text x="360" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">SERVICE-FLOW MODEL</text>
+
+  <!-- Internet (gray, external) -->
+  <rect x="290" y="42" width="140" height="42" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="360" y="69" text-anchor="middle" font-size="16" fill="#1c1917">Internet</text>
+  <line x1="360" y1="84" x2="360" y2="112" stroke="#57534e" stroke-width="2" marker-end="url(#sf-k)"/>
+
+  <!-- web (blue) -->
+  <rect x="295" y="114" width="130" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="360" y="142" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">web</text>
+
+  <!-- web -> {worker, document editor, other} -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sf-b)">
+    <path d="M320,160 C250,186 210,192 180,214"/>
+    <path d="M360,160 L360,214"/>
+    <path d="M400,160 C470,186 510,192 540,214"/>
+  </g>
+
+  <rect x="105" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="180" y="245" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">worker</text>
+
+  <rect x="285" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="360" y="239" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">document</text>
+  <text x="360" y="256" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">editor</text>
+
+  <rect x="465" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="540" y="245" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">other</text>
+
+  <!-- worker -> {generation, render, OCR} -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sf-b)">
+    <path d="M155,264 C110,300 80,308 80,330"/>
+    <path d="M180,264 L190,330"/>
+    <path d="M210,264 C270,300 300,308 300,330"/>
+  </g>
+
+  <rect x="25" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="80" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">generation</text>
+
+  <rect x="135" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="190" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">render</text>
+
+  <rect x="245" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="300" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">OCR</text>
+
+  <!-- footer: protect the point -->
+  <text x="360" y="418" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">An edge means the relationship is declared architecture.</text>
+  <text x="360" y="442" text-anchor="middle" font-size="15.5" font-style="italic" fill="#57534e">An absent edge means the model does not declare it &#8212; not that it is impossible.</text>
+</svg>
