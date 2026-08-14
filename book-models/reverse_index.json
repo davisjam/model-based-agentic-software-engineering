@@ -5489,6 +5489,16 @@
         }
       ]
     },
+    "section-id:attach-reactions-to-lifecycle-events": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "4.4-operating-mage::attach-reactions-to-lifecycle-events",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:audit-drain-promote": {
       "kind": "section-id",
       "dependents": [
@@ -5505,16 +5515,6 @@
         {
           "view": "outline",
           "element": "6.6-education-research-open-problems::authority-follows-competence",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:bind-reactions-to-lifecycle-events": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "4.4-operating-mage::bind-reactions-to-lifecycle-events",
           "role": "section-anchor"
         }
       ]

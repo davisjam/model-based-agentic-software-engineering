@@ -2991,9 +2991,9 @@
           ]
         },
         {
-          "section_id": "bind-reactions-to-lifecycle-events",
+          "section_id": "attach-reactions-to-lifecycle-events",
           "level": 2,
-          "heading_text": "Bind reactions to lifecycle events",
+          "heading_text": "Attach Reactions to Lifecycle Events",
           "topic_sentence": "A lifecycle model says which states matter.",
           "id_source": "derived",
           "block_index": 23,
@@ -3019,7 +3019,7 @@
           "section_id": "externalize-operational-judgment",
           "level": 2,
           "heading_text": "Externalize operational judgment",
-          "topic_sentence": "A good runbook does more than list commands.",
+          "topic_sentence": "A runbook preserves how an experienced engineer reasons through a recurring situation, including which steps are mechanical and which require judgment.",
           "id_source": "derived",
           "block_index": 34,
           "points": [
