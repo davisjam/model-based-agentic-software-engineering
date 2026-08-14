@@ -7,7 +7,7 @@
     "derived_ids": 193,
     "missing_topic_sentence": 7,
     "sections_drained": 137,
-    "paragraph_points": 482
+    "paragraph_points": 480
   },
   "chapters": [
     {
@@ -4035,27 +4035,27 @@
           "heading_text": "Provenance became a lookup",
           "topic_sentence": "**Problem.** A corrupted document once took four cross-file hops to trace back to the pass that wrote it.",
           "id_source": "derived",
-          "block_index": 67,
+          "block_index": 66,
           "points": [
             {
               "slug": "the-simplest-forensic-question-was-expensive",
               "text": "The system could not cheaply answer which step wrote a bad element.",
-              "block_index": 68
+              "block_index": 67
             },
             {
               "slug": "bypasses-produced-empty-changelog-rows",
               "text": "Eleven sites bypassed the stamp helper and shipped empty changelog rows for a whole class of jobs.",
-              "block_index": 71
+              "block_index": 70
             },
             {
               "slug": "the-changelog-became-a-projection-of-stamps",
               "text": "Stamps became mandatory and the changelog a derived projection of them, the wiring check landed warn-then-block.",
-              "block_index": 73
+              "block_index": 72
             },
             {
               "slug": "audit-drain-promote-is-the-reusable-move",
               "text": "Representation made the obligation observable; migration made it feasible; gating made it authoritative.",
-              "block_index": 75
+              "block_index": 74
             }
           ]
         },
@@ -4065,37 +4065,27 @@
           "heading_text": "Measurement: the story that stops before the gate",
           "topic_sentence": "**Problem.** A document's repair stalled in silence.",
           "id_source": "derived",
-          "block_index": 77,
+          "block_index": 76,
           "points": [
             {
               "slug": "a-timeout-spoke-only-after-the-budget-was-spent",
               "text": "A silent hang failed after eight minutes with an opaque message and a progress bar frozen at thirty-eight percent.",
-              "block_index": 78
+              "block_index": 77
             },
             {
               "slug": "the-incident-created-the-model-and-its-calibration",
               "text": "The incident forced a provisional per-chunk worst-case model against the job budget, seeded and kept as external data.",
-              "block_index": 81
+              "block_index": 80
             },
             {
               "slug": "the-history-stops-before-the-gate-on-purpose",
               "text": "The history stops before the gate on purpose: the bound is not calibrated strongly enough to deserve authority.",
-              "block_index": 84
+              "block_index": 83
             },
             {
               "slug": "measurement-earns-authority-when-the-number-is-deterministic",
               "text": "The dual case: a deterministic cold-start number DID earn authority, feeding a topology model that drove a re-architecture from 4,057 ms to 109 ms.",
-              "block_index": 86
-            },
-            {
-              "slug": "a-null-result-can-be-honest-only-at-the-level-the-effect-lives",
-              "text": "A null-result ablation found no effect only because both arms scored at the ceiling — measure the effect where it lives.",
-              "block_index": 88
-            },
-            {
-              "slug": "evidence-is-honest-about-which-rung-it-reaches",
-              "text": "Deployed, cleared checkers, and measured fidelity are three different rungs, and none is end-user access.",
-              "block_index": 90
+              "block_index": 85
             }
           ]
         },
@@ -4103,14 +4093,14 @@
           "section_id": "a-conversion-that-was-almost-mechanical",
           "level": 2,
           "heading_text": "A conversion that was almost mechanical",
-          "topic_sentence": "Some conversions were almost embarrassingly mechanical.",
+          "topic_sentence": "Some conversions were mechanical.",
           "id_source": "derived",
-          "block_index": 92,
+          "block_index": 87,
           "points": [
             {
               "slug": "some-conversions-were-almost-mechanical",
-              "text": "Some conversions were almost embarrassingly mechanical: a repeated review finding became a blocking lint.",
-              "block_index": 93
+              "text": "Some conversions were mechanical: a repeated review finding became a blocking lint.",
+              "block_index": 88
             }
           ]
         },
@@ -4118,19 +4108,19 @@
           "section_id": "not-every-useful-structure-has-an-incident-arc",
           "level": 2,
           "heading_text": "Not every useful structure has an incident arc",
-          "topic_sentence": "The chapter would be less credible if every piece of engineering followed the same five-beat story.",
+          "topic_sentence": "Not every useful structure followed an incident arc.",
           "id_source": "derived",
-          "block_index": 96,
+          "block_index": 91,
           "points": [
             {
               "slug": "one-model-was-confirmed-not-strengthened",
               "text": "Some structure was designed cleanly from known obligations and simply held — reported as confirmation, not conversion.",
-              "block_index": 97
+              "block_index": 92
             },
             {
               "slug": "the-case-contains-both-ex-post-and-ex-ante-paths",
               "text": "The originating case contains both paths: some assets forged in incidents, others designed from known obligations and simply survived.",
-              "block_index": 99
+              "block_index": 94
             }
           ]
         },
@@ -4140,32 +4130,32 @@
           "heading_text": "What this case supports",
           "topic_sentence": "Step back from the individual incidents and one pattern does recur.",
           "id_source": "derived",
-          "block_index": 101,
+          "block_index": 96,
           "points": [
             {
               "slug": "agentic-velocity-amplifies-the-surrounding-engineering-judgment-both-ways",
               "text": "Agentic velocity amplified the quality of the surrounding engineering judgment in both directions.",
-              "block_index": 102
+              "block_index": 97
             },
             {
               "slug": "the-cases-show-several-forms-of-inheritance",
               "text": "The cases show several forms of inheritance — typed seam, deterministic check, behavioral model, derived provenance, provisional model — some gated, some not.",
-              "block_index": 104
+              "block_index": 99
             },
             {
               "slug": "the-claim-is-bounded-one-engineer-one-ecosystem-no-controlled-comparison",
               "text": "The claim is bounded: one longitudinal case, one primary engineer directing a fleet, one model ecosystem, no controlled comparison.",
-              "block_index": 106
+              "block_index": 101
             },
             {
               "slug": "what-the-case-can-establish-is-mechanism-and-sequence",
               "text": "What the case can establish is mechanism and sequence: these pressures, these responses, these structures that persisted under change.",
-              "block_index": 108
+              "block_index": 103
             },
             {
               "slug": "part-vi-changes-the-evidentiary-question",
               "text": "Part VI leaves the originating case and asks whether independently built systems expose the same pressures and moves.",
-              "block_index": 110
+              "block_index": 105
             }
           ]
         }
