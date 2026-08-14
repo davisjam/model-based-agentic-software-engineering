@@ -7,7 +7,7 @@
     "derived_ids": 193,
     "missing_topic_sentence": 7,
     "sections_drained": 137,
-    "paragraph_points": 487
+    "paragraph_points": 486
   },
   "chapters": [
     {
@@ -1906,8 +1906,8 @@
               "block_index": 11
             },
             {
-              "slug": "words-alone-are-a-probability-flip-so-determinize-them-into-a-check",
-              "text": "Words are a probability flip; determinize them into a check.",
+              "slug": "a-soft-instruction-becomes-alignment-only-when-the-environment-can-act-on-it",
+              "text": "A soft instruction becomes Alignment only when the environment can act on it.",
               "block_index": 15
             },
             {
@@ -1916,8 +1916,8 @@
               "block_index": 17
             },
             {
-              "slug": "a-test-harness-bundles-sensor-validator-and-gate-name-the-bundle",
-              "text": "A test harness bundles all three door-and-work roles; name the bundle, don't bend a role.",
+              "slug": "a-ci-suite-bundles-three-roles-without-collapsing-the-distinction",
+              "text": "A CI suite bundles sensor, validator, and gate without collapsing the distinction among them.",
               "block_index": 22
             },
             {
@@ -1981,24 +1981,19 @@
           "section_id": "the-four-roles-across-the-models",
           "level": 2,
           "heading_text": "The four roles, across the models",
-          "topic_sentence": "The four roles are easiest to trust once the models from the last Part fill them in.",
+          "topic_sentence": "The service-flow model shows the complete loop.",
           "id_source": "derived",
           "block_index": 51,
           "points": [
             {
-              "slug": "the-last-parts-models-fill-the-four-roles",
-              "text": "One flagship model runs the full loop; the rest are variation, and three seams are worked elsewhere.",
+              "slug": "the-service-flow-model-runs-the-complete-four-role-loop",
+              "text": "The service-flow model runs the complete loop: a typed seam constrains, a scan senses, a diff validates, a gate blocks.",
               "block_index": 53
             },
             {
-              "slug": "the-service-flow-model-runs-the-complete-four-role-loop",
-              "text": "The service-flow model runs the complete loop: all four roles, no gap.",
+              "slug": "other-models-emphasize-different-subsets-of-the-four-roles",
+              "text": "Other models emphasize different subsets of the four roles.",
               "block_index": 55
-            },
-            {
-              "slug": "the-compact-matrix-shows-variation-not-a-second-census",
-              "text": "The matrix shows each other model coming up a role short or long — variation, not a second census.",
-              "block_index": 57
             }
           ]
         },
@@ -2008,27 +2003,27 @@
           "heading_text": "What counts as a mechanism",
           "topic_sentence": "Keep **policy**, **guidance**, and **governance mechanism** separate.",
           "id_source": "derived",
-          "block_index": 61,
+          "block_index": 58,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; authority begins when something acts.",
-              "block_index": 63
+              "block_index": 60
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "The same artifact can play several roles; the model is the representation, the machinery the authority.",
-              "block_index": 65
+              "block_index": 62
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "Implementations bundle roles; name them, don't stretch the terms.",
-              "block_index": 67
+              "block_index": 64
             },
             {
               "slug": "represented-intent-becomes-authoritative-through-one-of-four-roles",
               "text": "Leave-with: intent becomes authority through one of four roles; next, where the mechanisms come from.",
-              "block_index": 72
+              "block_index": 69
             }
           ]
         }
