@@ -7,7 +7,7 @@
     "derived_ids": 193,
     "missing_topic_sentence": 7,
     "sections_drained": 137,
-    "paragraph_points": 484
+    "paragraph_points": 482
   },
   "chapters": [
     {
@@ -3706,7 +3706,7 @@
             },
             {
               "slug": "docable-narrowed-repair-into-a-small-action-surface",
-              "text": "DocAble narrowed document repair into a small action surface and used both sides of the Alignment Thesis.",
+              "text": "The architecture narrows probabilistic work into a small action surface: typed document models own mutation, deterministic machinery owns workflow and decidable checks, fidelity validation covers properties visible only after transformation.",
               "block_index": 12
             }
           ]
@@ -3715,13 +3715,13 @@
           "section_id": "model-as-bounded-subroutine",
           "level": 2,
           "heading_text": "The model as a bounded subroutine",
-          "topic_sentence": "DocAble uses frontier models where the task genuinely requires probabilistic interpretation, but it does not let that component own the workflow around itself.",
+          "topic_sentence": "MAGE applies at two scales in this case.",
           "id_source": "explicit",
           "block_index": 14,
           "points": [
             {
               "slug": "model-is-a-bounded-subroutine",
-              "text": "Deterministic code decides when interpretation is needed, packages a bounded input, requires a typed output, and evaluates the candidate before incorporating it.",
+              "text": "MAGE applies at two scales: coding agents act on the engineering system, frontier models run inside the product; the model is a bounded probabilistic subroutine that deterministic code calls, constrains to a typed output, and evaluates before incorporating.",
               "block_index": 16
             },
             {
@@ -3731,12 +3731,12 @@
             },
             {
               "slug": "proof-checking-analogy-is-useful-but-limited",
-              "text": "The analogy to proof checking is useful but limited: the validator is not a proof kernel; its value is that the producing component does not define success for itself.",
+              "text": "The architecture resembles proof checking in one limited respect: a powerful producer is separated from the smaller mechanism that decides whether its evidence suffices for admission.",
               "block_index": 20
             },
             {
               "slug": "agents-are-the-same-boundary-at-a-larger-grain",
-              "text": "The coding agents pose the same trust-boundary problem at a larger grain, but the full MAGE response adds more than typed I/O.",
+              "text": "The coding agents pose the same trust-boundary problem at a larger grain; the bounded subroutine is MAGE inside the product, and the rest of the book applies the same stance to the process that builds it.",
               "block_index": 23
             }
           ]
@@ -3771,7 +3771,7 @@
             },
             {
               "slug": "a-protection-boundary-works-only-over-the-paths-that-cross-it",
-              "text": "A file path crossed a service boundary; a typed client made the mistake unrepresentable, and a human review found a bypass the tests missed — a boundary works only over the paths that actually cross it.",
+              "text": "A file path crossed a service boundary; a typed client made the mistake unrepresentable, and a human review found a bypass the tests missed — a protection boundary only governs the paths that cross it.",
               "block_index": 36
             }
           ]
@@ -3845,24 +3845,14 @@
           "section_id": "delegation-climbed-as-far-as-the-environment-carried-it",
           "level": 2,
           "heading_text": "Delegation climbed as far as the environment carried it",
-          "topic_sentence": "The project began with one human reading every line and ended with most implementation moving through an environment I primarily inspected through models, evidence, and exceptions.",
+          "topic_sentence": "Delegation increased as the environment absorbed work that direct review had carried: system knowledge through representation, repeatable admission through authority.",
           "id_source": "derived",
           "block_index": 66,
           "points": [
             {
-              "slug": "no-rung-was-planned-as-a-stage-of-mage",
-              "text": "The project began with one human reading every line and ended with most implementation moving through an environment inspected through models, evidence, and exceptions; no rung was planned.",
-              "block_index": 68
-            },
-            {
               "slug": "delegation-depends-on-what-the-environment-can-carry",
-              "text": "Representation determines which larger questions no longer require reconstruction; authority determines which repeatable obligations no longer require human admission; human judgment fills the remaining gap.",
-              "block_index": 70
-            },
-            {
-              "slug": "the-case-shows-why-the-pieces-exist",
-              "text": "Parts II–IV present the clean method; the case shows why those pieces exist and why they did not arrive as one package.",
-              "block_index": 72
+              "text": "Delegation increased as the environment absorbed system knowledge (representation) and repeatable admission (authority); a weak model or weak controls pulled the operator back into tactical work; human judgment stayed at the unresolved edge.",
+              "block_index": 68
             }
           ]
         }
@@ -3870,7 +3860,7 @@
       "preamble_points": [
         {
           "slug": "chapter-asks-what-changed-in-the-division-of-labor",
-          "text": "The Build gave chronology; this chapter asks what changed in the division of engineering labor, and reconstructs the delegation staircase.",
+          "text": "The Build gave chronology; this chapter reconstructs the changing division of engineering labor as the environment matured.",
           "block_index": 1
         },
         {
