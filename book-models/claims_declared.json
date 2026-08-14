@@ -53,8 +53,7 @@
       "home": "reorganization-of-se",
       "asserted_at": [
         "reorganization-of-se",
-        "models-and-the-semantic-gap",
-        "the-executable-zoo"
+        "models-and-the-semantic-gap"
       ],
       "contradicted_by": "Framing models as only a context-savings, or only a quality tool.",
       "watch_phrases": [],
@@ -378,9 +377,9 @@
         "the structure — records, edges, state machines — that names the parts and gives tools something to read",
         "the checked invariants — the predicates a gate holds true, which complete the model's value rather than replace the schema"
       ],
-      "home": "the-executable-zoo",
+      "home": "scenarios-and-the-joined-model",
       "asserted_at": [
-        "the-executable-zoo"
+        "scenarios-and-the-joined-model"
       ],
       "contradicted_by": "Prose that treats a model's schema ALONE as its whole value — counting an unchecked structure as a finished model — OR that dismisses the schema as worthless, denying that the structure carries value the invariants complete.",
       "watch_phrases": [

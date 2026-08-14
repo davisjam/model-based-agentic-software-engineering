@@ -54,7 +54,9 @@ EXPECT_CORE = 9
 EXPECT_LOCAL = 6
 EXPECT_OVERLAPS = 0
 #: The ratified slogan split (by scope): invoke-by-name canonicals / commandments / used-once lines.
-EXPECT_SLOGANS = 8
+#: 7 after the one-model-class-per-chapter reconstruction retired the 'one-trunk-five-views' (4+1) slogan,
+#: which the six-class working ontology supersedes.
+EXPECT_SLOGANS = 7
 EXPECT_COMMANDMENTS = 0
 EXPECT_USED_ONCE = 1
 

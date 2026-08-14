@@ -28,12 +28,12 @@
       "create": 16
     },
     "outcomes_with_elaborative_units": 15,
-    "elaborative_links": 21,
-    "units_serving_as_elaborative": 18,
-    "sections_total": 203,
+    "elaborative_links": 20,
+    "units_serving_as_elaborative": 17,
+    "sections_total": 180,
     "sections_primary_of_an_outcome": 27,
     "modules": 7,
-    "lessons": 34
+    "lessons": 31
   },
   "taxonomy": {
     "know": [
@@ -158,27 +158,12 @@
             "section_outcomes": []
           },
           {
-            "lesson": "2.2-from-context-to-control",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "2.3-the-executable-zoo",
+            "lesson": "2.3-behavioral",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
             "lesson": "2.4-views-are-projections",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "2.5-modeling-structure-and-ownership",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "2.6-modeling-behavior-and-execution",
             "own_outcomes": [],
             "section_outcomes": []
           },
@@ -530,6 +515,21 @@
       "gap_note": null
     },
     {
+      "outcome_id": "context-is-the-first-modeling-problem::explain-why-a-fleet-pays-for-free-the-modeling-e",
+      "granularity": "chapter",
+      "primary_unit": "context-is-the-first-modeling-problem",
+      "secondary_units": [
+        "scenarios-and-the-joined-model"
+      ],
+      "verb": "explain",
+      "obj": "why a fleet pays for free the modeling expense that once buried MBSE",
+      "statement": "After this chapter, the reader can explain why the standing cost that kept explicit models secondary in code-centric practice is one an agent fleet now absorbs, so modeling becomes an economical first move.",
+      "bloom": "understand",
+      "provenance": "declared",
+      "anchor": "Part-II intro: maintaining another representation carried a standing cost; commodity intelligence changes that economics.",
+      "gap_note": null
+    },
+    {
       "outcome_id": "education-research-open-problems::evaluate-why-studying-a-governed-environment-dema",
       "granularity": "chapter",
       "primary_unit": "education-research-open-problems",
@@ -708,7 +708,6 @@
       "granularity": "chapter",
       "primary_unit": "models-and-the-semantic-gap",
       "secondary_units": [
-        "the-executable-zoo",
         "part-3"
       ],
       "verb": "explain",
@@ -795,21 +794,6 @@
       "bloom": "understand",
       "provenance": "derived",
       "anchor": "point: guidance-influences-behavior-authority-constrains-consequences / authority-can-act-at-several-boundaries-choose-where-the-obligation-is-visible / the-four-boundaries-do-not-form-a-monotonic-scale",
-      "gap_note": null
-    },
-    {
-      "outcome_id": "the-executable-zoo::explain-why-a-fleet-pays-for-free-the-modeling-e",
-      "granularity": "chapter",
-      "primary_unit": "the-executable-zoo",
-      "secondary_units": [
-        "scenarios-and-the-joined-model"
-      ],
-      "verb": "explain",
-      "obj": "why a fleet pays for free the modeling expense that once buried MBSE",
-      "statement": "After this chapter, the reader can explain why the cost that sank classical MBSE is one an agent fleet absorbs, and read Kruchten's 4+1 as the spine of the model zoo.",
-      "bloom": "understand",
-      "provenance": "declared",
-      "anchor": "Section titles 'the-expense-that-buried-mbse-is-the-one-a-fleet-pays-for-free' + 'kruchten-s-4-1-promoted-...-to-the-spine'.",
       "gap_note": null
     },
     {

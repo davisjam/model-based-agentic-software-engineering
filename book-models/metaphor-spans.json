@@ -6,7 +6,7 @@
     "core": 9,
     "local": 6,
     "overlaps": 0,
-    "slogans": 8,
+    "slogans": 7,
     "commandments": 0,
     "used_once": 1
   },
@@ -319,7 +319,7 @@
         "id": "models-help-reason"
       },
       "introduced_at": {
-        "label": "the-executable-zoo",
+        "label": "scenarios-and-the-joined-model",
         "anchor": ""
       },
       "payoff": "The governed channel the agents reason across between code and authored models — traceability edges plus drift checks, kept as one derived source, not a drifting snapshot.",
@@ -457,28 +457,6 @@
     },
     {
       "kind": "slogan",
-      "name": "One trunk, five views",
-      "slug": "one-trunk-five-views",
-      "canonical": "One trunk, five views.",
-      "elaborates": {
-        "model": "big-ideas",
-        "id": "modeling-thesis"
-      },
-      "scope": "invoke-by-name",
-      "ration_budget": 3,
-      "home": {
-        "label": "the-executable-zoo",
-        "anchor": ""
-      },
-      "competitors": [
-        "one schema worn five ways",
-        "one architecture worn five ways",
-        "every view is one architecture"
-      ],
-      "notes": "NEW (Part-3 revision). The Model-Zoo / 4+1 framing: one core architecture projected as five views. Elaborates the Modeling-Thesis Big-Idea (the model-zoo metaphor's namespace); no other invoke-by-name slogan lands on modeling-thesis, so no competing-canonical. Anchor empty until the Part-3 fix-wave marks the canonical landing."
-    },
-    {
-      "kind": "slogan",
       "name": "Derived defends, snapshotted drifts",
       "slug": "derived-defends-snapshotted-drifts",
       "canonical": "Derived defends; snapshotted drifts.",
@@ -489,7 +467,7 @@
       "scope": "invoke-by-name",
       "ration_budget": 3,
       "home": {
-        "label": "the-executable-zoo",
+        "label": "scenarios-and-the-joined-model",
         "anchor": ""
       },
       "competitors": [

@@ -347,21 +347,6 @@
       "closing_anchor": "Modeling makes an engineering property explicit. Alignment gives selected properties consequence."
     },
     {
-      "slug": "from-context-to-control",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "note": "The capability-ladder chapter. Opening takes a single edge and asks how it gains authority — type, invariant, derivation, gate — and answers with the eight-rung ladder from context to control. Modeling-Thesis link explicit; the turn at rung five is where modeling becomes alignment. Closes by handing to the zoo: the next chapter defines the executable-model pattern and asks the first question of every model.",
-      "opening_anchor": "Suppose the graph records that a worker consumes a queue. As context,",
-      "closing_anchor": "first question of every model: what entities and relations does it represent?"
-    },
-    {
       "slug": "views-are-projections",
       "opening": {
         "failure_question": "explicit",
@@ -375,31 +360,6 @@
       "note": "Opening states the question the executable trunk raises — if the whole system is one connected model, why a zoo of views? — and answers it: a view is a projection over the one representation, not a second model to maintain. Modeling-Thesis link explicit. Closes by handing to the first view, the Logical view, in Kruchten's order.",
       "opening_anchor": "One connected representation does not imply one view. The last chapter built",
       "closing_anchor": "what the system is made of, and what may depend on what."
-    },
-    {
-      "slug": "the-executable-zoo",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "delivers": {
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the 4+1 executable-view framework and per-model template",
-            "anchor": "trunk-and-views"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "note": "Opening cashes 2.2's promise, Part-level Modeling-Thesis frame explicit (incl. the Task-6 'Why models are newly central' section). Phase-2c added a chapter-level close after the boxed reference insets: 'That is the trunk; the rest of this Part is the branches' — re-collects the shared machinery (executable source of truth, drift gate, derived edges, admission test, template) and hands off to the five views, the Logical view first. The boxed insets remain trailing reference matter; the close is now the last prose.",
-      "opening_anchor": "The purpose of a model is to reduce the amount of system",
-      "closing_anchor": "holds them true. The Logical view is first: what the system is."
     },
     {
       "slug": "modeling-structure-and-ownership",
@@ -416,15 +376,15 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the data-flow figures and structure table",
-            "anchor": "service-model-structure"
+            "name": "the document-mutation model and the structural-reduction figure",
+            "anchor": "document-mutation-model"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Question (what is this system, as concepts?) + answer (the functional structure) present; Phase-2c added the thesis clause — held as a drift-checked model, the view is the representation the fleet reasons through, the Modeling Thesis at the grain of one view. Ending exemplary: the ---kicker transition to the Process view.",
-      "opening_anchor": "Before an agent can change a system, it must answer one question:",
-      "closing_anchor": "Process view: what happens when many of the parts run at once."
+      "note": "One-model-class-per-chapter reconstruction: this chapter is now the STRUCTURAL example (label carried forward; filename -> 2.2-structural.md). Question (where is document mutation supposed to occur?) + answer (one sanctioned seam: remediation logic operates through a structured document model, realized through the format implementation). Modeling-Thesis link explicit — the model names the boundary, Part III gives it authority. Closes transitioning to the behavioral chapter (adding time).",
+      "opening_anchor": "A structural model suppresses behavior to expose components, boundaries, and relationships.",
+      "closing_anchor": "the orderings it is allowed to move through."
     },
     {
       "slug": "modeling-behavior-and-execution",
@@ -432,7 +392,7 @@
         "failure_question": "explicit",
         "answer": "explicit",
         "thesis_link": "explicit",
-        "thesis_target": "alignment"
+        "thesis_target": "modeling"
       },
       "closing": {
         "kind": "transition"
@@ -441,15 +401,15 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the job-lifecycle state machine figure and its invariant table",
-            "anchor": "job-lifecycle-invariants"
+            "name": "the recovery-ordering model and the model-first-encoding-second figure",
+            "anchor": "recovery-ordering-model"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Question (what may the system do, and how is it allowed to run?) + answer (states/locks/invariants + placement/execution lens); the invariants are not comments, a checker holds the running system to them. R43 split: the measurement/documentation half left for the new Measurement-and-Evidence chapter, so this chapter ends at execution and transitions to it on the evidence-question seam.",
-      "opening_anchor": "The structural models of the last chapter hold the system still. They",
-      "closing_anchor": "whether its account of what happened remains true. Those are evidence questions."
+      "note": "One-model-class-per-chapter reconstruction: this chapter is now the BEHAVIORAL example (label carried forward; filename -> 2.3-behavioral.md). Question (may recovery publish durable state naming a not-yet-published artifact?) + answer (three states and one forbidden ordering). The star is the recovery model; the broad job lifecycle is demoted to a secondary example. 'Executable models are still models' carries the executability point. Closes transitioning to ownership across time.",
+      "opening_anchor": "Behavioral models add time.",
+      "closing_anchor": "ownership across time."
     },
     {
       "slug": "modeling-measurement-and-evidence",

@@ -218,7 +218,6 @@
       "provenance": "derived",
       "anchor": "point: authority-needs-an-independent-obligation-and-a-legible-boundary / a-drift-check-establishes-agreement-not-that-the-correspondence-is-right / place-authority-at-the-earliest-boundary-where-the-obligation-is-legible-and-enforceable",
       "secondary_units": [
-        "the-executable-zoo",
         "part-3"
       ]
     },
@@ -276,12 +275,12 @@
     },
     {
       "granularity": "chapter",
-      "primary_unit": "the-executable-zoo",
+      "primary_unit": "context-is-the-first-modeling-problem",
       "verb": "explain",
       "obj": "why a fleet pays for free the modeling expense that once buried MBSE",
-      "statement": "After this chapter, the reader can explain why the cost that sank classical MBSE is one an agent fleet absorbs, and read Kruchten's 4+1 as the spine of the model zoo.",
+      "statement": "After this chapter, the reader can explain why the standing cost that kept explicit models secondary in code-centric practice is one an agent fleet now absorbs, so modeling becomes an economical first move.",
       "provenance": "declared",
-      "anchor": "Section titles 'the-expense-that-buried-mbse-is-the-one-a-fleet-pays-for-free' + 'kruchten-s-4-1-promoted-...-to-the-spine'.",
+      "anchor": "Part-II intro: maintaining another representation carried a standing cost; commodity intelligence changes that economics.",
       "secondary_units": [
         "scenarios-and-the-joined-model"
       ]

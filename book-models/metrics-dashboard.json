@@ -80,7 +80,7 @@
       "counts": "Tokens spent to reach an answer, model on versus off.",
       "informs": "Certify the model earned its context budget.",
       "healthy_direction": "Lower with the model on.",
-      "defined_in": { "label": "the-executable-zoo", "anchor": "" },
+      "defined_in": { "label": "scenarios-and-the-joined-model", "anchor": "" },
       "mode": "summative",
       "rationale": "Summative: a payoff verdict measured with the model mature. You certify the model earned its context budget; you do not steer the daily loop by it."
     },

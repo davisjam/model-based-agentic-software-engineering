@@ -70,7 +70,7 @@
       "y": "Recent systems give agents a persistent, queryable representation of the repository — code graphs and codebase memory (RepoGraph, CodexGraph, Codebase-Memory, RANGER).",
       "z": "MAGE makes the models themselves the persistent context: the typed model IS the compact representation agents reason through and engineers specify against.",
       "target_locations": [
-        "the-executable-zoo"
+        "context-is-the-first-modeling-problem"
       ],
       "citations": [
         {
@@ -117,7 +117,7 @@
       "y": "Spec-driven development places an authoritative spec/contract around a stochastic generator with deterministic validation; academic studies show specification quality, not model capability, is the success factor (Vilas Boas et al.) and that citation-to-spec discipline enables 86-88% hallucination detection (Panda).",
       "z": "MAGE binds intent into drift-checked models — the spec is not a document but an enforced, executable model the environment holds implementation to.",
       "target_locations": [
-        "the-executable-zoo"
+        "context-is-the-first-modeling-problem"
       ],
       "citations": [
         {
