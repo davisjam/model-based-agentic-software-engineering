@@ -323,11 +323,11 @@
     {
       "id": "models-are-universal-language",
       "kind": "thesis",
-      "statement": "Models are a common language of mature engineering; software could not afford them until agents cut sync cost.",
+      "statement": "Models are the language of engineering; software could not afford them until agents cut sync cost.",
       "distinguishes": [],
-      "home": "models-are-a-common-language-of-mature-engineering",
+      "home": "models-are-the-language-of-engineering",
       "asserted_at": [
-        "models-are-a-common-language-of-mature-engineering",
+        "models-are-the-language-of-engineering",
         "conclusion"
       ],
       "contradicted_by": "Framing models as a nice-to-have or a software-specific trick rather than engineering's common language.",
@@ -338,7 +338,7 @@
       ],
       "provenance": "stated",
       "anchor": "Preface universal-language touchstone + 6.0 'models as a common language of mature engineering' + conclusion.",
-      "word_count": 18
+      "word_count": 16
     },
     {
       "id": "printer-not-coder",

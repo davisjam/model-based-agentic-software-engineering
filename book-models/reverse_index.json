@@ -5379,16 +5379,6 @@
         }
       ]
     },
-    "section-id:a-larger-pattern": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.5-software-rejoins-engineering::a-larger-pattern",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:a-mechanical-conversion": {
       "kind": "section-id",
       "dependents": [
@@ -5519,6 +5509,16 @@
         }
       ]
     },
+    "section-id:beyond-software": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.5-software-rejoins-engineering::beyond-software",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:build-the-oracle": {
       "kind": "section-id",
       "dependents": [
@@ -5535,6 +5535,16 @@
         {
           "view": "outline",
           "element": "3.5-when-guardrails-collide::catalogue-the-controls",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:commodity-intelligence-opens-new-experiments": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.3-what-the-theory-predicts::commodity-intelligence-opens-new-experiments",
           "role": "section-anchor"
         }
       ]
@@ -5665,16 +5675,6 @@
         {
           "view": "outline",
           "element": "5.4-failures-that-became-infrastructure::done-was-a-claim",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:effective-environment-quality": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.1-toward-a-theory-of-mage::effective-environment-quality",
           "role": "section-anchor"
         }
       ]
@@ -6129,6 +6129,16 @@
         }
       ]
     },
+    "section-id:model-first-engineering": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.5-software-rejoins-engineering::model-first-engineering",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:model-the-lifecycle": {
       "kind": "section-id",
       "dependents": [
@@ -6149,7 +6159,7 @@
         }
       ]
     },
-    "section-id:models-are-a-common-language-of-mature-engineering": {
+    "section-id:models-are-the-language-of-engineering": {
       "kind": "section-id",
       "dependents": [
         {
@@ -6159,7 +6169,7 @@
         },
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::models-are-a-common-language-of-mature-engineering",
+          "element": "6.5-software-rejoins-engineering::models-are-the-language-of-engineering",
           "role": "section-anchor"
         }
       ]
@@ -6369,12 +6379,12 @@
         }
       ]
     },
-    "section-id:review-after-implementation-becomes-abundant": {
+    "section-id:review-when-implementation-is-abundant": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::review-after-implementation-becomes-abundant",
+          "element": "6.4-reorganization-of-se::review-when-implementation-is-abundant",
           "role": "section-anchor"
         }
       ]
@@ -6704,6 +6714,16 @@
         }
       ]
     },
+    "section-id:the-entry-rung-problem": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.6-education-research-open-problems::the-entry-rung-problem",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:the-ex-ante-path": {
       "kind": "section-id",
       "dependents": [
@@ -6856,16 +6876,6 @@
           "view": "outcomes",
           "element": "the-judgment-parts-the-roughest-algorithm-that-still-fits::apply-the-roughest-algorithm-rule-to-a-judgmen",
           "role": "primary-unit"
-        }
-      ]
-    },
-    "section-id:the-mature-end": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.5-software-rejoins-engineering::the-mature-end",
-          "role": "section-anchor"
         }
       ]
     },
@@ -7314,6 +7324,16 @@
         }
       ]
     },
+    "section-id:what-makes-an-environment-effective": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.1-toward-a-theory-of-mage::what-makes-an-environment-effective",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:what-must-hold-across-every-interleaving": {
       "kind": "section-id",
       "dependents": [
@@ -7360,16 +7380,6 @@
         {
           "view": "outline",
           "element": "0.4-preface::what-the-method-turned-out-to-be",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:what-the-shift-asks-of-an-education": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.6-education-research-open-problems::what-the-shift-asks-of-an-education",
           "role": "section-anchor"
         }
       ]
@@ -7685,16 +7695,6 @@
         {
           "view": "outline",
           "element": "6.5-software-rejoins-engineering::why-software-came-late-to-model-first-engineering",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:why-this-may-now-be-experimentally-tractable": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.3-what-the-theory-predicts::why-this-may-now-be-experimentally-tractable",
           "role": "section-anchor"
         }
       ]
