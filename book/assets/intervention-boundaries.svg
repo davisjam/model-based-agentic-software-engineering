@@ -1,37 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: intervention-boundaries). NEW Fig 3.1-1. Replaces BOTH the old
-     agent-stack-layers figure AND the authority-spectrum figure. The reframe: engineering intent can be
-     intervened on at four boundaries — reasoning input, action, work unit, artifact / runtime — and these
-     are increasing SEMANTIC GRAINS (one attempted side effect, then a whole unit of work, then the
-     resulting system / state), NOT increasing STRENGTHS of authority. So there is deliberately NO
-     blue->rust hardness ramp (the retired authority-spectrum's asRamp gradient implied a soft->hard scale
-     that does not exist). The reasoning-input boundary sits under a "guidance" label; the other three sit
-     under "authority can act at any of these" — authority is not pinned to the strongest-looking boundary,
-     it can act at any grain where the obligation is legible. The flow arrows carry plain grain-order, not
-     increasing strength. Palette: Umber Monograph tokens — agent #2f5169 + tint #e7edf3 (reasoning input),
-     governance #9a3f12 + tint #faf1e6 (action / work unit / artifact-runtime), neutral #57534e (grain axis,
-     flow arrows, notes), ink #1c1917 names, paper #fdfcf9. Fonts in the 12-26 band at the 1000px reference. -->
+<!-- Hand-authored SVG (label: intervention-boundaries). Fig 3.1-1. Four boundaries at which engineering
+     work can be intervened on — reasoning input, action, work unit, artifact / runtime — ordered by
+     increasing SEMANTIC GRAIN, NOT by increasing strength of authority (deliberately no blue->rust
+     hardness ramp).
+     v7 (part3-v7-260814): the GUIDANCE zone (reasoning input) is now VISUALLY SEPARATED from the
+     AUTHORITY-binding boundaries — a distinct zone box set apart by a gap, so reasoning input reads as
+     guidance, not authority. No continuous authority line runs over reasoning input; its note reads
+     "authoritative only through a consuming mechanism". The "semantic grain ->" axis spans the four
+     boxes. Palette: agent #2f5169 + tint #e7edf3 (reasoning input / guidance zone), governance #9a3f12 +
+     tint #faf1e6 (action / work unit / artifact-runtime / authority zone), neutral #57534e (grain axis,
+     notes), ink #1c1917 names, paper #fdfcf9. Fonts in the 12-26 band at the 1000px reference. -->
 <!-- semantic-families: agent, governance, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" width="1000" height="360"
      role="group" aria-labelledby="ibTitle ibDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ibTitle">Four intervention boundaries as increasing semantic grains, not increasing strengths of authority</title>
-  <desc id="ibDesc">Four boundaries sit in a row, connected left to right by plain neutral arrows: reasoning
-    input, action, work unit, and artifact or runtime. They are ordered by increasing SEMANTIC GRAIN — the
-    left end is one attempted side effect, the right end the resulting system or state — and NOT by
-    increasing strength of authority; there is no hardness ramp. Reasoning input, drawn agent-blue, sits
-    under a label reading guidance: prompts, briefs, models, and examples primarily guide unless coupled to
-    an authoritative consumer. The other three, drawn governance-rust, sit under one label reading authority
-    can act at any of these: at the action boundary through permissions, hooks, and tools; at the work-unit
-    boundary through a task, a pull request, a build, a deployment candidate; at the artifact-or-runtime
-    boundary through types, API seams, admission, and runtime policy. The lesson is that the same intent can
-    be placed at any of these grains — choose the boundary where the obligation is legible and a mechanism
-    can reach the consequence, not the one that looks strongest.</desc>
+  <title id="ibTitle">Four intervention boundaries: a guidance zone set apart from where authority can bind</title>
+  <desc id="ibDesc">Four boundaries sit in a row, ordered left to right by increasing semantic grain, not by
+    increasing strength of authority. The leftmost, reasoning input, sits alone in a separate GUIDANCE zone,
+    drawn agent-blue: prompts, briefs, models, and examples shape reasoning input, and are authoritative
+    only through a consuming mechanism. The other three — action, work unit, and artifact or runtime — sit
+    together in a zone labeled AUTHORITY CAN BIND HERE, drawn governance-rust: at the action boundary through
+    permissions, hooks, and tools; at the work-unit boundary through a task, a pull request, a build, a
+    deployment candidate; at the artifact or runtime boundary through types, API seams, admission, and
+    runtime policy. Place a mechanism at the earliest boundary where the obligation is legible and the
+    consequence can be affected.</desc>
 
   <defs>
-    <marker id="ib-flow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
     <marker id="ib-axis" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
@@ -39,51 +33,48 @@
 
   <rect x="0" y="0" width="1000" height="360" fill="#fdfcf9"/>
   <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where authority can act</text>
-  <text x="500" y="68" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Four intervention boundaries — semantic grains, not strengths.</text>
+  <text x="500" y="68" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Guidance shapes reasoning input; authority binds actions, units of work, and artifacts.</text>
 
-  <!-- top band labels: guidance over the first boundary, authority over the other three -->
-  <text x="152" y="104" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">guidance</text>
-  <text x="616" y="104" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">authority can act at any of these</text>
-  <line x1="54" y1="112" x2="250" y2="112" stroke="#2f5169" stroke-width="1.2"/>
-  <line x1="286" y1="112" x2="946" y2="112" stroke="#9a3f12" stroke-width="1.2"/>
+  <!-- ===== GUIDANCE zone (reasoning input, set apart) ===== -->
+  <rect x="40" y="92" width="228" height="196" rx="12" fill="#eef2f7" stroke="#2f5169" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="154" y="115" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169" letter-spacing="1">GUIDANCE</text>
 
-  <!-- boundary pills: reasoning input agent-blue; the other three governance-rust -->
-  <rect x="54"  y="120" width="196" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="152" y="158" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">reasoning input</text>
+  <!-- ===== AUTHORITY zone (action / work unit / artifact-runtime) ===== -->
+  <rect x="292" y="92" width="668" height="196" rx="12" fill="#fbf5ee" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="626" y="115" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12" letter-spacing="1">AUTHORITY CAN BIND HERE</text>
 
-  <rect x="286" y="120" width="196" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="384" y="158" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">action</text>
+  <!-- boundary pills -->
+  <rect x="56"  y="128" width="196" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="154" y="163" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">reasoning input</text>
 
-  <rect x="518" y="120" width="196" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="616" y="158" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">work unit</text>
+  <rect x="308" y="128" width="190" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="403" y="163" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">action</text>
 
-  <rect x="750" y="120" width="196" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="848" y="158" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">artifact / runtime</text>
+  <rect x="518" y="128" width="190" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="613" y="163" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">work unit</text>
 
-  <!-- plain grain-order flow arrows (neutral — NOT a strength ramp) -->
-  <line x1="252" y1="152" x2="284" y2="152" stroke="#57534e" stroke-width="1.8" marker-end="url(#ib-flow)"/>
-  <line x1="484" y1="152" x2="516" y2="152" stroke="#57534e" stroke-width="1.8" marker-end="url(#ib-flow)"/>
-  <line x1="716" y1="152" x2="748" y2="152" stroke="#57534e" stroke-width="1.8" marker-end="url(#ib-flow)"/>
+  <rect x="728" y="128" width="204" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="830" y="163" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">artifact / runtime</text>
 
   <!-- the mechanisms that act at each boundary -->
-  <text x="152" y="206" text-anchor="middle" font-size="14" fill="#2f5169">prompts &#183; briefs</text>
-  <text x="152" y="224" text-anchor="middle" font-size="14" fill="#2f5169">models &#183; examples</text>
+  <text x="154" y="208" text-anchor="middle" font-size="14" fill="#2f5169">prompts &#183; briefs</text>
+  <text x="154" y="226" text-anchor="middle" font-size="14" fill="#2f5169">models &#183; examples</text>
 
-  <text x="384" y="206" text-anchor="middle" font-size="14" fill="#9a3f12">permissions &#183; hooks &#183; tools</text>
+  <text x="403" y="208" text-anchor="middle" font-size="14" fill="#9a3f12">permissions &#183; hooks &#183; tools</text>
 
-  <text x="616" y="206" text-anchor="middle" font-size="14" fill="#9a3f12">task &#183; PR &#183; build</text>
-  <text x="616" y="224" text-anchor="middle" font-size="14" fill="#9a3f12">deployment candidate</text>
+  <text x="613" y="208" text-anchor="middle" font-size="14" fill="#9a3f12">task &#183; PR &#183; build</text>
+  <text x="613" y="226" text-anchor="middle" font-size="14" fill="#9a3f12">deployment candidate</text>
 
-  <text x="848" y="206" text-anchor="middle" font-size="14" fill="#9a3f12">types &#183; API seams</text>
-  <text x="848" y="224" text-anchor="middle" font-size="14" fill="#9a3f12">admission &#183; runtime policy</text>
+  <text x="830" y="208" text-anchor="middle" font-size="14" fill="#9a3f12">types &#183; API seams</text>
+  <text x="830" y="226" text-anchor="middle" font-size="14" fill="#9a3f12">admission &#183; runtime policy</text>
 
-  <!-- reasoning input is primarily guidance -->
-  <text x="152" y="250" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">primarily guidance unless coupled</text>
-  <text x="152" y="266" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">to an authoritative consumer</text>
+  <!-- reasoning input is authoritative only through a consumer -->
+  <text x="154" y="256" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">authoritative only through</text>
+  <text x="154" y="272" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">a consuming mechanism</text>
 
-  <!-- the grain axis: neutral, plain — grain increases, strength does not -->
-  <text x="500" y="298" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">semantic grain &#8594;</text>
-  <line x1="54" y1="308" x2="946" y2="308" stroke="#57534e" stroke-width="1.6" marker-end="url(#ib-axis)"/>
-  <text x="54" y="328" font-size="13" font-style="italic" fill="#57534e">one attempted side effect</text>
-  <text x="946" y="328" text-anchor="end" font-size="13" font-style="italic" fill="#57534e">the resulting system / state</text>
+  <!-- the grain axis: neutral, plain — spans the four boxes; grain increases, strength does not -->
+  <text x="500" y="308" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">semantic grain &#8594;</text>
+  <line x1="56" y1="318" x2="946" y2="318" stroke="#57534e" stroke-width="1.6" marker-end="url(#ib-axis)"/>
+  <text x="56" y="338" font-size="13" font-style="italic" fill="#57534e">one attempted side effect</text>
+  <text x="946" y="338" text-anchor="end" font-size="13" font-style="italic" fill="#57534e">the resulting system / state</text>
 </svg>

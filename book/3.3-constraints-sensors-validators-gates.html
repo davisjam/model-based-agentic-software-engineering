@@ -701,17 +701,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The four split into two pairs. A <strong>constraint</strong> and a <strong>sensor</strong> act on the work as the agent does it: one prevents the wrong move, the other observes what happened after it. A <strong>validator</strong> and a <strong>gate</strong> act at the door the work must pass: one weighs the evidence a change carries, the other decides whether it may advance.</p>
 <h2><span class="sec-num">3.3.1</span> Prevention and observation</h2>
 <p id="idx-def-constraints-and-sensors">Inside the loop a mechanism has one of two moves — prevent the mistake, or observe it — and <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-1">Figure&nbsp;3.3-1</a> draws the split. Constraint and sensor are the complementary pair: the constraint works before the fact and the sensor after. Use a constraint where the unwanted action can be removed cheaply and reliably. Otherwise, produce the evidence needed to detect and respond to it.</p>
-<figure id="fig-3-3-1" class="book-figure" data-label="constraint-vs-sensor"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
+<figure id="fig-3-3-1" class="book-figure" data-label="constraint-vs-sensor"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420"
      role="group" aria-labelledby="caTitle caDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="caTitle">Constraint or sensor: prevent the mistake, or observe it</title>
-  <desc id="caDesc">An engineering property you want to hold splits into two moves. On the left, a
-    constraint: it narrows what can happen by scoping the action space, so the wrong move is unavailable
-    within the iteration — a typed enumeration over free-form strings, a permission, a narrow API — and it
-    costs no failed loop. On the right, a sensor: it observes what did happen and produces evidence — a
-    metric, a trace, a call scan, a log — and acting on that evidence costs at least one iteration. A
-    sensor does not judge what it saw. Detecting a violation is a further step: it takes a validator to
-    interpret the evidence against an obligation.</desc>
+  <title id="caTitle">Constraint or sensor: a selection rule for the engineering obligation</title>
+  <desc id="caDesc">An engineering obligation you must hold leads to one decision: can the unwanted state be
+    excluded cleanly? If yes, use a constraint, which narrows what may happen — a typed enumeration, a
+    permission, a narrow API. If no, use a sensor, which produces evidence of what happened — a metric, a
+    trace, a call scan, a log — for later evaluation. A constraint prevents the unwanted state; a sensor
+    reports it after the fact.</desc>
 
   <defs>
     <marker id="caArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
@@ -720,50 +718,37 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- source: engineering property -->
-  <rect x="320" y="26" width="320" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="480" y="59" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Engineering property</text>
-  <text x="480" y="84" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">prevent the mistake, or observe it</text>
+  <!-- top: the engineering obligation -->
+  <rect x="320" y="24" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="480" y="55" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">ENGINEERING OBLIGATION</text>
+  <text x="480" y="79" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the property you must hold</text>
 
-  <!-- fork edges -->
+  <!-- edge to the decision -->
+  <line x1="480" y1="90" x2="480" y2="132" stroke="#1c1917" stroke-width="2" marker-end="url(#caArrow)"/>
+
+  <!-- the selection decision -->
+  <rect x="264" y="136" width="432" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Can the unwanted state be excluded cleanly?</text>
+
+  <!-- branch edges -->
   <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#caArrow)">
-    <path d="M400,92 C360,124 300,128 250,156"/>
-    <path d="M560,92 C600,124 660,128 710,156"/>
+    <path d="M380,194 C320,222 290,232 262,254"/>
+    <path d="M580,194 C640,222 670,232 698,254"/>
   </g>
+  <text x="300" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">YES</text>
+  <text x="662" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">NO</text>
 
-  <!-- ================= LEFT — constraint / narrows what can happen ================= -->
-  <rect x="70" y="162" width="360" height="226" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="250" y="198" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">Constraint — prevents</text>
+  <!-- ============ LEFT — CONSTRAINT ============ -->
+  <rect x="95" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="260" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">CONSTRAINT</text>
+  <text x="260" y="326" text-anchor="middle" font-size="19" fill="#1c1917">narrows what may happen</text>
+  <text x="260" y="360" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
 
-  <!-- wall icon: brick courses -->
-  <g stroke="#2f5169" stroke-width="2" fill="none">
-    <rect x="216" y="228" width="68" height="44"/>
-    <line x1="216" y1="250" x2="284" y2="250"/>
-    <line x1="250" y1="228" x2="250" y2="250"/>
-    <line x1="233" y1="250" x2="233" y2="272"/>
-    <line x1="267" y1="250" x2="267" y2="272"/>
-  </g>
-
-  <text x="250" y="308" text-anchor="middle" font-size="20" fill="#1c1917">Narrows what</text>
-  <text x="250" y="333" text-anchor="middle" font-size="20" fill="#1c1917">can happen.</text>
-  <text x="250" y="368" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
-
-  <!-- ================= RIGHT — sensor / observes what did happen ================= -->
-  <rect x="530" y="162" width="360" height="226" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="710" y="198" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">Sensor — observes</text>
-
-  <!-- sensor icon: a dish reading the state (no verdict) -->
-  <circle cx="710" cy="250" r="26" fill="none" stroke="#2f5169" stroke-width="2.5"/>
-  <circle cx="710" cy="250" r="6" fill="#2f5169"/>
-  <path d="M710,224 A26,26 0 0,1 736,250" fill="none" stroke="#2f5169" stroke-width="3"/>
-
-  <text x="710" y="308" text-anchor="middle" font-size="20" fill="#1c1917">Observes what did happen</text>
-  <text x="710" y="333" text-anchor="middle" font-size="20" fill="#1c1917">and produces evidence.</text>
-  <text x="710" y="368" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
-
-  <!-- ================= footer: protect the taxonomy ================= -->
-  <text x="480" y="428" text-anchor="middle" font-size="17" fill="#1c1917">A constraint costs no failed loop; acting on a sensor's evidence costs at least one iteration.</text>
-  <text x="480" y="452" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">Detecting a violation is a further step — a validator interprets the evidence against an obligation.</text>
+  <!-- ============ RIGHT — SENSOR ============ -->
+  <rect x="535" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="700" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">SENSOR</text>
+  <text x="700" y="326" text-anchor="middle" font-size="18" fill="#1c1917">produces evidence of what happened</text>
+  <text x="700" y="360" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
 </svg><figcaption data-short="Constraint or Sensor"><span class="fig-label">Figure 3.3-1.</span> <em>Constraint or Sensor.</em> A constraint narrows the action space before a mistake occurs; a sensor observes the result and produces evidence afterward. Prevention avoids the failed iteration; observation requires later interpretation and response. Prefer a constraint where the bad state can be scoped away; otherwise sense the drift.</figcaption></figure>
 <p>A soft instruction becomes Alignment only when the environment can act on it. If a brief must contain a required section, check for that section before launch and refuse the launch when it is absent.</p>
 <span id="idx-def-sensor"></span><span id="idx-ex-observability-1"></span><p><strong>A sensor observes and produces evidence.</strong> It lets the move happen and reads the evidence back out after the fact — <code>actual = observe(system)</code>. A raw sensor only <em>produces</em> that evidence: a log line, a trace, a metric emitter, a scan that reads the actual calls out of the code. It does not decide whether what it saw is good or bad — that judgment belongs to the validator. When a sensor detects a correctable violation after the fact, repair costs an additional iteration. That makes prevention attractive where the unwanted state can be excluded cleanly; many important properties, however, can only be observed.</p>
@@ -781,14 +766,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A loop that re-derives evidence does not trust the producing agent's self-report. Cheap checks run early for fast feedback and bind their result to an exact tree; a later, more expensive boundary re-derives the evidence admission needs rather than reading a marker. The definition of done recomputes the full evidence at close instead of trusting a report. The principle is simple: the thing asking to pass does not get to define what counts as having passed.</p>
 <h2><span class="sec-num">3.3.3</span> One Measurement, Several Authorities</h2>
 <p>The four roles are not stages of maturity. DocAble's GenAI cost and usage model makes the point, and <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-2">Figure&nbsp;3.3-2</a> fans that one quantity across them. Usage is continuously sensed. Capacity signals can adapt request behavior. Exhausting a per-job budget can produce soft completion rather than outright rejection. A hard daily-budget gate exists but is dormant unless configured. One quantitative model therefore supports observation, adaptation, degradation, and hard authority. The appropriate consequence depends on what the quantity means, not on how sophisticated the environment has become.</p>
-<figure id="fig-3-3-2" class="book-figure" data-label="cost-authority-gradient"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540"
+<figure id="fig-3-3-2" class="book-figure" data-label="cost-authority-gradient"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
      role="img" aria-labelledby="cgTitle cgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="cgTitle">One measurement, several authorities: a single cost and usage model supports observation, adaptation, degradation, and hard admission</title>
-  <desc id="cgDesc">A single cost and usage model fans to three roles. Observe continuously senses usage. Adapt changes
-    request behavior, throttling and then producing soft completion rather than outright rejection. Gate controls
-    admission and exists in two states: armed when configured, dormant otherwise. The four roles are not stages of
-    maturity; the appropriate consequence depends on what the quantity means.</desc>
+  <title id="cgTitle">One measurement, different authority decisions: a policy attached to the value selects observe, adapt, or gate</title>
+  <desc id="cgDesc">A single cost and usage model is read through a policy attached to the value. That policy
+    selects one response. Observe reports evidence without consequence. Adapt changes load, throttling and
+    then producing soft completion rather than outright rejection. Gate blocks admission and is dormant
+    unless configured. The appropriate response follows from the obligation attached to the measurement, not
+    from a maturity sequence.</desc>
 
   <defs>
     <marker id="cg-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -800,74 +786,61 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <marker id="cg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
-    <marker id="cg-d" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
   </defs>
 
   <!-- source model -->
-  <rect x="330" y="34" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="480" y="63" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
-  <text x="480" y="85" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">one continuously-sensed quantity</text>
+  <rect x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="480" y="59" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
+  <text x="480" y="81" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">one continuously-sensed quantity</text>
 
-  <!-- fan-out edges to the three roles -->
+  <!-- edge to policy -->
+  <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#cg-r)"/>
+
+  <!-- the policy that attaches the obligation to the value -->
+  <rect x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="480" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">policy attached to the value</text>
+
+  <!-- fan-out edges to the three responses -->
   <g fill="none" stroke-width="2.4">
-    <path d="M420,96 C360,120 250,126 190,152" stroke="#57534e" marker-end="url(#cg-n)"/>
-    <path d="M480,96 L480,152" stroke="#2f5169" marker-end="url(#cg-b)"/>
-    <path d="M540,96 C600,120 710,126 770,152" stroke="#9a3f12" marker-end="url(#cg-r)"/>
+    <path d="M420,170 C360,190 250,196 195,212" stroke="#57534e" marker-end="url(#cg-n)"/>
+    <path d="M480,170 L480,212" stroke="#2f5169" marker-end="url(#cg-b)"/>
+    <path d="M540,170 C600,190 710,196 765,212" stroke="#9a3f12" marker-end="url(#cg-r)"/>
   </g>
 
-  <!-- ROLE: observe -->
-  <rect x="70" y="156" width="240" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="190" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">observe</text>
-  <text x="190" y="204" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">sense usage, no consequence</text>
+  <!-- RESPONSE: observe -->
+  <rect x="70" y="216" width="250" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="195" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">OBSERVE</text>
+  <text x="195" y="268" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">report evidence, no consequence</text>
 
-  <!-- ROLE: adapt -> throttle -> soft completion -->
-  <rect x="360" y="156" width="240" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="480" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">adapt</text>
-  <text x="480" y="204" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">change request behavior</text>
+  <!-- RESPONSE: adapt -> throttle / soft completion -->
+  <rect x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="480" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ADAPT</text>
+  <text x="480" y="268" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">change load</text>
 
-  <line x1="480" y1="216" x2="480" y2="256" stroke="#2f5169" stroke-width="2.4" marker-end="url(#cg-b)"/>
-  <rect x="378" y="260" width="204" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="292" text-anchor="middle" font-size="17.5" font-weight="700" fill="#1c1917">throttle</text>
+  <line x1="480" y1="280" x2="480" y2="312" stroke="#57534e" stroke-width="2.4" marker-end="url(#cg-n)"/>
+  <rect x="360" y="316" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="480" y="347" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">throttle · soft completion</text>
 
-  <line x1="480" y1="312" x2="480" y2="352" stroke="#57534e" stroke-width="2.4" marker-end="url(#cg-n)"/>
-  <rect x="366" y="356" width="228" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="382" text-anchor="middle" font-size="17.5" font-weight="700" fill="#1c1917">soft completion</text>
-  <text x="480" y="401" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">degrade, don&#8217;t reject</text>
-
-  <!-- ROLE: gate -> armed / dormant -->
-  <rect x="650" y="156" width="240" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="770" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">gate</text>
-  <text x="770" y="204" text-anchor="middle" font-size="13.5" font-style="italic" fill="#9a3f12">control admission</text>
-
-  <g fill="none" stroke-width="2.4">
-    <path d="M720,216 C696,238 688,244 688,268" stroke="#9a3f12" marker-end="url(#cg-r)"/>
-    <path d="M820,216 C844,238 852,244 852,268" stroke="#57534e" stroke-dasharray="6 4" marker-end="url(#cg-d)"/>
-  </g>
-
-  <rect x="604" y="272" width="168" height="56" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="688" y="298" text-anchor="middle" font-size="17.5" font-weight="700" fill="#9a3f12">armed</text>
-  <text x="688" y="317" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">when configured</text>
-
-  <rect x="788" y="272" width="132" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="6 4"/>
-  <text x="854" y="298" text-anchor="middle" font-size="17.5" font-weight="700" fill="#57534e">dormant</text>
-  <text x="854" y="317" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">unless configured</text>
+  <!-- RESPONSE: gate (with a small dormant annotation, not extra nodes) -->
+  <rect x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="765" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">GATE</text>
+  <text x="765" y="268" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">block admission</text>
+  <text x="765" y="306" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">dormant unless configured</text>
 
   <!-- footer: protect the point -->
-  <line x1="40" y1="450" x2="920" y2="450" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="480" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">The four roles are not stages of maturity.</text>
-  <text x="480" y="504" text-anchor="middle" font-size="15.5" font-style="italic" fill="#57534e">The consequence follows from what the quantity means &#8212; not from how advanced the environment is.</text>
+  <line x1="40" y1="404" x2="920" y2="404" stroke="#e7e2da" stroke-width="1.4"/>
+  <text x="480" y="434" text-anchor="middle" font-size="15.5" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement &#8212; not from a maturity sequence.</text>
 </svg><figcaption data-short="One Measurement, Several Authorities"><span class="fig-label">Figure 3.3-2.</span> <em>One Measurement, Several Authorities.</em> A single quantity (GenAI cost and usage) supports observation, adaptation, graceful degradation, and hard admission at once. The consequence follows from what the quantity means, not from how advanced the environment is.</figcaption></figure>
 <h2><span class="sec-num">3.3.4</span> Positive and Negative Obligations</h2>
 <p>Constraints are often introduced as prohibitions: this code must not call that library. DocAble's provenance machinery demonstrates the complementary form. Every typed mutation verb is required to emit attribution. A source-time rule checks that the required call is wired into the mutation path. <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-3">Figure&nbsp;3.3-3</a> sets the two shapes side by side: one mechanism removes a forbidden action; the other requires evidence-producing behavior.</p>
-<figure id="fig-3-3-3" class="book-figure" data-label="positive-negative-obligation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
+<figure id="fig-3-3-3" class="book-figure" data-label="positive-negative-obligation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
      role="img" aria-labelledby="poTitle poDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="poTitle">Two shapes of constraint: a negative obligation removes a forbidden action; a positive obligation requires an evidence-producing one</title>
-  <desc id="poDesc">Two columns. On the left, a negative obligation: ordinary code must not call a raw library, so the edge
-    between them is forbidden. On the right, a positive obligation: a mutation verb must call a stamping action that
-    produces attribution evidence. Both are checked at source time; they bound behavior from opposite directions.</desc>
+  <title id="poTitle">Negative and positive constraints: a negative constraint removes a forbidden action; a positive constraint requires a specified evidence-producing one</title>
+  <desc id="poDesc">Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge
+    between them is forbidden. On the right, a positive constraint: a mutation verb must call a stamping action that
+    produces attribution evidence. Both are checked at source time; both restrict the admissible implementation space,
+    from opposite directions.</desc>
 
   <defs>
     <marker id="po-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -876,51 +849,45 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- divider between the two columns -->
-  <line x1="480" y1="40" x2="480" y2="392" stroke="#e7e2da" stroke-width="1.6"/>
+  <line x1="480" y1="44" x2="480" y2="360" stroke="#e7e2da" stroke-width="1.6"/>
 
   <!-- ============ NEGATIVE ============ -->
-  <text x="250" y="66" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">NEGATIVE</text>
-  <text x="250" y="90" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">removes a forbidden action</text>
+  <text x="250" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">NEGATIVE CONSTRAINT</text>
+  <text x="250" y="94" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">removes a forbidden action</text>
 
-  <rect x="120" y="116" width="260" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="250" y="153" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">ordinary code</text>
+  <rect x="120" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="250" y="166" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">ordinary code</text>
 
   <!-- forbidden edge: barred, crossed -->
-  <line x1="250" y1="176" x2="250" y2="256" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="7 5"/>
+  <line x1="250" y1="190" x2="250" y2="272" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="7 5"/>
   <!-- the bar / prohibition mark -->
   <g stroke="#9a3f12" stroke-width="3.4" stroke-linecap="round">
-    <line x1="228" y1="205" x2="272" y2="227"/>
-    <line x1="272" y1="205" x2="228" y2="227"/>
+    <line x1="228" y1="220" x2="272" y2="242"/>
+    <line x1="272" y1="220" x2="228" y2="242"/>
   </g>
-  <text x="298" y="221" font-size="15.5" font-weight="700" font-style="italic" fill="#9a3f12">must not call</text>
+  <text x="298" y="236" font-size="15.5" font-weight="700" font-style="italic" fill="#9a3f12">must not call</text>
 
-  <rect x="120" y="258" width="260" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
-  <text x="250" y="295" text-anchor="middle" font-size="18.5" font-weight="700" fill="#57534e">raw library</text>
-
-  <text x="250" y="352" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">e.g. a raw format library behind</text>
-  <text x="250" y="373" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">a typed seam &#8212; the ban holds it</text>
+  <rect x="120" y="274" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
+  <text x="250" y="312" text-anchor="middle" font-size="18.5" font-weight="700" fill="#57534e">raw library</text>
 
   <!-- ============ POSITIVE ============ -->
-  <text x="710" y="66" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">POSITIVE</text>
-  <text x="710" y="90" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">requires an evidence-producing one</text>
+  <text x="710" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">POSITIVE CONSTRAINT</text>
+  <text x="710" y="94" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">requires an evidence-producing one</text>
 
-  <rect x="580" y="116" width="260" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="710" y="153" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">mutation verb</text>
+  <rect x="580" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="710" y="166" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">mutation verb</text>
 
   <!-- required edge: solid rust arrow -->
-  <line x1="710" y1="176" x2="710" y2="254" stroke="#9a3f12" stroke-width="2.8" marker-end="url(#po-r)"/>
-  <text x="758" y="221" font-size="15.5" font-weight="700" font-style="italic" fill="#9a3f12">must call</text>
+  <line x1="710" y1="190" x2="710" y2="270" stroke="#9a3f12" stroke-width="2.8" marker-end="url(#po-r)"/>
+  <text x="758" y="236" font-size="15.5" font-weight="700" font-style="italic" fill="#9a3f12">must call</text>
 
-  <rect x="580" y="258" width="260" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="710" y="288" text-anchor="middle" font-size="18.5" font-weight="700" fill="#9a3f12">MUST stamp</text>
-  <text x="710" y="308" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">emit attribution evidence</text>
-
-  <text x="710" y="352" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">a source-time rule checks the</text>
-  <text x="710" y="373" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">required call is wired in</text>
+  <rect x="580" y="274" width="260" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="710" y="305" text-anchor="middle" font-size="18.5" font-weight="700" fill="#9a3f12">MUST stamp</text>
+  <text x="710" y="325" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">emit attribution evidence</text>
 
   <!-- footer: protect the point -->
-  <line x1="40" y1="408" x2="920" y2="408" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="440" text-anchor="middle" font-size="16.5" font-style="italic" fill="#1c1917">Both are source-time rules &#8212; they bound behavior from opposite directions.</text>
+  <line x1="40" y1="376" x2="920" y2="376" stroke="#e7e2da" stroke-width="1.4"/>
+  <text x="480" y="408" text-anchor="middle" font-size="16.5" font-style="italic" fill="#1c1917">Both are source-time rules &#8212; they restrict the admissible implementation space from opposite directions.</text>
 </svg><figcaption data-short="Two Shapes of Constraint"><span class="fig-label">Figure 3.3-3.</span> <em>Two Shapes of Constraint.</em> A negative obligation removes a forbidden action; a positive obligation requires an evidence-producing one. Both are source-time rules; they bound behavior from opposite directions.</figcaption></figure>
 <h2><span class="sec-num">3.3.5</span> What Counts as a Mechanism</h2>
 <p>Keep <strong>policy</strong>, <strong>guidance</strong>, and <strong>governance mechanism</strong> separate. A model file can state policy; a playbook can guide an agent; neither becomes an authoritative mechanism merely by existing or by appearing in an agent's context. Authority begins when something in the environment actually constrains the work, produces evidence, evaluates that evidence, or controls admission. The model supplies the policy; the consuming machinery supplies the holding.</p>

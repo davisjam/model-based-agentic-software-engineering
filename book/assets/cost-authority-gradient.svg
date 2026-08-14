@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Part III 3.3.3 figure — cost-authority-gradient.svg (draft; folds to book/assets/).
-     One quantity, several authorities. A single COST / USAGE MODEL (blue #2f5169 — it is a model)
-     fans to four roles that all read the SAME quantity: observe (a sensor, neutral gray), adapt
-     (which throttles, then degrades to soft completion), and gate (hard admission -> rust #9a3f12).
-     The gate exists in two states: ARMED (rust, solid) and DORMANT (gray, dashed — present but
-     unless configured, inert). The consequence follows from what the quantity MEANS, not from how
-     advanced the environment is — so this is a fan-out of authorities, not a maturity ladder.
-     Grammar: gray = territory/sensor/inert; blue = the model; rust = hard obligation/admission. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540"
+     One measurement, different authority decisions. A single COST / USAGE MODEL (blue #2f5169 — it is a
+     model) is read through a POLICY attached to the value (rust — the obligation), and that policy selects
+     one response: OBSERVE (report evidence, neutral gray), ADAPT (change load -> throttle / soft
+     completion), or GATE (block admission -> rust). The appropriate response follows from the obligation
+     attached to the measurement, not from a maturity sequence.
+     v7 (part3-v7-260814): inserted the "policy attached to the value" node; branches renamed to
+     OBSERVE / ADAPT / GATE; the hard gate's dormant-unless-configured status is now a small annotation
+     on the GATE branch, not two extra armed/dormant nodes; the in-figure "four roles are not stages of
+     maturity" sentence removed (it stays as body prose). Grammar: gray = sensor/report; blue = the
+     model; rust = obligation/admission. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470"
      role="img" aria-labelledby="cgTitle cgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="cgTitle">One measurement, several authorities: a single cost and usage model supports observation, adaptation, degradation, and hard admission</title>
-  <desc id="cgDesc">A single cost and usage model fans to three roles. Observe continuously senses usage. Adapt changes
-    request behavior, throttling and then producing soft completion rather than outright rejection. Gate controls
-    admission and exists in two states: armed when configured, dormant otherwise. The four roles are not stages of
-    maturity; the appropriate consequence depends on what the quantity means.</desc>
+  <title id="cgTitle">One measurement, different authority decisions: a policy attached to the value selects observe, adapt, or gate</title>
+  <desc id="cgDesc">A single cost and usage model is read through a policy attached to the value. That policy
+    selects one response. Observe reports evidence without consequence. Adapt changes load, throttling and
+    then producing soft completion rather than outright rejection. Gate blocks admission and is dormant
+    unless configured. The appropriate response follows from the obligation attached to the measurement, not
+    from a maturity sequence.</desc>
 
   <defs>
     <marker id="cg-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -26,62 +30,48 @@
     <marker id="cg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
-    <marker id="cg-d" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
   </defs>
 
   <!-- source model -->
-  <rect x="330" y="34" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="480" y="63" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
-  <text x="480" y="85" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">one continuously-sensed quantity</text>
+  <rect x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="480" y="59" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
+  <text x="480" y="81" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">one continuously-sensed quantity</text>
 
-  <!-- fan-out edges to the three roles -->
+  <!-- edge to policy -->
+  <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#cg-r)"/>
+
+  <!-- the policy that attaches the obligation to the value -->
+  <rect x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="480" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">policy attached to the value</text>
+
+  <!-- fan-out edges to the three responses -->
   <g fill="none" stroke-width="2.4">
-    <path d="M420,96 C360,120 250,126 190,152" stroke="#57534e" marker-end="url(#cg-n)"/>
-    <path d="M480,96 L480,152" stroke="#2f5169" marker-end="url(#cg-b)"/>
-    <path d="M540,96 C600,120 710,126 770,152" stroke="#9a3f12" marker-end="url(#cg-r)"/>
+    <path d="M420,170 C360,190 250,196 195,212" stroke="#57534e" marker-end="url(#cg-n)"/>
+    <path d="M480,170 L480,212" stroke="#2f5169" marker-end="url(#cg-b)"/>
+    <path d="M540,170 C600,190 710,196 765,212" stroke="#9a3f12" marker-end="url(#cg-r)"/>
   </g>
 
-  <!-- ROLE: observe -->
-  <rect x="70" y="156" width="240" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="190" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">observe</text>
-  <text x="190" y="204" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">sense usage, no consequence</text>
+  <!-- RESPONSE: observe -->
+  <rect x="70" y="216" width="250" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="195" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">OBSERVE</text>
+  <text x="195" y="268" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">report evidence, no consequence</text>
 
-  <!-- ROLE: adapt -> throttle -> soft completion -->
-  <rect x="360" y="156" width="240" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="480" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">adapt</text>
-  <text x="480" y="204" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">change request behavior</text>
+  <!-- RESPONSE: adapt -> throttle / soft completion -->
+  <rect x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="480" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ADAPT</text>
+  <text x="480" y="268" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">change load</text>
 
-  <line x1="480" y1="216" x2="480" y2="256" stroke="#2f5169" stroke-width="2.4" marker-end="url(#cg-b)"/>
-  <rect x="378" y="260" width="204" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="292" text-anchor="middle" font-size="17.5" font-weight="700" fill="#1c1917">throttle</text>
+  <line x1="480" y1="280" x2="480" y2="312" stroke="#57534e" stroke-width="2.4" marker-end="url(#cg-n)"/>
+  <rect x="360" y="316" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="480" y="347" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">throttle · soft completion</text>
 
-  <line x1="480" y1="312" x2="480" y2="352" stroke="#57534e" stroke-width="2.4" marker-end="url(#cg-n)"/>
-  <rect x="366" y="356" width="228" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="382" text-anchor="middle" font-size="17.5" font-weight="700" fill="#1c1917">soft completion</text>
-  <text x="480" y="401" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">degrade, don&#8217;t reject</text>
-
-  <!-- ROLE: gate -> armed / dormant -->
-  <rect x="650" y="156" width="240" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="770" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">gate</text>
-  <text x="770" y="204" text-anchor="middle" font-size="13.5" font-style="italic" fill="#9a3f12">control admission</text>
-
-  <g fill="none" stroke-width="2.4">
-    <path d="M720,216 C696,238 688,244 688,268" stroke="#9a3f12" marker-end="url(#cg-r)"/>
-    <path d="M820,216 C844,238 852,244 852,268" stroke="#57534e" stroke-dasharray="6 4" marker-end="url(#cg-d)"/>
-  </g>
-
-  <rect x="604" y="272" width="168" height="56" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="688" y="298" text-anchor="middle" font-size="17.5" font-weight="700" fill="#9a3f12">armed</text>
-  <text x="688" y="317" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">when configured</text>
-
-  <rect x="788" y="272" width="132" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="6 4"/>
-  <text x="854" y="298" text-anchor="middle" font-size="17.5" font-weight="700" fill="#57534e">dormant</text>
-  <text x="854" y="317" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">unless configured</text>
+  <!-- RESPONSE: gate (with a small dormant annotation, not extra nodes) -->
+  <rect x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="765" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">GATE</text>
+  <text x="765" y="268" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">block admission</text>
+  <text x="765" y="306" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">dormant unless configured</text>
 
   <!-- footer: protect the point -->
-  <line x1="40" y1="450" x2="920" y2="450" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="480" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">The four roles are not stages of maturity.</text>
-  <text x="480" y="504" text-anchor="middle" font-size="15.5" font-style="italic" fill="#57534e">The consequence follows from what the quantity means &#8212; not from how advanced the environment is.</text>
+  <line x1="40" y1="404" x2="920" y2="404" stroke="#e7e2da" stroke-width="1.4"/>
+  <text x="480" y="434" text-anchor="middle" font-size="15.5" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement &#8212; not from a maturity sequence.</text>
 </svg>

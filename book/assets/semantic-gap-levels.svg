@@ -1,77 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (not Mermaid): a two-rung "semantic grain" figure with an
-     obligation spanning several low-level events, drawn as a bracket over a row of
-     event ticks. Mermaid has no primitive for "one obligation spans N events and is
-     invisible in any single one" (a bracket over a sequence), which is the whole
-     point of the picture. REVISION (Part-3 §3.2 / FIG-3.2-1): the labels now speak of
-     the OBLIGATION being legible (top) versus the EVENTS not carrying enough semantics
-     to decide it (bottom), matching the semantic-gap prose. Palette matches the book
-     accent (#2f5169). -->
+<!-- Hand-authored SVG (not Mermaid): a two-rung "semantic grain" figure. An obligation that spans a
+     row of low-level events cannot be decided from any one of them; lift the mechanism to the completed
+     unit of work, where the obligation is legible. Mermaid has no primitive for "one obligation spans N
+     events and is invisible in any single one" (a bracket over a sequence), which is the point.
+     Palette matches the book accent (#2f5169); muted #57534e; caution red #b23b3b.
+     v7 (part3-v7-260814): stripped explanatory microtext — removed the "spans many events — invisible
+     in any one" line, the duplicated event list beneath the boxes, the upper-box sub-caption, and the
+     green-check / red-cross glyphs. Geometry now carries the distinction: event grain -> lifted
+     work-unit boundary, arrow labeled "lift authority". -->
 <!-- semantic-families: agent, modeling, neutral, failure -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" width="960" height="360"
      role="group" aria-labelledby="sgTitle sgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="sgTitle">The semantic gap: check at the boundary where the obligation is legible</title>
-  <desc id="sgDesc">An obligation is invisible at the low level and legible one level up. Bottom
-    row: a sequence of small low-level events — commits, calls, a turn — where the obligation you
-    care about spreads across many of them, so the events do not carry enough semantics to decide
-    it in any one. A red cross marks checking here as the mistake. Top row: the whole unit of work —
-    the agent returning from its task, the ten calls stitched together, the session’s durable record
-    — where the obligation becomes legible. A green check marks checking here. The lesson: lift the
-    mechanism to the earliest boundary where the obligation is legible.</desc>
+  <title id="sgTitle">The semantic gap: lift authority to the boundary where the obligation is legible</title>
+  <desc id="sgDesc">A property that spans several events cannot be decided from any event alone. The bottom
+    row shows a sequence of small low-level events — commits, calls, a turn — under a line reading the
+    obligation is not decidable here. An upward arrow, labeled lift authority, rises to a single wide box
+    at the top reading obligation legible, the completed unit of work. Move the mechanism to the earliest
+    boundary where the evidence the obligation needs is assembled.</desc>
 
   <defs>
     <marker id="sgUp" markerWidth="9" markerHeight="9" refX="9" refY="4.5"
             orient="auto" markerUnits="userSpaceOnUse">
-      <!-- drawn in the +x convention: apex at max-x; orient="auto" rotates it onto the line -->
       <path d="M0,0 L9,4.5 L0,9 Z" fill="#2f5169"/>
     </marker>
   </defs>
 
-  <!-- ================= TOP RUNG — the right level ================= -->
-  <text x="480" y="46" text-anchor="middle" font-size="23.04" font-weight="700" fill="#1c1917">Check here — the obligation is legible</text>
+  <!-- ================= TOP RUNG — obligation legible ================= -->
+  <rect x="150" y="48" width="660" height="76" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="480" y="84" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">OBLIGATION LEGIBLE</text>
+  <text x="480" y="110" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">the completed unit of work</text>
 
-  <!-- one wide box = the whole unit of work -->
-  <rect x="150" y="66" width="660" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="480" y="103" text-anchor="middle" font-size="24" fill="#2f5169">the whole unit of work is in view</text>
-  <text x="480" y="128" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">agent returns · ten calls stitched · the session’s record</text>
-
-  <!-- green check -->
-  <circle cx="840" cy="101" r="22" fill="#1f7a4d"/>
-  <path d="M829,101 L837,110 L852,92" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- the lift arrow: rises from just above the events label up to the whole-unit box.
-       Starts at y=278 so the stroke clears the bracket label (baseline y=296) — a line must never cross a glyph. -->
-  <line x1="480" y1="278" x2="480" y2="146" stroke="#2f5169" stroke-width="2.5" marker-end="url(#sgUp)"/>
-  <text x="503" y="223" font-size="20" font-style="italic" fill="#2f5169">lift the check up</text>
+  <!-- the lift arrow: rises from above the event row up to the whole-unit box -->
+  <line x1="480" y1="238" x2="480" y2="128" stroke="#2f5169" stroke-width="2.5" marker-end="url(#sgUp)"/>
+  <text x="503" y="188" font-size="20" font-style="italic" fill="#2f5169">lift authority</text>
 
   <!-- ================= BOTTOM RUNG — too low ================= -->
-  <!-- the obligation bracket spanning several events -->
-  <path d="M170,318 L170,306 L790,306 L790,318" fill="none" stroke="#b23b3b" stroke-width="2"/>
-  <text x="480" y="296" text-anchor="middle" font-size="20" font-style="italic" fill="#b23b3b">the obligation spans many events — invisible in any one</text>
+  <text x="480" y="256" text-anchor="middle" font-size="20" font-style="italic" fill="#b23b3b">obligation not decidable here</text>
+  <path d="M170,278 L170,266 L790,266 L790,278" fill="none" stroke="#b23b3b" stroke-width="2"/>
 
   <!-- row of low-level event ticks -->
   <g fill="#ffffff" stroke="#1c1917" stroke-width="1.6">
-    <rect x="170" y="330" width="86" height="44" rx="4"/>
-    <rect x="276" y="330" width="86" height="44" rx="4"/>
-    <rect x="382" y="330" width="86" height="44" rx="4"/>
-    <rect x="492" y="330" width="86" height="44" rx="4"/>
-    <rect x="598" y="330" width="86" height="44" rx="4"/>
-    <rect x="704" y="330" width="86" height="44" rx="4"/>
+    <rect x="170" y="284" width="86" height="44" rx="4"/>
+    <rect x="276" y="284" width="86" height="44" rx="4"/>
+    <rect x="382" y="284" width="86" height="44" rx="4"/>
+    <rect x="492" y="284" width="86" height="44" rx="4"/>
+    <rect x="598" y="284" width="86" height="44" rx="4"/>
+    <rect x="704" y="284" width="86" height="44" rx="4"/>
   </g>
   <g font-size="19" fill="#1c1917" text-anchor="middle">
-    <text x="213" y="358">commit</text>
-    <text x="319" y="358">commit</text>
-    <text x="425" y="358">commit</text>
-    <text x="535" y="358">call</text>
-    <text x="641" y="358">call</text>
-    <text x="747" y="358">turn</text>
+    <text x="213" y="312">commit</text>
+    <text x="319" y="312">commit</text>
+    <text x="425" y="312">commit</text>
+    <text x="535" y="312">call</text>
+    <text x="641" y="312">call</text>
+    <text x="747" y="312">turn</text>
   </g>
-
-  <!-- red cross = checking here is the mistake -->
-  <circle cx="90" cy="352" r="22" fill="#b23b3b"/>
-  <path d="M80,342 L100,362 M100,342 L80,362" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
-
-  <text x="480" y="410" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Not yet — the events do not carry enough semantics</text>
-  <text x="480" y="440" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">commit · commit · call · call · turn</text>
 </svg>

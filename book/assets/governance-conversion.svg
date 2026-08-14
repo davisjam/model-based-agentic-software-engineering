@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- R44c NEW — Figure 3.4-1 "Governance Conversion". Fold to book/assets/governance-conversion.svg. -->
+<!-- Figure 3.4-1 "Governance Conversion" (v7 draft; folds to book/assets/governance-conversion.svg).
+     v7 THEORY-CARRYING edit (3.4-1): standardize the five diagnostic categories to
+     representation/semantics · obligation · evidence · evaluation · consequence, each mapping to a layer
+     (model · invariant · sensor · validator · constraint/gate). Category fix, not cosmetic:
+       - branch label "knowledge" -> "representation / semantics" (knowledge is too broad; the model
+         carries a representation with semantics).
+       - branch label "judgment" -> "evaluation" (a validator supplies repeatable EVALUATION, not all
+         engineering judgment — judgment is the residual the validator does not cover).
+     The encoded-answer row (model, invariant, sensor, validator, constraint/gate) is unchanged. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740" width="1000" height="740"
      role="img" aria-labelledby="gcTitle gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="gcTitle">Governance conversion: a failure is diagnosed for what was missing, and the missing
     piece is encoded as durable structure that future work inherits as engineering capital</title>
   <desc id="gcDesc">A failure or surprise flows down into one question — what was missing — which fans
-    into five branches: missing knowledge, obligation, evidence, judgment, or consequence. Each branch
-    encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or gate. The
-    five converge into durable engineering structure, which future work inherits, accumulating as
-    engineering capital. The figure's point: a recurring failure is not automatically a request for
-    another gate — you diagnose what the environment lacked and encode that.</desc>
+    into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.
+    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or
+    gate. The five converge into durable engineering structure, which future work inherits, accumulating as
+    engineering capital. The figure's point: a recurring failure is not automatically a request for another
+    gate — you diagnose what the environment lacked and encode that.</desc>
 
   <defs>
-    <marker id="gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -38,12 +46,12 @@
   </g>
 
   <!-- 5 branch labels (what was missing) -->
-  <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <text x="110" y="230">knowledge</text>
-    <text x="305" y="230">obligation</text>
-    <text x="500" y="230">evidence</text>
-    <text x="695" y="230">judgment</text>
-    <text x="890" y="230">consequence</text>
+  <g font-weight="700" fill="#2f5169" text-anchor="middle">
+    <text x="110" y="230" font-size="12.5">representation / semantics</text>
+    <text x="305" y="230" font-size="16">obligation</text>
+    <text x="500" y="230" font-size="16">evidence</text>
+    <text x="695" y="230" font-size="16">evaluation</text>
+    <text x="890" y="230" font-size="16">consequence</text>
   </g>
 
   <!-- connectors branch → encoded answer -->

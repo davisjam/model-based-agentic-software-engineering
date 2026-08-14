@@ -720,17 +720,15 @@
 </div>
   <div class="pair-arrow" aria-hidden="true">creates surfaces for &#8594;</div>
 <div class="p-cell" id="card-thesis-alignment">
-  <figure class="s-fig" id="bi-alignment-thesis"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
+  <figure class="s-fig" id="bi-alignment-thesis"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420"
      role="group" aria-labelledby="caTitle caDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bi-alignment-thesis-caTitle">Constraint or sensor: prevent the mistake, or observe it</title>
-  <desc id="bi-alignment-thesis-caDesc">An engineering property you want to hold splits into two moves. On the left, a
-    constraint: it narrows what can happen by scoping the action space, so the wrong move is unavailable
-    within the iteration — a typed enumeration over free-form strings, a permission, a narrow API — and it
-    costs no failed loop. On the right, a sensor: it observes what did happen and produces evidence — a
-    metric, a trace, a call scan, a log — and acting on that evidence costs at least one iteration. A
-    sensor does not judge what it saw. Detecting a violation is a further step: it takes a validator to
-    interpret the evidence against an obligation.</desc>
+  <title id="bi-alignment-thesis-caTitle">Constraint or sensor: a selection rule for the engineering obligation</title>
+  <desc id="bi-alignment-thesis-caDesc">An engineering obligation you must hold leads to one decision: can the unwanted state be
+    excluded cleanly? If yes, use a constraint, which narrows what may happen — a typed enumeration, a
+    permission, a narrow API. If no, use a sensor, which produces evidence of what happened — a metric, a
+    trace, a call scan, a log — for later evaluation. A constraint prevents the unwanted state; a sensor
+    reports it after the fact.</desc>
 
   <defs>
     <marker id="bi-alignment-thesis-caArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
@@ -739,50 +737,37 @@
     </marker>
   </defs>
 
-  <!-- source: engineering property -->
-  <rect x="320" y="26" width="320" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="480" y="59" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Engineering property</text>
-  <text x="480" y="84" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">prevent the mistake, or observe it</text>
+  <!-- top: the engineering obligation -->
+  <rect x="320" y="24" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="480" y="55" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">ENGINEERING OBLIGATION</text>
+  <text x="480" y="79" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the property you must hold</text>
 
-  <!-- fork edges -->
+  <!-- edge to the decision -->
+  <line x1="480" y1="90" x2="480" y2="132" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-alignment-thesis-caArrow)"/>
+
+  <!-- the selection decision -->
+  <rect x="264" y="136" width="432" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Can the unwanted state be excluded cleanly?</text>
+
+  <!-- branch edges -->
   <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#bi-alignment-thesis-caArrow)">
-    <path d="M400,92 C360,124 300,128 250,156"/>
-    <path d="M560,92 C600,124 660,128 710,156"/>
+    <path d="M380,194 C320,222 290,232 262,254"/>
+    <path d="M580,194 C640,222 670,232 698,254"/>
   </g>
+  <text x="300" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">YES</text>
+  <text x="662" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">NO</text>
 
-  <!-- ================= LEFT — constraint / narrows what can happen ================= -->
-  <rect x="70" y="162" width="360" height="226" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="250" y="198" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">Constraint — prevents</text>
+  <!-- ============ LEFT — CONSTRAINT ============ -->
+  <rect x="95" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="260" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">CONSTRAINT</text>
+  <text x="260" y="326" text-anchor="middle" font-size="19" fill="#1c1917">narrows what may happen</text>
+  <text x="260" y="360" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
 
-  <!-- wall icon: brick courses -->
-  <g stroke="#2f5169" stroke-width="2" fill="none">
-    <rect x="216" y="228" width="68" height="44"/>
-    <line x1="216" y1="250" x2="284" y2="250"/>
-    <line x1="250" y1="228" x2="250" y2="250"/>
-    <line x1="233" y1="250" x2="233" y2="272"/>
-    <line x1="267" y1="250" x2="267" y2="272"/>
-  </g>
-
-  <text x="250" y="308" text-anchor="middle" font-size="20" fill="#1c1917">Narrows what</text>
-  <text x="250" y="333" text-anchor="middle" font-size="20" fill="#1c1917">can happen.</text>
-  <text x="250" y="368" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
-
-  <!-- ================= RIGHT — sensor / observes what did happen ================= -->
-  <rect x="530" y="162" width="360" height="226" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="710" y="198" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">Sensor — observes</text>
-
-  <!-- sensor icon: a dish reading the state (no verdict) -->
-  <circle cx="710" cy="250" r="26" fill="none" stroke="#2f5169" stroke-width="2.5"/>
-  <circle cx="710" cy="250" r="6" fill="#2f5169"/>
-  <path d="M710,224 A26,26 0 0,1 736,250" fill="none" stroke="#2f5169" stroke-width="3"/>
-
-  <text x="710" y="308" text-anchor="middle" font-size="20" fill="#1c1917">Observes what did happen</text>
-  <text x="710" y="333" text-anchor="middle" font-size="20" fill="#1c1917">and produces evidence.</text>
-  <text x="710" y="368" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
-
-  <!-- ================= footer: protect the taxonomy ================= -->
-  <text x="480" y="428" text-anchor="middle" font-size="17" fill="#1c1917">A constraint costs no failed loop; acting on a sensor's evidence costs at least one iteration.</text>
-  <text x="480" y="452" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">Detecting a violation is a further step — a validator interprets the evidence against an obligation.</text>
+  <!-- ============ RIGHT — SENSOR ============ -->
+  <rect x="535" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="700" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">SENSOR</text>
+  <text x="700" y="326" text-anchor="middle" font-size="18" fill="#1c1917">produces evidence of what happened</text>
+  <text x="700" y="360" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
 </svg></figure>
   <p class="s-kick">Big idea 3 · Thesis 2</p>
   <h2 class="s-title">Give intent authority: constrain, sense, validate, gate</h2>
@@ -800,14 +785,14 @@
   <title id="bi-convert-failures-gcTitle">Governance conversion: a failure is diagnosed for what was missing, and the missing
     piece is encoded as durable structure that future work inherits as engineering capital</title>
   <desc id="bi-convert-failures-gcDesc">A failure or surprise flows down into one question — what was missing — which fans
-    into five branches: missing knowledge, obligation, evidence, judgment, or consequence. Each branch
-    encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or gate. The
-    five converge into durable engineering structure, which future work inherits, accumulating as
-    engineering capital. The figure's point: a recurring failure is not automatically a request for
-    another gate — you diagnose what the environment lacked and encode that.</desc>
+    into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.
+    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or
+    gate. The five converge into durable engineering structure, which future work inherits, accumulating as
+    engineering capital. The figure's point: a recurring failure is not automatically a request for another
+    gate — you diagnose what the environment lacked and encode that.</desc>
 
   <defs>
-    <marker id="bi-convert-failures-gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="bi-convert-failures-gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -831,12 +816,12 @@
   </g>
 
   <!-- 5 branch labels (what was missing) -->
-  <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <text x="110" y="230">knowledge</text>
-    <text x="305" y="230">obligation</text>
-    <text x="500" y="230">evidence</text>
-    <text x="695" y="230">judgment</text>
-    <text x="890" y="230">consequence</text>
+  <g font-weight="700" fill="#2f5169" text-anchor="middle">
+    <text x="110" y="230" font-size="12.5">representation / semantics</text>
+    <text x="305" y="230" font-size="16">obligation</text>
+    <text x="500" y="230" font-size="16">evidence</text>
+    <text x="695" y="230" font-size="16">evaluation</text>
+    <text x="890" y="230" font-size="16">consequence</text>
   </g>
 
   <!-- connectors branch → encoded answer -->

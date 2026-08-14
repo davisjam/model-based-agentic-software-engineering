@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- R44c REBUILD — Figure 3.4-2 "Where Authority Stops". First question = "explicit in a form the environment can use?" (NOT "modeled?"). Fold to book/assets/residual-decision-tree.svg (label kept stable: honest-gaps ref → this asset). -->
+<!-- Figure 3.4-3 "Where Authority Stops" (v7 draft; folds to book/assets/residual-decision-tree.svg;
+     label kept stable: honest-gaps ref -> this asset).
+     v7 THEORY-CARRYING edit (3.4-3):
+       - leaf "OBSERVED ONLY" -> "EVALUATED ONLY": the state produces AND evaluates evidence — more than
+         observation; only the authoritative consequence is absent.
+       - decision criterion Q2 drops "mechanically": "Can it be mechanically evaluated adequately?" ->
+         "Can it be evaluated adequately?" The text allows deterministic, probabilistic, OR human
+         validators; what matters is the ADEQUACY of the available evaluator, not that it is mechanical.
+     These are design CHOICES, not maturity levels (footer protects MAGE from "everything becomes a gate"). -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
      role="img" aria-labelledby="hgTitle hgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="hgTitle">Where authority stops: three questions place any obligation in one of four states —
-    residual, judgment required, observed only, or governed</title>
+    residual, judgment required, evaluated only, or governed</title>
   <desc id="hgDesc">A staircase of three questions. First: is the obligation explicit in a form the
     environment can use? No leads to RESIDUAL — a human or agent must reconstruct it. Yes leads to the
-    second question: can it be mechanically evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads
-    to the third: does authority act on the result? No leads to OBSERVED ONLY — evaluated but un-gated.
-    Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different obligations
-    stop in different places.</desc>
+    second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:
+    does authority act on the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
+    un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different
+    obligations stop in different places.</desc>
 
   <defs>
-    <marker id="hg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="hg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -37,15 +45,14 @@
 
   <!-- Q2 -->
   <rect x="410" y="152" width="320" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
-  <text x="570" y="177" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Can it be mechanically</text>
-  <text x="570" y="199" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">evaluated adequately?</text>
+  <text x="570" y="187" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Can it be evaluated adequately?</text>
 
   <!-- Q2 no -> JUDGMENT REQUIRED -->
   <path d="M430,210 L430,242 L245,242 L245,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="352" y="234" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
   <rect x="120" y="274" width="250" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="245" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">JUDGMENT REQUIRED</text>
-  <text x="245" y="325" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">mechanical evaluation is inadequate</text>
+  <text x="245" y="325" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">no adequate evaluator available</text>
 
   <!-- Q2 yes -> Q3 -->
   <path d="M610,210 L610,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
@@ -56,11 +63,11 @@
   <text x="620" y="299" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Does authority act</text>
   <text x="620" y="321" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">on the result?</text>
 
-  <!-- Q3 no -> OBSERVED ONLY -->
+  <!-- Q3 no -> EVALUATED ONLY -->
   <path d="M480,332 L480,364 L360,364 L360,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="410" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
   <rect x="240" y="396" width="240" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
-  <text x="360" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">OBSERVED ONLY</text>
+  <text x="360" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">EVALUATED ONLY</text>
   <text x="360" y="447" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">evaluated, yet un-gated</text>
 
   <!-- Q3 yes -> GOVERNED -->
@@ -70,5 +77,5 @@
   <text x="675" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#2f5137">GOVERNED</text>
   <text x="675" y="447" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">authoritative consequence</text>
 
-  <text x="500" y="512" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a design space, not a maturity ladder — different obligations stop in different places</text>
+  <text x="500" y="512" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">design choices, not maturity levels — different obligations stop in different places</text>
 </svg>

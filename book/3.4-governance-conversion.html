@@ -709,14 +709,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <title id="gcTitle">Governance conversion: a failure is diagnosed for what was missing, and the missing
     piece is encoded as durable structure that future work inherits as engineering capital</title>
   <desc id="gcDesc">A failure or surprise flows down into one question — what was missing — which fans
-    into five branches: missing knowledge, obligation, evidence, judgment, or consequence. Each branch
-    encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or gate. The
-    five converge into durable engineering structure, which future work inherits, accumulating as
-    engineering capital. The figure's point: a recurring failure is not automatically a request for
-    another gate — you diagnose what the environment lacked and encode that.</desc>
+    into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.
+    Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or
+    gate. The five converge into durable engineering structure, which future work inherits, accumulating as
+    engineering capital. The figure's point: a recurring failure is not automatically a request for another
+    gate — you diagnose what the environment lacked and encode that.</desc>
 
   <defs>
-    <marker id="gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -740,12 +740,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
 
   <!-- 5 branch labels (what was missing) -->
-  <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <text x="110" y="230">knowledge</text>
-    <text x="305" y="230">obligation</text>
-    <text x="500" y="230">evidence</text>
-    <text x="695" y="230">judgment</text>
-    <text x="890" y="230">consequence</text>
+  <g font-weight="700" fill="#2f5169" text-anchor="middle">
+    <text x="110" y="230" font-size="12.5">representation / semantics</text>
+    <text x="305" y="230" font-size="16">obligation</text>
+    <text x="500" y="230" font-size="16">evidence</text>
+    <text x="695" y="230" font-size="16">evaluation</text>
+    <text x="890" y="230" font-size="16">consequence</text>
   </g>
 
   <!-- connectors branch → encoded answer -->
@@ -800,12 +800,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <figure id="fig-3-4-2" class="book-figure" data-label="judgment-without-consequence"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720"
      role="img" aria-labelledby="jcTitle jcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="jcTitle">Judgment without consequence: the audit detected the danger and judged it unsafe, but the warning carried no consequence and the operation proceeded</title>
-  <desc id="jcDesc">A vertical cascade. A dangerous auto-resolution fallback is present. An audit detects it and judges it
-    unsafe — sensing and evaluation both work. But the finding is logged as a warning only, with no consequence, so
-    the operation proceeds anyway and content is stripped. Evidence existed and the judgment was correct; the warning
-    described a condition the environment still permitted. The durable repair removed the capability rather than
-    making the warning louder.</desc>
+  <title id="jcTitle">Correct judgment without consequence: the audit detected the danger and judged it unsafe, but the link from verdict to consequence was severed, so the operation proceeded and content was lost</title>
+  <desc id="jcDesc">A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a
+    validator judges it unsafe — sensing and evaluation both work. But the link from that verdict to any
+    authoritative consequence is severed; the only thing emitted at the break is a warning. So the operation
+    proceeds anyway and content is lost. Evidence existed and the judgment was correct; no authoritative
+    mechanism acted on the verdict. The durable repair removed the capability rather than making the warning
+    louder.</desc>
 
   <defs>
     <marker id="jc-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -814,60 +815,68 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <marker id="jc-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
-    <marker id="jc-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
-    </marker>
   </defs>
 
-  <!-- 1: dangerous fallback present (latent hazard) -->
+  <!-- 1: dangerous fallback exists (latent hazard) -->
   <rect x="250" y="40" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="400" y="71" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">dangerous fallback present</text>
+  <text x="400" y="71" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">dangerous fallback exists</text>
   <text x="400" y="90" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">auto-resolve conflicts by taking one side</text>
   <line x1="400" y1="102" x2="400" y2="144" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
 
-  <!-- 2: audit detects it (sensing works) -->
+  <!-- 2: sensor / audit detects (sensing works) -->
   <rect x="250" y="148" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="400" y="179" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">audit detects it</text>
+  <text x="400" y="179" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">sensor / audit detects condition</text>
   <text x="400" y="198" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a guard sees the substrate-class conflict</text>
   <line x1="400" y1="210" x2="400" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
 
-  <!-- 3: judgment unsafe (evaluation correct) -->
+  <!-- 3: validator: unsafe (evaluation correct) — the verdict -->
   <rect x="250" y="256" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="400" y="287" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">judgment: unsafe</text>
-  <text x="400" y="306" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">correctly identified as dangerous</text>
-  <line x1="400" y1="318" x2="400" y2="360" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
+  <text x="400" y="287" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">validator: UNSAFE</text>
+  <text x="400" y="306" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the verdict — correctly identified as dangerous</text>
 
   <!-- annotation bracket over steps 2-3: evidence existed -->
   <path d="M566 156 h12 v154 h-12" fill="none" stroke="#2f5169" stroke-width="1.8"/>
   <text x="590" y="228" font-size="15" font-weight="700" fill="#2f5169">Evidence existed;</text>
   <text x="590" y="249" font-size="15" font-weight="700" fill="#2f5169">the judgment was correct.</text>
 
-  <!-- 4: AUDIT ONLY (the broken link — no consequence) -->
-  <rect x="250" y="364" width="300" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="7 5"/>
-  <text x="400" y="395" text-anchor="middle" font-size="18.5" font-weight="700" fill="#9a3f12">AUDIT ONLY</text>
-  <text x="400" y="414" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">logged as a warning &#8212; no consequence</text>
-  <line x1="400" y1="426" x2="400" y2="468" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#jc-r)"/>
+  <!-- ============ THE SEVERED LINK — centerpiece ============ -->
+  <!-- upper stub leaving the verdict, dangling (no arrowhead) -->
+  <line x1="400" y1="318" x2="400" y2="360" stroke="#9a3f12" stroke-width="3.2"/>
+  <!-- break marks: two parallel slashes = link broken here -->
+  <g stroke="#9a3f12" stroke-width="3.2" stroke-linecap="round">
+    <line x1="386" y1="366" x2="414" y2="352"/>
+    <line x1="386" y1="376" x2="414" y2="362"/>
+  </g>
+  <!-- big severed X at the gap centre -->
+  <g stroke="#9a3f12" stroke-width="5" stroke-linecap="round">
+    <line x1="374" y1="392" x2="426" y2="436"/>
+    <line x1="426" y1="392" x2="374" y2="436"/>
+  </g>
+  <!-- WARNING ONLY — the only thing emitted at the cut (side, dashed rust) -->
+  <rect x="92" y="386" width="168" height="56" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="7 5"/>
+  <text x="176" y="410" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">WARNING ONLY</text>
+  <text x="176" y="429" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">logged — no consequence</text>
+  <line x1="260" y1="414" x2="366" y2="414" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4"/>
+  <!-- centerpiece label -->
+  <text x="452" y="404" font-size="16" font-weight="800" fill="#9a3f12">no authoritative consequence</text>
+  <text x="452" y="426" font-size="14.5" font-style="italic" fill="#9a3f12">the verdict never reaches a consequence</text>
+  <!-- lower stub into the operation, arrowed -->
+  <line x1="400" y1="440" x2="400" y2="472" stroke="#9a3f12" stroke-width="3.2" marker-end="url(#jc-r)"/>
 
-  <!-- callout on the broken link -->
-  <path d="M566 395 h-12" fill="none" stroke="#9a3f12" stroke-width="1.8"/>
-  <text x="574" y="390" font-size="15" font-weight="700" fill="#9a3f12">the missing rung:</text>
-  <text x="574" y="411" font-size="14.5" font-style="italic" fill="#9a3f12">the environment still</text>
-  <text x="574" y="430" font-size="14.5" font-style="italic" fill="#9a3f12">permitted the action</text>
+  <!-- 4: operation proceeds anyway -->
+  <rect x="250" y="476" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="400" y="513" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">operation proceeds anyway</text>
+  <line x1="400" y1="538" x2="400" y2="580" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#jc-r)"/>
 
-  <!-- 5: operation proceeds anyway -->
-  <rect x="250" y="472" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="400" y="509" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">operation proceeds anyway</text>
-  <line x1="400" y1="534" x2="400" y2="576" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#jc-r)"/>
-
-  <!-- 6: content stripping (terminal harm) -->
-  <rect x="250" y="580" width="300" height="62" rx="10" fill="#9a3f12" stroke="#7a3210" stroke-width="2.4"/>
-  <text x="400" y="611" text-anchor="middle" font-size="18.5" font-weight="700" fill="#ffffff">content stripping</text>
-  <text x="400" y="630" text-anchor="middle" font-size="13" font-style="italic" fill="#f4e3d6">the tree silently loses content</text>
+  <!-- 5: content lost (terminal harm) -->
+  <rect x="250" y="584" width="300" height="62" rx="10" fill="#9a3f12" stroke="#7a3210" stroke-width="2.4"/>
+  <text x="400" y="615" text-anchor="middle" font-size="18.5" font-weight="700" fill="#ffffff">content lost</text>
+  <text x="400" y="634" text-anchor="middle" font-size="13" font-style="italic" fill="#f4e3d6">the tree silently loses content</text>
 
   <!-- footer: the durable repair -->
-  <line x1="40" y1="666" x2="920" y2="666" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="60" y="692" font-size="16" font-weight="700" fill="#155c38">Durable repair &#8212; remove the fallback, escalate ambiguous merges to a human.</text>
-  <text x="60" y="712" font-size="15" font-style="italic" fill="#57534e">Governance conversion can delete a capability the environment should never have offered &#8212; not just warn louder.</text>
+  <line x1="40" y1="668" x2="920" y2="668" stroke="#e7e2da" stroke-width="1.4"/>
+  <text x="60" y="694" font-size="16" font-weight="700" fill="#155c38">Durable repair &#8212; remove the unsafe capability; escalate an ambiguous merge to a human.</text>
+  <text x="60" y="714" font-size="15" font-style="italic" fill="#57534e">The fix removed a capability the environment should never have offered &#8212; not a louder warning.</text>
 </svg><figcaption data-short="Judgment Without Consequence"><span class="fig-label">Figure 3.4-2.</span> <em>Judgment Without Consequence.</em> Evidence existed and the judgment was correct; the warning described a condition the environment still permitted. The durable repair removed the capability rather than amplifying the warning.</figcaption></figure>
 <p>The failure was not principally missing evidence. The system had evidence. Nor was it missing evaluation: the audit correctly identified the dangerous condition. What it lacked was consequence. The warning described a condition the environment still permitted.</p>
 <p>The durable repair did not make the warning louder. It removed the dangerous auto-resolution fallback and escalated ambiguous merges to a human instead. <strong>Governance conversion can add a mechanism. It can also delete a capability the environment should never have offered.</strong> Landing a known-dangerous condition as a warning-only step needs an expiry, not a destination.</p>
@@ -884,16 +893,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
      role="img" aria-labelledby="hgTitle hgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="hgTitle">Where authority stops: three questions place any obligation in one of four states —
-    residual, judgment required, observed only, or governed</title>
+    residual, judgment required, evaluated only, or governed</title>
   <desc id="hgDesc">A staircase of three questions. First: is the obligation explicit in a form the
     environment can use? No leads to RESIDUAL — a human or agent must reconstruct it. Yes leads to the
-    second question: can it be mechanically evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads
-    to the third: does authority act on the result? No leads to OBSERVED ONLY — evaluated but un-gated.
-    Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different obligations
-    stop in different places.</desc>
+    second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:
+    does authority act on the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
+    un-gated. Yes leads to GOVERNED. The progression is a design space, not a maturity ladder; different
+    obligations stop in different places.</desc>
 
   <defs>
-    <marker id="hg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="hg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -916,15 +925,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- Q2 -->
   <rect x="410" y="152" width="320" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
-  <text x="570" y="177" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Can it be mechanically</text>
-  <text x="570" y="199" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">evaluated adequately?</text>
+  <text x="570" y="187" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Can it be evaluated adequately?</text>
 
   <!-- Q2 no -> JUDGMENT REQUIRED -->
   <path d="M430,210 L430,242 L245,242 L245,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="352" y="234" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
   <rect x="120" y="274" width="250" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="245" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">JUDGMENT REQUIRED</text>
-  <text x="245" y="325" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">mechanical evaluation is inadequate</text>
+  <text x="245" y="325" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">no adequate evaluator available</text>
 
   <!-- Q2 yes -> Q3 -->
   <path d="M610,210 L610,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
@@ -935,11 +943,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="620" y="299" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Does authority act</text>
   <text x="620" y="321" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">on the result?</text>
 
-  <!-- Q3 no -> OBSERVED ONLY -->
+  <!-- Q3 no -> EVALUATED ONLY -->
   <path d="M480,332 L480,364 L360,364 L360,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="410" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
   <rect x="240" y="396" width="240" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
-  <text x="360" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">OBSERVED ONLY</text>
+  <text x="360" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">EVALUATED ONLY</text>
   <text x="360" y="447" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">evaluated, yet un-gated</text>
 
   <!-- Q3 yes -> GOVERNED -->
@@ -949,7 +957,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="675" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#2f5137">GOVERNED</text>
   <text x="675" y="447" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">authoritative consequence</text>
 
-  <text x="500" y="512" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a design space, not a maturity ladder — different obligations stop in different places</text>
+  <text x="500" y="512" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">design choices, not maturity levels — different obligations stop in different places</text>
 </svg><figcaption data-short="Where Authority Stops"><span class="fig-label">Figure 3.4-3.</span> <em>Where Authority Stops.</em> An obligation may remain implicit, may require human or probabilistic judgment, may be mechanically evaluated without a blocking consequence, or may be governed authoritatively. These are design states, not maturity levels. Different obligations should stop in different places.</figcaption></figure>
 <p id="idx-def-residual"><strong>Residual.</strong> The obligation is not explicit enough for the environment to use, so an engineer or agent must reconstruct the missing semantics.</p>
 <p><strong>Judgment required.</strong> The obligation is explicit, but available mechanisms cannot evaluate it adequately. Architecture may be represented while a design trade-off still requires expert judgment.</p>
