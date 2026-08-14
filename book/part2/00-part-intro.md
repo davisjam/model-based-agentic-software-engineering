@@ -8,8 +8,8 @@ a fast-moving system carries a standing cost. Commodity intelligence changes tha
 reconciling, regenerating, and querying structured representations are exactly the kinds of repeated
 work a coding fleet can perform cheaply.
 
-You may still be wondering why a book about coding agents has arrived at models. The answer is not that
-agents invented software engineering's reasoning problem. Scale did that long ago. The change is that
+You may still be wondering why a book about coding agents has arrived at models. Agents did not create
+software engineering's reasoning problem. Scale did. The change is that
 implementation can now move much faster than the knowledge required to direct it. A human team can spend
 substantial effort reconstructing architecture, ownership, policy, and lifecycle from code and
 institutional memory; an agent fleet can spend that same effort over and over, once per task and once
@@ -44,8 +44,7 @@ authorization rules, and the seams a call must pass through. Ask whether the sys
 and you need another representation again — stages, clocks, budgets, and a model of how retry and
 concurrency shape the worst case.
 
-The system did not change. The engineering question did. This Part makes that one move, and repeats it
-until it is a reflex:
+The system did not change. The engineering question did.
 
 > **Hold the system constant. Change the engineering question. Watch the model change.**
 
@@ -53,13 +52,13 @@ Put formally, that is the question this Part asks of every system, and asks agai
 
 **What should I model, and what will the model let me know?**
 
-The skill Part II teaches is not modeling as a pile of artifacts, but model **selection** — choosing the
-representation that exposes the property you need to reason about, and no more.
+Part II teaches model **selection**: choosing the representation that exposes the property you need to
+reason about, and no more.
 
 DocAble is the running example — the production accessibility service this book is built on, first met
 in Part I. A document enters, remediation is distributed across workers and services, the result is
 validated, and a corrected document returns with a record of what changed. The real system is far more
-complicated than the views ahead. That is the point: each view keeps only what its question needs.
+complicated than the views ahead. Each view keeps only what its question needs.
 
 The same object wears every hat. A single worker in that pipeline is several different things at once,
 depending only on which question you bring to it — a phenomenon Part I walks in the concrete. Hold the
@@ -99,5 +98,5 @@ those representations. Part III develops the general machinery of authority.
 By the Part's end, the recurring questions should form a small mental toolbox: for each concern, the
 model that answers it, the property it lets you state, and the quality attribute that property serves.
 That toolbox arrives as a single table at the Part's close, in
-[Joining Models Around a Scenario](2.8-joining-models-around-a-scenario.html). The test is not whether you
-can recite DocAble's models, but whether you can choose useful representations for a system of your own.
+[Joining Models Around a Scenario](2.8-joining-models-around-a-scenario.html). By the end, you should be
+able to choose useful representations for a system of your own.
