@@ -3644,7 +3644,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.1-where-authority-can-act::block-56",
+          "element": "3.1-where-authority-can-act::block-55",
           "role": "paragraph-point"
         }
       ]
@@ -5804,16 +5804,6 @@
         }
       ]
     },
-    "section-id:four-intervention-boundaries": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "3.1-where-authority-can-act::four-intervention-boundaries",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:from-appearance-to-specification": {
       "kind": "section-id",
       "dependents": [
@@ -6335,6 +6325,16 @@
         {
           "view": "outline",
           "element": "2.4-views-are-projections::reading-the-views",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:reasoning-action-work-and-runtime": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "3.1-where-authority-can-act::reasoning-action-work-and-runtime",
           "role": "section-anchor"
         }
       ]
@@ -12949,7 +12949,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "3.1-where-authority-can-act::block-56",
+          "element": "3.1-where-authority-can-act::block-55",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -13844,7 +13844,7 @@
         },
         {
           "view": "outline",
-          "element": "3.1-where-authority-can-act::block-56",
+          "element": "3.1-where-authority-can-act::block-55",
           "role": "paragraph-term[tier-2]"
         },
         {
@@ -14249,7 +14249,7 @@
         },
         {
           "view": "outline",
-          "element": "3.1-where-authority-can-act::block-56",
+          "element": "3.1-where-authority-can-act::block-55",
           "role": "paragraph-term[tier-2]"
         },
         {
