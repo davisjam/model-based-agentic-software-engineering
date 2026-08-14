@@ -1,11 +1,9 @@
 <!-- part-foreshadows: modeling-thesis, alignment-thesis, govern-the-environment, failures-become-machinery -->
 
 Parts II and III developed Modeling and Alignment separately. This Part runs them together as a
-method. The ordering is deliberate but not a logical dependency: useful authority can act without a
-rich system model, while explicit models enlarge the range of properties the environment can reason
-about and govern. MAGE therefore begins by asking what should be made explicit, places authority
-where stable obligations become legible, and converts recurring judgment into durable engineering
-structure.
+method. The ordering is methodological, not a strict dependency. MAGE begins by asking what should be
+made explicit, places authority where stable obligations become legible, and converts recurring
+judgment into durable engineering structure.
 
 <!-- thesisbox -->
 > ### THE MAGE CYCLE
