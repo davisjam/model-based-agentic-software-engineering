@@ -774,7 +774,7 @@
           "section_id": "the-shared-machinery-beneath-the-views",
           "level": 2,
           "heading_text": "The shared machinery beneath the views",
-          "topic_sentence": "here.",
+          "topic_sentence": "Most of the catalogue's method models belong to no single view.",
           "id_source": "derived",
           "block_index": 24,
           "points": [
@@ -894,7 +894,7 @@
           "section_id": "an-executable-model-is-its-schema-plus-its-checked-predicates",
           "level": 2,
           "heading_text": "An executable model is its schema plus its checked predicates",
-          "topic_sentence": "Read that as one operational equation: in the operational sense used here, **an executable model is its structured schema plus the predicates and derivations machines can actually consume.** The schema gives the entities, fields, edges, and states; the checked predicates state what must remain true over that structure.",
+          "topic_sentence": "Operationally, an executable model is its structured schema plus the predicates and derivations machines can consume.",
           "id_source": "derived",
           "block_index": 76,
           "points": [
@@ -914,19 +914,19 @@
           "section_id": "how-to-read-a-model-page",
           "level": 2,
           "heading_text": "How to read a model page",
-          "topic_sentence": "Part II teaches modeling by leading each section with an engineering question; the **appendix** documents each model with a uniform five-field reference template, so a reader who has read one reference page can read any of them on reflex.",
+          "topic_sentence": "The appendix documents each model through a uniform five-field reference template: what the model is for, what it contains, how it is depicted, how its claims are checked, and how it stays tied to the code.",
           "id_source": "derived",
-          "block_index": 89,
+          "block_index": 88,
           "points": [
             {
               "slug": "the-appendix-documents-each-model-with-a-five-field-template",
               "text": "The appendix documents each model with the same five-field template.",
-              "block_index": 93
+              "block_index": 92
             },
             {
               "slug": "the-executable-model-equals-representation-plus-checked-claims",
               "text": "An executable model is a structured representation plus checked claims.",
-              "block_index": 97
+              "block_index": 96
             }
           ]
         }
@@ -992,7 +992,7 @@
           "section_id": "the-graph-gives-identity-the-view-gives-semantics",
           "level": 2,
           "heading_text": "The graph gives identity; the view gives semantics",
-          "topic_sentence": "There is a seductive but wrong reading: that everything is *really* one knowledge graph, and the views are just paths through it.",
+          "topic_sentence": "The connected graph supplies identity and relationships; it does not supply every model's semantics.",
           "id_source": "derived",
           "block_index": 17,
           "points": [
@@ -1047,12 +1047,12 @@
             {
               "slug": "the-service-flow-model-answers-what-the-system-is-made-of",
               "text": "The service-flow model answers what the system is made of and what depends on what.",
-              "block_index": 7
+              "block_index": 6
             },
             {
               "slug": "one-service-graph-generates-policy-and-reconciles-the-call-graph",
               "text": "One service graph generates the access policy and reconciles the real call graph.",
-              "block_index": 11
+              "block_index": 10
             }
           ]
         },
@@ -1062,17 +1062,17 @@
           "heading_text": "Who owns each piece, and what may cross a boundary",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 17,
           "points": [
             {
               "slug": "the-component-zone-model-makes-ownership-a-queried-fact",
               "text": "The component-zone model makes ownership and boundary a queried fact.",
-              "block_index": 22
+              "block_index": 21
             },
             {
               "slug": "ownership-and-boundary-become-lint-findings-not-slow-erosion",
               "text": "Ownership and boundary reaches become findings, not slow erosion.",
-              "block_index": 27
+              "block_index": 26
             }
           ]
         },
@@ -1082,12 +1082,12 @@
           "heading_text": "Some facts describe; others declare",
           "topic_sentence": "The component and zone model is the cleanest place to see a distinction that runs through every model in this book.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 38,
           "points": [
             {
               "slug": "descriptive-facts-are-derivable-intent-bearing-facts-are-authored",
               "text": "Descriptive facts are derivable; intent-bearing facts are authored.",
-              "block_index": 41
+              "block_index": 39
             }
           ]
         },
@@ -1097,7 +1097,7 @@
           "heading_text": "The facts every consumer joins to",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 46,
+          "block_index": 44,
           "points": []
         },
         {
@@ -1106,7 +1106,7 @@
           "heading_text": "What third-party material the build depends on",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 48,
+          "block_index": 46,
           "points": []
         }
       ],
