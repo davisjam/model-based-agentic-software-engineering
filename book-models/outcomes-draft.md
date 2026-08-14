@@ -143,6 +143,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 6.2-scope-conditions
 
 
+### Lesson 6.3-what-the-theory-predicts
+
+
 ### Lesson 6.4-reorganization-of-se
 
 

@@ -2,7 +2,7 @@
 theory source, so the page and the model cannot drift. A sibling of the other declared -> generated book
 models (metrics-dashboard / claims / spine): the hand-authored source of truth is
 `book-models/theory_of_mage_declared.json`; this module derives a typed model over it, projects the
-hypotheses table into the 'Toward a Theory of MAGE' chapter, and holds that page's table byte-equal to the
+hypotheses table into the 'What the Theory Predicts' chapter, and holds that page's table byte-equal to the
 projection with a parity check.
 
 ONE SOURCE, TWO CONSUMERS.
@@ -43,9 +43,9 @@ _BOOK = os.path.join(_ROOT, "book")
 _DECLARED = os.path.join(_HERE, "theory_of_mage_declared.json")
 
 #: The page the hypotheses table is authored into (parity target).
-# The theory chapter, resolved through the chapter-identity model — a renumber of 6.1 updates this
+# The theory chapter, resolved through the chapter-identity model — a renumber of 6.3 updates this
 # automatically (the label is frozen; the filename is the one field a reorg edits).
-_PAGE_REL = chapter_identity.filename("education-research-open-problems")
+_PAGE_REL = chapter_identity.filename("what-the-theory-predicts")
 
 #: The ratified counts — encode the author's set so a silent add/drop/reclassify reddens (the dashboard
 #: model's C5-analogue: the count guard is the backstop against silent H-table drift).

@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1161,
+    "total_sites": 1169,
     "by_projection": {
       "book-pdf": 18,
-      "book-web": 752,
+      "book-web": 760,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -132,6 +132,10 @@
             "occ": 2
           },
           {
+            "file": "book/6.3-what-the-theory-predicts.html",
+            "occ": 6
+          },
+          {
             "file": "book/6.4-reorganization-of-se.html",
             "occ": 10
           },
@@ -141,7 +145,7 @@
           },
           {
             "file": "book/6.6-education-research-open-problems.html",
-            "occ": 12
+            "occ": 6
           },
           {
             "file": "book/7.1-the-part-that-stays-yours.html",
@@ -235,7 +239,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 53
+            "occ": 54
           }
         ]
       },
@@ -790,8 +794,12 @@
             "occ": 12
           },
           {
+            "file": "book/6.3-what-the-theory-predicts.html",
+            "occ": 4
+          },
+          {
             "file": "book/6.6-education-research-open-problems.html",
-            "occ": 5
+            "occ": 1
           },
           {
             "file": "book/appendix-d-daily-review.html",
@@ -821,7 +829,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 16
+            "occ": 17
           }
         ]
       },
@@ -1129,7 +1137,11 @@
           },
           {
             "file": "book/6.2-scope-conditions.html",
-            "occ": 17
+            "occ": 16
+          },
+          {
+            "file": "book/6.3-what-the-theory-predicts.html",
+            "occ": 58
           },
           {
             "file": "book/6.4-reorganization-of-se.html",
@@ -1141,7 +1153,7 @@
           },
           {
             "file": "book/6.6-education-research-open-problems.html",
-            "occ": 97
+            "occ": 47
           },
           {
             "file": "book/6.7-the-profession.html",
@@ -1395,7 +1407,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 101
+            "occ": 102
           }
         ]
       },
@@ -1686,6 +1698,10 @@
             "occ": 2
           },
           {
+            "file": "book/6.3-what-the-theory-predicts.html",
+            "occ": 7
+          },
+          {
             "file": "book/6.4-reorganization-of-se.html",
             "occ": 3
           },
@@ -1695,7 +1711,7 @@
           },
           {
             "file": "book/6.6-education-research-open-problems.html",
-            "occ": 9
+            "occ": 2
           },
           {
             "file": "book/6.7-the-profession.html",
@@ -1949,7 +1965,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 101
+            "occ": 102
           }
         ]
       },
@@ -2270,6 +2286,10 @@
             "occ": 7
           },
           {
+            "file": "book/6.3-what-the-theory-predicts.html",
+            "occ": 30
+          },
+          {
             "file": "book/6.4-reorganization-of-se.html",
             "occ": 18
           },
@@ -2279,7 +2299,7 @@
           },
           {
             "file": "book/6.6-education-research-open-problems.html",
-            "occ": 42
+            "occ": 14
           },
           {
             "file": "book/6.7-the-profession.html",
@@ -2533,7 +2553,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 101
+            "occ": 102
           }
         ]
       },
@@ -3322,6 +3342,10 @@
             "occ": 1
           },
           {
+            "file": "book/6.3-what-the-theory-predicts.html",
+            "occ": 1
+          },
+          {
             "file": "book/6.4-reorganization-of-se.html",
             "occ": 1
           },
@@ -3585,7 +3609,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 101
+            "occ": 102
           }
         ]
       },
@@ -3903,7 +3927,11 @@
           },
           {
             "file": "book/6.2-scope-conditions.html",
-            "occ": 3
+            "occ": 2
+          },
+          {
+            "file": "book/6.3-what-the-theory-predicts.html",
+            "occ": 20
           },
           {
             "file": "book/6.4-reorganization-of-se.html",
@@ -3915,7 +3943,7 @@
           },
           {
             "file": "book/6.6-education-research-open-problems.html",
-            "occ": 25
+            "occ": 9
           },
           {
             "file": "book/6.7-the-profession.html",
@@ -4169,7 +4197,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 101
+            "occ": 102
           }
         ]
       },
@@ -4357,6 +4385,10 @@
           },
           {
             "file": "book/6.2-scope-conditions.html",
+            "occ": 1
+          },
+          {
+            "file": "book/6.3-what-the-theory-predicts.html",
             "occ": 1
           },
           {
@@ -4623,7 +4655,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 101
+            "occ": 102
           }
         ]
       },
