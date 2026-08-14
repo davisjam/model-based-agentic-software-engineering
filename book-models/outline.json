@@ -7,7 +7,7 @@
     "derived_ids": 193,
     "missing_topic_sentence": 7,
     "sections_drained": 137,
-    "paragraph_points": 488
+    "paragraph_points": 487
   },
   "chapters": [
     {
@@ -1188,32 +1188,32 @@
             {
               "slug": "two-workers-doing-it-twice-or-a-dead-owner-are-the-two-ugly-questions",
               "text": "Two workers doing the same chunk twice, and a dead owner losing work, are the two failures ownership must answer.",
-              "block_index": 41
+              "block_index": 40
             },
             {
               "slug": "ownership-rests-on-a-lease-and-a-compare-and-set",
               "text": "Ownership of a chunk rests on a lease plus a compare-and-set claim.",
-              "block_index": 43
+              "block_index": 42
             },
             {
               "slug": "at-most-once-effect-rests-on-the-claim-not-the-lease",
               "text": "The lease provides crash recovery; the durable compare-and-set provides at-most-once effect. Recovery is not permission.",
-              "block_index": 46
+              "block_index": 45
             },
             {
               "slug": "crash-before-ack-redelivers-failure-never-requeues-except-preemption",
               "text": "Broker redelivery after a lapsed lease is not the application's requeue path; the app requeue stays reserved for planned preemption, and timeout/crash surface as failed.",
-              "block_index": 49
+              "block_index": 48
             },
             {
               "slug": "put-a-correctness-net-under-the-lease",
               "text": "Represent single ownership explicitly and put an atomic claim under the lease; trust the claim for correctness, the lease for liveness.",
-              "block_index": 52
+              "block_index": 50
             },
             {
               "slug": "the-distributed-race-is-common-knowledge-and-rarely-governed",
               "text": "Distributed locks and idempotency keys are the same shape; the surveyed corpus rarely governs it as a checked model.",
-              "block_index": 54
+              "block_index": 52
             }
           ]
         },
@@ -1223,12 +1223,12 @@
           "heading_text": "What must hold across every interleaving",
           "topic_sentence": "*What runs at once, and what stays true across every schedule?* Concurrency is where a correct-in-isolation design becomes a source of races, deadlocks, and torn writes, and the answer cannot be a thought experiment about interleavings.",
           "id_source": "derived",
-          "block_index": 58,
+          "block_index": 56,
           "points": [
             {
               "slug": "concurrency-answers-are-a-declared-checked-contract",
               "text": "Concurrency is where correct-in-isolation designs break; the answer is a declared, checked contract, not a thought experiment about interleavings.",
-              "block_index": 59
+              "block_index": 57
             }
           ]
         },
@@ -1238,12 +1238,12 @@
           "heading_text": "Where each part runs",
           "topic_sentence": "*Where does each part run, and which of those placements is a correctness decision?* A functionally correct system can still be mis-deployed.",
           "id_source": "derived",
-          "block_index": 68,
+          "block_index": 66,
           "points": [
             {
               "slug": "the-deployment-topology-model-declares-where-each-service-runs",
               "text": "The deployment-topology model declares where each service runs, and parity holds it to reality.",
-              "block_index": 69
+              "block_index": 67
             }
           ]
         },
@@ -1253,32 +1253,32 @@
           "heading_text": "Correctness in the graph, resource limits in a profile",
           "topic_sentence": "The placement models raise one more question — *what resources constrain execution?* — and answering it well turns on a single modeling principle, the most portable idea in this chapter: **correctness dependencies stay in the graph; host-specific resource limits live in a scheduler profile.**",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 71,
           "points": [
             {
               "slug": "correctness-deps-in-the-graph-host-limits-in-a-profile",
               "text": "Correctness dependencies stay in the graph; host-specific resource limits live in a scheduler profile.",
-              "block_index": 74
+              "block_index": 72
             }
           ]
         },
         {
-          "section_id": "one-honest-gap",
+          "section_id": "what-this-model-leaves-open",
           "level": 2,
-          "heading_text": "One honest gap",
-          "topic_sentence": "That policy models the *load-and-cost* half of execution.",
+          "heading_text": "What This Model Leaves Open",
+          "topic_sentence": "The policy models the load-and-cost side of execution, but not request latency, cache-hit ratios, or data-movement cost.",
           "id_source": "derived",
-          "block_index": 85,
+          "block_index": 83,
           "points": [
             {
               "slug": "model-only-where-a-failure-lives-so-the-latency-slice-stays-empty",
-              "text": "Model only where a failure lives; the pure-latency slice stays empty by design, and Part V reconstructs the incident that exposed its cost.",
-              "block_index": 86
+              "text": "Model only where a failure lives; the load-and-cost model is built and the latency slice is left unmodeled by design, and Part V reconstructs the incident that exposed its cost.",
+              "block_index": 84
             },
             {
               "slug": "execution-models-answer-what-may-run-and-how-not-whether-promises-hold",
               "text": "These models make execution explicit — legal states, ownership, interleavings, placement, host-dependent resource policy — and hand off the evidence questions to the next chapter.",
-              "block_index": 90
+              "block_index": 88
             }
           ]
         }
@@ -1384,12 +1384,12 @@
           "heading_text": "The user-journey model",
           "topic_sentence": "The user-journey model makes the product's journeys first-class typed entities — each an actor pursuing a goal through ordered steps, every boundary-crossing step joined to the endpoint it calls.",
           "id_source": "explicit",
-          "block_index": 7,
+          "block_index": 6,
           "points": [
             {
               "slug": "the-user-journey-model-copies-nothing-and-the-others-join-to-it",
               "text": "The user-journey model copies nothing; the other models join to it.",
-              "block_index": 9
+              "block_index": 8
             }
           ]
         },
@@ -1399,22 +1399,22 @@
           "heading_text": "The feeder models",
           "topic_sentence": "Three small models feed the flagship, each answering one question about a journey's tests.",
           "id_source": "explicit",
-          "block_index": 13,
+          "block_index": 12,
           "points": [
             {
               "slug": "a-journeys-criticality-derives-its-test-tier-never-stored",
               "text": "A journey's criticality derives its test tier, never stored.",
-              "block_index": 16
+              "block_index": 15
             },
             {
               "slug": "projecting-coverage-onto-nodes-makes-an-untested-invariant-visible",
               "text": "Projecting coverage onto nodes makes an untested invariant visible.",
-              "block_index": 19
+              "block_index": 18
             },
             {
               "slug": "task-closure-types-what-the-terminal-assertion-must-mean",
               "text": "Task-closure types what the terminal assertion must mean.",
-              "block_index": 23
+              "block_index": 22
             }
           ]
         },
@@ -1422,14 +1422,14 @@
           "section_id": "worked-join",
           "level": 2,
           "heading_text": "Worked join — the journey↔coverage↔deploy-policy composition",
-          "topic_sentence": "**The compositional question:** *watch one fact — a journey is* major — *travel through four models with nothing said twice, until a product goal reaches all the way to how the deploy rations its tests.* The other model pages each show a single model; this one shows them **joining, not repeating.** Four models compose on one shared key — the journey and its endpoints:",
+          "topic_sentence": "Follow one fact — a journey is *major* — through four models without storing it twice.",
           "id_source": "explicit",
-          "block_index": 27,
+          "block_index": 26,
           "points": [
             {
               "slug": "four-models-join-on-one-fact-with-nothing-said-twice",
               "text": "Four models join on one fact, nothing said twice.",
-              "block_index": 29
+              "block_index": 28
             }
           ]
         },
@@ -1439,16 +1439,16 @@
           "heading_text": "The three questions the join answers",
           "topic_sentence": "Three questions the raw deploy scripts and test config cannot answer on their own.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 33,
           "points": []
         },
         {
           "section_id": "the-composite-picture",
           "level": 3,
           "heading_text": "The composite picture",
-          "topic_sentence": "Everything so far has examined models individually.",
+          "topic_sentence": "[ref:join-composite] shows the four-model composition left to right.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 36,
           "points": []
         },
         {
@@ -1457,7 +1457,7 @@
           "heading_text": "The invariants the join spans",
           "topic_sentence": "The join's invariants span all four models, collected in [ref:scenarios-invariants].",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 39,
           "points": []
         },
         {
@@ -1466,7 +1466,7 @@
           "heading_text": "The Selector and Scheduler in code",
           "topic_sentence": "Two pieces of real policy code make the join concrete — the **Selector** derives a host's test roster from the journey model, and the **Scheduler** rations that roster per host.",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 42,
           "points": []
         },
         {
@@ -1475,12 +1475,12 @@
           "heading_text": "Tracing one fact through four models",
           "topic_sentence": "The join keys chain, and a reader can walk them against the figure: the **endpoint** ties M13 to M5, the **criticality** ties M13 to M6, the **derived tier** ties M6 to M7's roster, and the **host profile** ties the roster to the plan.",
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 49,
           "points": [
             {
               "slug": "four-chained-join-keys-round-trip-major-to-serialized",
               "text": "Four chained join keys round-trip major to serialized.",
-              "block_index": 52
+              "block_index": 51
             }
           ]
         },
@@ -1490,7 +1490,7 @@
           "heading_text": "The Payoff Is in the Join",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 56,
+          "block_index": 55,
           "points": []
         },
         {
@@ -1499,12 +1499,12 @@
           "heading_text": "The models pay off when they join",
           "topic_sentence": "Each model earns its keep separately.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 56,
           "points": [
             {
               "slug": "the-models-are-worth-more-joined-than-apart",
               "text": "The models are useful apart; their real value appears when they join.",
-              "block_index": 58
+              "block_index": 57
             }
           ]
         },
@@ -1514,12 +1514,12 @@
           "heading_text": "A request walks the connected slice",
           "topic_sentence": "Trace a single request.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 59,
           "points": [
             {
               "slug": "a-request-traverses-the-models-along-one-connected-slice",
               "text": "One engineering question traverses the models along a single connected slice.",
-              "block_index": 62
+              "block_index": 61
             }
           ]
         },
@@ -1529,12 +1529,12 @@
           "heading_text": "The graph is what lets the projections meet",
           "topic_sentence": "The walk works only because every model names the same entities.",
           "id_source": "derived",
-          "block_index": 64,
+          "block_index": 63,
           "points": [
             {
               "slug": "the-graph-lets-the-projections-meet-on-stable-identity",
               "text": "The system knowledge graph joins the projections on stable identity, not on hand-kept consistency.",
-              "block_index": 65
+              "block_index": 64
             }
           ]
         },
@@ -1544,27 +1544,27 @@
           "heading_text": "Where Modeling Meets Alignment",
           "topic_sentence": "A relation that lives only in human memory can still influence engineering work — a reviewer can remember it, an agent can infer it, a test may indirectly expose its violation.",
           "id_source": "derived",
-          "block_index": 67,
+          "block_index": 66,
           "points": [
             {
               "slug": "modeling-supplies-a-stable-semantic-object-alignment-decides-authority",
               "text": "A relation in memory can still influence work; Modeling supplies the stable semantic object, and Alignment decides what authority acts on it.",
-              "block_index": 68
+              "block_index": 67
             },
             {
               "slug": "explicit-semantics-is-the-modeling-move-choosing-authority-is-the-alignment-move",
               "text": "Once relations are explicit, more obligations become mechanically expressible; making the semantics explicit is the Modeling move, deciding what authority acts is the Alignment move.",
-              "block_index": 70
+              "block_index": 69
             },
             {
               "slug": "mage-teaches-modeling-first-because-explicit-abstractions-move-the-boundary",
               "text": "MAGE teaches Modeling first not because Alignment is impossible without it — Docker's sandboxes disprove that — but because explicit abstractions move the boundary of what the environment can analyze and enforce.",
-              "block_index": 72
+              "block_index": 71
             },
             {
               "slug": "choose-the-coarsest-representation-at-which-the-question-becomes-answerable",
               "text": "The selection rule is unchanged — choose the coarsest representation at which the engineering question becomes answerable.",
-              "block_index": 74
+              "block_index": 73
             }
           ]
         },
@@ -1572,44 +1572,39 @@
           "section_id": "the-mental-toolbox",
           "level": 2,
           "heading_text": "The mental toolbox",
-          "topic_sentence": "The Part opened with one question and promised a table at its close.",
+          "topic_sentence": "The models in Part II form a reusable toolbox organized by engineering question.",
           "id_source": "derived",
-          "block_index": 76,
+          "block_index": 75,
           "points": [
             {
               "slug": "the-mental-toolbox-is-the-parts-carry-away",
               "text": "The mental toolbox is the Part's carry-away: a model, a property, a quality per concern.",
-              "block_index": 77
-            },
-            {
-              "slug": "six-toolbox-rows-sit-under-five-classes",
-              "text": "Six toolbox rows sit under five classes; concurrency is the specialization, not a sixth kind.",
-              "block_index": 80
+              "block_index": 76
             },
             {
               "slug": "the-scenario-is-the-join-you-perform-across-the-toolbox",
               "text": "The scenario is the join you perform across the six models, not a seventh model the system stores.",
-              "block_index": 82
+              "block_index": 79
             }
           ]
         },
         {
-          "section_id": "variation-between-the-models-is-the-next-part-s-subject",
+          "section_id": "what-part-iii-adds",
           "level": 2,
-          "heading_text": "Variation between the models is the next Part's subject",
+          "heading_text": "What Part III Adds",
           "topic_sentence": "Some of these properties already have concrete mechanisms in DocAble; others do not.",
           "id_source": "derived",
-          "block_index": 84,
+          "block_index": 81,
           "points": [
             {
               "slug": "modeled-but-not-yet-governed-variation-is-useful-not-embarrassing",
               "text": "Some modeled properties already have mechanisms and some do not; a model can make a property explicit and measurable before the organization decides a violation should block work.",
-              "block_index": 85
+              "block_index": 82
             },
             {
               "slug": "part-3-takes-the-variation-as-its-subject",
               "text": "Part III takes that variation as its subject — which obligations become constraints, which need sensors, which a validator judges, where a gate blocks, and where human judgment stays appropriate.",
-              "block_index": 87
+              "block_index": 84
             }
           ]
         },
@@ -1619,27 +1614,27 @@
           "heading_text": "When Lightweight Models Stop Being Enough",
           "topic_sentence": "MAGE does not replace established modeling disciplines.",
           "id_source": "derived",
-          "block_index": 89,
+          "block_index": 86,
           "points": [
             {
               "slug": "this-book-is-an-introduction-the-doorway-outward",
               "text": "This chapter is the doorway outward.",
-              "block_index": 91
+              "block_index": 88
             },
             {
               "slug": "graduate-when-the-goal-sharpens-past-the-sketch",
               "text": "Graduate tools when the quality goal sharpens into a measurable constraint.",
-              "block_index": 93
+              "block_index": 90
             },
             {
               "slug": "each-model-is-a-sketch-a-deeper-tool-waits",
               "text": "Each model is deliberately lightweight; a heavier method waits.",
-              "block_index": 96
+              "block_index": 93
             },
             {
               "slug": "model-at-the-coarsest-level-that-answers-the-question",
               "text": "Model at the coarsest level that answers the question; descend only when it forces you to.",
-              "block_index": 101
+              "block_index": 98
             }
           ]
         },
@@ -1649,27 +1644,27 @@
           "heading_text": "The Handoff to Alignment",
           "topic_sentence": "Can Alignment exist without explicit models?",
           "id_source": "derived",
-          "block_index": 104,
+          "block_index": 101,
           "points": [
             {
               "slug": "alignment-can-exist-without-models-their-limit-is-what-the-environment-can-state-and-observe",
               "text": "Alignment can exist without explicit models — a sandbox, a compiler, a test, a reviewer are real authority; their limit is what the environment can state and observe without reconstructing semantics.",
-              "block_index": 105
+              "block_index": 102
             },
             {
               "slug": "local-controls-work-on-local-facts-richer-questions-need-representation-at-the-level-the-property-exists",
               "text": "Local controls work on local facts; richer engineering questions often require a representation at the level where the property exists, or an agent fills the semantic gap each time.",
-              "block_index": 107
+              "block_index": 104
             },
             {
               "slug": "models-change-the-scale-of-the-questions-we-can-reason-about",
               "text": "Models change the scale of the questions we can reason about and the properties we can make explicit; as representation gets richer, more judgment becomes eligible for analysis and enforcement, and what stays outside stays probabilistic or human.",
-              "block_index": 109
+              "block_index": 106
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-authority-is-a-separate-question",
               "text": "Part II ends where Part III begins: the models are not waiting to become real through enforcement — they already pay in reasoning, prediction, composition, and traceability — and Part III asks the separate question of authority.",
-              "block_index": 111
+              "block_index": 108
             }
           ]
         }
@@ -1683,7 +1678,7 @@
         {
           "slug": "a-user-journey-anchors-the-scenario",
           "text": "A user journey anchors the scenario; models enter where used.",
-          "block_index": 5
+          "block_index": 4
         }
       ]
     },

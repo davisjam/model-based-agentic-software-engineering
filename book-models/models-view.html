@@ -352,9 +352,9 @@
 <div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">Correctness in the graph, resource limits in a profile</a></div>
 <p class="topic">The placement models raise one more question — *what resources constrain execution?* — and answering it well turns on a single modeling principle, the most portable idea in this chapter: **correctness dependencies stay in the graph; host-specific resource limits live in a scheduler profile.**</p>
 </div>
-<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--one-honest-gap">
-<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">One honest gap</a></div>
-<p class="topic">That policy models the *load-and-cost* half of execution.</p>
+<div class="section s2" id="sec-2-6-modeling-behavior-and-execution--what-this-model-leaves-open">
+<div class="sec-h"><a href="../book/2.6-modeling-behavior-and-execution.html">What This Model Leaves Open</a></div>
+<p class="topic">The policy models the load-and-cost side of execution, but not request latency, cache-hit ratios, or data-movement cost.</p>
 </div>
 </div>
 <div class="chapter">
@@ -380,7 +380,7 @@
 </div>
 <div class="section s2" id="sec-2-8-joining-models-around-a-scenario--worked-join">
 <div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">Worked join — the journey↔coverage↔deploy-policy composition</a></div>
-<p class="topic">**The compositional question:** *watch one fact — a journey is* major — *travel through four models with nothing said twice, until a product goal reaches all the way to how the deploy rations its tests.* The other model pages each show a single model; this one shows them **joining, not repeating.** Four models compose on one shared key — the journey and its endpoints:</p>
+<p class="topic">Follow one fact — a journey is *major* — through four models without storing it twice.</p>
 </div>
 <div class="section s3" id="sec-2-8-joining-models-around-a-scenario--the-three-questions-the-join-answers">
 <div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The three questions the join answers</a></div>
@@ -388,7 +388,7 @@
 </div>
 <div class="section s3" id="sec-2-8-joining-models-around-a-scenario--the-composite-picture">
 <div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The composite picture</a></div>
-<p class="topic">Everything so far has examined models individually.</p>
+<p class="topic">[ref:join-composite] shows the four-model composition left to right.</p>
 </div>
 <div class="section s3" id="sec-2-8-joining-models-around-a-scenario--the-invariants-the-join-spans">
 <div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The invariants the join spans</a></div>
@@ -425,10 +425,10 @@
 </div>
 <div class="section s2" id="sec-2-8-joining-models-around-a-scenario--the-mental-toolbox">
 <div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The mental toolbox</a></div>
-<p class="topic">The Part opened with one question and promised a table at its close.</p>
+<p class="topic">The models in Part II form a reusable toolbox organized by engineering question.</p>
 </div>
-<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--variation-between-the-models-is-the-next-part-s-subject">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">Variation between the models is the next Part&#x27;s subject</a></div>
+<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--what-part-iii-adds">
+<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">What Part III Adds</a></div>
 <p class="topic">Some of these properties already have concrete mechanisms in DocAble; others do not.</p>
 </div>
 <div class="section s2" id="sec-2-8-joining-models-around-a-scenario--when-lightweight-models-stop-being-enough">
