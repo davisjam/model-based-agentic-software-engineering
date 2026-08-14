@@ -14,23 +14,32 @@ through recurrence. Part V preserves those differences rather than forcing every
 finished theory.
 
 <!-- thesisbox -->
-> ### THE ORIGINATING CASE
+> ### DEPTH AND BREADTH
 >
-> MAGE was not designed on a whiteboard.
+> MAGE emerged from one deeply observed production build. That case supplies chronology, mechanism, and
+> within-case recurrence.
 >
-> It emerged from one engineer directing an agent fleet through a production build whose pace made
-> repeated human reconstruction and review unsustainable.
+> Independent industrial accounts supply a different kind of evidence: variation across systems built by
+> other organizations under different constraints.
 >
-> **The method is the durable structure the work left behind.**
+> **The first shows how the method emerged. The second asks how far its engineering grammar travels.**
 
-Read the chapters that follow as **process evidence, not a controlled comparison**. The case can
-establish sequence: this failure occurred, this response followed, and this later evidence showed
-whether the response held over the surface it claimed to govern. It can show recurrence within one
-system and reconstruct how particular engineering structures emerged. It cannot establish
-that MAGE caused every improvement, that another organization would encounter the same failures, or
-that the resulting quantities are universal targets.
+**New here:** Originating case · Support ratio · Delegation staircase · Within-case evidence · Industrial reconstructions · Comparative evidence
 
-Parts II–IV presented the compressed method. Here the direction reverses. DocAble is the originating
-case from which much of that terminology was induced, so the wrong turns matter. A finished
-architecture shows what exists; a longitudinal case can show **why it exists and what it replaced**.
-Part VI asks which parts recur when other organizations solve related problems independently.
+The evidence in this Part comes in two forms. The first is longitudinal process evidence from DocAble. It can
+establish sequence: this failure occurred, this response followed, and later evidence showed whether the
+response held over the surface it claimed to govern. It can show recurrence within one system and reconstruct
+how particular engineering structures emerged. It cannot establish that MAGE caused every improvement, that
+another organization would encounter the same failures, or that the resulting quantities are universal targets.
+
+The final chapter widens the lens. Six public industrial accounts show how independent organizations structure
+autonomous engineering work under different constraints. Those accounts lack DocAble's process depth: they
+expose selected mechanisms rather than the full histories that produced them. Their value is variation. They
+can show comparable moves arising independently, different realizations of the same engineering problem, and
+boundaries the originating case could not expose.
+
+Parts II–IV presented the compressed method. Here the direction reverses. Chapters 5.1–5.4 return to the
+originating case from which much of that terminology was induced, so the wrong turns matter. A finished
+architecture shows what exists; a longitudinal case can show **why it exists and what it replaced**. Chapter
+5.5 then asks whether independently built systems expose comparable structures. Depth supplies mechanism;
+breadth supplies variation. Part VI asks what general account can explain both.
