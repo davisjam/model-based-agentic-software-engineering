@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1190,
+    "total_sites": 1188,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 784,
+      "book-web": 782,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -682,16 +682,12 @@
             "occ": 1
           },
           {
-            "file": "book/appendix-field-guide.html",
-            "occ": 2
-          },
-          {
             "file": "book/book-index.html",
             "occ": 1
           },
           {
             "file": "book/figures.html",
-            "occ": 8
+            "occ": 6
           },
           {
             "file": "book/part-3-intro.html",
@@ -701,7 +697,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 13
+            "occ": 12
           }
         ]
       },
@@ -2447,7 +2443,7 @@
           },
           {
             "file": "book/appendix-c-behavior-and-ownership.html",
-            "occ": 14
+            "occ": 12
           },
           {
             "file": "book/appendix-c-documentation-and-provenance.html",
@@ -2471,7 +2467,7 @@
           },
           {
             "file": "book/appendix-c-structure-and-boundaries.html",
-            "occ": 18
+            "occ": 21
           },
           {
             "file": "book/appendix-d-brownfield-progress.html",
@@ -2567,7 +2563,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 365
+            "occ": 362
           },
           {
             "file": "book/index.html",
@@ -3150,16 +3146,12 @@
             "occ": 1
           },
           {
-            "file": "book/appendix-field-guide.html",
-            "occ": 3
-          },
-          {
             "file": "book/book-index.html",
             "occ": 1
           },
           {
             "file": "book/figures.html",
-            "occ": 8
+            "occ": 6
           },
           {
             "file": "book/part-2-intro.html",
@@ -3169,7 +3161,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 13
+            "occ": 12
           }
         ]
       },

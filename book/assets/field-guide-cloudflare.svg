@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- HAND-AUTHORED one-off (Field Guide card — Cloudflare) — NOT projector output; edit by hand and keep this header. -->
-<!-- Field-guide team card: Cloudflare's entry door (policy-first governance) -> MAGE landing (Alignment Thesis). label: field-guide-cloudflare. Reference/nav card art, not a role-coloured figure. -->
+<!-- Field-guide team card: Cloudflare's entry door (policy-first governance) -> MAGE landing (Alignment). label: field-guide-cloudflare. Reference/nav card art, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Cloudflare — policy-first governance to the Alignment Thesis">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Cloudflare — policy-first governance to the Alignment">
   <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
 
   <!-- header -->
@@ -48,7 +48,7 @@
   <!-- landing badge -->
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
   <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="860" y="211" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Alignment Thesis</text>
+  <text x="860" y="211" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Alignment</text>
 
   <!-- takeaway -->
   <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>

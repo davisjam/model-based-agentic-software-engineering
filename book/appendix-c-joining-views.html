@@ -650,7 +650,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make the important fact authoritative</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Canonical</a></li>
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
@@ -708,7 +708,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     execution-policy view that plans for the host. A final dashed arrow reaches a joined view labelled not a
     mega-model. Every join edge is dashed: these are derived correspondences across views, and no fact is copied
     into a single stored model. No heavy boundary appears — composition is correspondence, not authority. Legend as
-    in Figure G-1; dash and weight carry the meaning without colour.</desc>
+    in Figure C-1; dash and weight carry the meaning without colour.</desc>
 
   <defs>
     <marker id="g7-dash" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
@@ -763,7 +763,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="360" y="514" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">JOINED VIEW</text>
   <text x="360" y="536" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">not a mega-model</text>
 
-  <text x="40" y="572" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure G-1.  Every join edge is dashed — derived correspondence on stable identities, no copied facts.</text>
+  <text x="40" y="572" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Every join edge is dashed — derived correspondence on stable identities, no copied facts.</text>
 </svg><figcaption data-short="Composition by reference"><span class="fig-label">Figure C.6-1.</span> <em>Composition by reference.</em> A user journey names an endpoint identity; that identity keys into a service or node, which keys into coverage and test placement, which key into the host execution policy. Each is a small view answering its own question. The join across their stable identities (dashed) answers the cross-model question and produces a joined view — not a mega-model.</figcaption></figure>
 <p><strong>Property.</strong> The joined view states cross-model properties that no single view can:</p>
 <ul><li><strong>Every major journey part has the required test coverage.</strong></li><li><strong>Declared journey dependencies agree with the actual call sites.</strong></li><li><strong>Declared endpoints are exercised.</strong></li><li><strong>Test placement reflects journey criticality.</strong></li><li><strong>Execution respects the selected host policy.</strong></li></ul>

@@ -650,7 +650,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make the important fact authoritative</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Canonical</a></li>
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
@@ -718,7 +718,7 @@ Bound
     branches on whether the evidence is sufficient. A no leads to a plain report-only box: the number is surfaced,
     not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission
     gate — the one place authority sits. The lesson: represent first; grant authority only when the evidence
-    warrants it. Legend as in Figure G-1; weight, dash, and glyph carry the meaning without colour.</desc>
+    warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour.</desc>
 
   <defs>
     <marker id="g5-solid" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
@@ -776,7 +776,7 @@ Bound
   <text x="545" y="438" text-anchor="middle" font-size="12" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
 
   <text x="360" y="480" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Represent first; grant authority only when the evidence warrants it.</text>
-  <text x="40" y="506" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure G-1.  A quantity does not earn a gate by being measurable.</text>
+  <text x="40" y="506" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  A quantity does not earn a gate by being measurable.</text>
 </svg><figcaption data-short="Measurement does not imply authority"><span class="fig-label">Figure C.4-1.</span> <em>Measurement does not imply authority.</em> A sensor observes the running system (dashed) and produces a measurement — latency, cost, queue depth. The model compares it against a declared bound. The branch is on evidence, not on the number: where the evidence is insufficient the result stays report-only; where it is sufficient the bound may act as a warning or an admission gate. Only the gate leg carries real authority.</figcaption></figure>
 <p><strong>Property.</strong> A measurement model makes statements such as: request latency stays below a declared bound for a defined request class; queue depth stays below a declared ceiling; direct processing cost stays inside a specified envelope.</p>
 <p>The scope and aggregation are part of the property, not decoration. <em>Latency below 500 ms</em> says nothing useful until it names the request class, the statistic, and the window it holds over.</p>

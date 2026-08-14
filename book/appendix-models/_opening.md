@@ -17,7 +17,7 @@ implementation history, not method. Nothing on these pages prescribes a set of b
 - **As a reference while reading Parts II–V.** Where the main text suppresses schema or
   correspondence detail, a section here gives one level deeper.
 - **As a pattern book.** A reader modeling another system can see what a structural, behavioral,
-  policy, measurement, or provenance representation looks like, and adapt it.
+  ownership, decision, measurement, or provenance representation looks like, and adapt it.
 - **As the seam between Modeling and Alignment.** Each treatment separates what a model
   *represents* from what machinery, if any, later gives its declarations authority.
 - **As an atlas of review surfaces.** The sections that follow name the engineering views a

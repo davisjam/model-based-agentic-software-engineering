@@ -1,8 +1,11 @@
-Structural models answer what exists, who owns it, and which relationships are permitted. In
-review, they are the surface a reviewer projects a change onto to ask *which architectural boundary
-moved?* Two representations carry most of the teaching load in Part II: the component-and-zone model
-and the service-flow model. Domain registries and bills of materials apply the same principle in a
-simpler form, treated briefly at the end.
+Structural models answer what exists and how it is related. In review, they are the surface a
+reviewer projects a change onto to ask *which architectural boundary moved?* Two of the working model
+classes sit close to structure and often ride the same representation: **ownership** — who owns a
+surface — and **decision** — which relationships are permitted. Naming them apart keeps the
+structural question distinct from the ownership and decision questions, even where one model answers
+more than one. Two representations carry most of the teaching load in Part II: the component-and-zone
+model and the service-flow model. Domain registries and bills of materials apply the same principle
+in a simpler form, treated briefly at the end.
 
 ## Component and zone
 
@@ -85,8 +88,8 @@ declared, authenticated edges; a reach to resource Y that no edge declares is ex
 model surfaces.
 
 **Property.** Only declared service-to-service and service-to-resource relationships are legal, each
-with its declared authentication posture. The graph is at once structural and decisional: it
-describes connectivity, and its permitted edges encode who may do what.
+with its declared authentication posture. The graph crosses two model classes at once — **Structural**
+and **Decision**: it describes connectivity, and its permitted edges encode who may do what.
 
 **Authority and correspondence.** The declared graph supplies the *ought*. Static call sites,
 generated configuration, deployment wiring, and runtime observation each supply part of the *is*. A

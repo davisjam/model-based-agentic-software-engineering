@@ -650,7 +650,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make the important fact authoritative</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Canonical</a></li>
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
@@ -695,14 +695,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · D.12 Operating Doctrine — MAGE"><header class="chap"><div class="kicker"><a href="appendix-operators-reference.html" aria-label="Beginning of Appendix D — Operator&#x27;s Reference">Appendix D — Operator&#x27;s Reference</a></div><h1>D.12 Operating Doctrine</h1></header><p><em>How do I run MAGE without turning the machinery into the work?</em></p>
 <p>Four rules govern the deck.</p>
-<ul><li><strong>Model to answer a question.</strong> Externalize the knowledge and intent that let humans and agents reason at the scale the work requires. Stop when another layer of representation costs more than the reasoning it saves.</li><li><strong>Put authority where the obligation becomes legible.</strong> Constraints, sensors, validators, and gates act at different boundaries. Use the earliest boundary that can actually observe the required property. Direct local authority does not require a rich system model; better representations can make larger properties governable.</li><li><strong>Make useful judgment durable.</strong> When a costly lesson recurs, classify it and decide whether future work should inherit something from it: a representation, control, procedure, architecture, or other engineering structure. Conversion is selective, not automatic.</li><li><strong>Maintain the portfolio.</strong> Engineering capital earns its name only while it produces future value. Reconcile what must stay true, measure carrying cost, repair depreciation, and retire machinery that has outlived its return.</li></ul>
+<ul><li><strong>Model to answer a question.</strong> Externalize the knowledge and intent that let humans and agents reason at the scale the work requires. Stop when another layer of representation costs more than the reasoning it saves.</li><li><strong>Put authority where the obligation becomes decidable.</strong> Constraints, sensors, validators, and gates act at different boundaries. Use the earliest boundary with the semantics and evidence needed to decide the obligation adequately. Direct local authority does not require a rich system model; better representations can make larger properties governable.</li><li><strong>Make useful judgment durable.</strong> When a costly lesson recurs, classify it and decide whether future work should inherit something from it: a representation, control, procedure, architecture, or other engineering structure. Conversion is selective, not automatic.</li><li><strong>Maintain the portfolio.</strong> Engineering capital earns its name only while it produces future value. Reconcile what must stay true, measure carrying cost, repair depreciation, and retire machinery that has outlived its return.</li></ul>
 <p>The goal is not maximum automation, maximum modeling, or minimum human involvement. It is a governed engineering environment in which commodity intelligence can take on more useful work without requiring engineering judgment to be reconstructed from scratch at every turn.</p>
 <pre><code>  OPERATING DOCTRINE                                   "How do I run MAGE?"
   ─────────────────────────────────────────────────────────────────────────
   MODEL
   Answer the engineering question at the right abstraction.
   ALIGN
-  Give selected obligations authority where they become legible.
+  Give selected obligations authority where they become decidable.
   CONVERT
   Make recurring, valuable judgment durable.
   MAINTAIN

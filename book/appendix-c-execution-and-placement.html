@@ -650,7 +650,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make the important fact authoritative</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Canonical</a></li>
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
@@ -707,7 +707,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     The table maps host profile to scheduling: elastic fans out, metered gives a bounded fan, scarce serializes.
     No heavy boundary appears here — the figure is descriptive, and the representative rule is that load rationing
     lives in the scheduler, not by mutating the deploy graph per host: no deploy edge carries the LOAD intent.
-    Legend as in Figure G-1; this figure shows a representation that stays advisory, with authority left to Part
+    Legend as in Figure C-1; this figure shows a representation that stays advisory, with authority left to Part
     III. Weight and dash carry the meaning without colour.</desc>
 
   <defs>
@@ -758,7 +758,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="440" y="336" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">serialize</text>
 
   <text x="360" y="372" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">Load rationing lives in the scheduler — no deploy edge carries the LOAD intent.</text>
-  <text x="40" y="418" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure G-1.  No gate here: the policy is a representation; Part III decides any authority.</text>
+  <text x="40" y="418" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  No gate here: the policy is a representation; Part III decides any authority.</text>
 </svg><figcaption data-short="Stable topology, variable execution policy"><span class="fig-label">Figure C.3-1.</span> <em>Stable topology, variable execution policy.</em> The deployment topology (web → queue → worker → storage) is the engineering view that stays fixed. The host execution policy is a separate overlay keyed on the host profile: elastic fans out, metered takes a bounded fan, scarce serializes. The scheduler reads the profile; the deployment graph does not change per host.</figcaption></figure>
 <p><strong>Property.</strong> Topology facts and host policy must not be conflated. The representative invariant from Part II is that load rationing lives in the scheduler, not in the deployment graph. The main text states it as <em>no deploy edge carries the LOAD intent</em>: a host's concurrency ceiling is a scheduling decision, so encoding it by mutating the topology per host is the error the property forbids.</p>
 <p><strong>Authority and correspondence.</strong> Deployment configuration reconciles against the topology; scheduler behavior reconciles against the host profile. Where either check deserves authority, Part III supplies the gate — a deployment gate over the wiring, a scheduler gate over the rationing.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">« Beginning of part</a><a href="appendix-c-behavior-and-ownership.html" aria-label="Previous chapter — C.2 Behavior and Ownership">« Previous chapter</a></div><span class="chapnav-here" title="C.3 Execution and Placement">C.3 Execution and Placement</span><div class="chapnav-fwd"><a href="appendix-c-measurement.html" aria-label="Next chapter — C.4 Measurement">Next chapter »</a><a href="appendix-operators-reference.html" aria-label="Next part — Appendix D — Operator&#x27;s Reference">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

@@ -97,7 +97,7 @@ and knowing the system are different competences, and the skill keeps them apart
 - **Weigh the evidence.** On success, continue. On failure, diagnose, and ask whether the lesson is durable
   enough to become **engineering capital.**
 
-Modeling makes engineering knowledge explicit; Alignment gives that knowledge authority. Self-Governance is
+Modeling makes engineering knowledge explicit; Alignment gives selected obligations consequential authority. Self-Governance is
 not a third activity beside them. It is the discipline of turning both on your own work. That is the whole
 of the rewrite: the fundamental model is the *loop,* not a catalogue of mechanisms.
 
@@ -107,8 +107,8 @@ The loop's questions are independent, so each becomes its own facet. Six directo
 the router names the question and sends you to the owner.
 
 - **`modeling/` — the model vocabulary and the verbs that build it.** *What kind of representation could
-  help, and how does representation improve?* Families of model (structure, behavior, execution,
-  measurement, provenance, composition) and the ten moves that raise a fact up the authority ladder.
+  help, and how does representation improve?* Families of model (structure, behavior, ownership, decision,
+  measurement, provenance) and the ten moves that raise a fact up the authority ladder.
 - **`practice/` — situation recognition and proportionality.** *What situation am I in, and which move is
   warranted?* One facet classifies — a field guide of engineering situations, plus a design-time smell
   scan; its sibling weighs the tradeoff and right-sizes the response.

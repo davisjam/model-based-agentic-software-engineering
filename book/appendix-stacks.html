@@ -650,7 +650,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make the important fact authoritative</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Canonical</a></li>
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
@@ -711,7 +711,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <desc id="cmDesc">Seven capability boxes. Model coherence (representation stays joined to reality) sits at
     the top and commonly relates downward to two stacks: assurance (obligations get discharged) and
     auditable transformation (change is legible). Those two commonly relate on to observe-react (detect and
-    act), which relates on to governance conversion (failure becomes capital). The arrows show relationships
+    act), which relates on to governance conversion (useful judgment becomes capital). The arrows show relationships
     that recurred in practice, not a floor the stacks rest on. Two further stacks — resource mediation
     (govern contention) and context delivery (right knowledge at the point of work) — sit detached at the
     bottom with no inbound arrow, because they are useful independently of the other stacks.</desc>
@@ -760,7 +760,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- GOVERNANCE CONVERSION -->
   <rect x="315" y="432" width="270" height="78" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="450" y="464" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">GOVERNANCE CONVERSION</text>
-  <text x="450" y="488" text-anchor="middle" font-size="14" fill="#57534e">failure &#8594; capital</text>
+  <text x="450" y="488" text-anchor="middle" font-size="14" fill="#57534e">useful judgment &#8594; capital</text>
 
   <!-- detached independence label -->
   <text x="450" y="548" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Useful independently of the other stacks (no inbound arrow):</text>
@@ -781,7 +781,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>This appendix starts from capabilities and works downward: what mechanisms must travel together to provide one useful engineering property? Appendix B looks from the opposite direction. It starts with recurring problems and uses worked examples to show how the same engineering move can produce different mechanisms in different settings.</p>
 <p>Appendix A stays above implementation detail on purpose. Each stack gets a capability, a composition diagram, a compact table of its constituent moves, and an argument for why those guarantees depend on one another. The individual mechanisms named in each stack are treated in full in the companion web catalogue.</p>
 <h2>Why stacks exist</h2>
-<p>A stack is often what accumulated engineering capital looks like at capability scale. One failure produces a sensor. Another exposes a bypass and produces a gate. A third reveals missing provenance and produces attribution. Mechanisms introduced separately, over time, can settle into a coherent architecture — because the guarantees they provide come to depend on one another.</p>
+<p>A stack is often what accumulated engineering capital looks like at capability scale. One failure may motivate a sensor. Another may expose a bypass that warrants a gate. A third may reveal missing provenance that warrants attribution. Mechanisms introduced separately, over time, can settle into a coherent architecture — because the guarantees they provide come to depend on one another.</p>
 <p>So mechanisms are the accumulated units of engineering capital, and a stack is the useful composition that becomes visible once several of those units jointly provide a capability. That is the relationship to hold. Not: the theory consists of seven stacks. Rather: stacks are what the theory's mechanisms compose into when a capability needs more than one of them.</p>
 <h2>A note on vendor features</h2>
 <p>The mechanisms in this book are described against one concrete substrate — a coding agent and its harness — because a real system is what makes them legible. The mechanism is never the vendor feature, though; the vendor feature is one <em>instance</em> of it. A harness's lifecycle hooks, for example, realize a general idea: <strong>enforcement points</strong> on the agent's runtime lifecycle, where a deterministic step fires whether or not the agent cooperates. Your framework may expose that idea differently — a middleware layer, a git hook, a CI stage, a wrapper process — and the concept carries across intact.</p>

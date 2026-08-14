@@ -650,7 +650,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make the important fact authoritative</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Canonical</a></li>
 <li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
 <li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
 <li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
@@ -693,7 +693,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-evidence-ledger.html">Appendix G — Evidence Ledger: The DocAble Case</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · C.1 Structure and Boundaries — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">Appendix C — Model Reference</a></div><h1>C.1 Structure and Boundaries</h1></header><p>Structural models answer what exists, who owns it, and which relationships are permitted. In review, they are the surface a reviewer projects a change onto to ask <em>which architectural boundary moved?</em> Two representations carry most of the teaching load in Part II: the component-and-zone model and the service-flow model. Domain registries and bills of materials apply the same principle in a simpler form, treated briefly at the end.</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · C.1 Structure and Boundaries — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">Appendix C — Model Reference</a></div><h1>C.1 Structure and Boundaries</h1></header><p>Structural models answer what exists and how it is related. In review, they are the surface a reviewer projects a change onto to ask <em>which architectural boundary moved?</em> Two of the working model classes sit close to structure and often ride the same representation: <strong>ownership</strong> — who owns a surface — and <strong>decision</strong> — which relationships are permitted. Naming them apart keeps the structural question distinct from the ownership and decision questions, even where one model answers more than one. Two representations carry most of the teaching load in Part II: the component-and-zone model and the service-flow model. Domain registries and bills of materials apply the same principle in a simpler form, treated briefly at the end.</p>
 <h2>Component and zone</h2>
 <p><strong>Engineering question.</strong> Where am I, who owns this surface, and what may cross its boundary?</p>
 <p>The model maps implementation surfaces to components and declares the seams through which those components may interact.</p>
@@ -723,7 +723,7 @@ Seam
     heavy gate glyph marking the one door a boundary check guards. A second crossing, from the web zone straight
     to a raw format library, is a forbidden direct access: a dashed arrow struck through by a red X, a crossing
     with no sanctioned door. Beneath, the observed repository tree is reverse-mapped up into the catalog along a
-    dashed arrow, so the model answers both what directory exists and who should own it. Legend as in Figure G-1;
+    dashed arrow, so the model answers both what directory exists and who should own it. Legend as in Figure C-1;
     weight, dash, and glyph carry the meaning without colour.</desc>
 
   <defs>
@@ -789,7 +789,7 @@ Seam
   <text x="590" y="300" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">reverse-map</text>
   <text x="590" y="316" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the tree</text>
 
-  <text x="40" y="502" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure G-1.  Gate glyph = a guarded door (authority); X = a forbidden crossing with no door.</text>
+  <text x="40" y="502" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Gate glyph = a guarded door (authority); X = a forbidden crossing with no door.</text>
 </svg><figcaption data-short="Structure and boundaries"><span class="fig-label">Figure C.1-1.</span> <em>Structure and boundaries.</em> Authored ownership and permitted seams (solid) join to the observed repository tree (dashed reverse-map). The model answers a descriptive question — what directory exists? — and a normative one — which component should own it, and which boundary may it cross? A sanctioned seam runs through the declared door; a forbidden direct reach to the raw format library is marked as a crossing the model rejects.</figcaption></figure>
 <p><strong>Property.</strong> Representative properties, each with the source that decides it:</p>
 <table id="tbl-C-1-1" class="book-table"><caption data-short="Component-zone properties"><span class="tbl-label">Table C.1-1.</span> Representative properties of the component-and-zone model, and where each draws its authority.</caption><thead><tr><th>Property</th><th>Source of authority</th></tr></thead><tbody><tr><td>Every in-scope source directory belongs to exactly one component</td><td>Authored ownership joined to the observed tree</td></tr><tr><td>Every component's declared directory exists</td><td>Repository</td></tr><tr><td>Boundary crossings use sanctioned seams</td><td>Authored model</td></tr><tr><td>Powerful mutation surfaces are reachable only through declared doors</td><td>Authored model plus observed dependency</td></tr></tbody></table>
@@ -810,7 +810,7 @@ Flow
     relation
     auth_posture</code></pre>
 <p>The important object is the declared edge. Service A reaches service B and resource X along declared, authenticated edges; a reach to resource Y that no edge declares is exactly what the model surfaces.</p>
-<p><strong>Property.</strong> Only declared service-to-service and service-to-resource relationships are legal, each with its declared authentication posture. The graph is at once structural and decisional: it describes connectivity, and its permitted edges encode who may do what.</p>
+<p><strong>Property.</strong> Only declared service-to-service and service-to-resource relationships are legal, each with its declared authentication posture. The graph crosses two model classes at once — <strong>Structural</strong> and <strong>Decision</strong>: it describes connectivity, and its permitted edges encode who may do what.</p>
 <p><strong>Authority and correspondence.</strong> The declared graph supplies the <em>ought</em>. Static call sites, generated configuration, deployment wiring, and runtime observation each supply part of the <em>is</em>. A correspondence check asks whether observed edges belong to the declared relation, and, where it matters, whether declared edges still exist.</p>
 <p>The same pattern appears in firewall policy, service-mesh authorization, network policy, and cloud access control. The enforcement rung differs; the representation stays a declaration of permitted relations. Part II makes that generalization directly.</p>
 <h2>Two simpler structural forms</h2>

@@ -1,11 +1,11 @@
 **Problem.** Consequential facts scatter because several consumers need them. A service relationship shows up in deployment config, in policy, in docs, and in tests; a timeout shows up in callers, workers, and orchestration. Once several copies can change on their own, disagreement stops being an incident and becomes an ordinary system state.
 
-**Move.** Choose one representation to carry the fact, make it machine-readable, and derive the consequential consumers from it. Make the authority architectural, not conventional — downstream artifacts should have less freedom to disagree than upstream intent grants them.
+**Move.** Choose one representation to be the canonical source of the fact, make it machine-readable, and derive the consequential consumers from it. Make the canonical source architectural, not conventional — downstream artifacts should derive or query rather than maintain independent copies.
 
 [ref:fig-move01] contrasts the scattered before-state with the single-authority after-state.
 
 <!-- label: fig-move01 -->
-<!-- figure: assets/c1-make-fact-authoritative.svg | *One authoritative representation.* BEFORE — copies A, B, C each feed a consumer and can drift apart, so disagreement is possible. AFTER — one authoritative representation, with A, B, C derived or queried from it, so disagreement becomes detectable or impossible. -->
+<!-- figure: assets/c1-make-fact-authoritative.svg | *One canonical representation.* BEFORE — copies A, B, C each feed a consumer and can drift apart, so disagreement is possible. AFTER — one canonical representation, with A, B, C derived or queried from it, so disagreement becomes detectable or impossible. -->
 
 **Example — Service policy.** DocAble represents permitted service flows as a structured service model. Network policy and wiring generate from that representation rather than living as independent accounts of which services may talk. A service relationship becomes an engineering fact with downstream consequences, not a convention several artifacts must each remember and keep aligned by hand.
 

@@ -5,10 +5,10 @@ Four rules govern the deck.
 - **Model to answer a question.** Externalize the knowledge and intent that let humans and agents reason at
   the scale the work requires. Stop when another layer of representation costs more than the reasoning it
   saves.
-- **Put authority where the obligation becomes legible.** Constraints, sensors, validators, and gates act at
-  different boundaries. Use the earliest boundary that can actually observe the required property. Direct
-  local authority does not require a rich system model; better representations can make larger properties
-  governable.
+- **Put authority where the obligation becomes decidable.** Constraints, sensors, validators, and gates act at
+  different boundaries. Use the earliest boundary with the semantics and evidence needed to decide the
+  obligation adequately. Direct local authority does not require a rich system model; better representations
+  can make larger properties governable.
 - **Make useful judgment durable.** When a costly lesson recurs, classify it and decide whether future work
   should inherit something from it: a representation, control, procedure, architecture, or other engineering
   structure. Conversion is selective, not automatic.
@@ -26,7 +26,7 @@ engineering judgment to be reconstructed from scratch at every turn.
   MODEL
   Answer the engineering question at the right abstraction.
   ALIGN
-  Give selected obligations authority where they become legible.
+  Give selected obligations authority where they become decidable.
   CONVERT
   Make recurring, valuable judgment durable.
   MAINTAIN

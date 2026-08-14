@@ -3558,7 +3558,7 @@ _MODEL_PAGES: list[tuple[str, str]] = [
 _ENGINEERING_MOVES_DIR = HERE / "appendix-engineering-moves"
 _APPENDIX_ENGINEERING_MOVES_OPENING_SLUG = "appendix-b-engineering-moves"
 _ENGINEERING_MOVES_PAGES: list[tuple[str, str]] = [
-    ("make-fact-authoritative",       "Make the important fact authoritative"),
+    ("make-fact-authoritative",       "Make One Source Canonical"),
     ("derive-dont-copy",              "Derive; don't copy"),
     ("check-correspondence",          "Keep representation and reality in correspondence"),
     ("derive-the-obligation-set",     "Derive what must be assured"),

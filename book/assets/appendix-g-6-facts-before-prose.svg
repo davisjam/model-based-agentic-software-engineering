@@ -9,7 +9,7 @@
     reaches a heavy bordered node crossed by a gate glyph, a completion gate with real authority. The right branch,
     generated documentation, is solid and re-derivable; it produces a faithful human explanation. Separately, prose
     maintained independently carries a dashed drift-risk arrow to a dashed hazard box — free prose can diverge from
-    the implementation because no machinery re-derives it. Legend as in Figure G-1; weight, dash, and glyph carry
+    the implementation because no machinery re-derives it. Legend as in Figure C-1; weight, dash, and glyph carry
     the meaning without colour.</desc>
 
   <defs>
@@ -67,5 +67,5 @@
   <text x="407" y="373" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">drift risk</text>
 
   <text x="360" y="432" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Generate from facts the system already knows — do not keep a second hand-maintained copy.</text>
-  <text x="40" y="470" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure G-1.  Solid + re-derivable stays faithful; a dashed prose edge may drift.</text>
+  <text x="40" y="470" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Solid + re-derivable stays faithful; a dashed prose edge may drift.</text>
 </svg>

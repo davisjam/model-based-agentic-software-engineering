@@ -9,7 +9,7 @@
     The table maps host profile to scheduling: elastic fans out, metered gives a bounded fan, scarce serializes.
     No heavy boundary appears here — the figure is descriptive, and the representative rule is that load rationing
     lives in the scheduler, not by mutating the deploy graph per host: no deploy edge carries the LOAD intent.
-    Legend as in Figure G-1; this figure shows a representation that stays advisory, with authority left to Part
+    Legend as in Figure C-1; this figure shows a representation that stays advisory, with authority left to Part
     III. Weight and dash carry the meaning without colour.</desc>
 
   <defs>
@@ -60,5 +60,5 @@
   <text x="440" y="336" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">serialize</text>
 
   <text x="360" y="372" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">Load rationing lives in the scheduler — no deploy edge carries the LOAD intent.</text>
-  <text x="40" y="418" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure G-1.  No gate here: the policy is a representation; Part III decides any authority.</text>
+  <text x="40" y="418" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  No gate here: the policy is a representation; Part III decides any authority.</text>
 </svg>

@@ -51,8 +51,8 @@ individual mechanisms named in each stack are treated in full in the companion w
 
 ## Why stacks exist
 
-A stack is often what accumulated engineering capital looks like at capability scale. One failure produces a
-sensor. Another exposes a bypass and produces a gate. A third reveals missing provenance and produces
+A stack is often what accumulated engineering capital looks like at capability scale. One failure may motivate
+a sensor. Another may expose a bypass that warrants a gate. A third may reveal missing provenance that warrants
 attribution. Mechanisms introduced separately, over time, can settle into a coherent architecture — because
 the guarantees they provide come to depend on one another.
 

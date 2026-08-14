@@ -7,10 +7,10 @@
   <desc id="g3Desc">A behavioral state machine runs left to right: FREE, then LEASED along a solid claim arrow, then
     DONE along a solid complete arrow. A solid expiry arrow returns LEASED to FREE. DONE is terminal: a short red
     X marks no re-entry. Below LEASED, an ownership overlay box records lease owner and lease until, joined to the
-    state by a solid specializes arrow — ownership is a specialization of behavior, not a sixth model class. From
+    state by a solid specializes arrow — the ownership overlay specializes the LEASED state; ownership is its own working class, shown here joined to behavior. From
     the overlay, a heavy bordered authorizes-action arrow, crossed by a gate glyph, reaches the worker: this is
     where a lease or compare-and-swap gate sits. An invariant band beneath reads LEASED implies exactly one valid
-    owner, and FREE implies no active owner. Legend as in Figure G-1; weight, dash, and glyph carry the meaning
+    owner, and FREE implies no active owner. Legend as in Figure C-1; weight, dash, and glyph carry the meaning
     without colour.</desc>
 
   <defs>
@@ -77,5 +77,5 @@
   <text x="360" y="368" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">INVARIANT</text>
   <text x="360" y="390" text-anchor="middle" font-size="14" fill="#1c1917">LEASED &#8658; exactly one valid owner    ·    FREE &#8658; no active owner</text>
 
-  <text x="40" y="430" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure G-1.  Ownership specializes behavior — it is not a separate model class.</text>
+  <text x="40" y="430" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Ownership is a working class in its own right, shown here joined to behavior.</text>
 </svg>

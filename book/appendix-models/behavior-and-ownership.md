@@ -1,6 +1,8 @@
-Structural models hold the system still. Behavioral models introduce state, transition, ownership,
-and time. In review, they answer *which behavioral states does this change implicate, and who is
-allowed to act?*
+Structural models hold the system still. Behavioral models introduce state, transition, and time.
+**Ownership** — who may act, and who holds a resource — is a distinct working class that rarely
+stands alone: it joins behavior here, just as it joined structure in the component model. This
+section treats the two together because they share representations. In review, they answer *which
+behavioral states does this change implicate, and who is allowed to act?*
 
 ## Lifecycle
 
@@ -32,8 +34,10 @@ code.
 
 ## Ownership and lease
 
-Concurrency adds an owner and a lease to the behavioral picture. It is not a sixth model class. Part
-II treats ownership as a specialization that combines behavioral and structural information.
+Concurrency adds an owner and a lease to the behavioral picture. Ownership is a working class in its
+own right, but it rarely travels alone: here it combines with behavioral information — state and
+transition — as in the component model it combined with structural information — surfaces and seams.
+Part II treats it as the class that answers *who owns, who may act,* wherever that question arises.
 
 **Engineering question.** Who may act on this work item now, and what stays true if workers overlap,
 fail, or retry?
@@ -41,7 +45,7 @@ fail, or retry?
 [ref:fig-g3-behavior-ownership] lays the ownership overlay over the state machine.
 
 <!-- label: fig-g3-behavior-ownership -->
-<!-- figure: assets/appendix-g-3-behavior-ownership.svg | *Behavior plus ownership.* The behavioral state machine (FREE → LEASED → DONE, terminal states with no re-entry) carries an ownership overlay: a lease naming its owner and its expiry authorizes exactly one worker to act. The invariant band beneath reads LEASED ⇒ exactly one valid owner, FREE ⇒ no active owner. Ownership specializes behavior; it is not a separate model class. -->
+<!-- figure: assets/appendix-g-3-behavior-ownership.svg | *Behavior plus ownership.* The behavioral state machine (FREE → LEASED → DONE, terminal states with no re-entry) carries an ownership overlay: a lease naming its owner and its expiry authorizes exactly one worker to act. The invariant band beneath reads LEASED ⇒ exactly one valid owner, FREE ⇒ no active owner. Ownership is a working class in its own right, shown here joined to behavior. -->
 
 **Property.** Representative invariants:
 
