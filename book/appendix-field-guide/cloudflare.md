@@ -6,7 +6,7 @@
 
 **What the public record shows.** Cloudflare describes an engineering-standards system in which requirements originating in RFCs are extracted into structured, machine-readable form. Requirements that can be checked mechanically can become custom checks; obligations requiring semantic judgment remain review questions. This separates the authority to establish policy from the machinery that applies it repeatedly.[^cf-reimann]
 
-The important engineering move is not "AI reviews code." It is policy becoming an artifact that later work can inherit. A requirement can move from prose into a machine-checkable mechanism and then act across many subsequent changes. Part VI accordingly treats Cloudflare as the cleanest policy-first example: institutional knowledge is externalized, mechanically checkable obligations move into custom checks, and humans retain policy authority.
+The important engineering move is not "AI reviews code." It is policy becoming an artifact that later work can inherit. A requirement can move from prose into a machine-checkable mechanism and then act across many subsequent changes. §5.5 accordingly treats Cloudflare as the cleanest policy-first example: institutional knowledge is externalized, mechanically checkable obligations move into custom checks, and humans retain policy authority.
 
 **Boundary of the evidence.** The public account is much stronger on representation and enforcement of obligations than on explicit executable models of the software being governed. Nor does it provide the longitudinal recurrence evidence needed to establish the complete MAGE governance-conversion loop. We can observe policy → representation → mechanism; we should not manufacture failure → diagnosis → environmental adaptation from source silence.
 

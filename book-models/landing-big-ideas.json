@@ -146,7 +146,7 @@
     "kicker": "Big idea 7 · the frontier",
     "title": "The Research Agenda",
     "figure": "open-frontiers.svg",
-    "book_home": "education-research-open-problems",
+    "book_home": "what-the-theory-predicts",
     "claim": "Three open frontiers: how far judgment can migrate into deterministic machinery, how to census a governed environment's coverage and gaps, and what stronger models unlock.",
     "more": "These frontiers are not loose ends; they are where the method turns testable. Each names something you could measure against real systems rather than assert — how far an obligation can be pushed toward proof, what a governed environment's coverage actually is, and what the next tier of models makes cheap enough to retire by hand. The last is the model floor: a stronger environment makes cheaper models viable, so the sharp question becomes whether you can swap models without quality collapse.",
     "mechanisms": ["control-coverage-census", "governance-graph", "formal-invariant-verification"],

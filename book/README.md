@@ -40,8 +40,9 @@ book/
     5.2-the-build.md
     5.3-the-road-to-mage.md
     5.4-failures-that-became-infrastructure.md
+    5.5-mage-in-the-wild.md
   part6/  (Part 6 — The Profession)
-    6.1-toward-a-theory-of-mage.md … 6.7-conclusion.md
+    6.1-toward-a-theory-of-mage.md … 6.6-education-research-open-problems.md
   part7/  (back matter)
     7.1-about-the-author.md
     7.2-colophon.md

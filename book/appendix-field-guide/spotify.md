@@ -8,12 +8,12 @@
 
 Spotify's surrounding engineering estate also matters. The book records its System Model and Backstage catalog as carrying service identities, ownership, dependencies, endpoints, and lineage, giving fleet tooling a representation of the estate through which migrations can be targeted rather than requiring each agent to rediscover the repository landscape.[^sp-estate]
 
-**Boundary of the evidence.** Reported activity increases — including the manuscript's 76% PR-frequency figure — are evidence of implementation activity, not by themselves evidence of durable throughput.[^sp-prfreq] Keep that number only with its source immediately attached and do not let it carry the argument. Part VI itself correctly distinguishes raw activity from durable progress. The stronger receipt is the changed allocation of human and agent work: judgment moves upstream to scoping and supervision.
+**Boundary of the evidence.** Reported activity increases — including the manuscript's 76% PR-frequency figure — are evidence of implementation activity, not by themselves evidence of durable throughput.[^sp-prfreq] Keep that number only with its source immediately attached and do not let it carry the argument. §5.5 itself correctly distinguishes raw activity from durable progress. The stronger receipt is the changed allocation of human and agent work: judgment moves upstream to scoping and supervision.
 
 **Portable lesson.** Fleet-scale autonomy moves scarce human judgment toward scoping, targeting, supervision, and exception handling.
 
 [^sp-honk]: Max Charas and Marc Bruggmann, "Honk: Autonomous Code Migration at Spotify," Spotify Engineering, 2026. Already in the manuscript bibliography.
-[^sp-estate]: Spotify System Model and Backstage service catalog, as recorded in the Part VI reconstruction (service identities, ownership, dependencies, endpoints, lineage).
+[^sp-estate]: Spotify System Model and Backstage service catalog, as recorded in the §5.5 reconstruction (service identities, ownership, dependencies, endpoints, lineage).
 [^sp-prfreq]: 76% PR-frequency figure as reported in the Honk account; cited here strictly as an activity measure, not as evidence of durable throughput.
 
 #### Recto — MAGE interpretation

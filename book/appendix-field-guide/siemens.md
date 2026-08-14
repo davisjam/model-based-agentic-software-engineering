@@ -4,11 +4,11 @@
 
 #### Verso — Evidence
 
-**What the public record shows.** Siemens supplies the comparison the book needs from outside software-first engineering. Persistent engineering representations carry requirements, behavioral structure, simulation, traceability, and other system semantics; software generation can occur downstream of those representations. Part VI treats Siemens as evidence that the strong end of MAGE's Modeling Thesis is not a novel invention — richer executable representations are already ordinary practice in model-based engineering.[^siemens-part6]
+**What the public record shows.** Siemens supplies the comparison the book needs from outside software-first engineering. Persistent engineering representations carry requirements, behavioral structure, simulation, traceability, and other system semantics; software generation can occur downstream of those representations. §5.5 treats Siemens as evidence that the strong end of MAGE's Modeling Thesis is not a novel invention — richer executable representations are already ordinary practice in model-based engineering.[^siemens-part6]
 
 The manuscript summarizes the pattern concretely: SysML and CAD models, simulation, virtual ECUs, and bill-of-materials structures can be artifacts engineers work *through*, with code and verification downstream of the models.[^siemens-recon]
 
-**Boundary of the evidence.** The public material examined here does not establish a generalized admission mechanism — one that rejects an agent-generated change whenever a declared model↔implementation correspondence is violated. That is a boundary of *this source corpus*, not a claim about what Siemens can do. Part VI is careful on this: no public reconstruction establishes that correspondence tier, and source silence does not establish organizational absence.[^siemens-part6]
+**Boundary of the evidence.** The public material examined here does not establish a generalized admission mechanism — one that rejects an agent-generated change whenever a declared model↔implementation correspondence is violated. That is a boundary of *this source corpus*, not a claim about what Siemens can do. §5.5 is careful on this: no public reconstruction establishes that correspondence tier, and source silence does not establish organizational absence.[^siemens-part6]
 
 **Portable lesson.** Software need not be the primary surface of engineering reasoning. Mature engineering disciplines routinely place richer representations upstream of realization.
 
