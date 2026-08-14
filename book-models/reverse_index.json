@@ -5389,16 +5389,6 @@
         }
       ]
     },
-    "section-id:a-few-landmarks": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.2-mage-by-example::a-few-landmarks",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:a-larger-pattern": {
       "kind": "section-id",
       "dependents": [
@@ -5440,6 +5430,16 @@
         {
           "view": "outline",
           "element": "2.8-joining-models-around-a-scenario::a-request-walks-the-connected-slice",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:accessibility-and-the-engineering-experiment": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.2-mage-by-example::accessibility-and-the-engineering-experiment",
           "role": "section-anchor"
         }
       ]
@@ -5625,6 +5625,16 @@
         {
           "view": "outline",
           "element": "4.3-validating-change::did-the-search-cover-the-claim",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:docable-vocabulary": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.2-mage-by-example::docable-vocabulary",
           "role": "section-anchor"
         }
       ]
@@ -6180,6 +6190,16 @@
         {
           "view": "outline",
           "element": "4.4-operating-mage::one-judgment-laden-example-doc-derived-tests",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:one-system-several-engineering-questions": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.2-mage-by-example::one-system-several-engineering-questions",
           "role": "section-anchor"
         }
       ]
@@ -6769,16 +6789,6 @@
         }
       ]
     },
-    "section-id:the-grounding-problem": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.2-mage-by-example::the-grounding-problem",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:the-handoff-to-alignment": {
       "kind": "section-id",
       "dependents": [
@@ -7170,16 +7180,6 @@
         {
           "view": "outline",
           "element": "6.3-what-the-theory-predicts::trustworthy-representations",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:two-birds-one-stone": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.2-mage-by-example::two-birds-one-stone",
           "role": "section-anchor"
         }
       ]
@@ -7654,6 +7654,16 @@
         }
       ]
     },
+    "section-id:why-docable-serves-as-the-running-case": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.2-mage-by-example::why-docable-serves-as-the-running-case",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:why-i-built-a-production-system-to-study-this": {
       "kind": "section-id",
       "dependents": [
@@ -7705,16 +7715,6 @@
         {
           "view": "outline",
           "element": "6.3-what-the-theory-predicts::why-this-may-now-be-experimentally-tractable",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:why-this-system": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.2-mage-by-example::why-this-system",
           "role": "section-anchor"
         }
       ]
