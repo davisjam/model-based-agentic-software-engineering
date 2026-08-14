@@ -560,22 +560,22 @@
           "heading_text": "Knowledge graphs and engineering models",
           "topic_sentence": "Modern agent architectures already externalize knowledge.",
           "id_source": "derived",
-          "block_index": 14,
+          "block_index": 15,
           "points": [
             {
               "slug": "agent-architectures-augment-the-model-with-external-knowledge",
               "text": "Agent architectures already externalize knowledge; a knowledge graph serves as an external reasoning substrate.",
-              "block_index": 16
+              "block_index": 17
             },
             {
               "slug": "mage-begins-from-the-same-observation-asks-what-work-a-representation-can-do",
               "text": "MAGE begins from the same observation, then asks what additional work a representation can do; shape does not distinguish the artifacts, semantics do.",
-              "block_index": 20
+              "block_index": 21
             },
             {
               "slug": "authority-is-a-separate-dimension",
               "text": "A knowledge graph exposes what exists; an engineering model carries the semantics an engineering question needs. Authority is a separate dimension.",
-              "block_index": 22
+              "block_index": 23
             }
           ]
         },
@@ -585,22 +585,22 @@
           "heading_text": "The system knowledge graph",
           "topic_sentence": "The simplest useful form for that knowledge is a graph — the *system knowledge graph*.",
           "id_source": "derived",
-          "block_index": 24,
+          "block_index": 25,
           "points": [
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of that knowledge is a graph.",
-              "block_index": 26
+              "block_index": 27
             },
             {
               "slug": "graph-is-structure-not-storage",
               "text": "Graph names the structure, not the storage technology.",
-              "block_index": 29
+              "block_index": 30
             },
             {
               "slug": "relevance-follows-relationships",
               "text": "Context engineering expressed structurally: relevance follows relationships.",
-              "block_index": 31
+              "block_index": 32
             }
           ]
         },
@@ -610,17 +610,17 @@
           "heading_text": "Industry already lives here",
           "topic_sentence": "Externalizing knowledge this way is the most basic move of the Modeling Thesis, and much of current practice already stands on it.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 35,
           "points": [
             {
               "slug": "knowledge-rep-is-the-first-rung",
               "text": "Externalized knowledge representation is the most basic move of the Modeling Thesis, and most of industry already stands on it.",
-              "block_index": 36
+              "block_index": 37
             },
             {
               "slug": "knowledge-rep-universal-graph-common-executable-not",
               "text": "Knowledge representation is universal in the corpus; graph-shaped representation common; invariant-bearing models not.",
-              "block_index": 40
+              "block_index": 41
             }
           ]
         }
@@ -649,7 +649,7 @@
         {
           "slug": "engineering-is-comparison-through-representations",
           "text": "Engineering compares alternatives through representations that suppress irrelevant detail; commodity intelligence increases the return on making the representation explicit and machine-readable.",
-          "block_index": 10
+          "block_index": 11
         }
       ]
     },
