@@ -14,17 +14,17 @@ that would otherwise need an agent or a human to reconstruct the missing semanti
 <!-- thesisbox -->
 > ### ALIGNMENT THESIS
 >
-> Give engineering intent authority by encoding obligations into authoritative mechanisms that
+> Give engineering obligations authority by encoding them into mechanisms that
 > constrain actions, produce evidence, evaluate that evidence, and control admission.
 >
-> Represented intent becomes authoritative when the environment can act on it.
+> An obligation becomes authoritative when the environment can act on it.
 
-Five questions organize the Part; [ref:part3-nav-arc] lists them.
+Five questions organize the Part; [ref:part3-nav-arc] shows their progression.
 
 <!-- label: part3-nav-arc -->
-<!-- figure: assets/part3-nav-arc.svg | *Figure 3.0-1: Five questions organize Alignment.* WHERE authority can act (3.1), WHAT obligation it should hold (3.2), HOW a mechanism holds it (3.3), how the environment GROWs by learning new obligations and controls (3.4), and how we GOVERN the resulting control system (3.5). -->
+<!-- figure: assets/part3-nav-arc.svg | *Figure 3.0-1: Five questions organize Alignment.* The Part locates where authority can act, determines what obligation is legitimate, decomposes how mechanisms carry authority, shows how experience adds durable obligations and controls, and finally treats the resulting control estate as an engineering object. -->
 
-Alignment externalizes selected engineering judgments into the environment. Constraints narrow what work
+Alignment gives selected engineering judgments durable authority in the environment. Constraints narrow what work
 can do; sensors produce evidence of what it did; validators judge that evidence against an obligation;
 gates decide what may advance. Some mechanisms can be designed before work begins. Others emerge when a
 failure exposes something the environment did not represent, observe, evaluate, or control. Those durable
