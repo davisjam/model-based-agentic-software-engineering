@@ -603,7 +603,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="2.5-decision.html">9&nbsp; Decision Models: Who May Decide or Act?</a></li>
 <li><a class="" href="2.6-measurement.html">10&nbsp; Measurement Models: How Much, How Fast, How Good?</a></li>
 <li><a class="" href="2.7-provenance.html">11&nbsp; Provenance Models: What Happened?</a></li>
-<li><a class="" href="2.8-joining-models-around-a-scenario.html">12&nbsp; Joining Models Around a Scenario</a></li>
+<li><a class="" href="2.8-system-knowledge.html">12&nbsp; System Knowledge: Models as a System</a></li>
 <li class="part">Part 3 — Alignment</li>
 <li><a class="" href="part-3-intro.html">Alignment</a></li>
 <li><a class="" href="3.1-where-authority-can-act.html">13&nbsp; Where Authority Can Act</a></li>
@@ -1042,10 +1042,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A single implementation may participate in more than one role. A linter, for example, both produces the finding-evidence and judges it against the ban — a sensor and validator bundled — while the commit hook or CI pipeline is the gate that blocks the change from advancing.</p>
 <p><strong>Lint.</strong> An automated check that scans code for a banned pattern and fails the commit when it finds one, so a rule holds without a human remembering it.</p>
 <p><strong>Hook.</strong> A mechanism that fires automatically at a defined point in a workflow — before or after a step — to enforce policy without anyone remembering to. The harness's before/after-action hooks are one instance; Git, CI, build, and deploy hooks are others.</p>
-<p><strong>Invariant.</strong> A predicate that must hold over a system, model, artifact, or process. Making the relevant state explicit determines whether the invariant can be checked mechanically and at what scale.</p>
+<p><strong><a class="gloss-site" href="2.8-system-knowledge.html#idx-def-invariant">Invariant.</a></strong> A predicate that must hold over a system, model, artifact, or process. Making the relevant state explicit determines whether the invariant can be checked mechanically and at what scale.</p>
 <p><strong><a class="gloss-site" href="2.2-structural.html#idx-def-model-drift">Model drift.</a></strong> A model and the system, evidence, or other representation to which it is meant to correspond cease to agree.</p>
 <p><strong>Drift Gate.</strong> A build-time check that fails when a model and the code it describes disagree, keeping the model from decaying into stale documentation.</p>
-<p><strong>Traceability.</strong> Explicit, machine-readable relationships connecting model elements to the artifacts, evidence, obligations, or other model elements they represent or govern.</p>
+<p><strong><a class="gloss-site" href="2.8-system-knowledge.html#idx-def-traceability">Traceability.</a></strong> Explicit, machine-readable relationships connecting model elements to the artifacts, evidence, obligations, or other model elements they represent or govern.</p>
 <figure id="fig-0-3-5" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 900" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Fork-and-join grammar: the modeling chain from reality to a property or invariant yields a richer surface for governance, while a raw action or artifact can be governed directly; both join at the governance mechanism, which governs an environment that compounds into engineering capital">
   <defs>
     <marker id="vh-mv" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>

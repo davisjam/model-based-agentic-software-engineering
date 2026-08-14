@@ -79,6 +79,42 @@
       "location": "part2",
       "rationale": "one action record deriving several explanations — supporting caption on record-once-derive"
     },
+    "assets/modeling-substrate.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "the layered modeling substrate joined by shared identity — supporting caption on models as a system"
+    },
+    "assets/substrate-traversal.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "task-driven traversal of the substrate — supporting caption on entering at the named entity and following identities"
+    },
+    "assets/purpose-perp-shape.svg": {
+      "tier": "B",
+      "kind": "conceptual-spectrum",
+      "location": "part2",
+      "rationale": "purpose vs representation shape as orthogonal axes — supporting caption on purpose-before-shape"
+    },
+    "assets/derive-generate-trace.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "three ways to keep map and territory equal — supporting caption chosen by which side is authoritative"
+    },
+    "assets/joined-by-identity.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "models joined by identity, not one universal graph — supporting caption on derive/trace/check-decidable"
+    },
+    "assets/modeling-creates-surfaces.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "cross-Part path territory->model->property->alignment->consequence — supporting caption closing Part II"
+    },
     "assets/authority-spectrum.svg": {
       "tier": "A",
       "kind": "conceptual-spectrum",

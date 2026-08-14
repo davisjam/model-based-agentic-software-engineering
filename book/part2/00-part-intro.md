@@ -98,6 +98,7 @@ those representations. Part III develops the general machinery of authority.
 <!-- point: part-2-hands-you-a-reusable-mental-toolbox | By the Part's end you hold a mental toolbox you can rebuild for your own system. | terms: model-zoo, scope-of-modeling, thesis-modeling -->
 By the Part's end, the recurring questions should form a small mental toolbox: for each concern, the
 model that answers it, the property it lets you state, and the quality attribute that property serves.
-That toolbox arrives as a single table at the Part's close, in
-[Joining Models Around a Scenario](2.8-joining-models-around-a-scenario.html). By the end, you should be
-able to choose useful representations for a system of your own.
+That toolbox is the working set this Part assembles; the final chapter,
+[System Knowledge: Models as a System](2.8-system-knowledge.html), steps back to show how the six
+connect as one substrate rather than a seventh model. By the end, you should be able to choose useful
+representations for a system of your own.

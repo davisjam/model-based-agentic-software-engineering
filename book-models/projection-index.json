@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1191,
+    "total_sites": 1202,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 785,
+      "book-web": 796,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -70,6 +70,10 @@
           {
             "file": "book/2.8-joining-models-around-a-scenario.html",
             "occ": 4
+          },
+          {
+            "file": "book/2.8-system-knowledge.html",
+            "occ": 2
           },
           {
             "file": "book/3.1-where-authority-can-act.html",
@@ -239,7 +243,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 54
+            "occ": 55
           }
         ]
       },
@@ -1092,6 +1096,10 @@
             "occ": 24
           },
           {
+            "file": "book/2.8-system-knowledge.html",
+            "occ": 24
+          },
+          {
             "file": "book/3.1-where-authority-can-act.html",
             "occ": 16
           },
@@ -1389,7 +1397,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 225
+            "occ": 229
           },
           {
             "file": "book/index.html",
@@ -1397,7 +1405,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 18
+            "occ": 17
           },
           {
             "file": "book/part-1-intro.html",
@@ -1427,7 +1435,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 107
+            "occ": 108
           }
         ]
       },
@@ -1667,6 +1675,10 @@
           },
           {
             "file": "book/2.8-joining-models-around-a-scenario.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.8-system-knowledge.html",
             "occ": 2
           },
           {
@@ -2005,7 +2017,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 107
+            "occ": 108
           }
         ]
       },
@@ -2152,12 +2164,28 @@
           {
             "file": "book/2.3-the-executable-zoo.html",
             "occ": 1
+          },
+          {
+            "file": "book/2.8-system-knowledge.html",
+            "occ": 4
+          },
+          {
+            "file": "book/book-index.html",
+            "occ": 1
+          },
+          {
+            "file": "book/figures.html",
+            "occ": 2
+          },
+          {
+            "file": "book/list-of-figures.html",
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 1
+            "occ": 5
           }
         ]
       }
@@ -2260,6 +2288,10 @@
           {
             "file": "book/2.8-joining-models-around-a-scenario.html",
             "occ": 50
+          },
+          {
+            "file": "book/2.8-system-knowledge.html",
+            "occ": 86
           },
           {
             "file": "book/3.1-where-authority-can-act.html",
@@ -2547,11 +2579,11 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 7
+            "occ": 3
           },
           {
             "file": "book/book-index.html",
-            "occ": 16
+            "occ": 15
           },
           {
             "file": "book/colophon.html",
@@ -2559,7 +2591,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 318
+            "occ": 361
           },
           {
             "file": "book/index.html",
@@ -2575,7 +2607,7 @@
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 20
+            "occ": 21
           },
           {
             "file": "book/part-3-intro.html",
@@ -2597,7 +2629,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 107
+            "occ": 108
           }
         ]
       },
@@ -3320,6 +3352,10 @@
             "occ": 1
           },
           {
+            "file": "book/2.8-system-knowledge.html",
+            "occ": 1
+          },
+          {
             "file": "book/3.1-where-authority-can-act.html",
             "occ": 1
           },
@@ -3655,7 +3691,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 107
+            "occ": 108
           }
         ]
       },
@@ -3925,6 +3961,10 @@
           },
           {
             "file": "book/2.8-joining-models-around-a-scenario.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.8-system-knowledge.html",
             "occ": 2
           },
           {
@@ -4263,7 +4303,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 107
+            "occ": 108
           }
         ]
       },
@@ -4404,6 +4444,10 @@
           {
             "file": "book/2.8-joining-models-around-a-scenario.html",
             "occ": 1
+          },
+          {
+            "file": "book/2.8-system-knowledge.html",
+            "occ": 11
           },
           {
             "file": "book/3.1-where-authority-can-act.html",
@@ -4703,7 +4747,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 31
+            "occ": 36
           },
           {
             "file": "book/index.html",
@@ -4741,7 +4785,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 107
+            "occ": 108
           }
         ]
       },

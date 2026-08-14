@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>31</b> chapters · <b>174</b> sections · <b>69</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>31</b> chapters · <b>162</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -249,74 +249,25 @@
 </div>
 </div>
 <div class="chapter">
-<h3 id="ch-2-8-joining-models-around-a-scenario"><span class="tier-kick">Lesson</span><a href="../book/2.8-joining-models-around-a-scenario.html" class="ch-link">2.8-joining-models-around-a-scenario</a> <span class="ch-slug">2.8-joining-models-around-a-scenario</span></h3>
-<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--user-journey-model">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The user-journey model</a></div>
-<p class="topic">The user-journey model makes the product&#x27;s journeys first-class typed entities — each an actor pursuing a goal through ordered steps, every boundary-crossing step joined to the endpoint it calls.</p>
+<h3 id="ch-2-8-system-knowledge"><span class="tier-kick">Lesson</span><a href="../book/2.8-system-knowledge.html" class="ch-link">2.8-system-knowledge</a> <span class="ch-slug">2.8-system-knowledge</span></h3>
+<div class="section s2" id="sec-2-8-system-knowledge--a-layered-modeling-substrate">
+<div class="sec-h"><a href="../book/2.8-system-knowledge.html">A Layered Modeling Substrate</a></div>
+<p class="topic">DocAble&#x27;s models differ in shape on purpose.</p>
 </div>
-<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--feeder-models">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The feeder models</a></div>
-<p class="topic">Three small models feed the flagship, each answering one question about a journey&#x27;s tests.</p>
+<div class="section s2" id="sec-2-8-system-knowledge--purpose-and-representation-shape">
+<div class="sec-h"><a href="../book/2.8-system-knowledge.html">Purpose and Representation Shape</a></div>
+<p class="topic">A model sits on two independent axes, and separating them prevents a common confusion.</p>
 </div>
-<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--worked-join">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">Worked join — the journey↔coverage↔deploy-policy composition</a></div>
-<p class="topic">Follow one fact — a journey is *major* — through four models without storing it twice.</p>
+<div class="section s2" id="sec-2-8-system-knowledge--keeping-the-models-connected-to-the-system">
+<div class="sec-h"><a href="../book/2.8-system-knowledge.html">Keeping the Models Connected to the System</a></div>
+<p class="topic">A family of models raises an obvious danger: a **second system of record** that quietly diverges from the first.</p>
 </div>
-<div class="section s3" id="sec-2-8-joining-models-around-a-scenario--the-three-questions-the-join-answers">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The three questions the join answers</a></div>
-<p class="topic">Three questions the raw deploy scripts and test config cannot answer on their own.</p>
+<div class="section s2" id="sec-2-8-system-knowledge--modeling-creates-surfaces-for-alignment">
+<div class="sec-h"><a href="../book/2.8-system-knowledge.html">Modeling Creates Surfaces for Alignment</a></div>
+<p class="topic">A model does not govern the system merely by existing.</p>
 </div>
-<div class="section s3" id="sec-2-8-joining-models-around-a-scenario--the-composite-picture">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The composite picture</a></div>
-<p class="topic">[ref:join-composite] shows the four-model composition left to right.</p>
-</div>
-<div class="section s3" id="sec-2-8-joining-models-around-a-scenario--the-invariants-the-join-spans">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The invariants the join spans</a></div>
-<p class="topic">The join&#x27;s invariants span all four models, collected in [ref:scenarios-invariants].</p>
-</div>
-<div class="section s3" id="sec-2-8-joining-models-around-a-scenario--the-selector-and-scheduler-in-code">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The Selector and Scheduler in code</a></div>
-<p class="topic">Two pieces of real policy code make the join concrete — the **Selector** derives a host&#x27;s test roster from the journey model, and the **Scheduler** rations that roster per host.</p>
-</div>
-<div class="section s3" id="sec-2-8-joining-models-around-a-scenario--tracing-one-fact-through-four-models">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">Tracing one fact through four models</a></div>
-<p class="topic">The join keys chain, and a reader can walk them against the figure: the **endpoint** ties M13 to M5, the **criticality** ties M13 to M6, the **derived tier** ties M6 to M7&#x27;s roster, and the **host profile** ties the roster to the plan.</p>
-</div>
-<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--the-payoff-is-in-the-join">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The Payoff Is in the Join</a></div>
-<p class="topic no-topic">(no topic sentence — opens on a non-paragraph block)</p>
-</div>
-<div class="section s3" id="sec-2-8-joining-models-around-a-scenario--the-models-pay-off-when-they-join">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The models pay off when they join</a></div>
-<p class="topic">Each model earns its keep separately.</p>
-</div>
-<div class="section s3" id="sec-2-8-joining-models-around-a-scenario--a-request-walks-the-connected-slice">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">A request walks the connected slice</a></div>
-<p class="topic">Trace a single request.</p>
-<div class="outcomes"><div class="oc-h">After this section — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-analyze">analyze</span><span class="oc-text">After this section, the reader can trace a single request. <span class="prov">derived</span></span></li></ul></div>
-</div>
-<div class="section s3" id="sec-2-8-joining-models-around-a-scenario--the-graph-is-what-lets-the-projections-meet">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The graph is what lets the projections meet</a></div>
-<p class="topic">The walk works only because every model names the same entities.</p>
-</div>
-<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--where-modeling-meets-alignment">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">Where Modeling Meets Alignment</a></div>
-<p class="topic">A relation that lives only in human memory can still influence engineering work — a reviewer can remember it, an agent can infer it, a test may indirectly expose its violation.</p>
-</div>
-<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--the-mental-toolbox">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The mental toolbox</a></div>
-<p class="topic">The models in Part II form a reusable toolbox organized by engineering question.</p>
-</div>
-<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--what-part-iii-adds">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">What Part III Adds</a></div>
-<p class="topic">Some of these properties already have concrete mechanisms in DocAble; others do not.</p>
-</div>
-<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--when-lightweight-models-stop-being-enough">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">When Lightweight Models Stop Being Enough</a></div>
-<p class="topic">MAGE does not replace established modeling disciplines.</p>
-</div>
-<div class="section s2" id="sec-2-8-joining-models-around-a-scenario--the-handoff-to-alignment">
-<div class="sec-h"><a href="../book/2.8-joining-models-around-a-scenario.html">The Handoff to Alignment</a></div>
+<div class="section s2" id="sec-2-8-system-knowledge--the-handoff-to-alignment">
+<div class="sec-h"><a href="../book/2.8-system-knowledge.html">The Handoff to Alignment</a></div>
 <p class="topic">Can Alignment exist without explicit models?</p>
 </div>
 </div>
