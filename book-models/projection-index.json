@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1165,
+    "total_sites": 1166,
     "by_projection": {
       "book-pdf": 19,
-      "book-web": 755,
+      "book-web": 756,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -93,7 +93,7 @@
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "book/4.3-validating-change.html",
@@ -778,6 +778,10 @@
             "occ": 4
           },
           {
+            "file": "book/4.2-brownfield.html",
+            "occ": 1
+          },
+          {
             "file": "book/4.3-validating-change.html",
             "occ": 1
           },
@@ -821,7 +825,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 15
+            "occ": 16
           }
         ]
       },
@@ -1089,7 +1093,7 @@
           },
           {
             "file": "book/4.3-validating-change.html",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/4.4-operating-mage.html",
@@ -2227,7 +2231,7 @@
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 63
+            "occ": 67
           },
           {
             "file": "book/4.3-validating-change.html",
@@ -2235,7 +2239,7 @@
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 27
+            "occ": 29
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
@@ -4933,7 +4937,7 @@
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",

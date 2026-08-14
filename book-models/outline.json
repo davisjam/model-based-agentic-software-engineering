@@ -7,7 +7,7 @@
     "derived_ids": 193,
     "missing_topic_sentence": 7,
     "sections_drained": 137,
-    "paragraph_points": 484
+    "paragraph_points": 488
   },
   "chapters": [
     {
@@ -2520,32 +2520,32 @@
           "heading_text": "Start with what you already have",
           "topic_sentence": "Survey the estate before designing the replacement.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 21,
           "points": [
             {
               "slug": "survey-the-estate-before-designing-the-replacement",
               "text": "Survey the estate before designing the replacement.",
-              "block_index": 17
+              "block_index": 23
             },
             {
               "slug": "run-two-inventories-in-parallel-representations-and-authority",
               "text": "Run two inventories in parallel: representations and authority.",
-              "block_index": 19
+              "block_index": 25
             },
             {
               "slug": "mature-orgs-often-have-much-alignment-and-weak-system-modeling",
               "text": "Mature orgs often have much Alignment and weak system-level Modeling.",
-              "block_index": 22
+              "block_index": 28
             },
             {
               "slug": "treat-the-wiki-you-have-as-an-informal-model",
               "text": "Treat the wiki you have as an informal model, not a knowledge graph.",
-              "block_index": 24
+              "block_index": 30
             },
             {
               "slug": "the-first-improvement-is-connection-not-replacement",
               "text": "The first improvement is connection, not replacement.",
-              "block_index": 26
+              "block_index": 32
             }
           ]
         },
@@ -2555,17 +2555,17 @@
           "heading_text": "Audit, synchronize, govern, extend",
           "topic_sentence": "The migration runs in four stages, each a useful stopping point, so an organization does not have to reach executable models before the work starts paying for itself.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 36,
           "points": [
             {
               "slug": "the-migration-runs-in-four-stages-each-a-stopping-point",
               "text": "Four stages, each a useful stopping point.",
-              "block_index": 32
+              "block_index": 38
             },
             {
               "slug": "the-four-stages-compress-to-one-operating-line",
               "text": "The four stages compress to one operating line.",
-              "block_index": 35
+              "block_index": 41
             }
           ]
         },
@@ -2575,17 +2575,17 @@
           "heading_text": "Know the destination, but migrate by useful slices",
           "topic_sentence": "The near destination is a **trusted map** over the parts of the system that matter now: important claims have known anchors, important implementation regions have explanatory homes, and agents and engineers can navigate the join without rediscovering it from scratch.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 43,
           "points": [
             {
               "slug": "the-near-destination-is-a-trusted-map",
               "text": "The near destination is a trusted map over the parts that matter now.",
-              "block_index": 39
+              "block_index": 45
             },
             {
               "slug": "the-far-destination-is-adequate-representation-and-evidence",
               "text": "The far destination is adequate representation and evidence for the quality case.",
-              "block_index": 41
+              "block_index": 47
             }
           ]
         },
@@ -2595,22 +2595,22 @@
           "heading_text": "Migrate one bounded surface at a time",
           "topic_sentence": "A live estate rarely tolerates a wholesale cutover.",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 51,
           "points": [
             {
               "slug": "choose-a-bounded-surface-and-keep-old-and-new-coexisting",
               "text": "Choose a bounded surface; let old and new coexist while the replacement earns trust.",
-              "block_index": 47
+              "block_index": 53
             },
             {
               "slug": "recover-the-representation-in-whichever-direction-the-evidence-supports",
               "text": "Recover the representation top-down, bottom-up, or clean-and-induce.",
-              "block_index": 49
+              "block_index": 55
             },
             {
               "slug": "a-disagreement-has-the-familiar-three-way-diagnosis",
               "text": "A model-code disagreement has a three-way diagnosis: model, grain, or code.",
-              "block_index": 54
+              "block_index": 60
             }
           ]
         },
@@ -2620,17 +2620,17 @@
           "heading_text": "Introduce new authority safely: Audit → Drain → Promote",
           "topic_sentence": "A valid future invariant is not always a valid present admission rule.",
           "id_source": "derived",
-          "block_index": 59,
+          "block_index": 65,
           "points": [
             {
               "slug": "a-valid-future-invariant-is-not-always-a-valid-present-admission-rule",
               "text": "A valid future invariant may not be a valid present admission rule.",
-              "block_index": 61
+              "block_index": 67
             },
             {
               "slug": "audit-drain-promote-is-an-authority-migration-pattern-not-a-dependency",
               "text": "Audit->Drain->Promote is an authority-migration pattern, not a Modeling->Alignment dependency.",
-              "block_index": 64
+              "block_index": 70
             }
           ]
         },
@@ -2640,22 +2640,22 @@
           "heading_text": "Measure what the map still cannot explain",
           "topic_sentence": "Model induction has a stopping problem: a representation can describe everything it knows without telling you what it omitted.",
           "id_source": "derived",
-          "block_index": 67,
+          "block_index": 73,
           "points": [
             {
               "slug": "model-induction-has-a-stopping-problem",
               "text": "Model induction has a stopping problem; traceability run backward finds the edges.",
-              "block_index": 70
+              "block_index": 76
             },
             {
               "slug": "treat-orphans-as-candidates-not-automatic-defects",
               "text": "Treat orphans as candidates, not automatic defects.",
-              "block_index": 72
+              "block_index": 78
             },
             {
               "slug": "the-method-level-point-is-instrumented-choice-of-the-next-model",
               "text": "Use the omissions to choose the next modeling investment.",
-              "block_index": 74
+              "block_index": 80
             }
           ]
         },
@@ -2665,32 +2665,32 @@
           "heading_text": "Derive, don't copy",
           "topic_sentence": "Recovering a model is only the first step.",
           "id_source": "explicit",
-          "block_index": 76,
+          "block_index": 82,
           "points": [
             {
               "slug": "recovering-a-model-is-only-the-first-step-the-next-question-is-what-happens-to-its-facts",
               "text": "Recovering a model is only the first step; the next question is what happens to the facts it owns.",
-              "block_index": 78
+              "block_index": 84
             },
             {
               "slug": "a-representation-authoritative-in-name-while-its-contents-are-copied-elsewhere-decays-into-maintenance",
               "text": "A representation made authoritative in name while its contents are copied elsewhere decays into maintenance work the day after the copies are written.",
-              "block_index": 80
+              "block_index": 86
             },
             {
               "slug": "if-a-fact-has-a-queryable-authority-derive-it-rather-than-copy-it",
               "text": "The stronger rule: if a fact already has a queryable authority, consume or derive it rather than copying it.",
-              "block_index": 82
+              "block_index": 88
             },
             {
               "slug": "where-two-representations-must-remain-independent-make-their-correspondence-observable",
               "text": "Where two representations must remain independently authoritative, make their correspondence observable — and check it in both directions, because a one-way check lets the model lie.",
-              "block_index": 84
+              "block_index": 90
             },
             {
               "slug": "hidden-assumptions-deserve-the-same-treatment-make-consequential-ones-queryable",
               "text": "Hidden substrate assumptions deserve the same treatment: represent the consequential ones strongly enough that the blast radius can be queried before the change.",
-              "block_index": 88
+              "block_index": 94
             }
           ]
         },
@@ -2700,27 +2700,27 @@
           "heading_text": "Price the investment",
           "topic_sentence": "A recurring gap does not automatically deserve machinery.",
           "id_source": "derived",
-          "block_index": 90,
+          "block_index": 96,
           "points": [
             {
               "slug": "price-the-expected-loss-against-the-cost-of-building-and-carrying-the-response",
               "text": "Price the expected future loss against the cost of building and carrying the response.",
-              "block_index": 92
+              "block_index": 98
             },
             {
               "slug": "draw-the-two-factors-as-axes-and-the-judgment-gets-a-shape",
               "text": "Draw cost against frequency and the sizing judgment gets a shape.",
-              "block_index": 94
+              "block_index": 100
             },
             {
               "slug": "price-the-upkeep-capital-depreciates-and-can-be-retired",
               "text": "Price the upkeep — engineering capital depreciates and can be retired.",
-              "block_index": 97
+              "block_index": 103
             },
             {
               "slug": "the-estate-was-matured-in-place-not-rewritten",
               "text": "The estate was matured in place, not rewritten from a clean slate.",
-              "block_index": 99
+              "block_index": 105
             }
           ]
         }
@@ -2755,6 +2755,21 @@
           "slug": "neither-door-scaffolds-a-complete-governed-environment-first",
           "text": "Neither door scaffolds a complete governed environment before useful work.",
           "block_index": 13
+        },
+        {
+          "slug": "model-first-and-implementation-first-are-conditions-not-doctrines",
+          "text": "Model-first and implementation-first are starting points suited to different conditions, not rival doctrines.",
+          "block_index": 15
+        },
+        {
+          "slug": "the-question-is-how-much-structure-the-next-unit-of-work-needs",
+          "text": "The practical question is not how much to model in the abstract but how much structure the next unit of work needs.",
+          "block_index": 17
+        },
+        {
+          "slug": "implementation-first-is-heuristic-search-that-becomes-churn-when-it-rediscovers-structure",
+          "text": "Implementation-first is heuristic search over the model's learned prior; it becomes churn when the search keeps rediscovering structure that should have been made explicit.",
+          "block_index": 19
         }
       ]
     },
@@ -2801,24 +2816,29 @@
               "block_index": 14
             },
             {
+              "slug": "existing-behavior-substitutes-for-written-specification",
+              "text": "Existing behavior can stand in for a surprising amount of written specification: a reference implementation supplies an executable oracle.",
+              "block_index": 17
+            },
+            {
               "slug": "modeling-enlarges-the-oracle-does-not-monopolize-it",
               "text": "Explicit models supply oracles for properties no single example carries; modeling enlarges the semantic scale of the oracle without monopolizing the concept.",
-              "block_index": 17
+              "block_index": 19
             },
             {
               "slug": "generative-validation-goes-from-a-point-to-a-space",
               "text": "An example pins one point; a property states a law over a domain and lets a generator search a space.",
-              "block_index": 19
+              "block_index": 21
             },
             {
               "slug": "a-broad-property-is-harder-to-special-case",
               "text": "A failing example invites a local repair; a broader property makes that repair easier to falsify if the class stays open.",
-              "block_index": 24
+              "block_index": 26
             },
             {
               "slug": "choose-the-technique-by-the-claim",
               "text": "The generative techniques share one loop and differ by generator and oracle; choose by the shape of the claim, not a maturity rung.",
-              "block_index": 26
+              "block_index": 28
             }
           ]
         },
@@ -2828,22 +2848,22 @@
           "heading_text": "Generate falsifying evidence",
           "topic_sentence": "Let the engineering claim choose the search.",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 31,
           "points": [
             {
               "slug": "let-the-claim-choose-the-search",
               "text": "Let the engineering claim choose the search: a valid domain earns a property test, an untrusted boundary earns a fuzzer, a structured model supplies a richer oracle.",
-              "block_index": 31
+              "block_index": 33
             },
             {
               "slug": "fix-the-stable-obligation-not-the-seed",
               "text": "When a generated input exposes a defect, fix the stable obligation so the repair closes the class, not just the seed.",
-              "block_index": 33
+              "block_index": 35
             },
             {
               "slug": "reuse-real-producers-before-a-synthetic-grammar",
               "text": "Reuse real producers before inventing a complete synthetic world; hand-build richer generation only when the claim earns it.",
-              "block_index": 35
+              "block_index": 37
             }
           ]
         },
@@ -2853,27 +2873,27 @@
           "heading_text": "Derive the obligation set first",
           "topic_sentence": "Coverage answers a question about a population.",
           "id_source": "explicit",
-          "block_index": 37,
+          "block_index": 39,
           "points": [
             {
               "slug": "coverage-answers-a-question-about-a-population-so-the-population-must-exist-first",
               "text": "Coverage answers a question about a population, so the population must exist before the percentage means anything.",
-              "block_index": 39
+              "block_index": 41
             },
             {
               "slug": "ordinary-coverage-starts-from-code-and-cannot-see-a-behavior-that-was-never-named",
               "text": "Ordinary coverage starts from the code or the tests that already exist; it cannot see that an important behavior has no test at all if nothing first names that behavior as an obligation.",
-              "block_index": 41
+              "block_index": 43
             },
             {
               "slug": "models-can-supply-the-missing-census-of-obligations",
               "text": "Explicit models can supply the missing census: transitions that need evidence, edges permitted or forbidden, failure paths, claims that must be discharged.",
-              "block_index": 43
+              "block_index": 45
             },
             {
               "slug": "coverage-cannot-see-an-obligation-that-was-never-instantiated",
               "text": "The distinction matters because coverage cannot see an obligation that was never instantiated.",
-              "block_index": 47
+              "block_index": 49
             }
           ]
         },
@@ -2883,22 +2903,22 @@
           "heading_text": "Did the search cover the claim?",
           "topic_sentence": "Generative validation adds an honesty question that a small example suite can often avoid: **did the campaign search the semantic region the claim is about?** Code coverage answers where execution went.",
           "id_source": "derived",
-          "block_index": 49,
+          "block_index": 51,
           "points": [
             {
               "slug": "generation-adds-a-coverage-honesty-question",
               "text": "Generative validation adds an honesty question: did the campaign search the semantic region the claim is about?",
-              "block_index": 51
+              "block_index": 53
             },
             {
               "slug": "model-claim-coverage-names-the-gap",
               "text": "Where traceability exists, follow each model claim to the code that realizes it and ask whether the campaign reached it; a high aggregate becomes a named gap.",
-              "block_index": 53
+              "block_index": 55
             },
             {
               "slug": "coverage-is-evidence-about-the-search",
               "text": "Coverage remains evidence about the search, not proof of correctness; measure it where a missing region changes what you do next.",
-              "block_index": 55
+              "block_index": 57
             }
           ]
         },
@@ -2908,22 +2928,22 @@
           "heading_text": "Give the verdict the right consequence",
           "topic_sentence": "Part III separated four mechanism roles for a reason.",
           "id_source": "derived",
-          "block_index": 58,
+          "block_index": 60,
           "points": [
             {
               "slug": "sensor-validator-gate-roles",
               "text": "A sensor produces evidence, a validator evaluates it, a gate controls admission; one artifact can bundle roles, but they stay distinct.",
-              "block_index": 60
+              "block_index": 62
             },
             {
               "slug": "validation-does-not-imply-blocking",
               "text": "Authority is a separate design decision from evidence quality; a validated verdict may report or may block.",
-              "block_index": 62
+              "block_index": 64
             },
             {
               "slug": "put-the-gate-outside-the-producing-agent",
               "text": "Where a gate is appropriate, put it outside the producing agent's discretion and re-run the required evidence at the admission boundary.",
-              "block_index": 64
+              "block_index": 66
             }
           ]
         },
@@ -2933,27 +2953,27 @@
           "heading_text": "Two boundaries for evidence",
           "topic_sentence": "Part III gave a placement rule for authority: **evaluate an obligation at the earliest boundary where it becomes legible and enforceable.** That catches a problem close to its cause.",
           "id_source": "explicit",
-          "block_index": 66,
+          "block_index": 68,
           "points": [
             {
               "slug": "part-three-placed-authority-at-the-earliest-legible-boundary",
               "text": "Part III gave the placement rule for authority: evaluate an obligation at the earliest boundary where it becomes legible and enforceable.",
-              "block_index": 68
+              "block_index": 70
             },
             {
               "slug": "consequential-work-deserves-a-second-boundary-re-evaluate-at-the-last-safe-point",
               "text": "Consequential work often deserves a second boundary: re-evaluate at the last safe point before the consequence becomes difficult to reverse.",
-              "block_index": 70
+              "block_index": 72
             },
             {
               "slug": "the-second-check-is-not-a-substitute-and-need-not-repeat-every-earlier-check",
               "text": "The second check is not a substitute for the first and need not repeat every earlier check; re-run only the evidence whose freshness matters to admission.",
-              "block_index": 74
+              "block_index": 76
             },
             {
               "slug": "done-is-a-claim-not-a-stored-fact-regenerate-the-evidence-at-the-consequential-boundary",
               "text": "That is why done is a claim, not a stored fact: at a consequential boundary, regenerate the evidence needed to justify the consequence.",
-              "block_index": 76
+              "block_index": 78
             }
           ]
         },
@@ -2963,17 +2983,17 @@
           "heading_text": "Why abundance changes the economics",
           "topic_sentence": "None of these techniques is new.",
           "id_source": "derived",
-          "block_index": 80,
+          "block_index": 82,
           "points": [
             {
               "slug": "the-techniques-are-not-new-the-price-changed",
               "text": "None of these techniques is new; abundant implementation changed the relative price of implementation and inspection, not the algorithms.",
-              "block_index": 82
+              "block_index": 84
             },
             {
               "slug": "human-judgment-moves-to-highest-marginal-value",
               "text": "The engineer does not disappear from validation; human judgment moves toward choosing obligations, designing representations, and calibrating validators.",
-              "block_index": 84
+              "block_index": 86
             }
           ]
         },
@@ -2983,12 +3003,12 @@
           "heading_text": "Industrial example — Docker",
           "topic_sentence": "Here is the move; one industrial team converged on it independently.",
           "id_source": "derived",
-          "block_index": 86,
+          "block_index": 88,
           "points": [
             {
               "slug": "independent-evidence-is-not-a-docable-idiosyncrasy",
               "text": "Placing the grader outside the author is a general move, not a DocAble idiosyncrasy.",
-              "block_index": 89
+              "block_index": 91
             }
           ]
         }
@@ -3261,12 +3281,12 @@
             {
               "slug": "the-rhythm-is-still-model-align-convert",
               "text": "The rhythm is still Model, Align, Convert, run day after day; maintain the resulting structure while it pays and retire it when it does not.",
-              "block_index": 120
+              "block_index": 121
             },
             {
               "slug": "the-rhythm-names-three-competencies-part-six-develops",
               "text": "Run the rhythm long enough and the engineer's work becomes model design, governance design, and evidence engineering.",
-              "block_index": 122
+              "block_index": 123
             }
           ]
         }
