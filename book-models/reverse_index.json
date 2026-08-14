@@ -5919,6 +5919,16 @@
         }
       ]
     },
+    "section-id:how-representation-and-authority-relate": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.4-the-new-engineering-problem::how-representation-and-authority-relate",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:how-to-read-a-model-page": {
       "kind": "section-id",
       "dependents": [
@@ -6355,16 +6365,6 @@
         {
           "view": "outline",
           "element": "4.2-brownfield::reconcile-the-map-then-promote-obligations",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:related-but-not-the-same": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.4-the-new-engineering-problem::related-but-not-the-same",
           "role": "section-anchor"
         }
       ]
