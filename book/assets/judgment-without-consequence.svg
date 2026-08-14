@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part III 3.4.3 figure — judgment-without-consequence.svg (draft; folds to book/assets/).
+     The flagship "-X theirs" cascade. A dangerous auto-resolution fallback is PRESENT (latent
+     hazard, rust-flagged). The audit DETECTS it and JUDGES it unsafe — the sensing and the
+     evaluation both work (blue #2f5169 = the model's correct judgment). But the finding is logged
+     AUDIT ONLY: it carries no consequence (rust #9a3f12 dashed = the broken link). So the operation
+     PROCEEDS anyway and the tree loses content (content stripping -> terminal harm, solid rust).
+     The point: evidence existed and the judgment was correct; what was missing was consequence.
+     The durable repair DELETED the capability rather than amplifying the warning (footer). Grammar:
+     gray = ordinary flow/implementation; blue = correct judgment/evidence; rust = obligation gap
+     and the harm it permits. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" width="960" height="720"
+     role="img" aria-labelledby="jcTitle jcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="jcTitle">Judgment without consequence: the audit detected the danger and judged it unsafe, but the warning carried no consequence and the operation proceeded</title>
+  <desc id="jcDesc">A vertical cascade. A dangerous auto-resolution fallback is present. An audit detects it and judges it
+    unsafe — sensing and evaluation both work. But the finding is logged as a warning only, with no consequence, so
+    the operation proceeds anyway and content is stripped. Evidence existed and the judgment was correct; the warning
+    described a condition the environment still permitted. The durable repair removed the capability rather than
+    making the warning louder.</desc>
+
+  <defs>
+    <marker id="jc-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="jc-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="jc-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
+    </marker>
+  </defs>
+
+  <!-- 1: dangerous fallback present (latent hazard) -->
+  <rect x="250" y="40" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="400" y="71" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">dangerous fallback present</text>
+  <text x="400" y="90" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">auto-resolve conflicts by taking one side</text>
+  <line x1="400" y1="102" x2="400" y2="144" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
+
+  <!-- 2: audit detects it (sensing works) -->
+  <rect x="250" y="148" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="400" y="179" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">audit detects it</text>
+  <text x="400" y="198" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a guard sees the substrate-class conflict</text>
+  <line x1="400" y1="210" x2="400" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
+
+  <!-- 3: judgment unsafe (evaluation correct) -->
+  <rect x="250" y="256" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="400" y="287" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">judgment: unsafe</text>
+  <text x="400" y="306" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">correctly identified as dangerous</text>
+  <line x1="400" y1="318" x2="400" y2="360" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
+
+  <!-- annotation bracket over steps 2-3: evidence existed -->
+  <path d="M566 156 h12 v154 h-12" fill="none" stroke="#2f5169" stroke-width="1.8"/>
+  <text x="590" y="228" font-size="15" font-weight="700" fill="#2f5169">Evidence existed;</text>
+  <text x="590" y="249" font-size="15" font-weight="700" fill="#2f5169">the judgment was correct.</text>
+
+  <!-- 4: AUDIT ONLY (the broken link — no consequence) -->
+  <rect x="250" y="364" width="300" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="7 5"/>
+  <text x="400" y="395" text-anchor="middle" font-size="18.5" font-weight="700" fill="#9a3f12">AUDIT ONLY</text>
+  <text x="400" y="414" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">logged as a warning &#8212; no consequence</text>
+  <line x1="400" y1="426" x2="400" y2="468" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#jc-r)"/>
+
+  <!-- callout on the broken link -->
+  <path d="M566 395 h-12" fill="none" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="574" y="390" font-size="15" font-weight="700" fill="#9a3f12">the missing rung:</text>
+  <text x="574" y="411" font-size="14.5" font-style="italic" fill="#9a3f12">the environment still</text>
+  <text x="574" y="430" font-size="14.5" font-style="italic" fill="#9a3f12">permitted the action</text>
+
+  <!-- 5: operation proceeds anyway -->
+  <rect x="250" y="472" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="400" y="509" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">operation proceeds anyway</text>
+  <line x1="400" y1="534" x2="400" y2="576" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#jc-r)"/>
+
+  <!-- 6: content stripping (terminal harm) -->
+  <rect x="250" y="580" width="300" height="62" rx="10" fill="#9a3f12" stroke="#7a3210" stroke-width="2.4"/>
+  <text x="400" y="611" text-anchor="middle" font-size="18.5" font-weight="700" fill="#ffffff">content stripping</text>
+  <text x="400" y="630" text-anchor="middle" font-size="13" font-style="italic" fill="#f4e3d6">the tree silently loses content</text>
+
+  <!-- footer: the durable repair -->
+  <line x1="40" y1="666" x2="920" y2="666" stroke="#e7e2da" stroke-width="1.4"/>
+  <text x="60" y="692" font-size="16" font-weight="700" fill="#155c38">Durable repair &#8212; remove the fallback, escalate ambiguous merges to a human.</text>
+  <text x="60" y="712" font-size="15" font-style="italic" fill="#57534e">Governance conversion can delete a capability the environment should never have offered &#8212; not just warn louder.</text>
+</svg>
