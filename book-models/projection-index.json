@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1204,
+    "total_sites": 1192,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 798,
+      "book-web": 786,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -662,10 +662,6 @@
             "occ": 3
           },
           {
-            "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 2
-          },
-          {
             "file": "book/1.4-the-new-engineering-problem.html",
             "occ": 1
           },
@@ -699,37 +695,17 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 10
-          },
-          {
-            "file": "book/part-1-intro.html",
-            "occ": 2
-          },
-          {
-            "file": "book/part-2-intro.html",
-            "occ": 2
+            "occ": 8
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 3
-          },
-          {
-            "file": "book/part-4-intro.html",
-            "occ": 2
-          },
-          {
-            "file": "book/part-5-intro.html",
-            "occ": 2
-          },
-          {
-            "file": "book/part-6-intro.html",
-            "occ": 2
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 19
+            "occ": 13
           }
         ]
       },
@@ -1025,7 +1001,7 @@
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 24
+            "occ": 20
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -1405,7 +1381,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 235
+            "occ": 231
           },
           {
             "file": "book/index.html",
@@ -1417,27 +1393,27 @@
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 35
+            "occ": 31
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 32
+            "occ": 28
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 25
+            "occ": 21
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 23
+            "occ": 19
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 25
+            "occ": 21
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 29
+            "occ": 25
           }
         ],
         "book-pdf": [
@@ -3158,10 +3134,6 @@
             "occ": 3
           },
           {
-            "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 2
-          },
-          {
             "file": "book/1.4-the-new-engineering-problem.html",
             "occ": 1
           },
@@ -3195,37 +3167,17 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 10
-          },
-          {
-            "file": "book/part-1-intro.html",
-            "occ": 2
+            "occ": 8
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 3
-          },
-          {
-            "file": "book/part-3-intro.html",
-            "occ": 2
-          },
-          {
-            "file": "book/part-4-intro.html",
-            "occ": 2
-          },
-          {
-            "file": "book/part-5-intro.html",
-            "occ": 2
-          },
-          {
-            "file": "book/part-6-intro.html",
-            "occ": 2
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 19
+            "occ": 13
           }
         ]
       },
@@ -3893,7 +3845,7 @@
           },
           {
             "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -4273,7 +4225,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/index.html",
@@ -4285,27 +4237,27 @@
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 5
+            "occ": 4
           },
           {
             "file": "book/part-3-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-5-intro.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/part-6-intro.html",
-            "occ": 4
+            "occ": 3
           }
         ],
         "book-pdf": [

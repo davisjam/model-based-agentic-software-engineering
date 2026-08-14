@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Authored for the conclusion-preface-260814 front-matter redraw (post-Part-VI restructure). REDRAW of
-     research-arc: the epistemic-verb fix. The prior figure ran DocAble -> Induced MAGE -> Industry reports
-     -> Comparison -> Refinement -> Theory with a "tested against" spine edge and a "the theory changed"
-     feedback loop. "Tested" overclaims what the public industrial reports can bear, so this redraw:
-     (1) collapses the separate Refinement node — Comparison now feeds MAGE theory directly;
-     (2) relabels the load-bearing spine edge "refines" (NOT "tested against"); no node or caption says
-         "tested";
-     (3) drops the feedback loop (the "refines" verb already carries that the comparison altered the
-         constructs, and the Refinement node it sprang from is gone);
-     (4) adds a DEPTH / BREADTH split under MAGE theory — the originating case supplies mechanism and
-         sequence (depth); the industrial reconstructions supply variation and alternatives (breadth) —
-         converging on "a stronger basis for theory."
-     The TRUE chronological order is preserved (do NOT rearrange to chapter order; that falsifies the
-     research story). Two colour families only: green #1f7a4d/#155c38 modeling (the theory nodes) and
-     neutral #57534e (the evidence/procedure nodes + the inference spine), so the figure reads in grayscale.
-     Palette: Umber Monograph tokens (ink #1c1917, paper #fdfcf9, neutral #57534e, green #1f7a4d + emphasis
-     #155c38, modeling tint #e3f0e7, neutral tint #f6f4ef). Coordinate-authored (no invisible anchors). -->
+<!-- Authored for the conclusion-preface-260814 front-matter redraw; frontmatter-figures-260814 COPY-EDIT of
+     the vocabulary (no geometry change). The prior redraw already fixed the epistemic verb (refines, NOT
+     tested; no node or caption says "validation"). This pass aligns the node labels to the front-matter
+     vocabulary: the deep case reads "observed in longitudinal depth"; the external evidence node is
+     "Independent industrial accounts"; the procedure node is "Comparative reconstruction" (NOT "validation").
+     The depth/breadth split under the theory is preserved: the originating case supplies mechanism and
+     sequence (depth); the industrial reconstructions supply variation and alternatives (breadth). The TRUE
+     chronological order is preserved (do NOT rearrange to chapter order; that falsifies the research story).
+     Two colour families only: green #1f7a4d/#155c38 modeling (the theory nodes) and neutral #57534e (the
+     evidence/procedure nodes + the inference spine), so the figure reads in grayscale. Palette: Umber
+     Monograph tokens (ink #1c1917, paper #fdfcf9, neutral #57534e, green #1f7a4d + emphasis #155c38,
+     modeling tint #e3f0e7, neutral tint #f6f4ef). Coordinate-authored (no invisible anchors). -->
 <!-- semantic-families: modeling, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740" width="1000" height="740"
      role="group" aria-labelledby="raTitle raDesc"
@@ -25,15 +20,15 @@
     the next by a downward arrow, closing on a depth-and-breadth split. This is where the theory came from —
     its research provenance, in the true order the evidence produced it, which is not the order in which the
     book later teaches the method.
-    Stage one, DocAble — one production system, observed deeply over months.
+    Stage one, DocAble — one production system, observed in longitudinal depth over months.
     Stage two, Early MAGE — the theory induced from that one case: Modeling, Alignment, governance
-    conversion, engineering capital. Stage three, Industry reports — six independent organizations. Stage
-    four, Comparison — each system reconstructed in MAGE's vocabulary: recurring moves, variation, limits.
-    That comparison refines — not tests — the theory. Stage five, MAGE theory — the account developed in
-    Part VI. Beneath it a split: the originating case gives DEPTH (mechanism and sequence); the industrial
-    reconstructions give BREADTH (variation and alternatives); together they converge on a stronger basis for
-    theory. The theory stages are green (modeling); the evidence and procedure stages and the spine are gray
-    (neutral).</desc>
+    conversion, engineering capital. Stage three, independent industrial accounts — six independently evolved
+    systems. Stage four, comparative reconstruction — each system reconstructed in MAGE's vocabulary:
+    recurring moves, variation, limits. That comparison refines — it does not validate — the theory. Stage
+    five, MAGE theory — the account developed in Part VI. Beneath it a split: the originating case gives
+    DEPTH (mechanism and sequence); the industrial reconstructions give BREADTH (variation and alternatives);
+    together they converge on a stronger basis for theory. The theory stages are green (modeling); the
+    evidence and procedure stages and the spine are gray (neutral).</desc>
 
   <defs>
     <marker id="ra-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
@@ -62,27 +57,27 @@
   <!-- N1 DocAble (neutral: the deep case) -->
   <rect x="240" y="90" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="500" y="116" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DocAble</text>
-  <text x="500" y="137" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">one production system, observed deeply over months</text>
+  <text x="500" y="137" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">one production system, observed in longitudinal depth</text>
 
   <!-- N2 Early MAGE (modeling: the induced theory) -->
   <rect x="240" y="182" width="520" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
   <text x="500" y="208" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Early MAGE</text>
   <text x="500" y="229" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Modeling · Alignment · conversion · capital</text>
 
-  <!-- N3 Industry reports (neutral: external evidence) -->
+  <!-- N3 Independent industrial accounts (neutral: external evidence) -->
   <rect x="240" y="274" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="300" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Industry reports</text>
-  <text x="500" y="321" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">six independent organizations</text>
+  <text x="500" y="300" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Independent industrial accounts</text>
+  <text x="500" y="321" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">six independently evolved systems</text>
 
-  <!-- N4 Comparison (neutral: procedure) -->
+  <!-- N4 Comparative reconstruction (neutral: procedure) -->
   <rect x="240" y="366" width="520" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="392" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Comparison</text>
+  <text x="500" y="392" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Comparative reconstruction</text>
   <text x="500" y="413" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">recurring moves · variation · limits</text>
 
   <!-- N5 MAGE theory (modeling, emphasis: the refined theory) -->
   <rect x="240" y="458" width="520" height="64" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
   <text x="500" y="486" text-anchor="middle" font-size="21" font-weight="700" fill="#155c38">MAGE theory</text>
-  <text x="500" y="508" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the account developed in Part VI</text>
+  <text x="500" y="508" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the refined account developed in Part VI</text>
 
   <!-- DEPTH / BREADTH split: what each evidence source contributes -->
   <!-- theory -> split hub -->
