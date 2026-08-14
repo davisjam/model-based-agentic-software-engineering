@@ -7,7 +7,7 @@
     "derived_ids": 181,
     "missing_topic_sentence": 6,
     "sections_drained": 136,
-    "paragraph_points": 472
+    "paragraph_points": 473
   },
   "chapters": [
     {
@@ -2267,19 +2267,24 @@
               "block_index": 18
             },
             {
+              "slug": "docable-implemented-governance-graph-is-intentionally-partial",
+              "text": "DocAble's implemented governance graph is intentionally partial — a small high-value slice of a larger estate, not comprehensive coverage.",
+              "block_index": 20
+            },
+            {
               "slug": "shared-resource-is-a-useful-conservative-relation-not-a-proof-of-completeness",
               "text": "Shared resource is a useful conservative relation, not a proof that the graph captured every interaction.",
-              "block_index": 20
+              "block_index": 22
             },
             {
               "slug": "decidable-edges-a-lint-settles-semantic-ones-a-validator-or-human-judges",
               "text": "Some candidate conflicts are mechanically decidable; others are semantic — a sensor produces evidence of the interaction, a validator or human judges whether it is a conflict.",
-              "block_index": 22
+              "block_index": 24
             },
             {
               "slug": "the-graph-makes-mechanisms-compose-explicit-and-checkable",
               "text": "A governed environment is a claim that its mechanisms compose; the graph makes that claim explicit and checkable at authoring time.",
-              "block_index": 24
+              "block_index": 26
             }
           ]
         },
@@ -2289,22 +2294,22 @@
           "heading_text": "Coverage: obligations against mechanisms",
           "topic_sentence": "Interaction is only half of meta-governance.",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 28,
           "points": [
             {
               "slug": "a-catalogue-and-a-graph-do-not-say-what-should-be-governed-but-is-not",
               "text": "A catalogue says what exists and a graph says where controls collide; neither says what should be governed but is not.",
-              "block_index": 28
+              "block_index": 30
             },
             {
               "slug": "coverage-is-a-requirements-traceability-problem-gap-vs-orphan",
               "text": "Coverage is a small requirements-traceability problem: an obligation with no adequate mechanism is under-governance; a mechanism with no obligation is an orphan.",
-              "block_index": 30
+              "block_index": 32
             },
             {
               "slug": "gap-is-under-governance-orphan-is-governance-debt-neither-automatically-bad",
               "text": "A gap is under-governance; an orphan is governance debt. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete.",
-              "block_index": 33
+              "block_index": 35
             }
           ]
         },
@@ -2314,27 +2319,27 @@
           "heading_text": "Grow, reconcile, retire",
           "topic_sentence": "Governance conversion and coverage auditing pull in opposite directions, and a healthy environment needs both.",
           "id_source": "derived",
-          "block_index": 36,
+          "block_index": 38,
           "points": [
             {
               "slug": "conversion-is-reactive-coverage-is-proactive-a-healthy-environment-needs-both",
               "text": "Governance conversion is reactive and coverage auditing is proactive; a healthy environment needs both.",
-              "block_index": 38
+              "block_index": 40
             },
             {
               "slug": "the-same-audit-pushes-against-permanent-accumulation-capital-is-not-the-number-of-controls",
               "text": "The same audit pushes against permanent accumulation: engineering capital is not the number of controls.",
-              "block_index": 40
+              "block_index": 42
             },
             {
-              "slug": "the-meta-model-stays-honest-by-symbol-anchoring-so-the-map-cannot-drift-from-the-territory",
-              "text": "The meta-model stays honest by symbol-anchoring: control entries are re-resolved to their implementations so the catalogue cannot retain controls that no longer exist.",
-              "block_index": 42
+              "slug": "the-meta-model-stays-connected-where-controls-are-modeled-explicitly",
+              "text": "Where DocAble models controls explicitly, entries can be anchored to their implementations and drift-checked, so a mis-placed control fails loud.",
+              "block_index": 44
             },
             {
               "slug": "stop-the-recursion-unless-experience-earns-more-model-the-estate-that-exists",
               "text": "Stop the recursion unless experience earns more: a governance model can itself become bureaucracy.",
-              "block_index": 44
+              "block_index": 46
             }
           ]
         }
