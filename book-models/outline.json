@@ -128,9 +128,9 @@
       "part": 1,
       "sections": [
         {
-          "section_id": "what-this-book-is-about-and-what-it-is-not",
+          "section_id": "the-engineering-object",
           "level": 2,
-          "heading_text": "What this book is about (and what it is not)",
+          "heading_text": "The Engineering Object",
           "topic_sentence": "If you opened a book about agentic software engineering expecting a tour of agents, you may be surprised by what comes first.",
           "id_source": "derived",
           "block_index": 9,
@@ -143,9 +143,9 @@
           ]
         },
         {
-          "section_id": "the-printer",
+          "section_id": "the-printer-metaphor",
           "level": 2,
-          "heading_text": "The printer",
+          "heading_text": "The Printer Metaphor",
           "topic_sentence": "Think of a 3D printer.",
           "id_source": "derived",
           "block_index": 13,
@@ -163,9 +163,9 @@
           ]
         },
         {
-          "section_id": "a-picture-is-not-enough",
+          "section_id": "from-appearance-to-specification",
           "level": 2,
-          "heading_text": "A picture is not enough",
+          "heading_text": "From Appearance to Specification",
           "topic_sentence": "Everyone can sketch a piece of software.",
           "id_source": "derived",
           "block_index": 20,

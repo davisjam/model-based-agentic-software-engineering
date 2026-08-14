@@ -21,7 +21,7 @@
     },
     {
       "granularity": "section",
-      "primary_unit": "a-picture-is-not-enough",
+      "primary_unit": "from-appearance-to-specification",
       "verb": "explain",
       "obj": "why an agent needs a model of how to build the thing, not just a picture of it",
       "statement": "After this section, the reader can explain why an agent, like a 3D printer, needs the detailed build instructions and not merely a picture of the desired result.",
@@ -105,7 +105,7 @@
     },
     {
       "granularity": "part",
-      "primary_unit": "part:introduction-the-new-engineering-problem",
+      "primary_unit": "part:the-new-engineering-problem",
       "verb": "judge",
       "obj": "which tasks warrant the book's machinery, given that implementation is abundant and judgment scarce, and how to read an agent as a loop conditioned by the model you give it",
       "statement": "After this Part, the reader can judge which engineering tasks warrant the book's machinery — grounded in the founding premise that implementation has become abundant, so judgment is the scarce resource — and read an agent as a loop whose behavior you condition by handing it a model of its world.",
@@ -171,7 +171,7 @@
       "obj": "when an open-ended task needs governance and who is accountable when an agent gets it wrong",
       "statement": "After this chapter, the reader can judge whether a task is open-ended enough to need the book's machinery, and reason about accountability when an agent produces a wrong result.",
       "provenance": "declared",
-      "anchor": "Section titles: 'What this book is about (and what it is not)', 'an-open-ended-technology', 'whose-fault-is-it'."
+      "anchor": "Section titles: 'The Engineering Object', 'an-open-ended-technology', 'whose-fault-is-it'."
     },
     {
       "granularity": "chapter",

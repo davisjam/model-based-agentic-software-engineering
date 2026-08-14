@@ -452,7 +452,7 @@ _MATTER_PARTS = frozenset({0, 7})
 # chapters still names correctly, and so the TOC/index label is authoritative from one place).
 _PART_TITLES = {
     0: "Front Matter",
-    1: "Introduction: The New Engineering Problem",
+    1: "The New Engineering Problem",
     2: "Modeling",
     3: "Alignment",
     4: "The MAGE Method",

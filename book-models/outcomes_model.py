@@ -98,7 +98,7 @@ _TIER_OF_GRANULARITY = {"book": "program", "part": "module", "chapter": "lesson"
 #: (check_part_title_parity, AUDIT-ONLY-first).
 PART_TITLES = {
     0: "Front Matter",
-    1: "Introduction: The New Engineering Problem",
+    1: "The New Engineering Problem",
     2: "Modeling",
     3: "Alignment",
     4: "The MAGE Method",

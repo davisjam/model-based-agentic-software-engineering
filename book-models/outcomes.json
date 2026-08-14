@@ -114,7 +114,7 @@
       {
         "module": "part-1",
         "number": 1,
-        "title": "Introduction: The New Engineering Problem",
+        "title": "The New Engineering Problem",
         "own_outcomes": [
           "part-1::judge-which-tasks-warrant-the-book-s-machinery"
         ],
@@ -123,8 +123,7 @@
             "lesson": "1.1-the-printer",
             "own_outcomes": [],
             "section_outcomes": [
-              "the-printer::judge-when-an-open-ended-task-needs-governance",
-              "a-picture-is-not-enough::explain-why-an-agent-needs-a-model-of-how-to-bui",
+              "from-appearance-to-specification::explain-why-an-agent-needs-a-model-of-how-to-bui",
               "whose-fault-is-it::adopt-the-posture-that-when-an-agent-produces"
             ]
           },
@@ -838,7 +837,7 @@
       "statement": "After this chapter, the reader can judge whether a task is open-ended enough to need the book's machinery, and reason about accountability when an agent produces a wrong result.",
       "bloom": "evaluate",
       "provenance": "declared",
-      "anchor": "Section titles: 'What this book is about (and what it is not)', 'an-open-ended-technology', 'whose-fault-is-it'.",
+      "anchor": "Section titles: 'The Engineering Object', 'an-open-ended-technology', 'whose-fault-is-it'.",
       "gap_note": null
     },
     {
@@ -920,19 +919,6 @@
       "gap_note": null
     },
     {
-      "outcome_id": "a-picture-is-not-enough::explain-why-an-agent-needs-a-model-of-how-to-bui",
-      "granularity": "section",
-      "primary_unit": "a-picture-is-not-enough",
-      "secondary_units": [],
-      "verb": "explain",
-      "obj": "why an agent needs a model of how to build the thing, not just a picture of it",
-      "statement": "After this section, the reader can explain why an agent, like a 3D printer, needs the detailed build instructions and not merely a picture of the desired result.",
-      "bloom": "understand",
-      "provenance": "derived",
-      "anchor": "point: printer-needs-a-model-not-a-photo / agents-need-the-instructions-not-just-the-picture",
-      "gap_note": null
-    },
-    {
       "outcome_id": "a-request-walks-the-connected-slice::trace-a-single-request",
       "granularity": "section",
       "primary_unit": "a-request-walks-the-connected-slice",
@@ -956,6 +942,19 @@
       "bloom": "understand",
       "provenance": "derived",
       "anchor": "point: agent-work-is-a-fixed-shape-loop / loop-starts-with-a-measurable-metric",
+      "gap_note": null
+    },
+    {
+      "outcome_id": "from-appearance-to-specification::explain-why-an-agent-needs-a-model-of-how-to-bui",
+      "granularity": "section",
+      "primary_unit": "from-appearance-to-specification",
+      "secondary_units": [],
+      "verb": "explain",
+      "obj": "why an agent needs a model of how to build the thing, not just a picture of it",
+      "statement": "After this section, the reader can explain why an agent, like a 3D printer, needs the detailed build instructions and not merely a picture of the desired result.",
+      "bloom": "understand",
+      "provenance": "derived",
+      "anchor": "point: printer-needs-a-model-not-a-photo / agents-need-the-instructions-not-just-the-picture",
       "gap_note": null
     },
     {

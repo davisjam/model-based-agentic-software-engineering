@@ -19,13 +19,12 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 - **[DECLARED]** (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. _(primary: the program · elaborated by: prevention-and-observation, from-soft-to-hard)_ — _anchor: The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (from-soft-to-hard, in the MAGE Workflow chapter — re-homed in round-6)._
 - **[DECLARED]** (create) After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human's head. _(primary: the program · elaborated by: Module 3, agreement-is-not-correctness)_ — _anchor: The Modeling Thesis, developed across Part 3 (the executable 4+1 zoo)._
 
-## Module 1 — Introduction: The New Engineering Problem
+## Module 1 — The New Engineering Problem
 
 - **[DECLARED]** (evaluate) After this Part, the reader can judge which engineering tasks warrant the book's machinery — grounded in the founding premise that implementation has become abundant, so judgment is the scarce resource — and read an agent as a loop whose behavior you condition by handing it a model of its world. — _anchor: 1.1 'Not every programming task needs the machinery this book describes' + the founding premise (commodity intelligence → judgment is the scarce resource) + 1.3 'an agent runs in a loop … give it a model of the world'._
 
 ### Lesson 1.1-the-printer
 
-  - **[DECLARED]** (evaluate) After this chapter, the reader can judge whether a task is open-ended enough to need the book's machinery, and reason about accountability when an agent produces a wrong result. — _anchor: Section titles: 'What this book is about (and what it is not)', 'an-open-ended-technology', 'whose-fault-is-it'._
   - **[DERIVED]** (understand) After this section, the reader can explain why an agent, like a 3D printer, needs the detailed build instructions and not merely a picture of the desired result. — _anchor: point: printer-needs-a-model-not-a-photo / agents-need-the-instructions-not-just-the-picture_
   - **[DERIVED]** (apply) After this section, the reader can adopt the posture that an agent is a printer, not a stapler — so when it produces the wrong thing, the first suspect is the instructions, and the models can build anything one can explain. — _anchor: point: agent-is-a-printer-not-a-stapler-so-suspect-the-instructions / models-can-build-anything-you-can-explain_
 

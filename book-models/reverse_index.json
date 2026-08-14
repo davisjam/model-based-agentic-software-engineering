@@ -5409,21 +5409,6 @@
         }
       ]
     },
-    "section-id:a-picture-is-not-enough": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outcomes",
-          "element": "a-picture-is-not-enough::explain-why-an-agent-needs-a-model-of-how-to-bui",
-          "role": "primary-unit"
-        },
-        {
-          "view": "outline",
-          "element": "1.1-the-printer::a-picture-is-not-enough",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:a-real-law-a-real-deadline": {
       "kind": "section-id",
       "dependents": [
@@ -5775,6 +5760,21 @@
         {
           "view": "outline",
           "element": "3.1-where-authority-can-act::four-intervention-boundaries",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:from-appearance-to-specification": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outcomes",
+          "element": "from-appearance-to-specification::explain-why-an-agent-needs-a-model-of-how-to-bui",
+          "role": "primary-unit"
+        },
+        {
+          "view": "outline",
+          "element": "1.1-the-printer::from-appearance-to-specification",
           "role": "section-anchor"
         }
       ]
@@ -6684,6 +6684,16 @@
         }
       ]
     },
+    "section-id:the-engineering-object": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.1-the-printer::the-engineering-object",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:the-facts-every-consumer-joins-to": {
       "kind": "section-id",
       "dependents": [
@@ -6939,12 +6949,12 @@
         }
       ]
     },
-    "section-id:the-printer": {
+    "section-id:the-printer-metaphor": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "1.1-the-printer::the-printer",
+          "element": "1.1-the-printer::the-printer-metaphor",
           "role": "section-anchor"
         }
       ]
@@ -7400,16 +7410,6 @@
         {
           "view": "outline",
           "element": "2.5-modeling-structure-and-ownership::what-third-party-material-the-build-depends-on",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:what-this-book-is-about-and-what-it-is-not": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.1-the-printer::what-this-book-is-about-and-what-it-is-not",
           "role": "section-anchor"
         }
       ]
