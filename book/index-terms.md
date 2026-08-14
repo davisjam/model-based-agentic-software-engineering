@@ -310,6 +310,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: self-operate | Self-operate
 - concept: self-governance | Self-governance
 - concept: self-communicate | Self-communicate
+- concept: mastery-skill | Mastery skill
 - concept: governance-catalogue | The governance catalogue
 - concept: teetering-tower | The teetering tower
 - concept: lexicon | The lexicon
