@@ -1269,24 +1269,24 @@
           ]
         },
         {
-          "section_id": "one-measurement-several-authorities",
+          "section_id": "one-measurement-different-authority-decisions",
           "level": 2,
-          "heading_text": "One Measurement, Several Authorities",
+          "heading_text": "One Measurement, Different Authority Decisions",
           "topic_sentence": "The four roles are not stages of maturity.",
           "id_source": "derived",
           "block_index": 51,
           "points": [
             {
               "slug": "the-four-roles-are-not-stages-of-maturity",
-              "text": "The four roles are not stages of maturity: one quantitative model can support observation, adaptation, degradation, and hard authority at once.",
+              "text": "The four roles are not stages of maturity: one quantitative model can support observation, adaptation, graceful degradation, or hard admission control.",
               "block_index": 53
             }
           ]
         },
         {
-          "section_id": "positive-and-negative-obligations",
+          "section_id": "positive-and-negative-constraints",
           "level": 2,
-          "heading_text": "Positive and Negative Obligations",
+          "heading_text": "Positive and Negative Constraints",
           "topic_sentence": "Constraints are often introduced as prohibitions: this code must not call that library.",
           "id_source": "derived",
           "block_index": 56,

@@ -5804,12 +5804,12 @@
         }
       ]
     },
-    "section-id:one-measurement-several-authorities": {
+    "section-id:one-measurement-different-authority-decisions": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-constraints-sensors-validators-gates::one-measurement-several-authorities",
+          "element": "3.3-constraints-sensors-validators-gates::one-measurement-different-authority-decisions",
           "role": "section-anchor"
         }
       ]
@@ -5854,12 +5854,12 @@
         }
       ]
     },
-    "section-id:positive-and-negative-obligations": {
+    "section-id:positive-and-negative-constraints": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "3.3-constraints-sensors-validators-gates::positive-and-negative-obligations",
+          "element": "3.3-constraints-sensors-validators-gates::positive-and-negative-constraints",
           "role": "section-anchor"
         }
       ]
