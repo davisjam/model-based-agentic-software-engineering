@@ -44,14 +44,14 @@ def check_skill_structure():
             if not (os.path.isfile(principles) and os.path.getsize(principles) > 500):
                 issues.append(f"{name}: principles.md missing or too small")
         if has_ref:
-            ref = os.path.join(sdir, "reference")
+            ref = os.path.join(sdir, "alignment", "mechanisms")  # the census now lives beneath alignment/
             for fn in ("INDEX.md", "ABSTRACTIONS.md", "README.md"):
                 if not os.path.isfile(os.path.join(ref, fn)):
-                    issues.append(f"{name}: reference/{fn} missing")
+                    issues.append(f"{name}: alignment/mechanisms/{fn} missing")
             n = len(glob.glob(os.path.join(ref, "agent", "*", "*.md"))) + \
                 len(glob.glob(os.path.join(ref, "models-bridge", "*", "*.md")))
             if n < 30:
-                issues.append(f"{name}: reference has only {n} entries (expected 30+)")
+                issues.append(f"{name}: alignment/mechanisms has only {n} entries (expected 30+)")
     return (FAIL if issues else PASS), issues
 
 

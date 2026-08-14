@@ -86,10 +86,12 @@ introspection, firewalls, and access control all fail when enforcement sits belo
 ## A.6. You have the freedom — and duty — to improve the substrate
 
 DevOps here includes proposing improvements. A missing or too-specific runbook row: generalize it in your
-source-of-truth and regenerate (sanctioned soft-governance content). A *recurring* failure: route it
-through the `self-governance` partner — classify the class, then design the control. Operate fixes it now;
-self-governance stops it recurring. Run self-governance's interpret-failure mode whenever a failure has
-happened more than once.
+source-of-truth and regenerate (sanctioned soft-governance content). **Handle known operational conditions
+through their runbooks.** A recurrence you can recover is still operations. Cross the boundary only when
+operation *exposes a deficiency* — in the models, the mechanisms, the skills, or the lifecycle itself. Then
+hand the *engineering problem* up: classify the class through the `self-governance` partner and let it
+design the control. Operate fixes the instance; self-governance stops the class. The nine hand-back signals
+(SKILL.md, "The bridge to self-governance") are the trigger — not the bare fact of a second occurrence.
 
 ---
 

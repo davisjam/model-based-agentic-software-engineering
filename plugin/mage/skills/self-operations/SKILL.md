@@ -58,6 +58,69 @@ hooks where present). The *structure* is shared; only the bindings differ (your 
 
 The problems above are **universal**; only the *solutions* (your tools, your docs) are repo-specific.
 
+## The bridge to self-governance (the two-way interface)
+
+Self-Operate runs the environment; **self-governance engineers it.** The two compose through one explicit,
+two-way interface. Encode it — the same contract self-governance carries, seen from the operate side.
+
+**Down (self-governance → self-operate): you incorporate what it designs.** When self-governance mints a
+mechanism, you run it at the right lifecycle state. A new validator → run it at its deployment state. A new
+operational invariant → run the monitoring machinery that watches it. A lifecycle-design change → adopt the
+revised state model and its runbooks. You delegate *design* upward; self-governance delegates *execution*
+downward.
+
+**Up (self-operate → self-governance): you return evidence, not designs.** When operation exposes a
+deficiency in the models, mechanisms, skills, or lifecycle itself, hand the *engineering problem* up — with
+the evidence, not a fix. You recognize the recurrence and report; the design move is self-governance's.
+
+**The routing fork — the load-bearing nuance.** Not every anomaly crosses the boundary. Classify what
+happens after an operational anomaly (the classification need not be mechanical):
+
+```
+                  OPERATIONAL ANOMALY
+                          |
+                     known class?
+                      /       \
+                    yes        no
+                    |           |
+             known recovery     |
+                    |           |
+                 recover        |
+                    |           |
+               recurrence?      |
+                /      \        |
+              no       yes      |
+              |         |       |
+           continue     +-------+
+                           |
+                           v
+                 ENGINEERING DEFICIENCY?
+                      /          \
+                    no            yes
+                    |              |
+              document/learn   SELF-GOVERNANCE
+                 (stays here)
+```
+
+A known operational condition with an adequate runbook **stays in Self-Operate.** A condition that reveals
+inadequacy in the models, mechanisms, skills, or engineered environment **crosses to self-governance.**
+Operations does not redesign the architecture every time a service restarts.
+
+**The nine hand-back signals** — when to route the class up (run the partner skill's interpret-failure mode):
+
+- recurrence despite successful recovery;
+- a missing lifecycle state;
+- a runbook that repeatedly needs substantial unmodeled judgment;
+- a mechanism that produces false positives or false negatives;
+- operational reality that contradicts a system model;
+- expected evidence that cannot be obtained;
+- a supposedly deterministic procedure that is not deterministic;
+- a recovery that is disproportionately expensive;
+- a new class of failure.
+
+Everything else — the one-off, the handled-and-gone — stays here. `document/learn` is a legitimate
+terminal; not every failure earns permanent governance.
+
 ## Bootstrap — fit the map to this repo (generate Part B)
 
 *Discover as much as you can yourself; ask the human only for what you can't determine, and confirm the
