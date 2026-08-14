@@ -156,7 +156,8 @@ the result; cut the warm-up and cut the recap.
   *connect* it to a later idea, or to *advance* it a step is productive; a chapter-ending synthesis that
   turns a forty-page argument into five named commandments is compression, not padding. This is the
   self-commentary curl one level up — keep the point, drop the echo — but do not delete a synthesis that
-  does new work.
+  does new work. A textbook may still mark a conceptual landmark: spend rhetorical emphasis where a new named
+  idea enters; do not spend it telling the reader that an ordinary sentence was important.
 - **Definition first, motivation second.** Open with the result, the definition, the claim; let a
   sentence of motivation follow only where it earns its place. This is the principle behind the glossary's
   definition-first entries and the warm-up-deletion pass across the prose.
@@ -178,6 +179,24 @@ Worked examples strengthen this rule rather than relax it. When convergence acro
 mechanism matters, the section no longer needs rhetorical motivation to persuade the reader that it does.
 You show Cloudflare, Docker, Siemens, and DocAble arriving at the same shape, and the evidence carries what
 the warm-up used to.
+
+### Reserve the curl for concept introduction
+
+Plain prose is the ground state; rhetorical elevation is reserved for landmarks. A self-conscious turn of
+phrase — a "curl" — is justified when it marks a genuinely important NEW idea the reader should be able to find
+and remember later. The ornament functions like a typographic box: it tells the reader *a named concept enters
+here*. Use it once, at the introduction of the concept, then return to plain exposition.
+
+**Good** — earns its emphasis because *engineering capital* is a new term that organizes later reasoning:
+"Governance conversion gives software engineering something it has long had difficulty naming: a concrete form
+of engineering capital."
+
+**Bad** — these merely applaud a point the prose already made; they add no navigation or conceptual handle:
+"That is why this distinction matters." · "This is the key insight." · "That is the whole move."
+
+**Test:** if removing the curl makes a newly introduced concept harder to notice in a skim, keep it. If
+removing it merely makes the prose less dramatic, cut it. The real failure is self-congratulation or redundant
+emphasis, not ornament itself.
 
 ## Section rhythm — the default template for Parts 2–4
 
