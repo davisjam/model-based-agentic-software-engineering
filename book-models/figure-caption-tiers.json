@@ -25,6 +25,30 @@
       "location": "part2",
       "rationale": "behavioral model above its encoding and implementation — supporting caption on model-before-syntax"
     },
+    "assets/in-flight-ownership-states.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "in-flight lease states — supporting caption on who holds a claim and when it is stale"
+    },
+    "assets/in-flight-lease-overlap.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "one lease fanning into ownership/behavior/measurement views — supporting caption on class overlap"
+    },
+    "assets/service-flow-model.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "declared service-flow graph — supporting caption on permitted edges and the sole public node"
+    },
+    "assets/observed-vs-declared.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "observed vs declared structure — supporting caption on correspondence, not correctness"
+    },
     "assets/authority-spectrum.svg": {
       "tier": "A",
       "kind": "conceptual-spectrum",

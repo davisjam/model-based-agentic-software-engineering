@@ -3,15 +3,15 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1168,
+    "total_sites": 1179,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 761,
+      "book-web": 773,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
       "website-landing": 11,
-      "website-misc": 48,
+      "website-misc": 47,
       "website-theory": 10
     }
   },
@@ -581,7 +581,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 14
+            "occ": 13
           },
           {
             "file": "catalogue-figure.html",
@@ -1056,8 +1056,16 @@
             "occ": 26
           },
           {
+            "file": "book/2.4-ownership.html",
+            "occ": 15
+          },
+          {
             "file": "book/2.4-views-are-projections.html",
             "occ": 20
+          },
+          {
+            "file": "book/2.5-decision.html",
+            "occ": 13
           },
           {
             "file": "book/2.5-modeling-structure-and-ownership.html",
@@ -1373,7 +1381,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 222
+            "occ": 221
           },
           {
             "file": "book/index.html",
@@ -1411,7 +1419,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 103
+            "occ": 105
           }
         ]
       },
@@ -1618,7 +1626,15 @@
             "occ": 2
           },
           {
+            "file": "book/2.4-ownership.html",
+            "occ": 2
+          },
+          {
             "file": "book/2.4-views-are-projections.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.5-decision.html",
             "occ": 2
           },
           {
@@ -1973,7 +1989,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 103
+            "occ": 105
           }
         ]
       },
@@ -2128,14 +2144,6 @@
             "occ": 1
           }
         ]
-      },
-      "website": {
-        "website-misc": [
-          {
-            "file": "book-models/models-view.html",
-            "occ": 1
-          }
-        ]
       }
     },
     "model": {
@@ -2202,8 +2210,16 @@
             "occ": 94
           },
           {
+            "file": "book/2.4-ownership.html",
+            "occ": 22
+          },
+          {
             "file": "book/2.4-views-are-projections.html",
             "occ": 12
+          },
+          {
+            "file": "book/2.5-decision.html",
+            "occ": 27
           },
           {
             "file": "book/2.5-modeling-structure-and-ownership.html",
@@ -2519,7 +2535,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 269
+            "occ": 294
           },
           {
             "file": "book/index.html",
@@ -2527,7 +2543,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 16
+            "occ": 20
           },
           {
             "file": "book/part-1-intro.html",
@@ -2557,7 +2573,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 103
+            "occ": 105
           }
         ]
       },
@@ -2979,7 +2995,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 44
+            "occ": 32
           },
           {
             "file": "catalogue-figure.html",
@@ -3244,7 +3260,15 @@
             "occ": 1
           },
           {
+            "file": "book/2.4-ownership.html",
+            "occ": 1
+          },
+          {
             "file": "book/2.4-views-are-projections.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.5-decision.html",
             "occ": 1
           },
           {
@@ -3599,7 +3623,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 103
+            "occ": 105
           }
         ]
       },
@@ -3836,7 +3860,15 @@
             "occ": 8
           },
           {
+            "file": "book/2.4-ownership.html",
+            "occ": 2
+          },
+          {
             "file": "book/2.4-views-are-projections.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.5-decision.html",
             "occ": 2
           },
           {
@@ -4191,7 +4223,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 103
+            "occ": 105
           }
         ]
       },
@@ -4298,7 +4330,15 @@
             "occ": 10
           },
           {
+            "file": "book/2.4-ownership.html",
+            "occ": 1
+          },
+          {
             "file": "book/2.4-views-are-projections.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.5-decision.html",
             "occ": 1
           },
           {
@@ -4653,7 +4693,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 103
+            "occ": 105
           }
         ]
       },
@@ -4879,7 +4919,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "constructing-the-gee.html",

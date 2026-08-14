@@ -347,21 +347,6 @@
       "closing_anchor": "Modeling makes an engineering property explicit. Alignment gives selected properties consequence."
     },
     {
-      "slug": "views-are-projections",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "note": "Opening states the question the executable trunk raises — if the whole system is one connected model, why a zoo of views? — and answers it: a view is a projection over the one representation, not a second model to maintain. Modeling-Thesis link explicit. Closes by handing to the first view, the Logical view, in Kruchten's order.",
-      "opening_anchor": "One connected representation does not imply one view. The last chapter built",
-      "closing_anchor": "what the system is made of, and what may depend on what."
-    },
-    {
       "slug": "modeling-structure-and-ownership",
       "opening": {
         "failure_question": "explicit",
@@ -410,6 +395,56 @@
       "note": "One-model-class-per-chapter reconstruction: this chapter is now the BEHAVIORAL example (label carried forward; filename -> 2.3-behavioral.md). Question (may recovery publish durable state naming a not-yet-published artifact?) + answer (three states and one forbidden ordering). The star is the recovery model; the broad job lifecycle is demoted to a secondary example. 'Executable models are still models' carries the executability point. Closes transitioning to ownership across time.",
       "opening_anchor": "Behavioral models add time.",
       "closing_anchor": "ownership across time."
+    },
+    {
+      "slug": "modeling-ownership",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "delivers": {
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the in-flight ownership model and the lease-overlap figure",
+            "anchor": "in-flight-ownership-states"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "note": "New OWNERSHIP chapter (one-model-class-per-chapter reconstruction). Question (who appears to own this work, and when is that ownership stale?) + answer (an in-flight lease: owner, epoch, lifetime, release/reclaim). Distinguishes recovery from permission (durable CAS underneath the lease is the authority). Shows class overlap: the same lease answers an ownership and a measurement question. Closes transitioning to the decision chapter.",
+      "opening_anchor": "Autonomous systems make runtime ownership unusually important.",
+      "closing_anchor": "which of its parts may reach which."
+    },
+    {
+      "slug": "modeling-decision",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "delivers": {
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the service-flow model and the observed-vs-declared figure",
+            "anchor": "service-flow-model"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "note": "New DECISION chapter (one-model-class-per-chapter reconstruction). Question (which service may call which, and reach which resource?) + answer (a declared service-flow graph; an absent edge declares no relationship). Separates the descriptive question (does A call B?) from the intent question (may A call B?) — correspondence, not correctness, handed to Part III. Closes transitioning to measurement.",
+      "opening_anchor": "A decision model represents permitted choices and relationships.",
+      "closing_anchor": "against what envelope those numbers are read."
     },
     {
       "slug": "modeling-measurement-and-evidence",
