@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1179,
+    "total_sites": 1191,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 773,
+      "book-web": 785,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -1072,12 +1072,20 @@
             "occ": 16
           },
           {
+            "file": "book/2.6-measurement.html",
+            "occ": 16
+          },
+          {
             "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 17
           },
           {
             "file": "book/2.7-modeling-measurement-and-evidence.html",
             "occ": 17
+          },
+          {
+            "file": "book/2.7-provenance.html",
+            "occ": 19
           },
           {
             "file": "book/2.8-joining-models-around-a-scenario.html",
@@ -1381,7 +1389,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 221
+            "occ": 225
           },
           {
             "file": "book/index.html",
@@ -1419,7 +1427,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 105
+            "occ": 107
           }
         ]
       },
@@ -1642,11 +1650,19 @@
             "occ": 2
           },
           {
+            "file": "book/2.6-measurement.html",
+            "occ": 2
+          },
+          {
             "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 2
           },
           {
             "file": "book/2.7-modeling-measurement-and-evidence.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.7-provenance.html",
             "occ": 2
           },
           {
@@ -1989,7 +2005,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 105
+            "occ": 107
           }
         ]
       },
@@ -2226,12 +2242,20 @@
             "occ": 48
           },
           {
+            "file": "book/2.6-measurement.html",
+            "occ": 24
+          },
+          {
             "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 36
           },
           {
             "file": "book/2.7-modeling-measurement-and-evidence.html",
             "occ": 25
+          },
+          {
+            "file": "book/2.7-provenance.html",
+            "occ": 22
           },
           {
             "file": "book/2.8-joining-models-around-a-scenario.html",
@@ -2527,7 +2551,7 @@
           },
           {
             "file": "book/book-index.html",
-            "occ": 17
+            "occ": 16
           },
           {
             "file": "book/colophon.html",
@@ -2535,7 +2559,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 294
+            "occ": 318
           },
           {
             "file": "book/index.html",
@@ -2543,7 +2567,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 20
+            "occ": 23
           },
           {
             "file": "book/part-1-intro.html",
@@ -2573,7 +2597,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 105
+            "occ": 107
           }
         ]
       },
@@ -2995,7 +3019,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 32
+            "occ": 31
           },
           {
             "file": "catalogue-figure.html",
@@ -3276,11 +3300,19 @@
             "occ": 1
           },
           {
+            "file": "book/2.6-measurement.html",
+            "occ": 1
+          },
+          {
             "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 1
           },
           {
             "file": "book/2.7-modeling-measurement-and-evidence.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.7-provenance.html",
             "occ": 1
           },
           {
@@ -3623,7 +3655,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 105
+            "occ": 107
           }
         ]
       },
@@ -3876,11 +3908,19 @@
             "occ": 2
           },
           {
+            "file": "book/2.6-measurement.html",
+            "occ": 2
+          },
+          {
             "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 2
           },
           {
             "file": "book/2.7-modeling-measurement-and-evidence.html",
+            "occ": 2
+          },
+          {
+            "file": "book/2.7-provenance.html",
             "occ": 2
           },
           {
@@ -4223,7 +4263,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 105
+            "occ": 107
           }
         ]
       },
@@ -4346,12 +4386,20 @@
             "occ": 4
           },
           {
+            "file": "book/2.6-measurement.html",
+            "occ": 1
+          },
+          {
             "file": "book/2.6-modeling-behavior-and-execution.html",
             "occ": 1
           },
           {
             "file": "book/2.7-modeling-measurement-and-evidence.html",
             "occ": 1
+          },
+          {
+            "file": "book/2.7-provenance.html",
+            "occ": 11
           },
           {
             "file": "book/2.8-joining-models-around-a-scenario.html",
@@ -4655,7 +4703,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 25
+            "occ": 31
           },
           {
             "file": "book/index.html",
@@ -4663,7 +4711,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 1
+            "occ": 2
           },
           {
             "file": "book/part-1-intro.html",
@@ -4693,7 +4741,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 105
+            "occ": 107
           }
         ]
       },

@@ -461,15 +461,40 @@
         "artifacts": [
           {
             "type": "framework",
-            "name": "the observation/prediction/obligation figure and the operational-envelope card",
-            "anchor": "measurement-invariants"
+            "name": "the GenAI cost-and-capacity model plus the measured-quantity and modeling-perp-authority figures",
+            "anchor": "genai-cost-capacity-model"
           }
         ],
         "artifact_would_help": false
       },
-      "note": "Question (is the running system inside its promised envelope, and is its account of itself faithful?) + answer (operational-envelope + provenance-and-changelog models). R43 split from the behavior chapter; opening picks up the evidence-question seam, closing transitions to the join chapter. thesis_target=modeling: advances the Modeling Thesis and hands an explicit authority surface to Part III without asserting a Modeling→Alignment dependency.",
-      "opening_anchor": "A system can follow every declared transition and still be unusably slow,",
-      "closing_anchor": "why the final chapter joins the models rather than adding another class."
+      "note": "One-model-class-per-chapter reconstruction: this chapter is now the MEASUREMENT example (label carried forward; filename -> 2.6-measurement.md). Replaces the operational-envelope treatment with the richer GenAI usage/cost/capacity model and DELETES the stale report-only claim (the hard daily gate exists but is dormant unless configured). Question (how much capacity, what cost, how close to a budget envelope?) + answer (a web of related quantities). Separates modeling a quantity from assigning it authority (Part III). Closes transitioning to provenance.",
+      "opening_anchor": "Quantitative engineering begins by deciding which quantities matter",
+      "closing_anchor": "what an operation did to an artifact"
+    },
+    {
+      "slug": "modeling-provenance",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "delivers": {
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the attribution model and the provenance-record-vs-views figure",
+            "anchor": "attribution-model"
+          }
+        ],
+        "artifact_would_help": false
+      },
+      "note": "New PROVENANCE chapter (one-model-class-per-chapter reconstruction; replaces Documentation as the sixth class). Question (what happened to this artifact, which operation did it, what evidence records it?) + answer (a run of operations, each naming target/mutation/pass/evidence; record once, derive the explanations). Narrows the guarantee: the model does not guarantee every operation records attribution — that is an Alignment question for Part III. Closes transitioning to the system-knowledge chapter.",
+      "opening_anchor": "When an autonomous system changes a user's artifact,",
+      "closing_anchor": "how the six fit together"
     },
     {
       "slug": "scenarios-and-the-joined-model",

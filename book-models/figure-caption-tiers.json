@@ -49,6 +49,36 @@
       "location": "part2",
       "rationale": "observed vs declared structure — supporting caption on correspondence, not correctness"
     },
+    "assets/genai-cost-capacity-model.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "GenAI usage/cost/capacity/budget quantities — supporting caption on the measurement model over raw events"
+    },
+    "assets/measured-quantity-comparison.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "measured quantity against a reference envelope — supporting caption on what the model compares, not the response"
+    },
+    "assets/modeling-perp-authority.svg": {
+      "tier": "B",
+      "kind": "conceptual-spectrum",
+      "location": "part2",
+      "rationale": "modeling a quantity vs assigning its authority — supporting caption on the Part II / Part III split"
+    },
+    "assets/attribution-model.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "part2",
+      "rationale": "run/operation/target/mutation/pass/evidence — supporting caption on selecting events that matter to audit"
+    },
+    "assets/provenance-record-vs-views.svg": {
+      "tier": "B",
+      "kind": "reduction",
+      "location": "part2",
+      "rationale": "one action record deriving several explanations — supporting caption on record-once-derive"
+    },
     "assets/authority-spectrum.svg": {
       "tier": "A",
       "kind": "conceptual-spectrum",
