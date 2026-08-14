@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part III 3.2.1 figure — three-relations.svg (draft; folds to book/assets/).
+     Three relations an obligation can test, stacked as distinct bands so the "distinct evidence"
+     claim reads on sight. CORRESPONDENCE asks whether two representations of one thing AGREE
+     (both sides are implementations/representations -> gray boxes; the relation is bidirectional).
+     INDEPENDENT EVALUATION asks whether the artifact satisfies an obligation held by an OUTSIDE
+     oracle (the oracle carries the obligation -> rust). ACCEPTANCE asks whether the receiving
+     environment's chosen oracle will TAKE it (an accept/yes outcome -> green). Grammar: gray =
+     territory/implementation; rust #9a3f12 = declared obligation; green = acceptance outcome;
+     blue #2f5169 = the agreement relation of representations. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560"
+     role="img" aria-labelledby="trTitle trDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="trTitle">Three relations an obligation can test: correspondence, independent evaluation, acceptance</title>
+  <desc id="trDesc">Three stacked bands. Correspondence asks whether two representations of one thing agree — a
+    bidirectional relation between an implementation and a representation, both of them internal. Independent
+    evaluation asks whether the artifact satisfies an obligation held by an outside oracle. Acceptance asks
+    whether the receiving environment's chosen oracle will take the artifact. Agreement, conformance, and
+    acceptance are distinct kinds of evidence and are not interchangeable.</desc>
+
+  <defs>
+    <marker id="tr-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="tr-b0" viewBox="0 0 10 10" refX="1.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M10 0 L0 5 L10 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="tr-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="tr-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
+    </marker>
+  </defs>
+
+  <!-- ============ BAND 1 — CORRESPONDENCE ============ -->
+  <rect x="40" y="40" width="6" height="150" rx="3" fill="#2f5169"/>
+  <text x="66" y="72" font-size="21" font-weight="700" fill="#2f5169" letter-spacing="0.5">CORRESPONDENCE</text>
+  <text x="66" y="96" font-size="15.5" font-style="italic" fill="#57534e">agreement between two representations</text>
+
+  <rect x="220" y="112" width="212" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="326" y="145" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">implementation</text>
+  <rect x="560" y="112" width="212" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="666" y="145" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">representation</text>
+  <line x1="440" y1="139" x2="552" y2="139" stroke="#2f5169" stroke-width="2.4" marker-start="url(#tr-b0)" marker-end="url(#tr-b)"/>
+  <text x="496" y="128" text-anchor="middle" font-size="14.5" font-style="italic" fill="#2f5169">&#8220;Do these agree?&#8221;</text>
+  <text x="822" y="145" font-size="15" font-weight="700" fill="#2f5169">agreement</text>
+
+  <line x1="40" y1="200" x2="920" y2="200" stroke="#e7e2da" stroke-width="1.4"/>
+
+  <!-- ============ BAND 2 — INDEPENDENT EVALUATION ============ -->
+  <rect x="40" y="212" width="6" height="150" rx="3" fill="#9a3f12"/>
+  <text x="66" y="244" font-size="21" font-weight="700" fill="#9a3f12" letter-spacing="0.5">INDEPENDENT EVALUATION</text>
+  <text x="66" y="268" font-size="15.5" font-style="italic" fill="#57534e">an outside oracle holds the obligation</text>
+
+  <rect x="220" y="284" width="212" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="326" y="317" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">artifact</text>
+  <rect x="560" y="284" width="212" height="54" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="666" y="311" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">independent oracle</text>
+  <text x="666" y="330" text-anchor="middle" font-size="13.5" font-style="italic" fill="#9a3f12">holds the obligation</text>
+  <line x1="440" y1="311" x2="552" y2="311" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#tr-r)"/>
+  <text x="496" y="300" text-anchor="middle" font-size="14.5" font-style="italic" fill="#9a3f12">&#8220;Does it satisfy?&#8221;</text>
+  <text x="822" y="317" font-size="15" font-weight="700" fill="#9a3f12">conformance</text>
+
+  <line x1="40" y1="372" x2="920" y2="372" stroke="#e7e2da" stroke-width="1.4"/>
+
+  <!-- ============ BAND 3 — ACCEPTANCE ============ -->
+  <rect x="40" y="384" width="6" height="150" rx="3" fill="#155c38"/>
+  <text x="66" y="416" font-size="21" font-weight="700" fill="#155c38" letter-spacing="0.5">ACCEPTANCE</text>
+  <text x="66" y="440" font-size="15.5" font-style="italic" fill="#57534e">the receiving environment&#8217;s chosen oracle</text>
+
+  <rect x="220" y="456" width="212" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="326" y="489" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">artifact</text>
+  <rect x="560" y="456" width="212" height="54" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
+  <text x="666" y="483" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">client&#8217;s chosen oracle</text>
+  <text x="666" y="502" text-anchor="middle" font-size="13.5" font-style="italic" fill="#155c38">decides what it will take</text>
+  <line x1="440" y1="483" x2="552" y2="483" stroke="#155c38" stroke-width="2.4" marker-end="url(#tr-g)"/>
+  <text x="496" y="472" text-anchor="middle" font-size="14.5" font-style="italic" fill="#155c38">&#8220;Will it accept?&#8221;</text>
+  <text x="822" y="489" font-size="15" font-weight="700" fill="#155c38">acceptance</text>
+
+  <!-- footer: protect the distinction -->
+  <text x="480" y="548" text-anchor="middle" font-size="16" font-style="italic" fill="#1c1917">Agreement, conformance, and acceptance are distinct evidence &#8212; and not interchangeable.</text>
+</svg>

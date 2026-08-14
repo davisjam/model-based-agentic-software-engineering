@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1160,
+    "total_sites": 1159,
     "by_projection": {
       "book-pdf": 18,
-      "book-web": 751,
+      "book-web": 750,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -2102,10 +2102,6 @@
             "occ": 1
           },
           {
-            "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 1
-          },
-          {
             "file": "book/book-index.html",
             "occ": 1
           }
@@ -2113,7 +2109,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 3
+            "occ": 2
           }
         ]
       },
@@ -2207,7 +2203,7 @@
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 15
+            "occ": 14
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
