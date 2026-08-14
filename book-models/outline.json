@@ -1503,7 +1503,7 @@
           "section_id": "catalogue-the-controls",
           "level": 2,
           "heading_text": "Catalogue the controls",
-          "topic_sentence": "Start with the nodes.",
+          "topic_sentence": "Start by giving each control a stable identity: the event or boundary at which it acts, the resources it reads or changes, the obligation or failure class that justifies it, and its authority role or roles.",
           "id_source": "derived",
           "block_index": 7,
           "points": [
@@ -1520,9 +1520,9 @@
           ]
         },
         {
-          "section_id": "the-conflict-is-the-edge",
+          "section_id": "model-interactions-between-controls",
           "level": 2,
-          "heading_text": "The conflict is the edge",
+          "heading_text": "Model Interactions Between Controls",
           "topic_sentence": "Two collisions from the case study make it concrete.",
           "id_source": "derived",
           "block_index": 13,
@@ -1560,9 +1560,9 @@
           ]
         },
         {
-          "section_id": "coverage-obligations-against-mechanisms",
+          "section_id": "trace-obligations-to-mechanisms",
           "level": 2,
-          "heading_text": "Coverage: obligations against mechanisms",
+          "heading_text": "Trace Obligations to Mechanisms",
           "topic_sentence": "Interaction is only half of meta-governance.",
           "id_source": "derived",
           "block_index": 28,
@@ -1579,16 +1579,16 @@
             },
             {
               "slug": "gap-is-under-governance-orphan-is-governance-debt-neither-automatically-bad",
-              "text": "A gap is under-governance; an orphan is governance debt. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete.",
+              "text": "A gap is under-governance; an orphan is candidate governance debt. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete.",
               "block_index": 35
             }
           ]
         },
         {
-          "section_id": "grow-reconcile-retire",
+          "section_id": "add-reconcile-and-retire-controls",
           "level": 2,
-          "heading_text": "Grow, reconcile, retire",
-          "topic_sentence": "Governance conversion and coverage auditing pull in opposite directions, and a healthy environment needs both.",
+          "heading_text": "Add, Reconcile, and Retire Controls",
+          "topic_sentence": "Governance conversion and coverage auditing provide complementary pressures.",
           "id_source": "derived",
           "block_index": 38,
           "points": [

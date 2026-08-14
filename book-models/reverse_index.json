@@ -5104,6 +5104,16 @@
         }
       ]
     },
+    "section-id:add-reconcile-and-retire-controls": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "3.5-when-guardrails-collide::add-reconcile-and-retire-controls",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:agentic-work-has-observable-seams": {
       "kind": "section-id",
       "dependents": [
@@ -5236,16 +5246,6 @@
           "view": "claims",
           "element": "profile-edit-not-graph-edit",
           "role": "claim-home"
-        }
-      ]
-    },
-    "section-id:coverage-obligations-against-mechanisms": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "3.5-when-guardrails-collide::coverage-obligations-against-mechanisms",
-          "role": "section-anchor"
         }
       ]
     },
@@ -5519,16 +5519,6 @@
         }
       ]
     },
-    "section-id:grow-reconcile-retire": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "3.5-when-guardrails-collide::grow-reconcile-retire",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:guidance-or-authority": {
       "kind": "section-id",
       "dependents": [
@@ -5715,6 +5705,16 @@
         {
           "view": "outline",
           "element": "6.5-software-rejoins-engineering::model-first-engineering",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:model-interactions-between-controls": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "3.5-when-guardrails-collide::model-interactions-between-controls",
           "role": "section-anchor"
         }
       ]
@@ -6239,16 +6239,6 @@
         }
       ]
     },
-    "section-id:the-conflict-is-the-edge": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "3.5-when-guardrails-collide::the-conflict-is-the-edge",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:the-conversion-loop": {
       "kind": "section-id",
       "dependents": [
@@ -6655,6 +6645,16 @@
         {
           "view": "outline",
           "element": "6.1-toward-a-theory-of-mage::three-core-predictions",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:trace-obligations-to-mechanisms": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "3.5-when-guardrails-collide::trace-obligations-to-mechanisms",
           "role": "section-anchor"
         }
       ]

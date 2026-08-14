@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1192,
+    "total_sites": 1190,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 786,
+      "book-web": 784,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -90,10 +90,6 @@
           {
             "file": "book/3.4-governance-conversion.html",
             "occ": 3
-          },
-          {
-            "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 1
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
@@ -243,7 +239,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 55
+            "occ": 54
           }
         ]
       },
@@ -1101,7 +1097,7 @@
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 19
+            "occ": 20
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
@@ -1501,7 +1497,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 44
+            "occ": 43
           },
           {
             "file": "catalogue-figure.html",
@@ -2084,10 +2080,6 @@
             "occ": 2
           },
           {
-            "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 1
-          },
-          {
             "file": "book/4.4-operating-mage.html",
             "occ": 6
           },
@@ -2107,7 +2099,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 7
+            "occ": 6
           }
         ]
       },
@@ -2295,7 +2287,7 @@
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
-            "occ": 12
+            "occ": 11
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
@@ -4287,7 +4279,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "development-workflow.html",
