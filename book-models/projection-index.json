@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1164,
+    "total_sites": 1165,
     "by_projection": {
       "book-pdf": 19,
-      "book-web": 754,
+      "book-web": 755,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -177,7 +177,7 @@
           },
           {
             "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 5
+            "occ": 12
           },
           {
             "file": "book/appendix-e-theory.html",
@@ -213,7 +213,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 42
+            "occ": 43
           },
           {
             "file": "book/list-of-figures.html",
@@ -1313,7 +1313,7 @@
           },
           {
             "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 18
+            "occ": 34
           },
           {
             "file": "book/appendix-e-theory.html",
@@ -1357,7 +1357,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 197
+            "occ": 201
           },
           {
             "file": "book/index.html",
@@ -1867,7 +1867,7 @@
           },
           {
             "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/appendix-e-theory.html",
@@ -2455,7 +2455,7 @@
           },
           {
             "file": "book/appendix-e-applying-the-recipe.html",
-            "occ": 18
+            "occ": 34
           },
           {
             "file": "book/appendix-e-theory.html",
@@ -4952,6 +4952,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-e-applying-the-recipe.html",
+            "occ": 3
+          },
+          {
             "file": "book/figures.html",
             "occ": 3
           }
@@ -4959,7 +4963,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 13
           }
         ]
       },

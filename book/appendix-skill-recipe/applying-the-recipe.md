@@ -1,9 +1,10 @@
-<!-- point: the-recipe-runs-the-same-on-three-independent-domains | The recipe runs the same on three independent domains. | terms: self-communicate, self-governance, self-operate -->
-This chapter runs the recipe three times — on self-communicate, self-governance, and self-operate — three
-independent domains factored the same way. Each case answers the same questions in the same order, so you
-can read the three side by side and watch the same skeleton surface in each. The third, self-operate, is
-the useful stress test: operations looks least like something you can model, yet it factors much as the
-other two do.
+<!-- point: the-recipe-runs-the-same-on-three-independent-domains | The recipe runs the same on three orthogonal domains. | terms: self-communicate, self-governance, self-operate -->
+This chapter runs the recipe three times — on self-communicate, self-governance, and self-operate: three
+orthogonal domains factored the same way. Each case answers the same questions in the same order, so you
+can read the three side by side and watch the same skeleton surface in each. The second, self-governance,
+is the **recursive case**: it turns the MAGE method itself into a model an agent can reason through. The
+third, self-operate, is the **stress test** — operations looks least like something you can model, yet it
+factors much as the other two do.
 
 ## self-communicate
 
@@ -70,69 +71,125 @@ it suggests is running the audit as a gate.
 
 ### Problem
 
-A fleet at velocity keeps producing recurring failures — the same bug class, a lint that mis-fires, a
-manual step redone by hand, an agent regression. Patching instances never stops the class. The skill
-converts each recurring failure into a **durable mechanism**, and at design time recognizes which
-structural traits warrant a mechanism by construction.
+An agent can hold excellent tools and still engineer badly. It runs the tests, calls the formatter,
+queries the repository — and still models the wrong thing, gives authority to a fact that should stay
+advisory, or freezes a one-off mistake into a permanent rule. The missing capability is not another tool.
+It is the engineering method itself: knowing *what to model, what must hold, and which judgment is worth
+making durable.*
+
+Self-Governance packages that method as a skill. It teaches an agent to apply MAGE to its own engineering
+work — recognize the situation, choose a modeling or alignment move, act through the governed environment,
+and weigh what should persist. The skill carries the *method.* Concrete system truth — what this codebase
+intends, contains, and guarantees — arrives from model providers, never from memory. Knowing the method
+and knowing the system are different competences, and the skill keeps them apart.
 
 ### Fundamental model
 
-**Two kinds of governance move.** A mechanism either **prevents** — a *constraint* that scopes the action
-space so the wrong move cannot be picked — or **detects** — a *sensor* that fires after the fact: a lint,
-gate, or test. That single distinction decides, for any failure, what you build.
+**The MAGE engineering loop.** Everything in the skill supports one cycle, run whenever the agent engineers:
+
+- **Recognize the situation.** What am I actually facing?
+- **Model or align.** Model what must be understood; make authoritative what must hold. These are the two —
+  and only two — MAGE activities.
+- **Choose a move, then a capability.** Pick the engineering move the situation calls for, then the skill
+  that performs it.
+- **Act through the governed environment.** A move becomes consequential only there, never by the skill
+  asserting its own output is safe.
+- **Weigh the evidence.** On success, continue. On failure, diagnose, and ask whether the lesson is durable
+  enough to become **engineering capital.**
+
+Modeling makes engineering knowledge explicit; Alignment gives that knowledge authority. Self-Governance is
+not a third activity beside them. It is the discipline of turning both on your own work. That is the whole
+of the rewrite: the fundamental model is the *loop,* not a catalogue of mechanisms.
 
 ### Orthogonal models
 
-- **The mechanism census** (`reference/INDEX.md` plus `reference/<role>/<family>/<mechanism>.md`) — the
-  catalogue of patterns you draw from.
-- **Soft-vs-hard enforcement** — the form's strength.
-- **The target axis** — agent, models-bridge, product.
-- **The form taxonomy** — the nine structural forms.
-- **Ambient principles** (`principles.md`) — the reflexes applied on every touch.
-- **The two modes** — AUDIT and INTERPRET-FAILURE — plus the **MBSE starter kit** (`templates/`).
+The loop's questions are independent, so each becomes its own facet. Six directories, one question each;
+the router names the question and sends you to the owner.
+
+- **`modeling/` — the model vocabulary and the verbs that build it.** *What kind of representation could
+  help, and how does representation improve?* Families of model (structure, behavior, execution,
+  measurement, provenance, composition) and the ten moves that raise a fact up the authority ladder.
+- **`practice/` — situation recognition and proportionality.** *What situation am I in, and which move is
+  warranted?* One facet classifies — a field guide of engineering situations, plus a design-time smell
+  scan; its sibling weighs the tradeoff and right-sizes the response.
+- **`system/` — model access.** *What is true of* this *system?* The skill carries the method, not any
+  codebase's concrete models. This facet reaches them through a uniform provider contract and weighs the
+  epistemic status of every answer.
+- **`skills/` — capability selection.** *Which available capability performs the chosen move?* A semantic
+  index of skills to compose — its two partners among them — never a copy of their manuals.
+- **`alignment/` — how intent acquires authority.** *What should stay true without a person re-checking
+  it?* Constraint, sensor, validator, gate; prevent-versus-detect; soft-versus-hard; the three governance
+  targets; and the mechanism census. This is the old skill's entire centerpiece, kept intact one level down.
+- **`learning/` — governance conversion.** *What should persist from this episode?* The recurrence gate,
+  the conversion menu, and the two standing procedures, AUDIT and INTERPRET-FAILURE.
 
 <!-- index-def: governance-target-agent -->
 <!-- index-def: governance-target-models-bridge -->
 <!-- index-def: governance-target-product -->
 
-Why a catalogue with cross-cutting columns rather than one large reference doc: the **move** (constraint,
-sensor) is independent of the **form** (soft, hard) — a constraint can be soft (a model that aims) or hard
-(a compiler-enforced enum); a sensor can be soft (a convention) or hard (a blocking lint) — and both are
-independent of **target** and of the **form taxonomy**. Because the axes are orthogonal, any mechanism is a
-*point* in that space, which is why the census is a queryable table ("missing prevention? scan the
-constraint rows"), not a flat list. The principles are a separate ambient layer that does not live in the
-census.
+The facets cut independent axes. Recognizing a situation does not fix which model answers it; choosing a
+move does not decide how firmly it holds; knowing the method does not supply the system's facts. Because the
+axes are orthogonal, the agent loads only the facet its question touches.
 
 ### Governing principle
 
-*Convert recurring failures into durable guardrails; guidance aims, machinery holds.* Three reflexes
-follow: **architecture before sensors** (prefer the constraint that makes the error impossible),
-**right-size the fix** (the smallest sound change; float the larger scheme), and **propose, don't install**
-— a skill is soft, so hard mechanisms are scaffolded and handed to a human or harness; never claim
-*enforced* when you have only *recommended*.
+*Apply MAGE to the work itself: model what must be understood, make authoritative what must hold, and
+convert recurring judgment into capital.* The router ties the facets to that principle, and a handful of
+reflexes carry it:
+
+- **Model before guessing.** Reach concrete system truth through a provider; do not reconstruct it from
+  memory or raise confidence by rhetoric.
+- **Ask what should become machinery.** At every failure, ask whether the lesson is durable — and default
+  to *nothing.* Most failures convert to nothing, and the recurrence gate exists to license that answer.
+- **Method before tool.** Choose the move the situation calls for, then the capability that performs it,
+  not a capability because it is at hand.
+- **Right-size the fix.** Prefer the smallest sound change that closes the class; float the larger scheme
+  rather than reflexively building it. Prevention by construction beats detection where the action space can
+  honestly close.
+- **Escalate a genuine judgment, not an inconvenience.** A real authority-or-consequence boundary earns a
+  prepared decision handed upward. A merely hard problem does not.
+
+One reflex sits above the rest: **self-governance is not self-certification.** The agent may select, model,
+propose, and check, but its belief that the work is correct is not evidence that it is. A skill is soft — it
+aims a probabilistic agent and cannot block. So hard mechanisms are *proposed and scaffolded,* then handed
+to a human or the harness; never claimed as *enforced* when only recommended. The deciding evidence comes
+from a mechanism that sits outside the reasoning which produced the change.
 
 ### Layout
 
 ```
 self-governance/
-  SKILL.md
-  principles.md
-  reference/  INDEX.md  ABSTRACTIONS.md  README.md  <role>/<family>/<mechanism>.md
-  templates/  system-models-starter-kit.md  state-machine-model-starter.py
-              component-zone-model-starter.py  service-flow-*  deployment-topology-starter.py
+  SKILL.md            the router — the loop, the routing table, the ambient stance
+  principles.md       the portable engineering method (the ambient reflexes)
+  modeling/    repertoire.md  moves.md
+  practice/    situations.md  judgment.md
+  system/      model-access.md
+  skills/      repertoire.md
+  alignment/   repertoire.md  mechanisms/INDEX.md  mechanisms/<target>/<family>/<mechanism>.md
+  learning/    governance-conversion.md
+  templates/   system-models-starter-kit.md  state-machine-model-starter.py  …
 ```
 
-The tree mirrors the split: census (`reference/`), principles (`principles.md`), scaffolds (`templates/`).
+One directory per question, one file per facet. The mechanism census lives under `alignment/`, where
+prevent-versus-detect now sits one level below the loop.
 
 ### Lesson
 
-The base model, prevent versus detect, is the cut every other axis hangs off; orthogonal axes make the
-catalogue something you **query**, not read top to bottom. A skill **cannot install hard mechanisms** — it
-proposes them, so honesty about enforced-versus-recommended is part of the craft. This skill also marks the
-boundary between Modeling and Alignment plainly: the skill *represents* governance knowledge and helps an
-agent reason through it, and the mechanisms it recommends may then give that knowledge *authority* through
-constraints, validators, and gates. It composes: it mints the mechanisms self-operate runs and
-self-communicate documents.
+Self-Governance is the appendix's culmination because the domain it models is the MAGE method itself. The
+recipe turns recursive here: the skill that teaches an agent to build models is itself a model of how to
+build them. That is why the fundamental model is the *loop,* not a taxonomy of mechanisms. An earlier draft
+of this skill made prevent-versus-detect the top of its tree; that was a good model of one engineering move,
+not a large enough model of self-governance. The census, the two modes, soft-versus-hard, the three targets
+all survive — they moved one level down, under Alignment, where they belong.
+
+The skill draws the Modeling–Alignment boundary most plainly of the three. **A mastery-skill is a soft
+mechanism.** It represents governance knowledge and helps an agent reason through it; it cannot make a
+property hold. Where a property must hold, the knowledge crosses into Alignment — a constraint, validator,
+or gate that does not depend on the agent's cooperation. The skill proposes and scaffolds those. It does not
+install them, and it does not certify its own output.
+
+And it **composes.** It supplies the engineering judgment behind changes to models and mechanisms, mints the
+controls self-operate runs, and writes what it produces in self-communicate's register.
 
 ## self-operate
 
@@ -173,9 +230,11 @@ regardless of which lifecycle owns the break.
 ### Governing principle
 
 *Orient positive first, then route a break to its class.* Know the healthy baseline before you hunt; meet
-every symptom as a member of a lifecycle; when a failure **recurs**, hand it to self-governance — the
-operate-govern bridge. Supporting reflexes: *determinize the runnable, brief the judgment*, and treat the
-lifecycle as a state machine, not a habit.
+every symptom as a member of a lifecycle; and when diagnosis calls for a modeling, alignment, or
+governance-conversion move — a recurring break worth a control, a model that should change, an authority
+that should shift — hand the engineering judgment to self-governance. That hand-off is the operate-govern
+bridge. Supporting reflexes: *determinize the runnable, brief the judgment,* and treat the lifecycle as a
+state machine, not a habit.
 
 ### Layout
 
@@ -194,9 +253,23 @@ self-operations/
 The base model, the lifecycles, was **discovered, not obvious**; naming it converted firefighting into
 routing. Runbooks are **typed**, so the model itself says what to automate, what to brief, and what to
 escalate. The repo-specific bindings are generated and ref-linted — a non-executable index earns trust from
-a ref-check, not from tests. It **composes**: it runs the mechanisms self-governance mints, hands
-recurrences back to it, and writes its runbooks in self-communicate's register.
+a ref-check, not from tests. It composes: **self-governance supplies the engineering judgment behind
+changes to models and mechanisms;** self-operate runs the resulting environment, routes consequential
+observations back into that judgment, and writes its runbooks in self-communicate's register.
 
-The three skills differ substantially in subject matter, but the same construction pattern proved useful in
-each: find the domain's fundamental model, separate its independent facets, and give the agent a governing
-principle for reasoning across them.
+The three skills act on one environment from three directions. [ref:fig-skill-composition] draws the shape:
+self-governance engineers and improves the governed environment, self-operate runs its operational
+lifecycles and returns evidence when reality exposes a deficiency, and self-communicate supplies the craft
+for every representation the other two produce.
+
+<!-- label: fig-skill-composition -->
+<!-- figure: assets/figure-composition.svg | The three partner skills act on one governed environment — orthogonal, not isolated. Self-governance improves it, self-operate runs it and feeds evidence back, self-communicate documents both. -->
+
+Orthogonality does not require isolation. The three skills factor cleanly because each owns one reason to
+change — how the fleet communicates, how it engineers its own environment, how it operates that environment
+— and they stay useful together because the interfaces between them are explicit. Self-governance mints the
+mechanisms self-operate runs; self-operate returns the evidence self-governance reasons from;
+self-communicate documents both. That is what good factoring buys: a decomposition whose parts can each be
+understood and revised on their own, joined by named seams rather than tangled by hidden ones. The same
+construction pattern built all three — find the domain's fundamental model, separate its independent facets,
+and tie them with a governing principle.

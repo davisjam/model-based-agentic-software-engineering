@@ -63,6 +63,8 @@ model rather than duplicate its contents. Second, it can be **adopted incrementa
 can be useful before every facet has been developed. The [Skills chapter](4.5-packaging-the-method-as-skills.html)
 calls this structure the *Skill Skeleton*; here, the skeleton becomes a construction procedure.
 
+Orthogonal skills may themselves compose. Separation gives each one reason to change; explicit interfaces then let one skill consume the models, mechanisms, or observations another produces.
+
 ## Failure modes
 
 A mastery-skill can fail in several predictable ways.
