@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part VI §6.5 — model-induction-general.svg (draft; folds to book/assets/).
+     The SAME abstraction move, shown once and instantiated three ways: realized work → repeated
+     low-level forms → (weak detectors / retrieval / clustering) candidate regularities → (contextual
+     comparison) a latent concept → (engineering judgment names it) an explicit model / vocabulary →
+     future work reasons through the concept directly. The LEFT RAIL is the canonical move (its stages +
+     the method that carries each step); the THREE COLUMNS instantiate it in SOFTWARE, KNOWLEDGE WORK,
+     and MECHANICAL / CAD. Software is the GROUNDED column (DocAble evidence, solid strokes); knowledge
+     work and CAD are GENERALIZATION (inferred — dashed strokes, ribboned "not DocAble evidence"), per
+     the caveat that DocAble establishes the mechanism in software and Part VI argues the move is
+     available elsewhere. Grammar: gray #57534e = territory / neutral machine-found candidate (the AGENT
+     finds repetition, compares, proposes); rust #9a3f12 = the engineer's naming (authority — the
+     judgment step, the agent/engineer split); blue #2f5169 = the named model / vocabulary (the payoff);
+     green #155c38 = the downstream economics (future work reasons through it). Hand-authored. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 726" width="960" height="726"
+     role="img" aria-labelledby="miTitle miDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="miTitle">Models can be induced from the work: the same abstraction move — repeated form to named model — runs in software, knowledge work, and CAD</title>
+  <desc id="miDesc">A left rail states the general move as a column of stages joined by the method that
+    carries each step: realized work; then repeated low-level forms; then, by weak detectors, retrieval,
+    and clustering, candidate regularities; then, by contextual comparison, a latent concept; then, by an
+    engineering judgment that names it, an explicit model or vocabulary; then future work that reasons
+    through the concept directly. Three columns to the right instantiate the same move. In software
+    (grounded in DocAble evidence): realized code, repeated primitive forms, candidate regularities such
+    as primitive density, a latent semantic shape, a typed vocabulary with relations, and tools and agents
+    that reuse it. In knowledge work (a generalization, inferred): documents and records, repeated terms
+    and relations, candidate synonym clusters, a latent domain distinction, a canonical term with
+    relations, and a lexicon, ontology, or schema. In mechanical CAD (a generalization, inferred):
+    drawings and assemblies, repeated geometry and constraints, a candidate pattern or component, a latent
+    design regularity, a named feature or constraint model, and a reusable engineering vocabulary. The
+    agent finds repetition, compares, and proposes structure; the engineer decides which distinctions
+    matter and names the concept.</desc>
+
+  <defs>
+    <marker id="g-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="g-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="g-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
+    </marker>
+  </defs>
+  <!-- ===== header ribbons: grounded vs generalization ===== -->
+  <text x="332" y="42" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">grounded — DocAble (software) evidence</text>
+  <line x1="218" y1="50" x2="446" y2="50" stroke="#57534e" stroke-width="1.4"/>
+  <text x="698" y="42" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">generalization — the same move, inferred (not DocAble evidence)</text>
+  <line x1="462" y1="50" x2="934" y2="50" stroke="#57534e" stroke-width="1.4" stroke-dasharray="5 3"/>
+  <text x="114" y="42" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the abstraction move</text>
+  <line x1="26" y1="50" x2="202" y2="50" stroke="#57534e" stroke-width="1.4"/>
+  <text x="114" y="80" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">THE GENERAL MOVE</text>
+  <text x="332" y="80" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">SOFTWARE</text>
+  <text x="576" y="80" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">KNOWLEDGE WORK</text>
+  <text x="820" y="80" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">MECHANICAL / CAD</text>
+  <!-- ===== RAIL: canonical move ===== -->
+  <rect x="26" y="100" width="176" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="114.0" y="137" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">realized work</text>
+  <rect x="26" y="192" width="176" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="114.0" y="229" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">repeated low-level forms</text>
+  <rect x="26" y="284" width="176" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="114.0" y="321" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate regularities</text>
+  <rect x="26" y="376" width="176" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="114.0" y="413" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
+  <rect x="26" y="468" width="176" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="114.0" y="486" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">explicit model</text>
+  <text x="114.0" y="503" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">/ vocabulary</text>
+  <rect x="26" y="560" width="176" height="66" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4"/>
+  <text x="114.0" y="578" text-anchor="middle" font-size="14.5" font-weight="700" fill="#155c38">future work reasons</text>
+  <text x="114.0" y="595" text-anchor="middle" font-size="14.5" font-weight="700" fill="#155c38">through the concept</text>
+  <text x="114" y="267" text-anchor="middle" font-size="10.5" font-style="italic" fill="#57534e">weak detectors,</text>
+  <text x="114" y="278" text-anchor="middle" font-size="10.5" font-style="italic" fill="#57534e">retrieval, clustering</text>
+  <text x="114" y="359" text-anchor="middle" font-size="10.5" font-style="italic" fill="#57534e">contextual</text>
+  <text x="114" y="370" text-anchor="middle" font-size="10.5" font-style="italic" fill="#57534e">comparison</text>
+  <text x="114" y="451" text-anchor="middle" font-size="10.5" font-style="italic" fill="#9a3f12">engineering</text>
+  <text x="114" y="462" text-anchor="middle" font-size="10.5" font-style="italic" fill="#9a3f12">judgment names it</text>
+  <!-- ===== COL: SOFTWARE ===== -->
+  <rect x="218" y="100" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="332.0" y="128" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">realized code</text>
+  <text x="332.0" y="148" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">repos · diffs · PRs</text>
+  <rect x="218" y="192" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="332.0" y="220" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">repeated low-level forms</text>
+  <text x="332.0" y="240" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">dict.Put · raw argv · loops</text>
+  <rect x="218" y="284" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="332.0" y="312" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate regularities</text>
+  <text x="332.0" y="332" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">primitive density · clusters</text>
+  <rect x="218" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="332.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
+  <text x="332.0" y="424" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a repeated semantic shape</text>
+  <rect x="218" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="332.0" y="496" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">typed vocabulary + relations</text>
+  <text x="332.0" y="516" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">PdfModel · JobId · MutationSpec</text>
+  <rect x="218" y="560" width="228" height="66" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4"/>
+  <text x="332.0" y="588" text-anchor="middle" font-size="14.5" font-weight="700" fill="#155c38">tools search &amp; check it</text>
+  <text x="332.0" y="608" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">agents reuse, don't re-derive</text>
+  <line x1="332" y1="167" x2="332" y2="190" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <line x1="332" y1="259" x2="332" y2="282" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <line x1="332" y1="351" x2="332" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <line x1="332" y1="443" x2="332" y2="466" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#g-r)"/>
+  <line x1="332" y1="535" x2="332" y2="558" stroke="#155c38" stroke-width="2.3" marker-end="url(#g-g)"/>
+  <!-- ===== COL: KNOWLEDGE WORK ===== -->
+  <rect x="462" y="100" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <text x="576.0" y="128" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">documents · records</text>
+  <text x="576.0" y="148" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">conversations · notes</text>
+  <rect x="462" y="192" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <text x="576.0" y="220" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">repeated terms + relations</text>
+  <text x="576.0" y="240" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">phrases · entity patterns</text>
+  <rect x="462" y="284" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <text x="576.0" y="312" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate clusters</text>
+  <text x="576.0" y="332" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">synonyms · concept groups</text>
+  <rect x="462" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <text x="576.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
+  <text x="576.0" y="424" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a domain distinction</text>
+  <rect x="462" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4" stroke-dasharray="5 3"/>
+  <text x="576.0" y="496" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">canonical term + relations</text>
+  <text x="576.0" y="516" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">the agreed name</text>
+  <rect x="462" y="560" width="228" height="66" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4" stroke-dasharray="5 3"/>
+  <text x="576.0" y="588" text-anchor="middle" font-size="14.5" font-weight="700" fill="#155c38">lexicon · ontology · schema</text>
+  <text x="576.0" y="608" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">future reading joins through it</text>
+  <line x1="576" y1="167" x2="576" y2="190" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <line x1="576" y1="259" x2="576" y2="282" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <line x1="576" y1="351" x2="576" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <line x1="576" y1="443" x2="576" y2="466" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#g-r)"/>
+  <line x1="576" y1="535" x2="576" y2="558" stroke="#155c38" stroke-width="2.3" marker-end="url(#g-g)"/>
+  <!-- ===== COL: MECHANICAL / CAD ===== -->
+  <rect x="706" y="100" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <text x="820.0" y="128" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">drawings · assemblies</text>
+  <text x="820.0" y="148" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">geometry</text>
+  <rect x="706" y="192" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <text x="820.0" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">repeated geometry + constraints</text>
+  <text x="820.0" y="240" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">interfaces · parameter bundles</text>
+  <rect x="706" y="284" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <text x="820.0" y="312" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">candidate pattern / component</text>
+  <text x="820.0" y="332" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a reusable form</text>
+  <rect x="706" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <text x="820.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
+  <text x="820.0" y="424" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a design regularity</text>
+  <rect x="706" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4" stroke-dasharray="5 3"/>
+  <text x="820.0" y="496" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">named feature / component</text>
+  <text x="820.0" y="516" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">constraint-model · interface</text>
+  <rect x="706" y="560" width="228" height="66" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4" stroke-dasharray="5 3"/>
+  <text x="820.0" y="578" text-anchor="middle" font-size="14.5" font-weight="700" fill="#155c38">reusable engineering</text>
+  <text x="820.0" y="595" text-anchor="middle" font-size="14.5" font-weight="700" fill="#155c38">vocabulary</text>
+  <text x="820.0" y="614" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">future designs refer to it</text>
+  <line x1="820" y1="167" x2="820" y2="190" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <line x1="820" y1="259" x2="820" y2="282" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <line x1="820" y1="351" x2="820" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <line x1="820" y1="443" x2="820" y2="466" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#g-r)"/>
+  <line x1="820" y1="535" x2="820" y2="558" stroke="#155c38" stroke-width="2.3" marker-end="url(#g-g)"/>
+  <!-- footer: the curl -->
+  <line x1="40" y1="656" x2="920" y2="656" stroke="#e7e2da" stroke-width="1.4"/>
+  <text x="480" y="682" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">Model induction converts repeated form into reusable engineering vocabulary.</text>
+  <text x="480" y="705" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">The agent finds repetition, compares, and proposes structure; the engineer decides which distinctions matter and names the concept.</text>
+</svg>
