@@ -12,7 +12,7 @@
       "home": "reorganization-of-se",
       "asserted_at": [
         "reorganization-of-se",
-        "state-the-derivation-direction"
+        "point:name-the-direction-of-derivation-up-front"
       ],
       "contradicted_by": "Prose stating MAGE prescribes model→code (or code→model) as its own authoring direction — the drift the 3.1 scope-box fix corrected.",
       "watch_phrases": [
@@ -32,9 +32,9 @@
         "one source of truth kept equal either way",
         "a parallel hand-updated snapshot — a second source"
       ],
-      "home": "derive-and-join-do-not-repeat",
+      "home": "point:derive-and-join-do-not-repeat",
       "asserted_at": [
-        "derive-and-join-do-not-repeat",
+        "point:derive-and-join-do-not-repeat",
         "reorganization-of-se"
       ],
       "contradicted_by": "Endorsing a model kept as a separate hand-updated artifact (a second source), or asserting one fixed derivation direction as the rule.",
@@ -420,10 +420,9 @@
         "a per-host scheduler profile — host limits set as scheduling parameters against one shared graph",
         "forking the execution graph — a separate invariant-DAG edited per host"
       ],
-      "home": "correctness-in-the-graph-resource-limits-in-a-profile",
+      "home": "scenarios-and-the-joined-model",
       "asserted_at": [
-        "correctness-in-the-graph-resource-limits-in-a-profile",
-        "worked-join"
+        "scenarios-and-the-joined-model"
       ],
       "contradicted_by": "Prose that models a host's resource limits by editing or forking the execution graph itself, rather than as a per-host scheduling profile over one shared graph.",
       "watch_phrases": [],
