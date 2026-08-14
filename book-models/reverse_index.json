@@ -14,8 +14,8 @@
     "universe": {
       "section_ids": 202,
       "concepts": 145,
-      "labels": 70,
-      "refs": 68,
+      "labels": 71,
+      "refs": 69,
       "chapters": 77,
       "parts": 8,
       "points": 484,
@@ -5399,6 +5399,16 @@
         }
       ]
     },
+    "section-id:a-larger-pattern": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.5-software-rejoins-engineering::a-larger-pattern",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:a-picture-is-not-enough": {
       "kind": "section-id",
       "dependents": [
@@ -6190,16 +6200,6 @@
         {
           "view": "outline",
           "element": "4.4-operating-mage::one-hard-example-coverage-measured-one-level-deeper",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:one-instance-of-a-larger-engineering": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.5-software-rejoins-engineering::one-instance-of-a-larger-engineering",
           "role": "section-anchor"
         }
       ]

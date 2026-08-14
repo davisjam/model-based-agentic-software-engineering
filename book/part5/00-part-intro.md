@@ -26,6 +26,11 @@ finished theory.
 
 **New here:** Originating case · Support ratio · Delegation staircase · Within-case evidence · Industrial reconstructions · Comparative evidence
 
+The evidence has two views; [ref:two-views-of-the-evidence] lays them side by side.
+
+<!-- label: two-views-of-the-evidence -->
+<!-- figure: assets/two-views-of-the-evidence.svg | *Figure 5.0-1: Two views of the evidence.* The originating case supplies longitudinal depth: sequence, mechanism, and within-case recurrence. Independent industrial reconstructions supply variation across systems and organizations but less process visibility. Neither supplies causal or population-level estimates. Together they motivate the theoretical account developed in Part VI. -->
+
 The evidence in this Part comes in two forms. The first is longitudinal process evidence from DocAble. It can
 establish sequence: this failure occurred, this response followed, and later evidence showed whether the
 response held over the surface it claimed to govern. It can show recurrence within one system and reconstruct
