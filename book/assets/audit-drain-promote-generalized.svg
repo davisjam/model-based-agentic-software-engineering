@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part IV Fig — audit-drain-promote-generalized.svg (draft; folds to book/assets/).
+     The generalized form of Audit -> Drain -> Promote. An AUDIT yields FINDINGS that must be
+     PARTITIONED before repair. The partition splits three ways: DRAIN (mechanical work, gray),
+     REDESIGN (new structure, blue - it produces a model), and ACCEPT / EXEMPT (gray dead-end).
+     Drain and redesign feed IDENTIFY OBLIGATION (rust - the property that deserves authority),
+     then CHOOSE FINAL MECHANISM, which resolves two ways: PROMOTE to a stronger authority (rust)
+     or RETAIN the audit signal (gray). The key refinement: the mechanism that DISCOVERS an
+     obligation need not be the mechanism that CARRIES its authority. Grammar: gray =
+     signals/neutral work/retained sensor; blue = model-producing redesign; rust = obligation and
+     promoted authority. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 690" width="960" height="690"
+     role="img" aria-labelledby="adpTitle adpDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="adpTitle">The generalized form of Audit, Drain, Promote: an audit's findings are partitioned, the drain may reveal an obligation, and that obligation may be promoted or the audit retained</title>
+  <desc id="adpDesc">A top-down flow. An audit produces findings, which are partitioned before repair. The partition
+    splits three ways: drain does mechanical work, redesign produces new structure, and accept or exempt is a dead-end.
+    Drain and redesign feed the identification of an obligation — the property that deserves authority — and then the
+    choice of a final mechanism. That choice resolves two ways: promote to a stronger authority, or retain the audit as
+    a signal. Audit, drain, promote is the common case, not a requirement that the discovering mechanism itself become
+    blocking.</desc>
+
+  <defs>
+    <marker id="adp-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="adp-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="adp-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- ===== audit -> findings -> partition ===== -->
+  <rect x="390" y="30" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="58" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">audit</text>
+  <line x1="480" y1="74" x2="480" y2="90" stroke="#57534e" stroke-width="2.4" marker-end="url(#adp-n)"/>
+
+  <rect x="390" y="92" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="120" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">findings</text>
+  <line x1="480" y1="136" x2="480" y2="152" stroke="#57534e" stroke-width="2.4" marker-end="url(#adp-n)"/>
+
+  <rect x="378" y="154" width="204" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <text x="480" y="183" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">partition</text>
+
+  <!-- fan to three -->
+  <g fill="none" stroke-width="2.4">
+    <path d="M408,200 C300,214 220,216 160,230" stroke="#57534e" marker-end="url(#adp-n)"/>
+    <path d="M480,200 L480,230" stroke="#2f5169" marker-end="url(#adp-b)"/>
+    <path d="M552,200 C660,214 740,216 800,230" stroke="#57534e" marker-end="url(#adp-n)"/>
+  </g>
+
+  <!-- drain (gray) -->
+  <rect x="60" y="232" width="200" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="160" y="260" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">drain</text>
+  <text x="160" y="279" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">mechanical work</text>
+
+  <!-- redesign (blue - produces a model) -->
+  <rect x="380" y="232" width="200" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="480" y="260" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">redesign</text>
+  <text x="480" y="279" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">new structure</text>
+
+  <!-- accept / exempt (gray dead-end) -->
+  <rect x="700" y="232" width="200" height="58" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
+  <text x="800" y="260" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">accept / exempt</text>
+  <text x="800" y="279" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">leave as-is</text>
+
+  <!-- drain + redesign merge into identify obligation -->
+  <g fill="none" stroke-width="2.4">
+    <path d="M160,290 C160,320 330,320 438,344" stroke="#57534e" marker-end="url(#adp-n)"/>
+    <path d="M480,290 L480,344" stroke="#2f5169" marker-end="url(#adp-b)"/>
+  </g>
+
+  <!-- identify obligation (rust - the property) -->
+  <rect x="330" y="346" width="300" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="480" y="373" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">identify obligation</text>
+  <text x="480" y="393" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">the property that deserves authority</text>
+  <line x1="480" y1="404" x2="480" y2="426" stroke="#57534e" stroke-width="2.4" marker-end="url(#adp-n)"/>
+
+  <!-- choose final mechanism -->
+  <rect x="330" y="428" width="300" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="454" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">choose final mechanism</text>
+  <text x="480" y="473" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">which authority fits the property</text>
+
+  <!-- resolve two ways -->
+  <g fill="none" stroke-width="2.4">
+    <path d="M420,482 C360,506 348,510 340,532" stroke="#9a3f12" marker-end="url(#adp-r)"/>
+    <path d="M540,482 C600,506 612,510 620,532" stroke="#57534e" marker-end="url(#adp-n)"/>
+  </g>
+
+  <!-- PROMOTE (rust) -->
+  <rect x="215" y="534" width="250" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="340" y="563" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">PROMOTE</text>
+  <text x="340" y="585" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">stronger authority</text>
+
+  <!-- RETAIN (gray) -->
+  <rect x="495" y="534" width="250" height="66" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2.2"/>
+  <text x="620" y="563" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">RETAIN</text>
+  <text x="620" y="585" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">audit signal</text>
+
+  <!-- footer: protect the point -->
+  <line x1="40" y1="624" x2="920" y2="624" stroke="#e7e2da" stroke-width="1.4"/>
+  <text x="480" y="651" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Sometimes you promote the obligation, not the instrument that discovered it.</text>
+  <text x="480" y="673" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">The drain may reveal a different obligation &#8212; and that obligation may deserve a different mechanism.</text>
+</svg>

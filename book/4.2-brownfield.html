@@ -952,15 +952,253 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
   <text x="852" y="300" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">the smell can never return</text>
 </svg><figcaption data-short="Audit, Drain, Promote"><span class="fig-label">Figure 4.2-3.</span> <em>Audit, Drain, Promote.</em> A new lint lands audit-only — every finding reported, no commit blocked, so it never breaks an in-flight agent. A fix wave drains it to zero, and only then is it promoted to blocking, so the class of smell can never return.</figcaption></figure>
-<h2><span class="sec-num">4.2.5</span> Measure what the map still cannot explain</h2>
+<h2><span class="sec-num">4.2.5</span> Finding the Model in the Code</h2>
+<p>Brownfield modeling has a bootstrapping problem. The system already embodies years of engineering decisions, but many of them exist only as repeated implementation shapes. Asking an engineer to "model the architecture" merely moves the reconstruction problem into a meeting.</p>
+<p>DocAble encountered this problem through type discipline. An audit-only lint measured primitive density: roughly, how much of a file's function interface was expressed through bare or untyped values rather than structured types. A high score was deliberately treated as a smell, not a defect. String-heavy protocol adapters can be perfectly sound; so can numerical helpers and one-off tooling. The lint's job was to direct attention, not pronounce judgment.</p>
+<p>The first large audit demonstrated why that distinction mattered. Hundreds of files triggered the detector. They did not share one remedy. Some needed ordinary annotations. Some were test fixtures or tooling whose primitive-heavy interfaces were appropriate. Some sat at IPC or external boundaries where wire formats naturally expose primitive values. Others required local engineering judgment. The backlog therefore had to be partitioned before it could be drained.</p>
+<p>A smaller subset was much more interesting. In the C# document mutators, the audit exposed recurring parameter shapes across files: language mutations repeatedly carried a language tag and pass name; alt-text mutations repeatedly carried description, attribution, and related state; title and contrast operations showed similar repetition. These were not duplicated bugs. They were domain concepts that existed in the implementation without names. The migration extracted them into explicit records that subsequent code could share.</p>
+<p>The lint alone could not reliably tell which primitive-heavy interfaces represented missing domain concepts. DocAble's component model supplied another piece of information: whether code lived at an internal, external, or IPC boundary. Internal application code and external protocol adapters warranted different expectations. Once the boundary kind was explicit, primitive density could be interpreted in architectural context rather than as a universal style rule.</p>
+<p>The two views composed. Primitive density asked, what shape may be hiding here? The component model asked, what kind of boundary is this? An agent could then inspect clusters rather than isolated findings and ask whether several sites were independently expressing the same concept. In one C# wave, this exposed six cross-file patterns across document mutators. Subsequent extraction and migration also exposed an attribution defect and an asymmetric API that neither lint alone was designed to detect.</p>
+<p><a class="xref" href="4.2-brownfield.html#fig-4-2-4">Figure&nbsp;4.2-4</a> draws the method. Weak signals identify places worth inspecting; a partition separates legitimate primitive-heavy code and mechanical debt from the repeated shapes that reveal missing concepts; and naming those concepts changes the substrate later migration runs on.</p>
+<figure id="fig-4-2-4" class="book-figure" data-label="discovering-models-migration"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 940"
+     role="img" aria-labelledby="dmTitle dmDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="dmTitle">Discovering models during a brownfield migration: weak signals locate work, partitioning separates it, and only repeated shape that earns a name becomes a model</title>
+  <desc id="dmDesc">A top-down flow. An existing codebase is surveyed by weak discovery signals — primitive density,
+    repeated shapes, and a component or boundary view. Partitioning the findings splits them three ways: legitimate
+    primitive-heavy shape is accepted or exempted; mechanical debt is fixed by codemod; and a latent concept, a
+    repeated semantic shape, earns a name. Naming the model produces a typed vocabulary and explicit relations, which
+    drive consumer migration and then a narrower enforcement of types, lints, and a drift guard. The result is a
+    stronger model substrate on which the next pass runs. Weak signals locate the work; they do not dictate the remedy.</desc>
+
+  <defs>
+    <marker id="dm-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="dm-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="dm-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- ===== EXISTING CODEBASE (territory) ===== -->
+  <rect x="360" y="32" width="240" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">EXISTING CODEBASE</text>
+  <text x="480" y="76" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the territory</text>
+  <line x1="480" y1="84" x2="480" y2="98" stroke="#57534e" stroke-width="2.4" marker-end="url(#dm-n)"/>
+
+  <!-- ===== WEAK DISCOVERY SIGNALS ===== -->
+  <rect x="325" y="100" width="310" height="106" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="128" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">weak discovery signals</text>
+  <text x="480" y="153" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">primitive density</text>
+  <text x="480" y="173" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">repeated shapes</text>
+  <text x="480" y="193" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">component / boundary view</text>
+  <line x1="480" y1="206" x2="480" y2="224" stroke="#57534e" stroke-width="2.4" marker-end="url(#dm-n)"/>
+
+  <!-- ===== PARTITION FINDINGS (pivot) ===== -->
+  <rect x="360" y="226" width="240" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <text x="480" y="256" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">PARTITION FINDINGS</text>
+
+  <!-- fan to three branches -->
+  <g fill="none" stroke="#57534e" stroke-width="2.4">
+    <path d="M408,274 C300,290 220,286 160,300" marker-end="url(#dm-n)"/>
+    <path d="M480,274 L480,300" marker-end="url(#dm-n)"/>
+    <path d="M552,274 C660,290 720,286 780,300" marker-end="url(#dm-n)"/>
+  </g>
+
+  <!-- branch heads -->
+  <rect x="52" y="302" width="216" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="160" y="332" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">LEGITIMATE SHAPE</text>
+  <text x="160" y="354" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">protocol &#183; tool &#183; boundary &#183; test</text>
+
+  <rect x="372" y="302" width="216" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="480" y="332" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">MECHANICAL DEBT</text>
+  <text x="480" y="354" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">annotation &#183; cleanup</text>
+
+  <rect x="672" y="302" width="216" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="780" y="332" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">LATENT CONCEPT</text>
+  <text x="780" y="354" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">repeated semantic shape</text>
+
+  <!-- heads to outcomes -->
+  <line x1="160" y1="368" x2="160" y2="388" stroke="#57534e" stroke-width="2.4" marker-end="url(#dm-n)"/>
+  <line x1="480" y1="368" x2="480" y2="388" stroke="#57534e" stroke-width="2.4" marker-end="url(#dm-n)"/>
+  <line x1="780" y1="368" x2="780" y2="385" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dm-b)"/>
+
+  <!-- terminal outcomes (gray dead-ends) -->
+  <rect x="60" y="390" width="200" height="52" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
+  <text x="160" y="415" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">accept / exempt</text>
+  <text x="160" y="433" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">leave as-is</text>
+
+  <rect x="380" y="390" width="200" height="52" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
+  <text x="480" y="415" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">codemod</text>
+  <text x="480" y="433" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">mechanical fix</text>
+
+  <!-- live branch: NAME THE MODEL (blue) -->
+  <rect x="668" y="385" width="224" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="780" y="411" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">NAME THE MODEL</text>
+  <text x="780" y="432" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the concept earns a name</text>
+
+  <!-- NAME THE MODEL fans to vocabulary + relations -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.4">
+    <path d="M760,445 C620,478 430,478 300,510" marker-end="url(#dm-b)"/>
+    <path d="M792,445 C740,476 690,480 640,510" marker-end="url(#dm-b)"/>
+  </g>
+
+  <rect x="160" y="512" width="280" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="300" y="540" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">typed vocabulary</text>
+  <text x="300" y="562" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">JobId &#183; ChunkId &#183; MutationSpec &#8230;</text>
+
+  <rect x="500" y="512" width="280" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="640" y="540" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">explicit relations</text>
+  <text x="640" y="562" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">ownership &#183; boundary &#183; behavior &#8230;</text>
+
+  <!-- merge into MIGRATE CONSUMERS -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.4">
+    <path d="M300,578 C300,602 380,606 428,622" marker-end="url(#dm-b)"/>
+    <path d="M640,578 C640,602 580,606 532,622" marker-end="url(#dm-b)"/>
+  </g>
+
+  <rect x="330" y="624" width="300" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="650" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">MIGRATE CONSUMERS</text>
+  <text x="480" y="671" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">codemods + agents</text>
+  <line x1="480" y1="682" x2="480" y2="706" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#dm-r)"/>
+
+  <!-- NARROWER ENFORCEMENT (rust) -->
+  <rect x="330" y="708" width="300" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="480" y="734" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">NARROWER ENFORCEMENT</text>
+  <text x="480" y="755" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">types &#183; lints &#183; drift guard</text>
+  <line x1="480" y1="766" x2="480" y2="790" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dm-b)"/>
+
+  <!-- STRONGER MODEL SUBSTRATE (blue) -->
+  <rect x="315" y="792" width="330" height="56" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="480" y="826" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">STRONGER MODEL SUBSTRATE</text>
+
+  <!-- next pass -->
+  <line x1="645" y1="820" x2="766" y2="820" stroke="#57534e" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#dm-n)"/>
+  <text x="774" y="825" font-size="14" font-style="italic" fill="#57534e">next pass</text>
+
+  <!-- footer: protect the point -->
+  <line x1="40" y1="866" x2="920" y2="866" stroke="#e7e2da" stroke-width="1.4"/>
+  <text x="480" y="894" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">Weak signals locate the work; they do not dictate the remedy.</text>
+  <text x="480" y="917" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Only repeated structure that earns a name becomes a model &#8212; the rest is accepted or mechanically cleaned.</text>
+</svg><figcaption data-short="Discovering models during migration — weak signals → partition {legitimate shape · mechanical debt · latent concept} → name the model → migrate consumers → narrower enforcement → stronger substrate"><span class="fig-label">Figure 4.2-4.</span> <em>Discovering models during a brownfield migration.</em> Weak signals — primitive density, repeated shapes, the component and boundary view — identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later migration and enforcement operate.</figcaption></figure>
+<blockquote class="concept-inset"><p class="inset-title" id="inset-primitive-density-field-record">Field record — Primitive-density migration</p>
+<p>The primitive-density backlog fell from 698 file-level findings on June 8 to 472 on June 9 and 299 on June 10. The declining count is not the important result. What matters is that the remaining population was repeatedly reclassified as it shrank:</p>
+<ul><li><strong>June 8 — 698 findings</strong>, partitioned into cluster-uniform, mechanical, per-site-judgment, boundary, and test-fixture-or-exempt buckets.</li><li><strong>June 9 — 472 findings.</strong></li><li><strong>June 10 — 299 findings</strong>, dispositioned as annotate, exempt, extract-a-model, redesign, retire, or defer-for-judgment.</li></ul>
+<p>Some findings disappeared through mechanical work, some exposed missing shared types, some warranted exemptions or lint changes, and some required design judgment. The chronology records those observations; it makes no claim that a single planned wave caused each step of the decline.</p></blockquote>
+<p>The same method could conclude that no new model was warranted. A later partition found experimental files that might simply be retired, HTTP handlers needing ordinary return annotations, lint implementations whose primitive-heavy signatures were canonical, and fuzzing code whose repeated operation shape did warrant a shared protocol. The detector was useful precisely because its findings were not treated as commands.</p>
+<p>This is a useful brownfield pattern: <strong>use weak signals to locate reconstruction work, partition before repairing, and extract a model only where repeated structure earns one.</strong></p>
+<p>The migration then compounds. Once a concept has a name, later work can refer to it directly. Mechanical codemods can migrate consumers. Type checking can enforce relationships that previously had to be reconstructed. Other lints can become simpler because they no longer need to infer the concept independently. And design practice can move upstream: if a new design depends on <code>JobId</code>, <code>ChunkId</code>, or a mutation specification, the design can name that vocabulary before implementation scatters anonymous copies of it.</p>
+<p>The final step is subtle. DocAble did not turn primitive density itself into a universal blocking rule. The smell remained audit-only. After the backlog had been understood and reduced, narrower mechanisms could prevent specific regressions; the design called for a drift guard rather than pretending that every future high-density file was wrong.</p>
+<p><strong>Sometimes you promote the obligation, not the instrument that discovered it.</strong> That is the mature form of Audit → Drain → Promote: an audit mechanism may reveal the property that deserves authority without itself becoming the final authority mechanism.</p>
+<p><a class="xref" href="4.2-brownfield.html#fig-4-2-5">Figure&nbsp;4.2-5</a> generalizes the three beats. The audit produces findings; a partition sorts them into drain, redesign, and accept; draining and redesign identify the real obligation; and only then does the work choose the final mechanism — promoting the detector to blocking authority in the common case, or retaining it as an audit signal while a narrower control carries the authority.</p>
+<figure id="fig-4-2-5" class="book-figure" data-label="audit-drain-promote-generalized"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 690"
+     role="img" aria-labelledby="adpTitle adpDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="adpTitle">The generalized form of Audit, Drain, Promote: an audit's findings are partitioned, the drain may reveal an obligation, and that obligation may be promoted or the audit retained</title>
+  <desc id="adpDesc">A top-down flow. An audit produces findings, which are partitioned before repair. The partition
+    splits three ways: drain does mechanical work, redesign produces new structure, and accept or exempt is a dead-end.
+    Drain and redesign feed the identification of an obligation — the property that deserves authority — and then the
+    choice of a final mechanism. That choice resolves two ways: promote to a stronger authority, or retain the audit as
+    a signal. Audit, drain, promote is the common case, not a requirement that the discovering mechanism itself become
+    blocking.</desc>
+
+  <defs>
+    <marker id="adp-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="adp-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="adp-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- ===== audit -> findings -> partition ===== -->
+  <rect x="390" y="30" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="58" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">audit</text>
+  <line x1="480" y1="74" x2="480" y2="90" stroke="#57534e" stroke-width="2.4" marker-end="url(#adp-n)"/>
+
+  <rect x="390" y="92" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="120" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">findings</text>
+  <line x1="480" y1="136" x2="480" y2="152" stroke="#57534e" stroke-width="2.4" marker-end="url(#adp-n)"/>
+
+  <rect x="378" y="154" width="204" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <text x="480" y="183" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">partition</text>
+
+  <!-- fan to three -->
+  <g fill="none" stroke-width="2.4">
+    <path d="M408,200 C300,214 220,216 160,230" stroke="#57534e" marker-end="url(#adp-n)"/>
+    <path d="M480,200 L480,230" stroke="#2f5169" marker-end="url(#adp-b)"/>
+    <path d="M552,200 C660,214 740,216 800,230" stroke="#57534e" marker-end="url(#adp-n)"/>
+  </g>
+
+  <!-- drain (gray) -->
+  <rect x="60" y="232" width="200" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="160" y="260" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">drain</text>
+  <text x="160" y="279" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">mechanical work</text>
+
+  <!-- redesign (blue - produces a model) -->
+  <rect x="380" y="232" width="200" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="480" y="260" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">redesign</text>
+  <text x="480" y="279" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">new structure</text>
+
+  <!-- accept / exempt (gray dead-end) -->
+  <rect x="700" y="232" width="200" height="58" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
+  <text x="800" y="260" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">accept / exempt</text>
+  <text x="800" y="279" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">leave as-is</text>
+
+  <!-- drain + redesign merge into identify obligation -->
+  <g fill="none" stroke-width="2.4">
+    <path d="M160,290 C160,320 330,320 438,344" stroke="#57534e" marker-end="url(#adp-n)"/>
+    <path d="M480,290 L480,344" stroke="#2f5169" marker-end="url(#adp-b)"/>
+  </g>
+
+  <!-- identify obligation (rust - the property) -->
+  <rect x="330" y="346" width="300" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="480" y="373" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">identify obligation</text>
+  <text x="480" y="393" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">the property that deserves authority</text>
+  <line x1="480" y1="404" x2="480" y2="426" stroke="#57534e" stroke-width="2.4" marker-end="url(#adp-n)"/>
+
+  <!-- choose final mechanism -->
+  <rect x="330" y="428" width="300" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="454" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">choose final mechanism</text>
+  <text x="480" y="473" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">which authority fits the property</text>
+
+  <!-- resolve two ways -->
+  <g fill="none" stroke-width="2.4">
+    <path d="M420,482 C360,506 348,510 340,532" stroke="#9a3f12" marker-end="url(#adp-r)"/>
+    <path d="M540,482 C600,506 612,510 620,532" stroke="#57534e" marker-end="url(#adp-n)"/>
+  </g>
+
+  <!-- PROMOTE (rust) -->
+  <rect x="215" y="534" width="250" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="340" y="563" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">PROMOTE</text>
+  <text x="340" y="585" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">stronger authority</text>
+
+  <!-- RETAIN (gray) -->
+  <rect x="495" y="534" width="250" height="66" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2.2"/>
+  <text x="620" y="563" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">RETAIN</text>
+  <text x="620" y="585" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">audit signal</text>
+
+  <!-- footer: protect the point -->
+  <line x1="40" y1="624" x2="920" y2="624" stroke="#e7e2da" stroke-width="1.4"/>
+  <text x="480" y="651" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Sometimes you promote the obligation, not the instrument that discovered it.</text>
+  <text x="480" y="673" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">The drain may reveal a different obligation &#8212; and that obligation may deserve a different mechanism.</text>
+</svg><figcaption data-short="Audit → Drain → Promote generalized — audit → findings → partition {drain · redesign · accept} → identify obligation → choose mechanism {promote · retain}"><span class="fig-label">Figure 4.2-5.</span> <em>Audit → Drain → Promote, generalized.</em> The simple three-beat move is the common case. In general the audit's findings are partitioned, draining and redesign identify the obligation that deserves authority, and the final mechanism may be the original detector promoted to blocking or a narrower constraint, validator, or drift guard — while the detector itself remains an audit signal.</figcaption></figure>
+<p>Audit → Drain → Promote is the common case, not a requirement that the discovering mechanism itself become blocking. The drain may reveal a different obligation, and that obligation may deserve a different mechanism.</p>
+<h2><span class="sec-num">4.2.6</span> Measure what the map still cannot explain</h2>
 <p>Models expose what they contain more readily than what they omit. Reverse traceability can surface candidate gaps: exercised implementation with no corresponding model claim, or modeled obligations with no evidence. Treat these as candidates for investigation — some reveal missing representation, others missing trace edges or deliberately unmodeled detail. A companion mechanism runs the join the other way, projecting test coverage onto the model's nodes so an untested invariant shows up as a visible gap rather than hiding inside a line-coverage percentage: <a href="../models-bridge/system-models/coverage-model-mapping.html">coverage-to-model mapping</a>.</p>
-<h2 id="derive-dont-copy"><span class="sec-num">4.2.6</span> Derive, don't copy</h2>
+<h2 id="derive-dont-copy"><span class="sec-num">4.2.7</span> Derive, don't copy</h2>
 <p>Recovering a model is only the first step. The next question is what happens to the facts it owns.</p>
 <p>A common failure is to make a representation authoritative in name while continuing to copy its contents elsewhere. A service belongs to one team in the model and to that team again in a config file. An architectural edge exists in the graph and again in a hand-maintained allowlist. A symbol-to-requirement relation exists in the model and again as a string in a test. Parallel copies turn agreement into maintenance work and drift independently.</p>
 <p><strong>If a fact already has a queryable authority, consume or derive it rather than copying it.</strong> This holds for relationships as much as for scalar facts. Prefer a join over two independently maintained lists. Prefer a stable symbol or identifier over a copied path or line number — a snapshotted cross-reference rots silently, while a derived one reddens the moment the code moves. Prefer generation over synchronized hand-editing when one representation can honestly own the result.</p>
 <p>Some facts have two legitimate homes that must both stay authoritative. There, make the correspondence observable rather than assumed. A parity check earns its keep precisely because neither side is silently trusted: the implementation can expose a stale model, and the model can expose an implementation that has escaped its declared intent. Check both directions. A one-way regenerate-from-code check quietly makes the code the truth and leaves the model free to lie; bidirectional parity is stricter on purpose, because a change must then update both sides in the same commit.</p>
-<p><a class="xref" href="4.2-brownfield.html#fig-4-2-4">Figure&nbsp;4.2-4</a> draws the shape: once a fact has an authority, downstream consumers query, join, derive, or generate from it, and where two authorities must remain, a correspondence check makes disagreement visible.</p>
-<figure id="fig-4-2-4" class="book-figure" data-label="derive-dont-copy"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
+<p><a class="xref" href="4.2-brownfield.html#fig-4-2-6">Figure&nbsp;4.2-6</a> draws the shape: once a fact has an authority, downstream consumers query, join, derive, or generate from it, and where two authorities must remain, a correspondence check makes disagreement visible.</p>
+<figure id="fig-4-2-6" class="book-figure" data-label="derive-dont-copy"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
      role="img" aria-labelledby="ddTitle ddDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
   <title id="ddTitle">Derive, don't copy — consume a fact from its authority instead of snapshotting it.</title>
@@ -1004,9 +1242,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- parity check: dashed rust, double-headed = governance correspondence -->
   <line x1="463" y1="409" x2="537" y2="409" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#dd-ah-rust)" marker-end="url(#dd-ah-rust)"/>
   <text x="500" y="456" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3f12">parity</text>
-</svg><figcaption data-short="Derive, don&#x27;t copy — one authority, consumers query/join/generate; two authorities, parity check"><span class="fig-label">Figure 4.2-4.</span> <em>Derive, don't copy.</em> Once a fact has an authority, downstream consumers should query, derive, join, or generate from it rather than maintain parallel snapshots. Where two representations must remain independently authoritative, correspondence checks make disagreement visible.</figcaption></figure>
+</svg><figcaption data-short="Derive, don&#x27;t copy — one authority, consumers query/join/generate; two authorities, parity check"><span class="fig-label">Figure 4.2-6.</span> <em>Derive, don't copy.</em> Once a fact has an authority, downstream consumers should query, derive, join, or generate from it rather than maintain parallel snapshots. Where two representations must remain independently authoritative, correspondence checks make disagreement visible.</figcaption></figure>
 <p>Hidden assumptions deserve the same treatment as copied facts. A control that depends on a particular runtime, directory layout, deployment topology, tool version, or model capability carries that dependency whether or not anyone wrote it down. When changing the substrate could invalidate the control, represent the dependency strongly enough that its blast radius can be <em>queried</em> before the change — the blast-radius move above is exactly this, worked through on a real re-platforming. Do not model every dependency. Model the ones whose rediscovery by breakage is expensive. <strong>Make consequential assumptions queryable before they become surprises.</strong></p>
-<h2><span class="sec-num">4.2.7</span> Price the investment</h2>
+<h2><span class="sec-num">4.2.8</span> Price the investment</h2>
 <p>A recurring gap does not automatically deserve machinery. Price the expected future loss against the cost of building <em>and carrying</em> the response. Frequency and consequence are useful first approximations; detectability, reversibility, legal exposure, and the stability of the obligation can move the decision substantially. Cheap, rare failures often remain judgment. Cheap, frequent failures may justify a lint, script, or reusable procedure, because repeated agent and human attention is itself cost. Consequential failures justify a <strong>larger investment and a stronger assurance response</strong>: better representation, prevention by construction where possible, stronger sensing and validation, and authority at an appropriate boundary. Catastrophic or legally intolerable failures need not recur even once to earn that investment.</p>
 <p><a class="xref" href="4.2-brownfield.html#tbl-4-2-1">Table&nbsp;4.2-1</a> crosses how much a failure costs against how often it happens, and each cell names the proportionate move — the smallest change that still closes the class. Do not build the larger mechanism until the expected cost of the failure justifies it.</p>
 <table id="tbl-4-2-1" class="book-table" data-label="governance-sizing-matrix"><caption data-short="Sizing the mechanism"><span class="tbl-label">Table 4.2-1.</span> <em>The Sizing Matrix.</em> Failure cost runs against failure frequency, and each cell names the proportionate move — the smallest change that still closes the class. Cheap, rare failures stay with judgment, while cheap, frequent ones earn a lint, script, or reusable procedure. Costly failures earn a recovery path with admission control, and prefer structural prevention once the failure's shape is decidable. The costly, frequent corner earns both prevention and a gate.<sup class="note-ref"><a href="#note-4-2-brownfield-3" role="doc-noteref" aria-label="note 3">‡</a></sup><span class="editorial-note" id="note-4-2-brownfield-3"><span class="cn-mark">‡</span> Escalate one tier when the failure is hard to detect, hard to reverse, or legally or safety intolerable.</span></caption><thead><tr><th>Cost × frequency</th><th>Rare failure</th><th>Frequent failure</th></tr></thead><tbody><tr><td><strong>Cheap</strong></td><td>Judgment.</td><td>A lint, script, or reusable procedure.</td></tr><tr><td><strong>Costly</strong></td><td>Recovery with admission control.</td><td>Structural prevention with admission control.</td></tr></tbody></table>

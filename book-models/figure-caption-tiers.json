@@ -906,6 +906,18 @@
       "kind": "conceptual-two-track",
       "location": "part4",
       "rationale": "the 'two tracks, not one ladder' slogan now lives inside the figure; the caption is demoted to a plain supporting gloss on how representation and authority strengthen independently"
+    },
+    "assets/discovering-models-migration.svg": {
+      "tier": "A",
+      "kind": "process-flow",
+      "location": "part4",
+      "rationale": "discovering models during a brownfield migration — weak signals partition into legitimate shape, mechanical debt, and latent concept, then naming the earned concepts changes the substrate later migration and enforcement run on; anchor for §4.2 Finding the Model in the Code"
+    },
+    "assets/audit-drain-promote-generalized.svg": {
+      "tier": "A",
+      "kind": "process-flow",
+      "location": "part4",
+      "rationale": "the generalized three-beat move — the audit's findings partition into drain, redesign, and accept; draining and redesign identify the obligation that deserves authority; the final mechanism may promote the detector to blocking or retain it as a signal while a narrower control carries authority; anchor generalizing Audit → Drain → Promote"
     }
   }
 }
