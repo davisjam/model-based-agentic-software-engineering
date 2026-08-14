@@ -493,6 +493,10 @@ clear win, leave the prose alone. The goal is the author's voice, not a uniform 
 3. **Literal, descriptive section titles over cute ones.** The heading should say what the section does.
    - *Before:* "## This book showed how"   *After:* "## Fitting this book into the software engineering literature"
    - *Before:* "### Why the title gets to climb"   *After:* "### Why the job title climbs"
+   - **Subsection titles name the content, not the exposition.** If a subsection teaches a model, name the
+     engineering question it answers or the model; if it teaches a general modeling principle, name the
+     principle. Never title a subsection by telling the reader the next idea is the payoff, the handoff, the
+     trunk, the thing beneath something, or what another Part will add.
 
 4. **Name a work or a person formally on reference.** Cite the book; use the honorific on second mention.
    - *Before:* "The Gang of Four argued…"   *After:* "In *Design Patterns*, the Gang of Four argued…"
