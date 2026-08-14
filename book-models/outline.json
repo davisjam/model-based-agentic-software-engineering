@@ -958,9 +958,9 @@
       "part": 3,
       "sections": [
         {
-          "section_id": "reasoning-action-work-and-runtime",
+          "section_id": "reasoning-input-action-work-unit-and-artifact-runtime",
           "level": 2,
-          "heading_text": "Reasoning, Action, Work, and Runtime",
+          "heading_text": "Reasoning Input, Action, Work Unit, and Artifact/Runtime",
           "topic_sentence": "The first boundary is **reasoning input** — the context, representations, examples, and instructions put in front of the reasoner.",
           "id_source": "derived",
           "block_index": 15,
@@ -1008,9 +1008,9 @@
           ]
         },
         {
-          "section_id": "every-boundary-is-a-place-to-close-the-loop",
+          "section_id": "return-evidence-at-the-earliest-useful-boundary",
           "level": 2,
-          "heading_text": "Every boundary is a place to close the loop",
+          "heading_text": "Return evidence at the earliest useful boundary",
           "topic_sentence": "The boundaries also decide where feedback can return.",
           "id_source": "derived",
           "block_index": 35,

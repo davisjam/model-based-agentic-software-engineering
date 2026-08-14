@@ -5349,16 +5349,6 @@
         }
       ]
     },
-    "section-id:every-boundary-is-a-place-to-close-the-loop": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "3.1-where-authority-can-act::every-boundary-is-a-place-to-close-the-loop",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:everything-is-a-loop": {
       "kind": "section-id",
       "dependents": [
@@ -5949,22 +5939,22 @@
         }
       ]
     },
-    "section-id:reasoning-action-work-and-runtime": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "3.1-where-authority-can-act::reasoning-action-work-and-runtime",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:reasoning-compiled-into-the-environment": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
           "element": "6.4-reorganization-of-se::reasoning-compiled-into-the-environment",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:reasoning-input-action-work-unit-and-artifact-runtime": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "3.1-where-authority-can-act::reasoning-input-action-work-unit-and-artifact-runtime",
           "role": "section-anchor"
         }
       ]
@@ -5995,6 +5985,16 @@
         {
           "view": "outline",
           "element": "2.1-context-is-the-first-modeling-problem::representations-gain-capability-by-degrees",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:return-evidence-at-the-earliest-useful-boundary": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "3.1-where-authority-can-act::return-evidence-at-the-earliest-useful-boundary",
           "role": "section-anchor"
         }
       ]
