@@ -1,17 +1,18 @@
 <!-- part-foreshadows: seat-moves, govern-the-environment, mage-becomes-practical -->
-Coding agents do not eliminate engineering. They change where engineering effort pays. Parts I–V moved
-from the changed economics of implementation through Modeling, Alignment, the working method, and the
-originating case. This final Part turns outward. It states the theory that those pieces imply, names the
-conditions under which it should and should not hold, and asks whether independent engineering practice
-exhibits the same structure.
+Part V supplied two views of the evidence. The originating case showed how MAGE's structures emerged
+under sustained engineering pressure; the industrial reconstructions showed related structures
+appearing independently, under different constraints. Neither establishes a universal law. Together they
+give us something worth explaining.
 
-From there the argument becomes professional. If implementation is no longer the dominant cost, what
-happens to software engineering itself? The answer is both newer and older than the agent story suggests.
-The practice reorganizes around representation, evidence, authority, and judgment, while the discipline
-moves toward an arrangement familiar from older engineering fields: engineers reason through models and
-analyses, delegate realization, and remain answerable for the result. The final chapters ask what that
-change means for professional competence, education, and research—and what still belongs to the engineer
-when implementation no longer does.
+This Part attempts that explanation. It begins with a theory of how agentic capacity interacts with the
+engineering environment, states where that theory should hold, and derives predictions that can be
+tested. The argument then widens: if the account is substantially right, what changes in software
+engineering, how that change relates to older engineering practice, and what remains the engineer's
+responsibility.
+
+The answer is both new and familiar. As implementation becomes cheaper, engineering effort moves toward
+representation, evidence, authority, and judgment. Engineers increasingly reason through models and
+analyses, delegate realization, and remain answerable for the result.
 
 <!-- thesisbox -->
 > ### PROFESSIONAL THESIS
@@ -21,4 +22,5 @@ when implementation no longer does.
 > Engineering effort shifts toward representation, evidence, authority, and judgment: the work of
 > designing and maintaining the environment through which autonomous realization proceeds.
 
-**New here:** Professional Thesis · Determinization frontier · Representation engineering · Software rejoins engineering
+**New here:** Theory of MAGE · Scope conditions · Testable predictions · Representation engineering ·
+Software rejoins engineering · Professional Thesis

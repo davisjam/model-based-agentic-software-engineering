@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1163,
+    "total_sites": 1162,
     "by_projection": {
       "book-pdf": 18,
-      "book-web": 754,
+      "book-web": 753,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -230,16 +230,12 @@
           {
             "file": "book/part-3-intro.html",
             "occ": 1
-          },
-          {
-            "file": "book/part-6-intro.html",
-            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 54
+            "occ": 53
           }
         ]
       },
@@ -1137,7 +1133,7 @@
           },
           {
             "file": "book/6.2-scope-conditions.html",
-            "occ": 16
+            "occ": 15
           },
           {
             "file": "book/6.3-what-the-theory-predicts.html",
