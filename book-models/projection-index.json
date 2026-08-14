@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1161,
+    "total_sites": 1160,
     "by_projection": {
       "book-pdf": 18,
-      "book-web": 752,
+      "book-web": 751,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -1481,7 +1481,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 41
+            "occ": 43
           },
           {
             "file": "catalogue-figure.html",
@@ -2163,7 +2163,7 @@
           },
           {
             "file": "book/1.3-the-agentic-substrate.html",
-            "occ": 15
+            "occ": 16
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
@@ -4894,10 +4894,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/1.3-the-agentic-substrate.html",
-            "occ": 1
-          },
-          {
             "file": "book/3.1-where-authority-can-act.html",
             "occ": 1
           },
@@ -4941,7 +4937,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 11
+            "occ": 10
           }
         ]
       },

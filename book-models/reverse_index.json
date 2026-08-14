@@ -5454,6 +5454,16 @@
         }
       ]
     },
+    "section-id:agentic-work-has-observable-seams": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.3-the-agentic-substrate::agentic-work-has-observable-seams",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:agreement-is-not-correctness": {
       "kind": "section-id",
       "dependents": [
@@ -5760,6 +5770,16 @@
         {
           "view": "outline",
           "element": "5.4-failures-that-became-infrastructure::fieldnote-content-free-detector",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:foundation-model-and-agentic-harness": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.3-the-agentic-substrate::foundation-model-and-agentic-harness",
           "role": "section-anchor"
         }
       ]
@@ -6849,16 +6869,6 @@
         }
       ]
     },
-    "section-id:the-loop-is-observable": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.3-the-agentic-substrate::the-loop-is-observable",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:the-mature-end": {
       "kind": "section-id",
       "dependents": [
@@ -7091,16 +7101,6 @@
           "view": "outcomes",
           "element": "the-soft-end-doc-derived-tests::classify-a-soft-judgment-laden-metric-that-aims-a",
           "role": "primary-unit"
-        }
-      ]
-    },
-    "section-id:the-substrate-is-a-pairing": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.3-the-agentic-substrate::the-substrate-is-a-pairing",
-          "role": "section-anchor"
         }
       ]
     },
