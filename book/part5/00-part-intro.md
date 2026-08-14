@@ -1,11 +1,10 @@
 <!-- part-foreshadows: modeling-thesis, alignment-thesis, seat-moves -->
 
-A method earns credibility when it can explain the engineering history from which it was induced.
-This Part follows DocAble — a production document-accessibility system built largely by directing
-coding agents — from a five-minute feasibility experiment to a deployed service. The point is not
-that document accessibility is uniquely revealing. It is that one system observed from the inside
-and from the beginning lets us reconstruct something a finished architecture cannot: what pressures
-appeared, what engineering response followed, what survived, and what had to be revised again.
+A method induced from practice should explain the engineering history that produced it. This Part
+follows DocAble — a production document-accessibility system built largely by directing coding
+agents — from a five-minute feasibility experiment to a deployed service. Observing one system from
+the inside and from the beginning lets us reconstruct what a finished architecture cannot: which
+pressures appeared, what response followed, what survived, and what had to be revised again.
 
 The clean method arrived last. As the system grew, missing representation became expensive in some
 places; missing authority became dangerous in others; repeated operational surprises exposed
@@ -27,13 +26,11 @@ finished theory.
 Read the chapters that follow as **process evidence, not a controlled comparison**. The case can
 establish sequence: this failure occurred, this response followed, and this later evidence showed
 whether the response held over the surface it claimed to govern. It can show recurrence within one
-system and let us reconstruct how particular engineering structures emerged. It cannot establish
+system and reconstruct how particular engineering structures emerged. It cannot establish
 that MAGE caused every improvement, that another organization would encounter the same failures, or
 that the resulting quantities are universal targets.
 
-Parts II–IV presented the compressed method. Here the direction reverses. DocAble is not merely an
-example decorated with MAGE terminology; it is the originating case from which much of that
-terminology was induced. That is why the wrong turns matter. A finished architecture can show what
-exists. A longitudinal case can show **why it exists and what it replaced**. Part VI will ask a
-different question: which parts of the induced theory recur when other organizations solve related
-problems independently?
+Parts II–IV presented the compressed method. Here the direction reverses. DocAble is the originating
+case from which much of that terminology was induced, so the wrong turns matter. A finished
+architecture shows what exists; a longitudinal case can show **why it exists and what it replaced**.
+Part VI asks which parts recur when other organizations solve related problems independently.
