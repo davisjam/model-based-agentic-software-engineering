@@ -198,6 +198,10 @@ of engineering capital."
 removing it merely makes the prose less dramatic, cut it. The real failure is self-congratulation or redundant
 emphasis, not ornament itself.
 
+An intentional echo is not recap. Repetition that provides structure, rhythm, or closure — a heading that names
+an object and a later sentence that closes the walkthrough on it — is legitimate. Kill only *explanatory*
+repetition that re-argues a point already made.
+
 ## Section rhythm — the default template for Parts 2–4
 
 Sections in the argument Parts follow one rhythm: **Theory → Design space → Tradeoffs → Worked Examples →
@@ -516,6 +520,10 @@ clear win, leave the prose alone. The goal is the author's voice, not a uniform 
      engineering question it answers or the model; if it teaches a general modeling principle, name the
      principle. Never title a subsection by telling the reader the next idea is the payoff, the handoff, the
      trunk, the thing beneath something, or what another Part will add.
+   - **Idiomatic titles are allowed when they carry content.** Name the concept or question clearly, but allow
+     idiomatic, memorable phrasing when it carries content and helps the reader retain the structure ("Seven
+     Stages, Retrospectively"). Avoid only phrasing that is vague, manuscript-self-conscious, or semantically
+     cute without carrying content.
 
 4. **Name a work or a person formally on reference.** Cite the book; use the honorific on second mention.
    - *Before:* "The Gang of Four argued…"   *After:* "In *Design Patterns*, the Gang of Four argued…"
