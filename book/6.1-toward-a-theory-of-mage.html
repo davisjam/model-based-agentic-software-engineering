@@ -952,6 +952,96 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Modeling matters because it changes the scale and kind of properties that can become tractable. Suppose the architecture requires every permitted route to a remediation service to cross quota authorization. Reasoning from implementation requires reconstructing routes from handlers, middleware, configuration, and dependency injection. Represent the permitted routes explicitly and the same architectural obligation becomes a graph question: does every allowed path cross the quota boundary? The property did not become less semantic. <strong>The representation changed the object over which the question is decided.</strong></p>
 <p>This gives the two theses their mature relationship. Alignment can operate directly over actions and artifacts. Modeling exposes additional system-level properties over which Alignment can operate. A model can also earn value without binding anything: if it saves later engineers and agents from repeatedly reconstructing the same system knowledge, it is already producing engineering capital. Authority adds another return when a stable obligation over that representation becomes suitable for environmental enforcement.</p>
 <p><strong>Alignment does not require Modeling. Modeling enlarges and strengthens the surface over which Alignment can operate.</strong></p>
+<p>The relationship also exposes two routes by which repeated judgment can become machinery. If an obligation is already decidable over the current artifact, Alignment can encode it directly in a test, validator, constraint, permission, or gate. If the obligation requires repeated semantic reconstruction from implementation, Modeling may first change the object of reasoning by externalizing the relevant state or relation.</p>
+<p>Call the boundary the <strong>determinization frontier</strong>: judgment on one side still has to be purchased per instance; judgment on the other can be carried repeatably by the environment. Alignment moves the frontier when a property is already decidable. Modeling moves it when a better representation makes the property decidable. <a class="xref" href="6.1-toward-a-theory-of-mage.html#fig-6-1-2">Figure&nbsp;6.1-2</a> draws the two routes.</p>
+<figure id="fig-6-1-2" class="book-figure" data-label="determinization-frontier"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640"
+     role="group" aria-labelledby="dfTitle dfDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="dfTitle">The determinization frontier: two routes by which repeated judgment becomes machinery</title>
+  <desc id="dfDesc">A tree diagram. Repeated judgment, at the top, splits into two routes. The left route:
+    when a property is already decidable over the current artifact, Alignment encodes the predicate directly
+    into a test, validator, constraint, or gate. The right route: when the property requires reconstruction,
+    Modeling changes the representation first, producing a structured relation. Both routes converge on a
+    shared step, a predicate evaluated over a model — Alignment's test is a predicate over the artifact taken
+    as its own trivial model, Modeling's check is a predicate over the externalized structured relation — and
+    both land on the same outcome, a repeatable decision. A caption beneath names the boundary between the
+    two sides the determinization frontier.</desc>
+
+  <defs>
+    <marker id="df-mut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    </marker>
+    <marker id="df-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="df-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
+  <text x="500" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The determinization frontier</text>
+  <text x="500" y="62" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">Two routes by which repeated judgment becomes machinery</text>
+
+  <!-- root: REPEATED JUDGMENT -->
+  <rect x="360" y="84" width="280" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
+  <text x="500" y="117" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">REPEATED JUDGMENT</text>
+
+  <!-- T-split: neutral, still undecided -->
+  <g fill="none" stroke="#57534e" stroke-width="1.8">
+    <path d="M500,138 L500,162"/>
+    <path d="M250,162 L750,162"/>
+  </g>
+
+  <!-- left branch: rust (Alignment) from the split onward -->
+  <path d="M250,162 L250,190" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#df-rust)"/>
+  <!-- right branch: green (Modeling) from the split onward -->
+  <path d="M750,162 L750,190" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#df-green)"/>
+
+  <!-- decidability judgment labels -->
+  <text x="250" y="207" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">property already</text>
+  <text x="250" y="223" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">decidable</text>
+  <text x="750" y="207" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">property requires</text>
+  <text x="750" y="223" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">reconstruction</text>
+
+  <path d="M250,230 L250,254" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#df-rust)"/>
+  <path d="M750,230 L750,254" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#df-green)"/>
+
+  <!-- ALIGNMENT / MODELING -->
+  <rect x="145" y="254" width="210" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="250" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ALIGNMENT</text>
+  <text x="250" y="302" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">encode predicate</text>
+
+  <rect x="645" y="254" width="210" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="750" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">MODELING</text>
+  <text x="750" y="302" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">change representation</text>
+
+  <path d="M250,318 L250,342" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#df-rust)"/>
+  <path d="M750,318 L750,342" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#df-green)"/>
+
+  <!-- terminal boxes: encoded outcome / structured relation -->
+  <rect x="135" y="342" width="230" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="250" y="370" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">test / validator</text>
+  <text x="250" y="390" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">constraint / gate</text>
+
+  <rect x="635" y="342" width="230" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="750" y="380" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">structured relation</text>
+
+  <!-- convergence: symmetric elbows into the shared merge point -->
+  <path d="M250,406 L250,434 L470,434" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#df-rust)"/>
+  <path d="M750,406 L750,434 L530,434" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#df-green)"/>
+
+  <text x="500" y="454" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">predicate</text>
+  <text x="500" y="470" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">over model</text>
+
+  <path d="M500,478 L500,502" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#df-rust)"/>
+
+  <!-- outcome: REPEATABLE DECISION -->
+  <rect x="340" y="502" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
+  <text x="500" y="542" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">REPEATABLE DECISION</text>
+
+  <text x="500" y="606" text-anchor="middle" font-size="15.5" font-weight="700" font-style="italic" fill="#9a3f12">←— determinization frontier —→</text>
+</svg><figcaption data-short="The Determinization Frontier"><span class="fig-label">Figure 6.1-2.</span> <em>The Determinization Frontier.</em> The frontier separates judgment that must be paid per instance from judgment the environment can carry repeatably. The diagram traces the two routes across it. On the direct route, Alignment encodes a property already decidable over the current artifact as a test, validator, constraint, permission, or gate. On the representation route, Modeling first changes the object of reasoning so that a property once requiring semantic reconstruction from implementation becomes decidable, and Alignment can then bind it. Both routes convert recurring judgment into machinery; they differ only in whether the representation has to change before the property can be mechanized.</figcaption></figure>
 <h2><span class="sec-num">6.1.6</span> What the evidence supports</h2>
 <p>MAGE currently rests on <strong>two kinds of evidence with complementary strengths</strong>.</p>
 <p>The originating case supplies <strong>mechanism depth</strong>. DocAble was observed longitudinally from inside the engineering process, with repository history, field notes, incidents, models, controls, and operational evidence available to reconstruct sequence. That evidence can support claims such as: this problem occurred; this engineering response followed; the response altered the environment in this way; and later work did or did not expose the same class again. It is strongest for explaining <strong>how particular structures emerged inside one system</strong>. It cannot establish how common those mechanisms are, how large their effects would be elsewhere, or how DocAble would have performed under a matched alternative process.</p>
