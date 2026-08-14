@@ -4480,9 +4480,9 @@
           "section_id": "authority-follows-competence",
           "level": 2,
           "heading_text": "Authority follows competence",
-          "topic_sentence": "MAGE is not a shortcut around engineering knowledge.",
+          "topic_sentence": "MAGE increases the leverage of engineering knowledge and the consequence of getting it wrong.",
           "id_source": "derived",
-          "block_index": 3,
+          "block_index": 2,
           "points": []
         },
         {
@@ -4491,7 +4491,7 @@
           "heading_text": "Sign-off moves toward models and evidence",
           "topic_sentence": "Imagine an agentic system in which the fleet constructs most of the implementation, maintains selected engineering representations, runs validators, and assembles evidence for the claims the design is supposed to satisfy.",
           "id_source": "derived",
-          "block_index": 10,
+          "block_index": 12,
           "points": []
         },
         {
@@ -4500,7 +4500,7 @@
           "heading_text": "What should we teach?",
           "topic_sentence": "If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly.",
           "id_source": "derived",
-          "block_index": 20,
+          "block_index": 22,
           "points": []
         },
         {
@@ -4509,7 +4509,7 @@
           "heading_text": "No course called Agent Tooling",
           "topic_sentence": "One omission should be deliberate.",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 28,
           "points": []
         },
         {
@@ -4518,7 +4518,7 @@
           "heading_text": "What the shift asks of an education",
           "topic_sentence": "There is a harder workforce implication, best stated as a risk rather than a forecast.",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 31,
           "points": []
         }
       ],
