@@ -1,72 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: coherence-triangle). RATIFIED both-and (Part-3 §XII / FIG-3.1-3,
-     ratification-judge item 5a): KEEP the triangle metaphor (do NOT demote to an equation),
-     then follow it with the operational precision "an executable model = schema + checked
-     predicates" as a boundary caption in the interior. Two lexical fixes: the enforcing node is
-     "Invariant checker" (the "coherence-gate" coinage is DROPPED — "drift gate / invariant
-     checker" already name it); the closing edge is relabelled as a PROVENANCE annotation (dashed)
-     — it carries the empirical origin of the invariants, not a structural edge of the geometry.
-     Node labels are domain-neutral (the book's free/leased/done job example). Palette: Umber
-     Monograph tokens — fleet #2f5169 structured model, accent #9a3f12 invariants apex,
-     governed #1f7a4d the checker. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" width="1000" height="660"
-     role="group" aria-labelledby="ctTitle ctDesc"
+<!-- 2.8 checked-predicates figure (part2-v8-260814 re-author; folds to book/assets/coherence-triangle.svg).
+     REVISION per v8 editor guidance (2.8-6): DELETE the triangle. Draw a linear pipeline instead:
+     STRUCTURED MODEL supports predicates over INVARIANTS, evaluated by a CHECKER, with a side arrow
+     "recurring failure to a new / refined invariant". The example invariant is the stronger lease predicate
+     (status == "leased") == (lease_owner is not None), i.e. leased iff owner exists. Scoped as ONE
+     executable-model pattern, not the definition of executability. Grammar: blue #2f5169/#e7edf3 = the
+     structured model; rust #9a3f12/#faf1e6 = the invariants; green #155c38/#e3f0e7 = the checker.
+     Hand-authored (a linear model -> predicates -> checker pipeline). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380" width="1000" height="380"
+     role="img" aria-labelledby="ctTitle ctDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ctTitle">The coherence triangle — model, invariants, invariant checker</title>
-  <desc id="ctDesc">Three nodes in a triangle. At the apex sit the invariants: predicates that
-    must hold, each named by a stable id, with the sample predicate “not(leased and free)”. At the
-    bottom left sits the structured model — records, edges, state machines, with the neutral example of a
-    job that is free, leased, or done. At the bottom right sits the invariant checker — a drift lint or
-    model check that checks the predicates at build time. An arrow from the model to the invariants is
-    labelled “declares”; an arrow from the invariants to the checker is labelled “checked by”. Inside the
-    triangle, a boundary caption states the operational meaning the metaphor names: an executable model
-    equals its schema plus its checked predicates. A third, dashed accent-coloured arc closes the figure
-    from the checker back to the model as a provenance annotation, not a structural edge: each gap the
-    fleet found was a violated-but-unstated invariant — where the invariants came from, empirically.</desc>
+  <title id="ctTitle">Checked predicates over a structured model: model, invariants, checker</title>
+  <desc id="ctDesc">A linear pipeline. A structured model of records, edges, and states supports predicates
+    over its domain. Those predicates are invariants, each with a stable id and a declared domain, for
+    example the lease invariant leased if and only if an owner exists. A checker — a model check, a drift
+    lint, or a validator — evaluates them. A side arrow shows that a recurring failure yields a new or
+    refined invariant. This is one executable-model pattern, not the definition of executability.</desc>
 
   <defs>
-    <marker id="tri-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
+    <marker id="ct-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="tri-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    <marker id="ct-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
 
-  <!-- ===== apex: the invariants ===== -->
-  <rect x="340" y="40" width="320" height="160" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="500" y="86" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Invariants</text>
-  <text x="500" y="116" text-anchor="middle" font-size="18" fill="#57534e">predicates with stable ids</text>
-  <rect x="380" y="134" width="240" height="40" rx="6" fill="#f3efe7" stroke="#9a3f12" stroke-width="1"/>
-  <text x="500" y="160" text-anchor="middle" font-size="16" fill="#9a3f12">not(leased and free)</text>
+  <!-- STRUCTURED MODEL (blue) -->
+  <rect x="30" y="96" width="270" height="130" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="165" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">STRUCTURED MODEL</text>
+  <text x="165" y="167" text-anchor="middle" font-size="16" fill="#57534e">records &#183; edges &#183; states</text>
+  <text x="165" y="196" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">a job: free / leased / done</text>
 
-  <!-- ===== bottom-left: the structured model ===== -->
-  <rect x="60" y="450" width="320" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="220" y="498" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Structured model</text>
-  <text x="220" y="528" text-anchor="middle" font-size="18" fill="#57534e">records, edges, states</text>
-  <text x="220" y="556" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a job: free / leased / done</text>
+  <!-- INVARIANTS (rust) -->
+  <rect x="365" y="96" width="270" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="500" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INVARIANTS</text>
+  <text x="500" y="165" text-anchor="middle" font-size="15" fill="#57534e">stable ids + declared domains</text>
+  <rect x="388" y="180" width="224" height="34" rx="6" fill="#fbfdff" stroke="#9a3f12" stroke-width="1.2"/>
+  <text x="500" y="203" text-anchor="middle" font-size="13.5" fill="#9a3f12">leased &#8660; owner exists</text>
 
-  <!-- ===== bottom-right: the invariant checker ===== -->
-  <rect x="620" y="450" width="320" height="150" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="780" y="498" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Invariant checker</text>
-  <text x="780" y="528" text-anchor="middle" font-size="18" fill="#57534e">checks them at build time</text>
-  <text x="780" y="556" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a drift lint or model check</text>
+  <!-- CHECKER (green) -->
+  <rect x="700" y="96" width="270" height="130" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
+  <text x="835" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">CHECKER</text>
+  <text x="835" y="167" text-anchor="middle" font-size="15" fill="#57534e">model check &#183; drift lint</text>
+  <text x="835" y="190" text-anchor="middle" font-size="15" fill="#57534e">&#183; validator</text>
 
-  <!-- ===== edge: model -> invariants ===== -->
-  <path d="M228,450 C300,370 360,285 452,202" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#tri-muted)"/>
-  <text x="296" y="332" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">declares</text>
+  <!-- edges -->
+  <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
+  <text x="332" y="130" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">supports</text>
+  <text x="332" y="146" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">predicates over</text>
+  <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
+  <text x="667" y="138" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">evaluated by</text>
 
-  <!-- ===== edge: invariants -> checker ===== -->
-  <path d="M548,202 C640,285 700,370 772,450" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#tri-muted)"/>
-  <text x="714" y="332" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">checked by</text>
+  <!-- side arrow: recurring failure -> new/refined invariant -->
+  <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ct-r)"/>
+  <text x="668" y="320" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
 
-  <!-- ===== interior boundary caption: the operational precision the metaphor names ===== -->
-  <text x="500" y="322" text-anchor="middle" font-size="19" font-style="italic" font-weight="700" fill="#1c1917">an executable model =</text>
-  <text x="500" y="348" text-anchor="middle" font-size="19" font-style="italic" fill="#1c1917">its schema + its checked predicates</text>
-
-  <!-- ===== closing arc: checker -> model, PROVENANCE annotation (dashed, not a structural edge) ===== -->
-  <path d="M616,536 C540,584 460,584 384,536" fill="none" stroke="#9a3f12" stroke-width="2.5"
-        stroke-dasharray="9 6" marker-end="url(#tri-accent)"/>
-  <text x="500" y="616" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">provenance — each gap the fleet found was</text>
-  <text x="500" y="640" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">a violated-but-unstated invariant</text>
+  <!-- footer: protect the point -->
+  <text x="500" y="358" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">One executable-model pattern &#8212; the model supplies the domain, invariants state properties, a checker evaluates them; not the definition of executability.</text>
 </svg>

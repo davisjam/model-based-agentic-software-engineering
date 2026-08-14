@@ -13,7 +13,7 @@ software engineering's reasoning problem. Scale did. The change is that
 implementation can now move much faster than the knowledge required to direct it. A human team can spend
 substantial effort reconstructing architecture, ownership, policy, and lifecycle from code and
 institutional memory; an agent fleet can spend that same effort over and over, once per task and once
-per fresh reasoning state. MAGE uses models to stop repurchasing knowledge that can be made durable.
+per fresh reasoning state. MAGE uses models to make reusable engineering knowledge durable.
 
 <!-- thesisbox -->
 > ### MODELING THESIS
@@ -21,8 +21,8 @@ per fresh reasoning state. MAGE uses models to stop repurchasing knowledge that 
 > Externalize engineering knowledge and intent into explicit, structured models that both engineers
 > and agents can reason through.
 >
-> Richer representations make larger engineering questions tractable and expose richer surfaces for
-> authority.
+> Richer representations make larger engineering questions tractable and make richer properties
+> available to authority.
 
 A model is a purposeful reduction of a system, built to answer an engineering question. Its value is not
 that it contains more information, but that it leaves out what the question does not need. The result is
@@ -30,7 +30,7 @@ an engineering surface through which people, agents, and tools can reason withou
 reconstructing the same properties from lower-level detail.
 
 <!-- point: part-2-asks-what-to-model-and-what-it-reveals | Part II asks one question of every system: what should I model, and what will the model let me know? | terms: thesis-modeling, model-as-map, scope-of-modeling -->
-Before an agent can reason over a model, an engineer has to decide which model to build, and why.
+Before an agent can reason through a model, an engineer must decide what question deserves a model and which reduction will answer it.
 
 A production system can hold millions of lines of code, hundreds of dependencies, dozens of services,
 queues, databases, deployment configurations, policies, tests, and operating procedures. No engineer
@@ -46,9 +46,7 @@ concurrency shape the worst case.
 
 The system did not change. The engineering question did.
 
-> **Hold the system constant. Change the engineering question. Watch the model change.**
-
-Put formally, that is the question this Part asks of every system, and asks again at every turn:
+The recurring question is:
 
 **What should I model, and what will the model let me know?**
 
@@ -75,30 +73,31 @@ The examples ahead fall into six broad classes that the rest of the book will re
 - **Provenance** — what happened to an artifact, and what evidence records it.
 
 <!-- point: there-is-no-model-of-the-system-only-purposeful-reductions | There is no model of the system, only purposeful reductions that each answer one question. | terms: model-as-map, scope-of-modeling, map-and-territory -->
-These six classes organize recurring engineering questions; they are not an exhaustive taxonomy or a
-checklist. They can overlap: one represented object may participate in several classes at once. There is no single "model of the system," only purposeful reductions built to expose particular
-properties. A model earns its place by the question it settles, not by how much of the system it draws.
+These six classes organize recurring engineering questions rather than partitioning systems. They
+overlap, and they are not exhaustive. There is no single "model of the system": each model is a
+purposeful reduction chosen for a question.
 
-> #### Four questions, once per model
+> #### Four questions for every model
 >
 > Every model section ahead opens on the same four lines:
 >
 > - **Engineering question** — what am I trying to know or decide?
-> - **Model** — what representation makes that question cheap to answer?
+> - **Model** — what representation makes the question tractable?
 > - **Property** — what can I now state precisely?
 > - **Quality attribute** — what engineering concern does that property serve?
 
 Part III adds a fifth question: **what gives the property authority?** Some obligations can already be
 held without an explicit system model — a sandbox can deny an action, a compiler can reject a construct,
-a test can block a regression. The models in this Part enlarge that surface. Once architecture,
+a test can block a regression. The models in this Part enlarge the semantic scale at which such
+obligations can be stated. Once architecture,
 ownership, behavior, policy, or measurement is explicit, the environment can reason about obligations
 that would otherwise require an agent or a human to reconstruct the missing semantics. Part II builds
-those representations. Part III develops the general machinery of authority.
+the representations; Part III develops the machinery that gives selected obligations authority.
 
 <!-- point: part-2-hands-you-a-reusable-mental-toolbox | By the Part's end you hold a mental toolbox you can rebuild for your own system. | terms: model-zoo, scope-of-modeling, thesis-modeling -->
 By the Part's end, the recurring questions should form a small mental toolbox: for each concern, the
 model that answers it, the property it lets you state, and the quality attribute that property serves.
 That toolbox is the working set this Part assembles; the final chapter,
-[System Knowledge: Models as a System](2.8-system-knowledge.html), steps back to show how the six
+[System Knowledge: Connecting the Models](2.8-system-knowledge.html), steps back to show how the six
 connect as one substrate rather than a seventh model. By the end, you should be able to choose useful
 representations for a system of your own.

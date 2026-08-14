@@ -28,7 +28,7 @@
   <line x1="450" y1="60" x2="450" y2="300" stroke="#d9d3c8" stroke-width="1.6"/>
 
   <!-- ===== LEFT: IMPLEMENTATION (gray, observed) ===== -->
-  <text x="225" y="42" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">IMPLEMENTATION &#183; observed</text>
+  <text x="225" y="42" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">OBSERVED SYSTEM</text>
   <!-- nodes -->
   <g font-size="18" font-weight="700" text-anchor="middle">
     <circle cx="150" cy="110" r="26" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
@@ -43,7 +43,7 @@
   <text x="225" y="286" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1c1917">&#8220;Does A call C?&#8221;</text>
 
   <!-- ===== RIGHT: MODEL (blue, declared) ===== -->
-  <text x="675" y="42" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">MODEL &#183; declared</text>
+  <text x="675" y="42" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">DECLARED POLICY</text>
   <g font-size="18" font-weight="700" text-anchor="middle">
     <circle cx="600" cy="110" r="26" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
     <text x="600" y="117" fill="#2f5169">A</text>

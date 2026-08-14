@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2.4 Ownership primary model (part2-content-revision-260814; folds to book/assets/).
-     The in-flight ownership state model: a claim opens a PRIMARY ownership record carrying owner, epoch, and
-     lifetime; a lease hands off to release on merge; and if the lifetime expires or the record goes stale,
-     ownership falls to a reclaimable state where another actor may take it. The model names WHO owns the
-     work, for HOW LONG, and what happens when the window lapses. Grammar: blue #2f5169 = the owned states
-     (owner/epoch/lifetime, release); gray #57534e = the reclaim path — ownership lapses back to territory
-     for another actor to claim. Hand-authored (an ownership state model, not a flowchart). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" width="760" height="400"
+<!-- 2.4 Ownership primary model (part2-v8-260814 REDRAW; folds to book/assets/).
+     The in-flight ownership STATE MODEL, redrawn as clean temporal transitions (v8 guidance): a claim
+     opens CLAIMED, carrying owner, epoch, and expires_at; MERGE releases the claim (a good outcome);
+     EXPIRY makes it RECLAIMABLE, from which another actor may claim. Release is a downstream state, not a
+     peer box pointed at horizontally. Grammar: blue #2f5169 = the live claim (CLAIMED); green #155c38 =
+     the released outcome; gray #57534e = the lapsed/reclaim path. Hand-authored (a state model). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420"
      role="img" aria-labelledby="ioTitle ioDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ioTitle">In-flight ownership: owner/epoch/lifetime, released on merge or reclaimed on expiry</title>
-  <desc id="ioDesc">A claim opens a primary ownership record carrying owner, epoch, and lifetime. A lease
-    transitions it to release when work merges. If the lifetime expires or the record becomes stale,
-    ownership falls to a reclaimable state where another actor may take it. The model makes explicit who
-    owns the work, for how long, and what happens when the window lapses.</desc>
+  <title id="ioTitle">In-flight ownership: CLAIMED releases on merge or becomes reclaimable on expiry</title>
+  <desc id="ioDesc">A claim opens the CLAIMED state, carrying owner, epoch, and expires_at. Two
+    transitions leave it. Merge releases the claim to a RELEASED outcome. Expiry moves it to RECLAIMABLE,
+    a lapsed state from which another actor may claim it again. The model distinguishes a live claim from a
+    stale one and states when the window has lapsed, without representing the storage machinery that
+    implements the lease.</desc>
 
   <defs>
     <marker id="io-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
@@ -22,42 +22,47 @@
     <marker id="io-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
+    <marker id="io-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
+    </marker>
   </defs>
 
-  <text x="380" y="34" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">IN-FLIGHT OWNERSHIP</text>
+  <text x="360" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">IN-FLIGHT OWNERSHIP</text>
 
   <!-- claim in -->
-  <text x="150" y="74" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">claim</text>
-  <line x1="150" y1="82" x2="150" y2="112" stroke="#2f5169" stroke-width="2.2" marker-end="url(#io-b)"/>
-  <!-- merge in -->
-  <text x="600" y="74" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">merge</text>
-  <line x1="600" y1="82" x2="600" y2="112" stroke="#2f5169" stroke-width="2.2" marker-end="url(#io-b)"/>
+  <text x="360" y="54" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">claim</text>
+  <line x1="360" y1="60" x2="360" y2="76" stroke="#2f5169" stroke-width="2.2" marker-end="url(#io-b)"/>
 
-  <!-- PRIMARY owner record (blue) -->
-  <rect x="45" y="114" width="210" height="112" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="150" y="142" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">owner</text>
-  <text x="150" y="166" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">epoch</text>
-  <text x="150" y="190" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">lifetime</text>
-  <text x="150" y="214" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">PRIMARY record</text>
+  <!-- CLAIMED (blue, the live claim) -->
+  <rect x="230" y="78" width="260" height="80" rx="10" fill="#dae4ec" stroke="#2f5169" stroke-width="2.8"/>
+  <text x="360" y="114" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">CLAIMED</text>
+  <text x="360" y="138" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; expires_at</text>
 
-  <!-- lease -> release (blue) -->
-  <line x1="255" y1="150" x2="493" y2="150" stroke="#2f5169" stroke-width="2.4" marker-end="url(#io-b)"/>
-  <text x="374" y="140" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">lease</text>
+  <!-- merge transition -> RELEASED (green outcome, down-left) -->
+  <path d="M305,158 C260,198 215,205 182,244" fill="none" stroke="#155c38" stroke-width="2.4" marker-end="url(#io-g)"/>
+  <text x="215" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#155c38">merge</text>
 
-  <!-- release (blue) -->
-  <rect x="495" y="114" width="210" height="72" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="600" y="157" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">release</text>
+  <!-- expiry transition -> RECLAIMABLE (gray, down-right) -->
+  <path d="M415,158 C460,198 505,205 538,244" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#io-k)"/>
+  <text x="505" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">expiry</text>
 
-  <!-- expires/stale -> reclaimable (gray) -->
-  <line x1="150" y1="226" x2="150" y2="284" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#io-k)"/>
-  <text x="162" y="262" font-size="14" font-style="italic" fill="#57534e">expires / becomes stale</text>
+  <!-- RELEASED (green) -->
+  <rect x="80" y="246" width="200" height="66" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
+  <text x="180" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">RELEASED</text>
+  <text x="180" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#155c38">claim ends cleanly</text>
 
-  <!-- reclaimable (gray) -->
-  <rect x="45" y="286" width="210" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="150" y="316" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">reclaimable</text>
-  <text x="150" y="338" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">another actor may claim</text>
+  <!-- RECLAIMABLE (gray) -->
+  <rect x="440" y="246" width="200" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="540" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">RECLAIMABLE</text>
+  <text x="540" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">lease lapsed / stale</text>
+
+  <!-- another actor may claim: loop back from RECLAIMABLE to CLAIMED -->
+  <path d="M642,268 C698,208 640,118 494,112" fill="none" stroke="#57534e" stroke-width="2"
+        stroke-dasharray="6 5" marker-end="url(#io-k)"/>
+  <text x="660" y="182" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">another actor</text>
+  <text x="660" y="199" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">may claim</text>
 
   <!-- footer: protect the point -->
-  <text x="440" y="316" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The model names who owns the work</text>
-  <text x="440" y="338" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">and for how long &#8212; expiry is a state, not an accident.</text>
+  <text x="360" y="372" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Merge releases the claim; expiry makes it reclaimable.</text>
+  <text x="360" y="394" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">A live claim is distinguishable from a stale one &#8212; expiry is a state, not an accident.</text>
 </svg>

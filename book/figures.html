@@ -596,14 +596,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="1.4-the-new-engineering-problem.html">4&nbsp; The New Engineering Problem</a></li>
 <li class="part">Part 2 — Modeling</li>
 <li><a class="" href="part-2-intro.html">Modeling</a></li>
-<li><a class="" href="2.1-context-is-the-first-modeling-problem.html">5&nbsp; Context Is the First Modeling Problem</a></li>
+<li><a class="" href="2.1-context-is-the-first-modeling-problem.html">5&nbsp; From Context to Engineering Models</a></li>
 <li><a class="" href="2.2-structural.html">6&nbsp; Structural Models: What Is Connected to What?</a></li>
 <li><a class="" href="2.3-behavioral.html">7&nbsp; Behavioral Models: What May Happen?</a></li>
 <li><a class="" href="2.4-ownership.html">8&nbsp; Ownership Models: Who Controls What, and When?</a></li>
-<li><a class="" href="2.5-decision.html">9&nbsp; Decision Models: Who May Decide or Act?</a></li>
-<li><a class="" href="2.6-measurement.html">10&nbsp; Measurement Models: How Much, How Fast, How Good?</a></li>
-<li><a class="" href="2.7-provenance.html">11&nbsp; Provenance Models: What Happened?</a></li>
-<li><a class="" href="2.8-system-knowledge.html">12&nbsp; System Knowledge: Models as a System</a></li>
+<li><a class="" href="2.5-decision.html">9&nbsp; Decision Models: What Is Allowed?</a></li>
+<li><a class="" href="2.6-measurement.html">10&nbsp; Measurement Models: How Much, and Against What Bound?</a></li>
+<li><a class="" href="2.7-provenance.html">11&nbsp; Provenance Models: What Happened, and What Evidence Records It?</a></li>
+<li><a class="" href="2.8-system-knowledge.html">12&nbsp; System Knowledge: Connecting the Models</a></li>
 <li class="part">Part 3 — Alignment</li>
 <li><a class="" href="part-3-intro.html">Alignment</a></li>
 <li><a class="" href="3.1-where-authority-can-act.html">13&nbsp; Where Authority Can Act</a></li>
@@ -693,7 +693,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-evidence-ledger.html">Appendix G — Evidence Ledger: The DocAble Case</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 117 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 1240"
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 115 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 1240"
      role="group" aria-labelledby="fig-0-1-1-mmTitle fig-0-1-1-mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-0-1-1-mmTitle">The MAGE method — scale creates the reasoning problem, commodity intelligence changes its economics, and two theses turn engineering effort into capital rather than churn; Modeling extends Alignment but Alignment does not depend on it</title>
@@ -1766,7 +1766,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <defs>
     <marker id="fig-2-1-1-on-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
-            orient="auto" markerUnits="userSpaceOnUse">
+            orient="auto-start-reverse" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -1807,15 +1807,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="480" y="256" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">These classes may overlap.</text>
 
-  <!-- arrow down to the orthogonal representation-form axis -->
-  <line x1="480" y1="264" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-1-1-on-b)"/>
+  <!-- double-headed arrow to the orthogonal representation-form axis: the relation is MANY-TO-MANY -->
+  <line x1="480" y1="266" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2"
+        marker-start="url(#fig-2-1-1-on-b)" marker-end="url(#fig-2-1-1-on-b)"/>
+  <text x="500" y="281" font-size="13" font-style="italic" fill="#57534e">many-to-many</text>
 
   <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="314" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">REPRESENTATION FORM</text>
+  <text x="480" y="314" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
   <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 
   <text x="480" y="394" text-anchor="middle" font-size="16" font-style="italic" fill="#1c1917">Connected through shared identity and traceability, these models form the system&#8217;s explicit engineering knowledge.</text>
-</svg><figcaption data-short="MAGE&#x27;s working model ontology"><span class="fig-label">Figure 2.1-1.</span> <em>MAGE's working model ontology.</em> The six classes organize representations by the engineering question each answers. They may overlap, and a class does not prescribe a particular representation form.</figcaption></figure><p class="gallery-source">From <a href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-1">5 · Context Is the First Modeling Problem</a></p></section><hr><section class="gallery-item"><figure id="fig-2-2-1-fig-2-2-1" class="book-figure" data-label="document-mutation-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 470"
+</svg><figcaption data-short="MAGE&#x27;s working model ontology"><span class="fig-label">Figure 2.1-1.</span> <em>MAGE's working model ontology.</em> The six classes distinguish models by the engineering question they answer. Classes may overlap, and each may be encoded using several representation forms.</figcaption></figure><p class="gallery-source">From <a href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-1">5 · From Context to Engineering Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-2-1-fig-2-2-1" class="book-figure" data-label="document-mutation-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 438"
      role="img" aria-labelledby="fig-2-2-1-dmTitle fig-2-2-1-dmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-2-1-dmTitle">DocAble's document-mutation model: mutation reaches formats through a sanctioned seam</title>
@@ -1865,10 +1867,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="390" y="348" text-anchor="middle" font-size="16" fill="#1c1917">XLSX</text>
   <text x="500" y="348" text-anchor="middle" font-size="16" fill="#1c1917">PDF</text>
 
-  <!-- footer: protect the point (model, not yet constraint) -->
-  <text x="320" y="402" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The model marks where mutation is supposed to occur.</text>
-  <text x="320" y="426" text-anchor="middle" font-size="15.5" font-style="italic" fill="#9a3f12">It does not, by itself, prevent code from crossing the seam &#8212; that is Part III&#8217;s job.</text>
-</svg><figcaption data-short="DocAble&#x27;s document-mutation model"><span class="fig-label">Figure 2.2-1.</span> <em>DocAble's document-mutation model.</em> Remediation logic reaches format-specific mutation through a structured document model — one sanctioned seam. The representation names where the architectural boundary lies; it does not, by itself, prevent code from crossing it.</figcaption></figure><p class="gallery-source">From <a href="2.2-structural.html#fig-2-2-1">6 · Structural Models: What Is Connected to What?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-2-2-fig-2-2-2" class="book-figure" data-label="structural-reduction"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
+  <!-- footer: protect the point (model, not yet constraint). Enforcement microtext removed — the caption carries it. -->
+  <text x="320" y="410" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The model marks where mutation is supposed to occur.</text>
+</svg><figcaption data-short="Document-mutation structural model"><span class="fig-label">Figure 2.2-1.</span> <em>Document-mutation structural model.</em> The reduction preserves one architectural relation: ordinary remediation reaches format-specific mutation through a structured-document seam. Enforcement of that relation is a separate Alignment decision.</figcaption></figure><p class="gallery-source">From <a href="2.2-structural.html#fig-2-2-1">6 · Structural Models: What Is Connected to What?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-2-2-fig-2-2-2" class="book-figure" data-label="structural-reduction"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
      role="img" aria-labelledby="fig-2-2-2-srTitle fig-2-2-2-srDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-2-2-srTitle">Structural reduction: the full territory reduced to the seam that answers one question</title>
@@ -1884,22 +1885,28 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- LEFT: full territory (gray) -->
+  <!-- LEFT: full territory (gray) — deliberately noisy but UNIFORM; no item is visually privileged -->
   <text x="235" y="34" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">TERRITORY</text>
   <rect x="40" y="48" width="390" height="284" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <g font-size="15.5" fill="#57534e" text-anchor="middle">
-    <text x="120" y="90">UI</text>
-    <text x="235" y="90">queue</text>
-    <text x="350" y="90">workers</text>
-    <text x="120" y="122">retries</text>
-    <text x="290" y="122">scaling</text>
+  <g font-size="15" fill="#57534e" text-anchor="middle">
+    <text x="118" y="88">UI</text>
+    <text x="235" y="88">queue</text>
+    <text x="352" y="88">workers</text>
+    <text x="118" y="120">retries</text>
+    <text x="235" y="120">scaling</text>
+    <text x="352" y="120">cache</text>
+    <text x="118" y="152">storage</text>
+    <text x="235" y="152">deployment</text>
+    <text x="352" y="152">logging</text>
+    <text x="118" y="184">metrics</text>
+    <text x="235" y="184">auth</text>
+    <text x="352" y="184">config</text>
+    <text x="118" y="216">remediation</text>
+    <text x="235" y="216">format libs</text>
+    <text x="352" y="216">billing</text>
   </g>
-  <rect x="70" y="146" width="330" height="46" rx="9" fill="#efe9df" stroke="#57534e" stroke-width="1.8"/>
-  <text x="235" y="175" text-anchor="middle" font-size="15.5" fill="#57534e">remediation + format libraries</text>
-  <rect x="70" y="206" width="330" height="46" rx="9" fill="#efe9df" stroke="#57534e" stroke-width="1.8"/>
-  <text x="235" y="235" text-anchor="middle" font-size="15.5" fill="#57534e">storage + deployment + &#8230;</text>
-  <text x="235" y="298" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">most of the system is not relevant</text>
-  <text x="235" y="320" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">to this question</text>
+  <text x="235" y="278" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">most of the system is not relevant</text>
+  <text x="235" y="300" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">to this question</text>
 
   <!-- reduction arrow -->
   <line x1="440" y1="190" x2="528" y2="190" stroke="#2f5169" stroke-width="2.6" marker-end="url(#fig-2-2-2-sr-b)"/>
@@ -1911,8 +1918,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="600" y="60" width="290" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="745" y="92" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">remediation logic</text>
   <line x1="745" y1="112" x2="745" y2="140" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-2-2-sr-b)"/>
-  <rect x="600" y="142" width="290" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="745" y="174" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">structured document model</text>
+  <!-- the ONE thing the reduction preserves: the seam. Highlighted; the other two layers are ordinary blue. -->
+  <rect x="600" y="142" width="290" height="52" rx="10" fill="#d3e0ea" stroke="#2f5169" stroke-width="3.4"/>
+  <text x="745" y="168" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">structured document model</text>
+  <text x="745" y="186" text-anchor="middle" font-size="12.5" font-style="italic" fill="#2f5169">the surviving seam</text>
   <line x1="745" y1="194" x2="745" y2="222" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-2-2-sr-b)"/>
   <rect x="600" y="224" width="290" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="745" y="256" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">format implementation</text>
@@ -1920,8 +1929,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="745" y="322" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;Where may document mutation occur?&#8221;</text>
 
   <!-- footer: protect the point -->
-  <text x="480" y="372" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">A structural model is useful because it leaves most of the system out &#8212; keeping only the seam the question needs.</text>
-</svg><figcaption data-short="A structural model is useful because it leaves most of the system out"><span class="fig-label">Figure 2.2-2.</span> A structural model is useful because it leaves most of the system out. Here the reduction preserves the architectural seam relevant to document mutation while suppressing unrelated runtime and implementation detail.</figcaption></figure><p class="gallery-source">From <a href="2.2-structural.html#fig-2-2-2">6 · Structural Models: What Is Connected to What?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-3-1-fig-2-3-1" class="book-figure" data-label="recovery-ordering-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 470"
+  <text x="480" y="372" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The question determines what survives the reduction.</text>
+</svg><figcaption data-short="Purposeful reduction"><span class="fig-label">Figure 2.2-2.</span> <em>Purposeful reduction.</em> The structural model suppresses unrelated runtime and implementation detail while preserving the architectural seam needed to answer where document mutation belongs.</figcaption></figure><p class="gallery-source">From <a href="2.2-structural.html#fig-2-2-2">6 · Structural Models: What Is Connected to What?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-3-1-fig-2-3-1" class="book-figure" data-label="recovery-ordering-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 470"
      role="img" aria-labelledby="fig-2-3-1-roTitle fig-2-3-1-roDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-3-1-roTitle">Recovery-ordering model: three legal states and one forbidden edge</title>
@@ -1957,22 +1966,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="150" y="274" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="285" y="307" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">DB_UPDATED</text>
 
-  <!-- forbidden bypass edge (rust), STAGED -> DB_UPDATED down the right side -->
-  <path d="M420,73 C560,110 560,250 442,296" fill="none" stroke="#9a3f12" stroke-width="2.6"
-        stroke-dasharray="9 6" marker-end="url(#fig-2-3-1-ro-r)"/>
-  <!-- X mark on the arc -->
-  <g stroke="#9a3f12" stroke-width="3.4" stroke-linecap="round">
-    <line x1="547" y1="176" x2="569" y2="198"/>
-    <line x1="569" y1="176" x2="547" y2="198"/>
+  <!-- forbidden / ABSENT transition, STAGED -> DB_UPDATED: drawn as a GHOST edge (faint, no live arrowhead)
+       and struck through — it reads as NOT part of the model, not as a live-but-illegal arrow. -->
+  <path d="M420,73 C560,110 560,250 442,296" fill="none" stroke="#9a3f12" stroke-width="2"
+        stroke-dasharray="4 8" opacity="0.3"/>
+  <!-- bold rust X strikes out the ghost edge -->
+  <g stroke="#9a3f12" stroke-width="3.6" stroke-linecap="round">
+    <line x1="545" y1="174" x2="571" y2="200"/>
+    <line x1="571" y1="174" x2="545" y2="200"/>
   </g>
-  <text x="558" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">NOT LEGAL</text>
-  <text x="558" y="228" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">may not skip</text>
-  <text x="558" y="245" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">durable publication</text>
+  <text x="558" y="146" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">forbidden /</text>
+  <text x="558" y="163" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">absent transition</text>
+  <text x="558" y="230" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">not part of</text>
+  <text x="558" y="247" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">the model</text>
 
   <!-- footer: protect the point -->
   <text x="340" y="384" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The load-bearing fact is the edge that does not exist.</text>
-  <text x="340" y="408" text-anchor="middle" font-size="15.5" font-style="italic" fill="#9a3f12">Fallback publication precedes the durable state that refers to it.</text>
-</svg><figcaption data-short="DocAble&#x27;s recovery-ordering model"><span class="fig-label">Figure 2.3-1.</span> <em>DocAble's recovery-ordering model.</em> Three states and the forbidden ordering. The edge that does not exist — staged straight to database-updated — is the model's whole point: durable state may never refer to an artifact that is not yet durably published.</figcaption></figure><p class="gallery-source">From <a href="2.3-behavioral.html#fig-2-3-1">7 · Behavioral Models: What May Happen?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-3-2-fig-2-3-2" class="book-figure" data-label="model-first-encoding-second"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560"
+  <text x="340" y="408" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">The fallback artifact must become durable before database state may refer to it.</text>
+</svg><figcaption data-short="Recovery-ordering model"><span class="fig-label">Figure 2.3-1.</span> <em>Recovery-ordering model.</em> The fallback artifact must become durable before database state may refer to it. The load-bearing fact is the absent transition from FALLBACK_STAGED directly to DB_UPDATED.</figcaption></figure><p class="gallery-source">From <a href="2.3-behavioral.html#fig-2-3-1">7 · Behavioral Models: What May Happen?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-3-2-fig-2-3-2" class="book-figure" data-label="model-first-encoding-second"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560"
      role="img" aria-labelledby="fig-2-3-2-mfTitle fig-2-3-2-mfDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-3-2-mfTitle">Model first, encoding second: the model is the legal-transition relation, not its syntax</title>
@@ -2022,9 +2033,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="340" y="234" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">may not skip publication</text>
   <line x1="340" y1="240" x2="340" y2="266" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-3-2-mf-k)"/>
 
-  <!-- layer 3: ENCODING (gray) -->
+  <!-- layer 3: ONE EXECUTABLE REPRESENTATION (gray) -->
   <rect x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="340" y="294" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">ENCODING</text>
+  <text x="340" y="294" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
   <text x="340" y="313" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">explicit legal-transition relation</text>
   <line x1="340" y1="322" x2="340" y2="348" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-3-2-mf-k)"/>
 
@@ -2036,14 +2047,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the point -->
   <text x="340" y="470" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The behavioral model is the reduced legal-transition relation &#8212;</text>
   <text x="340" y="492" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">not the syntax used to encode it. Its value: making one temporal obligation explicit.</text>
-</svg><figcaption data-short="The behavioral model is the reduced legal-transition relation, not the…"><span class="fig-label">Figure 2.3-2.</span> The behavioral model is the reduced legal-transition relation, not the implementation syntax used to encode it. Its value lies in making one temporal obligation explicit; encoding and implementation follow from it.</figcaption></figure><p class="gallery-source">From <a href="2.3-behavioral.html#fig-2-3-2">7 · Behavioral Models: What May Happen?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-4-1-fig-2-4-1" class="book-figure" data-label="in-flight-ownership-states"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400"
+</svg><figcaption data-short="Model, representation, implementation"><span class="fig-label">Figure 2.3-2.</span> <em>Model, representation, implementation.</em> The engineering question determines a reduced temporal model; an explicit transition relation is one executable representation of that model; implementation adds the operational machinery omitted by the reduction.</figcaption></figure><p class="gallery-source">From <a href="2.3-behavioral.html#fig-2-3-2">7 · Behavioral Models: What May Happen?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-4-1-fig-2-4-1" class="book-figure" data-label="in-flight-ownership-states"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420"
      role="img" aria-labelledby="fig-2-4-1-ioTitle fig-2-4-1-ioDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-4-1-ioTitle">In-flight ownership: owner/epoch/lifetime, released on merge or reclaimed on expiry</title>
-  <desc id="fig-2-4-1-ioDesc">A claim opens a primary ownership record carrying owner, epoch, and lifetime. A lease
-    transitions it to release when work merges. If the lifetime expires or the record becomes stale,
-    ownership falls to a reclaimable state where another actor may take it. The model makes explicit who
-    owns the work, for how long, and what happens when the window lapses.</desc>
+  <title id="fig-2-4-1-ioTitle">In-flight ownership: CLAIMED releases on merge or becomes reclaimable on expiry</title>
+  <desc id="fig-2-4-1-ioDesc">A claim opens the CLAIMED state, carrying owner, epoch, and expires_at. Two
+    transitions leave it. Merge releases the claim to a RELEASED outcome. Expiry moves it to RECLAIMABLE,
+    a lapsed state from which another actor may claim it again. The model distinguishes a live claim from a
+    stale one and states when the window has lapsed, without representing the storage machinery that
+    implements the lease.</desc>
 
   <defs>
     <marker id="fig-2-4-1-io-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
@@ -2052,104 +2064,94 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <marker id="fig-2-4-1-io-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
+    <marker id="fig-2-4-1-io-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
+    </marker>
   </defs>
 
-  <text x="380" y="34" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">IN-FLIGHT OWNERSHIP</text>
+  <text x="360" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">IN-FLIGHT OWNERSHIP</text>
 
   <!-- claim in -->
-  <text x="150" y="74" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">claim</text>
-  <line x1="150" y1="82" x2="150" y2="112" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-4-1-io-b)"/>
-  <!-- merge in -->
-  <text x="600" y="74" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">merge</text>
-  <line x1="600" y1="82" x2="600" y2="112" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-4-1-io-b)"/>
+  <text x="360" y="54" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">claim</text>
+  <line x1="360" y1="60" x2="360" y2="76" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-4-1-io-b)"/>
 
-  <!-- PRIMARY owner record (blue) -->
-  <rect x="45" y="114" width="210" height="112" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="150" y="142" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">owner</text>
-  <text x="150" y="166" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">epoch</text>
-  <text x="150" y="190" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">lifetime</text>
-  <text x="150" y="214" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">PRIMARY record</text>
+  <!-- CLAIMED (blue, the live claim) -->
+  <rect x="230" y="78" width="260" height="80" rx="10" fill="#dae4ec" stroke="#2f5169" stroke-width="2.8"/>
+  <text x="360" y="114" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">CLAIMED</text>
+  <text x="360" y="138" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; expires_at</text>
 
-  <!-- lease -> release (blue) -->
-  <line x1="255" y1="150" x2="493" y2="150" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-2-4-1-io-b)"/>
-  <text x="374" y="140" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">lease</text>
+  <!-- merge transition -> RELEASED (green outcome, down-left) -->
+  <path d="M305,158 C260,198 215,205 182,244" fill="none" stroke="#155c38" stroke-width="2.4" marker-end="url(#fig-2-4-1-io-g)"/>
+  <text x="215" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#155c38">merge</text>
 
-  <!-- release (blue) -->
-  <rect x="495" y="114" width="210" height="72" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="600" y="157" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">release</text>
+  <!-- expiry transition -> RECLAIMABLE (gray, down-right) -->
+  <path d="M415,158 C460,198 505,205 538,244" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#fig-2-4-1-io-k)"/>
+  <text x="505" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">expiry</text>
 
-  <!-- expires/stale -> reclaimable (gray) -->
-  <line x1="150" y1="226" x2="150" y2="284" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#fig-2-4-1-io-k)"/>
-  <text x="162" y="262" font-size="14" font-style="italic" fill="#57534e">expires / becomes stale</text>
+  <!-- RELEASED (green) -->
+  <rect x="80" y="246" width="200" height="66" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
+  <text x="180" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">RELEASED</text>
+  <text x="180" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#155c38">claim ends cleanly</text>
 
-  <!-- reclaimable (gray) -->
-  <rect x="45" y="286" width="210" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="150" y="316" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">reclaimable</text>
-  <text x="150" y="338" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">another actor may claim</text>
+  <!-- RECLAIMABLE (gray) -->
+  <rect x="440" y="246" width="200" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="540" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">RECLAIMABLE</text>
+  <text x="540" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">lease lapsed / stale</text>
+
+  <!-- another actor may claim: loop back from RECLAIMABLE to CLAIMED -->
+  <path d="M642,268 C698,208 640,118 494,112" fill="none" stroke="#57534e" stroke-width="2"
+        stroke-dasharray="6 5" marker-end="url(#fig-2-4-1-io-k)"/>
+  <text x="660" y="182" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">another actor</text>
+  <text x="660" y="199" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">may claim</text>
 
   <!-- footer: protect the point -->
-  <text x="440" y="316" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The model names who owns the work</text>
-  <text x="440" y="338" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">and for how long &#8212; expiry is a state, not an accident.</text>
-</svg><figcaption data-short="DocAble&#x27;s in-flight ownership model"><span class="fig-label">Figure 2.4-1.</span> <em>DocAble's in-flight ownership model.</em> A lease binds a work item to an owner, an epoch, and a lifetime; a merge releases it, and expiry makes the work reclaimable. The model answers who holds a claim and when it may be treated as stale, without describing the machinery that realizes ownership.</figcaption></figure><p class="gallery-source">From <a href="2.4-ownership.html#fig-2-4-1">8 · Ownership Models: Who Controls What, and When?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-4-2-fig-2-4-2" class="book-figure" data-label="in-flight-lease-overlap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440"
+  <text x="360" y="372" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Merge releases the claim; expiry makes it reclaimable.</text>
+  <text x="360" y="394" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">A live claim is distinguishable from a stale one &#8212; expiry is a state, not an accident.</text>
+</svg><figcaption data-short="In-flight ownership model"><span class="fig-label">Figure 2.4-1.</span> <em>In-flight ownership model.</em> A current claim records owner, epoch, and lifetime. Merge releases the claim; expiry makes it reclaimable. The model distinguishes a live claim from a stale one without representing the storage machinery that implements the lease.</figcaption></figure><p class="gallery-source">From <a href="2.4-ownership.html#fig-2-4-1">8 · Ownership Models: Who Controls What, and When?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-4-2-fig-2-4-2" class="book-figure" data-label="in-flight-lease-overlap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350"
      role="img" aria-labelledby="fig-2-4-2-ilTitle fig-2-4-2-ilDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-4-2-ilTitle">One in-flight lease participates in ownership, behavioral, and measurement models</title>
-  <desc id="fig-2-4-2-ilDesc">An in-flight lease is asked three questions at once. As an ownership model: who owns this
-    work? As a behavioral model: when does that ownership expire? As a measurement model: how much work is
-    genuinely in flight? All three views resolve to one shared represented fact. Model classes classify
-    engineering questions, not mutually exclusive storage objects.</desc>
+  <title id="fig-2-4-2-ilTitle">One shared lease state answers ownership, behavioral, and measurement questions</title>
+  <desc id="fig-2-4-2-ilDesc">A single shared lease state, carrying owner, epoch, and lifetime, sits at the top and
+    fans down to three purpose-views: ownership, who owns it; behavioral, when is it stale; and measurement,
+    how many are active. One represented state, several engineering questions. Model classes distinguish
+    purpose, not storage objects.</desc>
 
   <defs>
     <marker id="fig-2-4-2-il-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="fig-2-4-2-il-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
   </defs>
 
-  <!-- lease (blue, top) -->
-  <rect x="270" y="26" width="180" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="360" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">in-flight lease</text>
+  <!-- SHARED LEASE STATE (gray, the one represented fact) at TOP -->
+  <rect x="250" y="38" width="220" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <text x="360" y="70" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">SHARED LEASE STATE</text>
+  <text x="360" y="90" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; lifetime</text>
 
-  <!-- fan to three class views -->
+  <!-- fan DOWN to the three class views -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-4-2-il-b)">
-    <path d="M300,78 C220,104 175,110 150,140"/>
-    <path d="M360,78 L360,140"/>
-    <path d="M420,78 C500,104 545,110 570,140"/>
+    <path d="M320,104 C240,140 190,150 145,186"/>
+    <path d="M360,104 L360,186"/>
+    <path d="M400,104 C480,140 530,150 575,186"/>
   </g>
 
-  <!-- ownership -->
-  <rect x="45" y="142" width="210" height="88" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="150" y="172" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">OWNERSHIP</text>
-  <text x="150" y="196" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">who owns</text>
-  <text x="150" y="214" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">this work?</text>
+  <!-- OWNERSHIP -->
+  <rect x="45" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="145" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">OWNERSHIP</text>
+  <text x="145" y="252" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">who owns?</text>
 
-  <!-- behavior -->
-  <rect x="255" y="142" width="210" height="88" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="360" y="172" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">BEHAVIOR</text>
-  <text x="360" y="196" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">when does</text>
-  <text x="360" y="214" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">ownership expire?</text>
+  <!-- BEHAVIOR -->
+  <rect x="260" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="360" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">BEHAVIOR</text>
+  <text x="360" y="252" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">when stale?</text>
 
-  <!-- measurement -->
-  <rect x="465" y="142" width="210" height="88" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="570" y="172" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">MEASUREMENT</text>
-  <text x="570" y="196" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">how much work</text>
-  <text x="570" y="214" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">is in flight?</text>
-
-  <!-- converge to shared represented fact (gray) -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-4-2-il-k)">
-    <path d="M150,230 C175,286 250,300 300,316"/>
-    <path d="M360,230 L360,316"/>
-    <path d="M570,230 C545,286 470,300 420,316"/>
-  </g>
-
-  <rect x="240" y="318" width="240" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="360" y="350" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">shared represented fact</text>
+  <!-- MEASUREMENT -->
+  <rect x="475" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="575" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">MEASUREMENT</text>
+  <text x="575" y="252" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">how many active?</text>
 
   <!-- footer: protect the overlap point -->
-  <text x="360" y="404" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Model classes classify questions, not storage objects &#8212; one lease answers three.</text>
-</svg><figcaption data-short="Model classes classify questions rather than storage objects"><span class="fig-label">Figure 2.4-2.</span> Model classes classify questions rather than storage objects. An in-flight lease contributes simultaneously to ownership (who owns it?), behavioral (when does ownership expire?), and measurement (how much work is genuinely in flight?) views of the system.</figcaption></figure><p class="gallery-source">From <a href="2.4-ownership.html#fig-2-4-2">8 · Ownership Models: Who Controls What, and When?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-5-1-fig-2-5-1" class="book-figure" data-label="service-flow-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470"
+  <text x="360" y="322" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">One represented state, several engineering questions.</text>
+</svg><figcaption data-short="Model classes overlap"><span class="fig-label">Figure 2.4-2.</span> <em>Model classes overlap.</em> The same lease state supports ownership, behavioral, and measurement questions. The classes distinguish purpose, not storage objects.</figcaption></figure><p class="gallery-source">From <a href="2.4-ownership.html#fig-2-4-2">8 · Ownership Models: Who Controls What, and When?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-5-1-fig-2-5-1" class="book-figure" data-label="service-flow-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470"
      role="img" aria-labelledby="fig-2-5-1-sfTitle fig-2-5-1-sfDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-5-1-sfTitle">DocAble's service-flow model: which services may communicate</title>
@@ -2211,9 +2213,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="300" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">OCR</text>
 
   <!-- footer: protect the point -->
-  <text x="360" y="418" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">An edge means the relationship is declared architecture.</text>
-  <text x="360" y="442" text-anchor="middle" font-size="15.5" font-style="italic" fill="#57534e">An absent edge means the model does not declare it &#8212; not that it is impossible.</text>
-</svg><figcaption data-short="DocAble&#x27;s service-flow model"><span class="fig-label">Figure 2.5-1.</span> <em>DocAble's service-flow model.</em> A declared graph of which service may reach which. The public web tier is the only node facing the outside; every other relationship is an internal edge the model either draws or withholds.</figcaption></figure><p class="gallery-source">From <a href="2.5-decision.html#fig-2-5-1">9 · Decision Models: Who May Decide or Act?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-5-2-fig-2-5-2" class="book-figure" data-label="observed-vs-declared"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400"
+  <text x="360" y="418" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">An edge means the relationship is permitted by the model.</text>
+  <text x="360" y="442" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">An absent edge means the relationship is not permitted by the model; enforcement is separate.</text>
+</svg><figcaption data-short="Service-flow model"><span class="fig-label">Figure 2.5-1.</span> <em>Service-flow model.</em> A declared graph of which service may reach which. The public web tier is the only node facing the outside; an absent edge means the relationship is not permitted by the model, and enforcement is separate.</figcaption></figure><p class="gallery-source">From <a href="2.5-decision.html#fig-2-5-1">9 · Decision Models: What Is Allowed?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-5-2-fig-2-5-2" class="book-figure" data-label="observed-vs-declared"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400"
      role="img" aria-labelledby="fig-2-5-2-ovTitle fig-2-5-2-ovDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-5-2-ovTitle">Observed structure versus declared structure answer different questions</title>
@@ -2235,7 +2237,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="450" y1="60" x2="450" y2="300" stroke="#d9d3c8" stroke-width="1.6"/>
 
   <!-- ===== LEFT: IMPLEMENTATION (gray, observed) ===== -->
-  <text x="225" y="42" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">IMPLEMENTATION &#183; observed</text>
+  <text x="225" y="42" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">OBSERVED SYSTEM</text>
   <!-- nodes -->
   <g font-size="18" font-weight="700" text-anchor="middle">
     <circle cx="150" cy="110" r="26" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
@@ -2250,7 +2252,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="225" y="286" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1c1917">&#8220;Does A call C?&#8221;</text>
 
   <!-- ===== RIGHT: MODEL (blue, declared) ===== -->
-  <text x="675" y="42" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">MODEL &#183; declared</text>
+  <text x="675" y="42" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">DECLARED POLICY</text>
   <g font-size="18" font-weight="700" text-anchor="middle">
     <circle cx="600" cy="110" r="26" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
     <text x="600" y="117" fill="#2f5169">A</text>
@@ -2273,14 +2275,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the point -->
   <text x="450" y="346" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Observation reveals what is; the decision model declares what belongs.</text>
   <text x="450" y="368" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Agreement between them establishes correspondence, not correctness.</text>
-</svg><figcaption data-short="Implementation can reveal observed relationships; a decision model can…"><span class="fig-label">Figure 2.5-2.</span> Implementation can reveal observed relationships; a decision model can represent whether those relationships belong in the intended system. Agreement between the two establishes correspondence, not correctness.</figcaption></figure><p class="gallery-source">From <a href="2.5-decision.html#fig-2-5-2">9 · Decision Models: Who May Decide or Act?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-1-fig-2-6-1" class="book-figure" data-label="genai-cost-capacity-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 470"
+</svg><figcaption data-short="Observation and intent answer different questions"><span class="fig-label">Figure 2.5-2.</span> <em>Observation and intent answer different questions.</em> The observed system can reveal that A calls C; the decision model can state whether that relationship is permitted. Agreement establishes correspondence, not correctness.</figcaption></figure><p class="gallery-source">From <a href="2.5-decision.html#fig-2-5-2">9 · Decision Models: What Is Allowed?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-1-fig-2-6-1" class="book-figure" data-label="genai-cost-capacity-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 390"
      role="img" aria-labelledby="fig-2-6-1-gcTitle fig-2-6-1-gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-6-1-gcTitle">DocAble's GenAI cost-and-capacity measurement model</title>
-  <desc id="fig-2-6-1-gcDesc">Generation work is decomposed into two related quantities: usage and concurrency. Usage
-    relates to cost; concurrency relates to capacity. Cost and capacity together relate to a budget. The
-    model is the engineering interpretation placed over raw telemetry — which quantities matter and how they
-    relate — before any authority is assigned to them.</desc>
+  <title id="fig-2-6-1-gcTitle">DocAble's GenAI cost-and-capacity measurement model: two separate envelopes</title>
+  <desc id="fig-2-6-1-gcDesc">Generation work splits into two independent quantity chains. One chain: usage relates
+    to cost, which is compared against a cost budget. A separate chain: concurrency relates to capacity,
+    which is compared against a capacity envelope. The two chains are drawn apart because they are distinct
+    envelopes, not one shared budget.</desc>
 
   <defs>
     <marker id="fig-2-6-1-gc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
@@ -2288,53 +2290,53 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <text x="320" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">GENERATION-WORK QUANTITIES</text>
+  <text x="330" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">TWO ENVELOPES, NOT ONE</text>
 
-  <!-- generation work (blue, top) -->
-  <rect x="210" y="46" width="220" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="320" y="78" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">generation work</text>
+  <!-- generation work (source, left, spans both chains) -->
+  <rect x="24" y="128" width="132" height="86" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="90" y="166" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">generation</text>
+  <text x="90" y="186" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">work</text>
 
-  <!-- split to usage / concurrency -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-gc-b)">
-    <path d="M280,98 C220,124 175,130 150,152"/>
-    <path d="M360,98 C420,124 465,130 490,152"/>
+  <!-- split to the two chains -->
+  <path d="M156,150 C176,120 178,110 190,100" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-gc-b)"/>
+  <path d="M156,192 C176,222 178,232 190,242" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-gc-b)"/>
+
+  <!-- ===== TOP CHAIN: usage -> cost -> budget ===== -->
+  <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <rect x="190" y="76" width="110" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="245" y="107">usage</text>
+    <rect x="340" y="76" width="100" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="390" y="107">cost</text>
+    <rect x="480" y="76" width="150" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+    <text x="555" y="99" font-size="15">cost</text>
+    <text x="555" y="118" font-size="15">budget</text>
   </g>
+  <line x1="300" y1="101" x2="338" y2="101" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-gc-b)"/>
+  <line x1="440" y1="101" x2="478" y2="101" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-gc-b)"/>
 
-  <rect x="80" y="154" width="140" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="150" y="183" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">usage</text>
-
-  <rect x="420" y="154" width="140" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="490" y="183" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">concurrency</text>
-
-  <!-- usage -> cost ; concurrency -> capacity -->
-  <line x1="150" y1="202" x2="150" y2="248" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-gc-b)"/>
-  <line x1="490" y1="202" x2="490" y2="248" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-gc-b)"/>
-
-  <rect x="80" y="250" width="140" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="150" y="279" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">cost</text>
-
-  <rect x="420" y="250" width="140" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="490" y="279" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">capacity</text>
-
-  <!-- cost & capacity -> budget -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-gc-b)">
-    <path d="M150,298 C150,340 230,350 280,362"/>
-    <path d="M490,298 C490,340 410,350 360,362"/>
+  <!-- ===== BOTTOM CHAIN: concurrency -> capacity -> capacity envelope ===== -->
+  <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <rect x="190" y="242" width="110" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="245" y="266" font-size="14">concurrency</text>
+    <rect x="340" y="242" width="100" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="390" y="273">capacity</text>
+    <rect x="480" y="242" width="150" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+    <text x="555" y="265" font-size="15">capacity</text>
+    <text x="555" y="284" font-size="15">envelope</text>
   </g>
+  <line x1="300" y1="267" x2="338" y2="267" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-gc-b)"/>
+  <line x1="440" y1="267" x2="478" y2="267" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-1-gc-b)"/>
 
-  <rect x="230" y="364" width="180" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="320" y="395" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">budget</text>
-
-  <!-- footer: protect the modeling-not-authority point -->
-  <text x="320" y="442" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Which quantities matter, and how they relate &#8212;</text>
-  <text x="320" y="462" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the interpretation over telemetry, before authority is assigned.</text>
-</svg><figcaption data-short="DocAble&#x27;s GenAI cost-and-capacity model"><span class="fig-label">Figure 2.6-1.</span> <em>DocAble's GenAI cost-and-capacity model.</em> Generation work resolves into usage and concurrency, and onward into cost and capacity, which meet at a budget. The model names the quantities worth relating; it is the interpretation placed over raw requests and charges, not the telemetry itself.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-1">10 · Measurement Models: How Much, How Fast, How Good?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-2-fig-2-6-2" class="book-figure" data-label="measured-quantity-comparison"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360"
+  <!-- footer: protect the two-envelopes point -->
+  <text x="330" y="346" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Two chains, two envelopes &#8212; usage feeds a cost budget,</text>
+  <text x="330" y="366" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">concurrency feeds a capacity envelope; they are not one relation.</text>
+</svg><figcaption data-short="GenAI cost-and-capacity model"><span class="fig-label">Figure 2.6-1.</span> <em>GenAI cost-and-capacity model.</em> Generation work fans into usage and concurrency; usage determines cost against a budget, and concurrency contributes to capacity demand against a capacity envelope. The model names the quantities worth relating — the interpretation placed over raw requests and charges, not the telemetry itself.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-1">10 · Measurement Models: How Much, and Against What Bound?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-2-fig-2-6-2" class="book-figure" data-label="measured-quantity-comparison"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300"
      role="img" aria-labelledby="fig-2-6-2-mqTitle fig-2-6-2-mqDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-6-2-mqTitle">A measured quantity is judged by comparing current state against a reference envelope</title>
-  <desc id="fig-2-6-2-mqDesc">One measured quantity splits into two readings: current state and reference envelope. The
-    two converge into a comparison. A measurement model names not just the number but the envelope the number
-    is judged against.</desc>
+  <title id="fig-2-6-2-mqTitle">A current value is compared against a separately declared reference bound</title>
+  <desc id="fig-2-6-2-mqDesc">Two peer inputs — a current value and a reference bound — converge into a comparison.
+    The reference bound is declared separately; it is not derived from the measured quantity. The model says
+    what is compared, not what to do about the result.</desc>
 
   <defs>
     <marker id="fig-2-6-2-mq-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
@@ -2342,313 +2344,202 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- top: measured quantity -->
-  <rect x="180" y="30" width="200" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="280" y="62" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">MEASURED QUANTITY</text>
+  <!-- current value (top-left peer) -->
+  <rect x="40" y="46" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="150" y="78" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">CURRENT VALUE</text>
+  <text x="150" y="99" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">what is now</text>
 
-  <!-- split to two readings -->
-  <path d="M240,82 C210,108 165,112 140,140" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-mq-b)"/>
-  <path d="M320,82 C350,108 395,112 420,140" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-mq-b)"/>
+  <!-- reference bound (bottom-left peer, declared separately) -->
+  <rect x="40" y="166" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="150" y="198" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">REFERENCE BOUND</text>
+  <text x="150" y="219" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">declared separately</text>
 
-  <!-- current state -->
-  <rect x="40" y="142" width="200" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="140" y="172" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">current state</text>
-  <text x="140" y="194" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">what is now</text>
-
-  <!-- reference envelope -->
-  <rect x="320" y="142" width="200" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="420" y="172" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">reference envelope</text>
-  <text x="420" y="194" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">what is allowed</text>
-
-  <!-- converge to comparison -->
-  <path d="M140,208 C165,250 235,258 262,280" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-mq-b)"/>
-  <path d="M420,208 C395,250 325,258 298,280" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-mq-b)"/>
+  <!-- converge into comparison -->
+  <path d="M260,78 C310,96 320,120 360,132" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-mq-b)"/>
+  <path d="M260,198 C310,180 320,156 360,144" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-mq-b)"/>
 
   <!-- comparison -->
-  <rect x="180" y="282" width="200" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="280" y="314" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">comparison</text>
-</svg><figcaption data-short="The core of any measurement model"><span class="fig-label">Figure 2.6-2.</span> The core of any measurement model: a measured quantity, a reference envelope, and the comparison between a current state and that bound. The representation says what to compare; it does not say what to do about the result.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-2">10 · Measurement Models: How Much, How Fast, How Good?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-3-fig-2-6-3" class="book-figure" data-label="modeling-perp-authority"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420"
+  <rect x="368" y="108" width="160" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="448" y="144" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">COMPARISON</text>
+
+  <!-- footer: protect the point -->
+  <text x="280" y="264" text-anchor="middle" font-size="13.5" font-style="italic" fill="#1c1917">The bound is declared apart from the quantity.</text>
+  <text x="280" y="285" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">The model compares; it does not decide the consequence.</text>
+</svg><figcaption data-short="Core measurement relation"><span class="fig-label">Figure 2.6-2.</span> <em>Core measurement relation.</em> A current value is interpreted against a separately declared reference bound. The model defines what is compared; it does not determine the consequence of the comparison.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-2">10 · Measurement Models: How Much, and Against What Bound?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-6-3-fig-2-6-3" class="book-figure" data-label="modeling-perp-authority"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380"
      role="img" aria-labelledby="fig-2-6-3-paTitle fig-2-6-3-paDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-6-3-paTitle">Modeling is perpendicular to authority: one quantity model, several possible consequences</title>
-  <desc id="fig-2-6-3-paDesc">Part II, modeling, builds a quantitative model in blue: usage to cost to budget, with
-    usage to capacity, answering what quantities matter and how they relate. Part III, alignment, takes the
-    same model and chooses its force: observe, adapt, or gate. A gate is armed or dormant, shown in rust,
-    marking where the model acquires authority. Modeling and authority are separate moves.</desc>
+  <title id="fig-2-6-3-paTitle">One measurement, different authority decisions</title>
+  <desc id="fig-2-6-3-paDesc">Part II, the model, names a quantity and a reference bound and compares them, answering
+    what quantity and bound matter. Part III, the authority decision, takes the same model and chooses its
+    force: observe, adapt, degrade, or gate. Observe and adapt are shown in gray; degrade and gate, the
+    consequential decisions, in rust. Modeling and authority are separate moves over one shared model.</desc>
 
   <defs>
     <marker id="fig-2-6-3-pa-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="fig-2-6-3-pa-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    <marker id="fig-2-6-3-pa-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
   </defs>
 
+  <text x="480" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">One Measurement, Different Authority Decisions</text>
+
   <!-- divider -->
-  <line x1="470" y1="56" x2="470" y2="330" stroke="#d9d3c8" stroke-width="1.6"/>
+  <line x1="475" y1="66" x2="475" y2="300" stroke="#d9d3c8" stroke-width="1.6"/>
 
-  <!-- ===== LEFT: PART II MODELING ===== -->
-  <text x="230" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">PART II &#183; MODELING</text>
+  <!-- ===== LEFT: PART II MODEL ===== -->
+  <text x="235" y="82" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">PART II &#183; MODEL</text>
   <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect x="40" y="70" width="110" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="95" y="99">usage</text>
-    <rect x="200" y="70" width="110" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="255" y="99">cost</text>
-    <rect x="360" y="70" width="110" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="415" y="99">budget</text>
-    <rect x="200" y="160" width="110" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="255" y="189">capacity</text>
+    <rect x="40" y="102" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="105" y="131">quantity</text>
+    <rect x="40" y="182" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="105" y="211">bound</text>
+    <rect x="270" y="142" width="150" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+    <text x="345" y="171">comparison</text>
   </g>
-  <line x1="150" y1="93" x2="198" y2="93" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-3-pa-b)"/>
-  <line x1="310" y1="93" x2="358" y2="93" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-3-pa-b)"/>
-  <path d="M95,116 C95,183 150,183 198,183" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-3-pa-b)"/>
-  <text x="230" y="250" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What quantities matter,</text>
-  <text x="230" y="270" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">and how are they related?&#8221;</text>
+  <path d="M170,125 C220,143 230,152 268,158" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-3-pa-b)"/>
+  <path d="M170,205 C220,187 230,178 268,172" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-3-pa-b)"/>
+  <text x="235" y="262" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What quantity and bound matter?&#8221;</text>
 
-  <!-- ===== RIGHT: PART III ALIGNMENT ===== -->
-  <text x="715" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">PART III &#183; ALIGNMENT</text>
-  <rect x="620" y="66" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="715" y="95" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">same model</text>
-  <!-- fan to three authorities -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-6-3-pa-b)">
-    <path d="M655,112 C620,138 585,142 570,166"/>
-    <path d="M715,112 L715,166"/>
-    <path d="M775,112 C810,138 845,142 860,166"/>
+  <!-- ===== RIGHT: PART III AUTHORITY DECISION ===== -->
+  <text x="715" y="82" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">PART III &#183; AUTHORITY DECISION</text>
+  <rect x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="715" y="129" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">same model</text>
+  <!-- fan to four authority decisions -->
+  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-2-6-3-pa-k)">
+    <path d="M650,146 C600,168 570,172 554,190"/>
+    <path d="M690,146 C670,168 662,172 664,190"/>
+    <path d="M740,146 C760,168 768,172 776,190"/>
+    <path d="M780,146 C830,168 860,172 886,190"/>
   </g>
-  <g font-size="15" font-weight="700" text-anchor="middle">
-    <rect x="510" y="168" width="120" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="570" y="196" fill="#57534e">observe</text>
-    <rect x="655" y="168" width="120" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="715" y="196" fill="#57534e">adapt</text>
-    <rect x="800" y="168" width="120" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-    <text x="860" y="196" fill="#9a3f12">gate</text>
+  <g font-size="14.5" font-weight="700" text-anchor="middle">
+    <rect x="505" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="554" y="220" fill="#57534e">observe</text>
+    <rect x="615" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="664" y="220" fill="#57534e">adapt</text>
+    <rect x="725" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+    <text x="774" y="220" fill="#9a3f12">degrade</text>
+    <rect x="835" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+    <text x="884" y="220" fill="#9a3f12">gate</text>
   </g>
-  <!-- gate armed/dormant (rust) -->
-  <g fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-6-3-pa-r)">
-    <path d="M840,212 C812,236 790,240 785,258"/>
-    <path d="M880,212 C902,236 918,240 900,258"/>
-  </g>
-  <g font-size="14" font-weight="700" text-anchor="middle" fill="#9a3f12">
-    <rect x="728" y="260" width="106" height="40" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-    <text x="781" y="285">armed</text>
-    <rect x="846" y="260" width="106" height="40" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-    <text x="899" y="285">dormant</text>
-  </g>
-  <text x="715" y="322" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What consequence is justified?&#8221;</text>
+  <text x="715" y="270" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What consequence is justified?&#8221;</text>
 
   <!-- footer: protect the point -->
-  <text x="480" y="388" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Modeling and authority are separate moves &#8212; the same model can observe, adapt, or gate.</text>
-</svg><figcaption data-short="Modeling and authority are separate design moves"><span class="fig-label">Figure 2.6-3.</span> Modeling and authority are separate design moves. The same quantitative representation can support observation, adaptation, soft degradation, or hard gating — Part II decides which quantities matter and how they relate; Part III decides what consequence each one justifies.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-3">10 · Measurement Models: How Much, How Fast, How Good?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-7-1-fig-2-7-1" class="book-figure" data-label="attribution-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 490"
+  <text x="480" y="348" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The model defines the quantity and bound; Alignment decides whether to observe, adapt, degrade, or gate.</text>
+</svg><figcaption data-short="Modeling and authority are separate decisions"><span class="fig-label">Figure 2.6-3.</span> <em>Modeling and authority are separate decisions.</em> The measurement model defines the quantity and reference bound; Alignment determines whether the result is observed, used to adapt behavior, triggers graceful degradation, or carries gating authority.</figcaption></figure><p class="gallery-source">From <a href="2.6-measurement.html#fig-2-6-3">10 · Measurement Models: How Much, and Against What Bound?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-7-1-fig-2-7-1" class="book-figure" data-label="attribution-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400"
      role="img" aria-labelledby="fig-2-7-1-atTitle fig-2-7-1-atDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-7-1-atTitle">DocAble's attribution model: record once, derive the explanations</title>
-  <desc id="fig-2-7-1-atDesc">A run contains operations. Each operation records the events that matter to engineering
-    explanation: target, mutation, pass, and evidence. From that single structured record the system derives
-    its human-facing views — an engineering audit and a customer changelog — rather than maintaining them as
-    separate accounts of the same action.</desc>
+  <title id="fig-2-7-1-atTitle">DocAble's attribution provenance model: a run of operations, each with recorded fields</title>
+  <desc id="fig-2-7-1-atDesc">A run contains operations. Each operation records its target, mutation, responsible
+    pass, and retained evidence. This structured record is the model. A small secondary line shows the uses
+    derived from it: audit, debugging, and changelog. The model is primary; the derived uses are secondary.</desc>
 
   <defs>
     <marker id="fig-2-7-1-at-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="fig-2-7-1-at-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="fig-2-7-1-at-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
   </defs>
 
-  <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">ATTRIBUTION MODEL &#8212; THE STRUCTURED RECORD</text>
+  <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">THE PROVENANCE MODEL</text>
 
-  <!-- run (blue) -->
-  <rect x="275" y="42" width="150" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="350" y="71" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">run</text>
-  <line x1="350" y1="88" x2="350" y2="116" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-7-1-at-b)"/>
-  <text x="362" y="108" font-size="13.5" font-style="italic" fill="#57534e">one run, many operations</text>
+  <!-- RUN (blue, prominent) -->
+  <rect x="270" y="42" width="160" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
+  <text x="350" y="74" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RUN</text>
+  <line x1="350" y1="92" x2="350" y2="122" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-2-7-1-at-b)"/>
+  <text x="362" y="112" font-size="13" font-style="italic" fill="#57534e">one run, many operations</text>
 
-  <!-- operation (blue) -->
-  <rect x="265" y="118" width="170" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="350" y="147" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">operation</text>
-
-  <!-- operation -> selected events bus -->
-  <line x1="350" y1="164" x2="350" y2="190" stroke="#2f5169" stroke-width="2.2"/>
-  <line x1="155" y1="190" x2="545" y2="190" stroke="#2f5169" stroke-width="2.2"/>
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-7-1-at-b)">
-    <path d="M155,190 L155,214"/>
-    <path d="M285,190 L285,214"/>
-    <path d="M415,190 L415,214"/>
-    <path d="M545,190 L545,214"/>
+  <!-- OPERATION* with its recorded fields (the heart of the model) -->
+  <rect x="150" y="124" width="400" height="118" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="350" y="153" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">OPERATION*</text>
+  <text x="350" y="173" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">each records</text>
+  <g fill="#fbfdff" stroke="#2f5169" stroke-width="1.8">
+    <rect x="170" y="184" width="86" height="42" rx="8"/>
+    <rect x="266" y="184" width="98" height="42" rx="8"/>
+    <rect x="374" y="184" width="70" height="42" rx="8"/>
+    <rect x="454" y="184" width="76" height="42" rx="8"/>
+  </g>
+  <g font-size="14.5" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <text x="213" y="210">target</text>
+    <text x="315" y="210">mutation</text>
+    <text x="409" y="210">pass</text>
+    <text x="492" y="210">evidence</text>
   </g>
 
-  <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
-    <rect x="100" y="216" width="110" height="42" rx="9"/>
-    <rect x="230" y="216" width="110" height="42" rx="9"/>
-    <rect x="360" y="216" width="110" height="42" rx="9"/>
-    <rect x="490" y="216" width="110" height="42" rx="9"/>
-  </g>
-  <text x="155" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">target</text>
-  <text x="285" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">mutation</text>
-  <text x="415" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">pass</text>
-  <text x="545" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">evidence</text>
-
-  <!-- derive divider -->
-  <line x1="350" y1="258" x2="350" y2="300" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-7-1-at-k)"/>
-  <text x="362" y="284" font-size="14.5" font-weight="700" fill="#1c1917">record once; derive the explanations</text>
-
-  <!-- derived views (gray) -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-7-1-at-k)">
-    <path d="M330,300 C300,320 250,326 230,344"/>
-    <path d="M370,300 C400,320 450,326 470,344"/>
-  </g>
-
-  <rect x="120" y="346" width="220" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="230" y="378" text-anchor="middle" font-size="16" fill="#1c1917">engineering audit</text>
-
-  <rect x="360" y="346" width="220" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="470" y="378" text-anchor="middle" font-size="16" fill="#1c1917">customer changelog</text>
+  <!-- secondary derived-uses tail (small, gray) -->
+  <line x1="350" y1="242" x2="350" y2="278" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-2-7-1-at-k)"/>
+  <text x="362" y="266" font-size="12.5" font-style="italic" fill="#57534e">derived uses (secondary)</text>
+  <rect x="215" y="280" width="270" height="42" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <text x="350" y="306" text-anchor="middle" font-size="14.5" fill="#1c1917">audit &#183; debugging &#183; changelog</text>
 
   <!-- footer: protect the point -->
-  <text x="350" y="434" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">A human-facing explanation is derived from the structured record,</text>
-  <text x="350" y="458" text-anchor="middle" font-size="15.5" font-style="italic" fill="#9a3f12">not maintained as a separate account of the same action.</text>
-</svg><figcaption data-short="DocAble&#x27;s attribution model"><span class="fig-label">Figure 2.7-1.</span> <em>DocAble's attribution model.</em> A run is made of operations; each operation names its target, its mutation, the pass responsible, and the evidence it left. The model records the events that matter to explanation and audit, not every function call.</figcaption></figure><p class="gallery-source">From <a href="2.7-provenance.html#fig-2-7-1">11 · Provenance Models: What Happened?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-7-2-fig-2-7-2" class="book-figure" data-label="provenance-record-vs-views"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420"
-     role="img" aria-labelledby="fig-2-7-2-pvTitle fig-2-7-2-pvDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-7-2-pvTitle">A provenance model separates the recorded action from the views derived from it</title>
-  <desc id="fig-2-7-2-pvDesc">On the left, the model path in blue: an action flows into a provenance model, from which
-    audit, debugging, and changelog views are derived. On the right, the forbidden path in rust: writing an
-    audit story and a changelog story straight from the action as separate accounts, marked not-legal. One
-    record, many derived views, versus several separately-maintained stories that drift.</desc>
-
-  <defs>
-    <marker id="fig-2-7-2-pv-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="fig-2-7-2-pv-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <!-- divider -->
-  <line x1="470" y1="56" x2="470" y2="336" stroke="#d9d3c8" stroke-width="1.6"/>
-
-  <!-- ===== LEFT: record-once model ===== -->
-  <text x="230" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">RECORD ONCE, DERIVE VIEWS</text>
-  <rect x="150" y="60" width="160" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="230" y="89" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">ACTION</text>
-  <line x1="230" y1="106" x2="230" y2="132" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-7-2-pv-b)"/>
-  <rect x="120" y="134" width="220" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="230" y="166" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">PROVENANCE MODEL</text>
-  <!-- fan to three views -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-7-2-pv-b)">
-    <path d="M170,186 C130,214 105,220 100,244"/>
-    <path d="M230,186 L230,244"/>
-    <path d="M290,186 C330,214 355,220 360,244"/>
-  </g>
-  <g font-size="14.5" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="40" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="100" y="273">audit</text>
-    <rect x="170" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="230" y="273">debugging</text>
-    <rect x="300" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="360" y="273">changelog</text>
-  </g>
-  <text x="230" y="316" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">derived views of one shared history</text>
-
-  <!-- ===== RIGHT: the forbidden shortcut ===== -->
-  <text x="685" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#9a3f12">NOT: ACTION &#8594; STORY</text>
-  <rect x="605" y="60" width="160" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="685" y="89" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">ACTION</text>
-  <!-- direct rust arrows to separate stories -->
-  <path d="M640,106 C580,150 560,200 560,244" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#fig-2-7-2-pv-r)"/>
-  <path d="M730,106 C800,150 820,200 820,244" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#fig-2-7-2-pv-r)"/>
-  <!-- X on the shortcut -->
-  <g stroke="#9a3f12" stroke-width="3.4" stroke-linecap="round">
-    <line x1="674" y1="150" x2="696" y2="172"/>
-    <line x1="696" y1="150" x2="674" y2="172"/>
-  </g>
-  <g font-size="14" font-weight="700" text-anchor="middle" fill="#9a3f12">
-    <rect x="500" y="246" width="120" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-    <text x="560" y="266">audit</text>
-    <text x="560" y="283">story</text>
-    <rect x="760" y="246" width="120" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-    <text x="820" y="266">changelog</text>
-    <text x="820" y="283">story</text>
-  </g>
-  <text x="685" y="316" text-anchor="middle" font-size="13.5" font-style="italic" fill="#9a3f12">separately-maintained accounts drift apart</text>
-
-  <!-- footer: protect the point -->
-  <text x="450" y="378" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">One structured history, many explanations derived from it &#8212; not several stories of the same action.</text>
-</svg><figcaption data-short="A provenance model provides one structured history from which several…"><span class="fig-label">Figure 2.7-2.</span> A provenance model provides one structured history from which several explanations — engineering audit, debugging, customer changelog — are derived, rather than separately maintained accounts of the same action. The forbidden shape is an action wired straight to a hand-written story.</figcaption></figure><p class="gallery-source">From <a href="2.7-provenance.html#fig-2-7-2">11 · Provenance Models: What Happened?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-1-fig-2-8-1" class="book-figure" data-label="modeling-substrate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440"
+  <text x="350" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">The structured record is the model; audit, debugging, and changelog</text>
+  <text x="350" y="376" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">are derived from it, not maintained apart.</text>
+</svg><figcaption data-short="Attribution provenance model"><span class="fig-label">Figure 2.7-1.</span> <em>Attribution provenance model.</em> A run contains consequential operations; each operation records its target, mutation, responsible pass, and retained evidence. Audit and explanation can be derived from this shared history.</figcaption></figure><p class="gallery-source">From <a href="2.7-provenance.html#fig-2-7-1">11 · Provenance Models: What Happened, and What Evidence Records It?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-1-fig-2-8-1" class="book-figure" data-label="modeling-substrate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 580"
      role="img" aria-labelledby="fig-2-8-1-mbTitle fig-2-8-1-mbDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-8-1-mbTitle">DocAble's layered modeling substrate: typed models joined by shared identity</title>
-  <desc id="fig-2-8-1-mbDesc">Six heterogeneous typed models — structural registries, behavioral models, decision and
-    contract models above; ownership views, measurement models, and provenance models below — are joined
-    through a shared spine of identities, traceability, and query surfaces. They are not collapsed into one
-    universal representation. The unity is semantic, not syntactic.</desc>
+  <title id="fig-2-8-1-mbTitle">Heterogeneous models arranged as peers around shared identities</title>
+  <desc id="fig-2-8-1-mbDesc">A radial arrangement. At the center sit shared identities. Six purpose models —
+    structural, behavioral, ownership, decision, measurement, and provenance — are peers around the center,
+    each joined to it. No model sits above another. Traceability, derivation, and query surfaces surround
+    them in a footer band, not inside the identity center. The unity is semantic, not a hierarchy.</desc>
 
-  <defs>
-    <marker id="fig-2-8-1-mb-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-  </defs>
+  <text x="380" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCABLE MODELING SUBSTRATE &#183; SIX PEER MODELS</text>
 
-  <text x="380" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCABLE MODELING SUBSTRATE</text>
-
-  <!-- top row of models (blue) -->
-  <g fill="#e7edf3" stroke="#2f5169" stroke-width="2.2">
-    <rect x="60" y="44" width="200" height="72" rx="10"/>
-    <rect x="280" y="44" width="200" height="72" rx="10"/>
-    <rect x="500" y="44" width="200" height="72" rx="10"/>
-  </g>
-  <text x="160" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">structural</text>
-  <text x="160" y="99" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">registries</text>
-  <text x="380" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">behavioral</text>
-  <text x="380" y="99" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">models</text>
-  <text x="600" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">decision /</text>
-  <text x="600" y="99" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">contract</text>
-
-  <!-- top -> spine -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-1-mb-k)">
-    <path d="M160,116 L160,180"/>
-    <path d="M380,116 L380,180"/>
-    <path d="M600,116 L600,180"/>
+  <!-- spokes: center to each peer (drawn first, under the boxes) -->
+  <g stroke="#57534e" stroke-width="2" opacity="0.75">
+    <line x1="380" y1="290" x2="380" y2="140"/>
+    <line x1="380" y1="290" x2="549" y2="200"/>
+    <line x1="380" y1="290" x2="549" y2="380"/>
+    <line x1="380" y1="290" x2="380" y2="440"/>
+    <line x1="380" y1="290" x2="211" y2="380"/>
+    <line x1="380" y1="290" x2="211" y2="200"/>
   </g>
 
-  <!-- shared spine (gray) -->
-  <rect x="90" y="182" width="580" height="66" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
-  <text x="380" y="210" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">shared identities &#183; traceability &#183; query surfaces</text>
-  <text x="380" y="232" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the unity is semantic, not syntactic</text>
+  <!-- center: SHARED IDENTITIES (gray) -->
+  <ellipse cx="380" cy="290" rx="104" ry="52" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
+  <text x="380" y="285" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">SHARED</text>
+  <text x="380" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">IDENTITIES</text>
 
-  <!-- spine -> bottom -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-1-mb-k)">
-    <path d="M160,248 L160,312"/>
-    <path d="M380,248 L380,312"/>
-    <path d="M600,248 L600,312"/>
+  <!-- six peer models (blue) -->
+  <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <!-- top -->
+    <rect x="305" y="86" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="380" y="118">structural</text>
+    <!-- upper-right -->
+    <rect x="474" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="549" y="206">behavioral</text>
+    <!-- lower-right -->
+    <rect x="474" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="549" y="386">ownership</text>
+    <!-- bottom -->
+    <rect x="305" y="442" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="380" y="474">decision</text>
+    <!-- lower-left -->
+    <rect x="136" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="211" y="386">measurement</text>
+    <!-- upper-left -->
+    <rect x="136" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="211" y="206">provenance</text>
   </g>
 
-  <!-- bottom row of models (blue) -->
-  <g fill="#e7edf3" stroke="#2f5169" stroke-width="2.2">
-    <rect x="60" y="314" width="200" height="72" rx="10"/>
-    <rect x="280" y="314" width="200" height="72" rx="10"/>
-    <rect x="500" y="314" width="200" height="72" rx="10"/>
-  </g>
-  <text x="160" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">ownership</text>
-  <text x="160" y="369" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">views</text>
-  <text x="380" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">measurement</text>
-  <text x="380" y="369" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">models</text>
-  <text x="600" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">provenance</text>
-  <text x="600" y="369" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">models</text>
+  <!-- surrounding band: traceability / derivation / query surfaces (NOT in the identity box) -->
+  <rect x="90" y="516" width="580" height="34" rx="12" fill="none" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <text x="380" y="538" text-anchor="middle" font-size="14.5" font-weight="700" fill="#57534e">traceability &#183; derivation &#183; query surfaces</text>
 
   <!-- footer: protect the point -->
-  <text x="380" y="420" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Heterogeneous typed models joined by shared identity &#8212; not collapsed into one universal graph.</text>
-</svg><figcaption data-short="The DocAble modeling substrate"><span class="fig-label">Figure 2.8-1.</span> The DocAble modeling substrate: heterogeneous structured models — structural registries, behavioral models, decision contracts, ownership views, measurement and provenance models — connected through shared identities, traceability, and query surfaces rather than fused into one representation.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-1">12 · System Knowledge: Models as a System</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-2-fig-2-8-2" class="book-figure" data-label="substrate-traversal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 500"
+  <text x="380" y="570" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Six peer models joined through shared identities &#8212; no tiers, no single universal graph.</text>
+</svg><figcaption data-short="Heterogeneous models over shared identities"><span class="fig-label">Figure 2.8-1.</span> <em>Heterogeneous models over shared identities.</em> Structural, behavioral, ownership, decision, measurement, and provenance models remain separate representations while joining through stable identities and explicit correspondence where needed.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-1">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-2-fig-2-8-2" class="book-figure" data-label="substrate-traversal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560"
      role="img" aria-labelledby="fig-2-8-2-stTitle fig-2-8-2-stDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-8-2-stTitle">A task traverses the substrate from a named entity to the models it needs</title>
-  <desc id="fig-2-8-2-stDesc">A task names a system entity — a gray identity handle. From it a first tier of blue models
-    fans out: structure, behavior, ownership. Following the relations those expose reaches a second tier:
-    decision, measurement, provenance. The task assembles the slice it needs by traversal from a shared
-    identity, not by loading one universal graph.</desc>
+  <title id="fig-2-8-2-stTitle">Task-driven traversal: enter at a named entity, follow only the relations needed</title>
+  <desc id="fig-2-8-2-stDesc">A task enters the substrate through a named system entity, shown by an arrow into the
+    entity. From the entity, six model relations fan outward as peers: structural, behavioral, decision,
+    measurement, provenance, and ownership. There is no order among them. The task retrieves only the
+    relations its engineering question requires.</desc>
 
   <defs>
     <marker id="fig-2-8-2-st-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
@@ -2659,113 +2550,135 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- TASK -->
-  <rect x="330" y="26" width="160" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="410" y="55" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
-  <line x1="410" y1="72" x2="410" y2="98" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-2-st-k)"/>
+  <!-- TASK enters INTO the entity -->
+  <rect x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="410" y="52" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
+  <line x1="410" y1="68" x2="410" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-2-8-2-st-k)"/>
+  <text x="422" y="160" font-size="12.5" font-style="italic" fill="#57534e">enters at a named entity</text>
 
-  <!-- named system entity (gray identity) -->
-  <rect x="290" y="100" width="240" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
-  <text x="410" y="132" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">named system entity</text>
-
-  <!-- fan to first tier (blue) -->
+  <!-- spokes: entity to the six relations (drawn under the boxes) -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-8-2-st-b)">
-    <path d="M330,146 C230,172 175,178 150,204"/>
-    <path d="M410,152 L410,204"/>
-    <path d="M490,146 C590,172 645,178 670,204"/>
-  </g>
-  <g font-size="15.5" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="55" y="206" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="150" y="236">structure</text>
-    <rect x="315" y="206" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="410" y="236">behavior</text>
-    <rect x="575" y="206" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="670" y="236">ownership</text>
+    <path d="M470,272 C520,244 560,222 588,206"/>          <!-- to right (0deg) -->
+    <path d="M460,258 C500,210 505,170 508,145"/>          <!-- to upper-right (60deg) -->
+    <path d="M360,258 C320,210 315,170 312,145"/>          <!-- to upper-left (120deg) -->
+    <path d="M350,272 C300,244 260,222 232,206"/>          <!-- to left (180deg) -->
+    <path d="M360,322 C320,370 315,410 312,437"/>          <!-- to lower-left (240deg) -->
+    <path d="M460,322 C500,370 505,410 508,437"/>          <!-- to lower-right (300deg) -->
   </g>
 
-  <!-- converge to "follow relations" -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-2-st-k)">
-    <path d="M150,254 C175,286 340,296 350,312"/>
-    <path d="M410,254 L410,312"/>
-    <path d="M670,254 C645,286 480,296 470,312"/>
-  </g>
-  <rect x="300" y="314" width="220" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="410" y="342" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">follow relations</text>
+  <!-- named ENTITY (gray identity, center) -->
+  <rect x="315" y="255" width="190" height="72" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
+  <text x="410" y="288" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">named ENTITY</text>
+  <text x="410" y="310" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">e.g. a job, a service</text>
 
-  <!-- fan to second tier (blue) -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-8-2-st-b)">
-    <path d="M340,358 C230,384 175,390 150,414"/>
-    <path d="M410,358 L410,414"/>
-    <path d="M480,358 C590,384 645,390 670,414"/>
-  </g>
-  <g font-size="15.5" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="55" y="416" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="150" y="446">decision</text>
-    <rect x="315" y="416" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="410" y="446">measurement</text>
-    <rect x="575" y="416" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="670" y="446">provenance</text>
+  <!-- six relation boxes (blue peers) -->
+  <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <rect x="535" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="610" y="211">decision</text>
+    <rect x="435" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="510" y="126">behavioral</text>
+    <rect x="235" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="310" y="126">structural</text>
+    <rect x="135" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="210" y="211">ownership</text>
+    <rect x="235" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="310" y="468">provenance</text>
+    <rect x="435" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="510" y="468">measurement</text>
   </g>
 
   <!-- footer: protect the point -->
-  <text x="410" y="488" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">A task assembles the slice it needs by traversal from a named entity &#8212; not by loading one universal graph.</text>
-</svg><figcaption data-short="Task-driven traversal"><span class="fig-label">Figure 2.8-2.</span> Task-driven traversal: entering the substrate at the entity a task names, then following shared identities outward into structure, behavior, ownership, and onward to decision, measurement, and provenance — retrieving only the connected slice the question requires.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-2">12 · System Knowledge: Models as a System</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-3-fig-2-8-3" class="book-figure" data-label="purpose-perp-shape"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360"
+  <text x="410" y="524" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1c1917">Retrieve only the relations needed for the current question.</text>
+  <text x="410" y="546" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">No order among the six &#8212; enter at the entity, follow what the question needs.</text>
+</svg><figcaption data-short="Task-driven traversal"><span class="fig-label">Figure 2.8-2.</span> <em>Task-driven traversal.</em> A task enters the substrate through a named system entity and follows only the model relations required by its engineering question.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-2">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-3-fig-2-8-3" class="book-figure" data-label="purpose-perp-shape"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480"
      role="img" aria-labelledby="fig-2-8-3-ppTitle fig-2-8-3-ppDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-8-3-ppTitle">Purpose is perpendicular to representation shape: a many-to-many relation</title>
-  <desc id="fig-2-8-3-ppDesc">Two orthogonal axes. The gray representation-shape axis on top — registry, state machine,
-    contract. The blue purpose axis on the bottom — structure, behavior, decision, ownership. Crossing lines
-    connect them many-to-many: one purpose can use several shapes, one shape can serve several purposes. What
-    a model is for is chosen independently of the form used to encode it.</desc>
+  <title id="fig-2-8-3-ppTitle">Model purpose and representation form are independent: a sample pairing matrix</title>
+  <desc id="fig-2-8-3-ppDesc">A matrix. Rows are six example model purposes: structural, behavioral, ownership,
+    decision, measurement, provenance. Columns are example representation forms: registry, state machine,
+    contract, table, quantitative. A filled blue dot marks a sample pairing. Structural pairs with
+    registry; behavioral with state machine; ownership with registry, state machine, and contract; decision
+    with registry and table; measurement with registry and quantitative; provenance with registry and
+    contract. One purpose can use several forms; one form can serve several purposes.</desc>
 
-  <!-- top axis: REPRESENTATION SHAPE (gray) -->
-  <text x="450" y="38" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">REPRESENTATION SHAPE &#183; how it is encoded</text>
-  <g font-size="15.5" font-weight="700" text-anchor="middle" fill="#57534e">
-    <rect x="150" y="54" width="180" height="48" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-    <text x="240" y="84">registry</text>
-    <rect x="360" y="54" width="180" height="48" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-    <text x="450" y="84">state machine</text>
-    <rect x="570" y="54" width="180" height="48" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-    <text x="660" y="84">contract</text>
+  <text x="450" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">Purpose and representation form are independent</text>
+
+  <!-- axis titles -->
+  <text x="540" y="70" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
+  <text x="34" y="290" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#2f5169" transform="rotate(-90 34 290)">MODEL PURPOSES (examples)</text>
+
+  <!-- column headers -->
+  <g font-size="14" font-weight="700" fill="#57534e" text-anchor="middle">
+    <text x="276" y="112">registry</text>
+    <text x="408" y="105">state</text>
+    <text x="408" y="122">machine</text>
+    <text x="540" y="112">contract</text>
+    <text x="672" y="112">table</text>
+    <text x="804" y="112">quantitative</text>
   </g>
 
-  <!-- crossing many-to-many links -->
-  <g stroke="#9a3f12" stroke-width="1.7" opacity="0.85">
-    <line x1="240" y1="102" x2="150" y2="232"/>
-    <line x1="240" y1="102" x2="360" y2="232"/>
-    <line x1="450" y1="102" x2="360" y2="232"/>
-    <line x1="450" y1="102" x2="560" y2="232"/>
-    <line x1="450" y1="102" x2="150" y2="232"/>
-    <line x1="660" y1="102" x2="560" y2="232"/>
-    <line x1="660" y1="102" x2="760" y2="232"/>
-    <line x1="240" y1="102" x2="560" y2="232"/>
+  <!-- grid -->
+  <g stroke="#d9d3c8" stroke-width="1.4">
+    <!-- verticals at column boundaries -->
+    <line x1="210" y1="140" x2="210" y2="440"/>
+    <line x1="342" y1="140" x2="342" y2="440"/>
+    <line x1="474" y1="140" x2="474" y2="440"/>
+    <line x1="606" y1="140" x2="606" y2="440"/>
+    <line x1="738" y1="140" x2="738" y2="440"/>
+    <line x1="870" y1="140" x2="870" y2="440"/>
+    <!-- horizontals at row boundaries -->
+    <line x1="60" y1="140" x2="870" y2="140"/>
+    <line x1="60" y1="190" x2="870" y2="190"/>
+    <line x1="60" y1="240" x2="870" y2="240"/>
+    <line x1="60" y1="290" x2="870" y2="290"/>
+    <line x1="60" y1="340" x2="870" y2="340"/>
+    <line x1="60" y1="390" x2="870" y2="390"/>
+    <line x1="60" y1="440" x2="870" y2="440"/>
+    <!-- left edge of purpose-label column -->
+    <line x1="60" y1="140" x2="60" y2="440"/>
   </g>
-  <text x="792" y="170" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">many-to-many</text>
 
-  <!-- bottom axis: PURPOSE (blue) -->
-  <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="65" y="234" width="170" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="150" y="264">structure</text>
-    <rect x="275" y="234" width="170" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="360" y="264">behavior</text>
-    <rect x="475" y="234" width="170" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="560" y="264">decision</text>
-    <rect x="675" y="234" width="170" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="760" y="264">ownership</text>
+  <!-- row (purpose) labels -->
+  <g font-size="15" font-weight="700" fill="#2f5169" text-anchor="end">
+    <text x="200" y="170">structural</text>
+    <text x="200" y="220">behavioral</text>
+    <text x="200" y="270">ownership</text>
+    <text x="200" y="320">decision</text>
+    <text x="200" y="370">measurement</text>
+    <text x="200" y="420">provenance</text>
   </g>
-  <text x="450" y="304" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">PURPOSE &#183; what it answers</text>
+
+  <!-- sample-pairing dots (row centers: 165,215,265,315,365,415; col centers: 276,408,540,672,804) -->
+  <g fill="#2f5169">
+    <!-- structural: registry -->
+    <circle cx="276" cy="165" r="8"/>
+    <!-- behavioral: state machine -->
+    <circle cx="408" cy="215" r="8"/>
+    <!-- ownership: registry, state machine, contract -->
+    <circle cx="276" cy="265" r="8"/>
+    <circle cx="408" cy="265" r="8"/>
+    <circle cx="540" cy="265" r="8"/>
+    <!-- decision: registry, table -->
+    <circle cx="276" cy="315" r="8"/>
+    <circle cx="672" cy="315" r="8"/>
+    <!-- measurement: registry, quantitative -->
+    <circle cx="276" cy="365" r="8"/>
+    <circle cx="804" cy="365" r="8"/>
+    <!-- provenance: registry, contract -->
+    <circle cx="276" cy="415" r="8"/>
+    <circle cx="540" cy="415" r="8"/>
+  </g>
 
   <!-- footer: protect the point -->
-  <text x="450" y="342" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">What a model is for is chosen independently of the shape used to encode it.</text>
-</svg><figcaption data-short="Purpose and representation shape are orthogonal axes"><span class="fig-label">Figure 2.8-3.</span> Purpose and representation shape are orthogonal axes: one engineering purpose can be served by several notations, and one notation can serve several purposes. The shape is chosen to fit the question, not the reverse.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-3">12 · System Knowledge: Models as a System</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-4-fig-2-8-4" class="book-figure" data-label="derive-generate-trace"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300"
+  <text x="450" y="470" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">Both axes are examples. &#9679; marks a sample pairing &#8212; one purpose, several forms; one form, several purposes.</text>
+</svg><figcaption data-short="Purpose and representation form are independent"><span class="fig-label">Figure 2.8-3.</span> <em>Purpose and representation form are independent.</em> A model class identifies the engineering question; several representation forms may serve that purpose, and one form may serve several purposes.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-3">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-4-fig-2-8-4" class="book-figure" data-label="derive-generate-trace"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300"
      role="img" aria-labelledby="fig-2-8-4-dgTitle fig-2-8-4-dgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-8-4-dgTitle">Derive, generate, trace: three relations between a model and the territory</title>
+  <title id="fig-2-8-4-dgTitle">Three correspondence patterns: derive, generate, trace and check</title>
   <desc id="fig-2-8-4-dgDesc">Three panels. Derive: implementation in gray flows up to a model in blue, when the
-    implementation is the source of truth. Generate: a model in blue projects down to implementation or
-    configuration in gray, when the model is authoritative. Trace: a model and territory are linked two-ways
-    with a rust drift-check, when neither can be fully derived from the other, checking only the predicates
-    that are mechanically decidable.</desc>
+    implementation is authoritative. Generate: a model in blue projects down to implementation or config in
+    gray, when the model is authoritative. Trace and check: a model and system are linked two ways with a
+    rust check, when neither derives the other; only the decidable correspondences are checked.</desc>
 
   <defs>
     <marker id="fig-2-8-4-dg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
@@ -2785,7 +2698,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- ===== Panel 1: DERIVE ===== -->
   <text x="160" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">DERIVE</text>
-  <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation is source of truth</text>
+  <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation authoritative</text>
   <rect x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="160" y="219" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">implementation</text>
   <line x1="160" y1="188" x2="160" y2="128" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-2-8-4-dg-b)"/>
@@ -2795,7 +2708,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- ===== Panel 2: GENERATE ===== -->
   <text x="480" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">GENERATE</text>
-  <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model is authoritative</text>
+  <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model authoritative</text>
   <rect x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="480" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
   <line x1="480" y1="128" x2="480" y2="188" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-2-8-4-dg-k)"/>
@@ -2803,296 +2716,184 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="375" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="219" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">implementation / config</text>
 
-  <!-- ===== Panel 3: TRACE ===== -->
-  <text x="800" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE</text>
-  <text x="800" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">neither fully derives the other</text>
+  <!-- ===== Panel 3: TRACE + CHECK ===== -->
+  <text x="800" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE + CHECK</text>
+  <text x="800" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">neither derives the other</text>
   <rect x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="800" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
-  <!-- two-way link with rust drift check -->
+  <!-- two-way link with rust decidable check -->
   <line x1="800" y1="136" x2="800" y2="180" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#fig-2-8-4-dg-r)" marker-end="url(#fig-2-8-4-dg-r)"/>
-  <text x="812" y="163" font-size="13" font-weight="700" fill="#9a3f12">drift check</text>
+  <text x="812" y="163" font-size="12.5" font-weight="700" fill="#9a3f12">check (decidable)</text>
   <rect x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="800" y="211" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">territory</text>
+  <text x="800" y="211" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">system</text>
 
   <!-- footer: protect the point -->
-  <text x="480" y="284" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Derive where the code leads, generate where the model leads, trace-and-check where neither fully derives the other.</text>
-</svg><figcaption data-short="Three ways to keep map and territory equal, chosen by which side is…"><span class="fig-label">Figure 2.8-4.</span> Three ways to keep map and territory equal, chosen by which side is authoritative: derive the model where the implementation leads, generate the artifact where the model leads, and where neither fully derives the other, hold traceability and check the decidable predicates.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-4">12 · System Knowledge: Models as a System</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-5-fig-2-8-5" class="book-figure" data-label="model-sync-two-layer-net"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640"
-     role="group" aria-labelledby="fig-2-8-5-msTitle fig-2-8-5-msDesc"
+  <text x="480" y="284" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Three correspondence patterns &#8212; derive where implementation leads, generate where the model leads, trace and check where neither does.</text>
+</svg><figcaption data-short="Three correspondence patterns"><span class="fig-label">Figure 2.8-4.</span> <em>Three correspondence patterns.</em> Derive where implementation is authoritative; generate where the model is authoritative; otherwise maintain traceability and check the correspondences that are decidable.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-4">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-5-fig-2-8-5" class="book-figure" data-label="model-sync-two-layer-net"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420"
+     role="img" aria-labelledby="fig-2-8-5-msTitle fig-2-8-5-msDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-8-5-msTitle">The two-layer net: modeled surface, two coverage layers, two uncovered regions, two backstops</title>
-  <desc id="fig-2-8-5-msDesc">A horizontal band is the modeled surface, the slice of code a model claims to
-    represent. Two coverage layers sit over it: a mechanical layer of derived checks, drawn solid green,
-    that resolves each model anchor against a live symbol and holds; and above it a judgment layer,
-    dashed blue, a person or another probabilistic reasoner checking prose the checks cannot parse. The
-    judgment layer covers the modeled-and-decidable zone but has a gap over a second zone, the semantic
-    mismatch, where the anchor still resolves but the meaning drifted, so a drift escapes the review pass.
-    To the right lies the unmodeled surface, a dashed red band no anchor reaches and no layer covers,
-    where a drift escapes unopposed. Below sit two backstops that turn “someone happens to notice”
-    into machinery: a missing-model metric that measures the unmodeled region, and a
-    failures-become-controls loop that closes it by extending the mechanical layer into the formerly
-    unmodeled zone, drawn as a dashed green extension. Read the net as coverage, not a guarantee.</desc>
+  <title id="fig-2-8-5-msTitle">Coverage of model correspondence: modeled surface and unmodeled surface</title>
+  <desc id="fig-2-8-5-msDesc">Two surfaces. The modeled surface splits into decidable claims, which get a mechanical
+    check, and semantic claims, which need judgment. The unmodeled surface has no model-based coverage. A
+    small arrow notes that a recurring miss should refine the representation or a control.</desc>
 
   <defs>
-    <marker id="fig-2-8-5-ms-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
-    </marker>
-    <marker id="fig-2-8-5-ms-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f6fae"/>
-    </marker>
-    <marker id="fig-2-8-5-ms-grn" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
-    </marker>
-  </defs>
-
-  <text x="490" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">The two-layer net</text>
-  <text x="490" y="58" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">read the net as coverage, not a guarantee</text>
-
-  <!-- ===== judgment layer — the review pass (covers the decidable zone; a GAP over the mismatch) ===== -->
-  <text x="70" y="300" font-size="15" font-weight="700" fill="#2f5169">judgment layer — human / probabilistic review</text>
-  <line x1="60" y1="326" x2="310" y2="326" stroke="#2f5169" stroke-width="4" stroke-dasharray="10 6"/>
-  <text x="360" y="322" font-size="14" font-style="italic" fill="#b23b3b">gap — meaning slips through</text>
-
-  <!-- ===== mechanical layer — the derived floor (covers both modeled zones) ===== -->
-  <rect x="60" y="356" width="540" height="30" rx="4" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="3"/>
-  <text x="300" y="376" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">mechanical layer — derived checks (holds)</text>
-  <!-- extension of the layer into the unmodeled zone, added by a control -->
-  <rect x="630" y="356" width="200" height="30" rx="4" fill="none" stroke="#1f7a4d" stroke-width="3" stroke-dasharray="6 6"/>
-  <text x="730" y="376" text-anchor="middle" font-size="13" font-style="italic" fill="#1f7a4d">extended by a new control</text>
-
-  <!-- ===== the surface bands ===== -->
-  <rect x="50" y="440" width="560" height="66" rx="6" fill="#f3efe7" stroke="#57534e" stroke-width="2"/>
-  <text x="330" y="470" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">THE MODELED SURFACE</text>
-  <text x="330" y="492" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the slice of code a model claims to represent</text>
-
-  <rect x="630" y="440" width="300" height="66" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="2" stroke-dasharray="7 5"/>
-  <text x="780" y="470" text-anchor="middle" font-size="16" font-weight="700" fill="#b23b3b">THE UNMODELED SURFACE</text>
-  <text x="780" y="492" text-anchor="middle" font-size="14" font-style="italic" fill="#b23b3b">no anchor reaches it</text>
-
-  <!-- zone sublabels -->
-  <text x="190" y="532" text-anchor="middle" font-size="15" font-weight="700" fill="#1f7a4d">modeled &amp; decidable</text>
-  <text x="470" y="532" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">semantic mismatch</text>
-  <text x="470" y="551" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">anchor resolves, meaning drifted</text>
-
-  <!-- ===== the two escapes (one per uncovered region) ===== -->
-  <line x1="590" y1="438" x2="590" y2="302" stroke="#b23b3b" stroke-width="2.5" stroke-dasharray="3 3" marker-end="url(#fig-2-8-5-ms-red)"/>
-  <text x="590" y="292" text-anchor="middle" font-size="14" font-weight="700" fill="#b23b3b">escapes — judgment miss</text>
-
-  <line x1="880" y1="438" x2="880" y2="356" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#fig-2-8-5-ms-red)"/>
-  <text x="880" y="348" text-anchor="middle" font-size="14" font-weight="700" fill="#b23b3b">escapes — unmodeled</text>
-
-  <!-- ===== the two backstops ===== -->
-  <rect x="360" y="566" width="260" height="58" rx="8" fill="#eef4fb" stroke="#1f6fae" stroke-width="2"/>
-  <text x="490" y="591" text-anchor="middle" font-size="16" font-weight="700" fill="#1f6fae">missing-model metric</text>
-  <text x="490" y="612" text-anchor="middle" font-size="13" fill="#57534e">measures the unmodeled region</text>
-  <path d="M600,566 C622,540 634,522 648,510" fill="none" stroke="#1f6fae" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#fig-2-8-5-ms-blue)"/>
-
-  <rect x="670" y="566" width="260" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="800" y="591" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">failures &#8594; controls loop</text>
-  <text x="800" y="612" text-anchor="middle" font-size="13" fill="#57534e">closes it — extends the net</text>
-  <!-- routed out to the right margin (clear of the UNMODELED-surface box) before hooking into the extension -->
-  <path d="M905,566 C970,545 970,455 940,432 C900,405 866,395 830,388" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#fig-2-8-5-ms-grn)"/>
-</svg><figcaption data-short="Figure 2.8-1"><span class="fig-label">Figure 2.8-5.</span> <strong>Figure 2.8-1: The two-layer net.</strong> Mechanical checks cover the modeled-and-decidable surface; judgment covers the semantics the representation does not yet make checkable. A semantic miss can slip through the first layer; an unmodeled property has no coverage at all. Read the net as coverage, not a guarantee.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-5">12 · System Knowledge: Models as a System</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-6-fig-2-8-6" class="book-figure" data-label="coherence-triangle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660"
-     role="group" aria-labelledby="fig-2-8-6-ctTitle fig-2-8-6-ctDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-8-6-ctTitle">The coherence triangle — model, invariants, invariant checker</title>
-  <desc id="fig-2-8-6-ctDesc">Three nodes in a triangle. At the apex sit the invariants: predicates that
-    must hold, each named by a stable id, with the sample predicate “not(leased and free)”. At the
-    bottom left sits the structured model — records, edges, state machines, with the neutral example of a
-    job that is free, leased, or done. At the bottom right sits the invariant checker — a drift lint or
-    model check that checks the predicates at build time. An arrow from the model to the invariants is
-    labelled “declares”; an arrow from the invariants to the checker is labelled “checked by”. Inside the
-    triangle, a boundary caption states the operational meaning the metaphor names: an executable model
-    equals its schema plus its checked predicates. A third, dashed accent-coloured arc closes the figure
-    from the checker back to the model as a provenance annotation, not a structural edge: each gap the
-    fleet found was a violated-but-unstated invariant — where the invariants came from, empirically.</desc>
-
-  <defs>
-    <marker id="fig-2-8-6-tri-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-    <marker id="fig-2-8-6-tri-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <!-- ===== apex: the invariants ===== -->
-  <rect x="340" y="40" width="320" height="160" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="500" y="86" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Invariants</text>
-  <text x="500" y="116" text-anchor="middle" font-size="18" fill="#57534e">predicates with stable ids</text>
-  <rect x="380" y="134" width="240" height="40" rx="6" fill="#f3efe7" stroke="#9a3f12" stroke-width="1"/>
-  <text x="500" y="160" text-anchor="middle" font-size="16" fill="#9a3f12">not(leased and free)</text>
-
-  <!-- ===== bottom-left: the structured model ===== -->
-  <rect x="60" y="450" width="320" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="220" y="498" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Structured model</text>
-  <text x="220" y="528" text-anchor="middle" font-size="18" fill="#57534e">records, edges, states</text>
-  <text x="220" y="556" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a job: free / leased / done</text>
-
-  <!-- ===== bottom-right: the invariant checker ===== -->
-  <rect x="620" y="450" width="320" height="150" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="780" y="498" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Invariant checker</text>
-  <text x="780" y="528" text-anchor="middle" font-size="18" fill="#57534e">checks them at build time</text>
-  <text x="780" y="556" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a drift lint or model check</text>
-
-  <!-- ===== edge: model -> invariants ===== -->
-  <path d="M228,450 C300,370 360,285 452,202" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-2-8-6-tri-muted)"/>
-  <text x="296" y="332" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">declares</text>
-
-  <!-- ===== edge: invariants -> checker ===== -->
-  <path d="M548,202 C640,285 700,370 772,450" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-2-8-6-tri-muted)"/>
-  <text x="714" y="332" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">checked by</text>
-
-  <!-- ===== interior boundary caption: the operational precision the metaphor names ===== -->
-  <text x="500" y="322" text-anchor="middle" font-size="19" font-style="italic" font-weight="700" fill="#1c1917">an executable model =</text>
-  <text x="500" y="348" text-anchor="middle" font-size="19" font-style="italic" fill="#1c1917">its schema + its checked predicates</text>
-
-  <!-- ===== closing arc: checker -> model, PROVENANCE annotation (dashed, not a structural edge) ===== -->
-  <path d="M616,536 C540,584 460,584 384,536" fill="none" stroke="#9a3f12" stroke-width="2.5"
-        stroke-dasharray="9 6" marker-end="url(#fig-2-8-6-tri-accent)"/>
-  <text x="500" y="616" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">provenance — each gap the fleet found was</text>
-  <text x="500" y="640" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">a violated-but-unstated invariant</text>
-</svg><figcaption data-short="The coherence triangle"><span class="fig-label">Figure 2.8-6.</span> The coherence triangle: a structured model <strong>declares</strong> invariants (predicates with stable ids), which an <strong>invariant checker</strong> — a drift lint or a model check — verifies at its declared cadence. The interior states the operational meaning: an executable model = its schema + its checked predicates. Each gap the fleet found was a violated-but-unstated invariant.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-6">12 · System Knowledge: Models as a System</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-7-fig-2-8-7" class="book-figure" data-label="joined-by-identity"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470"
-     role="img" aria-labelledby="fig-2-8-7-jiTitle fig-2-8-7-jiDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-8-7-jiTitle">Six models joined by a stable identity, not collapsed into one universal graph</title>
-  <desc id="fig-2-8-7-jiDesc">A single system entity, in gray, is the shared name. Three blue models hang from it:
-    structural, behavioral, decision. Through a gray stable-identity hub the same name reaches three more:
-    ownership, measurement, provenance. The models stay heterogeneous; they are joined by shared identity,
-    not merged into one representation. The working rule: derive where possible, trace where necessary, check
-    only what is decidable.</desc>
-
-  <defs>
-    <marker id="fig-2-8-7-ji-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="fig-2-8-7-ji-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-  </defs>
-
-  <!-- SYSTEM ENTITY (gray) -->
-  <rect x="290" y="24" width="180" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
-  <text x="380" y="55" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">SYSTEM ENTITY</text>
-
-  <!-- fan to first three models (blue) -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-8-7-ji-b)">
-    <path d="M310,74 C210,100 155,106 130,132"/>
-    <path d="M380,74 L380,132"/>
-    <path d="M450,74 C550,100 605,106 630,132"/>
-  </g>
-  <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="35" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="130" y="163">structural model</text>
-    <rect x="285" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="380" y="163">behavioral model</text>
-    <rect x="535" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="630" y="163">decision model</text>
-  </g>
-
-  <!-- converge to stable identity hub (gray) -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-7-ji-k)">
-    <path d="M130,182 C155,220 310,230 320,246"/>
-    <path d="M380,182 L380,246"/>
-    <path d="M630,182 C605,220 450,230 440,246"/>
-  </g>
-  <rect x="270" y="248" width="220" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
-  <text x="380" y="278" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">stable identity</text>
-
-  <!-- fan to second three models (blue) -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-8-7-ji-b)">
-    <path d="M320,296 C210,322 155,328 130,354"/>
-    <path d="M380,296 L380,354"/>
-    <path d="M440,296 C550,322 605,328 630,354"/>
-  </g>
-  <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="35" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="130" y="385">ownership model</text>
-    <rect x="285" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="380" y="385">measurement model</text>
-    <rect x="535" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="630" y="385">provenance model</text>
-  </g>
-
-  <!-- footer: the working rule (check line in rust) -->
-  <text x="380" y="436" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">derive where possible &#183; trace where necessary &#183; <tspan fill="#9a3f12" font-weight="700">check only what is decidable</tspan></text>
-  <text x="380" y="458" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Heterogeneous models joined by shared identity &#8212; not one universal graph.</text>
-</svg><figcaption data-short="Figure 2.8-2"><span class="fig-label">Figure 2.8-7.</span> <strong>Figure 2.8-2: Models are joined by identity and traceability, not forced into one universal graph.</strong> A shared stable identity connects heterogeneous representations; the connection derives where it can, traces where it must, and checks only what is decidable.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-7">12 · System Knowledge: Models as a System</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-8-fig-2-8-8" class="book-figure" data-label="modeling-creates-surfaces"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 700"
-     role="img" aria-labelledby="fig-2-8-8-msTitle fig-2-8-8-msDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-8-8-msTitle">Modeling creates surfaces for Alignment</title>
-  <desc id="fig-2-8-8-msDesc">A vertical descent. Territory is reduced by abstraction into a model. The model makes an
-    engineering property explicit. That property creates a surface for Alignment. Alignment fans into three
-    moves: a constraint, a sensor, and a validator whose finding feeds a gate. Each move lands on
-    consequence. Modeling makes a property explicit; Alignment gives selected properties consequence.</desc>
-
-  <defs>
-    <marker id="fig-2-8-8-ms-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/>
-    </marker>
-    <marker id="fig-2-8-8-ms-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="fig-2-8-5-cv-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
-    <marker id="fig-2-8-8-ms-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+  </defs>
+
+  <text x="450" y="38" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Coverage of model correspondence</text>
+
+  <!-- ===== MODELED SURFACE ===== -->
+  <rect x="120" y="66" width="660" height="170" rx="12" fill="#faf9f6" stroke="#57534e" stroke-width="2.4"/>
+  <text x="150" y="96" font-size="16" font-weight="700" letter-spacing="1" fill="#1c1917">MODELED SURFACE</text>
+
+  <!-- decidable -> mechanical check (green) -->
+  <rect x="145" y="112" width="610" height="46" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="2.2"/>
+  <text x="170" y="141" font-size="15.5" font-weight="700" fill="#155c38">decidable claims</text>
+  <text x="750" y="141" text-anchor="end" font-size="15.5" font-weight="700" fill="#155c38">&#8594;&#160; mechanical check</text>
+
+  <!-- semantic -> judgment (blue) -->
+  <rect x="145" y="170" width="610" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="170" y="199" font-size="15.5" font-weight="700" fill="#2f5169">semantic claims</text>
+  <text x="750" y="199" text-anchor="end" font-size="15.5" font-weight="700" fill="#2f5169">&#8594;&#160; judgment</text>
+
+  <!-- ===== UNMODELED SURFACE ===== -->
+  <rect x="120" y="266" width="660" height="70" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="8 5"/>
+  <text x="150" y="296" font-size="16" font-weight="700" letter-spacing="1" fill="#9a3f12">UNMODELED SURFACE</text>
+  <text x="150" y="320" font-size="14.5" font-style="italic" fill="#57534e">no model-based coverage</text>
+
+  <!-- small optional refine note in the gap between the two surfaces, with a short loop arrow -->
+  <text x="430" y="255" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">recurring miss &#8594; refine representation / control</text>
+  <path d="M760,266 C760,258 760,250 760,238" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#fig-2-8-5-cv-r)"/>
+
+  <!-- footer: protect the point -->
+  <text x="450" y="374" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Mechanical checks reach only what the representation makes decidable;</text>
+  <text x="450" y="396" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">semantic claims need judgment, and unmodeled properties have no coverage.</text>
+</svg><figcaption data-short="Coverage of model correspondence"><span class="fig-label">Figure 2.8-5.</span> <em>Coverage of model correspondence.</em> Mechanical checks cover only claims the representation makes decidable; semantic claims still require judgment, and unmodeled properties have no model-based coverage.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-5">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-6-fig-2-8-6" class="book-figure" data-label="coherence-triangle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380"
+     role="img" aria-labelledby="fig-2-8-6-ctTitle fig-2-8-6-ctDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-2-8-6-ctTitle">Checked predicates over a structured model: model, invariants, checker</title>
+  <desc id="fig-2-8-6-ctDesc">A linear pipeline. A structured model of records, edges, and states supports predicates
+    over its domain. Those predicates are invariants, each with a stable id and a declared domain, for
+    example the lease invariant leased if and only if an owner exists. A checker — a model check, a drift
+    lint, or a validator — evaluates them. A side arrow shows that a recurring failure yields a new or
+    refined invariant. This is one executable-model pattern, not the definition of executability.</desc>
+
+  <defs>
+    <marker id="fig-2-8-6-ct-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="fig-2-8-6-ct-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <!-- STRUCTURED MODEL (blue) -->
+  <rect x="30" y="96" width="270" height="130" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="165" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">STRUCTURED MODEL</text>
+  <text x="165" y="167" text-anchor="middle" font-size="16" fill="#57534e">records &#183; edges &#183; states</text>
+  <text x="165" y="196" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">a job: free / leased / done</text>
+
+  <!-- INVARIANTS (rust) -->
+  <rect x="365" y="96" width="270" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="500" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INVARIANTS</text>
+  <text x="500" y="165" text-anchor="middle" font-size="15" fill="#57534e">stable ids + declared domains</text>
+  <rect x="388" y="180" width="224" height="34" rx="6" fill="#fbfdff" stroke="#9a3f12" stroke-width="1.2"/>
+  <text x="500" y="203" text-anchor="middle" font-size="13.5" fill="#9a3f12">leased &#8660; owner exists</text>
+
+  <!-- CHECKER (green) -->
+  <rect x="700" y="96" width="270" height="130" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
+  <text x="835" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">CHECKER</text>
+  <text x="835" y="167" text-anchor="middle" font-size="15" fill="#57534e">model check &#183; drift lint</text>
+  <text x="835" y="190" text-anchor="middle" font-size="15" fill="#57534e">&#183; validator</text>
+
+  <!-- edges -->
+  <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-6-ct-k)"/>
+  <text x="332" y="130" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">supports</text>
+  <text x="332" y="146" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">predicates over</text>
+  <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-6-ct-k)"/>
+  <text x="667" y="138" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">evaluated by</text>
+
+  <!-- side arrow: recurring failure -> new/refined invariant -->
+  <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#fig-2-8-6-ct-r)"/>
+  <text x="668" y="320" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
+
+  <!-- footer: protect the point -->
+  <text x="500" y="358" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">One executable-model pattern &#8212; the model supplies the domain, invariants state properties, a checker evaluates them; not the definition of executability.</text>
+</svg><figcaption data-short="Checked predicates over a structured model"><span class="fig-label">Figure 2.8-6.</span> <em>Checked predicates over a structured model.</em> A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-6">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-7-fig-2-8-7" class="book-figure" data-label="modeling-creates-surfaces"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 680"
+     role="img" aria-labelledby="fig-2-8-7-mcTitle fig-2-8-7-mcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-2-8-7-mcTitle">Modeling makes properties available to Alignment — but is not the only path</title>
+  <desc id="fig-2-8-7-mcDesc">Two paths join at one Alignment. The direct path: a territory or action is acted on
+    directly, a local observable obligation. The model-mediated path: territory is reduced by abstraction to
+    a model, which makes an explicit property available, a richer semantic obligation. Both land side by
+    side on one Alignment — constraint, sensor, validator, gate — which leads to consequence. Governance can
+    act directly; models add reach but are not required.</desc>
+
+  <defs>
+    <marker id="fig-2-8-7-mc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/>
+    </marker>
+    <marker id="fig-2-8-7-mc-kk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="fig-2-8-7-mc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="fig-2-8-7-mc-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
     </marker>
   </defs>
 
-  <!-- TERRITORY (gray) -->
-  <rect x="250" y="24" width="220" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="360" y="57" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">TERRITORY</text>
-  <line x1="360" y1="78" x2="360" y2="126" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-8-8-ms-k)"/>
-  <text x="372" y="106" font-size="14.5" font-style="italic" fill="#57534e">abstraction / subtraction</text>
+  <text x="360" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Two paths to Alignment</text>
 
-  <!-- MODEL (blue) -->
-  <rect x="250" y="128" width="220" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="360" y="161" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">MODEL</text>
-  <line x1="360" y1="182" x2="360" y2="230" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-8-8-ms-k)"/>
-  <text x="372" y="210" font-size="14.5" font-style="italic" fill="#57534e">makes explicit</text>
+  <!-- ===== LEFT: DIRECT PATH ===== -->
+  <text x="185" y="72" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#57534e">DIRECT PATH</text>
+  <rect x="55" y="250" width="260" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="185" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TERRITORY / ACTION</text>
+  <text x="185" y="304" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
+  <!-- direct arrow onto Alignment (left landing) -->
+  <path d="M185,316 C185,372 250,392 300,406" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#fig-2-8-7-mc-kk)"/>
+  <text x="196" y="360" text-anchor="start" font-size="12.5" font-weight="700" fill="#57534e">acted on directly</text>
+  <text x="196" y="377" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">local observable obligation</text>
 
-  <!-- ENGINEERING PROPERTY (blue) -->
-  <rect x="200" y="232" width="320" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="360" y="265" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ENGINEERING PROPERTY</text>
-  <line x1="360" y1="286" x2="360" y2="334" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-8-8-ms-k)"/>
-  <text x="372" y="314" font-size="14.5" font-style="italic" fill="#57534e">creates a surface for</text>
+  <!-- ===== RIGHT: MODEL-MEDIATED PATH ===== -->
+  <text x="535" y="72" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#2f5169">MODEL-MEDIATED PATH</text>
+  <!-- TERRITORY -->
+  <rect x="405" y="86" width="260" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="535" y="116" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">TERRITORY</text>
+  <line x1="535" y1="134" x2="535" y2="168" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-8-7-mc-k)"/>
+  <text x="547" y="156" font-size="12.5" font-style="italic" fill="#57534e">abstraction</text>
+  <!-- MODEL -->
+  <rect x="405" y="170" width="260" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="535" y="200" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">MODEL</text>
+  <line x1="535" y1="218" x2="535" y2="252" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-8-7-mc-k)"/>
+  <text x="547" y="240" font-size="12.5" font-style="italic" fill="#57534e">makes explicit</text>
+  <!-- EXPLICIT PROPERTY -->
+  <rect x="405" y="254" width="260" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="535" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">EXPLICIT PROPERTY</text>
+  <!-- model arrow onto Alignment (right landing) -->
+  <path d="M535,308 C535,364 470,384 420,406" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#fig-2-8-7-mc-b)"/>
+  <text x="524" y="360" text-anchor="end" font-size="12.5" font-weight="700" fill="#2f5169">available to</text>
+  <text x="524" y="377" text-anchor="end" font-size="12" font-style="italic" fill="#2f5169">richer semantic obligation</text>
 
-  <!-- ALIGNMENT (rust) -->
-  <rect x="250" y="336" width="220" height="54" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="360" y="369" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
+  <!-- ===== THE JOIN: ALIGNMENT ===== -->
+  <rect x="225" y="410" width="270" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
+  <text x="360" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
+  <text x="360" y="462" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">constraint &#183; sensor &#183; validator &#183; gate</text>
+  <line x1="360" y1="476" x2="360" y2="524" stroke="#155c38" stroke-width="2.4" marker-end="url(#fig-2-8-7-mc-g)"/>
+  <text x="372" y="504" font-size="12.5" font-style="italic" fill="#155c38">gives consequence</text>
 
-  <!-- fan to three moves -->
-  <g fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-8-8-ms-r)">
-    <path d="M300,390 C230,414 175,418 145,440"/>
-    <path d="M360,390 L360,440"/>
-    <path d="M420,390 C490,414 545,418 575,440"/>
-  </g>
+  <!-- ===== CONSEQUENCE ===== -->
+  <rect x="255" y="526" width="210" height="54" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
+  <text x="360" y="559" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">CONSEQUENCE</text>
 
-  <rect x="70" y="442" width="150" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="145" y="473" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">constraint</text>
-
-  <rect x="285" y="442" width="150" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="360" y="473" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">sensor</text>
-
-  <rect x="500" y="442" width="150" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="575" y="473" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">validator</text>
-
-  <!-- validator -> gate -->
-  <line x1="575" y1="492" x2="575" y2="524" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#fig-2-8-8-ms-r)"/>
-  <rect x="500" y="526" width="150" height="46" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="575" y="555" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">gate</text>
-
-  <!-- converge on CONSEQUENCE (green) -->
-  <g fill="none" stroke="#155c38" stroke-width="2.2" marker-end="url(#fig-2-8-8-ms-g)">
-    <path d="M145,492 C180,556 250,576 300,594"/>
-    <path d="M360,492 L360,594"/>
-    <path d="M575,572 C540,584 470,588 420,594"/>
-  </g>
-
-  <rect x="240" y="596" width="240" height="54" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
-  <text x="360" y="629" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">CONSEQUENCE</text>
-
-  <!-- footer: protect the thesis -->
-  <text x="360" y="680" text-anchor="middle" font-size="16" font-style="italic" fill="#1c1917">Modeling makes an engineering property explicit. Alignment gives selected properties consequence.</text>
-</svg><figcaption data-short="Modeling creates surfaces for Alignment"><span class="fig-label">Figure 2.8-8.</span> <strong>Modeling creates surfaces for Alignment.</strong> Abstraction reduces the territory to a model; the model makes an engineering property explicit; the property becomes a surface Alignment can act on through a constraint, a sensor, or a validator and its gate, and only then does a violation carry consequence.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-8">12 · System Knowledge: Models as a System</a></p></section><hr><section class="gallery-item"><figure id="fig-3-0-1-fig-3-0-1" class="book-figure" data-label="part3-nav-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
+  <!-- footer: protect the point -->
+  <text x="360" y="626" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Governance can act directly on observable actions; explicit models make</text>
+  <text x="360" y="648" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">richer system properties available too &#8212; model-mediated is not the only path.</text>
+</svg><figcaption data-short="Modeling expands the semantic reach of Alignment"><span class="fig-label">Figure 2.8-7.</span> <em>Modeling expands the semantic reach of Alignment.</em> Governance mechanisms can act directly on observable actions and artifacts; explicit models make additional system-level properties available for constraint, sensing, evaluation, and admission.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-7">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-3-0-1-fig-3-0-1" class="book-figure" data-label="part3-nav-arc"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
      role="group" aria-labelledby="fig-3-0-1-naTitle fig-3-0-1-naDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-3-0-1-naTitle">Part III as five questions, one per chapter, on a single descending arc</title>

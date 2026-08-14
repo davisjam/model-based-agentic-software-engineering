@@ -596,14 +596,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="1.4-the-new-engineering-problem.html">4&nbsp; The New Engineering Problem</a></li>
 <li class="part">Part 2 — Modeling</li>
 <li><a class="" href="part-2-intro.html">Modeling</a></li>
-<li><a class="" href="2.1-context-is-the-first-modeling-problem.html">5&nbsp; Context Is the First Modeling Problem</a></li>
+<li><a class="" href="2.1-context-is-the-first-modeling-problem.html">5&nbsp; From Context to Engineering Models</a></li>
 <li><a class="current" href="2.2-structural.html">6&nbsp; Structural Models: What Is Connected to What?</a></li>
 <li><a class="" href="2.3-behavioral.html">7&nbsp; Behavioral Models: What May Happen?</a></li>
 <li><a class="" href="2.4-ownership.html">8&nbsp; Ownership Models: Who Controls What, and When?</a></li>
-<li><a class="" href="2.5-decision.html">9&nbsp; Decision Models: Who May Decide or Act?</a></li>
-<li><a class="" href="2.6-measurement.html">10&nbsp; Measurement Models: How Much, How Fast, How Good?</a></li>
-<li><a class="" href="2.7-provenance.html">11&nbsp; Provenance Models: What Happened?</a></li>
-<li><a class="" href="2.8-system-knowledge.html">12&nbsp; System Knowledge: Models as a System</a></li>
+<li><a class="" href="2.5-decision.html">9&nbsp; Decision Models: What Is Allowed?</a></li>
+<li><a class="" href="2.6-measurement.html">10&nbsp; Measurement Models: How Much, and Against What Bound?</a></li>
+<li><a class="" href="2.7-provenance.html">11&nbsp; Provenance Models: What Happened, and What Evidence Records It?</a></li>
+<li><a class="" href="2.8-system-knowledge.html">12&nbsp; System Knowledge: Connecting the Models</a></li>
 <li class="part">Part 3 — Alignment</li>
 <li><a class="" href="part-3-intro.html">Alignment</a></li>
 <li><a class="" href="3.1-where-authority-can-act.html">13&nbsp; Where Authority Can Act</a></li>
@@ -696,9 +696,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 6 · Structural Models: What Is Connected to What? — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 6</a></div><h1><span class="chap-num">2.2</span> Structural Models: What Is Connected to What?</h1></header><p>A structural model suppresses behavior to expose components, boundaries, and relationships. It says what parts exist and which may depend on which, and it leaves time out. Consider document mutation in DocAble — the running accessibility service — as the first example.</p>
 <p>DocAble supports several structured document formats through libraries powerful enough to alter their underlying object structures. Those libraries are necessary, but they sit behind a deliberate architectural boundary. Most remediation logic works through DocAble's structured document abstractions rather than reaching directly into the format-specific implementation.</p>
 <blockquote class="concept-inset"><p class="inset-title">Document-mutation model · Structural</p>
-<ul><li><strong>Engineering question</strong> — Where is document mutation supposed to occur?</li><li><strong>Model</strong> — a layered structural relation: remediation logic operates through a structured document model, which is realized through a format-specific implementation over DOCX, PPTX, XLSX, and PDF.</li><li><strong>Property</strong> — ordinary remediation logic reaches format-specific mutation only through a sanctioned seam, not by reaching into the format library directly.</li><li><strong>Quality attribute</strong> — architectural integrity, modifiability, and a single place to govern change.</li></ul></blockquote>
+<ul><li><strong>Engineering question</strong> — Where is document mutation supposed to occur?</li><li><strong>Model</strong> — a layered structural relation: remediation logic operates through a structured document model, which is realized through a format-specific implementation over DOCX, PPTX, XLSX, and PDF.</li><li><strong>Property</strong> — the intended architecture places format-specific mutation behind one sanctioned seam; ordinary remediation logic is not intended to bypass it.</li><li><strong>Quality attribute</strong> — architectural integrity, modifiability, and a single place to govern change.</li></ul></blockquote>
 <p>The useful model is small. <a class="xref" href="2.2-structural.html#fig-2-2-1">Figure&nbsp;2.2-1</a> draws it: remediation logic operates <em>through</em> a structured document model, which is <em>realized through</em> a format-specific implementation, which finally touches the concrete DOCX, PPTX, XLSX, and PDF formats.</p>
-<figure id="fig-2-2-1" class="book-figure" data-label="document-mutation-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 470"
+<figure id="fig-2-2-1" class="book-figure" data-label="document-mutation-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 438"
      role="img" aria-labelledby="dmTitle dmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="dmTitle">DocAble's document-mutation model: mutation reaches formats through a sanctioned seam</title>
@@ -748,13 +748,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="390" y="348" text-anchor="middle" font-size="16" fill="#1c1917">XLSX</text>
   <text x="500" y="348" text-anchor="middle" font-size="16" fill="#1c1917">PDF</text>
 
-  <!-- footer: protect the point (model, not yet constraint) -->
-  <text x="320" y="402" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The model marks where mutation is supposed to occur.</text>
-  <text x="320" y="426" text-anchor="middle" font-size="15.5" font-style="italic" fill="#9a3f12">It does not, by itself, prevent code from crossing the seam &#8212; that is Part III&#8217;s job.</text>
-</svg><figcaption data-short="DocAble&#x27;s document-mutation model"><span class="fig-label">Figure 2.2-1.</span> <em>DocAble's document-mutation model.</em> Remediation logic reaches format-specific mutation through a structured document model — one sanctioned seam. The representation names where the architectural boundary lies; it does not, by itself, prevent code from crossing it.</figcaption></figure>
+  <!-- footer: protect the point (model, not yet constraint). Enforcement microtext removed — the caption carries it. -->
+  <text x="320" y="410" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The model marks where mutation is supposed to occur.</text>
+</svg><figcaption data-short="Document-mutation structural model"><span class="fig-label">Figure 2.2-1.</span> <em>Document-mutation structural model.</em> The reduction preserves one architectural relation: ordinary remediation reaches format-specific mutation through a structured-document seam. Enforcement of that relation is a separate Alignment decision.</figcaption></figure>
 <p>The model leaves almost everything else out. It says nothing about queues, retries, deployment, user sessions, cost, or the mechanics of individual repairs. Those facts are real but irrelevant to this question. What remains is an architectural claim: <strong>ordinary remediation logic reaches format-specific mutation through a sanctioned seam.</strong></p>
-<p>This is a model before it is a constraint. The representation tells an engineer or an agent where the architectural boundary lies. It does not, by itself, prevent code from crossing that boundary. That distinction matters. In Part III we return to this same model and give its declared relationship authority: a static control detects code that bypasses the sanctioned seam. The Alignment mechanism sits close to the code because its job is to constrain code. The model does not. It is the architectural relation the mechanism protects.</p>
-<p id="idx-def-model-drift">A structural model carries the opposite risk too. The code moves and the drawing does not, so the boundary it shows quietly stops matching the system. That gap between a model and the system it describes is <strong>model drift</strong>, and keeping it visible — reconciling the model against the code, or generating the code from the model — is part of what later chapters give these representations.</p>
+<p>The model states the intended architectural relation; it does not enforce it. Part III returns to the same relation when a static control detects code that bypasses the seam. The model supplies the architectural claim; the mechanism gives that claim authority.</p>
+<p id="idx-def-model-drift">A structural model carries the opposite risk too. The code moves and the drawing does not, so the boundary it shows quietly stops matching the system. That gap between a model and the system it describes is <strong>model drift</strong>. Later sections make the correspondence explicit by deriving, generating, or tracing between model and implementation.</p>
 <p>The reduction is the point. <a class="xref" href="2.2-structural.html#fig-2-2-2">Figure&nbsp;2.2-2</a> shows what the model keeps and what it drops: a territory crowded with UI, queues, workers, retries, storage, and deployment collapses to the one seam the question is about.</p>
 <figure id="fig-2-2-2" class="book-figure" data-label="structural-reduction"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400"
      role="img" aria-labelledby="srTitle srDesc"
@@ -772,22 +771,28 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- LEFT: full territory (gray) -->
+  <!-- LEFT: full territory (gray) — deliberately noisy but UNIFORM; no item is visually privileged -->
   <text x="235" y="34" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">TERRITORY</text>
   <rect x="40" y="48" width="390" height="284" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <g font-size="15.5" fill="#57534e" text-anchor="middle">
-    <text x="120" y="90">UI</text>
-    <text x="235" y="90">queue</text>
-    <text x="350" y="90">workers</text>
-    <text x="120" y="122">retries</text>
-    <text x="290" y="122">scaling</text>
+  <g font-size="15" fill="#57534e" text-anchor="middle">
+    <text x="118" y="88">UI</text>
+    <text x="235" y="88">queue</text>
+    <text x="352" y="88">workers</text>
+    <text x="118" y="120">retries</text>
+    <text x="235" y="120">scaling</text>
+    <text x="352" y="120">cache</text>
+    <text x="118" y="152">storage</text>
+    <text x="235" y="152">deployment</text>
+    <text x="352" y="152">logging</text>
+    <text x="118" y="184">metrics</text>
+    <text x="235" y="184">auth</text>
+    <text x="352" y="184">config</text>
+    <text x="118" y="216">remediation</text>
+    <text x="235" y="216">format libs</text>
+    <text x="352" y="216">billing</text>
   </g>
-  <rect x="70" y="146" width="330" height="46" rx="9" fill="#efe9df" stroke="#57534e" stroke-width="1.8"/>
-  <text x="235" y="175" text-anchor="middle" font-size="15.5" fill="#57534e">remediation + format libraries</text>
-  <rect x="70" y="206" width="330" height="46" rx="9" fill="#efe9df" stroke="#57534e" stroke-width="1.8"/>
-  <text x="235" y="235" text-anchor="middle" font-size="15.5" fill="#57534e">storage + deployment + &#8230;</text>
-  <text x="235" y="298" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">most of the system is not relevant</text>
-  <text x="235" y="320" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">to this question</text>
+  <text x="235" y="278" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">most of the system is not relevant</text>
+  <text x="235" y="300" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">to this question</text>
 
   <!-- reduction arrow -->
   <line x1="440" y1="190" x2="528" y2="190" stroke="#2f5169" stroke-width="2.6" marker-end="url(#sr-b)"/>
@@ -799,8 +804,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="600" y="60" width="290" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="745" y="92" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">remediation logic</text>
   <line x1="745" y1="112" x2="745" y2="140" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sr-b)"/>
-  <rect x="600" y="142" width="290" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="745" y="174" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">structured document model</text>
+  <!-- the ONE thing the reduction preserves: the seam. Highlighted; the other two layers are ordinary blue. -->
+  <rect x="600" y="142" width="290" height="52" rx="10" fill="#d3e0ea" stroke="#2f5169" stroke-width="3.4"/>
+  <text x="745" y="168" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">structured document model</text>
+  <text x="745" y="186" text-anchor="middle" font-size="12.5" font-style="italic" fill="#2f5169">the surviving seam</text>
   <line x1="745" y1="194" x2="745" y2="222" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sr-b)"/>
   <rect x="600" y="224" width="290" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="745" y="256" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">format implementation</text>
@@ -808,6 +815,6 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="745" y="322" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;Where may document mutation occur?&#8221;</text>
 
   <!-- footer: protect the point -->
-  <text x="480" y="372" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">A structural model is useful because it leaves most of the system out &#8212; keeping only the seam the question needs.</text>
-</svg><figcaption data-short="A structural model is useful because it leaves most of the system out"><span class="fig-label">Figure 2.2-2.</span> A structural model is useful because it leaves most of the system out. Here the reduction preserves the architectural seam relevant to document mutation while suppressing unrelated runtime and implementation detail.</figcaption></figure>
-<p>A structural model earns its keep by what it refuses to draw. The engineering question — <em>where may document mutation occur?</em> — is preserved; everything the question does not need is gone. The next chapter adds time: what states a thing occupies, and the orderings it is allowed to move through.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">« Beginning of part</a><a href="2.1-context-is-the-first-modeling-problem.html" aria-label="Previous chapter — 5 · Context Is the First Modeling Problem">« Previous chapter</a></div><span class="chapnav-here" title="6 · Structural Models: What Is Connected to What?">6 · Structural Models: What Is Connected to What?</span><div class="chapnav-fwd"><a href="2.3-behavioral.html" aria-label="Next chapter — 7 · Behavioral Models: What May Happen?">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — Alignment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+  <text x="480" y="372" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The question determines what survives the reduction.</text>
+</svg><figcaption data-short="Purposeful reduction"><span class="fig-label">Figure 2.2-2.</span> <em>Purposeful reduction.</em> The structural model suppresses unrelated runtime and implementation detail while preserving the architectural seam needed to answer where document mutation belongs.</figcaption></figure>
+<p>A structural model earns its keep by what it refuses to draw. The engineering question — <em>where may document mutation occur?</em> — is preserved; everything the question does not need is gone. The next chapter adds time: what states a thing occupies, and the orderings it is allowed to move through.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">« Beginning of part</a><a href="2.1-context-is-the-first-modeling-problem.html" aria-label="Previous chapter — 5 · From Context to Engineering Models">« Previous chapter</a></div><span class="chapnav-here" title="6 · Structural Models: What Is Connected to What?">6 · Structural Models: What Is Connected to What?</span><div class="chapnav-fwd"><a href="2.3-behavioral.html" aria-label="Next chapter — 7 · Behavioral Models: What May Happen?">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — Alignment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

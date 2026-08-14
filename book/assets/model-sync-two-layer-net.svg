@@ -1,88 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (not Mermaid): a non-graph infographic. REVISION (Part-2 §2.3 / FIG-2.3-1):
-     SIMPLIFIED to four elements — (1) the MODELED SURFACE with its two coverage layers (a mechanical
-     layer of derived checks, a judgment layer of probabilistic review); (2) two UNCOVERED regions drawn
-     as gaps: a semantic mismatch (anchor resolves, meaning drifted) and the unmodeled surface (no anchor
-     reaches); (3) two BACKSTOPS extending the net into the unmodeled region: the missing-model metric that
-     measures it and the failures-become-controls loop that closes it. Overlapping coverage zones with holes
-     are a mesh-and-gaps geometry Mermaid's auto-layout won't draw, so this earns the hand-SVG escape. No
-     meaning by colour alone: each region and layer is labelled. Palette: agent #2f5169 (judgment layer),
-     governed #1f7a4d (mechanical derived layer + the controls backstop), churn #b23b3b (uncovered +
-     escapes), def-blue #1f6fae (metric). -->
-<!-- semantic-families: agent, governance, modeling, neutral, failure -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640" width="980" height="640"
-     role="group" aria-labelledby="msTitle msDesc"
+<!-- 2.8 coverage figure (part2-v8-260814 re-author; folds to book/assets/model-sync-two-layer-net.svg).
+     REVISION per v8 editor guidance (2.8-5): SIMPLIFIED drastically. Two surfaces only. The MODELED
+     SURFACE splits by decidability — decidable claims get a mechanical check; semantic claims need
+     judgment. The UNMODELED SURFACE has no model-based coverage. One small optional arrow notes that a
+     recurring miss should refine the representation or control. The governance-conversion apparatus
+     (missing-model metric, failures->controls loop, "net" metaphor, multiple escapes) is REMOVED — it
+     belongs to Part III. Grammar: green #155c38/#e3f0e7 = decidable -> mechanical check; blue
+     #2f5169/#e7edf3 = semantic -> judgment; rust #9a3f12/#faf1e6 = unmodeled, no coverage. Hand-authored
+     (two stacked surfaces). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420"
+     role="img" aria-labelledby="msTitle msDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="msTitle">The two-layer net: modeled surface, two coverage layers, two uncovered regions, two backstops</title>
-  <desc id="msDesc">A horizontal band is the modeled surface, the slice of code a model claims to
-    represent. Two coverage layers sit over it: a mechanical layer of derived checks, drawn solid green,
-    that resolves each model anchor against a live symbol and holds; and above it a judgment layer,
-    dashed blue, a person or another probabilistic reasoner checking prose the checks cannot parse. The
-    judgment layer covers the modeled-and-decidable zone but has a gap over a second zone, the semantic
-    mismatch, where the anchor still resolves but the meaning drifted, so a drift escapes the review pass.
-    To the right lies the unmodeled surface, a dashed red band no anchor reaches and no layer covers,
-    where a drift escapes unopposed. Below sit two backstops that turn “someone happens to notice”
-    into machinery: a missing-model metric that measures the unmodeled region, and a
-    failures-become-controls loop that closes it by extending the mechanical layer into the formerly
-    unmodeled zone, drawn as a dashed green extension. Read the net as coverage, not a guarantee.</desc>
+  <title id="msTitle">Coverage of model correspondence: modeled surface and unmodeled surface</title>
+  <desc id="msDesc">Two surfaces. The modeled surface splits into decidable claims, which get a mechanical
+    check, and semantic claims, which need judgment. The unmodeled surface has no model-based coverage. A
+    small arrow notes that a recurring miss should refine the representation or a control.</desc>
 
   <defs>
-    <marker id="ms-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
-    </marker>
-    <marker id="ms-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f6fae"/>
-    </marker>
-    <marker id="ms-grn" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
+    <marker id="cv-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
 
-  <text x="490" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">The two-layer net</text>
-  <text x="490" y="58" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">read the net as coverage, not a guarantee</text>
+  <text x="450" y="38" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Coverage of model correspondence</text>
 
-  <!-- ===== judgment layer — the review pass (covers the decidable zone; a GAP over the mismatch) ===== -->
-  <text x="70" y="300" font-size="15" font-weight="700" fill="#2f5169">judgment layer — human / probabilistic review</text>
-  <line x1="60" y1="326" x2="310" y2="326" stroke="#2f5169" stroke-width="4" stroke-dasharray="10 6"/>
-  <text x="360" y="322" font-size="14" font-style="italic" fill="#b23b3b">gap — meaning slips through</text>
+  <!-- ===== MODELED SURFACE ===== -->
+  <rect x="120" y="66" width="660" height="170" rx="12" fill="#faf9f6" stroke="#57534e" stroke-width="2.4"/>
+  <text x="150" y="96" font-size="16" font-weight="700" letter-spacing="1" fill="#1c1917">MODELED SURFACE</text>
 
-  <!-- ===== mechanical layer — the derived floor (covers both modeled zones) ===== -->
-  <rect x="60" y="356" width="540" height="30" rx="4" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="3"/>
-  <text x="300" y="376" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">mechanical layer — derived checks (holds)</text>
-  <!-- extension of the layer into the unmodeled zone, added by a control -->
-  <rect x="630" y="356" width="200" height="30" rx="4" fill="none" stroke="#1f7a4d" stroke-width="3" stroke-dasharray="6 6"/>
-  <text x="730" y="376" text-anchor="middle" font-size="13" font-style="italic" fill="#1f7a4d">extended by a new control</text>
+  <!-- decidable -> mechanical check (green) -->
+  <rect x="145" y="112" width="610" height="46" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="2.2"/>
+  <text x="170" y="141" font-size="15.5" font-weight="700" fill="#155c38">decidable claims</text>
+  <text x="750" y="141" text-anchor="end" font-size="15.5" font-weight="700" fill="#155c38">&#8594;&#160; mechanical check</text>
 
-  <!-- ===== the surface bands ===== -->
-  <rect x="50" y="440" width="560" height="66" rx="6" fill="#f3efe7" stroke="#57534e" stroke-width="2"/>
-  <text x="330" y="470" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">THE MODELED SURFACE</text>
-  <text x="330" y="492" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the slice of code a model claims to represent</text>
+  <!-- semantic -> judgment (blue) -->
+  <rect x="145" y="170" width="610" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="170" y="199" font-size="15.5" font-weight="700" fill="#2f5169">semantic claims</text>
+  <text x="750" y="199" text-anchor="end" font-size="15.5" font-weight="700" fill="#2f5169">&#8594;&#160; judgment</text>
 
-  <rect x="630" y="440" width="300" height="66" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="2" stroke-dasharray="7 5"/>
-  <text x="780" y="470" text-anchor="middle" font-size="16" font-weight="700" fill="#b23b3b">THE UNMODELED SURFACE</text>
-  <text x="780" y="492" text-anchor="middle" font-size="14" font-style="italic" fill="#b23b3b">no anchor reaches it</text>
+  <!-- ===== UNMODELED SURFACE ===== -->
+  <rect x="120" y="266" width="660" height="70" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="8 5"/>
+  <text x="150" y="296" font-size="16" font-weight="700" letter-spacing="1" fill="#9a3f12">UNMODELED SURFACE</text>
+  <text x="150" y="320" font-size="14.5" font-style="italic" fill="#57534e">no model-based coverage</text>
 
-  <!-- zone sublabels -->
-  <text x="190" y="532" text-anchor="middle" font-size="15" font-weight="700" fill="#1f7a4d">modeled &amp; decidable</text>
-  <text x="470" y="532" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">semantic mismatch</text>
-  <text x="470" y="551" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">anchor resolves, meaning drifted</text>
+  <!-- small optional refine note in the gap between the two surfaces, with a short loop arrow -->
+  <text x="430" y="255" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">recurring miss &#8594; refine representation / control</text>
+  <path d="M760,266 C760,258 760,250 760,238" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#cv-r)"/>
 
-  <!-- ===== the two escapes (one per uncovered region) ===== -->
-  <line x1="590" y1="438" x2="590" y2="302" stroke="#b23b3b" stroke-width="2.5" stroke-dasharray="3 3" marker-end="url(#ms-red)"/>
-  <text x="590" y="292" text-anchor="middle" font-size="14" font-weight="700" fill="#b23b3b">escapes — judgment miss</text>
-
-  <line x1="880" y1="438" x2="880" y2="356" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#ms-red)"/>
-  <text x="880" y="348" text-anchor="middle" font-size="14" font-weight="700" fill="#b23b3b">escapes — unmodeled</text>
-
-  <!-- ===== the two backstops ===== -->
-  <rect x="360" y="566" width="260" height="58" rx="8" fill="#eef4fb" stroke="#1f6fae" stroke-width="2"/>
-  <text x="490" y="591" text-anchor="middle" font-size="16" font-weight="700" fill="#1f6fae">missing-model metric</text>
-  <text x="490" y="612" text-anchor="middle" font-size="13" fill="#57534e">measures the unmodeled region</text>
-  <path d="M600,566 C622,540 634,522 648,510" fill="none" stroke="#1f6fae" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ms-blue)"/>
-
-  <rect x="670" y="566" width="260" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="800" y="591" text-anchor="middle" font-size="16" font-weight="700" fill="#1f7a4d">failures &#8594; controls loop</text>
-  <text x="800" y="612" text-anchor="middle" font-size="13" fill="#57534e">closes it — extends the net</text>
-  <!-- routed out to the right margin (clear of the UNMODELED-surface box) before hooking into the extension -->
-  <path d="M905,566 C970,545 970,455 940,432 C900,405 866,395 830,388" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ms-grn)"/>
+  <!-- footer: protect the point -->
+  <text x="450" y="374" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Mechanical checks reach only what the representation makes decidable;</text>
+  <text x="450" y="396" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">semantic claims need judgment, and unmodeled properties have no coverage.</text>
 </svg>

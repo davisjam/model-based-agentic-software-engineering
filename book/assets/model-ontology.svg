@@ -21,7 +21,7 @@
 
   <defs>
     <marker id="on-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
-            orient="auto" markerUnits="userSpaceOnUse">
+            orient="auto-start-reverse" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -62,11 +62,13 @@
 
   <text x="480" y="256" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">These classes may overlap.</text>
 
-  <!-- arrow down to the orthogonal representation-form axis -->
-  <line x1="480" y1="264" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2" marker-end="url(#on-b)"/>
+  <!-- double-headed arrow to the orthogonal representation-form axis: the relation is MANY-TO-MANY -->
+  <line x1="480" y1="266" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2"
+        marker-start="url(#on-b)" marker-end="url(#on-b)"/>
+  <text x="500" y="281" font-size="13" font-style="italic" fill="#57534e">many-to-many</text>
 
   <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="314" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">REPRESENTATION FORM</text>
+  <text x="480" y="314" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
   <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 
   <text x="480" y="394" text-anchor="middle" font-size="16" font-style="italic" fill="#1c1917">Connected through shared identity and traceability, these models form the system&#8217;s explicit engineering knowledge.</text>

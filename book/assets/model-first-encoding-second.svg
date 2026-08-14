@@ -57,9 +57,9 @@
   <text x="340" y="234" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">may not skip publication</text>
   <line x1="340" y1="240" x2="340" y2="266" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
 
-  <!-- layer 3: ENCODING (gray) -->
+  <!-- layer 3: ONE EXECUTABLE REPRESENTATION (gray) -->
   <rect x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="340" y="294" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">ENCODING</text>
+  <text x="340" y="294" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
   <text x="340" y="313" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">explicit legal-transition relation</text>
   <line x1="340" y1="322" x2="340" y2="348" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
 

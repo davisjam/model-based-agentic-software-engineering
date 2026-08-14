@@ -1,74 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2.8 System-Knowledge primary model (part2-content-revision-260814; folds to book/assets/).
-     DocAble's layered modeling substrate: NOT one universal system-knowledge graph, but a family of typed
-     models joined through a shared spine. Structural registries, behavioral models, and decision/contract
-     models sit above; ownership, measurement, and provenance models below; between them a gray connective
-     bar — shared identities, traceability, and query surfaces. The important unity is semantic, not
-     syntactic. Grammar: blue #2f5169 = the heterogeneous typed models; gray #57534e = the shared-identity
-     spine that joins them without collapsing them. Hand-authored (a joined-models substrate, not a
-     flowchart). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" width="760" height="440"
+<!-- 2.8 System-Knowledge primary model (part2-v8-260814 re-author; folds to book/assets/).
+     REVISION per v8 editor guidance (2.8-1): REDRAW radial/peer to kill the false top/bottom tiers. The
+     center is SHARED IDENTITIES; the six purpose models (structural, behavioral, ownership, decision,
+     measurement, provenance) are PEERS arranged around it, each joined to the center. Traceability,
+     derivation, and query surfaces live in the surrounding footer band, NOT inside the identity box.
+     Grammar: gray #57534e = the shared-identity center that joins without collapsing; blue #2f5169 = the
+     six heterogeneous peer models. Hand-authored (a radial peer arrangement, not a layered stack). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 580" width="760" height="580"
      role="img" aria-labelledby="mbTitle mbDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mbTitle">DocAble's layered modeling substrate: typed models joined by shared identity</title>
-  <desc id="mbDesc">Six heterogeneous typed models — structural registries, behavioral models, decision and
-    contract models above; ownership views, measurement models, and provenance models below — are joined
-    through a shared spine of identities, traceability, and query surfaces. They are not collapsed into one
-    universal representation. The unity is semantic, not syntactic.</desc>
+  <title id="mbTitle">Heterogeneous models arranged as peers around shared identities</title>
+  <desc id="mbDesc">A radial arrangement. At the center sit shared identities. Six purpose models —
+    structural, behavioral, ownership, decision, measurement, and provenance — are peers around the center,
+    each joined to it. No model sits above another. Traceability, derivation, and query surfaces surround
+    them in a footer band, not inside the identity center. The unity is semantic, not a hierarchy.</desc>
 
-  <defs>
-    <marker id="mb-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-  </defs>
+  <text x="380" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCABLE MODELING SUBSTRATE &#183; SIX PEER MODELS</text>
 
-  <text x="380" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCABLE MODELING SUBSTRATE</text>
-
-  <!-- top row of models (blue) -->
-  <g fill="#e7edf3" stroke="#2f5169" stroke-width="2.2">
-    <rect x="60" y="44" width="200" height="72" rx="10"/>
-    <rect x="280" y="44" width="200" height="72" rx="10"/>
-    <rect x="500" y="44" width="200" height="72" rx="10"/>
-  </g>
-  <text x="160" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">structural</text>
-  <text x="160" y="99" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">registries</text>
-  <text x="380" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">behavioral</text>
-  <text x="380" y="99" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">models</text>
-  <text x="600" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">decision /</text>
-  <text x="600" y="99" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">contract</text>
-
-  <!-- top -> spine -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#mb-k)">
-    <path d="M160,116 L160,180"/>
-    <path d="M380,116 L380,180"/>
-    <path d="M600,116 L600,180"/>
+  <!-- spokes: center to each peer (drawn first, under the boxes) -->
+  <g stroke="#57534e" stroke-width="2" opacity="0.75">
+    <line x1="380" y1="290" x2="380" y2="140"/>
+    <line x1="380" y1="290" x2="549" y2="200"/>
+    <line x1="380" y1="290" x2="549" y2="380"/>
+    <line x1="380" y1="290" x2="380" y2="440"/>
+    <line x1="380" y1="290" x2="211" y2="380"/>
+    <line x1="380" y1="290" x2="211" y2="200"/>
   </g>
 
-  <!-- shared spine (gray) -->
-  <rect x="90" y="182" width="580" height="66" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
-  <text x="380" y="210" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">shared identities &#183; traceability &#183; query surfaces</text>
-  <text x="380" y="232" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the unity is semantic, not syntactic</text>
+  <!-- center: SHARED IDENTITIES (gray) -->
+  <ellipse cx="380" cy="290" rx="104" ry="52" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
+  <text x="380" y="285" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">SHARED</text>
+  <text x="380" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">IDENTITIES</text>
 
-  <!-- spine -> bottom -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#mb-k)">
-    <path d="M160,248 L160,312"/>
-    <path d="M380,248 L380,312"/>
-    <path d="M600,248 L600,312"/>
+  <!-- six peer models (blue) -->
+  <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <!-- top -->
+    <rect x="305" y="86" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="380" y="118">structural</text>
+    <!-- upper-right -->
+    <rect x="474" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="549" y="206">behavioral</text>
+    <!-- lower-right -->
+    <rect x="474" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="549" y="386">ownership</text>
+    <!-- bottom -->
+    <rect x="305" y="442" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="380" y="474">decision</text>
+    <!-- lower-left -->
+    <rect x="136" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="211" y="386">measurement</text>
+    <!-- upper-left -->
+    <rect x="136" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="211" y="206">provenance</text>
   </g>
 
-  <!-- bottom row of models (blue) -->
-  <g fill="#e7edf3" stroke="#2f5169" stroke-width="2.2">
-    <rect x="60" y="314" width="200" height="72" rx="10"/>
-    <rect x="280" y="314" width="200" height="72" rx="10"/>
-    <rect x="500" y="314" width="200" height="72" rx="10"/>
-  </g>
-  <text x="160" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">ownership</text>
-  <text x="160" y="369" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">views</text>
-  <text x="380" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">measurement</text>
-  <text x="380" y="369" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">models</text>
-  <text x="600" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">provenance</text>
-  <text x="600" y="369" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">models</text>
+  <!-- surrounding band: traceability / derivation / query surfaces (NOT in the identity box) -->
+  <rect x="90" y="516" width="580" height="34" rx="12" fill="none" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <text x="380" y="538" text-anchor="middle" font-size="14.5" font-weight="700" fill="#57534e">traceability &#183; derivation &#183; query surfaces</text>
 
   <!-- footer: protect the point -->
-  <text x="380" y="420" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Heterogeneous typed models joined by shared identity &#8212; not collapsed into one universal graph.</text>
+  <text x="380" y="570" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Six peer models joined through shared identities &#8212; no tiers, no single universal graph.</text>
 </svg>

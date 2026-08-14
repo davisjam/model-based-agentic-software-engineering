@@ -1,86 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Cross-Part capstone (end of Part II; part2-content-revision-260814; folds to book/assets/).
-     "Modeling creates surfaces for Alignment." A vertical descent: TERRITORY -(abstraction/subtraction)->
-     MODEL -(makes explicit)-> ENGINEERING PROPERTY -(creates a surface for)-> ALIGNMENT, which fans to the
-     three Alignment moves (constraint, sensor, validator->gate) and lands on CONSEQUENCE. The point the
-     figure protects: a model does not govern by existing; Alignment gives selected properties consequence.
-     Grammar: gray #57534e = territory; blue #2f5169 = model + property (the modeling half); rust #9a3f12 =
-     alignment obligation (the moves); green #155c38 = consequence (the outcome that now has teeth).
-     Hand-authored (a vertical descent with a fan, not a flowchart). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 700" width="720" height="700"
-     role="img" aria-labelledby="msTitle msDesc"
+<!-- Cross-Part capstone (end of Part II; part2-v8-260814 re-author; folds to book/assets/).
+     REVISION per v8 editor guidance (2.8-8): show BOTH paths, rhyming with the front-matter grammar
+     figure. A DIRECT path — territory/action acted on directly, a local observable obligation — and a
+     MODEL-MEDIATED path — territory -> abstraction -> model -> explicit property, a richer semantic
+     obligation. The two land SIDE BY SIDE on one ALIGNMENT (constraint / sensor / validator / gate), which
+     leads to CONSEQUENCE. Model-mediated is NOT the only path. Grammar: gray #57534e = territory/action;
+     blue #2f5169 = the model chain and its explicit property; rust #9a3f12 = Alignment; green #155c38 =
+     consequence. Hand-authored (a fork-and-join, two inputs onto one mechanism). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 680" width="720" height="680"
+     role="img" aria-labelledby="mcTitle mcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="msTitle">Modeling creates surfaces for Alignment</title>
-  <desc id="msDesc">A vertical descent. Territory is reduced by abstraction into a model. The model makes an
-    engineering property explicit. That property creates a surface for Alignment. Alignment fans into three
-    moves: a constraint, a sensor, and a validator whose finding feeds a gate. Each move lands on
-    consequence. Modeling makes a property explicit; Alignment gives selected properties consequence.</desc>
+  <title id="mcTitle">Modeling makes properties available to Alignment — but is not the only path</title>
+  <desc id="mcDesc">Two paths join at one Alignment. The direct path: a territory or action is acted on
+    directly, a local observable obligation. The model-mediated path: territory is reduced by abstraction to
+    a model, which makes an explicit property available, a richer semantic obligation. Both land side by
+    side on one Alignment — constraint, sensor, validator, gate — which leads to consequence. Governance can
+    act directly; models add reach but are not required.</desc>
 
   <defs>
-    <marker id="ms-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="mc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/>
     </marker>
-    <marker id="ms-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    <marker id="mc-kk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="ms-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="mc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="mc-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
     </marker>
   </defs>
 
-  <!-- TERRITORY (gray) -->
-  <rect x="250" y="24" width="220" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="360" y="57" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">TERRITORY</text>
-  <line x1="360" y1="78" x2="360" y2="126" stroke="#1c1917" stroke-width="2" marker-end="url(#ms-k)"/>
-  <text x="372" y="106" font-size="14.5" font-style="italic" fill="#57534e">abstraction / subtraction</text>
+  <text x="360" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Two paths to Alignment</text>
 
-  <!-- MODEL (blue) -->
-  <rect x="250" y="128" width="220" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="360" y="161" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">MODEL</text>
-  <line x1="360" y1="182" x2="360" y2="230" stroke="#1c1917" stroke-width="2" marker-end="url(#ms-k)"/>
-  <text x="372" y="210" font-size="14.5" font-style="italic" fill="#57534e">makes explicit</text>
+  <!-- ===== LEFT: DIRECT PATH ===== -->
+  <text x="185" y="72" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#57534e">DIRECT PATH</text>
+  <rect x="55" y="250" width="260" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <text x="185" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TERRITORY / ACTION</text>
+  <text x="185" y="304" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
+  <!-- direct arrow onto Alignment (left landing) -->
+  <path d="M185,316 C185,372 250,392 300,406" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#mc-kk)"/>
+  <text x="196" y="360" text-anchor="start" font-size="12.5" font-weight="700" fill="#57534e">acted on directly</text>
+  <text x="196" y="377" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">local observable obligation</text>
 
-  <!-- ENGINEERING PROPERTY (blue) -->
-  <rect x="200" y="232" width="320" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="360" y="265" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ENGINEERING PROPERTY</text>
-  <line x1="360" y1="286" x2="360" y2="334" stroke="#1c1917" stroke-width="2" marker-end="url(#ms-k)"/>
-  <text x="372" y="314" font-size="14.5" font-style="italic" fill="#57534e">creates a surface for</text>
+  <!-- ===== RIGHT: MODEL-MEDIATED PATH ===== -->
+  <text x="535" y="72" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#2f5169">MODEL-MEDIATED PATH</text>
+  <!-- TERRITORY -->
+  <rect x="405" y="86" width="260" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="535" y="116" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">TERRITORY</text>
+  <line x1="535" y1="134" x2="535" y2="168" stroke="#1c1917" stroke-width="2" marker-end="url(#mc-k)"/>
+  <text x="547" y="156" font-size="12.5" font-style="italic" fill="#57534e">abstraction</text>
+  <!-- MODEL -->
+  <rect x="405" y="170" width="260" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="535" y="200" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">MODEL</text>
+  <line x1="535" y1="218" x2="535" y2="252" stroke="#1c1917" stroke-width="2" marker-end="url(#mc-k)"/>
+  <text x="547" y="240" font-size="12.5" font-style="italic" fill="#57534e">makes explicit</text>
+  <!-- EXPLICIT PROPERTY -->
+  <rect x="405" y="254" width="260" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="535" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">EXPLICIT PROPERTY</text>
+  <!-- model arrow onto Alignment (right landing) -->
+  <path d="M535,308 C535,364 470,384 420,406" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#mc-b)"/>
+  <text x="524" y="360" text-anchor="end" font-size="12.5" font-weight="700" fill="#2f5169">available to</text>
+  <text x="524" y="377" text-anchor="end" font-size="12" font-style="italic" fill="#2f5169">richer semantic obligation</text>
 
-  <!-- ALIGNMENT (rust) -->
-  <rect x="250" y="336" width="220" height="54" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="360" y="369" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
+  <!-- ===== THE JOIN: ALIGNMENT ===== -->
+  <rect x="225" y="410" width="270" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
+  <text x="360" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
+  <text x="360" y="462" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">constraint &#183; sensor &#183; validator &#183; gate</text>
+  <line x1="360" y1="476" x2="360" y2="524" stroke="#155c38" stroke-width="2.4" marker-end="url(#mc-g)"/>
+  <text x="372" y="504" font-size="12.5" font-style="italic" fill="#155c38">gives consequence</text>
 
-  <!-- fan to three moves -->
-  <g fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ms-r)">
-    <path d="M300,390 C230,414 175,418 145,440"/>
-    <path d="M360,390 L360,440"/>
-    <path d="M420,390 C490,414 545,418 575,440"/>
-  </g>
+  <!-- ===== CONSEQUENCE ===== -->
+  <rect x="255" y="526" width="210" height="54" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
+  <text x="360" y="559" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">CONSEQUENCE</text>
 
-  <rect x="70" y="442" width="150" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="145" y="473" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">constraint</text>
-
-  <rect x="285" y="442" width="150" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="360" y="473" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">sensor</text>
-
-  <rect x="500" y="442" width="150" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="575" y="473" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">validator</text>
-
-  <!-- validator -> gate -->
-  <line x1="575" y1="492" x2="575" y2="524" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#ms-r)"/>
-  <rect x="500" y="526" width="150" height="46" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="575" y="555" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">gate</text>
-
-  <!-- converge on CONSEQUENCE (green) -->
-  <g fill="none" stroke="#155c38" stroke-width="2.2" marker-end="url(#ms-g)">
-    <path d="M145,492 C180,556 250,576 300,594"/>
-    <path d="M360,492 L360,594"/>
-    <path d="M575,572 C540,584 470,588 420,594"/>
-  </g>
-
-  <rect x="240" y="596" width="240" height="54" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
-  <text x="360" y="629" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">CONSEQUENCE</text>
-
-  <!-- footer: protect the thesis -->
-  <text x="360" y="680" text-anchor="middle" font-size="16" font-style="italic" fill="#1c1917">Modeling makes an engineering property explicit. Alignment gives selected properties consequence.</text>
+  <!-- footer: protect the point -->
+  <text x="360" y="626" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Governance can act directly on observable actions; explicit models make</text>
+  <text x="360" y="648" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">richer system properties available too &#8212; model-mediated is not the only path.</text>
 </svg>

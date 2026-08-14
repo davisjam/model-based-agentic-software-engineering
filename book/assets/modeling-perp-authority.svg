@@ -1,82 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Figure 2.6 concept (part2-content-revision-260814; folds to book/assets/).
-     Modeling and authority are separate design moves, one per Part. PART II (MODELING, blue) builds the
-     quantitative model — usage -> cost -> budget, with usage -> capacity — answering "what quantities matter,
-     and how are they related?" PART III (ALIGNMENT) takes the SAME model and decides what force it carries:
-     observe, adapt, or gate; a gate is itself armed or dormant. The rust marks where the model acquires
-     authority — the armed/dormant gate is the point where a quantity becomes a consequence. Grammar: blue
-     #2f5169 = the shared quantitative model; rust #9a3f12 = the gate's armed/dormant authority state.
-     Hand-authored (two design-move panels sharing one model, not a flow). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="960" height="420"
+<!-- Figure 2.6 concept (part2-v8-260814 re-author; folds to book/assets/).
+     REVISION per v8 editor guidance (2.6-3): harmonize EXACTLY with revised Part III. Title/footer "One
+     Measurement, Different Authority Decisions". Part-II side is the MODEL ("what quantity and bound
+     matter?"); Part-III side is the AUTHORITY DECISION over the SAME model — observe, adapt, degrade,
+     gate. The DocAble armed/dormant configuration detail is REMOVED (not a general model concept).
+     Grammar: blue #2f5169 = the shared measurement model; gray #57534e = observe/adapt (report/steer);
+     rust #9a3f12 = degrade/gate (the consequential decisions). Hand-authored (two design-move panels
+     sharing one model). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380"
      role="img" aria-labelledby="paTitle paDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="paTitle">Modeling is perpendicular to authority: one quantity model, several possible consequences</title>
-  <desc id="paDesc">Part II, modeling, builds a quantitative model in blue: usage to cost to budget, with
-    usage to capacity, answering what quantities matter and how they relate. Part III, alignment, takes the
-    same model and chooses its force: observe, adapt, or gate. A gate is armed or dormant, shown in rust,
-    marking where the model acquires authority. Modeling and authority are separate moves.</desc>
+  <title id="paTitle">One measurement, different authority decisions</title>
+  <desc id="paDesc">Part II, the model, names a quantity and a reference bound and compares them, answering
+    what quantity and bound matter. Part III, the authority decision, takes the same model and chooses its
+    force: observe, adapt, degrade, or gate. Observe and adapt are shown in gray; degrade and gate, the
+    consequential decisions, in rust. Modeling and authority are separate moves over one shared model.</desc>
 
   <defs>
     <marker id="pa-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="pa-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    <marker id="pa-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
   </defs>
 
+  <text x="480" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">One Measurement, Different Authority Decisions</text>
+
   <!-- divider -->
-  <line x1="470" y1="56" x2="470" y2="330" stroke="#d9d3c8" stroke-width="1.6"/>
+  <line x1="475" y1="66" x2="475" y2="300" stroke="#d9d3c8" stroke-width="1.6"/>
 
-  <!-- ===== LEFT: PART II MODELING ===== -->
-  <text x="230" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">PART II &#183; MODELING</text>
+  <!-- ===== LEFT: PART II MODEL ===== -->
+  <text x="235" y="82" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">PART II &#183; MODEL</text>
   <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect x="40" y="70" width="110" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="95" y="99">usage</text>
-    <rect x="200" y="70" width="110" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="255" y="99">cost</text>
-    <rect x="360" y="70" width="110" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="415" y="99">budget</text>
-    <rect x="200" y="160" width="110" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="255" y="189">capacity</text>
+    <rect x="40" y="102" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="105" y="131">quantity</text>
+    <rect x="40" y="182" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="105" y="211">bound</text>
+    <rect x="270" y="142" width="150" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+    <text x="345" y="171">comparison</text>
   </g>
-  <line x1="150" y1="93" x2="198" y2="93" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pa-b)"/>
-  <line x1="310" y1="93" x2="358" y2="93" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pa-b)"/>
-  <path d="M95,116 C95,183 150,183 198,183" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pa-b)"/>
-  <text x="230" y="250" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What quantities matter,</text>
-  <text x="230" y="270" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">and how are they related?&#8221;</text>
+  <path d="M170,125 C220,143 230,152 268,158" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pa-b)"/>
+  <path d="M170,205 C220,187 230,178 268,172" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pa-b)"/>
+  <text x="235" y="262" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What quantity and bound matter?&#8221;</text>
 
-  <!-- ===== RIGHT: PART III ALIGNMENT ===== -->
-  <text x="715" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">PART III &#183; ALIGNMENT</text>
-  <rect x="620" y="66" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="715" y="95" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">same model</text>
-  <!-- fan to three authorities -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#pa-b)">
-    <path d="M655,112 C620,138 585,142 570,166"/>
-    <path d="M715,112 L715,166"/>
-    <path d="M775,112 C810,138 845,142 860,166"/>
+  <!-- ===== RIGHT: PART III AUTHORITY DECISION ===== -->
+  <text x="715" y="82" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">PART III &#183; AUTHORITY DECISION</text>
+  <rect x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="715" y="129" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">same model</text>
+  <!-- fan to four authority decisions -->
+  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#pa-k)">
+    <path d="M650,146 C600,168 570,172 554,190"/>
+    <path d="M690,146 C670,168 662,172 664,190"/>
+    <path d="M740,146 C760,168 768,172 776,190"/>
+    <path d="M780,146 C830,168 860,172 886,190"/>
   </g>
-  <g font-size="15" font-weight="700" text-anchor="middle">
-    <rect x="510" y="168" width="120" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="570" y="196" fill="#57534e">observe</text>
-    <rect x="655" y="168" width="120" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="715" y="196" fill="#57534e">adapt</text>
-    <rect x="800" y="168" width="120" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-    <text x="860" y="196" fill="#9a3f12">gate</text>
+  <g font-size="14.5" font-weight="700" text-anchor="middle">
+    <rect x="505" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="554" y="220" fill="#57534e">observe</text>
+    <rect x="615" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="664" y="220" fill="#57534e">adapt</text>
+    <rect x="725" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+    <text x="774" y="220" fill="#9a3f12">degrade</text>
+    <rect x="835" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+    <text x="884" y="220" fill="#9a3f12">gate</text>
   </g>
-  <!-- gate armed/dormant (rust) -->
-  <g fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#pa-r)">
-    <path d="M840,212 C812,236 790,240 785,258"/>
-    <path d="M880,212 C902,236 918,240 900,258"/>
-  </g>
-  <g font-size="14" font-weight="700" text-anchor="middle" fill="#9a3f12">
-    <rect x="728" y="260" width="106" height="40" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-    <text x="781" y="285">armed</text>
-    <rect x="846" y="260" width="106" height="40" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-    <text x="899" y="285">dormant</text>
-  </g>
-  <text x="715" y="322" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What consequence is justified?&#8221;</text>
+  <text x="715" y="270" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What consequence is justified?&#8221;</text>
 
   <!-- footer: protect the point -->
-  <text x="480" y="388" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Modeling and authority are separate moves &#8212; the same model can observe, adapt, or gate.</text>
+  <text x="480" y="348" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The model defines the quantity and bound; Alignment decides whether to observe, adapt, degrade, or gate.</text>
 </svg>

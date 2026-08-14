@@ -1,81 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2.7 Provenance primary model (part2-content-revision-260814; folds to book/assets/).
-     DocAble's attribution model: a structured record of consequential mutations, and the views derived FROM
-     it. A run contains operations; each operation selects the events that matter to engineering explanation
-     — target, mutation, pass, evidence. From that single structured record the system DERIVES its
-     human-facing views (engineering audit, customer changelog) rather than maintaining them separately.
-     Record once; derive the explanations. Grammar: blue #2f5169 = the structured action record (the
-     provenance model); gray #57534e = the derived, downstream views; rust #9a3f12 = the discipline the
-     model protects (views are derived, not separately authored). Hand-authored (record-and-derive, not a
-     flowchart). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 490" width="700" height="490"
+<!-- 2.7 Provenance primary model (part2-v8-260814 re-author; folds to book/assets/).
+     REVISION per v8 editor guidance (2.7-1): make the provenance MODEL primary. A run contains
+     operations; each operation records target, mutation, pass, and evidence. That structured record is
+     the figure's subject. A small, secondary outgoing line notes the derived uses (audit, debugging,
+     changelog) — drawn small and gray so it reads as a consequence, not a co-equal half. Grammar: blue
+     #2f5169 = the structured provenance model (run, operation, its fields); gray #57534e = the derived
+     uses. Hand-authored (a model with a small derived-uses tail). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" width="700" height="400"
      role="img" aria-labelledby="atTitle atDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="atTitle">DocAble's attribution model: record once, derive the explanations</title>
-  <desc id="atDesc">A run contains operations. Each operation records the events that matter to engineering
-    explanation: target, mutation, pass, and evidence. From that single structured record the system derives
-    its human-facing views — an engineering audit and a customer changelog — rather than maintaining them as
-    separate accounts of the same action.</desc>
+  <title id="atTitle">DocAble's attribution provenance model: a run of operations, each with recorded fields</title>
+  <desc id="atDesc">A run contains operations. Each operation records its target, mutation, responsible
+    pass, and retained evidence. This structured record is the model. A small secondary line shows the uses
+    derived from it: audit, debugging, and changelog. The model is primary; the derived uses are secondary.</desc>
 
   <defs>
     <marker id="at-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="at-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="at-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
   </defs>
 
-  <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">ATTRIBUTION MODEL &#8212; THE STRUCTURED RECORD</text>
+  <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">THE PROVENANCE MODEL</text>
 
-  <!-- run (blue) -->
-  <rect x="275" y="42" width="150" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="350" y="71" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">run</text>
-  <line x1="350" y1="88" x2="350" y2="116" stroke="#2f5169" stroke-width="2.2" marker-end="url(#at-b)"/>
-  <text x="362" y="108" font-size="13.5" font-style="italic" fill="#57534e">one run, many operations</text>
+  <!-- RUN (blue, prominent) -->
+  <rect x="270" y="42" width="160" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
+  <text x="350" y="74" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RUN</text>
+  <line x1="350" y1="92" x2="350" y2="122" stroke="#2f5169" stroke-width="2.4" marker-end="url(#at-b)"/>
+  <text x="362" y="112" font-size="13" font-style="italic" fill="#57534e">one run, many operations</text>
 
-  <!-- operation (blue) -->
-  <rect x="265" y="118" width="170" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="350" y="147" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">operation</text>
-
-  <!-- operation -> selected events bus -->
-  <line x1="350" y1="164" x2="350" y2="190" stroke="#2f5169" stroke-width="2.2"/>
-  <line x1="155" y1="190" x2="545" y2="190" stroke="#2f5169" stroke-width="2.2"/>
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#at-b)">
-    <path d="M155,190 L155,214"/>
-    <path d="M285,190 L285,214"/>
-    <path d="M415,190 L415,214"/>
-    <path d="M545,190 L545,214"/>
+  <!-- OPERATION* with its recorded fields (the heart of the model) -->
+  <rect x="150" y="124" width="400" height="118" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="350" y="153" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">OPERATION*</text>
+  <text x="350" y="173" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">each records</text>
+  <g fill="#fbfdff" stroke="#2f5169" stroke-width="1.8">
+    <rect x="170" y="184" width="86" height="42" rx="8"/>
+    <rect x="266" y="184" width="98" height="42" rx="8"/>
+    <rect x="374" y="184" width="70" height="42" rx="8"/>
+    <rect x="454" y="184" width="76" height="42" rx="8"/>
+  </g>
+  <g font-size="14.5" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <text x="213" y="210">target</text>
+    <text x="315" y="210">mutation</text>
+    <text x="409" y="210">pass</text>
+    <text x="492" y="210">evidence</text>
   </g>
 
-  <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
-    <rect x="100" y="216" width="110" height="42" rx="9"/>
-    <rect x="230" y="216" width="110" height="42" rx="9"/>
-    <rect x="360" y="216" width="110" height="42" rx="9"/>
-    <rect x="490" y="216" width="110" height="42" rx="9"/>
-  </g>
-  <text x="155" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">target</text>
-  <text x="285" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">mutation</text>
-  <text x="415" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">pass</text>
-  <text x="545" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">evidence</text>
-
-  <!-- derive divider -->
-  <line x1="350" y1="258" x2="350" y2="300" stroke="#57534e" stroke-width="2.2" marker-end="url(#at-k)"/>
-  <text x="362" y="284" font-size="14.5" font-weight="700" fill="#1c1917">record once; derive the explanations</text>
-
-  <!-- derived views (gray) -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#at-k)">
-    <path d="M330,300 C300,320 250,326 230,344"/>
-    <path d="M370,300 C400,320 450,326 470,344"/>
-  </g>
-
-  <rect x="120" y="346" width="220" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="230" y="378" text-anchor="middle" font-size="16" fill="#1c1917">engineering audit</text>
-
-  <rect x="360" y="346" width="220" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="470" y="378" text-anchor="middle" font-size="16" fill="#1c1917">customer changelog</text>
+  <!-- secondary derived-uses tail (small, gray) -->
+  <line x1="350" y1="242" x2="350" y2="278" stroke="#57534e" stroke-width="1.8" marker-end="url(#at-k)"/>
+  <text x="362" y="266" font-size="12.5" font-style="italic" fill="#57534e">derived uses (secondary)</text>
+  <rect x="215" y="280" width="270" height="42" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <text x="350" y="306" text-anchor="middle" font-size="14.5" fill="#1c1917">audit &#183; debugging &#183; changelog</text>
 
   <!-- footer: protect the point -->
-  <text x="350" y="434" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">A human-facing explanation is derived from the structured record,</text>
-  <text x="350" y="458" text-anchor="middle" font-size="15.5" font-style="italic" fill="#9a3f12">not maintained as a separate account of the same action.</text>
+  <text x="350" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">The structured record is the model; audit, debugging, and changelog</text>
+  <text x="350" y="376" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">are derived from it, not maintained apart.</text>
 </svg>

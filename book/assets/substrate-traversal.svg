@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2.8 System-Knowledge model diagram (part2-content-revision-260814; folds to book/assets/).
-     How a task traverses the modeling substrate: a TASK names a system entity, and from that one named
-     handle it reads the entity's models. The entity itself is territory-identity (gray) — a stable name,
-     not a model. From it fans the first tier of models (structure, behavior, ownership); following the
-     relations those models expose reaches the second tier (decision, measurement, provenance). The task
-     assembles the slice it needs by traversal, not by loading one universal graph. Grammar: gray #57534e =
-     the named system entity (shared identity); blue #2f5169 = the typed models reached through it.
-     Hand-authored (a two-tier traversal fan, not a flowchart). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 500" width="820" height="500"
+<!-- 2.8 System-Knowledge model diagram (part2-v8-260814 re-author; folds to book/assets/).
+     REVISION per v8 editor guidance (2.8-2): radial traversal from a named ENTITY, with the task arrow
+     coming INTO the entity. From the entity, six model relations fan outward as PEERS — structural,
+     behavioral, decision, measurement, provenance, ownership — with NO implied sequence among them. A
+     task retrieves only the relations its question needs. Grammar: gray #57534e = the task and the named
+     entity (shared identity); blue #2f5169 = the six model relations reached from it. Hand-authored (a
+     radial fan from one entity, not a two-tier ordering). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" width="820" height="560"
      role="img" aria-labelledby="stTitle stDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="stTitle">A task traverses the substrate from a named entity to the models it needs</title>
-  <desc id="stDesc">A task names a system entity — a gray identity handle. From it a first tier of blue models
-    fans out: structure, behavior, ownership. Following the relations those expose reaches a second tier:
-    decision, measurement, provenance. The task assembles the slice it needs by traversal from a shared
-    identity, not by loading one universal graph.</desc>
+  <title id="stTitle">Task-driven traversal: enter at a named entity, follow only the relations needed</title>
+  <desc id="stDesc">A task enters the substrate through a named system entity, shown by an arrow into the
+    entity. From the entity, six model relations fan outward as peers: structural, behavioral, decision,
+    measurement, provenance, and ownership. There is no order among them. The task retrieves only the
+    relations its engineering question requires.</desc>
 
   <defs>
     <marker id="st-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
@@ -25,54 +24,44 @@
     </marker>
   </defs>
 
-  <!-- TASK -->
-  <rect x="330" y="26" width="160" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="410" y="55" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
-  <line x1="410" y1="72" x2="410" y2="98" stroke="#57534e" stroke-width="2.2" marker-end="url(#st-k)"/>
+  <!-- TASK enters INTO the entity -->
+  <rect x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="410" y="52" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
+  <line x1="410" y1="68" x2="410" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#st-k)"/>
+  <text x="422" y="160" font-size="12.5" font-style="italic" fill="#57534e">enters at a named entity</text>
 
-  <!-- named system entity (gray identity) -->
-  <rect x="290" y="100" width="240" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
-  <text x="410" y="132" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">named system entity</text>
-
-  <!-- fan to first tier (blue) -->
+  <!-- spokes: entity to the six relations (drawn under the boxes) -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#st-b)">
-    <path d="M330,146 C230,172 175,178 150,204"/>
-    <path d="M410,152 L410,204"/>
-    <path d="M490,146 C590,172 645,178 670,204"/>
-  </g>
-  <g font-size="15.5" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="55" y="206" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="150" y="236">structure</text>
-    <rect x="315" y="206" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="410" y="236">behavior</text>
-    <rect x="575" y="206" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="670" y="236">ownership</text>
+    <path d="M470,272 C520,244 560,222 588,206"/>          <!-- to right (0deg) -->
+    <path d="M460,258 C500,210 505,170 508,145"/>          <!-- to upper-right (60deg) -->
+    <path d="M360,258 C320,210 315,170 312,145"/>          <!-- to upper-left (120deg) -->
+    <path d="M350,272 C300,244 260,222 232,206"/>          <!-- to left (180deg) -->
+    <path d="M360,322 C320,370 315,410 312,437"/>          <!-- to lower-left (240deg) -->
+    <path d="M460,322 C500,370 505,410 508,437"/>          <!-- to lower-right (300deg) -->
   </g>
 
-  <!-- converge to "follow relations" -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#st-k)">
-    <path d="M150,254 C175,286 340,296 350,312"/>
-    <path d="M410,254 L410,312"/>
-    <path d="M670,254 C645,286 480,296 470,312"/>
-  </g>
-  <rect x="300" y="314" width="220" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="410" y="342" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">follow relations</text>
+  <!-- named ENTITY (gray identity, center) -->
+  <rect x="315" y="255" width="190" height="72" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
+  <text x="410" y="288" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">named ENTITY</text>
+  <text x="410" y="310" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">e.g. a job, a service</text>
 
-  <!-- fan to second tier (blue) -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#st-b)">
-    <path d="M340,358 C230,384 175,390 150,414"/>
-    <path d="M410,358 L410,414"/>
-    <path d="M480,358 C590,384 645,390 670,414"/>
-  </g>
-  <g font-size="15.5" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="55" y="416" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="150" y="446">decision</text>
-    <rect x="315" y="416" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="410" y="446">measurement</text>
-    <rect x="575" y="416" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-    <text x="670" y="446">provenance</text>
+  <!-- six relation boxes (blue peers) -->
+  <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
+    <rect x="535" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="610" y="211">decision</text>
+    <rect x="435" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="510" y="126">behavioral</text>
+    <rect x="235" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="310" y="126">structural</text>
+    <rect x="135" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="210" y="211">ownership</text>
+    <rect x="235" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="310" y="468">provenance</text>
+    <rect x="435" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <text x="510" y="468">measurement</text>
   </g>
 
   <!-- footer: protect the point -->
-  <text x="410" y="488" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">A task assembles the slice it needs by traversal from a named entity &#8212; not by loading one universal graph.</text>
+  <text x="410" y="524" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1c1917">Retrieve only the relations needed for the current question.</text>
+  <text x="410" y="546" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">No order among the six &#8212; enter at the entity, follow what the question needs.</text>
 </svg>
