@@ -19,14 +19,13 @@ that would otherwise need an agent or a human to reconstruct the missing semanti
 >
 > Represented intent becomes authoritative when the environment can act on it.
 
-This Part answers five questions, each a chapter; [ref:part3-nav-arc] gives them in order.
+Five questions organize the Part; [ref:part3-nav-arc] lists them.
 
 <!-- label: part3-nav-arc -->
-<!-- figure: assets/part3-nav-arc.svg | *Figure 3.0-1: Five questions organize Alignment.* WHERE authority can act (3.1) → WHAT obligation it should hold (3.2) → HOW — which mechanism role holds it (3.3) → how the environment GROWs, learning new obligations and controls (3.4) → how we GOVERN the resulting control system (3.5). The Part reads as an argument: from where authority acts, to what it may enforce, to how, to governing the result. -->
+<!-- figure: assets/part3-nav-arc.svg | *Figure 3.0-1: Five questions organize Alignment.* WHERE authority can act (3.1), WHAT obligation it should hold (3.2), HOW a mechanism holds it (3.3), how the environment GROWs by learning new obligations and controls (3.4), and how we GOVERN the resulting control system (3.5). -->
 
 Alignment externalizes selected engineering judgments into the environment. Constraints narrow what work
-can do; sensors produce evidence of what it did; validators evaluate that evidence against an obligation;
-gates decide what may advance. Some mechanisms can be designed before the work begins. Others emerge only
-when a failure reveals an obligation nobody encoded. As those lessons become durable structure, the
-environment accumulates engineering capital, and eventually enough machinery that the machinery itself must
-be engineered.
+can do; sensors produce evidence of what it did; validators judge that evidence against an obligation;
+gates decide what may advance. Some mechanisms can be designed before work begins. Others emerge when a
+failure exposes something the environment did not represent, observe, evaluate, or control. Those durable
+lessons become engineering capital, and eventually the control system itself becomes an engineering object.
