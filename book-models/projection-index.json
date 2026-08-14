@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1202,
+    "total_sites": 1204,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 796,
+      "book-web": 798,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -21,7 +21,7 @@
         "book-web": [
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "book/0.4-preface.html",
@@ -225,7 +225,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 34
+            "occ": 35
           },
           {
             "file": "book/list-of-figures.html",
@@ -912,6 +912,10 @@
       "book": {
         "book-web": [
           {
+            "file": "book/0.3-the-books-language.html",
+            "occ": 1
+          },
+          {
             "file": "book/4.3-validating-change.html",
             "occ": 1
           },
@@ -922,12 +926,16 @@
           {
             "file": "book/book-index.html",
             "occ": 2
+          },
+          {
+            "file": "book/figures.html",
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 3
+            "occ": 5
           }
         ]
       },
@@ -1009,7 +1017,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 74
+            "occ": 80
           },
           {
             "file": "book/0.4-preface.html",
@@ -1397,7 +1405,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 229
+            "occ": 235
           },
           {
             "file": "book/index.html",
@@ -2093,7 +2101,7 @@
         "book-web": [
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 10
+            "occ": 7
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
@@ -2117,7 +2125,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 8
+            "occ": 5
           }
         ],
         "book-pdf": [
@@ -2203,7 +2211,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 59
+            "occ": 58
           },
           {
             "file": "book/0.4-preface.html",
@@ -2591,7 +2599,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 367
+            "occ": 366
           },
           {
             "file": "book/index.html",
@@ -3265,7 +3273,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/0.4-preface.html",
@@ -3653,7 +3661,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/index.html",
@@ -4359,7 +4367,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/0.4-preface.html",
@@ -4747,7 +4755,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 36
+            "occ": 37
           },
           {
             "file": "book/index.html",

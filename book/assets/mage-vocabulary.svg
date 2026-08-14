@@ -1,95 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- HAND-AUTHORED one-off glossary section-map. R41b THEORY REBUILD (preface-3): the old figure drew a
-     single LINEAR noun-spine Reality -> Representation -> Model -> Invariant -> Governance Mechanism, which
-     made a model a PREREQUISITE for authority. That is now wrong. This is a FORK-AND-JOIN grammar: the
-     modeling chain (Reality/Intent -> Representation -> Model -> Property/Invariant) makes properties
-     explicit and yields a richer SURFACE for governance; but a governance mechanism can also act DIRECTLY
-     on a raw action or artifact, with no model in between. Both inputs JOIN at the Governance Mechanism.
-     Models are not a prerequisite for governance — they expand the semantic surface over which it operates.
-     Orientation reference chrome, not a role-coloured figure. -->
-<!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 900" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Fork-and-join grammar: the modeling chain from reality to a property or invariant yields a richer surface for governance, while a raw action or artifact can be governed directly; both join at the governance mechanism, which governs an environment that compounds into engineering capital">
+<!-- Hand-authored glossary grammar figure (label: mage-vocabulary). FRONT-MATTER COPY-EDIT PASS (260814
+     draft; folds over book/assets/mage-vocabulary.svg). Copy-edit, not redesign — brought into the book
+     grammar (Georgia glossary chrome; gray=territory, blue=model, rust=governance/obligation, teal=Governed
+     Environment, green=Engineering Capital) and sharpened per the figure-copy-edit map:
+     (1) FORK MADE UNMISTAKABLE. The MODEL PATH (Representation -> Model -> Richer semantic surface) and the
+         DIRECT PATH (raw action / artifact) are two separate columns whose arrows LAND SIDE BY SIDE on the
+         top edge of the one Governance Mechanism — a visible join, not a mandatory serial chain.
+     (2) EXPAND, NOT ENABLE. The model path reaches governance labelled "available to"; the direct path
+         reaches it labelled "acted on directly". Models are not a prerequisite.
+     (3) CAPITAL VIA CONVERSION, SPARE. Engineering Capital is reached through a single small Governance
+         Conversion node on recurring lessons — not a magical "compounds into" edge. -->
+<!-- semantic-families: neutral, modeling, synthesis -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 830" width="980" height="830"
+     role="img" aria-labelledby="mvTitle mvDesc"
+     font-family="Georgia, 'Times New Roman', serif">
+  <title id="mvTitle">The grammar of MAGE</title>
+  <desc id="mvDesc">A fork-and-join grammar. On the right, the model path: a representation may be
+    structured into a model that makes properties explicit, yielding a richer semantic surface. On the
+    left, the direct path: a raw action or artifact. Both paths arrive at one governance mechanism —
+    constraint, sensor, validator, gate — the model path available to it, the direct path acted on
+    directly. Models are not a prerequisite. The mechanism governs an environment whose recurring lessons,
+    through governance conversion, accumulate as engineering capital.</desc>
+
   <defs>
-    <marker id="vh-mv" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
+    <marker id="mv-neutral" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3.2 L0,6.4 Z" fill="#57534e"/></marker>
+    <marker id="mv-blue" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3.2 L0,6.4 Z" fill="#2f5169"/></marker>
+    <marker id="mv-rust" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3.2 L0,6.4 Z" fill="#9a3f12"/></marker>
+    <marker id="mv-teal" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c6b5f"/></marker>
+    <marker id="mv-green" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3.2 L0,6.4 Z" fill="#155c38"/></marker>
   </defs>
-  <rect x="0" y="0" width="940" height="900" fill="#fdfcf9"/>
-  <text x="60" y="44" font-size="17" fill="#57534e">Glossary · the grammar of the book</text>
-  <text x="880" y="44" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The MAGE vocabulary</text>
-  <text x="470" y="72" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Models are not a prerequisite for governance — they expand the surface it can act on.</text>
 
-  <!-- ===== the modeling chain (centre-right), Reality -> Property/Invariant -> richer surface ===== -->
-  <!-- Reality / Intent -->
-  <rect x="440" y="86" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="560" y="112" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Reality / Intent</text>
-  <text x="560" y="131" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">the system as it is, or intended</text>
-  <line x1="560" y1="138" x2="560" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
-  <text x="572" y="162" font-size="14" fill="#78716c">represented as</text>
+  <rect x="0" y="0" width="980" height="830" fill="#fdfcf9"/>
+  <text x="60" y="42" font-size="15" fill="#78716c">Glossary · the grammar of the book</text>
+  <text x="920" y="42" text-anchor="end" font-size="19" font-weight="700" fill="#1c1917">The MAGE vocabulary</text>
+  <text x="490" y="74" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Models are not a prerequisite for governance — they expand the semantic surface it can act on.</text>
 
-  <!-- Representation -->
-  <rect x="440" y="176" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="560" y="202" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Representation</text>
-  <text x="560" y="221" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">any account of it</text>
-  <line x1="560" y1="228" x2="560" y2="266" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
-  <text x="572" y="252" font-size="14" fill="#78716c">may be structured into</text>
+  <!-- ================= MODEL PATH (right column) ================= -->
+  <rect x="580" y="110" width="240" height="50" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="700" y="141" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Representation</text>
+  <path d="M700,160 L700,198" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#mv-neutral)"/>
+  <text x="712" y="184" text-anchor="start" font-size="12" fill="#78716c">may be structured into a</text>
 
-  <!-- Model -->
-  <rect x="440" y="266" width="240" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="560" y="295" text-anchor="middle" font-size="20" font-weight="bold" fill="#1c1917">Model</text>
-  <line x1="560" y1="312" x2="560" y2="350" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
-  <text x="572" y="336" font-size="14" fill="#78716c">makes properties explicit</text>
+  <rect x="580" y="200" width="240" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="700" y="231" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">Model</text>
+  <path d="M700,250 L700,288" fill="none" stroke="#2f5169" stroke-width="2.4" marker-end="url(#mv-blue)"/>
+  <text x="712" y="274" text-anchor="start" font-size="12" fill="#78716c">makes properties explicit</text>
 
-  <!-- Property / Invariant -->
-  <rect x="440" y="350" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="560" y="382" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Property / Invariant</text>
-  <line x1="560" y1="402" x2="560" y2="440" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
-  <text x="572" y="426" font-size="14" fill="#78716c">yields</text>
+  <rect x="580" y="290" width="240" height="58" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="700" y="315" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">Richer semantic</text>
+  <text x="700" y="336" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">surface</text>
 
-  <!-- Richer surface for governance (the modeling output that feeds the mechanism) -->
-  <rect x="440" y="440" width="240" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="560" y="466" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Richer surface</text>
-  <text x="560" y="485" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">for governance</text>
-  <!-- richer surface -> the mechanism (join from above) -->
-  <line x1="560" y1="492" x2="560" y2="548" stroke="#57534e" stroke-width="3" marker-end="url(#vh-mv)"/>
+  <!-- ================= DIRECT PATH (left column) ================= -->
+  <rect x="90" y="290" width="260" height="58" rx="9" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
+  <text x="220" y="315" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Raw action / artifact</text>
+  <text x="220" y="336" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
 
-  <!-- ===== the DIRECT path: a raw action / artifact governed without a model ===== -->
-  <rect x="60" y="350" width="260" height="72" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
-  <text x="190" y="382" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Raw action / artifact</text>
-  <text x="190" y="405" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
-  <!-- bypass the whole modeling chain: down, then right into the mechanism's left edge -->
-  <polyline points="190,422 190,574 358,574" fill="none" stroke="#57534e" stroke-width="3" marker-end="url(#vh-mv)"/>
-  <text x="196" y="500" font-size="14" fill="#78716c">acted on directly —</text>
-  <text x="196" y="518" font-size="14" fill="#78716c">no model required</text>
+  <!-- ================= THE JOIN — two inputs land side by side on the mechanism ================= -->
+  <path d="M700,348 C700,384 626,398 566,406" fill="none" stroke="#2f5169" stroke-width="2.8" marker-end="url(#mv-blue)"/>
+  <text x="648" y="378" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169">available to</text>
+  <path d="M220,348 C220,384 356,398 414,406" fill="none" stroke="#57534e" stroke-width="2.8" marker-end="url(#mv-neutral)"/>
+  <text x="300" y="378" text-anchor="middle" font-size="12.5" font-weight="700" fill="#57534e">acted on directly</text>
 
-  <!-- ===== the JOIN: Governance Mechanism (two inputs meet here) ===== -->
-  <rect x="360" y="548" width="320" height="60" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="520" y="575" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governance Mechanism</text>
-  <text x="520" y="596" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
-  <line x1="520" y1="608" x2="520" y2="646" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
-  <text x="532" y="632" font-size="14" fill="#78716c">governs</text>
+  <rect x="320" y="406" width="340" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
+  <text x="490" y="435" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Governance Mechanism</text>
+  <text x="490" y="457" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
+  <path d="M490,470 L490,508" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#mv-neutral)"/>
+  <text x="502" y="494" text-anchor="start" font-size="12" fill="#78716c">governs</text>
 
-  <!-- Governed Environment -->
-  <rect x="360" y="646" width="320" height="46" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
-  <text x="520" y="675" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governed Environment</text>
-  <line x1="520" y1="692" x2="520" y2="730" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-mv)"/>
-  <text x="532" y="716" font-size="14" fill="#78716c">compounds into</text>
+  <!-- ================= GOVERNED ENVIRONMENT (teal) ================= -->
+  <rect x="320" y="510" width="340" height="52" rx="9" fill="#e6f1ee" stroke="#1c6b5f" stroke-width="2.8"/>
+  <text x="490" y="542" text-anchor="middle" font-size="17" font-weight="700" fill="#185c52">Governed Environment</text>
+  <path d="M490,562 L490,600" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#mv-neutral)"/>
+  <text x="502" y="586" text-anchor="start" font-size="12" fill="#78716c">recurring lessons</text>
 
-  <!-- Engineering Capital — terminal (dark) -->
-  <rect x="360" y="730" width="320" height="52" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
-  <text x="520" y="762" text-anchor="middle" font-size="20" font-weight="bold" fill="#fdfcf9">Engineering Capital</text>
+  <!-- ================= CAPITAL VIA CONVERSION (spare tail) ================= -->
+  <rect x="360" y="602" width="260" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="490" y="631" text-anchor="middle" font-size="15" font-weight="700" fill="#44403c">Governance Conversion</text>
+  <path d="M490,648 L490,686" fill="none" stroke="#155c38" stroke-width="2.4" marker-end="url(#mv-green)"/>
+  <text x="502" y="672" text-anchor="start" font-size="12" fill="#155c38">accumulates as</text>
 
-  <!-- footer: the grammar in one sentence -->
-  <line x1="60" y1="806" x2="880" y2="806" stroke="#cfcabf" stroke-width="1.5"/>
-  <text x="60" y="832" font-size="15" fill="#57534e">Read it as a fork: a representation <tspan font-style="italic">may be structured into</tspan> a model that</text>
-  <text x="60" y="854" font-size="15" fill="#57534e">makes properties explicit — a richer surface for governance. But a raw</text>
-  <text x="60" y="876" font-size="15" fill="#57534e">action or artifact can be governed <tspan font-style="italic">directly</tspan>; both join at the mechanism.</text>
+  <rect x="360" y="688" width="260" height="52" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
+  <text x="490" y="720" text-anchor="middle" font-size="18" font-weight="800" fill="#155c38">Engineering Capital</text>
 
-  <!-- R13 zoom cue: SOURCE corner-brackets on the two nodes expanded elsewhere (Model, Governance Mechanism). -->
-  <g fill="none" stroke="#57534e" stroke-width="2.5">
-    <!-- Model node -->
-    <path d="M450,262 L436,262 L436,276"/>
-    <path d="M670,316 L684,316 L684,302"/>
-    <!-- Governance Mechanism node -->
-    <path d="M370,544 L356,544 L356,558"/>
-    <path d="M670,612 L684,612 L684,598"/>
-  </g>
+  <!-- ================= footer ================= -->
+  <line x1="60" y1="766" x2="920" y2="766" stroke="#cfcabf" stroke-width="1.5"/>
+  <text x="60" y="792" font-size="14" fill="#57534e">A representation may be structured into a model that makes properties explicit — a richer semantic surface available to</text>
+  <text x="60" y="814" font-size="14" fill="#57534e">governance. But a raw action or artifact can be governed directly; both paths join at the mechanism.</text>
 </svg>
