@@ -7,7 +7,7 @@
     "derived_ids": 191,
     "missing_topic_sentence": 7,
     "sections_drained": 135,
-    "paragraph_points": 475
+    "paragraph_points": 467
   },
   "chapters": [
     {
@@ -2866,24 +2866,19 @@
           "section_id": "give-the-verdict-the-right-consequence",
           "level": 2,
           "heading_text": "Give the verdict the right consequence",
-          "topic_sentence": "Part III separated four mechanism roles for a reason.",
+          "topic_sentence": "Validation may report or gate.",
           "id_source": "derived",
           "block_index": 60,
           "points": [
             {
-              "slug": "sensor-validator-gate-roles",
-              "text": "A sensor produces evidence, a validator evaluates it, a gate controls admission; one artifact can bundle roles, but they stay distinct.",
+              "slug": "validation-does-not-imply-blocking",
+              "text": "Validation may report or gate; authority is a separate design decision from evidence quality.",
               "block_index": 62
             },
             {
-              "slug": "validation-does-not-imply-blocking",
-              "text": "Authority is a separate design decision from evidence quality; a validated verdict may report or may block.",
-              "block_index": 64
-            },
-            {
               "slug": "put-the-gate-outside-the-producing-agent",
-              "text": "Where a gate is appropriate, put it outside the producing agent's discretion and re-run the required evidence at the admission boundary.",
-              "block_index": 66
+              "text": "Where a gate is appropriate, put it outside the producing agent and regenerate the evidence at admission.",
+              "block_index": 64
             }
           ]
         },
@@ -2893,27 +2888,27 @@
           "heading_text": "Two boundaries for evidence",
           "topic_sentence": "Part III gave a placement rule for authority: **evaluate an obligation at the earliest boundary where it becomes legible and enforceable.** That catches a problem close to its cause.",
           "id_source": "explicit",
-          "block_index": 68,
+          "block_index": 66,
           "points": [
             {
               "slug": "part-three-placed-authority-at-the-earliest-legible-boundary",
               "text": "Part III gave the placement rule for authority: evaluate an obligation at the earliest boundary where it becomes legible and enforceable.",
-              "block_index": 70
+              "block_index": 68
             },
             {
               "slug": "consequential-work-deserves-a-second-boundary-re-evaluate-at-the-last-safe-point",
               "text": "Consequential work often deserves a second boundary: re-evaluate at the last safe point before the consequence becomes difficult to reverse.",
-              "block_index": 72
+              "block_index": 70
             },
             {
               "slug": "the-second-check-is-not-a-substitute-and-need-not-repeat-every-earlier-check",
               "text": "The second check is not a substitute for the first and need not repeat every earlier check; re-run only the evidence whose freshness matters to admission.",
-              "block_index": 76
+              "block_index": 74
             },
             {
               "slug": "done-is-a-claim-not-a-stored-fact-regenerate-the-evidence-at-the-consequential-boundary",
               "text": "That is why done is a claim, not a stored fact: at a consequential boundary, regenerate the evidence needed to justify the consequence.",
-              "block_index": 78
+              "block_index": 76
             }
           ]
         },
@@ -2923,17 +2918,17 @@
           "heading_text": "Why abundance changes the economics",
           "topic_sentence": "None of these techniques is new.",
           "id_source": "derived",
-          "block_index": 82,
+          "block_index": 78,
           "points": [
             {
               "slug": "the-techniques-are-not-new-the-price-changed",
               "text": "None of these techniques is new; abundant implementation changed the relative price of implementation and inspection, not the algorithms.",
-              "block_index": 84
+              "block_index": 80
             },
             {
               "slug": "human-judgment-moves-to-highest-marginal-value",
               "text": "The engineer does not disappear from validation; human judgment moves toward choosing obligations, designing representations, and calibrating validators.",
-              "block_index": 86
+              "block_index": 82
             }
           ]
         },
@@ -2943,12 +2938,12 @@
           "heading_text": "Industrial example — Docker",
           "topic_sentence": "Here is the move; one industrial team converged on it independently.",
           "id_source": "derived",
-          "block_index": 88,
+          "block_index": 84,
           "points": [
             {
               "slug": "independent-evidence-is-not-a-docable-idiosyncrasy",
               "text": "Placing the grader outside the author is a general move, not a DocAble idiosyncrasy.",
-              "block_index": 91
+              "block_index": 87
             }
           ]
         }
@@ -3045,43 +3040,28 @@
             },
             {
               "slug": "type-each-step-by-who-or-what-can-honestly-decide-it",
-              "text": "Conventional SRE runbooks externalize procedure; MAGE adds one distinction — type each step by who or what can honestly decide it.",
+              "text": "MAGE types each runbook step by who or what can honestly decide it.",
               "block_index": 40
             },
             {
-              "slug": "a-deterministic-step-should-usually-become-executable",
-              "text": "A deterministic step should usually become executable: preserve the sanctioned operation itself, not a paragraph telling an agent how to reconstruct it.",
-              "block_index": 43
-            },
-            {
-              "slug": "a-bounded-judgment-step-carries-a-prepared-brief-not-an-instruction-to-investigate",
-              "text": "A bounded-judgment step carries the material the judgment needs — relevant state, allowed choices, distinguishing criteria, required output — a prepared brief, not an instruction to \"investigate.\"",
-              "block_index": 45
-            },
-            {
-              "slug": "an-irreducible-judgment-should-be-surfaced-honestly",
-              "text": "An irreducible judgment should be surfaced honestly; the environment can collect evidence and narrow the question without pretending the final decision is mechanical.",
-              "block_index": 47
+              "slug": "runbook-steps-split-three-ways-runnable-delegable-human",
+              "text": "Runbook steps split three ways: runnable, delegable judgment, human judgment.",
+              "block_index": 42
             },
             {
               "slug": "playbooks-externalize-which-kind-of-reasoning-each-step-requires",
               "text": "Operational playbooks are models of engineering practice: they externalize not only what to do, but which kind of reasoning each step requires.",
-              "block_index": 49
+              "block_index": 45
             },
             {
               "slug": "determinizing-buys-a-trace-not-an-explanation",
               "text": "Determinizing a step buys a structured execution trace — evidence of what ran, not an explanation of why the decision was correct.",
-              "block_index": 54
-            },
-            {
-              "slug": "type-each-step-to-make-the-split-mechanical",
-              "text": "Type every step as runnable, delegable judgment, or human judgment, and let the type decide how the step is governed.",
-              "block_index": 57
+              "block_index": 50
             },
             {
               "slug": "the-fence-is-no-docable-idiosyncrasy",
               "text": "Systems that share no code reach for the same fence between the step a machine can decide and the step that needs a mind.",
-              "block_index": 61
+              "block_index": 54
             }
           ]
         },
@@ -3091,42 +3071,42 @@
           "heading_text": "Measure the state that matters",
           "topic_sentence": "Operational control fails easily when it acts on a proxy that only sometimes tracks the property that matters.",
           "id_source": "derived",
-          "block_index": 67,
+          "block_index": 60,
           "points": [
             {
               "slug": "operational-control-fails-when-it-acts-on-a-proxy",
               "text": "Operational control fails easily when it acts on a proxy that only sometimes tracks the property of interest.",
-              "block_index": 69
+              "block_index": 62
             },
             {
               "slug": "govern-the-state-that-constrains-the-system-not-the-one-convenient-to-count",
               "text": "Observe and govern the state that actually constrains the system, not merely the state that is convenient to count.",
-              "block_index": 71
+              "block_index": 64
             },
             {
               "slug": "use-the-simplest-direct-signal-available",
               "text": "Use the simplest direct signal available: govern memory pressure rather than job count, mediate a shared test resource rather than trust process isolation, record lifecycle state rather than reconstruct liveness from side effects.",
-              "block_index": 74
+              "block_index": 67
             },
             {
               "slug": "this-is-not-a-demand-for-perfect-observability",
               "text": "This is not a demand for perfect observability; the point is to notice when a proxy drives a consequential decision and the approximation has stopped being good enough.",
-              "block_index": 77
+              "block_index": 70
             },
             {
               "slug": "an-operating-loop-needs-evidence-about-its-own-state",
               "text": "An operating loop needs evidence about its own state; the useful metric is the one that changes the next engineering decision.",
-              "block_index": 79
+              "block_index": 72
             },
             {
               "slug": "ousterhouts-rule-measure-one-level-deeper",
               "text": "Ousterhout's rule: measure one level deeper — one level, not arbitrarily deep — where the deeper cut exposes the decision the surface number hides.",
-              "block_index": 81
+              "block_index": 74
             },
             {
               "slug": "keep-measurement-separate-from-authority",
               "text": "A metric is evidence; a validator may interpret it against a bound and a gate may then act, but the number itself carries no authority.",
-              "block_index": 84
+              "block_index": 77
             }
           ]
         },
@@ -3134,24 +3114,14 @@
           "section_id": "one-hard-example-coverage-measured-one-level-deeper",
           "level": 3,
           "heading_text": "One hard example: coverage measured one level deeper",
-          "topic_sentence": "Line coverage answers a **syntactic** question: did this line run under some test?",
+          "topic_sentence": "Requirements-based coverage is one example of measuring at the semantic unit that matters.",
           "id_source": "derived",
-          "block_index": 87,
+          "block_index": 79,
           "points": [
             {
-              "slug": "line-coverage-answers-a-syntactic-question",
-              "text": "Line coverage answers a syntactic question — did this line run — not the semantic one an engineer has: is the claim this code makes exercised?",
-              "block_index": 89
-            },
-            {
-              "slug": "the-fix-joins-a-traceability-graph-to-the-coverage-oracle",
-              "text": "The fix joins a traceability graph to the ordinary coverage oracle: follow each model claim to its anchor and intersect its line range with the covered set.",
-              "block_index": 91
-            },
-            {
-              "slug": "the-composition-counts-model-claims-not-lines",
-              "text": "The composition counts model claims and reports a named verdict — this invariant's code is exercised by no test — instead of an anonymous percentage.",
-              "block_index": 94
+              "slug": "requirements-based-coverage-measures-at-the-semantic-unit",
+              "text": "Requirements-based coverage measures at the semantic unit that matters: whether each modeled claim has exercising evidence, not whether a line ran.",
+              "block_index": 81
             }
           ]
         },
@@ -3159,24 +3129,14 @@
           "section_id": "one-judgment-laden-example-doc-derived-tests",
           "level": 3,
           "heading_text": "One judgment-laden example: doc-derived tests",
-          "topic_sentence": "Slide to the far end, where the metric stops being a number a threshold can act on.",
+          "topic_sentence": "Doc-derived tests mark the other end of the spectrum.",
           "id_source": "derived",
-          "block_index": 97,
+          "block_index": 84,
           "points": [
             {
               "slug": "a-doc-derived-tests-metric-is-genuinely-soft",
-              "text": "A doc-derived test pins a doc-claim; its metric — is this doc-claim pinned? — is genuinely soft, with no machine-enumerable denominator.",
-              "block_index": 99
-            },
-            {
-              "slug": "gating-a-soft-signal-manufactures-hollow-tests",
-              "text": "Wire a soft signal to a blocking gate and you manufacture the hollow tests it was meant to prevent.",
-              "block_index": 101
-            },
-            {
-              "slug": "the-detailed-metric-receipts-live-in-part-v",
-              "text": "The detailed metric receipts — cold-start latency, the missing-model drain, the null-result ablation — are Part V evidence, not method.",
-              "block_index": 104
+              "text": "A doc-derived test's metric is genuinely soft: whether every consequential prose claim has an adequate test is a judgment, so it should direct review, not drive a threshold.",
+              "block_index": 86
             }
           ]
         },
@@ -3186,22 +3146,22 @@
           "heading_text": "Let useful models drive machinery",
           "topic_sentence": "An executable model earns more than documentation value when tools consume it directly.",
           "id_source": "derived",
-          "block_index": 106,
+          "block_index": 89,
           "points": [
             {
               "slug": "an-executable-model-becomes-a-query-surface-for-consumers",
               "text": "An executable model earns more than documentation value when tools consume it directly — it becomes a reusable query surface for many consumers.",
-              "block_index": 108
+              "block_index": 91
             },
             {
               "slug": "a-component-distance-grade-supplies-evidence-to-a-validator",
-              "text": "A component-distance grade read from the model supplies evidence to a validator, whose verdict determines the gate's behavior at this boundary.",
-              "block_index": 110
+              "text": "A model can scope a mechanism: DocAble grades findings by component-model distance from the change, so a local finding blocks while unrelated debt stays a broader gate's responsibility.",
+              "block_index": 93
             },
             {
               "slug": "the-grade-is-a-model-read-metric-not-an-authority",
-              "text": "Same finding, three gate behaviors, chosen by consulting the model — the grade is evidence read from the model, and the gate carries the authority.",
-              "block_index": 114
+              "text": "The grade is evidence read from the model; the gate carries the authority — read the number one level below the surface, where it names a target instead of a total.",
+              "block_index": 96
             }
           ]
         },
@@ -3211,22 +3171,22 @@
           "heading_text": "The operating rhythm",
           "topic_sentence": "Put the pieces together and operation becomes a recurring rhythm.",
           "id_source": "derived",
-          "block_index": 116,
+          "block_index": 98,
           "points": [
             {
               "slug": "operating-is-one-recurring-rhythm-across-four-forms",
               "text": "Operating MAGE is one recurring rhythm: the lifecycle names healthy progress and failure, events bind the reaction to the transition, the runbook gives each state a sanctioned next move, and metrics tell whether the loop is improving or merely busy.",
-              "block_index": 118
+              "block_index": 100
             },
             {
               "slug": "the-rhythm-is-still-model-align-convert",
               "text": "The rhythm is still Model, Align, Convert, run day after day; maintain the resulting structure while it pays and retire it when it does not.",
-              "block_index": 121
+              "block_index": 103
             },
             {
               "slug": "the-rhythm-names-three-competencies-part-six-develops",
               "text": "Run the rhythm long enough and the engineer's work becomes model design, governance design, and evidence engineering.",
-              "block_index": 123
+              "block_index": 105
             }
           ]
         }
