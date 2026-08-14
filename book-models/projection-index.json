@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1162,
+    "total_sites": 1161,
     "by_projection": {
       "book-pdf": 18,
-      "book-web": 753,
+      "book-web": 752,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -149,7 +149,7 @@
           },
           {
             "file": "book/7.1-the-part-that-stays-yours.html",
-            "occ": 3
+            "occ": 1
           },
           {
             "file": "book/appendix-b-carry-cause-with-consequence.html",
@@ -3927,7 +3927,7 @@
           },
           {
             "file": "book/7.1-the-part-that-stays-yours.html",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/about-the-author.html",
@@ -4922,10 +4922,6 @@
             "occ": 1
           },
           {
-            "file": "book/7.1-the-part-that-stays-yours.html",
-            "occ": 1
-          },
-          {
             "file": "book/appendix-a-observe-react-stack.html",
             "occ": 1
           },
@@ -4945,7 +4941,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 11
           }
         ]
       },
