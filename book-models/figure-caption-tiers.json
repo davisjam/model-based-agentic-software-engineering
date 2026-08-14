@@ -146,10 +146,10 @@
       "rationale": "governance conversion — diagnose what was missing, encode the missing structure, future work inherits it; 3.4's central figure"
     },
     "assets/residual-decision-tree.svg": {
-      "tier": "A",
+      "tier": "B",
       "kind": "decision-tree",
       "location": "part3",
-      "rationale": "three questions, four leaves — places any goal relative to the mechanisms; RESIDUAL and OBSERVED-ONLY the two named leaves — anchor with inlined accessible description"
+      "rationale": "three questions, four leaves — places any goal relative to the mechanisms; v7 recut the caption terse (RESIDUAL/EVALUATED-ONLY leaves), no longer anchor-length"
     },
     "assets/three-relations.svg": {
       "tier": "B",

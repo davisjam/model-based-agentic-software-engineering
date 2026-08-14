@@ -5219,6 +5219,16 @@
         }
       ]
     },
+    "section-id:correct-judgment-without-consequence": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "3.4-governance-conversion::correct-judgment-without-consequence",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:correctness-in-the-graph-resource-limits-in-a-profile": {
       "kind": "section-id",
       "dependents": [
@@ -6845,16 +6855,6 @@
         {
           "view": "outline",
           "element": "5.4-failures-that-became-infrastructure::what-this-case-supports",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:when-judgment-has-no-consequence": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "3.4-governance-conversion::when-judgment-has-no-consequence",
           "role": "section-anchor"
         }
       ]

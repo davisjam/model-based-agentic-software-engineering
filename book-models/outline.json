@@ -1387,9 +1387,9 @@
           ]
         },
         {
-          "section_id": "when-judgment-has-no-consequence",
+          "section_id": "correct-judgment-without-consequence",
           "level": 2,
-          "heading_text": "When Judgment Has No Consequence",
+          "heading_text": "Correct Judgment Without Consequence",
           "topic_sentence": "A merge automation drained a backlog of agent worktrees into the mainline each tick.",
           "id_source": "derived",
           "block_index": 23,
@@ -1405,7 +1405,7 @@
           "section_id": "engineering-capital",
           "level": 2,
           "heading_text": "Engineering Capital",
-          "topic_sentence": "Governance conversion gives software engineering something it has long had difficulty naming: a concrete form of **engineering capital**.",
+          "topic_sentence": "Governance conversion motivates a useful accounting concept: **engineering capital**.",
           "id_source": "derived",
           "block_index": 30,
           "points": [
@@ -1461,7 +1461,7 @@
             },
             {
               "slug": "observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment",
-              "text": "Observed only: explicit and evaluated, yet un-gated — because a gate is a commitment.",
+              "text": "Evaluated only: explicit and evaluated, yet un-gated — because a gate is a commitment.",
               "block_index": 54
             },
             {
