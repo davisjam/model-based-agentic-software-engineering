@@ -103,7 +103,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 4.2-brownfield
 
-  - **[DERIVED]** (create) After this section, the reader can model induction has a stopping problem: a representation can describe …. — _anchor: ts: Model induction has a stopping problem: a representation can describe everything it knows _
 
 ### Lesson 4.3-validating-change
 
@@ -131,6 +130,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 5.4-failures-that-became-infrastructure
 
 
+### Lesson 5.5-mage-in-the-wild
+
+
 ## Module 6 — The Profession
 
 - **[DECLARED]** (evaluate) After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become a common language of mature engineering. _(primary: Module 6 · elaborated by: conclusion, mage-in-the-wild)_ — _anchor: reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours._
@@ -139,9 +141,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 
 ### Lesson 6.2-scope-conditions
-
-
-### Lesson 6.3-mage-in-the-wild
 
 
 ### Lesson 6.4-reorganization-of-se
