@@ -754,19 +754,119 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <span id="idx-def-sensor"></span><span id="idx-ex-observability-1"></span><p><strong>A sensor observes and produces evidence.</strong> It lets the move happen and reads the evidence back out after the fact — <code>actual = observe(system)</code>. A raw sensor only <em>produces</em> that evidence: a log line, a trace, a metric emitter, a scan that reads the actual calls out of the code. It does not decide whether what it saw is good or bad — that judgment belongs to the validator. When a sensor detects a correctable violation after the fact, repair costs an additional iteration. That makes prevention attractive where the unwanted state can be excluded cleanly; many important properties, however, can only be observed.</p>
 <p>A CI test suite often bundles three roles: executing the code produces evidence, checking the result validates it, and failing the build gates progress. One artifact can perform several roles without collapsing the distinction among them.</p>
 <p id="idx-def-observability">A sensor is only as good as the signal it can read. <strong>Observability</strong> is the property that a running system exposes enough signal to explain what it did and surface what went wrong. It is the wiring under every sensor: the event a gate fires on, the log a checker reads, the trace that turns "the build failed" into "the build failed <em>here, for this reason.</em>" If the evidence an obligation needs does not exist, no downstream validator recovers it by authority alone. When it does not, the environment must first instrument the relevant state or event.</p>
-<p id="idx-def-constraint"><strong>A constraint removes an unwanted action or state from the admissible space.</strong> Where a sensor only produces evidence of the mistake after the fact, a constraint makes the whole class impossible: it scopes the agent's action space <em>within</em> the iteration, so the wrong move is never available to pick. Closed representations are the cleanest example. A lifecycle encoded as arbitrary strings admits values the design never intended, and a mismatch surfaces only an iteration later, when the test suite crashes. Encode it as a closed enumeration instead and the compiler rejects any value outside the declared set on the spot. The enum does not watch for the illegal state later — it removes that representation from well-typed code, and no iteration is spent catching it. This is why MAGE prefers closed representations where practical.</p>
+<p id="idx-def-constraint"><strong>A constraint removes an unwanted action or state from the admissible space.</strong> Where a sensor only produces evidence of the mistake after the fact, a constraint removes the forbidden move from the state space visible through that mechanism: it scopes the agent's action space <em>within</em> the iteration, so the wrong move is never available to pick. Closed representations are the cleanest example. A lifecycle encoded as arbitrary strings admits values the design never intended, and a mismatch surfaces only an iteration later, when the test suite crashes. Encode it as a closed enumeration instead and the compiler rejects any value outside the declared set on the spot. The enum does not watch for the illegal state later — it removes that representation from well-typed code, and no iteration is spent catching it. This is why MAGE prefers closed representations where practical.</p>
 <p>Programming-language theory made this move systematic: choose a representation or type discipline in which some invalid programs cannot be written as well-typed terms.<sup class="note-ref"><a href="#note-3-3-constraints-sensors-validators-gates-1" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-3-3-constraints-sensors-validators-gates-1"><span class="cn-mark">*</span> Benjamin C. Pierce characterizes type systems as syntactic methods for classifying program phrases so that classes of erroneous behaviors can be ruled out automatically  CITE0 .</span> MAGE generalizes the engineering preference rather than the formalism: where practical, restrict the action or representation space so the bad state cannot be produced, instead of detecting it again on every later iteration.</p>
 <blockquote class="aside-sidenote"><p><em>A footnote on control engineering.</em> The language deliberately echoes control engineering: constrain the plant's admissible behavior, observe its state through sensors, compare the evidence against a desired condition, and act on the result. The inheritance is an analogy, not an identity — a fleet of probabilistic machines is not a linear control system, and MAGE does not claim it is one. What carries over is the closed-loop posture: constrain admissible behavior, observe state, compare evidence against a desired condition, and act on the result. Leveson's systems-theoretic safety work provides a nearby engineering precedent <sup class="cite-ref"><a href="#wc-3-3-constraints-sensors-validators-gates-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Nancy G. Leveson, <em>Engineering a Safer World: Systems Thinking Applied to Safety</em> (MIT Press, 2011).</span>.</p></blockquote>
 <p>Human process can instantiate the same roles: logging senses, review validates, and approval gates. Human judgment remains necessary. Repeated, mechanically decidable judgments are candidates for durable structure.</p>
 <blockquote class="aside-sidenote"><p><em>A footnote on the factory floor.</em> <a href="4.1-the-mage-workflow.html">The MAGE Workflow</a> gives Toyota's neighbouring names for these moves. <em>Poka-yoke</em> is close to the constraint: design the process so a mistake is difficult or impossible to make. <em>Jidoka</em> pairs detecting an abnormal condition with stopping the line — closer to a sensor, a validator, and a gate acting together than to a sensor alone.</p></blockquote>
 <p>The sharpest instance of the pair is ownership of a unit of work. DocAble's in-flight lease makes active ownership visible and lets apparently abandoned work become recoverable. The lease does not itself grant final authority to perform the consequential side effect. A durable compare-and-set supplies that constraint: competing claimants cannot both acquire it, so at most one performs the effect. The lease may expire because a worker is merely slow, so redelivery cannot imply permission to repeat the effect. <strong>Recovery is not permission.</strong></p>
-<h2><span class="sec-num">3.3.2</span> Validators and gates</h2>
+<h2><span class="sec-num">3.3.2</span> One Obligation, Several Ways to Hold It</h2>
+<p>A modeled obligation does not imply one particular enforcement technology. Ask first what kind of property it is and where the environment can act on it.</p>
+<p>Sometimes the best validator is no validator at all. If an invalid state can be removed from the action space, prefer the constraint. DocAble's work-item claim is the simple case: a database compare-and-set updates the row only while it remains in the expected prior state. Two competing claimants cannot both win the same transition. The ownership obligation is therefore carried by the runtime primitive itself rather than by a later checker.</p>
+<p>Other properties live across sequences of otherwise legal actions. The in-flight lease is one example. Reclaiming a stale lease, issuing a new epoch, and receiving a late release from the previous holder are each individually plausible events; their interleaving can still violate the ownership invariant. Here the environment needs a validator capable of reasoning over the composed state space. DocAble uses a small, purpose-built model checker: an executable transition model enumerates the reachable interleavings within explicit bounds and searches them for violations of the ownership invariants.<sup class="note-ref"><a href="#note-3-3-constraints-sensors-validators-gates-2" role="doc-noteref" aria-label="note 2">†</a></sup><span class="editorial-note" id="note-3-3-constraints-sensors-validators-gates-2"><span class="cn-mark">†</span> This is model checking in the ordinary sense: the checker defines a transition system, explores its reachable states, and tests invariants over them. More specifically, it performs exhaustive explicit-state exploration of a deliberately bounded model. The phrase "bounded model checking" also has a narrower meaning in formal methods, conventionally referring to bounded executions encoded for SAT/SMT solving. DocAble's checker does not use that technique; "bounded explicit-state model checking" is the more precise description here.</span> The checker is deliberately specialized to the protocol. With implementation cheap, there is little reason to force a small engineering problem through a general-purpose tool when the same method can be expressed directly and kept close to the model it checks.</p>
+<p>Temporal obligations require another shape of evidence. "No two workers own the same claim" is violated by one reachable bad state. "Every submitted job eventually terminates" is not. A finite trace can show progress, but it cannot establish that every fair execution eventually reaches a terminal state. A temporal model checker can reason about that stronger claim.</p>
+<p>These are not levels of sophistication. They are different matches between property and mechanism. The engineering preference remains the same throughout MAGE: make the bad state impossible when you can; otherwise produce the cheapest independent evidence capable of deciding the obligation. <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-2">Figure&nbsp;3.3-2</a> sets the three matches out.</p>
+<figure id="fig-3-3-2" class="book-figure" data-label="match-mechanism-to-property"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 610"
+     role="img" aria-labelledby="mmpTitle mmpDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="mmpTitle">Match the mechanism to the property</title>
+  <desc id="mmpDesc">An engineering obligation forks on what kind of property it is. If the invalid state can
+    be excluded, a constraint gives structural prevention, such as a database compare-and-set or a closed
+    transition. If the risk is a reachable bad state or trace, a validator explores the state space through
+    bounded explicit-state exploration. If the obligation is an eventuality or fairness property, a validator
+    does temporal model checking with TLA-plus and TLC where warranted. These are alternatives selected by the
+    property, not stages on a maturity ladder. Whichever mechanism supplies the verdict, a separate gate gives
+    it consequence if the result should be binding.</desc>
+
+  <defs>
+    <marker id="mmp-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ===== boxes (drawn first) ===== -->
+  <rect x="0" y="0" width="1000" height="610" fill="#fdfcf9"/>
+
+  <!-- top: engineering obligation (rust) -->
+  <rect x="320" y="26" width="360" height="58" rx="12" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
+
+  <!-- property-question boxes (gray) -->
+  <rect x="45" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="360" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="675" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+
+  <!-- mechanism boxes (gray, the Move) -->
+  <rect x="45" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
+  <rect x="360" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
+  <rect x="675" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
+
+  <!-- method sub-boxes (gray) -->
+  <rect x="45" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
+  <rect x="360" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
+  <rect x="675" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
+
+  <!-- gate (green) -->
+  <rect x="280" y="470" width="440" height="72" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+
+  <!-- ===== arrows ===== -->
+  <line x1="500" y1="84" x2="500" y2="106" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="106" x2="815" y2="106" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="106" x2="185" y2="138" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="500" y1="106" x2="500" y2="138" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="815" y1="106" x2="815" y2="138" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+
+  <line x1="185" y1="194" x2="185" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="500" y1="194" x2="500" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="815" y1="194" x2="815" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+
+  <line x1="185" y1="302" x2="185" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="500" y1="302" x2="500" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="815" y1="302" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+
+  <line x1="185" y1="396" x2="185" y2="450" stroke="#1c1917" stroke-width="2"/>
+  <line x1="815" y1="396" x2="815" y2="450" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="450" x2="500" y2="450" stroke="#1c1917" stroke-width="2"/>
+  <line x1="815" y1="450" x2="500" y2="450" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="396" x2="500" y2="468" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+
+  <!-- ===== labels (drawn last, on top) ===== -->
+  <text x="500" y="61" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="0.5" fill="#9a3f12">ENGINEERING OBLIGATION</text>
+
+  <text x="500" y="126" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">What kind of property is it?</text>
+
+  <text x="185" y="164" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CAN EXCLUDE IT?</text>
+  <text x="500" y="164" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">BAD STATE / TRACE?</text>
+  <text x="815" y="164" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">EVENTUALITY / FAIRNESS?</text>
+  <text x="185" y="185" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">yes</text>
+  <text x="500" y="185" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">yes</text>
+  <text x="815" y="185" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">yes</text>
+
+  <text x="185" y="283" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">CONSTRAINT</text>
+  <text x="500" y="283" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">VALIDATOR</text>
+  <text x="815" y="283" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">VALIDATOR</text>
+
+  <text x="185" y="358" text-anchor="middle" font-size="13.5" fill="#1c1917">structural prevention</text>
+  <text x="185" y="380" text-anchor="middle" font-size="12.5" fill="#57534e">DB compare-and-set / closed transition</text>
+  <text x="500" y="352" text-anchor="middle" font-size="13.5" fill="#1c1917">state-space search</text>
+  <text x="500" y="370" text-anchor="middle" font-size="12.5" fill="#57534e">purpose-built model checker</text>
+  <text x="500" y="386" text-anchor="middle" font-size="12" fill="#57534e">(bounded explicit-state)</text>
+  <text x="815" y="358" text-anchor="middle" font-size="13.5" fill="#1c1917">temporal model checking</text>
+  <text x="815" y="380" text-anchor="middle" font-size="12.5" fill="#57534e">TLA+ / TLC where warranted</text>
+
+  <text x="500" y="502" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">GATE, IF CONSEQUENCE</text>
+  <text x="500" y="525" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">SHOULD BE BINDING</text>
+
+  <text x="500" y="576" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Alternatives selected by the property &#8212; not stages on a maturity ladder.</text>
+</svg><figcaption data-short="Figure 3.3-2"><span class="fig-label">Figure 3.3-2.</span> <em>Figure 3.3-2: Match the mechanism to the property.</em> An obligation may be held structurally by excluding the invalid state, evaluated by exploring reachable states, or checked as a temporal property over executions. These are alternatives selected by the engineering claim, not stages on a maturity ladder. A gate is a separate decision that gives the resulting verdict consequence.</figcaption></figure>
+<p>Whichever validator supplies the judgment, authority still depends on what the environment does with its verdict.</p>
+<h2><span class="sec-num">3.3.3</span> Validators and gates</h2>
 <p id="idx-def-validator">The other two roles act at the loop's closing door. A <strong>validator</strong> turns evidence into a judgment: does the observed call graph contain only permitted edges, did this journey establish its post-condition, does the provenance record account for every mutation? It reads the evidence a sensor produced — or derives it straight from the artifact — and asks whether it satisfies the obligation. A validator may be deterministic, probabilistic, or human; its authority comes not from itself but from what the environment does with its verdict.</p>
 <p id="idx-def-gate">A <strong>gate</strong> supplies that consequence. It decides whether the work may cross a boundary: commit, merge, deploy, execute, close, or draw on a scarce resource. Validation and gating are separate design decisions. A cost ceiling can be measured and evaluated without blocking production; a security invariant may deserve immediate refusal. <strong>Giving a validator's verdict gating authority is a commitment.</strong> Giving an uncertain validator blocking authority converts its false positives into rejected work or outages.</p>
 <p>A loop that re-derives evidence does not trust the producing agent's self-report. Cheap checks run early for fast feedback and bind their result to an exact tree; a later, more expensive boundary re-derives the evidence admission needs rather than reading a marker. The definition of done recomputes the full evidence at close instead of trusting a report. The principle is simple: the thing asking to pass does not get to define what counts as having passed.</p>
-<h2><span class="sec-num">3.3.3</span> One Measurement, Different Authority Decisions</h2>
-<p>The four roles are not stages of maturity. DocAble's GenAI cost and usage model makes the point, and <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-2">Figure&nbsp;3.3-2</a> fans that one quantity across them. Usage is continuously sensed. Capacity signals can adapt request behavior. Exhausting a per-job budget can produce soft completion rather than outright rejection. A hard daily-budget gate exists but is dormant unless configured. One quantitative model can support observation, adaptation, graceful degradation, or hard admission control. The appropriate consequence depends on the obligation attached to the quantity, not on the supposed maturity of the environment.</p>
-<figure id="fig-3-3-2" class="book-figure" data-label="cost-authority-gradient"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
+<h2><span class="sec-num">3.3.4</span> One Measurement, Different Authority Decisions</h2>
+<p>The four roles are not stages of maturity. DocAble's GenAI cost and usage model makes the point, and <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-3">Figure&nbsp;3.3-3</a> fans that one quantity across them. Usage is continuously sensed. Capacity signals can adapt request behavior. Exhausting a per-job budget can produce soft completion rather than outright rejection. A hard daily-budget gate exists but is dormant unless configured. One quantitative model can support observation, adaptation, graceful degradation, or hard admission control. The appropriate consequence depends on the obligation attached to the quantity, not on the supposed maturity of the environment.</p>
+<figure id="fig-3-3-3" class="book-figure" data-label="cost-authority-gradient"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
      role="img" aria-labelledby="cgTitle cgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="cgTitle">One measurement, different authority decisions: a policy attached to the value selects observe, adapt, or gate</title>
@@ -830,10 +930,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the point -->
   <line x1="40" y1="404" x2="920" y2="404" stroke="#e7e2da" stroke-width="1.4"/>
   <text x="480" y="434" text-anchor="middle" font-size="15.5" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement &#8212; not from a maturity sequence.</text>
-</svg><figcaption data-short="Figure 3.3-2"><span class="fig-label">Figure 3.3-2.</span> <em>Figure 3.3-2: One Measurement, Different Authority Decisions.</em> The same measured quantity may be observed without consequence, used to adapt behavior, trigger graceful degradation, or control admission. The appropriate response follows from the obligation attached to the measurement, not from a maturity sequence.</figcaption></figure>
-<h2><span class="sec-num">3.3.4</span> Positive and Negative Constraints</h2>
-<p>Constraints are often introduced as prohibitions: this code must not call that library. DocAble's provenance machinery demonstrates the complementary form. Every typed mutation verb is required to emit attribution. A source-time rule checks that the required call is wired into the mutation path. <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-3">Figure&nbsp;3.3-3</a> sets the two shapes side by side: one mechanism removes a forbidden action; the other requires evidence-producing behavior.</p>
-<figure id="fig-3-3-3" class="book-figure" data-label="positive-negative-obligation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
+</svg><figcaption data-short="Figure 3.3-3"><span class="fig-label">Figure 3.3-3.</span> <em>Figure 3.3-3: One Measurement, Different Authority Decisions.</em> The same measured quantity may be observed without consequence, used to adapt behavior, trigger graceful degradation, or control admission. The appropriate response follows from the obligation attached to the measurement, not from a maturity sequence.</figcaption></figure>
+<h2><span class="sec-num">3.3.5</span> Positive and Negative Constraints</h2>
+<p>Constraints are often introduced as prohibitions: this code must not call that library. DocAble's provenance machinery demonstrates the complementary form. Every typed mutation verb is required to emit attribution. A source-time rule checks that the required call is wired into the mutation path. <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-4">Figure&nbsp;3.3-4</a> sets the two shapes side by side: one mechanism removes a forbidden action; the other requires evidence-producing behavior.</p>
+<figure id="fig-3-3-4" class="book-figure" data-label="positive-negative-obligation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
      role="img" aria-labelledby="poTitle poDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="poTitle">Negative and positive constraints: a negative constraint removes a forbidden action; a positive constraint requires a specified evidence-producing one</title>
@@ -888,8 +988,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the point -->
   <line x1="40" y1="376" x2="920" y2="376" stroke="#e7e2da" stroke-width="1.4"/>
   <text x="480" y="408" text-anchor="middle" font-size="16.5" font-style="italic" fill="#1c1917">Both are source-time rules &#8212; they restrict the admissible implementation space from opposite directions.</text>
-</svg><figcaption data-short="Figure 3.3-3"><span class="fig-label">Figure 3.3-3.</span> <em>Figure 3.3-3: Negative and positive constraints.</em> A negative constraint removes a forbidden action; a positive constraint requires a specified action or evidence-producing behavior. Both restrict the admissible implementation space.</figcaption></figure>
-<h2><span class="sec-num">3.3.5</span> What Counts as a Mechanism</h2>
+</svg><figcaption data-short="Figure 3.3-4"><span class="fig-label">Figure 3.3-4.</span> <em>Figure 3.3-4: Negative and positive constraints.</em> A negative constraint removes a forbidden action; a positive constraint requires a specified action or evidence-producing behavior. Both restrict the admissible implementation space.</figcaption></figure>
+<h2><span class="sec-num">3.3.6</span> What Counts as a Mechanism</h2>
 <p>Keep <strong>policy</strong>, <strong>guidance</strong>, and <strong>governance mechanism</strong> separate. A model file can state policy; a playbook can guide an agent; neither becomes an authoritative mechanism merely by existing or by appearing in an agent's context. Authority begins when something in the environment actually constrains the work, produces evidence, evaluates that evidence, or controls admission. The model states the obligation; the consuming mechanism gives it authority.</p>
 <p>The same artifact can participate several ways. A structured model injected into context guides reasoning. A validator reading that same model uses it as the obligation against which observed code is judged. A generated permission table turns the same modeled relation into a constraint. The model is the representation; the consuming machinery supplies the authority.</p>
 <p id="idx-def-governance-package">Implementations routinely bundle roles. A test runner may sense, validate, and gate; a narrow interface may constrain while emitting provenance. Name the functions inside the bundle rather than stretching every influence into a "soft constraint" or "soft sensor."</p>
