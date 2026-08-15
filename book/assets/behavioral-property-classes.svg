@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fig 2.3-X (formal-methods-mining-260815; folds to book/assets/behavioral-property-classes.svg).
+     "Behavioral models expose different classes of properties." One behavioral model (blue) forks into
+     three property questions, each answered by a different checker (gray = neutral machinery), all
+     converging on evidence about behavior (green = outcome).
+       BEHAVIORAL MODEL (blue) — states, transitions, legal sequences.
+       LOCAL RULE          — is this edge legal?       -> transition check
+       REACHABLE-STATE     — can this state occur?      -> state-space search
+       TEMPORAL PROPERTY   — will this eventually occur? -> temporal model checking
+     Grayscale-survivable: every node labelled; the fork and top-to-bottom order carry the meaning; hue
+     only reinforces model (blue) vs checker (gray) vs evidence (green). Boxes drawn first, labels last. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
+     role="img" aria-labelledby="bpcTitle bpcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="bpcTitle">Behavioral models expose different classes of properties</title>
+  <desc id="bpcDesc">A single behavioral model of states, transitions, and legal sequences forks into three
+    property questions. A local rule asks whether an edge is legal and is answered by a transition check.
+    A reachable-state question asks whether a state can occur and is answered by a state-space search. A
+    temporal property asks whether something will eventually occur and is answered by temporal model
+    checking. All three converge on evidence about behavior. Same model family; different property,
+    different checker.</desc>
+
+  <defs>
+    <marker id="bpc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ===== boxes (drawn first) ===== -->
+  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
+
+  <!-- top: behavioral model (blue) -->
+  <rect x="320" y="28" width="360" height="64" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+
+  <!-- property-class headers (gray) -->
+  <rect x="60" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="370" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="680" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+
+  <!-- checker boxes (gray) -->
+  <rect x="60" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+  <rect x="370" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+  <rect x="680" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+
+  <!-- evidence (green) -->
+  <rect x="290" y="392" width="420" height="64" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+
+  <!-- ===== arrows ===== -->
+  <line x1="500" y1="92" x2="500" y2="116" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="116" x2="190" y2="116" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="116" x2="810" y2="116" stroke="#1c1917" stroke-width="2"/>
+  <line x1="190" y1="116" x2="190" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="500" y1="116" x2="500" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="810" y1="116" x2="810" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+
+  <line x1="190" y1="248" x2="190" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="500" y1="248" x2="500" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="810" y1="248" x2="810" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+
+  <line x1="190" y1="310" x2="190" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="810" y1="310" x2="810" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="190" y1="376" x2="500" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="810" y1="376" x2="500" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="310" x2="500" y2="390" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+
+  <!-- ===== labels (drawn last, on top) ===== -->
+  <text x="500" y="56" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#2f5169">BEHAVIORAL MODEL</text>
+  <text x="500" y="80" text-anchor="middle" font-size="15" fill="#57534e">states &#183; transitions &#183; legal sequences</text>
+
+  <text x="190" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">LOCAL RULE</text>
+  <text x="500" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">REACHABLE-STATE</text>
+  <text x="810" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">TEMPORAL PROPERTY</text>
+
+  <text x="190" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">is this edge legal?</text>
+  <text x="500" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">can this state occur?</text>
+  <text x="810" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">will this eventually occur?</text>
+
+  <text x="190" y="290" text-anchor="middle" font-size="15" fill="#1c1917">transition check</text>
+  <text x="500" y="290" text-anchor="middle" font-size="15" fill="#1c1917">state-space search</text>
+  <text x="810" y="290" text-anchor="middle" font-size="15" fill="#1c1917">temporal model checking</text>
+
+  <text x="500" y="431" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">EVIDENCE ABOUT BEHAVIOR</text>
+
+  <text x="500" y="512" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Same model family; different property, different checker.</text>
+</svg>

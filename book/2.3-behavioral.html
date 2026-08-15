@@ -819,5 +819,83 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="340" y="470" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The behavioral model is the reduced legal-transition relation &#8212;</text>
   <text x="340" y="492" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">not the syntax used to encode it. Its value: making one temporal obligation explicit.</text>
 </svg><figcaption data-short="Model, representation, implementation"><span class="fig-label">Figure 2.3-2.</span> <em>Model, representation, implementation.</em> The engineering question determines a reduced temporal model; an explicit transition relation is one executable representation of that model; implementation adds the operational machinery omitted by the reduction.</figcaption></figure>
-<p>The recovery ordering is a sharp slice of a larger behavioral model. A DocAble job also carries a full lifecycle — queued, leased, remediating, awaiting-merge, completed or failed — with its own legal transitions and its own invariants. That lifecycle is useful, and a state-machine checker holds the running system to it. But it is broad and application-shaped, closer to a workflow than to a single temporal obligation. The recovery model demonstrates modeling as subtraction more cleanly: three meaningful states and one forbidden ordering, extracted from much richer implementation. The full lifecycle answers broader workflow questions; the recovery ordering is the sharper reduction when the question is specifically crash-safe publication.</p>
+<p>An explicit behavioral model does more than name legal transitions. It gives a checker an object over which larger behavioral claims can be stated. The simplest question is local: is this transition permitted? A transition primitive can answer that directly. A stronger question ranges over reachable states: can any legal sequence leave the system with two owners, a stale lease, or some other forbidden combination? Once the states and transitions are explicit, a checker can explore those sequences rather than waiting for a test author to guess the right one.</p>
+<p>Some properties are different again. "This state never occurs" is a safety claim: one counterexample trace is enough to refute it. "Every submitted job eventually terminates" is a liveness claim: no finite successful trace establishes that the system cannot remain stuck forever. Those questions may require different checking machinery, but the modeling move is the same. First construct the reduced behavioral object on which the property can be stated.</p>
+<p>This is the path from a state machine toward formal reasoning, but formal notation is not the objective. The objective is to make the engineering property explicit enough that an appropriate mechanism can decide it. <a class="xref" href="2.3-behavioral.html#fig-2-3-3">Figure&nbsp;2.3-3</a> places the three question classes side by side.</p>
+<figure id="fig-2-3-3" class="book-figure" data-label="behavioral-property-classes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+     role="img" aria-labelledby="bpcTitle bpcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="bpcTitle">Behavioral models expose different classes of properties</title>
+  <desc id="bpcDesc">A single behavioral model of states, transitions, and legal sequences forks into three
+    property questions. A local rule asks whether an edge is legal and is answered by a transition check.
+    A reachable-state question asks whether a state can occur and is answered by a state-space search. A
+    temporal property asks whether something will eventually occur and is answered by temporal model
+    checking. All three converge on evidence about behavior. Same model family; different property,
+    different checker.</desc>
+
+  <defs>
+    <marker id="bpc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ===== boxes (drawn first) ===== -->
+  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
+
+  <!-- top: behavioral model (blue) -->
+  <rect x="320" y="28" width="360" height="64" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+
+  <!-- property-class headers (gray) -->
+  <rect x="60" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="370" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="680" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+
+  <!-- checker boxes (gray) -->
+  <rect x="60" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+  <rect x="370" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+  <rect x="680" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+
+  <!-- evidence (green) -->
+  <rect x="290" y="392" width="420" height="64" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+
+  <!-- ===== arrows ===== -->
+  <line x1="500" y1="92" x2="500" y2="116" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="116" x2="190" y2="116" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="116" x2="810" y2="116" stroke="#1c1917" stroke-width="2"/>
+  <line x1="190" y1="116" x2="190" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="500" y1="116" x2="500" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="810" y1="116" x2="810" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+
+  <line x1="190" y1="248" x2="190" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="500" y1="248" x2="500" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="810" y1="248" x2="810" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+
+  <line x1="190" y1="310" x2="190" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="810" y1="310" x2="810" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="190" y1="376" x2="500" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="810" y1="376" x2="500" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="310" x2="500" y2="390" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+
+  <!-- ===== labels (drawn last, on top) ===== -->
+  <text x="500" y="56" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#2f5169">BEHAVIORAL MODEL</text>
+  <text x="500" y="80" text-anchor="middle" font-size="15" fill="#57534e">states &#183; transitions &#183; legal sequences</text>
+
+  <text x="190" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">LOCAL RULE</text>
+  <text x="500" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">REACHABLE-STATE</text>
+  <text x="810" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">TEMPORAL PROPERTY</text>
+
+  <text x="190" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">is this edge legal?</text>
+  <text x="500" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">can this state occur?</text>
+  <text x="810" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">will this eventually occur?</text>
+
+  <text x="190" y="290" text-anchor="middle" font-size="15" fill="#1c1917">transition check</text>
+  <text x="500" y="290" text-anchor="middle" font-size="15" fill="#1c1917">state-space search</text>
+  <text x="810" y="290" text-anchor="middle" font-size="15" fill="#1c1917">temporal model checking</text>
+
+  <text x="500" y="431" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">EVIDENCE ABOUT BEHAVIOR</text>
+
+  <text x="500" y="512" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Same model family; different property, different checker.</text>
+</svg><figcaption data-short="Behavioral models expose different classes of properties"><span class="fig-label">Figure 2.3-3.</span> <em>Behavioral models expose different classes of properties.</em> A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question.</figcaption></figure>
+<p>The recovery ordering is a sharp slice of a larger behavioral model. A DocAble job also carries a full lifecycle — queued, leased, remediating, awaiting-merge, completed or failed — with its own legal transitions and its own invariants. That lifecycle is useful, and transition checks hold the running system to its declared legal edges. But it is broad and application-shaped, closer to a workflow than to a single temporal obligation. The recovery model demonstrates modeling as subtraction more cleanly: three meaningful states and one forbidden ordering, extracted from much richer implementation. The full lifecycle answers broader workflow questions; the recovery ordering is the sharper reduction when the question is specifically crash-safe publication.</p>
 <p>The next chapter turns from <em>what may happen, and in what order</em> to <em>who is allowed to hold the work while it happens</em> — ownership across time.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">« Beginning of part</a><a href="2.2-structural.html" aria-label="Previous chapter — 6 · Structural Models: What Is Connected to What?">« Previous chapter</a></div><span class="chapnav-here" title="7 · Behavioral Models: What May Happen?">7 · Behavioral Models: What May Happen?</span><div class="chapnav-fwd"><a href="2.4-ownership.html" aria-label="Next chapter — 8 · Ownership Models: Who Controls What, and When?">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — Alignment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fig 2.4-X (formal-methods-mining-260815; folds to book/assets/lease-interleaving-trace.svg).
+     "Why ownership becomes an interleaving problem." A vertical state trace (blue = model states) runs
+     reclaim + reissue past a stale holder's late clear, then forks on whether an epoch fence is present.
+       worker A owns epoch 7  [lease appears stale] then
+       reclaim + issue epoch 8 to worker B  [A is still alive] then
+       worker A attempts late clear(epoch 7) forks:
+            without epoch fence gives may-clear B's current lease  (rust = forbidden)
+            with epoch fence    gives stale clear is a no-op       (green = outcome)
+     Grayscale-survivable: every node labelled; the top-to-bottom trace and the fork carry the meaning;
+     hue only reinforces model (blue) vs forbidden (rust) vs safe (green). Boxes first, labels last. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470"
+     role="img" aria-labelledby="litTitle litDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="litTitle">Why ownership becomes an interleaving problem</title>
+  <desc id="litDesc">A vertical state trace. Worker A owns epoch 7. Its lease appears stale, so the system
+    reclaims it and issues epoch 8 to worker B. Worker A is still alive and wakes to attempt a late clear
+    with its old epoch 7. Without an epoch fence, that stale clear may clear worker B's current lease, a
+    forbidden outcome. With an epoch fence, the stale clear is inapplicable to the current claim and
+    becomes a no-op.</desc>
+
+  <defs>
+    <marker id="lit-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ===== boxes (drawn first) ===== -->
+  <rect x="0" y="0" width="1000" height="470" fill="#fdfcf9"/>
+
+  <!-- trace states (blue) -->
+  <rect x="310" y="26" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect x="310" y="118" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect x="310" y="210" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+
+  <!-- fork outcomes -->
+  <rect x="80" y="330" width="400" height="86" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
+  <rect x="520" y="330" width="400" height="86" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
+
+  <!-- ===== arrows ===== -->
+  <line x1="500" y1="78" x2="500" y2="116" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+  <line x1="500" y1="170" x2="500" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+  <line x1="500" y1="262" x2="500" y2="292" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="292" x2="280" y2="292" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="292" x2="720" y2="292" stroke="#1c1917" stroke-width="2"/>
+  <line x1="280" y1="292" x2="280" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+  <line x1="720" y1="292" x2="720" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+
+  <!-- ===== labels (drawn last, on top) ===== -->
+  <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
+  <text x="500" y="150" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">reclaim + issue epoch 8 to worker B</text>
+  <text x="500" y="242" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A attempts late clear(epoch 7)</text>
+
+  <!-- side labels on the vertical steps (free text, in the gaps) -->
+  <text x="516" y="102" font-size="14" font-style="italic" fill="#57534e">lease appears stale</text>
+  <text x="516" y="194" font-size="14" font-style="italic" fill="#57534e">A is still alive</text>
+
+  <!-- fork branch labels -->
+  <text x="280" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">without epoch fence</text>
+  <text x="280" y="392" text-anchor="middle" font-size="15" fill="#1c1917">may clear B&#8217;s current lease &#10007;</text>
+
+  <text x="720" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">with epoch fence</text>
+  <text x="720" y="392" text-anchor="middle" font-size="15" fill="#1c1917">stale clear is a no-op &#10003;</text>
+</svg>

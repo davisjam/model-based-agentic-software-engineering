@@ -693,7 +693,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-evidence-ledger.html">Appendix G — Evidence Ledger: The DocAble Case</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 115 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1020"
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 117 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1020"
      role="img" aria-labelledby="fig-0-1-1-mmTitle fig-0-1-1-mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-0-1-1-mmTitle">The MAGE method — scale creates the enduring reasoning problem; commodity intelligence changes its economics; Modeling and Alignment turn engineering effort into capital rather than churn.</title>
@@ -1986,7 +1986,81 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the point -->
   <text x="340" y="470" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The behavioral model is the reduced legal-transition relation &#8212;</text>
   <text x="340" y="492" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">not the syntax used to encode it. Its value: making one temporal obligation explicit.</text>
-</svg><figcaption data-short="Model, representation, implementation"><span class="fig-label">Figure 2.3-2.</span> <em>Model, representation, implementation.</em> The engineering question determines a reduced temporal model; an explicit transition relation is one executable representation of that model; implementation adds the operational machinery omitted by the reduction.</figcaption></figure><p class="gallery-source">From <a href="2.3-behavioral.html#fig-2-3-2">7 · Behavioral Models: What May Happen?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-4-1-fig-2-4-1" class="book-figure" data-label="in-flight-ownership-states"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420"
+</svg><figcaption data-short="Model, representation, implementation"><span class="fig-label">Figure 2.3-2.</span> <em>Model, representation, implementation.</em> The engineering question determines a reduced temporal model; an explicit transition relation is one executable representation of that model; implementation adds the operational machinery omitted by the reduction.</figcaption></figure><p class="gallery-source">From <a href="2.3-behavioral.html#fig-2-3-2">7 · Behavioral Models: What May Happen?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-3-3-fig-2-3-3" class="book-figure" data-label="behavioral-property-classes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+     role="img" aria-labelledby="fig-2-3-3-bpcTitle fig-2-3-3-bpcDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-2-3-3-bpcTitle">Behavioral models expose different classes of properties</title>
+  <desc id="fig-2-3-3-bpcDesc">A single behavioral model of states, transitions, and legal sequences forks into three
+    property questions. A local rule asks whether an edge is legal and is answered by a transition check.
+    A reachable-state question asks whether a state can occur and is answered by a state-space search. A
+    temporal property asks whether something will eventually occur and is answered by temporal model
+    checking. All three converge on evidence about behavior. Same model family; different property,
+    different checker.</desc>
+
+  <defs>
+    <marker id="fig-2-3-3-bpc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ===== boxes (drawn first) ===== -->
+  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
+
+  <!-- top: behavioral model (blue) -->
+  <rect x="320" y="28" width="360" height="64" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+
+  <!-- property-class headers (gray) -->
+  <rect x="60" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="370" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="680" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+
+  <!-- checker boxes (gray) -->
+  <rect x="60" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+  <rect x="370" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+  <rect x="680" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+
+  <!-- evidence (green) -->
+  <rect x="290" y="392" width="420" height="64" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+
+  <!-- ===== arrows ===== -->
+  <line x1="500" y1="92" x2="500" y2="116" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="116" x2="190" y2="116" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="116" x2="810" y2="116" stroke="#1c1917" stroke-width="2"/>
+  <line x1="190" y1="116" x2="190" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-3-3-bpc-k)"/>
+  <line x1="500" y1="116" x2="500" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-3-3-bpc-k)"/>
+  <line x1="810" y1="116" x2="810" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-3-3-bpc-k)"/>
+
+  <line x1="190" y1="248" x2="190" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-3-3-bpc-k)"/>
+  <line x1="500" y1="248" x2="500" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-3-3-bpc-k)"/>
+  <line x1="810" y1="248" x2="810" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-3-3-bpc-k)"/>
+
+  <line x1="190" y1="310" x2="190" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="810" y1="310" x2="810" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="190" y1="376" x2="500" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="810" y1="376" x2="500" y2="376" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="310" x2="500" y2="390" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-3-3-bpc-k)"/>
+
+  <!-- ===== labels (drawn last, on top) ===== -->
+  <text x="500" y="56" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#2f5169">BEHAVIORAL MODEL</text>
+  <text x="500" y="80" text-anchor="middle" font-size="15" fill="#57534e">states &#183; transitions &#183; legal sequences</text>
+
+  <text x="190" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">LOCAL RULE</text>
+  <text x="500" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">REACHABLE-STATE</text>
+  <text x="810" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">TEMPORAL PROPERTY</text>
+
+  <text x="190" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">is this edge legal?</text>
+  <text x="500" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">can this state occur?</text>
+  <text x="810" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">will this eventually occur?</text>
+
+  <text x="190" y="290" text-anchor="middle" font-size="15" fill="#1c1917">transition check</text>
+  <text x="500" y="290" text-anchor="middle" font-size="15" fill="#1c1917">state-space search</text>
+  <text x="810" y="290" text-anchor="middle" font-size="15" fill="#1c1917">temporal model checking</text>
+
+  <text x="500" y="431" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">EVIDENCE ABOUT BEHAVIOR</text>
+
+  <text x="500" y="512" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Same model family; different property, different checker.</text>
+</svg><figcaption data-short="Behavioral models expose different classes of properties"><span class="fig-label">Figure 2.3-3.</span> <em>Behavioral models expose different classes of properties.</em> A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question.</figcaption></figure><p class="gallery-source">From <a href="2.3-behavioral.html#fig-2-3-3">7 · Behavioral Models: What May Happen?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-4-1-fig-2-4-1" class="book-figure" data-label="in-flight-ownership-states"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420"
      role="img" aria-labelledby="fig-2-4-1-ioTitle fig-2-4-1-ioDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-4-1-ioTitle">In-flight ownership: CLAIMED releases on merge or becomes reclaimable on expiry</title>
@@ -2046,17 +2120,70 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer: protect the point -->
   <text x="360" y="372" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Merge releases the claim; expiry makes it reclaimable.</text>
   <text x="360" y="394" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">A live claim is distinguishable from a stale one &#8212; expiry is a state, not an accident.</text>
-</svg><figcaption data-short="In-flight ownership model"><span class="fig-label">Figure 2.4-1.</span> <em>In-flight ownership model.</em> A current claim records owner, epoch, and lifetime. Merge releases the claim; expiry makes it reclaimable. The model distinguishes a live claim from a stale one without representing the storage machinery that implements the lease.</figcaption></figure><p class="gallery-source">From <a href="2.4-ownership.html#fig-2-4-1">8 · Ownership Models: Who Controls What, and When?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-4-2-fig-2-4-2" class="book-figure" data-label="in-flight-lease-overlap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350"
-     role="img" aria-labelledby="fig-2-4-2-ilTitle fig-2-4-2-ilDesc"
+</svg><figcaption data-short="In-flight ownership model"><span class="fig-label">Figure 2.4-1.</span> <em>In-flight ownership model.</em> A current claim records owner, epoch, and lifetime. Merge releases the claim; expiry makes it reclaimable. The model distinguishes a live claim from a stale one without representing the storage machinery that implements the lease.</figcaption></figure><p class="gallery-source">From <a href="2.4-ownership.html#fig-2-4-1">8 · Ownership Models: Who Controls What, and When?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-4-2-fig-2-4-2" class="book-figure" data-label="lease-interleaving-trace"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
+     role="img" aria-labelledby="fig-2-4-2-litTitle fig-2-4-2-litDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-2-4-2-ilTitle">One shared lease state answers ownership, behavioral, and measurement questions</title>
-  <desc id="fig-2-4-2-ilDesc">A single shared lease state, carrying owner, epoch, and lifetime, sits at the top and
+  <title id="fig-2-4-2-litTitle">Why ownership becomes an interleaving problem</title>
+  <desc id="fig-2-4-2-litDesc">A vertical state trace. Worker A owns epoch 7. Its lease appears stale, so the system
+    reclaims it and issues epoch 8 to worker B. Worker A is still alive and wakes to attempt a late clear
+    with its old epoch 7. Without an epoch fence, that stale clear may clear worker B's current lease, a
+    forbidden outcome. With an epoch fence, the stale clear is inapplicable to the current claim and
+    becomes a no-op.</desc>
+
+  <defs>
+    <marker id="fig-2-4-2-lit-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ===== boxes (drawn first) ===== -->
+  <rect x="0" y="0" width="1000" height="470" fill="#fdfcf9"/>
+
+  <!-- trace states (blue) -->
+  <rect x="310" y="26" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect x="310" y="118" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect x="310" y="210" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+
+  <!-- fork outcomes -->
+  <rect x="80" y="330" width="400" height="86" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
+  <rect x="520" y="330" width="400" height="86" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
+
+  <!-- ===== arrows ===== -->
+  <line x1="500" y1="78" x2="500" y2="116" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-4-2-lit-k)"/>
+  <line x1="500" y1="170" x2="500" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-4-2-lit-k)"/>
+  <line x1="500" y1="262" x2="500" y2="292" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="292" x2="280" y2="292" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="292" x2="720" y2="292" stroke="#1c1917" stroke-width="2"/>
+  <line x1="280" y1="292" x2="280" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-4-2-lit-k)"/>
+  <line x1="720" y1="292" x2="720" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-4-2-lit-k)"/>
+
+  <!-- ===== labels (drawn last, on top) ===== -->
+  <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
+  <text x="500" y="150" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">reclaim + issue epoch 8 to worker B</text>
+  <text x="500" y="242" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A attempts late clear(epoch 7)</text>
+
+  <!-- side labels on the vertical steps (free text, in the gaps) -->
+  <text x="516" y="102" font-size="14" font-style="italic" fill="#57534e">lease appears stale</text>
+  <text x="516" y="194" font-size="14" font-style="italic" fill="#57534e">A is still alive</text>
+
+  <!-- fork branch labels -->
+  <text x="280" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">without epoch fence</text>
+  <text x="280" y="392" text-anchor="middle" font-size="15" fill="#1c1917">may clear B&#8217;s current lease &#10007;</text>
+
+  <text x="720" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">with epoch fence</text>
+  <text x="720" y="392" text-anchor="middle" font-size="15" fill="#1c1917">stale clear is a no-op &#10003;</text>
+</svg><figcaption data-short="Why ownership becomes an interleaving problem"><span class="fig-label">Figure 2.4-2.</span> <em>Why ownership becomes an interleaving problem.</em> Reclaim and reissue can overlap a stale holder's late release. An epoch fence makes the old holder's release inapplicable to the current claim.</figcaption></figure><p class="gallery-source">From <a href="2.4-ownership.html#fig-2-4-2">8 · Ownership Models: Who Controls What, and When?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-4-3-fig-2-4-3" class="book-figure" data-label="in-flight-lease-overlap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350"
+     role="img" aria-labelledby="fig-2-4-3-ilTitle fig-2-4-3-ilDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-2-4-3-ilTitle">One shared lease state answers ownership, behavioral, and measurement questions</title>
+  <desc id="fig-2-4-3-ilDesc">A single shared lease state, carrying owner, epoch, and lifetime, sits at the top and
     fans down to three purpose-views: ownership, who owns it; behavioral, when is it stale; and measurement,
     how many are active. One represented state, several engineering questions. Model classes distinguish
     purpose, not storage objects.</desc>
 
   <defs>
-    <marker id="fig-2-4-2-il-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="fig-2-4-3-il-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -2067,7 +2194,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="360" y="90" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; lifetime</text>
 
   <!-- fan DOWN to the three class views -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-4-2-il-b)">
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-4-3-il-b)">
     <path d="M320,104 C240,140 190,150 145,186"/>
     <path d="M360,104 L360,186"/>
     <path d="M400,104 C480,140 530,150 575,186"/>
@@ -2090,7 +2217,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- footer: protect the overlap point -->
   <text x="360" y="322" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">One represented state, several engineering questions.</text>
-</svg><figcaption data-short="Model classes overlap"><span class="fig-label">Figure 2.4-2.</span> <em>Model classes overlap.</em> The same lease state supports ownership, behavioral, and measurement questions. The classes distinguish purpose, not storage objects.</figcaption></figure><p class="gallery-source">From <a href="2.4-ownership.html#fig-2-4-2">8 · Ownership Models: Who Controls What, and When?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-5-1-fig-2-5-1" class="book-figure" data-label="service-flow-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470"
+</svg><figcaption data-short="Model classes overlap"><span class="fig-label">Figure 2.4-3.</span> <em>Model classes overlap.</em> The same lease state supports ownership, behavioral, and measurement questions. The classes distinguish purpose, not storage objects.</figcaption></figure><p class="gallery-source">From <a href="2.4-ownership.html#fig-2-4-3">8 · Ownership Models: Who Controls What, and When?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-5-1-fig-2-5-1" class="book-figure" data-label="service-flow-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470"
      role="img" aria-labelledby="fig-2-5-1-sfTitle fig-2-5-1-sfDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-5-1-sfTitle">DocAble's service-flow model: which services may communicate</title>
