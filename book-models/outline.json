@@ -363,7 +363,7 @@
           "points": [
             {
               "slug": "model-plus-harness-form-a-new-engineering-substrate",
-              "text": "A foundation model and an agentic harness together form the engineering substrate; the useful unit is the pair operating inside an engineering environment.",
+              "text": "A foundation model and an agentic harness together form the engineering substrate; the useful unit is the pair operating inside an engineered environment.",
               "block_index": 7
             },
             {
@@ -487,7 +487,7 @@
         },
         {
           "slug": "the-substrate-is-model-plus-harness-in-an-environment",
-          "text": "The relevant substrate is not a foundation model alone but a foundation model operating through an agentic harness inside an engineering environment; the combination determines both what autonomous work can do and where engineering can act on it.",
+          "text": "The relevant substrate is not a foundation model alone but a foundation model operating through an agentic harness inside an engineered environment; the combination determines both what autonomous work can do and where engineering can act on it.",
           "block_index": 3
         }
       ]
@@ -723,7 +723,7 @@
       "preamble_points": [
         {
           "slug": "a-reasoner-arrives-knowing-nothing-about-your-system",
-          "text": "A foundation model knows the languages and patterns; it does not know your system — those facts live in the engineering environment.",
+          "text": "A foundation model knows the languages and patterns; it does not know your system — those facts live in the engineered environment.",
           "block_index": 1
         },
         {
@@ -2857,7 +2857,7 @@
           "section_id": "control-growth",
           "level": 2,
           "heading_text": "The controls accumulate",
-          "topic_sentence": "The growing engineering environment is visible in one especially easy-to-count class of artifacts: project-specific lints and gate scripts.",
+          "topic_sentence": "The growing engineered environment is visible in one especially easy-to-count class of artifacts: project-specific lints and gate scripts.",
           "id_source": "explicit",
           "block_index": 23,
           "points": [
@@ -2951,7 +2951,7 @@
             },
             {
               "slug": "the-environment-around-the-product",
-              "text": "The larger engineering environment around the product path contains the models, tests, and machinery that made this degree of delegation possible.",
+              "text": "The larger engineered environment around the product path contains the models, tests, and machinery that made this degree of delegation possible.",
               "block_index": 10
             },
             {
@@ -3046,7 +3046,7 @@
             },
             {
               "slug": "delegation-climbed-as-far-as-the-environment-could-carry-it",
-              "text": "Delegation climbed as far as the engineering environment could carry it; when representation or authority was too weak, the operator fell back into tactical work.",
+              "text": "Delegation climbed as far as the engineered environment could carry it; when representation or authority was too weak, the operator fell back into tactical work.",
               "block_index": 44
             },
             {

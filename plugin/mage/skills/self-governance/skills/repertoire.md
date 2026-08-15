@@ -64,7 +64,7 @@ index certifies its own output.
 
 ## self-operate — run the operational lifecycles
 
-- **Purpose:** run the engineering environment as explicit operational lifecycles — route a
+- **Purpose:** run the engineered environment as explicit operational lifecycles — route a
   condition to a typed runbook, execute the repeatable procedure, recover on failure, and
   return recurring or structural deficiencies back to Self-Governance.
 - **Situations served:** an operational task or break — dispatching or landing agents,

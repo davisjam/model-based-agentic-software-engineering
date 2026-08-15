@@ -2837,8 +2837,8 @@ def _ic_case_body(rec: dict, labels: "dict[str, str]", hedge: str, distinctive: 
     if facts:
         p.append("<p>Scale, as the source reports it:</p>")
         p.append("<ul>" + "".join(f"<li>{_inline(f)}</li>" for f in facts) + "</ul>")
-    # The engineering environment — projected tag rows + the authored authority paragraph.
-    p.append("<h2>The engineering environment</h2>")
+    # The engineered environment — projected tag rows + the authored authority paragraph.
+    p.append("<h2>The engineered environment</h2>")
     p.append("<h3>Object territory</h3>")
     p.append(_ic_tags(rec.get("object_territory", []) or []))
     p.append("<h3>Representations</h3>")
@@ -3055,7 +3055,7 @@ def _theory_body() -> str:
     p.append('<div class="concept-band"><span class="concept-chip">Theory</span>'
              '<span class="concept-kicker">one circulation, two complementary arcs</span></div>')
     md1: "list[str]" = []
-    md1.append("MAGE reads the engineering environment as the object of engineering. When commodity "
+    md1.append("MAGE reads the engineered environment as the object of engineering. When commodity "
                "intelligence writes the code, quality stops belonging to any single change and becomes a "
                "property of the environment every change passes through. The theory says how to build that "
                "environment, and why the building compounds instead of dissipating.")
