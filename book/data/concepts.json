@@ -371,12 +371,6 @@
     "status": "book-only",
     "note": "The drift caveat: any model of a moving target owes a drift gate, or the map silently diverges from the territory. Book-only by design (caveat, exempt from L3). Registered in index-terms.md; book index-def tagged at the 2.2 drift-caveat section's opening paragraph."
   },
-  "journey-task-closure": {
-    "kind": "family",
-    "site_home": "N/A",
-    "status": "book-only",
-    "note": "realized as a catalogue entry in the journey family (user-journey-model + journey-criticality-test-placement + this); no standalone landing card by design."
-  },
   "governance-target-agent": {
     "kind": "axis",
     "site_home": "N/A",
