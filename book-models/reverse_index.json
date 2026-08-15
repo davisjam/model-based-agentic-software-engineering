@@ -6979,12 +6979,12 @@
         }
       ]
     },
-    "section-id:why-mage": {
+    "section-id:why-mage-why-models": {
       "kind": "section-id",
       "dependents": [
         {
           "view": "outline",
-          "element": "0.4-preface::why-mage",
+          "element": "0.4-preface::why-mage-why-models",
           "role": "section-anchor"
         }
       ]
