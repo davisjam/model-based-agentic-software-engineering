@@ -32,7 +32,7 @@ chapter (filled as chapters settle; the generator still scans all chapters for s
 - skill (soft mechanism) @ch03
 - hook (hard mechanism) @ch03
 - tool (deterministic action) @ch03
-- engineering environment @ch03
+- engineered environment @ch03
 - injection point (where a mechanism attaches) @ch03
 - model (as map / cheaper approximation) @ch04
 - map and territory @ch04
@@ -206,7 +206,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: skill-soft-control | Skill (soft mechanism)
 - concept: hook-hard-control | Hook (hard mechanism)
 - concept: tool-deterministic-action | Tool (deterministic action)
-- concept: engineering-environment | The engineering environment
+- concept: engineered-environment | The engineered environment
 - concept: injection-point | Injection point
 - concept: model-as-map | Model as map
 - concept: map-and-territory | Map and territory
