@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1186,
+    "total_sites": 1137,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 780,
+      "book-web": 731,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -42,30 +42,6 @@
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 9
-          },
-          {
-            "file": "book/2.2-from-context-to-control.html",
-            "occ": 4
-          },
-          {
-            "file": "book/2.3-the-executable-zoo.html",
-            "occ": 10
-          },
-          {
-            "file": "book/2.4-views-are-projections.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 4
-          },
-          {
-            "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.8-joining-models-around-a-scenario.html",
-            "occ": 4
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -235,7 +211,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 53
+            "occ": 47
           }
         ]
       },
@@ -1016,10 +992,6 @@
             "occ": 45
           },
           {
-            "file": "book/2.2-from-context-to-control.html",
-            "occ": 34
-          },
-          {
             "file": "book/2.2-structural.html",
             "occ": 17
           },
@@ -1028,44 +1000,20 @@
             "occ": 22
           },
           {
-            "file": "book/2.3-the-executable-zoo.html",
-            "occ": 26
-          },
-          {
             "file": "book/2.4-ownership.html",
             "occ": 18
-          },
-          {
-            "file": "book/2.4-views-are-projections.html",
-            "occ": 20
           },
           {
             "file": "book/2.5-decision.html",
             "occ": 15
           },
           {
-            "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 16
-          },
-          {
             "file": "book/2.6-measurement.html",
-            "occ": 17
-          },
-          {
-            "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 17
-          },
-          {
-            "file": "book/2.7-modeling-measurement-and-evidence.html",
             "occ": 17
           },
           {
             "file": "book/2.7-provenance.html",
             "occ": 16
-          },
-          {
-            "file": "book/2.8-joining-models-around-a-scenario.html",
-            "occ": 24
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -1407,7 +1355,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 108
+            "occ": 101
           }
         ]
       },
@@ -1598,10 +1546,6 @@
             "occ": 2
           },
           {
-            "file": "book/2.2-from-context-to-control.html",
-            "occ": 2
-          },
-          {
             "file": "book/2.2-structural.html",
             "occ": 2
           },
@@ -1610,15 +1554,7 @@
             "occ": 2
           },
           {
-            "file": "book/2.3-the-executable-zoo.html",
-            "occ": 2
-          },
-          {
             "file": "book/2.4-ownership.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.4-views-are-projections.html",
             "occ": 2
           },
           {
@@ -1626,27 +1562,11 @@
             "occ": 2
           },
           {
-            "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 2
-          },
-          {
             "file": "book/2.6-measurement.html",
             "occ": 2
           },
           {
-            "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.7-modeling-measurement-and-evidence.html",
-            "occ": 2
-          },
-          {
             "file": "book/2.7-provenance.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.8-joining-models-around-a-scenario.html",
             "occ": 2
           },
           {
@@ -1989,7 +1909,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 108
+            "occ": 101
           }
         ]
       },
@@ -2134,10 +2054,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/2.3-the-executable-zoo.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.8-system-knowledge.html",
             "occ": 2
           },
@@ -2149,7 +2065,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 3
+            "occ": 2
           }
         ]
       }
@@ -2202,10 +2118,6 @@
             "occ": 53
           },
           {
-            "file": "book/2.2-from-context-to-control.html",
-            "occ": 32
-          },
-          {
             "file": "book/2.2-structural.html",
             "occ": 35
           },
@@ -2214,44 +2126,20 @@
             "occ": 33
           },
           {
-            "file": "book/2.3-the-executable-zoo.html",
-            "occ": 94
-          },
-          {
             "file": "book/2.4-ownership.html",
             "occ": 16
-          },
-          {
-            "file": "book/2.4-views-are-projections.html",
-            "occ": 12
           },
           {
             "file": "book/2.5-decision.html",
             "occ": 25
           },
           {
-            "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 48
-          },
-          {
             "file": "book/2.6-measurement.html",
-            "occ": 25
-          },
-          {
-            "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 36
-          },
-          {
-            "file": "book/2.7-modeling-measurement-and-evidence.html",
             "occ": 25
           },
           {
             "file": "book/2.7-provenance.html",
             "occ": 18
-          },
-          {
-            "file": "book/2.8-joining-models-around-a-scenario.html",
-            "occ": 50
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -2593,7 +2481,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 108
+            "occ": 101
           }
         ]
       },
@@ -3236,10 +3124,6 @@
             "occ": 1
           },
           {
-            "file": "book/2.2-from-context-to-control.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.2-structural.html",
             "occ": 1
           },
@@ -3248,15 +3132,7 @@
             "occ": 1
           },
           {
-            "file": "book/2.3-the-executable-zoo.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.4-ownership.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.4-views-are-projections.html",
             "occ": 1
           },
           {
@@ -3264,27 +3140,11 @@
             "occ": 1
           },
           {
-            "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.6-measurement.html",
             "occ": 1
           },
           {
-            "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.7-modeling-measurement-and-evidence.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.7-provenance.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.8-joining-models-around-a-scenario.html",
             "occ": 1
           },
           {
@@ -3627,7 +3487,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 108
+            "occ": 101
           }
         ]
       },
@@ -3848,10 +3708,6 @@
             "occ": 2
           },
           {
-            "file": "book/2.2-from-context-to-control.html",
-            "occ": 2
-          },
-          {
             "file": "book/2.2-structural.html",
             "occ": 2
           },
@@ -3860,15 +3716,7 @@
             "occ": 2
           },
           {
-            "file": "book/2.3-the-executable-zoo.html",
-            "occ": 8
-          },
-          {
             "file": "book/2.4-ownership.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.4-views-are-projections.html",
             "occ": 2
           },
           {
@@ -3876,27 +3724,11 @@
             "occ": 2
           },
           {
-            "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 2
-          },
-          {
             "file": "book/2.6-measurement.html",
             "occ": 2
           },
           {
-            "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.7-modeling-measurement-and-evidence.html",
-            "occ": 2
-          },
-          {
             "file": "book/2.7-provenance.html",
-            "occ": 2
-          },
-          {
-            "file": "book/2.8-joining-models-around-a-scenario.html",
             "occ": 2
           },
           {
@@ -4239,7 +4071,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 108
+            "occ": 101
           }
         ]
       },
@@ -4330,10 +4162,6 @@
             "occ": 8
           },
           {
-            "file": "book/2.2-from-context-to-control.html",
-            "occ": 10
-          },
-          {
             "file": "book/2.2-structural.html",
             "occ": 11
           },
@@ -4342,15 +4170,7 @@
             "occ": 1
           },
           {
-            "file": "book/2.3-the-executable-zoo.html",
-            "occ": 10
-          },
-          {
             "file": "book/2.4-ownership.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.4-views-are-projections.html",
             "occ": 1
           },
           {
@@ -4358,28 +4178,12 @@
             "occ": 1
           },
           {
-            "file": "book/2.5-modeling-structure-and-ownership.html",
-            "occ": 4
-          },
-          {
             "file": "book/2.6-measurement.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.6-modeling-behavior-and-execution.html",
-            "occ": 1
-          },
-          {
-            "file": "book/2.7-modeling-measurement-and-evidence.html",
             "occ": 1
           },
           {
             "file": "book/2.7-provenance.html",
             "occ": 7
-          },
-          {
-            "file": "book/2.8-joining-models-around-a-scenario.html",
-            "occ": 1
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -4721,7 +4525,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 108
+            "occ": 101
           }
         ]
       },
