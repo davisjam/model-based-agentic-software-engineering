@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fig 6.x-X (formal-methods-mining-260815; folds to book/assets/question-to-authority-progression.svg).
+     "From engineering question to authority." A vertical spine: the question, then the representation move
+     (blue = modelling), which forks by the representation chosen into a matching mechanism (gray), then the
+     branches re-converge to interpret the evidence and decide what deserves authority (green = outcome).
+       engineering question -> choose the representation (blue)
+            closed state / action space -> structural constraint
+            finite transition system    -> exhaustive state exploration
+            temporal behavior           -> temporal model checking
+       -> interpret the evidence -> decide what deserves authority (green)
+     Grayscale-survivable: every node labelled; the spine and the middle fork carry the meaning; hue only
+     reinforces representation (blue) vs machinery (gray) vs authority (green). Boxes first, labels last. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640"
+     role="img" aria-labelledby="qapTitle qapDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="qapTitle">From engineering question to authority</title>
+  <desc id="qapDesc">A vertical progression. An engineering question leads to choosing a representation. The
+    representation forks the path: a closed state or action space leads to a structural constraint; a finite
+    transition system leads to exhaustive state exploration; temporal behavior leads to temporal model
+    checking. The branches re-converge to interpret the evidence and then to decide what deserves authority.
+    The general competence is turning a consequential question into a representation and evidence that
+    machines can help carry, not any one tool.</desc>
+
+  <defs>
+    <marker id="qap-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ===== boxes (drawn first) ===== -->
+  <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
+
+  <!-- question (gray) -->
+  <rect x="340" y="26" width="320" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+
+  <!-- choose the representation (blue) -->
+  <rect x="330" y="110" width="340" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
+
+  <!-- representation boxes (blue) -->
+  <rect x="45" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
+  <rect x="360" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
+  <rect x="675" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
+
+  <!-- mechanism boxes (gray) -->
+  <rect x="45" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="360" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="675" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+
+  <!-- interpret the evidence (gray) -->
+  <rect x="330" y="446" width="340" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+
+  <!-- decide authority (green) -->
+  <rect x="310" y="536" width="380" height="58" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+
+  <!-- ===== arrows ===== -->
+  <line x1="500" y1="78" x2="500" y2="108" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+
+  <line x1="500" y1="162" x2="500" y2="186" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="186" x2="815" y2="186" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="186" x2="185" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <line x1="500" y1="186" x2="500" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <line x1="815" y1="186" x2="815" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+
+  <line x1="185" y1="276" x2="185" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <line x1="500" y1="276" x2="500" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <line x1="815" y1="276" x2="815" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+
+  <line x1="185" y1="376" x2="185" y2="426" stroke="#1c1917" stroke-width="2"/>
+  <line x1="815" y1="376" x2="815" y2="426" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="426" x2="500" y2="426" stroke="#1c1917" stroke-width="2"/>
+  <line x1="815" y1="426" x2="500" y2="426" stroke="#1c1917" stroke-width="2"/>
+  <line x1="500" y1="376" x2="500" y2="444" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+
+  <line x1="500" y1="498" x2="500" y2="534" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+
+  <!-- ===== labels (drawn last, on top) ===== -->
+  <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">engineering question</text>
+  <text x="500" y="142" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">choose the representation</text>
+
+  <text x="185" y="240" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">closed state /</text>
+  <text x="185" y="260" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">action space</text>
+  <text x="500" y="240" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">finite transition</text>
+  <text x="500" y="260" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">system</text>
+  <text x="815" y="250" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">temporal behavior</text>
+
+  <text x="185" y="352" text-anchor="middle" font-size="14.5" fill="#1c1917">structural constraint</text>
+  <text x="500" y="345" text-anchor="middle" font-size="14.5" fill="#1c1917">exhaustive state</text>
+  <text x="500" y="365" text-anchor="middle" font-size="14.5" fill="#1c1917">exploration</text>
+  <text x="815" y="345" text-anchor="middle" font-size="14.5" fill="#1c1917">temporal model</text>
+  <text x="815" y="365" text-anchor="middle" font-size="14.5" fill="#1c1917">checking</text>
+
+  <text x="500" y="478" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">interpret the evidence</text>
+  <text x="500" y="571" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">decide what deserves authority</text>
+</svg>
