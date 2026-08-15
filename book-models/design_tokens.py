@@ -160,20 +160,56 @@ def css_root_block(t: Tokens | None = None) -> str:
     return "\n".join(lines) + "\n"
 
 
-def google_fonts_link(t: Tokens | None = None) -> str:
-    """The <link> loading the display (Source Serif 4), body (Source Sans 3), and mono (IBM Plex Mono) faces.
+def google_fonts_link(t: Tokens | None = None, rel_root: str = "") -> str:
+    """Emit a self-hosted <style> block of @font-face rules for the display (Source Serif 4),
+    body (Source Sans 3), and mono (IBM Plex Mono) faces.
 
-    Source Serif 4 loads weights 400 / 600 / 700 (upright) + 400 italic — the per-level heading weights
-    (Part bold 700, chapter/section semibold 600, the italic `###` sub-level) plus regular. `opsz` is the
-    face's 8..60 optical-size axis (its native range), so the browser picks the size-appropriate cut."""
-    return (
-        '<link rel="preconnect" href="https://fonts.googleapis.com">'
-        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-        '<link href="https://fonts.googleapis.com/css2?'
-        "family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&"
-        "family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&"
-        'family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">'
-    )
+    Self-hosted (NOT Google Fonts): every face is served from the in-artifact `book/fonts/` tree,
+    so there is zero external font dependency — Google rotating a versioned woff2 URL can no longer
+    404 a served page (the console-error CI gate).
+
+    `rel_root` is the caller's per-page `../`-string back to the SITE ROOT (the dir that contains
+    both `book/` and the catalogue). The font `src` is emitted RELATIVE — `url('{rel_root}book/fonts/…')`
+    — NOT absolute `/book/fonts/…`: GitHub Pages serves a project repo under a subpath
+    (`/<repo>/`), so an absolute `/book/fonts/…` would resolve to the domain root and 404 exactly
+    like the old CDN URL did. A relative src resolves correctly under root, under a project subpath,
+    AND in local preview. Callers: catalogue pages pass their per-page rel_root (`../`×depth); the
+    flattened book pages (all one level deep in `book/`) pass `"../"`; root pages pass `""`.
+
+    Face coverage mirrors the weights the site actually uses:
+      Source Serif 4 — 400/600/700 upright + 400/600/700 italic (all TTFs bundled).
+      Source Sans 3  — 400/700 upright + 400/700 italic. NO Semibold (600) TTF is bundled, so the
+                       600 face is omitted; the CSS font stack falls back to the nearest weight.
+      IBM Plex Mono  — 400 upright; 500 (Medium) is NOT bundled, so 500 maps to the Regular TTF."""
+    faces: list[tuple[str, str, int, str]] = [
+        # (family, style, weight, file under book/fonts/<dir>/)
+        ("Source Serif 4", "normal", 400, "SourceSerif4/SourceSerif4-Regular.ttf"),
+        ("Source Serif 4", "normal", 600, "SourceSerif4/SourceSerif4-Semibold.ttf"),
+        ("Source Serif 4", "normal", 700, "SourceSerif4/SourceSerif4-Bold.ttf"),
+        ("Source Serif 4", "italic", 400, "SourceSerif4/SourceSerif4-It.ttf"),
+        ("Source Serif 4", "italic", 600, "SourceSerif4/SourceSerif4-SemiboldIt.ttf"),
+        ("Source Serif 4", "italic", 700, "SourceSerif4/SourceSerif4-BoldIt.ttf"),
+        ("Source Sans 3", "normal", 400, "SourceSans3/SourceSans3-Regular.ttf"),
+        ("Source Sans 3", "normal", 700, "SourceSans3/SourceSans3-Bold.ttf"),
+        ("Source Sans 3", "italic", 400, "SourceSans3/SourceSans3-It.ttf"),
+        ("Source Sans 3", "italic", 700, "SourceSans3/SourceSans3-BoldIt.ttf"),
+        # IBM Plex Mono 500 (Medium) is not bundled → map to Regular to avoid a 404.
+        ("IBM Plex Mono", "normal", 400, "IBMPlexMono/IBMPlexMono-Regular.ttf"),
+        ("IBM Plex Mono", "normal", 500, "IBMPlexMono/IBMPlexMono-Regular.ttf"),
+    ]
+    rules: list[str] = []
+    for family, style, weight, path in faces:
+        rules.append(
+            "@font-face{"
+            f"font-family:'{family}';"
+            f"font-style:{style};"
+            f"font-weight:{weight};"
+            "font-stretch:normal;"
+            "font-display:swap;"
+            f"src:url('{rel_root}book/fonts/{path}') format('truetype');"
+            "}"
+        )
+    return "<style>" + "".join(rules) + "</style>"
 
 
 # ── Typst projection ────────────────────────────────────────────────────────────────────────────────

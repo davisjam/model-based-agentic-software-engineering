@@ -2008,7 +2008,7 @@ def _page(title: str, crumb: str, body: str, subtitle: str = "", rel_root: str =
     return (f"<!doctype html>\n<html lang=\"en\">\n{GENERATED_BANNER}\n<head>\n"
             f'<meta charset="utf-8" />\n'
             f'<meta name="viewport" content="width=device-width, initial-scale=1" />\n'
-            f"<title>{_attr(title)}</title>\n{FONTS_LINK}\n<style>{PAGE_CSS}{FONT_CSS}</style>\n</head>\n<body>\n"
+            f"<title>{_attr(title)}</title>\n{_dtokens.google_fonts_link(rel_root=rel_root)}\n<style>{PAGE_CSS}{FONT_CSS}</style>\n</head>\n<body>\n"
             f"<main>\n{crumb}\n{sub}{body}\n{_site_footer(rel_root)}\n</main>\n</body>\n</html>\n")
 
 

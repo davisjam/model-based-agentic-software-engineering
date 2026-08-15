@@ -64,7 +64,9 @@ import design_tokens as _dtokens  # noqa: E402 — the design-token projector (s
 
 _TOKENS = _dtokens.load()
 CSS_ROOT_BLOCK = _dtokens.css_root_block(_TOKENS)
-FONTS_LINK = _dtokens.google_fonts_link(_TOKENS)
+# Book pages are flattened one level deep in `book/`, so the `../`-to-site-root prefix is uniform;
+# the self-hosted @font-face `src` resolves relative to each page (correct under a Pages project subpath).
+FONTS_LINK = _dtokens.google_fonts_link(_TOKENS, rel_root="../")
 # Mermaid label sizes — the SAME token that drives the mermaid LAYOUT config (`mermaid_theme`) so the
 # CSS that DISPLAYS the labels below can never render bigger than the boxes mermaid laid out (the
 # config==CSS invariant that stops label overflow). Do not hardcode these px; they follow the tokens.
