@@ -231,7 +231,7 @@ RULE_CITE_RE = re.compile(r"(?<![\w.])#\d{1,2}\b")  # bare project-rule citation
 # Not served / not link-checked: internal continuity docs (the abstractions playbook is process, not content).
 NOSERVE = ("HANDOFF.md", "HANDOFF-catalogue-agent.md", "abstractions-playbook.md", "TODO.md",
            "WRITING-BACKLOG.md", "SUBMISSION.md", "PRIVACY.md", "DEVELOP.md", "CLAUDE.md",
-           "MEASUREMENT.md")  # build-profiling finding (dev doc, not a served catalogue page)
+           "MEASUREMENT.md", "AGENTS.md")  # build-profiling finding (dev doc, not a served catalogue page)
 
 # Declared stats — the facts not derivable from the entries (LOC, case-study length). Everything else in
 # _stats() is computed from the catalogue itself. Edit a number here, once.
