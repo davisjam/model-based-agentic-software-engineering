@@ -7,7 +7,7 @@
     "derived_ids": 144,
     "missing_topic_sentence": 0,
     "sections_drained": 102,
-    "paragraph_points": 419
+    "paragraph_points": 423
   },
   "chapters": [
     {
@@ -225,7 +225,7 @@
             },
             {
               "slug": "two-birds-one-stone-motive",
-              "text": "One project answered both problems at once.",
+              "text": "One project answered both problems at once: build the production system, and use the engineering work to discover what sustained agentic development demanded.",
               "block_index": 6
             }
           ]
@@ -233,15 +233,20 @@
         {
           "section_id": "what-the-user-sees",
           "level": 2,
-          "heading_text": "What the user sees",
-          "topic_sentence": "From the outside the system is almost boring, by design.",
+          "heading_text": "What the User Sees",
+          "topic_sentence": "From the user's perspective, DocAble is simple: upload an inaccessible document; receive a remediated document and an evidence record.",
           "id_source": "derived",
           "block_index": 8,
           "points": [
             {
               "slug": "upload-in-remediated-file-plus-evidence-out",
-              "text": "A user uploads a document; a checked file and its evidence return.",
+              "text": "From the user's view DocAble is simple: an inaccessible document goes in; a remediated document and an evidence record come back, with consequential changes recorded so the result can be inspected and, where necessary, reversed.",
               "block_index": 10
+            },
+            {
+              "slug": "the-figure-stops-at-the-boundary",
+              "text": "The glimpse deliberately stops at the boundary; before looking inside, we need only know what engineering result the system is supposed to produce.",
+              "block_index": 14
             }
           ]
         },
@@ -249,74 +254,89 @@
           "section_id": "one-system-several-engineering-questions",
           "level": 2,
           "heading_text": "One System, Several Engineering Questions",
-          "topic_sentence": "Building DocAble well is not one problem.",
+          "topic_sentence": "Building DocAble well is not one engineering problem.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 17,
           "points": [
             {
               "slug": "building-well-is-several-problems",
-              "text": "Building DocAble well is not one problem; different questions want different pictures.",
-              "block_index": 17
-            },
-            {
-              "slug": "five-questions-five-pictures",
-              "text": "Structure, behavior, policy, measurement, and provenance are five questions, each wanting its own reduction.",
+              "text": "Building DocAble well is not one engineering problem; different questions require different representations.",
               "block_index": 19
             },
             {
-              "slug": "no-single-model-of-docable",
-              "text": "No one picture is the model of DocAble; each is a purposeful reduction that makes one question's facts cheap to see — comprehensiveness is not the goal; choosing the reduction the question demands is the skill.",
+              "slug": "five-questions-five-representations",
+              "text": "Structure, behavior, decisions, measurement, and provenance are different questions, each wanting its own representation of the same system.",
               "block_index": 21
-            }
-          ]
-        },
-        {
-          "section_id": "docable-vocabulary",
-          "level": 2,
-          "heading_text": "DocAble Vocabulary",
-          "topic_sentence": "To follow those questions you need a handful of names that stay put.",
-          "id_source": "derived",
-          "block_index": 23,
-          "points": [
+            },
             {
-              "slug": "landmarks-are-stable-nouns",
-              "text": "A handful of plain names that stay put across every later chapter.",
+              "slug": "no-single-model-of-docable",
+              "text": "The system has not changed between these questions; the representation has. No single model is best for all of them — each is a purposeful reduction that preserves the facts one question needs and suppresses detail it does not.",
+              "block_index": 23
+            },
+            {
+              "slug": "the-central-modeling-move",
+              "text": "That is the central modeling move; Part II develops it systematically.",
               "block_index": 25
-            },
-            {
-              "slug": "one-worker-five-views",
-              "text": "A worker is one thing in the system and several things to an engineer, depending on the question.",
-              "block_index": 35
-            },
-            {
-              "slug": "one-docable-job-is-territory-not-model",
-              "text": "One ordinary job supplies the landmarks Parts II and III reuse; it is territory to locate the models against, not the architecture model itself.",
-              "block_index": 37
             }
           ]
         },
         {
-          "section_id": "why-docable-serves-as-the-running-case",
+          "section_id": "the-territory",
           "level": 2,
-          "heading_text": "Why DocAble Serves as the Running Case",
-          "topic_sentence": "Why hang a whole book on one system?",
+          "heading_text": "The Territory",
+          "topic_sentence": "Before Parts II and III redraw DocAble through different engineering models, we need enough common territory to know what those models refer to.",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 27,
           "points": [
             {
-              "slug": "why-one-system-opened-deep",
-              "text": "One example, opened as far as the question needs, teaches more than a shallow survey.",
-              "block_index": 45
+              "slug": "enough-common-territory-to-locate-the-models",
+              "text": "Before Parts II and III redraw DocAble through different engineering models, we need enough common territory to know what those models refer to.",
+              "block_index": 29
             },
             {
-              "slug": "synchronic-here-diachronic-in-part-v",
-              "text": "Parts II/III meet DocAble held still: Part II asks which representations make its properties tractable, Part III how selected obligations acquire authority; Part V tells how it came to be and what broke.",
-              "block_index": 47
+              "slug": "the-territory-vocabulary",
+              "text": "A job is one document's trip; a chunk is a portion processed independently; workers claim and process chunks, calling specialized services; queues coordinate the handoffs; the outputs are the remediated document and its evidence.",
+              "block_index": 38
             },
             {
-              "slug": "enough-for-now-bridge-to-part-two",
-              "text": "Enough of DocAble for now; the landmarks and the governed system are in place — before deciding what representations or controls it needs, inspect the productive substrate doing the work.",
-              "block_index": 49
+              "slug": "one-worker-several-models",
+              "text": "The same worker appears differently in later models — a deployable component, an actor in a lifecycle, an owner of a resource, a subject of an access policy, or a source of measurements; not competing descriptions, but different properties of the same system.",
+              "block_index": 40
+            },
+            {
+              "slug": "parts-return-to-this-territory",
+              "text": "Parts II and III repeatedly return to this territory: structure, behavior, ownership, decisions, measurements, and provenance.",
+              "block_index": 42
+            }
+          ]
+        },
+        {
+          "section_id": "how-the-book-uses-docable",
+          "level": 2,
+          "heading_text": "How the Book Uses DocAble",
+          "topic_sentence": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires.",
+          "id_source": "derived",
+          "block_index": 44,
+          "points": [
+            {
+              "slug": "docable-shown-at-method-resolution",
+              "text": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires; Part II asks which representations make properties tractable, Part III how obligations acquire authority.",
+              "block_index": 46
+            },
+            {
+              "slug": "part-v-examines-the-build-itself",
+              "text": "Part V uses DocAble differently: it examines the build itself — what failed, what those failures revealed, and how recurring judgments became models, controls, and other durable engineering structure.",
+              "block_index": 48
+            },
+            {
+              "slug": "docable-is-depth-not-the-whole-evidence",
+              "text": "DocAble provides depth, not the book's entire evidentiary basis; other engineering organizations reappear to show where independent practice converges with MAGE, where it takes different forms, and where the evidence supports a more limited claim.",
+              "block_index": 50
+            },
+            {
+              "slug": "bridge-to-the-substrate",
+              "text": "With the landmarks established, we can now examine the productive substrate that does the work.",
+              "block_index": 52
             }
           ]
         }
