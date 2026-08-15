@@ -7,7 +7,7 @@
     "derived_ids": 145,
     "missing_topic_sentence": 0,
     "sections_drained": 103,
-    "paragraph_points": 428
+    "paragraph_points": 433
   },
   "chapters": [
     {
@@ -2186,18 +2186,43 @@
           "points": [
             {
               "slug": "let-the-claim-choose-the-search",
-              "text": "Let the engineering claim choose the search: a valid domain earns a property test, an untrusted boundary earns a fuzzer, a structured model supplies a richer oracle.",
+              "text": "Let the engineering claim choose the search: use the cheapest mechanism that can genuinely falsify it.",
               "block_index": 33
+            },
+            {
+              "slug": "start-with-prevention-close-the-action-space",
+              "text": "Start with prevention: if the forbidden state can be removed structurally, remove it.",
+              "block_index": 36
+            },
+            {
+              "slug": "interleaving-risk-make-the-state-small-enough-to-explore",
+              "text": "When the property lives in interleavings, make the relevant state small enough to explore exhaustively.",
+              "block_index": 38
+            },
+            {
+              "slug": "bounded-explicit-state-not-satsmt-solving",
+              "text": "This is bounded explicit-state model checking plus correspondence cross-checks, not SAT/SMT solving and not a refinement proof.",
+              "block_index": 40
+            },
+            {
+              "slug": "some-obligations-cannot-be-falsified-by-a-finite-bad-state",
+              "text": "Some obligations are temporal: no finite bad state falsifies them, so a temporal model checker is the fit.",
+              "block_index": 42
+            },
+            {
+              "slug": "the-three-cases-make-the-rule-concrete",
+              "text": "The three cases make the rule concrete; strength means evidence adequate to the claim, not the fancier tool.",
+              "block_index": 44
             },
             {
               "slug": "fix-the-stable-obligation-not-the-seed",
               "text": "When a generated input exposes a defect, fix the stable obligation so the repair closes the class, not just the seed.",
-              "block_index": 35
+              "block_index": 46
             },
             {
               "slug": "reuse-real-producers-before-a-synthetic-grammar",
               "text": "Reuse real producers before inventing a complete synthetic world; hand-build richer generation only when the claim earns it.",
-              "block_index": 37
+              "block_index": 48
             }
           ]
         },
@@ -2207,27 +2232,27 @@
           "heading_text": "Derive the obligation set first",
           "topic_sentence": "Coverage answers a question about a population.",
           "id_source": "explicit",
-          "block_index": 39,
+          "block_index": 51,
           "points": [
             {
               "slug": "coverage-answers-a-question-about-a-population-so-the-population-must-exist-first",
               "text": "Coverage answers a question about a population, so the population must exist before the percentage means anything.",
-              "block_index": 41
+              "block_index": 53
             },
             {
               "slug": "ordinary-coverage-starts-from-code-and-cannot-see-a-behavior-that-was-never-named",
               "text": "Ordinary coverage starts from the code or the tests that already exist; it cannot see that an important behavior has no test at all if nothing first names that behavior as an obligation.",
-              "block_index": 43
+              "block_index": 55
             },
             {
               "slug": "models-can-supply-the-missing-census-of-obligations",
               "text": "Explicit models can supply the missing census: transitions that need evidence, edges permitted or forbidden, failure paths, claims that must be discharged.",
-              "block_index": 45
+              "block_index": 57
             },
             {
               "slug": "coverage-cannot-see-an-obligation-that-was-never-instantiated",
               "text": "With the census in hand, a high aggregate percentage becomes a place to look rather than a reassurance.",
-              "block_index": 49
+              "block_index": 61
             }
           ]
         },
@@ -2237,22 +2262,22 @@
           "heading_text": "Did the search cover the claim?",
           "topic_sentence": "Generative validation adds an honesty question that a small example suite can often avoid: **did the campaign search the semantic region the claim is about?** Code coverage answers where execution went.",
           "id_source": "derived",
-          "block_index": 51,
+          "block_index": 63,
           "points": [
             {
               "slug": "generation-adds-a-coverage-honesty-question",
               "text": "Generative validation adds an honesty question: did the campaign search the semantic region the claim is about?",
-              "block_index": 53
+              "block_index": 65
             },
             {
               "slug": "model-claim-coverage-names-the-gap",
               "text": "Where traceability exists, follow each model claim to the code that realizes it and ask whether the campaign reached it; a high aggregate becomes a named gap.",
-              "block_index": 55
+              "block_index": 67
             },
             {
               "slug": "coverage-is-evidence-about-the-search",
               "text": "Coverage remains evidence about the search, not proof of correctness; measure it where a missing region changes what you do next.",
-              "block_index": 57
+              "block_index": 69
             }
           ]
         },
@@ -2262,17 +2287,17 @@
           "heading_text": "Give the verdict the right consequence",
           "topic_sentence": "Validation may report or gate.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 72,
           "points": [
             {
               "slug": "validation-does-not-imply-blocking",
               "text": "Validation may report or gate; authority is a separate design decision from evidence quality.",
-              "block_index": 62
+              "block_index": 74
             },
             {
               "slug": "put-the-gate-outside-the-producing-agent",
               "text": "Where a gate is appropriate, put it outside the producing agent and regenerate the evidence at admission.",
-              "block_index": 64
+              "block_index": 76
             }
           ]
         },
@@ -2282,27 +2307,27 @@
           "heading_text": "Two boundaries for evidence",
           "topic_sentence": "Part III gave a placement rule for authority: **evaluate an obligation at the earliest boundary where it becomes legible and enforceable.** That catches a problem close to its cause.",
           "id_source": "explicit",
-          "block_index": 66,
+          "block_index": 78,
           "points": [
             {
               "slug": "part-three-placed-authority-at-the-earliest-legible-boundary",
               "text": "Part III gave the placement rule for authority: evaluate an obligation at the earliest boundary where it becomes legible and enforceable.",
-              "block_index": 68
+              "block_index": 80
             },
             {
               "slug": "consequential-work-deserves-a-second-boundary-re-evaluate-at-the-last-safe-point",
               "text": "Consequential work often deserves a second boundary: re-evaluate at the last safe point before the consequence becomes difficult to reverse.",
-              "block_index": 70
+              "block_index": 82
             },
             {
               "slug": "the-second-check-is-not-a-substitute-and-need-not-repeat-every-earlier-check",
               "text": "The second check is not a substitute for the first and need not repeat every earlier check; re-run only the evidence whose freshness matters to admission.",
-              "block_index": 74
+              "block_index": 86
             },
             {
               "slug": "done-is-a-claim-not-a-stored-fact-regenerate-the-evidence-at-the-consequential-boundary",
               "text": "That is why done is a claim, not a stored fact: at a consequential boundary, regenerate the evidence needed to justify the consequence.",
-              "block_index": 76
+              "block_index": 88
             }
           ]
         },
@@ -2312,22 +2337,22 @@
           "heading_text": "Why abundance changes the economics",
           "topic_sentence": "None of these techniques is new.",
           "id_source": "derived",
-          "block_index": 78,
+          "block_index": 90,
           "points": [
             {
               "slug": "the-techniques-are-not-new-the-price-changed",
               "text": "None of these techniques is new; abundant implementation changed the relative price of implementation and inspection, not the algorithms.",
-              "block_index": 80
+              "block_index": 92
             },
             {
               "slug": "human-judgment-moves-to-highest-marginal-value",
               "text": "The engineer does not disappear from validation; human judgment moves toward choosing obligations, designing representations, and calibrating validators.",
-              "block_index": 82
+              "block_index": 94
             },
             {
               "slug": "independent-evidence-is-not-a-docable-idiosyncrasy",
               "text": "Placing the grader outside the author is a general move, not a DocAble idiosyncrasy.",
-              "block_index": 85
+              "block_index": 97
             }
           ]
         }

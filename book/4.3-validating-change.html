@@ -771,15 +771,103 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Read each row left to right: the oracle defines what counts as success; the generator determines how the technique searches for evidence. The boundary is not even sharp: some systems combine an explicit input-language grammar with semantic constraints, generating high-diversity inputs while keeping tight control over what each one <em>means</em> <sup class="cite-ref"><a href="#wc-4-3-validating-change-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> José Antonio Zamudio Amaya et al., “FANDANGO: Evolving Language-Based Testing,” in “Proceedings of the ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA 2025),” special issue, <em>Proceedings of the ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA 2025)</em> (New York, NY), 2025, <a href="https://doi.org/10.1145/3728915">https://doi.org/10.1145/3728915</a>.</span> — a hybrid that sits between the property and fuzzing rows.</p>
 <p>These are not rungs on a maturity ladder. Choose the technique whose generator and oracle match the engineering claim.</p></blockquote>
 <h2><span class="sec-num">4.3.3</span> Generate falsifying evidence</h2>
-<p>Let the engineering claim choose the search. Not every claim wants a generator: model checking explores the reachable states under a model, and static analysis reasons over properties visible without execution. Stronger machinery is not automatically better machinery — use the cheapest evidence capable of falsifying the claim that matters.</p>
+<p>Let the engineering claim choose the search. Not every obligation wants generated test inputs, and not every consequential property wants formal verification. Use the cheapest mechanism that can genuinely falsify the claim. <a class="xref" href="4.3-validating-change.html#fig-4-3-2">Figure&nbsp;4.3-2</a> sorts the claim kinds.</p>
+<figure id="fig-4-3-2" class="book-figure" data-label="claim-choose-the-search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520"
+     role="img" aria-labelledby="ccsTitle ccsDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="ccsTitle">Let the claim choose the search</title>
+  <desc id="ccsDesc">The kind of claim you are trying to establish selects the kind of falsifying evidence.
+    A one-or-many-inputs claim about input to output is checked by examples, property tests, or fuzzing, and
+    is refuted by a counterexample input. A reachable-states claim about sequences or races is checked by
+    explicit-state model checking, and is refuted by a counterexample trace. A temporal-behavior claim about
+    what eventually or always holds is checked by temporal model checking, and is refuted by a counterexample
+    execution. Prefer structural prevention before any of these when the invalid state can simply be
+    excluded.</desc>
+
+  <defs>
+    <marker id="ccs-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ===== boxes (drawn first) ===== -->
+  <rect x="0" y="0" width="1000" height="520" fill="#fdfcf9"/>
+
+  <!-- top: the claim question (gray banner) -->
+  <rect x="230" y="26" width="540" height="56" rx="11" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+
+  <!-- claim-kind boxes (blue) -->
+  <rect x="45" y="130" width="280" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect x="360" y="130" width="280" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect x="675" y="130" width="280" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+
+  <!-- machinery boxes (gray) -->
+  <rect x="45" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="360" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="675" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+
+  <!-- counterexample boxes (rust) -->
+  <rect x="45" y="330" width="280" height="50" rx="9" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.2"/>
+  <rect x="360" y="330" width="280" height="50" rx="9" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.2"/>
+  <rect x="675" y="330" width="280" height="50" rx="9" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.2"/>
+
+  <!-- footer banner (gray) -->
+  <rect x="120" y="424" width="760" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+
+  <!-- ===== arrows ===== -->
+  <line x1="500" y1="82" x2="500" y2="104" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="104" x2="815" y2="104" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="104" x2="185" y2="128" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="500" y1="104" x2="500" y2="128" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="815" y1="104" x2="815" y2="128" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+
+  <line x1="185" y1="182" x2="185" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="500" y1="182" x2="500" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="815" y1="182" x2="815" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+
+  <line x1="185" y1="290" x2="185" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="500" y1="290" x2="500" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="815" y1="290" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+
+  <!-- ===== labels (drawn last, on top) ===== -->
+  <text x="500" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">WHAT CLAIM ARE YOU TRYING TO ESTABLISH?</text>
+
+  <text x="185" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">ONE / MANY INPUTS</text>
+  <text x="185" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">input &#8594; output</text>
+  <text x="500" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">REACHABLE STATES</text>
+  <text x="500" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">sequences / races</text>
+  <text x="815" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">TEMPORAL BEHAVIOR</text>
+  <text x="815" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">eventually / always</text>
+
+  <text x="185" y="261" text-anchor="middle" font-size="13.5" fill="#1c1917">examples / property</text>
+  <text x="185" y="279" text-anchor="middle" font-size="13.5" fill="#1c1917">tests / fuzzing</text>
+  <text x="500" y="270" text-anchor="middle" font-size="14" fill="#1c1917">explicit-state model checking</text>
+  <text x="815" y="270" text-anchor="middle" font-size="14" fill="#1c1917">temporal model checking</text>
+
+  <text x="185" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample input</text>
+  <text x="500" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample trace</text>
+  <text x="815" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample execution</text>
+
+  <text x="500" y="449" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">Prefer structural prevention before any of these</text>
+  <text x="500" y="470" text-anchor="middle" font-size="15" fill="#57534e">when the invalid state can simply be excluded.</text>
+</svg><figcaption data-short="Let the claim choose the search"><span class="fig-label">Figure 4.3-2.</span> <em>Let the claim choose the search.</em> Input/output properties, reachable-state invariants, and temporal properties require different kinds of falsifying evidence. Structural exclusion is preferable when the invalid behavior can be removed from the admissible space entirely.</figcaption></figure>
+<p>Start with prevention. If the forbidden state can be removed structurally, remove it. DocAble's pervasive work-item ownership rule is enforced by a database compare-and-set: an update succeeds only while the row remains in the expected prior state. Concurrent claimants race on the same transition, and only one can win. No TLA+ specification is needed to decide that property; the runtime constraint is stronger and cheaper for the question being asked.</p>
+<p>When the property lives in interleavings, make the relevant state small enough to explore. DocAble's in-flight lease has a different failure shape: a worker may appear stale and be reclaimed, a second worker may receive a fresh epoch, and the first worker may still wake and issue a late release. The implementation contains far more machinery than the ownership question needs. A reduced transition model keeps only lifecycle state, lease epochs, reclaim, release, and the few variables needed to state the invariants. An explicit-state checker then enumerates every reachable state within the declared bound and asks whether any violates them.</p>
+<p>This is bounded explicit-state model checking, not implementation-level bounded model checking in the SAT/SMT sense. In DocAble the checker is a small Python transition system with exhaustive breadth-first exploration over bounded actor counts and time. Separate cross-checks exercise relevant production paths against the abstract model. The assurance is therefore deliberately split: exhaustive checking of the bounded model, plus evidence that selected implementation behavior corresponds to it. It is not a proof that the implementation refines the model.</p>
+<p>Some obligations cannot be falsified by a finite bad state. DocAble's serverless recovery path carries the temporal requirement that every submitted job eventually reaches a terminal state. A finite test can show that one execution terminated; it cannot show that no fair execution can remain stranded forever. For such liveness properties, DocAble uses small TLA+ specifications and TLC to reason about the temporal model. The representation and its checker answer a different question from the database CAS and the finite-state safety checker.</p>
+<p>The three cases make the rule concrete: make violation impossible when the action space can be closed; exhaustively search a bounded model when the risk lives in finite interleavings; use temporal model checking when the obligation ranges over executions. None is automatically stronger engineering. Strength means adequate evidence for the claim that matters.</p>
 <p>When a generated input exposes a defect, fix the <strong>stable obligation</strong> rather than merely the seed. The durable repair should close the class of behavior exposed by the counterexample whenever that class can be stated. A one-byte crash may reveal a parser invariant; a bad transition may reveal a missing state rule; a valid-but-unusual producer may reveal that the authored input grammar was incomplete.</p>
 <p>Reuse real producers before inventing a complete synthetic world. Their outputs carry dialects and edge cases your own generator may not imagine. Hand-build richer generation only when the engineering claim earns the additional model and its maintenance cost.</p>
+<blockquote class="concept-inset"><p class="inset-title">Three properties, three mechanisms</p>
+<ul><li><strong>Single ownership.</strong> The property is local enough to encode structurally. A PostgreSQL compare-and-set admits the ownership transition only while the row remains in its expected prior state. Concurrent claimants cannot both win.</li><li><strong>Lease fencing.</strong> The property lives in interleavings. DocAble maintains a reduced executable transition model and exhaustively explores its bounded reachable state space; selected runtime paths are separately checked against that model. Turning off the epoch fence produces counterexamples; the production configuration produces none within the explored bound.</li><li><strong>Eventual termination.</strong> The property is temporal. A serverless job must eventually reach a terminal state even when individual pushes are lost. A TLA+ model states that liveness obligation and can expose the stranded-job execution when the recovery sweep is removed.</li></ul>
+<p>The important difference is not the tool. It is the shape of the property.</p></blockquote>
 <h2 id="derive-obligations"><span class="sec-num">4.3.4</span> Derive the obligation set first</h2>
 <p>Coverage answers a question about a population. The population must exist before the percentage means anything.</p>
 <p>Ordinary test coverage starts from the implementation, or from the tests that already exist. It can tell you a line was never executed. It cannot tell you that an important behavior has no test at all, because nothing first named that behavior as an obligation. Coverage counts what exists and structurally cannot count what was never written.</p>
 <p>Explicit models can supply the missing census. A state model enumerates the transitions that require evidence. An architectural model enumerates the forbidden or permitted edges. An error model enumerates the failure paths. A requirement model enumerates the claims that must be discharged. Derive that set from the models — every seam that owes a fuzzer, every failure edge that owes an injection test, every invariant that owes a checker — and a missing test becomes a named finding rather than an absence nobody notices.</p>
-<p>The assurance sequence follows from that. <a class="xref" href="4.3-validating-change.html#fig-4-3-2">Figure&nbsp;4.3-2</a> lays it out: name the model, derive the obligations it implies, take the census, choose evidence appropriate to each claim, and only then claim coverage against that set.</p>
-<figure id="fig-4-3-2" class="book-figure" data-label="models-to-evidence"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
+<p>The assurance sequence follows from that. <a class="xref" href="4.3-validating-change.html#fig-4-3-3">Figure&nbsp;4.3-3</a> lays it out: name the model, derive the obligations it implies, take the census, choose evidence appropriate to each claim, and only then claim coverage against that set.</p>
+<figure id="fig-4-3-3" class="book-figure" data-label="models-to-evidence"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
      role="img" aria-labelledby="meTitle meDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
   <title id="meTitle">From models to evidence — a model derives both current facts and the obligation set.</title>
@@ -857,13 +945,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="720" y="724" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">VISIBLE DEBT</text>
 
   <text x="500" y="800" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Coverage means nothing until the obligations are named.</text>
-</svg><figcaption data-short="From models to evidence — model/spec → derive obligations → census → choose evidence (test/lint/search-proof) → claim coverage"><span class="fig-label">Figure 4.3-2.</span> <em>From models to evidence.</em> Coverage becomes meaningful only after the engineering obligations have been named. Explicit models can derive that population; tests, lints, searches, proofs, and human review then supply evidence appropriate to each claim.</figcaption></figure>
+</svg><figcaption data-short="From models to evidence — model/spec → derive obligations → census → choose evidence (test/lint/search-proof) → claim coverage"><span class="fig-label">Figure 4.3-3.</span> <em>From models to evidence.</em> Coverage becomes meaningful only after the engineering obligations have been named. Explicit models can derive that population; tests, lints, searches, proofs, and human review then supply evidence appropriate to each claim.</figcaption></figure>
 <p>With the census in hand, a high aggregate percentage stops being reassurance and becomes a place to look: <em>this invariant has no exercising test.</em></p>
 <h2><span class="sec-num">4.3.5</span> Did the search cover the claim?</h2>
 <p>Generative validation adds an honesty question that a small example suite can often avoid: <strong>did the campaign search the semantic region the claim is about?</strong> Code coverage answers where execution went. Input-space coverage answers what kinds of cases the generator produced. Neither alone proves the relevant obligation was exercised.</p>
 <p>Where traceability exists, a still stronger question becomes possible: which <strong>model claims</strong> were actually exercised? Follow an invariant, transition, or architectural relation to the code that realizes it, then ask whether the campaign reached that implementation under evidence relevant to the claim. A high aggregate percentage can then become a named gap: <em>this invariant has no exercising test.</em> The degree question — <em>how much</em> coverage is enough — belongs to the <a href="4.4-operating-mage.html">metrics treatment in Operating MAGE</a>, which owns the discipline to <strong>measure one level deeper</strong> than a raw percentage.</p>
-<p>Coverage remains evidence about the search, not proof of correctness. Its purpose is to keep claims such as "we fuzzed it" or "the model is tested" from becoming ceremonial. <a class="xref" href="4.3-validating-change.html#fig-4-3-3">Figure&nbsp;4.3-3</a> draws the loop: a generator makes inputs, the system runs, an <strong>independent oracle</strong> judges each outcome, a counterexample feeds back to shrink or diagnose, and coverage asks whether the search reached the claim before refining the generator.</p>
-<figure id="fig-4-3-3" class="book-figure" data-label="generative-loop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560"
+<p>Coverage remains evidence about the search, not proof of correctness. Its purpose is to keep claims such as "we fuzzed it" or "the model is tested" from becoming ceremonial. <a class="xref" href="4.3-validating-change.html#fig-4-3-4">Figure&nbsp;4.3-4</a> draws the loop: a generator makes inputs, the system runs, an <strong>independent oracle</strong> judges each outcome, a counterexample feeds back to shrink or diagnose, and coverage asks whether the search reached the claim before refining the generator.</p>
+<figure id="fig-4-3-4" class="book-figure" data-label="generative-loop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560"
      role="group" aria-labelledby="glTitle glDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="glTitle">Generate, judge, search again — around one independent oracle</title>
@@ -932,15 +1020,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M812,462 C930,452 895,330 838,270" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-loop)"/>
   <text x="905" y="392" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">model-claim coverage</text>
   <text x="905" y="414" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
-</svg><figcaption data-short="Generate, Judge, Search Again"><span class="fig-label">Figure 4.3-3.</span> <em>Generate, Judge, Search Again.</em> One loop, whatever the oracle's source: a <strong>generator</strong> makes inputs, the <strong>system</strong> runs them, an <strong>independent oracle</strong> judges each outcome, a <strong>counterexample</strong> feeds back to shrink or diagnose, and <strong>coverage</strong> asks whether the search reached the region the claim is about — refining the generator, and where traceability exists joining model-claim coverage back to the claim. The oracle may be a declared property, a robustness contract, a reference implementation, or a structured model; the loop does not care which.</figcaption></figure>
+</svg><figcaption data-short="Generate, Judge, Search Again"><span class="fig-label">Figure 4.3-4.</span> <em>Generate, Judge, Search Again.</em> One loop, whatever the oracle's source: a <strong>generator</strong> makes inputs, the <strong>system</strong> runs them, an <strong>independent oracle</strong> judges each outcome, a <strong>counterexample</strong> feeds back to shrink or diagnose, and <strong>coverage</strong> asks whether the search reached the region the claim is about — refining the generator, and where traceability exists joining model-claim coverage back to the claim. The oracle may be a declared property, a robustness contract, a reference implementation, or a structured model; the loop does not care which.</figcaption></figure>
 <h2><span class="sec-num">4.3.6</span> Give the verdict the right consequence</h2>
 <p>Validation may report or gate. Put blocking authority outside the producer's discretion and regenerate consequential evidence at admission. A fuzz campaign may run nightly and report counterexamples without controlling merge; a cost validator may stay advisory; a security invariant may deserve immediate refusal. <strong>Authority is a separate design decision from evidence quality.</strong></p>
 <p>A generator that re-hunts a counterexample every commit, given gate authority, is the Alignment Thesis made mechanical: the environment declining to trust the last green checkmark, and checking again.</p>
 <h2 id="two-boundaries"><span class="sec-num">4.3.7</span> Two boundaries for evidence</h2>
 <p>Part III gave a placement rule for authority: <strong>evaluate an obligation at the earliest boundary where it becomes legible and enforceable.</strong> That catches a problem close to its cause. A malformed brief should be rejected before an agent spends an hour acting on it. A structural violation visible at compile time should not wait for deployment. Early evidence shortens the feedback loop and keeps later work from compounding a defect that was already knowable.</p>
 <p>Consequential work often deserves a second boundary: <strong>re-evaluate at the last safe point before the consequence becomes difficult to reverse.</strong> The two rules do not oppose each other. They answer different questions. The first asks: when can this property first be decided honestly? The second asks: what is the last point at which stale or invalid evidence can still be caught before the consequence?<sup class="note-ref"><a href="#note-4-3-validating-change-1" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-4-3-validating-change-1"><span class="cn-mark">*</span> The security analogy is time-of-check to time-of-use (TOCTOU): a property established at one instant may no longer hold when the protected action occurs because relevant state changed in between. The problem here is broader than the classical TOCTOU race, but the engineering instinct is the same. Early checks establish defects cheaply; a consequential boundary may still need fresh evidence about the state actually being admitted.</span></p>
-<p><a class="xref" href="4.3-validating-change.html#fig-4-3-4">Figure&nbsp;4.3-4</a> draws the span between the two.</p>
-<figure id="fig-4-3-4" class="book-figure" data-label="two-evidence-boundaries"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340"
+<p><a class="xref" href="4.3-validating-change.html#fig-4-3-5">Figure&nbsp;4.3-5</a> draws the span between the two.</p>
+<figure id="fig-4-3-5" class="book-figure" data-label="two-evidence-boundaries"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340"
      role="img" aria-labelledby="tbTitle tbDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
   <title id="tbTitle">Two evidence boundaries — earliest legible, and last safe before consequence.</title>
@@ -979,7 +1067,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="800" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">LAST SAFE</text>
   <text x="800" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">BOUNDARY</text>
   <text x="800" y="272" text-anchor="middle" font-size="12" fill="#57534e">re-establish what must hold</text>
-</svg><figcaption data-short="Two evidence boundaries — earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold"><span class="fig-label">Figure 4.3-4.</span> <em>Two evidence boundaries.</em> Evaluate a property as soon as it can honestly be decided, but for consequential work re-establish the evidence that must still hold at the last safe boundary before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change.</figcaption></figure>
+</svg><figcaption data-short="Two evidence boundaries — earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold"><span class="fig-label">Figure 4.3-5.</span> <em>Two evidence boundaries.</em> Evaluate a property as soon as it can honestly be decided, but for consequential work re-establish the evidence that must still hold at the last safe boundary before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change.</figcaption></figure>
 <p>The second check is not a substitute for the first, and it need not repeat every earlier check. Re-run the evidence whose freshness matters to the admission decision. A test result recorded hours ago describes the revision that produced it. A review verdict describes the change that was reviewed. A deployment rehearsal describes the configuration it exercised. If relevant state can change before admission, the evidence can cease to describe the artifact now crossing the boundary — a recorded claim is a statement about the past, not the present, and it rots as sibling work churns the ground under it.</p>
 <p><strong>Done is a claim, not a stored fact.</strong> At a consequential boundary, regenerate the evidence needed to justify the consequence rather than trusting the last green checkmark. The gain compounds with velocity: the more often a system ships, the more often an un-gated build reaches someone, so a cheap re-check at the last safe boundary is worth more, not less, as release frequency rises.</p>
 <h2><span class="sec-num">4.3.8</span> Why abundance changes the economics</h2>

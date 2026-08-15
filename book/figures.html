@@ -693,7 +693,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-evidence-ledger.html">Appendix G — Evidence Ledger: The DocAble Case</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 118 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1020"
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Figures Gallery · Model-Based Agentic Software Engineering"><header class="chap"><div class="kicker">Front Matter</div><h1>Figures Gallery</h1></header><p>Every figure in the book — 119 in all — gathered here in reading order, each with its full caption. A quick way to review the book's visuals in one place; every figure links back to where it appears in the text. The chapter figures come first; the appendix pattern pages follow in a lighter schematic style. (See also the <a href="list-of-figures.html">List of Figures and Tables</a> for tables, and a scannable index of short captions.)</p><section class="gallery-group"><h2>Chapter figures</h2><p class="gallery-group-note">The book-proper figures, hand-drawn to the house palette.</p><div class="gallery"><section class="gallery-item"><figure id="fig-0-1-1-fig-0-1-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1020"
      role="img" aria-labelledby="fig-0-1-1-mmTitle fig-0-1-1-mmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-0-1-1-mmTitle">The MAGE method — scale creates the enduring reasoning problem; commodity intelligence changes its economics; Modeling and Alignment turn engineering effort into capital rather than churn.</title>
@@ -4470,11 +4470,90 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="797" y="370" text-anchor="middle" font-size="17" fill="#b23b3b">shrink / RCA to the</text>
   <text x="797" y="394" text-anchor="middle" font-size="17" fill="#b23b3b">minimal or spec-point</text>
   <text x="797" y="418" text-anchor="middle" font-size="17" fill="#b23b3b">cause</text>
-</svg><figcaption data-short="A Point and a Space"><span class="fig-label">Figure 4.3-1.</span> <em>A Point and a Space.</em> An example pins one chosen case; a generative test states a property over a domain and searches for a counterexample. Use the broader claim when the obligation itself is broad enough to support it.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-1">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-2-fig-4-3-2" class="book-figure" data-label="models-to-evidence"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
-     role="img" aria-labelledby="fig-4-3-2-meTitle fig-4-3-2-meDesc"
+</svg><figcaption data-short="A Point and a Space"><span class="fig-label">Figure 4.3-1.</span> <em>A Point and a Space.</em> An example pins one chosen case; a generative test states a property over a domain and searches for a counterexample. Use the broader claim when the obligation itself is broad enough to support it.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-1">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-2-fig-4-3-2" class="book-figure" data-label="claim-choose-the-search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520"
+     role="img" aria-labelledby="fig-4-3-2-ccsTitle fig-4-3-2-ccsDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="fig-4-3-2-ccsTitle">Let the claim choose the search</title>
+  <desc id="fig-4-3-2-ccsDesc">The kind of claim you are trying to establish selects the kind of falsifying evidence.
+    A one-or-many-inputs claim about input to output is checked by examples, property tests, or fuzzing, and
+    is refuted by a counterexample input. A reachable-states claim about sequences or races is checked by
+    explicit-state model checking, and is refuted by a counterexample trace. A temporal-behavior claim about
+    what eventually or always holds is checked by temporal model checking, and is refuted by a counterexample
+    execution. Prefer structural prevention before any of these when the invalid state can simply be
+    excluded.</desc>
+
+  <defs>
+    <marker id="fig-4-3-2-ccs-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ===== boxes (drawn first) ===== -->
+  <rect x="0" y="0" width="1000" height="520" fill="#fdfcf9"/>
+
+  <!-- top: the claim question (gray banner) -->
+  <rect x="230" y="26" width="540" height="56" rx="11" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+
+  <!-- claim-kind boxes (blue) -->
+  <rect x="45" y="130" width="280" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect x="360" y="130" width="280" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect x="675" y="130" width="280" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+
+  <!-- machinery boxes (gray) -->
+  <rect x="45" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="360" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="675" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+
+  <!-- counterexample boxes (rust) -->
+  <rect x="45" y="330" width="280" height="50" rx="9" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.2"/>
+  <rect x="360" y="330" width="280" height="50" rx="9" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.2"/>
+  <rect x="675" y="330" width="280" height="50" rx="9" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.2"/>
+
+  <!-- footer banner (gray) -->
+  <rect x="120" y="424" width="760" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+
+  <!-- ===== arrows ===== -->
+  <line x1="500" y1="82" x2="500" y2="104" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="104" x2="815" y2="104" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="104" x2="185" y2="128" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-2-ccs-k)"/>
+  <line x1="500" y1="104" x2="500" y2="128" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-2-ccs-k)"/>
+  <line x1="815" y1="104" x2="815" y2="128" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-2-ccs-k)"/>
+
+  <line x1="185" y1="182" x2="185" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-2-ccs-k)"/>
+  <line x1="500" y1="182" x2="500" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-2-ccs-k)"/>
+  <line x1="815" y1="182" x2="815" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-2-ccs-k)"/>
+
+  <line x1="185" y1="290" x2="185" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-2-ccs-k)"/>
+  <line x1="500" y1="290" x2="500" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-2-ccs-k)"/>
+  <line x1="815" y1="290" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-2-ccs-k)"/>
+
+  <!-- ===== labels (drawn last, on top) ===== -->
+  <text x="500" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">WHAT CLAIM ARE YOU TRYING TO ESTABLISH?</text>
+
+  <text x="185" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">ONE / MANY INPUTS</text>
+  <text x="185" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">input &#8594; output</text>
+  <text x="500" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">REACHABLE STATES</text>
+  <text x="500" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">sequences / races</text>
+  <text x="815" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">TEMPORAL BEHAVIOR</text>
+  <text x="815" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">eventually / always</text>
+
+  <text x="185" y="261" text-anchor="middle" font-size="13.5" fill="#1c1917">examples / property</text>
+  <text x="185" y="279" text-anchor="middle" font-size="13.5" fill="#1c1917">tests / fuzzing</text>
+  <text x="500" y="270" text-anchor="middle" font-size="14" fill="#1c1917">explicit-state model checking</text>
+  <text x="815" y="270" text-anchor="middle" font-size="14" fill="#1c1917">temporal model checking</text>
+
+  <text x="185" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample input</text>
+  <text x="500" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample trace</text>
+  <text x="815" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample execution</text>
+
+  <text x="500" y="449" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">Prefer structural prevention before any of these</text>
+  <text x="500" y="470" text-anchor="middle" font-size="15" fill="#57534e">when the invalid state can simply be excluded.</text>
+</svg><figcaption data-short="Let the claim choose the search"><span class="fig-label">Figure 4.3-2.</span> <em>Let the claim choose the search.</em> Input/output properties, reachable-state invariants, and temporal properties require different kinds of falsifying evidence. Structural exclusion is preferable when the invalid behavior can be removed from the admissible space entirely.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-2">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-3-fig-4-3-3" class="book-figure" data-label="models-to-evidence"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
+     role="img" aria-labelledby="fig-4-3-3-meTitle fig-4-3-3-meDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title id="fig-4-3-2-meTitle">From models to evidence — a model derives both current facts and the obligation set.</title>
-  <desc id="fig-4-3-2-meDesc">A green model-or-specification box splits into two branches. The left branch derives facts
+  <title id="fig-4-3-3-meTitle">From models to evidence — a model derives both current facts and the obligation set.</title>
+  <desc id="fig-4-3-3-meDesc">A green model-or-specification box splits into two branches. The left branch derives facts
     and relations, ending in a current view. The right branch derives obligations — what must hold — into an
     obligation census. The census flows into a dashed rust select-evidence step, which fans into three neutral
     evidence artifacts: test, lint, and search or proof. These merge into a green claim-coverage box. An
@@ -4482,8 +4561,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     obligations are named, and each claim is matched to evidence appropriate to its shape.</desc>
 
   <defs>
-    <marker id="fig-4-3-2-me-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
-    <marker id="fig-4-3-2-me-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#b23b3b"/></marker>
+    <marker id="fig-4-3-3-me-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="fig-4-3-3-me-ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#b23b3b"/></marker>
   </defs>
 
   <text x="500" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">II &#183; From Models to Evidence</text>
@@ -4493,8 +4572,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="100" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">MODEL / SPECIFICATION</text>
 
   <!-- split into facts branch and obligations branch -->
-  <path d="M500 122 C 430 148 340 148 282 166" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
-  <path d="M500 122 C 570 148 660 148 718 166" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
+  <path d="M500 122 C 430 148 340 148 282 166" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
+  <path d="M500 122 C 570 148 660 148 718 166" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
 
   <rect x="150" y="170" width="260" height="66" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="280" y="198" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">DERIVE FACTS</text>
@@ -4505,25 +4584,25 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="720" y="216" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">what must hold?</text>
 
   <!-- facts branch -> current view (terminal side output, neutral) -->
-  <line x1="280" y1="236" x2="280" y2="282" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
+  <line x1="280" y1="236" x2="280" y2="282" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
   <rect x="170" y="284" width="220" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="280" y="316" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CURRENT VIEW</text>
 
   <!-- obligations branch -> census -->
-  <line x1="720" y1="236" x2="720" y2="282" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
+  <line x1="720" y1="236" x2="720" y2="282" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
   <rect x="590" y="284" width="260" height="52" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="720" y="316" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">OBLIGATION CENSUS</text>
 
   <!-- census -> select evidence (dashed rust = governance choice) -->
-  <line x1="720" y1="336" x2="720" y2="382" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
+  <line x1="720" y1="336" x2="720" y2="382" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
   <rect x="590" y="384" width="260" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
   <text x="720" y="412" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">SELECT EVIDENCE</text>
   <text x="720" y="432" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">for claim shape</text>
 
   <!-- fan to three evidence artifacts (neutral) -->
-  <path d="M720 442 C 660 466 600 470 560 490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
-  <line x1="720" y1="442" x2="720" y2="490" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
-  <path d="M720 442 C 790 466 850 470 885 490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
+  <path d="M720 442 C 660 466 600 470 560 490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
+  <line x1="720" y1="442" x2="720" y2="490" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
+  <path d="M720 442 C 790 466 850 470 885 490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
 
   <rect x="490" y="492" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="560" y="522" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">TEST</text>
@@ -4534,25 +4613,25 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="885" y="533" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">PROOF</text>
 
   <!-- merge to claim coverage (green emphasis) -->
-  <path d="M560 542 C 600 570 660 574 700 594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
-  <line x1="720" y1="542" x2="720" y2="594" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
-  <path d="M885 542 C 845 570 780 574 740 594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah)"/>
+  <path d="M560 542 C 600 570 660 574 700 594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
+  <line x1="720" y1="542" x2="720" y2="594" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
+  <path d="M885 542 C 845 570 780 574 740 594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah)"/>
 
   <rect x="580" y="596" width="280" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="720" y="630" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">CLAIM COVERAGE</text>
 
   <!-- uncovered claim -> visible debt (dotted red = failure) -->
-  <line x1="720" y1="654" x2="720" y2="690" stroke="#b23b3b" stroke-width="2" marker-end="url(#fig-4-3-2-me-ah-red)"/>
+  <line x1="720" y1="654" x2="720" y2="690" stroke="#b23b3b" stroke-width="2" marker-end="url(#fig-4-3-3-me-ah-red)"/>
   <text x="738" y="676" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">uncovered claim?</text>
   <rect x="600" y="692" width="240" height="54" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2" stroke-dasharray="2 4"/>
   <text x="720" y="724" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">VISIBLE DEBT</text>
 
   <text x="500" y="800" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Coverage means nothing until the obligations are named.</text>
-</svg><figcaption data-short="From models to evidence — model/spec → derive obligations → census → choose evidence (test/lint/search-proof) → claim coverage"><span class="fig-label">Figure 4.3-2.</span> <em>From models to evidence.</em> Coverage becomes meaningful only after the engineering obligations have been named. Explicit models can derive that population; tests, lints, searches, proofs, and human review then supply evidence appropriate to each claim.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-2">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-3-fig-4-3-3" class="book-figure" data-label="generative-loop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560"
-     role="group" aria-labelledby="fig-4-3-3-glTitle fig-4-3-3-glDesc"
+</svg><figcaption data-short="From models to evidence — model/spec → derive obligations → census → choose evidence (test/lint/search-proof) → claim coverage"><span class="fig-label">Figure 4.3-3.</span> <em>From models to evidence.</em> Coverage becomes meaningful only after the engineering obligations have been named. Explicit models can derive that population; tests, lints, searches, proofs, and human review then supply evidence appropriate to each claim.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-3">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-4-fig-4-3-4" class="book-figure" data-label="generative-loop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560"
+     role="group" aria-labelledby="fig-4-3-4-glTitle fig-4-3-4-glDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-4-3-3-glTitle">Generate, judge, search again — around one independent oracle</title>
-  <desc id="fig-4-3-3-glDesc">A left-to-right loop. A generator makes inputs; the system under test runs them;
+  <title id="fig-4-3-4-glTitle">Generate, judge, search again — around one independent oracle</title>
+  <desc id="fig-4-3-4-glDesc">A left-to-right loop. A generator makes inputs; the system under test runs them;
     an independent oracle judges each outcome. The oracle draws its verdict from one of several
     independent sources — a declared property, a robustness contract, a reference implementation, or
     a structured model — none of which is the system being judged. A failing outcome becomes a
@@ -4562,10 +4641,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     traceability graph exists, one joins model-claim coverage back to the claim.</desc>
 
   <defs>
-    <marker id="fig-4-3-3-gl-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="fig-4-3-4-gl-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
-    <marker id="fig-4-3-3-gl-ah-loop" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="fig-4-3-4-gl-ah-loop" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
   </defs>
@@ -4596,9 +4675,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- forward arrows -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M250,198 L306,198" marker-end="url(#fig-4-3-3-gl-ah)"/>
-    <path d="M520,198 L576,198" marker-end="url(#fig-4-3-3-gl-ah)"/>
-    <path d="M840,198 L896,198" marker-end="url(#fig-4-3-3-gl-ah)"/>
+    <path d="M250,198 L306,198" marker-end="url(#fig-4-3-4-gl-ah)"/>
+    <path d="M520,198 L576,198" marker-end="url(#fig-4-3-4-gl-ah)"/>
+    <path d="M840,198 L896,198" marker-end="url(#fig-4-3-4-gl-ah)"/>
   </g>
 
   <!-- ===== coverage (governed) ===== -->
@@ -4607,21 +4686,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="630" y="470" text-anchor="middle" font-size="17.5" fill="#57534e">input-space · line/branch · model-claim</text>
 
   <!-- counterexample -> coverage -->
-  <path d="M1020,266 C1015,340 900,420 812,448" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-3-gl-ah)"/>
+  <path d="M1020,266 C1015,340 900,420 812,448" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-4-gl-ah)"/>
 
   <!-- the loop closes: coverage -> refine the generator -->
-  <path d="M448,470 C280,486 170,400 145,250" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#fig-4-3-3-gl-ah-loop)"/>
+  <path d="M448,470 C280,486 170,400 145,250" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#fig-4-3-4-gl-ah-loop)"/>
   <text x="250" y="400" text-anchor="middle" font-size="18.5" font-style="italic" fill="#57534e">refine the generator</text>
 
   <!-- coverage -> (where traceability exists) joins model-claim coverage back to the claim/oracle -->
-  <path d="M812,462 C930,452 895,330 838,270" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#fig-4-3-3-gl-ah-loop)"/>
+  <path d="M812,462 C930,452 895,330 838,270" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#fig-4-3-4-gl-ah-loop)"/>
   <text x="905" y="392" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">model-claim coverage</text>
   <text x="905" y="414" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
-</svg><figcaption data-short="Generate, Judge, Search Again"><span class="fig-label">Figure 4.3-3.</span> <em>Generate, Judge, Search Again.</em> One loop, whatever the oracle's source: a <strong>generator</strong> makes inputs, the <strong>system</strong> runs them, an <strong>independent oracle</strong> judges each outcome, a <strong>counterexample</strong> feeds back to shrink or diagnose, and <strong>coverage</strong> asks whether the search reached the region the claim is about — refining the generator, and where traceability exists joining model-claim coverage back to the claim. The oracle may be a declared property, a robustness contract, a reference implementation, or a structured model; the loop does not care which.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-3">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-4-fig-4-3-4" class="book-figure" data-label="two-evidence-boundaries"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340"
-     role="img" aria-labelledby="fig-4-3-4-tbTitle fig-4-3-4-tbDesc"
+</svg><figcaption data-short="Generate, Judge, Search Again"><span class="fig-label">Figure 4.3-4.</span> <em>Generate, Judge, Search Again.</em> One loop, whatever the oracle's source: a <strong>generator</strong> makes inputs, the <strong>system</strong> runs them, an <strong>independent oracle</strong> judges each outcome, a <strong>counterexample</strong> feeds back to shrink or diagnose, and <strong>coverage</strong> asks whether the search reached the region the claim is about — refining the generator, and where traceability exists joining model-claim coverage back to the claim. The oracle may be a declared property, a robustness contract, a reference implementation, or a structured model; the loop does not care which.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-4">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-5-fig-4-3-5" class="book-figure" data-label="two-evidence-boundaries"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340"
+     role="img" aria-labelledby="fig-4-3-5-tbTitle fig-4-3-5-tbDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title id="fig-4-3-4-tbTitle">Two evidence boundaries — earliest legible, and last safe before consequence.</title>
-  <desc id="fig-4-3-4-tbDesc">A horizontal timeline runs from work begins on the left to consequence on the right. Two rust
+  <title id="fig-4-3-5-tbTitle">Two evidence boundaries — earliest legible, and last safe before consequence.</title>
+  <desc id="fig-4-3-5-tbDesc">A horizontal timeline runs from work begins on the left to consequence on the right. Two rust
     diamond markers sit on the axis. The left diamond is the earliest legible boundary, where a property is
     caught cheaply near its cause. The right diamond is the last safe boundary, where required evidence is
     re-established before exposure. Between them, a note reads: relevant state may change between checks. The
@@ -4629,20 +4708,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     stale check can still be caught.</desc>
 
   <defs>
-    <marker id="fig-4-3-4-tb-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="fig-4-3-5-tb-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
   </defs>
 
   <!-- top anchors -->
   <text x="200" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">work begins</text>
-  <line x1="200" y1="64" x2="200" y2="150" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-4-tb-ah)"/>
+  <line x1="200" y1="64" x2="200" y2="150" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-5-tb-ah)"/>
   <text x="800" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">consequence</text>
-  <line x1="800" y1="64" x2="800" y2="150" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-4-tb-ah)"/>
+  <line x1="800" y1="64" x2="800" y2="150" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-3-5-tb-ah)"/>
 
   <!-- between-checks note -->
   <text x="500" y="148" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">relevant state may change between checks</text>
 
   <!-- the axis -->
-  <line x1="90" y1="176" x2="915" y2="176" stroke="#57534e" stroke-width="2.5" marker-end="url(#fig-4-3-4-tb-ah)"/>
+  <line x1="90" y1="176" x2="915" y2="176" stroke="#57534e" stroke-width="2.5" marker-end="url(#fig-4-3-5-tb-ah)"/>
 
   <!-- boundary markers: rust diamonds (shape encodes 'governance boundary') -->
   <path d="M200 162 L214 176 L200 190 L186 176 Z" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
@@ -4656,7 +4735,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="800" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">LAST SAFE</text>
   <text x="800" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">BOUNDARY</text>
   <text x="800" y="272" text-anchor="middle" font-size="12" fill="#57534e">re-establish what must hold</text>
-</svg><figcaption data-short="Two evidence boundaries — earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold"><span class="fig-label">Figure 4.3-4.</span> <em>Two evidence boundaries.</em> Evaluate a property as soon as it can honestly be decided, but for consequential work re-establish the evidence that must still hold at the last safe boundary before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-4">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-4-1-fig-4-4-1" class="book-figure" data-label="event-reaction-fire"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520"
+</svg><figcaption data-short="Two evidence boundaries — earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold"><span class="fig-label">Figure 4.3-5.</span> <em>Two evidence boundaries.</em> Evaluate a property as soon as it can honestly be decided, but for consequential work re-establish the evidence that must still hold at the last safe boundary before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-5">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-4-1-fig-4-4-1" class="book-figure" data-label="event-reaction-fire"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520"
      role="img" aria-labelledby="fig-4-4-1-erTitle fig-4-4-1-erDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
   <title id="fig-4-4-1-erTitle">Bind reactions to lifecycle events — the firing is deterministic while the payload still contains judgment.</title>

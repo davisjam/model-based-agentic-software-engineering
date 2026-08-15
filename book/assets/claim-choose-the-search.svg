@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fig 4.3-X (formal-methods-mining-260815; folds to book/assets/claim-choose-the-search.svg).
+     "Let the claim choose the search." What KIND of claim you are trying to establish (blue = the
+     modelled property) selects the kind of falsifying evidence (gray = machinery); each yields a
+     different shape of counterexample (rust = the found violation).
+       ONE / MANY INPUTS  (input -> output)   -> examples / property tests / fuzzing -> counterexample input
+       REACHABLE STATES   (sequences / races) -> explicit-state model checking       -> counterexample trace
+       TEMPORAL BEHAVIOR  (eventually/always) -> temporal model checking             -> counterexample execution
+     Footer: prefer structural prevention before any of these when the invalid state can be excluded.
+     Grayscale-survivable: every node labelled; the three parallel columns carry the meaning; hue only
+     reinforces property (blue) vs machinery (gray) vs counterexample (rust). Boxes first, labels last. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="1000" height="520"
+     role="img" aria-labelledby="ccsTitle ccsDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="ccsTitle">Let the claim choose the search</title>
+  <desc id="ccsDesc">The kind of claim you are trying to establish selects the kind of falsifying evidence.
+    A one-or-many-inputs claim about input to output is checked by examples, property tests, or fuzzing, and
+    is refuted by a counterexample input. A reachable-states claim about sequences or races is checked by
+    explicit-state model checking, and is refuted by a counterexample trace. A temporal-behavior claim about
+    what eventually or always holds is checked by temporal model checking, and is refuted by a counterexample
+    execution. Prefer structural prevention before any of these when the invalid state can simply be
+    excluded.</desc>
+
+  <defs>
+    <marker id="ccs-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
+    </marker>
+  </defs>
+
+  <!-- ===== boxes (drawn first) ===== -->
+  <rect x="0" y="0" width="1000" height="520" fill="#fdfcf9"/>
+
+  <!-- top: the claim question (gray banner) -->
+  <rect x="230" y="26" width="540" height="56" rx="11" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+
+  <!-- claim-kind boxes (blue) -->
+  <rect x="45" y="130" width="280" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect x="360" y="130" width="280" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect x="675" y="130" width="280" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+
+  <!-- machinery boxes (gray) -->
+  <rect x="45" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="360" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect x="675" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+
+  <!-- counterexample boxes (rust) -->
+  <rect x="45" y="330" width="280" height="50" rx="9" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.2"/>
+  <rect x="360" y="330" width="280" height="50" rx="9" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.2"/>
+  <rect x="675" y="330" width="280" height="50" rx="9" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.2"/>
+
+  <!-- footer banner (gray) -->
+  <rect x="120" y="424" width="760" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+
+  <!-- ===== arrows ===== -->
+  <line x1="500" y1="82" x2="500" y2="104" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="104" x2="815" y2="104" stroke="#1c1917" stroke-width="2"/>
+  <line x1="185" y1="104" x2="185" y2="128" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="500" y1="104" x2="500" y2="128" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="815" y1="104" x2="815" y2="128" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+
+  <line x1="185" y1="182" x2="185" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="500" y1="182" x2="500" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="815" y1="182" x2="815" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+
+  <line x1="185" y1="290" x2="185" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="500" y1="290" x2="500" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <line x1="815" y1="290" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+
+  <!-- ===== labels (drawn last, on top) ===== -->
+  <text x="500" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">WHAT CLAIM ARE YOU TRYING TO ESTABLISH?</text>
+
+  <text x="185" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">ONE / MANY INPUTS</text>
+  <text x="185" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">input &#8594; output</text>
+  <text x="500" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">REACHABLE STATES</text>
+  <text x="500" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">sequences / races</text>
+  <text x="815" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">TEMPORAL BEHAVIOR</text>
+  <text x="815" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">eventually / always</text>
+
+  <text x="185" y="261" text-anchor="middle" font-size="13.5" fill="#1c1917">examples / property</text>
+  <text x="185" y="279" text-anchor="middle" font-size="13.5" fill="#1c1917">tests / fuzzing</text>
+  <text x="500" y="270" text-anchor="middle" font-size="14" fill="#1c1917">explicit-state model checking</text>
+  <text x="815" y="270" text-anchor="middle" font-size="14" fill="#1c1917">temporal model checking</text>
+
+  <text x="185" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample input</text>
+  <text x="500" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample trace</text>
+  <text x="815" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample execution</text>
+
+  <text x="500" y="449" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">Prefer structural prevention before any of these</text>
+  <text x="500" y="470" text-anchor="middle" font-size="15" fill="#57534e">when the invalid state can simply be excluded.</text>
+</svg>
