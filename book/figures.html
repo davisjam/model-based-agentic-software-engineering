@@ -1225,100 +1225,89 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="450" y="828" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
   <text x="450" y="851" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
   <text x="450" y="875" text-anchor="middle" font-size="15" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
-</svg><figcaption data-short="The book&#x27;s call and response"><span class="fig-label">Figure 0.5-1.</span> <em>The book's call and response.</em> The Preface poses the question and Part I establishes why it is urgent; Parts II–III develop the two MAGE theses; Part IV joins them as a method; Part V supplies the evidentiary basis in depth and breadth; Part VI develops the theory and its implications; the Conclusion returns to the Preface's question and asks its converse.</figcaption></figure><p class="gallery-source">From <a href="0.5-how-to-read-this-book.html#fig-0-5-1">How to read this book</a></p></section><hr><section class="gallery-item"><figure id="fig-1-1-1-fig-1-1-1" class="book-figure" data-label="new-engineering-problem"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"
-     role="group" aria-labelledby="fig-1-1-1-nepTitle fig-1-1-1-nepDesc"
+</svg><figcaption data-short="The book&#x27;s call and response"><span class="fig-label">Figure 0.5-1.</span> <em>The book's call and response.</em> The Preface poses the question and Part I establishes why it is urgent; Parts II–III develop the two MAGE theses; Part IV joins them as a method; Part V supplies the evidentiary basis in depth and breadth; Part VI develops the theory and its implications; the Conclusion returns to the Preface's question and asks its converse.</figcaption></figure><p class="gallery-source">From <a href="0.5-how-to-read-this-book.html#fig-0-5-1">How to read this book</a></p></section><hr><section class="gallery-item"><figure id="fig-1-1-1-fig-1-1-1" class="book-figure" data-label="engineering-leverage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+     role="img" aria-labelledby="fig-1-1-1-levTitle fig-1-1-1-levDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fig-1-1-1-nepTitle">A new engineering problem: engineering leverage moves into the environment</title>
-  <desc id="fig-1-1-1-nepDesc">Two pipelines are stacked for contrast. The top pipeline, classical software
-    engineering, has three stages: Engineer, then Implementation, then Product quality — the engineer's
-    substantial direct effort acts through the implementation. The bottom pipeline, agentic software
-    engineering, has five stages: Engineer, then Engineering Environment, then Agents, then
-    Implementation, then Product quality. Agents perform the implementation inside an engineering
-    environment the engineer builds, and that environment is the primary engineered lever. A strip
-    beneath the pipeline unpacks the environment: models, policies, evidence, validators, and
-    infrastructure. As implementation becomes abundant, more of the engineer's leverage moves into the
-    environment that represents intent, constrains work, and evaluates what the fleet produces. The
-    environment is where the engineer increasingly obtains leverage; it does not alone determine quality.</desc>
+  <title id="fig-1-1-1-levTitle">Where engineering leverage acts</title>
+  <desc id="fig-1-1-1-levDesc">Two pipelines are stacked for contrast. In the classical pipeline the engineer builds
+    the implementation directly, so the implementation is the primary engineered object: Engineer, then
+    Implementation, then Product. In the agentic pipeline agents build the implementation inside an
+    engineering environment the engineer constructs, so the environment becomes the primary engineered
+    lever: Engineer, then Engineering Environment, then Agents, then Implementation, then Product. A rust
+    badge marks the primary node in each row; it moves upstream from the implementation to the environment.
+    A footer strip unpacks the environment into models, obligations, evidence, controls, and
+    infrastructure.</desc>
 
   <defs>
-    <marker id="fig-1-1-1-nep-neutral" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="fig-1-1-1-lev-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-    <marker id="fig-1-1-1-nep-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
-    </marker>
-    <marker id="fig-1-1-1-nep-env" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1f7a4d"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="600" fill="#fdfcf9"/>
-  <text x="500" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">A new engineering problem</text>
-  <text x="500" y="66" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">When agents perform the implementation, engineering leverage moves into the environment.</text>
+  <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
 
-  <!-- ===== CLASSICAL pipeline (top) ===== -->
-  <text x="30" y="104" font-size="15" font-weight="700" letter-spacing="1.5" fill="#57534e">CLASSICAL SE</text>
-  <text x="30" y="124" font-size="15" font-style="italic" fill="#57534e">the engineer writes most implementation directly</text>
+  <!-- title band -->
+  <rect x="0" y="0" width="1000" height="54" fill="#f6f4ef"/>
+  <text x="500" y="35" text-anchor="middle" font-size="21" font-weight="700" letter-spacing="2" fill="#1c1917">WHERE ENGINEERING LEVERAGE ACTS</text>
 
-  <g fill="none" stroke="#57534e" stroke-width="2.4">
-    <path d="M300,173 L346,173" marker-end="url(#fig-1-1-1-nep-neutral)"/>
-    <path d="M560,173 L606,173" marker-end="url(#fig-1-1-1-nep-neutral)"/>
-  </g>
-
-  <rect x="150" y="146" width="150" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="225" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
-  <rect x="350" y="146" width="210" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="455" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Implementation</text>
-  <rect x="610" y="146" width="180" height="54" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="700" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Product quality</text>
-
-  <!-- classical lever annotation: the engineer's direct effort acts through the implementation -->
-  <line x1="455" y1="230" x2="455" y2="204" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-1-1-1-nep-neutral)"/>
-  <text x="455" y="248" text-anchor="middle" font-size="15" fill="#57534e">substantial direct engineering effort</text>
-
-  <!-- divider between the two regimes -->
-  <line x1="30" y1="272" x2="970" y2="272" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="5 6"/>
-
-  <!-- ===== AGENTIC pipeline (bottom) ===== -->
-  <text x="30" y="304" font-size="15" font-weight="700" letter-spacing="1.5" fill="#155c38">AGENTIC SE</text>
-  <text x="30" y="324" font-size="15" font-style="italic" fill="#57534e">agents perform the implementation, inside an engineering environment</text>
+  <!-- ===== CLASSICAL row ===== -->
+  <text x="30" y="120" font-size="15" font-weight="700" letter-spacing="1.5" fill="#57534e">CLASSICAL</text>
+  <text x="30" y="140" font-size="14" font-style="italic" fill="#57534e">engineer writes the implementation</text>
 
   <g fill="none" stroke="#57534e" stroke-width="2.4">
-    <path d="M146,371 L166,371" marker-end="url(#fig-1-1-1-nep-neutral)"/>
-    <path d="M350,371 L370,371" marker-end="url(#fig-1-1-1-nep-neutral)"/>
-    <path d="M492,371 L512,371" marker-end="url(#fig-1-1-1-nep-neutral)"/>
-    <path d="M690,371 L710,371" marker-end="url(#fig-1-1-1-nep-neutral)"/>
+    <path d="M300,163 L378,163" marker-end="url(#fig-1-1-1-lev-k)"/>
+    <path d="M590,163 L668,163" marker-end="url(#fig-1-1-1-lev-k)"/>
   </g>
 
-  <rect x="20" y="344" width="126" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="83" y="378" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Engineer</text>
+  <rect x="150" y="138" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="225" y="169" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
 
-  <rect x="168" y="340" width="182" height="62" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
-  <text x="259" y="367" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Engineering</text>
-  <text x="259" y="388" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Environment</text>
+  <!-- primary node: implementation -->
+  <rect x="380" y="134" width="210" height="58" rx="9" fill="#f3efe7" stroke="#9a3f12" stroke-width="3.2"/>
+  <text x="485" y="167" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Implementation</text>
+  <text x="485" y="212" text-anchor="middle" font-size="14.5" font-weight="700" fill="#9a3f12">primary engineered object</text>
 
-  <rect x="372" y="344" width="120" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="432" y="378" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Agents</text>
+  <rect x="670" y="138" width="170" height="50" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="755" y="169" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Product</text>
 
-  <rect x="514" y="344" width="176" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="602" y="378" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Implementation</text>
+  <!-- divider between regimes -->
+  <line x1="30" y1="252" x2="970" y2="252" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="5 6"/>
 
-  <rect x="712" y="344" width="150" height="54" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="787" y="378" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Product quality</text>
+  <!-- ===== AGENTIC row ===== -->
+  <text x="30" y="298" font-size="15" font-weight="700" letter-spacing="1.5" fill="#155c38">AGENTIC</text>
+  <text x="30" y="318" font-size="14" font-style="italic" fill="#57534e">agents write the implementation</text>
 
-  <!-- agentic lever annotation: the environment is the primary engineered lever -->
-  <line x1="259" y1="432" x2="259" y2="406" stroke="#9a3f12" stroke-width="2" marker-end="url(#fig-1-1-1-nep-accent)"/>
-  <text x="259" y="450" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">primary engineered lever</text>
+  <g fill="none" stroke="#57534e" stroke-width="2.4">
+    <path d="M150,363 L173,363" marker-end="url(#fig-1-1-1-lev-k)"/>
+    <path d="M370,363 L393,363" marker-end="url(#fig-1-1-1-lev-k)"/>
+    <path d="M527,363 L550,363" marker-end="url(#fig-1-1-1-lev-k)"/>
+    <path d="M720,363 L743,363" marker-end="url(#fig-1-1-1-lev-k)"/>
+  </g>
 
-  <!-- leverage framing callout (NOT "determines quality") -->
-  <text x="620" y="446" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Engineering leverage moves into the environment.</text>
-  <text x="620" y="468" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the instructions, representations, constraints, and evidence that shape autonomous work</text>
+  <rect x="30" y="338" width="120" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="90" y="369" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Engineer</text>
 
-  <!-- ===== the environment, unpacked ===== -->
-  <rect x="150" y="500" width="700" height="70" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="500" y="530" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Inside the Engineering Environment (the governed engineering environment)</text>
-  <text x="500" y="554" text-anchor="middle" font-size="16" fill="#57534e">models · policies · evidence · validators · infrastructure</text>
-</svg><figcaption data-short="Figure 1.1-1"><span class="fig-label">Figure 1.1-1.</span> <em>Figure 1.1-1: Engineering leverage moves upstream.</em> When engineers write most implementation directly, much of their effort acts through the code. When agents perform the implementation, more of that leverage moves into the environment that represents intent, constrains work, and evaluates what the fleet produces.</figcaption></figure><p class="gallery-source">From <a href="1.1-the-printer.html#fig-1-1-1">1 · The Printer</a></p></section><hr><section class="gallery-item"><figure id="fig-1-2-1-fig-1-2-1" class="book-figure" data-label="docable-glimpse"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 430"
+  <!-- primary node: engineering environment -->
+  <rect x="175" y="332" width="195" height="62" rx="9" fill="#e3f0e7" stroke="#9a3f12" stroke-width="3.4"/>
+  <text x="272" y="358" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Engineering</text>
+  <text x="272" y="379" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Environment</text>
+  <text x="272" y="416" text-anchor="middle" font-size="14.5" font-weight="700" fill="#9a3f12">primary engineered lever</text>
+
+  <rect x="393" y="338" width="134" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="460" y="369" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Agents</text>
+
+  <rect x="550" y="338" width="170" height="50" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="635" y="369" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Implementation</text>
+
+  <rect x="743" y="338" width="150" height="50" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="818" y="369" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Product</text>
+
+  <!-- footer strip: the environment, unpacked -->
+  <rect x="120" y="452" width="760" height="70" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="500" y="480" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">inside the engineering environment</text>
+  <text x="500" y="505" text-anchor="middle" font-size="16.5" fill="#57534e">models &#183; obligations &#183; evidence &#183; controls &#183; infrastructure</text>
+</svg><figcaption data-short="Engineering leverage moves into the environment"><span class="fig-label">Figure 1.1-1.</span> <em>Engineering leverage moves into the environment.</em> When engineers perform most implementation directly, much of their engineering effort acts through the implementation itself. When agents perform implementation, more of that leverage acts through the environment that represents intent, constrains work, and evaluates what the agents produce.</figcaption></figure><p class="gallery-source">From <a href="1.1-the-printer.html#fig-1-1-1">1 · The Printer</a></p></section><hr><section class="gallery-item"><figure id="fig-1-2-1-fig-1-2-1" class="book-figure" data-label="docable-glimpse"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 430"
      role="group" aria-labelledby="fig-1-2-1-dgTitle fig-1-2-1-dgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-1-2-1-dgTitle">A running glimpse of DocAble — one object in, one object back</title>
