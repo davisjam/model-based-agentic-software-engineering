@@ -7,7 +7,7 @@
     "derived_ids": 144,
     "missing_topic_sentence": 0,
     "sections_drained": 102,
-    "paragraph_points": 423
+    "paragraph_points": 422
   },
   "chapters": [
     {
@@ -359,27 +359,27 @@
           "heading_text": "Foundation Model and Agentic Harness",
           "topic_sentence": "The substrate pairs a foundation model with an agentic harness.",
           "id_source": "derived",
-          "block_index": 3,
+          "block_index": 5,
           "points": [
             {
               "slug": "model-plus-harness-form-a-new-engineering-substrate",
               "text": "A foundation model and an agentic harness together form the engineering substrate; the useful unit is the pair operating inside an engineering environment.",
-              "block_index": 5
+              "block_index": 7
             },
             {
               "slug": "four-foundation-model-properties",
-              "text": "The foundation model brings four properties.",
-              "block_index": 8
+              "text": "Four properties of the foundation model matter to the engineering argument.",
+              "block_index": 10
             },
             {
               "slug": "four-harness-properties",
-              "text": "The harness adds four properties of its own.",
-              "block_index": 11
+              "text": "The harness contributes four complementary properties; a foundation model produces outputs, and the harness turns those outputs into action and exposes the boundaries through which that action passes.",
+              "block_index": 13
             },
             {
               "slug": "the-substrate-framing-is-an-emerging-consensus",
-              "text": "None of these properties is alien to human engineering; what changes is their combination and economics, and the harness-engineering literature reaches the same unit of analysis — the model-harness-environment system.",
-              "block_index": 14
+              "text": "None of these properties is alien to human engineering; what changes is their combination and economics, and the harness-engineering literature reaches the same unit of analysis — the model–harness–environment system.",
+              "block_index": 16
             }
           ]
         },
@@ -389,27 +389,27 @@
           "heading_text": "The reasoning horizon",
           "topic_sentence": "Scale creates a reasoning problem before an agent ever enters the picture.",
           "id_source": "explicit",
-          "block_index": 16,
+          "block_index": 19,
           "points": [
             {
               "slug": "supervised-work-is-long-horizon-and-outruns-working-memory",
               "text": "Scale creates the reasoning problem before an agent enters; a long task is a campaign whose reasoning state grows while the active state available to the reasoner stays finite.",
-              "block_index": 18
+              "block_index": 21
             },
             {
               "slug": "outrun-memory-forces-lossy-compression-that-degrades-into-churn",
               "text": "Once the task outruns active state, some state must live elsewhere and be reconstructed; poor reconstruction re-solves solved questions and contradicts earlier constraints — one source of churn.",
-              "block_index": 21
+              "block_index": 24
             },
             {
               "slug": "capability-moves-the-wall-not-abolishes-it",
-              "text": "Better models move the boundary by using available state more effectively; they do not abolish the locality problem — a better model searches the warehouse better but still has a warehouse.",
-              "block_index": 24
+              "text": "Better representations move the boundary by using available working state more effectively; they do not abolish the locality problem — a stronger reasoner searches the warehouse better but still has a warehouse.",
+              "block_index": 27
             },
             {
               "slug": "the-chain-stated-end-to-end",
               "text": "Practice at codebase scale reports the same effect; the point is not a line-count threshold but that raw implementation is an expensive reasoning substrate when the question depends on a much smaller set of relationships.",
-              "block_index": 26
+              "block_index": 29
             }
           ]
         },
@@ -417,29 +417,19 @@
           "section_id": "the-horizon-is-a-locality-problem",
           "level": 2,
           "heading_text": "The horizon is a locality problem",
-          "topic_sentence": "Today's context window is one instantiation of a more general locality constraint.",
+          "topic_sentence": "Seen this way, the reasoning horizon is not an exotic property of language models.",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 32,
           "points": [
             {
-              "slug": "context-windows-are-an-instantiation-of-the-limit-not-the-limit",
-              "text": "Context windows are today's most visible instantiation of the limit, not the limit itself; the durable constraint is locality.",
-              "block_index": 31
+              "slug": "the-reasoning-horizon-is-a-familiar-systems-problem",
+              "text": "The reasoning horizon is not exotic; it is a familiar systems problem — useful state must be kept close enough to the computation that consumes it, and agentic reasoning adds reasoning state to the list caches, virtual memory, NUMA-aware software, and replication already occupy.",
+              "block_index": 34
             },
             {
-              "slug": "this-is-an-old-engineering-constraint-in-a-new-form",
-              "text": "Software has always been arranged around the memory, compute, and communication hierarchy of its machine; agentic reasoning inherits the same obligation.",
-              "block_index": 33
-            },
-            {
-              "slug": "the-reasoning-horizon-is-the-latest-instance-of-a-recurring-se-problem",
-              "text": "The reasoning horizon is the latest instance of a recurring software-engineering problem: the abstraction is organized around the physical limits of the machine.",
-              "block_index": 35
-            },
-            {
-              "slug": "the-account-earns-the-moves-the-wall-claim",
-              "text": "A longer window or new architecture moves the wall without removing it; the hardware account earns that claim rather than asserting it.",
-              "block_index": 37
+              "slug": "new-architectures-move-constants-not-the-principle",
+              "text": "Larger windows, persistent memory, retrieval, or new architectures move the boundaries and change the constants; they do not remove the engineering principle that question-relevant state must stay available and cheap to reason over while irrelevant detail stays outside the active working set.",
+              "block_index": 36
             }
           ]
         },
@@ -449,22 +439,22 @@
           "heading_text": "Probabilistic work needs external authority",
           "topic_sentence": "The second problem is not that agents make mistakes while human programmers do not.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 38,
           "points": [
             {
               "slug": "authorship-is-separate-from-assurance",
               "text": "Software engineering has always separated authorship from assurance — we compile instead of trusting a prediction, test instead of accepting an explanation — because the producer's confidence is not enough.",
-              "block_index": 41
+              "block_index": 40
             },
             {
               "slug": "authority-must-reside-outside-the-agent",
-              "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; another judgment from the same substrate does not create authority — something outside the producing run must decide what evidence counts.",
-              "block_index": 43
+              "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; an agent can propose, inspect, explain, and repair, but another judgment from the same substrate does not create authority — something outside the producing run must decide what evidence counts.",
+              "block_index": 42
             },
             {
               "slug": "alignment-has-semantic-reach-and-modeling-moves-the-boundary-outward",
               "text": "Some obligations need little modeling — a sandbox, compiler, test, or permission system holds them; those are real Alignment, limited by semantic reach. Modeling moves that boundary outward, making larger properties available to the reasoner and to deterministic machinery.",
-              "block_index": 45
+              "block_index": 44
             }
           ]
         },
@@ -472,19 +462,19 @@
           "section_id": "agentic-work-has-observable-seams",
           "level": 2,
           "heading_text": "Agentic Work Has Observable Seams",
-          "topic_sentence": "One property of the harness makes external authority practical.",
+          "topic_sentence": "Agentic work occurs through observable interfaces.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 46,
           "points": [
             {
-              "slug": "agentic-work-occurs-in-an-observable-loop",
-              "text": "Agentic work occurs in an observable loop; the engineer need not control hidden reasoning to govern what enters the system — authority can act at the seams the work has to cross.",
-              "block_index": 49
+              "slug": "agentic-work-occurs-through-observable-interfaces",
+              "text": "Agentic work occurs through observable interfaces; whatever internal computation produces a proposed action, consequential work reaches the engineering system through inputs, tool calls, edits, outputs, and lifecycle transitions — boundaries the environment can observe, constrain, validate, or stop.",
+              "block_index": 48
             },
             {
               "slug": "representation-determines-what-the-control-points-can-know",
-              "text": "Seams already support local controls without a system model; the deeper opportunity comes when the environment holds explicit abstractions of what matters — the harness supplies the control points, representation determines how much they can know.",
-              "block_index": 51
+              "text": "Local controls already operate at these seams without a system model; explicit engineering models extend the semantic reach of the same control points, so an action can be judged not only by what it does but by what it means for architecture, policy, behavior, ownership, measurements, or other represented obligations.",
+              "block_index": 50
             }
           ]
         }
@@ -492,8 +482,13 @@
       "preamble_points": [
         {
           "slug": "engineering-methods-follow-from-the-material",
-          "text": "Engineering methods fit the substrate they act on; agentic engineering begins by asking what productive substrate entered the process, because its combination and economics change what the engineering environment can do.",
+          "text": "Engineering methods fit the substrate they act on; reinforced concrete works because concrete takes compression and steel takes tension, and agentic engineering likewise begins by asking what productive machinery entered the process and which of its properties matter.",
           "block_index": 1
+        },
+        {
+          "slug": "the-substrate-is-model-plus-harness-in-an-environment",
+          "text": "The relevant substrate is not a foundation model alone but a foundation model operating through an agentic harness inside an engineering environment; the combination determines both what autonomous work can do and where engineering can act on it.",
+          "block_index": 3
         }
       ]
     },
