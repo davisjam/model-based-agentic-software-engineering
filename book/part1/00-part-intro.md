@@ -24,6 +24,6 @@ stopped manufacturing; inspection has become the throughput constraint. In softw
 produce changes faster than engineers can specify, understand, validate, and govern them. Models
 amortize representation and judgment across many acts of implementation; validators and gates can
 amortize selected judgments about acceptance. Rational effort therefore moves upstream into
-representation and outward into the engineering environment. This Part asks what follows from that
+representation and outward into the engineered environment. This Part asks what follows from that
 shift: what remains hard, which properties of the new substrate matter, and what engineering
 problems they leave us to solve.

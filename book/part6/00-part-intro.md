@@ -5,7 +5,7 @@ appearing independently, under different constraints. Neither establishes a univ
 give us something worth explaining.
 
 This Part attempts that explanation. It begins with a theory of how agentic capacity interacts with the
-engineering environment, states where that theory should hold, and derives predictions that can be
+engineered environment, states where that theory should hold, and derives predictions that can be
 tested. The argument then widens: if the account is substantially right, what changes in software
 engineering, how that change relates to older engineering practice, and what remains the engineer's
 responsibility.

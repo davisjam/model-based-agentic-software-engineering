@@ -12,7 +12,7 @@ volume changed, or whether engineering productivity rose or fell. [ref:velocity-
 series.
 
 <!-- label: velocity-curve -->
-<!-- figure: assets/velocity-commits-per-week.svg | *Weekly Commit Volume.* Commits per week across the project history, one bar per week. The figure measures repository activity. Interpretation of the hardening interval depends on the classification of the work recorded in those commits; bar height alone does not distinguish feature production from engineering-environment work. -->
+<!-- figure: assets/velocity-commits-per-week.svg | *Weekly Commit Volume.* Commits per week across the project history, one bar per week. The figure measures repository activity. Interpretation of the hardening interval depends on the classification of the work recorded in those commits; bar height alone does not distinguish feature production from engineered-environment work. -->
 
 <!-- FUTURE: When available, add Epics-closed/week and reopens/week — either onto Figure H-1 or immediately after it. Commits measure activity; completed engineering units are a complementary measure closer to durable throughput. Insert the planned reviewer-capacity bound here once measured, and keep it a sensitivity analysis rather than an assertion about actual review speed. -->
 

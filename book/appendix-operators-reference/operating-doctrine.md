@@ -17,7 +17,7 @@ Four rules govern the deck.
   outlived its return.
 
 The goal is not maximum automation, maximum modeling, or minimum human involvement. It is a governed
-engineering environment in which commodity intelligence can take on more useful work without requiring
+engineered environment in which commodity intelligence can take on more useful work without requiring
 engineering judgment to be reconstructed from scratch at every turn.
 
 ```

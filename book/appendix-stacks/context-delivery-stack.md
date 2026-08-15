@@ -35,7 +35,7 @@ a hard gate where they are critical.
 
 ## Why these travel together
 
-An actor cannot reason through knowledge it never sees. But loading the entire engineering environment into
+An actor cannot reason through knowledge it never sees. But loading the entire engineered environment into
 every context only moves the navigation problem downstream — now the actor must find the relevant fact in a
 wall of them.
 
