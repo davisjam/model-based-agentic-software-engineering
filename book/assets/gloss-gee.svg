@@ -64,10 +64,6 @@
   <rect x="390" y="512" width="220" height="52" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
   <text x="500" y="544" text-anchor="middle" font-size="19" font-weight="bold" fill="#fdfcf9">Engineering Capital</text>
 
-  <!-- footer band: the drift-gate story + the linter/gate example (preserved) -->
-  <line x1="60" y1="588" x2="940" y2="588" stroke="#cfcabf" stroke-width="1.5"/>
-  <text x="70" y="612" font-size="15" fill="#57534e">A <tspan font-weight="bold">drift gate</tspan> catches <tspan font-style="italic">model drift</tspan> — a model and its code disagreeing. A <tspan font-weight="bold">linter</tspan> senses; a <tspan font-weight="bold">gate</tspan> blocks the commit.</text>
-
   <!-- R13 zoom cue: FRAME-echo corner-brackets — this figure IS the expansion of 0.3-1's Governance-Mechanism node. -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">
     <path d="M26,12 L12,12 L12,26"/>
