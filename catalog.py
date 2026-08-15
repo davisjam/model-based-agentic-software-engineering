@@ -1151,6 +1151,19 @@ def cmd_validate(_args) -> int:
         print(f"  [overflow] {lfo.summary_line(overflow)} — "
               f"run `python3 book-models/lint_figure_overflow.py`")
         n_issues += len(overflow)
+    # FIGURE TEXT-OCCLUSION — the z-order text-on-top sensor over book/assets/*.svg (the geometry complement to
+    # the overflow sensor above). It enforces one structural constraint: a `<text>` must be drawn AFTER every
+    # filled element it overlaps, so the label is painted on top and a box can never hide it. The violation it
+    # detects is the inverse — an OPAQUE fill drawn LATER in document order than a text whose glyph quad it
+    # covers (box-over-label occlusion). BLOCKING: the corpus reads clean at 0 violations, so any regression
+    # (a box that overruns an earlier label, or a label authored before the box it sits on) increments n_issues
+    # and reddens validate, exactly like the sibling overflow gate. See book-models/lint_figure_text_occlusion.py.
+    import lint_figure_text_occlusion as lfto  # noqa: E402 — blocking z-order text-on-top sensor
+    occlusions = lfto.findings()
+    if occlusions:
+        print(f"  [occlusion] {lfto.summary_line(occlusions)} — "
+              f"run `python3 book-models/lint_figure_text_occlusion.py`")
+        n_issues += len(occlusions)
     # FIGURE FONT-BAND — the figure-text-inside-a-legibility-band sensor over book/assets/*.svg (the
     # legibility complement to the overflow sensor above). It flags BOTH ends of one scale-inconsistency
     # defect: text below the band floor (too small to read against body) AND text above the ceiling (a
