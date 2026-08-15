@@ -45,11 +45,9 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 2.1-context-is-the-first-modeling-problem
 
 
-### Lesson 2.3-behavioral
-
-
 ### Lesson 2.8-system-knowledge
 
+  - **[DERIVED]** (create) After this section, the reader can model purpose and representation form are independent. — _anchor: ts: Model purpose and representation form are independent._
 
 ## Module 3 — Alignment
 
