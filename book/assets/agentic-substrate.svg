@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Fig 1.3-1 NEW (part1-copyedit-260815; folds to book/assets/agentic-substrate.svg).
      "The agentic substrate." Two supplying columns converge on the agent, which in turn acts on the
-     engineering environment.
+     engineered environment.
        FOUNDATION MODEL (blue = model palette) — semantic reasoning, probabilistic output, bounded
                         working state, cheap repeated cognition.
        AGENTIC HARNESS  (gray = neutral machinery) — tool-mediated action, interposition, lifecycle
                         visibility, parallel execution.
-     Both feed AGENT (blue), which acts on the ENGINEERING ENVIRONMENT (green = the engineered lever).
+     Both feed AGENT (blue), which acts on the ENGINEERED ENVIRONMENT (green = the engineered lever).
      Grayscale-survivable: every attribute labelled; the two-column convergence and the top-to-bottom
      order carry the meaning; hue only reinforces which family a column belongs to. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600"
@@ -16,7 +16,7 @@
   <desc id="asDesc">Two columns supply the agent. The foundation model contributes semantic reasoning,
     probabilistic output, a bounded working state, and cheap repeated cognition. The agentic harness
     contributes tool-mediated action, interposition, lifecycle visibility, and parallel execution. Both
-    converge on the agent, a tool-using reasoner, which in turn acts on the engineering environment —
+    converge on the agent, a tool-using reasoner, which in turn acts on the engineered environment —
     the models, obligations, evidence, and controls the engineer builds.</desc>
 
   <defs>
@@ -70,8 +70,8 @@
 
   <line x1="500" y1="454" x2="500" y2="488" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
 
-  <!-- ENGINEERING ENVIRONMENT node (green) -->
+  <!-- ENGINEERED ENVIRONMENT node (green) -->
   <rect x="320" y="490" width="360" height="72" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
-  <text x="500" y="521" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Engineering Environment</text>
+  <text x="500" y="521" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Engineered Environment</text>
   <text x="500" y="545" text-anchor="middle" font-size="14.5" fill="#57534e">models &#183; obligations &#183; evidence &#183; controls</text>
 </svg>

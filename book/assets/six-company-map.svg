@@ -2,7 +2,7 @@
 <!-- REDRAW DRAFT (figures-redraw) of six-company-map.svg. Retitled "Independent reconstructions of the
      theory." The last column now names each site's landing in MAGE VOCABULARY (Cloudflare -> Alignment
      Thesis, Siemens -> Modeling Thesis, Docker -> Governance Conversion, Spotify -> Governed Engineering
-     Environment, Zenseact -> Reasoning Horizon, Shopify -> Engineering Environment), and each badge is
+     Environment, Zenseact -> Reasoning Horizon, Shopify -> Engineered Environment), and each badge is
      coloured by the house semantic language — rust for the governance/alignment terms, green for the
      modeling/knowledge/environment terms. A final synthesis row reads MAGE -> unified vocabulary ->
      engineering theory -> the whole landscape, the systematic-review assembly line. The framing stays
@@ -20,7 +20,7 @@
     column. Cloudflare starts from policy-first governance, invests in policy bound into mechanisms, and
     lands on the Alignment Thesis. Spotify starts from fleet-first autonomy, invests in fleet-scale
     verification, and lands on the Governed Engineering Environment. Shopify starts from a shared
-    agent-ready environment, invests in organizational knowledge, and lands on the Engineering Environment.
+    agent-ready environment, invests in organizational knowledge, and lands on the Engineered Environment.
     Docker starts from authority boundaries and evaluation loops, invests in runtime authority, and lands on
     Governance Conversion. Siemens starts from model-first engineering, invests in models as the development
     surface, and lands on the Modeling Thesis. Zenseact starts from autonomous knowledge work, invests in
@@ -79,7 +79,7 @@
   <text x="839" y="270" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Governed Engineering</text>
   <text x="839" y="288" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Environment</text>
 
-  <!-- Shopify -> Engineering Environment (green) -->
+  <!-- Shopify -> Engineered Environment (green) -->
   <text x="48"  y="350" font-size="20" font-weight="700" fill="#1c1917">Shopify</text>
   <text x="210" y="350" font-size="17" fill="#57534e">Shared agent-ready env.</text>
   <text x="486" y="350" font-size="18" font-weight="700" fill="#1c1917">Organizational knowledge</text>

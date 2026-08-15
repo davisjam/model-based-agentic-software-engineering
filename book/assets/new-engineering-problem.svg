@@ -7,10 +7,10 @@
      Two stacked pipelines:
        CLASSICAL — Engineer -> Implementation -> Product quality; the engineer's substantial direct
                    effort acts through the implementation.
-       AGENTIC   — Engineer -> Engineering Environment -> Agents -> Implementation -> Product quality;
-                   the Engineering Environment is the PRIMARY ENGINEERED LEVER.
+       AGENTIC   — Engineer -> Engineered Environment -> Agents -> Implementation -> Product quality;
+                   the Engineered Environment is the PRIMARY ENGINEERED LEVER.
      Node relabels vs landed asset: Code -> Implementation, Quality -> Product quality, Environment ->
-     Engineering Environment. The "environment now determines quality" callout is REMOVED and replaced
+     Engineered Environment. The "environment now determines quality" callout is REMOVED and replaced
      by the leverage framing. Strip item list = editor's: models · policies · evidence · validators ·
      infrastructure (dropped "skills", added "evidence"); GEE parenthetical retained (book vocabulary).
      Semantic colour: green = environment/modeling, blue = engineer + agents, gray = neutral
@@ -24,7 +24,7 @@
   <desc id="nepDesc">Two pipelines are stacked for contrast. The top pipeline, classical software
     engineering, has three stages: Engineer, then Implementation, then Product quality — the engineer's
     substantial direct effort acts through the implementation. The bottom pipeline, agentic software
-    engineering, has five stages: Engineer, then Engineering Environment, then Agents, then
+    engineering, has five stages: Engineer, then Engineered Environment, then Agents, then
     Implementation, then Product quality. Agents perform the implementation inside an engineering
     environment the engineer builds, and that environment is the primary engineered lever. A strip
     beneath the pipeline unpacks the environment: models, policies, evidence, validators, and
@@ -73,7 +73,7 @@
 
   <!-- ===== AGENTIC pipeline (bottom) ===== -->
   <text x="30" y="304" font-size="15" font-weight="700" letter-spacing="1.5" fill="#155c38">AGENTIC SE</text>
-  <text x="30" y="324" font-size="15" font-style="italic" fill="#57534e">agents perform the implementation, inside an engineering environment</text>
+  <text x="30" y="324" font-size="15" font-style="italic" fill="#57534e">agents perform the implementation, inside an engineered environment</text>
 
   <g fill="none" stroke="#57534e" stroke-width="2.4">
     <path d="M146,371 L166,371" marker-end="url(#nep-neutral)"/>
@@ -86,7 +86,7 @@
   <text x="83" y="378" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Engineer</text>
 
   <rect x="168" y="340" width="182" height="62" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
-  <text x="259" y="367" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Engineering</text>
+  <text x="259" y="367" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Engineered</text>
   <text x="259" y="388" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Environment</text>
 
   <rect x="372" y="344" width="120" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
@@ -108,6 +108,6 @@
 
   <!-- ===== the environment, unpacked ===== -->
   <rect x="150" y="500" width="700" height="70" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="500" y="530" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Inside the Engineering Environment (the governed engineering environment)</text>
+  <text x="500" y="530" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Inside the Engineered Environment (the governed engineering environment)</text>
   <text x="500" y="554" text-anchor="middle" font-size="16" fill="#57534e">models · policies · evidence · validators · infrastructure</text>
 </svg>

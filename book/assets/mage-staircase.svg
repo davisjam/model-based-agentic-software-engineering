@@ -17,10 +17,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 830" width="1200" height="830"
      role="group" aria-labelledby="dsTitle dsDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="dsTitle">The delegation staircase — five ascending steps from Co-coder to Architect; delegated work climbs, the engineering environment accumulates, and residual human burden narrows but never vanishes</title>
+  <title id="dsTitle">The delegation staircase — five ascending steps from Co-coder to Architect; delegated work climbs, the engineered environment accumulates, and residual human burden narrows but never vanishes</title>
   <desc id="dsDesc">A true staircase of five steps ascending from bottom-left to top-right. Step one at the
     bottom is Co-coder; step five at the summit is Architect. Each step card names a stage and shows, in
-    blue, what is now delegated, and in green, what the engineering environment now carries. Along the
+    blue, what is now delegated, and in green, what the engineered environment now carries. Along the
     left edge a green gauge thickens as the climb proceeds — representation and authority accumulate.
     Along the right edge a red trajectory narrows from wide at the base to a sliver at the summit: the
     residual human focus moves from reading every diff at the bottom to system-level strategy and residual
@@ -109,11 +109,11 @@
   <text x="960" y="670" font-size="13.5" fill="#b23b3b" font-weight="600">read every diff · hold the</text>
   <text x="960" y="688" font-size="13.5" fill="#b23b3b" font-weight="600">map · admit the change</text>
 
-  <!-- ===================== BASE AXIS — more work carried by the engineering environment ===================== -->
+  <!-- ===================== BASE AXIS — more work carried by the engineered environment ===================== -->
   <marker id="ds-right" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
     <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
   </marker>
   <line x1="40" y1="770" x2="928" y2="770" stroke="#2f5169" stroke-width="1.8" marker-end="url(#ds-right)"/>
-  <text x="40" y="794" font-size="14" font-weight="600" fill="#57534e">more work carried by the engineering environment</text>
+  <text x="40" y="794" font-size="14" font-weight="600" fill="#57534e">more work carried by the engineered environment</text>
   <text x="928" y="794" text-anchor="end" font-size="14" font-weight="700" fill="#2f5169">delegation climbs</text>
 </svg>
