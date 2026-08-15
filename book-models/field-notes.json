@@ -80,6 +80,27 @@
       "chapter_slug": "reorganization-of-se",
       "backs_claims": ["abundant-implementation", "seat-moves"],
       "limitation": "A single caught-in-design incident, one operator, one product: the false-decorative was reasoned to and routed for a contextual-gate fix (a cheap thumbnail-to-VLM 'spacer vs artwork' gate plus a fidelity default of describe-when-uncertain), not observed harming a live user — a located capability-boundary, not a measured escape rate. The confident 'not possible' is the tell, not a metric."
+    },
+    {
+      "id": "fn-db-cas-single-ownership",
+      "incident": "DocAble's pervasive work-item ownership protocol is a PostgreSQL row compare-and-set: every handoff in the job pipeline is `UPDATE jobs SET … WHERE id=? AND status=?`, where the WHERE clause is the compare, the row write is the swap, and rowcount=0 means another worker won. A double-claim is unrepresentable because only one UPDATE matches the row; crash-safety rides the Cloud Tasks lease/ack. The most impactful concurrency correctness in the system is made STRUCTURALLY unrepresentable at runtime — no TLA+, no TLC, just the SQL statement as the constraint — and pinned by exhaustive explicit-state BFS model-check tests with a falsifiability toggle (drop the status guard and the BFS reaches the double-reserve sink). It is the honest counterexample to 'formal methods = TLA+'.",
+      "chapter_slug": "generative-validation",
+      "backs_claims": ["modeling-thesis", "alignment-thesis"],
+      "limitation": "One product, single operator; the BFS is exhaustive only within tiny bounds (2–3 actors, ≤2 redeliveries) over fakeredis + a dict FakeDb, not a proof that the fakes equal real Postgres/Cloud Tasks and nothing about the C# remediation pipeline. The claim is that the illegal state is structural at runtime, not that the whole system is formally verified."
+    },
+    {
+      "id": "fn-lease-epoch-fencing",
+      "incident": "The in-flight-lease fencing core is DocAble's fullest formal-methods chain — an explicit epoch-fenced transition system (QUEUED→CLAIMED→MERGING→DONE with a per-lease epoch) with named safety and liveness invariants, an offline TLA+ spec, and a falsifiability-toothed checker that gates deploy. The load-bearing checker turns out to be a Java-free Python exhaustive explicit-state BFS, NOT TLC: it BFS-closes every reachable interleaving up to the bound and cross-checks the real reclaim/completer Lua against the abstract model. Fence-off finds 4,184 split-brain double-terminal violation states; production config finds 0 over 38,891 (2 parents) / 177,717 (3 parents) interleavings. The question 'can a split-brain reclaim double-clear one job's lease?' is answered once by the epoch-fence design and re-checked exhaustively on every pre-deploy run.",
+      "chapter_slug": "generative-validation",
+      "backs_claims": ["modeling-thesis", "alignment-thesis", "H3-mechanized-assurance"],
+      "limitation": "Exhaustive only within bounds (Jobs 2–3, clock ~6) over fakeredis + FakeDb; the .tla⇔Python-model⇔runtime tie is a hand-maintained '1:1 mirror' guarded by invariant-ID lints and a re-check runbook, NOT a refinement proof or codegen. TLC itself SKIPs in the default dev/CI env (no Java), so the gating authority is the Python BFS pytest plus BLOCKING lints, not TLC execution. Single project, single operator."
+    },
+    {
+      "id": "fn-inv18-liveness-gap",
+      "incident": "INV-18 async-termination is DocAble's honest liveness limit case: a genuine `Submitted ~> Terminal` obligation created by the serverless min=0 cutover (which deletes the always-on polling supervisor, so an at-least-once push can be lost with nothing resident to re-drive it), expressed in a proper falsifiable TLA+ liveness spec with strong-fairness modeling of delivery and a SweepCronOn toggle that yields a TLC lasso when off. But NO automated job ever runs TLC, and a safety-BFS provably cannot falsify a `~>` property. Its workflow authority is three BLOCKING lints over the property-LINE text and the EXISTENCE of the recovery driver (the sweep-cron must exist before the old fleet is deleted), not a liveness proof. The substantive guarantee is structural; the formal spec is a documented, unrun design record — the honest place where the Alignment leg is weakest.",
+      "chapter_slug": "generative-validation",
+      "backs_claims": ["modeling-thesis", "alignment-thesis", "H3-mechanized-assurance"],
+      "limitation": "The temporal property is modeled and falsifiable but NOT wired to any CI gate — correspondence is a single-property-LINE text match (the .tla action bodies are hand-authored and unpoliced) plus existence-checked satisfy_refs, so nothing proves the code enforces eventual termination. A lived limit-case reasoned in design, one product, one operator; a caution on WHEN a model's defense holds, not evidence modeling generally fails."
     }
   ]
 }
