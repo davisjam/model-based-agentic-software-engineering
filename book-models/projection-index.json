@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1137,
+    "total_sites": 1135,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 731,
+      "book-web": 729,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -21,7 +21,7 @@
         "book-web": [
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 12
+            "occ": 10
           },
           {
             "file": "book/0.4-preface.html",
@@ -627,7 +627,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 3
+            "occ": 1
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
@@ -659,7 +659,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 6
+            "occ": 4
           },
           {
             "file": "book/part-3-intro.html",
@@ -852,10 +852,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.3-the-books-language.html",
-            "occ": 1
-          },
-          {
             "file": "book/4.3-validating-change.html",
             "occ": 1
           },
@@ -866,16 +862,12 @@
           {
             "file": "book/book-index.html",
             "occ": 2
-          },
-          {
-            "file": "book/figures.html",
-            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 5
+            "occ": 3
           }
         ]
       },
@@ -957,7 +949,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 82
+            "occ": 60
           },
           {
             "file": "book/0.4-preface.html",
@@ -1317,7 +1309,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 231
+            "occ": 217
           },
           {
             "file": "book/index.html",
@@ -1511,7 +1503,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 14
+            "occ": 6
           },
           {
             "file": "book/0.4-preface.html",
@@ -1871,7 +1863,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 26
+            "occ": 19
           },
           {
             "file": "book/index.html",
@@ -1985,7 +1977,7 @@
         "book-web": [
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 7
+            "occ": 4
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -2009,7 +2001,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 5
+            "occ": 3
           }
         ],
         "book-pdf": [
@@ -2083,7 +2075,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 58
+            "occ": 33
           },
           {
             "file": "book/0.4-preface.html",
@@ -2443,7 +2435,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 345
+            "occ": 339
           },
           {
             "file": "book/index.html",
@@ -2999,7 +2991,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 3
+            "occ": 1
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
@@ -3031,7 +3023,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 6
+            "occ": 4
           },
           {
             "file": "book/part-2-intro.html",
@@ -3089,7 +3081,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 6
+            "occ": 1
           },
           {
             "file": "book/0.4-preface.html",
@@ -3449,7 +3441,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 5
+            "occ": 2
           },
           {
             "file": "book/index.html",
@@ -4127,7 +4119,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 5
+            "occ": 1
           },
           {
             "file": "book/0.4-preface.html",
@@ -4487,7 +4479,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 34
+            "occ": 31
           },
           {
             "file": "book/index.html",
