@@ -21,14 +21,14 @@
     {
       "id": "mage-what-it-can-and-cant-measure-260801",
       "incident": "A per-task MBSE ablation returned a null that was an ARTIFACT of zero discriminative headroom — both arms scored at ceiling (nav 40/40; impl 119/124), so the instrument could not have detected an assist if one existed. The lesson: a task small enough to freeze into a benchmark cell was small enough to solve without the map; MBSE's value is SYSTEM-level (fix-once-benefits-all, drift/parity over time, a context-bounded fleet operating a context-exceeding codebase), which no single gate-pass cell can measure.",
-      "chapter_slug": "metrics",
+      "chapter_slug": "modeling-measurement-and-evidence",
       "backs_claims": ["modeling-thesis", "H4-representation-leverage"],
       "limitation": "The per-task instrument could not discriminate (both arms at ceiling), so the system-level value is LOCATED, not measured — a null from a non-discriminating instrument is uninformative, neither for nor against the hypothesis. The note itself corrects the record, retracting a prior 'measured null' claim."
     },
     {
       "id": "dod-drift-detection-efficacy-refresh-260803",
       "incident": "A measured efficacy refresh of the Final-Opus Definition-of-Done drift-catch: across N=36 (through 07-28) plus N=20 (07-29..08-03) closed Epics, the catch-rate for model<->code drift under a fixed drift-type taxonomy (STALE-HEADER / SECTION-4-PHASE-NOTE-GAP / STALE-TEST / TRACEABILITY-BROKEN / DOC-CLAIM / NO-DOC-SURFACE). The thesis it grounds: derived defends; snapshotted drifts.",
-      "chapter_slug": "metrics",
+      "chapter_slug": "modeling-measurement-and-evidence",
       "backs_claims": ["alignment-thesis", "H3-mechanized-assurance"],
       "limitation": "The catch-rate is measured over the SNAPSHOTTED drift classes in the fixed taxonomy only; the structural class the Definition-of-Done alone cannot catch is its stated limitation. Single operator, single repository, a bounded corpus of closed Epics — an efficacy reading, not a controlled comparison."
     },
@@ -49,14 +49,14 @@
     {
       "id": "mmm-dry-opportunity-detector-260724",
       "incident": "The model<->code link graph the Missing-Model-Metric populates is invertible: read backwards it surfaces same-action / different-model-node consolidation candidates, duplicated shared-vocabulary across a boundary (the C#/Python CLI exit-code drift was a confirmed hit), and incomplete-composition (which cleanup-class paths reach the CANONICAL seam vs a partial sibling — which fired twice and caught a real chunk-leak bug). The traceability graph earns a SECOND keep: a lens for accidental complexity, not only for un-governed code.",
-      "chapter_slug": "the-executable-zoo",
+      "chapter_slug": "models-and-the-semantic-gap",
       "backs_claims": ["modeling-thesis"],
       "limitation": "Still a field note by A.24 (trigger on the trait, not the mere possibility): fired on three of six model Epics, not yet a formalized query surface — floated as the larger scheme, deliberately not built until the yield stabilizes. Registered here by content from the Epic-dir note; the parent-repo promotion into docs/field-notes/ is a separate step."
     },
     {
       "id": "architectural-drift-open-loop-no-sensor-260807",
       "incident": "A remediation pass-pipeline that was genuinely clean — one driver, one phase taxonomy, one typed pass-metadata contract, a topological sort validating pass order at type-init — had nonetheless drifted at seven sites where the declared order no longer matched what actually executed. The accidental divergences were not scattered: they clustered exactly where the accessibility-GenAI remediation loop iterated hardest (the PowerPoint and PDF runners), because each new generation bet was wired inline 'for now' outside the pass registry, and the one in-code guard — the topo-sort — quantified only over REGISTERED passes, so every inline addition was invisible to it. The formats carrying little GenAI surface (the spreadsheet and document runners) stayed clean. The lesson: an open loop — an iteratively capability-adding subsystem — with neither a constraint that forbids the wrong shape nor a sensor that makes drift visible will decay a clean architecture, and it decays fastest exactly where iteration is most active. The fix pairs re-absorbing the inline work into the model with a live-parity sensor that compares the passes actually executed against the declared graph.",
-      "chapter_slug": "the-executable-zoo",
+      "chapter_slug": "constraints-sensors-validators-gates",
       "backs_claims": ["alignment-thesis", "H5-local-model-deficiency"],
       "limitation": "One pipeline in one product, single operator; the seven-site drift count and its concentration where iteration is hottest are one project's lived observation, not a measured rate across systems. The distinction the note leans on — corrosion (accidental inline drift a sensor must catch) versus library-forced essential divergence (correctly allowlisted) — is a judgment call, not a mechanical signal."
     },

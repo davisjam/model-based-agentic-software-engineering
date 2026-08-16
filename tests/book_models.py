@@ -218,6 +218,25 @@ def _chapter_label_backstop_findings(cim) -> "list[str]":
         for v in vals:
             if _bare_label_miss(v) and v not in labels and v not in _section_ids_cache(cim):
                 out.append(f"backstop: claims ref {v!r} resolves to no chapter label")
+
+    # chapter_slug-shaped models (field-notes.json, discussion-claims.json): every record's `chapter_slug`
+    # must resolve to a current label. This consumes the `_BACKSTOP_LABEL_FIELDS` entries whose field IS a
+    # bare `chapter_slug` — the leg the claims walk above did not cover, which let a mis-slugged field note
+    # rot silently across the chapter restructures (the 260801/260807 dead-slug class).
+    for rel_path, field in cim._BACKSTOP_LABEL_FIELDS:
+        if field != "chapter_slug":
+            continue
+        data = _load(rel_path)
+        if data is None:
+            continue
+        recs = data if isinstance(data, list) else next((v for v in data.values() if isinstance(v, list)), [])
+        for r in recs:
+            if not isinstance(r, dict):
+                continue
+            v = r.get("chapter_slug")
+            if _bare_label_miss(v) and v not in labels and v not in _section_ids_cache(cim):
+                out.append(f"backstop: {rel_path} chapter_slug {v!r} (record {r.get('id', '?')!r}) "
+                           f"resolves to no chapter label")
     return out
 
 
