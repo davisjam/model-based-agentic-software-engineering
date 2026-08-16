@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hand-authored SVG (label: changing-object-of-engineering). The Part VI §6.4 companion to Figure 1.1-1.
+     Two stacked panels showing the change in the OBJECT of engineering. TOP — agentic SE improves the
+     agent's ACCESS to software: an AGENT fed by retrieval/context, interfaces/tools, and program structure
+     acts on a REPOSITORY / TASK and emits a PATCH / IMPLEMENTATION. A rust transition band ("change the
+     object of engineering") separates it from the BOTTOM — MAGE engineers the ENVIRONMENT: an ENGINEER
+     builds the Governed Engineering Environment (models, alignment, evidence/controls/infrastructure), a
+     first-class engineered object inside which agents realize the implementation, yielding the PRODUCT.
+     NOT "Legacy SE" — the top is real engineering; the distinction is the level of the engineered object.
+     Palette: Umber Monograph tokens (ink #1c1917, muted #57534e, rule #e4e0d8, page #fdfcf9;
+     agentic-SE neutral #f3efe7; rust accent #9a3f12 + tint #faf1e6; governed green #155c38 + tint #e9f2ec). -->
+<!-- semantic-families: neutral, governance -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 900" width="1000" height="900"
+     role="group" aria-labelledby="coeTitle coeDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="coeTitle">Changing the object of engineering: from improving the agent to engineering the environment</title>
+  <desc id="coeDesc">Two stacked panels. The upper panel, agentic software engineering, shows an agent fed by
+    three inputs — retrieval and context, agent-computer interfaces and tools, and program structure — acting
+    on a repository or task and producing a patch or implementation; its objective is better agent access to
+    software. A rust band, change the object of engineering, separates the panels. The lower panel, MAGE,
+    shows an engineer constructing the governed engineering environment: purposeful models that make system
+    knowledge explicit, alignment that gives obligations authority, and evidence, controls, infrastructure,
+    and workflows. Agents operate inside that environment to realize the implementation, and the environment
+    yields the product. The environment, not the agent, is the first-class engineered object.</desc>
+
+  <defs>
+    <marker id="coeArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="coeArrowRust" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="900" fill="#fdfcf9"/>
+
+  <!-- ───────────── TOP PANEL — agentic SE ───────────── -->
+  <rect x="28" y="28" width="944" height="352" rx="14" fill="#f3efe7" stroke="#d8d2c6" stroke-width="1.6"/>
+  <text x="52" y="60" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">AGENTIC SOFTWARE ENGINEERING</text>
+  <text x="52" y="80" font-size="15" font-style="italic" fill="#57534e">improve the agent's access to software</text>
+
+  <!-- agent -->
+  <rect x="430" y="98" width="140" height="46" rx="9" fill="#fff" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="127" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Agent</text>
+
+  <!-- three inputs -->
+  <g font-size="14.5" fill="#44403c" text-anchor="middle">
+    <rect x="96"  y="196" width="212" height="58" rx="9" fill="#fff" stroke="#c9c2b4" stroke-width="1.5"/>
+    <text x="202" y="221">retrieval / context</text>
+    <text x="202" y="241" font-size="12.5" fill="#78716c">repository-level retrieval</text>
+    <rect x="394" y="196" width="212" height="58" rx="9" fill="#fff" stroke="#c9c2b4" stroke-width="1.5"/>
+    <text x="500" y="221">interfaces / tools</text>
+    <text x="500" y="241" font-size="12.5" fill="#78716c">agent-computer interface</text>
+    <rect x="692" y="196" width="212" height="58" rx="9" fill="#fff" stroke="#c9c2b4" stroke-width="1.5"/>
+    <text x="798" y="221">program structure</text>
+    <text x="798" y="241" font-size="12.5" fill="#78716c">program-aware search</text>
+  </g>
+  <!-- agent → inputs -->
+  <line x1="470" y1="150" x2="230" y2="192" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <line x1="500" y1="150" x2="500" y2="192" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <line x1="530" y1="150" x2="770" y2="192" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <!-- inputs → repository -->
+  <line x1="202" y1="254" x2="430" y2="296" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <line x1="500" y1="254" x2="500" y2="292" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <line x1="798" y1="254" x2="570" y2="296" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+
+  <!-- repository / task -->
+  <rect x="384" y="296" width="232" height="44" rx="9" fill="#efe9dd" stroke="#a8a093" stroke-width="1.8"/>
+  <text x="500" y="323" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Repository / task</text>
+  <!-- → patch -->
+  <line x1="500" y1="340" x2="500" y2="356" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <text x="500" y="371" text-anchor="middle" font-size="14.5" fill="#57534e">patch / implementation</text>
+
+  <!-- ───────────── transition band ───────────── -->
+  <line x1="500" y1="386" x2="500" y2="420" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#coeArrowRust)"/>
+  <text x="500" y="444" text-anchor="middle" font-size="14.5" font-weight="700" letter-spacing="1" fill="#9a3f12">CHANGE THE OBJECT OF ENGINEERING</text>
+
+  <!-- ───────────── BOTTOM PANEL — MAGE ───────────── -->
+  <rect x="28" y="466" width="944" height="392" rx="14" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.6"/>
+  <text x="52" y="498" font-size="14" font-weight="700" letter-spacing="1.2" fill="#155c38">MAGE</text>
+  <text x="52" y="518" font-size="15" font-style="italic" fill="#57534e">engineer the environment</text>
+
+  <!-- engineer -->
+  <rect x="430" y="536" width="140" height="46" rx="9" fill="#fff" stroke="#155c38" stroke-width="2"/>
+  <text x="500" y="565" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Engineer</text>
+  <line x1="500" y1="582" x2="500" y2="606" stroke="#155c38" stroke-width="1.8" marker-end="url(#coeArrow)"/>
+
+  <!-- governed engineering environment -->
+  <rect x="96" y="612" width="808" height="196" rx="12" fill="#e9f2ec" stroke="#155c38" stroke-width="2.4"/>
+  <text x="120" y="640" font-size="16" font-weight="700" letter-spacing=".4" fill="#155c38">Governed Engineering Environment</text>
+  <text x="884" y="640" text-anchor="end" font-size="12.5" font-style="italic" fill="#3f6d51">first-class engineered object</text>
+
+  <rect x="120" y="656" width="360" height="52" rx="8" fill="#fff" stroke="#a9c6b5" stroke-width="1.5"/>
+  <text x="136" y="678" font-size="15" font-weight="700" fill="#1c1917">Models</text>
+  <text x="136" y="697" font-size="12.5" fill="#57534e">system knowledge made explicit</text>
+
+  <rect x="500" y="656" width="384" height="52" rx="8" fill="#fff" stroke="#a9c6b5" stroke-width="1.5"/>
+  <text x="516" y="678" font-size="15" font-weight="700" fill="#1c1917">Alignment</text>
+  <text x="516" y="697" font-size="12.5" fill="#57534e">obligations given authority</text>
+
+  <rect x="120" y="718" width="764" height="34" rx="8" fill="#f4f8f5" stroke="#cadbcf" stroke-width="1.3"/>
+  <text x="500" y="740" text-anchor="middle" font-size="13.5" fill="#44403c">evidence &#183; controls &#183; infrastructure &#183; workflows</text>
+
+  <!-- agents → implementation, nested -->
+  <rect x="380" y="760" width="240" height="38" rx="8" fill="#fff" stroke="#a9c6b5" stroke-width="1.5"/>
+  <text x="430" y="784" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">agents</text>
+  <line x1="480" y1="779" x2="512" y2="779" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <text x="566" y="784" text-anchor="middle" font-size="13.5" fill="#44403c">implementation</text>
+
+  <!-- GEE → product -->
+  <line x1="500" y1="808" x2="500" y2="828" stroke="#155c38" stroke-width="1.8" marker-end="url(#coeArrow)"/>
+  <text x="500" y="850" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Product</text>
+</svg>
