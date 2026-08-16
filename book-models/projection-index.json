@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1132,
+    "total_sites": 1131,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 726,
+      "book-web": 725,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -169,7 +169,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/appendix-skill-recipe.html",
@@ -189,7 +189,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 46
+            "occ": 45
           },
           {
             "file": "book/list-of-figures.html",
@@ -1269,7 +1269,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 53
+            "occ": 56
           },
           {
             "file": "book/appendix-models.html",
@@ -1301,7 +1301,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 228
+            "occ": 230
           },
           {
             "file": "book/index.html",
@@ -2395,7 +2395,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 15
+            "occ": 14
           },
           {
             "file": "book/appendix-models.html",
@@ -3530,10 +3530,6 @@
             "occ": 2
           },
           {
-            "file": "book/appendix-field-guide.html",
-            "occ": 3
-          },
-          {
             "file": "book/appendix-skill-recipe.html",
             "occ": 1
           },
@@ -3543,7 +3539,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 13
+            "occ": 11
           },
           {
             "file": "book/list-of-figures.html",
@@ -3553,7 +3549,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 11
           }
         ]
       },
@@ -4443,7 +4439,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/appendix-models.html",

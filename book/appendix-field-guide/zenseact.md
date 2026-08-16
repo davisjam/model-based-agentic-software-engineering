@@ -4,11 +4,11 @@
 
 #### Verso — Evidence
 
-**What the public record shows.** Zenseact describes an organizational split. A platform team owns common substrate — authentication, sessions, execution, and safety — while domain teams retain their own agents, tools, instructions, and domain expertise. The book uses this as the organizational form of a principle seen technically elsewhere: centralize mechanisms that should be shared; leave domain judgment with the people who hold the domain knowledge.[^zenseact-split]
+**What the public record shows.** Zenseact describes an organizational split. A platform team owns common substrate — authentication, sessions, execution, and safety — while domain teams retain their own agents, tools, instructions, and domain expertise. The arrangement expresses organizationally a principle seen technically elsewhere: centralize mechanisms that should be shared; leave domain judgment with the people who hold the domain knowledge.[^zenseact-split]
 
-The book also uses Zenseact to illustrate *selective context*. Routing machinery selects task-relevant expertise instead of loading the whole organizational corpus into every reasoning window. Part IV phrases the same example as a central runtime and safety envelope, with domain expertise accruing in reusable skills surfaced on demand.[^zenseact-context]
+Zenseact also illustrates *selective context*. Routing machinery selects task-relevant expertise instead of loading the whole organizational corpus into every reasoning window. A central runtime and safety envelope coexist with domain expertise captured in reusable skills and surfaced on demand.[^zenseact-context]
 
-**Boundary of the evidence.** This is evidence about organizational architecture, context routing, delegation, and ownership. The reasoning horizon is the *problem* this structure helps manage — the finite window a reasoner can hold — not a destination a team arrives at.
+**Boundary of the evidence.** This is evidence about organizational architecture, context routing, delegation, and ownership. It does not establish the resulting productivity, safety, or engineering-capital returns of that arrangement.
 
 **Portable lesson.** Build the common substrate once; distribute the engineering judgment to the teams that possess the knowledge it requires.
 
@@ -20,6 +20,6 @@ The book also uses Zenseact to illustrate *selective context*. Routing machinery
 <!-- label: field-guide-zenseact -->
 <!-- figure: assets/field-guide-zenseact.svg | *Zenseact projected onto MAGE.* Shared mechanisms centralize while domain knowledge and judgment remain distributed — a concrete organizational answer to scaling both context and authority. -->
 
-**MAGE reading.** Zenseact joins the two theses organizationally. Externalized domain knowledge and selective context help finite reasoners see what a task requires; shared authentication, execution, and safety machinery place common authority in one substrate. The organization does not centralize the judgment itself — domain teams keep the expertise that defines their agents and tools. This is a useful organizational realization of the Governed Engineering Environment: common mechanism without a central knowledge bottleneck. The shared-substrate/distributed-judgment split is what the governed environment looks like when an organization, not a codebase, is doing the governing.
+**MAGE reading.** Zenseact combines Modeling and Alignment organizationally. Externalized domain knowledge and selective context help finite reasoners see what a task requires; shared authentication, execution, and safety machinery place common authority in one substrate. The organization does not centralize the judgment itself — domain teams keep the expertise that defines their agents and tools. The result is an organizational realization of the Governed Engineering Environment: common mechanisms without a central knowledge bottleneck.
 
-**Interpretive boundary.** The evidence supports the architecture of delegation and context. Any claim about resulting productivity, safety, or engineering-capital return requires separate evidence.
+**Interpretive boundary.** The projection supports reading the platform/domain split as a realization of the Governed Engineering Environment; it does not license inferring that the governance-conversion loop closes or that Modeling and Alignment are fully instantiated.

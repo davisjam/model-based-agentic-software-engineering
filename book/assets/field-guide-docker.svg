@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- HAND-AUTHORED one-off (Field Guide card — Docker) — NOT projector output; edit by hand and keep this header. -->
-<!-- Field-guide team card: Docker's entry door (authority boundaries & evaluation loops) -> MAGE landing (Governance Conversion). label: field-guide-docker. Reference/nav card art, not a role-coloured figure. -->
+<!-- Field-guide team card: Docker's entry door (authority boundaries & evaluation loops) -> MAGE landing (Alignment). label: field-guide-docker. Reference/nav card art, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Docker — authority boundaries and evaluation loops to Governance Conversion">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Docker — authority boundaries and evaluation loops to Alignment">
   <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
 
   <!-- header -->
@@ -47,7 +47,7 @@
   <line x1="545" y1="172" x2="545" y2="248" stroke="#1c1917" stroke-width="3"/>
   <line x1="595" y1="172" x2="595" y2="248" stroke="#1c1917" stroke-width="3"/>
   <circle cx="570" cy="210" r="9" fill="#1c1917"/>
-  <text x="570" y="150" text-anchor="middle" font-size="16" fill="#57534e">admission kept probabilistic</text>
+  <text x="570" y="150" text-anchor="middle" font-size="16" fill="#57534e">semantic admission remains human</text>
   <text x="570" y="272" text-anchor="middle" font-size="16" fill="#57534e">human on every merge</text>
 
   <!-- gate -> landing -->
@@ -56,8 +56,7 @@
   <!-- landing badge -->
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
   <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="860" y="203" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Governance</text>
-  <text x="860" y="223" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Conversion</text>
+  <text x="860" y="211" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Alignment</text>
 
   <!-- takeaway -->
   <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>

@@ -28,7 +28,7 @@
   <circle cx="508" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
   <circle cx="560" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
   <text x="430" y="284" text-anchor="middle" font-size="16" fill="#78716c">agents implement concurrently</text>
-  <text x="430" y="306" text-anchor="middle" font-size="16" fill="#78716c">76% jump in PR frequency</text>
+  <text x="430" y="306" text-anchor="middle" font-size="16" fill="#78716c">concurrent fleet execution</text>
 
   <!-- judgment moves upstream -->
   <line x1="430" y1="238" x2="430" y2="163" stroke="#57534e" stroke-width="2.5"/>
