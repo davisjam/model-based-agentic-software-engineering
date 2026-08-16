@@ -69,7 +69,7 @@ def _book_title_block() -> str:
 # (only ROLE_DIRS + root-level `.md` render) and `_is_publishable` never auto-stages them, so `docs/` is
 # excluded by construction — this entry makes that explicit for the html-walk family (orphan gate, leak,
 # axe) so a rendered artifact ever dropped under `docs/` can't trip the reachability gate.
-NON_SITE_DIRS = ("plugin", "node_modules", "site", "_site", ".git", "__pycache__", "hooks", "_drafts", "_print", "docs")
+NON_SITE_DIRS = ("plugin", "node_modules", "site", "_site", ".git", "__pycache__", "hooks", "_drafts", "_print", "docs", "_design")
 
 
 def gitignored_top_dirs() -> frozenset[str]:
@@ -4254,6 +4254,14 @@ def cmd_build(_args) -> int:
     # whole-body projection now (Option B: the entry is authored + parity-gated, not generated whole).
     print(f"built {written} entry/index pages + landing index.html + catalogue-views.html "
           f"+ {n_concept} concept entry pages ({len(entries)} mechanisms in census)")
+    # Regenerate the Extended Figure Gallery dev artifact (live/unused/draft figures, for review). Non-fatal
+    # subprocess (a review tool must never break the build); output is gitignored + orphan-gate-excluded
+    # (book/_design is in NON_SITE_DIRS). Runs here so all figure references are known.
+    rc_fig = subprocess.run([sys.executable, os.path.join(ROOT, "book", "build_extended_figures.py")],
+                            cwd=ROOT).returncode
+    if rc_fig != 0:
+        print("WARNING: extended-figures gallery regeneration failed — "
+              "book/_design/extended-figures.html may be stale", file=sys.stderr)
     # Regenerate the packaged skill bundle from the same sources — same "can't drift" discipline as the
     # HTML. build is the one regeneration point (pre-commit hook, deploy, and CI all call it), so this
     # single wire-in keeps plugin/ fresh. Subprocess avoids a catalog <-> bundle_skill circular import.
