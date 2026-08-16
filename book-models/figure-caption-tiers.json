@@ -319,12 +319,6 @@
       "location": "part6",
       "rationale": "the three economic variables (physical realization / implementation labor / synchronization cost) and the change that moves them; R47 replacement for why-software-came-last"
     },
-    "assets/old-machinery-new-economics.svg": {
-      "tier": "A",
-      "kind": "conceptual-framework",
-      "location": "part6",
-      "rationale": "the old-machinery-new-economics recombination — predecessor disciplines' moves recombined around autonomous software work under commodity intelligence's changed economics; the §6.5.4 heritage anchor"
-    },
     "assets/model-induction-general.svg": {
       "tier": "A",
       "kind": "conceptual-framework",
@@ -1098,6 +1092,12 @@
       "kind": "conceptual-inversion",
       "location": "part6",
       "rationale": "the change in engineering object from agent-access to environment; the Part VI companion to the book's opening leverage figure — anchor caption naming the inversion"
+    },
+    "assets/established-traditions-new-composition.svg": {
+      "tier": "A",
+      "kind": "conceptual-convergence",
+      "location": "part6",
+      "rationale": "two established traditions (engineering + AI) converge in MAGE's new composition → GEE → governance conversion → engineering capital; the §6.5.4 heritage anchor"
     }
   }
 }
