@@ -7,7 +7,7 @@
     "derived_ids": 145,
     "missing_topic_sentence": 0,
     "sections_drained": 103,
-    "paragraph_points": 441
+    "paragraph_points": 443
   },
   "chapters": [
     {
@@ -149,6 +149,11 @@
               "slug": "mage-is-about-that-environment",
               "text": "MAGE is principally about that environment; the method lies in the representations work reasons through, the obligations the environment can make authoritative, and the judgment that decides what should become durable engineering structure.",
               "block_index": 13
+            },
+            {
+              "slug": "mage-accepts-the-lesson-changes-the-level",
+              "text": "External representation, memory, and tools have long improved machine reasoning; MAGE takes the step outward to the engineered environment through which autonomous work proceeds over time.",
+              "block_index": 15
             }
           ]
         },
@@ -158,32 +163,32 @@
           "heading_text": "Suspect the Setup First",
           "topic_sentence": "The Printer suggests a useful diagnostic rule: suspect the engineered setup before inferring a machine limit.",
           "id_source": "explicit",
-          "block_index": 15,
+          "block_index": 17,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "The Printer suggests a diagnostic rule: suspect the engineered setup before inferring a machine limit.",
-              "block_index": 17
+              "block_index": 19
             },
             {
               "slug": "a-photo-does-not-specify-the-object",
               "text": "A 3D printer makes the distinction obvious: appearance does not specify internal structure, materials, tolerances, or loads; the printer needs a representation adequate to the properties the finished object must have.",
-              "block_index": 19
+              "block_index": 21
             },
             {
               "slug": "plausible-completion-is-not-a-specification",
               "text": "Software agents weaken the analogy but strengthen the engineering problem: a capable agent can infer a great deal from little, but plausible completion is not an explicit statement of which properties must hold, which tradeoffs are acceptable, or what evidence establishes correctness.",
-              "block_index": 21
+              "block_index": 23
             },
             {
               "slug": "inspect-what-the-engineer-controlled-first",
               "text": "When an agent produces the wrong result, inspect first what the engineer controlled — instructions, representation, task boundary, tools, evidence; failed output alone does not establish that the foundation model lacks the capability.",
-              "block_index": 23
+              "block_index": 25
             },
             {
               "slug": "velocity-amplifies-sound-and-bad-engineering-alike",
               "text": "Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike.",
-              "block_index": 25
+              "block_index": 27
             }
           ]
         }
@@ -430,6 +435,11 @@
               "slug": "new-architectures-move-constants-not-the-principle",
               "text": "Larger windows, persistent memory, retrieval, or new architectures move the boundaries and change the constants; they do not remove the engineering principle that question-relevant state must stay available and cheap to reason over while irrelevant detail stays outside the active working set.",
               "block_index": 36
+            },
+            {
+              "slug": "reasoning-horizon-is-broader-than-context-engineering",
+              "text": "Retrieval and external memory make more raw state available; they do not decide which abstraction makes the engineering property tractable — MAGE is semantic compression through purposeful representation.",
+              "block_index": 38
             }
           ]
         },
@@ -439,22 +449,22 @@
           "heading_text": "Probabilistic work needs external authority",
           "topic_sentence": "The second problem is not that agents make mistakes while human programmers do not.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 40,
           "points": [
             {
               "slug": "authorship-is-separate-from-assurance",
               "text": "Software engineering has always separated authorship from assurance — we compile instead of trusting a prediction, test instead of accepting an explanation — because the producer's confidence is not enough.",
-              "block_index": 40
+              "block_index": 42
             },
             {
               "slug": "authority-must-reside-outside-the-agent",
               "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; an agent can propose, inspect, explain, and repair, but another judgment from the same substrate does not create authority — something outside the producing run must decide what evidence counts.",
-              "block_index": 42
+              "block_index": 44
             },
             {
               "slug": "alignment-has-semantic-reach-and-modeling-moves-the-boundary-outward",
               "text": "Some obligations need little modeling — a sandbox, compiler, test, or permission system holds them; those are real Alignment, limited by semantic reach. Modeling moves that boundary outward, making larger properties available to the reasoner and to deterministic machinery.",
-              "block_index": 44
+              "block_index": 46
             }
           ]
         },
@@ -464,17 +474,17 @@
           "heading_text": "Agentic Work Has Observable Seams",
           "topic_sentence": "Agentic work occurs through observable interfaces.",
           "id_source": "derived",
-          "block_index": 46,
+          "block_index": 48,
           "points": [
             {
               "slug": "agentic-work-occurs-through-observable-interfaces",
               "text": "Agentic work occurs through observable interfaces; whatever internal computation produces a proposed action, consequential work reaches the engineering system through inputs, tool calls, edits, outputs, and lifecycle transitions — boundaries the environment can observe, constrain, validate, or stop.",
-              "block_index": 48
+              "block_index": 50
             },
             {
               "slug": "representation-determines-what-the-control-points-can-know",
               "text": "Local controls already operate at these seams without a system model; explicit engineering models extend the semantic reach of the same control points, so an action can be judged not only by what it does but by what it means for architecture, policy, behavior, ownership, measurements, or other represented obligations.",
-              "block_index": 50
+              "block_index": 52
             }
           ]
         }
