@@ -213,6 +213,8 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: model-drift | Model drift
 - concept: semantic-gap | The semantic gap
 - concept: intervention-boundary | Intervention boundary
+- concept: guidance-vs-authority | Guidance vs. authority
+- concept: feedback | Feedback
 - concept: reasoning-input | Reasoning input
 - concept: action-boundary | Action boundary
 - concept: work-unit-boundary | Work-unit boundary
@@ -224,6 +226,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: right-level-of-enforcement | The right level of enforcement
 - concept: measure-one-level-deeper | Measure one level deeper
 - concept: governed-environment | The governed environment
+- concept: governed-engineering-environment | Governed Engineering Environment (GEE)
 - concept: ex-ante-governance | Ex-ante governance
 - concept: ex-post-governance | Ex-post governance
 - concept: governance-conversion | Governance conversion
@@ -389,7 +392,7 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: code-fabricator | local
 - term: production-software | local
 - term: cad-model | local
-- term: running-example | local
+- term: running-example | section
 - term: static-analysis | local
 - term: ban-lint | local
 - term: documentation-hierarchy | section
@@ -403,9 +406,9 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: doc-derived-test | local
 - term: seam | local
 - term: governance-graph | section
-- term: shared-resource | local
+- term: shared-resource | section
 - term: outside-hook | local
-- term: mbse | local
+- term: mbse | section
 - term: upkeep | local
 - term: silver-bullet | local
 - term: sysml | local
@@ -468,15 +471,15 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: field-report | local
 - term: mastery-skill | local
 - term: reflection-hook | local
-- term: orthogonal-models | local
+- term: orthogonal-models | section
 - term: team-dimension | local
 - term: closed-vocabulary | local
 - term: wrong-shape | local
 - term: fuzzing | section
 - term: grammar-coverage | section
-- term: oracle | local
+- term: oracle | section
 - term: shrinking | local
-- term: stable-spec-point | local
+- term: stable-spec-point | section
 - term: never-crash-contract | local
 - term: interleaving-search | local
 - term: document-accessibility | section
@@ -501,7 +504,7 @@ concept registry, `concepts.json`, and the book's `index-def` tags all join on.
 - term: llm-as-function-call | section
 - term: trust-boundary | section
 - term: edit-language | section
-- term: reactive-seam | local
+- term: reactive-seam | section
 - term: serverless | local
 - term: poll-vs-push | local
 - term: phased-design | local
