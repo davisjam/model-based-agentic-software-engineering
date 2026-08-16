@@ -48,6 +48,26 @@ def _live_map() -> dict[str, tuple[str, str]]:
     return m
 
 
+def _referenced_basenames(root: str) -> set[str]:
+    """SVG basenames mentioned ANYWHERE in the repo's tracked text (build code, typst templates, JSON models,
+    navigation) — 'used' even when the reference is not a chapter `<!-- figure: -->` directive. This is what
+    keeps cover art, nav-subway panels, and build-referenced glyphs out of the 'unused' bucket."""
+    refs: set[str] = set()
+    globs = ("book/**/*.py", "book/**/*.typ", "book/**/*.json", "book/**/*.md", "book/**/*.js",
+             "book-models/**/*.py", "book-models/**/*.json", "*.py")
+    for g in globs:
+        for f in glob.glob(os.path.join(root, g), recursive=True):
+            if "_design" in f or "node_modules" in f or f.endswith("extended-figures.html"):
+                continue
+            try:
+                txt = open(f, encoding="utf-8", errors="ignore").read()
+            except OSError:
+                continue
+            for m in re.finditer(r'[\w./+-]+\.svg', txt):
+                refs.add(os.path.basename(m.group(0)))
+    return refs
+
+
 def _inline_svg(path: str) -> str:
     try:
         s = open(path, encoding="utf-8").read()
@@ -71,8 +91,10 @@ def build_extended_figures(root: str = ROOT, out: str = OUT) -> tuple[int, int, 
     """Emit the gallery to `out`; returns (live, unused, draft) counts."""
     live = _live_map()
     assets = {os.path.basename(p): p for p in glob.glob(os.path.join(root, "book/assets/*.svg"))}
+    referenced = _referenced_basenames(root)
     live_bases = sorted(b for b in assets if b in live)
-    unused_bases = sorted(b for b in assets if b not in live)
+    used_bases = sorted(b for b in assets if b not in live and b in referenced)   # cover, nav, build-referenced
+    unused_bases = sorted(b for b in assets if b not in live and b not in referenced)  # referenced nowhere
     draft_only: dict[str, str] = {}
     for p in glob.glob(os.path.join(root, "book/_design/**/*.svg"), recursive=True):
         b = os.path.basename(p)
@@ -85,7 +107,9 @@ def build_extended_figures(root: str = ROOT, out: str = OUT) -> tuple[int, int, 
         cap_h = html.escape(cap[:200] + ("…" if len(cap) > 200 else "")) if cap else "<em>no caption</em>"
         live_cards.append(_card(b, assets[b], f'<span class="used">§ {html.escape(slug)}</span>'
                                               f'<span class="cap">{cap_h}</span>'))
-    unused_cards = [_card(b, assets[b], '<span class="tag unused">unused in assets/</span>')
+    used_cards = [_card(b, assets[b], '<span class="tag usedel">used outside chapters</span>')
+                  for b in used_bases]
+    unused_cards = [_card(b, assets[b], '<span class="tag unused">referenced nowhere</span>')
                     for b in unused_bases]
     draft_cards = [_card(b, p, f'<span class="tag draft">draft only</span>'
                               f'<span class="cap">{html.escape(os.path.relpath(p, root))}</span>')
@@ -128,12 +152,12 @@ display:flex;flex-direction:column;gap:4px;background:#fbfaf7}}
 .used{{color:var(--green);font-weight:600}} .cap{{color:var(--muted)}}
 .tag{{font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;width:max-content;
 padding:2px 8px;border-radius:6px}}
-.tag.unused{{background:var(--amber);color:var(--rust)}} .tag.draft{{background:#eef2ef;color:var(--green)}}
+.tag.usedel{{background:#eef3f8;color:#345}} .tag.unused{{background:var(--amber);color:var(--rust)}} .tag.draft{{background:#eef2ef;color:var(--green)}}
 .err{{color:#b91c1c;font-size:12px}}
 </style></head><body>
 <header>
 <h1>Extended Figure Gallery <span style="font-weight:400;color:var(--muted);font-size:16px">— every SVG in the book repo</span></h1>
-<div class="counts"><b>{len(live_cards)}</b> live · <b>{len(unused_cards)}</b> unused (finished, in assets/) · <b>{len(draft_cards)}</b> draft-only (in _design/)</div>
+<div class="counts"><b>{len(live_cards)}</b> live · <b>{len(used_cards)}</b> used outside chapters (cover/nav/build) · <b>{len(unused_cards)}</b> unused (referenced nowhere) · <b>{len(draft_cards)}</b> draft-only</div>
 <nav class="jump"><a href="#live">Live</a><a class="hot" href="#unused">↓ Jump to unused figures</a><a href="#drafts">Draft-only</a></nav>
 </header>
 <main>
@@ -142,6 +166,14 @@ padding:2px 8px;border-radius:6px}}
 <p class="intro">These <b>{len(live_cards)}</b> figures are referenced by a chapter and appear in the
 published book and in <b>figures.html</b>. Each card notes the section that uses it and its caption.</p>
 <div class="grid">{''.join(live_cards)}</div>
+</section>
+<section id="used">
+<h2>Used outside chapters — cover, navigation, and build assets</h2>
+<p class="intro">These <b>{len(used_cards)}</b> SVGs are in <b>book/assets/</b> and <b>are used</b> — the cover
+art, the navigation panels, glyphs, and other assets the build, typst templates, or nav code reference
+directly rather than through a chapter <code>&lt;!-- figure: … --&gt;</code> directive. They do not appear
+in <b>figures.html</b> (which lists chapter figures only), but they are not unused.</p>
+<div class="grid">{''.join(used_cards)}</div>
 </section>
 <div class="divider"><span>not currently used ↓</span></div>
 <section id="unused">
@@ -160,13 +192,13 @@ not committed to the shipped tree) — earlier explorations and unfinished figur
 </main></body></html>"""
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, "w", encoding="utf-8").write(doc)
-    return len(live_cards), len(unused_cards), len(draft_cards)
+    return len(live_cards), len(used_cards), len(unused_cards), len(draft_cards)
 
 
 def main() -> int:
-    lv, un, dr = build_extended_figures()
-    print(f"extended-figures: wrote {os.path.relpath(OUT, ROOT)} — live={lv} unused={un} draft={dr} "
-          f"({os.path.getsize(OUT)//1024} KiB)")
+    lv, us, un, dr = build_extended_figures()
+    print(f"extended-figures: wrote {os.path.relpath(OUT, ROOT)} — live={lv} used-elsewhere={us} "
+          f"unused={un} draft={dr} ({os.path.getsize(OUT)//1024} KiB)")
     return 0
 
 
