@@ -1,7 +1,7 @@
 <!-- part-foreshadows: abundant-implementation, govern-the-environment -->
-Engineering reorganizes when a constraint moves. Steam made mechanical power far cheaper;
+Engineering reorganizes when a constraint moves.[note: The intuition is familiar from Amdahl's law: accelerating one part of a computation increases the relative importance of the work that remains [cite: amdahl1967]. Goldratt's Theory of Constraints states the broader operational version: system performance is governed by a constraint, and improving that constraint eventually moves attention to another [cite: goldratt1984]. MAGE applies the same reasoning to the economics of software engineering.] Steam made mechanical power far cheaper;
 integrated circuits did the same for computation; coding agents are now doing it for
-implementation. "Scarce" here is the economic sense, not a mood. A scarce factor constrains
+implementation. A scarce factor constrains
 output, so it draws investment and attention. Implementation was never the only scarce input to
 software engineering, but for most of the field's history it consumed enough expert effort to
 limit what teams could attempt and how quickly they could change a system. As its marginal cost
