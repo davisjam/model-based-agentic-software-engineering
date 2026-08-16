@@ -1,10 +1,7 @@
 <!-- point: the-recipe-runs-the-same-on-three-independent-domains | The recipe runs the same on three orthogonal domains. | terms: self-communicate, self-governance, self-operate -->
 This chapter runs the recipe three times — on self-communicate, self-governance, and self-operate: three
-orthogonal domains factored the same way. Each case answers the same questions in the same order, so you
-can read the three side by side and watch the same skeleton surface in each. The second, self-governance,
-is the **recursive case**: it turns the MAGE method itself into a model an agent can reason through. The
-third, self-operate, is the **stress test** — operations looks least like something you can model, yet it
-factors much as the other two do.
+orthogonal domains factored the same way. Self-governance is the **recursive case**: it models the MAGE
+method itself. Self-operate tests the method against a less obviously modelable domain: operations.
 
 ## self-communicate
 
@@ -12,41 +9,41 @@ factors much as the other two do.
 
 The fleet and its operator produce prose and diagrams constantly — control descriptions, design docs,
 mechanism entries, runbooks, handoffs, and the orchestrator's own status reports and tradeoff explanations
-to the human. Ungoverned, it drifts: inconsistent terms, the wrong doc shape, LLM-tell density, hand-made
-bad figures. The agent *can* write; it writes *inconsistently against an engineering standard*. The skill
-installs the craft so every document comes out terse, consistent, and correctly shaped.
+to the human. Ungoverned, it drifts: inconsistent terminology, inappropriate document structure, LLM tells, and poor
+figures. The problem is not generating prose but producing it consistently against an engineering standard.
+The skill installs the craft so every document comes out terse, consistent, and correctly shaped.
 
 ### Fundamental model
 
-**Rhetoric as craft** — good technical prose has named parts, not a matter of taste. See it as classical
-figures applied with variety, and the register, lexicon, voice, and audit all attach to that one frame.
-Visualization, the second leg, rests on the same claim: a diagram is that craft for the shapes prose
-carries poorly.
+**Rhetoric as craft**: good technical prose can be described in terms of named techniques rather than taste
+alone. See it as classical figures applied with variety, and the document form, lexicon, voice, and audit
+all attach to that one frame. Visualization extends the same principle to relationships that prose
+represents poorly.
 
 ### Orthogonal models
 
 One file per facet.
 
 - **Rhetoric** (`writing/rhetoric.md`) — the device toolkit; sentence shape.
-- **Engineering register** (`writing/engineering.md`) — the doc's Diátaxis mode: tutorial, how-to,
-  reference, explanation.
+- **Document form** (`writing/engineering.md`) — the document's Diátaxis mode: tutorial, how-to,
+  reference, or explanation.
 - **Lexicon** (`writing/lexicon.md`) — one concept, one word.
 - **Voice** (`writing/voice.md`) — the register and sound.
 - **Audit** (`writing/audit.md`) — the grading procedure.
 - **Visualization** (`drawing/diagrams.md`, Mermaid-first, with `charts.md` and `tables.md` for data
   figures) — the shapes prose carries poorly.
 
-Each cuts an independent axis of a document. A doc's shape (register) is independent of its vocabulary
+Each cuts an independent axis of a document. A doc's form is independent of its vocabulary
 (lexicon), which is independent of its sound (voice), which is independent of its sentence devices
 (rhetoric): change the mode without touching the terms, fix a term without reshaping the doc. The top split
 is prose versus drawing; audit is the meta-facet that grades both.
 
 ### Governing principle
 
-*The representation must not distract from the idea* — less is more — plus the order of application: name
-the genre and mode first, draft in the house voice with varied devices, name concepts from the lexicon,
-draw the shape where there is one, and audit before shipping. A second stance runs underneath: name the
-concept once, then use the name.
+The governing principle is that representation should serve rather than distract from the idea. Apply the
+facets in order: choose the document form, draft in the house voice using varied rhetorical devices, use
+canonical terms from the lexicon, draw relationships that prose carries poorly, and audit before shipping.
+A second stance runs underneath: name the concept once, then use the name.
 
 ### Layout
 
@@ -61,17 +58,15 @@ One directory per leg, one file per facet — the tree *is* the orthogonal-model
 
 ### Lesson
 
-The base model, rhetoric-as-craft, turns a pile of style tips into a skill; facets map one-to-one to files,
-so progressive disclosure loads only the one the task touches. It **composes** — it owns the prose the other
-two skills produce, cited by base model rather than copied — and it can be **mined, not only authored**: the
-lexicon is bootstrapped from a codebase walk and kept living. It is a **soft** skill; the one hard control
-it suggests is running the audit as a gate.
+Rhetoric-as-craft gives the skill a model rather than a collection of style rules. The facets map cleanly to
+resources, permitting progressive disclosure and reuse by other skills. The skill remains soft; where an
+audit result must block delivery, the audit belongs in a gate.
 
 ## self-governance
 
 ### Problem
 
-An agent can hold excellent tools and still engineer badly. It runs the tests, calls the formatter,
+An agent can have excellent tools and still engineer badly. It runs the tests, calls the formatter,
 queries the repository — and still models the wrong thing, gives authority to a fact that should stay
 advisory, or freezes a one-off mistake into a permanent rule. The missing capability is not another tool.
 It is the engineering method itself: knowing *what to model, what must hold, and which judgment is worth
@@ -80,16 +75,16 @@ making durable.*
 Self-Governance packages that method as a skill. It teaches an agent to apply MAGE to its own engineering
 work — recognize the situation, choose a modeling or alignment move, act through the governed environment,
 and weigh what should persist. The skill carries the *method.* Concrete system truth — what this codebase
-intends, contains, and guarantees — arrives from model providers, never from memory. Knowing the method
-and knowing the system are different competences, and the skill keeps them apart.
+intends, contains, and guarantees — arrives from model providers, never from memory. The engineering method
+and concrete system knowledge are separate concerns; the skill keeps them separate.
 
 ### Fundamental model
 
 **The MAGE engineering loop.** Everything in the skill supports one cycle, run whenever the agent engineers:
 
 - **Recognize the situation.** What am I actually facing?
-- **Model or align.** Model what must be understood; make authoritative what must hold. These are the two —
-  and only two — MAGE activities.
+- **Model or align.** Model what must be understood; make authoritative what must hold. These are MAGE's two
+  engineering activities.
 - **Choose a move, then a capability.** Pick the engineering move the situation calls for, then the skill
   that performs it.
 - **Act through the governed environment.** A move becomes consequential only there, never by the skill
@@ -98,17 +93,16 @@ and knowing the system are different competences, and the skill keeps them apart
   enough to become **engineering capital.**
 
 Modeling makes engineering knowledge explicit; Alignment gives selected obligations consequential authority. Self-Governance is
-not a third activity beside them. It is the discipline of turning both on your own work. That is the whole
-of the rewrite: the fundamental model is the *loop,* not a catalogue of mechanisms.
+not a third activity beside them. It is the discipline of turning both on your own work.
 
 ### Orthogonal models
 
-The loop's questions are independent, so each becomes its own facet. Six directories, one question each;
-the router names the question and sends you to the owner.
+The loop's questions are independent, so each becomes its own facet. Each of six directories answers one
+question; the router identifies the question and directs the agent to the corresponding facet.
 
 - **`modeling/` — the model vocabulary and the verbs that build it.** *What kind of representation could
   help, and how does representation improve?* Families of model (structure, behavior, ownership, decision,
-  measurement, provenance) and the ten moves that raise a fact up the authority ladder.
+  measurement, provenance) and the ten moves that make a fact more explicit, structured, and executable.
 - **`practice/` — situation recognition and proportionality.** *What situation am I in, and which move is
   warranted?* One facet classifies — a field guide of engineering situations, plus a design-time smell
   scan; its sibling weighs the tradeoff and right-sizes the response.
@@ -119,7 +113,7 @@ the router names the question and sends you to the owner.
   index of skills to compose — its two partners among them — never a copy of their manuals.
 - **`alignment/` — how intent acquires authority.** *What should stay true without a person re-checking
   it?* Constraint, sensor, validator, gate; prevent-versus-detect; soft-versus-hard; the three governance
-  targets; and the mechanism census. This is the old skill's entire centerpiece, kept intact one level down.
+  targets; and the mechanism census.
 - **`learning/` — governance conversion.** *What should persist from this episode?* The recurrence gate,
   the conversion menu, and the two standing procedures, AUDIT and INTERPRET-FAILURE.
 
@@ -134,8 +128,7 @@ axes are orthogonal, the agent loads only the facet its question touches.
 ### Governing principle
 
 *Apply MAGE to the work itself: model what must be understood, make authoritative what must hold, and
-convert recurring judgment into capital.* The router ties the facets to that principle, and a handful of
-reflexes carry it:
+convert recurring judgment into capital.* Five operating rules follow:
 
 - **Model before guessing.** Reach concrete system truth through a provider; do not reconstruct it from
   memory or raise confidence by rhetoric.
@@ -143,13 +136,13 @@ reflexes carry it:
   to *nothing.* Most failures convert to nothing, and the recurrence gate exists to license that answer.
 - **Method before tool.** Choose the move the situation calls for, then the capability that performs it,
   not a capability because it is at hand.
-- **Right-size the fix.** Prefer the smallest sound change that closes the class; float the larger scheme
-  rather than reflexively building it. Prevention by construction beats detection where the action space can
+- **Right-size the fix.** Prefer the smallest sound change that closes the class; propose a larger intervention
+  rather than implementing it reflexively. Prevention by construction beats detection where the action space can
   honestly close.
 - **Escalate a genuine judgment, not an inconvenience.** A real authority-or-consequence boundary earns a
   prepared decision handed upward. A merely hard problem does not.
 
-One reflex sits above the rest: **self-governance is not self-certification.** The agent may select, model,
+**Self-governance is not self-certification.** The agent may select, model,
 propose, and check, but its belief that the work is correct is not evidence that it is. A skill is soft — it
 aims a probabilistic agent and cannot block. So hard mechanisms are *proposed and scaffolded,* then handed
 to a human or the harness; never claimed as *enforced* when only recommended. The deciding evidence comes
@@ -168,6 +161,7 @@ self-governance/
   alignment/   repertoire.md  mechanisms/INDEX.md  mechanisms/<target>/<family>/<mechanism>.md
   learning/    governance-conversion.md
   templates/   system-models-starter-kit.md  state-machine-model-starter.py  …
+               — scaffolds for creating system models, never system-specific truth
 ```
 
 One directory per question, one file per facet. The mechanism census lives under `alignment/`, where
@@ -177,16 +171,11 @@ prevent-versus-detect now sits one level below the loop.
 
 Self-Governance is the appendix's culmination because the domain it models is the MAGE method itself. The
 recipe turns recursive here: the skill that teaches an agent to build models is itself a model of how to
-build them. That is why the fundamental model is the *loop,* not a taxonomy of mechanisms. An earlier draft
-of this skill made prevent-versus-detect the top of its tree; that was a good model of one engineering move,
-not a large enough model of self-governance. The census, the two modes, soft-versus-hard, the three targets
-all survive — they moved one level down, under Alignment, where they belong.
+build them. That is why the fundamental model is the *loop,* not a taxonomy of mechanisms.
 
-The skill draws the Modeling–Alignment boundary most plainly of the three. **A mastery-skill is a soft
-mechanism.** It represents governance knowledge and helps an agent reason through it; it cannot make a
-property hold. Where a property must hold, the knowledge crosses into Alignment — a constraint, validator,
-or gate that does not depend on the agent's cooperation. The skill proposes and scaffolds those. It does not
-install them, and it does not certify its own output.
+The Modeling–Alignment boundary matters especially here: self-governance can propose and scaffold a
+constraint, validator, or gate, but the resulting mechanism — not the skill's judgment — must supply the
+enforcement.
 
 And it **composes.** It supplies the engineering judgment behind changes to models and mechanisms, mints the
 controls self-operate runs, and writes what it produces in self-communicate's register.
@@ -194,17 +183,13 @@ controls self-operate runs, and writes what it produces in self-communicate's re
 ## self-operate
 
 <!-- point: operations-factors-the-same-way-as-the-others | Operations, the least modelable domain, factors the same way. | terms: self-operate, lifecycle -->
-A useful stress test, because operations looks *less* like a domain with an explicit model — a collection of
-commands, incidents, and local habits. Running the recipe on it exposes structure underneath that apparent
-sprawl; it factors much as communication and governance do.
 
 ### Problem
 
-Running an agent-fleet repo is a sprawl of ad-hoc operations — dispatch and recover agents, keep the
-mainline deployable, reclaim disk, weather colima and host-tool trouble, watch cron health, RCA an
-ambiguous signal. Met cold, each break is a fresh fire, and it looks *least* like something you can model:
-"it's just ops." The skill gives it a positive lifecycle map so every symptom routes to a class, and typed
-runbooks so each fix is repeatable.
+Operating an agent-fleet repository involves recurring but heterogeneous tasks — dispatch and recover
+agents, keep the mainline deployable, reclaim disk, weather colima and host-tool trouble, watch cron
+health, RCA an ambiguous signal. Without a model, each failure appears as a new incident. The skill provides
+a lifecycle map that routes symptoms to classes and typed runbooks that make responses repeatable.
 
 ### Fundamental model
 
@@ -220,21 +205,21 @@ the lifecycles are the base model hiding in the sprawl.
   JUDGMENT-IRREDUCIBLE; the procedures a symptom routes to.
 - **The runnable hook library** (`hooks/`) — reflection, typed-hook, and banking substrate; the machinery
   that fires a skipped reflex at its moment.
-- **Build and handoff templates** (`templates/`) — for when operating spills into building.
-
 They cut operations along three independent axes: **where** (the lifecycle class — which resource broke),
 **what-to-do** (the runbook's typed steps), and **when-it-fires** (the hook). One routing table, many
 runbooks, a separate firing layer: a symptom's class does not fix its runbook's steps, and a hook fires
 regardless of which lifecycle owns the break.
 
+Supporting resources: build and handoff templates (`templates/`) — used when operating work crosses into
+implementation.
+
 ### Governing principle
 
-*Orient positive first, then route a break to its class.* Know the healthy baseline before you hunt; meet
-every symptom as a member of a lifecycle; and when diagnosis calls for a modeling, alignment, or
+*Establish the healthy state first, then classify deviations from it.* Know the healthy baseline before you
+hunt; meet every symptom as a member of a lifecycle; and when diagnosis calls for a modeling, alignment, or
 governance-conversion move — a recurring break worth a control, a model that should change, an authority
-that should shift — hand the engineering judgment to self-governance. That hand-off is the operate-govern
-bridge. Supporting reflexes: *determinize the runnable, brief the judgment,* and treat the lifecycle as a
-state machine, not a habit.
+that should shift — hand the engineering judgment to self-governance. Automate deterministic steps, prepare
+irreducible judgments for escalation, and treat each lifecycle as a state machine rather than a habit.
 
 ### Layout
 
@@ -250,12 +235,11 @@ self-operations/
 
 ### Lesson
 
-The base model, the lifecycles, was **discovered, not obvious**; naming it converted firefighting into
-routing. Runbooks are **typed**, so the model itself says what to automate, what to brief, and what to
-escalate. The repo-specific bindings are generated and ref-linted — a non-executable index earns trust from
-a ref-check, not from tests. It composes: **self-governance supplies the engineering judgment behind
-changes to models and mechanisms;** self-operate runs the resulting environment, routes consequential
-observations back into that judgment, and writes its runbooks in self-communicate's register.
+The lifecycle model turns incident response into routing: identify the affected lifecycle, select the
+corresponding runbook, and determine which steps can be automated. Typed runbooks distinguish runnable steps
+from automatable and irreducible judgment. Reference linting validates generated repository bindings.
+Self-governance supplies judgment about changes to models and mechanisms; self-operate runs the resulting
+environment and returns consequential observations; self-communicate governs the resulting documentation.
 
 The three skills act on one environment from three directions. [ref:fig-skill-composition] draws the shape:
 self-governance engineers and improves the governed environment, self-operate runs its operational
@@ -263,13 +247,10 @@ lifecycles and returns evidence when reality exposes a deficiency, and self-comm
 for every representation the other two produce.
 
 <!-- label: fig-skill-composition -->
-<!-- figure: assets/figure-composition.svg | The three partner skills act on one governed environment — orthogonal, not isolated. Self-governance improves it, self-operate runs it and feeds evidence back, self-communicate documents both. -->
+<!-- figure: assets/figure-composition.svg | Three orthogonal skills act on one governed engineering environment. Self-governance improves it; self-operate runs it and returns evidence; self-communicate governs the representations both produce. -->
 
-Orthogonality does not require isolation. The three skills factor cleanly because each owns one reason to
-change — how the fleet communicates, how it engineers its own environment, how it operates that environment
-— and they stay useful together because the interfaces between them are explicit. Self-governance mints the
-mechanisms self-operate runs; self-operate returns the evidence self-governance reasons from;
-self-communicate documents both. That is what good factoring buys: a decomposition whose parts can each be
-understood and revised on their own, joined by named seams rather than tangled by hidden ones. The same
-construction pattern built all three — find the domain's fundamental model, separate its independent facets,
-and tie them with a governing principle.
+Orthogonality does not require isolation. Each skill has one reason to change — communication, engineering
+judgment, or operation — and explicit interfaces connect them. Self-governance produces models and
+mechanisms that self-operate uses; self-operate returns evidence for self-governance; self-communicate
+governs their representations. This is the payoff of the construction method: independently understandable
+models joined through explicit interfaces.

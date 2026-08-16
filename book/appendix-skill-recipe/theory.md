@@ -17,35 +17,29 @@ skill; `SKILL.md` provides its governing structure; bundled resources supply det
 triggering information in the description, the governing model in `SKILL.md`, and bulk reference material in
 resources.
 
-> **Claude Skills implementation note — August 2026.** Anthropic's skill-authoring guidance provides the
-> current packaging rules: keep the loaded context concise, because the skill body shares the context window
-> with everything else; write the `description` in third person and cap it near 1,024 characters so
-> triggering is reliable across many skills; keep the `SKILL.md` body under about 500 lines and push
-> anything not needed on every invocation into reference files linked one level deep; match the specificity
-> of instructions to the fragility of the task; and build evaluations against representative past tasks
-> before writing extensive documentation. Follow the platform guidance for current mechanics; the online
-> edition tracks changes. The concern of this appendix is different: what knowledge a skill should contain,
-> and how that knowledge should be structured. *(Source: Anthropic, "Skill authoring best practices.")*
+> **Implementation note (August 2026).** Anthropic's current skill-authoring guidance recommends keeping
+> loaded context concise, putting triggering information in the description, keeping `SKILL.md` under
+> roughly 500 lines, moving invocation-specific detail into linked reference files, matching instruction
+> specificity to task fragility, and evaluating skills on representative tasks. These mechanics will change;
+> consult current platform documentation when implementing a skill. The concern here is the durable one:
+> what knowledge a skill should contain and how that knowledge should be structured.
+> *(Source: Anthropic, "Skill authoring best practices.")*
 
 <!-- point: the-recipe-targets-mastery-skills-not-tool-skills | The recipe targets the mastery-skill, not the tool-skill. | terms: mastery-skill, skill-soft-control -->
-Recall the two kinds from the opener: a **tool-skill** packages a capability the agent *invokes*; a
-**mastery-skill** packages the judgment it reasons *through*. Tool-skills need little beyond reliable
-invocation — scope each to one capability, make its triggering conditions concrete, specify fragile
-operations precisely, and prefer deterministic scripts where generated procedures would drift. But that
-interface layer keeps moving — CLIs, vendor tool APIs, MCP, whatever follows — so the current platform
-documentation, not this appendix, is the source for the mechanics of packaging a tool for an agent. What
-follows builds mastery-skills: the durable problem of representing domain judgment so an agent can reason
-through it. When a mastery-skill needs a tool interface, factor that interface into its own tool-skill and
-reference it.
+A **tool-skill** packages a capability the agent *invokes*; a **mastery-skill** packages judgment the agent
+reasons *through*. Tool-skills need little beyond reliable invocation — scope each to one capability, make
+its triggering conditions concrete, specify fragile operations precisely, and prefer deterministic scripts
+where generated procedures would drift. What follows builds mastery-skills: the durable problem of
+representing domain judgment so an agent can reason through it. When a mastery-skill needs a tool interface,
+factor that interface into its own tool-skill and reference it.
 
 ## From domain knowledge to model
 
 <!-- point: build-a-mastery-skill-in-three-layers-top-idea-first | Build a mastery-skill in three layers, top idea first. | terms: mastery-skill, orthogonal-models -->
-A three-step construction method builds a mastery-skill from the top idea downward. State the procedure
-once, abstractly; the next chapter runs it three times on real skills.
+A three-step construction method builds a mastery-skill from its governing abstraction downward.
 
-- **Step 1 — Find the domain's fundamental model.** Name the abstraction through which the rest of the skill
-  makes sense: the frame you would teach first to someone learning the domain. Do this before writing the
+- **Step 1 — Find the domain's fundamental model.** Name the abstraction through which the rest of the domain
+  makes sense: the frame you would teach first to someone learning it. Do this before writing the
   resources. If you cannot state the fundamental model clearly, you are likely to produce a collection of
   tips rather than a coherent way of reasoning.
 - **Step 2 — Layer orthogonal models onto it.** Decompose the domain into independent facets, each
@@ -53,15 +47,14 @@ once, abstractly; the next chapter runs it three times on real skills.
   concern that fits nowhere indicates a gap in the decomposition. This separation also supports progressive
   disclosure — the agent can load a facet only when the task requires it.
 - **Step 3 — Write `SKILL.md` as the tying principle.** The top-level file should not merely enumerate the
-  resources. It should explain how the pieces fit together and in what order they should be applied. A
-  reader who understands `SKILL.md` should understand how to reason with the skill; the resources provide
-  the detail needed to do so.
+  resources. It should explain how the pieces fit together and in what order they should be applied. `SKILL.md`
+  should provide enough structure to reason with the skill; the resources supply the detail required for
+  particular tasks.
 
 <!-- point: a-recipe-built-skill-composes-and-adopts-in-layers | A recipe-built skill composes and adopts in layers. | terms: self-communicate, self-governance, self-operate -->
 This structure has two useful properties. First, it **composes**: another skill can refer to the underlying
 model rather than duplicate its contents. Second, it can be **adopted incrementally**: the fundamental model
-can be useful before every facet has been developed. The [Skills chapter](4.5-packaging-the-method-as-skills.html)
-calls this structure the *Skill Skeleton*; here, the skeleton becomes a construction procedure.
+can be useful before every facet has been developed.
 
 Orthogonal skills may themselves compose. Separation gives each one reason to change; explicit interfaces then let one skill consume the models, mechanisms, or observations another produces.
 
@@ -89,7 +82,7 @@ A final problem is invocation. A useful skill that is never loaded has no effect
 should reliably cause the agent to consult a skill, pair the skill with an appropriate trigger or **hook**.
 The hook makes invocation more reliable; the skill still supplies guidance rather than enforcement.
 
-Before shipping, check that:
+Before shipping:
 
 - [ ] The skill has been classified as a tool-skill or a mastery-skill.
 - [ ] Its description names concrete triggering conditions and follows the platform's current discovery requirements.
@@ -97,7 +90,7 @@ Before shipping, check that:
 - [ ] Detailed resources are loaded progressively.
 - [ ] Instruction specificity matches task fragility.
 - [ ] Deterministic, repeated operations are implemented deterministically where practical.
-- [ ] (Mastery-skill) A named fundamental model, distinct facets, and a tying principle.
+- [ ] For a mastery-skill, identify a fundamental model, orthogonal facets, and a governing principle.
 - [ ] Recurring invocation is supported by a trigger or hook where appropriate.
 - [ ] Nothing is described as enforced when the skill can only guide.
 - [ ] The skill has been evaluated on representative past tasks and on the models on which it will run.
