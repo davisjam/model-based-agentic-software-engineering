@@ -2201,7 +2201,7 @@
             },
             {
               "slug": "bounded-explicit-state-not-satsmt-solving",
-              "text": "This is bounded explicit-state model checking plus correspondence cross-checks, not SAT/SMT solving and not a refinement proof.",
+              "text": "This is exhaustive exploration of a bounded model plus correspondence cross-checks, not a refinement proof.",
               "block_index": 40
             },
             {
