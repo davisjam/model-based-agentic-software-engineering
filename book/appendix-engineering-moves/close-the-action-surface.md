@@ -1,14 +1,14 @@
-**Problem.** When a consequential operation can happen through arbitrary routes, complete governance is hard to even state. Every validator, provenance mechanism, and policy has to reason about an open-ended set of ways the change might have occurred. Anything might have happened, so nothing can be guaranteed.
+**Problem.** When a consequential operation can occur through arbitrary routes, governance must account for an open-ended set of possible mutation paths. Validators, provenance mechanisms, and policies cannot make complete claims over paths they cannot enumerate.
 
-**Move.** Route consequential actions through a bounded, named interface. A closed action surface converts "anything might happen" into a finite set of moves, and each move can then carry policy, evidence, and validation.
+**Move.** Route consequential actions through a bounded, named interface. A closed action surface exposes a finite set of operations, each of which can carry policy, provenance, and validation.
 
 [ref:fig-move06] sets the open surface against the closed one.
 
 <!-- label: fig-move06 -->
-<!-- figure: assets/c6-close-action-surface.svg | *Open surface versus closed seam.* OPEN — an actor reaches a raw surface by many routes, including unknown ones. CLOSED — the actor passes through one seam that exposes a small set of named verbs, each able to stamp, validate, constrain, and observe. Read by shape, dash, and weight, not colour. -->
+<!-- figure: assets/c6-close-action-surface.svg | *Open surface versus closed seam.* OPEN — an actor reaches a raw surface by many routes, including unknown ones. CLOSED — the actor passes through one seam that exposes a small set of named verbs, each able to stamp, validate, constrain, and observe. The distinction is encoded by shape, line style, and weight rather than color. -->
 
-**Example — Document mutation.** DocAble routes remediation through a closed set of named mutator verbs. Because the move set is enumerable, each verb can be required to stamp provenance, register inserted content, and take part in validation. Adding capability means deliberately extending the verb set, not silently opening another mutation route that the validators know nothing about.
+**Example — Document mutation.** DocAble routes remediation through a closed set of named mutator verbs. Because the verb set is enumerable, each verb can be required to stamp provenance, register inserted content, and participate in validation. New capability extends the verb set explicitly rather than introducing an ungoverned mutation path.
 
-**Example — Infrastructure access.** The same move appears at a completely different layer. Raw queue operations are confined to one dispatch seam. Queue semantics and atomicity get encoded and reviewed once, at the seam, rather than reconstructed wherever a caller happens to touch the store — where one careless call would otherwise be enough to break the invariant.
+**Example — Infrastructure access.** Raw queue operations are confined to one dispatch seam. Queue semantics and atomicity are encoded and reviewed at that seam rather than reconstructed at each call site.
 
 **Explore:** Closed remediation-verb sets · PdfModel · Sole raw-Redis seam · ServiceClient · Canonical walkers · One Door Enforced. (MAGE Mechanism Catalog.)

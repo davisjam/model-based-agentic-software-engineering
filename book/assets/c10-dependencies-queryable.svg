@@ -61,5 +61,5 @@
 
   <!-- footer -->
   <text x="500" y="510" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Declare each dependency as typed metadata on the dependent.</text>
-  <text x="500" y="536" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">&#8220;What will this migration invalidate?&#8221; becomes a graph query, not a grep-and-read.</text>
+  <text x="500" y="536" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Change impact becomes a graph query over declared dependencies.</text>
 </svg>

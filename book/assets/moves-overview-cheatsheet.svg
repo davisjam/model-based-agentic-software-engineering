@@ -23,10 +23,10 @@
 
   <!-- kicker -->
   <text x="52" y="44" font-size="24" font-weight="700" fill="#9a3f12">Problem &#8594; Move</text>
-  <text x="52" y="70" font-size="16" font-style="italic" fill="#57534e">a cheat-sheet: ten recurring costs, and the engineering move that retires each</text>
+  <text x="52" y="70" font-size="16" font-style="italic" fill="#57534e">ten recurring problems and the engineering move that addresses each</text>
 
   <!-- column headers -->
-  <text x="96"  y="118" font-size="14" font-weight="700" letter-spacing="0.07em" fill="#b23b3b">RECURRING COST</text>
+  <text x="96"  y="118" font-size="14" font-weight="700" letter-spacing="0.07em" fill="#b23b3b">RECURRING PROBLEM</text>
   <text x="524" y="118" font-size="14" font-weight="700" letter-spacing="0.07em" fill="#9a3f12">ENGINEERING MOVE</text>
   <line x1="52" y1="130" x2="952" y2="130" stroke="#1c1917" stroke-width="1.5"/>
 
@@ -123,6 +123,4 @@
     <text x="540" y="622" font-weight="700" fill="#9a3f12">MAKE DEPENDENCIES QUERYABLE</text>
   </g>
 
-  <text x="52" y="670" font-size="15" font-style="italic" fill="#57534e">Not ten additions to the method &#8212; ten realizations of it: improve the representation where knowledge is</text>
-  <text x="52" y="692" font-size="15" font-style="italic" fill="#57534e">reconstructed, put authority where obligations are decidable, and make useful judgment durable.</text>
 </svg>

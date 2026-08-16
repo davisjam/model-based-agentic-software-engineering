@@ -52,6 +52,4 @@
 
   <!-- footer / TOCTOU -->
   <text x="500" y="392" text-anchor="middle" font-size="16" fill="#1c1917">Enforce at the earliest boundary that can decide the property; if later work can invalidate the evidence, re-establish it at the last.</text>
-  <text x="500" y="430" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Like time-of-check / time-of-use: a valid check does not justify a later action if state can change between them &#8212; and the</text>
-  <text x="500" y="450" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">intervening change need not be concurrency; it may be another commit, a generated artifact, or a deployment transition.</text>
 </svg>

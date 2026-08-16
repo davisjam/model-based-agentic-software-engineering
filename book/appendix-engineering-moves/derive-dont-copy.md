@@ -1,14 +1,14 @@
-**Problem.** A source of truth does not help if every consumer immediately copies values out of it. The model stays nominally authoritative while the real engineering decisions run against snapshots. This failure hides well: the organization believes it already solved the authority problem, so no one looks for the drift.
+**Problem.** An authoritative source loses authority when consumers copy its values into independently maintained snapshots. The model may remain nominally authoritative while engineering decisions operate on stale copies.
 
-**Move.** Consume authoritative representations by query or derivation. Never create a second editable truth for convenience.
+**Move.** Consume authoritative representations by query or derivation rather than creating a second editable copy.
 
-[ref:fig-move02] sets the copied snapshot against the live query.
+[ref:fig-move02] sets the snapshot against the query.
 
 <!-- label: fig-move02 -->
 <!-- figure: assets/c2-derive-dont-copy.svg | *Query, don't snapshot.* BAD — the model is copied into a snapshot that a check reads; the model changes, the snapshot does not. GOOD — the check queries the model directly, so the next check sees the change. -->
 
-**Example — Live model consumption.** Model-aware lints, tests, and agent briefs query the live representation instead of embedding values lifted from it. A rule that depends on the modeled architecture changes when the architecture changes. The consumer couples to the model's interface, not to yesterday's answer, so a structural edit propagates without a hunt for stale copies.
+**Example — Live model consumption.** Model-aware lints, tests, and agent briefs query the current representation instead of embedding copied values. When the modeled architecture changes, consumers observe the new state through the model interface without requiring stale copies to be found and updated.
 
-**Example — Generated artifacts.** Some consumers should not query at run time. Configuration, documentation, or policy can instead generate from the authoritative model at build time. The important property holds either way: the downstream artifact stays a derivative, not an independently maintained restatement of the same fact that a later editor can quietly contradict.
+**Example — Generated artifacts.** Consumers that should not query at run time can instead be generated from the authoritative model at build time. The downstream artifact remains derivative rather than becoming an independently maintained copy.
 
-**Explore:** Meta-model consumption discipline (Read the Model, Don't Copy It) · Model query surface · Model-driven codegen · Doc-hygiene provenance. (MAGE Mechanism Catalog.)
+**Explore:** Meta-model consumption discipline · Model query surface · Model-driven codegen · Doc-hygiene provenance. (MAGE Mechanism Catalog.)

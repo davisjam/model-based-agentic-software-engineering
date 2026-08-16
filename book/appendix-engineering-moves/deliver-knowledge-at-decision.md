@@ -1,14 +1,14 @@
-**Problem.** A rule can be documented perfectly and still fail in practice when the actor making the decision never encounters it. As the knowledge base grows, "the agent could have found the rule" weakens into an empty governance strategy — the reachable corpus outgrows anyone's ability to search it before acting.
+**Problem.** A rule cannot influence a decision if the actor does not encounter it in time. As the knowledge base grows, relying on the actor to search the full corpus becomes increasingly unreliable.
 
-**Move.** Bind the relevant knowledge to the work surface where it matters. Make discovery a property of the environment, not a test of memory or search skill.
+**Move.** Select and deliver the knowledge relevant to the current work at the decision point, rather than relying on the actor to retrieve it from the full corpus.
 
-[ref:fig-move07] shows the selection step that puts the right rules in front of the decision.
+[ref:fig-move07] shows the selection at the decision point.
 
 <!-- label: fig-move07 -->
-<!-- figure: assets/c7-knowledge-at-decision.svg | *Knowledge meets the decision.* Rules sit on one side, work on the other; a context-selection step picks the rules relevant to this work and feeds them into the decision, so the decision is made with the right knowledge already in hand. Read by shape and dash, not colour. -->
+<!-- figure: assets/c7-knowledge-at-decision.svg | *Knowledge delivery at the decision point.* Context selection joins the current work with the rules relevant to its scope and supplies that subset to the decision. The distinction is encoded by shape and line style rather than color. -->
 
-**Example — File-scoped context.** Dynamic context injection selects the rules governing the files in a task and injects those rules into the agent's brief. The agent no longer has to reconstruct the applicable policy from the entire governance corpus before touching the code. The relevant subset arrives with the assignment.
+**Example — File-scoped context.** Dynamic context injection selects the rules governing the files in a task and injects those rules into the agent's brief. The applicable subset arrives with the assignment rather than requiring the agent to recover it from the full governance corpus.
 
-**Example — Dispatch admission.** Brief linting applies the same principle one step earlier. A task cannot launch unless its brief carries the required markers and context. The environment does more than make knowledge available; it verifies that the knowledge surface the work needs is actually present before delegation begins, so an under-briefed task never starts.
+**Example — Dispatch admission.** Brief linting applies the same principle one step earlier. A task cannot launch unless its brief carries the required markers and context. The environment verifies that the required context is present before delegation begins, preventing an under-briefed task from launching.
 
 **Explore:** Dynamic context injection · Governed Knowledge Base · Brief linting · Mandatory snippet-table enforcement · Point-of-action policy delivery. (MAGE Mechanism Catalog.)
