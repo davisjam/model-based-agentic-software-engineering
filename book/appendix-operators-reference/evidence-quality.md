@@ -1,17 +1,17 @@
 *What justifies this claim?*
 
-Start with the claim, then ask what evidence could actually settle it. Different properties require different
-evidence. A deterministic structural invariant may be checked exhaustively. A performance claim may require
-measurement. A semantic-fidelity claim may require generative evaluation and residual human judgment. A formal
-proof establishes a property only under the model and assumptions encoded in the proof.
+Start with the claim and identify the evidence capable of supporting it. Different properties require
+different evidence: a structural invariant may be checked exhaustively, a performance claim may require
+measurement, a semantic-fidelity claim may require generative evaluation and human judgment, and a formal
+proof establishes only the property encoded under its stated model and assumptions.
 
-Evidence quality therefore has four questions:
+Evaluate evidence through four questions:
 
 - **Claim.** What exactly is being asserted, and over what scope?
 - **Evidence.** What observation, measurement, proof, test, or other artifact bears on that claim?
 - **Evaluation.** What procedure interprets the evidence, and what can that procedure miss?
-- **Authority.** What consequence, if any, should the result have? Evidence may inform a human, produce a
-  warning, or justify a blocking gate. Strong evidence does not automatically imply blocking authority.
+- **Authority.** What consequence should the result have? Evidence may inform a human, produce a warning, or
+  justify a blocking gate; evidentiary strength and enforcement authority remain separate decisions.
 
 ```
   EVIDENCE QUALITY                            "What justifies this claim?"
@@ -30,6 +30,6 @@ Evidence quality therefore has four questions:
   Strong backing  →  still choose authority deliberately
 ```
 
-The key failure is not "a claim without a validator." It is a consequential claim whose stated confidence
-exceeds its actual backing. Keep provenance for the evidence, state its limitations, and distinguish what the
-evidence establishes from what the organization chooses to do with it.
+The critical failure is a consequential claim whose stated confidence exceeds its evidentiary support.
+Preserve evidence provenance, state limitations explicitly, and distinguish what the evidence establishes
+from the authority the organization chooses to attach.

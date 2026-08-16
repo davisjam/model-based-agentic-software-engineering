@@ -1,20 +1,17 @@
 *Can I trust this release?*
 
-A release is ready when every obligation that has been assigned blocking authority is backed by current
-evidence and every blocking gate is green. The checklist gathers those obligations onto one face; it does not
-invent new ones at release time. A pilot does not certify a plane from feel, and a MAGE operator does not
-certify a release from feel — the preflight reads the instruments the earlier chapters already installed.
+A release is ready when every obligation assigned blocking authority has current supporting evidence and
+every blocking gate passes. The checklist gathers those obligations at release time; it does not create new
+ones.
 
-The exact boxes depend on the system. A model-based obligation requires current correspondence only if the
-release relies on that model. A sandboxed action may require no system model at all. Fidelity may be
-load-bearing for a document transformer and irrelevant to another product. The universal rule is obligation →
-evidence → authority, not a universal set of six mechanisms.
+The specific checks depend on the system. A model-based obligation requires current correspondence only when
+the release relies on that model; a locally enforced property may require no system model. The general rule
+is obligation → evidence → authority.
 
 ### The preflight
 
-Read each box as a per-release obligation, not a fixed requirement. Instantiate the checklist for the system
-in front of you: list the obligations that carry blocking authority for this release, confirm each has fresh
-evidence, and confirm every blocking gate is green. An unfilled box is a release that waits.
+Instantiate the checklist for each release. List the obligations carrying blocking authority, confirm that
+each has current evidence, and confirm that every blocking gate passes.
 
 ```
   RELEASE READINESS  ·  PREFLIGHT              "Can I trust this release?"
@@ -28,11 +25,11 @@ evidence, and confirm every blocking gate is green. An unfilled box is a release
   [ ]  Overrides and accepted residual risks reviewed
   ═══════════════════════════════════════════════════════════════════════
   All blocking obligations discharged  →  ship.
-  Otherwise  →  wait, override explicitly, or change the policy.
+  Otherwise  →  wait, record an explicit override, or revise the governing policy.
 ```
 
 ### The override note
 
-An override is itself an engineering event. Record who accepted it, what evidence was available, what
-obligation was bypassed, and whether the exception exposes a recurring class worth reconsidering later. Do not
-silently inherit yesterday's exception into tomorrow's release.
+Treat an override as an engineering event. Record who accepted it, the available evidence, the bypassed
+obligation, and whether the exception reveals a recurring class that warrants later review. Do not carry the
+exception into future releases implicitly.

@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1133,
+    "total_sites": 1132,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 727,
+      "book-web": 726,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -1217,7 +1217,7 @@
           },
           {
             "file": "book/appendix-d-engineering-capital.html",
-            "occ": 24
+            "occ": 23
           },
           {
             "file": "book/appendix-d-evidence-quality.html",
@@ -1225,7 +1225,7 @@
           },
           {
             "file": "book/appendix-d-from-drifted-wiki-to-trusted-model.html",
-            "occ": 18
+            "occ": 19
           },
           {
             "file": "book/appendix-d-governance-conversion.html",
@@ -1237,15 +1237,15 @@
           },
           {
             "file": "book/appendix-d-model-health.html",
-            "occ": 16
+            "occ": 15
           },
           {
             "file": "book/appendix-d-operating-doctrine.html",
-            "occ": 21
+            "occ": 20
           },
           {
             "file": "book/appendix-d-operators-dashboard.html",
-            "occ": 14
+            "occ": 15
           },
           {
             "file": "book/appendix-d-release-readiness.html",
@@ -1277,7 +1277,7 @@
           },
           {
             "file": "book/appendix-operators-reference.html",
-            "occ": 17
+            "occ": 18
           },
           {
             "file": "book/appendix-skill-recipe.html",
@@ -1771,7 +1771,7 @@
           },
           {
             "file": "book/appendix-d-engineering-capital.html",
-            "occ": 10
+            "occ": 9
           },
           {
             "file": "book/appendix-d-evidence-quality.html",
@@ -1795,7 +1795,7 @@
           },
           {
             "file": "book/appendix-d-operating-doctrine.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/appendix-d-operators-dashboard.html",
@@ -2335,7 +2335,7 @@
           },
           {
             "file": "book/appendix-d-brownfield-progress.html",
-            "occ": 7
+            "occ": 5
           },
           {
             "file": "book/appendix-d-daily-review.html",
@@ -2343,7 +2343,7 @@
           },
           {
             "file": "book/appendix-d-engineering-capital.html",
-            "occ": 5
+            "occ": 4
           },
           {
             "file": "book/appendix-d-evidence-quality.html",
@@ -2363,11 +2363,11 @@
           },
           {
             "file": "book/appendix-d-model-health.html",
-            "occ": 14
+            "occ": 7
           },
           {
             "file": "book/appendix-d-operating-doctrine.html",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/appendix-d-operators-dashboard.html",
@@ -4804,10 +4804,6 @@
             "occ": 1
           },
           {
-            "file": "book/appendix-d-governance-conversion.html",
-            "occ": 1
-          },
-          {
             "file": "book/appendix-e-applying-the-recipe.html",
             "occ": 3
           },
@@ -4819,7 +4815,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 9
+            "occ": 8
           }
         ]
       },

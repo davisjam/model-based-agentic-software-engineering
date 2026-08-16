@@ -1,20 +1,21 @@
 *Is the environment operating correctly right now?*
 
-Begin with outcomes, not mechanism counts. Is accepted work landing? Are governed
-obligations holding? Are validators and gates still exercising the surfaces they claim to
-protect? Has human intervention or rollback risen unexpectedly? Only then reach for churn,
-coverage, drift, and other local measures to diagnose the change.
+Begin with outcomes. Check whether accepted work is landing, governed obligations are
+holding, validators and gates are exercising their intended surfaces, and human intervention
+or rollback has risen unexpectedly. Use churn, coverage, drift, and other local measures only
+to diagnose changes in those outcomes.
 
 ### Three readings
 
-- **Durable throughput.** Work reaches a durable accepted state — it lands without
-  reopening, rollback, or repeated repair.
-- **Defect and policy escape.** An obligation crossed the boundary meant to catch it.
+- **Durable throughput.** Accepted work remains accepted without reopening, rollback, or
+  repeated repair.
+- **Defect and policy escape.** Incorrect or policy-violating work passes the boundary
+  intended to prevent it.
 - **Intervention burden.** Humans get pulled back into repeated reconstruction, review, or
   emergency repair.
 
-A local diagnostic — churn, validator coverage, a correspondence failure, queue pressure —
-earns attention when it explains movement in one of those three readings, not on its own.
+Use churn, validator coverage, correspondence failures, and queue pressure only when they
+explain movement in the primary readings.
 
 ```
   SYSTEM HEALTH               "Is the environment healthy right now?"
@@ -29,8 +30,7 @@ earns attention when it explains movement in one of those three readings, not on
 
 ### Read churn as motion, not health
 
-A green environment need not have low churn. A deliberate migration or architectural rewrite
-throws off enormous code motion while the system stays healthy. A quiet repository can hide
-stale representations or repeated human adjudication behind its calm. Read churn as motion,
-not health. Appendix G shows the particular churn shape observed during DocAble; this card
-does not generalize that silhouette into a law.
+Churn measures code motion, not system health. A migration or architectural rewrite can
+produce high churn in a healthy environment, while a quiet repository can still contain stale
+representations or repeated human adjudication. Appendix G records the churn observed in
+DocAble.

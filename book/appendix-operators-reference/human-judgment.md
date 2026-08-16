@@ -1,17 +1,15 @@
 *Where is human attention going, and what do we keep deciding again?*
 
-Human attention is scarce, but not every human act is waste. Reading implementation may be
-exactly the right work for a novel architectural question. Reviewing a consequential change
-may be deliberately retained judgment. The signal to watch is repeated reconstruction or
-repeated adjudication whose future value the environment could carry economically.
+Human attention is scarce, but some work should remain judgment-dependent. Novel architecture,
+ambiguous evidence, and consequential review may justify direct human reasoning. The operating
+signal is repeated reconstruction or adjudication that could be externalized economically.
 
 Ask two questions:
 
-- **Where is attention being spent?** Across creating new intent, interpreting evidence,
-  reconstructing known context, reviewing routine work, and handling exceptions. This tells you
-  where scarce reasoning is going.
-- **Which judgments recur with substantially the same structure?** This identifies the
-  candidates for Modeling, Alignment, procedure, or other durable engineering structure.
+- **Where is attention being spent?** Distinguish creation of new intent, evidence
+  interpretation, reconstruction of known context, routine review, and exception handling.
+- **Which judgments recur with substantially the same structure?** These are candidates for
+  Modeling, Alignment, procedure, or other durable engineering structure.
 
 ```
   HUMAN JUDGMENT                          "Where is scarce attention going?"
@@ -26,6 +24,6 @@ Ask two questions:
   Ask whether making it durable will repay its carrying cost.
 ```
 
-The desired trend is not "humans stop reading code." It is that avoidable repeated reasoning
-falls per unit of durable output, while humans stay on work whose novelty, ambiguity,
-consequence, or poor governability still earns semantic judgment.
+The desired trend is lower avoidable repeated reasoning per unit of durable output, while
+human attention remains on work whose novelty, ambiguity, consequence, or poor governability
+still requires semantic judgment.

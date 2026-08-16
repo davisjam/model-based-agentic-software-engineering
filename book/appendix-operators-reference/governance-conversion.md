@@ -1,22 +1,22 @@
 *What should the environment learn from this recurrence?*
 
-A recurring failure is evidence, not an automatic work order. First classify what actually recurred. Was
-knowledge missing? Was the representation too weak? Was the obligation implicit? Did evidence arrive too
-late? Was authority placed at the wrong boundary? Did a mechanism fail — or has an old mechanism become
-part of the problem? Only then decide what, if anything, should become durable.
+Treat recurrence as evidence that the environment may need to change. First classify the recurring
+structure: missing knowledge, weak representation, implicit obligation, late evidence, misplaced authority,
+failed mechanism, architectural weakness, or obsolete control. Then decide whether a durable response is
+justified.
 
-Where engineering capital asks whether the stock still earns its keep, this card governs how that stock
-grows: by selective conversion, priced case by case.
+Engineering Capital evaluates existing structure; Governance Conversion decides when new structure should
+be added, changed, or retired.
 
 The conversion decision has three stages:
 
-- **Classify the gap.** Name the recurring structure, not the latest symptom. Knowledge, representation,
-  obligation, evidence, authority, mechanism, architecture — or a control that has itself gone obsolete.
-- **Choose the durable response.** The answer may be a representation, constraint, sensor, validator, gate,
-  procedure, architectural change, retirement of stale machinery, or the deliberate choice to keep a human
-  in the loop.
-- **Price the investment.** Build the response only when the expected recurrence cost and consequence
-  justify its construction and its carrying cost.
+- **Classify the gap.** Identify the recurring structure rather than the latest symptom: knowledge,
+  representation, obligation, evidence, authority, mechanism, architecture, or obsolete control.
+- **Choose the durable response.** Possible responses include a representation, constraint, sensor,
+  validator, gate, procedure, architectural change, retirement of stale machinery, or deliberate retention
+  of human judgment.
+- **Price the investment.** Build the response only when expected recurrence cost and consequence justify
+  both construction and carrying cost.
 
 ```
 GOVERNANCE CONVERSION
@@ -35,8 +35,7 @@ PRICE THE INVESTMENT
 future value > construction + carrying cost ?
 ```
 
-The healthy direction is not a short queue of unconverted failures at any price. It is fewer expensive
-recurrences and a portfolio of durable responses that continue to earn their keep. Some cheap-and-rare
-failures should remain cheap-and-rare failures.
+The target is fewer costly recurrences and a portfolio of durable responses whose expected return exceeds
+their carrying cost. Cheap, rare failures may remain unconverted.
 
 See [Chapter 3.4](3.4-governance-conversion.html) for the full treatment.
