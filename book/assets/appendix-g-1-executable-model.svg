@@ -90,7 +90,7 @@
 
   <!-- ===================== SHARED LEGEND (ship once, here in G.1) ===================== -->
   <rect x="60" y="596" width="600" height="176" rx="10" fill="#f7f5f0" stroke="#2b2825" stroke-width="1.4"/>
-  <text x="80" y="624" font-size="15" font-weight="700" fill="#1c1917">Legend — one vocabulary for every G figure</text>
+  <text x="80" y="624" font-size="15" font-weight="700" fill="#1c1917">Legend — notation used throughout Appendix C</text>
 
   <!-- solid = declared -->
   <line x1="90" y1="652" x2="170" y2="652" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
@@ -111,5 +111,5 @@
   <text x="186" y="729" font-size="13.5" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
   <text x="186" y="746" font-size="13" fill="#1c1917">heavy boundary + gate glyph = real authority (can block)</text>
 
-  <text x="80" y="768" font-size="12" font-style="italic" fill="#57534e">Rounded box = a representation.  Weight, dash, and glyph carry the meaning — not colour.</text>
+  <text x="80" y="768" font-size="12" font-style="italic" fill="#57534e">Rounded boxes denote representations. Meaning is encoded by line style, weight, and glyph — not color.</text>
 </svg>

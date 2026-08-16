@@ -1,13 +1,11 @@
-Modeling and Alignment are related activities, but they are not the same one. A model can improve
-reasoning without governing anything: it can reduce reconstruction, expose a dependency, preserve
-intent, or make a prediction possible while staying advisory. Alignment begins when an obligation the
-model represents is given authority through a deterministic mechanism.
+Modeling and Alignment are distinct activities. A model may reduce reconstruction, expose
+dependencies, preserve intent, or support prediction while remaining advisory. Alignment begins when
+a represented obligation receives authority through a deterministic mechanism.
 
-A compact map of this appendix's examples is enough to show the move. Each row reads left to right:
-the representation, the obligation it exposes, a correspondence mechanism that could check it, and the
-authority that mechanism could carry.
+Table C.7-1 maps each representation to the obligation it exposes, a correspondence mechanism that
+can evaluate it, and the authority that may attach.
 
-<!-- table: From representation to possible authority — the obligation each model in this appendix exposes, a correspondence mechanism that could check it, and the authority that could attach. Not a maturity ladder. [short: Representation to authority receipt] -->
+<!-- table: From representation to possible authority. Each row identifies a represented obligation, a correspondence mechanism that can evaluate it, and the authority that may attach. [short: Representation to authority receipt] -->
 | Representation | Obligation exposed | Correspondence mechanism | Possible authority |
 |---|---|---|---|
 | Component / zone | Each surface has one owner; boundaries use sanctioned seams | Reverse-map the tree and dependency edges | Boundary lint or admission gate |
@@ -19,21 +17,18 @@ authority that mechanism could carry.
 | Provenance | Actions leave the required structured record | Record and artifact validation | Completion gate |
 | Joined scenario | Cross-view obligations agree | Identity joins across views | Composed validation where decidable |
 
-The correspondence mechanisms in the third column share one enforcing form: a drift-parity gate that
-fails the build when a model and the reality it claims disagree, in either direction. This table is
-not a maturity ladder, and not every represented property deserves a gate. Its purpose is to show the
-one seam the book crosses between Parts II and III:
+The correspondence mechanisms in the third column compare represented intent with implementation or
+runtime evidence. Where the property warrants enforcement, the resulting finding can feed a
+deterministic gate. The handoff from Modeling to Alignment is:
 
 ```
         MODELING                         ALIGNMENT
-  make knowledge explicit        decide what deserves authority
-            │                                │
-            ▼                                ▼
-      representation ─────────────► deterministic mechanism
-            │                                │
-     "what is / ought?"              "must this hold?"
+  make knowledge explicit   →   give selected obligations authority
+
+      representation          →   deterministic mechanism
+    "what is / ought?"            "must this hold?"
 ```
 
-Part II's models create surfaces on which Alignment can act. Part III decides which of those surfaces
-should become obligations, where they should be sensed, and what mechanism should hold them. That is
-the whole handoff.
+Models create surfaces on which Alignment can act. Alignment determines which represented obligations
+deserve authority, where the relevant evidence can be observed, and which deterministic mechanism
+should enforce them.

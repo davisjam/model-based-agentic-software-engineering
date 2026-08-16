@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1134,
+    "total_sites": 1133,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 728,
+      "book-web": 727,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -172,10 +172,6 @@
             "occ": 7
           },
           {
-            "file": "book/appendix-models.html",
-            "occ": 2
-          },
-          {
             "file": "book/appendix-skill-recipe.html",
             "occ": 13
           },
@@ -211,7 +207,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 47
+            "occ": 46
           }
         ]
       },
@@ -1193,7 +1189,7 @@
           },
           {
             "file": "book/appendix-c-execution-and-placement.html",
-            "occ": 19
+            "occ": 17
           },
           {
             "file": "book/appendix-c-joining-views.html",
@@ -1277,7 +1273,7 @@
           },
           {
             "file": "book/appendix-models.html",
-            "occ": 23
+            "occ": 21
           },
           {
             "file": "book/appendix-operators-reference.html",
@@ -1305,7 +1301,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 224
+            "occ": 223
           },
           {
             "file": "book/index.html",
@@ -2311,11 +2307,11 @@
           },
           {
             "file": "book/appendix-c-behavior-and-ownership.html",
-            "occ": 12
+            "occ": 10
           },
           {
             "file": "book/appendix-c-documentation-and-provenance.html",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/appendix-c-execution-and-placement.html",
@@ -2327,15 +2323,15 @@
           },
           {
             "file": "book/appendix-c-measurement.html",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/appendix-c-representation-to-authority.html",
-            "occ": 10
+            "occ": 7
           },
           {
             "file": "book/appendix-c-structure-and-boundaries.html",
-            "occ": 21
+            "occ": 15
           },
           {
             "file": "book/appendix-d-brownfield-progress.html",
@@ -2403,7 +2399,7 @@
           },
           {
             "file": "book/appendix-models.html",
-            "occ": 25
+            "occ": 24
           },
           {
             "file": "book/appendix-operators-reference.html",
@@ -2431,7 +2427,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 357
+            "occ": 356
           },
           {
             "file": "book/index.html",
@@ -4363,7 +4359,7 @@
           },
           {
             "file": "book/appendix-c-documentation-and-provenance.html",
-            "occ": 3
+            "occ": 5
           },
           {
             "file": "book/appendix-c-execution-and-placement.html",
@@ -4479,7 +4475,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 35
+            "occ": 36
           },
           {
             "file": "book/index.html",

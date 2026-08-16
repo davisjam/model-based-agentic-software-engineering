@@ -1,6 +1,6 @@
-Documentation and provenance models answer a different evidence question: what happened, and which
-human-facing account of it must stay true? In review, they are where a reviewer asks *does this
-change leave the record it owes, and does the prose about it still hold?*
+Documentation and provenance models represent what happened and which human-facing claims should
+remain synchronized with those facts. In review, they expose whether required records exist and
+whether derived documentation still reflects its source.
 
 **Engineering question.** What happened, and which human-facing account of it must remain true?
 
@@ -20,27 +20,24 @@ DerivedDocumentation
     rendered_claim
 ```
 
-The strongest documentation is generated from facts the system already holds, not maintained as a
-second, independent copy. A model read live and generated back into its artifacts, never snapshotted,
-is an executable source of truth; the generated leg below applies that pattern to documentation.
+Where documentation can be derived from structured facts, generate it from those facts rather than
+maintaining an independent copy. The generated documentation then remains re-derivable from its
+authoritative source.
 
 [ref:fig-g6-facts-before-prose] puts the fact before the prose.
 
 <!-- label: fig-g6-facts-before-prose -->
-<!-- figure: assets/appendix-g-6-facts-before-prose.svg | *Facts before prose.* An engineering action leaves a provenance fact — what, who, how. Two things branch from that fact: mechanical validation or audit, and generated documentation (solid) that can be re-derived on demand. Prose maintained independently of the fact is the exposed leg (dashed): nothing regenerates it, so it drifts. The strongest documentation is generated from a fact the system already knows. -->
+<!-- figure: assets/appendix-g-6-facts-before-prose.svg | *Facts before prose.* An engineering action leaves a structured provenance record that supports mechanical validation and re-derivable documentation. Independently maintained prose lacks that mechanical correspondence and therefore carries drift risk. -->
 
 **Property.** Representative properties:
 
 - **Every relevant mutation leaves a provenance record.**
-- **Derived documentation reflects the current structured facts**, because it is regenerated rather
-  than hand-kept.
-- **References from generated documentation resolve to existing identities.**
+- **Generated documentation reflects the current structured facts** from which it is derived.
+- **References in generated documentation resolve to existing identities.**
 
-Not all prose can or should be generated. Where prose stays independently authored, correspondence
-stays judgment-dependent — no machinery proves it equivalent to the implementation. Appendix G
-separates that documentation drift from model-to-code correspondence for exactly this reason.
+Independently authored prose remains judgment-dependent: the same machinery cannot establish semantic
+equivalence between free prose and the implementation.
 
-**Authority and correspondence.** Structured provenance validates mechanically. Generated
-documentation regenerates. Free prose generally cannot be proven semantically equivalent to the
-implementation by the same machinery. That boundary is useful: modeling should expose what can be
-made explicit without pretending every explanation is mechanically decidable.
+**Authority and correspondence.** Structured provenance can be validated mechanically, and generated
+documentation can be re-derived from its source facts. Free prose generally cannot be checked for
+semantic equivalence by the same machinery and therefore remains subject to human review.
