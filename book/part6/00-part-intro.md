@@ -17,10 +17,11 @@ analyses, delegate realization, and remain answerable for the result.
 <!-- thesisbox -->
 > ### PROFESSIONAL THESIS
 >
-> As implementation capacity becomes abundant, engineering moves upward.
+> As implementation capacity becomes abundant, the engineered environment becomes a first-class object of
+> software engineering.
 >
-> Engineering effort shifts toward representation, evidence, authority, and judgment: the work of
-> designing and maintaining the environment through which autonomous realization proceeds.
+> Engineering effort shifts toward representation, evidence, authority, and judgment: designing and
+> maintaining the environment through which autonomous realization proceeds.
 
 **New here:** Theory of MAGE · Scope conditions · Testable predictions · Representation engineering ·
 Software rejoins engineering · Professional Thesis
