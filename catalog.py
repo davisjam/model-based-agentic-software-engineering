@@ -4257,11 +4257,11 @@ def cmd_build(_args) -> int:
     # Regenerate the Extended Figure Gallery dev artifact (live/unused/draft figures, for review). Non-fatal
     # subprocess (a review tool must never break the build); output is gitignored + orphan-gate-excluded
     # (book/_design is in NON_SITE_DIRS). Runs here so all figure references are known.
-    rc_fig = subprocess.run([sys.executable, os.path.join(ROOT, "book", "build_extended_figures.py")],
+    rc_fig = subprocess.run([sys.executable, os.path.join(ROOT, "book", "build_visual_aids.py")],
                             cwd=ROOT).returncode
     if rc_fig != 0:
-        print("WARNING: extended-figures gallery regeneration failed — "
-              "book/_design/extended-figures.html may be stale", file=sys.stderr)
+        print("WARNING: visual-aids gallery regeneration failed — "
+              "book/_design/visual-aids.html may be stale", file=sys.stderr)
     # Regenerate the packaged skill bundle from the same sources — same "can't drift" discipline as the
     # HTML. build is the one regeneration point (pre-commit hook, deploy, and CI all call it), so this
     # single wire-in keeps plugin/ fresh. Subprocess avoids a catalog <-> bundle_skill circular import.
