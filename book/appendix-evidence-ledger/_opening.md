@@ -10,7 +10,7 @@ comparative productivity, or portable target values.
 
 The measurements fall into six groups: build scale and repository motion; model correspondence and
 drift; model coverage; representation and navigation cost; development and processing costs; and
-measurement models that did or did not earn authority.
+the relationship between measurement and authority.
 
 The ledger exists for traceability. A number summarized in Part V should be recoverable here, together
 with the assumptions that bound it.

@@ -2,9 +2,9 @@
 
 ### G.2.1 Weekly commit volume {#velocity}
 
-Weekly commit volume rose sharply as the agent fleet expanded and reached roughly 1,000 commits per
-week during sustained high-volume periods. Volume declined through the interval Part V identifies as
-hardening, then rose again.
+Weekly commit volume rose sharply as the agent fleet expanded, exceeded 1,000 commits per week during
+sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval Part V
+identifies as hardening, then rose again.
 
 Commit classification indicates that a larger share of work during the hardening interval concerned
 models, validation, tests, and control machinery. The commit counts themselves do not establish why
@@ -12,17 +12,17 @@ volume changed, or whether engineering productivity rose or fell. [ref:velocity-
 series.
 
 <!-- label: velocity-curve -->
-<!-- figure: assets/velocity-commits-per-week.svg | *Weekly Commit Volume.* Commits per week across the project history, one bar per week. The figure measures repository activity. Interpretation of the hardening interval depends on the classification of the work recorded in those commits; bar height alone does not distinguish feature production from engineered-environment work. -->
+<!-- figure: assets/velocity-commits-per-week.svg | *Weekly Commit Volume.* Commits per week across the project history. Bar height measures repository activity, not engineering productivity; interpreting the hardening interval requires classifying the work represented by those commits. -->
 
 <!-- FUTURE: When available, add Epics-closed/week and reopens/week — either onto Figure H-1 or immediately after it. Commits measure activity; completed engineering units are a complementary measure closer to durable throughput. Insert the planned reviewer-capacity bound here once measured, and keep it a sensitivity analysis rather than an assertion about actual review speed. -->
 
 ### G.2.2 Support-apparatus ratio {#support-ratio}
 
-Production source and support-apparatus source were counted at four dated repository states, using the
-fail-loud census over the seven primary source roots. These counts are the source for the support-ratio
-curve in Part V.
+Production and support-apparatus source were counted at four dated repository states using a census over
+the seven primary source roots that fails if an expected root is absent. These counts are the source for
+the support-ratio curve in Part V.
 
-| Window | Production LoC | Support LoC | Support / production |
+| Window | Production LoC | Support LoC | Support ratio |
 |---|---:|---:|---:|
 | Prototype — Apr. 9 | 26,956 | 22,908 | 0.85× |
 | Mechanization — May 31 | 302,844 | 751,050 | 2.48× |
@@ -37,7 +37,7 @@ engineering value, engineering-capital return, or a recommended target for anoth
 
 ### G.2.3 Product-path line motion {#churn}
 
-Lines added and deleted over four windows for the two principal product paths:
+Lines added and deleted were counted over four windows for the two principal product paths:
 
 - **`web/`** — the Python service and worker.
 - **`backend/`** — the C# tool and rule engine.
@@ -51,16 +51,16 @@ Source: `git numstat` over the dated commit windows.
 | Hardening | 179,649 | 33,983 | 109,188 | 3,767 |
 | Loop management | 96,825 | 14,332 | 116,313 | 9,708 |
 
-Mechanization contains the largest add-and-delete volume, particularly in `backend/`. Deletions fall
-sharply in the later windows, and both paths become strongly net-additive. [ref:churn-per-path] draws
-the same shape.
+The mechanization window contains the largest add-and-delete volume, particularly in `backend/`.
+Deletions fall sharply in the later windows, and both paths become strongly net-additive.
+[ref:churn-per-path] plots these counts.
 
 These counts are a repository-motion proxy, not the theoretical concept of churn used elsewhere in the
 book. Generated bundles and vendored trees are included where they occur; Part V's accounting note
 describes that bounded inflation.
 
 <!-- label: churn-per-path -->
-<!-- figure: assets/churn-per-path.svg | *Product-Path Line Motion.* Lines added above the baseline and deleted below it, by path and study window. Mechanization contains the largest restructuring signal. The later reduction in deletions is consistent with less structural rewriting but does not establish its cause. -->
+<!-- figure: assets/churn-per-path.svg | *Product-Path Line Motion.* Lines added above the baseline and deleted below it, by path and study window. Mechanization contains the largest observed line motion. The later reduction in deletions is consistent with less structural rewriting but does not establish its cause. -->
 
 ### G.2.4 Growth of countable controls {#control-growth}
 
@@ -81,8 +81,8 @@ Two further repository counts show that at least some controls were created in r
 failures:
 
 - **Paired fix-and-lint tags** — 208 commits carry one.
-- **Incident-named lints** — 27 lints name a specific dated incident in their text; these were
-  spot-checked as genuine failure-to-control conversions.
+- **Incident-named lints** — 27 lints name a specific dated incident in their text; spot checks
+  confirmed that the sampled cases linked an observed failure to the resulting control.
 
 These counts record the growth of project-specific control machinery and document a subset of
 failure-driven conversions. They do not establish what fraction of all controls originated in failures
@@ -106,23 +106,21 @@ close?
 |---|---|---|---|
 | Model↔code drift existed before the derived floor | Re-run each closed Epic's own lints against its closed state; classify findings by hand | Approximately 27 genuine model↔code drifts, including a production-blocking pointer drift and a fully typed function with zero consumers | Manual classification; no independently specified oracle |
 | Derived checks catch fresh drift | Re-run the derived floor at HEAD | 6 genuine catches: three traceability failures and three stale-anchor or stale-test failures | Small N; measures only governed surfaces |
-| Modeled-and-mechanically-decidable drift reached a post-close reopen | Census over 56 cumulative Epic closes | 0 observed post-close reopens for this drift class | Finite observation window; does not cover semantic or unmodeled drift |
+| Post-close recurrence of modeled, mechanically decidable drift | Census over 56 cumulative Epic closes | 0 observed across 56 cumulative Epic closes | Finite observation window; does not cover semantic or unmodeled drift |
 | Checks were exercised during continuing model-bridge change | `git numstat` over one week for the query/reactor, governance-graph, and frontend-build models | +8,970 / −173 lines across 63 commits | Line motion is a change-load proxy, not a measure of semantic difficulty |
 
-The pre-floor audit found no false positives among the approximately 27 findings under manual review.
-Because classification was performed by hand rather than against an independently specified criterion,
-the supported claim is that the audit found a genuine pre-existing drift class — not an estimated
-detector precision.
+Manual review classified all approximately 27 pre-floor findings as genuine model↔code drift. Because
+classification used human judgment rather than an independently specified criterion, this establishes a
+pre-existing drift class, not detector precision.
 
 The six HEAD catches were an unregistered model consumer, a missing component entry, a
 service-call-graph mismatch, and three stale-anchor or stale-test cases. A symbol-anchored drift lint, a
 consumer-registry-freshness check, and a service-call-graph drift lint detected them.
 
-Taken together, these observations support a bounded within-case result. Model↔code drift existed before
-the derived correspondence checks; the checks then caught fresh instances; and no post-close recurrence
-of the modeled-and-mechanically-decidable class was observed across 56 closes during the measured
-window. The measurements do not support the stronger readings that the class was eliminated or that the
-mechanism prevents model drift; each of those is a universal claim the data do not reach.
+Taken together, these observations establish a bounded within-case sequence: model↔code drift existed
+before the derived checks; the checks caught six fresh instances; and no post-close recurrence of the
+modeled, mechanically decidable class was observed across 56 closes during the measured window. They do
+not establish that the class was eliminated or that the mechanism prevents model drift.
 
 ### G.3.5 Documentation drift — excluded from the model-sync claim {#doc-hygiene-aside}
 
@@ -140,9 +138,9 @@ about whether a model remains synchronized with implementation.
 
 ### G.3.6 Scope of the model-sync claim {#model-sync-honest-reading}
 
-The evidence above is intentionally narrow. The observed N is small. The correspondence mechanisms cover
-modeled and mechanically decidable relationships. A semantic mismatch whose anchors still resolve may
-remain judgment-dependent, and an unmodeled region has no model-correspondence check at all.
+The correspondence mechanisms cover only modeled, mechanically decidable relationships, and the observed
+N is small. A semantic mismatch whose anchors still resolve may remain judgment-dependent, and an
+unmodeled region has no model-correspondence check at all.
 
 The results are therefore field observations about one governed surface, not a general catch rate or a
 proof of model correctness. Three cases stay distinct:
@@ -171,7 +169,7 @@ Three qualifications matter.
 - **Coverage, not quality.** The metric measures coverage, not model quality. Code may trace to a model
   claim that is itself incomplete or poorly chosen.
 - **Operator-directed decline.** Each model-loop Epic targeted a large remaining orphan cluster. The
-  series records a deliberate modeling discipline, not autonomous convergence.
+  decline reflects deliberate modeling work, not autonomous convergence.
 - **Not all orphans are debt.** An unmodeled exercised symbol may be a genuinely missing model, a
   missing anchor on an existing model, or implementation detail below the grain the model should
   represent. Backward traceability from exercised symbols toward expected model edges distinguished these
@@ -185,8 +183,8 @@ A small exploratory pilot tested whether a model-derived navigation surface redu
 consumed while determining where to look in the repository.
 
 Across four tasks, model-guided navigation reduced reconstruction-token cost by a median of roughly 35%
-relative to the from-scratch condition. No task-level correctness loss was recorded under the pilot's
-existing evaluation.
+relative to the from-scratch condition. The existing evaluation recorded no task-level loss of
+correctness.
 
 | Measure | Baseline | Model-guided | Interpretation |
 |---|---|---|---|
@@ -194,21 +192,21 @@ existing evaluation.
 | Reconstruction-token cost | Full baseline | ~35% lower median | Directional evidence of reduced reconstruction effort |
 | Recorded correctness | Reference condition | No observed loss | The existing pilot does not support a general equivalence claim |
 
-The tasks were not independently sampled, and N=4 is too small to estimate a general effect. Read the
-result as a directional within-case observation consistent with the proposed mechanism: an explicit
-representation may reduce the lower-level reconstruction an agent performs before it can act.
+The tasks were not independently sampled, and N=4 is too small to estimate a general effect. The
+result is a directional within-case observation consistent with the proposed mechanism: an explicit
+representation may reduce the lower-level reconstruction an agent performs before acting.
 
 <!-- FUTURE: Supersede this subsection with the larger paired experiment already specified for the orchestrator — do not supplement it with another subsection. When those results exist, report task-level paired observations, tokens, tool/navigation calls, files opened, wall-clock time, and independently judged task success. -->
 
-## G.6 Cost Receipts {#cost-receipt}
+## G.6 Cost and Scale Receipts {#cost-receipt}
 
-The following values support the order-of-magnitude cost discussion in Part V. They are not matched
-economic comparisons and should not be read as audited accounting.
+These quantities establish orders of magnitude relevant to the Part V discussion. Their units, scopes,
+and cost categories differ; they are not entries in a comparative cost model.
 
 | Quantity | Observed or estimated value | Basis |
 |---|---|---|
 | Accessibility-checker findings in a representative deck | 42 | One graduate instructional deck evaluated with the built-in accessibility checker |
-| Manual remediation, one teaching load | ≈ $20,000 faculty time | Findings/deck × minutes/finding × decks/course × loaded hourly rate |
+| Manual remediation, one teaching load | ≈ $20,000 estimated faculty labor | Findings/deck × minutes/finding × decks/course × loaded hourly rate |
 | Vendor remediation | $3–$40 / page | Market range collected during the study; not staffed for graduate-level subject annotation |
 | Automated processing, one representative deck | ≈ 1 minute; ≈ $1 direct processing cost | Warm-start service near the end of the study period |
 | Direct development cost | ≈ $60,000 | Roughly 20-week study; majority salary |
@@ -224,8 +222,7 @@ development-cost figure is an order-of-magnitude direct-cost estimate, not audit
 
 ## G.7 Measurement Without Authority {#measurement-seed}
 
-These final receipts turn on a distinction Part V draws: a measurement can be useful before it deserves
-authority.
+A measurement can be useful before it deserves authority.
 
 ### G.7.1 Provisional cost-and-time model
 
@@ -236,10 +233,10 @@ Current instrumentation can report when an operation would exceed the provisiona
 admission does not depend on that estimate, because the observation base is not yet strong enough to
 justify a blocking threshold.
 
-The evidentiary point is not that the provisional bound is correct. It is that the system keeps the
-stages apart: **observation → representation → reporting**, then a deliberate break — the evidence is
-insufficient, so nothing crosses into **authority**. A measured value can enter the engineering
-environment without immediately becoming a gate.
+The provisional bound need not be correct to be useful. The system keeps the stages separate:
+**observation → representation → reporting**. Because the evidence is insufficient, the estimate does not
+cross into **authority**. A measured value can enter the engineering environment without immediately
+becoming a gate.
 
 <!-- FUTURE: If the exact seed observations become stable enough to publish, add them here. Otherwise retain this subsection as a provenance note, and do not imply quantitative calibration the ledger does not contain. -->
 
@@ -252,10 +249,9 @@ representing the longest cold-start path and motivated an architectural change. 
 was 109 ms. The sequence is **request-level measurement (4,057 ms) → cold-start topology model →
 architectural change → 109 ms warm floor**.
 
-The point of the contrast is not that every measured quantity should eventually become a gate. It is
-that authority follows evidentiary maturity. The provisional cost model stayed report-only; the
-deterministic cold-start observation was stable and structurally interpretable enough to justify
-architectural action.
+The contrast does not imply that every measured quantity should eventually become a gate. Authority
+requires evidence adequate to the decision being made. The provisional cost model remained report-only;
+the stable, structurally interpretable cold-start observation justified architectural action.
 
 <!-- FUTURE: If retained as a quantitative receipt, document the measurement conditions for 4,057 ms and 109 ms — deployment state, hardware/service conditions, number of observations if available, and whether the reported values are single observations, maxima, medians, or another statistic. -->
 
@@ -271,20 +267,14 @@ Most quantities in this appendix are activity, structural, or within-case mechan
 - exploratory navigation cost;
 - selected financial and runtime observations.
 
-They are not direct estimates of the broader outcomes needed to compare MAGE against another engineering
-process: durable throughput, defect escape, human-attention burden, or total cost of ownership.
+These are not direct estimates of the broader outcomes needed to compare MAGE with another engineering
+process: durable throughput, defect escape, human-attention burden, or total cost of ownership. The case
+follows one production system, one primary engineer directing an agent fleet, and one contemporary model
+ecosystem; it did not collect those outcomes under a controlled counterfactual. The measurements
+therefore establish what happened within the case and which mechanisms were exercised, not the effects
+another organization should expect from adopting MAGE.
 
-The originating case did not collect those outcomes consistently enough, under a controlled
-counterfactual, to estimate causal effects retrospectively. Part V therefore uses the measurements here
-to establish what happened inside the case and which mechanisms were exercised — not what another
-organization should expect from adopting MAGE.
-
-The case itself is correspondingly bounded. It follows one production system, one primary engineer
-directing an agent fleet, and one contemporary model ecosystem, without a controlled comparison against
-another engineering process. It cannot establish that another organization will meet the same failures,
-build the same mechanisms, or obtain the same economics. Part V states that limitation explicitly.
-
-What the ledger provides is narrower and more useful: traceable evidence that the reported pressures
-occurred, that particular engineering responses followed, that selected mechanisms were exercised under
-continuing change, and that the book's quantitative descriptions can be inspected independently of the
-narrative built around them.
+The ledger provides a narrower result: traceable evidence that the reported pressures occurred, that
+particular engineering responses followed, that selected mechanisms were exercised under continuing
+change, and that the quantitative descriptions can be inspected independently of the narrative built
+around them.
