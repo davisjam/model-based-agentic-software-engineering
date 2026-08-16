@@ -5,8 +5,8 @@
      THREE TIERS and marks where the SOURCE EVIDENCE sits, not where organizational capability sits. Three
      stacked bands, bottom to top: Tier 1 Engineering knowledge (green, the knowledge-representation tier
      where the software-first corpus concentrates); Tier 2 Executable system models (a warm turn, where
-     Siemens clearly reaches); Tier 3 Governed correspondence (rust, mechanical checks over the relation a
-     model claims — the originating case experiments here, the public reconstructions do not reach it). The
+     Siemens clearly reaches); Tier 3 Checked correspondence (rust, mechanical checks over selected
+     model–implementation relations — the originating case experiments here, the reconstructions do not reach it). The
      right margin carries three evidence markers, not org-capability ratings. Caption says SOURCE EVIDENCE,
      not organizational capability; a source silent at a tier is not an organization that lacks it.
      Palette: Umber Monograph tokens (governed green #1f7a4d/#155c38 + tints #e3f0e7/#eef7f0 the knowledge
@@ -21,8 +21,8 @@
     is green and holds topology, ownership, policy, infrastructure, lineage, and context; the five
     software-first sources concentrate here. Tier 2, Executable system models, is a warm neutral and holds
     behavior, process, scenarios, invariants, and traceability; Siemens clearly reaches this tier from a
-    model-first engineering tradition. Tier 3, Governed correspondence, is rust and holds mechanical checks
-    over the relation a model claims to the implemented system; the originating case experiments here, and
+    model-first engineering tradition. Tier 3, Checked correspondence, is rust and holds mechanical checks
+    over selected model–implementation relations; the originating case experiments here, and
     the public software-first reconstructions do not reach it. The right margin marks where the source
     evidence sits, tier by tier, not where any organization's capability sits. A source silent at a tier is
     not evidence the organization lacks the capability.</desc>
@@ -31,12 +31,12 @@
   <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The modeling ceiling, in three tiers</text>
   <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Where the source evidence concentrates — not a rating of any organization's capability.</text>
 
-  <!-- Tier 3 (top) — Governed correspondence (rust) -->
+  <!-- Tier 3 (top) — Checked correspondence (rust) -->
   <rect x="70" y="108" width="620" height="112" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="94" y="146" font-size="15" font-weight="700" letter-spacing="1" fill="#9a3f12">TIER 3</text>
-  <text x="176" y="146" font-size="20" font-weight="700" fill="#1c1917">Governed correspondence</text>
-  <text x="94" y="176" font-size="15" fill="#57534e">Mechanical checks over the relation a model claims</text>
-  <text x="94" y="198" font-size="15" fill="#57534e">to the implemented system.</text>
+  <text x="176" y="146" font-size="20" font-weight="700" fill="#1c1917">Checked correspondence</text>
+  <text x="94" y="176" font-size="15" fill="#57534e">Mechanical checks over selected</text>
+  <text x="94" y="198" font-size="15" fill="#57534e">model–implementation relations.</text>
   <rect x="706" y="108" width="244" height="112" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="5 4"/>
   <text x="828" y="150" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">Originating case</text>
   <text x="828" y="174" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">experiments here —</text>
@@ -72,6 +72,6 @@
   <text x="40" y="470" font-size="13.5" fill="#1f7a4d" transform="rotate(-90 40 470)">richer representation ▲</text>
 
   <text x="500" y="520" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Siemens shows the executable-model tier is normal in model-based engineering, not a MAGE invention;</text>
-  <text x="500" y="542" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the correspondence tier is a frontier the public evidence does not settle as generally cheap.</text>
+  <text x="500" y="542" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the originating case checks selected model–implementation relations; the public sources do not establish comparable mechanisms.</text>
   <text x="500" y="576" text-anchor="middle" font-size="14.5" fill="#57534e">Tiers mark where the SOURCE EVIDENCE sits. A source silent at a tier is not an organization that lacks it.</text>
 </svg>

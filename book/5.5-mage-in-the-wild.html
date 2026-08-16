@@ -809,7 +809,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">5.5.4</span> The modeling ceiling</h2>
 <p>One difference is stark. In the five software-first accounts, the richest representations described publicly are primarily <strong>knowledge representations</strong>: service catalogs, dependency information, infrastructure definitions, policy corpora, repository metadata, skills, and context machinery. These are important models in the broad sense used by MAGE—they externalize engineering knowledge and extend what an agent can recover reliably—but the sources give little evidence of behavioral, process, scenario, or invariant models serving as the primary surface of software reasoning.</p>
 <p>Siemens crosses that boundary because it comes from a model-first engineering tradition. Behavioral structure, traceability, requirements, simulation, and analysis already live in persistent engineering representations; software generation is one downstream realization. <strong>The comparison shows that the strong end of the Modeling Thesis is normal elsewhere in engineering and unusual in the software-first agent systems examined here.</strong></p>
-<p>One further step appears in the originating case and not in the public reconstructions: using correspondence checks strongly enough that a change can be rejected when it violates the declared relation between an important model and the implementation. Treat that as a frontier, not a victory column. The public evidence does not establish how generally such checks can be made cheap, precise, and useful.</p>
+<p>The originating case goes one step further. For selected models, mechanical checks compare declared relations to the implementation and reject changes when those relations no longer hold. These checks cover particular relations rather than establishing general correspondence between model and implementation, and the case does not show how broadly such checks can be applied at reasonable cost.</p>
 <p><a class="xref" href="5.5-mage-in-the-wild.html#fig-5-5-2">Figure&nbsp;5.5-2</a> states the finding as three tiers and marks where the source evidence sits.</p>
 <figure id="fig-5-5-2" class="book-figure" data-label="modeling-ceiling-tiers"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620"
      role="group" aria-labelledby="mctTitle mctDesc"
@@ -819,8 +819,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     is green and holds topology, ownership, policy, infrastructure, lineage, and context; the five
     software-first sources concentrate here. Tier 2, Executable system models, is a warm neutral and holds
     behavior, process, scenarios, invariants, and traceability; Siemens clearly reaches this tier from a
-    model-first engineering tradition. Tier 3, Governed correspondence, is rust and holds mechanical checks
-    over the relation a model claims to the implemented system; the originating case experiments here, and
+    model-first engineering tradition. Tier 3, Checked correspondence, is rust and holds mechanical checks
+    over selected model–implementation relations; the originating case experiments here, and
     the public software-first reconstructions do not reach it. The right margin marks where the source
     evidence sits, tier by tier, not where any organization's capability sits. A source silent at a tier is
     not evidence the organization lacks the capability.</desc>
@@ -829,12 +829,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The modeling ceiling, in three tiers</text>
   <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Where the source evidence concentrates — not a rating of any organization's capability.</text>
 
-  <!-- Tier 3 (top) — Governed correspondence (rust) -->
+  <!-- Tier 3 (top) — Checked correspondence (rust) -->
   <rect x="70" y="108" width="620" height="112" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="94" y="146" font-size="15" font-weight="700" letter-spacing="1" fill="#9a3f12">TIER 3</text>
-  <text x="176" y="146" font-size="20" font-weight="700" fill="#1c1917">Governed correspondence</text>
-  <text x="94" y="176" font-size="15" fill="#57534e">Mechanical checks over the relation a model claims</text>
-  <text x="94" y="198" font-size="15" fill="#57534e">to the implemented system.</text>
+  <text x="176" y="146" font-size="20" font-weight="700" fill="#1c1917">Checked correspondence</text>
+  <text x="94" y="176" font-size="15" fill="#57534e">Mechanical checks over selected</text>
+  <text x="94" y="198" font-size="15" fill="#57534e">model–implementation relations.</text>
   <rect x="706" y="108" width="244" height="112" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="5 4"/>
   <text x="828" y="150" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">Originating case</text>
   <text x="828" y="174" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">experiments here —</text>
@@ -870,9 +870,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="40" y="470" font-size="13.5" fill="#1f7a4d" transform="rotate(-90 40 470)">richer representation ▲</text>
 
   <text x="500" y="520" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Siemens shows the executable-model tier is normal in model-based engineering, not a MAGE invention;</text>
-  <text x="500" y="542" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the correspondence tier is a frontier the public evidence does not settle as generally cheap.</text>
+  <text x="500" y="542" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">the originating case checks selected model–implementation relations; the public sources do not establish comparable mechanisms.</text>
   <text x="500" y="576" text-anchor="middle" font-size="14.5" fill="#57534e">Tiers mark where the SOURCE EVIDENCE sits. A source silent at a tier is not an organization that lacks it.</text>
-</svg><figcaption data-short="The Modeling Ceiling"><span class="fig-label">Figure 5.5-2.</span> <em>The Modeling Ceiling.</em> Three tiers of modeling: engineering knowledge, executable system models, and governed correspondence. The software-first corpus concentrates on the knowledge tier; Siemens reaches the executable-model tier; the originating case experiments with governed correspondence. The tiers locate the public source evidence, not organizational capability.</figcaption></figure>
+</svg><figcaption data-short="The Modeling Ceiling"><span class="fig-label">Figure 5.5-2.</span> <em>The Modeling Ceiling.</em> Three tiers of modeling: engineering knowledge, executable system models, and checked correspondence. The software-first corpus concentrates on the knowledge tier; Siemens reaches the executable-model tier; the originating case checks selected model–implementation relations, and the public sources do not establish comparable mechanisms. The tiers locate the public source evidence, not organizational capability.</figcaption></figure>
 <h2><span class="sec-num">5.5.5</span> Engineering Capital at Organizational Scale</h2>
 <p>The industrial cases add something the single-engineer origin cannot: organization. Four moves recur. <strong>Shared mechanisms centralize while domain judgment stays distributed.</strong> Platform teams own common authentication, execution, safety, or policy machinery while domain teams retain the expertise that decides what their agents should do. <strong>Human judgment moves upstream:</strong> one engineer can scope and supervise a migration implemented concurrently by a fleet rather than hand-authoring every change. <strong>Private learning becomes a shared artifact:</strong> sessions, policies, skills, and defaults become useful only when later work can inherit them. And <strong>the unit of governance grows:</strong> from a task or agent to classes of work, permissions, fleets, policies, and platforms.</p>
 <p>The common structure is leverage. A scarce human decision becomes more valuable when it is placed where the environment can carry it forward: one policy can shape thousands of changes; one model can guide a fleet; one learned constraint can protect every later task over the same surface. This is the organizational face of engineering capital. Governance does not remove judgment. It gives selected judgments multiplicative reach.</p>

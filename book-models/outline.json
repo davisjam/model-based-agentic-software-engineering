@@ -7,7 +7,7 @@
     "derived_ids": 145,
     "missing_topic_sentence": 0,
     "sections_drained": 103,
-    "paragraph_points": 436
+    "paragraph_points": 439
   },
   "chapters": [
     {
@@ -3141,38 +3141,53 @@
             },
             {
               "slug": "explicit-models-changed-what-could-be-checked",
-              "text": "Explicit models changed what could be established mechanically; I selected the assurance method that matched the property.",
+              "text": "Explicit models changed what could be established mechanically, down to exhaustively exploring the ownership transition system.",
               "block_index": 56
+            },
+            {
+              "slug": "temporal-properties-needed-tla-and-tlc",
+              "text": "Temporal properties such as eventual termination ranged over executions, so I checked small TLA+ specifications with TLC.",
+              "block_index": 58
+            },
+            {
+              "slug": "not-end-to-end-formal-verification",
+              "text": "This was not end-to-end formal verification; correspondence between the models and the implementation was uneven.",
+              "block_index": 60
+            },
+            {
+              "slug": "formal-methods-entered-where-they-paid-off",
+              "text": "DocAble adopted formal methods where they made a property easier to state or search, not as a wholesale commitment.",
+              "block_index": 62
             },
             {
               "slug": "the-representation-changed-what-i-could-understand",
               "text": "The models gave me a vocabulary for properties I could not previously state; the representation changed what I could understand.",
-              "block_index": 58
+              "block_index": 64
             },
             {
               "slug": "vocabulary-shapes-what-an-engineer-can-see",
               "text": "Software engineering already accepts a milder version: a shared vocabulary shapes the properties an engineer can see and state.",
-              "block_index": 60
+              "block_index": 66
             },
             {
               "slug": "the-incident-represented-a-class",
               "text": "A later audit showed the incident was a class, not a one-off; mechanical correspondence checks retired a recurring class of stale-reference failure.",
-              "block_index": 63
+              "block_index": 69
             },
             {
               "slug": "modeling-found-real-bugs",
               "text": "Forcing an engineering relation into an explicit representation creates new questions the environment can ask; in three cases those questions exposed shipping defects green tests had missed.",
-              "block_index": 65
+              "block_index": 71
             },
             {
               "slug": "staircase-figure",
               "text": "The staircase shows delegation increasing as the environment absorbed two kinds of work; human judgment moved toward strategy and residual semantics rather than vanishing.",
-              "block_index": 69
+              "block_index": 75
             },
             {
               "slug": "delegation-depends-on-what-the-environment-can-carry",
               "text": "Delegation increased as the environment absorbed system knowledge (representation) and repeatable admission (authority); a weak model or weak controls pulled the operator back into tactical work; human judgment stayed at the unresolved edge.",
-              "block_index": 73
+              "block_index": 79
             }
           ]
         }
