@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1135,
+    "total_sites": 1134,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 729,
+      "book-web": 728,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -181,7 +181,7 @@
           },
           {
             "file": "book/appendix-stacks.html",
-            "occ": 4
+            "occ": 1
           },
           {
             "file": "book/bibliography.html",
@@ -1117,7 +1117,7 @@
           },
           {
             "file": "book/appendix-a-composing-a-stack.html",
-            "occ": 28
+            "occ": 26
           },
           {
             "file": "book/appendix-a-context-delivery-stack.html",
@@ -1129,7 +1129,7 @@
           },
           {
             "file": "book/appendix-a-model-coherence-stack.html",
-            "occ": 23
+            "occ": 22
           },
           {
             "file": "book/appendix-a-observe-react-stack.html",
@@ -1289,7 +1289,7 @@
           },
           {
             "file": "book/appendix-stacks.html",
-            "occ": 37
+            "occ": 38
           },
           {
             "file": "book/bibliography.html",
@@ -2255,11 +2255,11 @@
           },
           {
             "file": "book/appendix-a-model-coherence-stack.html",
-            "occ": 41
+            "occ": 37
           },
           {
             "file": "book/appendix-a-observe-react-stack.html",
-            "occ": 9
+            "occ": 10
           },
           {
             "file": "book/appendix-a-resource-mediation-stack.html",
@@ -2415,7 +2415,7 @@
           },
           {
             "file": "book/appendix-stacks.html",
-            "occ": 10
+            "occ": 9
           },
           {
             "file": "book/bibliography.html",
@@ -4808,10 +4808,6 @@
             "occ": 1
           },
           {
-            "file": "book/appendix-a-observe-react-stack.html",
-            "occ": 1
-          },
-          {
             "file": "book/appendix-d-governance-conversion.html",
             "occ": 1
           },
@@ -4827,7 +4823,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 10
+            "occ": 9
           }
         ]
       },

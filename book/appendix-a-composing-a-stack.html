@@ -693,7 +693,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-evidence-ledger.html">Appendix G — Evidence Ledger: The DocAble Case</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · A.8 Composing a Stack — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.8 Composing a Stack</h1></header><p>The seven stacks before this one are examples. The reusable skill is composition. Start from the capability, not the mechanisms — here is how.</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · A.8 Composing a Stack — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.8 Composing a Stack</h1></header><p>The seven preceding stacks are examples. The reusable skill is composition. Start from the capability, not the mechanisms.</p>
 <h2>1. Name the capability</h2>
 <p>Prefer</p>
 <blockquote class="aside-sidenote"><p>Every consequential mutation is reconstructable.</p></blockquote>
@@ -703,7 +703,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2>2. Enumerate the failure classes</h2>
 <p>Ask what would make the capability claim false. For reconstructable mutation:</p>
 <ul><li>the actor is unknown;</li><li>a record is missing;</li><li>a bypass path exists;</li><li>history cannot be joined;</li><li>the transformation silently loses semantics.</li></ul>
-<p>Those failures tell you what the composition has to cover. Nothing else does.</p>
+<p>Those failures determine what the composition must cover.</p>
 <h2>3. Assign one guarantee to each failure</h2>
 <p>Map each way the claim can break to the guarantee that closes it.</p>
 <table id="tbl-A-8-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table A.8-1.</span></caption><thead><tr><th>Failure</th><th>Guarantee</th></tr></thead><tbody><tr><td>actor unknown</td><td>attribution</td></tr><tr><td>record missing</td><td>emission</td></tr><tr><td>bypass exists</td><td>coverage</td></tr><tr><td>history fragmented</td><td>stable identity / join</td></tr><tr><td>semantic loss</td><td>fidelity check</td></tr></tbody></table>
@@ -711,15 +711,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2>4. Find the dependency among guarantees</h2>
 <p>Some guarantees only become meaningful once another exists.</p>
 <p>MARK  →  EMIT  →  COVER  →  READ</p>
-<p>A completeness checker proves little before there is a defined population of events to account for. This dependency is what turns a list of mechanisms into a stack.</p>
+<p>A completeness check is meaningful only after the population to be accounted for has been defined. Dependencies among guarantees are what turn a list of mechanisms into a stack.</p>
 <h2>5. Separate the load-bearing path from the enhancements</h2>
 <p>For each mechanism, ask:</p>
-<blockquote class="aside-sidenote"><p>If I remove this, can I still honestly make the capability claim?</p></blockquote>
-<p>If yes, the mechanism may be valuable — but it is not load-bearing. That is the distinction the spreads draw as a solid path and a dashed attachment.</p>
+<blockquote class="aside-sidenote"><p>If I remove this, is the capability claim still valid?</p></blockquote>
+<p>If yes, the mechanism may still be valuable, but it is not load-bearing. The diagrams represent this distinction with solid paths and dashed attachments.</p>
 <h2>6. Match the substrate</h2>
-<p>Do not reproduce a stack from this appendix because it appears here. A database, an embedded controller, a compiler, a SaaS application, and a research codebase each expose different observable facts and different deterministic seams. Preserve the guarantees; let the substrate decide the mechanisms.</p>
+<p>Do not reproduce a reference stack mechanically. A database, an embedded controller, a compiler, a SaaS application, and a research codebase each expose different observable facts and different deterministic seams. Preserve the guarantees; let the substrate decide the mechanisms.</p>
 <h2>7. Stop</h2>
-<p>The objective is not maximum governance. It is the smallest composition that makes the capability claim honest for the failure classes that matter. That is the same economy Part II applies to models: build enough explicit structure to answer the engineering question, then stop.</p>
+<p>The objective is not maximum governance. It is the smallest composition that makes the capability claim valid for the failure classes that matter.</p>
 <h2>The method in one picture</h2>
 <figure id="fig-A-8-1" class="book-figure" data-label="appendix-a-composing-a-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 820"
      role="img" aria-labelledby="csTitle csDesc"
@@ -804,6 +804,4 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ENGINEERING STACK (green outcome) -->
   <rect x="285" y="738" width="250" height="60" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="410" y="774" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">ENGINEERING STACK</text>
-</svg><figcaption data-short="Composing an engineering stack"><span class="fig-label">Figure A.8-1.</span> Composing an engineering stack. Begin with a capability and the ways it can fail. Select mechanisms for the guarantees required to close those failures, check which guarantees depend on which, and retain only the composition needed to make the capability claim honest — that load-bearing composition is the stack.</figcaption></figure>
-<p>Begin with a capability and ask what makes it false. The failure classes fan out; each takes a guarantee, and each guarantee takes a mechanism. Check which guarantees depend on which, keep only the composition that makes the claim honest, and the load-bearing remainder is your stack.</p>
-<p>Unlike a catalog of installed subsystems, this teaches a transferable engineering skill: start from a capability and its failure classes, then compose only the guarantees needed to make the claim honest.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">« Beginning of part</a><a href="appendix-a-context-delivery-stack.html" aria-label="Previous chapter — A.7 Context Delivery">« Previous chapter</a></div><span class="chapnav-here" title="A.8 Composing a Stack">A.8 Composing a Stack</span><div class="chapnav-fwd"><a href="appendix-b-engineering-moves.html" aria-label="Next chapter — Appendix B — Engineering Moves">Next chapter »</a><a href="appendix-b-engineering-moves.html" aria-label="Next part — Appendix B — Engineering Moves">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+</svg><figcaption data-short="Composing an engineering stack"><span class="fig-label">Figure A.8-1.</span> Composing an engineering stack. Begin with a capability and its failure classes. Identify the guarantees required to close those failures, select mechanisms that provide them, determine their dependencies, and retain the smallest load-bearing composition that makes the capability claim valid.</figcaption></figure><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">« Beginning of part</a><a href="appendix-a-context-delivery-stack.html" aria-label="Previous chapter — A.7 Context Delivery">« Previous chapter</a></div><span class="chapnav-here" title="A.8 Composing a Stack">A.8 Composing a Stack</span><div class="chapnav-fwd"><a href="appendix-b-engineering-moves.html" aria-label="Next chapter — Appendix B — Engineering Moves">Next chapter »</a><a href="appendix-b-engineering-moves.html" aria-label="Next part — Appendix B — Engineering Moves">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

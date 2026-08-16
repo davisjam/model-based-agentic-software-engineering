@@ -1,8 +1,6 @@
 ## The capability
 
-**Turn engineering obligations into evidence that the required population has been checked, at a level of
-rigor the property deserves.** The question this stack answers is not whether the tests passed. It is
-whether the obligations were identified, discharged appropriately, and shown to cover the population.
+**Turn engineering obligations into evidence that the required population has been checked at the level of rigor each property deserves.**
 
 ## When this stack earns its keep
 
@@ -23,9 +21,6 @@ config field, every seam — and a green suite on a handful of examples no longe
 <!-- label: assurance-stack -->
 <!-- figure: assets/assurance-stack.svg | The assurance composition. A SPEC states the obligation; a CENSUS establishes the population it applies to; discharge fans out to the evidence each obligation deserves — TEST for examples, LINT for structure, PROVE for semantics — and all three lanes converge on COVERAGE, which joins each obligation back to its evidence so omissions show. Solid path: the load-bearing composition. -->
 
-State the obligation, establish who it applies to, discharge it with evidence fit to the property, then join
-the evidence back to the population so a gap becomes visible rather than silent.
-
 ## Constituent moves
 
 | Move | Role |
@@ -40,10 +35,7 @@ the evidence back to the population so a gap becomes visible rather than silent.
 A checker establishes a property only for what it checks. A proof says nothing about obligations left out of
 its population. A census with no evidence attached merely enumerates debt.
 
-Assurance therefore needs both discharge and completeness. Establish what must be shown. Apply evidence
-suited to each obligation — an example test where an example suffices, a structural lint where the shape is
-mechanical, a bounded proof where semantics demand it. Then map that evidence back to the full population, so
-an unchecked obligation surfaces instead of hiding.
+Assurance requires both discharge and completeness. Establish what must be shown, apply evidence suited to each obligation—an example test where an example suffices, a structural lint where structure is decisive, a bounded proof where semantics demand it—and map that evidence back to the full population so unchecked obligations remain visible.
 
 One rule runs throughout, and it is worth stating plainly: **discharge an obligation at the semantic level
 where the property becomes legible.** A property about a document's structure belongs to a check that reads

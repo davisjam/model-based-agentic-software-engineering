@@ -1,5 +1,4 @@
-The seven stacks before this one are examples. The reusable skill is composition. Start from the capability,
-not the mechanisms — here is how.
+The seven preceding stacks are examples. The reusable skill is composition. Start from the capability, not the mechanisms.
 
 ## 1. Name the capability
 
@@ -24,7 +23,7 @@ Ask what would make the capability claim false. For reconstructable mutation:
 - history cannot be joined;
 - the transformation silently loses semantics.
 
-Those failures tell you what the composition has to cover. Nothing else does.
+Those failures determine what the composition must cover.
 
 ## 3. Assign one guarantee to each failure
 
@@ -47,38 +46,27 @@ Some guarantees only become meaningful once another exists.
 
     MARK  →  EMIT  →  COVER  →  READ
 
-A completeness checker proves little before there is a defined population of events to account for. This
-dependency is what turns a list of mechanisms into a stack.
+A completeness check is meaningful only after the population to be accounted for has been defined. Dependencies among guarantees are what turn a list of mechanisms into a stack.
 
 ## 5. Separate the load-bearing path from the enhancements
 
 For each mechanism, ask:
 
-> If I remove this, can I still honestly make the capability claim?
+> If I remove this, is the capability claim still valid?
 
-If yes, the mechanism may be valuable — but it is not load-bearing. That is the distinction the spreads draw
-as a solid path and a dashed attachment.
+If yes, the mechanism may still be valuable, but it is not load-bearing. The diagrams represent this distinction with solid paths and dashed attachments.
 
 ## 6. Match the substrate
 
-Do not reproduce a stack from this appendix because it appears here. A database, an embedded controller, a
+Do not reproduce a reference stack mechanically. A database, an embedded controller, a
 compiler, a SaaS application, and a research codebase each expose different observable facts and different
 deterministic seams. Preserve the guarantees; let the substrate decide the mechanisms.
 
 ## 7. Stop
 
-The objective is not maximum governance. It is the smallest composition that makes the capability claim
-honest for the failure classes that matter. That is the same economy Part II applies to models: build enough
-explicit structure to answer the engineering question, then stop.
+The objective is not maximum governance. It is the smallest composition that makes the capability claim valid for the failure classes that matter.
 
 ## The method in one picture
 
 <!-- label: appendix-a-composing-a-stack -->
-<!-- figure: assets/appendix-a-composing-a-stack.svg | Composing an engineering stack. Begin with a capability and the ways it can fail. Select mechanisms for the guarantees required to close those failures, check which guarantees depend on which, and retain only the composition needed to make the capability claim honest — that load-bearing composition is the stack. -->
-
-Begin with a capability and ask what makes it false. The failure classes fan out; each takes a guarantee, and
-each guarantee takes a mechanism. Check which guarantees depend on which, keep only the composition that
-makes the claim honest, and the load-bearing remainder is your stack.
-
-Unlike a catalog of installed subsystems, this teaches a transferable engineering skill: start from a
-capability and its failure classes, then compose only the guarantees needed to make the claim honest.
+<!-- figure: assets/appendix-a-composing-a-stack.svg | Composing an engineering stack. Begin with a capability and its failure classes. Identify the guarantees required to close those failures, select mechanisms that provide them, determine their dependencies, and retain the smallest load-bearing composition that makes the capability claim valid. -->
