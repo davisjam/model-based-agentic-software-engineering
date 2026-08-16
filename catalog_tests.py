@@ -73,6 +73,7 @@ from tests.book_models import (
 from tests.citations import (
     check_cite_fresh,
     check_cite_mirror,
+    check_cite_no_duplicates,
     check_cite_orphans,
     check_cite_parity,
     check_cite_resolve,
@@ -234,6 +235,8 @@ CHECKS = [
           lambda strict: check_cite_parity()),
     Check("book: CITE-ORPHAN — a .bib entry nothing cites (audit-only; decision #4)", 1,
           lambda strict: check_cite_orphans(), audit_only=True),
+    Check("book: CITE-DEDUP — no two .bib entries share a (title, year); no repeated key (BIB-9)", 1,
+          lambda strict: check_cite_no_duplicates()),
     # AUDIT-ONLY (rule #55): the OUTLINE view-model drift + invariants (book-models/outline.json vs a fresh
     # derivation; O2 topic-sentence, O3 unique id, O4 nesting). The book's own "4+1 view held equal to the
     # source" discipline dogfooded on the book. Seeds 2 real O2 findings today, so it lands audit-only and

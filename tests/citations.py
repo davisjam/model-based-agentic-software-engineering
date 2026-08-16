@@ -124,6 +124,37 @@ def check_cite_orphans():
                                          for k in orphans]
 
 
+def check_cite_no_duplicates():
+    """BIB-9 (BLOCKING). No two references.bib entries share a (title, year) — the strong identity of a
+    work — and no cite key is defined twice. (title, year) is the deliberate dedup key: it catches the same
+    source registered under two keys with a drifted AUTHOR or URL (a bibliography double-entry the eye
+    reads as a repeat), which a stricter author+url match would miss. Title is normalized (lowercased,
+    whitespace-collapsed); year is compared verbatim. Distinct works with genuinely different titles do
+    NOT collide (e.g. ABET's Engineering-programs vs Computing-programs criteria). A hit means merge the
+    entries onto one key and repoint its `[cite: …]` markers."""
+    if not os.path.isfile(_REFERENCES_BIB):
+        return PASS, []
+    entries = rc.parse_bib(open(_REFERENCES_BIB, encoding="utf-8").read())
+    issues: list[str] = []
+    key_counts: dict[str, int] = {}
+    for e in entries:
+        key_counts[e["key"]] = key_counts.get(e["key"], 0) + 1
+    for k, n in sorted(key_counts.items()):
+        if n > 1:
+            issues.append(f"BIB-9 duplicate cite key {{{k}}} defined {n}x in references.bib")
+    groups: dict[tuple[str, str], list[str]] = {}
+    for e in entries:
+        title = re.sub(r"\s+", " ", e["fields"].get("title", "").strip().lower())
+        year = e["fields"].get("year", "").strip()
+        if title:
+            groups.setdefault((title, year), []).append(e["key"])
+    for (title, year), keys in sorted(groups.items()):
+        if len(keys) > 1:
+            issues.append(f"BIB-9 duplicate (title, year): {keys} share title {title!r} + year {year!r} "
+                          f"— merge onto one key and repoint its [cite:] markers")
+    return (FAIL if issues else PASS), issues
+
+
 _CITE_SUP_RE = re.compile(r'<sup class="cite-ref"><a href="#(wc-[a-z0-9-]+)"[^>]*>(\d+)</a></sup>')
 _WC_ID_RE = re.compile(r'<li id="(wc-[a-z0-9-]+)">')
 _NOTE_SUP_RE = re.compile(r'<sup class="note-ref"[^>]*>([^<]+)</sup>')
