@@ -101,6 +101,13 @@
       "chapter_slug": "generative-validation",
       "backs_claims": ["modeling-thesis", "alignment-thesis", "H3-mechanized-assurance"],
       "limitation": "The temporal property is modeled and falsifiable but NOT wired to any CI gate — correspondence is a single-property-LINE text match (the .tla action bodies are hand-authored and unpoliced) plus existence-checked satisfy_refs, so nothing proves the code enforces eventual termination. A lived limit-case reasoned in design, one product, one operator; a caution on WHEN a model's defense holds, not evidence modeling generally fails."
+    },
+    {
+      "id": "fn-lease-conformance-drift-260816",
+      "incident": "Checking a model creates a second obligation — keeping the evidence connected to the implementation — and that obligation itself became an Alignment problem. The lease model↔runtime conformance test (`test_model_matches_runtime_claim_merge_terminal`, web/test_simworld) drifted red after a production change and stayed broken for ~11 days: the sharpest lived instance of a reasoning surface creating a maintenance obligation, an independent manifestation of the same phenomenon as the stale model→code reference. Repairing the test fixed the instance; the durable response addressed the class. Three Epics (`tlc-spec-registry-and-run`, `lease-conformance-change-trigger`, `formal-spec-runner-and-triggering`) plus the sibling repair `fix-red-lease-conformance-test` registered the TLA+ specs behind a common runner, made model-to-spec correspondence mechanically checkable (a spec-registry↔model parity lint), change-triggered the relevant formal + conformance checks off modeled production surfaces, and added a Java-free floor lint so registration is enforceable with no JVM. The formal checks thereby acquired the same drift controls as the models they support.",
+      "chapter_slug": "the-road-to-mage",
+      "backs_claims": ["alignment-thesis", "H3-mechanized-assurance"],
+      "limitation": "The program changed the reproducibility, registration, and change-triggering of the formal machinery — NOT the class of assurance. TLC execution remains AUDIT-ONLY / non-gating (the gating authority is the Python explicit-state BFS plus BLOCKING lints, not TLC); there is still no implementation-level bounded or symbolic checking; and model↔implementation correspondence stays example-based/sampled, not a refinement. Single project, single operator; the two obligations remain distinct — strong evidence that a model has a property does not make correspondence to the implementation automatic."
     }
   ]
 }
