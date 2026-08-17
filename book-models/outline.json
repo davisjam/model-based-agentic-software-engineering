@@ -3890,7 +3890,7 @@
           "heading_text": "Why Software Came Late to Model-First Engineering",
           "topic_sentence": "Software's economics differed from older engineering disciplines in a peculiar way.",
           "id_source": "derived",
-          "block_index": 8,
+          "block_index": 9,
           "points": []
         },
         {
@@ -3899,12 +3899,12 @@
           "heading_text": "Models Are the Language of Engineering",
           "topic_sentence": "Models are the language of engineering because engineers rarely reason about every relevant property directly from the realized artifact.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 16,
           "points": [
             {
               "slug": "explicit-representation-is-the-common-inheritance",
               "text": "Engineering long used models; AI externalized memory and structure; MAGE brings them together, and its stronger claim is centrality — representations and authority become primary engineering surfaces.",
-              "block_index": 19
+              "block_index": 20
             }
           ]
         },
@@ -3914,7 +3914,7 @@
           "heading_text": "Models Can Be Induced from the Work",
           "topic_sentence": "Explicit models need not begin with a modeler drawing the right abstraction in advance.",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 27,
           "points": []
         },
         {
@@ -3923,7 +3923,7 @@
           "heading_text": "When Realization Becomes Search",
           "topic_sentence": "Models already earn value by helping engineers and agents reason about a system and by organizing claims and evidence for assurance.",
           "id_source": "derived",
-          "block_index": 34,
+          "block_index": 35,
           "points": []
         },
         {
@@ -3932,7 +3932,7 @@
           "heading_text": "What Happened to the Cost?",
           "topic_sentence": "Part V left an economic question hanging.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 48,
           "points": []
         },
         {
@@ -3941,12 +3941,12 @@
           "heading_text": "What MAGE Claims Is New",
           "topic_sentence": "MAGE does not claim to have discovered models, constraints, verification, external memory, structured reasoning, or autonomous software agents.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 61,
           "points": [
             {
               "slug": "what-mage-claims-is-new",
               "text": "MAGE does not claim to have discovered the components; its claim is architectural and disciplinary — redesign the environment when autonomous implementation becomes a primary productive substrate.",
-              "block_index": 61
+              "block_index": 62
             }
           ]
         },
@@ -3956,7 +3956,7 @@
           "heading_text": "Beyond Software",
           "topic_sentence": "Follow the analogy one step further and a possibility appears.",
           "id_source": "derived",
-          "block_index": 63,
+          "block_index": 64,
           "points": []
         }
       ],
