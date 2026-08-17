@@ -7,7 +7,7 @@
     "derived_ids": 147,
     "missing_topic_sentence": 1,
     "sections_drained": 108,
-    "paragraph_points": 449
+    "paragraph_points": 448
   },
   "chapters": [
     {
@@ -1023,7 +1023,7 @@
             },
             {
               "slug": "drift-checking-has-a-precise-job-preserve-the-correspondence-the-model-claims",
-              "text": "Drift checking has a precise job: preserve the correspondence the model claims to maintain; correctness needs another claim.",
+              "text": "Drift checking has a precise job: preserve a declared correspondence between model and implementation; correctness needs another claim.",
               "block_index": 17
             },
             {
@@ -1043,7 +1043,7 @@
           "points": [
             {
               "slug": "an-obligation-can-be-perfectly-stated-and-unenforceable-at-the-boundary-you-check",
-              "text": "An obligation can be perfectly stated and still be unenforceable at the boundary where you try to check it.",
+              "text": "An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it.",
               "block_index": 29
             },
             {
@@ -1073,7 +1073,7 @@
             },
             {
               "slug": "the-part-two-rhyme-coarsest-representation-earliest-boundary",
-              "text": "The rhyme: Modeling chooses the reduction that answers the question while carrying no unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
+              "text": "The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
               "block_index": 50
             },
             {
@@ -1160,14 +1160,9 @@
               "block_index": 34
             },
             {
-              "slug": "the-constraint-is-poka-yoke-jidoka-is-a-sensor-validator-gate-bundle",
-              "text": "The constraint is poka-yoke; jidoka is closer to a sensor/validator/gate bundle.",
-              "block_index": 36
-            },
-            {
               "slug": "recovery-is-not-permission",
               "text": "The sharpest instance of the pair is ownership: the lease makes ownership visible and recoverable, the durable compare-and-set supplies the authority. Recovery is not permission.",
-              "block_index": 38
+              "block_index": 36
             }
           ]
         },
@@ -1177,37 +1172,37 @@
           "heading_text": "One Obligation, Several Ways to Hold It",
           "topic_sentence": "A modeled obligation does not imply one particular enforcement technology.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 38,
           "points": [
             {
               "slug": "a-modeled-obligation-does-not-imply-one-enforcement",
               "text": "A modeled obligation does not imply one enforcement technology; ask what kind of property it is.",
-              "block_index": 42
+              "block_index": 40
             },
             {
               "slug": "prefer-the-constraint-when-you-can-exclude-the-state",
-              "text": "Sometimes the best mechanism is a constraint rather than a validator: if an invalid state can be removed from the action space, prefer the constraint.",
-              "block_index": 44
+              "text": "If an invalid state can be removed from the action space, prefer the constraint.",
+              "block_index": 42
             },
             {
               "slug": "interleaving-properties-need-a-validator-over-the-state-space",
               "text": "Properties that live across sequences need a validator that reasons over the composed state space.",
-              "block_index": 46
+              "block_index": 44
             },
             {
               "slug": "temporal-obligations-require-another-shape-of-evidence",
               "text": "Temporal obligations require another shape of evidence; a finite trace cannot establish eventuality.",
-              "block_index": 48
+              "block_index": 46
             },
             {
               "slug": "these-are-matches-not-levels-of-sophistication",
               "text": "These are matches between property and mechanism, not levels of sophistication.",
-              "block_index": 50
+              "block_index": 48
             },
             {
               "slug": "whichever-validator-supplies-the-judgment-authority-depends-on-the-environment",
               "text": "Whichever validator supplies the judgment, authority still depends on what the environment does with its verdict.",
-              "block_index": 53
+              "block_index": 51
             }
           ]
         },
@@ -1217,22 +1212,22 @@
           "heading_text": "Validators and gates",
           "topic_sentence": "The other two roles act at the loop's closing door.",
           "id_source": "derived",
-          "block_index": 55,
+          "block_index": 53,
           "points": [
             {
               "slug": "a-validator-turns-evidence-into-a-judgment",
               "text": "A validator turns evidence into a judgment.",
-              "block_index": 57
+              "block_index": 55
             },
             {
               "slug": "a-gate-supplies-the-consequence-and-a-gate-is-a-commitment",
               "text": "A gate supplies the consequence — and a gate is a commitment.",
-              "block_index": 61
+              "block_index": 59
             },
             {
               "slug": "cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing",
               "text": "A loop may re-derive evidence at a later admission boundary; the thing asking to pass does not define passing.",
-              "block_index": 64
+              "block_index": 62
             }
           ]
         },
@@ -1242,12 +1237,12 @@
           "heading_text": "One Measurement, Different Authority Decisions",
           "topic_sentence": "The four roles are not stages of maturity.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 64,
           "points": [
             {
               "slug": "the-four-roles-are-not-stages-of-maturity",
               "text": "The four roles are not stages of maturity: one quantitative model can support observation, adaptation, graceful degradation, or hard admission control.",
-              "block_index": 68
+              "block_index": 66
             }
           ]
         },
@@ -1257,12 +1252,12 @@
           "heading_text": "Positive and Negative Constraints",
           "topic_sentence": "Constraints are often introduced as prohibitions: this code must not call that library.",
           "id_source": "derived",
-          "block_index": 71,
+          "block_index": 69,
           "points": [
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 73
+              "block_index": 71
             }
           ]
         },
@@ -1272,27 +1267,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "Keep **policy**, **guidance**, and **governance mechanism** separate.",
           "id_source": "derived",
-          "block_index": 76,
+          "block_index": 74,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; authority begins when something acts.",
-              "block_index": 78
+              "block_index": 76
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "The same artifact can play several roles; the model is the representation, the machinery the authority.",
-              "block_index": 80
+              "block_index": 78
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "Implementations bundle roles; name them, don't stretch the terms.",
-              "block_index": 82
+              "block_index": 80
             },
             {
               "slug": "represented-intent-becomes-authoritative-through-one-of-four-roles",
               "text": "Leave-with: intent becomes authority through one of four roles; next, where the mechanisms come from.",
-              "block_index": 87
+              "block_index": 85
             }
           ]
         }
@@ -1318,7 +1313,7 @@
           "section_id": "ex-ante-encode-what-you-already-know",
           "level": 2,
           "heading_text": "Ex ante: encode what you already know",
-          "topic_sentence": "Start with obligations you can state before the work begins and whose recurrence justifies making them durable.",
+          "topic_sentence": "Start with obligations you can state before the work begins and whose consequence, recurrence, or reuse justifies making them durable.",
           "id_source": "derived",
           "block_index": 5,
           "points": [
@@ -1339,7 +1334,7 @@
           "points": [
             {
               "slug": "ex-post-diagnose-what-was-missing-do-not-assume-every-failure-wants-a-gate",
-              "text": "Ex post: diagnose what was missing; not every failure wants another gate.",
+              "text": "Ex post: diagnose what was missing; not every failure calls for another gate.",
               "block_index": 14
             },
             {
@@ -1408,7 +1403,7 @@
           "section_id": "where-authority-stops",
           "level": 2,
           "heading_text": "Where Authority Stops",
-          "topic_sentence": "Not every quality goal should end in a deterministic gate.",
+          "topic_sentence": "Not every quality goal should end in authoritative enforcement.",
           "id_source": "derived",
           "block_index": 44,
           "points": [
@@ -1434,7 +1429,7 @@
             },
             {
               "slug": "a-governed-obligation-carries-an-authoritative-consequence-appropriate-to-its-risk",
-              "text": "A governed obligation carries an authoritative consequence appropriate to its risk; the four states are a design space, not a ladder.",
+              "text": "A governed obligation carries an authoritative consequence appropriate to the engineering decision; the four states are a design space, not a ladder.",
               "block_index": 56
             },
             {
@@ -1531,7 +1526,7 @@
           "section_id": "trace-obligations-to-mechanisms",
           "level": 2,
           "heading_text": "Trace Obligations to Mechanisms",
-          "topic_sentence": "Interaction is only half of meta-governance.",
+          "topic_sentence": "Interactions are only half of governing the control estate.",
           "id_source": "derived",
           "block_index": 28,
           "points": [
@@ -1586,7 +1581,7 @@
       "preamble_points": [
         {
           "slug": "every-control-reasonable-alone-the-system-of-controls-still-wrong",
-          "text": "Every control can be reasonable in isolation and the system of controls still be wrong.",
+          "text": "Every control can be reasonable in isolation while the control estate as a whole remains inconsistent, incomplete, or obsolete.",
           "block_index": 1
         },
         {

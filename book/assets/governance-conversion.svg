@@ -13,12 +13,12 @@
      role="img" aria-labelledby="gcTitle gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="gcTitle">Governance conversion: a failure is diagnosed for what was missing, and the missing
-    piece is encoded as durable structure that future work inherits as engineering capital</title>
+    piece is encoded as durable structure that future work benefits from inheriting as engineering capital</title>
   <desc id="gcDesc">A failure or surprise flows down into one question — what was missing — which fans
     into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.
     Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or
-    gate. The five converge into durable engineering structure, which future work inherits, accumulating as
-    engineering capital. The figure's point: a recurring failure is not automatically a request for another
+    gate. The five converge into durable engineering structure, which future work benefits from inheriting,
+    accumulating as engineering capital. The figure's point: a recurring failure is not automatically a request for another
     gate — you diagnose what the environment lacked and encode that.</desc>
 
   <defs>
@@ -92,8 +92,8 @@
   <text x="500" y="441" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DURABLE ENGINEERING STRUCTURE</text>
   <line x1="500" y1="462" x2="500" y2="502" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
 
-  <rect x="315" y="506" width="370" height="50" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
-  <text x="500" y="537" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5137">FUTURE WORK INHERITS IT</text>
+  <rect x="210" y="506" width="580" height="50" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
+  <text x="500" y="537" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5137">FUTURE WORK BENEFITS FROM INHERITING IT</text>
   <line x1="500" y1="556" x2="500" y2="596" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
 
   <rect x="330" y="600" width="340" height="56" rx="10" fill="#3d6b4a" stroke="#2f5137" stroke-width="2"/>

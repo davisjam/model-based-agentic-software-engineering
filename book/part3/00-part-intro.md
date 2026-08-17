@@ -27,6 +27,7 @@ Five questions organize the Part; [ref:part3-nav-arc] shows their progression.
 Alignment gives selected engineering judgments durable authority in the environment. Constraints narrow what work
 can do; sensors produce evidence of what it did; validators judge that evidence against an obligation;
 gates decide what may advance. Some mechanisms can be designed before work begins. Others emerge when a
-failure exposes something the environment did not represent, observe, evaluate, or control. Those durable
-lessons become engineering capital; once the control estate becomes consequential, it too becomes an
-engineering object.
+failure exposes something the environment did not represent, observe, evaluate, or control. Those lessons
+can become durable engineering structure; when later work benefits from inheriting that structure, it
+becomes engineering capital. Once the control estate becomes consequential, it too becomes an engineering
+object.

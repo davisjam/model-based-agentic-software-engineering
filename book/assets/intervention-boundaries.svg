@@ -17,7 +17,7 @@
   <title id="ibTitle">Four intervention boundaries: a guidance zone set apart from where authority can bind</title>
   <desc id="ibDesc">Four boundaries sit in a row, ordered left to right by increasing semantic grain, not by
     increasing strength of authority. The leftmost, reasoning input, sits alone in a separate GUIDANCE zone,
-    drawn agent-blue: prompts, briefs, models, and examples shape reasoning input, and are authoritative
+    drawn agent-blue: prompts, briefs, engineering models, and examples shape reasoning input, and are authoritative
     only through a consuming mechanism. The other three — action, work unit, and artifact or runtime — sit
     together in a zone labeled AUTHORITY CAN BIND HERE, drawn governance-rust: at the action boundary through
     permissions, hooks, and tools; at the work-unit boundary through a task, a pull request, a build, a
@@ -58,7 +58,7 @@
 
   <!-- the mechanisms that act at each boundary -->
   <text x="154" y="208" text-anchor="middle" font-size="14" fill="#2f5169">prompts &#183; briefs</text>
-  <text x="154" y="226" text-anchor="middle" font-size="14" fill="#2f5169">models &#183; examples</text>
+  <text x="154" y="226" text-anchor="middle" font-size="14" fill="#2f5169">engineering models &#183; examples</text>
 
   <text x="403" y="208" text-anchor="middle" font-size="14" fill="#9a3f12">permissions &#183; hooks &#183; tools</text>
 

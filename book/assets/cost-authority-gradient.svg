@@ -35,7 +35,7 @@
   <!-- source model -->
   <rect x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="480" y="59" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
-  <text x="480" y="81" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">one continuously-sensed quantity</text>
+  <text x="480" y="81" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">related measured quantities</text>
 
   <!-- edge to policy -->
   <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#cg-r)"/>

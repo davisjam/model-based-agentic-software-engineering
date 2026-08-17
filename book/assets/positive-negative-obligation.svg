@@ -12,7 +12,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="960" height="440"
      role="img" aria-labelledby="poTitle poDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="poTitle">Negative and positive constraints: a negative constraint removes a forbidden action; a positive constraint requires a specified evidence-producing one</title>
+  <title id="poTitle">Negative and positive constraints: a negative constraint removes a forbidden action; a positive constraint requires specified evidence-producing behavior</title>
   <desc id="poDesc">Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge
     between them is forbidden. On the right, a positive constraint: a mutation verb must call a stamping action that
     produces attribution evidence. Both are checked at source time; both restrict the admissible implementation space,
@@ -48,7 +48,7 @@
 
   <!-- ============ POSITIVE ============ -->
   <text x="710" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">POSITIVE CONSTRAINT</text>
-  <text x="710" y="94" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">requires an evidence-producing one</text>
+  <text x="710" y="94" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">requires evidence-producing behavior</text>
 
   <rect x="580" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="710" y="166" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">mutation verb</text>
