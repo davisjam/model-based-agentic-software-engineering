@@ -21,7 +21,7 @@ browser pass, `claude plugin validate`); Tier-1 is sub-second, so it leaves `nee
 No baseline (missing `origin/main`) → everything runs — fail-safe.
 
 **Book audit (`--book-audit`).** A separate AUDIT-ONLY report path over the embedded book (`tests/book.py`):
-intra-book link integrity, a visual per chapter, section-length cap, thesis-woven, figure hygiene,
+intra-book link integrity, a visual per chapter, section-length cap, principle-woven, figure hygiene,
 placeholder count. It prints findings and ALWAYS exits 0 — the book has deliberate draft gaps, so it must
 never contribute to the suite's fail count. It runs disjoint from the pass/fail CHECKS above: `--book-audit`
 runs only the report and returns; a normal run leaves the book untouched. Promote a book rule to blocking
@@ -580,7 +580,7 @@ def main() -> int:
     ap.add_argument("--tier1", action="store_true", help="run ALL Tier-1 deterministic checks (force, not "
                     "incremental) and SKIP the slow Tier-2 external passes — the fast pre-push gate")
     ap.add_argument("--book-audit", action="store_true", help="run the AUDIT-ONLY book structural report "
-                    "(visual-per-chapter, section-length, thesis-woven, figure hygiene, placeholders) and "
+                    "(visual-per-chapter, section-length, principle-woven, figure hygiene, placeholders) and "
                     "exit 0 — never contributes to the fail count. Disjoint from the pass/fail CHECKS.")
     args = ap.parse_args()
 

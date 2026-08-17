@@ -2574,8 +2574,8 @@ def _big_idea_band(rec: dict, figright: bool = False, bigfig: bool = False,
 
 
 def _thesis_cell(rec: dict, concept_id: str) -> str:
-    """One half of the matched thesis PAIR. Carries `id="<concept_id>"` (card-thesis-modeling /
-    card-thesis-alignment) so the thesis concepts' `site_home` resolves on the landing — the slot IS the
+    """One half of the matched thesis PAIR. Carries `id="<concept_id>"` (card-modeling-principle /
+    card-alignment-principle) so the thesis concepts' `site_home` resolves on the landing — the slot IS the
     concept's site realization (the concept drift check joins on this id)."""
     return (
         f'<div class="p-cell" id="{_attr(concept_id)}">\n'
@@ -2597,7 +2597,7 @@ def _landing_big_ideas() -> str:
     research-agenda render in bespoke band shapes fetched via `_big_idea_rec`; all nine ideas are now in
     `_order` with a concept-<slug>.html ENTRY, so every band — these three, churn, the Engineered
     Environment, and both thesis cells — links '→ read the concept'. The thesis pair cells carry the thesis
-    concepts' site ids (`card-thesis-*`)."""
+    concepts' site ids (`card-modeling-principle` / `card-alignment-principle`)."""
     by_slug = {r["_slug"]: r for r in _big_ideas_ordered()}
     np = _big_idea_rec("new-problem") or {}
     ic = _big_idea_rec("independent-convergence") or {}
@@ -2621,9 +2621,9 @@ def _landing_big_ideas() -> str:
     # Idea 3 — the Two Theses — a matched pair (the thesis concepts' site homes; both kickered "Big idea 3").
     parts.append(
         '<div class="pair pair-causal">\n'
-        + _thesis_cell(by_slug["modeling-thesis"], "card-thesis-modeling") + "\n"
+        + _thesis_cell(by_slug["modeling-principle"], "card-modeling-principle") + "\n"
         + '  <div class="pair-arrow" aria-hidden="true">creates surfaces for &#8594;</div>\n'
-        + _thesis_cell(by_slug["alignment-thesis"], "card-thesis-alignment") + "\n"
+        + _thesis_cell(by_slug["alignment-principle"], "card-alignment-principle") + "\n"
         + '</div>')
     parts.append('<hr class="i-sep" />')
     # Idea 4 — Governance-Conversion (convert recurring failures into controls) — the third named move,
@@ -3203,10 +3203,10 @@ def _big_question_body() -> str:
     answered = [s for s in cq.get("answered_by", []) if s in titles]
     if answered:
         gloss = {
-            "modeling-thesis": "Give the fleet a structured, drift-checked model to reason through, so a "
+            "modeling-principle": "Give the fleet a structured, drift-checked model to reason through, so a "
                                "context-bounded agent holds the part of the system a change needs instead of "
                                "re-deriving it. This is how intent is made explicit enough to act on.",
-            "alignment-thesis": "Encode each obligation that matters as a mechanism the environment enforces "
+            "alignment-principle": "Encode each obligation that matters as a mechanism the environment enforces "
                                 "— a type, a lint, a gate — so a decision made once holds against every later "
                                 "change, whether the agent cooperates or not.",
             "convert-failures": "Autonomy surfaces failures no one foresaw. Convert each recurring one into a "
@@ -5023,7 +5023,7 @@ def main() -> int:
     cl.add_argument("chapter", help="chapter slug or number prefix (e.g. 3.1 or 3.1-the-executable-zoo)")
     cl.add_argument("--json", action="store_true", help="dump the resolved claim records")
     sp = sub.add_parser("spine", help="query the argument-spine model (book-models/argument-spine.json): no arg lists the 14 claims in order with advance-counts; a CLAIM-ID prints its statement + advancing chapters; a CHAPTER-SLUG prints the claims that chapter advances")
-    sp.add_argument("target", nargs="?", help="a spine claim id (e.g. alignment-thesis) or a chapter slug / number prefix (e.g. 2.3 or 2.3-the-governed-environment); omit to list the whole spine")
+    sp.add_argument("target", nargs="?", help="a spine claim id (e.g. alignment-principle) or a chapter slug / number prefix (e.g. 2.3 or 2.3-the-governed-environment); omit to list the whole spine")
     sp.add_argument("--json", action="store_true", help="dump the raw matched record(s)")
     lp = sub.add_parser("litpos", help="query the literature-positioning model (book-models/lit-positioning.json): no arg lists the X→Y→Z interventions + the planned-vs-landed burndown; an INTERVENTION-ID or §N prints its X/Y/Z frame + citations nested under the spine")
     lp.add_argument("target", nargs="?", help="an intervention id (e.g. fallible-oracles-swebench) or a §N section (e.g. §9); omit to list them all")

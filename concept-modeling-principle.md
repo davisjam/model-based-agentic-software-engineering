@@ -2,7 +2,7 @@
 
 **Claim** — A context-bounded agent can't hold the whole system. Externalize what it must know into structured, drift-checked models, purposeful compression, and the reasoning fits the window.
 
-| Concept | Big idea 3 · Thesis 1 |
+| Concept | Big idea 3 · Principle 1 |
 | --- | --- |
 | Claim | A context-bounded agent can't hold the whole system. Externalize what it must know into structured, drift-checked models, purposeful compression, and the reasoning fits the window. |
 | Mechanisms | Executable source-of-truth models · Drift & parity gates · Component & zone model · PdfModel · Office Models |
@@ -35,7 +35,7 @@ model, not a document.
 
 ## Modeling is representation; Alignment is authority
 
-Keep the two theses distinct. A model helps an engineer think and an agent navigate, but nothing forces the
+Keep the two principles distinct. A model helps an engineer think and an agent navigate, but nothing forces the
 code to obey it — a model has no authority of its own. That is Alignment's job, and it does not wait on
 Modeling: where a property is already legible, authority can act directly, and a constraint the compiler
 enforces needs no model at all. The relationship runs one way and softly. Richer models do not command
@@ -74,7 +74,7 @@ parting.
 
 ## Related concepts
 
-- [Give intent authority: constrain, sense, validate, gate](concept-alignment-thesis.md)
+- [Give intent authority: constrain, sense, validate, gate](concept-alignment-principle.md)
 - [The Engineered Environment](concept-governance-centric.md)
 
 ## Read in the book →

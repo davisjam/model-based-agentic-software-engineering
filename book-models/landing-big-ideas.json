@@ -7,7 +7,7 @@
 
   "_concept_card_fields": "Per-concept fields the two-tier Concept split (book-models/landing_big_ideas_model.py) reads on top of the nine the landing bricks read. `mechanisms`: the hand-declared Concept->mechanism edge — a list of catalogue entry slugs (agent/models-bridge/product) that instantiate or enforce this concept; the owning side of the edge, may be [] for a thin entry; every slug must resolve to a real catalogue entry (checked by CC2). `related_ideas`: an optional curated override for the Related-concepts section — a list of the concept slugs; [] means the projector falls back to the _order-adjacency seed. `entry_figures`: the concept ENTRY's extra figures (fig[1..]) beyond the shared brick figure fig[0] (=`figure`) — a list of {asset, caption} objects, each asset under book/assets/. The entry markdown positions them with `<!-- fig: N -->` directives (0 = the brick figure) that the concept renderer projects from this list, so the model stays the figure SSOT; CC5 gates 1–3 RENDERED figures per entry. Two-tier note: the landing BRICK shows only figure/title/claim + a '→ read the concept' link; the rich material (the `more` intuition, the mechanisms, the related concepts, the extra figures) renders on the standalone `concept-<slug>.html` ENTRY. Distinct from book/data/concepts.json (the book's core-concept vocabulary model with its own card-<slug> landing lints) — this file is the Big-Ideas / Concepts-section model. The gateway record is NOT a concept and carries none of these.",
 
-  "_order": ["new-problem", "churn", "modeling-thesis", "alignment-thesis", "convert-failures", "governance-centric", "seat-moves", "independent-convergence", "research-agenda"],
+  "_order": ["new-problem", "churn", "modeling-principle", "alignment-principle", "convert-failures", "governance-centric", "seat-moves", "independent-convergence", "research-agenda"],
 
   "_order_note": "Reading arc = the blog's argument order. The VISIBLE LANDING band layout is hardcoded in catalog.py:_landing_big_ideas() (seven main bands: new-problem hero, churn, the thesis pair, convert-failures, governance-centric, independent-convergence, research-agenda) with only seat-moves in the back-matter reference strip (_landing_demoted_ideas). `_order` drives the concept two-tier model, related-idea adjacency seeding, the core-question join (answered_by ⊆ _order), and the spine report — NOT the band placement. The `kicker` per record carries the LANDING-BAND numbering: the main bands read 1–7 gap-free (the thesis pair shares 'Big idea 3' by design, so Governance-Conversion promotes to 'Big idea 4' and the rest shift up), with demoted seat-moves reusing 6 on its entry page only (the demoted strip renders no kicker). Option B (promote convert-failures onto the main spine so the landing shows the three named moves Modeling→Alignment→Governance-Conversion) is now APPLIED; SUMMARY.md carries the ratified plan.",
 
@@ -39,41 +39,41 @@
     "claim": "One environment, two fates. Ungoverned, effort dissipates as churn — rediscovering, undoing, reconciling. Governed and converting, it accrues as engineering capital: the same effort compounds.",
     "more": "Scale creates a reasoning problem before it creates anything else. An agent fleet is cheap and fast, so it scales — up to the context window. Once the work a change requires exceeds what a single context can hold, the fleet stops advancing the system and starts churning: it re-derives architecture it already worked out, re-opens settled questions, and confidently undoes yesterday's fix. That is churn, effort re-spent rather than banked. The same environment has a positive sign: govern each recurring failure and convert it, and the effort banks as engineering capital that lowers the cost of every later change. The fork is what the whole method decides; Part 6 cashes the compounding half.",
     "mechanisms": [],
-    "related_ideas": ["modeling-thesis", "governance-centric"],
+    "related_ideas": ["modeling-principle", "governance-centric"],
     "entry_figures": [
       {"asset": "governance-conversion-loop.svg", "caption": "*The compounding pole.* Convert a recurring failure into a durable control and it joins the substrate later work stands on. The environment's engineering capital grows one retired failure at a time, so the same effort that would have dissipated as churn instead accrues."}
     ]
   },
 
-  "modeling-thesis": {
-    "id": "bi-modeling-thesis",
+  "modeling-principle": {
+    "id": "bi-modeling-principle",
     "role": "thesis-1",
     "order": 3,
-    "kicker": "Big idea 3 · Thesis 1",
+    "kicker": "Big idea 3 · Principle 1",
     "title": "Documentation, taken to its limit, is a structured model",
     "figure": "model-ladder.svg",
     "book_home": "context-is-the-first-modeling-problem",
     "claim": "A context-bounded agent can't hold the whole system. Externalize what it must know into structured, drift-checked models, purposeful compression, and the reasoning fits the window.",
     "more": "A foundation model reasons through a bounded context and rebuilds its picture of the system on every task; a real change's reasoning state outruns that working memory, so it is compressed and reconstructed, and every lossy round trip degrades the reasoning it stands in for. A model answers that chain at its source. It is *purposeful compression* — keep the subsystem, interface, invariant, and workflow relationships engineering questions actually need, discard the rest — so each reconstruction restores more of what mattered and the reasoning horizon stretches. Models used to die because keeping them current was somebody's unpaid job; agents now do it for cents, and a drifted model fails the build where a drifted prose doc only lies quietly. Modeling is representation, not authority: a model helps a reasoner think, but nothing forces the code to obey it until Alignment gives it teeth — and richer models simply widen the surface that authority can later reach.",
     "mechanisms": ["executable-source-of-truth", "drift-parity-gates", "component-zone-model", "pdf-model", "office-models"],
-    "related_ideas": ["alignment-thesis", "governance-centric"],
+    "related_ideas": ["alignment-principle", "governance-centric"],
     "entry_figures": [
       {"asset": "reasoning-horizon.svg", "caption": "*The reasoning horizon, and what a model does to it.* Reasoning state grows with a task's length; once it outruns working memory it must be compacted. Reason through a model and each compaction loses less, so the horizon stretches and the branch reaches progress instead of churn."}
     ]
   },
 
-  "alignment-thesis": {
-    "id": "bi-alignment-thesis",
+  "alignment-principle": {
+    "id": "bi-alignment-principle",
     "role": "thesis-2",
     "order": 4,
-    "kicker": "Big idea 3 · Thesis 2",
+    "kicker": "Big idea 3 · Principle 2",
     "title": "Give intent authority: constrain, sense, validate, gate",
     "figure": "constraint-vs-sensor.svg",
     "book_home": "constraints-sensors-validators-gates",
     "claim": "Give intent authority over the fleet: constrain the wrong move away, then sense evidence, validate it, and gate what may advance — sensor produces, validator judges.",
     "more": "A model by itself has no authority — it helps an engineer think and an agent navigate, but nothing forces the code to obey it. Alignment changes that: once intent is explicit enough to check, the environment can enforce it through four mechanism roles. A **constraint** removes the wrong move from the action space, so the failing state is never built. A **sensor** observes the work and *produces evidence* — a log, a trace, a scan of what the code actually did; it does not judge. A **validator** turns that evidence into a judgment against the obligation. A **gate** supplies the consequence, admitting or refusing the change at the door. Prefer the constraint where you can build one; where prevention cannot reach, the sensor–validator–gate chain holds the rest. Alignment can act directly, wherever a property is already legible: a constraint the compiler enforces needs no model at all. What none of the four can reach stays a human's job, named honestly rather than hidden.",
     "mechanisms": ["typed-categories", "semantic-lints", "content-validator", "f10-wiring-lint"],
-    "related_ideas": ["modeling-thesis", "convert-failures"],
+    "related_ideas": ["modeling-principle", "convert-failures"],
     "entry_figures": []
   },
 
@@ -88,7 +88,7 @@
     "claim": "Velocity surfaces the failures you could not foresee. Convert each recurring one into a mechanism, pushed as far toward hard enforcement as it will go.",
     "more": "You cannot foresee every failure a fast fleet will find; velocity is what surfaces them. The practice is to let velocity expose a recurring failure, then diagnose what the environment lacked and convert it — the fix repairs this instance, the conversion changes the environment. The conversion lands wherever the gap is: a missing model, a stated invariant, a sensor, a stronger validator, or new authority — not reflexively another gate. Whatever the branch, the output is the same in kind: durable structure future work inherits, which is **engineering capital**. Two loops reinforce: a knowledge loop turns intent into models into machine-checkable obligations, and a governance loop turns failures into authority into durable controls. Capital is not a ledger that only grows — it forms, is maintained, **depreciates** as the system it guarded moves on, and is retired when its carrying cost outruns its return. So mature adaptation reconciles and retires as well as adds.",
     "mechanisms": ["self-governance", "semantic-lints", "coherence-lints", "ddt-pin-trailers"],
-    "related_ideas": ["alignment-thesis", "governance-centric"],
+    "related_ideas": ["alignment-principle", "governance-centric"],
     "entry_figures": [
       {"asset": "governance-conversion-loop.svg", "caption": "*The hardening loop.* A recurring failure is caught, then converted into a mechanism and pushed toward the hardest enforcement it admits, so the class cannot return. The control substrate grows one retired failure at a time."}
     ]
@@ -150,7 +150,7 @@
     "claim": "Three open frontiers: how far judgment can migrate into deterministic machinery, how to census a governed environment's coverage and gaps, and what stronger models unlock.",
     "more": "These frontiers are not loose ends; they are where the method turns testable. Each names something you could measure against real systems rather than assert — how far an obligation can be pushed toward proof, what a governed environment's coverage actually is, and what the next tier of models makes cheap enough to retire by hand. The last is the model floor: a stronger environment makes cheaper models viable, so the sharp question becomes whether you can swap models without quality collapse.",
     "mechanisms": ["control-coverage-census", "governance-graph", "formal-invariant-verification"],
-    "related_ideas": ["convert-failures", "modeling-thesis"],
+    "related_ideas": ["convert-failures", "modeling-principle"],
     "entry_figures": [
       {"asset": "governance-census.svg", "caption": "*The census frontier, drawn.* Match obligations against the mechanisms that meet them and three counts fall out — governed, under-governed, and governance debt — so an environment's coverage becomes something you measure rather than assert."}
     ]
@@ -175,11 +175,11 @@
     "software_specialization": "When implementation becomes cheap enough that agents can build almost anything you can describe, what must the surrounding engineering environment do so they can act autonomously without making the system untrustworthy?",
     "through_line": [
       {"step": "problem",        "text": "How do we safely grant autonomy to commodity intelligence?", "big_ideas": []},
-      {"step": "answer",         "text": "Make intent explicit in models the fleet reasons through, and make the environment enforce the obligations that matter.", "big_ideas": ["modeling-thesis", "alignment-thesis"]},
+      {"step": "answer",         "text": "Make intent explicit in models the fleet reasons through, and make the environment enforce the obligations that matter.", "big_ideas": ["modeling-principle", "alignment-principle"]},
       {"step": "dynamic-method", "text": "When autonomy exposes a new failure class, convert the lesson into durable structure so the next agent inherits a safer, more capable world.", "big_ideas": ["convert-failures"]}
     ],
-    "answered_by": ["modeling-thesis", "alignment-thesis", "convert-failures"],
-    "answer_constructs": ["thesis-modeling", "thesis-alignment", "governance-conversion"],
+    "answered_by": ["modeling-principle", "alignment-principle", "convert-failures"],
+    "answer_constructs": ["modeling-principle", "alignment-principle", "governance-conversion"],
     "preface_anchor": "frontmatter/0.4-preface.md",
     "_note": "The book's core question — the umbrella over the Big Ideas. NOT a concept record (no book_home/figure/claim) and NOT projected as a landing band; a CHECKED ANCHOR whose only render is the Preface prose, pinned by parity. `answered_by` names the three ideas that constitute the ANSWER (the others — new-problem/churn/governance-centric/seat-moves/independent-convergence/research-agenda — frame problem/stakes/stance/seat/corroboration/frontier), in the LANDING slug namespace; `answer_constructs` names the same answer in the CONSTRUCT-UNIVERSE namespace (thesis-*/governance-conversion) that a deferred industry_cases `generalizes` query reads, so a single declared 'answer' is readable by both models. Checked AUDIT-ONLY-first by _core_question_audit() in catalog.py validate: CQ1 answered_by resolves, CQ2 through_line[].big_ideas resolve, CQ3 the Preface contains the question verbatim (skip-silent if the Preface prose has not yet landed the bold question)."
   }

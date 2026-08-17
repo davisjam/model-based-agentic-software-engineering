@@ -22,12 +22,12 @@
   "models-help-reason": {
     "id": "argues-models-help-reason",
     "order": 3,
-    "statement": "The Modeling Thesis. Externalize engineering knowledge and intent into explicit, purposeful models that preserve what an engineering question needs and suppress what it does not. Models let humans and agents reason about larger properties without repeatedly reconstructing them from implementation, and they make more consequential facts available to tools."
+    "statement": "The Modeling Principle. Externalize engineering knowledge and intent into explicit, purposeful models that preserve what an engineering question needs and suppress what it does not. Models let humans and agents reason about larger properties without repeatedly reconstructing them from implementation, and they make more consequential facts available to tools."
   },
   "reliability-from-environment": {
     "id": "argues-reliability-from-environment",
     "order": 4,
-    "statement": "The Alignment Thesis. Give engineering obligations authority through constraints, sensors, validators, and gates embedded in the engineering environment. Alignment does not require a comprehensive model of the system: a sandbox, a test, or a permission boundary can already hold a local rule. Explicit models expand what can be stated and checked deterministically; where the necessary abstraction is absent, human judgment often fills the gap."
+    "statement": "The Alignment Principle. Give engineering obligations authority through constraints, sensors, validators, and gates embedded in the engineering environment. Alignment does not require a comprehensive model of the system: a sandbox, a test, or a permission boundary can already hold a local rule. Explicit models expand what can be stated and checked deterministically; where the necessary abstraction is absent, human judgment often fills the gap."
   },
   "every-failure-becomes-infrastructure": {
     "id": "argues-every-failure-becomes-infrastructure",

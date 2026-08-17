@@ -5,17 +5,17 @@
     "spine_claims": 15,
     "chapters_labeled": 33,
     "chapters_exempt": 10,
-    "advancement_edges": 87,
+    "advancement_edges": 86,
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 2,
+    "zero_claim_suspects": 3,
     "over_cap_unfocused": 3,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
     "overmapped_claims": 3,
     "claims_exempt": 5,
-    "claims_stale": 0,
+    "claims_stale": 1,
     "quantifiable_claims": 9,
     "reality_claims": 10,
     "max_statement_words": 49
@@ -242,7 +242,7 @@
       "fresh": true
     },
     {
-      "id": "modeling-thesis",
+      "id": "modeling-principle",
       "order": 7,
       "statement": "Externalize engineering knowledge and intent into progressively richer representations: selected context, connected knowledge, invariant-bearing models, so commodity intelligence reasons through a compact world and engineers gain a surface to specify and predict.",
       "seeds": [
@@ -254,11 +254,11 @@
         "direction-agnostic"
       ],
       "reconciles_big_ideas": [
-        "modeling-thesis"
+        "modeling-principle"
       ],
       "reconciles_argues_claims": [],
       "feeds": [
-        "alignment-thesis"
+        "alignment-principle"
       ],
       "exempt": null,
       "reviewed_hash": "727472b9afa0",
@@ -272,20 +272,20 @@
         "1.3-the-agentic-substrate",
         "1.4-the-new-engineering-problem",
         "2.1-context-is-the-first-modeling-problem",
-        "2.2-from-context-to-control",
-        "2.3-the-executable-zoo",
-        "2.4-views-are-projections",
-        "2.5-modeling-structure-and-ownership",
-        "2.6-modeling-behavior-and-execution",
-        "2.7-modeling-measurement-and-evidence",
-        "2.8-joining-models-around-a-scenario",
+        "2.8-system-knowledge",
         "3.2-models-and-the-semantic-gap",
         "3.5-when-guardrails-collide",
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "4.3-validating-change",
         "5.3-the-road-to-mage",
-        "metrics"
+        "metrics",
+        "modeling-structure-and-ownership",
+        "modeling-behavior-and-execution",
+        "modeling-ownership",
+        "modeling-decision",
+        "modeling-measurement-and-evidence",
+        "modeling-provenance"
       ],
       "body_depth": 15,
       "front_loaded": false,
@@ -293,7 +293,7 @@
       "fresh": true
     },
     {
-      "id": "alignment-thesis",
+      "id": "alignment-principle",
       "order": 8,
       "statement": "Give engineering obligations authority through mechanisms embedded in the environment — constrain, sense, validate, gate. Alignment can act directly on actions and artifacts; explicit models enlarge the set of properties those mechanisms can state and check.",
       "seeds": [
@@ -305,7 +305,7 @@
         "model-not-mechanism-until-enforced"
       ],
       "reconciles_big_ideas": [
-        "alignment-thesis"
+        "alignment-principle"
       ],
       "reconciles_argues_claims": [],
       "feeds": [],
@@ -320,7 +320,6 @@
         "0.4-preface",
         "1.3-the-agentic-substrate",
         "1.4-the-new-engineering-problem",
-        "2.3-the-executable-zoo",
         "3.1-where-authority-can-act",
         "3.2-models-and-the-semantic-gap",
         "3.3-constraints-sensors-validators-gates",
@@ -331,21 +330,21 @@
         "5.4-failures-that-became-infrastructure",
         "metrics"
       ],
-      "body_depth": 10,
+      "body_depth": 9,
       "front_loaded": false,
       "overmapped": true,
       "fresh": true
     },
     {
-      "id": "theses-treat-the-causes",
+      "id": "principles-treat-the-causes",
       "order": 9,
-      "statement": "The theses are independent and address different problems: Modeling makes consequential knowledge explicit; Alignment gives obligations authority. Alignment can act without a model; MAGE places Modeling first as a principled scaling choice, not a logical prerequisite. The richer the model, the more obligations move from human judgment into enforcement.",
+      "statement": "The principles are independent and address different problems: Modeling makes consequential knowledge explicit; Alignment gives obligations authority. Alignment can act without a model; MAGE places Modeling first as a principled scaling choice, not a logical prerequisite. The richer the model, the more obligations move from human judgment into enforcement.",
       "seeds": [
         4,
         5
       ],
       "reconciles_claims": [
-        "theses-divide-the-not-knowings"
+        "principles-divide-the-not-knowings"
       ],
       "reconciles_big_ideas": [],
       "reconciles_argues_claims": [],
@@ -356,7 +355,7 @@
       "reality_claim": false,
       "measurand": "",
       "word_count": 49,
-      "statement_hash": "4320fa5f5f85",
+      "statement_hash": "16d63ac97caa",
       "advanced_by": [
         "0.4-preface",
         "1.4-the-new-engineering-problem"
@@ -364,7 +363,7 @@
       "body_depth": 0,
       "front_loaded": true,
       "overmapped": false,
-      "fresh": true
+      "fresh": false
     },
     {
       "id": "failures-become-machinery",
@@ -455,7 +454,7 @@
       "statement_hash": "09abeb08db9f",
       "advanced_by": [
         "0.4-preface",
-        "2.8-joining-models-around-a-scenario",
+        "2.8-system-knowledge",
         "6.4-reorganization-of-se",
         "6.6-education-research-open-problems",
         "7.1-the-part-that-stays-yours"
@@ -581,9 +580,9 @@
         "churn-is-the-limit",
         "three-not-knowings-cause-churn",
         "govern-the-environment",
-        "modeling-thesis",
-        "alignment-thesis",
-        "theses-treat-the-causes",
+        "modeling-principle",
+        "alignment-principle",
+        "principles-treat-the-causes",
         "failures-become-machinery",
         "mage-becomes-practical",
         "grounded-in-one-case"
@@ -613,74 +612,31 @@
     {
       "slug": "1.3-the-agentic-substrate",
       "advances": [
-        "modeling-thesis",
-        "alignment-thesis"
+        "modeling-principle",
+        "alignment-principle"
       ],
       "exempt": null
     },
     {
       "slug": "1.4-the-new-engineering-problem",
       "advances": [
-        "modeling-thesis",
-        "alignment-thesis",
-        "theses-treat-the-causes"
+        "modeling-principle",
+        "alignment-principle",
+        "principles-treat-the-causes"
       ],
       "exempt": null
     },
     {
       "slug": "2.1-context-is-the-first-modeling-problem",
       "advances": [
-        "modeling-thesis"
+        "modeling-principle"
       ],
       "exempt": null
     },
     {
-      "slug": "2.2-from-context-to-control",
+      "slug": "2.8-system-knowledge",
       "advances": [
-        "modeling-thesis"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "2.3-the-executable-zoo",
-      "advances": [
-        "modeling-thesis",
-        "alignment-thesis"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "2.4-views-are-projections",
-      "advances": [
-        "modeling-thesis"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "2.5-modeling-structure-and-ownership",
-      "advances": [
-        "modeling-thesis"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "2.6-modeling-behavior-and-execution",
-      "advances": [
-        "modeling-thesis"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "2.7-modeling-measurement-and-evidence",
-      "advances": [
-        "modeling-thesis"
-      ],
-      "exempt": null
-    },
-    {
-      "slug": "2.8-joining-models-around-a-scenario",
-      "advances": [
-        "modeling-thesis",
+        "modeling-principle",
         "mage-becomes-practical"
       ],
       "exempt": "end-of-part-synthesis"
@@ -688,7 +644,7 @@
     {
       "slug": "3.1-where-authority-can-act",
       "advances": [
-        "alignment-thesis",
+        "alignment-principle",
         "govern-the-environment"
       ],
       "exempt": null
@@ -696,8 +652,8 @@
     {
       "slug": "3.2-models-and-the-semantic-gap",
       "advances": [
-        "modeling-thesis",
-        "alignment-thesis",
+        "modeling-principle",
+        "alignment-principle",
         "sync-cost-reduced"
       ],
       "exempt": null
@@ -706,7 +662,7 @@
       "slug": "3.3-constraints-sensors-validators-gates",
       "advances": [
         "govern-the-environment",
-        "alignment-thesis"
+        "alignment-principle"
       ],
       "exempt": null
     },
@@ -714,7 +670,7 @@
       "slug": "3.4-governance-conversion",
       "advances": [
         "govern-the-environment",
-        "alignment-thesis",
+        "alignment-principle",
         "failures-become-machinery"
       ],
       "exempt": null
@@ -723,15 +679,15 @@
       "slug": "3.5-when-guardrails-collide",
       "advances": [
         "govern-the-environment",
-        "modeling-thesis"
+        "modeling-principle"
       ],
       "exempt": null
     },
     {
       "slug": "4.1-the-mage-workflow",
       "advances": [
-        "modeling-thesis",
-        "alignment-thesis",
+        "modeling-principle",
+        "alignment-principle",
         "failures-become-machinery",
         "govern-the-environment"
       ],
@@ -741,7 +697,7 @@
       "slug": "4.2-brownfield",
       "advances": [
         "govern-the-environment",
-        "modeling-thesis",
+        "modeling-principle",
         "failures-become-machinery"
       ],
       "exempt": null
@@ -749,8 +705,8 @@
     {
       "slug": "4.3-validating-change",
       "advances": [
-        "modeling-thesis",
-        "alignment-thesis"
+        "modeling-principle",
+        "alignment-principle"
       ],
       "exempt": null
     },
@@ -763,7 +719,7 @@
       "slug": "4.5-packaging-the-method-as-skills",
       "advances": [
         "failures-become-machinery",
-        "alignment-thesis"
+        "alignment-principle"
       ],
       "exempt": null
     },
@@ -786,7 +742,7 @@
       "slug": "5.3-the-road-to-mage",
       "advances": [
         "oversight-does-not-scale",
-        "modeling-thesis",
+        "modeling-principle",
         "seat-moves",
         "grounded-in-one-case"
       ],
@@ -798,11 +754,16 @@
         "abundant-implementation",
         "fault-lies-in-instructions",
         "govern-the-environment",
-        "alignment-thesis",
+        "alignment-principle",
         "failures-become-machinery",
         "seat-moves"
       ],
       "exempt": null
+    },
+    {
+      "slug": "5.5-mage-in-the-wild",
+      "advances": [],
+      "exempt": "discussion"
     },
     {
       "slug": "6.1-toward-a-theory-of-mage",
@@ -819,9 +780,9 @@
       "exempt": "discussion"
     },
     {
-      "slug": "6.3-mage-in-the-wild",
+      "slug": "6.3-what-the-theory-predicts",
       "advances": [],
-      "exempt": "discussion"
+      "exempt": null
     },
     {
       "slug": "6.4-reorganization-of-se",
@@ -872,8 +833,50 @@
     {
       "slug": "metrics",
       "advances": [
-        "modeling-thesis",
-        "alignment-thesis"
+        "modeling-principle",
+        "alignment-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "modeling-structure-and-ownership",
+      "advances": [
+        "modeling-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "modeling-behavior-and-execution",
+      "advances": [
+        "modeling-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "modeling-ownership",
+      "advances": [
+        "modeling-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "modeling-decision",
+      "advances": [
+        "modeling-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "modeling-measurement-and-evidence",
+      "advances": [
+        "modeling-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "modeling-provenance",
+      "advances": [
+        "modeling-principle"
       ],
       "exempt": null
     }
@@ -882,6 +885,10 @@
     "zero_claim_suspects": [
       {
         "chapter": "4.4-operating-mage",
+        "advances": 0
+      },
+      {
+        "chapter": "6.3-what-the-theory-predicts",
         "advances": 0
       },
       {
@@ -894,8 +901,8 @@
         "chapter": "4.1-the-mage-workflow",
         "advances": 4,
         "spine_ids": [
-          "modeling-thesis",
-          "alignment-thesis",
+          "modeling-principle",
+          "alignment-principle",
           "failures-become-machinery",
           "govern-the-environment"
         ]
@@ -905,7 +912,7 @@
         "advances": 4,
         "spine_ids": [
           "oversight-does-not-scale",
-          "modeling-thesis",
+          "modeling-principle",
           "seat-moves",
           "grounded-in-one-case"
         ]
@@ -917,7 +924,7 @@
           "abundant-implementation",
           "fault-lies-in-instructions",
           "govern-the-environment",
-          "alignment-thesis",
+          "alignment-principle",
           "failures-become-machinery",
           "seat-moves"
         ]
@@ -944,37 +951,36 @@
         ]
       },
       {
-        "claim": "modeling-thesis",
+        "claim": "modeling-principle",
         "advanced_by": 18,
         "chapters": [
           "0.4-preface",
           "1.3-the-agentic-substrate",
           "1.4-the-new-engineering-problem",
           "2.1-context-is-the-first-modeling-problem",
-          "2.2-from-context-to-control",
-          "2.3-the-executable-zoo",
-          "2.4-views-are-projections",
-          "2.5-modeling-structure-and-ownership",
-          "2.6-modeling-behavior-and-execution",
-          "2.7-modeling-measurement-and-evidence",
-          "2.8-joining-models-around-a-scenario",
+          "2.8-system-knowledge",
           "3.2-models-and-the-semantic-gap",
           "3.5-when-guardrails-collide",
           "4.1-the-mage-workflow",
           "4.2-brownfield",
           "4.3-validating-change",
           "5.3-the-road-to-mage",
-          "metrics"
+          "metrics",
+          "modeling-structure-and-ownership",
+          "modeling-behavior-and-execution",
+          "modeling-ownership",
+          "modeling-decision",
+          "modeling-measurement-and-evidence",
+          "modeling-provenance"
         ]
       },
       {
-        "claim": "alignment-thesis",
-        "advanced_by": 13,
+        "claim": "alignment-principle",
+        "advanced_by": 12,
         "chapters": [
           "0.4-preface",
           "1.3-the-agentic-substrate",
           "1.4-the-new-engineering-problem",
-          "2.3-the-executable-zoo",
           "3.1-where-authority-can-act",
           "3.2-models-and-the-semantic-gap",
           "3.3-constraints-sensors-validators-gates",

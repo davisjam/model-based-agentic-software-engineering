@@ -22,49 +22,49 @@
       "id": "mage-what-it-can-and-cant-measure-260801",
       "incident": "A per-task MBSE ablation returned a null that was an ARTIFACT of zero discriminative headroom — both arms scored at ceiling (nav 40/40; impl 119/124), so the instrument could not have detected an assist if one existed. The lesson: a task small enough to freeze into a benchmark cell was small enough to solve without the map; MBSE's value is SYSTEM-level (fix-once-benefits-all, drift/parity over time, a context-bounded fleet operating a context-exceeding codebase), which no single gate-pass cell can measure.",
       "chapter_slug": "modeling-measurement-and-evidence",
-      "backs_claims": ["modeling-thesis", "H4-representation-leverage"],
+      "backs_claims": ["modeling-principle", "H4-representation-leverage"],
       "limitation": "The per-task instrument could not discriminate (both arms at ceiling), so the system-level value is LOCATED, not measured — a null from a non-discriminating instrument is uninformative, neither for nor against the hypothesis. The note itself corrects the record, retracting a prior 'measured null' claim."
     },
     {
       "id": "dod-drift-detection-efficacy-refresh-260803",
       "incident": "A measured efficacy refresh of the Final-Opus Definition-of-Done drift-catch: across N=36 (through 07-28) plus N=20 (07-29..08-03) closed Epics, the catch-rate for model<->code drift under a fixed drift-type taxonomy (STALE-HEADER / SECTION-4-PHASE-NOTE-GAP / STALE-TEST / TRACEABILITY-BROKEN / DOC-CLAIM / NO-DOC-SURFACE). The thesis it grounds: derived defends; snapshotted drifts.",
       "chapter_slug": "modeling-measurement-and-evidence",
-      "backs_claims": ["alignment-thesis", "H3-mechanized-assurance"],
+      "backs_claims": ["alignment-principle", "H3-mechanized-assurance"],
       "limitation": "The catch-rate is measured over the SNAPSHOTTED drift classes in the fixed taxonomy only; the structural class the Definition-of-Done alone cannot catch is its stated limitation. Single operator, single repository, a bounded corpus of closed Epics — an efficacy reading, not a controlled comparison."
     },
     {
       "id": "mmm-real-bug-ledger-260724",
       "incident": "Across six model-Epics, model-based reasoning surfaced FOUR confirmed real product defects (a mislabeled CLI exit-code seam, a chunk-leak on the content-fail cleanup path, an unfenced editor lost-update race, a monotonic-drift queue-depth counter) — the signal Epics all found something actionable; the clean Epics each produced an architectural strengthening move instead. The 'modeling catches real bugs' evidence.",
       "chapter_slug": "reorganization-of-se",
-      "backs_claims": ["modeling-thesis", "H5-local-model-deficiency"],
+      "backs_claims": ["modeling-principle", "H5-local-model-deficiency"],
       "limitation": "Four defects over six efforts, TWO of the four LOW-severity; a find-rate over one product's window, single operator, single fleet — a lived find-rate, not a controlled defect-yield comparison."
     },
     {
       "id": "mbse-powered-fuzzing-technique-260727",
       "incident": "The architecture model was made the single source of truth for BOTH halves of a fuzzing program: the fuzz-target census (derived from the model's boundary edges, invariants, external seams, and output contracts) AND the correctness oracle (derived from the model's invariants and must-never-be-read-as contracts), with coverage a bidirectional lint. It caught a real zip-bomb (a 957 KiB upload forcing ~327 MB of decompress), a never-raise-contract breach on a malformed ZIP central directory, and four latent element-granularity crashes in a JSON struct-tree parser; the model-indexed invariant campaign then ran clean (proof-shaped) over the LINEAR subset.",
       "chapter_slug": "generative-validation",
-      "backs_claims": ["modeling-thesis"],
+      "backs_claims": ["modeling-principle"],
       "limitation": "The derived census is module-granularity, and the auto-oracle qualifies ONLY for LINEAR / single-call invariants with a runtime enforcement site and a total observable predicate; concurrency-safety and liveness stay in the exhaustive-BFS / TLC tier (input-fuzzing is the wrong checker there). Registered here by content from the Epic-dir note; the parent-repo promotion into docs/field-notes/ is a separate step."
     },
     {
       "id": "mmm-dry-opportunity-detector-260724",
       "incident": "The model<->code link graph the Missing-Model-Metric populates is invertible: read backwards it surfaces same-action / different-model-node consolidation candidates, duplicated shared-vocabulary across a boundary (the C#/Python CLI exit-code drift was a confirmed hit), and incomplete-composition (which cleanup-class paths reach the CANONICAL seam vs a partial sibling — which fired twice and caught a real chunk-leak bug). The traceability graph earns a SECOND keep: a lens for accidental complexity, not only for un-governed code.",
       "chapter_slug": "models-and-the-semantic-gap",
-      "backs_claims": ["modeling-thesis"],
+      "backs_claims": ["modeling-principle"],
       "limitation": "Still a field note by A.24 (trigger on the trait, not the mere possibility): fired on three of six model Epics, not yet a formalized query surface — floated as the larger scheme, deliberately not built until the yield stabilizes. Registered here by content from the Epic-dir note; the parent-repo promotion into docs/field-notes/ is a separate step."
     },
     {
       "id": "architectural-drift-open-loop-no-sensor-260807",
       "incident": "A remediation pass-pipeline that was genuinely clean — one driver, one phase taxonomy, one typed pass-metadata contract, a topological sort validating pass order at type-init — had nonetheless drifted at seven sites where the declared order no longer matched what actually executed. The accidental divergences were not scattered: they clustered exactly where the accessibility-GenAI remediation loop iterated hardest (the PowerPoint and PDF runners), because each new generation bet was wired inline 'for now' outside the pass registry, and the one in-code guard — the topo-sort — quantified only over REGISTERED passes, so every inline addition was invisible to it. The formats carrying little GenAI surface (the spreadsheet and document runners) stayed clean. The lesson: an open loop — an iteratively capability-adding subsystem — with neither a constraint that forbids the wrong shape nor a sensor that makes drift visible will decay a clean architecture, and it decays fastest exactly where iteration is most active. The fix pairs re-absorbing the inline work into the model with a live-parity sensor that compares the passes actually executed against the declared graph.",
       "chapter_slug": "constraints-sensors-validators-gates",
-      "backs_claims": ["alignment-thesis", "H5-local-model-deficiency"],
+      "backs_claims": ["alignment-principle", "H5-local-model-deficiency"],
       "limitation": "One pipeline in one product, single operator; the seven-site drift count and its concentration where iteration is hottest are one project's lived observation, not a measured rate across systems. The distinction the note leans on — corrosion (accidental inline drift a sensor must catch) versus library-forced essential divergence (correctly allowlisted) — is a judgment call, not a mechanical signal."
     },
     {
       "id": "chunk-fanout-stall-managed-plane-260807",
       "incident": "A multi-chunk document job hung for nearly an hour on staging — never completing, never failing — because the newer serverless fan-out published each chunk in a non-atomic per-chunk loop, and a created-but-undelivered task stranded the remaining chunks with no exception raised. Two model invariants formally declared this state impossible, but their satisfaction anchor covered only the older enqueue plane; a second backend had been added without re-anchoring them, so the new loop was invisible to the model. The exhaustive-state check compounded the blindness by stubbing the publish step (one chunk, always delivered), leaving the lost-subset state structurally unreachable in its search — a strong but static model suite that could never surface the class. It was found live, under load, by a warm-performance sweep, not by any single-call test; the fix re-anchored both invariants to the new plane, made the publish re-drivable, added a completeness sweep, and de-stubbed the search so the bug became reachable and a witness could go red then green.",
       "chapter_slug": "generative-validation",
-      "backs_claims": ["modeling-thesis", "alignment-thesis"],
+      "backs_claims": ["modeling-principle", "alignment-principle"],
       "limitation": "One incident in one product; a lived find under a specific staging load, not a measured detection rate. The two lessons it grounds — a satisfaction anchor that covers one plane while the code runs two, and a stubbed validation step that makes an invariant unfalsifiable — are cautions on WHEN a model's defense holds, not evidence that modeling generally fails; the note is the honest limit-case of the 'modeling catches real bugs' record."
     },
     {
@@ -85,28 +85,28 @@
       "id": "fn-db-cas-single-ownership",
       "incident": "DocAble's pervasive work-item ownership protocol is a PostgreSQL row compare-and-set: every handoff in the job pipeline is `UPDATE jobs SET … WHERE id=? AND status=?`, where the WHERE clause is the compare, the row write is the swap, and rowcount=0 means another worker won. A double-claim is unrepresentable because only one UPDATE matches the row; crash-safety rides the Cloud Tasks lease/ack. The most impactful concurrency correctness in the system is made STRUCTURALLY unrepresentable at runtime — no TLA+, no TLC, just the SQL statement as the constraint — and pinned by exhaustive explicit-state BFS model-check tests with a falsifiability toggle (drop the status guard and the BFS reaches the double-reserve sink). It is the honest counterexample to 'formal methods = TLA+'.",
       "chapter_slug": "generative-validation",
-      "backs_claims": ["modeling-thesis", "alignment-thesis"],
+      "backs_claims": ["modeling-principle", "alignment-principle"],
       "limitation": "One product, single operator; the BFS is exhaustive only within tiny bounds (2–3 actors, ≤2 redeliveries) over fakeredis + a dict FakeDb, not a proof that the fakes equal real Postgres/Cloud Tasks and nothing about the C# remediation pipeline. The claim is that the illegal state is structural at runtime, not that the whole system is formally verified."
     },
     {
       "id": "fn-lease-epoch-fencing",
       "incident": "The in-flight-lease fencing core is DocAble's fullest formal-methods chain — an explicit epoch-fenced transition system (QUEUED→CLAIMED→MERGING→DONE with a per-lease epoch) with named safety and liveness invariants, an offline TLA+ spec, and a falsifiability-toothed checker that gates deploy. The load-bearing checker turns out to be a Java-free Python exhaustive explicit-state BFS, NOT TLC: it BFS-closes every reachable interleaving up to the bound and cross-checks the real reclaim/completer Lua against the abstract model. Fence-off finds 4,184 split-brain double-terminal violation states; production config finds 0 over 38,891 (2 parents) / 177,717 (3 parents) interleavings. The question 'can a split-brain reclaim double-clear one job's lease?' is answered once by the epoch-fence design and re-checked exhaustively on every pre-deploy run.",
       "chapter_slug": "generative-validation",
-      "backs_claims": ["modeling-thesis", "alignment-thesis", "H3-mechanized-assurance"],
+      "backs_claims": ["modeling-principle", "alignment-principle", "H3-mechanized-assurance"],
       "limitation": "Exhaustive only within bounds (Jobs 2–3, clock ~6) over fakeredis + FakeDb; the .tla⇔Python-model⇔runtime tie is a hand-maintained '1:1 mirror' guarded by invariant-ID lints and a re-check runbook, NOT a refinement proof or codegen. TLC itself SKIPs in the default dev/CI env (no Java), so the gating authority is the Python BFS pytest plus BLOCKING lints, not TLC execution. Single project, single operator."
     },
     {
       "id": "fn-inv18-liveness-gap",
       "incident": "INV-18 async-termination is DocAble's honest liveness limit case: a genuine `Submitted ~> Terminal` obligation created by the serverless min=0 cutover (which deletes the always-on polling supervisor, so an at-least-once push can be lost with nothing resident to re-drive it), expressed in a proper falsifiable TLA+ liveness spec with strong-fairness modeling of delivery and a SweepCronOn toggle that yields a TLC lasso when off. But NO automated job ever runs TLC, and a safety-BFS provably cannot falsify a `~>` property. Its workflow authority is three BLOCKING lints over the property-LINE text and the EXISTENCE of the recovery driver (the sweep-cron must exist before the old fleet is deleted), not a liveness proof. The substantive guarantee is structural; the formal spec is a documented, unrun design record — the honest place where the Alignment leg is weakest.",
       "chapter_slug": "generative-validation",
-      "backs_claims": ["modeling-thesis", "alignment-thesis", "H3-mechanized-assurance"],
+      "backs_claims": ["modeling-principle", "alignment-principle", "H3-mechanized-assurance"],
       "limitation": "The temporal property is modeled and falsifiable but NOT wired to any CI gate — correspondence is a single-property-LINE text match (the .tla action bodies are hand-authored and unpoliced) plus existence-checked satisfy_refs, so nothing proves the code enforces eventual termination. A lived limit-case reasoned in design, one product, one operator; a caution on WHEN a model's defense holds, not evidence modeling generally fails."
     },
     {
       "id": "fn-lease-conformance-drift-260816",
       "incident": "Checking a model creates a second obligation — keeping the evidence connected to the implementation — and that obligation itself became an Alignment problem. The lease model↔runtime conformance test (`test_model_matches_runtime_claim_merge_terminal`, web/test_simworld) drifted red after a production change and stayed broken for ~11 days: the sharpest lived instance of a reasoning surface creating a maintenance obligation, an independent manifestation of the same phenomenon as the stale model→code reference. Repairing the test fixed the instance; the durable response addressed the class. Three Epics (`tlc-spec-registry-and-run`, `lease-conformance-change-trigger`, `formal-spec-runner-and-triggering`) plus the sibling repair `fix-red-lease-conformance-test` registered the TLA+ specs behind a common runner, made model-to-spec correspondence mechanically checkable (a spec-registry↔model parity lint), change-triggered the relevant formal + conformance checks off modeled production surfaces, and added a Java-free floor lint so registration is enforceable with no JVM. The formal checks thereby acquired the same drift controls as the models they support.",
       "chapter_slug": "the-road-to-mage",
-      "backs_claims": ["alignment-thesis", "H3-mechanized-assurance"],
+      "backs_claims": ["alignment-principle", "H3-mechanized-assurance"],
       "limitation": "The program changed the reproducibility, registration, and change-triggering of the formal machinery — NOT the class of assurance. TLC execution remains AUDIT-ONLY / non-gating (the gating authority is the Python explicit-state BFS plus BLOCKING lints, not TLC); there is still no implementation-level bounded or symbolic checking; and model↔implementation correspondence stays example-based/sampled, not a refinement. Single project, single operator; the two obligations remain distinct — strong evidence that a model has a property does not make correspondence to the implementation automatic."
     }
   ]

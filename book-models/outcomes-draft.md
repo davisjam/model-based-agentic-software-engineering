@@ -17,7 +17,7 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 - **[DECLARED]** (create) After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. _(primary: the program · elaborated by: Module 2, Module 4)_ — _anchor: Preface 'Who this book is for': recognize when an engineering problem is being paid for repeatedly in reconstruction or human judgment; decide whether a better representation, stronger authority, or both would retire that cost; and design mechanisms suited to your own system rather than copying another organization's process._
 - **[DECLARED]** (understand) After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. _(primary: the program · elaborated by: prevention-and-observation, from-soft-to-hard)_ — _anchor: The two book-thesis axes (Alignment: constraint/sensor; soft/hard) run through Part 2 (constraints-and-sensors) and Part 4 (from-soft-to-hard, in the MAGE Workflow chapter — re-homed in round-6)._
-- **[DECLARED]** (create) After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human's head. _(primary: the program · elaborated by: Module 3, agreement-is-not-correctness)_ — _anchor: The Modeling Thesis, developed across Part 3 (the executable 4+1 zoo)._
+- **[DECLARED]** (create) After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human's head. _(primary: the program · elaborated by: Module 3, agreement-is-not-correctness)_ — _anchor: The Modeling Principle, developed across Part 3 (the executable 4+1 zoo)._
 
 ## Module 1 — The New Engineering Problem
 
@@ -46,7 +46,6 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 
 ### Lesson 2.8-system-knowledge
 
-  - **[DERIVED]** (create) After this section, the reader can model purpose and representation form are independent. — _anchor: ts: Model purpose and representation form are independent._
 
 ## Module 3 — Alignment
 

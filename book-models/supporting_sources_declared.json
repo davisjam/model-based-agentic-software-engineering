@@ -139,7 +139,7 @@
       "channel": "body-known-use",
       "text": "Uber's uReview analyzes over 90% of the ~65,000 diffs opened weekly, but the engineering story is the machinery around the reviewer — structured context, three-layer confidence filtering, semantic dedup, a curated benchmark, periodic model selection, and streamed useful/not-useful feedback — a probabilistic sensor treated as an engineering subsystem [cite:uber2026ureview]. Uber notes the reviewer is bounded by having only the code — no past PRs, feature-flag configs, database schemas, or docs — so source code alone bounds what even a strong semantic reviewer can judge [cite:uber2026ureview].",
       "caution": "All metrics self-reported by Uber; no independent verification. (Bonus baseline available: only 51% of human-written review comments are addressed in the same changeset.)",
-      "reinforces_construct": "thesis-alignment",
+      "reinforces_construct": "alignment-principle",
       "note": "Independently instantiates probabilistic-sensor engineering (claim 1) and the modeling bound (claim 2)."
     },
     {
@@ -235,7 +235,7 @@
       "channel": "body-known-use",
       "text": "Ramp's Inspect runs each session in a sandboxed Modal VM with everything an engineer has locally, wired to Sentry, Datadog, LaunchDarkly, Buildkite, GitHub and Slack, on the stated design goal that it be 'never limited by missing context or tools, but only by model intelligence' — autonomy needs evidence-producing affordances, not merely code-writing authority [cite:ramp2026inspect].",
       "caution": "Internal self-report; the ~30%-of-merged-PRs metric is unverified.",
-      "reinforces_construct": "thesis-alignment",
+      "reinforces_construct": "alignment-principle",
       "note": "Independently confirms the alignment/agent-stack claim that tools determine effective capability. Keep to one sentence (overlaps Docker/Shopify/Spotify)."
     },
     {
@@ -283,7 +283,7 @@
       "channel": "body-known-use",
       "text": "Snyk argues that once agents act before commit time, the repository boundary is too late to be the security boundary: the tools, skills, permissions and execution environment that produce a change become part of the trusted computing base — 'traditional AppSec secures the artifact; agentic security secures the process that creates it' [cite:snyk2026agenticlifecycle].",
       "caution": "Snyk vendor piece promoting an 'Agentic Development Security' framing; supports the MAGE boundary claim without buying the product framing. The ~10,000-environments supply-chain figure the source doc associated here lives in a SEPARATE companion article (snyk-supply-chain, not fetched) — do NOT attribute it to this URL. (Verified on THIS page: 76 malicious skills of 3,984 analyzed; ~1/3 of public MCP servers carry exploitable flaws.)",
-      "reinforces_construct": "thesis-alignment",
+      "reinforces_construct": "alignment-principle",
       "note": "Independently supports the agent-stack-as-trusted-computing-base boundary claim."
     },
     {
@@ -379,7 +379,7 @@
       "channel": "body-known-use",
       "text": "CockroachDB's alert-triage agent can adjust maintenance windows across clusters but cannot create a cluster or modify networking — the API returns a clean 403 — because 'the blast radius of an agent mistake is bounded by its service-account permissions, not by the quality of its prompt' [cite:cockroachlabs2026agents].",
       "caution": "Vendor-facing (three-part product series). PER-URL CITATION DISCIPLINE (watch-item): cite the permission-guardrail claim to the CLI URL (this record's url), which carries the 403 mechanism and the 'blast radius' quote; cite EXPLAIN-every-query to the lifecycle URL (https://www.cockroachlabs.com/blog/cockroachdb-ai-agents-database-lifecycle-automation/) — it appears ONLY there. State the boundary as the page does (create-cluster / modify-networking → 403), not the source doc's paraphrase (failover / delete cluster / change replication topology).",
-      "reinforces_construct": "thesis-alignment",
+      "reinforces_construct": "alignment-principle",
       "note": "Independently confirms permissions-not-prompts as the production guardrail (the DB-ops analogue to Docker's runtime authority). Optional secondary sentences (role-split skill/MCP/CLI interface; EXPLAIN every generated query before returning it) cite to the lifecycle URL — keep the two mechanisms distinct (the lifecycle page frames triage restraint as human approval, not a permission block)."
     },
     {
@@ -427,7 +427,7 @@
       "channel": "body-known-use",
       "text": "Ericsson's agent fabric treats the topology *among* agents as governed infrastructure — discovery, routing, observability, a secure registry all agents authenticate against, lifecycle management, and guardrails that run inside the execution cycle in real time — on the argument that unmanaged 'agent sprawl' causes resource exhaustion and security holes [cite:ericsson2026agentfabric].",
       "caution": "Telecom product architecture (Ericsson agent fabric for OSS/BSS); supporting mechanism evidence, not a case — do not treat the capability list as validated efficacy.",
-      "reinforces_construct": "thesis-alignment",
+      "reinforces_construct": "alignment-principle",
       "note": "Independently confirms the fleet-governance claim (every agent has identity + lifecycle; governance is active machinery). Sits alongside Zenseact's allow-listed delegation edges."
     },
     {

@@ -118,13 +118,13 @@
       "y": "Recent systems give agents a persistent, queryable representation of the repository — code graphs and codebase memory (RepoGraph, CodexGraph, Codebase-Memory, RANGER).",
       "z": "MAGE makes the models themselves the persistent context: the typed model IS the compact representation agents reason through and engineers specify against.",
       "target_locations": [
-        "the-executable-zoo"
+        "context-is-the-first-modeling-problem"
       ],
       "citations": [
         {
           "key": "ouyang2024repograph",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "situates",
           "illustrates_pattern": "",
@@ -134,7 +134,7 @@
         {
           "key": "liu2024codexgraph",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "situates",
           "illustrates_pattern": "",
@@ -144,7 +144,7 @@
         {
           "key": "vogel2026codebasememory",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "situates",
           "illustrates_pattern": "",
@@ -154,7 +154,7 @@
         {
           "key": "shah2025ranger",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "situates",
           "illustrates_pattern": "",
@@ -163,7 +163,7 @@
         }
       ],
       "advances_theses": [
-        "modeling-thesis"
+        "modeling-principle"
       ],
       "status": "landed",
       "fold_target": "",
@@ -174,7 +174,7 @@
       "theses_resolve": [
         true
       ],
-      "landed_appears": true
+      "landed_appears": false
     },
     {
       "id": "spec-driven-agentic-development",
@@ -184,13 +184,13 @@
       "y": "Spec-driven development places an authoritative spec/contract around a stochastic generator with deterministic validation; academic studies show specification quality, not model capability, is the success factor (Vilas Boas et al.) and that citation-to-spec discipline enables 86-88% hallucination detection (Panda).",
       "z": "MAGE binds intent into drift-checked models — the spec is not a document but an enforced, executable model the environment holds implementation to.",
       "target_locations": [
-        "the-executable-zoo"
+        "context-is-the-first-modeling-problem"
       ],
       "citations": [
         {
           "key": "sdd-abdurrahman-2026",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "situates",
           "illustrates_pattern": "",
@@ -200,7 +200,7 @@
         {
           "key": "vilasboas2026onedeveloper",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "corroborates",
           "illustrates_pattern": "",
@@ -209,8 +209,8 @@
         }
       ],
       "advances_theses": [
-        "modeling-thesis",
-        "alignment-thesis"
+        "modeling-principle",
+        "alignment-principle"
       ],
       "status": "landed",
       "fold_target": "",
@@ -238,7 +238,7 @@
         {
           "key": "ringer2019qed",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "situates",
           "illustrates_pattern": "formal-invariant-verification",
@@ -248,7 +248,7 @@
         {
           "key": "arxiv-2605-10712",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates",
           "illustrates_pattern": "formal-invariant-verification",
@@ -258,7 +258,7 @@
         {
           "key": "tu2025agenticverification",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "corroborates",
           "illustrates_pattern": "",
@@ -267,7 +267,7 @@
         }
       ],
       "advances_theses": [
-        "alignment-thesis"
+        "alignment-principle"
       ],
       "status": "landed",
       "fold_target": "",
@@ -315,7 +315,7 @@
         {
           "key": "murphy1995reflexion",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "situates",
           "illustrates_pattern": "",
@@ -408,7 +408,7 @@
         {
           "key": "openai2026swebench",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates",
           "illustrates_pattern": "",
@@ -418,7 +418,7 @@
         {
           "key": "scaleai2025swebenchpro",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates",
           "illustrates_pattern": "",
@@ -428,7 +428,7 @@
         {
           "key": "liang2026swebenchillusion",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates",
           "illustrates_pattern": "",
@@ -438,7 +438,7 @@
         {
           "key": "zhang2025swebenchlive",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "corroborates",
           "illustrates_pattern": "",
@@ -448,7 +448,7 @@
         {
           "key": "swerebench2025",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "corroborates",
           "illustrates_pattern": "",
@@ -458,7 +458,7 @@
         {
           "key": "smith2015overfitting",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates",
           "illustrates_pattern": "",
@@ -468,7 +468,7 @@
         {
           "key": "hora2026overmocked",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates",
           "illustrates_pattern": "",
@@ -478,7 +478,7 @@
         {
           "key": "llmoracle2024",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates",
           "illustrates_pattern": "",
@@ -487,7 +487,7 @@
         }
       ],
       "advances_theses": [
-        "alignment-thesis"
+        "alignment-principle"
       ],
       "status": "landed",
       "fold_target": "W5",

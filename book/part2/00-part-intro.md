@@ -1,4 +1,4 @@
-<!-- part-foreshadows: modeling-thesis, mage-becomes-practical -->
+<!-- part-foreshadows: modeling-principle, mage-becomes-practical -->
 
 Software engineering has always relied on abstraction. Large systems exceed what any engineer can
 reason about directly, so we work through architectures, interfaces, schemas, requirements, state
@@ -15,7 +15,7 @@ substantial effort reconstructing architecture, ownership, policy, and lifecycle
 institutional memory; an agent fleet can spend that same effort over and over, once per task and once
 per fresh reasoning state. MAGE uses models to make reusable engineering knowledge durable.
 
-<!-- thesisbox -->
+<!-- principlebox -->
 > ### MODELING PRINCIPLE
 >
 > Externalize engineering knowledge and intent into explicit, structured models that both engineers
@@ -27,7 +27,7 @@ per fresh reasoning state. MAGE uses models to make reusable engineering knowled
 Models make reusable engineering knowledge durable by preserving the relationships relevant to a
 question and suppressing the rest.
 
-<!-- point: part-2-asks-what-to-model-and-what-it-reveals | Part II asks one question of every system: what should I model, and what will the model let me know? | terms: thesis-modeling, model-as-map, scope-of-modeling -->
+<!-- point: part-2-asks-what-to-model-and-what-it-reveals | Part II asks one question of every system: what should I model, and what will the model let me know? | terms: modeling-principle, model-as-map, scope-of-modeling -->
 Before an agent can reason through a model, an engineer must decide what question deserves a model and which reduction will answer it.
 
 A production system can hold millions of lines of code, hundreds of dependencies, dozens of services,
@@ -77,7 +77,7 @@ purposeful reduction chosen for a question.
 Part III adds a fifth question: **what gives the property authority?** Modeling makes properties
 explicit; Alignment decides which should carry consequence.
 
-<!-- point: part-2-hands-you-a-reusable-mental-toolbox | By the Part's end you hold a mental toolbox you can rebuild for your own system. | terms: model-zoo, scope-of-modeling, thesis-modeling -->
+<!-- point: part-2-hands-you-a-reusable-mental-toolbox | By the Part's end you hold a mental toolbox you can rebuild for your own system. | terms: model-zoo, scope-of-modeling, modeling-principle -->
 By the Part's end, the recurring pattern should be familiar: identify the concern, choose the model that
 exposes it, state the property, and connect that property to the quality attribute it serves. The final
 chapter, [System Knowledge: Connecting the Models](2.8-system-knowledge.html), steps back to show how the

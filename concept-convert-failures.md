@@ -73,7 +73,7 @@ as deliberately as it adds.
 
 ## Related concepts
 
-- [Give intent authority: constrain, sense, validate, gate](concept-alignment-thesis.md)
+- [Give intent authority: constrain, sense, validate, gate](concept-alignment-principle.md)
 - [The Engineered Environment](concept-governance-centric.md)
 
 ## Read in the book →

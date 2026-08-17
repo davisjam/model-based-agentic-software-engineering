@@ -5,7 +5,7 @@
     "merge_rule": "MERGE two cards iff first SIX fields (failure_class / engineering_obligation / solution_structure / guarantee / semantic_level / forces_tradeoffs) are substantially the same AND only known_uses differ. KEEP SEPARATE iff engineering_obligation OR guarantee differs, even when impl tech is identical.",
     "false_merger_guard": "Preserve the RELATION modeled/enforced, not the impl mechanism. Distinct relations stay distinct patterns even when both are 'a lint' or both are 'a model'.",
     "name_after_abstraction": "Each card's impl-biased title was renamed to its pattern-level abstract name before component-vs-variant sorting; used card.abstract_name where present, refined otherwise.",
-    "rubric": "10 dims 0/1/2: Novelty · Agentic-significance · Durability · Generality · Thesis-relevance · Architectural-depth · Evidence · Tradeoffs · Compositional-value · Wow-factor. 16-20 almost-certainly-print · 12-15 print-if-breadth/story · 8-11 sidebar/online · <8 local-doc. Overrides: Foundational / Awesome / Coverage / Case / Historical.",
+    "rubric": "10 dims 0/1/2: Novelty · Agentic-significance · Durability · Generality · Principle-relevance · Architectural-depth · Evidence · Tradeoffs · Compositional-value · Wow-factor. 16-20 almost-certainly-print · 12-15 print-if-breadth/story · 8-11 sidebar/online · <8 local-doc. Overrides: Foundational / Awesome / Coverage / Case / Historical.",
     "levels": "L1 Principle (explanatory claim, not an entry) · L2 Canonical mechanism (reusable structure providing a capability) · Composition (mechanisms strong together) · L3 Variant/component/known-use (folds under an L2)."
   },
   "L1_principles": [

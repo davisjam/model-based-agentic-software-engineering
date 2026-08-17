@@ -1,11 +1,11 @@
-<!-- part-foreshadows: modeling-thesis, alignment-thesis, govern-the-environment, failures-become-machinery -->
+<!-- part-foreshadows: modeling-principle, alignment-principle, govern-the-environment, failures-become-machinery -->
 
 Parts II and III developed Modeling and Alignment separately. This Part runs them together as a
 method. The ordering is methodological, not a strict dependency. MAGE begins by asking what should be
 made explicit, places authority where stable obligations become legible, and converts recurring
 judgment into durable engineering structure.
 
-<!-- thesisbox -->
+<!-- principlebox -->
 > ### THE MAGE CYCLE
 >
 > Model the intent. Give stable obligations authority. Convert recurring judgment into durable engineering structure.

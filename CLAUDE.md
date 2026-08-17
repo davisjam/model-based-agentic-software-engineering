@@ -144,9 +144,9 @@ for Hemingway — short sentences, strong verbs, few qualifiers.
   7th `Derivation` row on `is-a-model` entries, then the sections (`Motivation` … `Related mechanisms`).
 - **[`INDEX.md`](INDEX.md)** is the census — one row per entry, grouped by family. The `Form`, `Move`,
   `Model`, and `Enf.` columns MUST match the entry's metadata card (the validator enforces this).
-- Cross-cuts: 9 **forms**, **soft/hard** enforcement, and two book-thesis axes — **Move**
-  (`constraint`/`sensor`/`package`, the Alignment-Thesis axis) and **Model**
-  (`is-a-model`/`governs-a-model`/`—`, the Modeling-Thesis axis), each independent of soft/hard
+- Cross-cuts: 9 **forms**, **soft/hard** enforcement, and two book-principle axes — **Move**
+  (`constraint`/`sensor`/`package`, the Alignment-Principle axis) and **Model**
+  (`is-a-model`/`governs-a-model`/`—`, the Modeling-Principle axis), each independent of soft/hard
   (`README.md`). Plus **relationship** tags on the Related-mechanisms bullets — a tight, **closed**
   canonical set (`REL_TAGS` in `catalog.py`, UML-informed: `Counterpart`, `Generalization`, `Enabler`,
   `Consumer`, `Layer`, `Bridge`, `Sibling`, `See also`). The validator **enforces membership**: every

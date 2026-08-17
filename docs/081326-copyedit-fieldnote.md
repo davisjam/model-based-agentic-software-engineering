@@ -31,17 +31,17 @@ So the models don't get "updated" as a side chore — an edit that doesn't also 
 The mechanical joins above only check that a pointer *resolves*. The harder cases were where the model's **meaning** was stale — the declared claim said the *old theory*. Because the declared claims *are* the theory, the theory copyedit forced reword of statement text, applied once at the model and inherited book-wide:
 
 - **`argument_spine_declared.json` → `theses-treat-the-causes`** now reads: *"The theses are independent and address different problems: Modeling makes consequential knowledge explicit; Alignment gives obligations authority. Alignment can act without a model; MAGE places Modeling first…"* — replacing the old "causally linked, not parallel." Edited once (front-matter round); every later Part was told to **inherit, not re-reword** — that is the book-wide semantic-consistency rule in practice.
-- **`claims_declared.json` + `definitions.json` (C/S/V/G):** "a sensor that **observes** it… **produces evidence, a validator judges it**" replaced "sensor **detects/catches** the violation." The role semantics changed, so the declared claim + glossary text changed. This is the *same class* as the website's alignment-thesis card ("sensor catches the drift" → "produces evidence"), which `CC6` (card-claim-vs-model) then validated.
+- **`claims_declared.json` + `definitions.json` (C/S/V/G):** "a sensor that **observes** it… **produces evidence, a validator judges it**" replaced "sensor **detects/catches** the violation." The role semantics changed, so the declared claim + glossary text changed. This is the *same class* as the website's alignment-principle card ("sensor catches the drift" → "produces evidence"), which `CC6` (card-claim-vs-model) then validated.
 - **`universal-language` glossary term:** rendered text → "**common language of mature engineering**" across claims/outcomes/outline, with the **id frozen** (join preserved).
 
 ### A dedicated semantic-validity pass — because the join-gates can't see stale meaning
-`MODEL-PROSE-AUDIT-PARTS-I-V-DRAFT.md` was a whole-book model↔prose audit precisely to catch what the mechanical gates cannot: a pointer that *resolves* but is *semantically stale*. It found, e.g., `landing-big-ideas.json modeling-thesis.book_home` pointing at `reasoning-horizon`/1.3 after the prose moved to 2.1, and `outcomes_declared.json reasoning-horizon` describing sections that had been cut. These are invisible to a resolves-or-not check.
+`MODEL-PROSE-AUDIT-PARTS-I-V-DRAFT.md` was a whole-book model↔prose audit precisely to catch what the mechanical gates cannot: a pointer that *resolves* but is *semantically stale*. It found, e.g., `landing-big-ideas.json modeling-principle.book_home` pointing at `reasoning-horizon`/1.3 after the prose moved to 2.1, and `outcomes_declared.json reasoning-horizon` describing sections that had been cut. These are invisible to a resolves-or-not check.
 
 ## 4. The honest nuance — some found misalignments were deferred, and one residual remains
 
 Not every found misalignment was auto-fixed:
 
-- **Regen-traps.** Several stale-model rows had a **hand-corrected card** on top. Blind regeneration would *revert the correct reader-facing fix*, so these are flagged as **author decisions**, not mechanically regenerated (the model is stale but auto-regen makes it worse). Example: `landing-big-ideas.json modeling-thesis.book_home`.
+- **Regen-traps.** Several stale-model rows had a **hand-corrected card** on top. Blind regeneration would *revert the correct reader-facing fix*, so these are flagged as **author decisions**, not mechanically regenerated (the model is stale but auto-regen makes it worse). Example: `landing-big-ideas.json modeling-principle.book_home`.
 - **Deferred hypothesis id split/mint** carried as a `_note` crosswalk rather than risk breaking the `research_agenda` join (see §2C).
 - **Residual drift, recorded not yet reconciled:** `book/data/concepts.json` still reads "universal language" while claims/outcomes/outline carry "common language of mature engineering" — a known audit-only concept-card drift, queued in the post-publish sweep.
 

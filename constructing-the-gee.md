@@ -11,13 +11,13 @@ control. This page is the map of that machinery. It names what the environment m
 canonical mechanisms that give it those capabilities, the stacks that are strong together, and the
 concrete variants each mechanism was built from.
 
-## The two theses, built
+## The two principles, built
 
-The book develops two claims. The **Modeling Thesis** says an agent works coherently when intent and
+The book develops two claims. The **Modeling Principle** says an agent works coherently when intent and
 system structure are bound into a compact, checkable representation it can reason through. The **Alignment
-Thesis** says implementation stays trustworthy when the environment mechanically holds it to those
-representations and the policies they express. The catalogue is what those two theses look like once you
-build them. Every capability below serves one thesis or the other, and most serve both.
+Principle** says implementation stays trustworthy when the environment mechanically holds it to those
+representations and the policies they express. The catalogue is what those two principles look like once you
+build them. Every capability below serves one principle or the other, and most serve both.
 
 ## The claim this catalogue makes
 

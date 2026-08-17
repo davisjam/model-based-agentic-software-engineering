@@ -5,19 +5,19 @@
      green=Engineering Capital, muted=metaphor) and simplified per the figure-copy-edit map:
      (1) The four-way relationship legend (Constitutive/Causal/Metaphorical/Dynamic) is DELETED. Each of the
          few relationships now carries a plain-English verb on the arrow.
-     (2) EXPAND, NOT ENABLE. Modeling "expands the semantic surface for" Alignment; the theses address
+     (2) EXPAND, NOT ENABLE. Modeling "expands the semantic surface for" Alignment; the principles address
          different constraints, so no dependency arrow is drawn between them beyond the expand edge.
      (3) The Printer is visibly SUBORDINATE — a small muted node with a dotted metaphor edge, not a peer
          construct. -->
-<!-- semantic-families: neutral, modeling, synthesis -->
+<!-- semantic-families: neutral, modeling, synprinciple -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 660" width="980" height="660"
      role="img" aria-labelledby="ciTitle ciDesc"
      font-family="Georgia, 'Times New Roman', serif">
   <title id="ciTitle">The core ideas</title>
   <desc id="ciDesc">A concept map of the book's core ideas. Commodity intelligence changes the economics of
-    engineering work. Within that new economy the Modeling and Alignment theses address different
+    engineering work. Within that new economy the Modeling and Alignment principles address different
     engineering constraints; Modeling expands the semantic surface for Alignment. Governance conversion
-    makes the theses' lessons durable, compounding into engineering capital. The Printer is a subordinate
+    makes the principles' lessons durable, compounding into engineering capital. The Printer is a subordinate
     metaphor for making intent explicit.</desc>
 
   <defs>
@@ -48,20 +48,20 @@
   <rect x="368" y="182" width="244" height="56" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
   <text x="490" y="216" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Engineering work</text>
 
-  <!-- Engineering work -> each thesis (they address different constraints) -->
+  <!-- Engineering work -> each principle (they address different constraints) -->
   <path d="M418,238 C360,262 312,278 276,294" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
   <path d="M562,238 C620,262 668,278 704,294" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
   <text x="490" y="270" text-anchor="middle" font-size="12" font-style="italic" fill="#78716c">address different constraints</text>
 
-  <!-- Modeling Thesis (green) -->
+  <!-- Modeling Principle (green) -->
   <rect x="110" y="296" width="280" height="82" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="250" y="330" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">Modeling Thesis</text>
+  <text x="250" y="330" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">Modeling Principle</text>
   <text x="250" y="353" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">make knowledge &amp; intent</text>
   <text x="250" y="369" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">explicit</text>
 
-  <!-- Alignment Thesis (rust) -->
+  <!-- Alignment Principle (rust) -->
   <rect x="590" y="296" width="280" height="82" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="730" y="330" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Alignment Thesis</text>
+  <text x="730" y="330" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Alignment Principle</text>
   <text x="730" y="353" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">give obligations</text>
   <text x="730" y="369" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">authority</text>
 

@@ -13,7 +13,7 @@ brackets is the LINT NAME an inline suppression cites (see "Suppression" below):
   1. [book-links]        intra-book link integrity — nav-pager / figure-source / index See-link targets resolve.
   2. [book-visual]       >=1 visual per chapter — every chapter page carries a <figure>/<svg>/mermaid.
   3. [book-section-cap]  section-length cap — no heading-to-heading section exceeds the word/paragraph caps.
-  4. [book-thesis]       thesis woven — the named theses appear across >=K chapters.
+  4. [book-principle]    principle woven — the named principles appear across >=K chapters.
   5. [book-figure]       figure hygiene — every `<!-- figure -->` source resolves AND has a non-empty caption.
   6. [book-placeholder]  placeholder tracking — count `[FILL IN]` / `[MORE CHAPTERS FOLLOW]` (report, never fail).
   7. [book-delimiters]   delimiter balance — parens / curly braces balance per section, after masking the
@@ -60,8 +60,8 @@ from tests.common import FAIL, PASS, ROOT, SKIP, rel
 # ---- tunable thresholds (module consts; adjust as the book settles) -------------------------------
 MAX_SECTION_WORDS = 400   # a heading-to-heading section over this many words is a wall of text
 MAX_SECTION_PARAS = 6     # ...or over this many paragraphs
-THESIS_TERMS = ("Modeling Thesis", "Alignment Thesis")  # the named theses the book weaves
-THESIS_MIN_CHAPTERS = 4   # each thesis should recur across at least this many chapters
+PRINCIPLE_TERMS = ("Modeling Principle", "Alignment Principle")  # the named principles the book weaves
+PRINCIPLE_MIN_CHAPTERS = 4   # each principle should recur across at least this many chapters
 # Placeholder markers are matched by BRACKET+PHRASE, with an optional `: <body>` — authors write both the
 # bare `[FILL IN]` and the annotated `[FILL IN: introduce the running example ...]`. Matching the exact
 # string `[FILL IN]` (the old bug) missed every colon-and-body instance. The phrases only; the regex below
@@ -90,7 +90,7 @@ _VISUAL_EXEMPT_SRC_DIRS = ("frontmatter", "part6", "part7")
 
 class Finding(NamedTuple):
     """One audit finding. `src` is the chapter SOURCE `.md` a suppression for this finding would live in
-    (None for a whole-book rule like thesis, which no single file can suppress). `label` scopes a
+    (None for a whole-book rule like principle, which no single file can suppress). `label` scopes a
     per-section suppression (the section heading text) — empty for a whole-file finding. `msg` is the
     human-readable line printed in the report."""
     src: str | None
@@ -337,26 +337,26 @@ def check_section_length() -> tuple[list[Finding], dict]:
     return findings, {"sections": total_sections, "over_cap": over}
 
 
-# ---- rule 4: thesis woven across chapters --------------------------------------------------------
+# ---- rule 4: principle woven across chapters --------------------------------------------------------
 
 
-def check_thesis_woven() -> tuple[list[Finding], dict]:
-    """Each named thesis appears across at least THESIS_MIN_CHAPTERS chapter SOURCE files. This is a
+def check_principle_woven() -> tuple[list[Finding], dict]:
+    """Each named principle appears across at least PRINCIPLE_MIN_CHAPTERS chapter SOURCE files. This is a
     whole-book finding (no single file owns it); suppress it in ANY chapter source with
-    `<!-- noqa: book-thesis | <thesis-name> — <reason> -->` (the scope names the thesis)."""
+    `<!-- noqa: book-principle | <principle-name> — <reason> -->` (the scope names the principle)."""
     findings: list[Finding] = []
     files = _chapter_src_files()
-    per_thesis: dict[str, int] = {}
-    for term in THESIS_TERMS:
+    per_principle: dict[str, int] = {}
+    for term in PRINCIPLE_TERMS:
         hits = [f for f in files if term in open(f, encoding="utf-8").read()]
-        per_thesis[term] = len(hits)
-        if len(hits) < THESIS_MIN_CHAPTERS:
-            # attribute to whichever source carries a matching book-thesis suppression, else whole-book.
+        per_principle[term] = len(hits)
+        if len(hits) < PRINCIPLE_MIN_CHAPTERS:
+            # attribute to whichever source carries a matching book-principle suppression, else whole-book.
             findings.append(Finding(
                 None, term,
-                f"thesis {term!r} appears in {len(hits)} chapter(s) "
-                f"(want >= {THESIS_MIN_CHAPTERS}): {', '.join(rel(h) for h in hits) or '(none)'}"))
-    return findings, {"chapters_scanned": len(files), **{f"'{k}'_chapters": v for k, v in per_thesis.items()}}
+                f"principle {term!r} appears in {len(hits)} chapter(s) "
+                f"(want >= {PRINCIPLE_MIN_CHAPTERS}): {', '.join(rel(h) for h in hits) or '(none)'}"))
+    return findings, {"chapters_scanned": len(files), **{f"'{k}'_chapters": v for k, v in per_principle.items()}}
 
 
 # ---- rule 5: figure hygiene (source resolves AND caption non-empty) ------------------------------
@@ -1015,7 +1015,7 @@ _RULES = [
     ("1. intra-book link integrity", "book-links", check_intra_book_links),
     ("2. >=1 visual per chapter", "book-visual", check_visual_per_chapter),
     ("3. section-length cap", "book-section-cap", check_section_length),
-    ("4. thesis woven across chapters", "book-thesis", check_thesis_woven),
+    ("4. principle woven across chapters", "book-principle", check_principle_woven),
     ("5. figure hygiene (source + caption)", "book-figure", check_figure_hygiene),
     ("6. placeholder tracking", "book-placeholder", check_placeholders),
     ("7. delimiter balance (parens / braces)", "book-delimiters", check_delimiter_balance),

@@ -37,7 +37,7 @@ _FIXTURE = f"""## Constraints and sensors
 
 Some theory prose stating the abstraction once.
 
-<!-- worked-examples: thesis-alignment -->
+<!-- worked-examples: alignment-principle -->
 ### Example — Docker
 A typed build description became a reasoning substrate the tooling could check and cache.
 
@@ -74,7 +74,7 @@ def _check(cond: bool, msg: str, failures: "list[str]") -> None:
 def _html_checks(failures: "list[str]") -> None:
     out = bb.md_to_html(_FIXTURE)
     _check('<section class="worked-examples"' in out, "HTML: no .worked-examples section", failures)
-    _check('data-construct="thesis-alignment"' in out, "HTML: construct-key weld missing", failures)
+    _check('data-construct="alignment-principle"' in out, "HTML: construct-key weld missing", failures)
     for src in ("Docker", "Zenseact", "DocAble"):
         _check(f'<span class="wex-src">{src}.</span>' in out, f"HTML: source lead-in {src!r} missing", failures)
     _check('<div class="wex-takeaway">' in out, "HTML: no Takeaway block", failures)
@@ -108,12 +108,12 @@ def _typst_checks(failures: "list[str]") -> None:
 
 
 def _projection_checks(failures: "list[str]") -> None:
-    kind, slots = icm.worked_example_roster("thesis-alignment")
-    _check(kind == "construct", f"projection: thesis-alignment kind {kind!r} != construct", failures)
+    kind, slots = icm.worked_example_roster("alignment-principle")
+    _check(kind == "construct", f"projection: alignment-principle kind {kind!r} != construct", failures)
     ind = [s for s in slots if s.source_type == "industry-case"]
-    _check(bool(ind), "projection: no industry slots for thesis-alignment", failures)
+    _check(bool(ind), "projection: no industry slots for alignment-principle", failures)
     for s in ind:
-        _check(icm.worked_example_clears("thesis-alignment", s.ref),
+        _check(icm.worked_example_clears("alignment-principle", s.ref),
                f"projection: {s.ref!r} does not clear WE1 (roster not WE1-clean)", failures)
     _check(slots[-1].source_type == "docable", "projection: DocAble is not the deepest (last) slot", failures)
 

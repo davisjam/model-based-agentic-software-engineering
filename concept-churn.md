@@ -65,7 +65,7 @@ No mechanism edge is declared yet — this concept ships thin for now; the edge 
 
 ## Related concepts
 
-- [Documentation, taken to its limit, is a structured model](concept-modeling-thesis.md)
+- [Documentation, taken to its limit, is a structured model](concept-modeling-principle.md)
 - [The Engineered Environment](concept-governance-centric.md)
 
 ## Read in the book →

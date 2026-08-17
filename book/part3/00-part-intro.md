@@ -1,4 +1,4 @@
-<!-- part-foreshadows: govern-the-environment, alignment-thesis, failures-become-machinery -->
+<!-- part-foreshadows: govern-the-environment, alignment-principle, failures-become-machinery -->
 
 Part 2 made engineering knowledge and intent explicit. Those models already provide value: they let
 engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from
@@ -11,7 +11,7 @@ unavailable. Explicit models extend that reach. Once architecture, ownership, be
 policy has been represented at the level where the property exists, the environment can govern questions
 that would otherwise need an agent or a human to reconstruct the missing semantics.
 
-<!-- thesisbox -->
+<!-- principlebox -->
 > ### ALIGNMENT PRINCIPLE
 >
 > Give engineering obligations authority by encoding them into mechanisms that

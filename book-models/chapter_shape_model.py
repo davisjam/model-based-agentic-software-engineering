@@ -104,7 +104,7 @@ _INDEX_DEF_RE = re.compile(r"index-def:\s*([a-z0-9-]+)")
 ANCHOR_WORDS = 12
 
 #: The spine claim ids that ARE the two theses — the CS-mismatch join keys.
-MODELING_ID, ALIGNMENT_ID = "modeling-thesis", "alignment-thesis"
+MODELING_ID, ALIGNMENT_ID = "modeling-principle", "alignment-principle"
 
 #: Boilerplate blockquote lead that never counts as closing prose (a cross-reference, not an ending).
 _LEARN_MORE = "> Learn more about"

@@ -1924,7 +1924,7 @@
         }
       ]
     },
-    "point:docable-used-both-sides-of-the-alignment-thesis": {
+    "point:docable-used-both-sides-of-the-alignment-principle": {
       "kind": "point",
       "dependents": [
         {
@@ -3954,7 +3954,7 @@
         }
       ]
     },
-    "point:the-alignment-thesis-stated-whole": {
+    "point:the-alignment-principle-stated-whole": {
       "kind": "point",
       "dependents": [
         {
@@ -4504,7 +4504,7 @@
         }
       ]
     },
-    "point:the-modeling-thesis-in-its-weakest-form": {
+    "point:the-modeling-principle-in-its-weakest-form": {
       "kind": "point",
       "dependents": [
         {
@@ -7144,7 +7144,7 @@
         },
         {
           "view": "claims",
-          "element": "theses-divide-the-not-knowings",
+          "element": "principles-divide-the-not-knowings",
           "role": "claim-home"
         },
         {
@@ -7515,6 +7515,331 @@
         {
           "view": "outline",
           "element": "3.2-models-and-the-semantic-gap::block-8",
+          "role": "section-term[tier-1]"
+        }
+      ]
+    },
+    "term:alignment-principle": {
+      "kind": "term",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.2-mage-by-example::block-44",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "1.3-the-agentic-substrate::block-46",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "1.4-the-new-engineering-problem::block-11",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "1.4-the-new-engineering-problem::block-7",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-31",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-40",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-44",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-68",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-70",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-46",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-49",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-51",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-54",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-56",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-58",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-60",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.1-where-authority-can-act::block-3",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.1-where-authority-can-act::block-43",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.1-where-authority-can-act::block-47",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.1-where-authority-can-act::block-55",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.1-where-authority-can-act::block-7",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.2-models-and-the-semantic-gap::block-3",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.2-models-and-the-semantic-gap::block-50",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.3-constraints-sensors-validators-gates::block-87",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.4-governance-conversion::block-20",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-0",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-17",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-2",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-23",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-51",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-55",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-25",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-28",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-41",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-6",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-64",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-67",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-96",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-74",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-76",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-80",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-82",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-88",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-94",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.4-operating-mage::block-105",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.4-operating-mage::block-93",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.6-portable-moves::block-5",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.6-portable-moves::block-7",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.6-portable-moves::block-9",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "5.1-the-problem-and-the-bar::block-25",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "5.3-the-road-to-mage::block-12",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "5.3-the-road-to-mage::block-23",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "5.3-the-road-to-mage::block-42",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-36",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-64",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "3.4-governance-conversion::block-31",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-50",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-22",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-38",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-63",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-73",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-79",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-91",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "5.3-the-road-to-mage::block-15",
           "role": "section-term[tier-1]"
         }
       ]
@@ -10969,6 +11294,331 @@
         }
       ]
     },
+    "term:modeling-principle": {
+      "kind": "term",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "1.2-mage-by-example::block-44",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "1.3-the-agentic-substrate::block-46",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "1.4-the-new-engineering-problem::block-11",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "1.4-the-new-engineering-problem::block-3",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-1",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-13",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-31",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-33",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-37",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-40",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-42",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-44",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-5",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-65",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-7",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-70",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-38",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-43",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-46",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-49",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-51",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-54",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-56",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-58",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.8-system-knowledge::block-60",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.1-where-authority-can-act::block-33",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.1-where-authority-can-act::block-55",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.2-models-and-the-semantic-gap::block-3",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.2-models-and-the-semantic-gap::block-50",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "3.4-governance-conversion::block-20",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-0",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-11",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-14",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-2",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-23",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.1-the-mage-workflow::block-7",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-28",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-78",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-80",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-82",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-84",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-92",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-19",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-57",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.3-validating-change::block-92",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.4-operating-mage::block-105",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "4.6-portable-moves::block-3",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "5.1-the-problem-and-the-bar::block-25",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "5.3-the-road-to-mage::block-31",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "5.3-the-road-to-mage::block-36",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "5.3-the-road-to-mage::block-42",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "part-2-intro::block-21",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "part-2-intro::block-6",
+          "role": "paragraph-term[tier-2]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-0",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-12",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-24",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-36",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-47",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "2.1-context-is-the-first-modeling-problem::block-64",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "3.4-governance-conversion::block-31",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "4.2-brownfield::block-71",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "5.3-the-road-to-mage::block-26",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "5.3-the-road-to-mage::block-6",
+          "role": "section-term[tier-1]"
+        },
+        {
+          "view": "outline",
+          "element": "5.3-the-road-to-mage::block-82",
+          "role": "section-term[tier-1]"
+        }
+      ]
+    },
     "term:modeling-substrate": {
       "kind": "term",
       "dependents": [
@@ -12471,656 +13121,6 @@
           "view": "outline",
           "element": "5.4-failures-that-became-infrastructure::block-54",
           "role": "paragraph-term[tier-2]"
-        }
-      ]
-    },
-    "term:thesis-alignment": {
-      "kind": "term",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.2-mage-by-example::block-44",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "1.3-the-agentic-substrate::block-46",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-11",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-7",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-31",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-40",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-44",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-68",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-70",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-46",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-49",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-51",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-54",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-56",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-58",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-60",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.1-where-authority-can-act::block-3",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.1-where-authority-can-act::block-43",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.1-where-authority-can-act::block-47",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.1-where-authority-can-act::block-55",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.1-where-authority-can-act::block-7",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.2-models-and-the-semantic-gap::block-3",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.2-models-and-the-semantic-gap::block-50",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.3-constraints-sensors-validators-gates::block-87",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.4-governance-conversion::block-20",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-0",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-17",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-2",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-23",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-51",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-55",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-25",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-28",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-41",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-6",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-64",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-67",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-96",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-74",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-76",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-80",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-82",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-88",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-94",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.4-operating-mage::block-105",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.4-operating-mage::block-93",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.6-portable-moves::block-5",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.6-portable-moves::block-7",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.6-portable-moves::block-9",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "5.1-the-problem-and-the-bar::block-25",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "5.3-the-road-to-mage::block-12",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "5.3-the-road-to-mage::block-23",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "5.3-the-road-to-mage::block-42",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-36",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-64",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "3.4-governance-conversion::block-31",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-50",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-22",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-38",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-63",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-73",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-79",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-91",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "5.3-the-road-to-mage::block-15",
-          "role": "section-term[tier-1]"
-        }
-      ]
-    },
-    "term:thesis-modeling": {
-      "kind": "term",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "1.2-mage-by-example::block-44",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "1.3-the-agentic-substrate::block-46",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-11",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "1.4-the-new-engineering-problem::block-3",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-1",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-13",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-31",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-33",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-37",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-40",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-42",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-44",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-5",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-65",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-7",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-70",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-38",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-43",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-46",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-49",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-51",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-54",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-56",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-58",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.8-system-knowledge::block-60",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.1-where-authority-can-act::block-33",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.1-where-authority-can-act::block-55",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.2-models-and-the-semantic-gap::block-3",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.2-models-and-the-semantic-gap::block-50",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "3.4-governance-conversion::block-20",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-0",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-11",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-14",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-2",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-23",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.1-the-mage-workflow::block-7",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-28",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-78",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-80",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-82",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-84",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-92",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-19",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-57",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.3-validating-change::block-92",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.4-operating-mage::block-105",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "4.6-portable-moves::block-3",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "5.1-the-problem-and-the-bar::block-25",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "5.3-the-road-to-mage::block-31",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "5.3-the-road-to-mage::block-36",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "5.3-the-road-to-mage::block-42",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "part-2-intro::block-21",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "part-2-intro::block-6",
-          "role": "paragraph-term[tier-2]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-0",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-12",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-24",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-36",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-47",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "2.1-context-is-the-first-modeling-problem::block-64",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "3.4-governance-conversion::block-31",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "4.2-brownfield::block-71",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "5.3-the-road-to-mage::block-26",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "5.3-the-road-to-mage::block-6",
-          "role": "section-term[tier-1]"
-        },
-        {
-          "view": "outline",
-          "element": "5.3-the-road-to-mage::block-82",
-          "role": "section-term[tier-1]"
         }
       ]
     },
