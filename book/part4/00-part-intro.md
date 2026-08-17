@@ -8,7 +8,7 @@ judgment into durable engineering structure.
 <!-- thesisbox -->
 > ### THE MAGE CYCLE
 >
-> Model the intent. Give stable obligations authority. Convert recurring judgment into engineering capital.
+> Model the intent. Give stable obligations authority. Convert recurring judgment into durable engineering structure.
 >
 > **Repeat.**
 
@@ -16,9 +16,9 @@ The result is a cycle rather than a catalogue. A task begins from the representa
 evidence the environment already owns. Work exposes what those structures can and cannot answer. Some
 gaps earn better models; some earn sensors, validators, constraints, or gates; some remain judgment
 because the underlying obligation is still uncertain. Each useful conversion changes the starting
-conditions inherited by later work. That accumulated structure is engineering capital — but capital
-can drift, depreciate, and cost more to maintain than it returns, so this Part covers operation and
-retirement as well as accumulation.
+conditions inherited by later work. Useful durable structure becomes engineering capital when later
+work benefits from inheriting it — but capital can drift, depreciate, and cost more to maintain than
+it returns, so this Part covers operation and retirement as well as accumulation.
 
 DocAble supplies the deep case. Other organizations appear where they sharpen a move. The question
 here is practical: **what should you do next?**

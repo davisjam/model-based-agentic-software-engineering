@@ -9,11 +9,12 @@
      role="group" aria-labelledby="srTitle srDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="srTitle">The skill skeleton, and the three skills that instantiate it</title>
-  <desc id="srDesc">A base model of the domain sits at the left. Several orthogonal models layer on top
-    of it, each cutting the base along an independent axis. All of them feed a SKILL.md of principles
-    that ties the models together and tells the agent when to reach for which — and that, over its
-    models, is a working skill. The three shipped skills are three instances of this one skeleton:
-    self-governance hardens the fleet, self-operate runs it, and self-communicate explains it.</desc>
+  <desc id="srDesc">A fundamental model of the domain sits at the left. Several orthogonal facets layer on top
+    of it, each cutting the domain along an independent concern. All of them feed a SKILL.md governing
+    principle that ties the facets together and tells the agent when to reach for which — and that, over its
+    facets, is a working skill. The three shipped skills are three instances of this one skeleton:
+    self-governance engineers the environment, self-operate runs its lifecycles, and self-communicate
+    governs technical communication.</desc>
 
   <defs>
     <marker id="sr-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -25,7 +26,7 @@
   <g>
     <path d="M 40,145 v 90 a 125,13 0 0 0 250,0 v -90" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
     <ellipse cx="165" cy="145" rx="125" ry="13" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-    <text x="165" y="192" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">base model</text>
+    <text x="165" y="192" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">fundamental model</text>
     <text x="165" y="220" text-anchor="middle" font-size="18.88" fill="#57534e">of the domain</text>
   </g>
 
@@ -39,13 +40,13 @@
   <!-- ===== the orthogonal models ===== -->
   <g>
     <rect x="450" y="30" width="250" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="575" y="67" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">orthogonal model</text>
+    <text x="575" y="67" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">orthogonal facet</text>
 
     <rect x="450" y="163" width="250" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="575" y="200" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">orthogonal model</text>
+    <text x="575" y="200" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">orthogonal facet</text>
 
     <rect x="450" y="296" width="250" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="575" y="333" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">orthogonal model</text>
+    <text x="575" y="333" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">orthogonal facet</text>
   </g>
 
   <!-- orthogonal models -> SKILL.md (fan in) -->
@@ -58,8 +59,8 @@
   <!-- ===== SKILL.md: the principles ===== -->
   <rect x="860" y="126" width="250" height="132" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
   <text x="985" y="166" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">SKILL.md</text>
-  <text x="985" y="196" text-anchor="middle" font-size="18.88" fill="#57534e">principles that tie</text>
-  <text x="985" y="220" text-anchor="middle" font-size="18.88" fill="#57534e">the models together</text>
+  <text x="985" y="196" text-anchor="middle" font-size="18.88" fill="#57534e">the governing principle</text>
+  <text x="985" y="220" text-anchor="middle" font-size="18.88" fill="#57534e">that ties them together</text>
 
   <!-- SKILL.md over its models -> a working skill -->
   <line x1="985" y1="262" x2="985" y2="324" stroke="#1c1917" stroke-width="2" marker-end="url(#sr-ah)"/>
@@ -75,14 +76,14 @@
   <g>
     <rect x="40" y="482" width="330" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
     <text x="205" y="509" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">self-governance</text>
-    <text x="205" y="530" text-anchor="middle" font-size="16" fill="#57534e">harden — mint mechanisms from failures</text>
+    <text x="205" y="530" text-anchor="middle" font-size="16" fill="#57534e">engineer the environment</text>
 
     <rect x="410" y="482" width="330" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
     <text x="575" y="509" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">self-operate</text>
-    <text x="575" y="530" text-anchor="middle" font-size="16" fill="#57534e">run — drive the repo lifecycles</text>
+    <text x="575" y="530" text-anchor="middle" font-size="16" fill="#57534e">operate the lifecycles</text>
 
     <rect x="780" y="482" width="330" height="58" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
     <text x="945" y="509" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">self-communicate</text>
-    <text x="945" y="530" text-anchor="middle" font-size="16" fill="#57534e">explain — the prose and diagrams</text>
+    <text x="945" y="530" text-anchor="middle" font-size="16" fill="#57534e">govern technical communication</text>
   </g>
 </svg>
