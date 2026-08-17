@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1123,
+    "total_sites": 1114,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 717,
+      "book-web": 708,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -69,7 +69,7 @@
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/4.3-validating-change.html",
@@ -81,7 +81,7 @@
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
-            "occ": 29
+            "occ": 27
           },
           {
             "file": "book/4.6-portable-moves.html",
@@ -614,22 +614,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 5
-          },
-          {
-            "file": "book/0.2-what-this-book-argues.html",
-            "occ": 1
-          },
-          {
-            "file": "book/0.3-the-books-language.html",
-            "occ": 1
-          },
-          {
-            "file": "book/4.3-validating-change.html",
-            "occ": 1
-          },
-          {
             "file": "book/5.1-the-problem-and-the-bar.html",
             "occ": 1
           },
@@ -640,16 +624,12 @@
           {
             "file": "book/book-index.html",
             "occ": 1
-          },
-          {
-            "file": "book/figures.html",
-            "occ": 4
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 8
+            "occ": 3
           }
         ]
       },
@@ -921,7 +901,7 @@
           },
           {
             "file": "book/0.3-the-books-language.html",
-            "occ": 58
+            "occ": 57
           },
           {
             "file": "book/0.4-preface.html",
@@ -1013,7 +993,7 @@
           },
           {
             "file": "book/4.3-validating-change.html",
-            "occ": 22
+            "occ": 23
           },
           {
             "file": "book/4.4-operating-mage.html",
@@ -1021,11 +1001,11 @@
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
-            "occ": 36
+            "occ": 39
           },
           {
             "file": "book/4.6-portable-moves.html",
-            "occ": 16
+            "occ": 17
           },
           {
             "file": "book/5.1-the-problem-and-the-bar.html",
@@ -1559,11 +1539,11 @@
           },
           {
             "file": "book/4.1-the-mage-workflow.html",
-            "occ": 3
+            "occ": 2
           },
           {
             "file": "book/4.2-brownfield.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/4.3-validating-change.html",
@@ -1575,7 +1555,7 @@
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/4.6-portable-moves.html",
@@ -1859,7 +1839,7 @@
           },
           {
             "file": "book/part-4-intro.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/part-5-intro.html",
@@ -2047,7 +2027,7 @@
           },
           {
             "file": "book/0.2-what-this-book-argues.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/0.3-the-books-language.html",
@@ -2147,15 +2127,15 @@
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 21
+            "occ": 22
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
-            "occ": 16
+            "occ": 18
           },
           {
             "file": "book/4.6-portable-moves.html",
-            "occ": 8
+            "occ": 7
           },
           {
             "file": "book/5.1-the-problem-and-the-bar.html",
@@ -2411,7 +2391,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 350
+            "occ": 347
           },
           {
             "file": "book/index.html",
@@ -2958,18 +2938,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 4
-          },
-          {
-            "file": "book/0.2-what-this-book-argues.html",
-            "occ": 1
-          },
-          {
-            "file": "book/0.3-the-books-language.html",
-            "occ": 1
-          },
-          {
             "file": "book/5.1-the-problem-and-the-bar.html",
             "occ": 1
           },
@@ -2984,16 +2952,12 @@
           {
             "file": "book/book-index.html",
             "occ": 1
-          },
-          {
-            "file": "book/figures.html",
-            "occ": 4
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 8
+            "occ": 4
           }
         ]
       },
@@ -4175,7 +4139,7 @@
           },
           {
             "file": "book/4.4-operating-mage.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/4.5-packaging-the-method-as-skills.html",
