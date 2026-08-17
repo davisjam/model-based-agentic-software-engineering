@@ -708,7 +708,10 @@ def _thesis_stated_whole(part_dir: str, thesis_name: str) -> bool:
     `**The <Name> Thesis.**` bold-lead AND an `In other words` in the same file (the canon §1.1/§1.2 shape:
     Definition + In other words). Excludes the opener file (00-part-intro.md) — the whole statement must live
     in a BODY chapter, not only the opener box."""
-    lead = re.compile(rf"\*\*\s*The\s+{re.escape(thesis_name)}\s+Thesis\s*[.:]\s*\*\*", re.I)
+    # Accept the retired "Thesis" name OR the current "Principle" name (book-wide Thesis→Principle
+    # retirement, 260816): the guard pins the survival of the WHOLE canon statement in a body chapter,
+    # not the surface term. Either named form satisfies the invariant.
+    lead = re.compile(rf"\*\*\s*The\s+{re.escape(thesis_name)}\s+(?:Thesis|Principle)\s*[.:]\s*\*\*", re.I)
     d = os.path.join(ROOT, "book", part_dir)
     if not os.path.isdir(d):
         return False
