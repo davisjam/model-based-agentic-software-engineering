@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Hand-authored SVG (ported from the chapter's mermaid fence, label: example-vs-generative).
      Top panel: an example-based test maps one chosen input to one expected output — a single
-     labelled point. Bottom panel: a generative test drives every input in the space through a
+     labelled point. Bottom panel: a generative test drives inputs drawn from the space through a
      specification check; a failure is shrunk or RCA'd to its spec-point cause. Palette: Umber
      Monograph tokens (panel #f6f4ef the example, fleet #2f5169 the generative machinery,
      churn #b23b3b the counterexample). -->
@@ -11,7 +11,7 @@
   <title id="egTitle">An example-based test pins one point; a generative test models the whole input space</title>
   <desc id="egDesc">On top, an example-based test maps one chosen input to one expected
     output — a single labelled point. Below, a generative test drives a generator that
-    produces every input in the space into a check of whether the specification holds; on a
+    produces inputs drawn from the space into a check of whether the specification holds; on a
     failure the framework shrinks the input to its minimal or spec-point cause. A dotted
     arrow marks the shift from pinning one point to modelling the whole space.</desc>
 
@@ -48,7 +48,7 @@
   <text x="155" y="390" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">generator</text>
 
   <line x1="254" y1="382" x2="352" y2="382" stroke="#1c1917" stroke-width="2" marker-end="url(#eg-ah)"/>
-  <text x="309" y="336" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">every input in the space</text>
+  <text x="309" y="336" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">inputs drawn from the space</text>
 
   <!-- specification check (decision diamond) -->
   <polygon points="500,322 640,382 500,442 360,382" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>

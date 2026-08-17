@@ -3871,7 +3871,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="460" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Two axes fix where a migration starts</text>
 
   <!-- column axis: how much intent is settled -->
-  <text x="565" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">how much you know &#8594;</text>
+  <text x="565" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">how settled the intent is &#8594;</text>
   <text x="415" y="132" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">Intent uncertain</text>
   <text x="415" y="156" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">what to build is open</text>
   <text x="715" y="132" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">Intent settled</text>
@@ -4286,15 +4286,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="40" y1="624" x2="920" y2="624" stroke="#e7e2da" stroke-width="1.4"/>
   <text x="480" y="651" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Sometimes you promote the obligation, not the instrument that discovered it.</text>
   <text x="480" y="673" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">The drain may reveal a different obligation &#8212; and that obligation may deserve a different mechanism.</text>
-</svg><figcaption data-short="Audit → Drain → Promote generalized — audit → findings → partition {drain · redesign · accept} → identify obligation → choose mechanism {promote · retain}"><span class="fig-label">Figure 4.2-5.</span> <em>Audit → Drain → Promote, generalized.</em> The simple three-beat move is the common case. In general the audit's findings are partitioned, draining and redesign identify the obligation that deserves authority, and the final mechanism may be the original detector promoted to blocking or a narrower constraint, validator, or drift guard — while the detector itself remains an audit signal.</figcaption></figure><p class="gallery-source">From <a href="4.2-brownfield.html#fig-4-2-5">19 · Migrating to MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-6-fig-4-2-6" class="book-figure" data-label="derive-dont-copy"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
+</svg><figcaption data-short="Audit → Drain → Promote generalized — audit → findings → partition {drain · redesign · accept} → identify obligation → choose mechanism {promote · retain}"><span class="fig-label">Figure 4.2-5.</span> <em>Audit → Drain → Promote, generalized.</em> The simple three-beat move is the simplest case. In general the audit's findings are partitioned, draining and redesign identify the obligation that deserves authority, and the final mechanism may be the original detector promoted to blocking or a narrower constraint, validator, or drift guard — while the detector itself remains an audit signal.</figcaption></figure><p class="gallery-source">From <a href="4.2-brownfield.html#fig-4-2-5">19 · Migrating to MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-6-fig-4-2-6" class="book-figure" data-label="derive-dont-copy"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
      role="img" aria-labelledby="fig-4-2-6-ddTitle fig-4-2-6-ddDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title id="fig-4-2-6-ddTitle">Derive, don't copy — consume a fact from its authority instead of snapshotting it.</title>
-  <desc id="fig-4-2-6-ddDesc">A green authoritative-fact box fans into three derivation operations — query, join, and generate —
-    which merge into a neutral consumers box. Below, when two representations must both stay authoritative, a
+  <title id="fig-4-2-6-ddTitle">Derive, don't copy — consume a fact from its source of truth instead of snapshotting it.</title>
+  <desc id="fig-4-2-6-ddDesc">A green source-of-truth box fans into three derivation operations — query, join, and generate —
+    which merge into a neutral consumers box. Below, when neither representation fully determines the other, a
     green model box and a green world box are linked by a dashed rust double-headed parity arrow. The point:
-    downstream consumers derive from the authority rather than maintaining parallel copies, and where two
-    authorities remain, a correspondence check makes disagreement visible.</desc>
+    downstream consumers derive from the source of truth rather than maintaining parallel copies, and where
+    neither representation fully determines the other, a correspondence check makes disagreement visible.</desc>
 
   <defs>
     <marker id="fig-4-2-6-dd-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
@@ -4302,7 +4302,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <rect x="380" y="40" width="240" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="500" y="74" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">AUTHORITATIVE FACT</text>
+  <text x="500" y="74" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">SOURCE OF TRUTH</text>
 
   <path d="M500 96 C 400 126 260 128 200 156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-2-6-dd-ah)"/>
   <line x1="500" y1="96" x2="500" y2="156" stroke="#57534e" stroke-width="2" marker-end="url(#fig-4-2-6-dd-ah)"/>
@@ -4322,7 +4322,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="380" y="272" width="240" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="500" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">CONSUMERS</text>
 
-  <text x="500" y="366" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">when two authorities must both remain</text>
+  <text x="500" y="366" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">when neither side fully determines the other</text>
   <rect x="300" y="384" width="160" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="380" y="415" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">MODEL</text>
   <rect x="540" y="384" width="160" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
@@ -4330,13 +4330,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- parity check: dashed rust, double-headed = governance correspondence -->
   <line x1="463" y1="409" x2="537" y2="409" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#fig-4-2-6-dd-ah-rust)" marker-end="url(#fig-4-2-6-dd-ah-rust)"/>
   <text x="500" y="456" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3f12">parity</text>
-</svg><figcaption data-short="Derive, don&#x27;t copy — one authority, consumers query/join/generate; two authorities, parity check"><span class="fig-label">Figure 4.2-6.</span> <em>Derive, don't copy.</em> Once a fact has an authority, downstream consumers should query, derive, join, or generate from it rather than maintain parallel snapshots. Where neither representation fully determines the other, explicit correspondence checks make disagreement visible.</figcaption></figure><p class="gallery-source">From <a href="4.2-brownfield.html#fig-4-2-6">19 · Migrating to MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-1-fig-4-3-1" class="book-figure" data-label="example-vs-generative"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 510"
+</svg><figcaption data-short="Derive, don&#x27;t copy — one source of truth, consumers query/join/generate; where neither determines the other, parity check"><span class="fig-label">Figure 4.2-6.</span> <em>Derive, don't copy.</em> Once a fact has a source of truth, downstream consumers should query, derive, join, or generate from it rather than maintain parallel snapshots. Where neither representation fully determines the other, explicit correspondence checks make disagreement visible.</figcaption></figure><p class="gallery-source">From <a href="4.2-brownfield.html#fig-4-2-6">19 · Migrating to MAGE</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-1-fig-4-3-1" class="book-figure" data-label="example-vs-generative"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 510"
      role="group" aria-labelledby="fig-4-3-1-egTitle fig-4-3-1-egDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-4-3-1-egTitle">An example-based test pins one point; a generative test models the whole input space</title>
   <desc id="fig-4-3-1-egDesc">On top, an example-based test maps one chosen input to one expected
     output — a single labelled point. Below, a generative test drives a generator that
-    produces every input in the space into a check of whether the specification holds; on a
+    produces inputs drawn from the space into a check of whether the specification holds; on a
     failure the framework shrinks the input to its minimal or spec-point cause. A dotted
     arrow marks the shift from pinning one point to modelling the whole space.</desc>
 
@@ -4373,7 +4373,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="155" y="390" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">generator</text>
 
   <line x1="254" y1="382" x2="352" y2="382" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-4-3-1-eg-ah)"/>
-  <text x="309" y="336" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">every input in the space</text>
+  <text x="309" y="336" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">inputs drawn from the space</text>
 
   <!-- specification check (decision diamond) -->
   <polygon points="500,322 640,382 500,442 360,382" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>

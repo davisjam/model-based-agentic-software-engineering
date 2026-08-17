@@ -1958,7 +1958,7 @@
             },
             {
               "slug": "audit-drain-promote-is-the-common-case-not-a-requirement",
-              "text": "Audit → Drain → Promote is the common case, not a requirement to block.",
+              "text": "Audit → Drain → Promote does not require the discovering mechanism itself to become blocking.",
               "block_index": 101
             }
           ]
@@ -1993,12 +1993,12 @@
             },
             {
               "slug": "a-representation-authoritative-in-name-while-its-contents-are-copied-elsewhere-decays-into-maintenance",
-              "text": "A representation made authoritative in name while its contents are copied elsewhere decays into maintenance work the day after the copies are written.",
+              "text": "A representation named as the source of truth while its contents are copied elsewhere decays into maintenance work the day after the copies are written.",
               "block_index": 112
             },
             {
               "slug": "if-a-fact-has-a-queryable-authority-derive-it-rather-than-copy-it",
-              "text": "The stronger rule: if a fact already has a queryable authority, consume or derive it rather than copying it.",
+              "text": "The stronger rule: if a fact already has a queryable source of truth, consume or derive it rather than copying it.",
               "block_index": 114
             },
             {

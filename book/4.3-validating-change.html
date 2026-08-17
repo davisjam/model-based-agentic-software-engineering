@@ -710,7 +710,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <title id="egTitle">An example-based test pins one point; a generative test models the whole input space</title>
   <desc id="egDesc">On top, an example-based test maps one chosen input to one expected
     output — a single labelled point. Below, a generative test drives a generator that
-    produces every input in the space into a check of whether the specification holds; on a
+    produces inputs drawn from the space into a check of whether the specification holds; on a
     failure the framework shrinks the input to its minimal or spec-point cause. A dotted
     arrow marks the shift from pinning one point to modelling the whole space.</desc>
 
@@ -747,7 +747,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="155" y="390" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">generator</text>
 
   <line x1="254" y1="382" x2="352" y2="382" stroke="#1c1917" stroke-width="2" marker-end="url(#eg-ah)"/>
-  <text x="309" y="336" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">every input in the space</text>
+  <text x="309" y="336" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">inputs drawn from the space</text>
 
   <!-- specification check (decision diamond) -->
   <polygon points="500,322 640,382 500,442 360,382" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -864,7 +864,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The important difference is not the tool. It is the shape of the property.</p></blockquote>
 <h2 id="derive-obligations"><span class="sec-num">4.3.4</span> Name the obligation set before claiming coverage</h2>
 <p>Coverage answers a question about a population; the population must be named before the percentage has engineering meaning.</p>
-<p>Ordinary test coverage starts from the implementation, or from the tests that already exist. It can tell you a line was never executed. It cannot tell you that an important behavior has no test at all, because nothing first named that behavior as an obligation. Coverage counts what exists and structurally cannot count what was never written.</p>
+<p>Ordinary test coverage starts from the implementation, or from the tests that already exist. It can tell you a line was never executed. It cannot tell you that an important behavior has no test at all, because nothing first named that behavior as an obligation. Implementation-derived coverage cannot reveal an obligation that was never represented in the population being measured.</p>
 <p>Explicit models can supply the missing census. A state model enumerates the transitions that require evidence. An architectural model enumerates the forbidden or permitted edges. An error model enumerates the failure paths. A requirement model enumerates the claims that must be discharged. Derive that set from the models — every seam that owes a fuzzer, every failure edge that owes an injection test, every invariant that owes a checker — and a missing test becomes a named finding rather than an absence nobody notices.</p>
 <p>The assurance sequence follows from that. <a class="xref" href="4.3-validating-change.html#fig-4-3-3">Figure&nbsp;4.3-3</a> lays it out: name the model, derive the obligations it implies, take the census, choose evidence appropriate to each claim, and only then claim coverage against that set.</p>
 <figure id="fig-4-3-3" class="book-figure" data-label="models-to-evidence"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840"
