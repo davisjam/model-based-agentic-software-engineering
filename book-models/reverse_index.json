@@ -7299,16 +7299,6 @@
         }
       ]
     },
-    "section-id:where-the-cases-differ": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "5.5-mage-in-the-wild::where-the-cases-differ",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:where-the-emphasis-falls": {
       "kind": "section-id",
       "dependents": [
@@ -7316,6 +7306,16 @@
           "view": "outcomes",
           "element": "where-the-emphasis-falls::judge-how-long-a-leash-a-task-can-run-on-from",
           "role": "primary-unit"
+        }
+      ]
+    },
+    "section-id:where-the-reconstructions-differ": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "5.5-mage-in-the-wild::where-the-reconstructions-differ",
+          "role": "section-anchor"
         }
       ]
     },

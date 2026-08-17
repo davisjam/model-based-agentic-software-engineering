@@ -33,11 +33,11 @@ Part V uses two views of the evidence; [ref:two-views-of-the-evidence] sets them
 
 The evidence in this Part comes in two forms. The first is longitudinal process evidence from DocAble. It can
 establish sequence: this failure occurred, this response followed, and later evidence showed whether the
-response held over the surface it claimed to govern. It can show recurrence within one system and reconstruct
-how particular engineering structures emerged. It cannot establish that MAGE caused every improvement, that
+same failure recurred over the measured surface. It can show observed recurrence and nonrecurrence within one
+system and reconstruct how particular engineering structures emerged. It cannot establish that MAGE caused every improvement, that
 another organization would encounter the same failures, or that the resulting quantities are universal targets.
 
-The final chapter widens the lens. Six public industrial accounts show how independent organizations structure
+The final chapter widens the lens. Six public industrial accounts describe how independent organizations structure
 autonomous engineering work under different constraints. Those accounts lack DocAble's process depth: they
 expose selected mechanisms rather than the full histories that produced them. Their value is variation. They
 can show comparable moves arising independently, different realizations of the same engineering problem, and
