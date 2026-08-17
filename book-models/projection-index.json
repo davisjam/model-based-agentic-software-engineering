@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1125,
+    "total_sites": 1123,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 719,
+      "book-web": 717,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -57,7 +57,7 @@
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/3.4-governance-conversion.html",
@@ -626,10 +626,6 @@
             "occ": 1
           },
           {
-            "file": "book/3.1-where-authority-can-act.html",
-            "occ": 1
-          },
-          {
             "file": "book/4.3-validating-change.html",
             "occ": 1
           },
@@ -648,16 +644,12 @@
           {
             "file": "book/figures.html",
             "occ": 4
-          },
-          {
-            "file": "book/part-3-intro.html",
-            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 10
+            "occ": 8
           }
         ]
       },
@@ -1005,7 +997,7 @@
           },
           {
             "file": "book/3.4-governance-conversion.html",
-            "occ": 32
+            "occ": 33
           },
           {
             "file": "book/3.5-when-guardrails-collide.html",
@@ -1281,7 +1273,7 @@
           },
           {
             "file": "book/book-index.html",
-            "occ": 17
+            "occ": 18
           },
           {
             "file": "book/colophon.html",
@@ -2127,7 +2119,7 @@
           },
           {
             "file": "book/3.2-models-and-the-semantic-gap.html",
-            "occ": 13
+            "occ": 12
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
@@ -4757,7 +4749,7 @@
           },
           {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/4.1-the-mage-workflow.html",

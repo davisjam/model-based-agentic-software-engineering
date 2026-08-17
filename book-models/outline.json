@@ -894,28 +894,28 @@
           "section_id": "reasoning-input-action-work-unit-and-artifact-runtime",
           "level": 2,
           "heading_text": "Reasoning Input, Action, Work Unit, and Artifact/Runtime",
-          "topic_sentence": "The first boundary is **reasoning input** — the context, representations, examples, and instructions put in front of the reasoner.",
+          "topic_sentence": "The first location is **reasoning input** — the context, representations, examples, and instructions put in front of the reasoner.",
           "id_source": "derived",
           "block_index": 15,
           "points": [
             {
               "slug": "the-first-boundary-is-reasoning-input",
-              "text": "The first boundary is reasoning input: ordinarily guidance, not authority.",
+              "text": "The first location is reasoning input: ordinarily guidance, not authority.",
               "block_index": 17
             },
             {
               "slug": "the-second-boundary-is-the-action-one-attempted-side-effect",
-              "text": "The second boundary is the action: one attempted side effect the harness can inspect or refuse.",
+              "text": "The first authority-bearing boundary is the action: one attempted side effect the harness can inspect or refuse.",
               "block_index": 20
             },
             {
               "slug": "the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions",
-              "text": "The third boundary is the work unit: a meaningful unit of many actions, where whole-work obligations become legible.",
+              "text": "The second authority-bearing boundary is the work unit, where whole-work obligations become legible.",
               "block_index": 23
             },
             {
               "slug": "the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible",
-              "text": "The fourth boundary is the artifact or runtime: forbidden state made impossible to express or accept.",
+              "text": "The third authority-bearing boundary is the artifact or runtime: forbidden state made impossible to express or accept.",
               "block_index": 26
             }
           ]
@@ -935,7 +935,7 @@
             },
             {
               "slug": "guidance-belongs-on-the-map-but-not-on-the-same-axis-docker-matters",
-              "text": "Guidance belongs on the map but not on the same axis; this is why substantial Alignment can exist with little modeling.",
+              "text": "Guidance can be placed alongside these boundaries but not confused with authority; this is why substantial Alignment can exist with little modeling.",
               "block_index": 33
             }
           ]
@@ -960,7 +960,7 @@
             },
             {
               "slug": "the-alignment-thesis-stated-whole",
-              "text": "The Alignment Thesis, stated whole: give engineering intent authority by encoding obligations into authoritative mechanisms — constrain, sense, evaluate, admit — which can act directly, models enlarging their reach.",
+              "text": "The Alignment Principle, stated whole: give engineering obligations authority by encoding them into mechanisms — constrain, sense, evaluate, admit — which can act directly, models enlarging their reach.",
               "block_index": 43
             },
             {
@@ -994,7 +994,7 @@
         },
         {
           "slug": "security-practice-draws-the-same-boundary",
-          "text": "Security practice draws the same boundary: secure the process that produces the artifact.",
+          "text": "Recent agentic-security guidance draws a similar boundary: secure the process that produces the artifact.",
           "block_index": 10
         },
         {
@@ -1033,7 +1033,7 @@
             },
             {
               "slug": "an-obligation-can-test-one-of-three-relations",
-              "text": "An obligation can test one of three relations — correspondence, conformance, or acceptance — and they are not interchangeable.",
+              "text": "Three different relations matter — correspondence, conformance, or acceptance — and they are not interchangeable.",
               "block_index": 19
             }
           ]
@@ -1042,7 +1042,7 @@
           "section_id": "the-semantic-gap",
           "level": 2,
           "heading_text": "The semantic gap",
-          "topic_sentence": "The second failure is placement.",
+          "topic_sentence": "A second problem is placement.",
           "id_source": "derived",
           "block_index": 27,
           "points": [
@@ -1078,7 +1078,7 @@
             },
             {
               "slug": "the-part-two-rhyme-coarsest-representation-earliest-boundary",
-              "text": "The rhyme: Modeling chooses the coarsest representation where the question is answerable; Alignment chooses the earliest boundary where the obligation is legible.",
+              "text": "The rhyme: Modeling chooses the reduction that answers the question while carrying no unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
               "block_index": 50
             },
             {
@@ -1102,7 +1102,7 @@
         },
         {
           "slug": "an-obligation-may-live-in-a-model-or-directly-in-a-type-or-policy",
-          "text": "An obligation may live in a model, or directly in a type, permission, schema, test, or policy; Alignment does not care which.",
+          "text": "An obligation may live in a model, or directly in a type, permission, schema, test, or policy; Alignment does not require a particular representation.",
           "block_index": 3
         },
         {
@@ -1120,18 +1120,18 @@
           "section_id": "prevention-and-observation",
           "level": 2,
           "heading_text": "Prevention and observation",
-          "topic_sentence": "Inside the loop a mechanism has one of two moves — prevent the mistake, or observe it — and [ref:constraint-vs-sensor] draws the split.",
+          "topic_sentence": "On the work-facing side of the loop, the two complementary moves are prevention and observation; [ref:constraint-vs-sensor] draws the split.",
           "id_source": "derived",
           "block_index": 9,
           "points": [
             {
               "slug": "a-mechanism-is-one-of-two-moves-prevent-or-observe",
-              "text": "A mechanism is one of two moves: prevent, or observe.",
+              "text": "On the work-facing side of the loop, the two moves are prevention and observation.",
               "block_index": 11
             },
             {
               "slug": "a-soft-instruction-becomes-alignment-only-when-the-environment-can-act-on-it",
-              "text": "A soft instruction becomes Alignment only when the environment can act on it.",
+              "text": "An instruction carries authority only when a mechanism in the environment acts on it.",
               "block_index": 15
             },
             {
@@ -1191,7 +1191,7 @@
             },
             {
               "slug": "prefer-the-constraint-when-you-can-exclude-the-state",
-              "text": "Sometimes the best validator is none: if an invalid state can be removed from the action space, prefer the constraint.",
+              "text": "Sometimes the best mechanism is a constraint rather than a validator: if an invalid state can be removed from the action space, prefer the constraint.",
               "block_index": 44
             },
             {
@@ -1236,7 +1236,7 @@
             },
             {
               "slug": "cheap-evidence-early-full-re-derivation-late-the-thing-asking-to-pass-does-not-define-passing",
-              "text": "Cheap evidence early, full re-derivation late; the thing asking to pass does not define passing.",
+              "text": "A loop may re-derive evidence at a later admission boundary; the thing asking to pass does not define passing.",
               "block_index": 64
             }
           ]
@@ -1463,7 +1463,7 @@
       "preamble_points": [
         {
           "slug": "a-governed-environment-grows-ex-ante-and-ex-post-with-conversion-the-hinge",
-          "text": "A governed environment grows ex ante and ex post; governance conversion is the hinge.",
+          "text": "A governed environment grows ex ante and ex post; governance conversion is the ex post route.",
           "block_index": 0
         }
       ]
@@ -1596,7 +1596,7 @@
         },
         {
           "slug": "successful-environments-accumulate-machinery-so-the-estate-is-a-portfolio-to-manage",
-          "text": "Successful environments accumulate machinery; that estate becomes an engineering object — a portfolio of capital assets to manage.",
+          "text": "Governance conversion and ex ante design accumulate machinery; that estate becomes an engineering object — a portfolio of capital assets to manage.",
           "block_index": 3
         },
         {

@@ -1,6 +1,6 @@
 <!-- part-foreshadows: govern-the-environment, alignment-thesis, failures-become-machinery -->
 
-Part 2 made engineering knowledge and intent explicit. Those models already earn their keep: they let
+Part 2 made engineering knowledge and intent explicit. Those models already provide value: they let
 engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from
 lower-level detail. This Part asks a different question. **Which of those properties should the environment
 itself hold as obligations, and how should it hold them?**
@@ -12,7 +12,7 @@ policy has been represented at the level where the property exists, the environm
 that would otherwise need an agent or a human to reconstruct the missing semantics.
 
 <!-- thesisbox -->
-> ### ALIGNMENT THESIS
+> ### ALIGNMENT PRINCIPLE
 >
 > Give engineering obligations authority by encoding them into mechanisms that
 > constrain actions, produce evidence, evaluate that evidence, and control admission.
@@ -22,10 +22,11 @@ that would otherwise need an agent or a human to reconstruct the missing semanti
 Five questions organize the Part; [ref:part3-nav-arc] shows their progression.
 
 <!-- label: part3-nav-arc -->
-<!-- figure: assets/part3-nav-arc.svg | *Figure 3.0-1: Five questions organize Alignment.* The Part locates where authority can act, determines what obligation is legitimate, decomposes how mechanisms carry authority, shows how experience adds durable obligations and controls, and finally treats the resulting control estate as an engineering object. -->
+<!-- figure: assets/part3-nav-arc.svg | *Five questions organize Alignment.* The Part locates where authority can act, determines what obligation is legitimate, decomposes how mechanisms carry authority, shows how experience adds durable obligations and controls, and finally treats the resulting control estate as an engineering object. -->
 
 Alignment gives selected engineering judgments durable authority in the environment. Constraints narrow what work
 can do; sensors produce evidence of what it did; validators judge that evidence against an obligation;
 gates decide what may advance. Some mechanisms can be designed before work begins. Others emerge when a
 failure exposes something the environment did not represent, observe, evaluate, or control. Those durable
-lessons become engineering capital, and eventually the control system itself becomes an engineering object.
+lessons become engineering capital; once the control estate becomes consequential, it too becomes an
+engineering object.

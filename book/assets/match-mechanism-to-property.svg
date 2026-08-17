@@ -7,7 +7,7 @@
        CAN EXCLUDE IT?        -> CONSTRAINT  (structural prevention; DB compare-and-set / closed transition)
        BAD STATE / TRACE?     -> VALIDATOR   (state-space search; bounded explicit-state exploration)
        EVENTUALITY / FAIRNESS?-> VALIDATOR   (temporal model checking; TLA+ / TLC where warranted)
-       all -> GATE, IF CONSEQUENCE SHOULD BE BINDING
+       all -> GATE, IF THE VERDICT SHOULD CONTROL ADMISSION
      Grayscale-survivable: every node labelled; the parallel three-way fork carries the calculus; hue only
      reinforces obligation (rust) vs machinery (gray) vs gate (green). Boxes first, labels last. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 610" width="1000" height="610"
@@ -20,7 +20,7 @@
     bounded explicit-state exploration. If the obligation is an eventuality or fairness property, a validator
     does temporal model checking with TLA-plus and TLC where warranted. These are alternatives selected by the
     property, not stages on a maturity ladder. Whichever mechanism supplies the verdict, a separate gate gives
-    it consequence if the result should be binding.</desc>
+    it consequence if the verdict should control admission.</desc>
 
   <defs>
     <marker id="mmp-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
@@ -98,8 +98,8 @@
   <text x="815" y="358" text-anchor="middle" font-size="13.5" fill="#1c1917">temporal model checking</text>
   <text x="815" y="380" text-anchor="middle" font-size="12.5" fill="#57534e">TLA+ / TLC where warranted</text>
 
-  <text x="500" y="502" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">GATE, IF CONSEQUENCE</text>
-  <text x="500" y="525" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">SHOULD BE BINDING</text>
+  <text x="500" y="502" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">GATE, IF THE VERDICT</text>
+  <text x="500" y="525" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">SHOULD CONTROL ADMISSION</text>
 
   <text x="500" y="576" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Alternatives selected by the property &#8212; not stages on a maturity ladder.</text>
 </svg>
