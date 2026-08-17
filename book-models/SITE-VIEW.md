@@ -45,7 +45,7 @@ the content as hand-authored HTML.
   the book*, not a landing framing — the outline and every outcome, book / Part / chapter / section, in
   one place.
 
-The concept cards, the two theses, and the mechanism-class cards trace to a fourth model,
+The concept cards, the two principles, and the mechanism-class cards trace to a fourth model,
 [`book/data/concepts.json`](../book/data/concepts.json) — but as **traceability**, not as a rendered
 projection. concepts.json records each core concept's kind, its site realization, and its status; its
 four audit-only lints (L1–L4 in `tests/html.py`) assert the site card and the book `index-def` tag both

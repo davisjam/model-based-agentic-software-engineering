@@ -9,7 +9,7 @@ falls, other constraints become more visible: deciding what to build, representi
 well enough to reason about it, producing evidence that a change is acceptable, and giving
 consequential engineering decisions authority across many changes.
 
-<!-- thesisbox -->
+<!-- principlebox -->
 > ### FOUNDING PREMISE
 >
 > Commodity intelligence makes implementation abundant relative to engineering judgment.

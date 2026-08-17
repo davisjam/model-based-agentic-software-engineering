@@ -47,7 +47,7 @@ view-models here extend that exact pattern to the book's structure and navigatio
 ## 2. The view set
 
 The author named three views to start and invited more. Recommended set: **the three named views plus
-two more** (a cross-reference graph and a thesis-weave model), for five total. Each is a typed model that
+two more** (a cross-reference graph and a principle-weave model), for five total. Each is a typed model that
 answers one quality question, built from named md symbols, held true by a drift check.
 
 | # | View | Kruchten analogue | Quality question it answers | Status |
@@ -56,7 +56,7 @@ answers one quality question, built from named md symbols, held true by a drift 
 | 2 | **Conceptual** | Logical (what the system is) | *Does every concept have a definition and a home, and do the chapter links and floats connect the concepts they claim to?* | Specified (partly exists as `concepts.json`) |
 | 3 | **User-journeys** | Scenarios (+1, the paths that validate the rest) | *Does each promised reading path still traverse real parts in the promised order?* | Specified |
 | 4 | **Cross-reference graph** | Process (what connects to what) | *Does every `[ref:]` / inter-chapter link / float reference resolve, and is the reference graph acyclic-where-it-should-be?* | Specified (recommended) |
-| 5 | **Thesis-weave** | (a book-specific invariant view) | *Are the two theses (Modeling, Alignment) actually woven through the parts that claim to develop them?* | Specified (recommended) |
+| 5 | **Principle-weave** | (a book-specific invariant view) | *Are the two principles (Modeling, Alignment) actually woven through the parts that claim to develop them?* | Specified (recommended) |
 | 6 | **Learning outcomes** | (a book-specific pedagogical view) | *Does every teaching unit declare what a reader can DO after it, does that outcome map to a real unit, and does the Part→chapter→section outcome tree decompose without gaps?* | **PoC built here** |
 
 Below, each view gets its quality question, typed schema, and the md symbols it references.
@@ -150,18 +150,18 @@ Below, each view gets its quality question, typed schema, and the md symbols it 
 - **Invariants.** Every `ref` edge resolves to a label (already the `book-float-ref` gate covers the
   before-its-float rule; this generalizes to *all* refs). No chapter-link points at a non-existent page.
 
-### 2.5 Thesis-weave view (specified, recommended)
+### 2.5 Principle-weave view (specified, recommended)
 
-- **Quality question.** The book rests on two theses (the Modeling Thesis, the Alignment Thesis). Part 2
-  claims to develop one and Part 3 the other. Are the theses actually *woven* through the parts that claim
+- **Quality question.** The book rests on two principles (the Modeling Principle, the Alignment Principle). Part 2
+  claims to develop one and Part 3 the other. Are the principles actually *woven* through the parts that claim
   them, or only asserted in the preface?
-- **Typed schema.** `ThesisWeave(thesis_slug, claimed_parts[], woven_at[])` where `woven_at` is the set of
-  chapters that carry a `<!-- thesis: modeling|alignment -->` marker. `tests/book.py` already runs a
-  "thesis-woven" audit; this view formalizes its result as a queryable model.
-- **Md symbols referenced.** The concept anchors for `thesis-modeling` / `thesis-alignment` (existing);
-  **one new symbol** — a `<!-- thesis: slug -->` marker an author drops in a chapter that develops a
-  thesis, so the weave is explicit rather than heuristic.
-- **Invariants.** Every claimed part has ≥1 `woven_at` chapter. No thesis is claimed by a part it never
+- **Typed schema.** `PrincipleWeave(principle_slug, claimed_parts[], woven_at[])` where `woven_at` is the set of
+  chapters that carry a `<!-- principle: modeling|alignment -->` marker. `tests/book.py` already runs a
+  "principle-woven" audit; this view formalizes its result as a queryable model.
+- **Md symbols referenced.** The concept anchors for `modeling-principle` / `alignment-principle` (existing);
+  **one new symbol** — a `<!-- principle: slug -->` marker an author drops in a chapter that develops a
+  principle, so the weave is explicit rather than heuristic.
+- **Invariants.** Every claimed part has ≥1 `woven_at` chapter. No principle is claimed by a part it never
   touches.
 
 ### 2.6 Learning-outcomes view (built)
@@ -184,7 +184,7 @@ view, perhaps partially derived or annotative").
     one-to-one. The `primary_unit` is where the outcome is **chiefly taught / delivered**; each of
     `secondary_units` is an **elaborative** unit that reinforces, extends, or applies it. Both are join keys
     into the outline view (a `section_id`, a chapter `slug`, `part-<N>`, or `book`). An outcome that spans
-    units — a thesis chiefly stated in Part 2 but reinforced in Part 4 and the case study — records that
+    units — a principle chiefly stated in Part 2 but reinforced in Part 4 and the case study — records that
     span instead of being duplicated or arbitrarily pinned to one place. An outcome whose `primary_unit` no
     longer resolves is a finding (U1); a `secondary_unit` that no longer resolves, or equals the primary, is
     a finding (U7).
@@ -294,16 +294,16 @@ one `MARKER_KEYWORDS` row, which is a **reconciliation item with the C→A agent
 | New symbol | Notation | Purpose | Est. md sites |
 |------------|----------|---------|---------------|
 | `<!-- journey: id \| actor \| goal -->` + `<!-- journey-step: id \| order \| target -->` | HTML comment, arg-delimited by `\|` (matches `figure:`'s `src \| caption` convention) | Anchors each reading path and its steps to the exact prose that promises it (User-journeys view) | ~3 journeys × ~4 steps ≈ 15 markers, all in the preface's "A map of the book" section |
-| `<!-- thesis: modeling\|alignment -->` | HTML comment, enum arg | Marks a chapter that develops a thesis (Thesis-weave view) | ~6–8 (the Part 2 / Part 3 chapters) |
+| `<!-- principle: modeling\|alignment -->` | HTML comment, enum arg | Marks a chapter that develops a principle (Principle-weave view) | ~6–8 (the Part 2 / Part 3 chapters) |
 
 **Recommended notation rule for all new book-model symbols:** an arg-bearing marker uses `keyword: arg`
 with `|`-delimited fields (the established `figure:` / `table:` convention), lives on its own line, and
 degrades to an invisible comment in any plain markdown viewer. This keeps the scheme uniform with what the
 book already teaches and what `book_ir`'s `_MARKER_LINE` already parses.
 
-Until the C→A agent adds these keywords to `MARKER_KEYWORDS`, the journeys and thesis-weave views can
+Until the C→A agent adds these keywords to `MARKER_KEYWORDS`, the journeys and principle-weave views can
 still be authored **derived-from-existing-prose** (the journeys are already fully described in the preface;
-the thesis-weave audit already runs heuristically) — the new markers make the join *exact and stable*
+the principle-weave audit already runs heuristically) — the new markers make the join *exact and stable*
 rather than heuristic, which is the upgrade, not the enabler.
 
 ### 3.4 Notation decision for the outcomes view — model-file declarations, no inline marker

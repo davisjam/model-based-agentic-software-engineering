@@ -72,7 +72,7 @@ proves. Each is a first step onto a frontier the book marks as still open.
 ## Related concepts
 
 - [Convert recurring failures into controls](concept-convert-failures.md)
-- [Documentation, taken to its limit, is a structured model](concept-modeling-thesis.md)
+- [Documentation, taken to its limit, is a structured model](concept-modeling-principle.md)
 
 ## Read in the book →
 

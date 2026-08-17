@@ -23,7 +23,7 @@ For each of the ~139 sections (the `outcomes_model.py gaps` / outline worklist):
    - **Conceptual** — concepts this section **defines** (`<!-- index-def -->`) vs merely **uses**; the
      chapter links it makes; the role of each float/table it carries.
    - **Cross-reference** — every `[ref:]`, chapter link, concept ref resolves (the reverse index covers it).
-   - **Thesis-weave** — which thesis (if any) this section develops.
+   - **Principle-weave** — which principle (if any) this section develops.
 4. **Emit gaps** — the **union across views**: a paragraph with no clean canonical point; a section that is no
    outcome's primary; a promised concept never defined; a dangling reference; a thin thesis touch. Two
    paragraphs that induce the **same** canonical point = a **redundancy** (the machine version of the

@@ -2,7 +2,7 @@
 
 **Claim** — Give intent authority over the fleet: constrain the wrong move away, then sense evidence, validate it, and gate what may advance — sensor produces, validator judges.
 
-| Concept | Big idea 3 · Thesis 2 |
+| Concept | Big idea 3 · Principle 2 |
 | --- | --- |
 | Claim | Give intent authority over the fleet: constrain the wrong move away, then sense evidence, validate it, and gate what may advance — sensor produces, validator judges. |
 | Mechanisms | Typed ViolationCategory / FailureCategory enums · The Audit-to-Lint mechanism · ContentValidator · F10 mutator-stamp-wiring lint |
@@ -82,7 +82,7 @@ stamp, checked where mutators are defined.
 
 ## Related concepts
 
-- [Documentation, taken to its limit, is a structured model](concept-modeling-thesis.md)
+- [Documentation, taken to its limit, is a structured model](concept-modeling-principle.md)
 - [Convert recurring failures into controls](concept-convert-failures.md)
 
 ## Read in the book →

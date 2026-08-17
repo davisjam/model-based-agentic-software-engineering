@@ -13,7 +13,7 @@ Three questions drive the audit:
 3. **(c) Drift / mismatch** — a site framing whose backing exists but is stale, misfiled, or joined on
    the wrong key.
 
-Snapshot: **71 mechanisms · 4 definitions · 9 projected outcomes · 3 theses · 13 concept records.** The
+Snapshot: **71 mechanisms · 4 definitions · 9 projected outcomes · 3 principles · 13 concept records.** The
 site is in good alignment. The findings below are small and named, not structural.
 
 ## The framing census (the worklist)
@@ -32,9 +32,9 @@ Each landing family, walked. "Backing" names the model element the framing proje
 
 | Framing (card) | Model backing (concepts.json) | Book home (link-through) | Status |
 |---|---|---|---|
-| The Modeling Thesis (`card-thesis-modeling`) | `thesis-modeling` | 1.2 | Traced. Prose hand-authored; concept record + L1–L4 lints resolve. |
-| The Alignment Thesis (`card-thesis-alignment`) | `thesis-alignment` | 2.3 | Traced. Same. |
-| Models are the universal language (`card-universal-language`) | `universal-language` (master thesis) | 6.0 | Traced. Same. |
+| The Modeling Principle (`card-modeling-principle`) | `modeling-principle` | 1.2 | Traced. Prose hand-authored; concept record + L1–L4 lints resolve. |
+| The Alignment Principle (`card-alignment-principle`) | `alignment-principle` | 2.3 | Traced. Same. |
+| Models are the universal language (`card-universal-language`) | `universal-language` (master principle) | 6.0 | Traced. Same. |
 | Constraint (`card-constraint`) | `constraint` | 2.3 | Traced. |
 | Sensor (`card-sensor`) | `sensor` | 2.3 | Traced. |
 | The residual (`card-residual`) | `residual` | 2.3 | Traced. |
@@ -48,13 +48,13 @@ concepts and do not each owe a concept record.
 
 | Framing (card) | Elaborates | Book home |
 |---|---|---|
-| Agent-legible & precise (`card-agent-legible-precise`) | Modeling Thesis | 1.2 |
-| It can't lie (`card-it-cant-lie`) | Modeling Thesis | 2.2 |
-| Cheap to keep, pays back (`card-model-pays-back`) | Modeling Thesis | 1.2 |
+| Agent-legible & precise (`card-agent-legible-precise`) | Modeling Principle | 1.2 |
+| It can't lie (`card-it-cant-lie`) | Modeling Principle | 2.2 |
+| Cheap to keep, pays back (`card-model-pays-back`) | Modeling Principle | 1.2 |
 | Modelling democratizes (`card-modelling-democratizes`) | universal-language | 6.0 |
 | The judgment moved up (`card-judgment-moved-up`) | universal-language | 6.0 |
 | Firewall vs. smoke detector (`card-constraint-vs-sensor`) | constraint + sensor | 2.6 |
-| Reading failure as a missing mechanism (`card-alignment-grows`) | Alignment Thesis | 4.5 |
+| Reading failure as a missing mechanism (`card-alignment-grows`) | Alignment Principle | 4.5 |
 
 ### School / spectrum framings — book-covered, not concept-record-modeled
 
@@ -125,22 +125,22 @@ Several model elements are omitted — each by an explicit, defensible policy, n
 
 ### (c) Drift / mismatch
 
-- **F2 — the theses and mechanism-classes are TRACED, not PROJECTED.** Their card prose is hand-authored
+- **F2 — the principles and mechanism-classes are TRACED, not PROJECTED.** Their card prose is hand-authored
   on the landing; concepts.json only asserts the site card and book tag both resolve (traceability), it
   does not *supply* the prose. So a definition and an outcome are true projections (edit the model, the
-  site re-flows), but a thesis card is not (edit concepts.json, the landing prose does not change). This
-  is a **deliberate depth difference**, not a defect: the theses are the site's rhetorical spine and read
+  site re-flows), but a principle card is not (edit concepts.json, the landing prose does not change). This
+  is a **deliberate depth difference**, not a defect: the principles are the site's rhetorical spine and read
   as authored argument, while definitions/outcomes are enumerable records that gain from being generated.
   Recorded here so the asymmetry is a decision, not a surprise. **Decision for the author:** leave as
-  traceability, or promote the thesis cards to a `theses.json` projection (a sibling of definitions.json)
+  traceability, or promote the principle cards to a `principles.json` projection (a sibling of definitions.json)
   in a later walk. `[DESIGN]` · author's call.
 
 ## Decisions surfaced for the author
 
 1. **F1 (`card-both-halves` → `_site_only_cards`)** — a one-line classification fix. Recommend taking it.
-2. **F2 (theses: traceability vs. projection)** — a depth call. The current split (theses authored,
-   definitions/outcomes generated) is coherent; promoting the theses to a projection is a future walk, not
-   a correction. No action needed unless the author wants the theses generated too.
+2. **F2 (principles: traceability vs. projection)** — a depth call. The current split (principles authored,
+   definitions/outcomes generated) is coherent; promoting the principles to a projection is a future walk, not
+   a correction. No action needed unless the author wants the principles generated too.
 3. **Definitions' owed book home** — already tracked in definitions.json; the drain phase lands the
    Part-2 Definitions section and flips `owed → landed`.
 

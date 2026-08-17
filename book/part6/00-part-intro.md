@@ -14,7 +14,7 @@ As implementation becomes cheaper, engineering effort moves toward
 representation, evidence, authority, and judgment. Engineers increasingly reason through models and
 analyses, delegate realization, and remain answerable for the result.
 
-<!-- thesisbox -->
+<!-- principlebox -->
 > ### THE PROFESSIONAL CONSEQUENCE
 >
 > As implementation capacity becomes abundant, the engineered environment becomes a first-class object of

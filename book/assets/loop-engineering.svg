@@ -2,8 +2,8 @@
 <!-- Hand-authored SVG (not Mermaid): the ENGINEERED agent loop — not a generic control loop.
      The cycle (modeled state → agent reasoning → output → admission → next turn) is ordinary;
      the point of the figure is the FOUR ENGINEERED LEVERS marked as the engineer's control
-     points on it: (1) the state exposed (blue — the Modeling Thesis lever), (2) the action
-     surface, (3) the success criterion, (4) the admission rule (green — the Alignment Thesis
+     points on it: (1) the state exposed (blue — the Modeling Principle lever), (2) the action
+     surface, (3) the success criterion, (4) the admission rule (green — the Alignment Principle
      levers). Mermaid would draw the cycle but not the lever-callout composition, and the
      pass/fail split at the admission gate wants bespoke placement. Palette: design-tokens
      (ink/muted/panel, diagram-fleet #2f5169 + #e7edf3, diagram-governed #1f7a4d + #e3f0e7). -->
@@ -16,9 +16,9 @@
     rule gate: if it passes, it advances and becomes the next turn's input, feeding back into the
     modeled state; if it fails, a dashed arrow sends the agent around again. Four numbered levers mark
     what the engineer controls: lever 1, the state exposed — a model, deliberately reduced, the
-    Modeling Thesis at work; lever 2, the action surface — tools and sanctioned seams, so the wrong
+    Modeling Principle at work; lever 2, the action surface — tools and sanctioned seams, so the wrong
     move is unavailable; lever 3, the success criterion — progress is measured, not felt; lever 4, the
-    admission rule — whether the result may advance. Levers 2, 3, and 4 are the Alignment Thesis
+    admission rule — whether the result may advance. Levers 2, 3, and 4 are the Alignment Principle
     enforced in the loop.</desc>
 
   <defs>
@@ -69,12 +69,12 @@
   <line x1="605" y1="262" x2="643" y2="262" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
 
   <!-- ===== the lever callouts ===== -->
-  <!-- lever 1 — the state exposed (Modeling Thesis) -->
+  <!-- lever 1 — the state exposed (Modeling Principle) -->
   <circle cx="86" cy="352" r="12" fill="#2f5169"/>
   <text x="86" y="357" text-anchor="middle" font-size="15.36" font-weight="700" fill="#ffffff">1</text>
   <text x="196" y="358" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">The state exposed</text>
   <text x="185" y="382" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a model, deliberately reduced</text>
-  <text x="185" y="403" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">— the Modeling Thesis lever</text>
+  <text x="185" y="403" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">— the Modeling Principle lever</text>
 
   <!-- lever 2 — the action surface -->
   <circle cx="378" cy="352" r="12" fill="#1f7a4d"/>
@@ -89,6 +89,6 @@
   <text x="793" y="358" text-anchor="middle" font-size="19" font-weight="700" fill="#1f7a4d">The success criterion</text>
   <text x="775" y="382" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">progress is measured, not felt</text>
 
-  <!-- the theses split -->
-  <text x="480" y="446" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Lever 1 is the Modeling Thesis at work; levers 2, 3, and 4 are the Alignment Thesis, enforced.</text>
+  <!-- the principles split -->
+  <text x="480" y="446" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Lever 1 is the Modeling Principle at work; levers 2, 3, and 4 are the Alignment Principle, enforced.</text>
 </svg>

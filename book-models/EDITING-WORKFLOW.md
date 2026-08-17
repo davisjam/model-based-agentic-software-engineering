@@ -1,7 +1,7 @@
 # The editing user story — you give intent, the agent owns model↔prose sync
 
 The book has two coupled representations: the **prose** (`book/**/*.md`) and the **models** (outline points,
-outcomes, concepts, thesis-weave, …). The author should never have to keep them in sync by hand.
+outcomes, concepts, principle-weave, …). The author should never have to keep them in sync by hand.
 Model↔prose consistency is a **governed, checked property** — the book's own thesis applied to authoring the
 book — not a discipline held in anyone's head.
 
@@ -15,7 +15,7 @@ As much of the model as possible lives **inline in the prose**, so editing the p
 
 These are the "pointers-**and**-content" mirror — the outline is *derived from* the decorators, so a prose
 edit and its model edit are one atomic local change. What CANNOT co-locate is the **cross-cutting** model —
-an outcome spanning several sections (primary + elaborative units), the thesis-weave — which lives in
+an outcome spanning several sections (primary + elaborative units), the principle-weave — which lives in
 `book-models/` model files and *references* the prose. Those are guarded by the drift audit.
 
 ## The safety net — the 3-kind drift audit (why the author can edit freely)

@@ -500,8 +500,8 @@ def _dekebab(slug: str) -> str:
 #: The distinctive lowercase keyword the IC7 coverage check greps for when a card claims a strength on a
 #: construct — a stable substring of the construct's authored label, robust to prose that names it in passing.
 _CONSTRUCT_KEYWORD = {
-    "thesis-alignment": "alignment",
-    "thesis-modeling": "modeling",
+    "alignment-principle": "alignment",
+    "modeling-principle": "modeling",
     "bootstrap-governance": "bootstrap",
     "governance-conversion": "conversion",
     "determinization": "determiniz",

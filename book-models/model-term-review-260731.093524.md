@@ -172,8 +172,8 @@ consolidation pass; if merged, keep the concept slug.
   `model-drift` 5/15, `executable-source-of-truth` 7/9, `sensor` 2/11, `constraint` 1/8,
   `residual` 1/7, `four-plus-one-views` 3/5, `model-from-code` 1/9 (spanning all six Part-3
   chapters), `the-semantic-gap` 2/7 — all sensible multi-chapter footprints. Thin ones:
-  `mirror-vs-spec` 1/2 (F1/F5 cluster; watch after 4.6 lands), `thesis-alignment` 1/2 vs
-  `thesis-modeling` 3/4 (the Alignment Thesis's home chapters 4.5/2.4-adjacent are the ones still
+  `mirror-vs-spec` 1/2 (F1/F5 cluster; watch after 4.6 lands), `alignment-principle` 1/2 vs
+  `modeling-principle` 3/4 (the Alignment Principle's home chapters 4.5/2.4-adjacent are the ones still
   draining — recheck after).
 - **Registry hygiene note:** `_counts.universe.concepts` said 131 at HEAD vs 135 `- concept:` rows
   in `index-terms.md` — likely the 4 rows added after the last regen (consistent with the

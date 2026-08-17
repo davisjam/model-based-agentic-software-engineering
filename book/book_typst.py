@@ -445,7 +445,7 @@ def _render_code(raw: str) -> str:
 # HTML book lifts these into a coloured `thesis-box` panel; the print projection mirrors that by boxing them
 # instead of typesetting them as a plain quote. Matched on the raw markdown lead (the HTML twin matches the
 # rendered `<p><strong>…Thesis.</strong>`); the two stay in step by construction of the same authored shape.
-_THESIS_LEAD_RE = re.compile(r"^\*\*The\b.*?\bThesis\.\*\*", re.S)
+_THESIS_LEAD_RE = re.compile(r"^\*\*The\b.*?\b(?:Thesis|Principle)\.\*\*", re.S)
 
 # A DEFINITION lead: a bold `**Term.**` label whose bold text ENDS in a period (`> **Churn.** …`). Mirrors
 # the web book's `def-inset` — the definition body italicises while the bold Term stays upright. The trailing
@@ -471,11 +471,11 @@ _MARGIN_NOTE_MAX_WORDS = 85
 _DEFN_ITALIC_PRELUDE = '#show strong: set text(style: "normal")\n  #set text(style: "italic")\n  '
 
 def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = False,
-                       is_thesisbox: bool = False) -> str:
+                       is_principlebox: bool = False) -> str:
     """A `>`-prefixed blockquote → a Typst block. An explicit `<!-- pullquote -->` marker (`is_pullquote`)
     becomes a label-less pull-quote — large centered italic display type, a thin accent rule above and below,
     NO fill (checked first, since an author declaration outranks lead-text-shape inference). An explicit
-    `<!-- thesisbox -->` marker (`is_thesisbox`) becomes a part-opener GREEN box with a full 4-side frame and,
+    `<!-- principlebox -->` marker (`is_principlebox`) becomes a part-opener GREEN box with a full 4-side frame and,
     when the block leads with a `### TITLE` heading, a centered ALLCAPS title-bar in the green family (the
     print twin of the web `blockquote.thesis-box .inset-title`); checked before the lead-text thesis test so a
     TITLED box is boxed, not typeset as a plain heading. A thesis blockquote (`> **The … Thesis.** …`) becomes
@@ -486,7 +486,7 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
     inner_md = "\n".join(bb._strip_blockquote_prefix(ln) for ln in raw.splitlines())
     inner = _render_markdown_body(inner_md, _EmitCtx.inert())
     stripped = inner_md.strip()
-    if is_thesisbox:
+    if is_principlebox:
         # A part-opener thesis box: full 4-side green frame. A leading `### TITLE` line becomes a centered
         # ALLCAPS title-bar (green rule/ink); the rest renders as the box body. Mirrors the web title-bar.
         lines = inner_md.splitlines()
@@ -705,7 +705,7 @@ class _EmitCtx:
         self.metadata_emitted = 0
         self.pending_def: list[str] = []   # a core-term index-def armed for the next block (→ blue def-box)
         self.pending_pullquote = False     # a `<!-- pullquote -->` marker armed for the next block
-        self.pending_thesisbox = False     # a `<!-- thesisbox -->` marker armed for the next block (part-opener box)
+        self.pending_principlebox = False     # a `<!-- principlebox -->` marker armed for the next block (part-opener box)
 
     @classmethod
     def inert(cls) -> "_EmitCtx":
@@ -715,7 +715,7 @@ class _EmitCtx:
         c.metadata_emitted = 0
         c.pending_def = []
         c.pending_pullquote = False
-        c.pending_thesisbox = False
+        c.pending_principlebox = False
         return c
 
 
@@ -733,7 +733,7 @@ _POINT_RE = re.compile(r"^<!--\s*point:\s*(?P<slug>[a-z0-9-]+)\s*\|\s*(?P<text>.
 
 
 def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = False,
-                 is_pullquote: bool = False, is_thesisbox: bool = False,
+                 is_pullquote: bool = False, is_principlebox: bool = False,
                  section_no: str | None = None) -> str:
     """Render ONE IR block to Typst markup — the sibling to `Block.render_html()`, reusing the SAME
     `book_ir.BlockKind` taxonomy and `classify_render_block` classification (the blocks arrive already
@@ -756,7 +756,7 @@ def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = F
         return _render_inset(block.raw)
     if k is K.BLOCKQUOTE:
         return _render_blockquote(block.raw, is_def=is_def, is_pullquote=is_pullquote,
-                                  is_thesisbox=is_thesisbox)
+                                  is_principlebox=is_principlebox)
     if k is K.TABLE:
         return _render_table(block)
     if k is K.FIGURE:
@@ -824,8 +824,8 @@ def _peel_metadata_marker(line: str, ctx: _EmitCtx) -> "str | None":
     if mline:
         if mline.group(1).lower() == "pullquote":
             ctx.pending_pullquote = True   # arm the pull-quote render for the block this marker heads
-        if mline.group(1).lower() == "thesisbox":
-            ctx.pending_thesisbox = True   # arm the part-opener thesis-box render for the next block
+        if mline.group(1).lower() == "principlebox":
+            ctx.pending_principlebox = True   # arm the part-opener thesis-box render for the next block
         return ""                                        # a consumed notation marker with no print output
     return None
 
@@ -1114,12 +1114,12 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
             continue
         # DIRECTIVE blocks carry index-def / index-example / point markers → #metadata.
         if b.kind is ir.BlockKind.DIRECTIVE:
-            # A Part-intro's `<!-- thesisbox -->` renders on the orientation VERSO (the divider builder reads
-            # it via `_extract_thesisbox_raw`, §G-4), so skip the marker AND its blockquote here — the box
+            # A Part-intro's `<!-- principlebox -->` renders on the orientation VERSO (the divider builder reads
+            # it via `_extract_principlebox_raw`, §G-4), so skip the marker AND its blockquote here — the box
             # prints once, on the verso, not again in the recto reading flow. Part pages only.
             if is_part_page:
                 _tbm = ir._MARKER_LINE.match(b.raw.strip())
-                if _tbm and _tbm.group(1).lower() == "thesisbox":
+                if _tbm and _tbm.group(1).lower() == "principlebox":
                     if i + 1 < len(blocks) and blocks[i + 1].kind is ir.BlockKind.BLOCKQUOTE:
                         skip.add(i + 1)
                     continue
@@ -1240,8 +1240,8 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         ctx.pending_def.clear()
         is_pullquote = ctx.pending_pullquote
         ctx.pending_pullquote = False
-        is_thesisbox = ctx.pending_thesisbox
-        ctx.pending_thesisbox = False
+        is_principlebox = ctx.pending_principlebox
+        ctx.pending_principlebox = False
         # A top-level `## ` section heading advances the per-chapter counter → `part.chapter.N` (mirrors the
         # web build's `section_no`; `###`/`####` subsections do not advance it). Only when the chapter is numbered.
         sec = None
@@ -1255,7 +1255,7 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
             frag = _render_argues_claims(b.raw)
         else:
             frag = render_typst(b, caption_md, is_def=is_def, is_pullquote=is_pullquote,
-                                is_thesisbox=is_thesisbox, section_no=sec)
+                                is_principlebox=is_principlebox, section_no=sec)
         # D71(a) keep-with-next: a paragraph that immediately introduces a figure/table/diagram sticks to it,
         # so the introducing sentence ("… in Table 4.2-1.", "… shown below.") is never split from its float
         # across a page break. Systematic — every paragraph that directly precedes a float, not one-off.
@@ -1720,17 +1720,17 @@ def _nav_vocab_typst(part: int) -> str:
     return "  #block(width: 100%)[\n" + "    #v(0.7em)\n".join(bands) + "  ]\n"
 
 
-def _extract_thesisbox_raw(ch: "ir.Chapter") -> "str | None":
-    """The raw markdown of a Part-intro's `<!-- thesisbox -->` blockquote, or None when the intro has none.
+def _extract_principlebox_raw(ch: "ir.Chapter") -> "str | None":
+    """The raw markdown of a Part-intro's `<!-- principlebox -->` blockquote, or None when the intro has none.
     The Part opener renders this GREEN thesis box on the orientation VERSO (§G-4), so the divider builder
     reads it out of the intro chapter's block stream here; `render_chapter` then SKIPS it on the recto so the
-    box prints exactly once. The `<!-- thesisbox -->` marker and its blockquote stay file-resident in
+    box prints exactly once. The `<!-- principlebox -->` marker and its blockquote stay file-resident in
     `part<N>/00-part-intro.md` — Typst reads them, the source is never edited."""
     blocks = ch.blocks
     for i, b in enumerate(blocks):
         if b.kind is ir.BlockKind.DIRECTIVE:
             m = ir._MARKER_LINE.match(b.raw.strip())
-            if m and m.group(1).lower() == "thesisbox":
+            if m and m.group(1).lower() == "principlebox":
                 nxt = blocks[i + 1] if i + 1 < len(blocks) else None
                 if nxt is not None and nxt.kind is ir.BlockKind.BLOCKQUOTE:
                     return nxt.raw
@@ -1829,8 +1829,8 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
         f"    #text(size: 1.12em, font: dt.font-display, style: \"italic\", fill: dt.ink)[{inline_typst(question)}]\n"
         "  ]\n"
     )
-    tb_raw = _extract_thesisbox_raw(ch)
-    thesis = _render_blockquote(tb_raw, is_thesisbox=True) if tb_raw else ""
+    tb_raw = _extract_principlebox_raw(ch)
+    thesis = _render_blockquote(tb_raw, is_principlebox=True) if tb_raw else ""
     vocab = _nav_vocab_typst(part)   # Carrying-forward / New-here — the sole local-orientation device
     # The whole orientation block is `breakable: false` so it stays atomic on the verso; the trailing
     # `#pagebreak()` sends the intro prose (rendered by `render_chapter`) to lead the facing recto.

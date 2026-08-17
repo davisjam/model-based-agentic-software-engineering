@@ -3,16 +3,16 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1114,
+    "total_sites": 1124,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 708,
+      "book-web": 720,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
       "website-landing": 11,
       "website-misc": 47,
-      "website-theory": 10
+      "website-theory": 8
     }
   },
   "index": {
@@ -220,7 +220,7 @@
         ],
         "website-concepts": [
           {
-            "file": "concept-alignment-thesis.html",
+            "file": "concept-alignment-principle.html",
             "occ": 3
           },
           {
@@ -240,7 +240,7 @@
             "occ": 4
           },
           {
-            "file": "concept-modeling-thesis.html",
+            "file": "concept-modeling-principle.html",
             "occ": 7
           },
           {
@@ -610,9 +610,25 @@
         ]
       }
     },
-    "alignment-thesis": {
+    "alignment-principle": {
       "book": {
         "book-web": [
+          {
+            "file": "book/0.1-the-mage-method-at-a-glance.html",
+            "occ": 4
+          },
+          {
+            "file": "book/0.2-what-this-book-argues.html",
+            "occ": 1
+          },
+          {
+            "file": "book/0.3-the-books-language.html",
+            "occ": 1
+          },
+          {
+            "file": "book/3.1-where-authority-can-act.html",
+            "occ": 1
+          },
           {
             "file": "book/5.1-the-problem-and-the-bar.html",
             "occ": 1
@@ -624,12 +640,20 @@
           {
             "file": "book/book-index.html",
             "occ": 1
+          },
+          {
+            "file": "book/figures.html",
+            "occ": 4
+          },
+          {
+            "file": "book/part-3-intro.html",
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 3
+            "occ": 9
           }
         ]
       },
@@ -637,12 +661,6 @@
         "website-misc": [
           {
             "file": "constructing-the-gee.html",
-            "occ": 1
-          }
-        ],
-        "website-theory": [
-          {
-            "file": "theory.html",
             "occ": 1
           }
         ],
@@ -746,7 +764,7 @@
             "occ": 1
           },
           {
-            "file": "concept-modeling-thesis.html",
+            "file": "concept-modeling-principle.html",
             "occ": 4
           },
           {
@@ -1312,7 +1330,7 @@
         ],
         "website-concepts": [
           {
-            "file": "concept-alignment-thesis.html",
+            "file": "concept-alignment-principle.html",
             "occ": 4
           },
           {
@@ -1332,7 +1350,7 @@
             "occ": 5
           },
           {
-            "file": "concept-modeling-thesis.html",
+            "file": "concept-modeling-principle.html",
             "occ": 5
           },
           {
@@ -2442,7 +2460,7 @@
         ],
         "website-concepts": [
           {
-            "file": "concept-alignment-thesis.html",
+            "file": "concept-alignment-principle.html",
             "occ": 9
           },
           {
@@ -2462,7 +2480,7 @@
             "occ": 2
           },
           {
-            "file": "concept-modeling-thesis.html",
+            "file": "concept-modeling-principle.html",
             "occ": 36
           },
           {
@@ -2934,9 +2952,25 @@
         ]
       }
     },
-    "modeling-thesis": {
+    "modeling-principle": {
       "book": {
         "book-web": [
+          {
+            "file": "book/0.1-the-mage-method-at-a-glance.html",
+            "occ": 4
+          },
+          {
+            "file": "book/0.2-what-this-book-argues.html",
+            "occ": 1
+          },
+          {
+            "file": "book/0.3-the-books-language.html",
+            "occ": 1
+          },
+          {
+            "file": "book/2.1-context-is-the-first-modeling-problem.html",
+            "occ": 1
+          },
           {
             "file": "book/5.1-the-problem-and-the-bar.html",
             "occ": 1
@@ -2952,12 +2986,20 @@
           {
             "file": "book/book-index.html",
             "occ": 1
+          },
+          {
+            "file": "book/figures.html",
+            "occ": 4
+          },
+          {
+            "file": "book/part-2-intro.html",
+            "occ": 1
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 4
+            "occ": 10
           }
         ]
       },
@@ -2965,12 +3007,6 @@
         "website-misc": [
           {
             "file": "constructing-the-gee.html",
-            "occ": 1
-          }
-        ],
-        "website-theory": [
-          {
-            "file": "theory.html",
             "occ": 1
           }
         ],
@@ -3498,7 +3534,7 @@
             "occ": 2
           },
           {
-            "file": "concept-modeling-thesis.html",
+            "file": "concept-modeling-principle.html",
             "occ": 5
           }
         ],
@@ -4000,7 +4036,7 @@
         ],
         "website-concepts": [
           {
-            "file": "concept-modeling-thesis.html",
+            "file": "concept-modeling-principle.html",
             "occ": 1
           }
         ],
@@ -4454,7 +4490,7 @@
         ],
         "website-concepts": [
           {
-            "file": "concept-alignment-thesis.html",
+            "file": "concept-alignment-principle.html",
             "occ": 2
           },
           {
@@ -4466,7 +4502,7 @@
             "occ": 2
           },
           {
-            "file": "concept-modeling-thesis.html",
+            "file": "concept-modeling-principle.html",
             "occ": 9
           },
           {

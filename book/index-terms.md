@@ -349,8 +349,8 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: judgment-into-infrastructure | Judgment into infrastructure
 - concept: governance-as-design-patterns | Governance as design patterns
 - concept: pattern | The design-pattern form
-- concept: thesis-modeling | The Modeling Thesis
-- concept: thesis-alignment | The Alignment Thesis
+- concept: modeling-principle | The Modeling Principle
+- concept: alignment-principle | The Alignment Principle
 - concept: universal-language | Models are the universal language
 - concept: generative-validation | Generative validation
 - concept: mirror-vs-spec | Mirror vs. spec

@@ -122,7 +122,7 @@ without re-deriving structure from the source, **reason** over it, and **enforce
 diverges. *Structured* was chosen over *typed* precisely because it names this whole span — analyzability —
 not the type-check alone. **Structured subsumes typing.**
 
-**Why it is the load-bearing half of the Modeling Thesis.** Prose can be a model — simplified, predictive,
+**Why it is the load-bearing half of the Modeling Principle.** Prose can be a model — simplified, predictive,
 even prescriptive. But only a **structured** model can sit at the apex of the documentation hierarchy,
 because only a machine-readable description can be the one the machine checks the others against. Every
 "structured, drift-checked model" in this book leans on the adjective: drop it and the drift gate has

@@ -782,8 +782,8 @@ def check_canon_pins():
     spine = _json.load(open(spine_path, encoding="utf-8"))
     by_id = {c["id"]: c for c in spine.get("spine", spine.get("claims", []))}
     for thesis_id, thesis_name, part_dir in (
-        ("modeling-thesis", "Modeling", "part2"),
-        ("alignment-thesis", "Alignment", "part3"),
+        ("modeling-principle", "Modeling", "part2"),
+        ("alignment-principle", "Alignment", "part3"),
     ):
         if thesis_id not in by_id:
             issues.append(f"R3: argument_spine_declared.json carries no {thesis_id!r} claim to pin against")

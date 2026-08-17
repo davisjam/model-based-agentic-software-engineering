@@ -16,7 +16,7 @@
         "artifacts": [],
         "artifact_would_help": false
       },
-      "note": "Exempt (preface). Opens on the core question and its reorganization answer; adds `Where the theory came from`, `What changed`, `Evidence and scope`; states the method as a FOUR-step cycle (Model · Align · Work · Convert) whose theses are INDEPENDENT (Modeling first is a principled scaling choice, not a prerequisite), closing on the cyclicality/engineering-capital sentence; the Printer metaphor no longer reprises here (it lives in 1.1); closes on `Who this book is for` and the convert-recurring-judgment move. The book map lives in the How to read this book page.",
+      "note": "Exempt (preface). Opens on the core question and its reorganization answer; adds `Where the theory came from`, `What changed`, `Evidence and scope`; states the method as a FOUR-step cycle (Model · Align · Work · Convert) whose principles are INDEPENDENT (Modeling first is a principled scaling choice, not a prerequisite), closing on the cyclicality/engineering-capital sentence; the Printer metaphor no longer reprises here (it lives in 1.1); closes on `Who this book is for` and the convert-recurring-judgment move. The book map lives in the How to read this book page.",
       "opening_anchor": "**How do we safely grant autonomy to commodity intelligence?** In this book,",
       "closing_anchor": "models, constraints, evidence, validators, workflows, and the engineering judgment encoded in them."
     },
@@ -342,7 +342,7 @@
       "closing": {
         "kind": "transition"
       },
-      "note": "Reframed intro chapter (one-model-class-per-chapter reconstruction). Opening states the failure (a foundation model knows the languages but not your system) and its answer (externalize engineering knowledge that should not have to be rediscovered); the Modeling-Thesis link is explicit. Folds the former ladder/zoo/views essentials and introduces the six-class working ontology. Closes on the modeling→Alignment boundary that Part III begins from.",
+      "note": "Reframed intro chapter (one-model-class-per-chapter reconstruction). Opening states the failure (a foundation model knows the languages but not your system) and its answer (externalize engineering knowledge that should not have to be rediscovered); the Modeling-Principle link is explicit. Folds the former ladder/zoo/views essentials and introduces the six-class working ontology. Closes on the modeling→Alignment boundary that Part III begins from.",
       "opening_anchor": "A foundation model knows Python, React, queues, databases, and common architectural patterns.",
       "closing_anchor": "Modeling makes an engineering property explicit. Alignment gives selected properties consequence."
     },
@@ -367,7 +367,7 @@
         ],
         "artifact_would_help": false
       },
-      "note": "One-model-class-per-chapter reconstruction: this chapter is now the STRUCTURAL example (label carried forward; filename -> 2.2-structural.md). Question (where is document mutation supposed to occur?) + answer (one sanctioned seam: remediation logic operates through a structured document model, realized through the format implementation). Modeling-Thesis link explicit — the model names the boundary, Part III gives it authority. Closes transitioning to the behavioral chapter (adding time).",
+      "note": "One-model-class-per-chapter reconstruction: this chapter is now the STRUCTURAL example (label carried forward; filename -> 2.2-structural.md). Question (where is document mutation supposed to occur?) + answer (one sanctioned seam: remediation logic operates through a structured document model, realized through the format implementation). Modeling-Principle link explicit — the model names the boundary, Part III gives it authority. Closes transitioning to the behavioral chapter (adding time).",
       "opening_anchor": "A structural model suppresses behavior to expose components, boundaries, and relationships.",
       "closing_anchor": "the orderings it is allowed to move through."
     },
@@ -601,7 +601,7 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Exemplar opening: dot-test failure, the generate-and-falsify move, then BOTH theses named. Daily-practice + old Part-close coda relocated (r3, A2b -> 4.1); the chapter now closes on the worked-examples gallery, whose takeaway bridges to Part 5.",
+      "note": "Exemplar opening: dot-test failure, the generate-and-falsify move, then BOTH principles named. Daily-practice + old Part-close coda relocated (r3, A2b -> 4.1); the chapter now closes on the worked-examples gallery, whose takeaway bridges to Part 5.",
       "opening_anchor": "Every engineering process eventually asks the same question: **what evidence is sufficient",
       "closing_anchor": "The old techniques become more central because the economics around them changed."
     },
@@ -627,7 +627,7 @@
         "artifact_would_help": false
       },
       "note": "Question explicit (why is document accessibility a hard, worthwhile case); answer the bar the problem set. Compressed (r3): Theory-Formation epistemics moved to 6.1; closes on why the apparatus had to grow as large as it did, setting up the build.",
-      "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Thesis",
+      "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Principle",
       "closing_anchor": "ground that the apparatus had to grow as large as it did."
     },
     {
@@ -677,7 +677,7 @@
         "artifact_would_help": false
       },
       "note": "Round-12 merge (old 5.4 Built System + old 5.5 Road to MAGE, ~70% cut). The chapter opens on what ultimately shipped — a six-responsibility tour + the LLM-as-function-call pattern — then walks the delegation staircase that forced the method out of it: the seat climbing (seat-moves) made safe by each step's model or control (oversight-does-not-scale), grounded in the DocAble narrative (grounded-in-one-case) — the three claims the spine labels. thesis_target stays argument-step; spine labels unchanged, so check_argument_spine stays green. The Missing-Model-Metric mechanics were SENT to 4.2-brownfield (round-12 G3); the chapter keeps only the three-bugs inset + a one-line pointer, plus the round-10 traceability incident as a ≤1-para field note. Closes on the delegation-climbed-as-far-as-the-controls synthesis and the frontispiece boxes now made real.",
-      "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Thesis",
+      "opening_anchor": "> ### This chapter illustrates {#illustrates} > > ✓ The Modeling Principle",
       "closing_anchor": "whether the method transfers is the question [Part 6](6.1-toward-a-theory-of-mage.html) takes up."
     },
     {
@@ -701,7 +701,7 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Exempt (discussion). Opens restating both theses as the through-line (its job as the implications chapter); closes on limitations + the come-tell-me invitation.",
+      "note": "Exempt (discussion). Opens restating both principles as the through-line (its job as the implications chapter); closes on limitations + the come-tell-me invitation.",
       "opening_anchor": "Early on, this book argued that AI does not retire the software",
       "closing_anchor": "of whole-environment question the empirical program that follows is built to ask."
     },
@@ -804,7 +804,7 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Question: how does one deep case speak past itself; answer: a middle-range causal-loop theory that names the constructs, draws the mechanisms, and states what evidence would break it. Delivers the dynamic model and the seven-hypotheses table. Thesis carried by content, not announced in the lead.",
+      "note": "Question: how does one deep case speak past itself; answer: a middle-range causal-loop theory that names the constructs, draws the mechanisms, and states what evidence would break it. Delivers the dynamic model and the seven-hypotheses table. Principle carried by content, not announced in the lead.",
       "opening_anchor": "The book has argued from one case, seen in depth. A theory",
       "closing_anchor": "whole argument as one causal spine, from cheap implementation to trustworthy software."
     },
@@ -853,7 +853,7 @@
         ],
         "artifact_would_help": false
       },
-      "note": "Opens by naming the gap the previous Parts left — ideas introduced one at a time, not yet joined into a method you run. Answer: the MAGE cycle, walked one turn at a time, with both theses named. Closes handing the assembled method to the rest of the Part.",
+      "note": "Opens by naming the gap the previous Parts left — ideas introduced one at a time, not yet joined into a method you run. Answer: the MAGE cycle, walked one turn at a time, with both principles named. Closes handing the assembled method to the rest of the Part.",
       "opening_anchor": "MAGE has three recurring moves: **Model, Align, Convert**. Model the engineering knowledge",
       "closing_anchor": "tools, and the companion repository and leaves only the moves that port."
     },

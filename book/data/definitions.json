@@ -79,7 +79,7 @@
     "aspects": [
       {"lead": "On \"declared shape.\"", "text": "The structure is a written-down form — fields, states, relations — that a program can parse without a human in the loop. A type is one way to declare it, and type-checking is the sharpest case; a schema, a state table, or a registry declares a shape just as well. What matters is that the model has a shape, the shape is explicit, and a checker can validate any instance against it."},
       {"lead": "On what the shape buys — analyzability.", "text": "A machine can do to a structured model what it cannot do to prose: read it, check it against the code and fail the build when they disagree, answer queries from it without re-deriving structure from the source, reason over it, and enforce it — refusing work that diverges. \"Structured\" was chosen over \"typed\" precisely because it names this whole span, not the type-check alone."},
-      {"lead": "Why it is the load-bearing half of the Modeling Thesis.", "text": "Prose can be a model — simplified, predictive, even prescriptive. But only a structured model can sit at the apex of the documentation hierarchy, because only a machine-readable description can be the one the machine checks the others against. Every \"structured, drift-checked model\" in this book leans on the adjective: drop it and the drift gate has nothing to read."}
+      {"lead": "Why it is the load-bearing half of the Modeling Principle.", "text": "Prose can be a model — simplified, predictive, even prescriptive. But only a structured model can sit at the apex of the documentation hierarchy, because only a machine-readable description can be the one the machine checks the others against. Every \"structured, drift-checked model\" in this book leans on the adjective: drop it and the drift gate has nothing to read."}
     ],
     "site_home": "N/A",
     "derived_from": "book/transcripts/DEFINITIONS-DRAFT.md#Structured",
@@ -141,7 +141,7 @@
     "box": "A feedback process in which the environment supplies a modeled state, constrains available actions, measures progress against an explicit criterion, and determines whether the result may advance.",
     "aspects": [
       {"lead": "The four engineered levers", "text": "The definition names the four things the engineer shapes: the state exposed to the agent, the action surface available to it, the success criterion it steers by, and the admission rule its output must pass. Nearly everything in the book pulls one of these levers."},
-      {"lead": "How the levers meet the theses", "text": "The modeled state is the Modeling Thesis's lever. The constrained actions, the explicit criterion, and the admission rule are the Alignment Thesis's three. The loop is where the two theses meet the running fleet."},
+      {"lead": "How the levers meet the principles", "text": "The modeled state is the Modeling Principle's lever. The constrained actions, the explicit criterion, and the admission rule are the Alignment Principle's three. The loop is where the two principles meet the running fleet."},
       {"lead": "Not a generic control loop", "text": "Any agent runs in some loop. This one is distinctive because the environment, not the agent, owns all four levers — which makes agent behavior an engineering surface rather than a hope."}
     ],
     "site_home": "N/A",
@@ -162,7 +162,7 @@
     "site_home": "N/A",
     "derived_from": "book/part1/1.3-the-agentic-substrate.md#reasoning-horizon",
     "book_home": "reasoning-horizon#idx-def-reasoning-horizon",
-    "book_home_owed": {"section": "Part 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, the chapter that develops it (relocated from §1.1 when the Task-Mode fork moved to Part IV §4.1). Book-only by design; the modeling-thesis reframe (§1.4) is where the causal chain it names is worked out."},
+    "book_home_owed": {"section": "Part 1 — §1.3 The Reasoning Horizon", "status": "landed", "note": "Landed: the term's index-def anchor lives in §1.3 The Reasoning Horizon, the chapter that develops it (relocated from §1.1 when the Task-Mode fork moved to Part IV §4.1). Book-only by design; the modeling-principle reframe (§1.4) is where the causal chain it names is worked out."},
     "lexicon_link": "the-books-language",
     "concepts_link": "book/data/concepts.json"
   },

@@ -1,4 +1,4 @@
-<!-- part-foreshadows: modeling-thesis, alignment-thesis, seat-moves -->
+<!-- part-foreshadows: modeling-principle, alignment-principle, seat-moves -->
 
 A method induced from practice should explain the engineering history that produced it. This Part
 follows DocAble — a production document-accessibility system built largely by directing coding
@@ -13,7 +13,7 @@ arose from clean design choices and simply held. Others were forged in incidents
 through recurrence. Part V preserves those differences rather than forcing every event through the
 finished theory.
 
-<!-- thesisbox -->
+<!-- principlebox -->
 > ### DEPTH AND BREADTH
 >
 > MAGE emerged from one deeply observed production build. That case supplies chronology, mechanism, and

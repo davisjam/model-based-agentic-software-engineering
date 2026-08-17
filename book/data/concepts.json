@@ -1,7 +1,7 @@
 {
   "_note": "Concept model — the SSOT for the book's core concepts and their site realization. Keyed by the SAME slug as the `- concept:` registry in index-terms.md (the join key). `book_home` is NOT stored here — it is DERIVED at check time from the index-def tags via build_book._harvest_concept_tags, so it cannot drift. `name` is likewise DERIVED from the registry, never stored. This file holds ONLY what the registry cannot: the concept's kind, its SITE realization, and its status. A slug here SHOULD be registered in index-terms.md; a slug that is not (or that has no index-def in prose) is a FINDING the four audit-only lints (L1-L4 in tests/html.py) report — the seeding is SUPPOSED to surface gaps, which become the Phase-2 drain worklist. `kind` in {thesis, axis, family, mechanism-class, caveat, core-construct}; `status` in {both, book-only, site-only, book-expands-site-missing, planned}. `core-construct` marks the six foundational constructs the `_hierarchy` block orders (the CORE-CONCEPTS pass, directive 260802); a core-construct has no landing card by design (site_home N/A), so L2/L3 skip it and L1 alone holds its book home. Queryable via `catalog.py concepts`.",
   "_hierarchy": {
-    "_note": "The book's CONCEPT HIERARCHY — the SSOT for how the core constructs fit together (the capstone of the CORE-CONCEPTS pass, directive 260802). Six levels, premise to repertoire; each names the construct slugs (records below / registry entries) it is made of and the argument-spine claim ids (book-models/argument-spine.json) it reconciles with. The spine and this hierarchy are the SAME object at two grains: the spine is the book's linear ARGUMENT (14 ordered claims, front to back); this is its conceptual CONTAINMENT (what kind of thing each construct is, and which relations join them). Orders therefore differ — the spine argues govern-the-environment (spine order 6) before the theses; the hierarchy places the governed engineering environment AFTER the method that produces it — and that is a difference of grain, not a contradiction. The two theses are the RELATIONS among the constructs, not constructs themselves. Cross-refs are held by the audit-only L5 check (check_concepts_hierarchy in tests/html.py): every construct slug resolves to a record here, every spine id to a spine claim.",
+    "_note": "The book's CONCEPT HIERARCHY — the SSOT for how the core constructs fit together (the capstone of the CORE-CONCEPTS pass, directive 260802). Six levels, premise to repertoire; each names the construct slugs (records below / registry entries) it is made of and the argument-spine claim ids (book-models/argument-spine.json) it reconciles with. The spine and this hierarchy are the SAME object at two grains: the spine is the book's linear ARGUMENT (14 ordered claims, front to back); this is its conceptual CONTAINMENT (what kind of thing each construct is, and which relations join them). Orders therefore differ — the spine argues govern-the-environment (spine order 6) before the principles; the hierarchy places the governed engineering environment AFTER the method that produces it — and that is a difference of grain, not a contradiction. The two principles are the RELATIONS among the constructs, not constructs themselves. Cross-refs are held by the audit-only L5 check (check_concepts_hierarchy in tests/html.py): every construct slug resolves to a record here, every spine id to a spine claim.",
     "levels": [
       {
         "level": "premise",
@@ -27,18 +27,18 @@
         ]
       },
       {
-        "level": "theses",
+        "level": "principles",
         "order": 3,
-        "statement": "Two theses divide churn's causes: the Modeling Thesis treats what-to-build and how-to-realize; the Alignment Thesis treats how-to-change-safely.",
+        "statement": "Two principles divide churn's causes: the Modeling Principle treats what-to-build and how-to-realize; the Alignment Principle treats how-to-change-safely.",
         "constructs": [],
         "relations": [
-          "thesis-modeling",
-          "thesis-alignment"
+          "modeling-principle",
+          "alignment-principle"
         ],
         "spine_claims": [
-          "modeling-thesis",
-          "alignment-thesis",
-          "theses-treat-the-causes"
+          "modeling-principle",
+          "alignment-principle",
+          "principles-treat-the-causes"
         ]
       },
       {
@@ -87,24 +87,24 @@
     },
     "relations": [
       {
-        "thesis": "thesis-modeling",
+        "thesis": "modeling-principle",
         "joins": [
           "model",
           "engineered-agent-loop"
         ],
-        "statement": "The Modeling Thesis relates the model to the loop's first lever: the environment supplies a MODELED state, compact enough to reason through, analyzable enough to specify and predict with."
+        "statement": "The Modeling Principle relates the model to the loop's first lever: the environment supplies a MODELED state, compact enough to reason through, analyzable enough to specify and predict with."
       },
       {
-        "thesis": "thesis-alignment",
+        "thesis": "alignment-principle",
         "joins": [
           "governance-mechanism",
           "engineered-agent-loop"
         ],
-        "statement": "The Alignment Thesis relates governance mechanisms to the loop's other three levers: the action surface constrained, progress measured against an explicit criterion, and the result admitted only when it passes."
+        "statement": "The Alignment Principle relates governance mechanisms to the loop's other three levers: the action surface constrained, progress measured against an explicit criterion, and the result admitted only when it passes."
       }
     ],
     "substrate_derivation": {
-      "_note": "The technology derivation (directive 260802 Task 6): MAGE as true engineering of a NEW MATERIAL — foundation models + agentic harnesses — whose properties imply the method. Eight substrate properties (grouped foundation-model / harness), seven derived engineering consequences, and the derivation of the two theses + the governed engineering environment from them. This block supplies the WHY under the hierarchy's theses level: the theses the levels above STATE, this derivation SHOWS follow from the machine. Book home: Part 1's 'Why MAGE Follows from the Machine' chapter (1.4-why-mage-follows-from-the-machine); the property table there is this block projected to prose. Held by the audit-only L5 check (check_concepts_hierarchy): property ids unique + groups closed; every consequence `from` id resolves to a property; every derivation `target`/`combines` slug resolves to a concept record; every `spine_claims` id resolves to book-models/argument-spine.json.",
+      "_note": "The technology derivation (directive 260802 Task 6): MAGE as true engineering of a NEW MATERIAL — foundation models + agentic harnesses — whose properties imply the method. Eight substrate properties (grouped foundation-model / harness), seven derived engineering consequences, and the derivation of the two principles + the governed engineering environment from them. This block supplies the WHY under the hierarchy's principles level: the principles the levels above STATE, this derivation SHOWS follow from the machine. Book home: Part 1's 'Why MAGE Follows from the Machine' chapter (1.4-why-mage-follows-from-the-machine); the property table there is this block projected to prose. Held by the audit-only L5 check (check_concepts_hierarchy): property ids unique + groups closed; every consequence `from` id resolves to a property; every derivation `target`/`combines` slug resolves to a concept record; every `spine_claims` id resolves to book-models/argument-spine.json.",
       "properties": [
         {
           "id": "broad-semantic-reasoning",
@@ -154,7 +154,7 @@
             "broad-semantic-reasoning"
           ],
           "spine_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "statement": "Broad reasoning lets agents work from models, not rigid scripts."
         },
@@ -164,7 +164,7 @@
             "bounded-reconstructed-context"
           ],
           "spine_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "statement": "Bounded context forces the models to be compact and structured."
         },
@@ -174,7 +174,7 @@
             "probabilistic-execution"
           ],
           "spine_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "statement": "Probabilistic behavior means action and admission need deterministic envelopes."
         },
@@ -185,7 +185,7 @@
             "interposition"
           ],
           "spine_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "statement": "Tool mediation lets the envelopes be enforced at real authority boundaries."
         },
@@ -229,42 +229,42 @@
             "bounded-reconstructed-context"
           ],
           "spine_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "statement": "The properties compose into a hazard: a change can look right while violating a global property the agent never saw — met with invariants, composed models, and end-to-end preservation checks."
         }
       ],
       "derives": [
         {
-          "target": "thesis-modeling",
+          "target": "modeling-principle",
           "from_properties": [
             "broad-semantic-reasoning",
             "bounded-reconstructed-context",
             "cheap-repeated-cognition"
           ],
           "spine_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
-          "statement": "The Modeling Thesis follows primarily from broad reasoning, bounded context, and cheap reconciliation."
+          "statement": "The Modeling Principle follows primarily from broad reasoning, bounded context, and cheap reconciliation."
         },
         {
-          "target": "thesis-alignment",
+          "target": "alignment-principle",
           "from_properties": [
             "probabilistic-execution",
             "tool-mediated-action",
             "parallel-execution"
           ],
           "spine_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
-          "statement": "The Alignment Thesis follows from probabilistic behavior, tool-mediated action, and machine-scale throughput."
+          "statement": "The Alignment Principle follows from probabilistic behavior, tool-mediated action, and machine-scale throughput."
         },
         {
           "target": "governed-environment",
           "from_properties": [],
           "combines": [
-            "thesis-modeling",
-            "thesis-alignment"
+            "modeling-principle",
+            "alignment-principle"
           ],
           "spine_claims": [
             "govern-the-environment"
@@ -293,23 +293,23 @@
     "card-skills-loop",
     "card-both-halves"
   ],
-  "thesis-modeling": {
+  "modeling-principle": {
     "kind": "thesis",
-    "site_home": "card-thesis-modeling",
+    "site_home": "card-modeling-principle",
     "status": "both",
-    "note": "Modeling Thesis (I of II): documentation, at its limit, is a typed model. Site card exists; registered here + in index-terms.md; book index-def tagged at the preface 'two theses' blockquote. Clean both-resolve."
+    "note": "Modeling Principle (I of II): documentation, at its limit, is a typed model. Site card exists; registered here + in index-terms.md; book index-def tagged at the preface 'two principles' blockquote. Clean both-resolve."
   },
-  "thesis-alignment": {
+  "alignment-principle": {
     "kind": "thesis",
-    "site_home": "card-thesis-alignment",
+    "site_home": "card-alignment-principle",
     "status": "both",
-    "note": "Alignment Thesis (II of II): give engineering intent authority over autonomous work by encoding obligations into deterministic mechanisms that constrain action, observe violations, evaluate evidence, and control admission — the four verbs mapping 1:1 onto the four mechanism archetypes Constraint · Sensor · Validator · Gate. Where the Modeling Thesis makes intent explicit, the Alignment Thesis makes that intent binding on what the fleet can do and what the environment will accept: represented intent becomes authority. Site card exists; registered in index-terms.md; book index-def tagged at the preface 'two theses' blockquote. Clean both-resolve."
+    "note": "Alignment Principle (II of II): give engineering intent authority over autonomous work by encoding obligations into deterministic mechanisms that constrain action, observe violations, evaluate evidence, and control admission — the four verbs mapping 1:1 onto the four mechanism archetypes Constraint · Sensor · Validator · Gate. Where the Modeling Principle makes intent explicit, the Alignment Principle makes that intent binding on what the fleet can do and what the environment will accept: represented intent becomes authority. Site card exists; registered in index-terms.md; book index-def tagged at the preface 'two principles' blockquote. Clean both-resolve."
   },
   "universal-language": {
     "kind": "thesis",
     "site_home": "N/A",
     "status": "book-only",
-    "note": "The master thesis: models are the universal language the fleet reasons through. Book index-def tagged at the preface 'universal language of engineering' paragraph; registered in index-terms.md. Formerly previewed on the landing's back-matter vocabulary strip (card-universal-language); that strip was removed so the landing ends at the three nav cards, so this concept is now book-only by design (the book is its sole home)."
+    "note": "The master principle: models are the universal language the fleet reasons through. Book index-def tagged at the preface 'universal language of engineering' paragraph; registered in index-terms.md. Formerly previewed on the landing's back-matter vocabulary strip (card-universal-language); that strip was removed so the landing ends at the three nav cards, so this concept is now book-only by design (the book is its sole home)."
   },
   "constraint": {
     "kind": "mechanism-class",

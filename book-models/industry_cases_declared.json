@@ -1,7 +1,7 @@
 {
   "_provenance": "HAND-AUTHORED declared source for the INDUSTRY-CASES model — the book's external-evidence base as a mechanically-checkable model (not prose accumulated ad hoc). This file IS edited by hand; it is the single source of truth for the industry cases the book reads MAGE against: the reconciled correspondence taxonomy, the declared ordered CONSTRUCT UNIVERSE (the matrix column set), the fixed DocAble row-0 correspondence, the six-site ROSTER (declared intent), and the case RECORDS (all six sites authored: Cloudflare + Spotify + Shopify + Docker + Siemens + Zenseact). Sibling in the book-models declared->generated idiom (see theory_of_mage_declared.json / metrics-dashboard.json). WIRED: industry_cases_model.py derives a typed model, projects the DocAble+authored correspondence matrix (render_matrix_md), runs the live queries (constructs / bears-on / only-docable / coverage / roster), and checks the joins IC1-IC6 status-aware. Lands AUDIT-ONLY-first in catalog.py validate (rule-#55 blocking-lint landing discipline); a later follow-up flips IC1-IC6 to BLOCKING after a clean session confirms the drain. Regen discipline: edit HERE; the queries and matrix compute live at CLI time (NO materialized industry-cases.json — page-parity + compute-at-CLI only, per the design's REVISE-2).",
 
-  "_intent": "Encode external practitioner reports as a queryable MODEL so the book can ask its evidence base questions — which MAGE constructs have external observation, which cases bear on which hypothesis, where the base is still only DocAble — and project a drift-gated correspondence matrix, dogfooding the Modeling Thesis on the manuscript's own substantiation. One record per case; the matrix is append-a-row per authored case (a new CASE never widens the table; a new CONSTRUCT is the rare deliberate event that does — the declared construct-universe column contract, REVISE-3).",
+  "_intent": "Encode external practitioner reports as a queryable MODEL so the book can ask its evidence base questions — which MAGE constructs have external observation, which cases bear on which hypothesis, where the base is still only DocAble — and project a drift-gated correspondence matrix, dogfooding the Modeling Principle on the manuscript's own substantiation. One record per case; the matrix is append-a-row per authored case (a new CASE never widens the table; a new CONSTRUCT is the rare deliberate event that does — the declared construct-universe column contract, REVISE-3).",
 
   "hedge": "These cases are practitioner reports, not replications of MAGE and not causal tests. A correspondence cell states how cleanly the source's described behavior maps onto a MAGE construct as the BOOK reads it — never a claim Cloudflare (or any site) makes about MAGE, and never proof. `not-described` means the SOURCE is silent; absence from a report is NOT evidence the company lacks the practice.",
 
@@ -32,10 +32,10 @@
   },
 
   "construct_universe": {
-    "_note": "The declared, ORDERED column set for the correspondence matrix (REVISE-3). Its members are the MAGE construct universe the book induced — the two theses plus the theory constructs the DocAble case exercises. Columns are STABLE: a new case renders against this fixed set (append-a-row); a new construct is the rare deliberate event that widens it. IC3 checks every case's mage_constructs[].construct resolves here. Order is the column order render_matrix_md() emits.",
+    "_note": "The declared, ORDERED column set for the correspondence matrix (REVISE-3). Its members are the MAGE construct universe the book induced — the two principles plus the theory constructs the DocAble case exercises. Columns are STABLE: a new case renders against this fixed set (append-a-row); a new construct is the rare deliberate event that widens it. IC3 checks every case's mage_constructs[].construct resolves here. Order is the column order render_matrix_md() emits.",
     "columns": [
-      {"id": "thesis-alignment", "label": "Alignment", "provenance": "thesis"},
-      {"id": "thesis-modeling", "label": "Modeling", "provenance": "thesis"},
+      {"id": "alignment-principle", "label": "Alignment", "provenance": "thesis"},
+      {"id": "modeling-principle", "label": "Modeling", "provenance": "thesis"},
       {"id": "externalized-knowledge", "label": "Knowledge rep", "provenance": "construct"},
       {"id": "bootstrap-governance", "label": "Bootstrap", "provenance": "construct"},
       {"id": "governance-conversion", "label": "Conversion", "provenance": "construct"},
@@ -80,8 +80,8 @@
     "_note": "The fixed row-0 of the projected matrix — the book's OWN case, whose correspondence is hand-declared once here (not a roster member, not an industry_case record). DocAble is `strong` across the construct universe it induced; render_matrix_md() emits it first, then the authored external rows. This is the baseline against which external sparsity reads as coverage, not weakness.",
     "organization": "DocAble",
     "cells": {
-      "thesis-alignment": "strong",
-      "thesis-modeling": "strong",
+      "alignment-principle": "strong",
+      "modeling-principle": "strong",
       "externalized-knowledge": "strong",
       "bootstrap-governance": "strong",
       "governance-conversion": "strong",
@@ -150,9 +150,9 @@
       "implicit_theory": "The book reads Cloudflare as appearing to believe autonomous agents work when institutional standards are made machine-readable, given stable identities, retrieved at the point of work, and enforced by agents at review time.",
 
       "mage_constructs": [
-        {"construct": "thesis-alignment",      "strength": "strong",        "note": "the book reads this as the Alignment behavior: a policy decided once acts against later changes without the author present"},
-        {"construct": "thesis-modeling",       "strength": "partial",       "note": "the book reads the policy as structured while the governed SYSTEM is largely not modeled"},
-        {"construct": "externalized-knowledge", "strength": "strong",        "note": "the book reads the Codex — a curated, machine-readable RFC/policy corpus whose requirements carry stable identities that survive the edits around them — as strong knowledge externalization; the instructive LIMIT is that the obligations are externalized far more strongly than the governed SYSTEM, which stays largely unmodeled (thesis-modeling: partial)"},
+        {"construct": "alignment-principle",      "strength": "strong",        "note": "the book reads this as the Alignment behavior: a policy decided once acts against later changes without the author present"},
+        {"construct": "modeling-principle",       "strength": "partial",       "note": "the book reads the policy as structured while the governed SYSTEM is largely not modeled"},
+        {"construct": "externalized-knowledge", "strength": "strong",        "note": "the book reads the Codex — a curated, machine-readable RFC/policy corpus whose requirements carry stable identities that survive the edits around them — as strong knowledge externalization; the instructive LIMIT is that the obligations are externalized far more strongly than the governed SYSTEM, which stays largely unmodeled (modeling-principle: partial)"},
         {"construct": "bootstrap-governance",  "strength": "strong",        "note": "the book reads Codex as accumulated institutional knowledge serving as an initial E(0)"},
         {"construct": "governance-conversion", "strength": "partial",       "note": "the book reads Cloudflare's described incident->RFC->Codex-rule->enforcement loop (source D, 'Code Orange: Fail Small is complete') as a partial governance-conversion: the failure->new-obligation->enforcement loop IS described, but no measured recurrence-drop / recurrence-retirement is evidenced"},
         {"construct": "determinization",       "strength": "strong",        "note": "the book reads mechanically-checkable requirements becoming custom linters as determinization"},
@@ -167,7 +167,7 @@
         {"rung": "infra-as-code",              "level": "some",     "note": "infrastructure-as-code present in part, not the site's signature representation"},
         {"rung": "structured-policy",          "level": "yes",      "note": "the Codex — a curated, structured RFC/policy corpus; the site's signature representation"},
         {"rung": "data-lineage",               "level": "some",     "note": "some data lineage, not a first-class model"},
-        {"rung": "behavioral-state",           "level": "not-seen", "note": "the governed SYSTEM is largely not modeled (the record's thesis-modeling: partial)"},
+        {"rung": "behavioral-state",           "level": "not-seen", "note": "the governed SYSTEM is largely not modeled (the record's modeling-principle: partial)"},
         {"rung": "process-concurrency",        "level": "not-seen", "note": "no process/concurrency models described"},
         {"rung": "scenario",                   "level": "not-seen", "note": "no scenario models described"},
         {"rung": "invariant-registry",         "level": "not-seen", "note": "no explicit invariant registry described"},
@@ -182,7 +182,7 @@
       "limitations": ["no-general-system-model-described", "no-measured-recurrence-drop-from-the-conversion-loop", "no-before-after-performance-data"],
       "candidate_insertions": ["brownfield", "governed-environment", "engineers-seat"],
       "index_blurb": "Turned its engineering standards into machine-readable policy that agents enforce at review — governance in place before the agents arrived.",
-      "result_sentence": "Cloudflare independently built a governed engineering environment whose strongest mechanisms fall under the Alignment Thesis, at an organizational scale the DocAble case cannot reach."
+      "result_sentence": "Cloudflare independently built a governed engineering environment whose strongest mechanisms fall under the Alignment Principle, at an organizational scale the DocAble case cannot reach."
     },
 
     {
@@ -234,8 +234,8 @@
       "implicit_theory": "The book reads Spotify as treating the software estate as one governable fleet: standardize it enough that changes are predictable, model its components/dependencies/ownership/standards, automate targeting/execution/admission/monitoring, give a probabilistic agent only the transformation problem deterministic automation handles poorly, constrain its tools, verify independently, and automatically admit on strong evidence - the platform, not the model alone, decides whether autonomy scales.",
 
       "mage_constructs": [
-        {"construct": "thesis-alignment",      "strength": "strong",   "note": "the book reads this as the sample's strongest Alignment instance: verifiers, linters, the pre-PR gate, the automerger, Soundcheck, and Firewatch act on later changes without the author present"},
-        {"construct": "thesis-modeling",       "strength": "strong",   "note": "the book reads the System Model, the Backstage catalog, and dependency/endpoint lineage with metadata-synced diagrams as a deep, agent-facing model of the estate"},
+        {"construct": "alignment-principle",      "strength": "strong",   "note": "the book reads this as the sample's strongest Alignment instance: verifiers, linters, the pre-PR gate, the automerger, Soundcheck, and Firewatch act on later changes without the author present"},
+        {"construct": "modeling-principle",       "strength": "strong",   "note": "the book reads the System Model, the Backstage catalog, and dependency/endpoint lineage with metadata-synced diagrams as a deep, agent-facing model of the estate"},
         {"construct": "externalized-knowledge", "strength": "strong",        "note": "the book reads the Backstage catalog + System Model — service/ownership/dependency/endpoint lineage with stable component identities — as strong externalization of the service estate as a retrievable graph, the first rung its deeper Modeling (strong) is built on"},
         {"construct": "bootstrap-governance",  "strength": "strong",   "note": "the book reads years of standards/platform/model infrastructure predating agents as a mature E(0) the agent dropped into"},
         {"construct": "governance-conversion", "strength": "partial",  "note": "the book reads Loop A (failure -> verifier abstraction + judge) as a completed conversion, while Loop B (standardize frameworks, require tests) is stated as strategy, not a measured failure->control->recurrence-drop"},
@@ -314,8 +314,8 @@
       "implicit_theory": "The book reads Shopify as holding that autonomous agents become organizationally useful when the environment is made common, reproducible, observable, and shared: consolidate the work surface, encode institutional knowledge in files/skills loaded at task time, make execution reproducible, separate durable sessions from disposable reasoning/execution, bound work in sandbox policies, make each new agent a profile over a shared platform, keep work public so local experience becomes shared knowledge, and combine probabilistic reasoning with deterministic steps for repeatable processes.",
 
       "mage_constructs": [
-        {"construct": "thesis-alignment",      "strength": "strong",   "note": "the book reads sandbox policy in profiles, the harness-outside-sandbox split, disposable sandboxes, Nix reproducibility, and Roast's deterministic steps + tool restrictions as reasoning autonomy inside bounded execution"},
-        {"construct": "thesis-modeling",       "strength": "partial",  "note": "the book reads a broad representation surface (skills, conventions, intent, Nix) spanning the ladder, but with no invariant-bearing system/process models - Nix and Roast are the executable exceptions"},
+        {"construct": "alignment-principle",      "strength": "strong",   "note": "the book reads sandbox policy in profiles, the harness-outside-sandbox split, disposable sandboxes, Nix reproducibility, and Roast's deterministic steps + tool restrictions as reasoning autonomy inside bounded execution"},
+        {"construct": "modeling-principle",       "strength": "partial",  "note": "the book reads a broad representation surface (skills, conventions, intent, Nix) spanning the ladder, but with no invariant-bearing system/process models - Nix and Roast are the executable exceptions"},
         {"construct": "externalized-knowledge", "strength": "partial",       "note": "the book reads World + public-session mining into skills/conventions/defaults as real but SOFTER externalization — organizational knowledge retrieved on demand, mostly informal-knowledge rather than a structured system representation (a named piece missing -> partial)"},
         {"construct": "bootstrap-governance",  "strength": "strong",   "note": "the book reads the World monorepo + Nix + CI + merge queues stood up in 2024 (predating River, explicitly as an agent substrate) as an E(0) built ex-ante"},
         {"construct": "governance-conversion", "strength": "strong",   "note": "the book reads private-learning->public-only, free-roaming->Roast, proliferation->Aquifer, and misuse->rate-limit as repeated failure->structure loops (the converted artifact often soft) - a strong-vs-partial contrast with Cloudflare, whose incident->RFC->rule loop is described but shows no measured recurrence-drop (partial)"},
@@ -397,8 +397,8 @@
       "implicit_theory": "The book reads Docker as holding that autonomous agents are useful because they investigate and act without continuous permission, so preserve that autonomy rather than suppress it: put hard execution boundaries outside the reasoner, give each agent a bounded sandbox + explicit role + project knowledge + only role-appropriate tools, compose reusable skills over monolithic prompts, use an iterative worker/reviewer loop instead of expecting first-pass correctness, run roles in CI but keep architecture/priority/scope/merge human, and when the fleet gets noisy improve the reusable substrate rather than patching each output.",
 
       "mage_constructs": [
-        {"construct": "thesis-alignment",      "strength": "strong",   "note": "the book reads this as the sample's sharpest Alignment instance: microVM sandbox, network allow/deny, role-scoped tools, CI, tests, and human admission place authority outside the reasoner"},
-        {"construct": "thesis-modeling",       "strength": "partial",  "note": "the book reads rich soft knowledge (13 foundational skills carrying architecture/design/security) but no invariant-bearing system/process models - the sample's weakest Modeling site"},
+        {"construct": "alignment-principle",      "strength": "strong",   "note": "the book reads this as the sample's sharpest Alignment instance: microVM sandbox, network allow/deny, role-scoped tools, CI, tests, and human admission place authority outside the reasoner"},
+        {"construct": "modeling-principle",       "strength": "partial",  "note": "the book reads rich soft knowledge (13 foundational skills carrying architecture/design/security) but no invariant-bearing system/process models - the sample's weakest Modeling site"},
         {"construct": "bootstrap-governance",  "strength": "strong",   "note": "the book reads the sandbox substrate + foundational skills + build/testing knowledge (the /build-engineer foundation) as seeding E(0) before roles run; the 'foundation first' lesson names it"},
         {"construct": "governance-conversion", "strength": "strong",   "note": "the book reads noisy-detection->triage/dedup via the project-manager and missing-foundations->reusable-skills as a textbook small-scale conversion"},
         {"construct": "determinization",       "strength": "tension",  "note": "the book reads Docker as the determinization counter-case: deterministic tests give harder evidence where available, but the admission gate is DELIBERATELY kept probabilistic (an independent reviewer) + human, so the construct fits Docker awkwardly - though Docker does not disconfirm it (it determinizes tests, only declines to determinize admission)"},
@@ -427,7 +427,7 @@
       "mage_explains_implicit": "MAGE connects Docker's separately-named sandbox / roles / skills / testers / project-manager / worker-reviewer loop / CI / tests / merge as constraint + sensor + validator + gate + soft-conditioning + feedback + capital inside ONE governed environment, and names the structural-diagnosis question Docker performs but never states (the fix for false-positive overload was triage/confirmation, a missing mechanism, not a better tester prompt).",
       "limitations": ["no-invariant-bearing-system-model-described", "no-model-territory-drift-gate", "admission-gate-stays-probabilistic-plus-human", "per-merge-human-oversight-not-amortized-h6-boundary", "no-false-positive-or-reviewer-veto-rates", "short-evidence-horizon-~2-weeks", "no-soft-to-hard-promotion-lifecycle", "no-reconcile-retire-evidence"],
       "index_blurb": "Moved the trust boundary off the prompt and into a disposable microVM — hard limits that let a role-specialized fleet act more freely.",
-      "result_sentence": "Docker made authority itself an engineered property of the runtime - a hard microVM boundary placed outside the reasoner rather than asserted in prompts - then built a seven-role autonomous fleet and a worker/reviewer loop on top, giving MAGE its sharpest Alignment-Thesis instance and the lesson that hard boundaries enable more autonomy, not less, while keeping a human on every merge under the shortest evidence horizon in the set."
+      "result_sentence": "Docker made authority itself an engineered property of the runtime - a hard microVM boundary placed outside the reasoner rather than asserted in prompts - then built a seven-role autonomous fleet and a worker/reviewer loop on top, giving MAGE its sharpest Alignment-Principle instance and the lesson that hard boundaries enable more autonomy, not less, while keeping a human on every merge under the shortest evidence horizon in the set."
     },
     {
       "id": "siemens",
@@ -478,8 +478,8 @@
       "implicit_theory": "The book reads Siemens as taking model-first engineering as native: the authoritative representation of a physical/functional system is a model (with code as one downstream artifact the model generates), autonomous agents should operate the existing engineering machinery at the abstraction level where engineers make decisions, deterministic analysis (solvers, SIL, virtual ECUs, verification) supplies evidence downstream of the agent's semantic choices, and human judgment retains engineering intent and consequential authority.",
 
       "mage_constructs": [
-        {"construct": "thesis-alignment",      "strength": "strong",         "note": "the book reads deterministic solvers, SIL, virtual ECUs, coverage, verification, and governed change workflows as the Alignment machinery, with the mechanized side carried by physics"},
-        {"construct": "thesis-modeling",       "strength": "strong",         "note": "the book reads SysML/UML, CAD, simulation, BOM, digital twins, and E/E models - with the model upstream of implementation (code generated from UML) - as the sample's best external Modeling case"},
+        {"construct": "alignment-principle",      "strength": "strong",         "note": "the book reads deterministic solvers, SIL, virtual ECUs, coverage, verification, and governed change workflows as the Alignment machinery, with the mechanized side carried by physics"},
+        {"construct": "modeling-principle",       "strength": "strong",         "note": "the book reads SysML/UML, CAD, simulation, BOM, digital twins, and E/E models - with the model upstream of implementation (code generated from UML) - as the sample's best external Modeling case"},
         {"construct": "bootstrap-governance",  "strength": "strong",         "note": "the book reads decades of standards, models, and tooling predating agents as an unusually rich inherited E(0)"},
         {"construct": "governance-conversion", "strength": "not-described",  "note": "the book reads the sources as silent on a failure->new-agent-governance loop (engineering-loop feedback abounds, adaptive governance does not); it reads this gap as an informative tension about slow-feedback regimes, not as a Siemens deficiency (absence != absent)"},
         {"construct": "determinization",       "strength": "strong",         "note": "the book reads the clean division of labor - probabilistic semantic reasoning upstream, deterministic physics/verification downstream - as decidable engineering obligations landing on deterministic mechanisms"},
@@ -559,8 +559,8 @@
       "implicit_theory": "The book reads Zenseact as holding that enterprise autonomy scales when the organization separates a common agent platform from domain-specific intelligence: teams encode expertise as reusable skills + deterministic tools; agents receive only task-relevant context rather than the whole enterprise per session; probabilistic models decide what knowledge/operation is needed, but consequential actions execute through structured tools under explicit permission policies; agent-to-agent delegation is bounded like tool access; and the platform is instrumented so context-disclosure and capability-selection failures become evidence for improving the shared environment.",
 
       "mage_constructs": [
-        {"construct": "thesis-alignment",      "strength": "strong",   "note": "the book reads the per-tool/per-role auto/confirm/deny table, allow-listed + depth-limited delegation, bidirectional sanitization, and deterministic tools behind structured seams as authority placed outside the reasoner - with Docker the set's sharpest Alignment instance, adding a graduated per-action ladder and delegation-topology-as-authority"},
-        {"construct": "thesis-modeling",       "strength": "partial",  "note": "the book reads rich structured knowledge representation (skills) but no invariant-bearing system/process models and no model<->territory join - skills describe how to work in a domain, not what the system is or must remain; a mild Modeling tension held at partial for matrix parity"},
+        {"construct": "alignment-principle",      "strength": "strong",   "note": "the book reads the per-tool/per-role auto/confirm/deny table, allow-listed + depth-limited delegation, bidirectional sanitization, and deterministic tools behind structured seams as authority placed outside the reasoner - with Docker the set's sharpest Alignment instance, adding a graduated per-action ladder and delegation-topology-as-authority"},
+        {"construct": "modeling-principle",       "strength": "partial",  "note": "the book reads rich structured knowledge representation (skills) but no invariant-bearing system/process models and no model<->territory join - skills describe how to work in a domain, not what the system is or must remain; a mild Modeling tension held at partial for matrix parity"},
         {"construct": "bootstrap-governance",  "strength": "strong",   "note": "the book reads the existing engineering + enterprise tool estate, team knowledge, and explicit policies as seeding E(0), with the failed open-source attempt as a bootstrap-by-failure origin"},
         {"construct": "governance-conversion", "strength": "strong",   "note": "the book reads the disclosure-miss loop (miss -> telemetry -> automated skill-improvement pipeline) as a clean failure->diagnosis->environment-change->better-behavior sequence, narrowed to the routing/representation layer (the subtractive reconcile/retire arm is not-described)"},
         {"construct": "determinization",       "strength": "strong",   "note": "the book reads three judgments other sites leave probabilistic being hardened into repeatable mechanisms - execution (deterministic tools), authority (the permission table), and context selection (the TF-IDF router) - a clean contrast with Docker"},
@@ -598,7 +598,7 @@
 
     "distinctive_headline": "MAGE is a theory of the engineering ENVIRONMENT ITSELF as the object of engineering: everyone else engineers an agent, a runtime, a policy engine, or a model; MAGE engineers the governed environment in which commodity intelligence operates.",
 
-    "distinctive_spine": "The distinctive bucket is not a flat list of eight independent inventions. It has one organizing claim above all of them — choose the environment as the object of engineering — and the Model Zoo, the Alignment Thesis, the governance census, the gap/orphan metrics, the determinization frontier, governance conversion, engineering capital, reconcile/retire, and the comparative mechanism grammar all fall out of that one choice. This environment-as-object claim sits ABOVE Engineering Capital and Governance Conversion, because industry is independently discovering parts of those two (they sit in the 'generalizes' bucket), whereas the environment-as-object move is the one none of the six sites makes.",
+    "distinctive_spine": "The distinctive bucket is not a flat list of eight independent inventions. It has one organizing claim above all of them — choose the environment as the object of engineering — and the Model Zoo, the Alignment Principle, the governance census, the gap/orphan metrics, the determinization frontier, governance conversion, engineering capital, reconcile/retire, and the comparative mechanism grammar all fall out of that one choice. This environment-as-object claim sits ABOVE Engineering Capital and Governance Conversion, because industry is independently discovering parts of those two (they sit in the 'generalizes' bucket), whereas the environment-as-object move is the one none of the six sites makes.",
 
     "distinctive_hedge": "None of the external cases we examined describes the following machinery in the generalized form MAGE does. Not 'nobody in industry has ever done this.'",
 
@@ -618,7 +618,7 @@
         "short_label": "Act through tools",
         "statement": "The sanctioned tool seam, not the prompt, is where authority is allocated.",
         "bucket": "universal",
-        "maps_to_construct": "thesis-alignment",
+        "maps_to_construct": "alignment-principle",
         "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
         "mage_generalization_note": "MAGE generalizes the sanctioned tool seam as the place authority is allocated, not the prompt.",
         "nearest_external": null
@@ -628,7 +628,7 @@
         "short_label": "Bound authority",
         "statement": "The environment, not the reasoner, sets the limit on what an agent may do.",
         "bucket": "universal",
-        "maps_to_construct": "thesis-alignment",
+        "maps_to_construct": "alignment-principle",
         "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
         "mage_generalization_note": "MAGE names authority-in-the-environment as an Alignment invariant across all six sites.",
         "nearest_external": null
@@ -678,7 +678,7 @@
         "short_label": "Independent evidence",
         "statement": "Generation is not evaluation, so verify the work independently.",
         "bucket": "universal",
-        "maps_to_construct": "thesis-alignment",
+        "maps_to_construct": "alignment-principle",
         "support": {"cloudflare-codex": "yes", "spotify-honk": "yes", "shopify": "yes", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
         "mage_generalization_note": "MAGE names independent validation as an Alignment mechanism — generation is not evaluation.",
         "nearest_external": null
@@ -739,7 +739,7 @@
         "short_label": "Compositional roles",
         "statement": "Scoped specialist roles instead of one monolithic agent.",
         "bucket": "generalizes",
-        "maps_to_construct": "thesis-alignment",
+        "maps_to_construct": "alignment-principle",
         "support": {"cloudflare-codex": "no", "spotify-honk": "partial", "shopify": "partial", "docker": "yes", "siemens": "yes", "zenseact": "yes"},
         "mage_generalization_note": "MAGE generalizes scoped roles as an authority + reasoning-horizon device; Docker (7 roles), Siemens (scoped specialist agents), Zenseact (delegation graph) are the strong cases; Spotify/Shopify partial (subagents/profiles); Cloudflare none.",
         "nearest_external": null
@@ -749,7 +749,7 @@
         "short_label": "Model-derived targeting",
         "statement": "Act through a model of the system, not raw code.",
         "bucket": "generalizes",
-        "maps_to_construct": "thesis-modeling",
+        "maps_to_construct": "modeling-principle",
         "support": {"cloudflare-codex": "partial", "spotify-honk": "yes", "shopify": "partial", "docker": "no", "siemens": "yes", "zenseact": "partial"},
         "mage_generalization_note": "Spotify (lineage->repo set) and Siemens (BOM/model-driven code-gen) are the two strong cases; Docker has no model layer (no); the rest partial.",
         "nearest_external": null
@@ -759,7 +759,7 @@
         "id": "strongest-notion-of-model",
         "statement": "The strongest notion of model — a Model Zoo spanning logical / behavior / process / physical / scenario / invariant / lineage / traceability views.",
         "bucket": "distinctive",
-        "maps_to_construct": "thesis-modeling",
+        "maps_to_construct": "modeling-principle",
         "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
         "mage_generalization_note": "MAGE proposes the full multi-view model set as the object of engineering. Among software-first sites, not-seen; only Siemens shows the idea is not fanciful — it is normal in model-based engineering.",
         "nearest_external": "siemens"
@@ -768,7 +768,7 @@
         "id": "binds-model-to-territory",
         "statement": "Explicitly binds the model to the territory — general model<->implementation parity plus a mechanical drift check.",
         "bucket": "distinctive",
-        "maps_to_construct": "thesis-modeling",
+        "maps_to_construct": "modeling-principle",
         "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
         "mage_generalization_note": "MAGE names a blocking parity gate over agent edits. Siemens's digital thread synchronizes and propagates, but is NOT a blocking parity gate; no site reaches the generalized discipline.",
         "nearest_external": "siemens"
@@ -815,7 +815,7 @@
         "bucket": "distinctive",
         "maps_to_construct": null,
         "support": {"cloudflare-codex": "no", "spotify-honk": "no", "shopify": "no", "docker": "no", "siemens": "no", "zenseact": "no"},
-        "mage_generalization_note": "The connective tissue no software case articulates: the two theses as one architecture, each strengthening the other.",
+        "mage_generalization_note": "The connective tissue no software case articulates: the two principles as one architecture, each strengthening the other.",
         "nearest_external": null
       },
       {

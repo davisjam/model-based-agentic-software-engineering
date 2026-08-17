@@ -76,34 +76,34 @@
         {
           "key": "ouyang2024repograph",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "situates"
         },
         {
           "key": "liu2024codexgraph",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "situates"
         },
         {
           "key": "vogel2026codebasememory",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "situates"
         },
         {
           "key": "shah2025ranger",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "situates"
         }
       ],
       "advances_theses": [
-        "modeling-thesis"
+        "modeling-principle"
       ],
       "status": "landed",
       "fold_target": "",
@@ -123,21 +123,21 @@
         {
           "key": "sdd-abdurrahman-2026",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "situates"
         },
         {
           "key": "vilasboas2026onedeveloper",
           "backs_claims": [
-            "modeling-thesis"
+            "modeling-principle"
           ],
           "relation": "corroborates"
         }
       ],
       "advances_theses": [
-        "modeling-thesis",
-        "alignment-thesis"
+        "modeling-principle",
+        "alignment-principle"
       ],
       "status": "landed",
       "fold_target": "",
@@ -157,7 +157,7 @@
         {
           "key": "ringer2019qed",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "situates",
           "illustrates_pattern": "formal-invariant-verification"
@@ -165,7 +165,7 @@
         {
           "key": "arxiv-2605-10712",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates",
           "illustrates_pattern": "formal-invariant-verification"
@@ -173,13 +173,13 @@
         {
           "key": "tu2025agenticverification",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "corroborates"
         }
       ],
       "advances_theses": [
-        "alignment-thesis"
+        "alignment-principle"
       ],
       "status": "landed",
       "fold_target": "",
@@ -214,7 +214,7 @@
         {
           "key": "murphy1995reflexion",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "situates"
         }
@@ -283,62 +283,62 @@
         {
           "key": "openai2026swebench",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates"
         },
         {
           "key": "scaleai2025swebenchpro",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates"
         },
         {
           "key": "liang2026swebenchillusion",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates"
         },
         {
           "key": "zhang2025swebenchlive",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "corroborates"
         },
         {
           "key": "swerebench2025",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "corroborates"
         },
         {
           "key": "smith2015overfitting",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates"
         },
         {
           "key": "hora2026overmocked",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates"
         },
         {
           "key": "llmoracle2024",
           "backs_claims": [
-            "alignment-thesis"
+            "alignment-principle"
           ],
           "relation": "substantiates"
         }
       ],
       "advances_theses": [
-        "alignment-thesis"
+        "alignment-principle"
       ],
       "status": "landed",
       "fold_target": "W5",

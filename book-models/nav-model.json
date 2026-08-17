@@ -22,7 +22,7 @@
     "2": {
       "subway_label": "Modeling",
       "new_here_vocab": [
-        "Modeling Thesis",
+        "Modeling Principle",
         "Traceability",
         "Invariant",
         "Model drift",
@@ -40,7 +40,7 @@
     "3": {
       "subway_label": "Alignment",
       "new_here_vocab": [
-        "Alignment Thesis",
+        "Alignment Principle",
         "Governed Engineering Environment",
         "Governance Mechanism",
         "Constraint",
@@ -56,7 +56,7 @@
         "The Printer",
         "Model",
         "Governance",
-        "Modeling Thesis",
+        "Modeling Principle",
         "Invariant",
         "Traceability"
       ]
@@ -70,8 +70,8 @@
       ],
       "carrying_forward": [
         "Model",
-        "Modeling Thesis",
-        "Alignment Thesis",
+        "Modeling Principle",
+        "Alignment Principle",
         "Governance Mechanism",
         "Governance Conversion",
         "Engineering capital",
@@ -99,15 +99,15 @@
     "6": {
       "subway_label": "Profession",
       "new_here_vocab": [
-        "Professional Thesis",
+        "Professional Principle",
         "Universal language of engineering"
       ],
       "carrying_forward": [
         "Commodity intelligence",
         "Model",
         "Governance",
-        "Modeling Thesis",
-        "Alignment Thesis",
+        "Modeling Principle",
+        "Alignment Principle",
         "Engineering capital",
         "Governed Engineering Environment"
       ]

@@ -78,7 +78,7 @@ _MODEL_NOTE = (
 
 #: The `statement` word cap — a spine claim is one argument step, not a paragraph. Counted with
 #: `statement.split()`, mirroring the claims model's C6. Higher than the claims model's 18 because a spine
-#: step often joins a cause to its consequence in one sentence — and, for the alignment-thesis step, the
+#: step often joins a cause to its consequence in one sentence — and, for the alignment-principle step, the
 #: thesis plus its two hierarchical moves (constrain first; sense where prevention is incomplete), which is
 #: the step's whole correction and does not survive compression. That author-ratified statement sets the cap.
 WORD_CAP = 32
