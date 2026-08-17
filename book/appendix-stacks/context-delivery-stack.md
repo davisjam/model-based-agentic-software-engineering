@@ -1,8 +1,8 @@
-## The capability
+## The Capability
 
 **Put relevant engineering knowledge and obligations in front of an actor while they can still affect the action.** Deliver the relevant subset into the actor's reasoning horizon before the decision it must inform.
 
-## When this stack earns its keep
+## When This Stack Earns Its Keep
 
 Reach for it when:
 
@@ -12,12 +12,12 @@ Reach for it when:
 - **Some obligations are critical and decidable**, and leaning on the actor to remember them is not good
   enough.
 
-## The composition
+## The Composition
 
 <!-- label: context-delivery-stack -->
 <!-- figure: assets/context-delivery-stack.svg | The context-delivery composition. Engineering knowledge — models, rules, decisions — splits into a STANDING POLICY that is always seen and a TASK SLICE retrieved as needed; both feed the actor's context, which drives the action. A dashed POINT-OF-ACTION attachment reasserts important obligations at the moment of action, and for critical decidable obligations becomes a deterministic gate rather than a reminder. Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability. -->
 
-## Constituent moves
+## Constituent Moves
 
 | Move | Role |
 |---|---|
@@ -27,7 +27,7 @@ Reach for it when:
 | **REINFORCE** | *(strengthens)* Reassert important obligations at the point of action where useful. |
 | **GATE** | For critical decidable obligations, do not rely on delivery at all — enforce them. |
 
-## Why these travel together
+## Why These Travel Together
 
 An actor cannot reason through knowledge it never sees. But loading the entire engineered environment into
 every context only moves the navigation problem downstream — now the actor must find the relevant fact in a

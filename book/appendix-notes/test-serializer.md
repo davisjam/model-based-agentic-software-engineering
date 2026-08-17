@@ -21,7 +21,7 @@ working directory is refused, so the mediated path is the only path. When the fi
 run, coverage collection is auto-appended. Adjacent heavy tools — build, compiler, type-checker — route
 through a sibling serializer at a higher lock cardinality.
 
-## Engineering consequences
+## Engineering Consequences
 
 The ban makes the serialization real rather than a convention agents forget under time pressure: separate
 processes still share one host's CPU, disk, and ports, so process isolation alone does not prevent destructive
@@ -32,14 +32,14 @@ raw parallelism.
 Use this when concurrent workers share one un-isolable host resource. Don't use it as a substitute for real
 isolation where isolation is available — a flock is a queue, not a sandbox.
 
-## Implementation seam
+## Implementation Seam
 
 Three parts carry the pattern: a host-global lock file every worktree contends on as the single point of
 serialization; an enforcer that can intercept the raw tool — here a module initializer that runs before any
 test — so the mediated path is the only path; and a wait cap that fails loud, so a stuck lock surfaces instead
 of hanging forever. An audited environment-variable escape exists for humans.
 
-## Known limitations
+## Known Limitations
 
 Serialization is wall-clock cost: N=1 means tests queue, and a long run blocks every other worktree behind it.
 A stuck lock stalls everyone — the fail-loud cap bounds the damage but does not eliminate it. The human bypass

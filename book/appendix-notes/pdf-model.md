@@ -19,19 +19,19 @@ attribution stamping, so the invariants ride on the model and a new verb cannot 
 
 <!-- note-fold -->
 
-## Engineering consequences
+## Engineering Consequences
 
 The bug becomes unrepresentable, not merely discouraged: the raw API is unreachable, so a reviewer no longer
 has to spot a missing mark-modified call in a diff that looks correct. The model is the construction that
 removes the class; the ban-lint is the counted sensor that keeps every call site on the seam. The seam also
 pins the library version, because a minor bump can silently change auto-tagging.
 
-## Implementation seam
+## Implementation Seam
 
 Two artifacts carry the pattern: the typed mutators under one primitives module, and the ban-lint on the raw
 API. Standing up the seam means migrating every existing call site, then holding the line with the lint.
 
-## Known limitations
+## Known Limitations
 
 The model must cover the whole surface callers need; a missing operation forces either a lint escape (a hole)
 or a model extension (friction, but the right fix). Pinning the library for tag-tree stability makes upgrades

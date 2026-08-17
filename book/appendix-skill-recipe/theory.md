@@ -33,7 +33,7 @@ where generated procedures would drift. What follows builds mastery-skills: the 
 representing domain judgment so an agent can reason through it. When a mastery-skill needs a tool interface,
 factor that interface into its own tool-skill and reference it.
 
-## From domain knowledge to model
+## From Domain Knowledge to Model
 
 <!-- point: build-a-mastery-skill-in-three-layers-top-idea-first | Build a mastery-skill in three layers, top idea first. | terms: mastery-skill, orthogonal-models -->
 A three-step construction method builds a mastery-skill from its governing abstraction downward.
@@ -58,7 +58,7 @@ can be useful before every facet has been developed.
 
 Orthogonal skills may themselves compose. Separation gives each one reason to change; explicit interfaces then let one skill consume the models, mechanisms, or observations another produces.
 
-## Failure modes
+## Failure Modes
 
 A mastery-skill can fail in several predictable ways.
 

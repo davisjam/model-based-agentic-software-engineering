@@ -1,6 +1,6 @@
 ## G.2 Build Scale and Repository Motion
 
-### G.2.1 Weekly commit volume {#velocity}
+### G.2.1 Weekly Commit Volume {#velocity}
 
 Weekly commit volume rose sharply as the agent fleet expanded, exceeded 1,000 commits per week during
 sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval Part V
@@ -16,7 +16,7 @@ series.
 
 <!-- FUTURE: When available, add Epics-closed/week and reopens/week — either onto Figure H-1 or immediately after it. Commits measure activity; completed engineering units are a complementary measure closer to durable throughput. Insert the planned reviewer-capacity bound here once measured, and keep it a sensitivity analysis rather than an assertion about actual review speed. -->
 
-### G.2.2 Support-apparatus ratio {#support-ratio}
+### G.2.2 Support-Apparatus Ratio {#support-ratio}
 
 Production and support-apparatus source were counted at four dated repository states using a census over
 the seven primary source roots that fails if an expected root is absent. These counts are the source for
@@ -35,7 +35,7 @@ snapshot, peaked at 3.68× during hardening, and stood at 3.06× at the final sn
 These counts describe how source was distributed in this repository. The ratio is not a measure of
 engineering value, engineering-capital return, or a recommended target for another project.
 
-### G.2.3 Product-path line motion {#churn}
+### G.2.3 Product-Path Line Motion {#churn}
 
 Lines added and deleted were counted over four windows for the two principal product paths:
 
@@ -62,7 +62,7 @@ describes that bounded inflation.
 <!-- label: churn-per-path -->
 <!-- figure: assets/churn-per-path.svg | *Product-Path Line Motion.* Lines added above the baseline and deleted below it, by path and study window. Mechanization contains the largest observed line motion. The later reduction in deletions is consistent with less structural rewriting but does not establish its cause. -->
 
-### G.2.4 Growth of countable controls {#control-growth}
+### G.2.4 Growth of Countable Controls {#control-growth}
 
 Project-specific lint files and gate scripts were counted at four repository states, using `git ls-tree`
 at the corresponding window SHA.
@@ -100,7 +100,7 @@ The underlying question is narrow. After explicit models became reasoning surfac
 model↔implementation drift occur, could derived checks detect it, and did the observed class recur after
 close?
 
-### G.3.1–G.3.4 Correspondence results {#model-sync-evidence}
+### G.3.1–G.3.4 Correspondence Results {#model-sync-evidence}
 
 | Claim | Measurement | Result | Limitation |
 |---|---|---|---|
@@ -122,7 +122,7 @@ before the derived checks; the checks caught six fresh instances; and no post-cl
 modeled, mechanically decidable class was observed across 56 closes during the measured window. They do
 not establish that the class was eliminated or that the mechanism prevents model drift.
 
-### G.3.5 Documentation drift — excluded from the model-sync claim {#doc-hygiene-aside}
+### G.3.5 Documentation Drift — Excluded from the Model-Sync Claim {#doc-hygiene-aside}
 
 Stale headers and stale prose numbers are documentation drift, not model↔code drift. They are counted
 separately because folding them into the correspondence measurements would inflate the model-sync
@@ -136,7 +136,7 @@ evidence.
 These observations concern prose that no derived correspondence check parses. They therefore say nothing
 about whether a model remains synchronized with implementation.
 
-### G.3.6 Scope of the model-sync claim {#model-sync-honest-reading}
+### G.3.6 Scope of the Model-Sync Claim {#model-sync-honest-reading}
 
 The correspondence mechanisms cover only modeled, mechanically decidable relationships, and the observed
 N is small. A semantic mismatch whose anchors still resolve may remain judgment-dependent, and an
@@ -224,7 +224,7 @@ development-cost figure is an order-of-magnitude direct-cost estimate, not audit
 
 A measurement can be useful before it deserves authority.
 
-### G.7.1 Provisional cost-and-time model
+### G.7.1 Provisional Cost-and-Time Model
 
 A per-chunk worst-case cost-and-time estimate was externalized as a timestamped provisional model, not
 embedded as a permanent code constant.
@@ -240,7 +240,7 @@ becoming a gate.
 
 <!-- FUTURE: If the exact seed observations become stable enough to publish, add them here. Otherwise retain this subsection as a provenance note, and do not imply quantitative calibration the ledger does not contain. -->
 
-### G.7.2 Cold-start contrast case
+### G.7.2 Cold-Start Contrast Case
 
 The contrasting case did mature into an engineering decision.
 

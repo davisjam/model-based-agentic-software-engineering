@@ -386,7 +386,7 @@
         {
           "section_id": "the-reasoning-horizon",
           "level": 2,
-          "heading_text": "The reasoning horizon",
+          "heading_text": "The Reasoning Horizon",
           "topic_sentence": "Scale creates a reasoning problem before an agent ever enters the picture.",
           "id_source": "explicit",
           "block_index": 19,
@@ -416,7 +416,7 @@
         {
           "section_id": "the-horizon-is-a-locality-problem",
           "level": 2,
-          "heading_text": "The horizon is a locality problem",
+          "heading_text": "The Horizon Is a Locality Problem",
           "topic_sentence": "Seen this way, the reasoning horizon is not an exotic property of language models.",
           "id_source": "derived",
           "block_index": 32,
@@ -441,7 +441,7 @@
         {
           "section_id": "probabilistic-work-needs-external-authority",
           "level": 2,
-          "heading_text": "Probabilistic work needs external authority",
+          "heading_text": "Probabilistic Work Needs External Authority",
           "topic_sentence": "The second problem is not that agents make mistakes while human programmers do not.",
           "id_source": "derived",
           "block_index": 40,
@@ -504,7 +504,7 @@
         {
           "section_id": "the-representation-problem",
           "level": 2,
-          "heading_text": "The representation problem",
+          "heading_text": "The Representation Problem",
           "topic_sentence": "A broad reasoner can operate on abstractions, but its active reasoning state is finite and large systems contain far more detail than any one engineering question needs.",
           "id_source": "derived",
           "block_index": 2,
@@ -519,7 +519,7 @@
         {
           "section_id": "the-authority-problem",
           "level": 2,
-          "heading_text": "The authority problem",
+          "heading_text": "The Authority Problem",
           "topic_sentence": "Autonomous work can be locally constrained and checked without a comprehensive model, but probabilistic implementation cannot be its own final authority, and richer system-level obligations require semantics the environment must obtain somewhere.",
           "id_source": "derived",
           "block_index": 6,
@@ -562,7 +562,7 @@
         {
           "section_id": "a-model-is-a-purposeful-reduction",
           "level": 2,
-          "heading_text": "A model is a purposeful reduction",
+          "heading_text": "A Model Is a Purposeful Reduction",
           "topic_sentence": "A **model** is a purposeful reduction of a system.",
           "id_source": "derived",
           "block_index": 11,
@@ -592,7 +592,7 @@
         {
           "section_id": "structure-makes-representations-machine-operable",
           "level": 2,
-          "heading_text": "Structure makes representations machine-operable",
+          "heading_text": "Structure Makes Representations Machine-Operable",
           "topic_sentence": "Externalizing knowledge saves reconstruction only if a machine can read it back.",
           "id_source": "derived",
           "block_index": 23,
@@ -622,7 +622,7 @@
         {
           "section_id": "representations-support-accumulating-capabilities",
           "level": 2,
-          "heading_text": "Representations support accumulating capabilities",
+          "heading_text": "Representations Support Accumulating Capabilities",
           "topic_sentence": "Structured representations can support progressively different capabilities: externalized knowledge, typed relationships, explicit semantics, stated properties, derivation, generation, traceability, and checking.",
           "id_source": "derived",
           "block_index": 35,
@@ -652,7 +652,7 @@
         {
           "section_id": "six-classes-of-engineering-question",
           "level": 2,
-          "heading_text": "Six classes of engineering question",
+          "heading_text": "Six Classes of Engineering Question",
           "topic_sentence": null,
           "id_source": "derived",
           "block_index": 46,
@@ -918,7 +918,7 @@
         {
           "section_id": "placement-and-strength-are-different-decisions",
           "level": 2,
-          "heading_text": "Placement and strength are different decisions",
+          "heading_text": "Placement and Strength Are Different Decisions",
           "topic_sentence": "The four boundaries do not form a monotonic scale from weak to strong.",
           "id_source": "derived",
           "block_index": 29,
@@ -938,7 +938,7 @@
         {
           "section_id": "return-evidence-at-the-earliest-useful-boundary",
           "level": 2,
-          "heading_text": "Return evidence at the earliest useful boundary",
+          "heading_text": "Return Evidence at the Earliest Useful Boundary",
           "topic_sentence": "The boundaries also decide where feedback can return.",
           "id_source": "derived",
           "block_index": 35,
@@ -1006,7 +1006,7 @@
         {
           "section_id": "agreement-is-not-correctness",
           "level": 2,
-          "heading_text": "Agreement is not correctness",
+          "heading_text": "Agreement Is Not Correctness",
           "topic_sentence": "A drift check can establish a declared correspondence between two artifacts.",
           "id_source": "derived",
           "block_index": 7,
@@ -1036,7 +1036,7 @@
         {
           "section_id": "the-semantic-gap",
           "level": 2,
-          "heading_text": "The semantic gap",
+          "heading_text": "The Semantic Gap",
           "topic_sentence": "A second problem is placement.",
           "id_source": "derived",
           "block_index": 27,
@@ -1114,7 +1114,7 @@
         {
           "section_id": "prevention-and-observation",
           "level": 2,
-          "heading_text": "Prevention and observation",
+          "heading_text": "Prevention and Observation",
           "topic_sentence": "On the work-facing side of the loop, the two complementary moves are prevention and observation; [ref:constraint-vs-sensor] draws the split.",
           "id_source": "derived",
           "block_index": 9,
@@ -1209,7 +1209,7 @@
         {
           "section_id": "validators-and-gates",
           "level": 2,
-          "heading_text": "Validators and gates",
+          "heading_text": "Validators and Gates",
           "topic_sentence": "The other two roles act at the loop's closing door.",
           "id_source": "derived",
           "block_index": 53,
@@ -1312,7 +1312,7 @@
         {
           "section_id": "ex-ante-encode-what-you-already-know",
           "level": 2,
-          "heading_text": "Ex ante: encode what you already know",
+          "heading_text": "Ex Ante: Encode What You Already Know",
           "topic_sentence": "Start with obligations you can state before the work begins and whose consequence, recurrence, or reuse justifies making them durable.",
           "id_source": "derived",
           "block_index": 5,
@@ -1327,7 +1327,7 @@
         {
           "section_id": "ex-post-convert-what-the-work-teaches",
           "level": 2,
-          "heading_text": "Ex post: convert what the work teaches",
+          "heading_text": "Ex Post: Convert What the Work Teaches",
           "topic_sentence": "The harder half begins when the system surprises you.",
           "id_source": "derived",
           "block_index": 12,
@@ -1465,7 +1465,7 @@
         {
           "section_id": "catalogue-the-controls",
           "level": 2,
-          "heading_text": "Catalogue the controls",
+          "heading_text": "Catalogue the Controls",
           "topic_sentence": "Start by giving each control a stable identity: the event or boundary at which it acts, the resources it reads or changes, the obligation or failure class that justifies it, and its authority role or roles.",
           "id_source": "derived",
           "block_index": 7,
@@ -1603,7 +1603,7 @@
         {
           "section_id": "one-turn-at-a-time",
           "level": 2,
-          "heading_text": "One turn at a time",
+          "heading_text": "One Turn at a Time",
           "topic_sentence": "**Need.** A turn begins with something you want to learn, change, preserve, or make true.",
           "id_source": "derived",
           "block_index": 6,
@@ -1643,7 +1643,7 @@
         {
           "section_id": "the-conversion-loop",
           "level": 2,
-          "heading_text": "Closing the loop",
+          "heading_text": "Closing the Loop",
           "topic_sentence": "**When judgment repeats, ask what future work should inherit from it.** The answer may be a model, invariant, sensor, validator, constraint, gate, runbook, or skill.",
           "id_source": "explicit",
           "block_index": 27,
@@ -1668,7 +1668,7 @@
         {
           "section_id": "guidance-or-authority",
           "level": 2,
-          "heading_text": "Guidance or authority?",
+          "heading_text": "Guidance or Authority?",
           "topic_sentence": "Keep one distinction sharp.",
           "id_source": "explicit",
           "block_index": 40,
@@ -1771,7 +1771,7 @@
         {
           "section_id": "start-with-what-you-already-have",
           "level": 2,
-          "heading_text": "Start with what you already have",
+          "heading_text": "Start with What You Already Have",
           "topic_sentence": "Survey the estate before designing the replacement.",
           "id_source": "derived",
           "block_index": 21,
@@ -1811,7 +1811,7 @@
         {
           "section_id": "reconcile-the-map-then-promote-obligations",
           "level": 2,
-          "heading_text": "Reconcile the map, then promote obligations",
+          "heading_text": "Reconcile the Map, Then Promote Obligations",
           "topic_sentence": "Begin with audit.",
           "id_source": "derived",
           "block_index": 37,
@@ -1831,7 +1831,7 @@
         {
           "section_id": "migrate-one-bounded-surface-at-a-time",
           "level": 2,
-          "heading_text": "Migrate one bounded surface at a time",
+          "heading_text": "Migrate One Bounded Surface at a Time",
           "topic_sentence": "The near destination is a **trusted map** over the parts that matter now: important claims have known anchors, important implementation regions have explanatory homes, and agents can navigate the join without rediscovering it.",
           "id_source": "derived",
           "block_index": 43,
@@ -1966,7 +1966,7 @@
         {
           "section_id": "measure-what-the-map-still-cannot-explain",
           "level": 2,
-          "heading_text": "Measure what the map still cannot explain",
+          "heading_text": "Measure What the Map Still Cannot Explain",
           "topic_sentence": "Models expose what they contain more readily than what they omit.",
           "id_source": "derived",
           "block_index": 103,
@@ -1981,7 +1981,7 @@
         {
           "section_id": "derive-dont-copy",
           "level": 2,
-          "heading_text": "Derive, don't copy",
+          "heading_text": "Derive, Don't Copy",
           "topic_sentence": "Recovering a model is only the first step.",
           "id_source": "explicit",
           "block_index": 108,
@@ -2016,7 +2016,7 @@
         {
           "section_id": "price-the-investment",
           "level": 2,
-          "heading_text": "Price the investment",
+          "heading_text": "Price the Investment",
           "topic_sentence": "A recurring gap does not automatically deserve machinery.",
           "id_source": "derived",
           "block_index": 122,
@@ -2094,7 +2094,7 @@
         {
           "section_id": "independent-evidence",
           "level": 2,
-          "heading_text": "Independent evidence",
+          "heading_text": "Independent Evidence",
           "topic_sentence": "To validate a change is to assemble evidence that bears on its obligations and decide what consequence that evidence should have.",
           "id_source": "derived",
           "block_index": 4,
@@ -2119,7 +2119,7 @@
         {
           "section_id": "build-the-oracle",
           "level": 2,
-          "heading_text": "Build the oracle",
+          "heading_text": "Build the Oracle",
           "topic_sentence": "An **oracle** is whatever supplies the judgment against which the observed result is evaluated.",
           "id_source": "derived",
           "block_index": 12,
@@ -2159,7 +2159,7 @@
         {
           "section_id": "generate-falsifying-evidence",
           "level": 2,
-          "heading_text": "Generate falsifying evidence",
+          "heading_text": "Generate Falsifying Evidence",
           "topic_sentence": "Let the engineering claim choose the search.",
           "id_source": "derived",
           "block_index": 31,
@@ -2209,7 +2209,7 @@
         {
           "section_id": "derive-obligations",
           "level": 2,
-          "heading_text": "Name the obligation set before claiming coverage",
+          "heading_text": "Name the Obligation Set Before Claiming Coverage",
           "topic_sentence": "Coverage answers a question about a population; the population must be named before the percentage has engineering meaning.",
           "id_source": "explicit",
           "block_index": 51,
@@ -2239,7 +2239,7 @@
         {
           "section_id": "did-the-search-cover-the-claim",
           "level": 2,
-          "heading_text": "Did the search cover the claim?",
+          "heading_text": "Did the Search Cover the Claim?",
           "topic_sentence": "Generative validation adds an honesty question that a small example suite can often avoid: **did the campaign search the semantic region the claim is about?** Code coverage answers where execution went.",
           "id_source": "derived",
           "block_index": 63,
@@ -2264,7 +2264,7 @@
         {
           "section_id": "give-the-verdict-the-right-consequence",
           "level": 2,
-          "heading_text": "Give the verdict the right consequence",
+          "heading_text": "Give the Verdict the Right Consequence",
           "topic_sentence": "Validation may report or gate.",
           "id_source": "derived",
           "block_index": 72,
@@ -2284,7 +2284,7 @@
         {
           "section_id": "two-boundaries",
           "level": 2,
-          "heading_text": "Two boundaries for evidence",
+          "heading_text": "Two Boundaries for Evidence",
           "topic_sentence": "Part III gave a placement rule for authority: **evaluate an obligation at the earliest boundary where it becomes legible and enforceable.** That catches a problem close to its cause.",
           "id_source": "explicit",
           "block_index": 78,
@@ -2314,7 +2314,7 @@
         {
           "section_id": "why-abundance-changes-the-economics",
           "level": 2,
-          "heading_text": "Why abundance changes the economics",
+          "heading_text": "Why Abundance Changes the Economics",
           "topic_sentence": "None of these techniques is new.",
           "id_source": "derived",
           "block_index": 90,
@@ -2357,7 +2357,7 @@
         {
           "section_id": "model-the-lifecycle",
           "level": 2,
-          "heading_text": "Model the lifecycle",
+          "heading_text": "Model the Lifecycle",
           "topic_sentence": "Start with the healthy path of a recurring activity: how a bug moves from reported to fixed, how a feature moves from designed to shipped, how an agent moves from dispatched to landed.",
           "id_source": "derived",
           "block_index": 6,
@@ -2417,7 +2417,7 @@
         {
           "section_id": "externalize-operational-judgment",
           "level": 2,
-          "heading_text": "Externalize operational judgment",
+          "heading_text": "Externalize Operational Judgment",
           "topic_sentence": "A runbook preserves how an experienced engineer reasons through a recurring situation, including which steps are mechanical and which require judgment.",
           "id_source": "derived",
           "block_index": 34,
@@ -2457,7 +2457,7 @@
         {
           "section_id": "measure-the-state-that-matters",
           "level": 2,
-          "heading_text": "Measure the state that matters",
+          "heading_text": "Measure the State That Matters",
           "topic_sentence": "Operational control fails easily when it acts on a proxy that only sometimes tracks the property that matters.",
           "id_source": "derived",
           "block_index": 60,
@@ -2502,7 +2502,7 @@
         {
           "section_id": "one-hard-example-coverage-measured-one-level-deeper",
           "level": 3,
-          "heading_text": "One hard example: coverage measured one level deeper",
+          "heading_text": "One Hard Example: Coverage Measured One Level Deeper",
           "topic_sentence": "Requirements-based coverage is one example of measuring at the semantic unit that matters.",
           "id_source": "derived",
           "block_index": 79,
@@ -2517,7 +2517,7 @@
         {
           "section_id": "one-judgment-laden-example-doc-derived-tests",
           "level": 3,
-          "heading_text": "One judgment-laden example: doc-derived tests",
+          "heading_text": "One Judgment-Laden Example: Doc-Derived Tests",
           "topic_sentence": "Doc-derived tests mark the other end of the spectrum.",
           "id_source": "derived",
           "block_index": 84,
@@ -2532,7 +2532,7 @@
         {
           "section_id": "let-useful-models-drive-machinery",
           "level": 3,
-          "heading_text": "Let useful models drive machinery",
+          "heading_text": "Let Useful Models Drive Machinery",
           "topic_sentence": "An executable model earns more than documentation value when tools consume it directly.",
           "id_source": "derived",
           "block_index": 89,
@@ -2557,7 +2557,7 @@
         {
           "section_id": "the-operating-rhythm",
           "level": 2,
-          "heading_text": "The operating rhythm",
+          "heading_text": "The Operating Rhythm",
           "topic_sentence": "Put the pieces together and operation becomes a recurring rhythm.",
           "id_source": "derived",
           "block_index": 98,
@@ -2605,7 +2605,7 @@
         {
           "section_id": "the-skill-skeleton",
           "level": 2,
-          "heading_text": "The skill skeleton",
+          "heading_text": "The Skill Skeleton",
           "topic_sentence": "The three examples share a construction pattern, drawn in [ref:skill-recipe].",
           "id_source": "derived",
           "block_index": 12,
@@ -2625,7 +2625,7 @@
         {
           "section_id": "deliver-the-right-context-and-measure-it",
           "level": 2,
-          "heading_text": "Deliver the right context—and measure it",
+          "heading_text": "Deliver the Right Context—and Measure It",
           "topic_sentence": "A reusable procedure helps only if the actor reaches it when it matters.",
           "id_source": "derived",
           "block_index": 19,
@@ -2725,7 +2725,7 @@
         {
           "section_id": "self-communicate-a-boundary-test",
           "level": 2,
-          "heading_text": "Self-communicate: a boundary test",
+          "heading_text": "Self-Communicate: a Boundary Test",
           "topic_sentence": "Self-communicate packages a different craft: engineer-facing prose and technical drawing.",
           "id_source": "derived",
           "block_index": 66,
@@ -2773,7 +2773,7 @@
         {
           "section_id": "a-real-law-a-real-deadline",
           "level": 2,
-          "heading_text": "A real law, a real deadline",
+          "heading_text": "A Real Law, a Real Deadline",
           "topic_sentence": "The Americans with Disabilities Act requires a public university to communicate with people who have disabilities as effectively as it communicates with everyone else.",
           "id_source": "derived",
           "block_index": 6,
@@ -2793,7 +2793,7 @@
         {
           "section_id": "nearly-free",
           "level": 2,
-          "heading_text": "What it costs to make one document accessible",
+          "heading_text": "What It Costs to Make One Document Accessible",
           "topic_sentence": "The cost is easiest to see in one deck.",
           "id_source": "explicit",
           "block_index": 12,
@@ -2901,7 +2901,7 @@
         {
           "section_id": "control-growth",
           "level": 2,
-          "heading_text": "The controls accumulate",
+          "heading_text": "The Controls Accumulate",
           "topic_sentence": "The growing engineered environment is visible in one especially easy-to-count class of artifacts: project-specific lints and gate scripts.",
           "id_source": "explicit",
           "block_index": 23,
@@ -2921,7 +2921,7 @@
         {
           "section_id": "support-ratio-curve",
           "level": 2,
-          "heading_text": "The support ratio: the environment outgrew the product",
+          "heading_text": "The Support Ratio: the Environment Outgrew the Product",
           "topic_sentence": "Another coarse measure shows where the engineering effort accumulated.",
           "id_source": "explicit",
           "block_index": 30,
@@ -3009,7 +3009,7 @@
         {
           "section_id": "model-as-bounded-subroutine",
           "level": 2,
-          "heading_text": "The model as a bounded subroutine",
+          "heading_text": "The Model as a Bounded Subroutine",
           "topic_sentence": "MAGE applies at two scales in this case.",
           "id_source": "explicit",
           "block_index": 14,
@@ -3074,7 +3074,7 @@
         {
           "section_id": "the-delegation-staircase",
           "level": 2,
-          "heading_text": "The delegation staircase",
+          "heading_text": "The Delegation Staircase",
           "topic_sentence": "The five rungs are retrospective names for the changing center of gravity of my work—co-coder, QA, review lead, tech lead, architect—not a prescribed career ladder.",
           "id_source": "derived",
           "block_index": 38,
@@ -3202,7 +3202,7 @@
         {
           "section_id": "the-instruction-satisfied-to-the-letter",
           "level": 2,
-          "heading_text": "The instruction satisfied to the letter",
+          "heading_text": "The Instruction Satisfied to the Letter",
           "topic_sentence": "**Problem.** By April the system had reached roughly 300,000 lines.",
           "id_source": "derived",
           "block_index": 5,
@@ -3232,7 +3232,7 @@
         {
           "section_id": "the-architecture-was-the-constraint",
           "level": 2,
-          "heading_text": "The architecture was the constraint",
+          "heading_text": "The Architecture Was the Constraint",
           "topic_sentence": "**Problem.** The service cost tens of dollars a day while idle on a Kubernetes cluster.",
           "id_source": "derived",
           "block_index": 16,
@@ -3257,7 +3257,7 @@
         {
           "section_id": "the-decision-left-open",
           "level": 2,
-          "heading_text": "The decision left open",
+          "heading_text": "The Decision Left Open",
           "topic_sentence": "**Problem.** My merge-train cron kept stalling when two agents edited the same file.",
           "id_source": "derived",
           "block_index": 26,
@@ -3282,7 +3282,7 @@
         {
           "section_id": "done-was-a-claim",
           "level": 2,
-          "heading_text": "\"Done\" was a claim",
+          "heading_text": "\"Done\" Was a Claim",
           "topic_sentence": "**Problem.** Two incidents, close together, made \"done is a claim\" non-negotiable.",
           "id_source": "derived",
           "block_index": 36,
@@ -3307,7 +3307,7 @@
         {
           "section_id": "fieldnote-content-free-detector",
           "level": 2,
-          "heading_text": "A content-free detector, measured on the wrong world",
+          "heading_text": "A Content-Free Detector, Measured on the Wrong World",
           "topic_sentence": "**Problem.** Late in the same stretch, an agent wrote me a content-free detector: if an image's pixels barely vary, skip the vision model and mark it decorative.",
           "id_source": "explicit",
           "block_index": 46,
@@ -3332,7 +3332,7 @@
         {
           "section_id": "the-retry-that-became-a-storm",
           "level": 2,
-          "heading_text": "The retry that became a storm",
+          "heading_text": "The Retry That Became a Storm",
           "topic_sentence": "The failures so far were about operating the fleet.",
           "id_source": "derived",
           "block_index": 56,
@@ -3357,7 +3357,7 @@
         {
           "section_id": "provenance-became-a-lookup",
           "level": 2,
-          "heading_text": "Provenance became a lookup",
+          "heading_text": "Provenance Became a Lookup",
           "topic_sentence": "**Problem.** A corrupted document once took four cross-file hops to trace back to the pass that wrote it.",
           "id_source": "derived",
           "block_index": 66,
@@ -3387,7 +3387,7 @@
         {
           "section_id": "measurement-the-story-that-stops-before-the-gate",
           "level": 2,
-          "heading_text": "Measurement: the story that stops before the gate",
+          "heading_text": "Measurement: the Story That Stops Before the Gate",
           "topic_sentence": "**Problem.** A document's repair stalled in silence.",
           "id_source": "derived",
           "block_index": 76,
@@ -3452,7 +3452,7 @@
         {
           "section_id": "what-this-case-supports",
           "level": 2,
-          "heading_text": "What this case supports",
+          "heading_text": "What This Case Supports",
           "topic_sentence": "Step back from the individual incidents and one pattern does recur.",
           "id_source": "derived",
           "block_index": 96,
@@ -3505,7 +3505,7 @@
         {
           "section_id": "six-entry-points",
           "level": 2,
-          "heading_text": "Six entry points",
+          "heading_text": "Six Entry Points",
           "topic_sentence": "The organizations begin with different problems.",
           "id_source": "derived",
           "block_index": 1,
@@ -3514,7 +3514,7 @@
         {
           "section_id": "the-shared-baseline",
           "level": 2,
-          "heading_text": "The shared baseline",
+          "heading_text": "The Shared Baseline",
           "topic_sentence": "Across the six sources, four moves recur strongly enough to form a shared baseline.",
           "id_source": "derived",
           "block_index": 5,
@@ -3523,7 +3523,7 @@
         {
           "section_id": "where-the-reconstructions-differ",
           "level": 2,
-          "heading_text": "Where the reconstructions differ",
+          "heading_text": "Where the Reconstructions Differ",
           "topic_sentence": "The differences are as informative as the commonalities.",
           "id_source": "derived",
           "block_index": 8,
@@ -3532,7 +3532,7 @@
         {
           "section_id": "the-modeling-ceiling",
           "level": 2,
-          "heading_text": "The modeling ceiling",
+          "heading_text": "The Modeling Ceiling",
           "topic_sentence": "One difference is stark.",
           "id_source": "derived",
           "block_index": 11,
@@ -3550,7 +3550,7 @@
         {
           "section_id": "they-converged-on-a-problem",
           "level": 2,
-          "heading_text": "They converged on a problem",
+          "heading_text": "They Converged on a Problem",
           "topic_sentence": "The six organizations do not converge on one stack, one degree of autonomy, or one modeling discipline.",
           "id_source": "derived",
           "block_index": 20,
@@ -3566,7 +3566,7 @@
         {
           "section_id": "the-dynamic-model",
           "level": 2,
-          "heading_text": "The dynamic model",
+          "heading_text": "The Dynamic Model",
           "topic_sentence": "[ref:mage-dynamic-model] puts the theory on one diagram.",
           "id_source": "derived",
           "block_index": 4,
@@ -3581,7 +3581,7 @@
         {
           "section_id": "what-makes-an-environment-effective",
           "level": 2,
-          "heading_text": "What makes an environment effective",
+          "heading_text": "What Makes an Environment Effective",
           "topic_sentence": "The theory cannot use apparatus quantity as a proxy for environment quality.",
           "id_source": "derived",
           "block_index": 13,
@@ -3590,7 +3590,7 @@
         {
           "section_id": "outcomes-and-observables",
           "level": 2,
-          "heading_text": "Outcomes and observables",
+          "heading_text": "Outcomes and Observables",
           "topic_sentence": "A theory of agentic engineering should distinguish activity from progress.",
           "id_source": "derived",
           "block_index": 18,
@@ -3599,7 +3599,7 @@
         {
           "section_id": "three-core-predictions",
           "level": 2,
-          "heading_text": "Three core predictions",
+          "heading_text": "Three Core Predictions",
           "topic_sentence": "Three predictions belong in the core statement of the theory.",
           "id_source": "derived",
           "block_index": 24,
@@ -3608,7 +3608,7 @@
         {
           "section_id": "the-reasoning-horizon-proposition",
           "level": 3,
-          "heading_text": "The reasoning-horizon proposition",
+          "heading_text": "The Reasoning-Horizon Proposition",
           "topic_sentence": "Representation leverage rests on a scale problem introduced in Part I.",
           "id_source": "derived",
           "block_index": 30,
@@ -3617,7 +3617,7 @@
         {
           "section_id": "the-engineering-capital-proposition",
           "level": 3,
-          "heading_text": "The engineering-capital proposition",
+          "heading_text": "The Engineering-Capital Proposition",
           "topic_sentence": "The amortization prediction rests on a claim about what durable structure is worth.",
           "id_source": "derived",
           "block_index": 34,
@@ -3626,7 +3626,7 @@
         {
           "section_id": "modeling-expands-the-surface-of-alignment",
           "level": 2,
-          "heading_text": "Modeling expands the surface of Alignment",
+          "heading_text": "Modeling Expands the Surface of Alignment",
           "topic_sentence": "Modeling and Alignment are distinct engineering activities.",
           "id_source": "derived",
           "block_index": 38,
@@ -3642,7 +3642,7 @@
         {
           "section_id": "return-governability-and-authority",
           "level": 2,
-          "heading_text": "Return, governability, and authority",
+          "heading_text": "Return, Governability, and Authority",
           "topic_sentence": "**Does the investment repay?** Recurrence is the usual source of return.",
           "id_source": "derived",
           "block_index": 2,
@@ -3651,7 +3651,7 @@
         {
           "section_id": "typical-profiles",
           "level": 2,
-          "heading_text": "Typical profiles",
+          "heading_text": "Typical Profiles",
           "topic_sentence": "MAGE's return varies by engineering surface within a system.",
           "id_source": "derived",
           "block_index": 7,
@@ -3660,7 +3660,7 @@
         {
           "section_id": "two-ways-an-investment-fails",
           "level": 2,
-          "heading_text": "Two ways an investment fails",
+          "heading_text": "Two Ways an Investment Fails",
           "topic_sentence": "MAGE becomes a bad bargain in two broad ways.",
           "id_source": "derived",
           "block_index": 12,
@@ -3676,7 +3676,7 @@
         {
           "section_id": "trustworthy-representations",
           "level": 2,
-          "heading_text": "Trustworthy representations",
+          "heading_text": "Trustworthy Representations",
           "topic_sentence": "Brownfield software raises the first problem immediately: can a useful engineering model be recovered from a system that was never built around one?",
           "id_source": "derived",
           "block_index": 2,
@@ -3685,7 +3685,7 @@
         {
           "section_id": "adaptive-governance",
           "level": 2,
-          "heading_text": "Adaptive governance",
+          "heading_text": "Adaptive Governance",
           "topic_sentence": "Governance conversion remains primarily a judgment operation.",
           "id_source": "derived",
           "block_index": 10,
@@ -3694,7 +3694,7 @@
         {
           "section_id": "engineering-economics",
           "level": 2,
-          "heading_text": "Engineering economics",
+          "heading_text": "Engineering Economics",
           "topic_sentence": "The economics family is the least settled of the three.",
           "id_source": "derived",
           "block_index": 17,
@@ -3703,7 +3703,7 @@
         {
           "section_id": "how-could-we-test-this",
           "level": 2,
-          "heading_text": "How could we test this?",
+          "heading_text": "How Could We Test This?",
           "topic_sentence": "The hypotheses do not require eight unrelated studies.",
           "id_source": "derived",
           "block_index": 28,
@@ -3712,7 +3712,7 @@
         {
           "section_id": "commodity-intelligence-opens-new-experiments",
           "level": 2,
-          "heading_text": "Commodity intelligence opens new experiments",
+          "heading_text": "Commodity Intelligence Opens New Experiments",
           "topic_sentence": "Agentic engineering creates an unusual empirical opportunity.",
           "id_source": "derived",
           "block_index": 36,
@@ -3728,7 +3728,7 @@
         {
           "section_id": "was-implementation-ever-the-bottleneck",
           "level": 2,
-          "heading_text": "Was implementation ever the bottleneck?",
+          "heading_text": "Was Implementation Ever the Bottleneck?",
           "topic_sentence": "A reasonable objection begins with a fact: **software engineers do not spend most of their workweek typing code.** This result predates generative AI.",
           "id_source": "derived",
           "block_index": 2,
@@ -3737,7 +3737,7 @@
         {
           "section_id": "agents-entered-an-implementation-centered-discipline",
           "level": 2,
-          "heading_text": "Agents entered an implementation-centered discipline",
+          "heading_text": "Agents Entered an Implementation-Centered Discipline",
           "topic_sentence": "The first generation of agentic software-engineering research naturally inherited the engineering object already in front of it: a repository and a software-development task.",
           "id_source": "derived",
           "block_index": 11,
@@ -3767,7 +3767,7 @@
         {
           "section_id": "the-old-dream-with-a-new-substrate",
           "level": 2,
-          "heading_text": "The old dream, with a new substrate",
+          "heading_text": "The Old Dream, with a New Substrate",
           "topic_sentence": "The dream is older than the present substrate.",
           "id_source": "derived",
           "block_index": 22,
@@ -3782,7 +3782,7 @@
         {
           "section_id": "representation-engineering",
           "level": 2,
-          "heading_text": "Representation engineering",
+          "heading_text": "Representation Engineering",
           "topic_sentence": "One important professional competence is **representation engineering**: choosing, creating, maintaining, and connecting the artifacts through which humans and machines reason about a system.",
           "id_source": "derived",
           "block_index": 29,
@@ -3797,7 +3797,7 @@
         {
           "section_id": "working-at-the-model-level",
           "level": 3,
-          "heading_text": "Working at the model level",
+          "heading_text": "Working at the Model Level",
           "topic_sentence": "A useful model changes the grain of work.",
           "id_source": "derived",
           "block_index": 37,
@@ -3806,7 +3806,7 @@
         {
           "section_id": "keeping-meaning-synchronized",
           "level": 3,
-          "heading_text": "Keeping meaning synchronized",
+          "heading_text": "Keeping Meaning Synchronized",
           "topic_sentence": "Agentic environments also make semantic inconsistency more expensive.",
           "id_source": "derived",
           "block_index": 40,
@@ -3815,7 +3815,7 @@
         {
           "section_id": "reasoning-compiled-into-the-environment",
           "level": 3,
-          "heading_text": "Reasoning compiled into the environment",
+          "heading_text": "Reasoning Compiled into the Environment",
           "topic_sentence": "Portions of recurring reasoning can be moved into the environment itself.",
           "id_source": "derived",
           "block_index": 42,
@@ -3824,7 +3824,7 @@
         {
           "section_id": "where-engineering-effort-moves",
           "level": 2,
-          "heading_text": "Where engineering effort moves",
+          "heading_text": "Where Engineering Effort Moves",
           "topic_sentence": "Implementation shifts; responsibility does not.",
           "id_source": "derived",
           "block_index": 45,
@@ -3833,7 +3833,7 @@
         {
           "section_id": "review-when-implementation-is-abundant",
           "level": 2,
-          "heading_text": "Review when implementation is abundant",
+          "heading_text": "Review When Implementation Is Abundant",
           "topic_sentence": "Code review does not disappear when agents produce the code.",
           "id_source": "derived",
           "block_index": 51,
@@ -3842,7 +3842,7 @@
         {
           "section_id": "consequences-for-software-engineering",
           "level": 2,
-          "heading_text": "Consequences for software engineering",
+          "heading_text": "Consequences for Software Engineering",
           "topic_sentence": "Taken together, these shifts move the discipline's center of gravity from code toward the environment that governs it.",
           "id_source": "derived",
           "block_index": 61,
@@ -3858,7 +3858,7 @@
         {
           "section_id": "the-disciplines-that-got-there-first",
           "level": 2,
-          "heading_text": "The disciplines that got there first",
+          "heading_text": "The Disciplines That Got There First",
           "topic_sentence": "Older engineering disciplines had stronger reasons to separate representation from realization.",
           "id_source": "derived",
           "block_index": 2,
@@ -3867,7 +3867,7 @@
         {
           "section_id": "model-first-engineering",
           "level": 2,
-          "heading_text": "Model-first engineering",
+          "heading_text": "Model-First Engineering",
           "topic_sentence": "The Siemens reconstruction illustrates what this looks like in a model-first engineering culture.",
           "id_source": "derived",
           "block_index": 5,
@@ -3876,7 +3876,7 @@
         {
           "section_id": "why-software-came-late-to-model-first-engineering",
           "level": 2,
-          "heading_text": "Why software came late to model-first engineering",
+          "heading_text": "Why Software Came Late to Model-First Engineering",
           "topic_sentence": "Software's economics differed from older engineering disciplines in a peculiar way.",
           "id_source": "derived",
           "block_index": 8,
@@ -3885,7 +3885,7 @@
         {
           "section_id": "models-are-the-language-of-engineering",
           "level": 2,
-          "heading_text": "Models are the language of engineering",
+          "heading_text": "Models Are the Language of Engineering",
           "topic_sentence": "Models are the language of engineering because engineers rarely reason about every relevant property directly from the realized artifact.",
           "id_source": "derived",
           "block_index": 15,
@@ -3900,7 +3900,7 @@
         {
           "section_id": "models-can-be-induced-from-the-work",
           "level": 2,
-          "heading_text": "Models can be induced from the work",
+          "heading_text": "Models Can Be Induced from the Work",
           "topic_sentence": "Explicit models need not begin with a modeler drawing the right abstraction in advance.",
           "id_source": "derived",
           "block_index": 26,
@@ -3918,7 +3918,7 @@
         {
           "section_id": "what-happened-to-the-cost",
           "level": 2,
-          "heading_text": "What happened to the cost?",
+          "heading_text": "What Happened to the Cost?",
           "topic_sentence": "Part V left an economic question hanging.",
           "id_source": "derived",
           "block_index": 47,
@@ -3927,7 +3927,7 @@
         {
           "section_id": "what-mage-claims-is-new",
           "level": 2,
-          "heading_text": "What MAGE claims is new",
+          "heading_text": "What MAGE Claims Is New",
           "topic_sentence": "MAGE does not claim to have discovered models, constraints, verification, external memory, structured reasoning, or autonomous software agents.",
           "id_source": "derived",
           "block_index": 60,
@@ -3942,7 +3942,7 @@
         {
           "section_id": "beyond-software",
           "level": 2,
-          "heading_text": "Beyond software",
+          "heading_text": "Beyond Software",
           "topic_sentence": "Follow the analogy one step further and a possibility appears.",
           "id_source": "derived",
           "block_index": 63,
@@ -3958,7 +3958,7 @@
         {
           "section_id": "authority-follows-competence",
           "level": 2,
-          "heading_text": "Authority follows competence",
+          "heading_text": "Authority Follows Competence",
           "topic_sentence": "MAGE increases the leverage of engineering knowledge and the consequence of getting it wrong.",
           "id_source": "derived",
           "block_index": 2,
@@ -3967,7 +3967,7 @@
         {
           "section_id": "sign-off-moves-toward-models-and-evidence",
           "level": 2,
-          "heading_text": "Sign-off moves toward models and evidence",
+          "heading_text": "Sign-Off Moves Toward Models and Evidence",
           "topic_sentence": "Imagine an agentic system in which the fleet constructs most of the implementation, maintains selected engineering representations, runs validators, and assembles evidence for the claims the design is supposed to satisfy.",
           "id_source": "derived",
           "block_index": 11,
@@ -3976,7 +3976,7 @@
         {
           "section_id": "what-should-we-teach",
           "level": 2,
-          "heading_text": "What should we teach?",
+          "heading_text": "What Should We Teach?",
           "topic_sentence": "If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly.",
           "id_source": "derived",
           "block_index": 21,
@@ -3985,7 +3985,7 @@
         {
           "section_id": "no-course-called-agent-tooling",
           "level": 2,
-          "heading_text": "No course called Agent Tooling",
+          "heading_text": "No Course Called Agent Tooling",
           "topic_sentence": "One omission should be deliberate.",
           "id_source": "derived",
           "block_index": 30,
@@ -3994,7 +3994,7 @@
         {
           "section_id": "the-entry-rung-problem",
           "level": 2,
-          "heading_text": "The entry-rung problem",
+          "heading_text": "The Entry-Rung Problem",
           "topic_sentence": "There is a harder workforce implication, best stated as a risk rather than a forecast.",
           "id_source": "derived",
           "block_index": 33,

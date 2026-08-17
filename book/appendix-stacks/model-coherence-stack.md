@@ -1,8 +1,8 @@
-## The capability
+## The Capability
 
 **Keep explicit engineering representations joined to their consumers and to the implementation they describe.** A model remains useful only when people and agents read the current representation and the implementation continues to correspond to it.
 
-## When this stack earns its keep
+## When This Stack Earns Its Keep
 
 Reach for it when:
 
@@ -11,12 +11,12 @@ Reach for it when:
 - **Implementation can diverge from authored intent** with nothing to catch the split.
 - **Downstream artifacts can be generated** rather than hand-maintained in parallel.
 
-## The composition
+## The Composition
 
 <!-- label: model-coherence-stack -->
 <!-- figure: assets/model-coherence-stack.svg | The model-coherence composition. An authored MODEL feeds two paths: consumers CONSUME it live rather than copying its facts, and where the model owns the fact it can EMIT downstream artifacts. Consumption flows into a CORRESPONDENCE check — model against world — which DERIVEs its verdict from stable identities where an independent join exists; on disagreement a GATE gives the modeled property authority. Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability. -->
 
-## Constituent moves
+## Constituent Moves
 
 | Move | Role |
 |---|---|
@@ -27,7 +27,7 @@ Reach for it when:
 | **EMIT** | Generate downstream artifacts when the model can own the fact. |
 | **GATE** | Reject disagreement where the modeled property deserves authority. |
 
-## Why these travel together
+## Why These Travel Together
 
 A model nobody consumes is documentation. A model whose consumers copy its facts becomes one more source of
 drift. And a model consumed but never checked against reality can go confidently wrong — trusted precisely

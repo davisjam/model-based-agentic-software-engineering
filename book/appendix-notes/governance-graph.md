@@ -30,7 +30,7 @@ resource, its type, and a resolution, and whether the edge is decidable-by-machi
 resource, and — the load-bearing one — whether a *proposed* mechanism is consistent, run before it is wired.
 A drift lint re-resolves each node's code anchor and reddens when a mechanism is wired but absent.
 
-## Engineering consequences
+## Engineering Consequences
 
 This is a *second-order* governance mechanism. Every other mechanism in this appendix governs the product,
 the models, or the fleet; this one governs **the controls themselves** — it models the interactions among
@@ -43,13 +43,13 @@ The decidable conflicts route to a sensor; the semantic ones route to a human pr
 decide whether two constraints on a commit-set actually compose. And checking a proposed mechanism against
 the graph turns "caught at collision" into "caught at authoring."
 
-## Implementation seam
+## Implementation Seam
 
 The governance-graph model in the fleet's model layer, its four-value conflict taxonomy with a derived
 decidable-or-judgment nature, the check-new query that runs the deterministic checks against a proposed
 mechanism, and the drift lint that anchors each node to its wired hook or mediator by symbol, not line.
 
-## Known limitations
+## Known Limitations
 
 The graph must not drift — a stale interaction model claims conflicts are covered when a mechanism changed
 underneath it, so the drift lint is not optional. Resource granularity is a tuning surface: too coarse and

@@ -650,16 +650,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make one source authoritative</a></li>
-<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
-<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
-<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put authority where the property becomes legible</a></li>
-<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the action surface</a></li>
-<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver knowledge where the decision occurs</a></li>
-<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make cause travel with consequence</a></li>
-<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize recurring operational judgment</a></li>
-<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make hidden dependencies queryable</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Authoritative</a></li>
+<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
+<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
+<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
+<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
+<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
+<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize Recurring Operational Judgment</a></li>
+<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make Hidden Dependencies Queryable</a></li>
 <li class="part">Appendix C — Model Reference</li>
 <li><a class="" href="appendix-models.html">Appendix C — Model Reference</a></li>
 <li><a class="" href="appendix-c-structure-and-boundaries.html">C.1 Structure and Boundaries</a></li>
@@ -810,7 +810,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Hindsight gives the stages names and boundaries. At the time, the work arrived as ordinary engineering pressure: an exhausted context window, an unattended agent that could not be located, a cloud bill exposing an assumption, a deployment failure crossing a coupling no static check represented.</p>
 <p><strong>MAGE is the compression recovered afterward, not the roadmap followed at the time.</strong></p></blockquote>
 <p>Commit volume rose rapidly as the fleet expanded and remained far above a rate one human could review conventionally. During hardening, the work record shifted toward models, validation, tests, and control machinery before feature work accelerated again. <a href="appendix-evidence-ledger.html">Appendix G</a> gives the weekly curve. The important fact for the case is not the precise shape of that curve but the operating condition it records: human attention could no longer be allocated one diff at a time.</p>
-<h2 id="control-growth"><span class="sec-num">5.2.3</span> The controls accumulate</h2>
+<h2 id="control-growth"><span class="sec-num">5.2.3</span> The Controls Accumulate</h2>
 <p>The growing engineered environment is visible in one especially easy-to-count class of artifacts: project-specific lints and gate scripts. <a class="xref" href="5.2-the-build.html#fig-5-2-2">Figure&nbsp;5.2-2</a> counts those artifacts at four snapshots. Both begin at zero after the prototype and rise sharply through mechanization and hardening.</p>
 <figure id="fig-5-2-2" class="book-figure" data-label="control-growth-curve"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
      role="img" aria-labelledby="cgTitle cgDesc"
@@ -881,7 +881,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="130" y="452" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">count of governance controls in the tree · lint files and gate scripts · 993 registered lint specs at the final window</text>
 </svg><figcaption data-short="Growth of Two Countable Control Artifacts"><span class="fig-label">Figure 5.2-2.</span> <em>Growth of Two Countable Control Artifacts.</em> Project-specific lint files and gate scripts at four repository snapshots. The counts locate investment in environmental checks; they do not measure governance quality.</figcaption></figure>
 <p>Count alone says little about quality. The more useful repository evidence is provenance: 208 paired fix-and-lint tags mark commits where a repair landed with a check against recurrence, and 27 further lints name the dated incident that motivated them. The pattern records substantial investment in repeatable environmental checks as implementation scaled; it does not provide a causal rate of governance conversion.</p>
-<h2 id="support-ratio-curve"><span class="sec-num">5.2.4</span> The support ratio: the environment outgrew the product</h2>
+<h2 id="support-ratio-curve"><span class="sec-num">5.2.4</span> The Support Ratio: the Environment Outgrew the Product</h2>
 <p id="idx-def-support-ratio">Another coarse measure shows where the engineering effort accumulated. Divide the source counted as support apparatus — tests, modeling, orchestration, documentation, and governance tooling — by production source at four dated snapshots. The ratio begins below parity, crosses it during mechanization, peaks during hardening, and settles a little above three-to-one at the final snapshot. <a class="xref" href="5.2-the-build.html#fig-5-2-3">Figure&nbsp;5.2-3</a> plots it.</p>
 <figure id="fig-5-2-3" class="book-figure" data-label="support-ratio-curve"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
      role="img" aria-labelledby="srTitle srDesc"

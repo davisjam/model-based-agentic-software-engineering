@@ -19,7 +19,7 @@ changes through them. A closed set makes the move-space enumerable: every verb w
 gate [appendix: content-validator] covers the outcome. A new verb must wire its stamp and, if it inserts,
 register — nothing mutates the document outside this set.
 
-## Engineering consequences
+## Engineering Consequences
 
 A bounded, named action-space is what makes attribution, validation, and policy tractable at all.
 Free-form mutation leaves the governance questions — is every mutation stamped? is every insert
@@ -28,12 +28,12 @@ is friction of the intended kind: a needed action absent from the set forces add
 the space closed and every move governed. The verb set is a maintenance surface that grows with
 remediation capability.
 
-## Implementation seam
+## Implementation Seam
 
 Three parts carry the pattern: the structured mutator layer all mutation routes through, the stamp and
 validate wiring each verb carries, and the lints that hold no change happening outside the verb set.
 
-## Known limitations
+## Known Limitations
 
 The set must grow to cover each new remediation capability, making completeness an ongoing obligation rather
 than a one-time closure. Ultimately, though, the guarantee holds only while every mutation truly routes

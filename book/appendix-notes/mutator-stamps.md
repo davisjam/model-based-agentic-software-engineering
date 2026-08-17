@@ -19,20 +19,20 @@ attribution registry. A visibility model keeps delivery honest: stamps default t
 stripped before the document ships, while user-visible passes opt into a preserved tier that stays in the
 output.
 
-## Engineering consequences
+## Engineering Consequences
 
 Attribution lives with the artifact, not in a log that scrolls away, so a changelog tool can rebuild the
 full attributed history from the delivered file at any time. The cost is document overhead — debug stamps
 add content, which is why the strip step removes them before delivery. Bypassing the helper yields a
 non-uniform stamp, so the ban-lint holds the single surface.
 
-## Implementation seam
+## Implementation Seam
 
 The stamp-writer helper (PDF) and the attribution registry (Office) are the two wiring points; a raw-mutator
 ban-lint fails the build on any call that skips them. A separate wiring lint makes it blocking that *every*
 remediation verb stamps, so a new verb cannot land unattributed.
 
-## Known limitations
+## Known Limitations
 
 Completeness rides on that wiring lint: a verb the lint does not cover can mutate silently. The debug/preserved
 split is an authoring decision, so a pass that picks the wrong tier either leaks scaffolding into delivery or

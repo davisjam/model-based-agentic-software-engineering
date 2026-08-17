@@ -21,7 +21,7 @@ enforcement a lint fuses. The firing is hard, guaranteed by the runtime. The pay
 block that denies the action, or soft guidance re-injected into the agent's context that aims the next
 decision without compelling it.
 
-## Engineering consequences
+## Engineering Consequences
 
 The check runs whether or not anyone remembered; the reflex case is hard delivery of soft guidance — the
 same house-rule fired exactly at the decision point, every time. Two design constraints follow: keep the
@@ -30,14 +30,14 @@ a crash must not wedge the loop. A soft payload must also instrument its own fir
 otherwise — ceasing to fire unnoticed, or over-firing into tune-out — so it ships firing telemetry and
 lives on a measured leash with a written pull condition.
 
-## Implementation seam
+## Implementation Seam
 
 Scripts registered against named runtime events, plus a build-time output-conformance check that
 validates every wired hook against the runtime's actual schema. Without that check a hook validated only
 against its own idea of the contract can emit a shape the runtime drops, pass its own test green, and run
 wired-but-dead in production — the worst fail-open, since it looks wired and does nothing.
 
-## Known limitations
+## Known Limitations
 
 It fires on every event, not only when needed, so the tax is constant unless the check stays cheap. A
 guidance hook can be ignored — only the blocking variant compels. A buggy hook is a loop-level outage: a

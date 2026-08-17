@@ -27,20 +27,20 @@ blocking. A monitoring-cadence rule sets consumption: the orchestrator polls at 
 cherry-pick waves, with named anomaly triggers such as repeated merge-train yields or a prolonged no-op with
 tombstones queued.
 
-## Engineering consequences
+## Engineering Consequences
 
 A structured, queryable, self-documenting surface replaces the pull model of remembering to grep prose logs.
 The playbook is the active half: it turns a raw signal into a reaction rather than a passive read. Emission
 is hard and mechanical, but the bus itself does not block — a derived alerts gate does that. Acting on the
 signal depends on the orchestrator honoring the poll cadence.
 
-## Implementation seam
+## Implementation Seam
 
 Four artifacts carry the pattern: the event bus and its const-string topic registry, the playbook keyed by
 topic, the observability-block lint that keeps every emitting substrate documented, and the session-start
 plus post-cherry-pick monitoring cadence.
 
-## Known limitations
+## Known Limitations
 
 A topic without a playbook entry is emitted but not interpretable — the observability-block rule exists
 because that gap is the common failure. Consumption is discipline, not machinery: the bus can carry a

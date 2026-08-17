@@ -22,7 +22,7 @@ signal, so the observability surface for a topic carries baseline-healthy, what-
 playbook to open*. The orchestrator is instructed, at the trigger, to consult the relevant playbook rather
 than improvise.
 
-## Engineering consequences
+## Engineering Consequences
 
 The correct steps are written down and discoverable at the moment they are needed, reasoned once when no
 incident was burning, so the response encodes hard-won judgment instead of a guess made under pressure. A
@@ -30,14 +30,14 @@ playbook sits closer to a reusable skill than to prose documentation: it names t
 ordered steps, and lists the reflexes to avoid. The leverage is entirely discoverability plus habit — the
 procedure has to be findable at the trigger, or it is never opened.
 
-## Implementation seam
+## Implementation Seam
 
 The per-situation entry carries a fixed shape: the triggering question, the inspect command, a quantified
 baseline-healthy, and a *what-looks-wrong → what-it-means → what-to-do* row that includes the deadlock or
 wedge escape where a substrate can get stuck. Each playbook needs a home plus cross-references from the rule
 index and from the signal that triggers it. Add one entry per signal the substrate emits.
 
-## Known limitations
+## Known Limitations
 
 The mechanism is soft: a playbook informs, nothing forces the agent to open or follow it. Playbooks rot —
 when the substrate changes, a playbook whose steps aren't updated actively mis-directs the response, worse

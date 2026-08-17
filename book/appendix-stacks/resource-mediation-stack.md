@@ -1,8 +1,8 @@
-## The capability
+## The Capability
 
 **Prevent shared resources from becoming accidental concurrency policy.** When actors contend for a scarce resource, move admission policy out of their timing and into an explicit control.
 
-## When this stack earns its keep
+## When This Stack Earns Its Keep
 
 Reach for it when:
 
@@ -12,12 +12,12 @@ Reach for it when:
 - **Capacity should flex under live pressure**, but only once a fixed policy and a single admission point
   already exist.
 
-## The composition
+## The Composition
 
 <!-- label: resource-mediation-stack -->
 <!-- figure: assets/resource-mediation-stack.svg | The resource-mediation composition. A RESOURCE POLICY states which resource is scarce and what capacity is acceptable; a MEDIATOR admits at most N actors through one admission point to the SHARED RESOURCE. A dashed LIVE PRESSURE loop tightens or relaxes effective capacity when justified. N=1 and N>1 are settings of the same mediator, not separate stacks. Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability. -->
 
-## Constituent moves
+## Constituent Moves
 
 | Move | Role |
 |---|---|
@@ -25,7 +25,7 @@ Reach for it when:
 | **MEDIATE** | Route access through one admission point. |
 | **ADAPT** | *(strengthens)* Modify effective capacity from live pressure where justified. |
 
-## Why these travel together
+## Why These Travel Together
 
 Unmediated contention makes resource availability an emergent property of actor timing — whoever starts first
 wins, and the policy is an accident. A mediator turns that accident into stated policy: one seam, a declared

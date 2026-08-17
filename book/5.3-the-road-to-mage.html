@@ -650,16 +650,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make one source authoritative</a></li>
-<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
-<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
-<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put authority where the property becomes legible</a></li>
-<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the action surface</a></li>
-<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver knowledge where the decision occurs</a></li>
-<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make cause travel with consequence</a></li>
-<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize recurring operational judgment</a></li>
-<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make hidden dependencies queryable</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Authoritative</a></li>
+<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
+<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
+<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
+<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
+<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
+<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize Recurring Operational Judgment</a></li>
+<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make Hidden Dependencies Queryable</a></li>
 <li class="part">Appendix C — Model Reference</li>
 <li><a class="" href="appendix-models.html">Appendix C — Model Reference</a></li>
 <li><a class="" href="appendix-c-structure-and-boundaries.html">C.1 Structure and Boundaries</a></li>
@@ -800,7 +800,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="What Got Built"><span class="fig-label">Figure 5.3-1.</span> <em>What Got Built.</em> One upload crosses six product responsibilities and returns with standards findings, fidelity evidence, and provenance. Probabilistic interpretation is bounded inside the remediation core; deterministic machinery owns the surrounding workflow and the checks it can actually decide.</figcaption></figure>
 <p>That is the product path. The larger engineered environment around it — the subject of the previous chapter — contains the models, tests, lints, orchestration, and other machinery that made this degree of delegation possible.</p>
 <p>The architecture narrows probabilistic work into a small action surface. Typed document models own mutation; the lower-level format libraries sit behind those models; deterministic machinery owns workflow and the mechanically decidable checks; fidelity validation covers properties visible only after a transformation has run.</p>
-<h2 id="model-as-bounded-subroutine"><span class="sec-num">5.3.2</span> The model as a bounded subroutine</h2>
+<h2 id="model-as-bounded-subroutine"><span class="sec-num">5.3.2</span> The Model as a Bounded Subroutine</h2>
 <p>MAGE applies at two scales in this case. Coding agents act on the engineering system; frontier models also run inside the product. The second case is smaller and easier to bound: treat the model as a probabilistic subroutine inside a deterministic workflow. Deterministic code decides when interpretation is needed, packages a bounded input, requires a typed output, and evaluates the candidate against obligations the environment can decide mechanically.</p>
 <p>The model's answer is therefore a <strong>candidate</strong>, not a verdict. A schema can reject malformed output; a standards rule can reject a mechanically invalid claim; a fidelity check can catch some classes of destructive transformation. None of those proves that an alt-text description perfectly captures the meaning of a figure. The trust boundary is only as strong as the obligations the validator can actually evaluate. Semantic residuals remain probabilistic or human. <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-2">Figure&nbsp;5.3-2</a> draws the caller, the typed contract, and the validator.</p>
 <p>The architecture resembles proof checking in one limited respect: a powerful producer is separated from the smaller mechanism that decides whether its evidence is sufficient for admission <sup class="cite-ref"><a href="#wc-5-3-the-road-to-mage-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Talia Ringer et al., “QED at Large: A Survey of Engineering of Formally Verified Software,” <em>Foundations and Trends in Programming Languages</em> 5, nos. 2–3 (2019): 102–281, <a href="https://arxiv.org/abs/2003.06458">https://arxiv.org/abs/2003.06458</a>.</span>.</p>
@@ -933,7 +933,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="320" y="576" text-anchor="middle" font-size="13" fill="#57534e">An engineering history, not a system model.</text>
 </svg><figcaption data-short="One Seam, Hardened in Layers"><span class="fig-label">Figure 5.3-3.</span> <em>One Seam, Hardened in Layers.</em> A convenient library call silently corrupted the accessibility structure the product exists to add. That failure motivated a canonical-library policy and a typed mutation seam that concentrated every format change in one place. A build-time ban then refused the raw calls that would bypass the seam. Later the enforcement itself misreported success when a stale repository root hid real findings, forcing a repair to the gate. Each layer answers a specific failure rather than a plan drawn in advance.</figcaption></figure>
 <p><strong>The service seam.</strong> Another failure sent a local file path across a service boundary, where it became meaningless in the callee's process. The replacement client accepted file content but not a local path, and an explicit service graph represented which services could call which. A later human review found a second problem: an optional direct-client path could bypass shared rate limiting, key rotation, failover, and cost tracking entirely. <strong>A protection boundary only governs the paths that cross it.</strong></p>
-<h2><span class="sec-num">5.3.4</span> The delegation staircase</h2>
+<h2><span class="sec-num">5.3.4</span> The Delegation Staircase</h2>
 <p>The five rungs are retrospective names for the changing center of gravity of my work—co-coder, QA, review lead, tech lead, architect—not a prescribed career ladder. What matters is what the engineered environment could carry at each stage.</p>
 <p>The staircase has two interacting supports. <strong>Alignment</strong> moved repeatable authority out of direct human review: deterministic checks, permissions, boundaries, and gates could carry obligations I no longer inspected line by line. <strong>Modeling</strong> moved system knowledge out of my head: named zones and later explicit models let agents reason over larger engineering questions without reconstructing the whole repository each time. Human judgment moved toward the gaps the environment could not yet represent or decide.</p>
 <p>Delegation therefore climbed as far as the <strong>engineered environment</strong> could carry it. When representation was too weak, I fell back into reconstructing the map. When authority was too weak or unreliable, I fell back into reading diffs and verifying outcomes manually. A miss could send the staircase backward.</p>

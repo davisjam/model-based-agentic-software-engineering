@@ -15,7 +15,7 @@ Zenseact also illustrates *selective context*. Routing machinery selects task-re
 [^zenseact-split]: The platform-team / domain-team split (the platform owns authentication, sessions, execution, and safety; domain teams retain their own agents, tools, instructions, and domain expertise) is from Zenseact's public account: Philip Dufwa and Thomas Luvö, "A Platform for Scalable Enterprise AI Agents," Zenseact, May 29, 2026, https://zenseact.com/news/a-platform-for-scalable-enterprise-ai-agents/.
 [^zenseact-context]: The selective-context account — routing machinery that surfaces task-relevant expertise rather than loading the whole corpus, over a central runtime and safety envelope with domain expertise in reusable skills surfaced on demand — is from the same source: Philip Dufwa and Thomas Luvö, "A Platform for Scalable Enterprise AI Agents," Zenseact, May 29, 2026, https://zenseact.com/news/a-platform-for-scalable-enterprise-ai-agents/.
 
-#### Recto — MAGE interpretation
+#### Recto — MAGE Interpretation
 
 <!-- label: field-guide-zenseact -->
 <!-- figure: assets/field-guide-zenseact.svg | *Zenseact projected onto MAGE.* Shared mechanisms centralize while domain knowledge and judgment remain distributed — a concrete organizational answer to scaling both context and authority. -->

@@ -1,8 +1,8 @@
-## The capability
+## The Capability
 
 **Turn recurring failure and judgment into durable engineering structure while keeping the control estate legible.** As controls accumulate, model their relationships and convert recurring gaps into an appropriate durable response.
 
-## When this stack earns its keep
+## When This Stack Earns Its Keep
 
 Reach for it when:
 
@@ -12,12 +12,12 @@ Reach for it when:
 - **Lessons live in institutional memory** instead of in the environment, so they leave when the person who
   learned them does.
 
-## The composition
+## The Composition
 
 <!-- label: governance-conversion-stack -->
 <!-- figure: assets/governance-conversion-stack.svg | The governance-conversion composition, a loop. The CONTROL ESTATE — rules, gates, models, sensors — is inspected and queried to expose GAP / IMPACT: where control is weak or coupled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE ESTATE folds it in; a solid feedback edge returns to the estate for the next iteration. The four moves form the load-bearing loop. -->
 
-## Constituent moves
+## Constituent Moves
 
 | Move | Role |
 |---|---|
@@ -26,7 +26,7 @@ Reach for it when:
 | **CONVERT** | Interpret a recurring failure class into a new or strengthened control. |
 | **UPDATE** | Fold the control back into the estate; the model changes with it. |
 
-## Why these travel together
+## Why These Travel Together
 
 As a governed environment grows, its controls overlap, depend on one another, go stale, and acquire blast radius. Eventually the control estate itself becomes difficult to reason about.
 

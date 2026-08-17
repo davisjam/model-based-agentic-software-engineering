@@ -25,7 +25,7 @@ string present, the agent role declared. A non-zero exit means do not launch. Th
 habit an operator remembers to run. The canonical dispatch path calls it as a required step and rolls back the
 just-written marker file when the lint fails, so the dispatch path itself is the enforcement.
 
-## Engineering consequences
+## Engineering Consequences
 
 Review of a brief is a probabilistic check: it catches the missing marker only when the reviewer thinks to
 look, and reviewers reliably miss the boring structural markers precisely because they are boring. The lint is
@@ -36,7 +36,7 @@ Structure is not correctness, though. The lint proves a brief is well-*formed*, 
 with every marker present can still task the agent with the wrong thing. A green lint buys marker coverage,
 and the human still owns the scoping judgment.
 
-## Implementation seam
+## Implementation Seam
 
 The lint needs briefs to be structured text with grep-able marker strings, a registry of mandatory snippets it
 can enumerate, and a dispatch wrapper that calls it on the canonical path and refuses to proceed on failure.
@@ -49,7 +49,7 @@ who learns the lint cries wolf starts ignoring it. The fix is to have each brief
 content check fires only when the genre demands that citation. A lint tuned out is worse than a check never
 written.
 
-## Known limitations
+## Known Limitations
 
 Each new marker is a maintenance edge: a new mandatory snippet means both a new check and threading the marker
 into the brief template, and drift between the two produces false rejections. The whole gate is bypassable by

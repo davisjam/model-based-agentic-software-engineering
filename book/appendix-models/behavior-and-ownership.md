@@ -24,7 +24,7 @@ against the declared transition relation. Any implemented transition absent from
 becomes a finding. Where two lifecycles interact, compose their state machines explicitly so
 cross-machine transitions are represented rather than left implicit in code.
 
-## Ownership and lease
+## Ownership and Lease
 
 Concurrency adds ownership and lease state to the lifecycle model. Ownership remains a distinct
 model class: it answers who owns a resource and who may act on it, while the behavioral model

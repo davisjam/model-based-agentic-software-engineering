@@ -20,7 +20,7 @@ registry, then marker, then git-lock — before removing anything. Tombstone and
 operate on an agent whose marker exists. The registry is authoritative; the marker cache is a fast index
 the registry wins over on any divergence.
 
-## Engineering consequences
+## Engineering Consequences
 
 Liveness becomes a lookup against a recorded fact, not an inference, and a recorded fact cannot race the
 way an inferred one does. The whole guarantee rests on universal dual-write: a side-door mutation that
@@ -28,13 +28,13 @@ changes lifecycle without writing the registry silently brings the timestamp rac
 only as strong as its weakest writer. Because it is consulted before every destructive op, the record is
 protective only where a gate actually queries it.
 
-## Implementation seam
+## Implementation Seam
 
 Two artifacts carry the pattern: the append-only registry log plus its per-agent marker cache, and the
 destructive-op gates (cleanup, tombstone, worktree-clean) that query them before acting. The dispatch
 wrapper's prepare step is the single point that seeds both writes.
 
-## Known limitations
+## Known Limitations
 
 Completeness rides on dual-write discipline, and it is fragile: one tool that mutates lifecycle without
 writing the registry reintroduces the exact race the registry removes. The append-only log grows

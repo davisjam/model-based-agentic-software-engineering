@@ -22,7 +22,7 @@ audit-only ones surface. A legitimate exception escapes through a scoped, reason
 comment on the offending line. The fleet sits atop a maxed-out commodity floor — the platform's own
 static analysis, strict type-checking, and fast linters — rather than replacing it.
 
-## Engineering consequences
+## Engineering Consequences
 
 A semantic lint encodes an invariant the type system can't express and fails the build, doing
 mechanically what review does by attention and the compiler doesn't do at all — the "move audits to
@@ -31,14 +31,14 @@ current. A too-strict lint blocks legitimate code until a suppression is added, 
 the custom fleet only earns its keep atop the commodity floor; without that floor, the quality grade
 rests on the wrong thing.
 
-## Implementation seam
+## Implementation Seam
 
 A lint framework with per-lint scope and severity declaration, the invariants made mechanically
 detectable, and a runner wired into the gates with a scoped escape hatch. A runnable example carries the
 whole shape: the self-describing declaration block, the find-violations then emit then exit-code body,
 the suppression escape, and the audit-only-to-blocking migration.
 
-## Known limitations
+## Known Limitations
 
 An invariant you can't express as a mechanical check can't join the fleet. A lint is itself code that can
 fail: one built on a regex once backtracked catastrophically on a real input and hung the deploy gate —

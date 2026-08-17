@@ -18,7 +18,7 @@ every production job and failing the job on violation. A staging-only per-pass v
 environment label, emits a dedicated fidelity marker and a nonzero exit code, so the offending pass is
 identified before delivery. That turns "content was lost somewhere" into "pass N lost it."
 
-## Engineering consequences
+## Engineering Consequences
 
 The guarantee becomes a deterministic post-condition rather than trust in the mutation code or a human
 spot-check that misses *silent* drops — you don't notice the paragraph that's gone. A post-condition that
@@ -27,13 +27,13 @@ on the extractor: lossy or over-eager extraction yields false positives that blo
 negatives that miss a real drop. And subset semantics are subtle — reordering, whitespace, and
 reformatting must be normalized or the gate cries wolf. It runs on every job, an accepted cost.
 
-## Implementation seam
+## Implementation Seam
 
 The production fidelity gate runs post-remediation and pre-delivery; the per-pass hook adds localization
 in staging. Both need a content extraction comparable across input and output, and a subset predicate
 that tolerates legitimate reformatting and reordering without firing.
 
-## Known limitations
+## Known Limitations
 
 The extractor defines what "content" means, so the guarantee is exactly as complete as the extraction —
 anything it doesn't extract, it can't protect. The subset predicate must tolerate legitimate reordering

@@ -15,7 +15,7 @@ SysML and CAD models, simulation, virtual ECUs, and bill-of-materials structures
 [^siemens-part6]: Siemens as evidence that richer executable representations are ordinary practice in model-based engineering, and that no public reconstruction establishes a generalized model↔code correspondence gate (source silence is not organizational absence): Siemens Digital Industries Software, "A3E: Autonomous, Agentic Assistance for Engineering," Siemens Digital Industries Software, 2026, https://blogs.sw.siemens.com/.
 [^siemens-recon]: SysML/CAD and simulation models, virtual ECUs, and bill-of-materials structures as artifacts engineers work through, with code and verification downstream — as described in the same source: Siemens Digital Industries Software, "A3E: Autonomous, Agentic Assistance for Engineering," Siemens Digital Industries Software, 2026, https://blogs.sw.siemens.com/.
 
-#### Recto — MAGE interpretation
+#### Recto — MAGE Interpretation
 
 <!-- label: field-guide-siemens -->
 <!-- figure: assets/field-guide-siemens.svg | *Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model↔code admission. -->

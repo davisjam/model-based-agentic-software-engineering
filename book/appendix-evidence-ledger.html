@@ -650,16 +650,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make one source authoritative</a></li>
-<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
-<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
-<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put authority where the property becomes legible</a></li>
-<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the action surface</a></li>
-<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver knowledge where the decision occurs</a></li>
-<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make cause travel with consequence</a></li>
-<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize recurring operational judgment</a></li>
-<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make hidden dependencies queryable</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Authoritative</a></li>
+<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
+<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
+<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
+<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
+<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
+<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize Recurring Operational Judgment</a></li>
+<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make Hidden Dependencies Queryable</a></li>
 <li class="part">Appendix C — Model Reference</li>
 <li><a class="" href="appendix-models.html">Appendix C — Model Reference</a></li>
 <li><a class="" href="appendix-c-structure-and-boundaries.html">C.1 Structure and Boundaries</a></li>
@@ -699,7 +699,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The measurements fall into six groups: build scale and repository motion; model correspondence and drift; model coverage; representation and navigation cost; development and processing costs; and the relationship between measurement and authority.</p>
 <p>The ledger exists for traceability. A number summarized in Part V should be recoverable here, together with the assumptions that bound it.</p>
 <h2>G.2 Build Scale and Repository Motion</h2>
-<h3 id="velocity">G.2.1 Weekly commit volume</h3>
+<h3 id="velocity">G.2.1 Weekly Commit Volume</h3>
 <p>Weekly commit volume rose sharply as the agent fleet expanded, exceeded 1,000 commits per week during sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval Part V identifies as hardening, then rose again.</p>
 <p>Commit classification indicates that a larger share of work during the hardening interval concerned models, validation, tests, and control machinery. The commit counts themselves do not establish why volume changed, or whether engineering productivity rose or fell. <a class="xref" href="appendix-evidence-ledger.html#fig-G-1">Figure&nbsp;G-1</a> plots the weekly series.</p>
 <figure id="fig-G-1" class="book-figure" data-label="velocity-curve"><svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 763.2225 403.345625" xmlns="http://www.w3.org/2000/svg" version="1.1" role="img" aria-labelledby="vel-title vel-desc">
@@ -2036,12 +2036,12 @@ z
   </clipPath>
  </defs>
 </svg><figcaption data-short="Weekly Commit Volume"><span class="fig-label">Figure G-1.</span> <em>Weekly Commit Volume.</em> Commits per week across the project history. Bar height measures repository activity, not engineering productivity; interpreting the hardening interval requires classifying the work represented by those commits.</figcaption></figure>
-<h3 id="support-ratio">G.2.2 Support-apparatus ratio</h3>
+<h3 id="support-ratio">G.2.2 Support-Apparatus Ratio</h3>
 <p>Production and support-apparatus source were counted at four dated repository states using a census over the seven primary source roots that fails if an expected root is absent. These counts are the source for the support-ratio curve in Part V.</p>
 <table id="tbl-G-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table G-1.</span></caption><thead><tr><th>Window</th><th class="num">Production LoC</th><th class="num">Support LoC</th><th class="num">Support ratio</th></tr></thead><tbody><tr><td>Prototype — Apr. 9</td><td class="num">26,956</td><td class="num">22,908</td><td class="num">0.85×</td></tr><tr><td>Mechanization — May 31</td><td class="num">302,844</td><td class="num">751,050</td><td class="num">2.48×</td></tr><tr><td>Hardening — Jun. 30</td><td class="num">337,905</td><td class="num">1,244,194</td><td class="num">3.68×</td></tr><tr><td>Final snapshot — Aug. 3</td><td class="num">491,090</td><td class="num">1,501,907</td><td class="num">3.06×</td></tr></tbody></table>
 <p>Support-apparatus source began below parity with production source, crossed it by the mechanization snapshot, peaked at 3.68× during hardening, and stood at 3.06× at the final snapshot.</p>
 <p>These counts describe how source was distributed in this repository. The ratio is not a measure of engineering value, engineering-capital return, or a recommended target for another project.</p>
-<h3 id="churn">G.2.3 Product-path line motion</h3>
+<h3 id="churn">G.2.3 Product-Path Line Motion</h3>
 <p>Lines added and deleted were counted over four windows for the two principal product paths:</p>
 <ul><li><strong><code>web/</code></strong> — the Python service and worker.</li><li><strong><code>backend/</code></strong> — the C# tool and rule engine.</li></ul>
 <p>Source: <code>git numstat</code> over the dated commit windows.</p>
@@ -2127,7 +2127,7 @@ z
   <rect x="720" y="500" width="16" height="12" fill="#b23b3b"/>
   <text x="742" y="510" text-anchor="start" font-size="16" fill="#1c1917">backend/ (C# CLI + rule engine)</text>
 </svg><figcaption data-short="Product-Path Line Motion"><span class="fig-label">Figure G-2.</span> <em>Product-Path Line Motion.</em> Lines added above the baseline and deleted below it, by path and study window. Mechanization contains the largest observed line motion. The later reduction in deletions is consistent with less structural rewriting but does not establish its cause.</figcaption></figure>
-<h3 id="control-growth">G.2.4 Growth of countable controls</h3>
+<h3 id="control-growth">G.2.4 Growth of Countable Controls</h3>
 <p>Project-specific lint files and gate scripts were counted at four repository states, using <code>git ls-tree</code> at the corresponding window SHA.</p>
 <table id="tbl-G-3" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table G-3.</span></caption><thead><tr><th>Window</th><th class="num">Lint files</th><th class="num">Gate scripts</th></tr></thead><tbody><tr><td>Prototype</td><td class="num">0</td><td class="num">0</td></tr><tr><td>Mechanization</td><td class="num">336</td><td class="num">20</td></tr><tr><td>Hardening</td><td class="num">595</td><td class="num">76</td></tr><tr><td>Final snapshot</td><td class="num">747</td><td class="num">102</td></tr></tbody></table>
 <p>Both counted surfaces begin at zero in the prototype snapshot. At the final snapshot, the 747 lint files contain 993 registered lint specifications.</p>
@@ -2137,16 +2137,16 @@ z
 <h2>G.3 Model Correspondence and Drift</h2>
 <p>The measurements in this section concern model↔code correspondence only. Documentation drift is counted separately in G.3.5 and is excluded from the model-sync claim.</p>
 <p>The underlying question is narrow. After explicit models became reasoning surfaces, did model↔implementation drift occur, could derived checks detect it, and did the observed class recur after close?</p>
-<h3 id="model-sync-evidence">G.3.1–G.3.4 Correspondence results</h3>
+<h3 id="model-sync-evidence">G.3.1–G.3.4 Correspondence Results</h3>
 <table id="tbl-G-4" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table G-4.</span></caption><thead><tr><th>Claim</th><th>Measurement</th><th>Result</th><th>Limitation</th></tr></thead><tbody><tr><td>Model↔code drift existed before the derived floor</td><td>Re-run each closed Epic's own lints against its closed state; classify findings by hand</td><td>Approximately 27 genuine model↔code drifts, including a production-blocking pointer drift and a fully typed function with zero consumers</td><td>Manual classification; no independently specified oracle</td></tr><tr><td>Derived checks catch fresh drift</td><td>Re-run the derived floor at HEAD</td><td>6 genuine catches: three traceability failures and three stale-anchor or stale-test failures</td><td>Small N; measures only governed surfaces</td></tr><tr><td>Post-close recurrence of modeled, mechanically decidable drift</td><td>Census over 56 cumulative Epic closes</td><td>0 observed across 56 cumulative Epic closes</td><td>Finite observation window; does not cover semantic or unmodeled drift</td></tr><tr><td>Checks were exercised during continuing model-bridge change</td><td><code>git numstat</code> over one week for the query/reactor, governance-graph, and frontend-build models</td><td>+8,970 / −173 lines across 63 commits</td><td>Line motion is a change-load proxy, not a measure of semantic difficulty</td></tr></tbody></table>
 <p>Manual review classified all approximately 27 pre-floor findings as genuine model↔code drift. Because classification used human judgment rather than an independently specified criterion, this establishes a pre-existing drift class, not detector precision.</p>
 <p>The six HEAD catches were an unregistered model consumer, a missing component entry, a service-call-graph mismatch, and three stale-anchor or stale-test cases. A symbol-anchored drift lint, a consumer-registry-freshness check, and a service-call-graph drift lint detected them.</p>
 <p>Taken together, these observations establish a bounded within-case sequence: model↔code drift existed before the derived checks; the checks caught six fresh instances; and no post-close recurrence of the modeled, mechanically decidable class was observed across 56 closes during the measured window. They do not establish that the class was eliminated or that the mechanism prevents model drift.</p>
-<h3 id="doc-hygiene-aside">G.3.5 Documentation drift — excluded from the model-sync claim</h3>
+<h3 id="doc-hygiene-aside">G.3.5 Documentation Drift — Excluded from the Model-Sync Claim</h3>
 <p>Stale headers and stale prose numbers are documentation drift, not model↔code drift. They are counted separately because folding them into the correspondence measurements would inflate the model-sync evidence.</p>
 <table id="tbl-G-5" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table G-5.</span></caption><thead><tr><th>Documentation drift</th><th class="num">Refresh-window count</th><th>Detected by</th><th>Resolution</th></tr></thead><tbody><tr><td>Status header frozen at a pre-close phase</td><td class="num">11</td><td>Reading by a person or capable model</td><td>Close tooling rewrites the status atomically</td></tr><tr><td>Stale prose number after the implementation moved past it</td><td class="num">9</td><td>Model re-deriving the number from code</td><td>Routed one-line fix or audit finding</td></tr></tbody></table>
 <p>These observations concern prose that no derived correspondence check parses. They therefore say nothing about whether a model remains synchronized with implementation.</p>
-<h3 id="model-sync-honest-reading">G.3.6 Scope of the model-sync claim</h3>
+<h3 id="model-sync-honest-reading">G.3.6 Scope of the Model-Sync Claim</h3>
 <p>The correspondence mechanisms cover only modeled, mechanically decidable relationships, and the observed N is small. A semantic mismatch whose anchors still resolve may remain judgment-dependent, and an unmodeled region has no model-correspondence check at all.</p>
 <p>The results are therefore field observations about one governed surface, not a general catch rate or a proof of model correctness. Three cases stay distinct:</p>
 <ul><li><strong>Derived correspondence</strong> — machinery can re-establish it from current artifacts.</li><li><strong>Semantic correspondence</strong> — it may still require judgment.</li><li><strong>Unmodeled regions</strong> — no model claim exists for them yet.</li></ul>
@@ -2168,11 +2168,11 @@ z
 <p>The vendor range is a market observation, not a quality-adjusted comparison with DocAble. The development-cost figure is an order-of-magnitude direct-cost estimate, not audited project accounting.</p>
 <h2 id="measurement-seed">G.7 Measurement Without Authority</h2>
 <p>A measurement can be useful before it deserves authority.</p>
-<h3>G.7.1 Provisional cost-and-time model</h3>
+<h3>G.7.1 Provisional Cost-and-Time Model</h3>
 <p>A per-chunk worst-case cost-and-time estimate was externalized as a timestamped provisional model, not embedded as a permanent code constant.</p>
 <p>Current instrumentation can report when an operation would exceed the provisional budget. Production admission does not depend on that estimate, because the observation base is not yet strong enough to justify a blocking threshold.</p>
 <p>The provisional bound need not be correct to be useful. The system keeps the stages separate: <strong>observation → representation → reporting</strong>. Because the evidence is insufficient, the estimate does not cross into <strong>authority</strong>. A measured value can enter the engineering environment without immediately becoming a gate.</p>
-<h3>G.7.2 Cold-start contrast case</h3>
+<h3>G.7.2 Cold-Start Contrast Case</h3>
 <p>The contrasting case did mature into an engineering decision.</p>
 <p>The measured request-level cold-start value was 4,057 ms. That observation fed a topology model representing the longest cold-start path and motivated an architectural change. The resulting warm floor was 109 ms. The sequence is <strong>request-level measurement (4,057 ms) → cold-start topology model → architectural change → 109 ms warm floor</strong>.</p>
 <p>The contrast does not imply that every measured quantity should eventually become a gate. Authority requires evidence adequate to the decision being made. The provisional cost model remained report-only; the stable, structurally interpretable cold-start observation justified architectural action.</p>

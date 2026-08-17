@@ -26,19 +26,19 @@ linted both ways. Because the set is *derived*, adding a seam adds an obligation
 surface with no test reopens the gap until a test closes it. One derive-and-lint shape covers all three obligation kinds, rather than a separate
 hand-audit per kind.
 
-## Engineering consequences
+## Engineering Consequences
 
 A whole class of obligation sitting at zero becomes a listable set of findings, not a blind spot a rising
 percentage hides. The denominator flips from *what you built* to *what the models say should be tested* —
 the set a coverage report structurally cannot see.
 
-## Implementation seam
+## Implementation Seam
 
 The censuses that derive the should-be-fuzzed and should-have-injection sets from the seam and error-path
 models, the same shape reused for invariant checkers, and the gate that treats an unmet obligation as a
 build finding — a derived list nobody checks is just another report.
 
-## Known limitations
+## Known Limitations
 
 The join must stay accurate: a test the census fails to match to its obligation reports a false gap, and a
 stale match reports false safety, so the matching rule tracks how tests are named and tagged. The line it draws is obligation coverage, not test quality: a matched obligation counts as covered even if

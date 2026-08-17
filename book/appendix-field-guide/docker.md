@@ -14,7 +14,7 @@ That makes Docker particularly valuable, because it resists the crude reading of
 
 [^docker-record]: The permission-backed role graph, the independent reviewer on a separate model invocation, the deterministic tests, and the retained human final admission are from Docker's public account: Manuel de la Peña, "A Virtual Agent Team at Docker," Docker, 2026, https://www.docker.com/blog/.
 
-#### Recto — MAGE interpretation
+#### Recto — MAGE Interpretation
 
 <!-- label: field-guide-docker -->
 <!-- figure: assets/field-guide-docker.svg | *Docker projected onto MAGE.* Strong direct Alignment with deliberately residual human authority; the unhighlighted Modeling and conversion regions mark source-silence, not absence. -->

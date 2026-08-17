@@ -35,7 +35,7 @@ then reading each body.
 The whole thing is a stable lint reading declarations: the table is derived from the fields at query time, so
 nothing is generated and no hand-maintained map can drift.
 
-## Engineering consequences
+## Engineering Consequences
 
 Every substrate-reading control gains one declaration — the intended tax, and what makes the dependency edge
 queryable. Grep finds the importers but not their assumption; lifting the stance into a declaration makes the
@@ -54,7 +54,7 @@ substrate.
 Use this once cross-cutting substrate churn has burned you once. Don't build the dependency model for a
 substrate nobody changes — the query pays off only where the ground actually moves.
 
-## Implementation seam
+## Implementation Seam
 
 Four pieces: the closed enum of substrate stances, the structured field extending the control's existing
 metadata block, the join query that prints the blast-radius table, and the declaration lint the deploy gate
@@ -62,7 +62,7 @@ composes. It requires the substrate already be a queryable model to join against
 [appendix: executable-source-of-truth], and extends the read-don't-copy discipline from values to dependency
 edges [appendix: meta-model-consumption].
 
-## Known limitations
+## Known Limitations
 
 It pays off only at a substrate change; in a stable system the declarations sit inert, over-built if added
 speculatively to a substrate you will never change. A stance the closed enum cannot express forces an enum

@@ -23,21 +23,21 @@ what it will touch. Reverse (`diff → findings`): intersect checker output with
 ranges to attribute which findings this change introduced — this powers CI self-heal, asking an agent to
 fix only what it broke.
 
-## Engineering consequences
+## Engineering Consequences
 
 The applicable rules land in context whether or not the agent would have gone looking — push, not pull.
 It is a change of status, relocating a rule from available to binding, because a brief is mandatory
 reading by construction where a doc is optional reference. Forward injection stays advisory, though: it
 raises salience and shifts the odds, but a downstream gate is still what guarantees the rule.
 
-## Implementation seam
+## Implementation Seam
 
 A constraint-extraction tool for the forward slice and the diff-line-range attribution machinery for the
 reverse, plus one adapter per file-addressable registry — the lint fleet's scope tags, the component
 model, the banned-API list, the test corpus, the doc index. Each constraint must declare a file scope and
 carry an actionable fix-hint, or it cannot be selected or acted on.
 
-## Known limitations
+## Known Limitations
 
 Garbage-in: a rule with no scope tag can't be sliced, and one with no fix-hint can't be acted on — the
 mechanism depends on that discipline fleet-wide and does not create it. The relevance operator is itself

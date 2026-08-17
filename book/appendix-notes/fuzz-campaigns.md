@@ -34,7 +34,7 @@ Two moves sharpen this beyond random bytes:
 
 <!-- note-fold -->
 
-## Engineering consequences
+## Engineering Consequences
 
 The two moves compose: feed the producer's wild dialect to the model's entry point and classify the
 result against the model's declared outcome set. Wild input and a rich oracle at once — and a fix that
@@ -57,7 +57,7 @@ Use this when the input is adversarial or malformed by nature. Don't fuzz a clos
 random bytes there buy noise, not coverage.
 
 
-## Implementation seam
+## Implementation Seam
 
 Fuzz and campaign harnesses plus a corpus of malformed inputs — random and adversarial bytes, and for the
 sharper corpus a set of real third-party producers of the format to round-trip through. A coverage
@@ -65,7 +65,7 @@ collector, aggregator, and baseline make reach measurable. The model-as-oracle f
 structured model that declares the stable spec point — a closed legal-outcome set, an invariant
 predicate, or a state-transition table — for the wild input to be judged against.
 
-## Known limitations
+## Known Limitations
 
 Campaigns cost real compute; coverage is tracked to know when they have saturated, and the baseline must
 be re-based only on intentional coverage-shape changes. Seed-fixing is the anti-pattern the RCA

@@ -650,16 +650,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make one source authoritative</a></li>
-<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
-<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
-<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put authority where the property becomes legible</a></li>
-<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the action surface</a></li>
-<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver knowledge where the decision occurs</a></li>
-<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make cause travel with consequence</a></li>
-<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize recurring operational judgment</a></li>
-<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make hidden dependencies queryable</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Authoritative</a></li>
+<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
+<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
+<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
+<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
+<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
+<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize Recurring Operational Judgment</a></li>
+<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make Hidden Dependencies Queryable</a></li>
 <li class="part">Appendix C — Model Reference</li>
 <li><a class="" href="appendix-models.html">Appendix C — Model Reference</a></li>
 <li><a class="" href="appendix-c-structure-and-boundaries.html">C.1 Structure and Boundaries</a></li>
@@ -695,12 +695,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix A — MAGE Engineering Stacks — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>Appendix A — MAGE Engineering Stacks</h1></header><p>A single mechanism often kills a single failure class. Engineering capabilities usually take more.</p>
 <p>A provenance record tells us who changed an artifact. It cannot tell us whether every mutation was recorded. A model externalizes an engineering fact, yet nothing in the model guarantees its consumers read the current version, or that the implementation still matches it. A sensor detects a failure; detection alone does not restore service. So mechanisms compose.</p>
-<h2>What a stack is</h2>
+<h2>What a Stack Is</h2>
 <p>An <strong>engineering stack is a recurring composition of mechanisms that together provide a useful engineering capability.</strong> The stacks here are reference architectures, not prescriptions: a different substrate may provide the same capability with fewer, different, or stronger mechanisms.</p>
 <p>Start with the capability rather than the stack:</p>
 <blockquote class="aside-sidenote"><p>What capability does the environment need, and which guarantees must compose to provide it?</p></blockquote>
 <p>The seven stacks that follow answer that question for recurring engineering concerns.</p>
-<h2>The seven, and how they relate</h2>
+<h2>The Seven, and How They Relate</h2>
 <figure id="fig-A-1" class="book-figure" data-label="appendix-a-capability-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 660"
      role="img" aria-labelledby="cmTitle cmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -773,11 +773,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="665" y="590" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">CONTEXT DELIVERY</text>
   <text x="665" y="614" text-anchor="middle" font-size="14" fill="#57534e">right knowledge at point of work</text>
 </svg><figcaption data-short="Seven reference engineering stacks and their common relationships"><span class="fig-label">Figure A-1.</span> Seven reference engineering stacks and their common relationships. Arrows show relationships among capabilities that recurred in one system, not a required architecture or adoption order. Resource Mediation and Context Delivery are shown separately because they provide useful capabilities independently.</figcaption></figure>
-<h2>Where to look</h2>
+<h2>Where to Look</h2>
 <p>A mechanism addresses a specific engineering obligation or failure. A move names the transferable judgment behind related mechanisms. A stack composes mechanisms into a reusable engineering capability. The stacks together form a governed engineering environment.</p>
 <p>This appendix starts from capabilities and works downward: which mechanisms must travel together to provide one useful engineering capability? Appendix B starts from recurring problems and shows how the same engineering move can produce different mechanisms in different settings. Each stack here gives its capability, composition, constituent moves, and the dependencies among its guarantees. Implementation details appear in the companion web catalogue.</p>
-<h2>Why stacks exist</h2>
+<h2>Why Stacks Exist</h2>
 <p>A stack is often what accumulated engineering capital looks like at capability scale. One failure may motivate a sensor. Another may expose a bypass that warrants a gate. A third may reveal missing provenance that warrants attribution. Mechanisms introduced separately, over time, can settle into a coherent architecture — because the guarantees they provide come to depend on one another.</p>
 <p>Mechanisms are units of accumulated engineering capital; a stack is their composition when a capability requires several guarantees.</p>
-<h2>A note on implementations</h2>
+<h2>A Note on Implementations</h2>
 <p>The book describes mechanisms against a concrete coding-agent substrate because a real system makes them legible. The mechanism is portable; the implementation is not. For example, a harness lifecycle hook, middleware layer, git hook, CI stage, or wrapper process can each provide an enforcement point at which a deterministic step executes independently of agent cooperation.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendices-front-door.html" aria-label="Previous chapter — Appendices">« Previous chapter</a></div><span class="chapnav-here" title="Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</span><div class="chapnav-fwd"><a href="appendix-a-model-coherence-stack.html" aria-label="Next chapter — A.1 Model Coherence">Next chapter »</a><a href="appendix-b-engineering-moves.html" aria-label="Next part — Appendix B — Engineering Moves">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

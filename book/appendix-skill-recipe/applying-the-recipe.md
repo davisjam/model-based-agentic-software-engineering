@@ -13,14 +13,14 @@ to the human. Ungoverned, it drifts: inconsistent terminology, inappropriate doc
 figures. The problem is not generating prose but producing it consistently against an engineering standard.
 The skill installs the craft so every document comes out terse, consistent, and correctly shaped.
 
-### Fundamental model
+### Fundamental Model
 
 **Rhetoric as craft**: good technical prose can be described in terms of named techniques rather than taste
 alone. See it as classical figures applied with variety, and the document form, lexicon, voice, and audit
 all attach to that one frame. Visualization extends the same principle to relationships that prose
 represents poorly.
 
-### Orthogonal models
+### Orthogonal Models
 
 One file per facet.
 
@@ -38,7 +38,7 @@ Each cuts an independent axis of a document. A doc's form is independent of its 
 (rhetoric): change the mode without touching the terms, fix a term without reshaping the doc. The top split
 is prose versus drawing; audit is the meta-facet that grades both.
 
-### Governing principle
+### Governing Principle
 
 The governing principle is that representation should serve rather than distract from the idea. Apply the
 facets in order: choose the document form, draft in the house voice using varied rhetorical devices, use
@@ -78,7 +78,7 @@ and weigh what should persist. The skill carries the *method.* Concrete system t
 intends, contains, and guarantees — arrives from model providers, never from memory. The engineering method
 and concrete system knowledge are separate concerns; the skill keeps them separate.
 
-### Fundamental model
+### Fundamental Model
 
 **The MAGE engineering loop.** Everything in the skill supports one cycle, run whenever the agent engineers:
 
@@ -95,7 +95,7 @@ and concrete system knowledge are separate concerns; the skill keeps them separa
 Modeling makes engineering knowledge explicit; Alignment gives selected obligations consequential authority. Self-Governance is
 not a third activity beside them. It is the discipline of turning both on your own work.
 
-### Orthogonal models
+### Orthogonal Models
 
 The loop's questions are independent, so each becomes its own facet. Each of six directories answers one
 question; the router identifies the question and directs the agent to the corresponding facet.
@@ -125,7 +125,7 @@ The facets cut independent axes. Recognizing a situation does not fix which mode
 move does not decide how firmly it holds; knowing the method does not supply the system's facts. Because the
 axes are orthogonal, the agent loads only the facet its question touches.
 
-### Governing principle
+### Governing Principle
 
 *Apply MAGE to the work itself: model what must be understood, give authority to what must hold, and
 convert recurring judgment into durable engineering structure.* Five operating rules follow:
@@ -191,14 +191,14 @@ agents, keep the mainline deployable, reclaim disk, weather colima and host-tool
 health, RCA an ambiguous signal. Without a model, each failure appears as a new incident. The skill provides
 a lifecycle map that routes symptoms to classes and typed runbooks that make responses repeatable.
 
-### Fundamental model
+### Fundamental Model
 
 **The engineering lifecycles.** A fleet repo runs the same few: manage-agents, manage-context,
 manage-git-repo, manage-deploy, manage-dev-env, plus cron and govern-your-own-loop. Every symptom belongs
 to one lifecycle, so every break routes to a *class* instead of being met cold. Operations *is* modelable —
 the lifecycles are the base model hiding in the sprawl.
 
-### Orthogonal models
+### Orthogonal Models
 
 - **The lifecycle map / symptom→doc catalog** — the routing table.
 - **Typed runbooks** (`examples/runbook-*.md`) — steps typed RUNNABLE, JUDGMENT-AUTOMATABLE, or
@@ -213,7 +213,7 @@ regardless of which lifecycle owns the break.
 Supporting resources: build and handoff templates (`templates/`) — used when operating work crosses into
 implementation.
 
-### Governing principle
+### Governing Principle
 
 *Establish the healthy state first, then classify deviations from it.* Know the healthy baseline before you
 hunt; meet every symptom as a member of a lifecycle; and when diagnosis calls for a modeling, alignment, or

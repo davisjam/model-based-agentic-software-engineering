@@ -14,7 +14,7 @@ The important engineering move is not AI review itself, but policy becoming an a
 
 [^cf-reimann]: Timo Reimann, "How Cloudflare Enforces Engineering Standards Using AI," Cloudflare, Aug. 4, 2026. Already in the manuscript bibliography.
 
-#### Recto — MAGE interpretation
+#### Recto — MAGE Interpretation
 
 <!-- label: field-guide-cloudflare -->
 <!-- figure: assets/field-guide-cloudflare.svg | *Cloudflare projected onto MAGE.* Public evidence strongly supports structured policy, machine-checkable enforcement, and organizational-scale reuse; the governance-conversion loop stays interpretive. -->

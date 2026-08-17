@@ -1,8 +1,8 @@
-## The capability
+## The Capability
 
 **Turn engineering obligations into evidence that the required population has been checked at the level of rigor each property deserves.**
 
-## When this stack earns its keep
+## When This Stack Earns Its Keep
 
 Reach for it when the important question shifts from
 
@@ -16,12 +16,12 @@ to
 That shift arrives whenever a property has to hold across a whole class of things — every mutator, every
 config field, every seam — and a green suite on a handful of examples no longer settles it.
 
-## The composition
+## The Composition
 
 <!-- label: assurance-stack -->
 <!-- figure: assets/assurance-stack.svg | The assurance composition. A SPEC states the obligation; a CENSUS establishes the population it applies to; discharge fans out to the evidence each obligation deserves — TEST for examples, LINT for structure, PROVE for semantics — and all three lanes converge on COVERAGE, which joins each obligation back to its evidence so omissions show. Solid path: the load-bearing composition. -->
 
-## Constituent moves
+## Constituent Moves
 
 | Move | Role |
 |---|---|
@@ -30,7 +30,7 @@ config field, every seam — and a green suite on a handful of examples no longe
 | **DISCHARGE** | Apply tests, lints, proofs, or other evidence appropriate to the property. |
 | **COVER** | Join obligations back to evidence so omissions become visible. |
 
-## Why these travel together
+## Why These Travel Together
 
 A checker establishes a property only for what it checks. A proof says nothing about obligations left out of
 its population. A census with no evidence attached merely enumerates debt.

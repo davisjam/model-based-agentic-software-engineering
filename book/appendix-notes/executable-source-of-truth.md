@@ -24,7 +24,7 @@ generated-from, so it is exercised constantly. Prose architecture docs drift bec
 an executable model is read and checked continuously, so divergence surfaces as a failed build instead of a
 stale paragraph nobody reopened.
 
-## Engineering consequences
+## Engineering Consequences
 
 Because the models are continuously used and validated, they cannot go stale — the build fails the moment a
 model diverges from the code. A limited slice of artifacts, such as config, docs, and IPC contracts, is
@@ -33,14 +33,14 @@ drift gates is tedious upkeep humans resent, but agents do that disciplined, rep
 complaint, so agentic engineering finally makes model-based system engineering practical and lets an agent
 operate a codebase larger than its context.
 
-## Implementation seam
+## Implementation Seam
 
 The catalog holds structured YAML, JSON, and loaders that import nothing; the preference order runs
 stable-lint-reads-meta-file over codegen over hand-rolled copy; each model carries a doc-derived
 characterization pin; and a drift and parity gate per model is the counted sensor that makes "cannot drift"
 true [appendix: drift-parity-gates].
 
-## Known limitations
+## Known Limitations
 
 Upkeep is real: the models must be maintained and the drift gates satisfied on every change, exactly the
 tedium that stops humans and the reason it needs agents. A wrong model is worse than none — an

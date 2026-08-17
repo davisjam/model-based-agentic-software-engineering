@@ -42,7 +42,7 @@ clean cases all read the source of truth at check time, the drifted ones kept a 
   index. An agent at a symbol jumps up to the invariant it realizes; an agent at a model jumps down to the
   code — pulling just the relevant slice into context, not the whole tree.
 
-## Engineering consequences
+## Engineering Consequences
 
 Drift-detection and traversal are two faces of one property: an anchor that resolves means both that the
 model's claim is currently true *and* that the agent's traversal is a current slice of the system. A sharp
@@ -50,7 +50,7 @@ by-product: a model referencing a symbol with no clean anchor — logic buried i
 surfaces that absence as an abstraction-completeness finding routing to a refactoring target, not an error. Against a fan-out over twelve models, it classified
 roughly six-hundred anchors and caught about fourteen genuine drifts no existing lint fired on.
 
-## Implementation seam
+## Implementation Seam
 
 The symbol-anchor reference and its per-extension resolvers, from static analyzers that already ship; the
 edge type with its closed kind vocabulary and kind-pair table; the re-derivation meta-lint, landing
@@ -58,7 +58,7 @@ audit-only then blocking; and the active-implementation registry with its pointe
 is costly — a cross-reference round-trip per symbol over a large tree — so it runs at definition-of-done or
 audit cadence, a fast keyword companion catching the cheap cases inline.
 
-## Known limitations
+## Known Limitations
 
 Resolution catches deletion, not demotion: a symbol that still exists but no longer plays the role the edge
 claims resolves green, so the keyword companion for present-tense role-currency is the complement. A

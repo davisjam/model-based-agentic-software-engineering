@@ -8,7 +8,7 @@ The specific checks depend on the system. A model-based obligation requires curr
 the release relies on that model; a locally enforced property may require no system model. The general rule
 is obligation → evidence → authority.
 
-### The preflight
+### The Preflight
 
 Instantiate the checklist for each release. List the obligations carrying blocking authority, confirm that
 each has current evidence, and confirm that every blocking gate passes.
@@ -28,7 +28,7 @@ each has current evidence, and confirm that every blocking gate passes.
   Otherwise  →  wait, record an explicit override, or revise the governing policy.
 ```
 
-### The override note
+### The Override Note
 
 Treat an override as an engineering event. Record who accepted it, the available evidence, the bypassed
 obligation, and whether the exception reveals a recurring class that warrants later review. Do not carry the

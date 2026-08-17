@@ -21,20 +21,20 @@ The Definition-of-Done itself carries a fixed set of mandatory criteria — amon
 owned pins and lints at HEAD, the docs and index updates, the tag routing-audit, and the filing of any
 design-doc follow-up.
 
-## Engineering consequences
+## Engineering Consequences
 
 The gate trusts nothing recorded; it re-derives the verdict from the substrate as it stands now. That
 makes it the audit counterpart to the rule index: the index's lints keep its form honest, and this re-run
 keeps an Epic's claims honest. Whatever the re-run surfaces routes into filed work rather than a
 footnote, so a rediscovered gap becomes a task, not a note.
 
-## Implementation seam
+## Implementation Seam
 
 The reachability- and patch-id-gated close tool plus the multi-criterion Definition-of-Done template. The
 tool reads each Epic's declared set of owned pin tests and lints to re-run, so the "owned" declaration is
 the contract the gate verifies against.
 
-## Known limitations
+## Known Limitations
 
 The re-run is expensive — reviewer time plus a full pass of owned pins and lints at close, deliberately
 heavyweight because a false close is worse. The override is a hole: it exists for legitimately

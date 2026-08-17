@@ -21,20 +21,20 @@ parity lint compares tree to spec both ways; an API-drift lint compares handler 
 compares each declared lock to a real lock site. Either direction diverging turns the gate red and blocks the
 build.
 
-## Engineering consequences
+## Engineering Consequences
 
 The model can now generate parts of the system — network policy, wiring — because the gate guarantees the
 generated side stays equal to the declared side. A one-way regenerate-from-code check cannot express that; it
 makes code the source of truth and leaves the model free to lie. Bidirectional parity is stricter, so it also
 fails on legitimate transitions. That is the point: a change must update both sides in the same commit.
 
-## Implementation seam
+## Implementation Seam
 
 Each gate needs a machine-readable model, a machine-readable reality to compare it against, and blocking
 placement in the build. Where a lint can read the model file directly, prefer that over code generation, and
 generation over a hand-copied assertion.
 
-## Known limitations
+## Known Limitations
 
 Every model carries the cost of a gate to author and maintain, a real breadth of enforcement surface. A wrong
 parity predicate is its own hazard — it produces phantom drift that erodes trust, or false confidence that

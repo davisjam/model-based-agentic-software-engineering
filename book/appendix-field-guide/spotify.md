@@ -16,7 +16,7 @@ Spotify's surrounding engineering estate also matters. Its System Model and Back
 [^sp-estate]: Spotify System Model and Backstage service catalog, as recorded in the §5.5 reconstruction (service identities, ownership, dependencies, endpoints, lineage).
 [^sp-prfreq]: 76% PR-frequency figure as reported in the Honk account; cited here strictly as an activity measure, not as evidence of durable throughput.
 
-#### Recto — MAGE interpretation
+#### Recto — MAGE Interpretation
 
 <!-- label: field-guide-spotify -->
 <!-- figure: assets/field-guide-spotify.svg | *Spotify projected onto MAGE.* Persistent estate representation feeds targeting, concurrent execution, and fleet-level supervision; the reading is judgment moving upstream, not the PR count. -->

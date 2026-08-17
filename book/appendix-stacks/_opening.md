@@ -5,7 +5,7 @@ A model externalizes an engineering fact, yet nothing in the model guarantees it
 version, or that the implementation still matches it. A sensor detects a failure; detection alone does not
 restore service. So mechanisms compose.
 
-## What a stack is
+## What a Stack Is
 
 An **engineering stack is a recurring composition of mechanisms that together provide a useful engineering
 capability.** The stacks here are reference architectures, not prescriptions: a different substrate may
@@ -17,12 +17,12 @@ Start with the capability rather than the stack:
 
 The seven stacks that follow answer that question for recurring engineering concerns.
 
-## The seven, and how they relate
+## The Seven, and How They Relate
 
 <!-- label: appendix-a-capability-map -->
 <!-- figure: assets/appendix-a-capability-map.svg | Seven reference engineering stacks and their common relationships. Arrows show relationships among capabilities that recurred in one system, not a required architecture or adoption order. Resource Mediation and Context Delivery are shown separately because they provide useful capabilities independently. -->
 
-## Where to look
+## Where to Look
 
 A mechanism addresses a specific engineering obligation or failure. A move names the transferable judgment
 behind related mechanisms. A stack composes mechanisms into a reusable engineering capability. The stacks
@@ -34,7 +34,7 @@ engineering move can produce different mechanisms in different settings. Each st
 capability, composition, constituent moves, and the dependencies among its guarantees. Implementation
 details appear in the companion web catalogue.
 
-## Why stacks exist
+## Why Stacks Exist
 
 A stack is often what accumulated engineering capital looks like at capability scale. One failure may motivate
 a sensor. Another may expose a bypass that warrants a gate. A third may reveal missing provenance that warrants

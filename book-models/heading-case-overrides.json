@@ -3,5 +3,9 @@
     "purpose": "Override registry for the heading-case Title-Case sensor (book-models/lint_heading_case.py). A heading whose CLEANED text (section number + {anchor} stripped) exactly matches an 'overrides[].heading' value is never flagged, even if the algorithm would suggest a different casing. Seed only with GENUINELY intentional exceptions the stop-word/proper-noun rule cannot express.",
     "entry": { "heading": "<exact cleaned heading text>", "reason": "<why this casing is intentional>" }
   },
-  "overrides": []
+  "overrides": [
+    { "heading": "self-communicate", "reason": "Bare skill-package identifier used as a section heading in the skill-recipe appendix. The package is a lowercase code identifier (referenced lowercase in body prose and the `terms:` metadata tags); preserve the authored identifier casing rather than title-case a code name." },
+    { "heading": "self-governance", "reason": "Bare skill-package identifier used as a section heading; lowercase code identifier per body prose and `terms:` tags — preserve authored casing." },
+    { "heading": "self-operate", "reason": "Bare skill-package identifier used as a section heading; lowercase code identifier per body prose and `terms:` tags — preserve authored casing." }
+  ]
 }

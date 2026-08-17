@@ -3648,16 +3648,16 @@ _MODEL_PAGES: list[tuple[str, str]] = [
 _ENGINEERING_MOVES_DIR = HERE / "appendix-engineering-moves"
 _APPENDIX_ENGINEERING_MOVES_OPENING_SLUG = "appendix-b-engineering-moves"
 _ENGINEERING_MOVES_PAGES: list[tuple[str, str]] = [
-    ("make-fact-authoritative",       "Make one source authoritative"),
-    ("derive-dont-copy",              "Derive; don't copy"),
-    ("check-correspondence",          "Keep representation and reality in correspondence"),
-    ("derive-the-obligation-set",     "Derive what must be assured"),
-    ("put-authority-where-legible",   "Put authority where the property becomes legible"),
-    ("close-the-action-surface",      "Close the action surface"),
-    ("deliver-knowledge-at-decision", "Deliver knowledge where the decision occurs"),
-    ("carry-cause-with-consequence",  "Make cause travel with consequence"),
-    ("externalize-judgment",          "Externalize recurring operational judgment"),
-    ("make-dependencies-queryable",   "Make hidden dependencies queryable"),
+    ("make-fact-authoritative",       "Make One Source Authoritative"),
+    ("derive-dont-copy",              "Derive; Don't Copy"),
+    ("check-correspondence",          "Keep Representation and Reality in Correspondence"),
+    ("derive-the-obligation-set",     "Derive What Must Be Assured"),
+    ("put-authority-where-legible",   "Put Authority Where the Property Becomes Legible"),
+    ("close-the-action-surface",      "Close the Action Surface"),
+    ("deliver-knowledge-at-decision", "Deliver Knowledge Where the Decision Occurs"),
+    ("carry-cause-with-consequence",  "Make Cause Travel with Consequence"),
+    ("externalize-judgment",          "Externalize Recurring Operational Judgment"),
+    ("make-dependencies-queryable",   "Make Hidden Dependencies Queryable"),
 ]
 
 

@@ -23,7 +23,7 @@ tests. Two uses ride on it: a backlog, where the uncovered critical nodes are th
 sweep walks them; and, once promoted, a gate, where a critical invariant node with no covering test fails the
 build. It sits on the executable-source-of-truth substrate [appendix: executable-source-of-truth].
 
-## Engineering consequences
+## Engineering Consequences
 
 The question becomes per-node — which invariants, states, and seams have a covering test, and which have
 none — instead of one aggregate a threshold satisfies while a specific invariant stays untested. The
@@ -31,14 +31,14 @@ uncovered node is actionable: a concrete next test. Backlog-versus-gate is a jud
 starves throughput, gating none leaves criticals untested, and the criticality scope is the tuning surface
 between them.
 
-## Implementation seam
+## Implementation Seam
 
 The pattern rests on the coverage-to-node mapping, the node-to-code join that attributes coverage to the right
 node, a criticality policy naming which nodes must be covered, and the two consumers — the backlog sweep and
 the promotable gate. It requires a structured model with addressable nodes and coverage data attributable to
 the code realizing each node.
 
-## Known limitations
+## Known Limitations
 
 The join is only as good as the node-to-code mapping: a node mapped to the wrong functions gets
 mis-attributed coverage. Coverage is not correctness — a covered node is exercised, not proven, so pair it

@@ -650,16 +650,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make one source authoritative</a></li>
-<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
-<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
-<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put authority where the property becomes legible</a></li>
-<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the action surface</a></li>
-<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver knowledge where the decision occurs</a></li>
-<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make cause travel with consequence</a></li>
-<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize recurring operational judgment</a></li>
-<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make hidden dependencies queryable</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Authoritative</a></li>
+<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
+<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
+<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
+<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
+<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
+<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize Recurring Operational Judgment</a></li>
+<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make Hidden Dependencies Queryable</a></li>
 <li class="part">Appendix C — Model Reference</li>
 <li><a class="" href="appendix-models.html">Appendix C — Model Reference</a></li>
 <li><a class="current" href="appendix-c-structure-and-boundaries.html">C.1 Structure and Boundaries</a></li>
@@ -694,7 +694,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · C.1 Structure and Boundaries — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">Appendix C — Model Reference</a></div><h1>C.1 Structure and Boundaries</h1></header><p>Structural models represent what exists and how elements relate. In review, they expose which architectural boundaries a change affects. Ownership and decision often share the same representation but answer distinct questions: who owns a surface, and which relationships are permitted. This section uses the component-and-zone model and service-flow model as the principal examples, then treats domain registries and bills of materials briefly.</p>
-<h2>Component and zone</h2>
+<h2>Component and Zone</h2>
 <p><strong>Engineering question.</strong> Where am I, who owns this surface, and what may cross its boundary?</p>
 <p>The model maps implementation surfaces to components and declares the seams through which those components may interact.</p>
 <p><strong>Representation.</strong> A minimal form:</p>
@@ -794,7 +794,7 @@ Seam
 <table id="tbl-C-1-1" class="book-table"><caption data-short="Component-zone properties"><span class="tbl-label">Table C.1-1.</span> Representative properties of the component-and-zone model, and the fact source each draws on.</caption><thead><tr><th>Property</th><th>Fact source</th></tr></thead><tbody><tr><td>Every in-scope source directory belongs to exactly one component</td><td>Authored ownership joined to the observed tree</td></tr><tr><td>Every component's declared directory exists</td><td>Repository</td></tr><tr><td>Boundary crossings use sanctioned seams</td><td>Authored model</td></tr><tr><td>Powerful mutation surfaces are reachable only through declared doors</td><td>Authored model plus observed dependency</td></tr></tbody></table>
 <p>Directory existence can be derived from the repository; ownership and permitted boundaries are authored architectural decisions.</p>
 <p><strong>Authority and correspondence.</strong> The repository reverse-maps into the component catalog. A directory with no owner, multiple owners, or an observed dependency crossing an undeclared boundary becomes a correspondence finding. Where reconciliation depends on source locations, anchor references to resolvable symbols rather than line numbers so the correspondence can be re-derived after edits. The finding may remain advisory or feed a lint, build failure, or admission gate.</p>
-<h2>Service flow</h2>
+<h2>Service Flow</h2>
 <p><strong>Engineering question.</strong> Which service may call or reach which service or resource, and under what policy?</p>
 <p><strong>Representation.</strong></p>
 <pre><code>Service
@@ -812,6 +812,6 @@ Flow
 <p><strong>Property.</strong> Only declared service-to-service and service-to-resource relationships are permitted, each with its declared authentication posture. The same graph carries both structural connectivity and decision policy.</p>
 <p><strong>Authority and correspondence.</strong> The declared graph supplies the <em>ought</em>. Static call sites, generated configuration, deployment wiring, and runtime observation each supply part of the <em>is</em>. A correspondence check asks whether observed edges belong to the declared relation, and, where it matters, whether declared edges still exist.</p>
 <p>The same representation pattern applies to firewall policy, service-mesh authorization, network policy, and cloud access control: the representation declares permitted relations while the enforcement mechanism varies by substrate.</p>
-<h2>Two simpler structural forms</h2>
+<h2>Two Simpler Structural Forms</h2>
 <p>Two simpler forms use the same pattern: reconcile observed facts or edges against a declared set.</p>
 <ul><li><strong>Domain registry.</strong> A registry stores a slowly changing fact under one stable key. Consumers query or join through that key rather than maintaining independent copies.</li><li><strong>Bill of materials.</strong> A bill of materials declares the third-party dependencies of a build. Structural completeness is checked by reconciling observed dependency edges against that declared set.</li></ul><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">« Beginning of part</a><a href="appendix-models.html" aria-label="Previous chapter — Appendix C — Model Reference">« Previous chapter</a></div><span class="chapnav-here" title="C.1 Structure and Boundaries">C.1 Structure and Boundaries</span><div class="chapnav-fwd"><a href="appendix-c-behavior-and-ownership.html" aria-label="Next chapter — C.2 Behavior and Ownership">Next chapter »</a><a href="appendix-operators-reference.html" aria-label="Next part — Appendix D — Operator&#x27;s Reference">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

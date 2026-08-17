@@ -28,20 +28,20 @@ as "done." A suite that walks each machine alone reports green while the composi
 - **A drift gate holds it to reality,** reconciling the declared states against the live lifecycle vocabulary
   on every build; it lands audit-only, then promotes to blocking.
 
-## Engineering consequences
+## Engineering Consequences
 
 The lifecycle gains one authoritative source of truth: a new state or invariant is a model edit or the drift
 gate fails, and that friction is the freshness guarantee. The effort concentrates on naming the cross-machine
 predicates, the part a single-machine view never forces you to state.
 
-## Implementation seam
+## Implementation Seam
 
 The model sits on the executable-source-of-truth substrate [appendix: executable-source-of-truth], so the
 machines are data the build reads; each invariant carries a required, consumed temporal-form field; and at
 least one exhaustive checker must exist to route to. A separate verifier reads the invariants and runs the
 checker each form demands — this entry specifies, that one proves, neither useful alone.
 
-## Known limitations
+## Known Limitations
 
 A form no checker reads only looks verified, so the field must stay required and consumed. The check proves
 invariants across the modeled interleavings only; a bug the model abstracts away is out of scope, so the

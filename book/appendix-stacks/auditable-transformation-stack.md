@@ -1,8 +1,8 @@
-## The capability
+## The Capability
 
 **Make consequential transformations reconstructable and detect silent loss.** Preserve both who changed what and whether the transformed artifact retained its required semantics.
 
-## When this stack earns its keep
+## When This Stack Earns Its Keep
 
 Reach for it where:
 
@@ -13,12 +13,12 @@ Reach for it where:
 - **Incident reconstruction requires both facts at once**: who changed what, and whether the result remained
   faithful.
 
-## The composition
+## The Composition
 
 <!-- label: auditable-transformation-stack -->
 <!-- figure: assets/auditable-transformation-stack.svg | The auditable-transformation composition. A sanctioned mutation flows through MARK (attach actor and action) to EMIT (persist a structured record); COVER detects any mutation that escaped attribution; READ reconstructs the transformation history from the records; a FIDELITY GATE checks that the transformed artifact kept its required semantics. Solid path: the load-bearing composition. -->
 
-## Constituent moves
+## Constituent Moves
 
 | Move | Role |
 |---|---|
@@ -28,7 +28,7 @@ Reach for it where:
 | **READ** | Reconstruct the transformation history. |
 | **FIDELITY** | Check that the transformed artifact retained its required semantics. |
 
-## Why these travel together
+## Why These Travel Together
 
 Attribution without completeness produces a persuasive but partial history — convincing exactly where it is
 silent. Completeness without readable provenance proves only that records exist. And provenance of any kind

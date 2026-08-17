@@ -23,20 +23,20 @@ to a sub-doc or a code comment. Two blocking lints hold the form: a bloat/cap li
 the scannable budget, and a rule-conformance lint fails when a rule stops cross-referencing its canonical
 doc.
 
-## Engineering consequences
+## Engineering Consequences
 
 A rule written here is enforced on every subsequent agent boot without re-inspection — binding by
 construction, not advisory reference. The document is governed the way an artifact is: it carries a
 budget, an admission predicate, and lints that fail the pipeline. The same load that makes it binding is
 its price — it taxes every dispatch across the whole fleet, so benefit and cost are the same thing.
 
-## Implementation seam
+## Implementation Seam
 
 The governance document itself, its boot-context loader, the bloat/cap lint, the rule-conformance lint,
 and the "what belongs in this file" meta-section that carries the admission rule and its router. The
 loader makes the index binding; the two lints keep it scannable and undrifted.
 
-## Known limitations
+## Known Limitations
 
 A hard budget means perpetual triage: admitting a new rule eventually means evicting one to a sub-doc, so
 the index is never done and the eviction call is judgment-heavy. Presence is not obedience — a rule in

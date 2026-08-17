@@ -650,16 +650,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make one source authoritative</a></li>
-<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
-<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
-<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put authority where the property becomes legible</a></li>
-<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the action surface</a></li>
-<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver knowledge where the decision occurs</a></li>
-<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make cause travel with consequence</a></li>
-<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize recurring operational judgment</a></li>
-<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make hidden dependencies queryable</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Authoritative</a></li>
+<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
+<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
+<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
+<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
+<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
+<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize Recurring Operational Judgment</a></li>
+<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make Hidden Dependencies Queryable</a></li>
 <li class="part">Appendix C — Model Reference</li>
 <li><a class="" href="appendix-models.html">Appendix C — Model Reference</a></li>
 <li><a class="" href="appendix-c-structure-and-boundaries.html">C.1 Structure and Boundaries</a></li>
@@ -695,10 +695,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 16 · Growing the Governed Environment — MAGE"><header class="chap"><div class="kicker"><a href="part-3-intro.html" aria-label="Beginning of Part 3 — Alignment">Part 3 — Alignment</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 16</a></div><h1><span class="chap-num">3.4</span> Growing the Governed Environment</h1></header><p id="idx-def-governed-environment">No engineered environment can be expected to begin with every obligation it will eventually need to govern already represented and mechanized. Some obligations are known in advance: an API must require authentication, a state transition is forbidden, a format mutation must cross a particular seam. Others become visible only when the work exposes a failure nobody represented or controlled. A governed environment acquires durable structure in two ways: <strong>ex ante from obligations already known, and ex post from failures and surprises.</strong></p>
 <p id="idx-def-governance-conversion">The ex post route is <strong>governance conversion</strong>. A failure is observed; engineering judgment identifies the recurring class behind it; the missing representation, obligation, evidence, evaluation, or consequence is made durable; subsequent work inherits the result. The repair fixes this instance. Conversion changes the environment.</p>
-<h2><span class="sec-num">3.4.1</span> Ex ante: encode what you already know</h2>
+<h2><span class="sec-num">3.4.1</span> Ex Ante: Encode What You Already Know</h2>
 <span id="idx-def-ex-ante-governance"></span><span id="idx-def-specification-driven-development"></span><p>Start with obligations you can state before the work begins and whose consequence, recurrence, or reuse justifies making them durable. A required output shape may become a schema; a forbidden dependency may become an architectural relation plus a validator; a service boundary may become a permission or narrow API; a legal lifecycle may become a closed transition table. Encode recurring obligations when the environment can carry them more cheaply and reliably than repeated judgment.</p>
 <p>Part IV turns this into a method for starting and migrating systems; here the distinction is simply that these obligations are known before failure forces the issue.</p>
-<h2><span class="sec-num">3.4.2</span> Ex post: convert what the work teaches</h2>
+<h2><span class="sec-num">3.4.2</span> Ex Post: Convert What the Work Teaches</h2>
 <p id="idx-def-ex-post-governance">The harder half begins when the system surprises you. A recurring failure may reveal that the environment lacks a representation, that an obligation was never stated, that the relevant evidence is not observable, that a validator is too weak, or that a judgment exists but carries no authority. <strong>Do not assume every failure calls for another gate. Diagnose what was missing.</strong></p>
 <p>The conversion can therefore land in several places:</p>
 <ol><li><strong>Missing representation / semantics → improve the model.</strong> Make the fact or relation durable at the abstraction where the question becomes answerable.</li><li><strong>Missing obligation → state the invariant or policy.</strong> Give future work something independent to be wrong against.</li><li><strong>Missing evidence → add a sensor or trace.</strong> Make the relevant state observable.</li><li><strong>Missing evaluation → strengthen the validator.</strong> Turn evidence into a repeatable judgment.</li><li><strong>Missing consequence → add or strengthen a constraint or gate.</strong></li></ol>

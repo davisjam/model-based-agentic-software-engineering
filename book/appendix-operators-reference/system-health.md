@@ -5,7 +5,7 @@ holding, validators and gates are exercising their intended surfaces, and human 
 or rollback has risen unexpectedly. Use churn, coverage, drift, and other local measures only
 to diagnose changes in those outcomes.
 
-### Three readings
+### Three Readings
 
 - **Durable throughput.** Accepted work remains accepted without reopening, rollback, or
   repeated repair.
@@ -28,7 +28,7 @@ explain movement in the primary readings.
   churn · correspondence · validator reach · resource pressure
 ```
 
-### Read churn as motion, not health
+### Read Churn as Motion, Not Health
 
 Churn measures code motion, not system health. A migration or architectural rewrite can
 produce high churn in a healthy environment, while a quiet repository can still contain stale

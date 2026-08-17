@@ -1194,15 +1194,20 @@ def cmd_validate(_args) -> int:
     # HEADING CASE — the headings-are-Title-Case sensor over the book's TWO heading sources: markdown `#`
     # headings in book/part*/ + book/appendix-*/, AND the appendix ENTRY titles in build_book.py's `_*_PAGES`
     # / `_STACKS` page-list tuples. For each heading off the ratified Title-Case convention it emits the
-    # suggested form (`current → suggested`); title_case() is the single source of truth a later normalization
-    # pass reuses. AUDIT-ONLY: the corpus predates the convention, so it PRINTS the worklist (a committer sees
-    # every heading to fix, per source) but does NOT increment n_issues; a normalization wave drains it and a
-    # follow-up flips it blocking (audit->lint, fix-then-flip). See book-models/lint_heading_case.py.
-    import lint_heading_case as lhc  # noqa: E402 — audit-only Title-Case heading sensor
+    # suggested form (`current → suggested`); title_case() is the single source of truth the normalization
+    # pass reused. BLOCKING: a normalization wave drained every off-convention heading to 0 (applying
+    # title_case() across the two sources, with genuine code-identifier exceptions parked in
+    # heading-case-overrides.json), so an off-Title-Case heading now increments n_issues and reddens validate.
+    # This is the audit->drain->promote move (rule #55): it landed audit-only, a normalization wave drained it,
+    # and this follow-up flips it blocking. See book-models/lint_heading_case.py.
+    import lint_heading_case as lhc  # noqa: E402 — blocking Title-Case heading sensor
     heading_off = lhc.findings()
     if heading_off:
-        print(f"  [heading-case] AUDIT-ONLY: {lhc.summary_line(heading_off)} — "
-              f"run `python3 book-models/lint_heading_case.py` (does not gate)")
+        print(f"  [heading-case] {lhc.summary_line(heading_off)} — "
+              f"run `python3 book-models/lint_heading_case.py`:")
+        for f in heading_off:
+            print(f'          {f.loc}: "{f.current}" → "{f.suggested}"')
+        n_issues += len(heading_off)
     # BRICK FITNESS — the Appendix-C §13.4 sensor: a brick whose Structure diagram scores SIMPLIFY/GLYPH under
     # the thumbnail-fitness rubric but carries NO verdict in book-models/brick-fitness.json (the model the grid
     # renderer reads to pick diagram-vs-glyph). AUDIT-ONLY-first per the repo's blocking-lint discipline: all 83

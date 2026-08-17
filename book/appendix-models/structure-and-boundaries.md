@@ -4,7 +4,7 @@ but answer distinct questions: who owns a surface, and which relationships are p
 section uses the component-and-zone model and service-flow model as the principal examples, then
 treats domain registries and bills of materials briefly.
 
-## Component and zone
+## Component and Zone
 
 **Engineering question.** Where am I, who owns this surface, and what may cross its boundary?
 
@@ -54,7 +54,7 @@ becomes a correspondence finding. Where reconciliation depends on source locatio
 to resolvable symbols rather than line numbers so the correspondence can be re-derived after edits.
 The finding may remain advisory or feed a lint, build failure, or admission gate.
 
-## Service flow
+## Service Flow
 
 **Engineering question.** Which service may call or reach which service or resource, and under what
 policy?
@@ -92,7 +92,7 @@ The same representation pattern applies to firewall policy, service-mesh authori
 policy, and cloud access control: the representation declares permitted relations while the
 enforcement mechanism varies by substrate.
 
-## Two simpler structural forms
+## Two Simpler Structural Forms
 
 Two simpler forms use the same pattern: reconcile observed facts or edges against a declared set.
 

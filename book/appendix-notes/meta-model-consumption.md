@@ -24,20 +24,20 @@ by direct import for other tools — rather than embedding values. A preference 
 that embeds a snapshot of a queryable value, and a further rule has lints declare their component tags
 against the component model rather than hardcoding scope.
 
-## Engineering consequences
+## Engineering Consequences
 
 There is one authoritative answer, and consumers derive it, so a model change updates every consumer at
 once. A snapshot instead mints a private answer at each site, and each is a drift bug the day the model
 moves. The cost is slight ceremony — a query call instead of a literal — plus a run/lint-time coupling: the
 consumer now depends on the model being loadable when it runs.
 
-## Implementation seam
+## Implementation Seam
 
 The query surface consumers read through, and the snapshot-ban lint that fails a test embedding a queryable
 value. The meta-file-preference rule and the lint-scope-declares-against-the-model rule sit alongside as the
 same read-don't-copy discipline.
 
-## Known limitations
+## Known Limitations
 
 The ban-lint's accuracy bounds the whole discipline: it must recognise a queryable value to flag its
 snapshot, so it has to be built before it can be relied on as a live gate. Querying only helps where a read path exists: a value with no queryable model behind it has nothing to

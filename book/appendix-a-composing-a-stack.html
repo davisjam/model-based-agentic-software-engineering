@@ -650,16 +650,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="current" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make one source authoritative</a></li>
-<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
-<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
-<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put authority where the property becomes legible</a></li>
-<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the action surface</a></li>
-<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver knowledge where the decision occurs</a></li>
-<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make cause travel with consequence</a></li>
-<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize recurring operational judgment</a></li>
-<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make hidden dependencies queryable</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Authoritative</a></li>
+<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
+<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
+<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
+<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
+<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
+<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize Recurring Operational Judgment</a></li>
+<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make Hidden Dependencies Queryable</a></li>
 <li class="part">Appendix C — Model Reference</li>
 <li><a class="" href="appendix-models.html">Appendix C — Model Reference</a></li>
 <li><a class="" href="appendix-c-structure-and-boundaries.html">C.1 Structure and Boundaries</a></li>
@@ -694,33 +694,33 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · A.8 Composing a Stack — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.8 Composing a Stack</h1></header><p>The seven preceding stacks are examples. The reusable skill is composition. Start from the capability, not the mechanisms.</p>
-<h2>1. Name the capability</h2>
+<h2>1. Name the Capability</h2>
 <p>Prefer</p>
 <blockquote class="aside-sidenote"><p>Every consequential mutation is reconstructable.</p></blockquote>
 <p>over</p>
 <blockquote class="aside-sidenote"><p>We need provenance logging.</p></blockquote>
 <p>The first states the engineering result. The second has already chosen a mechanism, before you know whether it is the right one or the only one.</p>
-<h2>2. Enumerate the failure classes</h2>
+<h2>2. Enumerate the Failure Classes</h2>
 <p>Ask what would make the capability claim false. For reconstructable mutation:</p>
 <ul><li>the actor is unknown;</li><li>a record is missing;</li><li>a bypass path exists;</li><li>history cannot be joined;</li><li>the transformation silently loses semantics.</li></ul>
 <p>Those failures determine what the composition must cover.</p>
-<h2>3. Assign one guarantee to each failure</h2>
+<h2>3. Assign One Guarantee to Each Failure</h2>
 <p>Map each way the claim can break to the guarantee that closes it.</p>
 <table id="tbl-A-8-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table A.8-1.</span></caption><thead><tr><th>Failure</th><th>Guarantee</th></tr></thead><tbody><tr><td>actor unknown</td><td>attribution</td></tr><tr><td>record missing</td><td>emission</td></tr><tr><td>bypass exists</td><td>coverage</td></tr><tr><td>history fragmented</td><td>stable identity / join</td></tr><tr><td>semantic loss</td><td>fidelity check</td></tr></tbody></table>
 <p>Do not add a mechanism because the case you are copying from used it. Add it because a failure class needs its guarantee.</p>
-<h2>4. Find the dependency among guarantees</h2>
+<h2>4. Find the Dependency Among Guarantees</h2>
 <p>Some guarantees only become meaningful once another exists.</p>
 <p>MARK  →  EMIT  →  COVER  →  READ</p>
 <p>A completeness check is meaningful only after the population to be accounted for has been defined. Dependencies among guarantees are what turn a list of mechanisms into a stack.</p>
-<h2>5. Separate the load-bearing path from the enhancements</h2>
+<h2>5. Separate the Load-Bearing Path from the Enhancements</h2>
 <p>For each mechanism, ask:</p>
 <blockquote class="aside-sidenote"><p>If I remove this, is the capability claim still valid?</p></blockquote>
 <p>If yes, the mechanism may still be valuable, but it is not load-bearing. The diagrams represent this distinction with solid paths and dashed attachments.</p>
-<h2>6. Match the substrate</h2>
+<h2>6. Match the Substrate</h2>
 <p>Do not reproduce a reference stack mechanically. A database, an embedded controller, a compiler, a SaaS application, and a research codebase each expose different observable facts and different deterministic seams. Preserve the guarantees; let the substrate decide the mechanisms.</p>
 <h2>7. Stop</h2>
 <p>The objective is not maximum governance. It is the smallest composition that makes the capability claim valid for the failure classes that matter.</p>
-<h2>The method in one picture</h2>
+<h2>The Method in One Picture</h2>
 <figure id="fig-A-8-1" class="book-figure" data-label="appendix-a-composing-a-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 820"
      role="img" aria-labelledby="csTitle csDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

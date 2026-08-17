@@ -650,16 +650,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-a-composing-a-stack.html">A.8 Composing a Stack</a></li>
 <li class="part">Appendix B — Engineering Moves</li>
 <li><a class="" href="appendix-b-engineering-moves.html">Appendix B — Engineering Moves</a></li>
-<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make one source authoritative</a></li>
-<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; don't copy</a></li>
-<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep representation and reality in correspondence</a></li>
-<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive what must be assured</a></li>
-<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put authority where the property becomes legible</a></li>
-<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the action surface</a></li>
-<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver knowledge where the decision occurs</a></li>
-<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make cause travel with consequence</a></li>
-<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize recurring operational judgment</a></li>
-<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make hidden dependencies queryable</a></li>
+<li><a class="" href="appendix-b-make-fact-authoritative.html">B.1 Make One Source Authoritative</a></li>
+<li><a class="" href="appendix-b-derive-dont-copy.html">B.2 Derive; Don't Copy</a></li>
+<li><a class="" href="appendix-b-check-correspondence.html">B.3 Keep Representation and Reality in Correspondence</a></li>
+<li><a class="" href="appendix-b-derive-the-obligation-set.html">B.4 Derive What Must Be Assured</a></li>
+<li><a class="" href="appendix-b-put-authority-where-legible.html">B.5 Put Authority Where the Property Becomes Legible</a></li>
+<li><a class="" href="appendix-b-close-the-action-surface.html">B.6 Close the Action Surface</a></li>
+<li><a class="" href="appendix-b-deliver-knowledge-at-decision.html">B.7 Deliver Knowledge Where the Decision Occurs</a></li>
+<li><a class="" href="appendix-b-carry-cause-with-consequence.html">B.8 Make Cause Travel with Consequence</a></li>
+<li><a class="" href="appendix-b-externalize-judgment.html">B.9 Externalize Recurring Operational Judgment</a></li>
+<li><a class="" href="appendix-b-make-dependencies-queryable.html">B.10 Make Hidden Dependencies Queryable</a></li>
 <li class="part">Appendix C — Model Reference</li>
 <li><a class="" href="appendix-models.html">Appendix C — Model Reference</a></li>
 <li><a class="" href="appendix-c-structure-and-boundaries.html">C.1 Structure and Boundaries</a></li>
@@ -697,13 +697,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2>self-communicate</h2>
 <h3>Problem</h3>
 <p>The fleet and its operator produce prose and diagrams constantly — control descriptions, design docs, mechanism entries, runbooks, handoffs, and the orchestrator's own status reports and tradeoff explanations to the human. Ungoverned, it drifts: inconsistent terminology, inappropriate document structure, LLM tells, and poor figures. The problem is not generating prose but producing it consistently against an engineering standard. The skill installs the craft so every document comes out terse, consistent, and correctly shaped.</p>
-<h3>Fundamental model</h3>
+<h3>Fundamental Model</h3>
 <p><strong>Rhetoric as craft</strong>: good technical prose can be described in terms of named techniques rather than taste alone. See it as classical figures applied with variety, and the document form, lexicon, voice, and audit all attach to that one frame. Visualization extends the same principle to relationships that prose represents poorly.</p>
-<h3>Orthogonal models</h3>
+<h3>Orthogonal Models</h3>
 <p>One file per facet.</p>
 <ul><li><strong>Rhetoric</strong> (<code>writing/rhetoric.md</code>) — the device toolkit; sentence shape.</li><li><strong>Document form</strong> (<code>writing/engineering.md</code>) — the document's Diátaxis mode: tutorial, how-to, reference, or explanation.</li><li><strong>Lexicon</strong> (<code>writing/lexicon.md</code>) — one concept, one word.</li><li><strong>Voice</strong> (<code>writing/voice.md</code>) — the register and sound.</li><li><strong>Audit</strong> (<code>writing/audit.md</code>) — the grading procedure.</li><li><strong>Visualization</strong> (<code>drawing/diagrams.md</code>, Mermaid-first, with <code>charts.md</code> and <code>tables.md</code> for data figures) — the shapes prose carries poorly.</li></ul>
 <p>Each cuts an independent axis of a document. A doc's form is independent of its vocabulary (lexicon), which is independent of its sound (voice), which is independent of its sentence devices (rhetoric): change the mode without touching the terms, fix a term without reshaping the doc. The top split is prose versus drawing; audit is the meta-facet that grades both.</p>
-<h3>Governing principle</h3>
+<h3>Governing Principle</h3>
 <p>The governing principle is that representation should serve rather than distract from the idea. Apply the facets in order: choose the document form, draft in the house voice using varied rhetorical devices, use canonical terms from the lexicon, draw relationships that prose carries poorly, and audit before shipping. A second stance runs underneath: name the concept once, then use the name.</p>
 <h3>Layout</h3>
 <pre><code>self-communicate/
@@ -717,15 +717,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h3>Problem</h3>
 <p>An agent can have excellent tools and still engineer badly. It runs the tests, calls the formatter, queries the repository — and still models the wrong thing, gives authority to a fact that should stay advisory, or freezes a one-off mistake into a permanent rule. The missing capability is not another tool. It is the engineering method itself: knowing <em>what to model, what must hold, and which judgment is worth making durable.</em></p>
 <p>Self-Governance packages that method as a skill. It teaches an agent to apply MAGE to its own engineering work — recognize the situation, choose a modeling or alignment move, act through the governed environment, and weigh what should persist. The skill carries the <em>method.</em> Concrete system truth — what this codebase intends, contains, and guarantees — arrives from model providers, never from memory. The engineering method and concrete system knowledge are separate concerns; the skill keeps them separate.</p>
-<h3>Fundamental model</h3>
+<h3>Fundamental Model</h3>
 <p><strong>The MAGE engineering loop.</strong> Everything in the skill supports one cycle, run whenever the agent engineers:</p>
 <ul><li><strong>Recognize the situation.</strong> What am I actually facing?</li><li><strong>Model or align.</strong> Model what must be understood; give authority to what must hold. These are MAGE's two engineering activities.</li><li><strong>Choose a move, then a capability.</strong> Pick the engineering move the situation calls for, then the skill that performs it.</li><li><strong>Act through the governed environment.</strong> A move becomes consequential only there, never by the skill asserting its own output is safe.</li><li><strong>Weigh the evidence.</strong> On success, continue. On failure, diagnose, and ask whether the lesson should become <strong>durable engineering structure.</strong></li></ul>
 <p>Modeling makes engineering knowledge explicit; Alignment gives selected obligations consequential authority. Self-Governance is not a third activity beside them. It is the discipline of turning both on your own work.</p>
-<h3>Orthogonal models</h3>
+<h3>Orthogonal Models</h3>
 <p>The loop's questions are independent, so each becomes its own facet. Each of six directories answers one question; the router identifies the question and directs the agent to the corresponding facet.</p>
 <ul><li><strong><code>modeling/</code> — the model vocabulary and the verbs that build it.</strong> <em>What kind of representation could help, and how does representation improve?</em> Families of model (structure, behavior, ownership, decision, measurement, provenance) and the ten moves that make a fact more explicit, structured, and executable.</li><li><strong><code>practice/</code> — situation recognition and proportionality.</strong> <em>What situation am I in, and which move is warranted?</em> One facet classifies — a field guide of engineering situations, plus a design-time smell scan; its sibling weighs the tradeoff and right-sizes the response.</li><li><strong><code>system/</code> — model access.</strong> <em>What is true of</em> this <em>system?</em> The skill carries the method, not any codebase's concrete models. This facet reaches them through a uniform provider contract and weighs the epistemic status of every answer.</li><li><strong><code>skills/</code> — capability selection.</strong> <em>Which available capability performs the chosen move?</em> A semantic index of skills to compose — its two partners among them — never a copy of their manuals.</li><li><strong><code>alignment/</code> — how intent acquires authority.</strong> <em>What should stay true without a person re-checking it?</em> Constraint, sensor, validator, gate; prevent-versus-detect; soft-versus-hard; the three governance targets; and the mechanism census.</li><li><strong><code>learning/</code> — governance conversion.</strong> <em>What should persist from this episode?</em> The recurrence gate, the conversion menu, and the two standing procedures, AUDIT and INTERPRET-FAILURE.</li></ul>
 <span id="idx-def-governance-target-agent"></span><span id="idx-def-governance-target-product"></span><span id="idx-def-governance-target-models-bridge"></span><p>The facets cut independent axes. Recognizing a situation does not fix which model answers it; choosing a move does not decide how firmly it holds; knowing the method does not supply the system's facts. Because the axes are orthogonal, the agent loads only the facet its question touches.</p>
-<h3>Governing principle</h3>
+<h3>Governing Principle</h3>
 <p><em>Apply MAGE to the work itself: model what must be understood, give authority to what must hold, and convert recurring judgment into durable engineering structure.</em> Five operating rules follow:</p>
 <ul><li><strong>Model before guessing.</strong> Reach concrete system truth through a provider; do not reconstruct it from memory or raise confidence by rhetoric.</li><li><strong>Ask what should become machinery.</strong> At every failure, ask whether the lesson is durable — and default to <em>nothing.</em> Most failures convert to nothing, and the recurrence gate exists to license that answer.</li><li><strong>Method before tool.</strong> Choose the move the situation calls for, then the capability that performs it, not a capability because it is at hand.</li><li><strong>Right-size the fix.</strong> Prefer the smallest sound change that closes the class; propose a larger intervention rather than implementing it reflexively. Prevention by construction beats detection where the action space can honestly close.</li><li><strong>Escalate a genuine judgment, not an inconvenience.</strong> A real authority-or-consequence boundary earns a prepared decision handed upward. A merely hard problem does not.</li></ul>
 <p><strong>Self-governance is not self-certification.</strong> The agent may select, model, propose, and check, but its belief that the work is correct is not evidence that it is. A skill is soft — it aims a probabilistic agent and cannot block. So hard mechanisms are <em>proposed and scaffolded,</em> then handed to a human or the harness; never claimed as <em>enforced</em> when only recommended. The deciding evidence comes from a mechanism that sits outside the reasoning which produced the change.</p>
@@ -749,12 +749,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2>self-operate</h2>
 <h3>Problem</h3>
 <p>Operating an agent-fleet repository involves recurring but heterogeneous tasks — dispatch and recover agents, keep the mainline deployable, reclaim disk, weather colima and host-tool trouble, watch cron health, RCA an ambiguous signal. Without a model, each failure appears as a new incident. The skill provides a lifecycle map that routes symptoms to classes and typed runbooks that make responses repeatable.</p>
-<h3>Fundamental model</h3>
+<h3>Fundamental Model</h3>
 <p><strong>The engineering lifecycles.</strong> A fleet repo runs the same few: manage-agents, manage-context, manage-git-repo, manage-deploy, manage-dev-env, plus cron and govern-your-own-loop. Every symptom belongs to one lifecycle, so every break routes to a <em>class</em> instead of being met cold. Operations <em>is</em> modelable — the lifecycles are the base model hiding in the sprawl.</p>
-<h3>Orthogonal models</h3>
+<h3>Orthogonal Models</h3>
 <ul><li><strong>The lifecycle map / symptom→doc catalog</strong> — the routing table.</li><li><strong>Typed runbooks</strong> (<code>examples/runbook-*.md</code>) — steps typed RUNNABLE, JUDGMENT-AUTOMATABLE, or JUDGMENT-IRREDUCIBLE; the procedures a symptom routes to.</li><li><strong>The runnable hook library</strong> (<code>hooks/</code>) — reflection, typed-hook, and banking substrate; the machinery that fires a skipped reflex at its moment. They cut operations along three independent axes: <strong>where</strong> (the lifecycle class — which resource broke), <strong>what-to-do</strong> (the runbook's typed steps), and <strong>when-it-fires</strong> (the hook). One routing table, many runbooks, a separate firing layer: a symptom's class does not fix its runbook's steps, and a hook fires regardless of which lifecycle owns the break.</li></ul>
 <p>Supporting resources: build and handoff templates (<code>templates/</code>) — used when operating work crosses into implementation.</p>
-<h3>Governing principle</h3>
+<h3>Governing Principle</h3>
 <p><em>Establish the healthy state first, then classify deviations from it.</em> Know the healthy baseline before you hunt; meet every symptom as a member of a lifecycle; and when diagnosis calls for a modeling, alignment, or governance-conversion move — a recurring break worth a control, a model that should change, an authority that should shift — hand the engineering judgment to self-governance. Automate deterministic steps, prepare irreducible judgments for escalation, and treat each lifecycle as a state machine rather than a habit.</p>
 <h3>Layout</h3>
 <pre><code>self-operations/

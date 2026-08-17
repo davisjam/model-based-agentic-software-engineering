@@ -24,7 +24,7 @@ temporal model checker. A lint asserts the routed checker matches the operator, 
 carry the leads-to token and a safety body must not. Reuse one mature formal engine rather than build a
 parallel one.
 
-## Engineering consequences
+## Engineering Consequences
 
 The check is exhaustive within bounds: it either proves the invariant over every interleaving of the
 modeled state space or returns a concrete counterexample trace, where a sampled test reports green on a
@@ -35,13 +35,13 @@ Reach for this when an invariant is safety-critical AND its state space is small
 spend it on a property a fast property-test already covers — exhaustive search is a cost you pay for the
 corners sampling misses, nothing more.
 
-## Implementation seam
+## Implementation Seam
 
 The temporal-form field on each cross-service invariant plus the derivation from operator to tier; the
 exhaustive runtimes it routes to — a temporal model checker and a bounded-BFS "simworld" over the reachable
 state space; and the match lint that makes a mis-routed invariant a build error rather than a silent gap.
 
-## Known limitations
+## Known Limitations
 
 The proof is exhaustive only within bounds — the model is an abstraction, and a bug outside it is out of
 scope, so the guarantee is only as strong as the model's fidelity to the real system. The form has to stay honest: a decorative temporal string no checker reads is worse than none, because it

@@ -20,7 +20,7 @@ constraint (a before/after edge with a rationale). A coverage lint scans the rea
 requires each to be declared or carry a "not a sync lock" annotation. An ordering lint walks the declared
 edges plus the call graph to catch an inverted acquisition before the code runs.
 
-## Engineering consequences
+## Engineering Consequences
 
 A declared model lets a lint answer "which locks exist, and in what order must they be taken?" at author
 time, so an inverted acquisition fails then rather than deadlocking in production, where the lesson
@@ -28,14 +28,14 @@ arrives too late to act on. The cost is that every new lock becomes a registry e
 fails the coverage lint deliberately — and the ordering graph must be maintained, since a missing edge
 lets a real inversion through. Exempt sites carry a rationale drawn from a small, closed carve-out set.
 
-## Implementation seam
+## Implementation Seam
 
 Two artifacts carry the pattern: the registry of lock, acquirer, and ordering records, and its two lints
 — the coverage lint over the real lock call sites and the ordering-constraint lint over the declared
 graph. The model is induced from the code and reconciled at build, so it tracks the locks that exist
 rather than an aspirational list.
 
-## Known limitations
+## Known Limitations
 
 Coverage rides on the lint seeing every lock site; a site the lint cannot reach stays undeclared and
 unmodelled. The ordering graph is only as complete as its declared edges — an unstated ordering is an

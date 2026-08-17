@@ -24,7 +24,7 @@ read that one signal:
   a job pressure has overtaken.
 - **Advisory read (callable).** A plain callable the operator consults in judgment, outside any gate.
 
-## Engineering consequences
+## Engineering Consequences
 
 Admission prevents the startup cost; execution shedding catches pressure that rose after admission, which the
 gate could not foresee — the two layers are not redundant. One shared reading keeps them from disagreeing;
@@ -34,7 +34,7 @@ cheap gate before an expensive one.
 Use this when a saturable host resource is the bottleneck and admission alone cannot protect it. Don't reach
 for it when the contention is imaginary — a gate on a resource that never saturates is pure latency.
 
-## Implementation seam
+## Implementation Seam
 
 The signal needs a pre-dispatch gate seam sibling to existing admission checks, an execution-time shed at the
 compute step, and a heavy-versus-light work class so light work isn't gated by a signal only heavy work
@@ -42,7 +42,7 @@ saturates. As-built, the disk-floor admission gate and the pressure-driven execu
 monitor is callable; the load-pressure admission gate is the extension that closes the dispatch-into-overload
 waste.
 
-## Known limitations
+## Known Limitations
 
 GREEN/YELLOW/RED is coarse: a too-eager RED starves throughput, a too-lax one still admits overload, so the
 thresholds are a tuning surface. Admission must *defer* with a wake condition, never drop, or a brief refused

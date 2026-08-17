@@ -32,21 +32,21 @@ Two halves, one soft and one hard, packaged together.
 - **A design-time companion.** Run before a subsystem exists, the same stance audits it for predictive smells
   — shared mutable state, an irreversible operation, a duplicated fact — so a class need never be felt to be closed.
 
-## Engineering consequences
+## Engineering Consequences
 
 The conversion becomes cadence-driven rather than memory-dependent: the hard hook guarantees the *prompt* even
 on a deep queue, so the governance estate grows by design and velocity turns into durable trust instead of
 re-solving solved problems. The word *tasteful* carries weight — the loop adds the smallest guardrail that
 closes the class, so governing the system does not calcify it.
 
-## Implementation seam
+## Implementation Seam
 
 The loop keys on a recurrence signal — memory, an incident log, an operator's recall — so a second occurrence
 reads as *seen before* rather than novel. The cadence half binds to a lifecycle event the harness exposes.
 A closed control vocabulary makes "pick the durable control" checkable, and each converted failure lands in a
 bounded, enforced home so the next conversion can see what already exists.
 
-## Known limitations
+## Known Limitations
 
 The proposing half is soft — it recommends and scaffolds, it cannot block. Cadence tuning is a real cost: too
 often and the reflection becomes alarm fatigue; too rarely and a recurrence ages past the moment it was

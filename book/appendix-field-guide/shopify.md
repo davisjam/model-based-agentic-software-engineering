@@ -12,7 +12,7 @@
 
 [^shopify-record]: The session/channel/participant snapshot and the "multiplayer by construction" characterization are from Shopify's public account: Javier Moreno and Burke Libbey, "Under the River," Shopify Engineering, May 28, 2026, https://shopify.engineering/under-the-river.
 
-#### Recto — MAGE interpretation
+#### Recto — MAGE Interpretation
 
 <!-- label: field-guide-shopify -->
 <!-- figure: assets/field-guide-shopify.svg | *Shopify projected onto MAGE.* The source supports shared externalized knowledge and reusable context; conversion into durable capital is the interpretive step, not an automatic one. -->

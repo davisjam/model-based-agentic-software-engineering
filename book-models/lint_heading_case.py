@@ -7,11 +7,12 @@ CHECKS that convention and, for each heading that violates it, emits the SUGGEST
 (`current → suggested`). It is the constraint/sensor thesis applied to prose: the convention is the rule an
 author aims for, this is the smoke detector that catches the heading that drifted.
 
-It reads clean today only where the corpus already conforms; the corpus predates the ratified convention,
-so it lands **AUDIT-ONLY** — it PRINTS the full worklist and its count and **exits 0**, never gating a
-build. A later, separate normalization pass will apply the suggestions; this sensor does NOT modify any
-heading. To keep the rule in ONE place, that pass reuses `title_case()` from this module — `title_case()`
-is the single source of truth for the casing rule, and this file is its design note.
+The corpus was normalized to the ratified convention by a one-shot pass that applied `title_case()` across
+both heading sources, so the sensor now reads **clean** and lands **BLOCKING** — a heading off Title Case
+increments `catalog.py validate`'s issue count and this CLI exits 1. That normalization pass reused
+`title_case()` from this module (it does NOT modify headings itself) — `title_case()` is the single source
+of truth for the casing rule, and this file is its design note. Genuine code-identifier / proper-noun
+exceptions the algorithm cannot express are parked in `heading-case-overrides.json`.
 
 ── THE CONVENTION (what `title_case()` encodes) ──────────────────────────────────────────────────────────
   * Capitalize the first word, the last word, and every major word.
@@ -40,12 +41,12 @@ is the single source of truth for the casing rule, and this file is its design n
      `_EVIDENCE_LEDGER_PAGES`). Parsed with the `ast` module (no regex over Python source), each title
      checked and reported as `build_book.py:<line> _LIST`.
 
-LANDING: AUDIT-ONLY (repo blocking-lint landing discipline, rule #55) — prints its worklist, does not gate.
-`--strict` is the future BLOCKING flip hook (exit 1 on any finding); the `catalog.py build` wiring NEVER
-passes it, so the build's exit code is unaffected.
+LANDING: BLOCKING (audit -> drain -> promote, rule #55) — the normalization wave drained the corpus to 0,
+so this sensor now GATES: any finding exits 1 here, and `catalog.py validate` adds the finding count to its
+issues. `--strict` is retained as a no-op alias (blocking is now the default behavior).
 
-    python3 book-models/lint_heading_case.py            # print findings (audit-only, exit 0)
-    python3 book-models/lint_heading_case.py --strict   # exit 1 on any finding (the eventual blocking flip)
+    python3 book-models/lint_heading_case.py            # print findings; exit 1 on any finding (blocking)
+    python3 book-models/lint_heading_case.py --strict   # same as default (retained alias)
 """
 from __future__ import annotations
 
@@ -269,11 +270,12 @@ def summary_line(fs: list[Finding]) -> str:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--strict", action="store_true", help="exit 1 on any finding (the eventual blocking flip)")
-    args = ap.parse_args(argv)
+    ap.add_argument("--strict", action="store_true",
+                    help="retained no-op alias — blocking (exit 1 on any finding) is now the default")
+    ap.parse_args(argv)
     fs = findings()
-    mode = "STRICT (exit 1 on any finding)" if args.strict else "AUDIT-ONLY (prints, exits 0)"
-    print(f"== heading-case — Title-Case sensor over markdown + build_book.py page-lists [{mode}] ==")
+    print("== heading-case — Title-Case sensor over markdown + build_book.py page-lists [BLOCKING (exit 1 on "
+          "any finding)] ==")
     print(f"  stop-words: {len(STOP_WORDS)} · proper-noun allowlist: {len(PROPER_NOUNS)} · "
           f"overrides: {len(_load_overrides())}")
     if not fs:
@@ -282,7 +284,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"  {summary_line(fs)}:")
     for f in fs:
         print(f'    {f.loc}\n      "{f.current}" → "{f.suggested}"')
-    return 1 if args.strict else 0
+    return 1
 
 
 if __name__ == "__main__":
