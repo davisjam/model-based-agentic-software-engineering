@@ -1749,7 +1749,6 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- double-headed arrow to the orthogonal representation-form axis: the relation is MANY-TO-MANY -->
   <line x1="480" y1="266" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2"
         marker-start="url(#fig-2-1-1-on-b)" marker-end="url(#fig-2-1-1-on-b)"/>
-  <text x="500" y="281" font-size="13" font-style="italic" fill="#57534e">many-to-many</text>
 
   <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="314" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
@@ -2279,8 +2278,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="300" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">OCR</text>
 
   <!-- footer: protect the point -->
-  <text x="360" y="418" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">An edge means the relationship is permitted by the model.</text>
-  <text x="360" y="442" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">An absent edge means the relationship is not permitted by the model; enforcement is separate.</text>
+  <text x="360" y="418" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">An edge means the relationship belongs to the declared policy.</text>
+  <text x="360" y="442" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">An absent edge means the declared policy excludes the relationship; enforcement is separate.</text>
 </svg><figcaption data-short="Service-flow model"><span class="fig-label">Figure 2.5-1.</span> <em>Service-flow model.</em> A declared graph of which service may reach which. The public web tier is the only node facing the outside; an absent edge means the relationship is not permitted by the model, and enforcement is separate.</figcaption></figure><p class="gallery-source">From <a href="2.5-decision.html#fig-2-5-1">9 · Decision Models: What Is Allowed?</a></p></section><hr><section class="gallery-item"><figure id="fig-2-5-2-fig-2-5-2" class="book-figure" data-label="observed-vs-declared"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400"
      role="img" aria-labelledby="fig-2-5-2-ovTitle fig-2-5-2-ovDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -2661,9 +2660,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-8-3-dgTitle">Three correspondence patterns: derive, generate, trace and check</title>
   <desc id="fig-2-8-3-dgDesc">Three panels. Derive: implementation in gray flows up to a model in blue, when the
-    implementation is authoritative. Generate: a model in blue projects down to implementation or config in
-    gray, when the model is authoritative. Trace and check: a model and system are linked two ways with a
-    rust check, when neither derives the other; only the decidable correspondences are checked.</desc>
+    implementation is the source of truth. Generate: a model in blue projects down to implementation or config in
+    gray, when the model is the source of truth. Trace and check: a model and system are linked two ways with a
+    rust check, when neither fully determines the other; only the decidable correspondences are checked.</desc>
 
   <defs>
     <marker id="fig-2-8-3-dg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
@@ -2683,7 +2682,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- ===== Panel 1: DERIVE ===== -->
   <text x="160" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">DERIVE</text>
-  <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation authoritative</text>
+  <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation is source of truth</text>
   <rect x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="160" y="219" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">implementation</text>
   <line x1="160" y1="188" x2="160" y2="128" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-2-8-3-dg-b)"/>
@@ -2693,7 +2692,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- ===== Panel 2: GENERATE ===== -->
   <text x="480" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">GENERATE</text>
-  <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model authoritative</text>
+  <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model is source of truth</text>
   <rect x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="480" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
   <line x1="480" y1="128" x2="480" y2="188" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-2-8-3-dg-k)"/>
@@ -2703,7 +2702,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- ===== Panel 3: TRACE + CHECK ===== -->
   <text x="800" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE + CHECK</text>
-  <text x="800" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">neither derives the other</text>
+  <text x="800" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">neither fully determines the other</text>
   <rect x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="800" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
   <!-- two-way link with rust decidable check -->
@@ -2714,7 +2713,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- footer: protect the point -->
   <text x="480" y="284" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Three correspondence patterns &#8212; derive where implementation leads, generate where the model leads, trace and check where neither does.</text>
-</svg><figcaption data-short="Three correspondence patterns"><span class="fig-label">Figure 2.8-3.</span> <em>Three correspondence patterns.</em> Derive where implementation is authoritative; generate where the model is authoritative; otherwise maintain traceability and check the correspondences that are decidable.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-3">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-4-fig-2-8-4" class="book-figure" data-label="model-sync-two-layer-net"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420"
+</svg><figcaption data-short="Three correspondence patterns"><span class="fig-label">Figure 2.8-3.</span> <em>Three correspondence patterns.</em> Derive where implementation is the source of truth; generate where the model is the source of truth; otherwise maintain traceability and check the correspondences that are decidable.</figcaption></figure><p class="gallery-source">From <a href="2.8-system-knowledge.html#fig-2-8-3">12 · System Knowledge: Connecting the Models</a></p></section><hr><section class="gallery-item"><figure id="fig-2-8-4-fig-2-8-4" class="book-figure" data-label="model-sync-two-layer-net"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420"
      role="img" aria-labelledby="fig-2-8-4-msTitle fig-2-8-4-msDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-2-8-4-msTitle">Coverage of model correspondence: modeled surface and unmodeled surface</title>

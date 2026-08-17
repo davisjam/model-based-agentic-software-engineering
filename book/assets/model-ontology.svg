@@ -65,7 +65,6 @@
   <!-- double-headed arrow to the orthogonal representation-form axis: the relation is MANY-TO-MANY -->
   <line x1="480" y1="266" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2"
         marker-start="url(#on-b)" marker-end="url(#on-b)"/>
-  <text x="500" y="281" font-size="13" font-style="italic" fill="#57534e">many-to-many</text>
 
   <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="314" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>

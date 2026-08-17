@@ -11,9 +11,9 @@
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="dgTitle">Three correspondence patterns: derive, generate, trace and check</title>
   <desc id="dgDesc">Three panels. Derive: implementation in gray flows up to a model in blue, when the
-    implementation is authoritative. Generate: a model in blue projects down to implementation or config in
-    gray, when the model is authoritative. Trace and check: a model and system are linked two ways with a
-    rust check, when neither derives the other; only the decidable correspondences are checked.</desc>
+    implementation is the source of truth. Generate: a model in blue projects down to implementation or config in
+    gray, when the model is the source of truth. Trace and check: a model and system are linked two ways with a
+    rust check, when neither fully determines the other; only the decidable correspondences are checked.</desc>
 
   <defs>
     <marker id="dg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
@@ -33,7 +33,7 @@
 
   <!-- ===== Panel 1: DERIVE ===== -->
   <text x="160" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">DERIVE</text>
-  <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation authoritative</text>
+  <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation is source of truth</text>
   <rect x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="160" y="219" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">implementation</text>
   <line x1="160" y1="188" x2="160" y2="128" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dg-b)"/>
@@ -43,7 +43,7 @@
 
   <!-- ===== Panel 2: GENERATE ===== -->
   <text x="480" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">GENERATE</text>
-  <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model authoritative</text>
+  <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model is source of truth</text>
   <rect x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="480" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
   <line x1="480" y1="128" x2="480" y2="188" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dg-k)"/>
@@ -53,7 +53,7 @@
 
   <!-- ===== Panel 3: TRACE + CHECK ===== -->
   <text x="800" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE + CHECK</text>
-  <text x="800" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">neither derives the other</text>
+  <text x="800" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">neither fully determines the other</text>
   <rect x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="800" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
   <!-- two-way link with rust decidable check -->

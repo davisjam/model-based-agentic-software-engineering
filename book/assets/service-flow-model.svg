@@ -69,6 +69,6 @@
   <text x="300" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">OCR</text>
 
   <!-- footer: protect the point -->
-  <text x="360" y="418" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">An edge means the relationship is permitted by the model.</text>
-  <text x="360" y="442" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">An absent edge means the relationship is not permitted by the model; enforcement is separate.</text>
+  <text x="360" y="418" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">An edge means the relationship belongs to the declared policy.</text>
+  <text x="360" y="442" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">An absent edge means the declared policy excludes the relationship; enforcement is separate.</text>
 </svg>

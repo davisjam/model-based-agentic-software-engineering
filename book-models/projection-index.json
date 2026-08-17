@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1124,
+    "total_sites": 1123,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 720,
+      "book-web": 719,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -45,7 +45,7 @@
           },
           {
             "file": "book/2.8-system-knowledge.html",
-            "occ": 3
+            "occ": 4
           },
           {
             "file": "book/3.1-where-authority-can-act.html",
@@ -197,7 +197,7 @@
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/part-3-intro.html",
@@ -1295,7 +1295,7 @@
           },
           {
             "file": "book/part-2-intro.html",
-            "occ": 30
+            "occ": 29
           },
           {
             "file": "book/part-3-intro.html",
@@ -1950,10 +1950,6 @@
             "occ": 4
           },
           {
-            "file": "book/2.8-system-knowledge.html",
-            "occ": 1
-          },
-          {
             "file": "book/3.3-constraints-sensors-validators-gates.html",
             "occ": 2
           },
@@ -1981,7 +1977,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 8
+            "occ": 7
           }
         ]
       },
@@ -2021,7 +2017,7 @@
         "book-web": [
           {
             "file": "book/2.8-system-knowledge.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/book-index.html",
@@ -2081,15 +2077,15 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 45
+            "occ": 42
           },
           {
             "file": "book/2.2-structural.html",
-            "occ": 35
+            "occ": 34
           },
           {
             "file": "book/2.3-behavioral.html",
-            "occ": 40
+            "occ": 41
           },
           {
             "file": "book/2.4-ownership.html",
@@ -2097,7 +2093,7 @@
           },
           {
             "file": "book/2.5-decision.html",
-            "occ": 23
+            "occ": 21
           },
           {
             "file": "book/2.6-measurement.html",
@@ -2409,7 +2405,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 347
+            "occ": 345
           },
           {
             "file": "book/index.html",
@@ -4111,7 +4107,7 @@
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/2.2-structural.html",
@@ -4135,7 +4131,7 @@
           },
           {
             "file": "book/2.7-provenance.html",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/2.8-system-knowledge.html",

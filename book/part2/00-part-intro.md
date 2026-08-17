@@ -5,7 +5,7 @@ reason about directly, so we work through architectures, interfaces, schemas, re
 machines, dependency graphs, and other purposeful reductions. Explicit models have nevertheless
 remained secondary in much code-centric software practice because maintaining another representation of
 a fast-moving system carries a standing cost. Commodity intelligence changes that economics. Deriving,
-reconciling, regenerating, and querying structured representations are repeated tasks a coding fleet
+reconciling, regenerating, and querying structured representations are repeated tasks an agent fleet
 can often perform cheaply.
 
 Agents did not create
@@ -13,7 +13,8 @@ software engineering's reasoning problem. Scale did. The change is that
 implementation can now move much faster than the knowledge required to direct it. A human team can spend
 substantial effort reconstructing architecture, ownership, policy, and lifecycle from code and
 institutional memory; an agent fleet can spend that same effort over and over, once per task and once
-per fresh reasoning state. MAGE uses models to make reusable engineering knowledge durable.
+per fresh reasoning state. MAGE uses models to make reusable engineering knowledge durable by
+preserving the relationships relevant to a question and suppressing the rest.
 
 <!-- principlebox -->
 > ### MODELING PRINCIPLE
@@ -21,11 +22,8 @@ per fresh reasoning state. MAGE uses models to make reusable engineering knowled
 > Externalize engineering knowledge and intent into explicit, structured models that both engineers
 > and agents can reason through.
 >
-> Richer representations make larger engineering questions tractable and make richer properties
+> Richer representations make broader engineering questions tractable and make richer properties
 > available for Alignment.
-
-Models make reusable engineering knowledge durable by preserving the relationships relevant to a
-question and suppressing the rest.
 
 <!-- point: part-2-asks-what-to-model-and-what-it-reveals | Part II asks one question of every system: what should I model, and what will the model let me know? | terms: modeling-principle, model-as-map, scope-of-modeling -->
 Before an agent can reason through a model, an engineer must decide what question deserves a model and which reduction will answer it.
@@ -75,7 +73,7 @@ purposeful reduction chosen for a question.
 > - **Quality attribute** — what engineering concern does that property serve?
 
 Part III adds a fifth question: **what gives the property authority?** Modeling makes properties
-explicit; Alignment decides which should carry consequence.
+explicit; Alignment gives selected properties consequence.
 
 <!-- point: part-2-hands-you-a-reusable-mental-toolbox | By the Part's end you hold a mental toolbox you can rebuild for your own system. | terms: model-zoo, scope-of-modeling, modeling-principle -->
 By the Part's end, the recurring pattern should be familiar: identify the concern, choose the model that

@@ -704,7 +704,7 @@
           "points": [
             {
               "slug": "one-class-per-chapter-then-the-substrate",
-              "text": "Each of the next six chapters takes one class through one DocAble model; the seventh treats the connected substrate.",
+              "text": "Each of the next six chapters takes one class through one DocAble model; the final chapter treats the connected substrate.",
               "block_index": 65
             },
             {
@@ -738,7 +738,7 @@
         },
         {
           "slug": "the-modeling-principle-in-its-weakest-form",
-          "text": "The Modeling Principle in its weakest form: externalize engineering knowledge into a compact world to reason through.",
+          "text": "The Modeling Principle in its weakest form: externalize engineering knowledge into explicit, structured models to reason through.",
           "block_index": 7
         }
       ]
@@ -822,7 +822,7 @@
             },
             {
               "slug": "no-synchronization-mechanism-proves-semantic-correctness",
-              "text": "No synchronization mechanism proves universal semantic correctness; a model can be perfectly in sync and still express the wrong architecture.",
+              "text": "Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture.",
               "block_index": 43
             },
             {
@@ -862,7 +862,7 @@
             },
             {
               "slug": "models-change-the-scale-of-the-questions-we-can-reason-about",
-              "text": "Models change the semantic scale at which authority can operate: making architecture, behavior, ownership, decisions, measurements, and provenance explicit makes properties available that would otherwise be reconstructed each time.",
+              "text": "Models expand the semantic reach of authority: making architecture, behavior, ownership, decisions, measurements, and provenance explicit makes properties available that would otherwise be reconstructed each time.",
               "block_index": 58
             },
             {
