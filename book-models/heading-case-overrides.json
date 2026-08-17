@@ -1,0 +1,7 @@
+{
+  "_schema": {
+    "purpose": "Override registry for the heading-case Title-Case sensor (book-models/lint_heading_case.py). A heading whose CLEANED text (section number + {anchor} stripped) exactly matches an 'overrides[].heading' value is never flagged, even if the algorithm would suggest a different casing. Seed only with GENUINELY intentional exceptions the stop-word/proper-noun rule cannot express.",
+    "entry": { "heading": "<exact cleaned heading text>", "reason": "<why this casing is intentional>" }
+  },
+  "overrides": []
+}
