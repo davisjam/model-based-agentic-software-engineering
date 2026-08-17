@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1127,
+    "total_sites": 1125,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 721,
+      "book-web": 719,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -642,10 +642,6 @@
             "occ": 1
           },
           {
-            "file": "book/6.5-software-rejoins-engineering.html",
-            "occ": 1
-          },
-          {
             "file": "book/book-index.html",
             "occ": 1
           },
@@ -661,7 +657,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 11
+            "occ": 10
           }
         ]
       },
@@ -730,10 +726,6 @@
             "occ": 4
           },
           {
-            "file": "book/6.6-education-research-open-problems.html",
-            "occ": 1
-          },
-          {
             "file": "book/appendix-d-daily-review.html",
             "occ": 1
           },
@@ -761,7 +753,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 16
+            "occ": 15
           }
         ]
       },
@@ -1065,7 +1057,7 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 42
+            "occ": 45
           },
           {
             "file": "book/6.2-scope-conditions.html",
@@ -1073,19 +1065,19 @@
           },
           {
             "file": "book/6.3-what-the-theory-predicts.html",
-            "occ": 52
+            "occ": 48
           },
           {
             "file": "book/6.4-reorganization-of-se.html",
-            "occ": 118
+            "occ": 111
           },
           {
             "file": "book/6.5-software-rejoins-engineering.html",
-            "occ": 119
+            "occ": 117
           },
           {
             "file": "book/6.6-education-research-open-problems.html",
-            "occ": 63
+            "occ": 58
           },
           {
             "file": "book/7.1-the-part-that-stays-yours.html",
@@ -1297,7 +1289,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 231
+            "occ": 230
           },
           {
             "file": "book/index.html",
@@ -1627,7 +1619,7 @@
           },
           {
             "file": "book/6.3-what-the-theory-predicts.html",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/6.4-reorganization-of-se.html",
@@ -1635,7 +1627,7 @@
           },
           {
             "file": "book/6.5-software-rejoins-engineering.html",
-            "occ": 14
+            "occ": 13
           },
           {
             "file": "book/6.6-education-research-open-problems.html",
@@ -1984,6 +1976,10 @@
             "occ": 1
           },
           {
+            "file": "book/6.6-education-research-open-problems.html",
+            "occ": 1
+          },
+          {
             "file": "book/book-index.html",
             "occ": 1
           },
@@ -1995,7 +1991,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 7
+            "occ": 8
           }
         ]
       },
@@ -2191,7 +2187,7 @@
           },
           {
             "file": "book/6.1-toward-a-theory-of-mage.html",
-            "occ": 26
+            "occ": 25
           },
           {
             "file": "book/6.2-scope-conditions.html",
@@ -2199,7 +2195,7 @@
           },
           {
             "file": "book/6.3-what-the-theory-predicts.html",
-            "occ": 27
+            "occ": 26
           },
           {
             "file": "book/6.4-reorganization-of-se.html",
@@ -2207,11 +2203,11 @@
           },
           {
             "file": "book/6.5-software-rejoins-engineering.html",
-            "occ": 35
+            "occ": 34
           },
           {
             "file": "book/6.6-education-research-open-problems.html",
-            "occ": 19
+            "occ": 17
           },
           {
             "file": "book/7.1-the-part-that-stays-yours.html",
@@ -2994,10 +2990,6 @@
             "occ": 1
           },
           {
-            "file": "book/6.5-software-rejoins-engineering.html",
-            "occ": 1
-          },
-          {
             "file": "book/book-index.html",
             "occ": 1
           },
@@ -3009,7 +3001,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 9
+            "occ": 8
           }
         ]
       },
@@ -3777,7 +3769,7 @@
           },
           {
             "file": "book/6.3-what-the-theory-predicts.html",
-            "occ": 20
+            "occ": 17
           },
           {
             "file": "book/6.4-reorganization-of-se.html",
@@ -3789,7 +3781,7 @@
           },
           {
             "file": "book/6.6-education-research-open-problems.html",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/7.1-the-part-that-stays-yours.html",

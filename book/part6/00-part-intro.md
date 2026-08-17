@@ -10,12 +10,12 @@ tested. The argument then widens: if the account is substantially right, what ch
 engineering, how that change relates to older engineering practice, and what remains the engineer's
 responsibility.
 
-The answer is both new and familiar. As implementation becomes cheaper, engineering effort moves toward
+As implementation becomes cheaper, engineering effort moves toward
 representation, evidence, authority, and judgment. Engineers increasingly reason through models and
 analyses, delegate realization, and remain answerable for the result.
 
 <!-- thesisbox -->
-> ### PROFESSIONAL THESIS
+> ### THE PROFESSIONAL CONSEQUENCE
 >
 > As implementation capacity becomes abundant, the engineered environment becomes a first-class object of
 > software engineering.
@@ -24,4 +24,4 @@ analyses, delegate realization, and remain answerable for the result.
 > maintaining the environment through which autonomous realization proceeds.
 
 **New here:** Theory of MAGE · Scope conditions · Testable predictions · Representation engineering ·
-Software rejoins engineering · Professional Thesis
+Software rejoins engineering
