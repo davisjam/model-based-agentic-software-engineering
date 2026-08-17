@@ -11,7 +11,7 @@
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="atTitle">DocAble's attribution provenance model: a run of operations, each with recorded fields</title>
   <desc id="atDesc">A run contains operations. Each operation records its target, mutation, responsible
-    pass, and retained evidence. This structured record is the model. A small secondary line shows the uses
+    pass, and retained evidence. This structured record carries the provenance model. A small secondary line shows the uses
     derived from it: audit, debugging, and changelog. The model is primary; the derived uses are secondary.</desc>
 
   <defs>
@@ -55,6 +55,6 @@
   <text x="350" y="306" text-anchor="middle" font-size="14.5" fill="#1c1917">audit &#183; debugging &#183; changelog</text>
 
   <!-- footer: protect the point -->
-  <text x="350" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">The structured record is the model; audit, debugging, and changelog</text>
-  <text x="350" y="376" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">are derived from it, not maintained apart.</text>
+  <text x="350" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">The structured record carries the provenance model; audit, debugging,</text>
+  <text x="350" y="376" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">and changelog are derived from it, not maintained apart.</text>
 </svg>

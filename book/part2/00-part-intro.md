@@ -5,10 +5,10 @@ reason about directly, so we work through architectures, interfaces, schemas, re
 machines, dependency graphs, and other purposeful reductions. Explicit models have nevertheless
 remained secondary in much code-centric software practice because maintaining another representation of
 a fast-moving system carries a standing cost. Commodity intelligence changes that economics. Deriving,
-reconciling, regenerating, and querying structured representations are exactly the kinds of repeated
-work a coding fleet can perform cheaply.
+reconciling, regenerating, and querying structured representations are repeated tasks a coding fleet
+can often perform cheaply.
 
-You may still be wondering why a book about coding agents has arrived at models. Agents did not create
+Agents did not create
 software engineering's reasoning problem. Scale did. The change is that
 implementation can now move much faster than the knowledge required to direct it. A human team can spend
 substantial effort reconstructing architecture, ownership, policy, and lifecycle from code and
@@ -16,18 +16,16 @@ institutional memory; an agent fleet can spend that same effort over and over, o
 per fresh reasoning state. MAGE uses models to make reusable engineering knowledge durable.
 
 <!-- thesisbox -->
-> ### MODELING THESIS
+> ### MODELING PRINCIPLE
 >
 > Externalize engineering knowledge and intent into explicit, structured models that both engineers
 > and agents can reason through.
 >
 > Richer representations make larger engineering questions tractable and make richer properties
-> available to authority.
+> available for Alignment.
 
-A model is a purposeful reduction of a system, built to answer an engineering question. Its value is not
-that it contains more information, but that it leaves out what the question does not need. The result is
-an engineering surface through which people, agents, and tools can reason without repeatedly
-reconstructing the same properties from lower-level detail.
+Models make reusable engineering knowledge durable by preserving the relationships relevant to a
+question and suppressing the rest.
 
 <!-- point: part-2-asks-what-to-model-and-what-it-reveals | Part II asks one question of every system: what should I model, and what will the model let me know? | terms: thesis-modeling, model-as-map, scope-of-modeling -->
 Before an agent can reason through a model, an engineer must decide what question deserves a model and which reduction will answer it.
@@ -35,16 +33,6 @@ Before an agent can reason through a model, an engineer must decide what questio
 A production system can hold millions of lines of code, hundreds of dependencies, dozens of services,
 queues, databases, deployment configurations, policies, tests, and operating procedures. No engineer
 reasons about all of it at once. The question decides which details matter.
-
-Ask whether two workers can process the same job at once, and the color of the web interface does not
-matter, nor the exact prompt that describes an image. You need to know who can own work, how ownership
-is acquired, when it expires, and what happens after a crash. Ask instead whether one service can
-bypass another, and those ownership details fall away; now you need components, communication edges,
-authorization rules, and the seams a call must pass through. Ask whether the system is getting slower,
-and you need another representation again — stages, clocks, budgets, and a model of how retry and
-concurrency shape the worst case.
-
-The system did not change. The engineering question did.
 
 The recurring question is:
 
@@ -58,9 +46,9 @@ in Part I. A document enters, remediation is distributed across workers and serv
 validated, and a corrected document returns with a record of what changed. The real system is far more
 complicated than the views ahead. Each view keeps only what its question needs.
 
-The same object wears every hat. A single worker in that pipeline is several different things at once,
-depending only on which question you bring to it — a phenomenon Part I walks in the concrete. Hold the
-image: one object, several true pictures, and none of them *is* the worker.
+The same system element can appear differently in several models. A worker may be a component, an actor
+in a lifecycle, an owner of work, or a measured resource, depending on the engineering question. None of
+those representations is the worker itself.
 
 <!-- point: part-2-moves-through-five-model-classes | Part II moves through six classes of model, not a taxonomy to memorize. | terms: model-zoo, model-classes -->
 The examples ahead fall into six broad classes that the rest of the book will reuse:
@@ -68,7 +56,7 @@ The examples ahead fall into six broad classes that the rest of the book will re
 - **Structural** — what parts exist, and which may depend on which.
 - **Behavioral** — what states a thing occupies, and how it moves between them.
 - **Ownership** — who controls a unit of work, and for how long.
-- **Decision** — who is permitted to do what, or to reach what.
+- **Decision** — what is allowed, or which alternative should be selected.
 - **Measurement** — what quantities the system holds, and against what bound.
 - **Provenance** — what happened to an artifact, and what evidence records it.
 
@@ -86,18 +74,12 @@ purposeful reduction chosen for a question.
 > - **Property** — what can I now state precisely?
 > - **Quality attribute** — what engineering concern does that property serve?
 
-Part III adds a fifth question: **what gives the property authority?** Some obligations can already be
-held without an explicit system model — a sandbox can deny an action, a compiler can reject a construct,
-a test can block a regression. The models in this Part enlarge the semantic scale at which such
-obligations can be stated. Once architecture,
-ownership, behavior, policy, or measurement is explicit, the environment can reason about obligations
-that would otherwise require an agent or a human to reconstruct the missing semantics. Part II builds
-the representations; Part III develops the machinery that gives selected obligations authority.
+Part III adds a fifth question: **what gives the property authority?** Modeling makes properties
+explicit; Alignment decides which should carry consequence.
 
 <!-- point: part-2-hands-you-a-reusable-mental-toolbox | By the Part's end you hold a mental toolbox you can rebuild for your own system. | terms: model-zoo, scope-of-modeling, thesis-modeling -->
-By the Part's end, the recurring questions should form a small mental toolbox: for each concern, the
-model that answers it, the property it lets you state, and the quality attribute that property serves.
-That toolbox is the working set this Part assembles; the final chapter,
-[System Knowledge: Connecting the Models](2.8-system-knowledge.html), steps back to show how the six
-connect as one substrate rather than a seventh model. By the end, you should be able to choose useful
+By the Part's end, the recurring pattern should be familiar: identify the concern, choose the model that
+exposes it, state the property, and connect that property to the quality attribute it serves. The final
+chapter, [System Knowledge: Connecting the Models](2.8-system-knowledge.html), steps back to show how the
+six connect as one substrate rather than a seventh model. By the end, you should be able to choose useful
 representations for a system of your own.
