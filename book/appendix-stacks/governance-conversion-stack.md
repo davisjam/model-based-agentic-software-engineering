@@ -1,6 +1,6 @@
 ## The capability
 
-**Turn recurring failure into durable engineering capital while keeping the control estate legible.** As controls accumulate, model their relationships and convert recurring failures into new or strengthened controls.
+**Turn recurring failure and judgment into durable engineering structure while keeping the control estate legible.** As controls accumulate, model their relationships and convert recurring gaps into an appropriate durable response.
 
 ## When this stack earns its keep
 

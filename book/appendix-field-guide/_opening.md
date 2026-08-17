@@ -22,4 +22,4 @@ The overlay uses exactly three epistemic states:
 | - - - dashed | MAGE interpretation / partial support |
 | ░░░░ pale | part of MAGE, but not established by this source |
 
-**A pale node means "not established by the public evidence," not "the organization lacks this capability."** The diagrams are not audits against a MAGE checklist and not a maturity ordering; these are independently evolved systems, read for the moves they share.
+**A pale node means "not established by the public evidence," not "the organization lacks this capability."** The diagrams are neither audits against a MAGE checklist nor a maturity ordering. They show recurring moves across distinct industrial systems.

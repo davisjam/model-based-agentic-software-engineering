@@ -12,7 +12,7 @@ uncovered gap.
 
 <!-- figure: assets/brownfield-progress-2x2.svg | *Brownfield progress.* Representation reach and authority reach are independent axes. A system may be strong on either dimension without being strong on the other; the next investment should address the highest-value gap rather than maximize both indiscriminately. -->
 
-Modeling and Alignment are independent on this axis: local controls can provide authority without rich
+Representation reach and authority reach are independent on this axis: local controls can provide authority without rich
 models, and modeled surfaces need not all receive authority.
 
 Apply Audit → Synchronize → Govern → Extend to a selected surface rather than to the organization as a

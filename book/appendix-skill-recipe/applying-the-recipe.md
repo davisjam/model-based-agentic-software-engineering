@@ -83,14 +83,14 @@ and concrete system knowledge are separate concerns; the skill keeps them separa
 **The MAGE engineering loop.** Everything in the skill supports one cycle, run whenever the agent engineers:
 
 - **Recognize the situation.** What am I actually facing?
-- **Model or align.** Model what must be understood; make authoritative what must hold. These are MAGE's two
+- **Model or align.** Model what must be understood; give authority to what must hold. These are MAGE's two
   engineering activities.
 - **Choose a move, then a capability.** Pick the engineering move the situation calls for, then the skill
   that performs it.
 - **Act through the governed environment.** A move becomes consequential only there, never by the skill
   asserting its own output is safe.
-- **Weigh the evidence.** On success, continue. On failure, diagnose, and ask whether the lesson is durable
-  enough to become **engineering capital.**
+- **Weigh the evidence.** On success, continue. On failure, diagnose, and ask whether the lesson should
+  become **durable engineering structure.**
 
 Modeling makes engineering knowledge explicit; Alignment gives selected obligations consequential authority. Self-Governance is
 not a third activity beside them. It is the discipline of turning both on your own work.
@@ -127,8 +127,8 @@ axes are orthogonal, the agent loads only the facet its question touches.
 
 ### Governing principle
 
-*Apply MAGE to the work itself: model what must be understood, make authoritative what must hold, and
-convert recurring judgment into capital.* Five operating rules follow:
+*Apply MAGE to the work itself: model what must be understood, give authority to what must hold, and
+convert recurring judgment into durable engineering structure.* Five operating rules follow:
 
 - **Model before guessing.** Reach concrete system truth through a provider; do not reconstruct it from
   memory or raise confidence by rhetoric.
