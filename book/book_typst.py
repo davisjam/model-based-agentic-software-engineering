@@ -36,6 +36,7 @@ external tool exactly as our HTML anchors are.
 """
 from __future__ import annotations
 
+import dataclasses
 import hashlib
 import html as _htmlmod
 import json
@@ -118,6 +119,20 @@ _INTRAWORD_RE = re.compile(r"\[\+(.+?)\+\]")
 _LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 _ABBR_RE = re.compile(r"\[\[([^\]|]+?)(?:\|([^\]]*))?\]\]")
 
+# Per-chapter footnote state, set by `render_chapter` before its block walk and read inside `_inline` — the
+# same module-global pattern build_book's `_CITE_STATE` uses. `defs` is {label: definition_md} (pulled out
+# of the flow by `bb.collect_footnote_defs`); `ns` namespaces the Typst label so `<fn-…>` is document-unique;
+# `emitted` tracks which labels already emitted their `#footnote[…]` body (a repeat reference reuses it via
+# `#footnote(<label>)`, so N references share ONE footnote — the reuse `[cite:]` has).
+_FN_STATE: dict = {"defs": {}, "ns": "", "emitted": {}}
+
+
+def _fn_typst_label(ns: str, label: str) -> str:
+    """A document-unique, identifier-safe Typst label for a footnote (`fn-<ns>-<label>`). Both the chapter
+    namespace and the footnote label are folded to `[a-z0-9-]` so the `<…>` label literal is always valid."""
+    san = re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
+    return f"fn-{ns}-{san}"
+
 
 def inline_typst(s: str) -> str:
     """Convert one run of the book's inline-markdown subset to Typst inline markup. Mirrors the branch order
@@ -164,6 +179,23 @@ def _inline(s: str, stash: list[str]) -> str:
             return _hold(f"#footnote[{inner}]")
         return _hold(f"#sidenote([{inner}], footnote[{inner}], marked: true)")
     s = bb._NOTE_MARKER_RE.sub(_note, s)
+    # 1d. Standard-markdown footnotes `[^label]` → a Typst `#footnote`. The FIRST reference emits the note
+    #     body (its definition text, pulled out of the flow into `_FN_STATE["defs"]` and run through the SAME
+    #     inline pipeline so a nested `[cite:]`/link renders) and labels it; a REPEAT reference reuses that one
+    #     footnote via `#footnote(<label>)` — the N-refs-one-note reuse `[cite:]` has. Held so later escaping
+    #     leaves the `#footnote` markup intact. Fails loud on a `[^label]` with no `[^label]:` definition.
+    def _footnote(m: "re.Match[str]") -> str:
+        label = m.group(1)
+        defs = _FN_STATE["defs"]
+        if label not in defs:
+            raise SystemExit(f"[^{label}] footnote reference has no matching [^{label}]: definition")
+        lbl = _fn_typst_label(_FN_STATE["ns"], label)
+        if label in _FN_STATE["emitted"]:
+            return _hold(f"#footnote(<{lbl}>)")
+        _FN_STATE["emitted"][label] = True
+        inner = _inline(defs[label], stash)
+        return _hold(f"#footnote[{inner}] <{lbl}>")
+    s = bb._FOOTNOTE_REF_RE.sub(_footnote, s)
     # 2. Intra-word emphasis `[+X+]` → emphasised run.
     s = _INTRAWORD_RE.sub(lambda m: _hold(f"#emph[{_esc(m.group(1))}]"), s)
     # 3. Code spans `` `x` `` → raw inline; content is literal, no further passes run inside it.
@@ -1077,6 +1109,23 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     # already carries the title, so a heading here would duplicate it. Each contributes its prose only.
     out: list[str] = [] if (is_part_page or is_appendix_divider) else [title_line, ""]
     blocks = chapter.blocks
+    # Footnote pre-pass: pull `[^label]: …` DEFINITION lines out of the flow (they must not render as body
+    # paragraphs) and collect them for `_inline`'s `[^label]` handler — the Typst twin of md_to_html's
+    # `collect_footnote_defs` strip, sharing the SAME parser (bb.collect_footnote_defs) so the two projections
+    # agree on which lines are definitions. `fn_strip[i]` holds the block's remaining raw after its def lines
+    # are removed ("" = the block was only definitions → dropped in the walk below). Set BEFORE the
+    # note-spread early return so a note chapter's footnotes resolve too.
+    fn_defs: dict[str, str] = {}
+    fn_strip: dict[int, str] = {}
+    for _i, _b in enumerate(blocks):
+        if _b.kind is ir.BlockKind.PARA and "[^" in _b.raw:
+            _rem, _d = bb.collect_footnote_defs(_b.raw)
+            if _d:
+                fn_defs.update(_d)
+                fn_strip[_i] = _rem.strip()
+    _FN_STATE["defs"] = fn_defs
+    _FN_STATE["ns"] = re.sub(r"[^a-z0-9]+", "-", chapter.slug.lower()).strip("-")
+    _FN_STATE["emitted"] = {}
     # Keep-together note (appendix v2, §13.6): a note declaring `note-spread` renders as an indivisible
     # one-page card — but ONLY in print mode, where a page boundary is a hard reading seam. On a SCREEN PDF
     # (continuously scrolled, the shipped output) there is no page-card: forcing the body into one indivisible
@@ -1104,6 +1153,13 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     for i, b in enumerate(blocks):
         if i in skip:
             continue
+        # A block whose lines held footnote DEFINITIONS: drop it if it was only definitions, else render the
+        # non-definition remainder (the definitions were collected into `_FN_STATE` for the ref sites).
+        if i in fn_strip:
+            rem = fn_strip[i]
+            if not rem:
+                continue
+            b = dataclasses.replace(b, raw=rem)
         # Suppress a body-leading H1 that duplicates the chapter title. `parse_chapter` drops the leading
         # `# Title` for `body_md`, but a marker comment glued above it (a `<!-- noqa -->`) defeats that drop,
         # so the H1 survives into the IR. In a single-flow print doc that duplicates the chapter title we

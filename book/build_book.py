@@ -673,12 +673,45 @@ _NOTE_MARKER_RE = re.compile(r"\[note:\s*(.+?)\s*\]", re.S)
 # (digits) by construction — the CITE-SYMBOLOGY gate asserts it. `_note_glyph(i)` is 0-indexed.
 _NOTE_GLYPHS = ("*", "†", "‡", "§", "‖", "¶")
 
+# Standard-markdown footnotes join the inline bracket family: an inline `[^label]` reference plus a
+# line-anchored `[^label]: <definition>`. The definition is pulled OUT of the body flow (it must not render
+# as a stray paragraph) and rendered at each reference site as a house editorial note — the same
+# `.editorial-note` gutter mark `[note:]` uses, so its symbolic glyph stays DISJOINT from the numeric
+# citation marks and a footnote never collides with a citation on the page. N references to one label reuse
+# a SINGLE note (define once, like `[cite:]`); the definition text runs through the SAME inline pipeline, so
+# a nested `[cite:]` / link / `[[abbr]]` inside a footnote renders. SSOT for the renderer, the Typst twin
+# (book_typst imports these), AND the FOOTNOTE-MARKUP sensor (verify_pdf) — so the gate can never drift from
+# what the build parses. A definition body must live on its one source line (the book's authoring style).
+_FOOTNOTE_DEF_RE = re.compile(r"^\[\^([A-Za-z0-9._-]+)\]:[ \t]*(.*)$")
+_FOOTNOTE_REF_RE = re.compile(r"\[\^([A-Za-z0-9._-]+)\]")
+
+
+def collect_footnote_defs(md: str) -> "tuple[str, dict[str, str]]":
+    """Split a chapter body into `(body_without_definition_lines, {label: definition_md})`. A line matching
+    `[^label]: text` is a footnote DEFINITION: it is removed from the flow and its text collected for render
+    at the reference site; every other line is returned untouched. A repeated definition for one label keeps
+    the last (deterministic; the book has none). The SSOT both projections (HTML `md_to_html`, Typst
+    `render_chapter`) call, so they cannot disagree on which lines are definitions or on the extracted text."""
+    defs: dict[str, str] = {}
+    kept: list[str] = []
+    for line in md.splitlines():
+        m = _FOOTNOTE_DEF_RE.match(line)
+        if m:
+            defs[m.group(1)] = m.group(2).strip()
+        else:
+            kept.append(line)
+    return "\n".join(kept), defs
+
 # The rendered Chicago strings (per key: note_html / works_cited_html / bib_html / csl), loaded once from
 # the committed citations.json. Empty until _load_citations() runs (start of build()).
 _CITATIONS: dict[str, dict] = {}
 # Per-chapter citation state, set by _number_citations() before a chapter renders and read inside inline()
 # — the same module-global pattern the glossary (`_GLOSSARY`) uses to thread chapter state into inline().
-_CITE_STATE: dict = {"ns": "", "numbers": {}, "order": [], "notes_emitted": set(), "note_i": 0}
+# `fn_defs` (label → raw definition markdown) is set per md_to_html call from the body being rendered;
+# `fn_marks` (label → (glyph, note_id, n)) and `fn_i` (the footnote glyph counter, own sequence disjoint
+# from `note_i`) are RESET per md_to_html call so each render numbers its footnotes from the first glyph.
+_CITE_STATE: dict = {"ns": "", "numbers": {}, "order": [], "notes_emitted": set(), "note_i": 0,
+                     "fn_defs": {}, "fn_marks": {}, "fn_i": 0}
 
 
 def _load_citations() -> dict[str, dict]:
@@ -736,9 +769,15 @@ def _number_citations(slug: str, body_md: str) -> None:
         if key not in numbers:
             numbers[key] = len(order) + 1
             order.append(key)
+    # Footnote state is chapter-authoritative here (parallel to the citation numbering above): collect this
+    # chapter's `[^label]:` definitions and reset the glyph state, so the chapter's footnotes number from the
+    # first glyph and resolve only against THIS chapter's definitions. md_to_html unions the same set back in
+    # (idempotent for the main body; the inherit path for nested/aux renders).
+    _stripped, fn_defs = collect_footnote_defs(body_md)
     _CITE_STATE.clear()
     _CITE_STATE.update({"ns": _cite_ns(slug), "numbers": numbers, "order": order,
-                        "notes_emitted": set(), "note_i": 0})
+                        "notes_emitted": set(), "note_i": 0,
+                        "fn_defs": fn_defs, "fn_marks": {}, "fn_i": 0})
 
 
 def _note_glyph(i: int) -> str:
@@ -803,6 +842,40 @@ def _render_note_marker(escaped_text: str) -> str:
     # is a real navigable reference to the editorial note it names.
     return (f'<sup class="note-ref"><a href="#{note_id}" role="doc-noteref" aria-label="{label}">{glyph}</a></sup>'
             f'<span class="editorial-note" id="{note_id}"><span class="cn-mark">{glyph}</span> {escaped_text}</span>')
+
+
+def _render_footnote_marker(label: str) -> str:
+    """Render one `[^label]` reference → a house editorial note (symbolic mark + right-gutter note), the same
+    `.editorial-note` presentation `[note:]` uses so a footnote's mark never collides with a numeric citation
+    on the page. The FIRST reference to a label assigns the next footnote glyph and emits the gutter note —
+    its definition text run through the full `inline()` pipeline, so a nested `[cite:]` / link / `[[abbr]]`
+    renders; a REPEAT reference reuses that glyph and links to the ONE note (define once, like `[cite:]`).
+    Fails loud on a `[^label]` with no `[^label]:` definition — a dead footnote reference must stop the
+    build, exactly like an unknown `[cite:]` key."""
+    defs = _CITE_STATE["fn_defs"]
+    if label not in defs:
+        raise SystemExit(f"[^{label}] footnote reference has no matching [^{label}]: definition")
+    marks = _CITE_STATE["fn_marks"]
+    ns = _CITE_STATE["ns"]
+    if label in marks:
+        glyph, note_id, n = marks[label]
+        aria = html.escape(f"note {n}", quote=True)
+        return (f'<sup class="note-ref"><a href="#{note_id}" role="doc-noteref" '
+                f'aria-label="{aria}">{html.escape(glyph)}</a></sup>')
+    i = _CITE_STATE["fn_i"]
+    _CITE_STATE["fn_i"] = i + 1
+    n = i + 1
+    glyph = _note_glyph(i)
+    san = re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
+    note_id = f"note-{ns}-fn-{san}"
+    marks[label] = (glyph, note_id, n)
+    # Render the definition through the SAME inline pipeline (nested markers resolve). The recursive inline()
+    # call has its own stash closures, so it returns finished HTML that this frag embeds.
+    inner = inline(defs[label])
+    glyph_esc = html.escape(glyph)
+    aria = html.escape(f"note {n}", quote=True)
+    return (f'<sup class="note-ref"><a href="#{note_id}" role="doc-noteref" aria-label="{aria}">{glyph_esc}</a></sup>'
+            f'<span class="editorial-note" id="{note_id}"><span class="cn-mark">{glyph_esc}</span> {inner}</span>')
 
 
 def works_cited_section() -> str:
@@ -1046,6 +1119,10 @@ def inline(s: str) -> str:
 
     s = _CITE_MARKER_RE.sub(lambda m: _stash_cite(_render_cite_marker(m.group(1))), s)
     s = _NOTE_MARKER_RE.sub(lambda m: _stash_cite(_render_note_marker(m.group(1).strip())), s)
+    # Standard-markdown footnote references `[^label]` → an editorial-note mark + gutter note (definitions
+    # were pulled out of the flow by `collect_footnote_defs` in md_to_html and stashed in `_CITE_STATE`).
+    # Runs before the markdown-link pass so a `[^label]` is consumed as a footnote, not mis-read as a link.
+    s = _FOOTNOTE_REF_RE.sub(lambda m: _stash_cite(_render_footnote_marker(m.group(1))), s)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
     # Bold: non-greedy so an inner *italic* span survives (e.g. `**a typed *derived* edge**`); the
     # italic pass below then converts the inner single-asterisk pair. (`[^*]+` used to fail whenever a
@@ -1270,6 +1347,17 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
     section's 1-based order within the chapter). `None` (the default) leaves headings unnumbered — the
     blockquote recursion, floats pass, and word-count all call unprefixed, so only the per-chapter body
     build numbers. The number never alters a heading's `{#slug}` id anchor (see `_render_heading`)."""
+    # Pull standard-markdown footnote DEFINITIONS (`[^label]: …` lines) out of the flow so they never render
+    # as body paragraphs, and make this body's definitions available to `_render_footnote_marker` (called
+    # from inline()). Footnote definitions are DOCUMENT-level (a `[^label]` in a blockquote or list resolves
+    # against a chapter-level `[^label]:`), so we UNION into `_CITE_STATE["fn_defs"]` rather than replace —
+    # a NESTED md_to_html (the blockquote recursion) whose inner body has no definitions then inherits the
+    # enclosing chapter's, and an auxiliary full-body pass (float collection) still resolves every ref. The
+    # authoritative per-chapter reset (fresh `fn_defs`/`fn_marks`/`fn_i`, so glyph numbering restarts) is done
+    # by `_number_citations` before the chapter renders; NOT here, so recursion never renumbers mid-chapter.
+    md, _fn_defs = collect_footnote_defs(md)
+    if _fn_defs:
+        _CITE_STATE["fn_defs"] = {**_CITE_STATE.get("fn_defs", {}), **_fn_defs}
     _ir = _book_ir()                        # the typed IR — the single classifier for the content dispatch
     out: list[str] = []
     blocks = _split_blocks(md)
@@ -6121,6 +6209,25 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
                         "a ```mermaid fence rendered as source text, not a diagram")
     else:
         print("PDF MERMAID ASSERT: PASS — no raw mermaid source in PDF text.")
+
+    # FOOTNOTE-MARKUP sensor (author-requested control): no RAW standard-markdown footnote marker may ship in
+    # the PDF. Every `[^label]` reference must have rendered to a footnote (Deliverable 1) and every
+    # `[^label]:` definition line must have been pulled out of the flow; a `[^label]` surviving in the
+    # EXTRACTED text means a reference leaked un-rendered or a definition shipped as a body paragraph. The
+    # scan pattern is the ref regex (a `[^label]:` definition leak also begins with `[^label]`, so both leak
+    # shapes are caught). BLOCKING — the build renders every footnote, so this lands clean; a regression
+    # (a new un-rendered footnote) refuses the CI deploy exactly like the mermaid/overflow sensors. The
+    # intent: we can build the PDF ourselves, but the push-to-prod gate detects a footnote-render regression.
+    footnote_leaks = sorted(set(_FOOTNOTE_REF_RE.findall(text)))
+    if footnote_leaks:
+        listing = ", ".join(f"[^{lbl}]" for lbl in footnote_leaks[:8])
+        print(f"PDF FOOTNOTE-MARKUP SENSOR: FAIL — {len(footnote_leaks)} raw footnote marker(s) leaked into "
+              f"rendered text: {listing}", file=sys.stderr)
+        problems.append(f"raw footnote markup in PDF ({len(footnote_leaks)} distinct: {listing}) — a "
+                        f"`[^label]` reference or `[^label]:` definition shipped un-rendered instead of a "
+                        f"rendered footnote")
+    else:
+        print("PDF FOOTNOTE-MARKUP SENSOR: PASS — no raw footnote markup in PDF text.")
 
     if _BOOK_TITLE not in text:
         problems.append(f"cover title {_BOOK_TITLE!r} not found (cover did not render)")

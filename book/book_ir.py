@@ -229,8 +229,13 @@ class Block:
     def is_render_complete(self) -> bool:
         """True when `render_html()` can produce this block's HTML from its raw slice alone — no arming
         marker (label/caption/anchor) and no cross-block fold participates. The C→A enrich step made the IR
-        render-complete for this subset; a full flip renders these from the node and threads only the rest."""
-        return self.kind in Block._RENDER_COMPLETE
+        render-complete for this subset; a full flip renders these from the node and threads only the rest.
+
+        A block carrying standard-markdown footnote markup (`[^label]` reference or `[^label]:` definition)
+        is EXCLUDED: md_to_html resolves a footnote against CROSS-BLOCK state (the chapter's definitions are
+        pulled out of the flow and referenced from other blocks), so `_render_paragraph` on the raw slice in
+        isolation cannot mirror it — the same cross-block-state reason floats/armed blocks are excluded."""
+        return self.kind in Block._RENDER_COMPLETE and not bb._FOOTNOTE_REF_RE.search(self.raw)
 
     def render_html(self) -> str:
         """Render this block's HTML from its raw slice — byte-identical to `md_to_html`'s emit for the
