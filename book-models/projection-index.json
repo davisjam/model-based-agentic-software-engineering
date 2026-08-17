@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1131,
+    "total_sites": 1129,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 725,
+      "book-web": 723,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -549,7 +549,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 11
+            "occ": 12
           },
           {
             "file": "catalogue-figure.html",
@@ -626,10 +626,6 @@
             "occ": 1
           },
           {
-            "file": "book/1.4-the-new-engineering-problem.html",
-            "occ": 1
-          },
-          {
             "file": "book/3.1-where-authority-can-act.html",
             "occ": 1
           },
@@ -665,7 +661,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 11
           }
         ]
       },
@@ -957,7 +953,7 @@
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 37
+            "occ": 38
           },
           {
             "file": "book/1.2-mage-by-example.html",
@@ -965,11 +961,11 @@
           },
           {
             "file": "book/1.3-the-agentic-substrate.html",
-            "occ": 46
+            "occ": 44
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
-            "occ": 25
+            "occ": 26
           },
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
@@ -1301,7 +1297,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 230
+            "occ": 232
           },
           {
             "file": "book/index.html",
@@ -1309,11 +1305,11 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 23
+            "occ": 24
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 33
+            "occ": 32
           },
           {
             "file": "book/part-2-intro.html",
@@ -1421,7 +1417,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 49
+            "occ": 48
           },
           {
             "file": "catalogue-figure.html",
@@ -2091,7 +2087,7 @@
           },
           {
             "file": "book/1.3-the-agentic-substrate.html",
-            "occ": 19
+            "occ": 18
           },
           {
             "file": "book/1.4-the-new-engineering-problem.html",
@@ -2986,10 +2982,6 @@
             "occ": 1
           },
           {
-            "file": "book/1.4-the-new-engineering-problem.html",
-            "occ": 1
-          },
-          {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 2
           },
@@ -3025,7 +3017,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 11
           }
         ]
       },
@@ -3673,7 +3665,7 @@
           },
           {
             "file": "book/1.1-the-printer.html",
-            "occ": 6
+            "occ": 5
           },
           {
             "file": "book/1.2-mage-by-example.html",
@@ -4029,7 +4021,7 @@
           },
           {
             "file": "book/part-1-intro.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/part-2-intro.html",
@@ -4079,7 +4071,7 @@
           },
           {
             "file": "book-models/models-view.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "development-workflow.html",

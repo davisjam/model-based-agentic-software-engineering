@@ -3,7 +3,7 @@
      "The agentic substrate." Two supplying columns converge on the agent, which in turn acts on the
      engineered environment.
        FOUNDATION MODEL (blue = model palette) — semantic reasoning, probabilistic output, bounded
-                        working state, cheap repeated cognition.
+                        working state, cheap repeated reasoning.
        AGENTIC HARNESS  (gray = neutral machinery) — tool-mediated action, interposition, lifecycle
                         visibility, parallel execution.
      Both feed AGENT (blue), which acts on the ENGINEERED ENVIRONMENT (green = the engineered lever).
@@ -14,7 +14,7 @@
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="asTitle">The agentic substrate</title>
   <desc id="asDesc">Two columns supply the agent. The foundation model contributes semantic reasoning,
-    probabilistic output, a bounded working state, and cheap repeated cognition. The agentic harness
+    probabilistic output, a bounded working state, and cheap repeated reasoning. The agentic harness
     contributes tool-mediated action, interposition, lifecycle visibility, and parallel execution. Both
     converge on the agent, a tool-using reasoner, which in turn acts on the engineered environment —
     the models, obligations, evidence, and controls the engineer builds.</desc>
@@ -42,7 +42,7 @@
   <text x="260" y="143" text-anchor="middle" font-size="16" fill="#1c1917">semantic reasoning</text>
   <text x="260" y="191" text-anchor="middle" font-size="16" fill="#1c1917">probabilistic output</text>
   <text x="260" y="239" text-anchor="middle" font-size="16" fill="#1c1917">bounded working state</text>
-  <text x="260" y="287" text-anchor="middle" font-size="16" fill="#1c1917">cheap repeated cognition</text>
+  <text x="260" y="287" text-anchor="middle" font-size="16" fill="#1c1917">cheap repeated reasoning</text>
 
   <!-- ===== RIGHT column: agentic harness (gray) ===== -->
   <rect x="540" y="72" width="400" height="242" rx="12" fill="#f3f1ee" stroke="#57534e" stroke-width="2.6"/>
