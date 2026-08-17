@@ -15,10 +15,10 @@
     "thin_claims_front_loaded": 0,
     "overmapped_claims": 3,
     "claims_exempt": 5,
-    "claims_stale": 1,
+    "claims_stale": 0,
     "quantifiable_claims": 9,
     "reality_claims": 10,
-    "max_statement_words": 49
+    "max_statement_words": 45
   },
   "taxonomy": {
     "word_cap": 32,
@@ -338,7 +338,7 @@
     {
       "id": "principles-treat-the-causes",
       "order": 9,
-      "statement": "The principles are independent and address different problems: Modeling makes consequential knowledge explicit; Alignment gives obligations authority. Alignment can act without a model; MAGE places Modeling first as a principled scaling choice, not a logical prerequisite. The richer the model, the more obligations move from human judgment into enforcement.",
+      "statement": "The principles are distinct and address different problems: Modeling makes consequential knowledge explicit; Alignment gives obligations authority. Every meaningful Alignment mechanism rests on some conception of acceptable realization — tacit, locally encoded, or externalized as a separately represented model — which MAGE externalizes when consequential.",
       "seeds": [
         4,
         5
@@ -350,12 +350,12 @@
       "reconciles_argues_claims": [],
       "feeds": [],
       "exempt": "bridge",
-      "reviewed_hash": "4320fa5f5f85",
+      "reviewed_hash": "218601e7dcb9",
       "quantifiable": false,
       "reality_claim": false,
       "measurand": "",
-      "word_count": 49,
-      "statement_hash": "16d63ac97caa",
+      "word_count": 45,
+      "statement_hash": "218601e7dcb9",
       "advanced_by": [
         "0.4-preface",
         "1.4-the-new-engineering-problem"
@@ -363,7 +363,7 @@
       "body_depth": 0,
       "front_loaded": true,
       "overmapped": false,
-      "fresh": false
+      "fresh": true
     },
     {
       "id": "failures-become-machinery",

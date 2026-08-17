@@ -6,8 +6,8 @@
     "explicit_ids": 14,
     "derived_ids": 147,
     "missing_topic_sentence": 1,
-    "sections_drained": 108,
-    "paragraph_points": 448
+    "sections_drained": 109,
+    "paragraph_points": 450
   },
   "chapters": [
     {
@@ -38,7 +38,7 @@
           "heading_text": "How coding agents work (and fail)",
           "topic_sentence": "What a fleet of coding agents is, the machinery it runs through, and the characteristic limits that machinery encounters.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 20,
           "points": []
         },
         {
@@ -47,7 +47,7 @@
           "heading_text": "The Governed Engineering Environment",
           "topic_sentence": "The environment that gives engineering obligations durable authority.",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 31,
           "points": []
         }
       ],
@@ -573,19 +573,24 @@
               "block_index": 13
             },
             {
+              "slug": "reduction-preserves-degrees-of-freedom",
+              "text": "Unconstrained realization choices are degrees of freedom; reduction preserves them.",
+              "block_index": 16
+            },
+            {
               "slug": "the-question-decides-what-to-keep",
               "text": "Hold the system constant, change the question, and the model changes; there is no single model of the system.",
-              "block_index": 16
+              "block_index": 19
             },
             {
               "slug": "there-is-no-model-of-the-system",
               "text": "There is no model of the system, only purposeful reductions that each answer one question.",
-              "block_index": 19
+              "block_index": 22
             },
             {
               "slug": "a-reduction-first-even-when-executable",
               "text": "A model is a reduction first, even when it runs; executability changes what you can DO with it, not whether it abstracts.",
-              "block_index": 21
+              "block_index": 24
             }
           ]
         },
@@ -595,27 +600,27 @@
           "heading_text": "Structure Makes Representations Machine-Operable",
           "topic_sentence": "Externalizing knowledge saves reconstruction only if a machine can read it back.",
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 26,
           "points": [
             {
               "slug": "structured-is-the-word-doing-the-work",
               "text": "Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined.",
-              "block_index": 25
+              "block_index": 28
             },
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage.",
-              "block_index": 28
+              "block_index": 31
             },
             {
               "slug": "shape-does-not-distinguish-a-model-semantics-do",
               "text": "A knowledge graph exposes what exists; an engineering model carries the semantics a question needs. Shape does not distinguish them.",
-              "block_index": 31
+              "block_index": 34
             },
             {
               "slug": "industry-already-lives-here",
               "text": "Externalized knowledge representation is the lightest form of Modeling, and most of industry already stands on it.",
-              "block_index": 33
+              "block_index": 36
             }
           ]
         },
@@ -625,27 +630,27 @@
           "heading_text": "Representations Support Accumulating Capabilities",
           "topic_sentence": "Structured representations can support progressively different capabilities: externalized knowledge, typed relationships, explicit semantics, stated properties, derivation, generation, traceability, and checking.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 38,
           "points": [
             {
               "slug": "capability-comes-in-rungs",
               "text": "A representation gains capability one property at a time: externalize, structure, add semantics and obligation, derive or check. Each capability answers more questions.",
-              "block_index": 37
+              "block_index": 40
             },
             {
               "slug": "capability-is-not-maturity-authority-is-a-separate-axis",
               "text": "Capability is a separate dimension from authority; strong local controls can exist with little modeling, and a rich model may remain advisory.",
-              "block_index": 40
+              "block_index": 43
             },
             {
               "slug": "the-consequence-is-selective-modeling",
               "text": "The consequence is not \"model everything\" but selective modeling: model facts repeatedly reconstructed and properties repeatedly adjudicated.",
-              "block_index": 42
+              "block_index": 45
             },
             {
               "slug": "modeling-expands-the-surface-authority-can-operate-over",
               "text": "Modeling does not create authority and authority does not require modeling; modeling expands the semantic surface over which authority can operate.",
-              "block_index": 44
+              "block_index": 47
             }
           ]
         },
@@ -655,22 +660,22 @@
           "heading_text": "Six Classes of Engineering Question",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 46,
+          "block_index": 49,
           "points": [
             {
               "slug": "the-six-class-ontology-is-useful-not-exhaustive",
               "text": "The classification caveat: six classes organized by the engineering question a model answers, useful rather than exhaustive, and able to overlap.",
-              "block_index": 48
+              "block_index": 51
             },
             {
               "slug": "the-classes-are-views-not-boxes",
               "text": "The classes classify questions, not data structures; one represented fact can answer several. The lease is Ownership, Behavioral, and Measurement at once.",
-              "block_index": 52
+              "block_index": 55
             },
             {
               "slug": "system-knowledge-is-substrate-not-a-seventh-class",
               "text": "System knowledge is the connected substrate where the six classes meet, not a seventh peer class.",
-              "block_index": 55
+              "block_index": 58
             }
           ]
         },
@@ -680,17 +685,17 @@
           "heading_text": "Purpose Comes First; Representation Follows",
           "topic_sentence": "The class names a model's purpose.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 60,
           "points": [
             {
               "slug": "purpose-and-shape-are-different-axes",
               "text": "A model's class (its purpose) is a different axis from its representation shape (graph, state machine, table); the same purpose admits several forms.",
-              "block_index": 59
+              "block_index": 62
             },
             {
               "slug": "several-forms-can-serve-one-purpose",
               "text": "The engineering question fixes the purpose; several forms may serve it, and one form may serve several purposes.",
-              "block_index": 61
+              "block_index": 64
             }
           ]
         },
@@ -700,22 +705,22 @@
           "heading_text": "The Six Model Classes",
           "topic_sentence": "Each of the next six chapters takes one class through one production model from DocAble:",
           "id_source": "derived",
-          "block_index": 63,
+          "block_index": 66,
           "points": [
             {
               "slug": "one-class-per-chapter-then-the-substrate",
               "text": "Each of the next six chapters takes one class through one DocAble model; the final chapter treats the connected substrate.",
-              "block_index": 65
+              "block_index": 68
             },
             {
               "slug": "the-substrate-and-the-forward-boundary",
               "text": "The final chapter treats the models as a connected substrate; Part III gives selected properties consequence.",
-              "block_index": 68
+              "block_index": 71
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment gives selected properties consequence.",
-              "block_index": 70
+              "block_index": 73
             }
           ]
         }
@@ -856,8 +861,8 @@
               "block_index": 54
             },
             {
-              "slug": "alignment-can-exist-without-explicit-models-its-limit-is-what-the-environment-can-state-and-observe",
-              "text": "Alignment does not require explicit models — a sandbox, compiler, and test already carry real authority over observable behavior.",
+              "slug": "alignment-does-not-require-a-separately-represented-model-its-limit-is-what-the-environment-can-state-and-observe",
+              "text": "Alignment does not require a separately represented model — a sandbox, compiler, and test already carry real authority over observable behavior.",
               "block_index": 56
             },
             {
@@ -1343,8 +1348,8 @@
               "block_index": 17
             },
             {
-              "slug": "modeling-and-alignment-form-a-feedback-loop-without-one-being-a-prerequisite",
-              "text": "Modeling and Alignment form a feedback loop in practice without one being a prerequisite for the other.",
+              "slug": "modeling-and-alignment-form-a-feedback-loop",
+              "text": "Alignment failures expose tacit knowledge or obligations that Modeling can externalize.",
               "block_index": 20
             }
           ]
@@ -3630,7 +3635,13 @@
           "topic_sentence": "Modeling and Alignment are distinct engineering activities.",
           "id_source": "derived",
           "block_index": 38,
-          "points": []
+          "points": [
+            {
+              "slug": "frontier-concerns-obligations-degrees-of-freedom-concern-realization",
+              "text": "The frontier concerns obligations; degrees of freedom concern realization.",
+              "block_index": 47
+            }
+          ]
         }
       ],
       "preamble_points": []

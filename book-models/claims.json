@@ -342,21 +342,21 @@
     {
       "id": "principles-divide-the-not-knowings",
       "kind": "mapping",
-      "statement": "The Modeling and Alignment principles treat different, independent engineering problems.",
+      "statement": "Modeling and Alignment treat different but not independent engineering problems, resting on one shared conception of acceptable realization.",
       "distinguishes": [],
       "home": "what-the-method-turned-out-to-be",
       "asserted_at": [
         "what-the-method-turned-out-to-be"
       ],
-      "contradicted_by": "Presenting the two principles as one causal chain, or as a fixed division of shared 'not-knowings'.",
+      "contradicted_by": "Collapsing the two principles into one, or denying that Alignment rests on any conception of acceptable realization — treating it as acting without one.",
       "watch_phrases": [],
       "relates_to": [
         "concept:modeling-principle",
         "concept:alignment-principle"
       ],
       "provenance": "stated",
-      "anchor": "Preface 'What the method turned out to be': the two principles solve different problems and can exist independently.",
-      "word_count": 10
+      "anchor": "Preface 'What the method turned out to be': the two principles solve different problems but are not independent — each rests on the same underlying conception of acceptable realization, which Modeling externalizes and Alignment gives authority.",
+      "word_count": 18
     },
     {
       "id": "printer-not-coder",

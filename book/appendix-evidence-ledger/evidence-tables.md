@@ -173,7 +173,10 @@ Three qualifications matter.
 - **Not all orphans are debt.** An unmodeled exercised symbol may be a genuinely missing model, a
   missing anchor on an existing model, or implementation detail below the grain the model should
   represent. Backward traceability from exercised symbols toward expected model edges distinguished these
-  cases; only the first two necessarily call for additional modeling.
+  cases; only the first two necessarily call for additional modeling. The unmodeled fraction measures
+  absence of explicit representation, not engineering deficiency: the remainder may include unknown
+  obligations, tacit obligations, and deliberately preserved degrees of freedom. MAGE does not prescribe
+  zero as the target.
 
 <!-- FUTURE: Recover and publish all nine measurements, including denominator or relevant traceability counts if available. The present endpoint-only series supports the endpoint claim but is not yet the raw series the ledger ideally promises. -->
 

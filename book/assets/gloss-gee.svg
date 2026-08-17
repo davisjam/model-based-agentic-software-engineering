@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- HAND-AUTHORED one-off glossary section-map. R41b THEORY REBUILD (preface-3): the old figure led with
-     Model / Invariant -> Governance Mechanism, as though every mechanism starts from a model. That is now
-     wrong. The input is an ENGINEERING OBLIGATION, and a mechanism has TWO ways to obtain something to act
-     on: a directly observable action or artifact (no model needed), OR an explicit model / invariant
-     (richer semantics). Both JOIN at the Governance Mechanism, which governs the environment that compounds
-     into engineering capital. Explicit models are not a prerequisite — they extend the mechanism to
-     properties that would otherwise need human reconstruction. Orientation reference chrome, not a
-     role-coloured figure. -->
+     Model / Invariant -> Governance Mechanism, as though every mechanism starts from a separately
+     represented model. That is now wrong. The input is an ENGINEERING OBLIGATION — some conception of
+     acceptable realization always underlies the mechanism — and a mechanism has TWO ways to obtain
+     something to act on: a directly observable action or artifact, with the obligation locally encoded,
+     OR an explicit model / invariant (richer semantics). Both JOIN at the Governance Mechanism, which
+     governs the environment that compounds into engineering capital. A separately represented model is not
+     a prerequisite — it externalizes the obligation and extends the mechanism to properties that would
+     otherwise need human reconstruction. Orientation reference chrome, not a role-coloured figure. -->
 <!-- semantic-families: neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Two-input control flow: an engineering obligation is acted on either through a directly observable action or artifact, or through an explicit model or invariant with richer semantics; both join at the governance mechanism, which governs an environment that compounds into engineering capital">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Two-input control flow: an engineering obligation is acted on either through a directly observable action or artifact, with the obligation locally encoded, or through an explicit model or invariant with richer semantics; both join at the governance mechanism, which governs an environment that compounds into engineering capital">
   <defs>
     <marker id="vh-gee2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
@@ -28,21 +29,22 @@
   <line x1="720" y1="150" x2="720" y2="182" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <text x="500" y="172" text-anchor="middle" font-size="14" font-style="italic" fill="#78716c">acted on through one of two surfaces</text>
 
-  <!-- LEFT input: a directly observable action or artifact (no model) -->
-  <rect x="110" y="184" width="330" height="78" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
+  <!-- LEFT input: a directly observable action or artifact (obligation locally encoded) -->
+  <rect x="110" y="184" width="330" height="96" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
   <text x="275" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Directly observable</text>
   <text x="275" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">action or artifact</text>
-  <text x="275" y="255" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run — no model</text>
+  <text x="275" y="256" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run —</text>
+  <text x="275" y="274" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">obligation locally encoded</text>
 
   <!-- RIGHT input: an explicit model / invariant (richer semantics) -->
-  <rect x="560" y="184" width="330" height="78" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2.4"/>
+  <rect x="560" y="184" width="330" height="96" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2.4"/>
   <text x="725" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Explicit model / invariant</text>
   <text x="725" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">richer semantics</text>
   <text x="725" y="255" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">states properties observation cannot reach</text>
 
   <!-- join: both surfaces meet at the mechanism -->
-  <line x1="275" y1="262" x2="275" y2="292" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="725" y1="262" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="275" y1="280" x2="275" y2="292" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="725" y1="280" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
   <line x1="275" y1="292" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
   <line x1="500" y1="292" x2="500" y2="322" stroke="#57534e" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <text x="512" y="312" font-size="14" fill="#78716c">enforced by</text>

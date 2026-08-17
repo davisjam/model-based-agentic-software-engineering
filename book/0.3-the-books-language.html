@@ -701,6 +701,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Governance.</strong> The engineering discipline of deciding what representations, evidence, procedures, and mechanisms should shape autonomous work, and maintaining those structures over time. Governance conversion is the ex-post path by which recurring failure or judgment becomes durable structure.</p>
 <p><strong>Engineering, and software engineering, as used here.</strong> Designing under goals, constraints, and trade-offs by reasoning about the properties alternatives are expected to produce and the evidence that supports those expectations. Engineering applied to software: designing and evolving software systems by reasoning about intended properties, constraints, evidence, and trade-offs rather than relying on the implementation alone to reveal them.</p>
 <p><strong><a class="gloss-site" href="2.1-context-is-the-first-modeling-problem.html#idx-def-model">Model.</a></strong> A purposeful reduction of a system that preserves the information needed to answer an engineering question while suppressing detail the question does not need. Models externalize engineering knowledge and intent so that engineers and agents can reason over selected system properties without repeatedly reconstructing them from lower-level artifacts.</p>
+<p id="idx-def-degrees-of-freedom"><strong>Degree of freedom.</strong> A realization choice not constrained by the engineering obligations currently governing that realization. Purposeful models preserve such freedom by leaving choices unspecified when the engineering question does not require them.</p>
 <p id="idx-def-model-classes"><strong>Model classes.</strong> MAGE uses six recurring classes of models, organized by the engineering questions they help answer (<a class="xref" href="0.3-the-books-language.html#fig-0-3-1">Figure&nbsp;0.3-1</a>). The classes are neither exhaustive nor mutually exclusive: a representation may serve more than one class.</p>
 <figure id="fig-0-3-1" class="book-figure" data-label="gloss-model-classes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 415"
      role="img" aria-labelledby="onTitle onDesc"
@@ -876,7 +877,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong><a class="gloss-site" href="1.3-the-agentic-substrate.html#idx-def-reasoning-horizon">Reasoning horizon.</a></strong> The amount of intermediate reasoning state a task requires held at once to carry it to a correct result. It is a property of the task, not of who reasons — human, agent, or a later architecture. A <em>long-horizon task</em> is one whose reasoning horizon outruns the available working memory, forcing lossy compression and reconstruction of that state; the context window instantiates that limit today.</p>
 <h2>The Governed Engineering Environment</h2>
 <p>The environment that gives engineering obligations durable authority.</p>
-<figure id="fig-0-3-3" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Two-input control flow: an engineering obligation is acted on either through a directly observable action or artifact, or through an explicit model or invariant with richer semantics; both join at the governance mechanism, which governs an environment that compounds into engineering capital">
+<figure id="fig-0-3-3" class="book-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Two-input control flow: an engineering obligation is acted on either through a directly observable action or artifact, with the obligation locally encoded, or through an explicit model or invariant with richer semantics; both join at the governance mechanism, which governs an environment that compounds into engineering capital">
   <defs>
     <marker id="vh-gee2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
@@ -896,21 +897,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="720" y1="150" x2="720" y2="182" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <text x="500" y="172" text-anchor="middle" font-size="14" font-style="italic" fill="#78716c">acted on through one of two surfaces</text>
 
-  <!-- LEFT input: a directly observable action or artifact (no model) -->
-  <rect x="110" y="184" width="330" height="78" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
+  <!-- LEFT input: a directly observable action or artifact (obligation locally encoded) -->
+  <rect x="110" y="184" width="330" height="96" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
   <text x="275" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Directly observable</text>
   <text x="275" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">action or artifact</text>
-  <text x="275" y="255" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run — no model</text>
+  <text x="275" y="256" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run —</text>
+  <text x="275" y="274" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">obligation locally encoded</text>
 
   <!-- RIGHT input: an explicit model / invariant (richer semantics) -->
-  <rect x="560" y="184" width="330" height="78" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2.4"/>
+  <rect x="560" y="184" width="330" height="96" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2.4"/>
   <text x="725" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Explicit model / invariant</text>
   <text x="725" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">richer semantics</text>
   <text x="725" y="255" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">states properties observation cannot reach</text>
 
   <!-- join: both surfaces meet at the mechanism -->
-  <line x1="275" y1="262" x2="275" y2="292" stroke="#cfcabf" stroke-width="3"/>
-  <line x1="725" y1="262" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="275" y1="280" x2="275" y2="292" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="725" y1="280" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
   <line x1="275" y1="292" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
   <line x1="500" y1="292" x2="500" y2="322" stroke="#57534e" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <text x="512" y="312" font-size="14" fill="#78716c">enforced by</text>
@@ -937,7 +939,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <path d="M26,12 L12,12 L12,26"/>
     <path d="M974,628 L988,628 L988,614"/>
   </g>
-</svg><figcaption data-short="The governed environment"><span class="fig-label">Figure 0.3-3.</span> The governed environment. An obligation reaches a mechanism — constraint, sensor, validator, gate — by two paths: an observable action or artifact, or an explicit model adding richer semantics.</figcaption></figure>
+</svg><figcaption data-short="The governed environment"><span class="fig-label">Figure 0.3-3.</span> The governed environment. An obligation reaches a governance mechanism through a locally encoded rule over an observable action or artifact, or through an explicit model that exposes richer semantics.</figcaption></figure>
 <p><strong><a class="gloss-site" href="3.4-governance-conversion.html#idx-def-governed-environment">Governed Engineering Environment.</a></strong> An engineered environment in which consequential policy is carried by durable mechanisms rather than depending primarily on human memory or repeated inspection. Explicit models can extend those mechanisms to properties that would otherwise require human reconstruction or judgment.</p>
 <p><strong>Governance mechanism.</strong> A repeatable structure that gives an engineering obligation authority in the environment. MAGE distinguishes four roles: constraints restrict permissible actions; sensors produce evidence about what happened; validators evaluate evidence against an obligation; and gates control whether work may proceed across a workflow boundary. One implementation may serve more than one role.</p>
 <p><strong><a class="gloss-site" href="2.2-structural.html#idx-def-model-drift">Model drift.</a></strong> A model and the system, evidence, or other representation to which it is meant to correspond cease to agree.</p>
