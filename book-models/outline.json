@@ -7,7 +7,7 @@
     "derived_ids": 147,
     "missing_topic_sentence": 1,
     "sections_drained": 108,
-    "paragraph_points": 450
+    "paragraph_points": 449
   },
   "chapters": [
     {
@@ -147,7 +147,7 @@
             },
             {
               "slug": "mage-is-about-that-environment",
-              "text": "MAGE is principally about that environment; the method lies in the representations agents and engineers reason through, the obligations the environment can make authoritative, and the judgment that decides what should become durable engineering structure.",
+              "text": "MAGE is principally about that environment; the method lies in the representations agents and engineers reason through, the mechanisms through which obligations acquire authority, and the judgment that decides what should become durable engineering structure.",
               "block_index": 13
             },
             {
@@ -201,7 +201,7 @@
         },
         {
           "slug": "the-agent-is-a-printer-responsibility-in-the-right-place",
-          "text": "Treat the agent first as a printer — productive machinery that realizes an engineering intent; the metaphor is imperfect but keeps responsibility with the engineer, who owns what the work must mean, satisfy, and prove.",
+          "text": "Treat the agent first as a printer — productive machinery that realizes engineering intent; the metaphor is imperfect but keeps responsibility with the engineer, who owns what the work must mean, satisfy, and prove.",
           "block_index": 2
         },
         {
@@ -307,11 +307,6 @@
               "slug": "one-worker-several-models",
               "text": "The same worker appears differently in later models — a deployable component, an actor in a lifecycle, an owner of a resource, a subject of an access policy, or a source of measurements; not competing descriptions, but different properties of the same system.",
               "block_index": 40
-            },
-            {
-              "slug": "parts-return-to-this-territory",
-              "text": "Later models preserve different parts of this territory: structure, behavior, ownership, decisions, measurements, and provenance.",
-              "block_index": 42
             }
           ]
         },
@@ -321,27 +316,27 @@
           "heading_text": "How the Book Uses DocAble",
           "topic_sentence": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires.",
           "id_source": "derived",
-          "block_index": 44,
+          "block_index": 42,
           "points": [
             {
               "slug": "docable-shown-at-method-resolution",
               "text": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires; Part II asks which representations make properties tractable, Part III how obligations acquire authority.",
-              "block_index": 46
+              "block_index": 44
             },
             {
               "slug": "part-v-examines-the-build-itself",
               "text": "Part V uses DocAble differently: it examines the build itself — what failed, what those failures revealed, and how recurring judgments became models, controls, and other durable engineering structure.",
-              "block_index": 48
+              "block_index": 46
             },
             {
               "slug": "docable-is-depth-not-the-whole-evidence",
-              "text": "DocAble provides depth, not the book's entire evidentiary basis; other engineering organizations reappear to show where related structures recur independently, where they take different forms, and where the evidence supports a more limited interpretation.",
-              "block_index": 50
+              "text": "DocAble provides depth, not the book's entire evidentiary basis; other engineering organizations reappear to show where related structures recur, where they take different forms, and where the evidence supports a more limited interpretation.",
+              "block_index": 48
             },
             {
               "slug": "bridge-to-the-substrate",
               "text": "We can now examine the productive substrate that makes autonomous implementation possible.",
-              "block_index": 52
+              "block_index": 50
             }
           ]
         }
@@ -383,7 +378,7 @@
             },
             {
               "slug": "the-substrate-framing-is-an-emerging-consensus",
-              "text": "None of these properties is alien to human engineering; what changes is their combination and economics, and recent work on harness engineering treats autonomous capability as a property of the model–harness–environment system.",
+              "text": "None of these properties is alien to human engineering; what changes is their combination and economics, and recent work on harness engineering treats autonomous capability as a property of the foundation-model–harness–environment system.",
               "block_index": 16
             }
           ]
@@ -433,7 +428,7 @@
             },
             {
               "slug": "new-architectures-move-constants-not-the-principle",
-              "text": "Larger windows, persistent memory, retrieval, or new architectures move the boundaries and change the constants; they do not remove the engineering principle that question-relevant state must stay available and cheap to reason over while irrelevant detail stays outside the active working set.",
+              "text": "Larger windows, persistent memory, retrieval, or new architectures move the boundaries and change the constants; they do not remove the underlying engineering problem that question-relevant state must stay available and cheap to reason over while irrelevant detail stays outside the active working set.",
               "block_index": 36
             },
             {
@@ -463,7 +458,7 @@
             },
             {
               "slug": "alignment-has-semantic-reach-and-modeling-moves-the-boundary-outward",
-              "text": "Some obligations need little modeling — a sandbox, compiler, test, or permission system holds them; those are real Alignment, limited by semantic reach. Modeling expands that semantic reach, making larger properties available to the reasoner and to deterministic machinery.",
+              "text": "Some obligations need little modeling — a sandbox, compiler, test, or permission system holds them; those are real Alignment, limited by semantic reach. Modeling expands that semantic reach, making broader properties available to the reasoner and to deterministic machinery.",
               "block_index": 46
             }
           ]
@@ -483,7 +478,7 @@
             },
             {
               "slug": "representation-determines-what-the-control-points-can-know",
-              "text": "Local controls already operate at these seams without a system model; explicit engineering models extend the semantic reach of the same control points, so an action can be judged not only by what it does but by what it means for architecture, policy, behavior, ownership, measurements, or other represented obligations.",
+              "text": "Local controls already operate at these seams without a system model; explicit engineering models can extend the semantic reach of those same control points, so an action can be judged not only by what it does but by what it means for architecture, policy, behavior, ownership, measurements, or other represented obligations.",
               "block_index": 52
             }
           ]
