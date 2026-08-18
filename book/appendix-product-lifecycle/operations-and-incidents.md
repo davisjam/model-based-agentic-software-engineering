@@ -1,42 +1,29 @@
-**Engineering question.** What is the system doing, how should it be operated, and what should we learn when it fails?
+**Engineering question.** What is the system doing, why is it doing it, and what should we learn from failure?
 
-Operations provides a useful counterweight to the idea that MAGE primarily means richer semantic models.
+Operations works against the realized system. Its characteristic representations include deployment topology, service dependencies, runtime configuration, telemetry, resource relationships, runbooks, incident timelines, and operational policies. These models answer questions that source code alone often answers poorly: what is running where, which services depend on which others, what resources are shared, what happened before a failure, and what operators should do next. Their correspondence claims are correspondingly strong. A topology presented as current must describe the deployed system closely enough to support operational reasoning; telemetry must refer to identifiable entities and states; and a runbook intended to govern response must remain applicable to the system operators actually face.
 
-Mature operations already depends heavily on explicit representations: deployment topology, desired configuration, telemetry schemas, SLOs, permissions, dashboards, runbooks, and incident records. But operational knowledge often has a strong path toward procedure and determinization.
+Incidents make Operations especially important to MAGE because they reveal where the governed engineering environment was incomplete, wrong, or insufficient. A successful incident response restores service, but restoration alone purchases little protection against recurrence. The familiar failure mode is to locate the immediate fault, patch the observed instance, and close the incident. Root-cause analysis asks a harder question: what condition made this failure possible? In a MAGE environment, bidirectional traceability can carry that investigation from an observation in the realized system to the implementation involved and from there to the architectural, behavioral, ownership, resource, or other models that describe the affected concepts and their obligations.
 
-A novel failure may initially require semantic diagnosis. If the same diagnosis and response recur, engineers may write a runbook. If the runbook’s preconditions, actions, and postconditions become sufficiently stable and decidable, much of it should cease to require an agent at all.
+Explicit models may also make it easier to ask where else the same condition exists. Two failures need not share similar source code to rhyme structurally. Different components may occupy the same modeled role, implement analogous state transitions, cross equivalent trust boundaries, share the same ownership relation, or depend on resources with the same lifecycle. Once those relationships are represented, an engineer or agent can search for other realizations of the relevant engineering condition rather than merely for syntactically similar code. The ambition is longstanding: repair the class rather than the instance. Models make that ambition more tractable because they provide a vocabulary for identifying the class.
 
-[ref:fig-h-ops-determinization] follows operational knowledge as it travels from situational diagnosis toward deterministic procedure.
+Finding the class is only half the job. Governance conversion determines whether the lesson survives the incident. A recurring or consequential failure can produce a corrected model, new invariant, validator, architectural constraint, regression test, operational policy, admission gate, or other durable mechanism. The particular response depends on what the incident taught: a wrong representation should be corrected; missing knowledge may need to be modeled; a stable and decidable obligation may warrant deterministic enforcement. Models help identify the class; Alignment helps make the repair durable. The strongest outcome of incident response is therefore not a successful patch, but a governed environment in which future work inherits what the organization learned.
 
-<!-- label: fig-h-ops-determinization -->
-<!-- figure: assets/h5-operational-determinization.svg | *Operational knowledge determinizing.* A novel or situational failure first requires semantic diagnosis; when the diagnosis and response recur, engineers write a runbook; when the runbook’s preconditions, actions, and postconditions become stable and decidable, much of it migrates into deterministic procedure—monitors, permissions, actions, postcondition and rollback gates. The destination of operational governance conversion is often machinery, not a better prompt. -->
+[ref:fig-h-incident] shows this progression. The incident begins as evidence from one realization, but investigation need not remain local to that realization. Traceability connects the observed failure to its modeled engineering context; relationships within that context can expose other instances of the same condition; governance conversion then preserves the resulting lesson for subsequent engineering and operation.
 
-This is governance conversion expressed operationally. The destination is not necessarily a better prompt. Often it is machinery.
+<!-- label: fig-h-incident -->
+<!-- figure: assets/h5-incident-to-governance.svg | *From incident repair to governance conversion.* An incident provides evidence about the realized system. Traceability connects the failure to the models and obligations it realizes; relationships within those models can expose other instances of the same engineering condition even when their implementations differ. Repair can then address the class rather than only the observed instance, while governance conversion preserves the lesson in models or mechanisms that future work inherits. -->
 
-The agent remains useful around the boundary: Which runbook applies? Do these symptoms actually match its preconditions? Is the current event sufficiently novel that the deterministic procedure should not run? How should observations from several systems be synthesized? What causal account best explains the failure?
+This does not make every incident globally generalizable. Some failures are genuinely local, and some similarities visible in a model will prove irrelevant to the cause at hand. Nor is repairing defect classes a new ambition: root-cause analysis, defect prevention, static analysis, and related practices have long sought to turn individual failures into broader corrective action. MAGE changes the available substrate for doing so. Explicit engineering models provide additional relationships over which engineers and agents can search for analogous conditions, while Alignment provides places to encode the resulting lesson when it can responsibly be made authoritative.
 
-The same distinction applies to incidents.
-
-An incident timeline or RCA is usually episode-scoped. It reconstructs what happened and why existing controls failed to prevent or contain it. Its enduring engineering value depends on what happens next.
-
-[ref:fig-h-incident-conversion] shows an incident’s lesson either repaired locally or converted into durable governance.
-
-<!-- label: fig-h-incident-conversion -->
-<!-- figure: assets/h5-incident-governance-conversion.svg | *From incident to inherited lesson.* Telemetry and history reconstruct an incident as a timeline or RCA; a structural judgment then decides whether the failure is a local event to repair or a recurring gap worth durable treatment. Governance conversion promotes the recurring case into a model update, a mechanism or gate, or an architectural or runbook change, so future work inherits the lesson. -->
-
-Not every incident deserves another control. Responding mechanically to every failure by adding machinery would accumulate bureaucracy rather than engineering capital. The judgment is whether the event reveals a recurring or sufficiently consequential obligation worth durable treatment.
-
-One useful way to state the transition is:
-
-Experience often begins at the lifetime of an episode and becomes engineering capital when useful knowledge is promoted to the lifetime of an obligation.
+Operations is consequently an important source of engineering capital. H.4 described how maintenance can inherit models, obligations, evidence machinery, and prior decisions accumulated by earlier engineering. Operations supplies one of the principal feedback loops by which that capital grows. Failures reveal missing or mistaken knowledge; investigation connects the observation to the relevant engineering concepts; governance conversion turns recurring lessons into structure that later changes no longer need to rediscover. The operational loop therefore closes only when experience changes what subsequent engineering inherits.
 
 **MAGE profile.**
 
-- *Characteristic models.* Operational topology, configuration, SLOs, telemetry schemas, runbooks, incident timelines, causal accounts, RCAs.
-- *Lifetime.* Current-state, episode-scoped, and system-lived representations coexist.
-- *Alignment posture.* Often strong: permissions, monitors, health checks, rollout and rollback gates, automated procedures, and postcondition checks.
-- *Role of autonomous reasoning.* Diagnosis, novel situations, selecting and composing procedures, interpreting observations whose semantics exceed existing machinery.
-- *Determinization opportunity.* Particularly high. Stable operational judgment should migrate from repeated reasoning into runbooks and, where possible, from runbooks into deterministic tooling.
-- *Degrees of freedom.* Situational choices not settled by operational obligations or safe procedures.
-- *Smallest useful adoption.* Make consequential operational state and procedures explicitly available to agents; bind high-consequence actions with permissions and observable conditions.
-- *Lifecycle connections.* Engineering components and architecture; maintenance tickets created by failures; assurance claims supported by runtime evidence.
+- *Characteristic models.* Deployment topology, service and resource dependencies, runtime configuration, telemetry, operational state, runbooks, incident timelines, and operational policies.
+- *Lifetime.* Mixed. Telemetry and incident evidence may be episode-scoped; topology, dependencies, policies, and runbooks are generally system-lived and require stronger synchronization with the realized system.
+- *Alignment posture.* Strong where operational state or policy can be checked mechanically: deployment validation, health checks, policy enforcement, admission controls, automated response, and operational gates.
+- *Role of autonomous reasoning.* Diagnosing incidents across runtime evidence, implementation, and system models; identifying root causes and structurally related instances; proposing corrective action; and recognizing lessons that should be converted into durable governance.
+- *Determinization opportunity.* High for stable operational predicates and recurring failure classes once their governing conditions have been identified.
+- *Degrees of freedom.* Operational and corrective choices left open by existing obligations. Incidents may reveal that an apparent freedom was actually constrained by an unmodeled or tacit obligation.
+- *Smallest useful adoption.* Connect one recurring class of operational failure to the system models needed to diagnose it, then convert the resulting lesson into a durable representation or mechanism rather than repeatedly repairing individual instances.
+- *Lifecycle connections.* Realized structure from Engineering; corrective work flowing into Maintenance; operational evidence supporting Assurance; recurring lessons converted into engineering capital for future work.
