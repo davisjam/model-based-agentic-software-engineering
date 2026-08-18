@@ -69,6 +69,17 @@ right in the one layout the author eyeballed and drifts the moment the line move
   text, is never acceptable — route the connector to one side, break it, or move the text. (The width
   heuristic in the figure text-fit checker is blind to this; the line-through-text audit catches it, and
   otherwise watch for it by eye.)
+- **Every edge terminates on a named node.** A connector runs from one named element to another — a box, a
+  labeled node, a marker — and never into open space, onto a bare field/background region, or to an
+  ambiguous point near another edge. This is graph semantics: an edge asserts a relationship between two
+  named things, so a line ending in whitespace asserts a relationship to nothing and misreads. If the
+  destination is not worth naming, do not draw the edge. When two edges share a destination, land them at
+  visibly distinct attachment points; do not use a field/container boundary as an endpoint (the region is
+  context, not a node). Prefer a shallow curve around an obstacle to a diagonal slash across the
+  composition. (Not yet mechanically enforced — see the dangling-edge check below. For strong per-edge
+  verification, and to make the intent auditable, annotate each connector `<!-- edge: <source> ->
+  <destination> --><!-- both endpoints naming a node the lint can resolve -->` so the SVG declares the
+  graph it draws.)
 - **Reach for the format's named shape in general** — `<rect rx>` for a rounded box, `<marker>` for an
   arrow, a `<pattern>` / `<symbol>` for a repeated motif, a Mermaid edge label for an edge label — before
   composing one from strokes. The named form is shorter to write, reads correctly to a tool and a screen
