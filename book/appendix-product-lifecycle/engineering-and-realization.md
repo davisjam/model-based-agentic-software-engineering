@@ -35,18 +35,11 @@ The agent need not invent the product’s governing obligations. For a change wh
 
 **MAGE profile.**
 
-**Characteristic models.** Architecture, behavior, state machines, contracts, dependencies, knowledge graphs, resource and quantitative models, invariants.
-
-**Lifetime.** Change-scoped through system-lived, depending on the claimed correspondence.
-
-**Alignment posture.** Strong where consequential properties are decidable: tests, analyses, validators, model checking, constraints, and gates.
-
-**Role of autonomous reasoning.** Realizing changes across interacting semantic constraints; reasoning where obligations are explicit but realization remains underdetermined.
-
-**Determinization opportunity.** High when modeling exposes stable properties that machinery can evaluate.
-
-**Degrees of freedom.** Implementation choices left open after governing obligations are accounted for.
-
-**Smallest useful adoption.** Externalize one repeatedly reconstructed or consequential system property and give stable obligations over it proportionate evidence and authority.
-
-**Connects to.** Product intent and tickets upstream; operational topology and evidence downstream; assurance obligations across the surface.
+- *Characteristic models.* Architecture, behavior, state machines, contracts, dependencies, knowledge graphs, resource and quantitative models, invariants.
+- *Lifetime.* Change-scoped through system-lived, depending on the claimed correspondence.
+- *Alignment posture.* Strong where consequential properties are decidable: tests, analyses, validators, model checking, constraints, and gates.
+- *Role of autonomous reasoning.* Realizing changes across interacting semantic constraints; reasoning where obligations are explicit but realization remains underdetermined.
+- *Determinization opportunity.* High when modeling exposes stable properties that machinery can evaluate.
+- *Degrees of freedom.* Implementation choices left open after governing obligations are accounted for.
+- *Smallest useful adoption.* Externalize one repeatedly reconstructed or consequential system property and give stable obligations over it proportionate evidence and authority.
+- *Connects to.* Product intent and tickets upstream; operational topology and evidence downstream; assurance obligations across the surface.

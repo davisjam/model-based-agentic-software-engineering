@@ -28,18 +28,11 @@ Product management and maintenance therefore sit between transient intent and du
 
 **MAGE profile.**
 
-**Characteristic models.** Tickets, issues, bug reports, acceptance criteria, rationale, decisions, links to longer-lived product and system models.
-
-**Lifetime.** Primarily change-scoped, with historical value after the change is complete.
-
-**Alignment posture.** Workflow state, acceptance evidence, regression tests, and admission gates.
-
-**Role of autonomous reasoning.** Interpreting change intent against the current system and retrieving the longer-lived context relevant to the change.
-
-**Determinization opportunity.** Recurring classes of changes, acceptance conditions, and repair obligations can migrate into machinery.
-
-**Degrees of freedom.** Details the change request intentionally leaves to realization.
-
-**Smallest useful adoption.** Treat sufficiently structured tickets as change-scoped models available to agents and connect them to relevant persistent knowledge and acceptance evidence.
-
-**Connects to.** Product rationale upstream; engineering models during realization; incidents that create corrective work; assurance obligations affected by the change.
+- *Characteristic models.* Tickets, issues, bug reports, acceptance criteria, rationale, decisions, links to longer-lived product and system models.
+- *Lifetime.* Primarily change-scoped, with historical value after the change is complete.
+- *Alignment posture.* Workflow state, acceptance evidence, regression tests, and admission gates.
+- *Role of autonomous reasoning.* Interpreting change intent against the current system and retrieving the longer-lived context relevant to the change.
+- *Determinization opportunity.* Recurring classes of changes, acceptance conditions, and repair obligations can migrate into machinery.
+- *Degrees of freedom.* Details the change request intentionally leaves to realization.
+- *Smallest useful adoption.* Treat sufficiently structured tickets as change-scoped models available to agents and connect them to relevant persistent knowledge and acceptance evidence.
+- *Connects to.* Product rationale upstream; engineering models during realization; incidents that create corrective work; assurance obligations affected by the change.

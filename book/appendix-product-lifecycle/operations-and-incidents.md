@@ -32,18 +32,11 @@ Experience often begins at the lifetime of an episode and becomes engineering ca
 
 **MAGE profile.**
 
-**Characteristic models.** Operational topology, configuration, SLOs, telemetry schemas, runbooks, incident timelines, causal accounts, RCAs.
-
-**Lifetime.** Current-state, episode-scoped, and system-lived representations coexist.
-
-**Alignment posture.** Often strong: permissions, monitors, health checks, rollout and rollback gates, automated procedures, and postcondition checks.
-
-**Role of autonomous reasoning.** Diagnosis, novel situations, selecting and composing procedures, interpreting observations whose semantics exceed existing machinery.
-
-**Determinization opportunity.** Particularly high. Stable operational judgment should migrate from repeated reasoning into runbooks and, where possible, from runbooks into deterministic tooling.
-
-**Degrees of freedom.** Situational choices not settled by operational obligations or safe procedures.
-
-**Smallest useful adoption.** Make consequential operational state and procedures explicitly available to agents; bind high-consequence actions with permissions and observable conditions.
-
-**Connects to.** Engineering components and architecture; maintenance tickets created by failures; assurance claims supported by runtime evidence.
+- *Characteristic models.* Operational topology, configuration, SLOs, telemetry schemas, runbooks, incident timelines, causal accounts, RCAs.
+- *Lifetime.* Current-state, episode-scoped, and system-lived representations coexist.
+- *Alignment posture.* Often strong: permissions, monitors, health checks, rollout and rollback gates, automated procedures, and postcondition checks.
+- *Role of autonomous reasoning.* Diagnosis, novel situations, selecting and composing procedures, interpreting observations whose semantics exceed existing machinery.
+- *Determinization opportunity.* Particularly high. Stable operational judgment should migrate from repeated reasoning into runbooks and, where possible, from runbooks into deterministic tooling.
+- *Degrees of freedom.* Situational choices not settled by operational obligations or safe procedures.
+- *Smallest useful adoption.* Make consequential operational state and procedures explicitly available to agents; bind high-consequence actions with permissions and observable conditions.
+- *Connects to.* Engineering components and architecture; maintenance tickets created by failures; assurance claims supported by runtime evidence.

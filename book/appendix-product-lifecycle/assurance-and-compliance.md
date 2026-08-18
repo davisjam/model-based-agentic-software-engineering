@@ -19,18 +19,11 @@ Assurance is consequently cross-cutting rather than merely the last lifecycle st
 
 **MAGE profile.**
 
-**Characteristic models.** Requirements, policies, threats and hazards, invariants, traceability, assurance cases, claims, and evidence models.
-
-**Lifetime.** Usually system- or organizational-lived, although individual evidence can be change- or execution-scoped.
-
-**Alignment posture.** Strong where claims are decidable; validators, proofs and checkers, evidence gates, and human approvals where appropriate.
-
-**Role of autonomous reasoning.** Interpreting semantic obligations, maintaining traceability, assembling evidence, identifying gaps, and evaluating claims that machinery cannot settle.
-
-**Determinization opportunity.** High for decidable claims; fundamentally limited where interpretation or normative judgment remains necessary.
-
-**Degrees of freedom.** Realization choices irrelevant to the assurance obligation, plus judgments for which no responsible deterministic predicate exists.
-
-**Smallest useful adoption.** Select one consequential obligation, connect it explicitly to the relevant product and engineering artifacts, and automate evidence or admission only to the degree justified by its governability.
-
-**Connects to.** Everything. Assurance is where obligations and evidence can traverse the entire product lifecycle.
+- *Characteristic models.* Requirements, policies, threats and hazards, invariants, traceability, assurance cases, claims, and evidence models.
+- *Lifetime.* Usually system- or organizational-lived, although individual evidence can be change- or execution-scoped.
+- *Alignment posture.* Strong where claims are decidable; validators, proofs and checkers, evidence gates, and human approvals where appropriate.
+- *Role of autonomous reasoning.* Interpreting semantic obligations, maintaining traceability, assembling evidence, identifying gaps, and evaluating claims that machinery cannot settle.
+- *Determinization opportunity.* High for decidable claims; fundamentally limited where interpretation or normative judgment remains necessary.
+- *Degrees of freedom.* Realization choices irrelevant to the assurance obligation, plus judgments for which no responsible deterministic predicate exists.
+- *Smallest useful adoption.* Select one consequential obligation, connect it explicitly to the relevant product and engineering artifacts, and automate evidence or admission only to the degree justified by its governability.
+- *Connects to.* Everything. Assurance is where obligations and evidence can traverse the entire product lifecycle.
