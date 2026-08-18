@@ -704,12 +704,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-h-engineering-capital-across-time-and-space.html">H.9 Engineering Capital Across Time and Space</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · A.1 Model Coherence — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.1 Model Coherence</h1></header><h2>The Capability</h2>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · A.1 Model Coherence — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.1 Model Coherence</h1></header><h2><span class="sec-num">A.1.1</span> The Capability</h2>
 <p><strong>Keep explicit engineering representations joined to their consumers and to the implementation they describe.</strong> A model remains useful only when people and agents read the current representation and the implementation continues to correspond to it.</p>
-<h2>When This Stack Earns Its Keep</h2>
+<h2><span class="sec-num">A.1.2</span> When This Stack Earns Its Keep</h2>
 <p>Reach for it when:</p>
 <ul><li><strong>Engineers or agents rely on explicit system models</strong> to reason about the substrate.</li><li><strong>Several consumers need the same engineering fact</strong>, making copied facts sources of drift.</li><li><strong>Implementation can diverge from authored intent</strong> with nothing to catch the split.</li><li><strong>Downstream artifacts can be generated</strong> rather than hand-maintained in parallel.</li></ul>
-<h2>The Composition</h2>
+<h2><span class="sec-num">A.1.3</span> The Composition</h2>
 <figure id="fig-A-1-1" class="book-figure" data-label="model-coherence-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 640"
      role="img" aria-labelledby="mcTitle mcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -795,9 +795,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- caption -->
   <text x="410" y="608" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability.</text>
 </svg><figcaption data-short="The model-coherence composition"><span class="fig-label">Figure A.1-1.</span> The model-coherence composition. An authored MODEL feeds two paths: consumers CONSUME it live rather than copying its facts, and where the model owns the fact it can EMIT downstream artifacts. Consumption flows into a CORRESPONDENCE check — model against world — which DERIVEs its verdict from stable identities where an independent join exists; on disagreement a GATE gives the modeled property authority. Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability.</figcaption></figure>
-<h2>Constituent Moves</h2>
+<h2><span class="sec-num">A.1.4</span> Constituent Moves</h2>
 <table id="tbl-A-1-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table A.1-1.</span></caption><thead><tr><th>Move</th><th>Role</th></tr></thead><tbody><tr><td><strong>MODEL</strong></td><td>Put the engineering fact in an explicit representation.</td></tr><tr><td><strong>CONSUME</strong></td><td>Read the authoritative representation instead of copying its facts.</td></tr><tr><td><strong>CORRESPOND</strong></td><td>Compare model and implementation wherever an independent join exists.</td></tr><tr><td><strong>DERIVE</strong></td><td>Compute correspondence from stable identities where possible.</td></tr><tr><td><strong>EMIT</strong></td><td>Generate downstream artifacts when the model can own the fact.</td></tr><tr><td><strong>GATE</strong></td><td>Reject disagreement where the modeled property deserves authority.</td></tr></tbody></table>
-<h2>Why These Travel Together</h2>
+<h2><span class="sec-num">A.1.5</span> Why These Travel Together</h2>
 <p>A model nobody consumes is documentation. A model whose consumers copy its facts becomes one more source of drift. And a model consumed but never checked against reality can go confidently wrong — trusted precisely while it lies.</p>
 <p>Direct consumption avoids copied authority. Correspondence checks expose divergence between model and implementation. Generation eliminates duplicate authority where the model can own a fact outright. Gates give consequential disagreements authority.</p>
 <p>Not every model needs every rung. A descriptive model may remain advisory. Add stronger mechanisms only when the representation must carry stronger authority.</p>

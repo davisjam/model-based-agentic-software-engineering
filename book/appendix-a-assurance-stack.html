@@ -704,15 +704,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-h-engineering-capital-across-time-and-space.html">H.9 Engineering Capital Across Time and Space</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · A.2 Assurance — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.2 Assurance</h1></header><h2>The Capability</h2>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · A.2 Assurance — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.2 Assurance</h1></header><h2><span class="sec-num">A.2.1</span> The Capability</h2>
 <p><strong>Turn engineering obligations into evidence that the required population has been checked at the level of rigor each property deserves.</strong></p>
-<h2>When This Stack Earns Its Keep</h2>
+<h2><span class="sec-num">A.2.2</span> When This Stack Earns Its Keep</h2>
 <p>Reach for it when the important question shifts from</p>
 <blockquote class="aside-sidenote"><p>Did the tests pass?</p></blockquote>
 <p>to</p>
 <blockquote class="aside-sidenote"><p>Have we named the relevant obligations, discharged each one appropriately, and shown the population is covered?</p></blockquote>
 <p>That shift arrives whenever a property has to hold across a whole class of things — every mutator, every config field, every seam — and a green suite on a handful of examples no longer settles it.</p>
-<h2>The Composition</h2>
+<h2><span class="sec-num">A.2.3</span> The Composition</h2>
 <figure id="fig-A-2-1" class="book-figure" data-label="assurance-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 600"
      role="img" aria-labelledby="asTitle asDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -785,9 +785,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- caption -->
   <text x="410" y="572" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. Discharge an obligation at the level where the property becomes legible.</text>
 </svg><figcaption data-short="The assurance composition"><span class="fig-label">Figure A.2-1.</span> The assurance composition. A SPEC states the obligation; a CENSUS establishes the population it applies to; discharge fans out to the evidence each obligation deserves — TEST for examples, LINT for structure, PROVE for semantics — and all three lanes converge on COVERAGE, which joins each obligation back to its evidence so omissions show. Solid path: the load-bearing composition.</figcaption></figure>
-<h2>Constituent Moves</h2>
+<h2><span class="sec-num">A.2.4</span> Constituent Moves</h2>
 <table id="tbl-A-2-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table A.2-1.</span></caption><thead><tr><th>Move</th><th>Role</th></tr></thead><tbody><tr><td><strong>SPEC</strong></td><td>State the obligation.</td></tr><tr><td><strong>CENSUS</strong></td><td>Establish the population to which it applies.</td></tr><tr><td><strong>DISCHARGE</strong></td><td>Apply tests, lints, proofs, or other evidence appropriate to the property.</td></tr><tr><td><strong>COVER</strong></td><td>Join obligations back to evidence so omissions become visible.</td></tr></tbody></table>
-<h2>Why These Travel Together</h2>
+<h2><span class="sec-num">A.2.5</span> Why These Travel Together</h2>
 <p>A checker establishes a property only for what it checks. A proof says nothing about obligations left out of its population. A census with no evidence attached merely enumerates debt.</p>
 <p>Assurance requires both discharge and completeness. Establish what must be shown, apply evidence suited to each obligation—an example test where an example suffices, a structural lint where structure is decisive, a bounded proof where semantics demand it—and map that evidence back to the full population so unchecked obligations remain visible.</p>
 <p>One rule runs throughout, and it is worth stating plainly: <strong>discharge an obligation at the semantic level where the property becomes legible.</strong> A property about a document's structure belongs to a check that reads structure, not one that scans bytes for it. That is a placement principle for where a check lives — not another mechanism in the stack.</p>

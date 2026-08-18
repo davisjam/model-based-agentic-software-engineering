@@ -1094,6 +1094,13 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     numbered = (not is_matter and not is_appendix and not is_part_page
                 and not is_appendix_divider and not _is_coda(chapter))
     chap_num = f"{chapter.part}.{chapter.chapter}" if numbered else None
+    # Appendix content pages number their `## ` sections off their reader-facing locator (`fig_prefix`
+    # like "H.9" → H.9.1), matching the web build; the chapter title's own locator is unaffected. Front-door
+    # opening pages (bare-letter `fig_prefix`, no ".") stay unnumbered. Separate from `chap_num` so the
+    # appendix title is not itself re-numbered.
+    sec_prefix = chap_num
+    if sec_prefix is None and is_appendix and getattr(chapter, "fig_prefix", None) and "." in chapter.fig_prefix:
+        sec_prefix = chapter.fig_prefix
     title_num = f"#text(fill: dt.muted)[{chap_num}] " if chap_num else ""
     title_body = f"{title_num}{inline_typst(chapter.title)}"
     # Chapter titles emit at Typst LEVEL-2 (`==`), one below the Part divider's level-1 heading, so the PDF
@@ -1301,9 +1308,9 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         # A top-level `## ` section heading advances the per-chapter counter → `part.chapter.N` (mirrors the
         # web build's `section_no`; `###`/`####` subsections do not advance it). Only when the chapter is numbered.
         sec = None
-        if chap_num and b.kind is ir.BlockKind.HEADING and b.raw.strip().startswith("## "):
+        if sec_prefix and b.kind is ir.BlockKind.HEADING and b.raw.strip().startswith("## "):
             section_no += 1
-            sec = f"{chap_num}.{section_no}"
+            sec = f"{sec_prefix}.{section_no}"
         # Page-scoped: the six central claims on "What This Book Argues" get the print twin of the web
         # `.argues-page ol` feature treatment (larger text, more air, accent-bold numerals). Only that page's
         # ordered list is rerouted; every other numbered list in the book renders through _render_ordered_list.

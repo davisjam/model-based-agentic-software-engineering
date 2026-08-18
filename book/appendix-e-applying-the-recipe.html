@@ -705,7 +705,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix E - 2. Applying the Recipe — MAGE"><header class="chap"><div class="kicker"><a href="appendix-skill-recipe.html" aria-label="Beginning of Appendix E — How to Write a Skill">Appendix E — How to Write a Skill</a></div><h1>Appendix E - 2. Applying the Recipe</h1></header><p>This chapter runs the recipe three times — on self-communicate, self-governance, and self-operate: three orthogonal domains factored the same way. Self-governance is the <strong>recursive case</strong>: it models the MAGE method itself. Self-operate tests the method against a less obviously modelable domain: operations.</p>
-<h2>self-communicate</h2>
+<h2><span class="sec-num">E.2.1</span> self-communicate</h2>
 <h3>Problem</h3>
 <p>The fleet and its operator produce prose and diagrams constantly — control descriptions, design docs, mechanism entries, runbooks, handoffs, and the orchestrator's own status reports and tradeoff explanations to the human. Ungoverned, it drifts: inconsistent terminology, inappropriate document structure, LLM tells, and poor figures. The problem is not generating prose but producing it consistently against an engineering standard. The skill installs the craft so every document comes out terse, consistent, and correctly shaped.</p>
 <h3>Fundamental Model</h3>
@@ -724,7 +724,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>One directory per leg, one file per facet — the tree <em>is</em> the orthogonal-model set.</p>
 <h3>Lesson</h3>
 <p>Rhetoric-as-craft gives the skill a model rather than a collection of style rules. The facets map cleanly to resources, permitting progressive disclosure and reuse by other skills. The skill remains soft; where an audit result must block delivery, the audit belongs in a gate.</p>
-<h2>self-governance</h2>
+<h2><span class="sec-num">E.2.2</span> self-governance</h2>
 <h3>Problem</h3>
 <p>An agent can have excellent tools and still engineer badly. It runs the tests, calls the formatter, queries the repository — and still models the wrong thing, gives authority to a fact that should stay advisory, or freezes a one-off mistake into a permanent rule. The missing capability is not another tool. It is the engineering method itself: knowing <em>what to model, what must hold, and which judgment is worth making durable.</em></p>
 <p>Self-Governance packages that method as a skill. It teaches an agent to apply MAGE to its own engineering work — recognize the situation, choose a modeling or alignment move, act through the governed environment, and weigh what should persist. The skill carries the <em>method.</em> Concrete system truth — what this codebase intends, contains, and guarantees — arrives from model providers, never from memory. The engineering method and concrete system knowledge are separate concerns; the skill keeps them separate.</p>
@@ -757,7 +757,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Self-Governance is the appendix's culmination because the domain it models is the MAGE method itself. The recipe turns recursive here: the skill that teaches an agent to build models is itself a model of how to build them. That is why the fundamental model is the <em>loop,</em> not a taxonomy of mechanisms.</p>
 <p>The Modeling–Alignment boundary matters especially here: self-governance can propose and scaffold a constraint, validator, or gate, but the resulting mechanism — not the skill's judgment — must supply the enforcement.</p>
 <p>And it <strong>composes.</strong> It supplies the engineering judgment behind changes to models and mechanisms, mints the controls self-operate runs, and writes what it produces in self-communicate's register.</p>
-<h2>self-operate</h2>
+<h2><span class="sec-num">E.2.3</span> self-operate</h2>
 <h3>Problem</h3>
 <p>Operating an agent-fleet repository involves recurring but heterogeneous tasks — dispatch and recover agents, keep the mainline deployable, reclaim disk, weather colima and host-tool trouble, watch cron health, RCA an ambiguous signal. Without a model, each failure appears as a new incident. The skill provides a lifecycle map that routes symptoms to classes and typed runbooks that make responses repeatable.</p>
 <h3>Fundamental Model</h3>

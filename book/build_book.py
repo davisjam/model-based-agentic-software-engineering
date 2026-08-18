@@ -6848,6 +6848,14 @@ def build() -> int:
         # `## ` sections carry a `part.chapter.N` display prefix wherever the chapter H1 is numbered (body
         # Parts 1-6); front/back-matter apparatus and the appendix stay unnumbered (`chap_num` None).
         section_prefix = chap_num
+        # Appendix content pages carry their own locator (`fig_prefix` like "H.9"); number their `## `
+        # sections off it (H.9.1, H.9.2, …) so densely cross-referenced appendix arguments are addressable,
+        # matching the body-chapter convention. Front-door opening pages (bare-letter `fig_prefix`, no ".")
+        # stay unnumbered. Display-only, like the body numbering — never touches a heading's `{#slug}` anchor.
+        if section_prefix is None and c.get("is_appendix"):
+            _fp = c.get("fig_prefix")
+            if _fp and "." in _fp:
+                section_prefix = _fp
         body = md_to_html(c["body_md"], anchor_map=page_anchor_maps.get(c["slug"]),
                           section_prefix=section_prefix)
         body, _fig_n, _tbl_n = _number_floats(body, _chapter_id(c), 1, 1)
