@@ -1,7 +1,7 @@
 [ref:fig-h-lifecycle] places the product amid the engineering activities that shape it.
 
 <!-- label: fig-h-lifecycle -->
-<!-- figure: assets/h1-product-lifecycle.svg | *MAGE across the product lifecycle.* A software product is shaped through recurring engineering activities that ask different questions and therefore benefit from different purposeful representations. The horizontal sequence shows a dominant lifecycle flow, not a waterfall: operational experience, maintenance, assurance, and new product knowledge continually feed earlier activities. Assurance and compliance span the lifecycle because their obligations and evidence can originate in, constrain, and draw upon every other surface. MAGE can be applied to any surface independently. -->
+<!-- figure: assets/h1-product-lifecycle.svg | *MAGE across the product lifecycle.* A software product is shaped through recurring engineering activities that ask different questions and therefore benefit from different purposeful representations. The horizontal sequence shows a typical lifecycle flow, not a waterfall: operational experience, maintenance, assurance, and new product knowledge continually feed earlier activities. Assurance and compliance span the lifecycle because their obligations and evidence can originate in, constrain, and draw upon every other surface. MAGE can be applied to any surface independently. -->
 
 The representations differ along five dimensions.
 

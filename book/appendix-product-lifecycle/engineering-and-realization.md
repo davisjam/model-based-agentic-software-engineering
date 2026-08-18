@@ -2,7 +2,7 @@
 
 Engineering & Realization is the lifecycle surface treated most extensively in the rest of this book. Part 2 develops the models through which engineers and agents reason about a system; Part 3 develops the mechanisms that give selected properties authority; Part 4 puts those activities into engineering practice. The purpose here is therefore not to repeat that treatment, but to locate it among the other product-lifecycle surfaces.
 
-This surface has a particularly rich need for explicit system models because realization repeatedly encounters questions whose answers are expensive to reconstruct from source alone:
+This surface particularly benefits from explicit system models because realization repeatedly encounters questions whose answers are expensive to reconstruct from source alone:
 
 - What owns this state?
 - Which transitions are legal?
@@ -24,7 +24,7 @@ Engineering & Realization connects those inputs to models of the system being ch
 
 Within this surface, the book's usual MAGE account applies. Modeling exposes consequential system knowledge and intent to reasoning; Alignment gives selected obligations authority. Where a model exposes a stable property that machinery can decide, deterministic validation, analysis, generation, or enforcement may replace semantic judgment. Part 2 explicitly keeps authority separate from representation: richer models expand the semantic surface over which authority can operate; they do not themselves confer it.
 
-That process need not eliminate realization freedom. Engineering specifies what must be true while leaving other implementation choices open. For a change whose governing obligations are already represented, an agent can reason across those obligations and choose among acceptable realizations. At the limit, a realization model may become sufficiently complete that transformation, generation, or synthesis is preferable to autonomous reasoning. More commonly, the obligations constrain the realization without determining it.
+That process need not eliminate realization freedom. Engineering specifies what must be true while leaving other implementation choices open. For a change whose governing obligations are already represented, an agent can reason across those obligations and choose among acceptable realizations. At the limit, the governing models may become sufficiently complete that transformation, generation, or synthesis is preferable to autonomous reasoning. More commonly, the obligations constrain the realization without determining it.
 
 Those remaining choices are the realization's degrees of freedom. They are not a fixed budget that engineering gradually consumes. New functionality can extend the realization surface and create new choices; discovery of a tacit obligation can reveal that an apparent freedom was never genuine; stronger Alignment can constrain a choice that was previously left open. For the realization at hand, the relevant question is simply which choices the governing obligations determine and which they deliberately leave to realization.
 
