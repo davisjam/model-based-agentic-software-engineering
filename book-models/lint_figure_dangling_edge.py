@@ -13,11 +13,19 @@ THE SCHEMA (opt-in per figure; see plugin/mage/skills/self-communicate/drawing/d
         <!-- edge: SRC -> DST -->     established (solid)
         <!-- edge: SRC .. DST -->     emerging   (dotted)
     ('->' not '--': the sequence "--" is illegal inside an XML comment.)
-  * The paired `<line>`/`<path>`'s two endpoints must each land on a declared node — circle rim (dist <= r+TOL)
-    or box boundary (within the rect grown by TOL). One endpoint to SRC, the other to DST.
+  * CONNECT GRAMMAR (default, strict). An edge's two endpoints must each land INSIDE their declared node
+    (circle: dist <= r; box: within the rect), NOT merely graze its rim. Pair this with drawing edges
+    UNDERNEATH the nodes and running each endpoint to the node CENTER: the node's opaque fill then caps the
+    line end, so the edge plugs in with no floating gap at any angle. The failure this rejects is the endpoint
+    that stops in the thin gap just OUTSIDE a hollow node — geometrically "near" but visibly floating, the
+    "terminates in space" defect in a busy figure.
+  * FLOAT-OK GRAMMAR (opt-in). A simpler figure may accept a line that stops a little short of its node. A
+    figure carrying an "edge-grammar: float-ok" marker comment is checked with the looser rim/box + TOL slack
+    instead. (Swoop/curve shape is never a defect here — a curved body is a stylistic choice, not a float.)
 
-WHAT IT REPORTS: an endpoint that does not touch its declared node ("declared target vs reality" divergence);
-an `edge:` comment naming an id the SVG does not define; a declared edge whose paired drawable is missing.
+WHAT IT REPORTS: an endpoint that does not land inside its declared node under the figure's grammar
+("declared target vs reality" divergence); an `edge:` comment naming an id the SVG does not define; a declared
+edge whose paired drawable is missing.
 
 SCOPE. Only figures that have adopted the schema (contain at least one `<!-- edge: ... -->` comment) are
 checked; un-annotated figures are skipped, so adoption is incremental (H.9-1 first).
@@ -37,7 +45,7 @@ import sys
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ASSETS = os.path.normpath(os.path.join(_HERE, "..", "book", "assets"))
-_TOL = 7.0  # px slack: an endpoint this close to a circle rim / box edge counts as touching
+_TOL = 7.0  # px slack for the opt-in FLOAT-OK grammar only; the strict default requires 0 slack (inside)
 _FIX_DOC = "plugin/mage/skills/self-communicate/drawing/diagrams.md (edge-terminates-on-named-node)"
 
 _NUM = r"-?\d*\.?\d+(?:[eE][-+]?\d+)?"
@@ -49,6 +57,8 @@ _EDGE_RE = re.compile(
     r'<!--\s*edge:\s*([A-Za-z0-9_.-]+)\s*(->|\.\.)\s*([A-Za-z0-9_.-]+)\s*-->'
     r'.*?(?:<line\b[^>]*>|<path\b[^>]*\bd="[^"]*"[^>]*>)',
     re.S)
+# the FLOAT-OK opt-out is a distinct standalone marker comment, matched whole so prose can't trip it
+_FLOAT_OK_RE = re.compile(r'<!--\s*edge-grammar:\s*float-ok\s*-->')
 
 
 def _nodes(svg: str) -> dict:
@@ -89,13 +99,15 @@ def _endpoints(tag: str) -> tuple | None:
     return ((nums[0], nums[1]), (nums[-2], nums[-1]))
 
 
-def _touches(pt: tuple, node: tuple) -> bool:
+def _touches(pt: tuple, node: tuple, tol: float) -> bool:
+    """True if pt lands on/inside `node` allowing `tol` px of external slack. Strict grammar passes tol=0
+    (must be inside the disc / rect); float-ok passes tol=_TOL (a small graze outside the rim counts)."""
     px, py = pt
     if node[0] == "circle":
         _, cx, cy, r = node
-        return math.hypot(px - cx, py - cy) <= r + _TOL
+        return math.hypot(px - cx, py - cy) <= r + tol
     _, x, y, w, h = node
-    return (x - _TOL) <= px <= (x + w + _TOL) and (y - _TOL) <= py <= (y + h + _TOL)
+    return (x - tol) <= px <= (x + w + tol) and (y - tol) <= py <= (y + h + tol)
 
 
 def analyze(path: str) -> list:
@@ -103,6 +115,9 @@ def analyze(path: str) -> list:
     if "<!-- edge:" not in svg:
         return []                       # figure has not adopted the schema — skip
     nodes = _nodes(svg)
+    # strict connect-inside is the default; opt out only with a real standalone marker COMMENT
+    # (a distinct `<!-- edge-grammar: float-ok -->`), not prose that merely names the token.
+    tol = _TOL if _FLOAT_OK_RE.search(svg) else 0.0
     findings = []
     for m in _EDGE_RE.finditer(svg):
         src, op, dst = m.group(1), m.group(2), m.group(3)
@@ -118,14 +133,15 @@ def analyze(path: str) -> list:
             continue
         a, b = ep
         na, nb = nodes[src], nodes[dst]
-        # each endpoint must touch one distinct declared node (src<->one end, dst<->other end)
-        ok = (_touches(a, na) and _touches(b, nb)) or (_touches(a, nb) and _touches(b, na))
+        # each endpoint must land on/inside one distinct declared node (src<->one end, dst<->other end)
+        ok = (_touches(a, na, tol) and _touches(b, nb, tol)) or (_touches(a, nb, tol) and _touches(b, na, tol))
         if not ok:
+            verb = "grazes past" if tol else "floats outside"
             bad = []
-            if not (_touches(a, na) or _touches(a, nb)):
-                bad.append(f"end ({a[0]:.0f},{a[1]:.0f}) touches neither {src} nor {dst}")
-            if not (_touches(b, na) or _touches(b, nb)):
-                bad.append(f"end ({b[0]:.0f},{b[1]:.0f}) touches neither {src} nor {dst}")
+            if not (_touches(a, na, tol) or _touches(a, nb, tol)):
+                bad.append(f"end ({a[0]:.0f},{a[1]:.0f}) {verb} both {src} and {dst}")
+            if not (_touches(b, na, tol) or _touches(b, nb, tol)):
+                bad.append(f"end ({b[0]:.0f},{b[1]:.0f}) {verb} both {src} and {dst}")
             findings.append(f"edge {label}: " + ("; ".join(bad) or "endpoints do not cover both nodes"))
     return findings
 
