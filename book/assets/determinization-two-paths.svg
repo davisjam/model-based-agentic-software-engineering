@@ -81,15 +81,15 @@
   <text x="168" y="416" text-anchor="middle" font-size="15" fill="#57534e">over implementation</text>
 
   <path d="M266,399 L322,399" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#dtp-green)"/>
-  <text x="294" y="383" text-anchor="middle" font-size="11" font-style="italic" fill="#1f7a4d">externalize</text>
-  <text x="294" y="419" text-anchor="middle" font-size="11" font-style="italic" fill="#1f7a4d">state / relations</text>
+  <text x="294" y="383" text-anchor="middle" font-size="12" font-style="italic" fill="#1f7a4d">externalize</text>
+  <text x="294" y="419" text-anchor="middle" font-size="12" font-style="italic" fill="#1f7a4d">state / relations</text>
 
   <rect x="324" y="366" width="200" height="66" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="424" y="404" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">structured model</text>
 
   <path d="M524,399 L596,399" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#dtp-green)"/>
-  <text x="560" y="383" text-anchor="middle" font-size="11" font-style="italic" fill="#1f7a4d">predicate</text>
-  <text x="560" y="419" text-anchor="middle" font-size="11" font-style="italic" fill="#1f7a4d">over model</text>
+  <text x="560" y="383" text-anchor="middle" font-size="12" font-style="italic" fill="#1f7a4d">predicate</text>
+  <text x="560" y="419" text-anchor="middle" font-size="12" font-style="italic" fill="#1f7a4d">over model</text>
 
   <!-- crosses the frontier into the deterministic side -->
   <rect x="662" y="366" width="268" height="66" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>

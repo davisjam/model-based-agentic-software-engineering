@@ -32,19 +32,19 @@
 
   <rect x="55" y="150" width="390" height="76" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="250" y="190" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">CORRECTNESS</text>
-  <text x="250" y="214" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">host-identical — stays in the graph</text>
+  <text x="250" y="214" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">host-identical — stays in the graph</text>
 
   <rect x="55" y="246" width="390" height="76" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="250" y="286" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">COST_GATE</text>
-  <text x="250" y="310" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">host-identical — stays in the graph</text>
+  <text x="250" y="310" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">host-identical — stays in the graph</text>
 
   <rect x="55" y="342" width="390" height="76" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
   <text x="250" y="382" text-anchor="middle" font-size="24" font-weight="700" fill="#b23b3b">LOAD</text>
-  <text x="250" y="406" text-anchor="middle" font-size="16" font-style="italic" fill="#b23b3b">banned from the graph</text>
+  <text x="250" y="406" text-anchor="middle" font-size="19" font-style="italic" fill="#b23b3b">banned from the graph</text>
 
   <!-- ===== the load intent migrates off the graph ===== -->
   <path d="M448,380 C530,372 558,268 608,204" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#dp-thick)"/>
-  <text x="516" y="304" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">migrates</text>
+  <text x="516" y="304" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">migrates</text>
 
   <!-- ===== Zone 2 — off the graph, the Scheduler ===== -->
   <rect x="530" y="70" width="440" height="400" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
@@ -52,7 +52,7 @@
 
   <rect x="610" y="150" width="300" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="760" y="190" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Scheduler</text>
-  <text x="760" y="216" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">reads a per-host profile</text>
+  <text x="760" y="216" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">reads a per-host profile</text>
 
   <line x1="760" y1="230" x2="760" y2="256" stroke="#1c1917" stroke-width="2" marker-end="url(#dp-ah)"/>
 
@@ -61,7 +61,7 @@
     <path d="M 640,272 v 58 a 120,14 0 0 0 240,0 v -58" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
     <ellipse cx="760" cy="272" rx="120" ry="14" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
     <text x="760" y="312" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Per-host profile</text>
-    <text x="760" y="336" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">ceiling · budget</text>
+    <text x="760" y="336" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">ceiling · budget</text>
   </g>
 
   <line x1="760" y1="346" x2="760" y2="390" stroke="#1c1917" stroke-width="2" marker-end="url(#dp-ah)"/>

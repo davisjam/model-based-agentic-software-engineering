@@ -36,9 +36,9 @@
 
   <!-- pole descriptions -->
   <text x="150" y="146" text-anchor="middle" font-size="17" fill="#1c1917">model biased TOWARD your code</text>
-  <text x="150" y="168" text-anchor="middle" font-size="15.36" font-style="italic" fill="#57534e">to-do list · typical web app · compiler</text>
+  <text x="150" y="168" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">to-do list · typical web app · compiler</text>
   <text x="810" y="146" text-anchor="middle" font-size="17" fill="#1c1917">model biased AWAY from your code</text>
-  <text x="810" y="168" text-anchor="middle" font-size="15.36" font-style="italic" fill="#57534e">new class · HPC · obscure library</text>
+  <text x="810" y="168" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">new class · HPC · obscure library</text>
 
   <!-- MBSE-earns-its-keep bracket over the novel half -->
   <path d="M480,58 L480,44 L900,44 L900,58" fill="none" stroke="#b23b3b" stroke-width="2"/>
@@ -48,21 +48,21 @@
   <g font-size="17" fill="#1c1917">
     <text x="60" y="228" font-weight="700" fill="#2f5169">trustable leap</text>
     <line x1="330" y1="222" x2="900" y2="222" stroke="#e4e0d8" stroke-width="6" stroke-linecap="round"/>
-    <text x="352" y="228" text-anchor="middle" font-size="15.36" fill="#57534e">big</text>
-    <text x="878" y="228" text-anchor="middle" font-size="15.36" fill="#57534e">small</text>
+    <text x="352" y="228" text-anchor="middle" font-size="17" fill="#57534e">big</text>
+    <text x="878" y="228" text-anchor="middle" font-size="17" fill="#57534e">small</text>
 
     <text x="60" y="278" font-weight="700" fill="#2f5169">oversight you give</text>
     <line x1="330" y1="272" x2="900" y2="272" stroke="#e4e0d8" stroke-width="6" stroke-linecap="round"/>
-    <text x="352" y="278" text-anchor="middle" font-size="15.36" fill="#57534e">light</text>
-    <text x="878" y="278" text-anchor="middle" font-size="15.36" fill="#57534e">heavy</text>
+    <text x="352" y="278" text-anchor="middle" font-size="17" fill="#57534e">light</text>
+    <text x="878" y="278" text-anchor="middle" font-size="17" fill="#57534e">heavy</text>
 
     <text x="60" y="328" font-weight="700" fill="#2f5169">reasoning between checks</text>
     <line x1="330" y1="322" x2="900" y2="322" stroke="#e4e0d8" stroke-width="6" stroke-linecap="round"/>
-    <text x="352" y="328" text-anchor="middle" font-size="15.36" fill="#57534e">long</text>
-    <text x="878" y="328" text-anchor="middle" font-size="15.36" fill="#57534e">short</text>
+    <text x="352" y="328" text-anchor="middle" font-size="17" fill="#57534e">long</text>
+    <text x="878" y="328" text-anchor="middle" font-size="17" fill="#57534e">short</text>
   </g>
 
   <!-- the "as novelty rises" arrow tying the knobs to the axis -->
   <line x1="330" y1="360" x2="900" y2="360" stroke="#1c1917" stroke-width="2.5" marker-end="url(#naArrow)"/>
-  <text x="565" y="384" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">as novelty rises, all three slide right together</text>
+  <text x="565" y="384" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">as novelty rises, all three slide right together</text>
 </svg>

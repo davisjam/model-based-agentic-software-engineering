@@ -744,22 +744,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- the shared resource, an explicit node both controls act on -->
   <rect x="380" y="214" width="200" height="80" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="480" y="248" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">shared resource</text>
+  <text x="480" y="248" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">shared resource</text>
   <text x="480" y="276" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">COMMIT SET</text>
 
   <!-- A acts on the shared resource -->
   <path d="M300,132 C350,168 375,186 408,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ce-ah)"/>
-  <text x="318" y="188" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">acts on</text>
+  <text x="318" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
 
   <!-- B acts on the shared resource -->
   <path d="M660,132 C610,168 585,186 552,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ce-ah)"/>
-  <text x="642" y="188" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">acts on</text>
+  <text x="642" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
 
   <!-- incompatibility hangs off the shared-resource node -->
   <line x1="480" y1="294" x2="480" y2="332" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#ce-ah-churn)"/>
   <rect x="250" y="336" width="460" height="70" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2.2" stroke-dasharray="7 6"/>
   <text x="480" y="368" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">incompatible demands</text>
-  <text x="480" y="391" text-anchor="middle" font-size="15" font-style="italic" fill="#b23b3b">the conflict lives in this relation, not in either control</text>
+  <text x="480" y="391" text-anchor="middle" font-size="19" font-style="italic" fill="#b23b3b">the conflict lives in this relation, not in either control</text>
 </svg><figcaption data-short="The conflict is the edge"><span class="fig-label">Figure 3.5-1.</span> <em>The conflict is the edge.</em> Two controls may be individually valid yet impose incompatible demands on the same resource. The interaction belongs to the relation among the controls and shared resource, not necessarily to either control's implementation.</figcaption></figure>
 <p>The interaction graph uses controls as nodes and shared resources as the principal join key. A resource may be ordinary — a lock, a file, a commit-set, a deployment slot — or operational, such as a lifecycle event or a context budget. Controls need not call one another to interact; they only need to make potentially incompatible demands on the same modeled resource.</p>
 <p>DocAble's implemented governance graph is intentionally partial. It models only the high-value interactions for which recurring questions justified explicit representation, including those around the orchestrator lifecycle.</p>

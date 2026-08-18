@@ -27,40 +27,40 @@
   <line x1="280" y1="150" x2="720" y2="150" stroke="#cfcabf" stroke-width="3"/>
   <line x1="280" y1="150" x2="280" y2="182" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <line x1="720" y1="150" x2="720" y2="182" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
-  <text x="500" y="172" text-anchor="middle" font-size="14" font-style="italic" fill="#78716c">acted on through one of two surfaces</text>
+  <text x="500" y="172" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">acted on through one of two surfaces</text>
 
   <!-- LEFT input: a directly observable action or artifact (obligation locally encoded) -->
   <rect x="110" y="184" width="330" height="96" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
   <text x="275" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Directly observable</text>
   <text x="275" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">action or artifact</text>
-  <text x="275" y="256" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run —</text>
-  <text x="275" y="274" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">obligation locally encoded</text>
+  <text x="275" y="256" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a test, a diff, a sandbox run —</text>
+  <text x="275" y="274" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">obligation locally encoded</text>
 
   <!-- RIGHT input: an explicit model / invariant (richer semantics) -->
   <rect x="560" y="184" width="330" height="96" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2.4"/>
   <text x="725" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Explicit model / invariant</text>
   <text x="725" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">richer semantics</text>
-  <text x="725" y="255" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">states properties observation cannot reach</text>
+  <text x="725" y="255" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">states properties observation cannot reach</text>
 
   <!-- join: both surfaces meet at the mechanism -->
   <line x1="275" y1="280" x2="275" y2="292" stroke="#cfcabf" stroke-width="3"/>
   <line x1="725" y1="280" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
   <line x1="275" y1="292" x2="725" y2="292" stroke="#cfcabf" stroke-width="3"/>
   <line x1="500" y1="292" x2="500" y2="322" stroke="#57534e" stroke-width="3" marker-end="url(#vh-gee2)"/>
-  <text x="512" y="312" font-size="14" fill="#78716c">enforced by</text>
+  <text x="512" y="312" font-size="15" fill="#78716c">enforced by</text>
 
   <!-- ===== the JOIN point: Governance Mechanism ===== -->
   <rect x="330" y="322" width="340" height="62" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="500" y="350" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governance Mechanism</text>
-  <text x="500" y="371" text-anchor="middle" font-size="13.4" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
+  <text x="500" y="371" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
   <line x1="500" y1="384" x2="500" y2="422" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
-  <text x="512" y="408" font-size="14" fill="#78716c">governs</text>
+  <text x="512" y="408" font-size="15" fill="#78716c">governs</text>
 
   <!-- Governed Engineering Environment -->
   <rect x="290" y="422" width="420" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="500" y="454" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governed Engineering Environment</text>
   <line x1="500" y1="474" x2="500" y2="512" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
-  <text x="512" y="498" font-size="14" fill="#78716c">can accumulate as</text>
+  <text x="512" y="498" font-size="15" fill="#78716c">can accumulate as</text>
 
   <!-- Engineering Capital — terminal (dark) -->
   <rect x="390" y="512" width="220" height="52" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>

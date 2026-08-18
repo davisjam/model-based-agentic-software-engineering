@@ -959,14 +959,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="30" y="96" width="270" height="130" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="165" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">STRUCTURED MODEL</text>
   <text x="165" y="167" text-anchor="middle" font-size="16" fill="#57534e">records &#183; edges &#183; states</text>
-  <text x="165" y="196" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">a job: free / leased / done</text>
+  <text x="165" y="196" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a job: free / leased / done</text>
 
   <!-- INVARIANTS (rust) -->
   <rect x="365" y="96" width="270" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="500" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INVARIANTS</text>
   <text x="500" y="165" text-anchor="middle" font-size="15" fill="#57534e">stable ids + declared domains</text>
   <rect x="388" y="180" width="224" height="34" rx="6" fill="#fbfdff" stroke="#9a3f12" stroke-width="1.2"/>
-  <text x="500" y="203" text-anchor="middle" font-size="13.5" fill="#9a3f12">leased &#8660; owner exists</text>
+  <text x="500" y="203" text-anchor="middle" font-size="15" fill="#9a3f12">leased &#8660; owner exists</text>
 
   <!-- CHECKER (green) -->
   <rect x="700" y="96" width="270" height="130" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
@@ -976,17 +976,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- edges -->
   <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
-  <text x="332" y="130" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">supports</text>
-  <text x="332" y="146" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">predicates over</text>
+  <text x="332" y="130" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">supports</text>
+  <text x="332" y="146" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">predicates over</text>
   <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
-  <text x="667" y="138" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">evaluated by</text>
+  <text x="667" y="138" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">evaluated by</text>
 
   <!-- side arrow: recurring failure -> new/refined invariant -->
   <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ct-r)"/>
-  <text x="668" y="320" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
+  <text x="668" y="320" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
 
   <!-- footer: protect the point -->
-  <text x="500" y="358" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">One executable-model pattern &#8212; the model supplies the domain, invariants state properties, a checker evaluates them; not the definition of executability.</text>
+  <text x="500" y="358" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">One executable-model pattern &#8212; the model supplies the domain, invariants state properties, a checker evaluates them; not the definition of executability.</text>
 </svg><figcaption data-short="Checked predicates over a structured model"><span class="fig-label">Figure 2.8-5.</span> <em>Checked predicates over a structured model.</em> A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.</figcaption></figure>
 <blockquote id="idx-def-invariant" class="concept-inset"><p class="inset-title" id="inset-invariant">Inset — What is an invariant?</p>
 <p>An <strong>invariant</strong> is a property required to hold over a declared domain of states, structures, or observations. In a behavioral state machine, the invariant may be a predicate that must hold in every reachable state; in a structural model, it may require every observed dependency to belong to a declared set; in a measurement model, it may require a quantity to remain within a hard capacity bound. State both the property <em>and</em> the domain the checker claims to establish it over.</p>
@@ -1029,41 +1029,41 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
   <text x="360" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Two paths to Alignment</text>
 
   <!-- ===== LEFT: DIRECT PATH ===== -->
-  <text x="185" y="72" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#57534e">DIRECT PATH</text>
+  <text x="185" y="72" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1" fill="#57534e">DIRECT PATH</text>
   <rect x="55" y="250" width="260" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="185" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TERRITORY / ACTION</text>
-  <text x="185" y="304" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
+  <text x="185" y="304" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
   <!-- direct arrow onto Alignment (left landing) -->
   <path d="M185,316 C185,372 250,392 300,406" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#mc-kk)"/>
-  <text x="196" y="360" text-anchor="start" font-size="12.5" font-weight="700" fill="#57534e">acted on directly</text>
-  <text x="196" y="377" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">local observable obligation</text>
+  <text x="196" y="360" text-anchor="start" font-size="14" font-weight="700" fill="#57534e">acted on directly</text>
+  <text x="196" y="377" text-anchor="start" font-size="14" font-style="italic" fill="#57534e">local observable obligation</text>
 
   <!-- ===== RIGHT: MODEL-MEDIATED PATH ===== -->
-  <text x="535" y="72" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1" fill="#2f5169">MODEL-MEDIATED PATH</text>
+  <text x="535" y="72" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1" fill="#2f5169">MODEL-MEDIATED PATH</text>
   <!-- TERRITORY -->
   <rect x="405" y="86" width="260" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="535" y="116" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">TERRITORY</text>
   <line x1="535" y1="134" x2="535" y2="168" stroke="#1c1917" stroke-width="2" marker-end="url(#mc-k)"/>
-  <text x="547" y="156" font-size="12.5" font-style="italic" fill="#57534e">abstraction</text>
+  <text x="547" y="156" font-size="14" font-style="italic" fill="#57534e">abstraction</text>
   <!-- MODEL -->
   <rect x="405" y="170" width="260" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="535" y="200" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">MODEL</text>
   <line x1="535" y1="218" x2="535" y2="252" stroke="#1c1917" stroke-width="2" marker-end="url(#mc-k)"/>
-  <text x="547" y="240" font-size="12.5" font-style="italic" fill="#57534e">makes explicit</text>
+  <text x="547" y="240" font-size="14" font-style="italic" fill="#57534e">makes explicit</text>
   <!-- EXPLICIT PROPERTY -->
   <rect x="405" y="254" width="260" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="535" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">EXPLICIT PROPERTY</text>
   <!-- model arrow onto Alignment (right landing) -->
   <path d="M535,308 C535,364 470,384 420,406" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#mc-b)"/>
-  <text x="524" y="360" text-anchor="end" font-size="12.5" font-weight="700" fill="#2f5169">available to</text>
-  <text x="524" y="377" text-anchor="end" font-size="12" font-style="italic" fill="#2f5169">richer semantic obligation</text>
+  <text x="524" y="360" text-anchor="end" font-size="14" font-weight="700" fill="#2f5169">available to</text>
+  <text x="524" y="377" text-anchor="end" font-size="14" font-style="italic" fill="#2f5169">richer semantic obligation</text>
 
   <!-- ===== THE JOIN: ALIGNMENT ===== -->
   <rect x="225" y="410" width="270" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="360" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
-  <text x="360" y="462" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">constraint &#183; sensor &#183; validator &#183; gate</text>
+  <text x="360" y="462" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">constraint &#183; sensor &#183; validator &#183; gate</text>
   <line x1="360" y1="476" x2="360" y2="524" stroke="#155c38" stroke-width="2.4" marker-end="url(#mc-g)"/>
-  <text x="372" y="504" font-size="12.5" font-style="italic" fill="#155c38">gives consequence</text>
+  <text x="372" y="504" font-size="14" font-style="italic" fill="#155c38">gives consequence</text>
 
   <!-- ===== CONSEQUENCE ===== -->
   <rect x="255" y="526" width="210" height="54" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>

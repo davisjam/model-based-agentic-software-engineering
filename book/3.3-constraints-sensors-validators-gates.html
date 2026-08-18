@@ -733,7 +733,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- top: the engineering obligation -->
   <rect x="320" y="24" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="480" y="55" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">ENGINEERING OBLIGATION</text>
-  <text x="480" y="79" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the property you must hold</text>
+  <text x="480" y="79" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the property you must hold</text>
 
   <!-- edge to the decision -->
   <line x1="480" y1="90" x2="480" y2="132" stroke="#1c1917" stroke-width="2" marker-end="url(#caArrow)"/>
@@ -747,20 +747,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <path d="M380,194 C320,222 290,232 262,254"/>
     <path d="M580,194 C640,222 670,232 698,254"/>
   </g>
-  <text x="300" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">YES</text>
-  <text x="662" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">NO</text>
+  <text x="300" y="226" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">YES</text>
+  <text x="662" y="226" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">NO</text>
 
   <!-- ============ LEFT — CONSTRAINT ============ -->
   <rect x="95" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="260" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">CONSTRAINT</text>
   <text x="260" y="326" text-anchor="middle" font-size="19" fill="#1c1917">narrows what may happen</text>
-  <text x="260" y="360" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
+  <text x="260" y="360" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
 
   <!-- ============ RIGHT — SENSOR ============ -->
   <rect x="535" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="700" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">SENSOR</text>
   <text x="700" y="326" text-anchor="middle" font-size="18" fill="#1c1917">produces evidence of what happened</text>
-  <text x="700" y="360" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
+  <text x="700" y="360" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
 </svg><figcaption data-short="Constraint or sensor"><span class="fig-label">Figure 3.3-1.</span> <em>Constraint or sensor.</em> Prefer a constraint when the unwanted state can be excluded cheaply and reliably. Otherwise instrument the relevant state and produce evidence for later evaluation.</figcaption></figure>
 <p>An instruction carries authority only when a mechanism in the environment acts on it. If a brief must contain a required section, check for that section before launch and refuse the launch when it is absent.</p>
 <span id="idx-def-sensor"></span><span id="idx-ex-observability-1"></span><p><strong>A sensor observes and produces evidence.</strong> It lets the move happen and reads the evidence back out after the fact — <code>actual = observe(system)</code>. A raw sensor only <em>produces</em> that evidence: a log line, a trace, a metric emitter, a scan that reads the actual calls out of the code. It does not decide whether what it saw is good or bad — that judgment belongs to the validator. When a sensor detects a correctable violation after the fact, repair costs an additional iteration. That makes prevention attractive where the unwanted state can be excluded cleanly; many important properties, however, can only be observed.</p>
@@ -849,21 +849,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="185" y="164" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CAN EXCLUDE IT?</text>
   <text x="500" y="164" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">BAD STATE / TRACE?</text>
   <text x="815" y="164" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">EVENTUALITY / FAIRNESS?</text>
-  <text x="185" y="185" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">yes</text>
-  <text x="500" y="185" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">yes</text>
-  <text x="815" y="185" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">yes</text>
+  <text x="185" y="185" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">yes</text>
+  <text x="500" y="185" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">yes</text>
+  <text x="815" y="185" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">yes</text>
 
   <text x="185" y="283" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">CONSTRAINT</text>
   <text x="500" y="283" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">VALIDATOR</text>
   <text x="815" y="283" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">VALIDATOR</text>
 
-  <text x="185" y="358" text-anchor="middle" font-size="13.5" fill="#1c1917">structural prevention</text>
-  <text x="185" y="380" text-anchor="middle" font-size="12.5" fill="#57534e">DB compare-and-set / closed transition</text>
-  <text x="500" y="352" text-anchor="middle" font-size="13.5" fill="#1c1917">state-space search</text>
-  <text x="500" y="370" text-anchor="middle" font-size="12.5" fill="#57534e">purpose-built model checker</text>
-  <text x="500" y="386" text-anchor="middle" font-size="12" fill="#57534e">(bounded explicit-state)</text>
-  <text x="815" y="358" text-anchor="middle" font-size="13.5" fill="#1c1917">temporal model checking</text>
-  <text x="815" y="380" text-anchor="middle" font-size="12.5" fill="#57534e">TLA+ / TLC where warranted</text>
+  <text x="185" y="358" text-anchor="middle" font-size="14" fill="#1c1917">structural prevention</text>
+  <text x="185" y="380" text-anchor="middle" font-size="14" fill="#57534e">DB compare-and-set / closed transition</text>
+  <text x="500" y="352" text-anchor="middle" font-size="14" fill="#1c1917">state-space search</text>
+  <text x="500" y="370" text-anchor="middle" font-size="14" fill="#57534e">purpose-built model checker</text>
+  <text x="500" y="386" text-anchor="middle" font-size="14" fill="#57534e">(bounded explicit-state)</text>
+  <text x="815" y="358" text-anchor="middle" font-size="14" fill="#1c1917">temporal model checking</text>
+  <text x="815" y="380" text-anchor="middle" font-size="14" fill="#57534e">TLA+ / TLC where warranted</text>
 
   <text x="500" y="502" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">GATE, IF THE VERDICT</text>
   <text x="500" y="525" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">SHOULD CONTROL ADMISSION</text>
@@ -902,7 +902,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- source model -->
   <rect x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="480" y="59" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
-  <text x="480" y="81" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">related measured quantities</text>
+  <text x="480" y="81" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">related measured quantities</text>
 
   <!-- edge to policy -->
   <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#cg-r)"/>
@@ -921,12 +921,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- RESPONSE: observe -->
   <rect x="70" y="216" width="250" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="195" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">OBSERVE</text>
-  <text x="195" y="268" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">report evidence, no consequence</text>
+  <text x="195" y="268" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">report evidence, no consequence</text>
 
   <!-- RESPONSE: adapt -> throttle / soft completion -->
   <rect x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="480" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ADAPT</text>
-  <text x="480" y="268" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">change load</text>
+  <text x="480" y="268" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">change load</text>
 
   <line x1="480" y1="280" x2="480" y2="312" stroke="#57534e" stroke-width="2.4" marker-end="url(#cg-n)"/>
   <rect x="360" y="316" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
@@ -935,8 +935,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- RESPONSE: gate (with a small dormant annotation, not extra nodes) -->
   <rect x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="765" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">GATE</text>
-  <text x="765" y="268" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">block admission</text>
-  <text x="765" y="306" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">dormant unless configured</text>
+  <text x="765" y="268" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">block admission</text>
+  <text x="765" y="306" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">dormant unless configured</text>
 
   <!-- footer: protect the point -->
   <line x1="40" y1="404" x2="920" y2="404" stroke="#e7e2da" stroke-width="1.4"/>
@@ -994,7 +994,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <rect x="580" y="274" width="260" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="710" y="305" text-anchor="middle" font-size="18.5" font-weight="700" fill="#9a3f12">MUST stamp</text>
-  <text x="710" y="325" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">emit attribution evidence</text>
+  <text x="710" y="325" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">emit attribution evidence</text>
 
   <!-- footer: protect the point -->
   <line x1="40" y1="376" x2="920" y2="376" stroke="#e7e2da" stroke-width="1.4"/>

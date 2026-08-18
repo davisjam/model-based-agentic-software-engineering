@@ -28,7 +28,7 @@
   <!-- whiteboard: dataflow + class hierarchy -->
   <rect x="25" y="64" width="150" height="212" rx="5" fill="#fdfcf9" stroke="#1c1917" stroke-width="1.7"/>
   <rect x="25" y="270" width="150" height="6" fill="#e4e0d8" stroke="#1c1917" stroke-width="1"/>
-  <text x="33" y="80" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" font-size="7" fill="#57534e" letter-spacing="1">MODELS</text>
+  <text x="33" y="80" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" font-size="8" fill="#57534e" letter-spacing="1">MODELS</text>
   <g fill="none" stroke="#1f7a4d" stroke-width="1.5">
     <ellipse cx="65" cy="106" rx="16" ry="10"/><ellipse cx="132" cy="98" rx="16" ry="10"/><ellipse cx="99" cy="145" rx="18" ry="10"/>
   </g>
@@ -98,7 +98,7 @@
   <!-- the typed words rising into the input bar: m-o-d-e-l -->
   <path d="M368,404 C392,392 408,382 424,372" fill="none" stroke="#1c1917" stroke-width="1" stroke-dasharray="2 4" stroke-linecap="round"/>
   <g font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" font-style="italic" fill="#57534e">
-    <text x="378" y="401" font-size="7" transform="rotate(-18 378 401)">m</text>
+    <text x="378" y="401" font-size="8" transform="rotate(-18 378 401)">m</text>
     <text x="394" y="392" font-size="8" transform="rotate(-18 394 392)">o</text>
     <text x="406" y="384" font-size="9" transform="rotate(-16 406 384)">d</text>
     <text x="416" y="377" font-size="10" transform="rotate(-14 416 377)">e</text>
@@ -115,7 +115,7 @@
     <polygon points="749,192 799,206 801,268 750,256" fill="#f3efe7" stroke-width="1.1"/>
     <polygon points="750,266 801,278 803,342 751,330" fill="#f3efe7" stroke-width="1.1"/>
   </g>
-  <g font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" font-size="5.5" fill="#2f5169" letter-spacing=".6">
+  <g font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" font-size="8" fill="#2f5169" letter-spacing=".6">
     <text x="753" y="128" transform="rotate(6 753 128)">AGENT·A</text>
     <text x="754" y="202" transform="rotate(6 754 202)">AGENT·B</text>
     <text x="755" y="276" transform="rotate(6 755 276)">AGENT·C</text>
@@ -151,18 +151,18 @@
       <rect x="424" y="152" width="200" height="46" rx="3" fill="#fdfcf9" stroke="#2f5169" stroke-width="1.2"/>
       <rect x="431" y="160" width="9" height="9" fill="#1f7a4d" stroke="#1c1917" stroke-width=".8"/>
       <text x="447" y="169">Phase 1 — refine model</text>
-      <text x="447" y="188" font-size="7.5" fill="#57534e" font-style="italic" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">clarify roles &amp; seams</text>
+      <text x="447" y="188" font-size="8" fill="#57534e" font-style="italic" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">clarify roles &amp; seams</text>
       <rect x="424" y="206" width="200" height="46" rx="3" fill="#fdfcf9" stroke="#2f5169" stroke-width="1.2"/>
       <rect x="431" y="214" width="9" height="9" fill="none" stroke="#1c1917" stroke-width=".9"/>
       <path d="M432,219 l3,3 l5,-6" stroke="#1f7a4d" stroke-width="1.2" fill="none"/>
       <text x="447" y="223">Phase 2 — implement</text>
-      <text x="447" y="242" font-size="7.5" fill="#57534e" font-style="italic" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">dispatch sub-agents ▸</text>
+      <text x="447" y="242" font-size="8" fill="#57534e" font-style="italic" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">dispatch sub-agents ▸</text>
       <rect x="424" y="260" width="200" height="46" rx="3" fill="#fdfcf9" stroke="#2f5169" stroke-width="1.2"/>
       <rect x="431" y="268" width="9" height="9" fill="none" stroke="#1c1917" stroke-width=".9"/>
       <text x="447" y="277">Phase 3 — verify + land</text>
-      <text x="447" y="296" font-size="7.5" fill="#57534e" font-style="italic" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">tests · review · merge</text>
+      <text x="447" y="296" font-size="8" fill="#57534e" font-style="italic" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">tests · review · merge</text>
     </g>
-    <g font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" font-size="7" fill="#2f5169">
+    <g font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif" font-size="8" fill="#2f5169">
       <rect x="644" y="158" width="72" height="36" rx="3" fill="#f3efe7" stroke="#2f5169" stroke-width="1.1"/>
       <text x="654" y="172">agent A</text><circle cx="654" cy="182" r="4" fill="none" stroke="#1c1917" stroke-width="1"/><line x1="654" y1="177" x2="654" y2="174" stroke="#1c1917" stroke-width="1"/>
       <rect x="644" y="212" width="72" height="36" rx="3" fill="#f3efe7" stroke="#2f5169" stroke-width="1.1"/>

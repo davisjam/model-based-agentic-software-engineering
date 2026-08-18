@@ -46,14 +46,14 @@
 
   <!-- derived worst case (dashed = derived) -->
   <line x1="300" y1="146" x2="300" y2="196" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#me-arM)"/>
-  <text x="312" y="176" font-size="13" fill="#57534e">derive worst case</text>
+  <text x="312" y="176" font-size="14" fill="#57534e">derive worst case</text>
   <rect x="160" y="200" width="280" height="48" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4"/>
   <text x="300" y="229" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">predicted per-chunk worst case</text>
   <text x="450" y="229" font-size="14" fill="#57534e">[derived]</text>
 
   <!-- must stay under the budget (obligation) -->
   <line x1="300" y1="248" x2="300" y2="298" stroke="#2b2825" stroke-width="2" marker-end="url(#me-ar)"/>
-  <text x="312" y="276" font-size="13" fill="#57534e">must stay under</text>
+  <text x="312" y="276" font-size="14" fill="#57534e">must stay under</text>
   <rect x="160" y="302" width="280" height="48" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
   <text x="300" y="331" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">600 s job budget</text>
   <text x="450" y="331" font-size="14" fill="#57534e">[the obligation]</text>

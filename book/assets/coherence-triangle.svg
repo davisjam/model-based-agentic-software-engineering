@@ -30,14 +30,14 @@
   <rect x="30" y="96" width="270" height="130" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="165" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">STRUCTURED MODEL</text>
   <text x="165" y="167" text-anchor="middle" font-size="16" fill="#57534e">records &#183; edges &#183; states</text>
-  <text x="165" y="196" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">a job: free / leased / done</text>
+  <text x="165" y="196" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a job: free / leased / done</text>
 
   <!-- INVARIANTS (rust) -->
   <rect x="365" y="96" width="270" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="500" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INVARIANTS</text>
   <text x="500" y="165" text-anchor="middle" font-size="15" fill="#57534e">stable ids + declared domains</text>
   <rect x="388" y="180" width="224" height="34" rx="6" fill="#fbfdff" stroke="#9a3f12" stroke-width="1.2"/>
-  <text x="500" y="203" text-anchor="middle" font-size="13.5" fill="#9a3f12">leased &#8660; owner exists</text>
+  <text x="500" y="203" text-anchor="middle" font-size="15" fill="#9a3f12">leased &#8660; owner exists</text>
 
   <!-- CHECKER (green) -->
   <rect x="700" y="96" width="270" height="130" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
@@ -47,15 +47,15 @@
 
   <!-- edges -->
   <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
-  <text x="332" y="130" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">supports</text>
-  <text x="332" y="146" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">predicates over</text>
+  <text x="332" y="130" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">supports</text>
+  <text x="332" y="146" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">predicates over</text>
   <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
-  <text x="667" y="138" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">evaluated by</text>
+  <text x="667" y="138" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">evaluated by</text>
 
   <!-- side arrow: recurring failure -> new/refined invariant -->
   <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ct-r)"/>
-  <text x="668" y="320" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
+  <text x="668" y="320" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
 
   <!-- footer: protect the point -->
-  <text x="500" y="358" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">One executable-model pattern &#8212; the model supplies the domain, invariants state properties, a checker evaluates them; not the definition of executability.</text>
+  <text x="500" y="358" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">One executable-model pattern &#8212; the model supplies the domain, invariants state properties, a checker evaluates them; not the definition of executability.</text>
 </svg>

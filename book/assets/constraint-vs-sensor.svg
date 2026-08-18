@@ -26,7 +26,7 @@
   <!-- top: the engineering obligation -->
   <rect x="320" y="24" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="480" y="55" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">ENGINEERING OBLIGATION</text>
-  <text x="480" y="79" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the property you must hold</text>
+  <text x="480" y="79" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the property you must hold</text>
 
   <!-- edge to the decision -->
   <line x1="480" y1="90" x2="480" y2="132" stroke="#1c1917" stroke-width="2" marker-end="url(#caArrow)"/>
@@ -40,18 +40,18 @@
     <path d="M380,194 C320,222 290,232 262,254"/>
     <path d="M580,194 C640,222 670,232 698,254"/>
   </g>
-  <text x="300" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">YES</text>
-  <text x="662" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">NO</text>
+  <text x="300" y="226" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">YES</text>
+  <text x="662" y="226" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">NO</text>
 
   <!-- ============ LEFT — CONSTRAINT ============ -->
   <rect x="95" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="260" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">CONSTRAINT</text>
   <text x="260" y="326" text-anchor="middle" font-size="19" fill="#1c1917">narrows what may happen</text>
-  <text x="260" y="360" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
+  <text x="260" y="360" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
 
   <!-- ============ RIGHT — SENSOR ============ -->
   <rect x="535" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="700" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">SENSOR</text>
   <text x="700" y="326" text-anchor="middle" font-size="18" fill="#1c1917">produces evidence of what happened</text>
-  <text x="700" y="360" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
+  <text x="700" y="360" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
 </svg>

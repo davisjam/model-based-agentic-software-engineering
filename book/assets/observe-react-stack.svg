@@ -29,7 +29,7 @@
   <!-- WATCH -->
   <rect x="290" y="120" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="380" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">WATCH</text>
-  <text x="380" y="172" text-anchor="middle" font-size="13" fill="#57534e">observe divergence</text>
+  <text x="380" y="172" text-anchor="middle" font-size="14" fill="#57534e">observe divergence</text>
 
   <!-- runtime feed into WATCH (solid observed input) -->
   <text x="640" y="148" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">runtime</text>
@@ -41,14 +41,14 @@
   <!-- BEAT (dashed enhancement, offset left) -->
   <rect x="70" y="196" width="160" height="60" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="150" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">BEAT</text>
-  <text x="150" y="242" text-anchor="middle" font-size="13" fill="#57534e">liveness heartbeat</text>
+  <text x="150" y="242" text-anchor="middle" font-size="14" fill="#57534e">liveness heartbeat</text>
   <path d="M300,168 C250,180 250,200 232,214" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
   <path d="M232,238 C270,256 300,264 300,288" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
 
   <!-- RESPOND (solid) -->
   <rect x="290" y="272" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="380" y="302" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RESPOND</text>
-  <text x="380" y="324" text-anchor="middle" font-size="13" fill="#57534e">bounded recovery</text>
+  <text x="380" y="324" text-anchor="middle" font-size="14" fill="#57534e">bounded recovery</text>
 
   <!-- RESPOND -> BLOCK (dashed enhancement) -->
   <line x1="380" y1="338" x2="380" y2="384" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>
@@ -56,14 +56,14 @@
   <!-- BLOCK (dashed) -->
   <rect x="280" y="386" width="200" height="76" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="380" y="416" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">BLOCK</text>
-  <text x="380" y="438" text-anchor="middle" font-size="13" fill="#57534e">prevent unsafe progress</text>
+  <text x="380" y="438" text-anchor="middle" font-size="14" fill="#57534e">prevent unsafe progress</text>
 
   <!-- legend (prominent, boxed) -->
   <rect x="500" y="392" width="230" height="86" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
   <line x1="518" y1="418" x2="562" y2="418" stroke="#2f5169" stroke-width="2.6" marker-end="url(#ah)"/>
-  <text x="572" y="423" font-size="13" fill="#57534e">load-bearing (required)</text>
+  <text x="572" y="423" font-size="14" fill="#57534e">load-bearing (required)</text>
   <line x1="518" y1="452" x2="562" y2="452" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>
-  <text x="572" y="457" font-size="13" fill="#57534e">enhancement (not required)</text>
+  <text x="572" y="457" font-size="14" fill="#57534e">enhancement (not required)</text>
 
   <!-- caption -->
   <text x="380" y="524" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">WATCH &#8594; RESPOND is the load-bearing path. Heartbeats and blocking authority</text>

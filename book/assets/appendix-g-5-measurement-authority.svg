@@ -28,7 +28,7 @@
   <!-- observe (DASHED) -->
   <line x1="360" y1="102" x2="360" y2="138" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g5-solid)"/>
   <text x="374" y="118" font-size="13" font-style="italic" fill="#57534e">observe</text>
-  <text x="374" y="134" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED</text>
+  <text x="374" y="134" font-size="13" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED</text>
 
   <!-- MEASUREMENT (representation) -->
   <rect x="250" y="138" width="220" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
@@ -53,7 +53,7 @@
   <text x="248" y="368" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">no</text>
   <rect x="80" y="394" width="220" height="54" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
   <text x="190" y="420" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">REPORT ONLY</text>
-  <text x="190" y="439" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">surfaced, not enforced</text>
+  <text x="190" y="439" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">surfaced, not enforced</text>
 
   <!-- YES leg: admission gate (HEAVY authority + gate glyph) -->
   <line x1="390" y1="354" x2="512" y2="390" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g5-auth)"/>
@@ -64,8 +64,8 @@
   </g>
   <rect x="420" y="394" width="250" height="58" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
   <text x="545" y="418" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">WARNING / ADMISSION GATE</text>
-  <text x="545" y="438" text-anchor="middle" font-size="12" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
+  <text x="545" y="438" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
 
   <text x="360" y="480" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Represent first; grant authority only when the evidence warrants it.</text>
-  <text x="40" y="506" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  A quantity does not earn a gate by being measurable.</text>
+  <text x="40" y="506" font-size="13" font-style="italic" fill="#57534e">Legend: see Figure C-1.  A quantity does not earn a gate by being measurable.</text>
 </svg>

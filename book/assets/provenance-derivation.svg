@@ -39,7 +39,7 @@
 
   <rect x="175" y="222" width="250" height="52" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
   <text x="300" y="255" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">provenance registry</text>
-  <text x="435" y="255" font-size="14" fill="#57534e">[the only source]</text>
+  <text x="435" y="255" font-size="16" fill="#57534e">[the only source]</text>
 
   <line x1="300" y1="116" x2="300" y2="146" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
   <line x1="300" y1="192" x2="300" y2="222" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
@@ -56,10 +56,10 @@
 
   <line x1="250" y1="274" x2="180" y2="340" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#pd-arM)"/>
   <line x1="350" y1="274" x2="430" y2="340" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#pd-arM)"/>
-  <text x="300" y="318" text-anchor="middle" font-size="14" fill="#57534e">derived, not authored</text>
+  <text x="300" y="318" text-anchor="middle" font-size="16" fill="#57534e">derived, not authored</text>
 
   <line x1="470" y1="388" x2="470" y2="430" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
-  <text x="385" y="410" text-anchor="end" font-size="13" fill="#57534e">one row per entry</text>
+  <text x="385" y="410" text-anchor="end" font-size="16" fill="#57534e">one row per entry</text>
 
-  <text x="300" y="490" text-anchor="middle" font-size="13" fill="#57534e">the changelog is derived from the stamps, not kept in parallel</text>
+  <text x="300" y="490" text-anchor="middle" font-size="16" fill="#57534e">the changelog is derived from the stamps, not kept in parallel</text>
 </svg>

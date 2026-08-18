@@ -39,12 +39,12 @@
   <rect x="580" y="110" width="240" height="50" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="700" y="141" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Representation</text>
   <path d="M700,160 L700,198" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#mv-neutral)"/>
-  <text x="712" y="184" text-anchor="start" font-size="12" fill="#78716c">may be structured into a</text>
+  <text x="712" y="184" text-anchor="start" font-size="13" fill="#78716c">may be structured into a</text>
 
   <rect x="580" y="200" width="240" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="700" y="231" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">Model</text>
   <path d="M700,250 L700,288" fill="none" stroke="#2f5169" stroke-width="2.4" marker-end="url(#mv-blue)"/>
-  <text x="712" y="274" text-anchor="start" font-size="12" fill="#78716c">makes properties explicit</text>
+  <text x="712" y="274" text-anchor="start" font-size="13" fill="#78716c">makes properties explicit</text>
 
   <rect x="580" y="290" width="240" height="58" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="700" y="315" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">Richer semantic</text>
@@ -53,31 +53,31 @@
   <!-- ================= DIRECT PATH (left column) ================= -->
   <rect x="90" y="290" width="260" height="58" rx="9" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
   <text x="220" y="315" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Raw action / artifact</text>
-  <text x="220" y="336" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
+  <text x="220" y="336" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
 
   <!-- ================= THE JOIN — two inputs land side by side on the mechanism ================= -->
   <path d="M700,348 C700,384 626,398 566,406" fill="none" stroke="#2f5169" stroke-width="2.8" marker-end="url(#mv-blue)"/>
-  <text x="648" y="378" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5169">available to</text>
+  <text x="648" y="378" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169">available to</text>
   <path d="M220,348 C220,384 356,398 414,406" fill="none" stroke="#57534e" stroke-width="2.8" marker-end="url(#mv-neutral)"/>
-  <text x="300" y="378" text-anchor="middle" font-size="12.5" font-weight="700" fill="#57534e">acted on directly</text>
+  <text x="300" y="378" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">acted on directly</text>
 
   <rect x="320" y="406" width="340" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="490" y="435" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Governance Mechanism</text>
-  <text x="490" y="457" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
+  <text x="490" y="457" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
   <path d="M490,470 L490,508" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#mv-neutral)"/>
-  <text x="502" y="494" text-anchor="start" font-size="12" fill="#78716c">governs</text>
+  <text x="502" y="494" text-anchor="start" font-size="13" fill="#78716c">governs</text>
 
   <!-- ================= GOVERNED ENVIRONMENT (teal) ================= -->
   <rect x="320" y="510" width="340" height="52" rx="9" fill="#e6f1ee" stroke="#1c6b5f" stroke-width="2.8"/>
   <text x="490" y="542" text-anchor="middle" font-size="17" font-weight="700" fill="#185c52">Governed Environment</text>
   <path d="M490,562 L490,600" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#mv-neutral)"/>
-  <text x="502" y="586" text-anchor="start" font-size="12" fill="#78716c">recurring lessons</text>
+  <text x="502" y="586" text-anchor="start" font-size="13" fill="#78716c">recurring lessons</text>
 
   <!-- ================= CAPITAL VIA CONVERSION (spare tail) ================= -->
   <rect x="360" y="602" width="260" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="490" y="631" text-anchor="middle" font-size="15" font-weight="700" fill="#44403c">Governance Conversion</text>
   <path d="M490,648 L490,686" fill="none" stroke="#155c38" stroke-width="2.4" marker-end="url(#mv-green)"/>
-  <text x="502" y="672" text-anchor="start" font-size="12" fill="#155c38">accumulates as</text>
+  <text x="502" y="672" text-anchor="start" font-size="13" fill="#155c38">accumulates as</text>
 
   <rect x="360" y="688" width="260" height="52" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
   <text x="490" y="720" text-anchor="middle" font-size="18" font-weight="800" fill="#155c38">Engineering Capital</text>

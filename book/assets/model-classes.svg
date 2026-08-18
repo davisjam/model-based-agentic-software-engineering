@@ -48,7 +48,7 @@
   <rect x="40" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="178" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">DECISION</text>
   <text x="178" y="207" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what is allowed?</text>
-  <text x="178" y="226" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">which alternative should be selected?</text>
+  <text x="178" y="226" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">which alternative should be selected?</text>
 
   <rect x="342" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="480" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">MEASUREMENT</text>
@@ -66,7 +66,7 @@
   <line x1="480" y1="264" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2" marker-end="url(#on-b)"/>
 
   <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="314" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">REPRESENTATION FORM</text>
+  <text x="480" y="314" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#57534e">REPRESENTATION FORM</text>
   <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 
   <text x="480" y="394" text-anchor="middle" font-size="16" font-style="italic" fill="#1c1917">Connected through shared identity and traceability, these models form the system&#8217;s explicit engineering knowledge.</text>

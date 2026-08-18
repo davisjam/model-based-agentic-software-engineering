@@ -36,7 +36,7 @@
   <!-- web (the only public node, blue) -->
   <rect x="90" y="150" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="165" y="181" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">web</text>
-  <text x="252" y="181" font-size="14" fill="#57534e">the only public node</text>
+  <text x="252" y="181" font-size="16" fill="#57534e">the only public node</text>
 
   <!-- doc editor -->
   <rect x="90" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
@@ -67,9 +67,9 @@
   <line x1="240" y1="350" x2="400" y2="424" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
 
   <!-- ===== legend: every unshown edge is forbidden ===== -->
-  <text x="150" y="483" text-anchor="end" font-size="15" fill="#57534e">any edge not drawn</text>
+  <text x="150" y="483" text-anchor="end" font-size="16" fill="#57534e">any edge not drawn</text>
   <line x1="168" y1="478" x2="258" y2="478" stroke="#b0aaa2" stroke-width="1.8"/>
   <line x1="205" y1="470" x2="221" y2="486" stroke="#b23b3b" stroke-width="2.6"/>
   <line x1="221" y1="470" x2="205" y2="486" stroke="#b23b3b" stroke-width="2.6"/>
-  <text x="272" y="483" font-size="15" font-weight="600" fill="#b23b3b">forbidden</text>
+  <text x="272" y="483" font-size="16" font-weight="600" fill="#b23b3b">forbidden</text>
 </svg>

@@ -837,8 +837,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- input contract -->
   <line x1="224" y1="206" x2="330" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
-  <text x="279" y="184" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">typed input</text>
-  <text x="279" y="200" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">contract</text>
+  <text x="279" y="184" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">typed input</text>
+  <text x="279" y="200" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">contract</text>
 
   <!-- MODEL (probabilistic — dashed) -->
   <rect x="334" y="150" width="200" height="112" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
@@ -849,8 +849,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- output contract -->
   <line x1="534" y1="206" x2="640" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
-  <text x="589" y="184" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">typed output</text>
-  <text x="589" y="200" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">contract</text>
+  <text x="589" y="184" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">typed output</text>
+  <text x="589" y="200" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">contract</text>
 
   <!-- VALIDATOR -->
   <rect x="644" y="150" width="240" height="112" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
@@ -861,21 +861,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- trust boundary marker under validator; broken around the typed-output-contract label -->
   <line x1="589" y1="116" x2="589" y2="166" stroke="#b23b3b" stroke-width="1" stroke-dasharray="3 3"/>
   <line x1="589" y1="210" x2="589" y2="300" stroke="#b23b3b" stroke-width="1" stroke-dasharray="3 3"/>
-  <text x="589" y="108" text-anchor="middle" font-size="18" font-weight="bold" fill="#b23b3b">trust boundary</text>
+  <text x="589" y="108" text-anchor="middle" font-size="19" font-weight="bold" fill="#b23b3b">trust boundary</text>
 
   <!-- PASS out -->
   <line x1="884" y1="188" x2="936" y2="188" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
   <text x="910" y="176" text-anchor="middle" font-size="19" font-weight="bold" fill="#1f7a4d">pass</text>
-  <text x="946" y="182" text-anchor="start" font-size="18" fill="#1f7a4d">result</text>
-  <text x="946" y="202" text-anchor="start" font-size="18" fill="#1f7a4d">incorporated</text>
+  <text x="946" y="182" text-anchor="start" font-size="19" fill="#1f7a4d">result</text>
+  <text x="946" y="202" text-anchor="start" font-size="19" fill="#1f7a4d">incorporated</text>
 
   <!-- FAIL loop back to caller -->
   <path d="M764,262 L764,330 L124,330 L124,262" fill="none" stroke="#b23b3b" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#lfc-arrow)"/>
   <text x="444" y="350" text-anchor="middle" font-size="19" font-weight="bold" fill="#b23b3b">fail → caller retries or falls back</text>
 
   <!-- caption strip -->
-  <text x="550" y="388" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">The model is called like a function: a typed task in, a typed answer out —</text>
-  <text x="550" y="410" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">never trusted until a deterministic check has passed it.</text>
+  <text x="550" y="388" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">The model is called like a function: a typed task in, a typed answer out —</text>
+  <text x="550" y="410" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">never trusted until a deterministic check has passed it.</text>
 </svg><figcaption data-short="Model as a Bounded Subroutine"><span class="fig-label">Figure 5.3-2.</span> <em>Model as a Bounded Subroutine.</em> A deterministic caller supplies a typed task; the model returns a candidate; deterministic checks reject covered failures before incorporation. Properties outside those checks remain outside the guarantee.</figcaption></figure>
 <p>The coding agents that built DocAble pose the same trust-boundary problem at a larger grain. There the engineered environment needs richer system representations, authority across several boundaries, independent evidence, and governance conversion. The bounded subroutine applies the same engineering stance inside the product that MAGE applies to the process that builds it.</p>
 <h2><span class="sec-num">5.3.3</span> Two Paths to Durable Structure</h2>

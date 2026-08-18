@@ -69,12 +69,12 @@
   <text x="830" y="226" text-anchor="middle" font-size="14" fill="#9a3f12">admission &#183; runtime policy</text>
 
   <!-- reasoning input is authoritative only through a consumer -->
-  <text x="154" y="256" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">authoritative only through</text>
-  <text x="154" y="272" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">a consuming mechanism</text>
+  <text x="154" y="256" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">authoritative only through</text>
+  <text x="154" y="272" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">a consuming mechanism</text>
 
   <!-- the grain axis: neutral, plain — spans the four boxes; grain increases, strength does not -->
-  <text x="500" y="308" text-anchor="middle" font-size="13" font-weight="600" fill="#57534e">semantic grain &#8594;</text>
+  <text x="500" y="308" text-anchor="middle" font-size="14" font-weight="600" fill="#57534e">semantic grain &#8594;</text>
   <line x1="56" y1="318" x2="946" y2="318" stroke="#57534e" stroke-width="1.6" marker-end="url(#ib-axis)"/>
-  <text x="56" y="338" font-size="13" font-style="italic" fill="#57534e">one attempted side effect</text>
-  <text x="946" y="338" text-anchor="end" font-size="13" font-style="italic" fill="#57534e">the resulting system / state</text>
+  <text x="56" y="338" font-size="14" font-style="italic" fill="#57534e">one attempted side effect</text>
+  <text x="946" y="338" text-anchor="end" font-size="14" font-style="italic" fill="#57534e">the resulting system / state</text>
 </svg>

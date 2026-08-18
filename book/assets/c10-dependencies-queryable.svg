@@ -24,7 +24,7 @@
   <!-- CHANGE X -->
   <rect x="400" y="30" width="200" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="500" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHANGE X</text>
-  <text x="500" y="76" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">proposed</text>
+  <text x="500" y="76" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">proposed</text>
   <line x1="500" y1="84" x2="500" y2="132" stroke="#57534e" stroke-width="2.2" marker-end="url(#c10-ah-n)"/>
 
   <!-- SUBSTRATE NODE -->

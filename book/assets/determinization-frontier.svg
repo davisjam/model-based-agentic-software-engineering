@@ -75,11 +75,11 @@
   <!-- ALIGNMENT / MODELING -->
   <rect x="145" y="254" width="210" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="250" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ALIGNMENT</text>
-  <text x="250" y="302" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">encode predicate</text>
+  <text x="250" y="302" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">encode predicate</text>
 
   <rect x="645" y="254" width="210" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="750" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">MODELING</text>
-  <text x="750" y="302" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">change representation</text>
+  <text x="750" y="302" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">change representation</text>
 
   <path d="M250,318 L250,342" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#df-rust)"/>
   <path d="M750,318 L750,342" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#df-green)"/>

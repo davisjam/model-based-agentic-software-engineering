@@ -20,7 +20,7 @@
   <rect x="0" y="0" width="720" height="440" fill="#fdfcf9"/>
   <text x="40" y="34" font-size="15" font-weight="600" fill="#57534e">Question: where does work run, and which decisions vary by environment?</text>
 
-  <text x="360" y="66" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">STABLE ENGINEERING VIEW</text>
+  <text x="360" y="66" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169" letter-spacing="0.5">STABLE ENGINEERING VIEW</text>
 
   <!-- topology row (representation) -->
   <rect x="40"  y="78" width="120" height="54" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
@@ -39,16 +39,16 @@
 
   <!-- scheduled under (DASHED) worker -> policy -->
   <line x1="440" y1="132" x2="440" y2="196" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g4-solid)"/>
-  <text x="452" y="170" font-size="13" font-style="italic" fill="#57534e">scheduled under</text>
-  <text x="452" y="186" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
+  <text x="452" y="170" font-size="14" font-style="italic" fill="#57534e">scheduled under</text>
+  <text x="452" y="186" font-size="14" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
 
   <!-- HOST EXECUTION POLICY table (representation, variable overlay) -->
   <rect x="220" y="200" width="300" height="140" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="370" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">HOST EXECUTION POLICY</text>
   <line x1="220" y1="238" x2="520" y2="238" stroke="#8a2f2f" stroke-width="1.2"/>
   <line x1="360" y1="238" x2="360" y2="340" stroke="#8a2f2f" stroke-width="1.2"/>
-  <text x="290" y="256" text-anchor="middle" font-size="12" font-weight="700" fill="#57534e">host profile</text>
-  <text x="440" y="256" text-anchor="middle" font-size="12" font-weight="700" fill="#57534e">scheduling</text>
+  <text x="290" y="256" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">host profile</text>
+  <text x="440" y="256" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">scheduling</text>
   <line x1="220" y1="264" x2="520" y2="264" stroke="#e3d3cd" stroke-width="1"/>
   <text x="290" y="286" text-anchor="middle" font-size="15" fill="#1c1917">elastic</text>
   <text x="440" y="286" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">fan out</text>
@@ -59,6 +59,6 @@
   <text x="290" y="336" text-anchor="middle" font-size="15" fill="#1c1917">scarce</text>
   <text x="440" y="336" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">serialize</text>
 
-  <text x="360" y="372" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">Load rationing lives in the scheduler — no deploy edge carries the LOAD intent.</text>
-  <text x="40" y="418" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  No gate here: the policy is a representation; Part III decides any authority.</text>
+  <text x="360" y="372" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Load rationing lives in the scheduler — no deploy edge carries the LOAD intent.</text>
+  <text x="40" y="418" font-size="14" font-style="italic" fill="#57534e">Legend: see Figure C-1.  No gate here: the policy is a representation; Part III decides any authority.</text>
 </svg>
