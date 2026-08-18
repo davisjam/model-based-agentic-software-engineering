@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1194,
+    "total_sites": 1195,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 790,
+      "book-web": 791,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -188,6 +188,10 @@
             "occ": 2
           },
           {
+            "file": "book/appendix-h-product-management-and-maintenance.html",
+            "occ": 4
+          },
+          {
             "file": "book/appendix-skill-recipe.html",
             "occ": 13
           },
@@ -205,7 +209,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 48
+            "occ": 50
           },
           {
             "file": "book/list-of-figures.html",
@@ -223,7 +227,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 50
+            "occ": 51
           }
         ]
       },
@@ -1303,7 +1307,7 @@
           },
           {
             "file": "book/appendix-h-product-management-and-maintenance.html",
-            "occ": 25
+            "occ": 30
           },
           {
             "file": "book/appendix-models.html",
@@ -2517,7 +2521,7 @@
           },
           {
             "file": "book/appendix-h-product-management-and-maintenance.html",
-            "occ": 15
+            "occ": 8
           },
           {
             "file": "book/appendix-models.html",
@@ -2553,7 +2557,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 363
+            "occ": 359
           },
           {
             "file": "book/index.html",
@@ -2561,7 +2565,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 23
+            "occ": 22
           },
           {
             "file": "book/part-1-intro.html",
@@ -4683,7 +4687,7 @@
           },
           {
             "file": "book/appendix-h-product-management-and-maintenance.html",
-            "occ": 2
+            "occ": 3
           },
           {
             "file": "book/appendix-models.html",

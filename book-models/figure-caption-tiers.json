@@ -7,17 +7,11 @@
       "location": "appendixH",
       "rationale": "Appendix H opening figure — the five lifecycle surfaces with Assurance drawn cross-cutting; anchor caption sets the differential-adoption frame for the whole appendix"
     },
-    "assets/h4-ticket-bridge-model.svg": {
-      "tier": "B",
-      "kind": "model-diagram",
-      "location": "appendixH",
-      "rationale": "the ticket as a change-scoped bridge between product and system knowledge — supporting caption"
-    },
-    "assets/h4-change-progression.svg": {
+    "assets/h4-change-diagnosis-inheritance.svg": {
       "tier": "B",
       "kind": "flow",
       "location": "appendixH",
-      "rationale": "local change to durable structure via governance conversion — supporting caption on the recurring-lesson judgment"
+      "rationale": "change episode from diagnosis and traceability through the realization space to acceptance evidence and inherited durable structure — supporting caption on change-scoped models, degrees of freedom, and inheritance"
     },
     "assets/h5-operational-determinization.svg": {
       "tier": "B",

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Appendix H figure — h4-change-diagnosis-inheritance.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 840" width="680" height="840"
+     role="img" aria-labelledby="h4Title h4Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="h4Title">Change-scoped models, degrees of freedom, and inheritance</title>
+  <desc id="h4Desc">A change model (ticket or issue) and longer-lived system knowledge both feed diagnosis and
+    context localization, connected by bidirectional traceability between models and code. Diagnosis establishes
+    the realization space — the choices the governing obligations leave open — within which the agent realizes the
+    change. Realization produces acceptance evidence. A recurring-lesson judgment then routes the episode either to
+    history or, through governance conversion, into durable structure that future work inherits.</desc>
+
+  <defs>
+    <marker id="h4-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="h4-ah-u" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="680" height="840" fill="#fdfcf9"/>
+
+  <!-- top: change model + system knowledge -->
+  <rect x="44"  y="28" width="272" height="88" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="180" y="54"  text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CHANGE MODEL</text>
+  <text x="180" y="78"  text-anchor="middle" font-size="13" fill="#1c1917">ticket / issue</text>
+  <text x="180" y="98"  text-anchor="middle" font-size="13" fill="#1c1917">observation · intent</text>
+
+  <rect x="364" y="28" width="272" height="88" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="54"  text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">SYSTEM KNOWLEDGE</text>
+  <text x="500" y="78"  text-anchor="middle" font-size="13" fill="#1c1917">architecture · behavior · ownership</text>
+  <text x="500" y="98"  text-anchor="middle" font-size="13" fill="#1c1917">contracts · dependencies · …</text>
+
+  <g stroke="#57534e" stroke-width="2.2" fill="none" marker-end="url(#h4-ah)">
+    <path d="M180,116 L270,156"/>
+    <path d="M500,116 L410,156"/>
+  </g>
+
+  <!-- diagnosis -->
+  <rect x="110" y="158" width="460" height="92" rx="10" fill="#eef2f5" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="340" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">DIAGNOSIS &amp; CONTEXT LOCALIZATION</text>
+  <text x="340" y="214" text-anchor="middle" font-size="13" fill="#2f5169">root cause · responsible concepts</text>
+  <text x="340" y="234" text-anchor="middle" font-size="13" fill="#2f5169">relevant models · obligations</text>
+
+  <!-- traceability note beside the diagnosis->realization link -->
+  <text x="196" y="280" text-anchor="end" font-size="12" font-style="italic" fill="#57534e">bidirectional traceability</text>
+  <text x="196" y="296" text-anchor="end" font-size="12" font-style="italic" fill="#57534e">models ↔ code</text>
+
+  <line x1="340" y1="250" x2="340" y2="300" stroke="#57534e" stroke-width="2.2" marker-end="url(#h4-ah)"/>
+
+  <!-- realization space -->
+  <rect x="200" y="302" width="280" height="82" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="340" y="330" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">REALIZATION SPACE</text>
+  <text x="340" y="354" text-anchor="middle" font-size="13" fill="#1c1917">choices left open by</text>
+  <text x="340" y="374" text-anchor="middle" font-size="13" fill="#1c1917">governing obligations</text>
+
+  <line x1="340" y1="384" x2="340" y2="424" stroke="#57534e" stroke-width="2.2" marker-end="url(#h4-ah)"/>
+  <text x="452" y="410" font-size="13" font-style="italic" fill="#57534e">agent realizes</text>
+
+  <!-- realization -->
+  <rect x="240" y="426" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="340" y="454" text-anchor="middle" font-size="15" fill="#1c1917">realization</text>
+
+  <line x1="340" y1="470" x2="340" y2="508" stroke="#57534e" stroke-width="2.2" marker-end="url(#h4-ah)"/>
+
+  <!-- acceptance evidence -->
+  <rect x="220" y="510" width="240" height="44" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="340" y="538" text-anchor="middle" font-size="15" fill="#2f5169">acceptance evidence</text>
+
+  <line x1="340" y1="554" x2="340" y2="590" stroke="#57534e" stroke-width="2.2" marker-end="url(#h4-ah)"/>
+  <text x="340" y="612" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">recurring lesson?</text>
+
+  <!-- branch -->
+  <path d="M340,622 L150,622 L150,662" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h4-ah)"/>
+  <path d="M340,622 L500,622 L500,662" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#h4-ah-u)"/>
+  <text x="182" y="642" text-anchor="middle" font-size="13" fill="#57534e">no</text>
+  <text x="468" y="642" text-anchor="middle" font-size="13" fill="#9a3f12">yes</text>
+
+  <rect x="70" y="664" width="160" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="150" y="692" text-anchor="middle" font-size="15" fill="#1c1917">history</text>
+
+  <rect x="368" y="664" width="264" height="100" rx="10" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="500" y="690" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">DURABLE STRUCTURE</text>
+  <text x="500" y="714" text-anchor="middle" font-size="13" fill="#9a3f12">model · test · constraint</text>
+  <text x="500" y="736" text-anchor="middle" font-size="13" fill="#9a3f12">validator · architecture · design</text>
+
+  <line x1="500" y1="764" x2="500" y2="800" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#h4-ah-u)"/>
+  <text x="500" y="822" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">future work inherits it</text>
+</svg>
