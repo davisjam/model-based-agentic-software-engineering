@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Appendix H figure — h9-capital-time-space.svg. Fold to book/assets/. -->
+<!-- GRAPH INVARIANT: every edge below carries an "edge: SRC -> DST" comment (".." for dotted); both
+     endpoints must land on the named nodes (circles carry id="..."; the Engineering-Models boxes carry
+     id="..."). Verified by book-models/lint_figure_dangling_edge.py. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 940" width="980" height="940"
      role="img" aria-labelledby="h9Title h9Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="h9Title">Engineering capital across time and space</title>
   <desc id="h9Desc">A conceptual snapshot of three products shaped by successive engineering episodes. Each
     product is a softly bounded gray field holding a partial constellation of lifecycle surfaces around a central
-    engineering-models node. The three products are heterogeneous. Every relationship terminates on a named node:
-    solid gray lines are established internal relationships; dotted gray lines are emerging or possible ones;
-    unconnected nodes are local. Three cross-product concerns connect to named nodes: an assurance obligation to
-    Product 1's Assurance, Product 2's Engineering Models, and Product 3's Evidence; a code-quality mechanism to
-    the Engineering Models of Products 1 and 2; a security posture, dotted, to the Engineering Models of all three.
-    No arrowheads, axes, scale, or size encoding.</desc>
+    engineering-models node. Every relationship terminates on a named node: solid gray lines are established
+    internal relationships, dotted gray lines are emerging or possible ones, and unconnected nodes are local.
+    Three cross-product concerns connect to named nodes: an assurance obligation to Product 1 Assurance, Product 2
+    Engineering Models, and Product 3 Evidence; a code-quality mechanism to the Engineering Models of Products 1
+    and 2; and a security posture, dotted, to the Engineering Models of all three. No arrowheads, axes, or scale.</desc>
 
   <rect x="0" y="0" width="980" height="940" fill="#fdfcf9"/>
 
@@ -19,86 +21,118 @@
   <ellipse cx="490" cy="208" rx="280" ry="168" fill="#f3efe7"/>
   <ellipse cx="238" cy="652" rx="208" ry="196" fill="#f3efe7"/>
   <ellipse cx="744" cy="652" rx="254" ry="168" fill="#f3efe7"/>
-  <g text-anchor="middle" font-size="25" font-weight="700" letter-spacing="0.06em" fill="#57534e" opacity="0.82">
-    <text x="490" y="52">PRODUCT 1</text><text x="150" y="470">PRODUCT 2</text><text x="852" y="470">PRODUCT 3</text>
+  <g text-anchor="middle" font-size="35" font-weight="700" letter-spacing="0.04em" fill="#57534e" opacity="0.8">
+    <text x="490" y="48">PRODUCT 1</text><text x="152" y="452">PRODUCT 2</text><text x="852" y="452">PRODUCT 3</text>
   </g>
 
-  <!-- ================= PRODUCT 1 — richly connected ================= -->
-  <g stroke="#57534e" fill="none">
-    <line x1="490" y1="120" x2="490" y2="190" stroke-width="1.6"/>
-    <line x1="362" y1="180" x2="408" y2="206" stroke-width="1.6"/>
-    <line x1="572" y1="206" x2="628" y2="198" stroke-width="1.6"/>
-    <line x1="490" y1="226" x2="498" y2="298" stroke-width="1.6"/>
-    <path d="M638,214 C652,266 576,296 514,304" stroke-width="1.6"/>
-    <path d="M472,124 C426,142 396,160 372,170" stroke-width="1.4" stroke-dasharray="2 4"/>
-  </g>
-  <rect x="408" y="190" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
+  <!-- ===== PRODUCT 1 nodes ===== -->
+  <rect id="p1-eng" x="408" y="190" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
   <text x="490" y="213" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
-  <g fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"><circle cx="490" cy="114" r="7"/><circle cx="356" cy="176" r="7"/><circle cx="634" cy="198" r="7"/><circle cx="498" cy="304" r="7"/></g>
-  <g font-size="18" fill="#1c1917"><text x="490" y="98" text-anchor="middle">Discovery</text><text x="308" y="172" text-anchor="middle">Assurance</text><text x="694" y="194" text-anchor="middle">Maintenance</text><text x="498" y="328" text-anchor="middle">Operations</text></g>
-
-  <!-- ================= PRODUCT 2 — continuing change & operation; local assurance ================= -->
-  <g stroke="#57534e" fill="none">
-    <line x1="320" y1="650" x2="376" y2="648" stroke-width="1.6"/>
-    <line x1="238" y1="670" x2="238" y2="746" stroke-width="1.6"/>
-    <path d="M382,660 C394,694 336,732 268,748" stroke-width="1.6"/>
-    <line x1="196" y1="760" x2="230" y2="752" stroke-width="1.6"/>
-    <line x1="238" y1="590" x2="238" y2="634" stroke-width="1.4" stroke-dasharray="2 4"/>
+  <circle id="p1-discovery"   cx="490" cy="114" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <circle id="p1-assurance"   cx="356" cy="176" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <circle id="p1-maintenance" cx="634" cy="198" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <circle id="p1-operations"  cx="498" cy="304" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <g font-size="21" fill="#1c1917"><text x="490" y="94" text-anchor="middle">Discovery</text><text x="300" y="170" text-anchor="middle">Assurance</text><text x="710" y="192" text-anchor="middle">Maintenance</text><text x="498" y="332" text-anchor="middle">Operations</text></g>
+  <!-- P1 internal edges -->
+  <g stroke="#57534e" fill="none" stroke-width="1.6">
+    <!-- edge: p1-discovery -> p1-eng -->
+    <line x1="490" y1="121" x2="490" y2="190"/>
+    <!-- edge: p1-assurance -> p1-eng -->
+    <line x1="362" y1="179" x2="408" y2="206"/>
+    <!-- edge: p1-eng -> p1-maintenance -->
+    <line x1="572" y1="206" x2="627" y2="198"/>
+    <!-- edge: p1-eng -> p1-operations -->
+    <line x1="492" y1="226" x2="497" y2="297"/>
+    <!-- edge: p1-maintenance -> p1-operations -->
+    <path d="M632,204 C648,258 566,298 505,301"/>
+    <!-- edge: p1-assurance .. p1-discovery -->
+    <path d="M483,118 C444,136 400,156 362,171" stroke-dasharray="2 4"/>
   </g>
-  <rect x="156" y="634" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
+
+  <!-- ===== PRODUCT 2 nodes ===== -->
+  <rect id="p2-eng" x="156" y="634" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
   <text x="238" y="657" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
-  <g fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"><circle cx="238" cy="548" r="7"/><circle cx="382" cy="646" r="7"/><circle cx="238" cy="752" r="7"/><circle cx="188" cy="764" r="7"/><circle cx="140" cy="596" r="7"/></g>
-  <g font-size="18" fill="#1c1917"><text x="238" y="532" text-anchor="middle">Discovery</text><text x="446" y="642" text-anchor="middle">Maintenance</text><text x="238" y="778" text-anchor="middle">Operations</text><text x="150" y="784" text-anchor="middle">Incident</text><text x="140" y="580" text-anchor="middle">Assurance</text></g>
-
-  <!-- ================= PRODUCT 3 — assurance-oriented; assurance reaches models through evidence ================= -->
-  <g stroke="#57534e" fill="none">
-    <line x1="618" y1="606" x2="688" y2="666" stroke-width="1.6"/>
-    <line x1="702" y1="670" x2="714" y2="660" stroke-width="1.6"/>
-    <line x1="768" y1="588" x2="768" y2="634" stroke-width="1.4" stroke-dasharray="2 4"/>
+  <circle id="p2-discovery"   cx="238" cy="548" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <circle id="p2-maintenance" cx="382" cy="646" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <circle id="p2-operations"  cx="238" cy="752" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <circle id="p2-incident"    cx="188" cy="764" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <circle id="p2-assurance"   cx="140" cy="596" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <g font-size="21" fill="#1c1917"><text x="238" y="528" text-anchor="middle">Discovery</text><text x="462" y="640" text-anchor="middle">Maintenance</text><text x="238" y="782" text-anchor="middle">Operations</text><text x="150" y="786" text-anchor="middle">Incident</text><text x="140" y="576" text-anchor="middle">Assurance</text></g>
+  <!-- P2 internal edges (Assurance is intentionally isolated — no edge) -->
+  <g stroke="#57534e" fill="none" stroke-width="1.6">
+    <!-- edge: p2-eng -> p2-maintenance -->
+    <line x1="320" y1="650" x2="375" y2="647"/>
+    <!-- edge: p2-eng -> p2-operations -->
+    <line x1="238" y1="670" x2="238" y2="745"/>
+    <!-- edge: p2-maintenance -> p2-operations -->
+    <path d="M381,653 C393,694 330,730 245,750"/>
+    <!-- edge: p2-incident -> p2-operations -->
+    <line x1="195" y1="762" x2="231" y2="754"/>
+    <!-- edge: p2-discovery .. p2-eng -->
+    <line x1="238" y1="555" x2="238" y2="634" stroke-dasharray="2 4"/>
   </g>
-  <rect x="714" y="634" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
+
+  <!-- ===== PRODUCT 3 nodes ===== -->
+  <rect id="p3-eng" x="714" y="634" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
   <text x="796" y="657" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
-  <g fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"><circle cx="612" cy="600" r="7"/><circle cx="694" cy="672" r="7"/><circle cx="768" cy="582" r="7"/><circle cx="828" cy="716" r="7"/></g>
-  <g font-size="18" fill="#1c1917"><text x="564" y="596" text-anchor="middle">Assurance</text><text x="694" y="696" text-anchor="middle">Evidence</text><text x="768" y="566" text-anchor="middle">Discovery</text><text x="828" y="740" text-anchor="middle">Operations</text></g>
-
-  <!-- ================= CROSS-PRODUCT CONCERNS — every edge lands on a named node ================= -->
-  <!-- CODE-QUALITY MECHANISMS (left corridor): established, to P1 Engineering Models + P2 Engineering Models -->
-  <g stroke="#9a3f12" fill="none" stroke-width="1.9">
-    <path d="M224,388 C312,344 372,256 408,210"/>
-    <path d="M150,424 C170,510 224,608 238,634"/>
+  <circle id="p3-assurance"  cx="612" cy="600" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <circle id="p3-evidence"   cx="694" cy="672" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <circle id="p3-discovery"  cx="768" cy="582" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <circle id="p3-operations" cx="828" cy="716" r="7" fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"/>
+  <g font-size="21" fill="#1c1917"><text x="560" y="596" text-anchor="middle">Assurance</text><text x="694" y="700" text-anchor="middle">Evidence</text><text x="768" y="562" text-anchor="middle">Discovery</text><text x="828" y="744" text-anchor="middle">Operations</text></g>
+  <!-- P3 internal edges (Operations is intentionally isolated — no edge) -->
+  <g stroke="#57534e" fill="none" stroke-width="1.6">
+    <!-- edge: p3-assurance -> p3-evidence -->
+    <line x1="617" y1="605" x2="689" y2="667"/>
+    <!-- edge: p3-evidence -> p3-eng -->
+    <line x1="700" y1="669" x2="714" y2="658"/>
+    <!-- edge: p3-discovery .. p3-eng -->
+    <line x1="768" y1="589" x2="768" y2="634" stroke-dasharray="2 4"/>
   </g>
-  <rect x="76" y="378" width="148" height="46" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+
+  <!-- ===== CROSS-PRODUCT CONCERNS ===== -->
+  <rect id="code-quality" x="76" y="378" width="148" height="46" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="150" y="398" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">CODE-QUALITY</text>
   <text x="150" y="416" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">MECHANISMS</text>
   <text x="150" y="444" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">shared by P1 and P2</text>
-
-  <!-- ASSURANCE OBLIGATION (center corridor): P1 Assurance, P2 Engineering Models, P3 Evidence -->
   <g stroke="#9a3f12" fill="none" stroke-width="1.9">
-    <path d="M480,422 C438,330 388,222 360,182"/>
-    <path d="M460,472 C398,548 336,624 320,650"/>
-    <path d="M560,472 C616,560 664,644 690,668"/>
+    <!-- edge: code-quality -> p1-eng -->
+    <path d="M222,390 C300,350 362,254 408,214"/>
+    <!-- edge: code-quality -> p2-eng -->
+    <path d="M150,424 C168,512 202,600 210,634"/>
   </g>
-  <rect x="392" y="422" width="216" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+
+  <rect id="assurance-obligation" x="392" y="422" width="216" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="500" y="444" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">ASSURANCE OBLIGATION</text>
   <text x="500" y="463" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">e.g., DO-178C or IEC 61508</text>
-
-  <!-- SECURITY POSTURE (lower-center corridor): dotted, to the Engineering Models of all three -->
-  <g stroke="#9a3f12" fill="none" stroke-width="1.7" stroke-dasharray="2 5">
-    <path d="M494,806 C316,640 306,392 476,228"/>
-    <path d="M450,816 C352,770 288,706 240,670"/>
-    <path d="M550,816 C662,772 736,706 780,670"/>
+  <g stroke="#9a3f12" fill="none" stroke-width="1.9">
+    <!-- edge: assurance-obligation -> p1-assurance -->
+    <path d="M478,422 C438,330 388,224 361,181"/>
+    <!-- edge: assurance-obligation -> p2-eng -->
+    <path d="M460,472 C398,548 336,624 320,650"/>
+    <!-- edge: assurance-obligation -> p3-evidence -->
+    <path d="M560,472 C616,560 664,644 691,669"/>
   </g>
-  <rect x="402" y="806" width="196" height="34" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.7" stroke-dasharray="3 3"/>
+
+  <rect id="security-posture" x="402" y="806" width="196" height="34" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.7" stroke-dasharray="3 3"/>
   <text x="500" y="828" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">SECURITY POSTURE</text>
   <text x="500" y="856" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">shared concern; connections not yet established</text>
+  <g stroke="#9a3f12" fill="none" stroke-width="1.7" stroke-dasharray="2 5">
+    <!-- edge: security-posture .. p1-eng -->
+    <path d="M500,806 C440,650 300,468 494,226"/>
+    <!-- edge: security-posture .. p2-eng -->
+    <path d="M452,812 C370,772 300,712 252,670"/>
+    <!-- edge: security-posture .. p3-eng -->
+    <path d="M556,812 C664,770 722,704 760,670"/>
+  </g>
 
-  <!-- legend -->
-  <g font-size="15" fill="#57534e">
-    <line x1="40" y1="902" x2="82" y2="902" stroke="#57534e" stroke-width="1.6"/>
-    <text x="90" y="907">established</text>
-    <line x1="228" y1="902" x2="270" y2="902" stroke="#57534e" stroke-width="1.4" stroke-dasharray="2 4"/>
-    <text x="278" y="907">emerging / possible</text>
-    <rect x="486" y="894" width="18" height="13" rx="2" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.7"/>
-    <text x="512" y="907" fill="#9a3f12">cross-product concern</text>
+  <!-- legend (single row, larger) -->
+  <g font-size="16" fill="#57534e">
+    <line x1="70" y1="904" x2="116" y2="904" stroke="#57534e" stroke-width="1.7"/>
+    <text x="124" y="910">established</text>
+    <line x1="270" y1="904" x2="316" y2="904" stroke="#57534e" stroke-width="1.5" stroke-dasharray="2 4"/>
+    <text x="324" y="910">emerging / possible</text>
+    <rect x="560" y="895" width="20" height="15" rx="2" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8"/>
+    <text x="590" y="910" fill="#9a3f12">cross-product concern</text>
   </g>
 </svg>
