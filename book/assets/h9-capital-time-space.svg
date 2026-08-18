@@ -1,84 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Appendix H figure — h9-capital-time-space.svg. Fold to book/assets/. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 620" width="940" height="620"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 900" width="980" height="900"
      role="img" aria-labelledby="h9Title h9Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="h9Title">Engineering capital across time and space</title>
-  <desc id="h9Desc">A conceptual illustration, not a quantitative model. The horizontal TIME axis runs through
-    successive example engineering episodes across a product's lifecycle — decision, realization, maintenance,
-    operations, assurance, later change. An orange trace along that axis represents engineering capital as a latent
-    construct that accumulates irregularly, receiving contributions at selected episodes (a decision yields
-    rationale; realization yields a model or mechanism; assurance yields evidence); its changing thickness is a
-    qualitative cue, not a measured amount. The vertical SPACE axis marks the scope over which capital is useful:
-    component, product, other product, other organization. Solid branches show reach within the originating
-    product; dashed branches show the more conjectural extension to other products and organizations.</desc>
+  <desc id="h9Desc">A conceptual snapshot of three products after many engineering episodes. Each product is a
+    softly bounded field holding a partial constellation of lifecycle surfaces — discovery, assurance,
+    maintenance, operations — around a central engineering-models node. The three products are heterogeneous: one
+    is richly connected, one is oriented toward continuing change and operation with a local unconnected
+    assurance node, and one is assurance-oriented with assurance reaching engineering models through evidence.
+    Solid gray lines are established relationships; dotted gray lines are emerging or possible ones; unconnected
+    nodes are local. Three cross-product concerns span the fields in orange: an assurance obligation solidly
+    connects all three products through different local structures; a code-quality capital is solidly shared by
+    two; a common security posture is dotted toward all three because it is not yet connected. No arrowheads,
+    axes, scale, or size encoding — the partial topology itself represents accumulated engineering capital.</desc>
 
   <defs>
-    <marker id="h9-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <radialGradient id="h9-field" cx="50%" cy="50%" r="58%">
+      <stop offset="0%" stop-color="#57534e" stop-opacity="0.06"/>
+      <stop offset="60%" stop-color="#57534e" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#57534e" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
-  <rect x="0" y="0" width="940" height="620" fill="#fdfcf9"/>
-  <text x="884" y="52" text-anchor="end" font-size="13" font-weight="700" letter-spacing="0.14em" fill="#a8a29e">CONCEPTUAL</text>
+  <rect x="0" y="0" width="980" height="900" fill="#fdfcf9"/>
 
-  <!-- axes -->
-  <line x1="220" y1="560" x2="900" y2="560" stroke="#57534e" stroke-width="2.4" marker-end="url(#h9-ah)"/>
-  <line x1="220" y1="560" x2="220" y2="70"  stroke="#57534e" stroke-width="2.4" marker-end="url(#h9-ah)"/>
-
-  <!-- SPACE axis: scope categories -->
-  <g text-anchor="end" font-size="14" fill="#1c1917">
-    <text x="206" y="497">component</text>
-    <text x="206" y="407">product</text>
-    <text x="206" y="297">other product</text>
-    <text x="206" y="187">other organization</text>
-  </g>
-  <g stroke="#57534e" stroke-width="1.4">
-    <line x1="215" y1="492" x2="225" y2="492"/>
-    <line x1="215" y1="402" x2="225" y2="402"/>
-    <line x1="215" y1="292" x2="225" y2="292"/>
-    <line x1="215" y1="182" x2="225" y2="182"/>
-  </g>
-  <text x="46" y="300" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e" transform="rotate(-90 46 300)">SPACE · scope over which engineering capital is useful</text>
-
-  <!-- capital trace: a latent construct accumulating irregularly along time (thickness is a qualitative cue) -->
-  <path d="M220,546 L220,540 L300,532 L400,516 L500,522 L600,506 L700,512 L820,502 L880,504 L880,546 Z"
-        fill="#ecd6c6" stroke="#9a3f12" stroke-width="0.9"/>
-  <text x="878" y="538" text-anchor="end" font-size="12" font-style="italic" fill="#9a3f12">engineering capital available to later work</text>
-
-  <!-- contributions at selected episodes -->
-  <g fill="#9a3f12" stroke="none">
-    <circle cx="300" cy="532" r="4"/>
-    <circle cx="500" cy="522" r="4"/>
-    <circle cx="700" cy="512" r="4"/>
-  </g>
-  <g stroke="#9a3f12" stroke-width="1">
-    <line x1="300" y1="528" x2="300" y2="514"/>
-    <line x1="500" y1="518" x2="500" y2="504"/>
-    <line x1="700" y1="508" x2="700" y2="494"/>
-  </g>
-  <g text-anchor="middle" font-size="11.5" fill="#9a3f12">
-    <text x="300" y="508">decision → rationale</text>
-    <text x="500" y="498">realization → model / mechanism</text>
-    <text x="700" y="488">assurance → evidence</text>
+  <!-- soft gray "galaxy" fields: a pale wash fading at the edges — a region of accumulated engineering
+       context with deliberately fuzzy membership, not a formal container. Sizes vary slightly on purpose. -->
+  <ellipse cx="490" cy="228" rx="264" ry="190" fill="url(#h9-field)"/>
+  <ellipse cx="255" cy="662" rx="228" ry="180" fill="url(#h9-field)"/>
+  <ellipse cx="728" cy="662" rx="242" ry="172" fill="url(#h9-field)"/>
+  <g text-anchor="middle" font-size="15" font-weight="700" letter-spacing="0.1em" fill="#57534e" opacity="0.72">
+    <text x="490" y="70">PRODUCT 1</text><text x="150" y="516">PRODUCT 2</text><text x="836" y="516">PRODUCT 3</text>
   </g>
 
-  <!-- spatial reach: solid within the product, dashed beyond it (conjectural) -->
-  <line x1="400" y1="516" x2="400" y2="404" stroke="#9a3f12" stroke-width="2"/>
-  <circle cx="400" cy="404" r="3.5" fill="#9a3f12"/>
-  <line x1="600" y1="506" x2="600" y2="294" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 4"/>
-  <circle cx="600" cy="294" r="3.5" fill="#9a3f12"/>
-  <line x1="820" y1="502" x2="820" y2="184" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 4"/>
-  <circle cx="820" cy="184" r="3.5" fill="#9a3f12"/>
-
-  <!-- TIME axis: example episodes -->
-  <g text-anchor="middle" font-size="12" fill="#1c1917">
-    <text x="300" y="580">decision</text>
-    <text x="400" y="580">realization</text>
-    <text x="500" y="580">maintenance</text>
-    <text x="600" y="580">operations</text>
-    <text x="700" y="580">assurance</text>
-    <text x="818" y="580">later change</text>
+  <!-- ================= PRODUCT 1 — richly connected ================= -->
+  <g stroke="#57534e" fill="none">
+    <line x1="490" y1="130" x2="490" y2="204" stroke-width="1.5"/>
+    <line x1="368" y1="188" x2="430" y2="219" stroke-width="1.5"/>
+    <line x1="550" y1="219" x2="616" y2="210" stroke-width="1.5"/>
+    <line x1="490" y1="245" x2="496" y2="330" stroke-width="1.5"/>
+    <path d="M626,224 C640,290 570,332 512,344" stroke-width="1.5"/>
+    <path d="M472,132 C420,150 386,168 364,178" stroke-width="1.3" stroke-dasharray="2 4"/>
   </g>
-  <text x="560" y="600" text-anchor="middle" font-size="12" font-style="italic" fill="#78716c">(example episodes — order is illustrative, not a required sequence)</text>
-  <text x="560" y="617" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">TIME · successive engineering episodes across the product lifecycle</text>
+  <rect x="414" y="209" width="152" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
+  <text x="490" y="232" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
+  <g fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"><circle cx="490" cy="124" r="6"/><circle cx="360" cy="184" r="6"/><circle cx="622" cy="208" r="6"/><circle cx="497" cy="336" r="6"/></g>
+  <g font-size="13" fill="#1c1917"><text x="490" y="112" text-anchor="middle">Discovery</text><text x="322" y="180" text-anchor="middle">Assurance</text><text x="662" y="204" text-anchor="middle">Maintenance</text><text x="497" y="356" text-anchor="middle">Operations</text></g>
+
+  <!-- ================= PRODUCT 2 — continuing change & operation; local assurance ================= -->
+  <g stroke="#57534e" fill="none">
+    <line x1="330" y1="656" x2="381" y2="654" stroke-width="1.5"/>
+    <line x1="255" y1="679" x2="255" y2="756" stroke-width="1.5"/>
+    <path d="M385,668 C398,700 340,742 279,760" stroke-width="1.5"/>
+    <line x1="234" y1="768" x2="176" y2="774" stroke-width="1.5"/>
+    <line x1="255" y1="600" x2="255" y2="643" stroke-width="1.3" stroke-dasharray="2 4"/>
+  </g>
+  <rect x="179" y="643" width="152" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
+  <text x="255" y="666" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
+  <g fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"><circle cx="255" cy="558" r="6"/><circle cx="387" cy="653" r="6"/><circle cx="255" cy="762" r="6"/><circle cx="168" cy="776" r="6"/><circle cx="112" cy="600" r="6"/></g>
+  <g font-size="13" fill="#1c1917"><text x="255" y="546" text-anchor="middle">Discovery</text><text x="420" y="649" text-anchor="middle">Maintenance</text><text x="255" y="784" text-anchor="middle">Operations</text><text x="150" y="798" text-anchor="middle">incident</text><text x="112" y="586" text-anchor="middle">Assurance</text></g>
+
+  <!-- ================= PRODUCT 3 — assurance-oriented; assurance reaches models through evidence ================= -->
+  <g stroke="#57534e" fill="none">
+    <line x1="606" y1="612" x2="642" y2="700" stroke-width="1.5"/>
+    <line x1="668" y1="710" x2="729" y2="668" stroke-width="1.5"/>
+    <line x1="760" y1="608" x2="748" y2="643" stroke-width="1.3" stroke-dasharray="2 4"/>
+  </g>
+  <rect x="725" y="643" width="152" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
+  <text x="801" y="666" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
+  <g fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"><circle cx="600" cy="606" r="6"/><circle cx="654" cy="710" r="6"/><circle cx="766" cy="558" r="6"/><circle cx="878" cy="742" r="6"/></g>
+  <g font-size="13" fill="#1c1917"><text x="560" y="602" text-anchor="middle">Assurance</text><text x="654" y="732" text-anchor="middle">evidence</text><text x="766" y="546" text-anchor="middle">Discovery</text><text x="878" y="764" text-anchor="middle">Operations</text></g>
+
+  <!-- ================= CROSS-PRODUCT CONCERNS (orange = scope; solid/dotted = status) ================= -->
+  <!-- CODE QUALITY — established, shared by P1 and P2 only; on the P1–P2 boundary -->
+  <g stroke="#9a3f12" fill="none" stroke-width="1.8">
+    <path d="M336,430 C380,392 430,360 478,344"/>
+    <path d="M320,462 C300,520 268,590 255,636"/>
+  </g>
+  <rect x="262" y="428" width="150" height="36" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="337" y="451" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12">CODE QUALITY</text>
+  <text x="337" y="480" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">shared by P1 and P2</text>
+
+  <!-- ASSURANCE OBLIGATION — established across all three, through different local structures -->
+  <g stroke="#9a3f12" fill="none" stroke-width="1.8">
+    <path d="M470,456 C420,360 384,260 366,196"/>
+    <path d="M452,500 C400,560 320,616 292,638"/>
+    <path d="M556,502 C600,580 636,660 660,708"/>
+  </g>
+  <rect x="392" y="456" width="216" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="500" y="478" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12">ASSURANCE OBLIGATION</text>
+  <text x="500" y="496" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">e.g., DO-178C or IEC 61508</text>
+
+  <!-- SECURITY POSTURE — outside the fields; dotted toward all three (not yet connected) -->
+  <g stroke="#9a3f12" fill="none" stroke-width="1.6" stroke-dasharray="2 5">
+    <path d="M628,828 C640,700 660,470 640,300"/>
+    <path d="M452,832 C360,780 300,760 276,772"/>
+    <path d="M556,832 C660,790 720,760 760,724"/>
+  </g>
+  <rect x="404" y="824" width="192" height="36" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="3 3"/>
+  <text x="500" y="847" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12">SECURITY POSTURE</text>
+  <text x="500" y="876" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">shared concern, not yet connected</text>
+
+  <!-- legend: color = scope, line style = status -->
+  <g font-size="11.5" fill="#57534e">
+    <line x1="40" y1="864" x2="80" y2="864" stroke="#57534e" stroke-width="1.5"/>
+    <text x="86" y="868">established relationship</text>
+    <line x1="40" y1="884" x2="80" y2="884" stroke="#57534e" stroke-width="1.3" stroke-dasharray="2 4"/>
+    <text x="86" y="888">emerging / possible relationship</text>
+    <rect x="256" y="879" width="16" height="10" rx="2" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6"/>
+    <text x="278" y="888" fill="#9a3f12">cross-product concern (solid = established · dotted = possible)</text>
+  </g>
 </svg>
