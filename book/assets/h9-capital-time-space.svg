@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Appendix H figure — h9-capital-time-space.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600"
+     role="img" aria-labelledby="h9Title h9Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="h9Title">Engineering capital across time and space</title>
+  <desc id="h9Desc">Two axes emanate from engineering capital at the origin. The horizontal TIME axis runs
+    through a product's lifecycle — decision, realization, maintenance, operations, assurance, later change —
+    where later work inherits earlier engineering. The vertical SPACE axis runs outward — component, product, other
+    product, other organization — where the same capital may be reused laterally. Time is longitudinal reuse
+    through a product's life; space is lateral reuse beyond the original locus of engineering.</desc>
+
+  <defs>
+    <marker id="h9-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="600" fill="#fdfcf9"/>
+
+  <!-- axes -->
+  <line x1="250" y1="500" x2="866" y2="500" stroke="#57534e" stroke-width="2.4" marker-end="url(#h9-ah)"/>
+  <line x1="250" y1="500" x2="250" y2="70"  stroke="#57534e" stroke-width="2.4" marker-end="url(#h9-ah)"/>
+
+  <!-- engineering capital at the origin -->
+  <circle cx="250" cy="500" r="9" fill="#9a3f12"/>
+  <text x="266" y="533" font-size="15" font-weight="700" fill="#9a3f12">engineering capital</text>
+
+  <!-- TIME axis: lifecycle stages -->
+  <g font-size="13" fill="#1c1917" text-anchor="middle">
+    <text x="336" y="480">decision</text>
+    <text x="438" y="480">realization</text>
+    <text x="540" y="480">maintenance</text>
+    <text x="642" y="480">operations</text>
+    <text x="744" y="480">assurance</text>
+    <text x="838" y="480">later change</text>
+  </g>
+  <g stroke="#57534e" stroke-width="1.4">
+    <line x1="336" y1="495" x2="336" y2="505"/>
+    <line x1="438" y1="495" x2="438" y2="505"/>
+    <line x1="540" y1="495" x2="540" y2="505"/>
+    <line x1="642" y1="495" x2="642" y2="505"/>
+    <line x1="744" y1="495" x2="744" y2="505"/>
+    <line x1="838" y1="495" x2="838" y2="505"/>
+  </g>
+  <text x="560" y="565" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">TIME</text>
+  <text x="560" y="585" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the product lifecycle — later work inherits earlier engineering</text>
+
+  <!-- SPACE axis: reuse scope -->
+  <g font-size="13" fill="#1c1917" text-anchor="end">
+    <text x="234" y="425">component</text>
+    <text x="234" y="345">product</text>
+    <text x="234" y="265">other product</text>
+    <text x="234" y="185">other organization</text>
+  </g>
+  <g stroke="#57534e" stroke-width="1.4">
+    <line x1="245" y1="421" x2="255" y2="421"/>
+    <line x1="245" y1="341" x2="255" y2="341"/>
+    <line x1="245" y1="261" x2="255" y2="261"/>
+    <line x1="245" y1="181" x2="255" y2="181"/>
+  </g>
+  <text x="250" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">SPACE</text>
+  <text x="250" y="72" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">other products · teams · organizations</text>
+</svg>
