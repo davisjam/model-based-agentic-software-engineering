@@ -53,7 +53,7 @@
   <rect x="470" y="258" width="200" height="66" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="570" y="284" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">DERIVE</text>
   <text x="570" y="306" text-anchor="middle" font-size="14" fill="#57534e">join where possible</text>
-  <path d="M470,291 L406,291" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <path d="M470,291 L402,291" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
 
   <!-- CORRESPONDENCE -> decision (solid) -->
   <line x1="300" y1="324" x2="300" y2="366" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>

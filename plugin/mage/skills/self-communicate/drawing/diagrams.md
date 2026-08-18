@@ -69,17 +69,50 @@ right in the one layout the author eyeballed and drifts the moment the line move
   text, is never acceptable — route the connector to one side, break it, or move the text. (The width
   heuristic in the figure text-fit checker is blind to this; the line-through-text audit catches it, and
   otherwise watch for it by eye.)
-- **Every edge terminates on a named node.** A connector runs from one named element to another — a box, a
-  labeled node, a marker — and never into open space, onto a bare field/background region, or to an
+- **Every edge terminates on — and plugs into — a named node.** A connector runs from one named element to
+  another (a box, a labeled node) and never into open space, onto a bare field/background region, or to an
   ambiguous point near another edge. This is graph semantics: an edge asserts a relationship between two
   named things, so a line ending in whitespace asserts a relationship to nothing and misreads. If the
-  destination is not worth naming, do not draw the edge. When two edges share a destination, land them at
-  visibly distinct attachment points; do not use a field/container boundary as an endpoint (the region is
-  context, not a node). Prefer a shallow curve around an obstacle to a diagonal slash across the
-  composition. (Not yet mechanically enforced — see the dangling-edge check below. For strong per-edge
-  verification, and to make the intent auditable, annotate each connector `<!-- edge: <source> ->
-  <destination> --><!-- both endpoints naming a node the lint can resolve -->` so the SVG declares the
-  graph it draws.)
+  destination is not worth naming, do not draw the edge. Use a field/container boundary as context, never as
+  an endpoint (the region is not a node). Swoops and shallow curves are fine — a curved *body* is a style
+  choice, not a defect; what must not happen is a *floating end*.
+  - **The connect grammar** (proven on the engineering-capital figure; mechanically enforced). Give every
+    node a native SVG `id`. Precede each connector with a declaration comment — `<!-- edge: SRC -> DST -->`
+    for solid, `<!-- edge: SRC .. DST -->` for dotted (the markers are `->` / `..` because the sequence
+    `--` is illegal inside an XML comment). Then two rules make the join clean at any angle: **draw the
+    edges UNDERNEATH the nodes**, and **run each endpoint to the node's CENTER** — the node's opaque fill
+    caps the line end, so it plugs in with no gap. The failure this kills: an endpoint that stops at a
+    hollow shape's rim or in the thin gap beside it — geometrically "near," visibly floating in a busy
+    figure (the endpoint grazed the rim of a node drawn *under* the edge). A simpler figure may accept a
+    slightly-short connector by opting into the looser grammar with a standalone
+    `<!-- edge-grammar: float-ok -->` marker comment.
+  - **Enforcement.** A dangling-edge lint resolves each declared edge to its two nodes' geometry and checks
+    that both endpoints land *inside* them (strict connect-inside by default; the `float-ok` marker relaxes
+    it to a rim-touch). It skips figures that have not adopted the schema, so adoption is incremental. It is
+    audit-only until a figure family is migrated. The lint proves the *coordinates*; it cannot see the
+    *picture* — always pair it with the render-and-look step below.
+  - **Directed edges invert the attach move.** The center-plug rule above is for an *undirected* relation
+    line. A *directed* edge — one carrying an arrowhead or a crow's-foot cardinality glyph — must do the
+    opposite: land the endpoint on the target's **perimeter** (box border / circle rim, or a few px inside)
+    and keep the **edge drawn on top of** the target, so the arrowhead sits outside the fill and stays
+    visible. Run a directed endpoint to the center and the node fill *buries the arrowhead* — erasing the
+    very mark that carries the edge's direction. (The lint accepts both: its rect test is border-inclusive
+    and its circle test is `dist ≤ r`, so a rim landing counts as inside — this is an authoring convention,
+    not a lint change.) A migration sweep found this is the dominant genre: most real diagrams are directed.
+  - **Forbidden / absent edges.** Two idioms, opposite handling. A *deliberately-unreached ghost* — an arc
+    that curves away and is struck through to read as "does not connect" — is exempt from connect-inside;
+    forcing it onto the node contradicts its meaning, so leave it unannotated (the lint skips it). A
+    *struck-but-spanning* "no edge" — a line that does run between the two nodes with an X on it — is a real
+    connection visually and **must** still plug both ends in; annotate it like any dotted edge. The `->`/`..`
+    markers carry solid-vs-dotted only; "forbidden" currently rides on the drawn X glyph.
+  - **A node need not be a drawn shape.** When an edge targets a bare `<text>` label with no box or circle,
+    give it a **transparent anchor** — a `<rect>` with `fill="none" stroke="none"` carrying the `id`, sized
+    over the label. Zero visual change, and the lint reads its geometry like any node. (Preferred over
+    teaching the lint font-metric text extents.) Fan-in — many edges sharing one destination id — and a node
+    with several edges both work as-is; no special grammar. One real limit remains: the lint's node reader
+    recognizes only `id`-bearing `<circle>`/`<rect>`, so a `<polygon>` (diamond, parallelogram, hexagon) or
+    a cylinder group can't yet carry a lint-legible id — annotate such a figure only after adding a
+    transparent-rect anchor, or leave it float-fixed-by-eye until the node reader grows those shapes.
 - **Reach for the format's named shape in general** — `<rect rx>` for a rounded box, `<marker>` for an
   arrow, a `<pattern>` / `<symbol>` for a repeated motif, a Mermaid edge label for an edge label — before
   composing one from strokes. The named form is shorter to write, reads correctly to a tool and a screen
@@ -90,6 +123,24 @@ arrowhead, a stitched arrowhead outside a `<marker>`, a stroke through a glyph, 
 its box or the canvas — ships beside this doc as [`svg-audit.py`](svg-audit.py): `python3 svg-audit.py
 <dir>`. It is a heuristic, but it catches the arrowhead and stroke-through-glyph mistakes a
 width check is blind to.
+
+**Render it and look — the lint holds the line, but it cannot replace the eye.** Every check above reasons
+over the *markup*; none of them sees the *picture*. A figure can pass every geometric check and still read
+wrong — an endpoint that satisfies "touches the node" numerically can still float visibly, two lines that
+clear each glyph can still tangle, a label that fits its box can still crowd its neighbour. So before you
+trust a figure, rasterize it and look at it as a reader will:
+
+- **Render to a PNG and Read it back.** `rsvg-convert -w 1200 fig.svg -o fig.png` (or `inkscape`); then
+  actually open the image. This is the step that catches what the numbers miss — a busy figure's floating
+  edge slipped through an endpoint-only lint precisely because the coordinates were "close enough"; the
+  render made it obvious in one look, and the fix (and the stronger lint) followed from *seeing* it.
+- **Zoom the busy regions.** Override the `viewBox` and width on a throwaway copy to crop-and-magnify the
+  corner you doubt; a defect that hides at whole-figure scale is unmissable at 4×.
+- **Overlay when you must localize.** To pin *which* end floats, inject a bright dot at each connector
+  endpoint and a ring at each node's geometry and render that — the mismatch jumps out.
+
+The order is: eye sets the standard, lint holds it. Use the render loop while authoring; once a figure
+reads right, the lint keeps a later edit from quietly breaking it.
 
 ---
 

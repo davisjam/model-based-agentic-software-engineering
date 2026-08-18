@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- RB Engineering-Moves figure — c8-cause-travels-with-consequence.svg. Fold to book/assets/. -->
+<!-- CONNECT GRAMMAR (verified by book-models/lint_figure_dangling_edge.py):
+     * The directional CHAIN cause -> action -> change -> artifact carries "edge:" comments; each box
+       carries id="...". Edges are drawn UNDER the boxes and each arrow endpoint runs to the target
+       box NEAR EDGE (arrowhead stays visible, endpoint still inside the rect), so strict connect-inside
+       passes with no float. Center-targeting would bury the arrowhead, so directional edges plug to the
+       rim instead.
+     * The PROVENANCE RAIL (the dashed drops off action/change/artifact + the horizontal spine) and the
+       green "reconstruct WHY" arrow are a bracket/spine composition, NOT pairwise node edges: their
+       source is the rail junction, which is not a node. They stay unannotated decoration. This is the
+       grammar's fan/bracket-to-a-shared-rail gap (see report). -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="1000" height="480"
      role="img" aria-labelledby="c8Title c8Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -21,43 +31,52 @@
     </marker>
   </defs>
 
-  <!-- CAUSE (provenance origin) -->
-  <rect x="90" y="34" width="180" height="56" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="180" y="69" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">CAUSE</text>
-  <line x1="180" y1="90" x2="180" y2="146" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#c8-ah-r)"/>
-  <text x="192" y="124" font-size="14" font-style="italic" fill="#9a3f12">mint identity</text>
-
-  <!-- chain: ACTION -> CHANGE -> ARTIFACT -->
-  <g>
-    <rect x="100" y="150" width="160" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="180" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ACTION</text>
-    <rect x="420" y="150" width="160" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="500" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHANGE</text>
-    <rect x="740" y="150" width="180" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="830" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ARTIFACT</text>
-  </g>
+  <!-- ===== EDGE LAYER: drawn UNDER the boxes; directional arrows plug to the target box near-edge ===== -->
+  <!-- edge: cause -> action -->
+  <line x1="180" y1="90" x2="180" y2="150" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#c8-ah-r)"/>
   <g stroke="#57534e" stroke-width="2.2" marker-end="url(#c8-ah-n)">
-    <line x1="260" y1="179" x2="414" y2="179"/>
-    <line x1="580" y1="179" x2="734" y2="179"/>
+    <!-- edge: action -> change -->
+    <line x1="260" y1="179" x2="420" y2="179"/>
+    <!-- edge: change -> artifact -->
+    <line x1="580" y1="179" x2="740" y2="179"/>
   </g>
 
-  <!-- provenance rail: identity carried under all three -->
+  <!-- provenance rail: identity carried under all three (decorative bracket; no node target) -->
   <g stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4">
     <line x1="180" y1="208" x2="180" y2="272"/>
     <line x1="500" y1="208" x2="500" y2="272"/>
     <line x1="830" y1="208" x2="830" y2="272"/>
     <line x1="180" y1="272" x2="830" y2="272"/>
   </g>
+  <!-- reconstruct WHY (knowledge recovered): the rail junction feeds the box (decorative; rail-sourced) -->
+  <line x1="830" y1="272" x2="830" y2="334" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#c8-ah-g)"/>
+
+  <!-- ===== NODE LAYER: drawn ON TOP so opaque fills cap the edge ends ===== -->
+  <!-- CAUSE (provenance origin) -->
+  <rect id="cause" x="90" y="34" width="180" height="56" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="180" y="69" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">CAUSE</text>
+
+  <!-- chain: ACTION -> CHANGE -> ARTIFACT -->
+  <g>
+    <rect id="action" x="100" y="150" width="160" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="180" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ACTION</text>
+    <rect id="change" x="420" y="150" width="160" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="500" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHANGE</text>
+    <rect id="artifact" x="740" y="150" width="180" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="830" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ARTIFACT</text>
+  </g>
+
+  <!-- reconstruct WHY box -->
+  <rect id="reconstruct-why" x="700" y="334" width="260" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <text x="830" y="370" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">reconstruct WHY</text>
+
+  <!-- ===== ANNOTATIONS (labels) ===== -->
+  <text x="192" y="124" font-size="14" font-style="italic" fill="#9a3f12">mint identity</text>
   <g font-size="14" font-weight="700" fill="#9a3f12" text-anchor="middle">
     <text x="340" y="264">id</text>
     <text x="665" y="264">id</text>
   </g>
   <text x="500" y="300" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">the identity travels with the work &#8212; and can be checked for completeness</text>
-
-  <!-- reconstruct WHY (knowledge recovered) -->
-  <line x1="830" y1="272" x2="830" y2="330" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#c8-ah-g)"/>
-  <rect x="700" y="334" width="260" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
-  <text x="830" y="370" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">reconstruct WHY</text>
 
   <!-- footer -->
   <text x="60" y="440" font-size="16" fill="#1c1917">Capture provenance at the causal event and carry it forward with the resulting change.</text>

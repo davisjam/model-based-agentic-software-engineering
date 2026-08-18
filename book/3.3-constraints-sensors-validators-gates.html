@@ -965,11 +965,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="250" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">NEGATIVE CONSTRAINT</text>
   <text x="250" y="94" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">removes a forbidden action</text>
 
-  <rect x="120" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="po-ordinary" x="120" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="250" y="166" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">ordinary code</text>
 
-  <!-- forbidden edge: barred, crossed -->
-  <line x1="250" y1="190" x2="250" y2="272" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="7 5"/>
+  <!-- forbidden edge: barred, crossed (absent relation — endpoints still plug into both boxes) -->
+  <!-- edge: po-ordinary .. po-rawlib -->
+  <line x1="250" y1="190" x2="250" y2="274" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="7 5"/>
   <!-- the bar / prohibition mark -->
   <g stroke="#9a3f12" stroke-width="3.4" stroke-linecap="round">
     <line x1="228" y1="220" x2="272" y2="242"/>
@@ -977,23 +978,25 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
   <text x="298" y="236" font-size="15.5" font-weight="700" font-style="italic" fill="#9a3f12">must not call</text>
 
-  <rect x="120" y="274" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
+  <rect id="po-rawlib" x="120" y="274" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
   <text x="250" y="312" text-anchor="middle" font-size="18.5" font-weight="700" fill="#57534e">raw library</text>
 
   <!-- ============ POSITIVE ============ -->
   <text x="710" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">POSITIVE CONSTRAINT</text>
   <text x="710" y="94" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">requires evidence-producing behavior</text>
 
-  <rect x="580" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="po-verb" x="580" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="710" y="166" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">mutation verb</text>
 
-  <!-- required edge: solid rust arrow -->
-  <line x1="710" y1="190" x2="710" y2="270" stroke="#9a3f12" stroke-width="2.8" marker-end="url(#po-r)"/>
   <text x="758" y="236" font-size="15.5" font-weight="700" font-style="italic" fill="#9a3f12">must call</text>
 
-  <rect x="580" y="274" width="260" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <rect id="po-stamp" x="580" y="274" width="260" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="710" y="305" text-anchor="middle" font-size="18.5" font-weight="700" fill="#9a3f12">MUST stamp</text>
   <text x="710" y="325" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">emit attribution evidence</text>
+
+  <!-- required edge: solid rust arrow, drawn ON TOP of its target box so the arrowhead is not capped -->
+  <!-- edge: po-verb -> po-stamp -->
+  <line x1="710" y1="190" x2="710" y2="274" stroke="#9a3f12" stroke-width="2.8" marker-end="url(#po-r)"/>
 
   <!-- footer: protect the point -->
   <line x1="40" y1="376" x2="920" y2="376" stroke="#e7e2da" stroke-width="1.4"/>

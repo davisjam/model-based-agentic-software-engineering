@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- RB Engineering-Moves figure — c1-make-fact-authoritative.svg. Fold to book/assets/. -->
+<!-- CONNECT GRAMMAR (verified by book-models/lint_figure_dangling_edge.py):
+     * Every edge carries an "edge: SRC -> DST" comment; nodes carry id="...".
+     * Edges are DIRECTIONAL (arrowheaded). They are drawn UNDER the nodes; each arrow endpoint runs
+       to the target box's NEAR EDGE (not its center) so the arrowhead stays visible pointing INTO the
+       box while the endpoint still lands inside the rect (boundary-inclusive) — strict connect-inside
+       passes and there is no float. Center-targeting would bury the arrowhead, so directional edges
+       plug to the rim instead. The BEFORE spine and the BEFORE->AFTER transition arrow are decorative
+       (no node target) and stay unannotated. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560"
      role="img" aria-labelledby="c1Title c1Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -18,74 +26,80 @@
     </marker>
   </defs>
 
-  <!-- ============ BEFORE ============ -->
+  <!-- section labels -->
   <text x="60" y="46" font-size="15" font-weight="700" letter-spacing="0.08em" fill="#57534e">BEFORE</text>
+  <text x="600" y="46" font-size="15" font-weight="700" letter-spacing="0.08em" fill="#57534e">AFTER</text>
 
-  <!-- three copies (failure pole) -->
-  <g>
-    <rect x="120" y="86"  width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-    <text x="195" y="115" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">copy A</text>
-    <rect x="120" y="186" width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-    <text x="195" y="215" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">copy B</text>
-    <rect x="120" y="286" width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-    <text x="195" y="315" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">copy C</text>
-  </g>
-
-  <!-- "same fact" spine linking the copies -->
+  <!-- ===== EDGE LAYER: drawn UNDER the nodes; directional arrows plug to the target box near-edge ===== -->
+  <!-- "same fact" spine linking the copies (decorative; no node target) -->
   <line x1="82" y1="98" x2="82" y2="322" stroke="#b23b3b" stroke-width="2" stroke-dasharray="5 4"/>
   <line x1="82" y1="110" x2="118" y2="110" stroke="#b23b3b" stroke-width="1.6"/>
   <line x1="82" y1="210" x2="118" y2="210" stroke="#b23b3b" stroke-width="1.6"/>
   <line x1="82" y1="310" x2="118" y2="310" stroke="#b23b3b" stroke-width="1.6"/>
-  <text x="70" y="215" text-anchor="middle" font-size="13" font-style="italic" fill="#b23b3b" transform="rotate(-90 70 215)">&#8220;same fact&#8221;, three times</text>
+
+  <!-- BEFORE: each copy feeds its own consumer -->
+  <g stroke="#57534e" stroke-width="2" marker-end="url(#c1-ah)">
+    <!-- edge: copy-a -> consumer-a -->
+    <line x1="270" y1="110" x2="330" y2="110"/>
+    <!-- edge: copy-b -> consumer-b -->
+    <line x1="270" y1="210" x2="330" y2="210"/>
+    <!-- edge: copy-c -> consumer-c -->
+    <line x1="270" y1="310" x2="330" y2="310"/>
+  </g>
+
+  <!-- AFTER: the authoritative representation fans to the three consumers -->
+  <g stroke="#1f7a4d" stroke-width="2" fill="none" marker-end="url(#c1-ah-g)">
+    <!-- edge: authoritative -> out-a -->
+    <path d="M700,156 C660,196 650,214 648,250"/>
+    <!-- edge: authoritative -> out-b -->
+    <line x1="778" y1="156" x2="778" y2="250"/>
+    <!-- edge: authoritative -> out-c -->
+    <path d="M856,156 C896,196 906,214 908,250"/>
+  </g>
+
+  <!-- ===== NODE LAYER: drawn ON TOP so opaque fills cap the edge ends ===== -->
+  <!-- three copies (failure pole) -->
+  <g>
+    <rect id="copy-a" x="120" y="86"  width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+    <text x="195" y="115" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">copy A</text>
+    <rect id="copy-b" x="120" y="186" width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+    <text x="195" y="215" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">copy B</text>
+    <rect id="copy-c" x="120" y="286" width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+    <text x="195" y="315" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">copy C</text>
+  </g>
 
   <!-- consumers -->
   <g>
-    <rect x="330" y="90"  width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="consumer-a" x="330" y="90"  width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="395" y="115" text-anchor="middle" font-size="15" fill="#1c1917">consumer A</text>
-    <rect x="330" y="190" width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="consumer-b" x="330" y="190" width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="395" y="215" text-anchor="middle" font-size="15" fill="#1c1917">consumer B</text>
-    <rect x="330" y="290" width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="consumer-c" x="330" y="290" width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="395" y="315" text-anchor="middle" font-size="15" fill="#1c1917">consumer C</text>
   </g>
 
-  <g stroke="#57534e" stroke-width="2" marker-end="url(#c1-ah)">
-    <line x1="270" y1="110" x2="326" y2="110"/>
-    <line x1="270" y1="210" x2="326" y2="210"/>
-    <line x1="270" y1="310" x2="326" y2="310"/>
-  </g>
-
-  <text x="290" y="372" text-anchor="middle" font-size="16" font-style="italic" fill="#b23b3b">disagreement is an ordinary state</text>
-
-  <!-- ============ transition ============ -->
-  <line x1="500" y1="200" x2="560" y2="200" stroke="#1c1917" stroke-width="3" marker-end="url(#c1-ah)"/>
-
-  <!-- ============ AFTER ============ -->
-  <text x="600" y="46" font-size="15" font-weight="700" letter-spacing="0.08em" fill="#57534e">AFTER</text>
-
   <!-- authoritative representation (modeling pole) -->
-  <rect x="628" y="86" width="300" height="70" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <rect id="authoritative" x="628" y="86" width="300" height="70" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="778" y="118" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">AUTHORITATIVE</text>
   <text x="778" y="140" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">REPRESENTATION</text>
 
-  <text x="778" y="192" text-anchor="middle" font-size="15" font-style="italic" fill="#1f7a4d">derive / query</text>
-
-  <!-- fan to consumers -->
-  <g stroke="#1f7a4d" stroke-width="2" fill="none" marker-end="url(#c1-ah-g)">
-    <path d="M700,156 C660,196 650,214 648,246"/>
-    <line x1="778" y1="156" x2="778" y2="246"/>
-    <path d="M856,156 C896,196 906,214 908,246"/>
-  </g>
-
   <g>
-    <rect x="600" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="out-a" x="600" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="648" y="275" text-anchor="middle" font-size="15" fill="#1c1917">A</text>
-    <rect x="730" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="out-b" x="730" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="778" y="275" text-anchor="middle" font-size="15" fill="#1c1917">B</text>
-    <rect x="860" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="out-c" x="860" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="908" y="275" text-anchor="middle" font-size="15" fill="#1c1917">C</text>
   </g>
 
+  <!-- ===== ANNOTATIONS (labels + the decorative transition arrow) ===== -->
+  <text x="70" y="215" text-anchor="middle" font-size="13" font-style="italic" fill="#b23b3b" transform="rotate(-90 70 215)">&#8220;same fact&#8221;, three times</text>
+  <text x="290" y="372" text-anchor="middle" font-size="16" font-style="italic" fill="#b23b3b">disagreement is an ordinary state</text>
+  <text x="778" y="192" text-anchor="middle" font-size="15" font-style="italic" fill="#1f7a4d">derive / query</text>
   <text x="778" y="372" text-anchor="middle" font-size="16" font-style="italic" fill="#155c38">disagreement becomes detectable or impossible</text>
+
+  <!-- BEFORE -> AFTER transition (decorative; no node target) -->
+  <line x1="500" y1="200" x2="560" y2="200" stroke="#1c1917" stroke-width="3" marker-end="url(#c1-ah)"/>
 
   <!-- footer -->
   <text x="500" y="500" text-anchor="middle" font-size="16" fill="#1c1917">Choose one representation to carry the fact, make it machine-readable, and derive the consumers from it.</text>

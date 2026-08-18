@@ -155,7 +155,14 @@ def parse_svg(path: pathlib.Path) -> tuple[list[TextEl], list[Rect]]:
     def walk(el: ET.Element, ancestors: list[ET.Element]) -> None:
         tag = _tag(el)
         if tag == "rect":
-            rects.append(Rect(_f(el, "x"), _f(el, "y"), _f(el, "width"), _f(el, "height")))
+            # An invisible anchor rect (fill:none AND stroke:none) is not a visible box — it is the
+            # text-label-node convention (a transparent <rect> carrying an id so a graph edge can target a
+            # bare <text> label; see the connect-grammar note in the drawing skill). It has no border a
+            # label could overrun, so it must not be treated as a box the overflow sensor strains against.
+            fill = _inherited(el, ancestors, "fill", "black").strip()
+            stroke = _inherited(el, ancestors, "stroke", "none").strip()
+            if not (fill == "none" and stroke == "none"):
+                rects.append(Rect(_f(el, "x"), _f(el, "y"), _f(el, "width"), _f(el, "height")))
         elif tag == "text":
             content = "".join(el.itertext()).strip()
             if content:

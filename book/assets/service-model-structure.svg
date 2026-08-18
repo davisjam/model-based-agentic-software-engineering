@@ -50,8 +50,8 @@
   </g>
 
   <!-- generators -> artifacts -->
-  <path d="M594,80 C640,72 655,64 692,56" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
-  <path d="M594,110 C640,118 655,128 692,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
+  <path d="M594,80 C640,72 655,64 700,55" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
+  <path d="M594,110 C640,118 655,128 700,140" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
 
   <!-- ===== parity gates (decision diamond) ===== -->
   <polygon points="480,275 580,330 480,385 380,330" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>

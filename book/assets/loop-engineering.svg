@@ -7,6 +7,14 @@
      levers). Mermaid would draw the cycle but not the lever-callout composition, and the
      pass/fail split at the admission gate wants bespoke placement. Palette: design-tokens
      (ink/muted/panel, diagram-fleet #2f5169 + #e7edf3, diagram-governed #1f7a4d + #e3f0e7). -->
+<!-- CONNECT GRAMMAR (verified by book-models/lint_figure_dangling_edge.py):
+     * Each of the four loop connectors carries an "edge:" comment (".." for the dotted fail branch);
+       each station and the admission gate carries id="...". Edges are drawn UNDER the nodes and each
+       arrow endpoint runs to the target box NEAR EDGE (arrowhead visible, endpoint still inside the
+       rect), so strict connect-inside passes with no float. Center-targeting would bury the arrowhead,
+       so directional edges plug to the rim. The two feedback edges are multi-segment ELBOW routes; the
+       lint reads a path's first + last point, so the corner vertices are free — only the two ends must
+       land on nodes. The lever callout circles (1/2/3) are annotations, not edge targets. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470"
      role="group" aria-labelledby="loopTitle loopDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -32,43 +40,50 @@
     </marker>
   </defs>
 
-  <!-- ===== the admission gate on the feedback path (lever 4) ===== -->
-  <rect x="360" y="38" width="240" height="70" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <!-- ===== EDGE LAYER: drawn UNDER the nodes; directional arrows plug to the target box near-edge ===== -->
+  <!-- forward path -->
+  <!-- edge: modeled-state -> agent-reasoning -->
+  <line x1="310" y1="262" x2="355" y2="262" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
+  <!-- edge: agent-reasoning -> output -->
+  <line x1="605" y1="262" x2="650" y2="262" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
+
+  <!-- feedback path: output → gate → next turn's input (elbow routes) -->
+  <!-- edge: output -> admission-gate -->
+  <path d="M 775 210 L 775 72 L 600 72" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
+  <!-- edge: admission-gate -> modeled-state -->
+  <path d="M 360 72 L 185 72 L 185 210" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
+
+  <!-- fail branch: gate → reason again (dotted) -->
+  <!-- edge: admission-gate .. agent-reasoning -->
+  <path d="M 480 108 L 480 210" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#leArrowGreen)"/>
+
+  <!-- ===== NODE LAYER: drawn ON TOP so opaque fills cap the edge ends ===== -->
+  <!-- the admission gate on the feedback path (lever 4) -->
+  <rect id="admission-gate" x="360" y="38" width="240" height="70" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <circle cx="392" cy="62" r="12" fill="#1f7a4d"/>
   <text x="392" y="67" text-anchor="middle" font-size="15.36" font-weight="700" fill="#ffffff">4</text>
   <text x="492" y="68" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Admission rule</text>
   <text x="480" y="94" text-anchor="middle" font-size="15.36" font-style="italic" fill="#57534e">may the result advance?</text>
 
-  <!-- ===== feedback path: output → gate → next turn's input ===== -->
-  <path d="M 775 208 L 775 72 L 607 72" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
-  <path d="M 360 72 L 185 72 L 185 202" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
-  <text x="300" y="127" text-anchor="middle" font-size="15.36" font-style="italic" fill="#57534e">the next turn's input</text>
-
-  <!-- fail branch: gate → reason again -->
-  <path d="M 480 108 L 480 202" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#leArrowGreen)"/>
-  <text x="494" y="160" font-size="15.36" font-style="italic" fill="#1f7a4d">fails — run again</text>
-
-  <!-- ===== the three stations ===== -->
   <!-- Modeled state (lever 1, blue) -->
-  <rect x="60" y="210" width="250" height="105" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="modeled-state" x="60" y="210" width="250" height="105" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="185" y="262" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Modeled state</text>
   <text x="185" y="292" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">what the agent sees</text>
 
   <!-- Agent reasoning -->
-  <rect x="355" y="210" width="250" height="105" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.8"/>
+  <rect id="agent-reasoning" x="355" y="210" width="250" height="105" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.8"/>
   <text x="480" y="262" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Agent reasoning</text>
   <text x="480" y="292" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">then action</text>
 
   <!-- Output -->
-  <rect x="650" y="210" width="250" height="105" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.8"/>
+  <rect id="output" x="650" y="210" width="250" height="105" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.8"/>
   <text x="775" y="262" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Output</text>
   <text x="775" y="292" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a candidate result</text>
 
-  <!-- forward arrows -->
-  <line x1="310" y1="262" x2="348" y2="262" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
-  <line x1="605" y1="262" x2="643" y2="262" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
+  <!-- ===== ANNOTATIONS (edge labels + lever callouts) ===== -->
+  <text x="300" y="127" text-anchor="middle" font-size="15.36" font-style="italic" fill="#57534e">the next turn's input</text>
+  <text x="494" y="160" font-size="15.36" font-style="italic" fill="#1f7a4d">fails — run again</text>
 
-  <!-- ===== the lever callouts ===== -->
   <!-- lever 1 — the state exposed (Modeling Principle) -->
   <circle cx="86" cy="352" r="12" fill="#2f5169"/>
   <text x="86" y="357" text-anchor="middle" font-size="15.36" font-weight="700" fill="#ffffff">1</text>
