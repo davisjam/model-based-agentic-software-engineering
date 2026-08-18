@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1188,
+    "total_sites": 1194,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 784,
+      "book-web": 790,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -1270,6 +1270,10 @@
             "occ": 21
           },
           {
+            "file": "book/appendix-h-beyond-the-product-boundary.html",
+            "occ": 42
+          },
+          {
             "file": "book/appendix-h-differential-adoption.html",
             "occ": 19
           },
@@ -1331,7 +1335,7 @@
           },
           {
             "file": "book/colophon.html",
-            "occ": 19
+            "occ": 18
           },
           {
             "file": "book/figures.html",
@@ -1373,7 +1377,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 111
+            "occ": 112
           }
         ]
       },
@@ -1864,6 +1868,10 @@
             "occ": 3
           },
           {
+            "file": "book/appendix-h-beyond-the-product-boundary.html",
+            "occ": 7
+          },
+          {
             "file": "book/appendix-h-differential-adoption.html",
             "occ": 3
           },
@@ -1925,7 +1933,7 @@
           },
           {
             "file": "book/colophon.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/figures.html",
@@ -1967,7 +1975,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 111
+            "occ": 112
           }
         ]
       },
@@ -2476,6 +2484,10 @@
             "occ": 4
           },
           {
+            "file": "book/appendix-h-beyond-the-product-boundary.html",
+            "occ": 5
+          },
+          {
             "file": "book/appendix-h-differential-adoption.html",
             "occ": 3
           },
@@ -2579,7 +2591,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 111
+            "occ": 112
           }
         ]
       },
@@ -3508,6 +3520,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-h-beyond-the-product-boundary.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-h-differential-adoption.html",
             "occ": 1
           },
@@ -3611,7 +3627,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 111
+            "occ": 112
           }
         ]
       },
@@ -4136,6 +4152,10 @@
             "occ": 2
           },
           {
+            "file": "book/appendix-h-beyond-the-product-boundary.html",
+            "occ": 3
+          },
+          {
             "file": "book/appendix-h-differential-adoption.html",
             "occ": 2
           },
@@ -4239,7 +4259,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 111
+            "occ": 112
           }
         ]
       },
@@ -4630,6 +4650,10 @@
             "occ": 2
           },
           {
+            "file": "book/appendix-h-beyond-the-product-boundary.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-h-differential-adoption.html",
             "occ": 2
           },
@@ -4733,7 +4757,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 111
+            "occ": 112
           }
         ]
       },
