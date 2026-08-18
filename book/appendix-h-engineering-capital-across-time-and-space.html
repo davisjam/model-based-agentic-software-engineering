@@ -707,112 +707,109 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · H.9 Engineering Capital Across Time and Space — MAGE"><header class="chap"><div class="kicker"><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">Appendix H — Configuring MAGE Across the Product Lifecycle</a></div><h1>H.9 Engineering Capital Across Time and Space</h1></header><p>Engineering capital matters when an investment made in one engineering episode changes the economics of work elsewhere. This appendix has already shown one dimension of that leverage: engineering knowledge created at one point in the product lifecycle can change later work. Product decisions constrain realization; engineering models support maintenance; operational failures become durable governance; assurance evidence accumulates rather than being reconstructed. Earlier engineering can therefore change the cost and quality of later engineering on the same product.</p>
 <p>A second dimension is across space. Models, mechanisms, and engineering judgment created for one component or product may sometimes be useful elsewhere, including in products developed by other teams or organizations. That possibility is more conjectural. Software engineering has long pursued reuse, but application-specific context and judgment have proved difficult to package. Commodity intelligence may change those economics by making richer engineering representations usable without requiring every reuse boundary to be reduced to a rigid interface.</p>
 <p>Together, these dimensions raise broader questions about MAGE. How much can engineering investment made earlier in a product's lifecycle change later work? How much of that capital can travel across products and organizations? And if engineering knowledge and judgment become reusable across both dimensions, what happens to engineering teams and the diversity of human judgment behind them?</p>
-<p><a class="xref" href="appendix-h-engineering-capital-across-time-and-space.html#fig-H-9-1">Figure&nbsp;H.9-1</a> shows a conceptual snapshot after many engineering episodes rather than a lifecycle sequence. Within each product, useful local investments have accumulated selectively: some representations are connected, others remain local, and some potentially useful relationships have not been established. Across products, different engineering concerns have different reach. The resulting constellations illustrate engineering capital accumulating through successive engineering episodes without implying a canonical product model, maturity progression, or quantitative measure of capital.</p>
-<figure id="fig-H-9-1" class="book-figure" data-label="fig-h-capital"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 920"
+<p><a class="xref" href="appendix-h-engineering-capital-across-time-and-space.html#fig-H-9-1">Figure&nbsp;H.9-1</a> shows a conceptual snapshot shaped by successive engineering episodes rather than a lifecycle sequence. Within each product, useful local investments have accumulated selectively: some representations are connected, others remain local, and some potentially useful relationships have not been established. Across products, different engineering concerns have different reach. The constellations depict selective accumulation without implying a canonical product model, maturity progression, or quantitative measure of capital.</p>
+<figure id="fig-H-9-1" class="book-figure" data-label="fig-h-capital"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 940"
      role="img" aria-labelledby="h9Title h9Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="h9Title">Engineering capital across time and space</title>
   <desc id="h9Desc">A conceptual snapshot of three products shaped by successive engineering episodes. Each
-    product is a softly bounded gray field holding a partial constellation of lifecycle surfaces — discovery,
-    assurance, maintenance, operations — around a central engineering-models node. The three products are
-    heterogeneous: one richly connected, one oriented toward continuing change and operation with a local
-    unconnected assurance node, one assurance-oriented with assurance reaching engineering models through
-    evidence. Solid gray lines are established relationships; dotted gray lines are emerging or possible ones;
-    unconnected nodes are local. Three cross-product concerns span the fields in orange: an assurance obligation
-    connects all three products through different local structures; a code-quality mechanism is shared by two;
-    a common security posture is dotted toward the three engineering-models nodes because its connections are not
-    yet established. No arrowheads, axes, scale, or size encoding — the partial topology represents accumulated
-    engineering capital.</desc>
+    product is a softly bounded gray field holding a partial constellation of lifecycle surfaces around a central
+    engineering-models node. The three products are heterogeneous. Every relationship terminates on a named node:
+    solid gray lines are established internal relationships; dotted gray lines are emerging or possible ones;
+    unconnected nodes are local. Three cross-product concerns connect to named nodes: an assurance obligation to
+    Product 1's Assurance, Product 2's Engineering Models, and Product 3's Evidence; a code-quality mechanism to
+    the Engineering Models of Products 1 and 2; a security posture, dotted, to the Engineering Models of all three.
+    No arrowheads, axes, scale, or size encoding.</desc>
 
-  <rect x="0" y="0" width="980" height="920" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="980" height="940" fill="#fdfcf9"/>
 
   <!-- soft gray "galaxy" fields (solid light-gray token; sizes vary slightly on purpose) -->
-  <ellipse cx="490" cy="212" rx="276" ry="178" fill="#f3efe7"/>
-  <ellipse cx="248" cy="650" rx="214" ry="198" fill="#f3efe7"/>
-  <ellipse cx="736" cy="652" rx="252" ry="172" fill="#f3efe7"/>
-  <g text-anchor="middle" font-size="20" font-weight="700" letter-spacing="0.08em" fill="#57534e" opacity="0.82">
-    <text x="490" y="60">PRODUCT 1</text><text x="150" y="486">PRODUCT 2</text><text x="844" y="486">PRODUCT 3</text>
+  <ellipse cx="490" cy="208" rx="280" ry="168" fill="#f3efe7"/>
+  <ellipse cx="238" cy="652" rx="208" ry="196" fill="#f3efe7"/>
+  <ellipse cx="744" cy="652" rx="254" ry="168" fill="#f3efe7"/>
+  <g text-anchor="middle" font-size="25" font-weight="700" letter-spacing="0.06em" fill="#57534e" opacity="0.82">
+    <text x="490" y="52">PRODUCT 1</text><text x="150" y="470">PRODUCT 2</text><text x="852" y="470">PRODUCT 3</text>
   </g>
 
   <!-- ================= PRODUCT 1 — richly connected ================= -->
   <g stroke="#57534e" fill="none">
-    <line x1="490" y1="120" x2="490" y2="194" stroke-width="1.6"/>
-    <line x1="364" y1="182" x2="408" y2="208" stroke-width="1.6"/>
-    <line x1="572" y1="208" x2="626" y2="198" stroke-width="1.6"/>
-    <line x1="490" y1="230" x2="496" y2="300" stroke-width="1.6"/>
-    <path d="M636,214 C650,268 574,300 512,308" stroke-width="1.6"/>
-    <path d="M472,124 C424,144 392,164 370,174" stroke-width="1.4" stroke-dasharray="2 4"/>
+    <line x1="490" y1="120" x2="490" y2="190" stroke-width="1.6"/>
+    <line x1="362" y1="180" x2="408" y2="206" stroke-width="1.6"/>
+    <line x1="572" y1="206" x2="628" y2="198" stroke-width="1.6"/>
+    <line x1="490" y1="226" x2="498" y2="298" stroke-width="1.6"/>
+    <path d="M638,214 C652,266 576,296 514,304" stroke-width="1.6"/>
+    <path d="M472,124 C426,142 396,160 372,170" stroke-width="1.4" stroke-dasharray="2 4"/>
   </g>
-  <rect x="408" y="194" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
-  <text x="490" y="217" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
-  <g fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"><circle cx="490" cy="114" r="6.5"/><circle cx="358" cy="178" r="6.5"/><circle cx="632" cy="198" r="6.5"/><circle cx="497" cy="306" r="6.5"/></g>
-  <g font-size="16" fill="#1c1917"><text x="490" y="100" text-anchor="middle">Discovery</text><text x="318" y="174" text-anchor="middle">Assurance</text><text x="682" y="194" text-anchor="middle">Maintenance</text><text x="497" y="328" text-anchor="middle">Operations</text></g>
+  <rect x="408" y="190" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
+  <text x="490" y="213" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
+  <g fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"><circle cx="490" cy="114" r="7"/><circle cx="356" cy="176" r="7"/><circle cx="634" cy="198" r="7"/><circle cx="498" cy="304" r="7"/></g>
+  <g font-size="18" fill="#1c1917"><text x="490" y="98" text-anchor="middle">Discovery</text><text x="308" y="172" text-anchor="middle">Assurance</text><text x="694" y="194" text-anchor="middle">Maintenance</text><text x="498" y="328" text-anchor="middle">Operations</text></g>
 
   <!-- ================= PRODUCT 2 — continuing change & operation; local assurance ================= -->
   <g stroke="#57534e" fill="none">
-    <line x1="330" y1="646" x2="384" y2="644" stroke-width="1.6"/>
-    <line x1="248" y1="668" x2="248" y2="742" stroke-width="1.6"/>
-    <path d="M388,656 C400,690 342,728 276,744" stroke-width="1.6"/>
-    <line x1="240" y1="748" x2="198" y2="756" stroke-width="1.6"/>
-    <line x1="248" y1="590" x2="248" y2="632" stroke-width="1.4" stroke-dasharray="2 4"/>
+    <line x1="320" y1="650" x2="376" y2="648" stroke-width="1.6"/>
+    <line x1="238" y1="670" x2="238" y2="746" stroke-width="1.6"/>
+    <path d="M382,660 C394,694 336,732 268,748" stroke-width="1.6"/>
+    <line x1="196" y1="760" x2="230" y2="752" stroke-width="1.6"/>
+    <line x1="238" y1="590" x2="238" y2="634" stroke-width="1.4" stroke-dasharray="2 4"/>
   </g>
-  <rect x="166" y="632" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
-  <text x="248" y="655" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
-  <g fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"><circle cx="248" cy="548" r="6.5"/><circle cx="390" cy="643" r="6.5"/><circle cx="248" cy="748" r="6.5"/><circle cx="190" cy="760" r="6.5"/><circle cx="150" cy="596" r="6.5"/></g>
-  <g font-size="16" fill="#1c1917"><text x="248" y="534" text-anchor="middle">Discovery</text><text x="434" y="639" text-anchor="middle">Maintenance</text><text x="248" y="772" text-anchor="middle">Operations</text><text x="150" y="778" text-anchor="middle">incident</text><text x="150" y="582" text-anchor="middle">Assurance</text></g>
+  <rect x="156" y="634" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
+  <text x="238" y="657" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
+  <g fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"><circle cx="238" cy="548" r="7"/><circle cx="382" cy="646" r="7"/><circle cx="238" cy="752" r="7"/><circle cx="188" cy="764" r="7"/><circle cx="140" cy="596" r="7"/></g>
+  <g font-size="18" fill="#1c1917"><text x="238" y="532" text-anchor="middle">Discovery</text><text x="446" y="642" text-anchor="middle">Maintenance</text><text x="238" y="778" text-anchor="middle">Operations</text><text x="150" y="784" text-anchor="middle">Incident</text><text x="140" y="580" text-anchor="middle">Assurance</text></g>
 
   <!-- ================= PRODUCT 3 — assurance-oriented; assurance reaches models through evidence ================= -->
   <g stroke="#57534e" fill="none">
-    <line x1="620" y1="606" x2="686" y2="668" stroke-width="1.6"/>
-    <line x1="702" y1="672" x2="712" y2="662" stroke-width="1.6"/>
-    <line x1="766" y1="588" x2="766" y2="634" stroke-width="1.4" stroke-dasharray="2 4"/>
+    <line x1="618" y1="606" x2="688" y2="666" stroke-width="1.6"/>
+    <line x1="702" y1="670" x2="714" y2="660" stroke-width="1.6"/>
+    <line x1="768" y1="588" x2="768" y2="634" stroke-width="1.4" stroke-dasharray="2 4"/>
   </g>
   <rect x="714" y="634" width="164" height="36" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="1.2"/>
   <text x="796" y="657" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1c1917">ENGINEERING MODELS</text>
-  <g fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"><circle cx="612" cy="600" r="6.5"/><circle cx="694" cy="672" r="6.5"/><circle cx="766" cy="582" r="6.5"/><circle cx="826" cy="716" r="6.5"/></g>
-  <g font-size="16" fill="#1c1917"><text x="570" y="596" text-anchor="middle">Assurance</text><text x="694" y="694" text-anchor="middle">evidence</text><text x="766" y="568" text-anchor="middle">Discovery</text><text x="826" y="738" text-anchor="middle">Operations</text></g>
+  <g fill="#fdfcf9" stroke="#57534e" stroke-width="1.6"><circle cx="612" cy="600" r="7"/><circle cx="694" cy="672" r="7"/><circle cx="768" cy="582" r="7"/><circle cx="828" cy="716" r="7"/></g>
+  <g font-size="18" fill="#1c1917"><text x="564" y="596" text-anchor="middle">Assurance</text><text x="694" y="696" text-anchor="middle">Evidence</text><text x="768" y="566" text-anchor="middle">Discovery</text><text x="828" y="740" text-anchor="middle">Operations</text></g>
 
-  <!-- ================= CROSS-PRODUCT CONCERNS (orange = scope; solid/dotted = status) ================= -->
-  <!-- CODE-QUALITY MECHANISMS — established, shared by P1 and P2 (both Engineering Models) -->
+  <!-- ================= CROSS-PRODUCT CONCERNS — every edge lands on a named node ================= -->
+  <!-- CODE-QUALITY MECHANISMS (left corridor): established, to P1 Engineering Models + P2 Engineering Models -->
   <g stroke="#9a3f12" fill="none" stroke-width="1.9">
-    <path d="M300,392 C360,344 400,268 436,232"/>
-    <path d="M250,432 C250,520 248,586 248,630"/>
+    <path d="M224,388 C312,344 372,256 408,210"/>
+    <path d="M150,424 C170,510 224,608 238,634"/>
   </g>
-  <rect x="176" y="392" width="148" height="46" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="250" y="412" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9a3f12">CODE-QUALITY</text>
-  <text x="250" y="429" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9a3f12">MECHANISMS</text>
-  <text x="250" y="456" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">shared by P1 and P2</text>
+  <rect x="76" y="378" width="148" height="46" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="150" y="398" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">CODE-QUALITY</text>
+  <text x="150" y="416" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">MECHANISMS</text>
+  <text x="150" y="444" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">shared by P1 and P2</text>
 
-  <!-- ASSURANCE OBLIGATION — established across all three, through different local structures -->
+  <!-- ASSURANCE OBLIGATION (center corridor): P1 Assurance, P2 Engineering Models, P3 Evidence -->
   <g stroke="#9a3f12" fill="none" stroke-width="1.9">
-    <path d="M486,430 C440,340 400,236 372,190"/>
-    <path d="M470,478 C400,558 320,618 262,640"/>
-    <path d="M596,478 C650,566 680,634 700,662"/>
+    <path d="M480,422 C438,330 388,222 360,182"/>
+    <path d="M460,472 C398,548 336,624 320,650"/>
+    <path d="M560,472 C616,560 664,644 690,668"/>
   </g>
-  <rect x="452" y="430" width="216" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="560" y="452" text-anchor="middle" font-size="14.5" font-weight="700" fill="#9a3f12">ASSURANCE OBLIGATION</text>
-  <text x="560" y="471" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">e.g., DO-178C or IEC 61508</text>
+  <rect x="392" y="422" width="216" height="50" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <text x="500" y="444" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">ASSURANCE OBLIGATION</text>
+  <text x="500" y="463" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">e.g., DO-178C or IEC 61508</text>
 
-  <!-- SECURITY POSTURE — dotted three-way fan to the Engineering Models nodes (connections not yet established) -->
+  <!-- SECURITY POSTURE (lower-center corridor): dotted, to the Engineering Models of all three -->
   <g stroke="#9a3f12" fill="none" stroke-width="1.7" stroke-dasharray="2 5">
-    <path d="M470,806 C400,640 396,400 486,232"/>
-    <path d="M452,812 C360,760 300,700 258,672"/>
-    <path d="M556,812 C660,764 720,700 758,672"/>
+    <path d="M494,806 C316,640 306,392 476,228"/>
+    <path d="M450,816 C352,770 288,706 240,670"/>
+    <path d="M550,816 C662,772 736,706 780,670"/>
   </g>
-  <rect x="404" y="806" width="192" height="34" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.7" stroke-dasharray="3 3"/>
-  <text x="500" y="828" text-anchor="middle" font-size="14.5" font-weight="700" fill="#9a3f12">SECURITY POSTURE</text>
-  <text x="500" y="856" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">shared concern; connections not yet established</text>
+  <rect x="402" y="806" width="196" height="34" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.7" stroke-dasharray="3 3"/>
+  <text x="500" y="828" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">SECURITY POSTURE</text>
+  <text x="500" y="856" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">shared concern; connections not yet established</text>
 
-  <!-- legend: color = scope, line style = status -->
-  <g font-size="13" fill="#57534e">
-    <line x1="40" y1="886" x2="82" y2="886" stroke="#57534e" stroke-width="1.6"/>
-    <text x="90" y="891">established</text>
-    <line x1="230" y1="886" x2="272" y2="886" stroke="#57534e" stroke-width="1.4" stroke-dasharray="2 4"/>
-    <text x="280" y="891">emerging / possible</text>
-    <rect x="516" y="879" width="18" height="12" rx="2" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.7"/>
-    <text x="542" y="891" fill="#9a3f12">cross-product concern</text>
+  <!-- legend -->
+  <g font-size="15" fill="#57534e">
+    <line x1="40" y1="902" x2="82" y2="902" stroke="#57534e" stroke-width="1.6"/>
+    <text x="90" y="907">established</text>
+    <line x1="228" y1="902" x2="270" y2="902" stroke="#57534e" stroke-width="1.4" stroke-dasharray="2 4"/>
+    <text x="278" y="907">emerging / possible</text>
+    <rect x="486" y="894" width="18" height="13" rx="2" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.7"/>
+    <text x="512" y="907" fill="#9a3f12">cross-product concern</text>
   </g>
-</svg><figcaption data-short="Engineering capital across time and space"><span class="fig-label">Figure H.9-1.</span> <em>Engineering capital across time and space.</em> A conceptual snapshot of three products shaped by successive engineering episodes. Within each product, useful engineering structure has accumulated selectively; incomplete constellations represent neither a prescribed product model nor a maturity level. Across products, an assurance obligation connects all three, code-quality capital is shared by two, and a common security posture remains a possible connection. Solid relationships are established; dotted relationships are emerging or possible.</figcaption></figure>
+</svg><figcaption data-short="Engineering capital across time and space"><span class="fig-label">Figure H.9-1.</span> <em>Engineering capital across time and space.</em> A conceptual snapshot of three products shaped by successive engineering episodes. Within each product, useful engineering structure has accumulated selectively; the incomplete constellations represent neither a prescribed product model nor a maturity level. Across products, an assurance obligation connects all three, code-quality mechanisms are shared by two, and connections to a common security posture remain possible. Solid relationships are established; dotted relationships are emerging or possible.</figcaption></figure>
 <h2><span class="sec-num">H.9.1</span> Across Time: Capital Across the Product Lifecycle</h2>
 <p>A useful representation or mechanism has a carrying cost. Someone or something must create it, keep it aligned with the world it claims to describe, and repair it when that correspondence breaks. The investment becomes engineering capital when it changes the economics of later work: an architectural model prevents repeated semantic reconstruction; a product decision preserves rationale that would otherwise be rediscovered; an invariant turns a recurring judgment into a deterministic check; an incident produces a constraint that prevents a class of future failures; accumulated assurance evidence makes the next claim cheaper to establish. The later problem has not necessarily become simpler. Earlier engineering has changed what the later engineer or agent must pay to solve it.</p>
 <p>This accumulation is not uniform across the lifecycle. Discovery can preserve intent that Engineering would otherwise have to reconstruct. Engineering can create system models and Alignment mechanisms that make Maintenance cheaper. Operations can expose assumptions that governance conversion turns into durable structure. Assurance can accumulate traceability and evidence that later changes extend rather than rebuild. The product-wide Governed Engineering Environment described in H.8 increases the opportunity for these investments to compound because useful relationships allow knowledge created for one purpose to answer later questions elsewhere in the lifecycle.</p>
