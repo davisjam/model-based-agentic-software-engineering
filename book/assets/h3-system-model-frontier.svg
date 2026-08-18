@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Appendix H figure — h3-system-model-frontier.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 470" width="600" height="470"
+     role="img" aria-labelledby="h3aTitle h3aDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="h3aTitle">Modeling a property across the determinization frontier</title>
+  <desc id="h3aDesc">Implicit system knowledge is captured in a semantic model of architecture, state, and
+    contract, which makes a property legible. The legible property splits two ways: it can feed agent reasoning,
+    and where it is decidable it can be bound by a validator, analysis, checker, or gate. Modeling changes the
+    object of reasoning so a property that once required semantic reconstruction becomes tractable.</desc>
+
+  <defs>
+    <marker id="h3a-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="600" height="470" fill="#fdfcf9"/>
+
+  <rect x="190" y="34" width="220" height="52" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="300" y="57" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">SYSTEM KNOWLEDGE</text>
+  <text x="300" y="76" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implicit semantics</text>
+
+  <line x1="300" y1="86" x2="300" y2="128" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3a-ah)"/>
+
+  <rect x="170" y="130" width="260" height="58" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <text x="300" y="153" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">SEMANTIC MODEL</text>
+  <text x="300" y="174" text-anchor="middle" font-size="13" fill="#155c38">architecture · state · contract</text>
+
+  <line x1="300" y1="188" x2="300" y2="228" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3a-ah)"/>
+  <text x="300" y="215" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">makes the property legible</text>
+
+  <!-- split -->
+  <path d="M300,232 L150,232 L150,270" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h3a-ah)"/>
+  <path d="M300,232 L450,232 L450,270" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h3a-ah)"/>
+
+  <rect x="60" y="272" width="180" height="48" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="150" y="301" text-anchor="middle" font-size="15" fill="#2f5169">agent reasoning</text>
+
+  <text x="450" y="292" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">decidable?</text>
+  <line x1="450" y1="304" x2="450" y2="344" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3a-ah)"/>
+
+  <rect x="330" y="346" width="240" height="58" rx="8" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.2"/>
+  <text x="450" y="369" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">validator · analysis</text>
+  <text x="450" y="390" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">checker · gate</text>
+
+  <text x="300" y="440" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the representation route: modeling can make a semantic property tractable, sometimes decidable</text>
+</svg>

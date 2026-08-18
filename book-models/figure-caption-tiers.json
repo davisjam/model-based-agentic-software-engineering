@@ -1,6 +1,72 @@
 {
   "_note": "Declared caption-tier verdicts for the book's authored figure/table captions. Each key is a caption id: for a figure, the `figure:` asset path (already unique in chapter scope); for a table, `<chapter-file>::<short>` using the table's existing `[short: ...]` print-index name (single source of truth: the same string the list-of-tables uses). `tier` is A|B|C — the caption's argumentative role (A Anchor 4-8 sentences/60-120 words; B Supporting 2-4/25-70; C Reference 1-2/<=30). `kind` and `location` are the classification axes; `rationale` is one line. Mirrors the brick-fitness.json genre: a flat declared map with a _note provenance block, no hardcoded list in the builder or lint. Consumed by book-models/lint_caption_length.py, which measures each authored caption's length against its tier band (A carries a floor: an under-written anchor is a finding). A new figure/table with no row here is itself a finding (drift defense). Source of the first-pass verdicts + the ratified A/B borderline resolutions (constraint-vs-sensor=A, services-reactive-view=A, join-composite=A, llm-as-function-call=B): book/_design/drafts/caption-tier-model-260806.md. The lint lands AUDIT-ONLY (rule #55): the current tree squeezed every caption to <=3 sentences/<=50 words under the retired uniform cap, so all 17 A-tier captions are under-length today; the Phase-3 rewrite wave drains the findings to 0, then the lint promotes to blocking.",
   "tiers": {
+    "assets/h1-product-lifecycle.svg": {
+      "tier": "A",
+      "kind": "model-diagram",
+      "location": "appendixH",
+      "rationale": "Appendix H opening figure — the five lifecycle surfaces with Assurance drawn cross-cutting; anchor caption sets the differential-adoption frame for the whole appendix"
+    },
+    "one-product-several-surfaces::Characteristic MAGE configurations across the product lifecycle": {
+      "tier": "A",
+      "kind": "table",
+      "location": "appendixH",
+      "rationale": "Appendix H central payload — Table H.1-1 shows each surface as a distinct parameterization of Modeling/Alignment/reasoning/determinization; anchor caption carries the appendix's theoretical point"
+    },
+    "assets/h2-discovery-flow.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "appendixH",
+      "rationale": "discovery flow from observation to accepted requirement — supporting caption on representation without authority"
+    },
+    "assets/h3-system-model-frontier.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "appendixH",
+      "rationale": "semantic model moving a property across the determinization frontier — supporting caption on the representation route"
+    },
+    "assets/h3-acceptable-realization-space.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "appendixH",
+      "rationale": "governing models bounding the acceptable realization space — supporting caption separating obligations from degrees of freedom"
+    },
+    "assets/h4-ticket-bridge-model.svg": {
+      "tier": "B",
+      "kind": "model-diagram",
+      "location": "appendixH",
+      "rationale": "the ticket as a change-scoped bridge between product and system knowledge — supporting caption"
+    },
+    "assets/h4-change-progression.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "appendixH",
+      "rationale": "local change to durable structure via governance conversion — supporting caption on the recurring-lesson judgment"
+    },
+    "assets/h5-operational-determinization.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "appendixH",
+      "rationale": "operational knowledge travelling from situational diagnosis toward deterministic procedure — supporting caption on operational governance conversion"
+    },
+    "assets/h5-incident-governance-conversion.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "appendixH",
+      "rationale": "incident timeline to inherited lesson — supporting caption on repair-vs-convert judgment"
+    },
+    "assets/h6-assurance-decidable-semantic.svg": {
+      "tier": "B",
+      "kind": "flow",
+      "location": "appendixH",
+      "rationale": "assurance obligation splitting into decidable claim and residual semantic judgment — supporting caption on the determinization frontier"
+    },
+    "assets/h8-product-gee.svg": {
+      "tier": "A",
+      "kind": "model-diagram",
+      "location": "appendixH",
+      "rationale": "Appendix H closing figure — heterogeneous local models composing into the product GEE via shared identity/relations, reasoned through by agents and Alignment; anchor caption"
+    },
     "assets/document-mutation-model.svg": {
       "tier": "B",
       "kind": "model-diagram",

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Appendix H figure — h2-discovery-flow.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 500" width="640" height="500"
+     role="img" aria-labelledby="h2Title h2Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="h2Title">From customer observation to accepted requirement</title>
+  <desc id="h2Desc">A vertical discovery flow: a customer observation becomes a product hypothesis; an experiment
+    run against the hypothesis yields evidence; a product decision follows; and finally an accepted requirement.
+    Only the accepted requirement, drawn in the accent colour, may become an obligation governing realization; the
+    earlier artifacts are representations without authority.</desc>
+
+  <defs>
+    <marker id="h2-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="640" height="500" fill="#fdfcf9"/>
+
+  <!-- main spine -->
+  <rect x="140" y="40"  width="200" height="46" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="240" y="68"  text-anchor="middle" font-size="15" fill="#1c1917">customer observation</text>
+
+  <rect x="140" y="150" width="200" height="46" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="240" y="178" text-anchor="middle" font-size="15" fill="#1c1917">product hypothesis</text>
+
+  <rect x="140" y="300" width="200" height="46" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="240" y="328" text-anchor="middle" font-size="15" fill="#1c1917">product decision</text>
+
+  <rect x="140" y="410" width="200" height="46" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="240" y="438" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">accepted requirement</text>
+
+  <g stroke="#57534e" stroke-width="2.2" marker-end="url(#h2-ah)">
+    <line x1="240" y1="86"  x2="240" y2="148"/>
+    <line x1="240" y1="196" x2="240" y2="298"/>
+    <line x1="240" y1="346" x2="240" y2="408"/>
+  </g>
+
+  <!-- experiment / evidence side branch -->
+  <rect x="400" y="150" width="100" height="46" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="450" y="178" text-anchor="middle" font-size="15" fill="#2f5169">experiment</text>
+  <rect x="530" y="150" width="90" height="46" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="575" y="178" text-anchor="middle" font-size="15" fill="#2f5169">evidence</text>
+
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#h2-ah)">
+    <line x1="340" y1="173" x2="398" y2="173"/>
+    <line x1="500" y1="173" x2="528" y2="173"/>
+  </g>
+
+  <text x="240" y="480" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">representation does not imply authority — only the last artifact may govern realization</text>
+</svg>

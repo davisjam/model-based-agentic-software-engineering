@@ -3660,6 +3660,27 @@ _ENGINEERING_MOVES_PAGES: list[tuple[str, str]] = [
     ("make-dependencies-queryable",   "Make Hidden Dependencies Queryable"),
 ]
 
+# APPENDIX H — Configuring MAGE Across the Product Lifecycle. Hand-authored conceptual appendix: MAGE's
+# DIFFERENTIAL adoption across five recurring engineering activities, each a distinct PARAMETERIZATION of
+# Modeling / Alignment / autonomous reasoning / determinization (front-door _opening.md carries the intro;
+# H.1 "One Product…" is the first content page — so the overview figure numbers H.1-1 and Table H.1-1
+# lands there — then Discovery, Engineering & Realization, Product Mgmt & Maintenance, Operations &
+# Incidents, Assurance & Compliance, Differential Adoption, and the local-to-connected GEE close). Routed
+# through the shared hand-authored appendix builder like the Model Reference; content-page slugs are
+# `appendix-h-<stem>`.
+_PRODUCT_LIFECYCLE_DIR = HERE / "appendix-product-lifecycle"
+_APPENDIX_PRODUCT_LIFECYCLE_OPENING_SLUG = "appendix-product-lifecycle"
+_PRODUCT_LIFECYCLE_PAGES: list[tuple[str, str]] = [
+    ("one-product-several-surfaces",                        "One Product, Several Engineering Surfaces"),
+    ("product-discovery",                                   "Product Discovery"),
+    ("engineering-and-realization",                         "Engineering & Realization"),
+    ("product-management-and-maintenance",                  "Product Management & Maintenance"),
+    ("operations-and-incidents",                            "Operations & Incidents"),
+    ("assurance-and-compliance",                            "Assurance & Compliance"),
+    ("differential-adoption",                               "Differential Adoption"),
+    ("from-local-mage-to-the-product-gee",                  "From Local MAGE to the Product GEE"),
+]
+
 
 # APPENDIX D — Operator's Reference. Hand-authored, like the stacks Part and the skill recipe: a front-door
 # page whose opening prose lives here, then one authored markdown page per operational reference card under
@@ -4700,7 +4721,7 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
     """The value-ordered appendix (build flag ON), in reading order: **A** MAGE Engineering Stacks ·
     **B** Engineering Moves (hand-authored worked examples — problem → move → two realizations) ·
     **C** Model Reference · **D** Operator's Reference · **E** How to Write a Skill · **F** Field Guide ·
-    **G** Evidence Ledger. Each Part is routed through the shared hand-authored appendix scaffold, so its
+    **G** Evidence Ledger · **H** Configuring MAGE Across the Product Lifecycle. Each Part is routed through the shared hand-authored appendix scaffold, so its
     TOC/pager/index render with no special-casing; figure numbers derive monotonically off each page's
     `<letter>.<i>` locator (`fig_prefix`, D80). The `[appendix: <slug>]` markers resolve to the letters
     automatically — the letter map reads each page's `part_title`. `_appendix_entries` is still read so the
@@ -4801,6 +4822,20 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
         opening_prose=_load_opening(_EVIDENCE_LEDGER_DIR / "_opening.md"),
         content_dir=_EVIDENCE_LEDGER_DIR, pages_source=_EVIDENCE_LEDGER_PAGES,
         locator_figs=True, single_deck=True)
+
+    # ── APPENDIX H — Configuring MAGE Across the Product Lifecycle. A conceptual appendix: MAGE's
+    #    DIFFERENTIAL adoption across five recurring engineering activities (Discovery, Engineering &
+    #    Realization, Product Management & Maintenance, Operations & Incidents, Assurance & Compliance),
+    #    each a distinct parameterization of Modeling/Alignment/reasoning/determinization (Table H.1-1),
+    #    then how independent local adoptions compose into the connected product GEE (H.8). Appended LAST so
+    #    it re-letters no earlier appendix (same rule that placed G last). Front-door _opening.md carries the
+    #    appendix intro; H.1 "One Product…" is the first content page so the overview figure numbers H.1-1.
+    chapters += build_hand_authored_appendix(
+        next_part + 7, letter="H", part_name="Configuring MAGE Across the Product Lifecycle",
+        opening_slug=_APPENDIX_PRODUCT_LIFECYCLE_OPENING_SLUG,
+        opening_prose=_load_opening(_PRODUCT_LIFECYCLE_DIR / "_opening.md"),
+        content_dir=_PRODUCT_LIFECYCLE_DIR, pages_source=_PRODUCT_LIFECYCLE_PAGES,
+        locator_figs=True, locator_heading=True)
     return chapters
 
 

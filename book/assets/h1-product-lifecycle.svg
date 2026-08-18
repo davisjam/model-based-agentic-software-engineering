@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Appendix H figure — h1-product-lifecycle.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 660" width="1020" height="660"
+     role="img" aria-labelledby="h1Title h1Desc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="h1Title">MAGE across the product lifecycle</title>
+  <desc id="h1Desc">Four recurring engineering activities run left to right as a dominant lifecycle flow: Product
+    Discovery, Engineering and Realization, Product Management and Maintenance, and Operations and Incidents. Each
+    box carries the question it asks and the representations it produces. Assurance and Compliance is drawn below,
+    spanning the row as a cross-cutting activity that feeds up into all four. A long arrow along the bottom shows
+    observations, failures, evidence, and new needs feeding back into earlier activities; the sequence is a
+    lifecycle, not a waterfall.</desc>
+
+  <defs>
+    <marker id="h1-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="h1-ah-u" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1020" height="660" fill="#fdfcf9"/>
+  <text x="510" y="38" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="0.1em" fill="#57534e">ENGINEERING A SOFTWARE PRODUCT</text>
+
+  <!-- four lifecycle boxes -->
+  <g>
+    <rect x="40"  y="58" width="200" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="140" y="83"  text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">PRODUCT</text>
+    <text x="140" y="103" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">DISCOVERY</text>
+
+    <rect x="280" y="58" width="200" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="380" y="83"  text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">ENGINEERING &amp;</text>
+    <text x="380" y="103" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">REALIZATION</text>
+
+    <rect x="520" y="58" width="200" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="620" y="83"  text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">PRODUCT MGMT &amp;</text>
+    <text x="620" y="103" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">MAINTENANCE</text>
+
+    <rect x="760" y="58" width="200" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="860" y="83"  text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">OPERATIONS &amp;</text>
+    <text x="860" y="103" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">INCIDENTS</text>
+  </g>
+
+  <!-- flow arrows between boxes -->
+  <g stroke="#57534e" stroke-width="2.4" marker-end="url(#h1-ah)">
+    <line x1="240" y1="87" x2="278" y2="87"/>
+    <line x1="480" y1="87" x2="518" y2="87"/>
+    <line x1="720" y1="87" x2="758" y2="87"/>
+  </g>
+
+  <!-- questions + artifacts under each box -->
+  <g font-size="12.5" fill="#57534e" text-anchor="middle">
+    <text x="140" y="140" font-style="italic">What should we build?</text>
+    <text x="140" y="157" font-style="italic">Why? What do we know?</text>
+    <text x="380" y="140" font-style="italic">How should it</text>
+    <text x="380" y="157" font-style="italic">be realized?</text>
+    <text x="620" y="140" font-style="italic">What should change?</text>
+    <text x="620" y="157" font-style="italic">Why? What changed?</text>
+    <text x="860" y="140" font-style="italic">What is happening?</text>
+    <text x="860" y="157" font-style="italic">What failed? Why?</text>
+  </g>
+  <g stroke="#57534e" stroke-width="1.4" marker-end="url(#h1-ah)">
+    <line x1="140" y1="116" x2="140" y2="128"/>
+    <line x1="380" y1="116" x2="380" y2="128"/>
+    <line x1="620" y1="116" x2="620" y2="128"/>
+    <line x1="860" y1="116" x2="860" y2="128"/>
+  </g>
+
+  <g font-size="13" fill="#1c1917" text-anchor="middle">
+    <text x="140" y="188">hypotheses</text><text x="140" y="207">needs</text><text x="140" y="226">experiments</text><text x="140" y="245">decisions</text><text x="140" y="264">requirements</text>
+    <text x="380" y="188">architecture</text><text x="380" y="207">behavior</text><text x="380" y="226">interfaces</text><text x="380" y="245">contracts</text><text x="380" y="264">analyses</text>
+    <text x="620" y="188">tickets</text><text x="620" y="207">issues</text><text x="620" y="226">rationale</text><text x="620" y="245">acceptance</text><text x="620" y="264">history</text>
+    <text x="860" y="188">topology</text><text x="860" y="207">telemetry</text><text x="860" y="226">SLOs</text><text x="860" y="245">runbooks</text><text x="860" y="264">RCAs</text>
+  </g>
+
+  <!-- converge down into Assurance -->
+  <g stroke="#57534e" stroke-width="1.8" fill="none">
+    <path d="M140,278 L140,320 L510,320"/>
+    <path d="M380,278 L380,320"/>
+    <path d="M620,278 L620,320"/>
+    <path d="M860,278 L860,320 L510,320"/>
+  </g>
+  <line x1="510" y1="320" x2="510" y2="392" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#h1-ah-u)"/>
+
+  <!-- Assurance & Compliance — drawn below, cross-cutting (umber accent) -->
+  <rect x="360" y="394" width="300" height="62" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="510" y="420" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">ASSURANCE &amp;</text>
+  <text x="510" y="440" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">COMPLIANCE</text>
+  <text x="694" y="431" font-size="12.5" font-style="italic" fill="#9a3f12">cross-cutting</text>
+
+  <text x="510" y="486" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">What must be shown to be true?</text>
+  <g font-size="13" fill="#1c1917" text-anchor="middle">
+    <text x="510" y="512">requirements · policies</text>
+    <text x="510" y="531">threats · traceability</text>
+    <text x="510" y="550">claims · evidence</text>
+  </g>
+
+  <!-- bottom feedback arrow (leftward) -->
+  <line x1="960" y1="600" x2="60" y2="600" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 4" marker-end="url(#h1-ah)"/>
+  <text x="510" y="590" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">observations, failures, evidence, and new needs feed back</text>
+</svg>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Appendix H figure — h5-incident-governance-conversion.svg. Fold to book/assets/. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 620" width="620" height="620"
+     role="img" aria-labelledby="h5bTitle h5bDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="h5bTitle">From incident to inherited lesson</title>
+  <desc id="h5bDesc">Telemetry and history reconstruct an incident as a timeline or RCA. A structural judgment then
+    decides whether the failure was a local event, which is repaired, or a recurring gap. A recurring gap enters
+    governance conversion, which promotes the lesson into a model update, a mechanism or gate, or an architectural
+    or runbook change, so that future work inherits the lesson.</desc>
+
+  <defs>
+    <marker id="h5b-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="h5b-ah-u" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="620" height="620" fill="#fdfcf9"/>
+
+  <rect x="230" y="30" width="160" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="310" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">INCIDENT</text>
+
+  <line x1="310" y1="74" x2="310" y2="116" stroke="#57534e" stroke-width="2.2" marker-end="url(#h5b-ah)"/>
+  <text x="420" y="100" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">telemetry · history</text>
+
+  <rect x="210" y="118" width="200" height="44" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="310" y="146" text-anchor="middle" font-size="15" fill="#2f5169">timeline / RCA</text>
+
+  <line x1="310" y1="162" x2="310" y2="200" stroke="#57534e" stroke-width="2.2" marker-end="url(#h5b-ah)"/>
+  <text x="310" y="222" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">structural judgment</text>
+
+  <!-- split -->
+  <path d="M310,232 L130,232 L130,272" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h5b-ah)"/>
+  <path d="M310,232 L470,232 L470,272" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#h5b-ah-u)"/>
+  <text x="200" y="252" text-anchor="middle" font-size="12.5" fill="#57534e">local event</text>
+  <text x="410" y="252" text-anchor="middle" font-size="12.5" fill="#9a3f12">recurring gap</text>
+
+  <rect x="60" y="274" width="140" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="130" y="302" text-anchor="middle" font-size="15" fill="#1c1917">repair</text>
+
+  <rect x="330" y="274" width="280" height="48" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="470" y="303" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">GOVERNANCE CONVERSION</text>
+
+  <!-- fan to three outcomes -->
+  <path d="M470,322 L180,322 L180,362" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h5b-ah)"/>
+  <path d="M470,322 L400,322 L400,362" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h5b-ah)"/>
+  <path d="M470,322 L560,322 L560,362" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h5b-ah)"/>
+
+  <g font-size="13.5" text-anchor="middle" fill="#1c1917">
+    <rect x="110" y="364" width="140" height="52" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/><text x="180" y="395">model update</text>
+    <rect x="330" y="364" width="140" height="52" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/><text x="400" y="388">mechanism</text><text x="400" y="406">or gate</text>
+    <rect x="490" y="364" width="120" height="52" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/><text x="550" y="388">architecture</text><text x="550" y="406">/ runbook</text>
+  </g>
+
+  <line x1="400" y1="416" x2="400" y2="452" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#h5b-ah-u)"/>
+  <rect x="270" y="454" width="260" height="46" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="400" y="482" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">future work inherits the lesson</text>
+
+  <text x="310" y="556" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">not every incident deserves a new control — only a recurring or consequential obligation</text>
+</svg>
