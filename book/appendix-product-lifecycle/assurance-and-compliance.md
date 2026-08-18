@@ -26,4 +26,4 @@ Assurance is consequently cross-cutting rather than merely the last lifecycle st
 - *Determinization opportunity.* High for decidable claims; fundamentally limited where interpretation or normative judgment remains necessary.
 - *Degrees of freedom.* Realization choices irrelevant to the assurance obligation, plus judgments for which no responsible deterministic predicate exists.
 - *Smallest useful adoption.* Select one consequential obligation, connect it explicitly to the relevant product and engineering artifacts, and automate evidence or admission only to the degree justified by its governability.
-- *Connects to.* Everything. Assurance is where obligations and evidence can traverse the entire product lifecycle.
+- *Lifecycle connections.* Everything. Assurance is where obligations and evidence can traverse the entire product lifecycle.

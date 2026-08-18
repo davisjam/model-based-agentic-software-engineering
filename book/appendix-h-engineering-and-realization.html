@@ -706,111 +706,80 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · H.3 Engineering &amp; Realization — MAGE"><header class="chap"><div class="kicker"><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">Appendix H — Configuring MAGE Across the Product Lifecycle</a></div><h1>H.3 Engineering &amp; Realization</h1></header><p><strong>Engineering question.</strong> How should the product or requested change be realized while satisfying its obligations?</p>
-<p>Engineering &amp; Realization has a different center of gravity. Its characteristic difficulty is often semantic reconstruction.</p>
-<p>Source code is precise and executable, but many engineering questions are expensive to answer from source alone:</p>
+<p>Engineering &amp; Realization is the lifecycle surface treated most extensively in the rest of this book. Part 2 develops the models through which engineers and agents reason about a system; Part 3 develops the mechanisms that give selected properties authority; Part 4 puts those activities into engineering practice. The purpose here is therefore not to repeat that treatment, but to locate it among the other product-lifecycle surfaces.</p>
+<p>This surface has a particularly rich need for explicit system models because realization repeatedly encounters questions whose answers are expensive to reconstruct from source alone:</p>
 <ul><li>What owns this state?</li><li>Which transitions are legal?</li><li>What does this interface promise?</li><li>Which architectural boundary must this change preserve?</li><li>What depends on this concept?</li><li>Which resource constraint governs this operation?</li></ul>
-<p>Engineering models make such properties easier to reason about directly.</p>
-<p>The portfolio can include architecture models, state machines, contracts, dependency and knowledge graphs, quantitative relations, resource models, invariants, provenance, and decision records. These models need not all be formal. Their common purpose is to expose system semantics or obligations that would otherwise have to be reconstructed repeatedly from implementation.</p>
-<p><a class="xref" href="appendix-h-engineering-and-realization.html#fig-H-3-1">Figure&nbsp;H.3-1</a> applies Part 6's determinization frontier to the engineering surface.</p>
-<figure id="fig-H-3-1" class="book-figure" data-label="fig-h-system-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 470"
-     role="img" aria-labelledby="h3aTitle h3aDesc"
+<p>Part 2 groups the models used to answer such questions into six overlapping classes: structural, behavioral, ownership, decision, measurement, and provenance. The classes distinguish the engineering questions a model answers rather than prescribing a representation or partitioning the system.</p>
+<p><a class="xref" href="appendix-h-engineering-and-realization.html#fig-H-3-1">Figure&nbsp;H.3-1</a> gathers the six classes by the engineering question each answers.</p>
+<figure id="fig-H-3-1" class="book-figure" data-label="fig-h-model-ontology"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 415"
+     role="img" aria-labelledby="onTitle onDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="h3aTitle">Modeling a property across the determinization frontier</title>
-  <desc id="h3aDesc">Implicit system knowledge is captured in a semantic model of architecture, state, and
-    contract, which makes a property legible. The legible property splits two ways: it can feed agent reasoning,
-    and where it is decidable it can be bound by a validator, analysis, checker, or gate. Modeling changes the
-    object of reasoning so a property that once required semantic reconstruction becomes tractable.</desc>
+  <title id="onTitle">MAGE's working model ontology: six model classes and their engineering questions</title>
+  <desc id="onDesc">Six model classes, each a box carrying the two engineering questions it answers.
+    Structural: what exists, how related. Behavioral: what may happen, in what order. Ownership: who
+    controls, for how long. Decision: what is allowed, what choice. Measurement: how much, what envelope.
+    Provenance: what happened, what evidence. The classes may overlap. Below them, a separate axis: the
+    representation form used to encode a model — graph, registry, state machine, contract, table, or
+    quantitative relation — distinct from the class. Connected through shared identity and traceability,
+    these models form the system's explicit engineering knowledge.</desc>
 
   <defs>
-    <marker id="h3a-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="on-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+            orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="600" height="470" fill="#fdfcf9"/>
+  <text x="480" y="34" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">MODEL CLASS &#8212; What engineering question does it answer?</text>
 
-  <rect x="190" y="34" width="220" height="52" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="300" y="57" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">SYSTEM KNOWLEDGE</text>
-  <text x="300" y="76" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implicit semantics</text>
+  <!-- ===== row 1 ===== -->
+  <rect x="40" y="58" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="178" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">STRUCTURAL</text>
+  <text x="178" y="113" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what exists?</text>
+  <text x="178" y="132" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">how are parts related?</text>
 
-  <line x1="300" y1="86" x2="300" y2="128" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3a-ah)"/>
+  <rect x="342" y="58" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="480" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">BEHAVIORAL</text>
+  <text x="480" y="113" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what may happen?</text>
+  <text x="480" y="132" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">in what order?</text>
 
-  <rect x="170" y="130" width="260" height="58" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
-  <text x="300" y="153" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">SEMANTIC MODEL</text>
-  <text x="300" y="174" text-anchor="middle" font-size="13" fill="#155c38">architecture · state · contract</text>
+  <rect x="644" y="58" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="782" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">OWNERSHIP</text>
+  <text x="782" y="113" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">who controls it?</text>
+  <text x="782" y="132" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">for how long?</text>
 
-  <line x1="300" y1="188" x2="300" y2="228" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3a-ah)"/>
-  <text x="300" y="215" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">makes the property legible</text>
+  <!-- ===== row 2 ===== -->
+  <rect x="40" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="178" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">DECISION</text>
+  <text x="178" y="207" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what is allowed?</text>
+  <text x="178" y="226" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">which choice?</text>
 
-  <!-- split -->
-  <path d="M300,232 L150,232 L150,270" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h3a-ah)"/>
-  <path d="M300,232 L450,232 L450,270" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h3a-ah)"/>
+  <rect x="342" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="480" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">MEASUREMENT</text>
+  <text x="480" y="207" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">how much?</text>
+  <text x="480" y="226" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what envelope?</text>
 
-  <rect x="60" y="272" width="180" height="48" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
-  <text x="150" y="301" text-anchor="middle" font-size="15" fill="#2f5169">agent reasoning</text>
+  <rect x="644" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="782" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">PROVENANCE</text>
+  <text x="782" y="207" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what happened?</text>
+  <text x="782" y="226" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what evidence?</text>
 
-  <text x="450" y="292" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">decidable?</text>
-  <line x1="450" y1="304" x2="450" y2="344" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3a-ah)"/>
+  <text x="480" y="256" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">These classes may overlap.</text>
 
-  <rect x="330" y="346" width="240" height="58" rx="8" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="450" y="369" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">validator · analysis</text>
-  <text x="450" y="390" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">checker · gate</text>
+  <!-- double-headed arrow to the orthogonal representation-form axis: the relation is MANY-TO-MANY -->
+  <line x1="480" y1="266" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2"
+        marker-start="url(#on-b)" marker-end="url(#on-b)"/>
 
-  <text x="300" y="440" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the representation route: modeling can make a semantic property tractable, sometimes decidable</text>
-</svg><figcaption data-short="Modeling across the determinization frontier"><span class="fig-label">Figure H.3-1.</span> <em>Modeling across the determinization frontier.</em> Implicit system semantics, once captured in a semantic model—architecture, state, contract—become a legible property. That property can feed agent reasoning, and where it is decidable it can be bound by a validator, analysis, checker, or gate. Modeling changes the object of reasoning so that a property which once required semantic reconstruction becomes tractable.</figcaption></figure>
-<p>This is the representation route across the determinization frontier. Modeling can change the object of reasoning so that a property that formerly required semantic reconstruction becomes tractable and, in some cases, decidable. Alignment can then bind the obligation through tests, validators, static analysis, model checking, permissions, or gates.</p>
-<p>The process need not eliminate realization freedom.</p>
-<p>At one limit, a realization model can become sufficiently complete that realization is principally transformation, generation, or synthesis. Deterministic machinery may then be preferable to an agent. Most software changes occupy a less determined region: engineering specifies what must be true while multiple implementations remain acceptable.</p>
-<p><a class="xref" href="appendix-h-engineering-and-realization.html#fig-H-3-2">Figure&nbsp;H.3-2</a> marks the region where autonomous realization earns its place.</p>
-<figure id="fig-H-3-2" class="book-figure" data-label="fig-h-realization-space"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 660"
-     role="img" aria-labelledby="h3bTitle h3bDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="h3bTitle">The acceptable realization space</title>
-  <desc id="h3bDesc">Change intent flows into the governing models — architecture, behavior, contracts — which fix
-    what must be true of the change. Those obligations bound an acceptable realization space containing the
-    remaining degrees of freedom. Within that space the agent realizes an implementation; independent evidence
-    then decides admission. The obligations that constrain the change are separated from the freedom it leaves.</desc>
+  <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="480" y="314" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
+  <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 
-  <defs>
-    <marker id="h3b-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
-  </defs>
-
-  <rect x="0" y="0" width="540" height="660" fill="#fdfcf9"/>
-
-  <rect x="170" y="30" width="200" height="46" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="270" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CHANGE INTENT</text>
-
-  <line x1="270" y1="76" x2="270" y2="112" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3b-ah)"/>
-
-  <rect x="130" y="114" width="280" height="58" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
-  <text x="270" y="137" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">GOVERNING MODELS</text>
-  <text x="270" y="158" text-anchor="middle" font-size="13" fill="#155c38">architecture · behavior · contracts</text>
-
-  <line x1="270" y1="172" x2="270" y2="210" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3b-ah)"/>
-  <text x="270" y="198" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">what must be true</text>
-
-  <rect x="120" y="214" width="300" height="98" rx="12" fill="#faf6ef" stroke="#9a3f12" stroke-width="2.5" stroke-dasharray="7 4"/>
-  <text x="270" y="248" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">ACCEPTABLE REALIZATION SPACE</text>
-  <text x="270" y="286" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">the remaining degrees of freedom</text>
-
-  <line x1="270" y1="312" x2="270" y2="350" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3b-ah)"/>
-  <text x="270" y="338" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">agent realizes</text>
-
-  <rect x="170" y="352" width="200" height="46" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="270" y="380" text-anchor="middle" font-size="15" fill="#1c1917">implementation</text>
-
-  <line x1="270" y1="398" x2="270" y2="434" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3b-ah)"/>
-
-  <rect x="150" y="436" width="240" height="46" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
-  <text x="270" y="464" text-anchor="middle" font-size="15" fill="#2f5169">independent evidence</text>
-
-  <line x1="270" y1="482" x2="270" y2="518" stroke="#57534e" stroke-width="2.2" marker-end="url(#h3b-ah)"/>
-
-  <rect x="190" y="520" width="160" height="46" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="270" y="548" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">admission</text>
-
-  <text x="270" y="620" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">for a given realization problem, obligations bound the choices engineering leaves open</text>
-</svg><figcaption data-short="The acceptable realization space"><span class="fig-label">Figure H.3-2.</span> <em>The acceptable realization space.</em> Change intent and the governing models—architecture, behavior, contracts—fix what must be true of a change. Within the space of realizations those obligations leave open, the agent realizes freely; independent evidence then decides admission. The figure separates the obligations that constrain a change from the degrees of freedom it leaves.</figcaption></figure>
-<p>The agent need not invent the product’s governing obligations. For a change whose scope is already represented, it can choose among realizations those obligations leave open. Other changes alter the realization problem itself: new functionality can extend the modeled system and introduce new choices, while a newly discovered obligation can remove choices that only appeared to be free. Degrees of freedom therefore describe the choices engineering has deliberately left open for the realization under consideration, not a fixed budget that successive changes consume.</p>
+  <text x="480" y="394" text-anchor="middle" font-size="16" font-style="italic" fill="#1c1917">Connected through shared identity and traceability, these models form the system&#8217;s explicit engineering knowledge.</text>
+</svg><figcaption data-short="MAGE&#x27;s working model ontology"><span class="fig-label">Figure H.3-1.</span> <em>MAGE's working model ontology.</em> Repeated from Figure 2.1-1. The six overlapping classes distinguish models by the engineering questions they answer. In Engineering &amp; Realization, these models provide explicit system knowledge against which changes can be reasoned about, realized, and aligned.</figcaption></figure>
+<p>What matters in the lifecycle view is where this system knowledge comes from and where it goes. Engineering does not manufacture all of its own obligations. Product discovery supplies needs, accepted requirements, and consequential product decisions. Product management supplies the intent and rationale for particular changes. Assurance contributes obligations that realization must satisfy. Operations supplies evidence from the behavior of the realized product.</p>
+<p>Engineering &amp; Realization connects those inputs to models of the system being changed. In the other direction, it exports structure that neighboring surfaces can reuse: component identity, architecture, behavior, interfaces, dependencies, resource relationships, and evidence about the realized change. The same represented entity can therefore participate across lifecycle surfaces. A requirement from discovery can trace to a component and behavioral obligation in engineering; operational evidence can resolve to the same component; an assurance claim can refer to the requirement, the governing model, and evidence from the realized system.</p>
+<p>Within this surface, the book's usual MAGE account applies. Modeling exposes consequential system knowledge and intent to reasoning; Alignment gives selected obligations authority. Where a model exposes a stable property that machinery can decide, deterministic validation, analysis, generation, or enforcement may replace semantic judgment. Part 2 explicitly keeps authority separate from representation: richer models expand the semantic surface over which authority can operate; they do not themselves confer it.</p>
+<p>That process need not eliminate realization freedom. Engineering specifies what must be true while leaving other implementation choices open. For a change whose governing obligations are already represented, an agent can reason across those obligations and choose among acceptable realizations. At the limit, a realization model may become sufficiently complete that transformation, generation, or synthesis is preferable to autonomous reasoning. More commonly, the obligations constrain the realization without determining it.</p>
+<p>Those remaining choices are the realization's degrees of freedom. They are not a fixed budget that engineering gradually consumes. New functionality can extend the realization surface and create new choices; discovery of a tacit obligation can reveal that an apparent freedom was never genuine; stronger Alignment can constrain a choice that was previously left open. For the realization at hand, the relevant question is simply which choices the governing obligations determine and which they deliberately leave to realization.</p>
 <p><strong>MAGE profile.</strong></p>
-<ul><li><em>Characteristic models.</em> Architecture, behavior, state machines, contracts, dependencies, knowledge graphs, resource and quantitative models, invariants.</li><li><em>Lifetime.</em> Change-scoped through system-lived, depending on the claimed correspondence.</li><li><em>Alignment posture.</em> Strong where consequential properties are decidable: tests, analyses, validators, model checking, constraints, and gates.</li><li><em>Role of autonomous reasoning.</em> Realizing changes across interacting semantic constraints; reasoning where obligations are explicit but realization remains underdetermined.</li><li><em>Determinization opportunity.</em> High when modeling exposes stable properties that machinery can evaluate.</li><li><em>Degrees of freedom.</em> Implementation choices left open after governing obligations are accounted for.</li><li><em>Smallest useful adoption.</em> Externalize one repeatedly reconstructed or consequential system property and give stable obligations over it proportionate evidence and authority.</li><li><em>Connects to.</em> Product intent and tickets upstream; operational topology and evidence downstream; assurance obligations across the surface.</li></ul><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">« Beginning of part</a><a href="appendix-h-product-discovery.html" aria-label="Previous chapter — H.2 Product Discovery">« Previous chapter</a></div><span class="chapnav-here" title="H.3 Engineering &amp; Realization">H.3 Engineering &amp; Realization</span><div class="chapnav-fwd"><a href="appendix-h-product-management-and-maintenance.html" aria-label="Next chapter — H.4 Product Management &amp; Maintenance">Next chapter »</a><a href="colophon.html" aria-label="Next part — Back Matter">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<ul><li><em>Characteristic models.</em> Structural, behavioral, ownership, decision, measurement, and provenance models of the realized system; commonly including architecture, state machines, contracts, dependencies, knowledge graphs, resource relations, and invariants.</li><li><em>Lifetime.</em> Change-scoped through system-lived, depending on the model and the correspondence it claims.</li><li><em>Alignment posture.</em> Strong where consequential properties are decidable: tests, analyses, validators, model checking, constraints, permissions, and gates.</li><li><em>Role of autonomous reasoning.</em> Reasoning across interacting semantic constraints and realizing changes where governing obligations are explicit but implementation remains underdetermined.</li><li><em>Determinization opportunity.</em> High where modeling exposes stable properties that deterministic machinery can evaluate or realize.</li><li><em>Degrees of freedom.</em> Implementation choices left open after the governing obligations for the realization are accounted for.</li><li><em>Smallest useful adoption.</em> Externalize one repeatedly reconstructed or consequential system property, connect it to the surrounding lifecycle knowledge it depends on, and give stable obligations over it proportionate evidence and authority.</li><li><em>Lifecycle connections.</em> Product decisions and requirements from Discovery; change intent from Product Management; operational topology and evidence from Operations; assurance obligations and evidence requirements across the surface.</li></ul><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">« Beginning of part</a><a href="appendix-h-product-discovery.html" aria-label="Previous chapter — H.2 Product Discovery">« Previous chapter</a></div><span class="chapnav-here" title="H.3 Engineering &amp; Realization">H.3 Engineering &amp; Realization</span><div class="chapnav-fwd"><a href="appendix-h-product-management-and-maintenance.html" aria-label="Next chapter — H.4 Product Management &amp; Maintenance">Next chapter »</a><a href="colophon.html" aria-label="Next part — Back Matter">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

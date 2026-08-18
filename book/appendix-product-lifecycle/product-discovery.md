@@ -19,4 +19,4 @@ Discovery also provides an important setting for the distinction among unknown, 
 - *Determinization opportunity.* Limited while the underlying product question remains genuinely unsettled. Stable process obligations may still be mechanized.
 - *Degrees of freedom.* Product choices that stakeholders have genuinely left open.
 - *Smallest useful adoption.* Persist consequential product decisions, their rationale, and their relationships to needs and evidence; make that structure available to later reasoning.
-- *Connects to.* Requirements entering Engineering and Assurance; change intent entering Product Management; operational evidence that tests product assumptions.
+- *Lifecycle connections.* Requirements entering Engineering and Assurance; change intent entering Product Management; operational evidence that tests product assumptions.

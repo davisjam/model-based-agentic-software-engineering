@@ -2,7 +2,7 @@
 
 Many software organizations already possess a lightweight modeling substrate without calling it one: the ticketing system.
 
-A good ticket is more than an instruction to modify source code. It can identify desired behavior, rationale, acceptance criteria, affected concepts, constraints, related changes, and prior decisions. Tickets link to one another and accumulate history. In a product-driven organization, a request as short as implement ticket X can therefore invoke considerably more engineering context than the prompt itself contains.
+A good ticket is more than an instruction to modify source code. It can identify desired behavior, rationale, acceptance criteria, affected concepts, constraints, related changes, and prior decisions. Tickets link to one another and accumulate history. In a product-driven organization, a request as short as *“Implement ticket #501”* can therefore invoke considerably more engineering context than the prompt itself contains.
 
 A ticket is not automatically a model. A vague reminder or unstructured work item may externalize almost nothing useful. But a carefully maintained ticket can serve as a purposeful, change-scoped model when it preserves the information needed to reason about the requested change.
 
@@ -35,4 +35,4 @@ Product management and maintenance therefore sit between transient intent and du
 - *Determinization opportunity.* Recurring classes of changes, acceptance conditions, and repair obligations can migrate into machinery.
 - *Degrees of freedom.* Details the change request intentionally leaves to realization.
 - *Smallest useful adoption.* Treat sufficiently structured tickets as change-scoped models available to agents and connect them to relevant persistent knowledge and acceptance evidence.
-- *Connects to.* Product rationale upstream; engineering models during realization; incidents that create corrective work; assurance obligations affected by the change.
+- *Lifecycle connections.* Product rationale upstream; engineering models during realization; incidents that create corrective work; assurance obligations affected by the change.

@@ -39,4 +39,4 @@ Experience often begins at the lifetime of an episode and becomes engineering ca
 - *Determinization opportunity.* Particularly high. Stable operational judgment should migrate from repeated reasoning into runbooks and, where possible, from runbooks into deterministic tooling.
 - *Degrees of freedom.* Situational choices not settled by operational obligations or safe procedures.
 - *Smallest useful adoption.* Make consequential operational state and procedures explicitly available to agents; bind high-consequence actions with permissions and observable conditions.
-- *Connects to.* Engineering components and architecture; maintenance tickets created by failures; assurance claims supported by runtime evidence.
+- *Lifecycle connections.* Engineering components and architecture; maintenance tickets created by failures; assurance claims supported by runtime evidence.
