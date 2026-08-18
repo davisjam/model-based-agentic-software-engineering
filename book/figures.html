@@ -11021,18 +11021,19 @@ z
     <rect x="206" y="590" width="228" height="44" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
     <text x="320" y="618" font-size="14" font-weight="700" fill="#9a3f12">CLAIM ESTABLISHED</text>
   </g>
-</svg><figcaption data-short="Assurance across models and realization"><span class="fig-label">Figure H.6-1.</span> <em>Assurance across models and realization.</em> Assurance claims can require evidence about modeled properties, their realization, or both. Models expose properties such as architecture, data flow, access-control policy, behavior, and invariants; realization evidence establishes properties of the implemented system. Traceability and Alignment connect the two where assurance depends on correspondence between a model and its realization.</figcaption></figure><p class="gallery-source">From <a href="appendix-h-assurance-and-compliance.html#fig-H-6-1">H.6 Assurance &amp; Compliance</a></p></section><hr><section class="gallery-item"><figure id="fig-H-8-1-fig-H-8-1" class="book-figure" data-label="fig-h-product-gee"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 780"
+</svg><figcaption data-short="Assurance across models and realization"><span class="fig-label">Figure H.6-1.</span> <em>Assurance across models and realization.</em> Assurance claims can require evidence about modeled properties, their realization, or both. Models expose properties such as architecture, data flow, access-control policy, behavior, and invariants; realization evidence establishes properties of the implemented system. Traceability and Alignment connect the two where assurance depends on correspondence between a model and its realization.</figcaption></figure><p class="gallery-source">From <a href="appendix-h-assurance-and-compliance.html#fig-H-6-1">H.6 Assurance &amp; Compliance</a></p></section><hr><section class="gallery-item"><figure id="fig-H-8-1-fig-H-8-1" class="book-figure" data-label="fig-h-product-gee"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 810"
      role="img" aria-labelledby="fig-H-8-1-h8Title fig-H-8-1-h8Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="fig-H-8-1-h8Title">From local MAGE adoption to the product GEE</title>
   <desc id="fig-H-8-1-h8Desc">Five lifecycle surfaces — Product Discovery, Engineering and Realization, Product Management
-    and Maintenance, Operations and Incidents, and Assurance and Compliance — name the engineering surfaces whose
-    representations meet at a band of connective tissue: shared identity, relations, provenance, temporal scope, and
-    obligations. That connective tissue lets the heterogeneous models compose into connected product engineering
-    knowledge without collapsing into one universal model. That knowledge is reasoned over by autonomous reasoning
-    where semantic judgment remains necessary and carried by Alignment where obligations can be made authoritative;
-    together they form the governed engineering environment that produces the product. Experience from the product
-    feeds back through governance conversion, changing the models and mechanisms future work inherits.</desc>
+    and Maintenance, Operations and Incident Response, and Assurance and Compliance — are related through a band of
+    connective tissue: shared identity, relations, provenance, temporal scope, and obligations. That connective
+    tissue lets the heterogeneous models compose into connected engineering knowledge without collapsing into one
+    universal model. Autonomous reasoning works over that knowledge where semantic judgment remains necessary, and
+    Alignment carries obligations where they can be made authoritative; together they constitute the governed
+    engineering environment that produces the product. Experience from the product feeds back through governance
+    conversion to the connective tissue, changing the models and mechanisms future work inherits. Plain lines mark
+    relationships among representations; arrows mark flow.</desc>
 
   <defs>
     <marker id="fig-H-8-1-h8-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
@@ -11041,97 +11042,105 @@ z
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="780" fill="#fdfcf9"/>
-  <text x="500" y="34" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="0.1em" fill="#57534e">THE PRODUCT GEE</text>
+  <rect x="0" y="0" width="1000" height="810" fill="#fdfcf9"/>
+  <text x="500" y="38" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="0.12em" fill="#57534e">THE PRODUCT GEE</text>
 
-  <!-- three upper surface names (inventories omitted — the reader has them from the sections) -->
-  <g text-anchor="middle">
-    <text x="200" y="92" font-size="15" font-weight="700" fill="#1c1917">PRODUCT DISCOVERY</text>
-    <line x1="90" y1="100" x2="310" y2="100" stroke="#57534e" stroke-width="1.4"/>
-
-    <text x="500" y="92" font-size="15" font-weight="700" fill="#1c1917">ENGINEERING &amp; REALIZATION</text>
-    <line x1="368" y1="100" x2="632" y2="100" stroke="#57534e" stroke-width="1.4"/>
-
-    <text x="800" y="92" font-size="15" font-weight="700" fill="#1c1917">PRODUCT MGMT / MAINTENANCE</text>
-    <line x1="678" y1="100" x2="922" y2="100" stroke="#57534e" stroke-width="1.4"/>
+  <!-- three upper surface names -->
+  <g text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">
+    <text x="185" y="94">PRODUCT DISCOVERY</text>
+    <text x="500" y="94">ENGINEERING &amp; REALIZATION</text>
+    <text x="812" y="94">PRODUCT MANAGEMENT &amp; MAINTENANCE</text>
+  </g>
+  <g stroke="#57534e" stroke-width="1.4">
+    <line x1="90"  y1="104" x2="300" y2="104"/>
+    <line x1="360" y1="104" x2="640" y2="104"/>
+    <line x1="648" y1="104" x2="976" y2="104"/>
   </g>
 
-  <!-- converge into connective band -->
+  <!-- symmetric bus: three equal stems -> one centered line into connective tissue (relationships, plain) -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M200,100 L200,120 L500,120"/>
-    <path d="M500,100 L500,140"/>
-    <path d="M800,100 L800,120 L500,120"/>
+    <line x1="185" y1="104" x2="185" y2="126"/>
+    <line x1="500" y1="104" x2="500" y2="126"/>
+    <line x1="812" y1="104" x2="812" y2="126"/>
+    <line x1="185" y1="126" x2="812" y2="126"/>
+    <line x1="500" y1="126" x2="500" y2="150"/>
   </g>
 
-  <!-- connective tissue -->
-  <rect x="300" y="140" width="400" height="120" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="6 4"/>
-  <g text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">
-    <text x="500" y="168" font-weight="700" font-style="normal" fill="#1c1917">CONNECTIVE TISSUE</text>
-    <text x="500" y="192">shared identity</text>
-    <text x="500" y="212">relations · provenance</text>
-    <text x="500" y="232">temporal scope</text>
-    <text x="500" y="252">obligations</text>
+  <!-- connective tissue (solid outline; contents roman) -->
+  <rect x="300" y="150" width="400" height="132" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">CONNECTIVE TISSUE</text>
+  <g text-anchor="middle" font-size="15" fill="#57534e">
+    <text x="500" y="206">shared identity</text>
+    <text x="500" y="228">relations · provenance</text>
+    <text x="500" y="250">temporal scope</text>
+    <text x="500" y="272">obligations</text>
   </g>
 
-  <!-- split to the two lower surfaces -->
+  <!-- connective tissue related to the two lower surfaces (relationships, plain lines) -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M370,260 C300,292 250,296 250,320" marker-end="url(#fig-H-8-1-h8-ah)"/>
-    <path d="M630,260 C700,292 750,296 750,320" marker-end="url(#fig-H-8-1-h8-ah)"/>
+    <path d="M360,282 C300,314 250,320 250,344"/>
+    <path d="M640,282 C700,314 750,320 750,344"/>
   </g>
 
-  <g text-anchor="middle">
-    <text x="250" y="322" font-size="15" font-weight="700" fill="#1c1917">OPERATIONS &amp; INCIDENTS</text>
-    <line x1="140" y1="330" x2="360" y2="330" stroke="#57534e" stroke-width="1.4"/>
-
-    <text x="750" y="322" font-size="15" font-weight="700" fill="#1c1917">ASSURANCE &amp; COMPLIANCE</text>
-    <line x1="640" y1="330" x2="860" y2="330" stroke="#57534e" stroke-width="1.4"/>
+  <g text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">
+    <text x="250" y="348">OPERATIONS &amp; INCIDENT RESPONSE</text>
+    <text x="750" y="348">ASSURANCE &amp; COMPLIANCE</text>
+  </g>
+  <g stroke="#57534e" stroke-width="1.4">
+    <line x1="110" y1="358" x2="390" y2="358"/>
+    <line x1="612" y1="358" x2="888" y2="358"/>
   </g>
 
-  <!-- converge into connected knowledge -->
+  <!-- lower surfaces -> shared bus -> one downward arrow into connected knowledge (flow) -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M250,330 L250,360 L500,360"/>
-    <path d="M750,330 L750,360 L500,360"/>
+    <path d="M250,358 L250,388 L500,388"/>
+    <path d="M750,358 L750,388 L500,388"/>
   </g>
-  <line x1="500" y1="360" x2="500" y2="382" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-H-8-1-h8-ah)"/>
+  <line x1="500" y1="388" x2="500" y2="412" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-H-8-1-h8-ah)"/>
 
-  <rect x="320" y="384" width="360" height="56" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.5"/>
-  <text x="500" y="408" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CONNECTED PRODUCT</text>
-  <text x="500" y="428" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">ENGINEERING KNOWLEDGE</text>
+  <rect x="316" y="414" width="368" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.5"/>
+  <text x="500" y="446" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">CONNECTED ENGINEERING KNOWLEDGE</text>
 
-  <!-- split into reasoning (agent-blue) and Alignment (governance-umber) -->
+  <!-- knowledge related to reasoning and Alignment (two uses, plain lines) -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M410,440 C360,472 300,476 300,498" marker-end="url(#fig-H-8-1-h8-ah)"/>
-    <path d="M590,440 C640,472 700,476 700,498" marker-end="url(#fig-H-8-1-h8-ah)"/>
+    <path d="M410,466 C360,498 300,504 300,528"/>
+    <path d="M590,466 C640,498 700,504 700,528"/>
   </g>
 
-  <g text-anchor="middle">
-    <text x="300" y="498" font-size="14" font-weight="700" fill="#2f5169">AUTONOMOUS REASONING</text>
-    <line x1="180" y1="506" x2="420" y2="506" stroke="#2f5169" stroke-width="1.4"/>
-    <g font-size="13" fill="#2f5169"><text x="300" y="530">semantic reconstruction</text><text x="300" y="548">synthesis</text><text x="300" y="566">novel judgment</text><text x="300" y="584">underdetermined realization</text></g>
-
-    <text x="700" y="498" font-size="14" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
-    <line x1="600" y1="506" x2="800" y2="506" stroke="#9a3f12" stroke-width="1.4"/>
-    <g font-size="13" fill="#9a3f12"><text x="700" y="530">constraints</text><text x="700" y="548">validators · checkers</text><text x="700" y="566">permissions</text><text x="700" y="584">gates</text></g>
+  <text x="300" y="532" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">AUTONOMOUS REASONING</text>
+  <line x1="175" y1="542" x2="425" y2="542" stroke="#2f5169" stroke-width="1.4"/>
+  <g text-anchor="middle" font-size="15" fill="#2f5169">
+    <text x="300" y="566">semantic reconstruction</text>
+    <text x="300" y="588">synthesis</text>
+    <text x="300" y="610">novel judgment</text>
+    <text x="300" y="632">underdetermined realization</text>
   </g>
 
-  <!-- converge into GEE -->
-  <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M300,600 L300,624 L500,624"/>
-    <path d="M700,600 L700,624 L500,624"/>
+  <text x="700" y="532" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
+  <line x1="612" y1="542" x2="788" y2="542" stroke="#9a3f12" stroke-width="1.4"/>
+  <g text-anchor="middle" font-size="15" fill="#9a3f12">
+    <text x="700" y="566">constraints</text>
+    <text x="700" y="588">validators · checkers</text>
+    <text x="700" y="610">permissions</text>
+    <text x="700" y="632">gates</text>
   </g>
-  <line x1="500" y1="624" x2="500" y2="646" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#fig-H-8-1-h8-ah-u)"/>
 
-  <rect x="330" y="648" width="340" height="56" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="500" y="672" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">GOVERNED ENGINEERING</text>
-  <text x="500" y="692" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">ENVIRONMENT</text>
+  <!-- reasoning AND Alignment each constitute the GEE: two separate arrows (flow) -->
+  <path d="M300,648 C300,676 420,676 470,690" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-H-8-1-h8-ah)"/>
+  <path d="M700,648 C700,676 580,676 530,690" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-H-8-1-h8-ah)"/>
 
-  <line x1="500" y1="704" x2="500" y2="726" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-H-8-1-h8-ah)"/>
-  <rect x="440" y="728" width="120" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="753" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">PRODUCT</text>
+  <rect x="330" y="694" width="340" height="56" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="500" y="718" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">GOVERNED ENGINEERING</text>
+  <text x="500" y="738" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">ENVIRONMENT</text>
 
-  <!-- governance-conversion feedback loop back to the top-left surface (routed down the left margin) -->
-  <path d="M440,748 C160,748 30,720 30,140 C30,112 38,96 66,94" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="7 4" marker-end="url(#fig-H-8-1-h8-ah-u)"/>
-  <text x="18" y="430" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12" transform="rotate(-90 18 430)">governance conversion — evidence · failures · experience</text>
+  <!-- GEE produces the product (flow) -->
+  <line x1="500" y1="750" x2="500" y2="772" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-H-8-1-h8-ah)"/>
+  <rect x="440" y="774" width="120" height="30" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="795" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">PRODUCT</text>
+
+  <!-- governance-conversion feedback: product experience back to the connective tissue (routed down the left margin) -->
+  <path d="M440,789 C150,789 34,760 34,215 C34,190 44,214 298,214" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="7 4" marker-end="url(#fig-H-8-1-h8-ah-u)"/>
+  <text x="20" y="470" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12" transform="rotate(-90 20 470)">experience · failures · evidence · governance conversion</text>
 </svg><figcaption data-short="From local MAGE adoption to the product GEE"><span class="fig-label">Figure H.8-1.</span> <em>From local MAGE adoption to the product GEE.</em> Each lifecycle surface develops representations suited to its own reasoning problems. Shared identity, relations, provenance, temporal scope, and obligations allow those heterogeneous models to compose without collapsing them into one universal model. Agents reason across the resulting knowledge where semantic or situational judgment remains necessary; Alignment carries obligations that can responsibly be made authoritative. Experience from the realized product feeds governance conversion, changing the models and mechanisms future work inherits.</figcaption></figure><p class="gallery-source">From <a href="appendix-h-from-local-mage-to-the-product-gee.html#fig-H-8-1">H.8 From Local MAGE to the Product GEE</a></p></section><hr><section class="gallery-item"><figure id="fig-H-9-1-fig-H-9-1" class="book-figure" data-label="fig-h-capital"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600"
      role="img" aria-labelledby="fig-H-9-1-h9Title fig-H-9-1-h9Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
