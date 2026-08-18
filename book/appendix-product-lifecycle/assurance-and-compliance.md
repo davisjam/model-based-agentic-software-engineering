@@ -2,9 +2,9 @@
 
 Assurance and compliance organize engineering knowledge around obligations and claims.
 
-Requirements, standards, policies, security threats, safety hazards, invariants, traceability relations, approvals, and evidence packages describe properties for which merely producing an implementation is insufficient. Someone must be entitled to assert something about the resulting system.
+Requirements, standards, policies, security threats, safety hazards, invariants, traceability relations, approvals, and evidence packages describe properties for which merely producing an implementation is insufficient. Those claims require evidence and an appropriate authority to accept them.
 
-[ref:fig-h-assurance-frontier] The characteristic structure runs from an obligation to an assurance claim.
+[ref:fig-h-assurance-frontier] runs from an obligation to an assurance claim.
 
 <!-- label: fig-h-assurance-frontier -->
 <!-- figure: assets/h6-assurance-decidable-semantic.svg | *The determinization frontier in assurance.* An obligation, once interpreted into a claim, splits into a decidable part—settled by a checker, proof, validator, or test—and a residual semantic judgment settled by human review or expert decision. Both paths produce evidence supporting the assurance claim. The frontier marks which assurance judgments can responsibly become repeatable and which cannot. -->

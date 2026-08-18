@@ -3679,6 +3679,7 @@ _PRODUCT_LIFECYCLE_PAGES: list[tuple[str, str]] = [
     ("assurance-and-compliance",                            "Assurance & Compliance"),
     ("differential-adoption",                               "Differential Adoption"),
     ("from-local-mage-to-the-product-gee",                  "From Local MAGE to the Product GEE"),
+    ("engineering-capital-across-the-lifecycle",            "Engineering Capital Across the Lifecycle"),
 ]
 
 

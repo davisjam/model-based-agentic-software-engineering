@@ -6,7 +6,7 @@ Mature operations already depends heavily on explicit representations: deploymen
 
 A novel failure may initially require semantic diagnosis. If the same diagnosis and response recur, engineers may write a runbook. If the runbook’s preconditions, actions, and postconditions become sufficiently stable and decidable, much of it should cease to require an agent at all.
 
-[ref:fig-h-ops-determinization] Operational knowledge tends to travel from situational diagnosis toward deterministic procedure.
+[ref:fig-h-ops-determinization] follows operational knowledge as it travels from situational diagnosis toward deterministic procedure.
 
 <!-- label: fig-h-ops-determinization -->
 <!-- figure: assets/h5-operational-determinization.svg | *Operational knowledge determinizing.* A novel or situational failure first requires semantic diagnosis; when the diagnosis and response recur, engineers write a runbook; when the runbook’s preconditions, actions, and postconditions become stable and decidable, much of it migrates into deterministic procedure—monitors, permissions, actions, postcondition and rollback gates. The destination of operational governance conversion is often machinery, not a better prompt. -->
@@ -19,7 +19,7 @@ The same distinction applies to incidents.
 
 An incident timeline or RCA is usually episode-scoped. It reconstructs what happened and why existing controls failed to prevent or contain it. Its enduring engineering value depends on what happens next.
 
-[ref:fig-h-incident-conversion] An incident’s lesson is either repaired locally or converted into durable governance.
+[ref:fig-h-incident-conversion] shows an incident’s lesson either repaired locally or converted into durable governance.
 
 <!-- label: fig-h-incident-conversion -->
 <!-- figure: assets/h5-incident-governance-conversion.svg | *From incident to inherited lesson.* Telemetry and history reconstruct an incident as a timeline or RCA; a structural judgment then decides whether the failure is a local event to repair or a recurring gap worth durable treatment. Governance conversion promotes the recurring case into a model update, a mechanism or gate, or an architectural or runbook change, so future work inherits the lesson. -->

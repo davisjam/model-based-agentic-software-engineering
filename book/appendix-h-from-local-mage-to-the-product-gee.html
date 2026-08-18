@@ -701,6 +701,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-h-assurance-and-compliance.html">H.6 Assurance &amp; Compliance</a></li>
 <li><a class="" href="appendix-h-differential-adoption.html">H.7 Differential Adoption</a></li>
 <li><a class="current" href="appendix-h-from-local-mage-to-the-product-gee.html">H.8 From Local MAGE to the Product GEE</a></li>
+<li><a class="" href="appendix-h-engineering-capital-across-the-lifecycle.html">H.9 Engineering Capital Across the Lifecycle</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · H.8 From Local MAGE to the Product GEE — MAGE"><header class="chap"><div class="kicker"><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">Appendix H — Configuring MAGE Across the Product Lifecycle</a></div><h1>H.8 From Local MAGE to the Product GEE</h1></header><p>Suppose each surface develops only the representations that repay their cost.</p>
@@ -708,19 +709,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>These models should not be collapsed into one universal representation. They are different because they answer different questions.</p>
 <p>But they can share identity and relationships.</p>
 <p>A requirement concerns a feature. A ticket authorizes a change. A change modifies a component. A component participates in an architectural relation. A deployed service realizes that component. An incident affects the service. An RCA identifies a violated assumption. A resulting invariant constrains later engineering. An assurance claim cites evidence that the invariant holds.</p>
-<p><a class="xref" href="appendix-h-from-local-mage-to-the-product-gee.html#fig-H-8-1">Figure&nbsp;H.8-1</a> At sufficient scale, those connections form the engineering knowledge surrounding the product.</p>
-<figure id="fig-H-8-1" class="book-figure" data-label="fig-h-product-gee"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"
+<p><a class="xref" href="appendix-h-from-local-mage-to-the-product-gee.html#fig-H-8-1">Figure&nbsp;H.8-1</a> composes those connections into the engineering knowledge surrounding the product.</p>
+<figure id="fig-H-8-1" class="book-figure" data-label="fig-h-product-gee"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 780"
      role="img" aria-labelledby="h8Title h8Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="h8Title">From local MAGE adoption to the product GEE</title>
   <desc id="h8Desc">Five lifecycle surfaces — Product Discovery, Engineering and Realization, Product Management
-    and Maintenance, Operations and Incidents, and Assurance and Compliance — each develop their own
-    representations. Shared identity, relations, provenance, temporal scope, and obligations let those
-    heterogeneous models compose into connected product engineering knowledge without collapsing into one
-    universal model. That knowledge is reasoned over by autonomous reasoning where semantic judgment remains
-    necessary and carried by Alignment where obligations can be made authoritative; together they form the
-    governed engineering environment that produces the product. Experience from the product feeds back through
-    governance conversion, changing the models and mechanisms future work inherits.</desc>
+    and Maintenance, Operations and Incidents, and Assurance and Compliance — name the engineering surfaces whose
+    representations meet at a band of connective tissue: shared identity, relations, provenance, temporal scope, and
+    obligations. That connective tissue lets the heterogeneous models compose into connected product engineering
+    knowledge without collapsing into one universal model. That knowledge is reasoned over by autonomous reasoning
+    where semantic judgment remains necessary and carried by Alignment where obligations can be made authoritative;
+    together they form the governed engineering environment that produces the product. Experience from the product
+    feeds back through governance conversion, changing the models and mechanisms future work inherits.</desc>
 
   <defs>
     <marker id="h8-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
@@ -729,103 +730,97 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="1000" fill="#fdfcf9"/>
-  <text x="500" y="36" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="0.1em" fill="#57534e">THE PRODUCT GEE</text>
+  <rect x="0" y="0" width="1000" height="780" fill="#fdfcf9"/>
+  <text x="500" y="34" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="0.1em" fill="#57534e">THE PRODUCT GEE</text>
 
-  <!-- three upper surface columns -->
+  <!-- three upper surface names (inventories omitted — the reader has them from the sections) -->
   <g text-anchor="middle">
-    <text x="165" y="72" font-size="14" font-weight="700" fill="#1c1917">PRODUCT DISCOVERY</text>
-    <line x1="70" y1="80" x2="260" y2="80" stroke="#57534e" stroke-width="1.4"/>
-    <g font-size="13" fill="#1c1917"><text x="165" y="104">needs</text><text x="165" y="122">hypotheses</text><text x="165" y="140">evidence</text><text x="165" y="158">decisions</text><text x="165" y="176">requirements</text></g>
+    <text x="200" y="92" font-size="15" font-weight="700" fill="#1c1917">PRODUCT DISCOVERY</text>
+    <line x1="90" y1="100" x2="310" y2="100" stroke="#57534e" stroke-width="1.4"/>
 
-    <text x="500" y="72" font-size="14" font-weight="700" fill="#1c1917">ENGINEERING &amp; REALIZATION</text>
-    <line x1="380" y1="80" x2="620" y2="80" stroke="#57534e" stroke-width="1.4"/>
-    <g font-size="13" fill="#1c1917"><text x="500" y="104">architecture</text><text x="500" y="122">behavior</text><text x="500" y="140">contracts</text><text x="500" y="158">state</text><text x="500" y="176">dependencies</text></g>
+    <text x="500" y="92" font-size="15" font-weight="700" fill="#1c1917">ENGINEERING &amp; REALIZATION</text>
+    <line x1="368" y1="100" x2="632" y2="100" stroke="#57534e" stroke-width="1.4"/>
 
-    <text x="835" y="72" font-size="14" font-weight="700" fill="#1c1917">PRODUCT MGMT / MAINTENANCE</text>
-    <line x1="720" y1="80" x2="950" y2="80" stroke="#57534e" stroke-width="1.4"/>
-    <g font-size="13" fill="#1c1917"><text x="835" y="104">tickets</text><text x="835" y="122">issues</text><text x="835" y="140">rationale</text><text x="835" y="158">acceptance</text><text x="835" y="176">history</text></g>
+    <text x="800" y="92" font-size="15" font-weight="700" fill="#1c1917">PRODUCT MGMT / MAINTENANCE</text>
+    <line x1="678" y1="100" x2="922" y2="100" stroke="#57534e" stroke-width="1.4"/>
   </g>
 
   <!-- converge into connective band -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M165,190 L165,214 L500,214"/>
-    <path d="M500,190 L500,236"/>
-    <path d="M835,190 L835,214 L500,214"/>
+    <path d="M200,100 L200,120 L500,120"/>
+    <path d="M500,100 L500,140"/>
+    <path d="M800,100 L800,120 L500,120"/>
   </g>
-  <line x1="500" y1="214" x2="500" y2="240" stroke="#57534e" stroke-width="1.8"/>
 
   <!-- connective tissue -->
-  <rect x="300" y="240" width="400" height="128" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="6 4"/>
+  <rect x="300" y="140" width="400" height="120" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="6 4"/>
   <g text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">
-    <text x="500" y="266" font-weight="700" font-style="normal" fill="#1c1917">CONNECTIVE TISSUE</text>
-    <text x="500" y="290">shared identity</text>
-    <text x="500" y="310">relations · provenance</text>
-    <text x="500" y="330">temporal scope</text>
-    <text x="500" y="350">obligations</text>
+    <text x="500" y="168" font-weight="700" font-style="normal" fill="#1c1917">CONNECTIVE TISSUE</text>
+    <text x="500" y="192">shared identity</text>
+    <text x="500" y="212">relations · provenance</text>
+    <text x="500" y="232">temporal scope</text>
+    <text x="500" y="252">obligations</text>
   </g>
 
   <!-- split to the two lower surfaces -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M370,368 C300,400 245,404 245,430" marker-end="url(#h8-ah)"/>
-    <path d="M630,368 C700,400 755,404 755,430" marker-end="url(#h8-ah)"/>
+    <path d="M370,260 C300,292 250,296 250,320" marker-end="url(#h8-ah)"/>
+    <path d="M630,260 C700,292 750,296 750,320" marker-end="url(#h8-ah)"/>
   </g>
 
   <g text-anchor="middle">
-    <text x="245" y="430" font-size="14" font-weight="700" fill="#1c1917">OPERATIONS &amp; INCIDENTS</text>
-    <line x1="130" y1="438" x2="360" y2="438" stroke="#57534e" stroke-width="1.4"/>
-    <g font-size="13" fill="#1c1917"><text x="245" y="462">topology</text><text x="245" y="480">telemetry</text><text x="245" y="498">SLOs</text><text x="245" y="516">runbooks</text><text x="245" y="534">incidents · RCAs</text></g>
+    <text x="250" y="322" font-size="15" font-weight="700" fill="#1c1917">OPERATIONS &amp; INCIDENTS</text>
+    <line x1="140" y1="330" x2="360" y2="330" stroke="#57534e" stroke-width="1.4"/>
 
-    <text x="755" y="430" font-size="14" font-weight="700" fill="#1c1917">ASSURANCE &amp; COMPLIANCE</text>
-    <line x1="640" y1="438" x2="870" y2="438" stroke="#57534e" stroke-width="1.4"/>
-    <g font-size="13" fill="#1c1917"><text x="755" y="462">requirements</text><text x="755" y="480">policies</text><text x="755" y="498">threats / hazards</text><text x="755" y="516">traceability</text><text x="755" y="534">claims · evidence</text></g>
+    <text x="750" y="322" font-size="15" font-weight="700" fill="#1c1917">ASSURANCE &amp; COMPLIANCE</text>
+    <line x1="640" y1="330" x2="860" y2="330" stroke="#57534e" stroke-width="1.4"/>
   </g>
 
   <!-- converge into connected knowledge -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M245,548 L245,578 L500,578"/>
-    <path d="M755,548 L755,578 L500,578"/>
+    <path d="M250,330 L250,360 L500,360"/>
+    <path d="M750,330 L750,360 L500,360"/>
   </g>
-  <line x1="500" y1="578" x2="500" y2="600" stroke="#57534e" stroke-width="1.8" marker-end="url(#h8-ah)"/>
+  <line x1="500" y1="360" x2="500" y2="382" stroke="#57534e" stroke-width="1.8" marker-end="url(#h8-ah)"/>
 
-  <rect x="320" y="602" width="360" height="56" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.5"/>
-  <text x="500" y="626" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CONNECTED PRODUCT</text>
-  <text x="500" y="646" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">ENGINEERING KNOWLEDGE</text>
+  <rect x="320" y="384" width="360" height="56" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.5"/>
+  <text x="500" y="408" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CONNECTED PRODUCT</text>
+  <text x="500" y="428" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">ENGINEERING KNOWLEDGE</text>
 
   <!-- split into reasoning (agent-blue) and Alignment (governance-umber) -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M410,658 C360,690 300,694 300,716" marker-end="url(#h8-ah)"/>
-    <path d="M590,658 C640,690 700,694 700,716" marker-end="url(#h8-ah)"/>
+    <path d="M410,440 C360,472 300,476 300,498" marker-end="url(#h8-ah)"/>
+    <path d="M590,440 C640,472 700,476 700,498" marker-end="url(#h8-ah)"/>
   </g>
 
   <g text-anchor="middle">
-    <text x="300" y="716" font-size="14" font-weight="700" fill="#2f5169">AUTONOMOUS REASONING</text>
-    <line x1="180" y1="724" x2="420" y2="724" stroke="#2f5169" stroke-width="1.4"/>
-    <g font-size="13" fill="#2f5169"><text x="300" y="748">semantic reconstruction</text><text x="300" y="766">synthesis</text><text x="300" y="784">novel judgment</text><text x="300" y="802">residual DoF · realization</text></g>
+    <text x="300" y="498" font-size="14" font-weight="700" fill="#2f5169">AUTONOMOUS REASONING</text>
+    <line x1="180" y1="506" x2="420" y2="506" stroke="#2f5169" stroke-width="1.4"/>
+    <g font-size="13" fill="#2f5169"><text x="300" y="530">semantic reconstruction</text><text x="300" y="548">synthesis</text><text x="300" y="566">novel judgment</text><text x="300" y="584">underdetermined realization</text></g>
 
-    <text x="700" y="716" font-size="14" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
-    <line x1="600" y1="724" x2="800" y2="724" stroke="#9a3f12" stroke-width="1.4"/>
-    <g font-size="13" fill="#9a3f12"><text x="700" y="748">constraints</text><text x="700" y="766">validators · checkers</text><text x="700" y="784">permissions</text><text x="700" y="802">gates</text></g>
+    <text x="700" y="498" font-size="14" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
+    <line x1="600" y1="506" x2="800" y2="506" stroke="#9a3f12" stroke-width="1.4"/>
+    <g font-size="13" fill="#9a3f12"><text x="700" y="530">constraints</text><text x="700" y="548">validators · checkers</text><text x="700" y="566">permissions</text><text x="700" y="584">gates</text></g>
   </g>
 
   <!-- converge into GEE -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M300,814 L300,838 L500,838"/>
-    <path d="M700,814 L700,838 L500,838"/>
+    <path d="M300,600 L300,624 L500,624"/>
+    <path d="M700,600 L700,624 L500,624"/>
   </g>
-  <line x1="500" y1="838" x2="500" y2="858" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#h8-ah-u)"/>
+  <line x1="500" y1="624" x2="500" y2="646" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#h8-ah-u)"/>
 
-  <rect x="330" y="860" width="340" height="56" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="500" y="884" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">GOVERNED ENGINEERING</text>
-  <text x="500" y="904" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">ENVIRONMENT</text>
+  <rect x="330" y="648" width="340" height="56" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="500" y="672" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">GOVERNED ENGINEERING</text>
+  <text x="500" y="692" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">ENVIRONMENT</text>
 
-  <line x1="500" y1="916" x2="500" y2="940" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
-  <rect x="440" y="942" width="120" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="967" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">PRODUCT</text>
+  <line x1="500" y1="704" x2="500" y2="726" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
+  <rect x="440" y="728" width="120" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="753" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">PRODUCT</text>
 
   <!-- governance-conversion feedback loop back to the top-left surface (routed down the left margin) -->
-  <path d="M440,962 C140,962 26,930 26,150 C26,108 34,92 62,90" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="7 4" marker-end="url(#h8-ah-u)"/>
-  <text x="16" y="540" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12" transform="rotate(-90 16 540)">governance conversion — evidence · failures · experience</text>
+  <path d="M440,748 C160,748 30,720 30,140 C30,112 38,96 66,94" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="7 4" marker-end="url(#h8-ah-u)"/>
+  <text x="18" y="430" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12" transform="rotate(-90 18 430)">governance conversion — evidence · failures · experience</text>
 </svg><figcaption data-short="From local MAGE adoption to the product GEE"><span class="fig-label">Figure H.8-1.</span> <em>From local MAGE adoption to the product GEE.</em> Each lifecycle surface develops representations suited to its own reasoning problems. Shared identity, relations, provenance, temporal scope, and obligations allow those heterogeneous models to compose without collapsing them into one universal model. Agents reason across the resulting knowledge where semantic or situational judgment remains necessary; Alignment carries obligations that can responsibly be made authoritative. Experience from the realized product feeds governance conversion, changing the models and mechanisms future work inherits.</figcaption></figure>
 <p>The integration is deliberately not a pipeline. Operational evidence can revise engineering assumptions. An incident can create a maintenance ticket. Assurance can introduce an obligation that changes architecture. Product discovery can invalidate a requirement. Engineering can expose a cost that sends a proposed feature back to product judgment.</p>
 <p>Nor does integration require a single physical knowledge graph, database, or modeling language. A ticket system, architecture registry, source repository, telemetry platform, requirements system, and evidence store can remain distinct. What matters is that consequential relations can be recovered reliably enough for the engineering questions that cross them. Shared identifiers, typed relationships, provenance, indexes, APIs, or a knowledge layer can supply that connective tissue.</p>
@@ -834,4 +829,4 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Likewise, Why does the system behave this way? can traverse from implementation to architecture to change history to product intent. Can we change it? can traverse dependencies, operational constraints, assurance obligations, tests, and migration history. What did this incident teach us? can reach beyond the RCA to the models and mechanisms future work should inherit.</p>
 <p>This is the product-wide possibility of MAGE. It is not the prerequisite.</p>
 <p>An organization should not construct this connected environment merely because it can. Every representation, relation, and mechanism has a carrying cost. Each should earn its place through better reasoning, reduced reconstruction, stronger evidence, safer autonomy, cheaper recovery, or some other capacity inherited by later work.</p>
-<p>MAGE can therefore begin anywhere engineering knowledge or obligation repays durable treatment. Product-wide MAGE, if it emerges, emerges by connecting useful local representations and mechanisms across the product lifecycle—not by specifying the whole product in advance.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">« Beginning of part</a><a href="appendix-h-differential-adoption.html" aria-label="Previous chapter — H.7 Differential Adoption">« Previous chapter</a></div><span class="chapnav-here" title="H.8 From Local MAGE to the Product GEE">H.8 From Local MAGE to the Product GEE</span><div class="chapnav-fwd"><a href="colophon.html" aria-label="Next chapter — Colophon — Dogfooding MAGE">Next chapter »</a><a href="colophon.html" aria-label="Next part — Back Matter">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<p>MAGE can therefore begin anywhere engineering knowledge or obligation repays durable treatment. Product-wide MAGE, if it emerges, emerges by connecting useful local representations and mechanisms across the product lifecycle—not by specifying the whole product in advance.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">« Beginning of part</a><a href="appendix-h-differential-adoption.html" aria-label="Previous chapter — H.7 Differential Adoption">« Previous chapter</a></div><span class="chapnav-here" title="H.8 From Local MAGE to the Product GEE">H.8 From Local MAGE to the Product GEE</span><div class="chapnav-fwd"><a href="appendix-h-engineering-capital-across-the-lifecycle.html" aria-label="Next chapter — H.9 Engineering Capital Across the Lifecycle">Next chapter »</a><a href="colophon.html" aria-label="Next part — Back Matter">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

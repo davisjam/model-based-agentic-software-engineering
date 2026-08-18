@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Appendix H figure — h1-product-lifecycle.svg. Fold to book/assets/. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 660" width="1020" height="660"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" width="1000" height="720"
      role="img" aria-labelledby="h1Title h1Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="h1Title">MAGE across the product lifecycle</title>
   <desc id="h1Desc">Four recurring engineering activities run left to right as a dominant lifecycle flow: Product
     Discovery, Engineering and Realization, Product Management and Maintenance, and Operations and Incidents. Each
     box carries the question it asks and the representations it produces. Assurance and Compliance is drawn below,
-    spanning the row as a cross-cutting activity that feeds up into all four. A long arrow along the bottom shows
-    observations, failures, evidence, and new needs feeding back into earlier activities; the sequence is a
+    spanning the row as a cross-cutting activity that feeds up into all four. A wide arrow beneath the lifecycle row
+    shows observations, failures, evidence, and new needs feeding back into earlier activities; the sequence is a
     lifecycle, not a waterfall.</desc>
 
   <defs>
@@ -18,83 +18,84 @@
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
   </defs>
 
-  <rect x="0" y="0" width="1020" height="660" fill="#fdfcf9"/>
-  <text x="510" y="38" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="0.1em" fill="#57534e">ENGINEERING A SOFTWARE PRODUCT</text>
+  <rect x="0" y="0" width="1000" height="720" fill="#fdfcf9"/>
+  <text x="500" y="40" text-anchor="middle" font-size="19" font-weight="700" letter-spacing="0.1em" fill="#57534e">ENGINEERING A SOFTWARE PRODUCT</text>
 
   <!-- four lifecycle boxes -->
   <g>
-    <rect x="40"  y="58" width="200" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="140" y="83"  text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">PRODUCT</text>
-    <text x="140" y="103" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">DISCOVERY</text>
+    <rect x="28"  y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="134" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">PRODUCT</text>
+    <text x="134" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">DISCOVERY</text>
 
-    <rect x="280" y="58" width="200" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="380" y="83"  text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">ENGINEERING &amp;</text>
-    <text x="380" y="103" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">REALIZATION</text>
+    <rect x="274" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="380" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">ENGINEERING &amp;</text>
+    <text x="380" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">REALIZATION</text>
 
-    <rect x="520" y="58" width="200" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="620" y="83"  text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">PRODUCT MGMT &amp;</text>
-    <text x="620" y="103" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">MAINTENANCE</text>
+    <rect x="520" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="626" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">PRODUCT MGMT &amp;</text>
+    <text x="626" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">MAINTENANCE</text>
 
-    <rect x="760" y="58" width="200" height="58" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="860" y="83"  text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">OPERATIONS &amp;</text>
-    <text x="860" y="103" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">INCIDENTS</text>
+    <rect x="766" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="872" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">OPERATIONS &amp;</text>
+    <text x="872" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INCIDENTS</text>
   </g>
 
   <!-- flow arrows between boxes -->
-  <g stroke="#57534e" stroke-width="2.4" marker-end="url(#h1-ah)">
-    <line x1="240" y1="87" x2="278" y2="87"/>
-    <line x1="480" y1="87" x2="518" y2="87"/>
-    <line x1="720" y1="87" x2="758" y2="87"/>
+  <g stroke="#57534e" stroke-width="2.6" marker-end="url(#h1-ah)">
+    <line x1="240" y1="101" x2="272" y2="101"/>
+    <line x1="486" y1="101" x2="518" y2="101"/>
+    <line x1="732" y1="101" x2="764" y2="101"/>
   </g>
 
-  <!-- questions + artifacts under each box -->
-  <g font-size="12.5" fill="#57534e" text-anchor="middle">
-    <text x="140" y="140" font-style="italic">What should we build?</text>
-    <text x="140" y="157" font-style="italic">Why? What do we know?</text>
-    <text x="380" y="140" font-style="italic">How should it</text>
-    <text x="380" y="157" font-style="italic">be realized?</text>
-    <text x="620" y="140" font-style="italic">What should change?</text>
-    <text x="620" y="157" font-style="italic">Why? What changed?</text>
-    <text x="860" y="140" font-style="italic">What is happening?</text>
-    <text x="860" y="157" font-style="italic">What failed? Why?</text>
+  <!-- questions under each box -->
+  <g stroke="#57534e" stroke-width="1.6" marker-end="url(#h1-ah)">
+    <line x1="134" y1="138" x2="134" y2="156"/>
+    <line x1="380" y1="138" x2="380" y2="156"/>
+    <line x1="626" y1="138" x2="626" y2="156"/>
+    <line x1="872" y1="138" x2="872" y2="156"/>
   </g>
-  <g stroke="#57534e" stroke-width="1.4" marker-end="url(#h1-ah)">
-    <line x1="140" y1="116" x2="140" y2="128"/>
-    <line x1="380" y1="116" x2="380" y2="128"/>
-    <line x1="620" y1="116" x2="620" y2="128"/>
-    <line x1="860" y1="116" x2="860" y2="128"/>
+  <g font-size="16" fill="#57534e" text-anchor="middle" font-style="italic">
+    <text x="134" y="176">What should we build?</text>
+    <text x="134" y="197">Why? What do we know?</text>
+    <text x="380" y="176">How should it</text>
+    <text x="380" y="197">be realized?</text>
+    <text x="626" y="176">What should change?</text>
+    <text x="626" y="197">Why? What changed?</text>
+    <text x="872" y="176">What is happening?</text>
+    <text x="872" y="197">What failed? Why?</text>
   </g>
 
-  <g font-size="13" fill="#1c1917" text-anchor="middle">
-    <text x="140" y="188">hypotheses</text><text x="140" y="207">needs</text><text x="140" y="226">experiments</text><text x="140" y="245">decisions</text><text x="140" y="264">requirements</text>
-    <text x="380" y="188">architecture</text><text x="380" y="207">behavior</text><text x="380" y="226">interfaces</text><text x="380" y="245">contracts</text><text x="380" y="264">analyses</text>
-    <text x="620" y="188">tickets</text><text x="620" y="207">issues</text><text x="620" y="226">rationale</text><text x="620" y="245">acceptance</text><text x="620" y="264">history</text>
-    <text x="860" y="188">topology</text><text x="860" y="207">telemetry</text><text x="860" y="226">SLOs</text><text x="860" y="245">runbooks</text><text x="860" y="264">RCAs</text>
+  <!-- artifacts under each box -->
+  <g font-size="16" fill="#1c1917" text-anchor="middle">
+    <text x="134" y="234">hypotheses</text><text x="134" y="259">needs</text><text x="134" y="284">experiments</text><text x="134" y="309">decisions</text><text x="134" y="334">requirements</text>
+    <text x="380" y="234">architecture</text><text x="380" y="259">behavior</text><text x="380" y="284">interfaces</text><text x="380" y="309">contracts</text><text x="380" y="334">analyses</text>
+    <text x="626" y="234">tickets</text><text x="626" y="259">issues</text><text x="626" y="284">rationale</text><text x="626" y="309">acceptance</text><text x="626" y="334">history</text>
+    <text x="872" y="234">topology</text><text x="872" y="259">telemetry</text><text x="872" y="284">SLOs</text><text x="872" y="309">runbooks</text><text x="872" y="334">RCAs</text>
   </g>
+
+  <!-- feedback arrow, pulled up beneath the lifecycle row (leftward return flow) -->
+  <line x1="946" y1="364" x2="54" y2="364" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#h1-ah)"/>
+  <text x="500" y="388" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">observations, failures, evidence, and new needs feed back into earlier activities</text>
 
   <!-- converge down into Assurance -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M140,278 L140,320 L510,320"/>
-    <path d="M380,278 L380,320"/>
-    <path d="M620,278 L620,320"/>
-    <path d="M860,278 L860,320 L510,320"/>
+    <path d="M134,404 L134,440 L500,440"/>
+    <path d="M380,404 L380,440"/>
+    <path d="M626,404 L626,440"/>
+    <path d="M872,404 L872,440 L500,440"/>
   </g>
-  <line x1="510" y1="320" x2="510" y2="392" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#h1-ah-u)"/>
+  <line x1="500" y1="440" x2="500" y2="488" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#h1-ah-u)"/>
 
   <!-- Assurance & Compliance — drawn below, cross-cutting (umber accent) -->
-  <rect x="360" y="394" width="300" height="62" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="510" y="420" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">ASSURANCE &amp;</text>
-  <text x="510" y="440" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">COMPLIANCE</text>
-  <text x="694" y="431" font-size="12.5" font-style="italic" fill="#9a3f12">cross-cutting</text>
+  <rect x="336" y="490" width="328" height="82" rx="11" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="500" y="526" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">ASSURANCE &amp;</text>
+  <text x="500" y="550" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">COMPLIANCE</text>
+  <text x="712" y="536" font-size="15" font-style="italic" fill="#9a3f12">cross-cutting</text>
 
-  <text x="510" y="486" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">What must be shown to be true?</text>
-  <g font-size="13" fill="#1c1917" text-anchor="middle">
-    <text x="510" y="512">requirements · policies</text>
-    <text x="510" y="531">threats · traceability</text>
-    <text x="510" y="550">claims · evidence</text>
+  <text x="500" y="608" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">What must be shown to be true?</text>
+  <g font-size="16" fill="#1c1917" text-anchor="middle">
+    <text x="500" y="638">requirements · policies</text>
+    <text x="500" y="663">threats · traceability</text>
+    <text x="500" y="688">claims · evidence</text>
   </g>
-
-  <!-- bottom feedback arrow (leftward) -->
-  <line x1="960" y1="600" x2="60" y2="600" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 4" marker-end="url(#h1-ah)"/>
-  <text x="510" y="590" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">observations, failures, evidence, and new needs feed back</text>
 </svg>

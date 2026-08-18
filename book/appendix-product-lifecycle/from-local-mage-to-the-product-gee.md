@@ -8,7 +8,7 @@ But they can share identity and relationships.
 
 A requirement concerns a feature. A ticket authorizes a change. A change modifies a component. A component participates in an architectural relation. A deployed service realizes that component. An incident affects the service. An RCA identifies a violated assumption. A resulting invariant constrains later engineering. An assurance claim cites evidence that the invariant holds.
 
-[ref:fig-h-product-gee] At sufficient scale, those connections form the engineering knowledge surrounding the product.
+[ref:fig-h-product-gee] composes those connections into the engineering knowledge surrounding the product.
 
 <!-- label: fig-h-product-gee -->
 <!-- figure: assets/h8-product-gee.svg | *From local MAGE adoption to the product GEE.* Each lifecycle surface develops representations suited to its own reasoning problems. Shared identity, relations, provenance, temporal scope, and obligations allow those heterogeneous models to compose without collapsing them into one universal model. Agents reason across the resulting knowledge where semantic or situational judgment remains necessary; Alignment carries obligations that can responsibly be made authoritative. Experience from the realized product feeds governance conversion, changing the models and mechanisms future work inherits. -->

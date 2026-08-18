@@ -1,6 +1,6 @@
-MAGE is easiest to explain through software engineering: models make consequential knowledge explicit, Alignment gives selected obligations authority, and agents realize changes inside the resulting governed engineering environment. A software product, however, is shaped by more than implementation. People discover what should be built, engineer its initial realization, manage continuing change, operate the resulting system, investigate its failures, and establish claims about its quality and compliance.
+MAGE is easiest to explain through software engineering: models make consequential knowledge explicit, Alignment gives selected obligations authority, and agents realize changes inside the resulting governed engineering environment. A software product, however, is shaped across a lifecycle of activities that ask different questions of it. People discover what should be built, engineer its initial realization, manage continuing change, operate the resulting system, investigate its failures, and establish claims about its quality and compliance.
 
-These activities reason about the same product through different questions. They therefore need different representations.
+These activities ask different questions of the same product and therefore require different representations.
 
 A product hypothesis and a state machine are both models in the sense used by this book when they purposefully preserve the information needed for an engineering question. So can a well-structured ticket, an operational topology, a runbook, an incident timeline, or an assurance case. They differ in purpose, structure, lifetime, authority, and the kinds of reasoning they support.
 

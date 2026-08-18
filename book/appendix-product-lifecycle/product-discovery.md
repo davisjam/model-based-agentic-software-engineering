@@ -1,12 +1,12 @@
 **Engineering question.** What should we build, and why?
 
-Product discovery operates where uncertainty is often desirable rather than defective. Customer needs conflict. Proposed features are hypotheses. Requirements are negotiated. Experiments are conducted precisely because important questions remain unsettled.
+Product discovery operates where uncertainty is often desirable rather than defective. Customer needs conflict. Proposed features embody hypotheses. Requirements are negotiated. Experiments are conducted precisely because important questions remain unsettled.
 
 The characteristic knowledge of discovery is therefore epistemic and intentional: what stakeholders appear to need, what the organization believes, what evidence supports those beliefs, what alternatives were considered, and why one direction was selected.
 
 Useful models can include stakeholder needs, product hypotheses, experiment definitions and results, prototypes, decision records, provisional requirements, and relationships among them. These are not primarily models of implementation. They are purposeful representations of the product problem and the organization’s knowledge about it.
 
-[ref:fig-h-discovery] That distinction matters because representation does not imply authority.
+[ref:fig-h-discovery] shows why representing product knowledge need not grant it authority.
 
 <!-- label: fig-h-discovery -->
 <!-- figure: assets/h2-discovery-flow.svg | *From observation to requirement.* A customer observation becomes a product hypothesis, which an experiment tests for evidence, before a product decision yields an accepted requirement. Only the last artifact may become an obligation governing realization; the earlier ones earn their keep as representations without acquiring authority. -->
