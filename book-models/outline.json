@@ -7,7 +7,7 @@
     "derived_ids": 145,
     "missing_topic_sentence": 1,
     "sections_drained": 111,
-    "paragraph_points": 483
+    "paragraph_points": 488
   },
   "chapters": [
     {
@@ -133,27 +133,32 @@
           "heading_text": "The Engineering Object",
           "topic_sentence": "Agent products and foundation models will continue to change.[note: A terminological nuisance runs through this field.",
           "id_source": "derived",
-          "block_index": 8,
+          "block_index": 18,
           "points": [
             {
               "slug": "the-agent-is-not-the-engineering-object",
               "text": "Foundation models and agent products keep changing; the durable engineering problem begins when an agent works autonomously where \"it usually works\" is not an acceptable standard.",
-              "block_index": 9
+              "block_index": 19
             },
             {
               "slug": "the-object-of-engineering-expands-beyond-implementation",
               "text": "The object of engineering expands beyond the implementation to the environment through which autonomous work proceeds: what the agent can know, what it may do, what evidence it must produce, and which obligations the environment will enforce.",
-              "block_index": 11
+              "block_index": 21
             },
             {
               "slug": "mage-is-about-that-environment",
               "text": "MAGE is principally about that environment; the method lies in the representations agents and engineers reason through, the mechanisms through which obligations acquire authority, and the judgment that decides what should become durable engineering structure.",
-              "block_index": 13
+              "block_index": 23
+            },
+            {
+              "slug": "modeling-and-alignment-supply-the-instruction-package",
+              "text": "Modeling and Alignment supply the printer's missing instruction halves.",
+              "block_index": 25
             },
             {
               "slug": "mage-accepts-the-lesson-changes-the-level",
               "text": "External representation, memory, and tools have long improved machine reasoning; MAGE changes the engineering object: the engineered environment through which autonomous work proceeds over time.",
-              "block_index": 15
+              "block_index": 27
             }
           ]
         },
@@ -163,32 +168,32 @@
           "heading_text": "Suspect the Setup First",
           "topic_sentence": "The Printer suggests a useful diagnostic rule: suspect the engineered setup before inferring a machine limit.",
           "id_source": "explicit",
-          "block_index": 17,
+          "block_index": 29,
           "points": [
             {
               "slug": "suspect-the-engineered-setup-before-a-machine-limit",
               "text": "The Printer suggests a diagnostic rule: suspect the engineered setup before inferring a machine limit.",
-              "block_index": 19
+              "block_index": 31
             },
             {
-              "slug": "a-photo-does-not-specify-the-object",
-              "text": "A 3D printer makes the distinction obvious: appearance does not specify internal structure, materials, tolerances, or loads; the printer needs a representation adequate to the properties the finished object must have.",
-              "block_index": 21
+              "slug": "a-failed-part-has-several-diagnoses",
+              "text": "A failed part can reveal several different problems.",
+              "block_index": 33
             },
             {
-              "slug": "plausible-completion-is-not-a-specification",
-              "text": "Software agents make the distinction less obvious because they can infer much more from an incomplete description: a capable agent can infer a great deal from little, but plausible completion is not an explicit statement of which properties must hold, which tradeoffs are acceptable, or what evidence establishes correctness.",
-              "block_index": 23
+              "slug": "inferred-completion-is-not-explicit",
+              "text": "Inferred completion is not an explicit specification.",
+              "block_index": 35
             },
             {
               "slug": "inspect-what-the-engineer-controlled-first",
               "text": "When an agent produces the wrong result, inspect first what the engineer controlled — instructions, representation, task boundary, tools, evidence; failed output alone does not establish that the foundation model lacks the capability.",
-              "block_index": 25
+              "block_index": 37
             },
             {
               "slug": "velocity-amplifies-sound-and-bad-engineering-alike",
               "text": "Abundant implementation raises the stakes: capable agents execute a bad direction at extraordinary speed, and velocity amplifies sound engineering and bad engineering alike.",
-              "block_index": 27
+              "block_index": 39
             }
           ]
         }
@@ -200,14 +205,34 @@
           "block_index": 0
         },
         {
-          "slug": "the-agent-is-a-printer-responsibility-in-the-right-place",
-          "text": "Treat the agent first as a printer — productive machinery that realizes engineering intent; the metaphor is imperfect but keeps responsibility with the engineer, who owns what the work must mean, satisfy, and prove.",
+          "slug": "the-3d-printer-is-open-ended",
+          "text": "A 3D printer is open-ended productive machinery.",
           "block_index": 2
+        },
+        {
+          "slug": "open-ended-capacity-must-be-engineered",
+          "text": "Open-ended capability must itself be engineered to use reliably.",
+          "block_index": 6
+        },
+        {
+          "slug": "intent-is-not-fabrication-instructions",
+          "text": "Intent is not the same as fabrication instructions.",
+          "block_index": 8
         },
         {
           "slug": "leverage-moves-into-the-environment",
           "text": "As implementation becomes abundant, engineering leverage moves toward the instructions, representations, constraints, evidence, and infrastructure that shape autonomous work.",
-          "block_index": 5
+          "block_index": 10
+        },
+        {
+          "slug": "gee-is-the-engineered-instruction-set",
+          "text": "The governed environment is the printer's engineered instruction set.",
+          "block_index": 12
+        },
+        {
+          "slug": "the-metaphor-maps-part-for-part",
+          "text": "The metaphor maps part for part onto engineering.",
+          "block_index": 15
         }
       ]
     },

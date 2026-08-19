@@ -109,7 +109,8 @@
   </g>
 
   <!-- footer strip: the environment, unpacked -->
-  <rect x="120" y="452" width="760" height="70" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="500" y="480" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Inside the Engineered Environment</text>
-  <text x="500" y="505" text-anchor="middle" font-size="16.5" fill="#57534e">models &#183; obligations &#183; evidence &#183; controls &#183; infrastructure</text>
+  <rect x="120" y="452" width="760" height="86" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="500" y="476" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Governed Engineering Environment</text>
+  <text x="500" y="498" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the engineered instructions around autonomous realization</text>
+  <text x="500" y="520" text-anchor="middle" font-size="16.5" fill="#57534e">models &#183; obligations &#183; evidence &#183; controls &#183; infrastructure</text>
 </svg>
