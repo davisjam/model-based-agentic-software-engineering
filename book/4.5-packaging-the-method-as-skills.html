@@ -716,10 +716,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The three examples share a construction pattern, drawn in <a class="xref" href="4.5-packaging-the-method-as-skills.html#fig-4-5-1">Figure&nbsp;4.5-1</a>. A mastery-skill begins with a <strong>fundamental model</strong>: the abstraction through which the domain makes sense. <strong>Orthogonal facets</strong> capture independent concerns within that domain. A <strong>governing principle</strong> connects them and tells the agent how to reason across the whole: when to invoke each facet, what questions to ask, which tools to use, and what output must be returned.</p>
 <p>The portable idea is the skeleton: tacit practice becomes a bounded reasoning environment that a new agent can enter repeatedly.</p>
 <figure id="fig-4-5-1" class="book-figure" data-label="skill-recipe"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560"
-     role="group" aria-labelledby="srTitle srDesc"
+     role="group" aria-labelledby="f-skill-recipe-srTitle f-skill-recipe-srDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="srTitle">The skill skeleton, and the three skills that instantiate it</title>
-  <desc id="srDesc">A fundamental model of the domain sits at the left. Several orthogonal facets layer on top
+  <title id="f-skill-recipe-srTitle">The skill skeleton, and the three skills that instantiate it</title>
+  <desc id="f-skill-recipe-srDesc">A fundamental model of the domain sits at the left. Several orthogonal facets layer on top
     of it, each cutting the domain along an independent concern. All of them feed a SKILL.md governing
     principle that ties the facets together and tells the agent when to reach for which — and that, over its
     facets, is a working skill. The three shipped skills are three instances of this one skeleton:
@@ -727,7 +727,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     governs technical communication.</desc>
 
   <defs>
-    <marker id="sr-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="f-skill-recipe-sr-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
   </defs>
@@ -742,9 +742,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- base -> the orthogonal models (fan out) -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M294,160 C360,130 390,110 444,88" marker-end="url(#sr-ah)"/>
-    <line x1="294" y1="192" x2="444" y2="192" marker-end="url(#sr-ah)"/>
-    <path d="M294,224 C360,254 390,274 444,296" marker-end="url(#sr-ah)"/>
+    <path d="M294,160 C360,130 390,110 444,88" marker-end="url(#f-skill-recipe-sr-ah)"/>
+    <line x1="294" y1="192" x2="444" y2="192" marker-end="url(#f-skill-recipe-sr-ah)"/>
+    <path d="M294,224 C360,254 390,274 444,296" marker-end="url(#f-skill-recipe-sr-ah)"/>
   </g>
 
   <!-- ===== the orthogonal models ===== -->
@@ -761,9 +761,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- orthogonal models -> SKILL.md (fan in) -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M704,72 C770,100 800,120 854,146" marker-end="url(#sr-ah)"/>
-    <line x1="704" y1="192" x2="854" y2="192" marker-end="url(#sr-ah)"/>
-    <path d="M704,312 C770,284 800,264 854,238" marker-end="url(#sr-ah)"/>
+    <path d="M704,72 C770,100 800,120 854,146" marker-end="url(#f-skill-recipe-sr-ah)"/>
+    <line x1="704" y1="192" x2="854" y2="192" marker-end="url(#f-skill-recipe-sr-ah)"/>
+    <path d="M704,312 C770,284 800,264 854,238" marker-end="url(#f-skill-recipe-sr-ah)"/>
   </g>
 
   <!-- ===== SKILL.md: the principles ===== -->
@@ -773,7 +773,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="985" y="220" text-anchor="middle" font-size="18.88" fill="#57534e">that ties them together</text>
 
   <!-- SKILL.md over its models -> a working skill -->
-  <line x1="985" y1="262" x2="985" y2="324" stroke="#1c1917" stroke-width="2" marker-end="url(#sr-ah)"/>
+  <line x1="985" y1="262" x2="985" y2="324" stroke="#1c1917" stroke-width="2" marker-end="url(#f-skill-recipe-sr-ah)"/>
 
   <rect x="870" y="330" width="230" height="60" rx="30" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="985" y="368" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">a working skill</text>
@@ -801,10 +801,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A reusable procedure helps only if the actor reaches it when it matters. Packaging knowledge is not enough; it has to reach the reasoner when relevant, without drowning the reasoner in everything else.</p>
 <p>The naive answer is to load everything: put every rule, architecture note, failure lesson, tool instruction, and procedure into the agent's standing context and trust attention to sort it out. That merely moves the navigation problem. A useful pattern is two layers, drawn in <a class="xref" href="4.5-packaging-the-method-as-skills.html#fig-4-5-2">Figure&nbsp;4.5-2</a>.</p>
 <figure id="fig-4-5-2" class="book-figure" data-label="context-two-layers"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
-     role="img" aria-labelledby="dcTitle dcDesc"
+     role="img" aria-labelledby="f-deliver-context-two-layer-dcTitle f-deliver-context-two-layer-dcDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title id="dcTitle">Deliver the right context in two layers — small standing context plus a retrieved task-relevant slice.</title>
-  <desc id="dcDesc">A green engineering-knowledge box holds models, rules, and procedures. It splits into two
+  <title id="f-deliver-context-two-layer-dcTitle">Deliver the right context in two layers — small standing context plus a retrieved task-relevant slice.</title>
+  <desc id="f-deliver-context-two-layer-dcDesc">A green engineering-knowledge box holds models, rules, and procedures. It splits into two
     layers: a solid green standing-context box (mission, compact method, compact policy) and a dashed green
     task-relevant-slice box (retrieved when needed). Both feed into a blue agent-context box, which flows down
     into a dark work box. A dashed rust lifecycle-event arrow loops from the work back up to the task-relevant
@@ -812,8 +812,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     standing, and retrieve richer slices per task rather than loading everything at once.</desc>
 
   <defs>
-    <marker id="dc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
-    <marker id="dc-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="f-deliver-context-two-layer-dc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="f-deliver-context-two-layer-dc-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
   </defs>
 
   <!-- engineering knowledge (green = modeling/knowledge) -->
@@ -822,8 +822,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="90" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">models &#183; rules &#183; procedures</text>
 
   <!-- split to the two layers -->
-  <path d="M500 100 C 420 128 320 130 270 156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
-  <path d="M500 100 C 580 128 680 130 730 156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
+  <path d="M500 100 C 420 128 320 130 270 156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
+  <path d="M500 100 C 580 128 680 130 730 156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
 
   <!-- standing context: SOLID = always resident -->
   <rect x="110" y="158" width="320" height="82" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
@@ -838,20 +838,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="730" y="227" text-anchor="middle" font-size="13" fill="#57534e">examples &#8212; retrieved when needed</text>
 
   <!-- both layers merge into agent context -->
-  <path d="M270 240 C 270 272 420 276 466 292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
-  <path d="M730 240 C 730 272 580 276 534 292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
+  <path d="M270 240 C 270 272 420 276 466 292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
+  <path d="M730 240 C 730 272 580 276 534 292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
 
   <!-- agent context (blue = the acting party) -->
   <rect x="370" y="294" width="260" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="500" y="329" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">AGENT CONTEXT</text>
-  <line x1="500" y1="352" x2="500" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
+  <line x1="500" y1="352" x2="500" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
 
   <!-- work (dark terminal) -->
   <rect x="410" y="394" width="180" height="56" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
   <text x="500" y="429" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">WORK</text>
 
   <!-- lifecycle event re-surfaces the right slice (dashed rust = governance loop) -->
-  <path d="M590 422 H 905 V 199 H 894" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#dc-ah-rust)"/>
+  <path d="M590 422 H 905 V 199 H 894" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#f-deliver-context-two-layer-dc-ah-rust)"/>
   <text x="908" y="316" text-anchor="middle" transform="rotate(90 908 316)" font-size="12" font-style="italic" fill="#9a3f12">lifecycle event re-surfaces what matters now</text>
 
   <text x="500" y="512" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Keep standing context small enough to stay standing — retrieve the rest per task.</text>

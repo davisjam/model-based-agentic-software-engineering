@@ -711,11 +711,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Engineers or agents rely on explicit system models</strong> to reason about the substrate.</li><li><strong>Several consumers need the same engineering fact</strong>, making copied facts sources of drift.</li><li><strong>Implementation can diverge from authored intent</strong> with nothing to catch the split.</li><li><strong>Downstream artifacts can be generated</strong> rather than hand-maintained in parallel.</li></ul>
 <h2><span class="sec-num">A.1.3</span> The Composition</h2>
 <figure id="fig-A-1-1" class="book-figure" data-label="model-coherence-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 640"
-     role="img" aria-labelledby="mcTitle mcDesc"
+     role="img" aria-labelledby="f-model-coherence-stack-mcTitle f-model-coherence-stack-mcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mcTitle">The Model-Coherence stack: an authored model, consumed live, checked against reality,
+  <title id="f-model-coherence-stack-mcTitle">The Model-Coherence stack: an authored model, consumed live, checked against reality,
     and gated on disagreement</title>
-  <desc id="mcDesc">A model of an authored fact sits at the top. The load-bearing solid path runs MODEL to
+  <desc id="f-model-coherence-stack-mcDesc">A model of an authored fact sits at the top. The load-bearing solid path runs MODEL to
     CONSUME (read the model live rather than copy its facts) to CORRESPONDENCE (compare model against the
     world) to a disagreement decision that gates the disagreement or passes it as valid. Two enhancements
     attach as dashed, open-arrowed strengtheners: EMIT (generate downstream artifacts from the model) and
@@ -723,10 +723,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     model may stay advisory.</desc>
 
   <defs>
-    <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="f-model-coherence-stack-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
-    <marker id="aho" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+    <marker id="f-model-coherence-stack-aho" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
       <path d="M0.5,0.5 L9.5,5 L0.5,9.5" fill="none" stroke="#57534e" stroke-width="1.6"/>
     </marker>
   </defs>
@@ -737,9 +737,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="410" y="82" text-anchor="middle" font-size="14" fill="#57534e">authored fact</text>
 
   <!-- MODEL -> CONSUME (solid, load-bearing) -->
-  <path d="M410,96 C360,124 300,117 300,147" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <path d="M410,96 C360,124 300,117 300,147" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-model-coherence-stack-ah)"/>
   <!-- MODEL -> EMIT (dashed, enhancement) -->
-  <path d="M410,96 C470,124 560,117 560,147" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <path d="M410,96 C470,124 560,117 560,147" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#f-model-coherence-stack-aho)"/>
 
   <!-- CONSUME (solid) -->
   <rect x="210" y="148" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -752,7 +752,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="560" y="200" text-anchor="middle" font-size="14" fill="#57534e">generate artifacts</text>
 
   <!-- CONSUME -> CORRESPONDENCE (solid) -->
-  <line x1="300" y1="214" x2="300" y2="257" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="300" y1="214" x2="300" y2="257" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-model-coherence-stack-ah)"/>
 
   <!-- CORRESPONDENCE (solid, green) -->
   <rect x="200" y="258" width="200" height="66" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
@@ -763,19 +763,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="470" y="258" width="200" height="66" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="570" y="284" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">DERIVE</text>
   <text x="570" y="306" text-anchor="middle" font-size="14" fill="#57534e">join where possible</text>
-  <path d="M470,291 L401,291" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <path d="M470,291 L401,291" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#f-model-coherence-stack-aho)"/>
 
   <!-- CORRESPONDENCE -> decision (solid) -->
-  <line x1="300" y1="324" x2="300" y2="367" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="300" y1="324" x2="300" y2="367" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-model-coherence-stack-ah)"/>
 
   <!-- decision diamond -->
   <polygon points="300,368 372,424 300,480 228,424" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="300" y="429" text-anchor="middle" font-size="14" font-weight="700" fill="#7a5c12">disagreement?</text>
 
   <!-- decision -> GATE (solid) -->
-  <path d="M258,452 C224,478 204.9,471.4 200,501" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <path d="M258,452 C224,478 204.9,471.4 200,501" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-model-coherence-stack-ah)"/>
   <!-- decision -> valid (solid) -->
-  <path d="M342,452 C376,478 400,471 400,501" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+  <path d="M342,452 C376,478 400,471 400,501" stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-model-coherence-stack-ah)"/>
 
   <!-- GATE (rust) -->
   <rect x="120" y="502" width="150" height="58" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
@@ -787,9 +787,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="400" y="536" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">valid</text>
 
   <!-- legend -->
-  <line x1="480" y1="524" x2="524" y2="524" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="480" y1="524" x2="524" y2="524" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-model-coherence-stack-ah)"/>
   <text x="532" y="529" font-size="14" fill="#57534e">load-bearing (required)</text>
-  <line x1="480" y1="550" x2="524" y2="550" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>
+  <line x1="480" y1="550" x2="524" y2="550" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#f-model-coherence-stack-aho)"/>
   <text x="532" y="555" font-size="14" fill="#57534e">enhancement (not required)</text>
 
   <!-- caption -->

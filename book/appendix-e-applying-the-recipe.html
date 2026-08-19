@@ -779,10 +779,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The lifecycle model turns incident response into routing: identify the affected lifecycle, select the corresponding runbook, and determine which steps can be automated. Typed runbooks distinguish runnable steps from automatable and irreducible judgment. Reference linting validates generated repository bindings. Self-governance supplies judgment about changes to models and mechanisms; self-operate runs the resulting environment and returns consequential observations; self-communicate governs the resulting documentation.</p>
 <p>The three skills act on one environment from three directions. <a class="xref" href="appendix-e-applying-the-recipe.html#fig-E-2-1">Figure&nbsp;E.2-1</a> draws the shape: self-governance engineers and improves the governed environment, self-operate runs its operational lifecycles and returns evidence when reality exposes a deficiency, and self-communicate supplies the craft for every representation the other two produce.</p>
 <figure id="fig-E-2-1" class="book-figure" data-label="fig-skill-composition"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660"
-     role="img" aria-labelledby="scTitle scDesc"
+     role="img" aria-labelledby="f-figure-composition-scTitle f-figure-composition-scDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="scTitle">Three partner skills acting on one governed engineering environment</title>
-  <desc id="scDesc">A central box, the governed engineering environment (GEE), is acted on from three
+  <title id="f-figure-composition-scTitle">Three partner skills acting on one governed engineering environment</title>
+  <desc id="f-figure-composition-scDesc">A central box, the governed engineering environment (GEE), is acted on from three
     directions. Above it, self-governance engineers and improves the environment: an arrow points down into
     the GEE, labelled "improves — mints models and mechanisms." Below it, self-operate runs the
     environment's operational lifecycles: an arrow points up into the GEE, labelled "operates — runs the
@@ -794,15 +794,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     environment they share.</desc>
 
   <defs>
-    <marker id="scArrowRust" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
+    <marker id="f-figure-composition-scArrowRust" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
             orient="auto-start-reverse" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
-    <marker id="scArrowBlue" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
+    <marker id="f-figure-composition-scArrowBlue" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
             orient="auto-start-reverse" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="scArrowGray" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
+    <marker id="f-figure-composition-scArrowGray" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="8.5" refY="5"
             orient="auto-start-reverse" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
@@ -832,23 +832,23 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ================= edges ================= -->
 
   <!-- SG → GEE : improves (down) -->
-  <line x1="500" y1="134" x2="500" y2="282" stroke="#9a3f12" stroke-width="2" marker-end="url(#scArrowRust)"/>
+  <line x1="500" y1="134" x2="500" y2="282" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-figure-composition-scArrowRust)"/>
   <text x="516" y="196" text-anchor="start" font-size="15" font-weight="700" fill="#9a3f12">improves</text>
   <text x="516" y="215" text-anchor="start" font-size="12.5" fill="#57534e">mints models &amp; mechanisms</text>
 
   <!-- SO → GEE : operates (up) -->
-  <line x1="500" y1="546" x2="500" y2="400" stroke="#2f5169" stroke-width="2" marker-end="url(#scArrowBlue)"/>
+  <line x1="500" y1="546" x2="500" y2="400" stroke="#2f5169" stroke-width="2" marker-end="url(#f-figure-composition-scArrowBlue)"/>
   <text x="516" y="468" text-anchor="start" font-size="15" font-weight="700" fill="#2f5169">operates</text>
   <text x="516" y="487" text-anchor="start" font-size="12.5" fill="#57534e">runs the lifecycles</text>
 
   <!-- SO → SG : evidence return (dashed, up the right side) -->
   <path d="M650,592 C840,560 878,470 878,340 C878,210 840,120 652,90"
-        fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#scArrowGray)"/>
+        fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#f-figure-composition-scArrowGray)"/>
   <text x="792" y="332" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">evidence</text>
   <text x="792" y="351" text-anchor="middle" font-size="12.5" fill="#57534e">returns deficiencies</text>
 
   <!-- SC → GEE : documents (right) -->
-  <line x1="288" y1="342" x2="336" y2="342" stroke="#57534e" stroke-width="2" marker-end="url(#scArrowGray)"/>
+  <line x1="288" y1="342" x2="336" y2="342" stroke="#57534e" stroke-width="2" marker-end="url(#f-figure-composition-scArrowGray)"/>
   <text x="312" y="332" text-anchor="middle" font-size="12" fill="#57534e">documents</text>
 </svg><figcaption data-short="Three orthogonal skills act on one governed engineering environment"><span class="fig-label">Figure E.2-1.</span> Three orthogonal skills act on one governed engineering environment. Self-governance improves it; self-operate runs it and returns evidence; self-communicate governs the representations both produce.</figcaption></figure>
 <p>Orthogonality does not require isolation. Each skill has one reason to change — communication, engineering judgment, or operation — and explicit interfaces connect them. Self-governance produces models and mechanisms that self-operate uses; self-operate returns evidence for self-governance; self-communicate governs their representations. This is the payoff of the construction method: independently understandable models joined through explicit interfaces.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-skill-recipe.html" aria-label="Beginning of Appendix E — How to Write a Skill">« Beginning of part</a><a href="appendix-e-theory.html" aria-label="Previous chapter — Appendix E - 1. Theory">« Previous chapter</a></div><span class="chapnav-here" title="Appendix E - 2. Applying the Recipe">Appendix E - 2. Applying the Recipe</span><div class="chapnav-fwd"><a href="appendix-field-guide.html" aria-label="Next chapter — Appendix F — Field Guide">Next chapter »</a><a href="appendix-field-guide.html" aria-label="Next part — Appendix F — Field Guide">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

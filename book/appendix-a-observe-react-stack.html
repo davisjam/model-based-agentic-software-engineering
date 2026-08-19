@@ -711,11 +711,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>The system runs live</strong>, and a divergence between expected and observed state has real cost.</li><li><strong>Detection and response have drifted apart</strong> — a dashboard nobody acts on, or a runbook nobody triggers.</li><li><strong>Continuing can be more dangerous than stopping</strong>, so an unsafe state needs the authority to halt progress, not just a note in a log.</li></ul>
 <h2><span class="sec-num">A.4.3</span> The Composition</h2>
 <figure id="fig-A-4-1" class="book-figure" data-label="observe-react-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 620"
-     role="img" aria-labelledby="orTitle orDesc"
+     role="img" aria-labelledby="f-observe-react-stack-orTitle f-observe-react-stack-orDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="orTitle">The Observe-React stack: WATCH to RESPOND is the load-bearing path; heartbeats and
+  <title id="f-observe-react-stack-orTitle">The Observe-React stack: WATCH to RESPOND is the load-bearing path; heartbeats and
     blocking authority are dashed enhancements</title>
-  <desc id="orDesc">An operating model states expected state. The solid load-bearing path runs WATCH — which
+  <desc id="f-observe-react-stack-orDesc">An operating model states expected state. The solid load-bearing path runs WATCH — which
     observes the runtime — to RESPOND, which recovers from an observed divergence. Two enhancements attach as
     dashed, open-arrowed strengtheners, not required for the capability. BEAT adds a liveness heartbeat
     alongside the watch-respond path. BLOCK adds authority to prevent unsafe progress. This figure is the
@@ -723,10 +723,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     path; enhancements are light, dashed, open-arrow attachments that read as optional even in grayscale.</desc>
 
   <defs>
-    <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="f-observe-react-stack-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
-    <marker id="aho" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+    <marker id="f-observe-react-stack-aho" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
       <path d="M0.5,0.5 L9.5,5 L0.5,9.5" fill="none" stroke="#57534e" stroke-width="1.6"/>
     </marker>
   </defs>
@@ -734,7 +734,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- OPERATING MODEL -->
   <rect x="255" y="24" width="250" height="52" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="380" y="55" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">OPERATING MODEL</text>
-  <line x1="380" y1="76" x2="380" y2="118" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="380" y1="76" x2="380" y2="118" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-observe-react-stack-ah)"/>
 
   <!-- WATCH -->
   <rect x="290" y="120" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -743,17 +743,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- runtime feed into WATCH (solid observed input) -->
   <text x="640" y="148" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">runtime</text>
-  <line x1="600" y1="153" x2="474" y2="153" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="600" y1="153" x2="474" y2="153" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-observe-react-stack-ah)"/>
 
   <!-- WATCH -> RESPOND (SOLID load-bearing) -->
-  <line x1="380" y1="186" x2="380" y2="270" stroke="#2f5169" stroke-width="2.6" marker-end="url(#ah)"/>
+  <line x1="380" y1="186" x2="380" y2="270" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-observe-react-stack-ah)"/>
 
   <!-- BEAT (dashed enhancement, offset left) -->
   <rect x="70" y="196" width="160" height="60" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="150" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">BEAT</text>
   <text x="150" y="242" text-anchor="middle" font-size="14" fill="#57534e">liveness heartbeat</text>
-  <path d="M300,168 C250,180 250,200 232,214" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
-  <path d="M232,238 C270,256 300,264 300,288" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <path d="M300,168 C250,180 250,200 232,214" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#f-observe-react-stack-aho)"/>
+  <path d="M232,238 C270,256 300,264 300,288" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#f-observe-react-stack-aho)"/>
 
   <!-- RESPOND (solid) -->
   <rect x="290" y="272" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -761,7 +761,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="380" y="324" text-anchor="middle" font-size="14" fill="#57534e">bounded recovery</text>
 
   <!-- RESPOND -> BLOCK (dashed enhancement) -->
-  <line x1="380" y1="338" x2="380" y2="384" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>
+  <line x1="380" y1="338" x2="380" y2="384" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#f-observe-react-stack-aho)"/>
 
   <!-- BLOCK (dashed) -->
   <rect x="280" y="386" width="200" height="76" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
@@ -770,9 +770,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- legend (prominent, boxed) -->
   <rect x="500" y="392" width="230" height="86" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
-  <line x1="518" y1="418" x2="562" y2="418" stroke="#2f5169" stroke-width="2.6" marker-end="url(#ah)"/>
+  <line x1="518" y1="418" x2="562" y2="418" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-observe-react-stack-ah)"/>
   <text x="572" y="423" font-size="14" fill="#57534e">load-bearing (required)</text>
-  <line x1="518" y1="452" x2="562" y2="452" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>
+  <line x1="518" y1="452" x2="562" y2="452" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#f-observe-react-stack-aho)"/>
   <text x="572" y="457" font-size="14" fill="#57534e">enhancement (not required)</text>
 
   <!-- caption -->

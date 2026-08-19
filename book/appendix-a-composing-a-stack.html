@@ -733,12 +733,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The objective is not maximum governance. It is the smallest composition that makes the capability claim valid for the failure classes that matter.</p>
 <h2><span class="sec-num">A.8.8</span> The Method in One Picture</h2>
 <figure id="fig-A-8-1" class="book-figure" data-label="appendix-a-composing-a-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 820"
-     role="img" aria-labelledby="csTitle csDesc"
+     role="img" aria-labelledby="f-appendix-a-composing-a-stack-csTitle f-appendix-a-composing-a-stack-csDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="csTitle">From failure class to engineering stack: begin with a capability and the ways it can
+  <title id="f-appendix-a-composing-a-stack-csTitle">From failure class to engineering stack: begin with a capability and the ways it can
     fail, select mechanisms for the guarantees that close those failures, then keep only the load-bearing
     composition</title>
-  <desc id="csDesc">A vertical method. Begin with a CAPABILITY. Ask what makes the capability claim false,
+  <desc id="f-appendix-a-composing-a-stack-csDesc">A vertical method. Begin with a CAPABILITY. Ask what makes the capability claim false,
     which enumerates the FAILURE CLASSES. Each failure class fans out to a guarantee, and each guarantee to a
     mechanism that provides it. The mechanisms converge into a dependency check that finds which guarantees
     become meaningful only after another exists. That yields the LOAD-BEARING COMPOSITION — the smallest set
@@ -746,7 +746,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     composition, not any particular mechanism.</desc>
 
   <defs>
-    <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="f-appendix-a-composing-a-stack-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -754,19 +754,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- CAPABILITY -->
   <rect x="290" y="24" width="240" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="410" y="59" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">CAPABILITY</text>
-  <line x1="410" y1="82" x2="410" y2="118" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="410" y1="82" x2="410" y2="118" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-appendix-a-composing-a-stack-ah)"/>
 
   <!-- question -->
   <rect x="255" y="120" width="310" height="52" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="410" y="152" text-anchor="middle" font-size="17" font-weight="700" fill="#7a5c12">&#8220;What makes this false?&#8221;</text>
-  <line x1="410" y1="172" x2="410" y2="208" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="410" y1="172" x2="410" y2="208" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-appendix-a-composing-a-stack-ah)"/>
 
   <!-- FAILURE CLASSES (red) -->
   <rect x="285" y="210" width="250" height="58" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
   <text x="410" y="245" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">FAILURE CLASSES</text>
 
   <!-- fan out to three guarantees -->
-  <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
+  <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-appendix-a-composing-a-stack-ah)">
     <path d="M410,268 C260,300 200,304 180,328"/>
     <line x1="410" y1="268" x2="410" y2="328"/>
     <path d="M410,268 C560,300 620,304 640,328"/>
@@ -781,7 +781,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="640" y="364" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">guarantee</text>
 
   <!-- guarantee -> mechanism -->
-  <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
+  <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-appendix-a-composing-a-stack-ah)">
     <line x1="180" y1="386" x2="180" y2="428"/>
     <line x1="410" y1="386" x2="410" y2="428"/>
     <line x1="640" y1="386" x2="640" y2="428"/>
@@ -796,7 +796,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="640" y="464" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">mechanism</text>
 
   <!-- converge to dependency check -->
-  <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
+  <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-appendix-a-composing-a-stack-ah)">
     <path d="M180,486 C180,522 320,528 350,540"/>
     <line x1="410" y1="486" x2="410" y2="540"/>
     <path d="M640,486 C640,522 500,528 470,540"/>
@@ -805,12 +805,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- dependency check -->
   <rect x="285" y="542" width="250" height="56" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="410" y="576" text-anchor="middle" font-size="17" font-weight="700" fill="#7a5c12">dependency check</text>
-  <line x1="410" y1="598" x2="410" y2="634" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="410" y1="598" x2="410" y2="634" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-appendix-a-composing-a-stack-ah)"/>
 
   <!-- LOAD-BEARING COMPOSITION (rust emphasis) -->
   <rect x="255" y="636" width="310" height="64" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="410" y="674" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">LOAD-BEARING COMPOSITION</text>
-  <line x1="410" y1="700" x2="410" y2="736" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="410" y1="700" x2="410" y2="736" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-appendix-a-composing-a-stack-ah)"/>
 
   <!-- ENGINEERING STACK (green outcome) -->
   <rect x="285" y="738" width="250" height="60" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>

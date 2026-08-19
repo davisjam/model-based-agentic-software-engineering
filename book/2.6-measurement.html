@@ -710,16 +710,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Engineering question</strong> — How much capacity is this workload consuming, what does a unit of work cost, and how close is demand to an operating or budget envelope?</li><li><strong>Model</strong> — a small web of related quantities: generation work induces usage and concurrency; usage and pricing determine cost, concurrency contributes to capacity demand, and both can be compared against operating or budget envelopes.</li><li><strong>Property</strong> — the quantities are relatable and comparable against a declared envelope, so demand can be read against a bound rather than watched call by call.</li><li><strong>Quality attribute</strong> — cost control, capacity planning, graceful behavior under load.</li></ul></blockquote>
 <p><a class="xref" href="2.6-measurement.html#fig-2-6-1">Figure&nbsp;2.6-1</a> draws the model: generation work fans into usage and concurrency; usage and pricing determine cost, concurrency contributes to capacity demand, and both are read against operating or budget envelopes. It supports questions about capacity consumption, unit cost, active work, and proximity to operating or budget envelopes. These quantities come from concrete events — requests, token counts, leases, provider responses, and charges — but the measurement model is the engineering interpretation placed over them.</p>
 <figure id="fig-2-6-1" class="book-figure" data-label="genai-cost-capacity-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 390"
-     role="img" aria-labelledby="gcTitle gcDesc"
+     role="img" aria-labelledby="f-genai-cost-capacity-model-gcTitle f-genai-cost-capacity-model-gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="gcTitle">DocAble's GenAI cost-and-capacity measurement model: two separate envelopes</title>
-  <desc id="gcDesc">Generation work splits into two independent quantity chains. One chain: usage relates
+  <title id="f-genai-cost-capacity-model-gcTitle">DocAble's GenAI cost-and-capacity measurement model: two separate envelopes</title>
+  <desc id="f-genai-cost-capacity-model-gcDesc">Generation work splits into two independent quantity chains. One chain: usage relates
     to cost, which is compared against a cost budget. A separate chain: concurrency relates to capacity,
     which is compared against a capacity envelope. The two chains are drawn apart because they are distinct
     envelopes, not one shared budget.</desc>
 
   <defs>
-    <marker id="gc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-genai-cost-capacity-model-gc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -732,8 +732,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="90" y="186" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">work</text>
 
   <!-- split to the two chains -->
-  <path d="M156,150 C176,120 178,110 190,100" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
-  <path d="M156,192 C176,222 178,232 190,242" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
+  <path d="M156,150 C176,120 178,110 190,100" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
+  <path d="M156,192 C176,222 178,232 190,242" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
 
   <!-- ===== TOP CHAIN: usage -> cost -> budget ===== -->
   <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
@@ -745,8 +745,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="555" y="99" font-size="15">cost</text>
     <text x="555" y="118" font-size="15">budget</text>
   </g>
-  <line x1="300" y1="101" x2="338" y2="101" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
-  <line x1="440" y1="101" x2="478" y2="101" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
+  <line x1="300" y1="101" x2="338" y2="101" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
+  <line x1="440" y1="101" x2="478" y2="101" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
 
   <!-- ===== BOTTOM CHAIN: concurrency -> capacity -> capacity envelope ===== -->
   <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
@@ -758,8 +758,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="555" y="265" font-size="15">capacity</text>
     <text x="555" y="284" font-size="15">envelope</text>
   </g>
-  <line x1="300" y1="267" x2="338" y2="267" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
-  <line x1="440" y1="267" x2="478" y2="267" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
+  <line x1="300" y1="267" x2="338" y2="267" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
+  <line x1="440" y1="267" x2="478" y2="267" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
 
   <!-- footer: protect the two-envelopes point -->
   <text x="330" y="346" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Two chains, two envelopes &#8212; usage feeds a cost budget,</text>
@@ -768,15 +768,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The distinction matters because representing a threshold does not determine what happens when the threshold is crossed. In DocAble the same broad family of cost and usage measurements supports several kinds of response. Some quantities are observed. Some feed adaptive throttling. Per-job exhaustion can lead to soft completion rather than outright failure. A hard daily budget gate also exists, but stays dormant unless configured. Those are different authority choices over related measurements.</p>
 <p>For now, Part II needs only the representation. <a class="xref" href="2.6-measurement.html#fig-2-6-2">Figure&nbsp;2.6-2</a> reduces it to its core shape: a measured quantity read as a current state against a reference envelope, and the comparison between them.</p>
 <figure id="fig-2-6-2" class="book-figure" data-label="measured-quantity-comparison"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300"
-     role="img" aria-labelledby="mqTitle mqDesc"
+     role="img" aria-labelledby="f-measured-quantity-comparison-mqTitle f-measured-quantity-comparison-mqDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mqTitle">A current value is compared against a separately declared reference bound</title>
-  <desc id="mqDesc">Two peer inputs — a current value and a reference bound — converge into a comparison.
+  <title id="f-measured-quantity-comparison-mqTitle">A current value is compared against a separately declared reference bound</title>
+  <desc id="f-measured-quantity-comparison-mqDesc">Two peer inputs — a current value and a reference bound — converge into a comparison.
     The reference bound is declared separately; it is not derived from the measured quantity. The model says
     what is compared, not what to do about the result.</desc>
 
   <defs>
-    <marker id="mq-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-measured-quantity-comparison-mq-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -792,8 +792,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="150" y="219" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">declared separately</text>
 
   <!-- converge into comparison -->
-  <path d="M260,78 C310,96 320,120 360,132" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mq-b)"/>
-  <path d="M260,198 C310,180 320,156 360,144" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mq-b)"/>
+  <path d="M260,78 C310,96 320,120 360,132" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-measured-quantity-comparison-mq-b)"/>
+  <path d="M260,198 C310,180 320,156 360,144" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-measured-quantity-comparison-mq-b)"/>
 
   <!-- comparison -->
   <rect x="368" y="108" width="160" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
@@ -805,19 +805,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="Core measurement relation"><span class="fig-label">Figure 2.6-2.</span> <em>Core measurement relation.</em> A current value is interpreted against a separately declared reference bound. The model defines what is compared; it does not determine the consequence of the comparison.</figcaption></figure>
 <p>Part III returns to this example and asks the authority question: <em>when should a measured quantity merely inform, when should it adapt behavior, and when should it stop work?</em> <a class="xref" href="2.6-measurement.html#fig-2-6-3">Figure&nbsp;2.6-3</a> holds the two moves apart — the Part II model of what quantities matter, and the Part III choice of what consequence each quantity earns, from observation through adaptation and soft degradation to a hard gate that may be armed or left dormant.</p>
 <figure id="fig-2-6-3" class="book-figure" data-label="modeling-perp-authority"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380"
-     role="img" aria-labelledby="paTitle paDesc"
+     role="img" aria-labelledby="f-modeling-perp-authority-paTitle f-modeling-perp-authority-paDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="paTitle">One measurement, different authority decisions</title>
-  <desc id="paDesc">Part II, the model, names a quantity and a reference bound and compares them, answering
+  <title id="f-modeling-perp-authority-paTitle">One measurement, different authority decisions</title>
+  <desc id="f-modeling-perp-authority-paDesc">Part II, the model, names a quantity and a reference bound and compares them, answering
     what quantity and bound matter. Part III, the authority decision, takes the same model and chooses its
     force: observe, adapt, degrade, or gate. Observe and adapt are shown in gray; degrade and gate, the
     consequential decisions, in rust. Modeling and authority are separate moves over one shared model.</desc>
 
   <defs>
-    <marker id="pa-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-modeling-perp-authority-pa-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="pa-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-modeling-perp-authority-pa-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
   </defs>
@@ -837,8 +837,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <rect x="270" y="142" width="150" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
     <text x="345" y="171">comparison</text>
   </g>
-  <path d="M170,125 C220,143 230,152 268,158" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pa-b)"/>
-  <path d="M170,205 C220,187 230,178 268,172" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pa-b)"/>
+  <path d="M170,125 C220,143 230,152 268,158" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-modeling-perp-authority-pa-b)"/>
+  <path d="M170,205 C220,187 230,178 268,172" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-modeling-perp-authority-pa-b)"/>
   <text x="235" y="262" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What quantity and bound matter?&#8221;</text>
 
   <!-- ===== RIGHT: PART III AUTHORITY DECISION ===== -->
@@ -846,7 +846,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="715" y="129" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">same model</text>
   <!-- fan to four authority decisions -->
-  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#pa-k)">
+  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-modeling-perp-authority-pa-k)">
     <path d="M650,146 C600,168 570,172 554,190"/>
     <path d="M690,146 C670,168 662,172 664,190"/>
     <path d="M740,146 C760,168 768,172 776,190"/>

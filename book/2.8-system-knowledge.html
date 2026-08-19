@@ -709,10 +709,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p id="idx-def-modeling-substrate">DocAble's models differ in shape on purpose. Some are registries of components and their relations. Some represent state transitions. Some encode contracts or decisions. Some capture quantitative relationships. They share identities, derivations, query surfaces, and traceability where those help, but nothing forces them into a single representation. Read the collection as a <strong>modeling substrate</strong>, not as one system-knowledge graph.</p>
 <p>The substrate is concrete, and it is larger than any one chapter. In DocAble it holds on the order of ninety structured model modules plus several data dialects, organized in layers: a component-identity layer names what exists; a per-component metadata layer annotates each one; orthogonal meta-files sit across the top for deployment topology, inter-service edges, data flow, required environment, state machines, and the governance graph itself. In DocAble, these models are represented as data rather than importing the implementation they describe. This keeps model and territory separable enough for correspondence to be checked. Where a model is intended to provide independent correspondence evidence, its representation must remain distinguishable from the artifact whose correspondence it is meant to assess. <a class="xref" href="2.8-system-knowledge.html#fig-2-8-1">Figure&nbsp;2.8-1</a> abstracts this substrate to the six model classes and the shared identities that join them.</p>
 <figure id="fig-2-8-1" class="book-figure" data-label="modeling-substrate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 580"
-     role="img" aria-labelledby="mbTitle mbDesc"
+     role="img" aria-labelledby="f-modeling-substrate-mbTitle f-modeling-substrate-mbDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mbTitle">Heterogeneous models arranged as peers around shared identities</title>
-  <desc id="mbDesc">A radial arrangement. At the center sit shared identities. Six purpose models —
+  <title id="f-modeling-substrate-mbTitle">Heterogeneous models arranged as peers around shared identities</title>
+  <desc id="f-modeling-substrate-mbDesc">A radial arrangement. At the center sit shared identities. Six purpose models —
     structural, behavioral, ownership, decision, measurement, and provenance — are peers around the center,
     each joined to it. No model sits above another. Traceability, derivation, and query surfaces surround
     them in a footer band, not inside the identity center. The unity is semantic, not a hierarchy.</desc>
@@ -767,19 +767,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p id="idx-def-derive-and-join">That agreement follows one discipline: prefer shared identity and derivation over independently maintained copies of the same fact. Where one model needs a fact owned elsewhere, join through a stable identity or derive a projection. For example, the access policy is generated from the service-flow model rather than maintaining a second endpoint list; a journey model joins to those endpoints by call site rather than copying them. Where duplication is unavoidable, make the correspondence explicit and checkable. This reduces the number of independent truths that must be reconciled by hand.</p>
 <p>Shared identity also provides a query entry point. An agent — or an engineer — enters the substrate through the object its task names and traverses outward, following identities across models rather than loading everything. A canonical query surface lets the agent traverse represented relationships rather than rediscover them through repository search: name a component and ask what it owns, what it depends on, which flow reaches it, what its lifecycle looks like. The agent does not need <em>the whole model.</em> It needs the connected slice that answers the engineering question in front of it. <a class="xref" href="2.8-system-knowledge.html#fig-2-8-2">Figure&nbsp;2.8-2</a> draws that entry and outward walk.</p>
 <figure id="fig-2-8-2" class="book-figure" data-label="substrate-traversal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560"
-     role="img" aria-labelledby="stTitle stDesc"
+     role="img" aria-labelledby="f-substrate-traversal-stTitle f-substrate-traversal-stDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="stTitle">Task-driven traversal: enter at a named entity, follow only the relations needed</title>
-  <desc id="stDesc">A task enters the substrate through a named system entity, shown by an arrow into the
+  <title id="f-substrate-traversal-stTitle">Task-driven traversal: enter at a named entity, follow only the relations needed</title>
+  <desc id="f-substrate-traversal-stDesc">A task enters the substrate through a named system entity, shown by an arrow into the
     entity. From the entity, six model relations fan outward as peers: structural, behavioral, decision,
     measurement, provenance, and ownership. There is no order among them. The task retrieves only the
     relations its engineering question requires.</desc>
 
   <defs>
-    <marker id="st-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-substrate-traversal-st-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="st-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-substrate-traversal-st-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
   </defs>
@@ -787,11 +787,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- TASK enters INTO the entity -->
   <rect x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="410" y="52" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
-  <line x1="410" y1="68" x2="410" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#st-k)"/>
+  <line x1="410" y1="68" x2="410" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-substrate-traversal-st-k)"/>
   <text x="422" y="160" font-size="12.5" font-style="italic" fill="#57534e">enters at a named entity</text>
 
   <!-- spokes: entity to the six relations (drawn under the boxes) -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#st-b)">
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-substrate-traversal-st-b)">
     <path d="M470,272 C520,244 560,222 588,206"/>          <!-- to right (0deg) -->
     <path d="M460,258 C500,210 505,170 508,145"/>          <!-- to upper-right (60deg) -->
     <path d="M360,258 C320,210 315,170 312,145"/>          <!-- to upper-left (120deg) -->
@@ -830,22 +830,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p id="idx-def-derivation-direction">Make the direction of correspondence explicit. Where the implementation is the source of truth, derive the model. Where the model is the source of truth, generate the downstream artifact. Where neither fully determines the other, maintain traceability and check the mechanically decidable correspondences. <a class="xref" href="2.8-system-knowledge.html#fig-2-8-3">Figure&nbsp;2.8-3</a> lays the three cases side by side.</p>
 <span id="idx-def-model-from-code"></span><span id="idx-def-model-to-code"></span><ul><li><strong>Where the implementation is the source of truth, derive the model.</strong> The model is a projection of the code, reconciled at build time. A component-zone registry reads the real directory tree; a journey's dependency list is induced from its real call sites. The drift check is a <strong>reconciler</strong> — it re-derives the model from the code and fails on divergence. This pattern is common when models are introduced into an existing codebase.</li><li><strong>Where the model is the source of truth, generate the downstream artifact.</strong> Code, configuration, or documentation are emitted from the model. The access policy, the service catalog, and the wire-contract types are generated from the service-flow model. The drift check is a <strong>freshness and provenance check</strong> — the generated artifact carries a header, and a hand-edit or a stale regeneration is a finding.</li></ul>
 <figure id="fig-2-8-3" class="book-figure" data-label="derive-generate-trace"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300"
-     role="img" aria-labelledby="dgTitle dgDesc"
+     role="img" aria-labelledby="f-derive-generate-trace-dgTitle f-derive-generate-trace-dgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="dgTitle">Three correspondence patterns: derive, generate, trace and check</title>
-  <desc id="dgDesc">Three panels. Derive: implementation in gray flows up to a model in blue, when the
+  <title id="f-derive-generate-trace-dgTitle">Three correspondence patterns: derive, generate, trace and check</title>
+  <desc id="f-derive-generate-trace-dgDesc">Three panels. Derive: implementation in gray flows up to a model in blue, when the
     implementation is the source of truth. Generate: a model in blue projects down to implementation or config in
     gray, when the model is the source of truth. Trace and check: a model and system are linked two ways with a
     rust check, when neither fully determines the other; only the decidable correspondences are checked.</desc>
 
   <defs>
-    <marker id="dg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-derive-generate-trace-dg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="dg-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-derive-generate-trace-dg-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="dg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-derive-generate-trace-dg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
@@ -859,7 +859,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation is source of truth</text>
   <rect x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="160" y="219" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">implementation</text>
-  <line x1="160" y1="188" x2="160" y2="128" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dg-b)"/>
+  <line x1="160" y1="188" x2="160" y2="128" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-derive-generate-trace-dg-b)"/>
   <text x="172" y="162" font-size="13.5" font-style="italic" fill="#2f5169">derive</text>
   <rect x="55" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="160" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
@@ -869,7 +869,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model is source of truth</text>
   <rect x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="480" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
-  <line x1="480" y1="128" x2="480" y2="188" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dg-k)"/>
+  <line x1="480" y1="128" x2="480" y2="188" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-derive-generate-trace-dg-k)"/>
   <text x="492" y="162" font-size="13.5" font-style="italic" fill="#2f5169">generate</text>
   <rect x="375" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="219" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">implementation / config</text>
@@ -880,7 +880,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="800" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
   <!-- two-way link with rust decidable check -->
-  <line x1="800" y1="136" x2="800" y2="180" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#dg-r)" marker-end="url(#dg-r)"/>
+  <line x1="800" y1="136" x2="800" y2="180" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#f-derive-generate-trace-dg-r)" marker-end="url(#f-derive-generate-trace-dg-r)"/>
   <text x="812" y="163" font-size="12.5" font-weight="700" fill="#9a3f12">check (decidable)</text>
   <rect x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="800" y="211" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">system</text>
@@ -892,15 +892,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Mechanical correspondence has a declared surface. Some claims are decidable: an anchor resolves, an observed dependency belongs to the permitted set, or a generated artifact is current. Other claims remain semantic and require judgment. Still others are not modeled at all.</p>
 <p>These are different gaps: a semantic miss occurs when correspondence still holds syntactically but meaning has changed; an unmodeled region has no model-based coverage. A recurring miss is a candidate for refining the representation or adding a control. <a class="xref" href="2.8-system-knowledge.html#fig-2-8-4">Figure&nbsp;2.8-4</a> distinguishes mechanically decidable claims, semantic claims requiring judgment, and properties outside the modeled surface.</p>
 <figure id="fig-2-8-4" class="book-figure" data-label="model-sync-two-layer-net"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420"
-     role="img" aria-labelledby="msTitle msDesc"
+     role="img" aria-labelledby="f-model-sync-two-layer-net-msTitle f-model-sync-two-layer-net-msDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="msTitle">Coverage of model correspondence: modeled surface and unmodeled surface</title>
-  <desc id="msDesc">Two surfaces. The modeled surface splits into decidable claims, which get a mechanical
+  <title id="f-model-sync-two-layer-net-msTitle">Coverage of model correspondence: modeled surface and unmodeled surface</title>
+  <desc id="f-model-sync-two-layer-net-msDesc">Two surfaces. The modeled surface splits into decidable claims, which get a mechanical
     check, and semantic claims, which need judgment. The unmodeled surface has no model-based coverage. A
     small arrow notes that a recurring miss should refine the representation or a control.</desc>
 
   <defs>
-    <marker id="cv-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-model-sync-two-layer-net-cv-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
@@ -928,7 +928,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- small optional refine note in the gap between the two surfaces, with a short loop arrow -->
   <text x="430" y="255" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">recurring miss &#8594; refine representation / control</text>
-  <path d="M760,266 C760,258 760,250 760,238" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#cv-r)"/>
+  <path d="M760,266 C760,258 760,250 760,238" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#f-model-sync-two-layer-net-cv-r)"/>
 
   <!-- footer: protect the point -->
   <text x="450" y="374" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Mechanical checks reach only what the representation makes decidable;</text>
@@ -936,20 +936,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="Coverage of model correspondence"><span class="fig-label">Figure 2.8-4.</span> <em>Coverage of model correspondence.</em> Mechanical checks cover only claims the representation makes decidable; semantic claims still require judgment, and unmodeled properties have no model-based coverage.</figcaption></figure>
 <p>For invariant-bearing models, one useful executable pattern is a structured schema plus checked predicates over that schema. The schema defines entities, relations, fields, or states; the predicates state properties that a checker evaluates over the declared domain. Other executable models may instead drive generation, simulation, transformation, or analysis. A schema alone does not establish correspondence to a changing system; checks or derivations are needed where that correspondence matters. <a class="xref" href="2.8-system-knowledge.html#fig-2-8-5">Figure&nbsp;2.8-5</a> draws that relationship.</p>
 <figure id="fig-2-8-5" class="book-figure" data-label="coherence-triangle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380"
-     role="img" aria-labelledby="ctTitle ctDesc"
+     role="img" aria-labelledby="f-coherence-triangle-ctTitle f-coherence-triangle-ctDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ctTitle">Checked predicates over a structured model: model, invariants, checker</title>
-  <desc id="ctDesc">A linear pipeline. A structured model of records, edges, and states supports predicates
+  <title id="f-coherence-triangle-ctTitle">Checked predicates over a structured model: model, invariants, checker</title>
+  <desc id="f-coherence-triangle-ctDesc">A linear pipeline. A structured model of records, edges, and states supports predicates
     over its domain. Those predicates are invariants, each with a stable id and a declared domain, for
     example the lease invariant leased if and only if an owner exists. A checker — a model check, a drift
     lint, or a validator — evaluates them. A side arrow shows that a recurring failure yields a new or
     refined invariant. This is one executable-model pattern, not the definition of executability.</desc>
 
   <defs>
-    <marker id="ct-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-coherence-triangle-ct-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="ct-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-coherence-triangle-ct-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
@@ -974,14 +974,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="835" y="190" text-anchor="middle" font-size="15" fill="#57534e">&#183; validator</text>
 
   <!-- edges -->
-  <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
+  <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-coherence-triangle-ct-k)"/>
   <text x="332" y="130" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">supports</text>
   <text x="332" y="146" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">predicates over</text>
-  <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
+  <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-coherence-triangle-ct-k)"/>
   <text x="667" y="138" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">evaluated by</text>
 
   <!-- side arrow: recurring failure -> new/refined invariant -->
-  <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ct-r)"/>
+  <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#f-coherence-triangle-ct-r)"/>
   <text x="668" y="320" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
 
   <!-- footer: protect the point -->
@@ -1001,26 +1001,26 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
 <p>A model does not govern the system merely by existing. The structural model can <em>name</em> a forbidden dependency without preventing it. The recovery model can name an illegal transition without rejecting it. The measurement model can represent a budget without stopping the work that exceeds it. The provenance model can specify the evidence an operation should leave without requiring the operation to leave it. Each class makes a property explicit; none, by itself, gives that property force.</p>
 <p>The separation is deliberate. <strong>Modeling makes an engineering property explicit; Alignment gives selected properties consequence.</strong> Where an appropriate boundary and evaluator exist, a constraint may exclude an unwanted state, a sensor may produce relevant evidence, a validator may evaluate it, and a gate may give the verdict consequence. <a class="xref" href="2.8-system-knowledge.html#fig-2-8-6">Figure&nbsp;2.8-6</a> draws the path from territory to consequence.</p>
 <figure id="fig-2-8-6" class="book-figure" data-label="modeling-creates-surfaces"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 680"
-     role="img" aria-labelledby="mcTitle mcDesc"
+     role="img" aria-labelledby="f-modeling-creates-surfaces-mcTitle f-modeling-creates-surfaces-mcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mcTitle">Modeling makes properties available to Alignment — but is not the only path</title>
-  <desc id="mcDesc">Two paths join at one Alignment. The direct path: a territory or action is acted on
+  <title id="f-modeling-creates-surfaces-mcTitle">Modeling makes properties available to Alignment — but is not the only path</title>
+  <desc id="f-modeling-creates-surfaces-mcDesc">Two paths join at one Alignment. The direct path: a territory or action is acted on
     directly, a local observable obligation. The model-mediated path: territory is reduced by abstraction to
     a model, which makes an explicit property available, a richer semantic obligation. Both land side by
     side on one Alignment — constraint, sensor, validator, gate — which leads to consequence. Governance can
     act directly; models add reach but are not required.</desc>
 
   <defs>
-    <marker id="mc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-modeling-creates-surfaces-mc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/>
     </marker>
-    <marker id="mc-kk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-modeling-creates-surfaces-mc-kk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="mc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-modeling-creates-surfaces-mc-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="mc-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-modeling-creates-surfaces-mc-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
     </marker>
   </defs>
@@ -1033,7 +1033,7 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
   <text x="185" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TERRITORY / ACTION</text>
   <text x="185" y="304" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
   <!-- direct arrow onto Alignment (left landing) -->
-  <path d="M185,316 C185,372 250,392 300,406" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#mc-kk)"/>
+  <path d="M185,316 C185,372 250,392 300,406" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-kk)"/>
   <text x="196" y="360" text-anchor="start" font-size="14" font-weight="700" fill="#57534e">acted on directly</text>
   <text x="196" y="377" text-anchor="start" font-size="14" font-style="italic" fill="#57534e">local observable obligation</text>
 
@@ -1042,18 +1042,18 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
   <!-- TERRITORY -->
   <rect x="405" y="86" width="260" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="535" y="116" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">TERRITORY</text>
-  <line x1="535" y1="134" x2="535" y2="168" stroke="#1c1917" stroke-width="2" marker-end="url(#mc-k)"/>
+  <line x1="535" y1="134" x2="535" y2="168" stroke="#1c1917" stroke-width="2" marker-end="url(#f-modeling-creates-surfaces-mc-k)"/>
   <text x="547" y="156" font-size="14" font-style="italic" fill="#57534e">abstraction</text>
   <!-- MODEL -->
   <rect x="405" y="170" width="260" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="535" y="200" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">MODEL</text>
-  <line x1="535" y1="218" x2="535" y2="252" stroke="#1c1917" stroke-width="2" marker-end="url(#mc-k)"/>
+  <line x1="535" y1="218" x2="535" y2="252" stroke="#1c1917" stroke-width="2" marker-end="url(#f-modeling-creates-surfaces-mc-k)"/>
   <text x="547" y="240" font-size="14" font-style="italic" fill="#57534e">makes explicit</text>
   <!-- EXPLICIT PROPERTY -->
   <rect x="405" y="254" width="260" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="535" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">EXPLICIT PROPERTY</text>
   <!-- model arrow onto Alignment (right landing) -->
-  <path d="M535,308 C535,364 470,384 420,406" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#mc-b)"/>
+  <path d="M535,308 C535,364 470,384 420,406" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-b)"/>
   <text x="524" y="360" text-anchor="end" font-size="14" font-weight="700" fill="#2f5169">available to</text>
   <text x="524" y="377" text-anchor="end" font-size="14" font-style="italic" fill="#2f5169">richer semantic obligation</text>
 
@@ -1061,7 +1061,7 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
   <rect x="225" y="410" width="270" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="360" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
   <text x="360" y="462" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">constraint &#183; sensor &#183; validator &#183; gate</text>
-  <line x1="360" y1="476" x2="360" y2="524" stroke="#155c38" stroke-width="2.4" marker-end="url(#mc-g)"/>
+  <line x1="360" y1="476" x2="360" y2="524" stroke="#155c38" stroke-width="2.4" marker-end="url(#f-modeling-creates-surfaces-mc-g)"/>
   <text x="372" y="504" font-size="14" font-style="italic" fill="#155c38">gives consequence</text>
 
   <!-- ===== CONSEQUENCE ===== -->

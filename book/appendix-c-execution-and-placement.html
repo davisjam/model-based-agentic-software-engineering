@@ -710,10 +710,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Deployment topology</strong> represents where components run and how they connect: web → queue → worker → storage.</li><li><strong>Host execution policy</strong> maps each host profile to a scheduling policy: elastic fan-out, bounded fan-out, or serialized execution.</li></ul>
 <p><a class="xref" href="appendix-c-execution-and-placement.html#fig-C-3-1">Figure&nbsp;C.3-1</a> shows the stable graph with the policy as a separate layer beneath it.</p>
 <figure id="fig-C-3-1" class="book-figure" data-label="fig-g4-execution-placement"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440"
-     role="img" aria-labelledby="g4Title g4Desc"
+     role="img" aria-labelledby="f-appendix-g-4-host-execution-policy-g4Title f-appendix-g-4-host-execution-policy-g4Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="g4Title">Stable topology, variable Host Execution Policy — the deploy graph holds; the policy varies</title>
-  <desc id="g4Desc">A stable engineering view runs left to right along solid arrows: web, queue, worker, storage.
+  <title id="f-appendix-g-4-host-execution-policy-g4Title">Stable topology, variable Host Execution Policy — the deploy graph holds; the policy varies</title>
+  <desc id="f-appendix-g-4-host-execution-policy-g4Desc">A stable engineering view runs left to right along solid arrows: web, queue, worker, storage.
     From the worker a dashed scheduled-under arrow drops to a Host Execution Policy table, the variable overlay.
     The table maps host profile to scheduling: elastic fans out, metered gives a bounded fan, scarce serializes.
     No heavy boundary appears here — the figure is descriptive, and the representative rule is that load rationing
@@ -722,7 +722,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     III. Weight and dash carry the meaning without colour.</desc>
 
   <defs>
-    <marker id="g4-solid" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+    <marker id="f-appendix-g-4-host-execution-policy-g4-solid" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
   </defs>
 
@@ -742,12 +742,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="610" y="111" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">storage</text>
 
   <!-- topology edges (SOLID declared) -->
-  <line x1="160" y1="105" x2="210" y2="105" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g4-solid)"/>
-  <line x1="330" y1="105" x2="380" y2="105" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g4-solid)"/>
-  <line x1="500" y1="105" x2="550" y2="105" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g4-solid)"/>
+  <line x1="160" y1="105" x2="210" y2="105" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-4-host-execution-policy-g4-solid)"/>
+  <line x1="330" y1="105" x2="380" y2="105" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-4-host-execution-policy-g4-solid)"/>
+  <line x1="500" y1="105" x2="550" y2="105" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-4-host-execution-policy-g4-solid)"/>
 
   <!-- scheduled under (DASHED) worker -> policy -->
-  <line x1="440" y1="132" x2="440" y2="196" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g4-solid)"/>
+  <line x1="440" y1="132" x2="440" y2="196" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#f-appendix-g-4-host-execution-policy-g4-solid)"/>
   <text x="452" y="170" font-size="14" font-style="italic" fill="#57534e">scheduled under</text>
   <text x="452" y="186" font-size="14" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
 

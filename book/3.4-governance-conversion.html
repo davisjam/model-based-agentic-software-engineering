@@ -715,11 +715,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ol><li><strong>Missing representation / semantics → improve the model.</strong> Make the fact or relation durable at the abstraction where the question becomes answerable.</li><li><strong>Missing obligation → state the invariant or policy.</strong> Give future work something independent to be wrong against.</li><li><strong>Missing evidence → add a sensor or trace.</strong> Make the relevant state observable.</li><li><strong>Missing evaluation → strengthen the validator.</strong> Turn evidence into a repeatable judgment.</li><li><strong>Missing consequence → add or strengthen a constraint or gate.</strong></li></ol>
 <p>This is why Modeling and Alignment form a feedback loop in practice. Alignment failures can expose knowledge or obligations that remain tacit; Modeling can externalize them and expose new properties worth aligning. The environment improves by moving recurring work out of episodic judgment and into durable structure. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-1">Figure&nbsp;3.4-1</a> draws the diagnosis.</p>
 <figure id="fig-3-4-1" class="book-figure" data-label="governance-conversion-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740"
-     role="img" aria-labelledby="gcTitle gcDesc"
+     role="img" aria-labelledby="f-governance-conversion-gcTitle f-governance-conversion-gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="gcTitle">Governance conversion: a failure is diagnosed for what was missing, and the missing
+  <title id="f-governance-conversion-gcTitle">Governance conversion: a failure is diagnosed for what was missing, and the missing
     piece is encoded as durable structure that future work benefits from inheriting as engineering capital</title>
-  <desc id="gcDesc">A failure or surprise flows down into one question — what was missing — which fans
+  <desc id="f-governance-conversion-gcDesc">A failure or surprise flows down into one question — what was missing — which fans
     into five branches: missing representation/semantics, obligation, evidence, evaluation, or consequence.
     Each branch encodes a durable answer: a model, an invariant, a sensor, a validator, or a constraint or
     gate. The five converge into durable engineering structure, which future work benefits from inheriting,
@@ -727,34 +727,34 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     gate — you diagnose what the environment lacked and encode that.</desc>
 
   <defs>
-    <marker id="gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-governance-conversion-gc-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
 
   <!-- failure -->
-  <rect id="gc-failure" x="375" y="24" width="250" height="52" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
+  <rect id="f-governance-conversion-gc-failure" x="375" y="24" width="250" height="52" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
   <text x="500" y="56" text-anchor="middle" font-size="21" font-weight="700" fill="#8a2f2f">FAILURE / SURPRISE</text>
   <!-- edge: gc-failure -> gc-diagnosis -->
-  <line x1="500" y1="76" x2="500" y2="114.8" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
+  <line x1="500" y1="76" x2="500" y2="114.8" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-governance-conversion-gc-ah)"/>
 
   <!-- diagnosis question -->
-  <rect id="gc-diagnosis" x="360" y="116" width="280" height="52" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
+  <rect id="f-governance-conversion-gc-diagnosis" x="360" y="116" width="280" height="52" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="500" y="148" text-anchor="middle" font-size="20" font-weight="700" fill="#7a5c12">What was missing?</text>
 
   <!-- Invisible ANCHOR NODES for the 5 diagnostic-category labels: a bare text label has no shape to carry
        an id, so a transparent (fill/stroke none) rect over each label gives the fan-out and the connector
        below it a real node to plug into. Zero visual change; the lint reads the rect geometry. -->
   <g fill="none" stroke="none">
-    <rect id="gc-cat-representation" x="80"  y="204" width="60" height="40"/>
-    <rect id="gc-cat-obligation"     x="275" y="204" width="60" height="40"/>
-    <rect id="gc-cat-evidence"       x="470" y="204" width="60" height="40"/>
-    <rect id="gc-cat-evaluation"     x="665" y="204" width="60" height="40"/>
-    <rect id="gc-cat-consequence"    x="860" y="204" width="60" height="40"/>
+    <rect id="f-governance-conversion-gc-cat-representation" x="80"  y="204" width="60" height="40"/>
+    <rect id="f-governance-conversion-gc-cat-obligation"     x="275" y="204" width="60" height="40"/>
+    <rect id="f-governance-conversion-gc-cat-evidence"       x="470" y="204" width="60" height="40"/>
+    <rect id="f-governance-conversion-gc-cat-evaluation"     x="665" y="204" width="60" height="40"/>
+    <rect id="f-governance-conversion-gc-cat-consequence"    x="860" y="204" width="60" height="40"/>
   </g>
 
   <!-- fan lines to 5 branches (diagnosis question → each category anchor) -->
-  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#gc-ah)">
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#f-governance-conversion-gc-ah)">
     <!-- edge: gc-diagnosis -> gc-cat-representation -->
     <path d="M500,168 C300,196 110,173 110,203"/>
     <!-- edge: gc-diagnosis -> gc-cat-obligation -->
@@ -777,7 +777,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
 
   <!-- connectors category anchor → encoded answer -->
-  <g stroke="#2f5169" stroke-width="2" marker-end="url(#gc-ah)">
+  <g stroke="#2f5169" stroke-width="2" marker-end="url(#f-governance-conversion-gc-ah)">
     <!-- edge: gc-cat-representation -> gc-box-model -->
     <line x1="110" y1="240" x2="110" y2="288.8"/>
     <!-- edge: gc-cat-obligation -> gc-box-invariant -->
@@ -792,11 +792,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- encoded answers -->
   <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
-    <rect id="gc-box-model"     x="40"  y="290" width="140" height="46" rx="6"/>
-    <rect id="gc-box-invariant" x="235" y="290" width="140" height="46" rx="6"/>
-    <rect id="gc-box-sensor"    x="430" y="290" width="140" height="46" rx="6"/>
-    <rect id="gc-box-validator" x="625" y="290" width="140" height="46" rx="6"/>
-    <rect id="gc-box-gate"      x="812" y="290" width="156" height="46" rx="6"/>
+    <rect id="f-governance-conversion-gc-box-model"     x="40"  y="290" width="140" height="46" rx="6"/>
+    <rect id="f-governance-conversion-gc-box-invariant" x="235" y="290" width="140" height="46" rx="6"/>
+    <rect id="f-governance-conversion-gc-box-sensor"    x="430" y="290" width="140" height="46" rx="6"/>
+    <rect id="f-governance-conversion-gc-box-validator" x="625" y="290" width="140" height="46" rx="6"/>
+    <rect id="f-governance-conversion-gc-box-gate"      x="812" y="290" width="156" height="46" rx="6"/>
   </g>
   <g font-size="17" fill="#1c1917" text-anchor="middle">
     <text x="110" y="319">model</text>
@@ -807,7 +807,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
 
   <!-- converge to durable structure (each encoded answer → the durable-structure box) -->
-  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#gc-ah)">
+  <g stroke="#2f5169" stroke-width="2" fill="none" marker-end="url(#f-governance-conversion-gc-ah)">
     <!-- edge: gc-box-model -> gc-durable -->
     <path d="M110,336 C110,380 452,378 452,408"/>
     <!-- edge: gc-box-invariant -> gc-durable -->
@@ -820,17 +820,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <path d="M890,336 C890,380 548,378 548,408"/>
   </g>
 
-  <rect id="gc-durable" x="270" y="408" width="460" height="54" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="f-governance-conversion-gc-durable" x="270" y="408" width="460" height="54" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="500" y="441" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DURABLE ENGINEERING STRUCTURE</text>
   <!-- edge: gc-durable -> gc-future -->
-  <line x1="500" y1="462" x2="500" y2="504.8" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
+  <line x1="500" y1="462" x2="500" y2="504.8" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-governance-conversion-gc-ah)"/>
 
-  <rect id="gc-future" x="210" y="506" width="580" height="50" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
+  <rect id="f-governance-conversion-gc-future" x="210" y="506" width="580" height="50" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
   <text x="500" y="537" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5137">FUTURE WORK BENEFITS FROM INHERITING IT</text>
   <!-- edge: gc-future -> gc-capital -->
-  <line x1="500" y1="556" x2="500" y2="598.8" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-ah)"/>
+  <line x1="500" y1="556" x2="500" y2="598.8" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-governance-conversion-gc-ah)"/>
 
-  <rect id="gc-capital" x="330" y="600" width="340" height="56" rx="10" fill="#3d6b4a" stroke="#2f5137" stroke-width="2"/>
+  <rect id="f-governance-conversion-gc-capital" x="330" y="600" width="340" height="56" rx="10" fill="#3d6b4a" stroke="#2f5137" stroke-width="2"/>
   <text x="500" y="635" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">ENGINEERING CAPITAL</text>
 
   <text x="500" y="702" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a failure is not a request for another gate — diagnose what was missing, then encode it</text>
@@ -838,10 +838,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">3.4.3</span> Correct Judgment Without Consequence</h2>
 <p>A merge automation drained a backlog of agent worktrees into the mainline each tick. Most rebased cleanly; a fraction conflicted, and a single convenience option resolved those conflicts by taking one side automatically. On overlapping edits it silently dropped content. An audit already understood the danger: a guard detected when a conflict touched substrate-class files, judged the resolution unsafe, and logged it correctly — as a warning only. The operation proceeded, and the tree lost content. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-2">Figure&nbsp;3.4-2</a> traces the cascade.</p>
 <figure id="fig-3-4-2" class="book-figure" data-label="judgment-without-consequence"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720"
-     role="img" aria-labelledby="jcTitle jcDesc"
+     role="img" aria-labelledby="f-judgment-without-consequence-jcTitle f-judgment-without-consequence-jcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="jcTitle">Correct judgment without consequence: the audit detected the danger and judged it unsafe, but the link from verdict to consequence was severed, so the operation proceeded and content was lost</title>
-  <desc id="jcDesc">A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a
+  <title id="f-judgment-without-consequence-jcTitle">Correct judgment without consequence: the audit detected the danger and judged it unsafe, but the link from verdict to consequence was severed, so the operation proceeded and content was lost</title>
+  <desc id="f-judgment-without-consequence-jcDesc">A vertical cascade. A dangerous auto-resolution fallback exists. A sensor detects it and a
     validator judges it unsafe — sensing and evaluation both work. But the link from that verdict to any
     authoritative consequence is severed; the only thing emitted at the break is a warning. So the operation
     proceeds anyway and content is lost. Evidence existed and the judgment was correct; no authoritative
@@ -849,10 +849,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     louder.</desc>
 
   <defs>
-    <marker id="jc-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-judgment-without-consequence-jc-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="jc-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-judgment-without-consequence-jc-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
@@ -861,13 +861,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="250" y="40" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="400" y="71" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">dangerous fallback exists</text>
   <text x="400" y="90" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">auto-resolve conflicts by taking one side</text>
-  <line x1="400" y1="102" x2="400" y2="144" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
+  <line x1="400" y1="102" x2="400" y2="144" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-judgment-without-consequence-jc-n)"/>
 
   <!-- 2: sensor / audit detects (sensing works) -->
   <rect x="250" y="148" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="400" y="179" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">sensor / audit detects condition</text>
   <text x="400" y="198" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a guard sees the substrate-class conflict</text>
-  <line x1="400" y1="210" x2="400" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
+  <line x1="400" y1="210" x2="400" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-judgment-without-consequence-jc-n)"/>
 
   <!-- 3: validator: unsafe (evaluation correct) — the verdict -->
   <rect x="250" y="256" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
@@ -901,12 +901,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="452" y="404" font-size="16" font-weight="800" fill="#9a3f12">no authoritative consequence</text>
   <text x="452" y="426" font-size="14.5" font-style="italic" fill="#9a3f12">the verdict never reaches a consequence</text>
   <!-- lower stub into the operation, arrowed -->
-  <line x1="400" y1="440" x2="400" y2="472" stroke="#9a3f12" stroke-width="3.2" marker-end="url(#jc-r)"/>
+  <line x1="400" y1="440" x2="400" y2="472" stroke="#9a3f12" stroke-width="3.2" marker-end="url(#f-judgment-without-consequence-jc-r)"/>
 
   <!-- 4: operation proceeds anyway -->
   <rect x="250" y="476" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="400" y="513" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">operation proceeds anyway</text>
-  <line x1="400" y1="538" x2="400" y2="580" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#jc-r)"/>
+  <line x1="400" y1="538" x2="400" y2="580" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#f-judgment-without-consequence-jc-r)"/>
 
   <!-- 5: content lost (terminal harm) -->
   <rect x="250" y="584" width="300" height="62" rx="10" fill="#9a3f12" stroke="#7a3210" stroke-width="2.4"/>
@@ -929,11 +929,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">3.4.5</span> Where Authority Stops</h2>
 <p>Not every quality goal should end in authoritative enforcement. A consequential concern may remain unrepresented, require judgment, be mechanically evaluated without authoritative consequence, or be governed authoritatively. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-3">Figure&nbsp;3.4-3</a> shows the four possible stopping points.</p>
 <figure id="fig-3-4-3" class="book-figure" data-label="honest-gaps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
-     role="img" aria-labelledby="hgTitle hgDesc"
+     role="img" aria-labelledby="f-residual-decision-tree-hgTitle f-residual-decision-tree-hgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="hgTitle">Where authority stops: three questions place any obligation in one of four states —
+  <title id="f-residual-decision-tree-hgTitle">Where authority stops: three questions place any obligation in one of four states —
     residual, judgment required, evaluated only, or governed</title>
-  <desc id="hgDesc">A staircase of three questions. First: is the obligation explicit in a form the
+  <desc id="f-residual-decision-tree-hgDesc">A staircase of three questions. First: is the obligation explicit in a form the
     environment can use? No leads to RESIDUAL — a human or agent must reconstruct it. Yes leads to the
     second question: can it be evaluated adequately? No leads to JUDGMENT REQUIRED. Yes leads to the third:
     does authority act on the result? No leads to EVALUATED ONLY — evidence produced and evaluated, but
@@ -941,7 +941,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     obligations stop in different places.</desc>
 
   <defs>
-    <marker id="hg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-residual-decision-tree-hg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -952,14 +952,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="520" y="77" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">form the environment can use?</text>
 
   <!-- Q1 no -> RESIDUAL -->
-  <path d="M380,88 L380,120 L175,120 L175,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M380,88 L380,120 L175,120 L175,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#f-residual-decision-tree-hg-ah)"/>
   <text x="300" y="112" text-anchor="middle" font-size="15" font-style="italic" fill="#8a2f2f">no</text>
   <rect x="70" y="152" width="210" height="66" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
   <text x="175" y="181" text-anchor="middle" font-size="18" font-weight="800" fill="#8a2f2f">RESIDUAL</text>
   <text x="175" y="203" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">human must reconstruct it</text>
 
   <!-- Q1 yes -> Q2 -->
-  <path d="M560,88 L560,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M560,88 L560,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#f-residual-decision-tree-hg-ah)"/>
   <text x="576" y="120" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
 
   <!-- Q2 -->
@@ -967,14 +967,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="570" y="187" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Can it be evaluated adequately?</text>
 
   <!-- Q2 no -> JUDGMENT REQUIRED -->
-  <path d="M430,210 L430,242 L245,242 L245,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M430,210 L430,242 L245,242 L245,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#f-residual-decision-tree-hg-ah)"/>
   <text x="352" y="234" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
   <rect x="120" y="274" width="250" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="245" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">JUDGMENT REQUIRED</text>
   <text x="245" y="325" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">no adequate evaluator available</text>
 
   <!-- Q2 yes -> Q3 -->
-  <path d="M610,210 L610,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M610,210 L610,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#f-residual-decision-tree-hg-ah)"/>
   <text x="626" y="242" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
 
   <!-- Q3 -->
@@ -983,14 +983,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="620" y="321" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">on the result?</text>
 
   <!-- Q3 no -> EVALUATED ONLY -->
-  <path d="M480,332 L480,364 L360,364 L360,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M480,332 L480,364 L360,364 L360,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#f-residual-decision-tree-hg-ah)"/>
   <text x="410" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
   <rect x="240" y="396" width="240" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="360" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">EVALUATED ONLY</text>
   <text x="360" y="447" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">evaluated, yet un-gated</text>
 
   <!-- Q3 yes -> GOVERNED -->
-  <path d="M660,332 L660,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M660,332 L660,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#f-residual-decision-tree-hg-ah)"/>
   <text x="676" y="364" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
   <rect x="560" y="396" width="230" height="66" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2.4"/>
   <text x="675" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#2f5137">GOVERNED</text>

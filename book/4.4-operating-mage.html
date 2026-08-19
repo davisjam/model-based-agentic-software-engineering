@@ -720,10 +720,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p id="idx-def-deterministic-firing">A mechanical trigger does not require a mechanical response. <strong>The firing can be deterministic while the payload still contains judgment.</strong> An agent reaches a context threshold: a hook deterministically requests a handoff, but the agent must still summarize what matters. A deployment fails a health check: the event deterministically opens the recovery path, but an engineer may still decide whether rollback is warranted. A repeated failure is observed: the reflection procedure runs on its own, but whether that failure deserves a new mechanism stays an engineering decision.</p>
 <p>Wiring known failure events to their sanctioned reactions completes the idea: the reaction fires rather than waiting for an operator to notice the failure. A structured signal surface carries the events; something reacts to each one, reducing dependence on an operator noticing and polling the signal manually. <strong>Automate the arrival of the decision procedure.</strong> <a class="xref" href="4.4-operating-mage.html#fig-4-4-1">Figure&nbsp;4.4-1</a> draws the full path from a lifecycle transition to the next state.</p>
 <figure id="fig-4-4-1" class="book-figure" data-label="event-reaction-fire"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520"
-     role="img" aria-labelledby="erTitle erDesc"
+     role="img" aria-labelledby="f-event-reaction-fire-erTitle f-event-reaction-fire-erDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title id="erTitle">Bind reactions to lifecycle events — the firing is deterministic while the payload still contains judgment.</title>
-  <desc id="erDesc">A neutral lifecycle box flows down through an observable event into a solid rust
+  <title id="f-event-reaction-fire-erTitle">Bind reactions to lifecycle events — the firing is deterministic while the payload still contains judgment.</title>
+  <desc id="f-event-reaction-fire-erDesc">A neutral lifecycle box flows down through an observable event into a solid rust
     deterministic-fire node: the reaction fires on the event with no actor needing to notice. From the fire the
     flow fans into three branches distinguished by outline style. The left branch, a solid rust execute step,
     carries a known action. The middle branch, a dashed blue delegate step, carries bounded judgment. The right
@@ -733,14 +733,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     firing can be deterministic while the payload still contains judgment.</desc>
 
   <defs>
-    <marker id="er-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
-    <marker id="er-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="f-event-reaction-fire-er-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="f-event-reaction-fire-er-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
   </defs>
 
   <!-- lifecycle (neutral) -->
   <rect x="380" y="34" width="240" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="500" y="66" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">LIFECYCLE</text>
-  <line x1="500" y1="86" x2="500" y2="122" stroke="#57534e" stroke-width="2" marker-end="url(#er-ah)"/>
+  <line x1="500" y1="86" x2="500" y2="122" stroke="#57534e" stroke-width="2" marker-end="url(#f-event-reaction-fire-er-ah)"/>
   <text x="512" y="108" text-anchor="start" font-size="13" font-style="italic" fill="#57534e">observable event</text>
 
   <!-- deterministic fire (governance rust, SOLID + emphasis = the firing is deterministic) -->
@@ -750,9 +750,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="652" y="157" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">no actor need notice</text>
 
   <!-- fan to three branches -->
-  <path d="M500 182 C 410 205 300 206 220 222" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#er-ah)"/>
-  <line x1="500" y1="182" x2="500" y2="222" stroke="#57534e" stroke-width="2" marker-end="url(#er-ah)"/>
-  <path d="M500 182 C 590 205 700 206 780 222" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#er-ah)"/>
+  <path d="M500 182 C 410 205 300 206 220 222" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-event-reaction-fire-er-ah)"/>
+  <line x1="500" y1="182" x2="500" y2="222" stroke="#57534e" stroke-width="2" marker-end="url(#f-event-reaction-fire-er-ah)"/>
+  <path d="M500 182 C 590 205 700 206 780 222" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-event-reaction-fire-er-ah)"/>
 
   <!-- EXECUTE = solid rust (known action) -->
   <rect x="90" y="226" width="250" height="70" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
@@ -771,7 +771,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M215 296 C 215 330 430 338 486 354" fill="none" stroke="#57534e" stroke-width="2"/>
   <line x1="500" y1="296" x2="500" y2="354" stroke="#57534e" stroke-width="2"/>
   <path d="M785 296 C 785 330 570 338 514 354" fill="none" stroke="#57534e" stroke-width="2"/>
-  <line x1="500" y1="354" x2="500" y2="388" stroke="#57534e" stroke-width="2" marker-end="url(#er-ah)"/>
+  <line x1="500" y1="354" x2="500" y2="388" stroke="#57534e" stroke-width="2" marker-end="url(#f-event-reaction-fire-er-ah)"/>
 
   <!-- next lifecycle state (dark terminal) -->
   <rect x="360" y="390" width="280" height="62" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
@@ -779,7 +779,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="438" text-anchor="middle" font-size="16" font-weight="700" fill="#fdfcf9">STATE</text>
 
   <!-- dashed rust loop: the lifecycle advances and the next transition binds again -->
-  <path d="M640 421 H 935 V 60 H 622" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#er-ah-rust)"/>
+  <path d="M640 421 H 935 V 60 H 622" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#f-event-reaction-fire-er-ah-rust)"/>
   <text x="787" y="413" text-anchor="middle" font-size="12" font-style="italic" fill="#9a3f12">advances &#8594; the next transition binds again</text>
 
   <!-- thesis tagline (two lines) -->
@@ -795,10 +795,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>MAGE types each step by who or what can honestly decide it. <a class="xref" href="4.4-operating-mage.html#fig-4-4-2">Figure&nbsp;4.4-2</a> shows the three kinds and the form each takes.</p>
 <p><strong>Runnable.</strong> One mechanically determined outcome; preserve the executable operation. <strong>Delegable judgment.</strong> Bounded reasoning supplied with state, choices, criteria, and a required output. <strong>Human judgment.</strong> A decision surfaced to the operator.</p>
 <figure id="fig-4-4-2" class="book-figure" data-label="externalize-judgment"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680"
-     role="img" aria-labelledby="ejTitle ejDesc"
+     role="img" aria-labelledby="f-externalizing-judgment-ejTitle f-externalizing-judgment-ejDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-  <title id="ejTitle">Externalizing judgment — type the kinds of work inside a recurring procedure.</title>
-  <desc id="ejDesc">A neutral recurring-procedure box flows down into a green model-the-steps box, which fans
+  <title id="f-externalizing-judgment-ejTitle">Externalizing judgment — type the kinds of work inside a recurring procedure.</title>
+  <desc id="f-externalizing-judgment-ejDesc">A neutral recurring-procedure box flows down into a green model-the-steps box, which fans
     into three columns distinguished by outline style. The left column, a solid rust deterministic outcome,
     becomes an executable tool. The middle column, a dashed blue bounded judgment, becomes a prepared context
     plus procedure. The right column, a dotted dark irreducible judgment, remains a human decision. The three
@@ -807,22 +807,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     distinction survives in grayscale.</desc>
 
   <defs>
-    <marker id="ej-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="f-externalizing-judgment-ej-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
   </defs>
 
   <text x="500" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">III &#183; Externalizing Judgment</text>
 
   <rect x="360" y="66" width="280" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="500" y="99" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">RECURRING PROCEDURE</text>
-  <line x1="500" y1="120" x2="500" y2="158" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <line x1="500" y1="120" x2="500" y2="158" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
 
   <rect x="390" y="160" width="220" height="52" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="500" y="192" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">MODEL THE STEPS</text>
 
   <!-- fan to three kinds -->
-  <path d="M500 212 C 420 236 300 238 250 254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
-  <line x1="500" y1="212" x2="500" y2="254" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
-  <path d="M500 212 C 580 236 700 238 750 254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <path d="M500 212 C 420 236 300 238 250 254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
+  <line x1="500" y1="212" x2="500" y2="254" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
+  <path d="M500 212 C 580 236 700 238 750 254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
 
   <!-- deterministic = solid rust -->
   <rect x="120" y="256" width="260" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
@@ -837,9 +837,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="750" y="284" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">IRREDUCIBLE</text>
   <text x="750" y="304" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">JUDGMENT</text>
 
-  <line x1="250" y1="320" x2="250" y2="360" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
-  <line x1="500" y1="320" x2="500" y2="360" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
-  <line x1="750" y1="320" x2="750" y2="360" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <line x1="250" y1="320" x2="250" y2="360" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
+  <line x1="500" y1="320" x2="500" y2="360" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
+  <line x1="750" y1="320" x2="750" y2="360" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
 
   <!-- forms -->
   <rect x="140" y="362" width="220" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
@@ -856,7 +856,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M250 426 C 250 452 430 456 486 468" fill="none" stroke="#57534e" stroke-width="2"/>
   <path d="M750 426 C 750 452 570 456 514 468" fill="none" stroke="#57534e" stroke-width="2"/>
   <line x1="500" y1="426" x2="500" y2="468" stroke="#57534e" stroke-width="2"/>
-  <line x1="500" y1="468" x2="500" y2="520" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <line x1="500" y1="468" x2="500" y2="520" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
   <text x="640" y="492" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">lifecycle event invokes the right form</text>
 
   <rect x="380" y="522" width="240" height="58" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
@@ -867,10 +867,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p id="idx-def-operational-playbook">A structured operational playbook can serve as a model of engineering practice. It externalizes not only what to do, but which kind of reasoning each step requires. It connects directly to the next chapter: a mastery skill is one way to package exactly this kind of recurring judgment. <a class="xref" href="4.4-operating-mage.html#fig-4-4-3">Figure&nbsp;4.4-3</a> fences the one judgment step between two deterministic ends.</p>
 <blockquote class="aside-sidenote"><p>Learn more about this governance mechanism: <a href="../agent/governance-doc-controls/operational-playbooks.html">runbook</a>.</p></blockquote>
 <figure id="fig-4-4-3" class="book-figure" data-label="runbook-split"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -55 1020 595"
-     role="img" aria-labelledby="corTitle corDesc"
+     role="img" aria-labelledby="f-config-optimization-runbook-corTitle f-config-optimization-runbook-corDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="corTitle">A run-measure-assess loop wraps a three-step spine that fences one judgment step between deterministic ends</title>
-  <desc id="corDesc">A run-then-measure-then-assess loop arcs across the top and returns to run. Inside
+  <title id="f-config-optimization-runbook-corTitle">A run-measure-assess loop wraps a three-step spine that fences one judgment step between deterministic ends</title>
+  <desc id="f-config-optimization-runbook-corDesc">A run-then-measure-then-assess loop arcs across the top and returns to run. Inside
     it sits a three-step spine. Step one, determinize the data space: a mechanical, automatable step
     that fixes where the metrics live and what counts as normal. Step two, judgment: the agent reasons
     over that data to decide which configuration to try. Step three, determinize the experiment space:
@@ -880,7 +880,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     trace a checker can grade.</desc>
 
   <defs>
-    <marker id="cor-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="f-config-optimization-runbook-cor-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -889,11 +889,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="510" y="38" text-anchor="middle" font-size="28" font-weight="700" fill="#2f5169">measure</text>
   <text x="850" y="38" text-anchor="middle" font-size="28" font-weight="700" fill="#2f5169">assess</text>
 
-  <path d="M208,14 C340,-10 420,-10 468,14" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
+  <path d="M208,14 C340,-10 420,-10 468,14" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-config-optimization-runbook-cor-ah)"/>
   
-  <path d="M552,14 C664,-10 764,-10 812,14" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
+  <path d="M552,14 C664,-10 764,-10 812,14" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-config-optimization-runbook-cor-ah)"/>
   
-  <path d="M878,18 C700,-48 340,-48 162,18" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
+  <path d="M878,18 C700,-48 340,-48 162,18" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-config-optimization-runbook-cor-ah)"/>
 
   <text x="510" y="128" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Fence the judgment step between deterministic ends</text>
 
@@ -902,20 +902,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="185" y="284" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">data space</text>
   <text x="185" y="310" text-anchor="middle" font-size="16" fill="#57534e">mechanical · automatable</text>
 
-  <line x1="312" y1="260" x2="360" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
+  <line x1="312" y1="260" x2="360" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-config-optimization-runbook-cor-ah)"/>
 
   <polygon points="510,192 632,260 510,328 388,260" fill="#2f5169" stroke="#2f5169" stroke-width="1.5"/>
   <text x="510" y="256" text-anchor="middle" font-size="25" font-weight="700" fill="#ffffff">Judgment</text>
   <text x="510" y="284" text-anchor="middle" font-size="16" fill="#e7edf3">reasoning decides</text>
 
-  <line x1="634" y1="260" x2="686" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
+  <line x1="634" y1="260" x2="686" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-config-optimization-runbook-cor-ah)"/>
 
   <rect x="688" y="200" width="250" height="120" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="813" y="252" text-anchor="middle" font-size="25" font-weight="700" fill="#2f5169">Determinize</text>
   <text x="813" y="284" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">experiment space</text>
   <text x="813" y="310" text-anchor="middle" font-size="16" fill="#57534e">mechanical · automatable</text>
 
-  <line x1="813" y1="320" x2="813" y2="390" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
+  <line x1="813" y1="320" x2="813" y2="390" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-config-optimization-runbook-cor-ah)"/>
   <rect x="628" y="392" width="370" height="112" rx="6" fill="#ffffff" stroke="#2f5169" stroke-width="1.5" stroke-dasharray="6 4"/>
   <text x="813" y="430" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Logged trace</text>
   <text x="813" y="462" text-anchor="middle" font-size="18" fill="#57534e">why this configuration was chosen</text>

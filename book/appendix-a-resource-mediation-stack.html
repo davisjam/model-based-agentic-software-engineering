@@ -711,11 +711,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Actors contend for a scarce resource</strong> — a test runner, a build host, a rate-limited API — and their arrival order decides who wins.</li><li><strong>Availability has become an emergent property</strong> of when jobs happen to start, rather than a stated policy.</li><li><strong>Capacity should flex under live pressure</strong>, but only once a fixed policy and a single admission point already exist.</li></ul>
 <h2><span class="sec-num">A.5.3</span> The Composition</h2>
 <figure id="fig-A-5-1" class="book-figure" data-label="resource-mediation-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 560"
-     role="img" aria-labelledby="rmTitle rmDesc"
+     role="img" aria-labelledby="f-resource-mediation-stack-rmTitle f-resource-mediation-stack-rmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="rmTitle">The Resource-Mediation stack: a declared resource policy routes all access through one
+  <title id="f-resource-mediation-stack-rmTitle">The Resource-Mediation stack: a declared resource policy routes all access through one
     mediator to a shared resource; live pressure is a dashed enhancement</title>
-  <desc id="rmDesc">A solid load-bearing path runs top to bottom. RESOURCE POLICY declares which resource is
+  <desc id="f-resource-mediation-stack-rmDesc">A solid load-bearing path runs top to bottom. RESOURCE POLICY declares which resource is
     scarce and what capacity is acceptable. The MEDIATOR routes every access through one admission point,
     admitting at most N actors. The SHARED RESOURCE sits below it, now governed by explicit policy rather
     than actor timing. One enhancement attaches as a dashed, open-arrowed feedback: LIVE PRESSURE can tighten
@@ -723,10 +723,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     N equals one and N greater than one are settings of the same mediator, not separate stacks.</desc>
 
   <defs>
-    <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="f-resource-mediation-stack-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
-    <marker id="aho" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+    <marker id="f-resource-mediation-stack-aho" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
       <path d="M0.5,0.5 L9.5,5 L0.5,9.5" fill="none" stroke="#57534e" stroke-width="1.6"/>
     </marker>
   </defs>
@@ -740,13 +740,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="255" y="34" width="270" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="390" y="66" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RESOURCE POLICY</text>
   <text x="390" y="90" text-anchor="middle" font-size="14" fill="#57534e">capacity &#183; scope</text>
-  <line x1="390" y1="106" x2="390" y2="152" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="390" y1="106" x2="390" y2="152" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-resource-mediation-stack-ah)"/>
 
   <!-- MEDIATOR -->
   <rect x="255" y="154" width="270" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="390" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">MEDIATOR</text>
   <text x="390" y="210" text-anchor="middle" font-size="14" fill="#57534e">admit &#8804; N actors</text>
-  <line x1="390" y1="226" x2="390" y2="272" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="390" y1="226" x2="390" y2="272" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-resource-mediation-stack-ah)"/>
 
   <!-- SHARED RESOURCE -->
   <rect x="270" y="274" width="240" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6"/>
@@ -757,13 +757,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="650" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">LIVE PRESSURE</text>
   <text x="650" y="204" text-anchor="middle" font-size="14" fill="#57534e">tighten / relax</text>
   <text x="650" y="222" text-anchor="middle" font-size="14" fill="#57534e">when justified</text>
-  <path d="M560,192 C540,192 540,190 528,190" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <path d="M560,192 C540,192 540,190 528,190" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#f-resource-mediation-stack-aho)"/>
 
   <!-- legend -->
   <rect x="60" y="360" width="250" height="86" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
-  <line x1="78" y1="386" x2="122" y2="386" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="78" y1="386" x2="122" y2="386" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-resource-mediation-stack-ah)"/>
   <text x="132" y="391" font-size="14" fill="#57534e">load-bearing (required)</text>
-  <line x1="78" y1="420" x2="122" y2="420" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>
+  <line x1="78" y1="420" x2="122" y2="420" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#f-resource-mediation-stack-aho)"/>
   <text x="132" y="425" font-size="14" fill="#57534e">enhancement (not required)</text>
 
   <!-- caption -->

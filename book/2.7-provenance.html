@@ -709,18 +709,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Engineering question</strong> — What happened to this artifact, which operation produced the change, and what evidence records it?</li><li><strong>Model</strong> — a run made of operations, each naming its target, its mutation, the pass that made it, and the evidence it left.</li><li><strong>Property</strong> — consequential operations have structured attribution linking the action, target, mutation, responsible pass, and retained evidence.</li><li><strong>Quality attribute</strong> — auditability, debuggability, and consistency between what changed and what is reported.</li></ul></blockquote>
 <p><a class="xref" href="2.7-provenance.html#fig-2-7-1">Figure&nbsp;2.7-1</a> draws a reduced provenance model: a run contains operations, and each operation names a target, a mutation, the pass responsible, and the evidence it left. This is not a trace of every function call — that would reproduce implementation history rather than model it. The representation selects the events that matter to engineering explanation and audit.</p>
 <figure id="fig-2-7-1" class="book-figure" data-label="attribution-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400"
-     role="img" aria-labelledby="atTitle atDesc"
+     role="img" aria-labelledby="f-attribution-model-atTitle f-attribution-model-atDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="atTitle">DocAble's attribution provenance model: a run of operations, each with recorded fields</title>
-  <desc id="atDesc">A run contains operations. Each operation records its target, mutation, responsible
+  <title id="f-attribution-model-atTitle">DocAble's attribution provenance model: a run of operations, each with recorded fields</title>
+  <desc id="f-attribution-model-atDesc">A run contains operations. Each operation records its target, mutation, responsible
     pass, and retained evidence. This structured record carries the provenance model. A small secondary line shows the uses
     derived from it: audit, debugging, and changelog. The model is primary; the derived uses are secondary.</desc>
 
   <defs>
-    <marker id="at-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-attribution-model-at-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="at-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-attribution-model-at-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
   </defs>
@@ -730,7 +730,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- RUN (blue, prominent) -->
   <rect x="270" y="42" width="160" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
   <text x="350" y="74" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RUN</text>
-  <line x1="350" y1="92" x2="350" y2="122" stroke="#2f5169" stroke-width="2.4" marker-end="url(#at-b)"/>
+  <line x1="350" y1="92" x2="350" y2="122" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-attribution-model-at-b)"/>
   <text x="362" y="112" font-size="14" font-style="italic" fill="#57534e">one run, many operations</text>
 
   <!-- OPERATION* with its recorded fields (the heart of the model) -->
@@ -751,7 +751,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
 
   <!-- secondary derived-uses tail (small, gray) -->
-  <line x1="350" y1="242" x2="350" y2="278" stroke="#57534e" stroke-width="1.8" marker-end="url(#at-k)"/>
+  <line x1="350" y1="242" x2="350" y2="278" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-attribution-model-at-k)"/>
   <text x="362" y="266" font-size="14" font-style="italic" fill="#57534e">derived uses (secondary)</text>
   <rect x="215" y="280" width="270" height="42" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="350" y="306" text-anchor="middle" font-size="14.5" fill="#1c1917">audit &#183; debugging &#183; changelog</text>

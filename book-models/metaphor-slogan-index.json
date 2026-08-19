@@ -3,10 +3,10 @@
   "_counts": {
     "indexed_slugs": 2,
     "total_sites": 8,
-    "total_occurrences": 9,
+    "total_occurrences": 10,
     "by_idea": {
       "claims/constraint-prevents-sensor-detects": 4,
-      "definitions/reasoning-horizon": 5
+      "definitions/reasoning-horizon": 6
     }
   },
   "index": {
@@ -54,25 +54,25 @@
       "sites": [
         {
           "file": "book/0.1-the-mage-method-at-a-glance.html",
-          "anchor": "mmDesc",
+          "anchor": "f-mage-method-mmDesc",
           "occ": 2,
           "variant": "canonical"
         },
         {
           "file": "book/0.1-the-mage-method-at-a-glance.html",
-          "anchor": "finite",
+          "anchor": "f-mage-method-finite",
           "occ": 1,
           "variant": "canonical"
         },
         {
           "file": "book/figures.html",
-          "anchor": "fig-0-1-1-mmDesc",
-          "occ": 1,
+          "anchor": "fig-0-1-1-f-mage-method-mmDesc",
+          "occ": 2,
           "variant": "canonical"
         },
         {
           "file": "book/figures.html",
-          "anchor": "fig-0-1-1-finite",
+          "anchor": "fig-0-1-1-f-mage-method-finite",
           "occ": 1,
           "variant": "canonical"
         }

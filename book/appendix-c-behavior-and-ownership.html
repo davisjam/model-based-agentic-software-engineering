@@ -716,10 +716,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Engineering question.</strong> Who may act on this work item now, and what stays true if workers overlap, fail, or retry?</p>
 <p><a class="xref" href="appendix-c-behavior-and-ownership.html#fig-C-2-1">Figure&nbsp;C.2-1</a> lays the ownership overlay over the state machine.</p>
 <figure id="fig-C-2-1" class="book-figure" data-label="fig-g3-behavior-ownership"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470"
-     role="img" aria-labelledby="g3Title g3Desc"
+     role="img" aria-labelledby="f-appendix-g-3-behavior-ownership-g3Title f-appendix-g-3-behavior-ownership-g3Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="g3Title">Behavior plus ownership — a lifecycle with an ownership overlay that authorizes the worker</title>
-  <desc id="g3Desc">A behavioral state machine runs left to right: FREE, then LEASED along a solid claim arrow, then
+  <title id="f-appendix-g-3-behavior-ownership-g3Title">Behavior plus ownership — a lifecycle with an ownership overlay that authorizes the worker</title>
+  <desc id="f-appendix-g-3-behavior-ownership-g3Desc">A behavioral state machine runs left to right: FREE, then LEASED along a solid claim arrow, then
     DONE along a solid complete arrow. A solid expiry arrow returns LEASED to FREE. DONE is terminal: a short red
     X marks no re-entry. Below LEASED, an ownership overlay box records lease owner and lease until, joined to the
     state by a solid specializes arrow — the ownership overlay specializes the LEASED state; ownership is its own working class, shown here joined to behavior. From
@@ -729,9 +729,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     without colour.</desc>
 
   <defs>
-    <marker id="g3-solid" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+    <marker id="f-appendix-g-3-behavior-ownership-g3-solid" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/></marker>
-    <marker id="g3-auth" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="f-appendix-g-3-behavior-ownership-g3-auth" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/></marker>
   </defs>
 
@@ -749,17 +749,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="590" y="111" text-anchor="middle" font-size="19" font-weight="700" fill="#8a2f2f">DONE</text>
 
   <!-- claim / complete (SOLID) -->
-  <line x1="200" y1="104" x2="290" y2="104" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g3-solid)"/>
+  <line x1="200" y1="104" x2="290" y2="104" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-3-behavior-ownership-g3-solid)"/>
   <text x="245" y="96" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">claim</text>
-  <line x1="430" y1="104" x2="520" y2="104" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g3-solid)"/>
+  <line x1="430" y1="104" x2="520" y2="104" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-3-behavior-ownership-g3-solid)"/>
   <text x="475" y="96" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">complete</text>
 
   <!-- expiry / release LEASED -> FREE (SOLID, curved back) -->
-  <path d="M320,132 C270,188 180,188 130,134" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g3-solid)"/>
+  <path d="M320,132 C270,188 180,188 130,134" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-3-behavior-ownership-g3-solid)"/>
   <text x="225" y="184" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">expiry / release</text>
 
   <!-- DONE terminal: no re-entry (red X) -->
-  <line x1="590" y1="132" x2="590" y2="156" stroke="#b23b3b" stroke-width="2" marker-end="url(#g3-auth)"/>
+  <line x1="590" y1="132" x2="590" y2="156" stroke="#b23b3b" stroke-width="2" marker-end="url(#f-appendix-g-3-behavior-ownership-g3-auth)"/>
   <g stroke="#b23b3b" stroke-width="3">
     <line x1="580" y1="160" x2="600" y2="178"/>
     <line x1="600" y1="160" x2="580" y2="178"/>
@@ -767,7 +767,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="618" y="174" font-size="15" font-style="italic" fill="#b23b3b">no re-entry</text>
 
   <!-- specializes: LEASED -> ownership overlay (SOLID, authored) -->
-  <line x1="360" y1="132" x2="360" y2="236" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g3-solid)"/>
+  <line x1="360" y1="132" x2="360" y2="236" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-3-behavior-ownership-g3-solid)"/>
   <text x="372" y="192" font-size="15" font-style="italic" fill="#57534e">specializes</text>
 
   <text x="360" y="228" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169" letter-spacing="0.5">OWNERSHIP OVERLAY</text>
@@ -777,7 +777,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="360" y="288" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">lease_until = t</text>
 
   <!-- authorizes action -> worker (HEAVY authority + gate glyph) -->
-  <line x1="452" y1="269" x2="560" y2="269" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g3-auth)"/>
+  <line x1="452" y1="269" x2="560" y2="269" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#f-appendix-g-3-behavior-ownership-g3-auth)"/>
   <text x="506" y="258" text-anchor="middle" font-size="15" font-style="italic" fill="#b23b3b">authorizes action</text>
   <g stroke="#b23b3b" stroke-width="3.6">
     <line x1="500" y1="257" x2="500" y2="281"/>

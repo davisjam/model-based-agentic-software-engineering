@@ -708,10 +708,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Move.</strong> Route consequential actions through a bounded, named interface. A closed action surface exposes a finite set of operations, each of which can carry policy, provenance, and validation.</p>
 <p><a class="xref" href="appendix-b-close-the-action-surface.html#fig-B-6-1">Figure&nbsp;B.6-1</a> sets the open surface against the closed one.</p>
 <figure id="fig-B-6-1" class="book-figure" data-label="fig-move06"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540"
-     role="img" aria-labelledby="c6Title c6Desc"
+     role="img" aria-labelledby="f-c6-close-action-surface-c6Title f-c6-close-action-surface-c6Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="c6Title">C.6 Close the action surface: replace open-ended routes with one bounded, named interface</title>
-  <desc id="c6Desc">On the left, an open surface: an actor reaches a consequential resource by arbitrary routes —
+  <title id="f-c6-close-action-surface-c6Title">C.6 Close the action surface: replace open-ended routes with one bounded, named interface</title>
+  <desc id="f-c6-close-action-surface-c6Desc">On the left, an open surface: an actor reaches a consequential resource by arbitrary routes —
     a raw surface, another raw surface, a helper, and unknown paths — drawn as scattered thin dashed arrows, so
     governance must reason about an open-ended set of ways a change could happen. On the right, a closed surface:
     the actor reaches the resource only through one heavy, named seam that fans into a finite set of verbs, each of
@@ -719,10 +719,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     and line weight, not by colour, so the contrast survives grayscale and colour-blindness.</desc>
 
   <defs>
-    <marker id="c6-ah-open" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-c6-close-action-surface-c6-ah-open" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="c6-ah-closed" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-c6-close-action-surface-c6-ah-closed" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#1c1917"/>
     </marker>
   </defs>
@@ -735,7 +735,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="115" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">actor</text>
 
   <!-- scattered thin DASHED routes (chaos read by dash + fan) -->
-  <g fill="none" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#c6-ah-open)">
+  <g fill="none" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#f-c6-close-action-surface-c6-ah-open)">
     <path d="M170,244 C240,150 300,132 360,120"/>
     <path d="M170,252 C250,214 300,206 360,200"/>
     <path d="M170,262 C250,286 300,290 360,296"/>
@@ -766,12 +766,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="615" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">actor</text>
 
   <!-- solid HEAVY funnel to a bold SEAM -->
-  <line x1="670" y1="256" x2="712" y2="256" stroke="#1c1917" stroke-width="3" marker-end="url(#c6-ah-closed)"/>
+  <line x1="670" y1="256" x2="712" y2="256" stroke="#1c1917" stroke-width="3" marker-end="url(#f-c6-close-action-surface-c6-ah-closed)"/>
   <rect x="718" y="222" width="112" height="68" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="4"/>
   <text x="774" y="262" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">SEAM</text>
 
   <!-- fan to three verbs, solid heavy -->
-  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#c6-ah-closed)">
+  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-c6-close-action-surface-c6-ah-closed)">
     <path d="M830,240 C868,196 878,184 900,168"/>
     <line x1="830" y1="256" x2="898" y2="256"/>
     <path d="M830,272 C868,316 878,328 900,344"/>

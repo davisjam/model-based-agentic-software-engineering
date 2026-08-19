@@ -713,17 +713,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">3.3.1</span> Prevention and Observation</h2>
 <p id="idx-def-constraints-and-sensors">On the work-facing side of the loop, the two complementary moves are prevention and observation; <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-1">Figure&nbsp;3.3-1</a> draws the split. A constraint restricts what may occur; a sensor observes what did occur. Prefer a constraint where the unwanted action or state can be excluded cheaply and reliably. Otherwise, expose enough evidence for the obligation to be evaluated at an appropriate boundary.</p>
 <figure id="fig-3-3-1" class="book-figure" data-label="constraint-vs-sensor"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420"
-     role="group" aria-labelledby="caTitle caDesc"
+     role="group" aria-labelledby="f-constraint-vs-sensor-caTitle f-constraint-vs-sensor-caDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="caTitle">Constraint or sensor: a selection rule for the engineering obligation</title>
-  <desc id="caDesc">An engineering obligation you must hold leads to one decision: can the unwanted state be
+  <title id="f-constraint-vs-sensor-caTitle">Constraint or sensor: a selection rule for the engineering obligation</title>
+  <desc id="f-constraint-vs-sensor-caDesc">An engineering obligation you must hold leads to one decision: can the unwanted state be
     excluded cleanly? If yes, use a constraint, which narrows what may happen — a typed enumeration, a
     permission, a narrow API. If no, use a sensor, which produces evidence of what happened — a metric, a
     trace, a call scan, a log — for later evaluation. A constraint prevents the unwanted state; a sensor
     reports it after the fact.</desc>
 
   <defs>
-    <marker id="caArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
+    <marker id="f-constraint-vs-sensor-caArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
             orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c1917"/>
     </marker>
@@ -735,14 +735,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="480" y="79" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the property you must hold</text>
 
   <!-- edge to the decision -->
-  <line x1="480" y1="90" x2="480" y2="132" stroke="#1c1917" stroke-width="2" marker-end="url(#caArrow)"/>
+  <line x1="480" y1="90" x2="480" y2="132" stroke="#1c1917" stroke-width="2" marker-end="url(#f-constraint-vs-sensor-caArrow)"/>
 
   <!-- the selection decision -->
   <rect x="264" y="136" width="432" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Can the unwanted state be excluded cleanly?</text>
 
   <!-- branch edges -->
-  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#caArrow)">
+  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-constraint-vs-sensor-caArrow)">
     <path d="M380,194 C320,222 290,232 262,254"/>
     <path d="M580,194 C640,222 670,232 698,254"/>
   </g>
@@ -777,10 +777,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Temporal obligations require another shape of evidence. "No two workers own the same claim" is violated by one reachable bad state. "Every submitted job eventually terminates" is not. A finite trace can show progress, but it cannot establish that every fair execution eventually reaches a terminal state. A temporal model checker can reason about that stronger claim.</p>
 <p>These are not levels of sophistication. They are different matches between property and mechanism. The engineering preference remains the same throughout MAGE: make the bad state impossible when you can; otherwise produce proportionate evidence that an appropriate evaluator can use to decide the obligation. <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-2">Figure&nbsp;3.3-2</a> sets the three matches out.</p>
 <figure id="fig-3-3-2" class="book-figure" data-label="match-mechanism-to-property"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 610"
-     role="img" aria-labelledby="mmpTitle mmpDesc"
+     role="img" aria-labelledby="f-match-mechanism-to-property-mmpTitle f-match-mechanism-to-property-mmpDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mmpTitle">Match the mechanism to the property</title>
-  <desc id="mmpDesc">An engineering obligation forks on what kind of property it is. If the invalid state can
+  <title id="f-match-mechanism-to-property-mmpTitle">Match the mechanism to the property</title>
+  <desc id="f-match-mechanism-to-property-mmpDesc">An engineering obligation forks on what kind of property it is. If the invalid state can
     be excluded, a constraint gives structural prevention, such as a database compare-and-set or a closed
     transition. If the risk is a reachable bad state or trace, a validator explores the state space through
     bounded explicit-state exploration. If the obligation is an eventuality or fairness property, a validator
@@ -789,7 +789,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     it consequence if the verdict should control admission.</desc>
 
   <defs>
-    <marker id="mmp-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+    <marker id="f-match-mechanism-to-property-mmp-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
             orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
@@ -799,54 +799,54 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="0" y="0" width="1000" height="610" fill="#fdfcf9"/>
 
   <!-- top: engineering obligation (rust) -->
-  <rect id="obligation" x="320" y="26" width="360" height="58" rx="12" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
+  <rect id="f-match-mechanism-to-property-obligation" x="320" y="26" width="360" height="58" rx="12" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
 
   <!-- property-question boxes (gray) -->
-  <rect id="q-exclude" x="45" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <rect id="q-badstate" x="360" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <rect id="q-eventuality" x="675" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-match-mechanism-to-property-q-exclude" x="45" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-match-mechanism-to-property-q-badstate" x="360" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-match-mechanism-to-property-q-eventuality" x="675" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
 
   <!-- mechanism boxes (gray, the Move) -->
-  <rect id="m-constraint" x="45" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
-  <rect id="m-explicit" x="360" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
-  <rect id="m-temporal" x="675" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="f-match-mechanism-to-property-m-constraint" x="45" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="f-match-mechanism-to-property-m-explicit" x="360" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="f-match-mechanism-to-property-m-temporal" x="675" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
 
   <!-- method sub-boxes (gray) -->
-  <rect id="s-constraint" x="45" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
-  <rect id="s-explicit" x="360" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
-  <rect id="s-temporal" x="675" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
+  <rect id="f-match-mechanism-to-property-s-constraint" x="45" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
+  <rect id="f-match-mechanism-to-property-s-explicit" x="360" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
+  <rect id="f-match-mechanism-to-property-s-temporal" x="675" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
 
   <!-- gate (green) -->
-  <rect id="gate" x="280" y="470" width="440" height="72" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+  <rect id="f-match-mechanism-to-property-gate" x="280" y="470" width="440" height="72" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
 
   <!-- ===== arrows ===== -->
   <!-- edge: obligation -> q-exclude -->
-  <path d="M500,84 L500,106 L185,106 L185,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M500,84 L500,106 L185,106 L185,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
   <!-- edge: obligation -> q-badstate -->
-  <path d="M500,84 L500,112 M500,132 L500,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M500,84 L500,112 M500,132 L500,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
   <!-- edge: obligation -> q-eventuality -->
-  <path d="M500,84 L500,106 L815,106 L815,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M500,84 L500,106 L815,106 L815,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
 
   <!-- edge: q-exclude -> m-constraint -->
-  <line x1="185" y1="194" x2="185" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="185" y1="194" x2="185" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
   <!-- edge: q-badstate -> m-explicit -->
-  <line x1="500" y1="194" x2="500" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="500" y1="194" x2="500" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
   <!-- edge: q-eventuality -> m-temporal -->
-  <line x1="815" y1="194" x2="815" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="815" y1="194" x2="815" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
 
   <!-- edge: m-constraint -> s-constraint -->
-  <line x1="185" y1="302" x2="185" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="185" y1="302" x2="185" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
   <!-- edge: m-explicit -> s-explicit -->
-  <line x1="500" y1="302" x2="500" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="500" y1="302" x2="500" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
   <!-- edge: m-temporal -> s-temporal -->
-  <line x1="815" y1="302" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <line x1="815" y1="302" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
 
   <!-- edge: s-constraint -> gate -->
-  <path d="M185,396 L185,450 L500,450 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M185,396 L185,450 L500,450 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
   <!-- edge: s-explicit -> gate -->
-  <path d="M500,396 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M500,396 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
   <!-- edge: s-temporal -> gate -->
-  <path d="M815,396 L815,450 L500,450 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M815,396 L815,450 L500,450 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="61" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="0.5" fill="#9a3f12">ENGINEERING OBLIGATION</text>
@@ -885,23 +885,23 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">3.3.4</span> One Measurement, Different Authority Decisions</h2>
 <p>The four roles are not stages of maturity. DocAble's GenAI cost-and-usage model makes the point. Related measurements from the same model can support different authority decisions, and <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-3">Figure&nbsp;3.3-3</a> fans them across the roles. Usage is continuously sensed. Capacity signals can adapt request behavior. Exhausting a per-job budget can produce soft completion rather than outright rejection. A hard daily-budget gate exists but is dormant unless configured. One quantitative model can support observation, adaptation, graceful degradation, or hard admission control. The appropriate consequence depends on the obligation attached to the quantity, not on the supposed maturity of the environment.</p>
 <figure id="fig-3-3-3" class="book-figure" data-label="cost-authority-gradient"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
-     role="img" aria-labelledby="cgTitle cgDesc"
+     role="img" aria-labelledby="f-cost-authority-gradient-cgTitle f-cost-authority-gradient-cgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="cgTitle">One measurement, different authority decisions: a policy attached to the value selects observe, adapt, or gate</title>
-  <desc id="cgDesc">A single cost and usage model is read through a policy attached to the value. That policy
+  <title id="f-cost-authority-gradient-cgTitle">One measurement, different authority decisions: a policy attached to the value selects observe, adapt, or gate</title>
+  <desc id="f-cost-authority-gradient-cgDesc">A single cost and usage model is read through a policy attached to the value. That policy
     selects one response. Observe reports evidence without consequence. Adapt changes load, throttling and
     then producing soft completion rather than outright rejection. Gate blocks admission and is dormant
     unless configured. The appropriate response follows from the obligation attached to the measurement, not
     from a maturity sequence.</desc>
 
   <defs>
-    <marker id="cg-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-cost-authority-gradient-cg-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="cg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-cost-authority-gradient-cg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="cg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-cost-authority-gradient-cg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
@@ -912,7 +912,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="480" y="81" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">related measured quantities</text>
 
   <!-- edge to policy -->
-  <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#cg-r)"/>
+  <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#f-cost-authority-gradient-cg-r)"/>
 
   <!-- the policy that attaches the obligation to the value -->
   <rect x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
@@ -920,9 +920,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- fan-out edges to the three responses -->
   <g fill="none" stroke-width="2.4">
-    <path d="M420,170 C360,190 250,196 195,212" stroke="#57534e" marker-end="url(#cg-n)"/>
-    <path d="M480,170 L480,212" stroke="#2f5169" marker-end="url(#cg-b)"/>
-    <path d="M540,170 C600,190 710,196 765,212" stroke="#9a3f12" marker-end="url(#cg-r)"/>
+    <path d="M420,170 C360,190 250,196 195,212" stroke="#57534e" marker-end="url(#f-cost-authority-gradient-cg-n)"/>
+    <path d="M480,170 L480,212" stroke="#2f5169" marker-end="url(#f-cost-authority-gradient-cg-b)"/>
+    <path d="M540,170 C600,190 710,196 765,212" stroke="#9a3f12" marker-end="url(#f-cost-authority-gradient-cg-r)"/>
   </g>
 
   <!-- RESPONSE: observe -->
@@ -935,7 +935,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="480" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ADAPT</text>
   <text x="480" y="268" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">change load</text>
 
-  <line x1="480" y1="280" x2="480" y2="312" stroke="#57534e" stroke-width="2.4" marker-end="url(#cg-n)"/>
+  <line x1="480" y1="280" x2="480" y2="312" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-cost-authority-gradient-cg-n)"/>
   <rect x="360" y="316" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="347" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">throttle · soft completion</text>
 
@@ -952,16 +952,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">3.3.5</span> Positive and Negative Constraints</h2>
 <p>Constraints are often introduced as prohibitions: this code must not call that library. DocAble's provenance machinery demonstrates the complementary form. Every typed mutation verb is required to emit attribution. A source-time rule checks that the required call is wired into the mutation path. <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-4">Figure&nbsp;3.3-4</a> sets the two shapes side by side: one mechanism removes a forbidden action; the other requires evidence-producing behavior.</p>
 <figure id="fig-3-3-4" class="book-figure" data-label="positive-negative-obligation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
-     role="img" aria-labelledby="poTitle poDesc"
+     role="img" aria-labelledby="f-positive-negative-obligation-poTitle f-positive-negative-obligation-poDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="poTitle">Negative and positive constraints: a negative constraint removes a forbidden action; a positive constraint requires specified evidence-producing behavior</title>
-  <desc id="poDesc">Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge
+  <title id="f-positive-negative-obligation-poTitle">Negative and positive constraints: a negative constraint removes a forbidden action; a positive constraint requires specified evidence-producing behavior</title>
+  <desc id="f-positive-negative-obligation-poDesc">Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge
     between them is forbidden. On the right, a positive constraint: a mutation verb must call a stamping action that
     produces attribution evidence. Both are checked at source time; both restrict the admissible implementation space,
     from opposite directions.</desc>
 
   <defs>
-    <marker id="po-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-positive-negative-obligation-po-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
@@ -973,7 +973,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="250" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">NEGATIVE CONSTRAINT</text>
   <text x="250" y="94" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">removes a forbidden action</text>
 
-  <rect id="po-ordinary" x="120" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-positive-negative-obligation-po-ordinary" x="120" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="250" y="166" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">ordinary code</text>
 
   <!-- forbidden edge: barred, crossed (absent relation — endpoints still plug into both boxes) -->
@@ -986,25 +986,25 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
   <text x="298" y="236" font-size="15.5" font-weight="700" font-style="italic" fill="#9a3f12">must not call</text>
 
-  <rect id="po-rawlib" x="120" y="274" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
+  <rect id="f-positive-negative-obligation-po-rawlib" x="120" y="274" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
   <text x="250" y="312" text-anchor="middle" font-size="18.5" font-weight="700" fill="#57534e">raw library</text>
 
   <!-- ============ POSITIVE ============ -->
   <text x="710" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">POSITIVE CONSTRAINT</text>
   <text x="710" y="94" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">requires evidence-producing behavior</text>
 
-  <rect id="po-verb" x="580" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-positive-negative-obligation-po-verb" x="580" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="710" y="166" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">mutation verb</text>
 
   <text x="758" y="236" font-size="15.5" font-weight="700" font-style="italic" fill="#9a3f12">must call</text>
 
-  <rect id="po-stamp" x="580" y="274" width="260" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <rect id="f-positive-negative-obligation-po-stamp" x="580" y="274" width="260" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="710" y="305" text-anchor="middle" font-size="18.5" font-weight="700" fill="#9a3f12">MUST stamp</text>
   <text x="710" y="325" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">emit attribution evidence</text>
 
   <!-- required edge: solid rust arrow, drawn ON TOP of its target box so the arrowhead is not capped -->
   <!-- edge: po-verb -> po-stamp -->
-  <line x1="710" y1="190" x2="710" y2="272.8" stroke="#9a3f12" stroke-width="2.8" marker-end="url(#po-r)"/>
+  <line x1="710" y1="190" x2="710" y2="272.8" stroke="#9a3f12" stroke-width="2.8" marker-end="url(#f-positive-negative-obligation-po-r)"/>
 
   <!-- footer: protect the point -->
   <line x1="40" y1="376" x2="920" y2="376" stroke="#e7e2da" stroke-width="1.4"/>

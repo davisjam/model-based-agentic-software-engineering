@@ -712,10 +712,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <span id="idx-def-fidelity-validator"></span><span id="idx-def-provenance-layer"></span><p>From the user's perspective, DocAble is simple: upload an inaccessible document; receive a remediated document and an evidence record. Figures are described, reading order is repaired, structural accessibility is restored where possible, and consequential changes are recorded so that the result can be inspected and, where necessary, reversed.</p>
 <p>Before looking inside the system, <a class="xref" href="1.2-mage-by-example.html#fig-1-2-1">Figure&nbsp;1.2-1</a> shows only the engineering result it is supposed to produce.</p>
 <figure id="fig-1-2-1" class="book-figure" data-label="docable-glimpse"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 430"
-     role="group" aria-labelledby="dgTitle dgDesc"
+     role="group" aria-labelledby="f-docable-glimpse-dgTitle f-docable-glimpse-dgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="dgTitle">A running glimpse of DocAble — one object in, one object back</title>
-  <desc id="dgDesc">A single input-to-output panel with no internal structure. On the left, an inaccessible
+  <title id="f-docable-glimpse-dgTitle">A running glimpse of DocAble — one object in, one object back</title>
+  <desc id="f-docable-glimpse-dgDesc">A single input-to-output panel with no internal structure. On the left, an inaccessible
     document: a page with unlabeled images, no reading order, and no tags, marked not accessible. An arrow
     labelled the upload leads into DocAble, drawn as one closed box — the production system at
     scholaccess.com — with a note that this shows what it does, not yet how. An arrow labelled the file,
@@ -724,7 +724,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     of production system these ideas govern — what it does, not yet how.</desc>
 
   <defs>
-    <marker id="dg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <marker id="f-docable-glimpse-dg-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
   </defs>
@@ -762,9 +762,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="480" y="312" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">what it does — not yet how</text>
 
   <!-- arrows in / out -->
-  <path d="M262,243 L376,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
+  <path d="M262,243 L376,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-docable-glimpse-dg-ah)"/>
   <text x="319" y="233" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the upload</text>
-  <path d="M584,243 L716,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
+  <path d="M584,243 L716,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-docable-glimpse-dg-ah)"/>
   <text x="650" y="233" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the file, remediated</text>
 
   <!-- ================= OUTPUT: an accessible document + evidence ================= -->
@@ -798,17 +798,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">1.2.4</span> The Territory</h2>
 <p>Before Parts II and III represent DocAble through different engineering models, we need enough common territory to know what those models refer to. <a class="xref" href="1.2-mage-by-example.html#fig-1-2-2">Figure&nbsp;1.2-2</a> follows one ordinary job through the system.</p>
 <figure id="fig-1-2-2" class="book-figure" data-label="one-docable-job"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 700"
-     role="img" aria-labelledby="ojTitle ojDesc"
+     role="img" aria-labelledby="f-one-docable-job-ojTitle f-one-docable-job-ojDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ojTitle">One DocAble job, as territory rather than model</title>
-  <desc id="ojDesc">A submitted document becomes a job. The job splits into chunks so several workers
+  <title id="f-one-docable-job-ojTitle">One DocAble job, as territory rather than model</title>
+  <desc id="f-one-docable-job-ojDesc">A submitted document becomes a job. The job splits into chunks so several workers
     process it concurrently. Workers claim work and call specialized services — generation, render, OCR,
     and document/format machinery — when remediation needs those capabilities. Repaired pieces are merged
     and reassembled, the result is validated, and the system returns both the remediated document and the
     evidence describing consequential changes. This is territory, not a model of DocAble's architecture.</desc>
 
   <defs>
-    <marker id="oj-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+    <marker id="f-one-docable-job-oj-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
             orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
@@ -821,12 +821,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- upload -->
   <rect x="280" y="58" width="200" height="46" rx="23" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="380" y="86" text-anchor="middle" font-size="16" fill="#1c1917">user uploads document</text>
-  <line x1="380" y1="104" x2="380" y2="126" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <line x1="380" y1="104" x2="380" y2="126" stroke="#57534e" stroke-width="2" marker-end="url(#f-one-docable-job-oj-k)"/>
 
   <!-- job -->
   <rect x="315" y="128" width="130" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="380" y="156" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">job</text>
-  <line x1="380" y1="174" x2="380" y2="196" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <line x1="380" y1="174" x2="380" y2="196" stroke="#57534e" stroke-width="2" marker-end="url(#f-one-docable-job-oj-k)"/>
   <text x="392" y="190" font-size="13.5" font-style="italic" fill="#57534e">split for parallel work</text>
 
   <!-- chunks row -->
@@ -838,12 +838,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="260" y="224" text-anchor="middle" font-size="15" fill="#1c1917">chunk</text>
   <text x="380" y="224" text-anchor="middle" font-size="15" fill="#1c1917">chunk</text>
   <text x="500" y="224" text-anchor="middle" font-size="15" fill="#1c1917">chunk</text>
-  <line x1="380" y1="240" x2="380" y2="264" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <line x1="380" y1="240" x2="380" y2="264" stroke="#57534e" stroke-width="2" marker-end="url(#f-one-docable-job-oj-k)"/>
 
   <!-- workers claim -->
   <rect x="290" y="266" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="380" y="293" text-anchor="middle" font-size="16" fill="#1c1917">workers claim work</text>
-  <line x1="380" y1="310" x2="380" y2="334" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <line x1="380" y1="310" x2="380" y2="334" stroke="#57534e" stroke-width="2" marker-end="url(#f-one-docable-job-oj-k)"/>
   <text x="392" y="328" font-size="13.5" font-style="italic" fill="#57534e">call specialized services</text>
 
   <!-- services row (4) -->
@@ -857,24 +857,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="277" y="365" text-anchor="middle" font-size="15" fill="#1c1917">render</text>
   <text x="409" y="365" text-anchor="middle" font-size="15" fill="#1c1917">OCR</text>
   <text x="598" y="365" text-anchor="middle" font-size="15" fill="#1c1917">document / format machinery</text>
-  <line x1="380" y1="384" x2="380" y2="408" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <line x1="380" y1="384" x2="380" y2="408" stroke="#57534e" stroke-width="2" marker-end="url(#f-one-docable-job-oj-k)"/>
 
   <!-- repaired pieces -->
   <rect x="295" y="410" width="170" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="380" y="437" text-anchor="middle" font-size="16" fill="#1c1917">repaired pieces</text>
-  <line x1="380" y1="454" x2="380" y2="478" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <line x1="380" y1="454" x2="380" y2="478" stroke="#57534e" stroke-width="2" marker-end="url(#f-one-docable-job-oj-k)"/>
 
   <!-- merge -->
   <rect x="290" y="480" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="380" y="507" text-anchor="middle" font-size="16" fill="#1c1917">merge / reassemble</text>
-  <line x1="380" y1="524" x2="380" y2="548" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <line x1="380" y1="524" x2="380" y2="548" stroke="#57534e" stroke-width="2" marker-end="url(#f-one-docable-job-oj-k)"/>
 
   <!-- validate -->
   <rect x="315" y="550" width="130" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="380" y="577" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">validate</text>
 
   <!-- outputs (2) -->
-  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)">
+  <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-one-docable-job-oj-k)">
     <path d="M340,594 C300,616 250,620 225,640"/>
     <path d="M420,594 C460,616 510,620 535,640"/>
   </g>

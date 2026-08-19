@@ -710,11 +710,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A finished architecture can make its structures look inevitable. Their histories show which were designed cleanly, which were forced by failure, which required later hardening, and what each allowed the engineer to stop doing by hand.</p>
 <h2><span class="sec-num">5.3.1</span> The Product Path</h2>
 <p>A user uploads a file. The front door authenticates the request, meters quota, and queues the job; a dispatcher divides the document into chunks; the remediation core applies deterministic rules or bounded model calls through structured document representations; the check engine evaluates remaining findings against accessibility standards; a fidelity validator looks for content lost while accessibility improved; and provenance records what changed. The corrected artifact returns with the evidence those mechanisms produced. <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-1">Figure&nbsp;5.3-1</a> gives the path.</p>
-<figure id="fig-5-3-1" class="book-figure" data-label="system-overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 400" role="group" aria-labelledby="sysov-title sysov-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="sysov-title">What got built — one upload crosses six responsibilities to a stamped result</title>
-  <desc id="sysov-desc">A left-to-right pipeline. A user uploads a document at the left. It flows through six responsibilities in order: a front door that authenticates the user, meters the quota, and enqueues the job; a dispatcher that splits the document into chunks so a large deck finishes in about a minute; a remediation core, a typed command-line engine that walks the document through a structured model of its format and, for each fix, either applies a deterministic rule or asks a frontier model; a check engine that maps each remaining finding to a specific clause of the accessibility standard; a fidelity validator that catches a file that came out more accessible and less true; and a provenance layer that stamps every insertion. The corrected file, with evidence that the job was done, returns at the right. Frontier models do only the steps that require understanding a slide; deterministic code does everything else and owns the boundaries between the stages.</desc>
+<figure id="fig-5-3-1" class="book-figure" data-label="system-overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 400" role="group" aria-labelledby="f-system-overview-sysov-title f-system-overview-sysov-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-system-overview-sysov-title">What got built — one upload crosses six responsibilities to a stamped result</title>
+  <desc id="f-system-overview-sysov-desc">A left-to-right pipeline. A user uploads a document at the left. It flows through six responsibilities in order: a front door that authenticates the user, meters the quota, and enqueues the job; a dispatcher that splits the document into chunks so a large deck finishes in about a minute; a remediation core, a typed command-line engine that walks the document through a structured model of its format and, for each fix, either applies a deterministic rule or asks a frontier model; a check engine that maps each remaining finding to a specific clause of the accessibility standard; a fidelity validator that catches a file that came out more accessible and less true; and a provenance layer that stamps every insertion. The corrected file, with evidence that the job was done, returns at the right. Frontier models do only the steps that require understanding a slide; deterministic code does everything else and owns the boundaries between the stages.</desc>
   <defs>
-    <marker id="sysov-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="f-system-overview-sysov-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#475569"/>
     </marker>
   </defs>
@@ -722,19 +722,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- upload -->
   <g>
-    <rect id="upload" x="18" y="150" width="120" height="100" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+    <rect id="f-system-overview-upload" x="18" y="150" width="120" height="100" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
     <text x="78" y="192" text-anchor="middle" font-size="17" font-weight="700" fill="#3730a3">Upload</text>
     <text x="78" y="214" text-anchor="middle" font-size="13" fill="#4338ca">a PPTX, DOCX,</text>
     <text x="78" y="230" text-anchor="middle" font-size="13" fill="#4338ca">XLSX, or PDF</text>
   </g>
   <!-- edge: upload -> front-door -->
-  <line x1="138" y1="200" x2="176" y2="200" stroke="#475569" stroke-width="2" marker-end="url(#sysov-arrow)"/>
+  <line x1="138" y1="200" x2="176" y2="200" stroke="#475569" stroke-width="2" marker-end="url(#f-system-overview-sysov-arrow)"/>
 
   <!-- six responsibility boxes -->
   <!-- box template: width 138, gap to arrow -->
   <g font-size="14">
     <!-- 1 Front door -->
-    <rect id="front-door" x="178" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <rect id="f-system-overview-front-door" x="178" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
     <text x="248" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">1 · Front door</text>
     <text x="248" y="178" text-anchor="middle" fill="#334155">authenticate,</text>
     <text x="248" y="196" text-anchor="middle" fill="#334155">meter quota,</text>
@@ -742,7 +742,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="248" y="256" text-anchor="middle" font-size="12" fill="#64748b">deterministic</text>
 
     <!-- 2 Dispatcher -->
-    <rect id="dispatcher" x="338" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <rect id="f-system-overview-dispatcher" x="338" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
     <text x="408" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">2 · Dispatcher</text>
     <text x="408" y="178" text-anchor="middle" fill="#334155">split into</text>
     <text x="408" y="196" text-anchor="middle" fill="#334155">chunks — slides,</text>
@@ -750,7 +750,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="408" y="256" text-anchor="middle" font-size="12" fill="#64748b">deterministic</text>
 
     <!-- 3 Remediation core -->
-    <rect id="remediation-core" x="498" y="120" width="140" height="160" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <rect id="f-system-overview-remediation-core" x="498" y="120" width="140" height="160" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
     <text x="568" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="#7c2d12">3 · Remediation</text>
     <text x="568" y="166" text-anchor="middle" font-size="15" font-weight="700" fill="#7c2d12">core</text>
     <text x="568" y="192" text-anchor="middle" fill="#78350f">rule OR a</text>
@@ -759,7 +759,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="568" y="256" text-anchor="middle" font-size="12" fill="#92400e">model + code</text>
 
     <!-- 4 Check engine -->
-    <rect id="check-engine" x="658" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <rect id="f-system-overview-check-engine" x="658" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
     <text x="728" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">4 · Check engine</text>
     <text x="728" y="178" text-anchor="middle" fill="#334155">map each finding</text>
     <text x="728" y="196" text-anchor="middle" fill="#334155">to a standard</text>
@@ -767,7 +767,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="728" y="256" text-anchor="middle" font-size="12" fill="#64748b">deterministic</text>
 
     <!-- 5 Fidelity validator -->
-    <rect id="fidelity-validator" x="818" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <rect id="f-system-overview-fidelity-validator" x="818" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
     <text x="888" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">5 · Fidelity</text>
     <text x="888" y="166" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">validator</text>
     <text x="888" y="192" text-anchor="middle" fill="#334155">catch more</text>
@@ -776,7 +776,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="888" y="256" text-anchor="middle" font-size="12" fill="#64748b">deterministic</text>
 
     <!-- 6 Provenance layer -->
-    <rect id="provenance-layer" x="978" y="120" width="124" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <rect id="f-system-overview-provenance-layer" x="978" y="120" width="124" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
     <text x="1040" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">6 · Provenance</text>
     <text x="1040" y="166" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">layer</text>
     <text x="1040" y="192" text-anchor="middle" fill="#334155">stamp every</text>
@@ -788,22 +788,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- inter-stage arrows -->
   <g stroke="#475569" stroke-width="2">
     <!-- edge: front-door -> dispatcher -->
-    <line x1="318" y1="200" x2="336" y2="200" marker-end="url(#sysov-arrow)"/>
+    <line x1="318" y1="200" x2="336" y2="200" marker-end="url(#f-system-overview-sysov-arrow)"/>
     <!-- edge: dispatcher -> remediation-core -->
-    <line x1="478" y1="200" x2="496" y2="200" marker-end="url(#sysov-arrow)"/>
+    <line x1="478" y1="200" x2="496" y2="200" marker-end="url(#f-system-overview-sysov-arrow)"/>
     <!-- edge: remediation-core -> check-engine -->
-    <line x1="638" y1="200" x2="656" y2="200" marker-end="url(#sysov-arrow)"/>
+    <line x1="638" y1="200" x2="656" y2="200" marker-end="url(#f-system-overview-sysov-arrow)"/>
     <!-- edge: check-engine -> fidelity-validator -->
-    <line x1="798" y1="200" x2="816" y2="200" marker-end="url(#sysov-arrow)"/>
+    <line x1="798" y1="200" x2="816" y2="200" marker-end="url(#f-system-overview-sysov-arrow)"/>
     <!-- edge: fidelity-validator -> provenance-layer -->
-    <line x1="958" y1="200" x2="976" y2="200" marker-end="url(#sysov-arrow)"/>
+    <line x1="958" y1="200" x2="976" y2="200" marker-end="url(#f-system-overview-sysov-arrow)"/>
   </g>
 
   <!-- output arrow down + result -->
   <!-- edge: provenance-layer -> result -->
-  <line x1="1040" y1="280" x2="1040" y2="316" stroke="#475569" stroke-width="2" marker-end="url(#sysov-arrow)"/>
+  <line x1="1040" y1="280" x2="1040" y2="316" stroke="#475569" stroke-width="2" marker-end="url(#f-system-overview-sysov-arrow)"/>
   <g>
-    <rect id="result" x="820" y="320" width="290" height="64" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+    <rect id="f-system-overview-result" x="820" y="320" width="290" height="64" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
     <text x="965" y="348" text-anchor="middle" font-size="15" font-weight="700" fill="#065f46">Corrected file + evidence</text>
     <text x="965" y="368" text-anchor="middle" font-size="13" fill="#047857">standards findings · fidelity · provenance</text>
   </g>
@@ -822,14 +822,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>MAGE applies at two scales in this case. Coding agents act on the engineering system; frontier models also run inside the product. The second case is smaller and easier to bound: treat the model as a probabilistic subroutine inside a deterministic workflow. Deterministic code decides when interpretation is needed, packages a bounded input, requires a typed output, and evaluates the candidate against obligations the environment can decide mechanically.</p>
 <p>The model's answer is therefore a <strong>candidate</strong>, not a verdict. A schema can reject malformed output; a standards rule can reject a mechanically invalid claim; a fidelity check can catch some classes of destructive transformation. None of those proves that an alt-text description perfectly captures the meaning of a figure. The trust boundary is only as strong as the obligations the validator can actually evaluate. Semantic residuals remain probabilistic or human. <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-2">Figure&nbsp;5.3-2</a> draws the caller, the typed contract, and the validator.</p>
 <p>The architecture resembles proof checking in one limited respect: a powerful producer is separated from the smaller mechanism that decides whether its evidence is sufficient for admission <sup class="cite-ref"><a href="#wc-5-3-the-road-to-mage-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Talia Ringer et al., “QED at Large: A Survey of Engineering of Formally Verified Software,” <em>Foundations and Trends in Programming Languages</em> 5, nos. 2–3 (2019): 102–281, <a href="https://arxiv.org/abs/2003.06458">https://arxiv.org/abs/2003.06458</a>.</span>.</p>
-<figure id="fig-5-3-2" class="book-figure" data-label="llm-function-call"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 430" role="group" aria-labelledby="lfc-title lfc-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="lfc-title">The LLM as a typed function call</title>
-  <desc id="lfc-desc">A left-to-right pipeline in four stages. A deterministic caller owns the workflow and decides when a step needs judgment. It packs the task into a typed input contract and hands it to the probabilistic component, the model, drawn as a dashed box to mark that its output is not trusted. The model returns a candidate answer that must conform to a typed output contract. A deterministic validator then checks that candidate: on a pass, the result is incorporated and control returns to the caller; on a fail, the caller retries or falls back. The trust boundary sits at the validator, not at the model. The dashed model box and the solid caller and validator boxes together say the same thing the prose does: guidance aims, machinery holds.</desc>
+<figure id="fig-5-3-2" class="book-figure" data-label="llm-function-call"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 430" role="group" aria-labelledby="f-llm-as-function-call-lfc-title f-llm-as-function-call-lfc-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-llm-as-function-call-lfc-title">The LLM as a typed function call</title>
+  <desc id="f-llm-as-function-call-lfc-desc">A left-to-right pipeline in four stages. A deterministic caller owns the workflow and decides when a step needs judgment. It packs the task into a typed input contract and hands it to the probabilistic component, the model, drawn as a dashed box to mark that its output is not trusted. The model returns a candidate answer that must conform to a typed output contract. A deterministic validator then checks that candidate: on a pass, the result is incorporated and control returns to the caller; on a fail, the caller retries or falls back. The trust boundary sits at the validator, not at the model. The dashed model box and the solid caller and validator boxes together say the same thing the prose does: guidance aims, machinery holds.</desc>
 
   <rect x="0" y="0" width="1100" height="430" fill="#fdfcf9"/>
 
   <defs>
-    <marker id="lfc-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+    <marker id="f-llm-as-function-call-lfc-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
       <path d="M0,0 L9,4.5 L0,9 z" fill="#1c1917"/>
     </marker>
   </defs>
@@ -842,7 +842,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="124" y="252" text-anchor="middle" font-size="19" fill="#2f5169">decides each step</text>
 
   <!-- input contract -->
-  <line x1="224" y1="206" x2="330" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
+  <line x1="224" y1="206" x2="330" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#f-llm-as-function-call-lfc-arrow)"/>
   <text x="279" y="184" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">typed input</text>
   <text x="279" y="200" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">contract</text>
 
@@ -854,7 +854,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="434" y="254" text-anchor="middle" font-size="19" fill="#57534e">bounded task</text>
 
   <!-- output contract -->
-  <line x1="534" y1="206" x2="640" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
+  <line x1="534" y1="206" x2="640" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#f-llm-as-function-call-lfc-arrow)"/>
   <text x="589" y="184" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">typed output</text>
   <text x="589" y="200" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">contract</text>
 
@@ -870,13 +870,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="589" y="108" text-anchor="middle" font-size="19" font-weight="bold" fill="#b23b3b">trust boundary</text>
 
   <!-- PASS out -->
-  <line x1="884" y1="188" x2="936" y2="188" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
+  <line x1="884" y1="188" x2="936" y2="188" stroke="#1c1917" stroke-width="1.4" marker-end="url(#f-llm-as-function-call-lfc-arrow)"/>
   <text x="910" y="176" text-anchor="middle" font-size="19" font-weight="bold" fill="#1f7a4d">pass</text>
   <text x="946" y="182" text-anchor="start" font-size="19" fill="#1f7a4d">result</text>
   <text x="946" y="202" text-anchor="start" font-size="19" fill="#1f7a4d">incorporated</text>
 
   <!-- FAIL loop back to caller -->
-  <path d="M764,262 L764,330 L124,330 L124,262" fill="none" stroke="#b23b3b" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#lfc-arrow)"/>
+  <path d="M764,262 L764,330 L124,330 L124,262" fill="none" stroke="#b23b3b" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#f-llm-as-function-call-lfc-arrow)"/>
   <text x="444" y="350" text-anchor="middle" font-size="19" font-weight="bold" fill="#b23b3b">fail → caller retries or falls back</text>
 
   <!-- caption strip -->
@@ -890,10 +890,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>The format seam.</strong> An early path used a convenient scripting-language library to slice a document. The operation worked visually and silently destroyed the internal tag structure carrying the accessibility the product existed to add. The failure exposed two missing things: an architectural decision — one canonical implementation should own mutation of that format — and environmental authority capable of keeping other paths from bypassing it.</p>
 <p>The response came in layers, and <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-3">Figure&nbsp;5.3-3</a> draws the climb. A policy named the canonical library. A typed format model and API concentrated mutation through one seam. A build-time check refused raw access from elsewhere. Then the check itself failed: a stale repository root caused real findings to be reported as green. That second-order incident forced the gate to be hardened too. The finished structural model describes the seam; the incident history explains how it acquired that shape. <strong>The model stated the boundary; the API and check gave selected obligations over that boundary authority. The authority itself still had to be maintained.</strong></p>
 <figure id="fig-5-3-3" class="book-figure" data-label="pdf-seam"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600"
-     role="group" aria-labelledby="pslTitle pslDesc"
+     role="group" aria-labelledby="f-pdf-seam-layers-pslTitle f-pdf-seam-layers-pslDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="pslTitle">The format seam, hardened in layers — each layer forced by a residual failure</title>
-  <desc id="pslDesc">An engineering history, not a system model. A vertical chain of six beats. A convenient
+  <title id="f-pdf-seam-layers-pslTitle">The format seam, hardened in layers — each layer forced by a residual failure</title>
+  <desc id="f-pdf-seam-layers-pslDesc">An engineering history, not a system model. A vertical chain of six beats. A convenient
     call, chosen because it was one line, silently corrupted the document by stripping its accessibility
     structure — a failure the eye cannot catch. Each response added a layer: a library policy naming one
     canonical library per format; a typed seam all mutation must pass through; a build-time ban on raw
@@ -902,7 +902,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     its own scrutiny.</desc>
 
   <defs>
-    <marker id="psl-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <marker id="f-pdf-seam-layers-psl-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
     </marker>
   </defs>
@@ -942,11 +942,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="330" y="513" font-size="13" font-style="italic" fill="#57534e">the check itself was caught mis-reporting</text>
 
   <!-- forcing arrows (each failure forces the next layer) -->
-  <line x1="200" y1="143" x2="200" y2="171" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
-  <line x1="200" y1="221" x2="200" y2="249" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
-  <line x1="200" y1="299" x2="200" y2="327" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
-  <line x1="200" y1="377" x2="200" y2="405" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
-  <line x1="200" y1="455" x2="200" y2="483" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+  <line x1="200" y1="143" x2="200" y2="171" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
+  <line x1="200" y1="221" x2="200" y2="249" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
+  <line x1="200" y1="299" x2="200" y2="327" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
+  <line x1="200" y1="377" x2="200" y2="405" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
+  <line x1="200" y1="455" x2="200" y2="483" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
 
   <text x="320" y="576" text-anchor="middle" font-size="13" fill="#57534e">An engineering history, not a system model.</text>
 </svg><figcaption data-short="One Seam, Hardened in Layers"><span class="fig-label">Figure 5.3-3.</span> <em>One Seam, Hardened in Layers.</em> A convenient library call silently corrupted the accessibility structure the product exists to add. That failure motivated a canonical-library policy and a typed mutation seam that concentrated every format change in one place. A build-time ban then refused the raw calls that would bypass the seam. Later the enforcement itself misreported success when a stale repository root hid real findings, forcing a repair to the gate. Each layer answers a specific failure rather than a plan drawn in advance.</figcaption></figure>
@@ -976,10 +976,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>A cross-runtime exit code</strong> one runtime emitted and the other had never enumerated, so a genuine failure was silently misfiled as a generic error.</li><li><strong>Asymmetric cleanup after redelivery</strong> — a failure path purged a job's database rows and blobs but skipped the queue structures its sibling path always cleaned, leaking chunks on a rare edge.</li><li><strong>A last-write-wins editor race</strong> in which two concurrent saves silently discarded one's work.</li></ul></blockquote>
 <p><a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-4">Figure&nbsp;5.3-4</a> draws the five-rung climb.</p>
 <figure id="fig-5-3-4" class="book-figure" data-label="mage-staircase"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 830"
-     role="group" aria-labelledby="dsTitle dsDesc"
+     role="group" aria-labelledby="f-mage-staircase-dsTitle f-mage-staircase-dsDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="dsTitle">The delegation staircase — five ascending steps from Co-coder to Architect; delegated work climbs, the engineered environment accumulates, and residual human burden narrows but never vanishes</title>
-  <desc id="dsDesc">A true staircase of five steps ascending from bottom-left to top-right. Step one at the
+  <title id="f-mage-staircase-dsTitle">The delegation staircase — five ascending steps from Co-coder to Architect; delegated work climbs, the engineered environment accumulates, and residual human burden narrows but never vanishes</title>
+  <desc id="f-mage-staircase-dsDesc">A true staircase of five steps ascending from bottom-left to top-right. Step one at the
     bottom is Co-coder; step five at the summit is Architect. Each step card names a stage and shows, in
     blue, what is now delegated, and in green, what the engineered environment now carries. Along the
     left edge a green gauge thickens as the climb proceeds — representation and authority accumulate.
@@ -998,10 +998,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     representation or authority can push work back down the staircase.</desc>
 
   <defs>
-    <marker id="ds-up" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-mage-staircase-ds-up" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,10 L5,0 L10,10 z" fill="#57534e"/>
     </marker>
-    <marker id="ds-down" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-mage-staircase-ds-down" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L5,10 L10,0 z" fill="#b23b3b"/>
     </marker>
   </defs>
@@ -1009,7 +1009,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ===================== HUMAN FOCUS — the summit the climb points toward ===================== -->
   <text x="1052" y="30" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e" letter-spacing="0.5">HUMAN FOCUS</text>
   <text x="1052" y="49" text-anchor="middle" font-size="13" fill="#57534e">strategy · residual semantics</text>
-  <line x1="1052" y1="60" x2="1052" y2="96" stroke="#57534e" stroke-width="1.6" marker-end="url(#ds-up)"/>
+  <line x1="1052" y1="60" x2="1052" y2="96" stroke="#57534e" stroke-width="1.6" marker-end="url(#f-mage-staircase-ds-up)"/>
 
   <!-- ===================== GREEN environment-accumulation wash (upper-left staircase region) ===================== -->
   <!-- The area the steps recede from as they indent rightward: the environment mass the climb is built on.
@@ -1071,10 +1071,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="960" y="688" font-size="13.5" fill="#b23b3b" font-weight="600">map · admit the change</text>
 
   <!-- ===================== BASE AXIS — more work carried by the engineered environment ===================== -->
-  <marker id="ds-right" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+  <marker id="f-mage-staircase-ds-right" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
     <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
   </marker>
-  <line x1="40" y1="770" x2="928" y2="770" stroke="#2f5169" stroke-width="1.8" marker-end="url(#ds-right)"/>
+  <line x1="40" y1="770" x2="928" y2="770" stroke="#2f5169" stroke-width="1.8" marker-end="url(#f-mage-staircase-ds-right)"/>
   <text x="40" y="794" font-size="14" font-weight="600" fill="#57534e">more work carried by the engineered environment</text>
   <text x="928" y="794" text-anchor="end" font-size="14" font-weight="700" fill="#2f5169">delegation climbs</text>
 </svg><figcaption data-short="The Delegation Staircase"><span class="fig-label">Figure 5.3-4.</span> <em>The Delegation Staircase.</em> As explicit representation and environmental authority accumulated, larger units of engineering work could be delegated. Representation moved system knowledge out of one person's head; authority moved repeatable admission out of direct review. Human work moved from reading every diff toward system-level strategy and the residual semantic judgment the environment could not yet decide. A failure in either representation or authority could move work back down the staircase.</figcaption></figure>

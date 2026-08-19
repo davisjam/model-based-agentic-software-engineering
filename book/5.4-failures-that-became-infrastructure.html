@@ -757,10 +757,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Initial response.</strong> The timeout was a bare cap. It provided no predictive account of per-chunk time or cost and no useful baseline for deciding whether the current work was approaching the job ceiling.</p>
 <p><strong>What became durable.</strong> The incident produced a provisional measurement and a per-chunk worst-case model against the job budget. The seed remains externalized, timestamped, and explicitly provisional — kept as a datapoint in a file rather than frozen as a constant in the code — so one incident does not quietly become an eternal constant. Current instrumentation can report a would-be breach. <a class="xref" href="5.4-failures-that-became-infrastructure.html#fig-5-4-1">Figure&nbsp;5.4-1</a> draws where the chain deliberately stops.</p>
 <figure id="fig-5-4-1" class="book-figure" data-label="measurement-no-gate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600"
-     role="group" aria-labelledby="mngTitle mngDesc"
+     role="group" aria-labelledby="f-measurement-no-gate-mngTitle f-measurement-no-gate-mngDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mngTitle">Modeled and Observed, Not Yet Binding — the measurement history that stops before the gate</title>
-  <desc id="mngDesc">An engineering history, not a system model. A vertical chain. A silent hang and a bare
+  <title id="f-measurement-no-gate-mngTitle">Modeled and Observed, Not Yet Binding — the measurement history that stops before the gate</title>
+  <desc id="f-measurement-no-gate-mngDesc">An engineering history, not a system model. A vertical chain. A silent hang and a bare
     timeout, which spoke only after the budget was spent, forced a measurement, then a per-chunk cost model,
     whose evidence lets the environment report a would-be breach. The chain ends at report — and then an
     authority node drawn as a ghost: a dashed box prefixed with a question mark and marked no gate yet,
@@ -769,10 +769,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     purpose — modeled and observed, reported, not yet enforced.</desc>
 
   <defs>
-    <marker id="mng-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <marker id="f-measurement-no-gate-mng-ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2b2825"/>
     </marker>
-    <marker id="mng-arM" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <marker id="f-measurement-no-gate-mng-arM" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
   </defs>
@@ -812,13 +812,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="330" y="515" font-size="13" fill="#57534e">[ no gate yet &#8212; deliberately deferred ]</text>
 
   <!-- actual steps (solid) -->
-  <line x1="200" y1="147" x2="200" y2="175" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
-  <line x1="200" y1="225" x2="200" y2="253" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
-  <line x1="200" y1="303" x2="200" y2="331" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
-  <line x1="200" y1="381" x2="200" y2="409" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="147" x2="200" y2="175" stroke="#2b2825" stroke-width="2" marker-end="url(#f-measurement-no-gate-mng-ar)"/>
+  <line x1="200" y1="225" x2="200" y2="253" stroke="#2b2825" stroke-width="2" marker-end="url(#f-measurement-no-gate-mng-ar)"/>
+  <line x1="200" y1="303" x2="200" y2="331" stroke="#2b2825" stroke-width="2" marker-end="url(#f-measurement-no-gate-mng-ar)"/>
+  <line x1="200" y1="381" x2="200" y2="409" stroke="#2b2825" stroke-width="2" marker-end="url(#f-measurement-no-gate-mng-ar)"/>
 
   <!-- deferred transition (dashed = would-be, not switched on) with a question glyph beside it -->
-  <line x1="200" y1="459" x2="200" y2="487" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#mng-arM)"/>
+  <line x1="200" y1="459" x2="200" y2="487" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#f-measurement-no-gate-mng-arM)"/>
   <text x="222" y="479" font-size="20" font-weight="700" fill="#57534e">?</text>
 
   <text x="320" y="576" text-anchor="middle" font-size="13" fill="#57534e">An engineering history, not a system model.</text>

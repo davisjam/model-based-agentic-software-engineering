@@ -708,19 +708,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Move.</strong> Derive the required assurance obligations from the engineering representation, then compare that set with the evidence present.</p>
 <p><a class="xref" href="appendix-b-derive-the-obligation-set.html#fig-B-4-1">Figure&nbsp;B.4-1</a> traces the required set against the evidence.</p>
 <figure id="fig-B-4-1" class="book-figure" data-label="fig-move04"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
-     role="img" aria-labelledby="c4Title c4Desc"
+     role="img" aria-labelledby="f-c4-derive-obligation-set-c4Title f-c4-derive-obligation-set-c4Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="c4Title">C.4 Derive what must be assured: generate the obligation set from the model, then subtract existing evidence</title>
-  <desc id="c4Desc">A vertical flow. A model derives the set of things that must be assured — what must be tested.
+  <title id="f-c4-derive-obligation-set-c4Title">C.4 Derive what must be assured: generate the obligation set from the model, then subtract existing evidence</title>
+  <desc id="f-c4-derive-obligation-set-c4Desc">A vertical flow. A model derives the set of things that must be assured — what must be tested.
     That required set is compared against the evidence that actually exists. The comparison splits into two:
     obligations that are covered, and obligations with no matching evidence. The gap is not measured from tests
     written; it is the required set minus the present evidence, and each uncovered obligation becomes a finding.</desc>
 
   <defs>
-    <marker id="c4-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-c4-derive-obligation-set-c4-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="c4-ah-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-c4-derive-obligation-set-c4-ah-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#b23b3b"/>
     </marker>
   </defs>
@@ -728,14 +728,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- MODEL -->
   <rect x="370" y="30" width="260" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="500" y="66" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">MODEL</text>
-  <line x1="500" y1="88" x2="500" y2="124" stroke="#57534e" stroke-width="2" marker-end="url(#c4-ah)"/>
+  <line x1="500" y1="88" x2="500" y2="124" stroke="#57534e" stroke-width="2" marker-end="url(#f-c4-derive-obligation-set-c4-ah)"/>
   <text x="512" y="112" font-size="14" font-style="italic" fill="#1f7a4d">derive</text>
 
   <!-- WHAT MUST BE TESTED (obligation, modeling pole) -->
   <rect x="330" y="128" width="340" height="60" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="500" y="156" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">WHAT MUST BE ASSURED</text>
   <text x="500" y="178" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">seams &#183; failure edges &#183; invariants</text>
-  <line x1="500" y1="188" x2="500" y2="224" stroke="#57534e" stroke-width="2" marker-end="url(#c4-ah)"/>
+  <line x1="500" y1="188" x2="500" y2="224" stroke="#57534e" stroke-width="2" marker-end="url(#f-c4-derive-obligation-set-c4-ah)"/>
   <text x="512" y="212" font-size="14" font-style="italic" fill="#57534e">compare</text>
 
   <!-- EXISTING EVIDENCE (neutral) -->
@@ -744,8 +744,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="278" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">tests &#183; checks that actually exist</text>
 
   <!-- split to COVERED / GAP -->
-  <path d="M420,288 C360,326 330,338 320,362" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c4-ah)"/>
-  <path d="M580,288 C640,326 670,338 680,362" fill="none" stroke="#b23b3b" stroke-width="2" marker-end="url(#c4-ah-r)"/>
+  <path d="M420,288 C360,326 330,338 320,362" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-c4-derive-obligation-set-c4-ah)"/>
+  <path d="M580,288 C640,326 670,338 680,362" fill="none" stroke="#b23b3b" stroke-width="2" marker-end="url(#f-c4-derive-obligation-set-c4-ah-r)"/>
 
   <!-- COVERED -->
   <rect x="200" y="366" width="240" height="54" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
@@ -756,7 +756,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="680" y="399" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">GAP</text>
 
   <!-- GAP -> FINDING -->
-  <line x1="680" y1="420" x2="680" y2="456" stroke="#b23b3b" stroke-width="2" marker-end="url(#c4-ah-r)"/>
+  <line x1="680" y1="420" x2="680" y2="456" stroke="#b23b3b" stroke-width="2" marker-end="url(#f-c4-derive-obligation-set-c4-ah-r)"/>
   <rect x="560" y="460" width="240" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="680" y="492" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">FINDING</text>
 

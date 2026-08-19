@@ -711,11 +711,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>The controls have grown their own complexity</strong> — they overlap, depend on one another, go stale, and carry blast radius nobody has mapped.</li><li><strong>The same failure keeps recurring</strong>, and each fix is a one-off patch rather than a durable control.</li><li><strong>Lessons live in institutional memory</strong> instead of in the environment, so they leave when the person who learned them does.</li></ul>
 <h2><span class="sec-num">A.6.3</span> The Composition</h2>
 <figure id="fig-A-6-1" class="book-figure" data-label="governance-conversion-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 660"
-     role="img" aria-labelledby="gcTitle gcDesc"
+     role="img" aria-labelledby="f-governance-conversion-stack-gcTitle f-governance-conversion-stack-gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="gcTitle">The Governance-Conversion stack: model the control estate, find its gaps, interpret a
+  <title id="f-governance-conversion-stack-gcTitle">The Governance-Conversion stack: model the control estate, find its gaps, interpret a
     recurring failure into a durable control, update the estate, iterate</title>
-  <desc id="gcDesc">A solid four-move loop. CONTROL ESTATE is the explicit model of rules, gates, models,
+  <desc id="f-governance-conversion-stack-gcDesc">A solid four-move loop. CONTROL ESTATE is the explicit model of rules, gates, models,
     and sensors. Inspecting or querying it exposes GAP or IMPACT — where control is weak or coupled. When a
     failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that
     control back in, and a curved solid feedback returns to the control estate for the next iteration. This
@@ -723,7 +723,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     possible implementations, not required steps.</desc>
 
   <defs>
-    <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="f-governance-conversion-stack-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -735,7 +735,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="305" y="100" text-anchor="middle" font-size="14" fill="#57534e">models &#183; sensors</text>
 
   <text x="318" y="132" font-size="14" font-style="italic" fill="#57534e">inspect / query</text>
-  <line x1="305" y1="110" x2="305" y2="156" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="305" y1="110" x2="305" y2="156" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-governance-conversion-stack-ah)"/>
 
   <!-- GAP / IMPACT -->
   <rect x="180" y="158" width="250" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -744,7 +744,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="305" y="228" text-anchor="middle" font-size="14" fill="#57534e">weak or coupled?</text>
 
   <text x="322" y="272" font-size="14" font-style="italic" fill="#7a5c12">recurring failure?</text>
-  <line x1="305" y1="238" x2="305" y2="296" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="305" y1="238" x2="305" y2="296" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-governance-conversion-stack-ah)"/>
 
   <!-- INTERPRET (rust) -->
   <rect x="180" y="298" width="250" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
@@ -752,7 +752,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="305" y="350" text-anchor="middle" font-size="14" fill="#57534e">failure class &#8594;</text>
   <text x="305" y="368" text-anchor="middle" font-size="14" fill="#57534e">durable control</text>
 
-  <line x1="305" y1="378" x2="305" y2="424" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="305" y1="378" x2="305" y2="424" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-governance-conversion-stack-ah)"/>
 
   <!-- UPDATE ESTATE -->
   <rect x="195" y="426" width="220" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
@@ -760,12 +760,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- curved solid feedback UPDATE ESTATE -> CONTROL ESTATE (next iteration) -->
   <path d="M415,458 C560,458 580,200 580,140 C580,90 500,72 432,70"
-        stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
+        stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-governance-conversion-stack-ah)"/>
   <text x="592" y="300" font-size="14" font-weight="700" fill="#2f5169" transform="rotate(90 592 300)">next iteration</text>
 
   <!-- legend -->
   <rect x="60" y="522" width="250" height="60" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
-  <line x1="78" y1="552" x2="122" y2="552" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="78" y1="552" x2="122" y2="552" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-governance-conversion-stack-ah)"/>
   <text x="132" y="557" font-size="14" fill="#57534e">load-bearing loop (all required)</text>
 
   <!-- caption -->

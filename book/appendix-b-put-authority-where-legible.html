@@ -708,16 +708,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Move.</strong> Enforce at the earliest boundary where the property is decidable. If later work can invalidate that evidence, re-establish it at the last safe boundary before consequence.<sup class="note-ref"><a href="#note-appendix-b-put-authority-where-legible-fn-toctou" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-appendix-b-put-authority-where-legible-fn-toctou"><span class="cn-mark">*</span> The analogy to time-of-check/time-of-use (TOCTOU) is useful: a valid check does not justify a later action if the relevant state can change between check and use. Here the intervening change may be another commit, an integration step, a generated artifact, or a deployment transition. See Part IV for the fuller treatment.</span></p>
 <p><a class="xref" href="appendix-b-put-authority-where-legible.html#fig-B-5-1">Figure&nbsp;B.5-1</a> places both boundaries on one timeline.</p>
 <figure id="fig-B-5-1" class="book-figure" data-label="fig-move05"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
-     role="img" aria-labelledby="c5Title c5Desc"
+     role="img" aria-labelledby="f-c5-earliest-legible-last-safe-c5Title f-c5-earliest-legible-last-safe-c5Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="c5Title">C.5 Put authority where the property becomes legible: check at the earliest legible boundary, re-check at the last safe one</title>
-  <desc id="c5Desc">A timeline running from where work begins to where consequence occurs. Too early, the property is
+  <title id="f-c5-earliest-legible-last-safe-c5Title">C.5 Put authority where the property becomes legible: check at the earliest legible boundary, re-check at the last safe one</title>
+  <desc id="f-c5-earliest-legible-last-safe-c5Desc">A timeline running from where work begins to where consequence occurs. Too early, the property is
     not yet legible, so a check there decides nothing. At the earliest boundary that can honestly evaluate the
     obligation, place the check. If later work can invalidate that evidence, re-establish it at the last safe
     boundary — the last point before the point of no return. The consequence sits at the end of the line.</desc>
 
   <defs>
-    <marker id="c5-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-c5-earliest-legible-last-safe-c5-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
   </defs>
@@ -725,8 +725,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- endpoint labels -->
   <text x="100" y="120" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">work begins</text>
   <text x="900" y="120" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">consequence</text>
-  <line x1="100" y1="132" x2="100" y2="212" stroke="#57534e" stroke-width="2" marker-end="url(#c5-ah)"/>
-  <line x1="900" y1="132" x2="900" y2="212" stroke="#b23b3b" stroke-width="2" marker-end="url(#c5-ah)"/>
+  <line x1="100" y1="132" x2="100" y2="212" stroke="#57534e" stroke-width="2" marker-end="url(#f-c5-earliest-legible-last-safe-c5-ah)"/>
+  <line x1="900" y1="132" x2="900" y2="212" stroke="#b23b3b" stroke-width="2" marker-end="url(#f-c5-earliest-legible-last-safe-c5-ah)"/>
 
   <!-- axis -->
   <line x1="80" y1="230" x2="920" y2="230" stroke="#1c1917" stroke-width="2.5"/>

@@ -714,17 +714,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Tool-mediated action.</strong> The agent touches the world only through identifiable interfaces — a file edit, a command, an API call.</li><li><strong>Interposition.</strong> Because every action crosses an interface, a hook or wrapper can inspect it, constrain it, redirect it, or deny it at the moment it happens.</li><li><strong>Lifecycle visibility.</strong> Dispatch, tool calls, compaction, completion, merge, deploy — the work's transitions are machine-observable events, not private states in a worker's head.</li><li><strong>Parallel execution.</strong> Many independent reasoning loops run at once, on one codebase, around the clock.</li></ul>
 <p>None of these properties is wholly alien to human software engineering. Humans also reason with bounded state, make uncertain judgments, use tools, and rely on evidence outside themselves. What changes is the combination: broad semantic work is now cheap and repeatable; implementation can proceed in many parallel reasoning loops; and the harness exposes machine-observable boundaries around that work. Recent work on harness engineering similarly treats autonomous capability as a property of the foundation-model–harness–environment system rather than the foundation model alone <sup class="cite-ref"><a href="#wc-1-3-the-agentic-substrate-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Hailin Zhong and Shengxin Zhu, “AI Harness Engineering: A Runtime Substrate for Foundation-Model Software Agents,” 2026, <a href="https://arxiv.org/abs/2605.13357">https://arxiv.org/abs/2605.13357</a>.</span> <sup class="cite-ref"><a href="#wc-1-3-the-agentic-substrate-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Justin Young, “Effective Harnesses for Long-Running Agents,” Anthropic, November 26, 2025, <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents</a>.</span> <sup class="cite-ref"><a href="#wc-1-3-the-agentic-substrate-3" aria-label="citation 3">3</a></sup><span class="cite-note"><span class="cn-mark">3.</span> Garry Tan, “Thin Harness, Fat Skills,” April 9, 2026, <a href="https://github.com/garrytan/gbrain/blob/master/docs/ethos/THIN_HARNESS_FAT_SKILLS.md">https://github.com/garrytan/gbrain/blob/master/docs/ethos/THIN_HARNESS_FAT_SKILLS.md</a>.</span>. <a class="xref" href="1.3-the-agentic-substrate.html#fig-1-3-1">Figure&nbsp;1.3-1</a> shows that combination. This substrate changes the economics of old engineering problems and exposes new places to act on them.</p>
 <figure id="fig-1-3-1" class="book-figure" data-label="agentic-substrate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"
-     role="img" aria-labelledby="asTitle asDesc"
+     role="img" aria-labelledby="f-agentic-substrate-asTitle f-agentic-substrate-asDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="asTitle">The agentic substrate</title>
-  <desc id="asDesc">Two columns supply the agent. The foundation model contributes semantic reasoning,
+  <title id="f-agentic-substrate-asTitle">The agentic substrate</title>
+  <desc id="f-agentic-substrate-asDesc">Two columns supply the agent. The foundation model contributes semantic reasoning,
     probabilistic output, a bounded working state, and cheap repeated reasoning. The agentic harness
     contributes tool-mediated action, interposition, lifecycle visibility, and parallel execution. Both
     converge on the agent, a tool-using reasoner, which in turn acts on the engineered environment —
     the models, obligations, evidence, and controls the engineer builds.</desc>
 
   <defs>
-    <marker id="as-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+    <marker id="f-agentic-substrate-as-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
             orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
     </marker>
@@ -771,8 +771,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- convergence: both substrate columns feed the agent, which sits INSIDE the environment.
        Paths curve down the outer flanks (clear of the centred header) into the agent's top edge. -->
-  <path d="M260,314 C260,410 360,430 452,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
-  <path d="M740,314 C740,410 640,430 548,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
+  <path d="M260,314 C260,410 360,430 452,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-agentic-substrate-as-k)"/>
+  <path d="M740,314 C740,410 640,430 548,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-agentic-substrate-as-k)"/>
 
   <!-- AGENT node (blue) — inside the environment container -->
   <rect x="400" y="452" width="200" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
@@ -785,10 +785,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Better representations can move the boundary by using available working state more effectively; they do not abolish the underlying locality problem. We already see both effects. RULER found that effective context length can fall well short of advertised context length and vary substantially across foundation models <sup class="cite-ref"><a href="#wc-1-3-the-agentic-substrate-4" aria-label="citation 4">4</a></sup><span class="cite-note"><span class="cn-mark">4.</span> Cheng-Ping Hsieh et al., “RULER: What's the Real Context Size of Your Long-Context Language Models?,” 2024, <a href="https://arxiv.org/abs/2404.06654">https://arxiv.org/abs/2404.06654</a>.</span>. <em>Lost in the Middle</em> showed that a fact's presence inside a long context does not make it equally available to the reasoner <sup class="cite-ref"><a href="#wc-1-3-the-agentic-substrate-5" aria-label="citation 5">5</a></sup><span class="cite-note"><span class="cn-mark">5.</span> Nelson F. Liu et al., “Lost in the Middle: How Language Models Use Long Contexts,” <em>Transactions of the Association for Computational Linguistics (TACL)</em> 12 (2024), <a href="https://arxiv.org/abs/2307.03172">https://arxiv.org/abs/2307.03172</a>.</span>. A stronger reasoner may recover relevant state more effectively. It still operates with finite active state.</p>
 <p>Independent practice reports a related effect at codebase scale. Sourcegraph's study of 1,281 scored agent runs across more than 40 large open-source repositories found that agents navigating by following raw references increasingly built exploration trees they could not prune effectively as repositories grew <sup class="cite-ref"><a href="#wc-1-3-the-agentic-substrate-6" aria-label="citation 6">6</a></sup><span class="cite-note"><span class="cn-mark">6.</span> Sourcegraph, “Why Coding Agents Fail in Large Codebases,” Sourcegraph, 2026, <a href="https://sourcegraph.com/blog/why-coding-agents-fail-large-codebases">https://sourcegraph.com/blog/why-coding-agents-fail-large-codebases</a>.</span>. The relevant point is not a magic line-count threshold. Raw implementation is an expensive reasoning substrate when the engineering question depends on a much smaller set of relationships.</p>
 <figure id="fig-1-3-2" class="book-figure" data-label="reasoning-horizon-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700"
-     role="img" aria-labelledby="rhTitle rhDesc"
+     role="img" aria-labelledby="f-reasoning-horizon-rhTitle f-reasoning-horizon-rhDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="rhTitle">The reasoning horizon</title>
-  <desc id="rhDesc">At sufficient scale a task requires more reasoning state than a finite reasoner can
+  <title id="f-reasoning-horizon-rhTitle">The reasoning horizon</title>
+  <desc id="f-reasoning-horizon-rhDesc">At sufficient scale a task requires more reasoning state than a finite reasoner can
     keep active, so some state must be reconstructed. A branch node, representation matters, states that the
     representation the reasoner works through determines how much of that state must be reconstructed. The
     figure forks from that node. On the left, raw implementation as the working substrate carries a large
@@ -798,7 +798,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     reconstruction unavoidable, representation determines burden.</desc>
 
   <defs>
-    <marker id="rh-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+    <marker id="f-reasoning-horizon-rh-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
             orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
@@ -807,80 +807,80 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="0" y="0" width="1000" height="700" fill="#fdfcf9"/>
 
   <!-- ===== shared top: the horizon condition ===== -->
-  <rect id="task" x="270" y="24" width="460" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="f-reasoning-horizon-task" x="270" y="24" width="460" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="500" y="50" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Task exceeds the finite active state</text>
   <text x="500" y="72" text-anchor="middle" font-size="16" fill="#57534e">some reasoning state must be reconstructed</text>
 
   <!-- edge: task -> hinge -->
-  <line x1="500" y1="84" x2="500" y2="106" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
+  <line x1="500" y1="84" x2="500" y2="106" stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)"/>
 
   <!-- ===== HINGE: the branch node (rust) ===== -->
-  <rect id="hinge" x="310" y="108" width="380" height="64" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
+  <rect id="f-reasoning-horizon-hinge" x="310" y="108" width="380" height="64" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
   <text x="500" y="135" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#9a3f12">REPRESENTATION MATTERS</text>
   <text x="500" y="157" text-anchor="middle" font-size="15" fill="#57534e">it determines how much must be reconstructed</text>
 
   <!-- fork arrows from hinge node to the two branch heads (seated toward each head's centre) -->
   <!-- edge: hinge -> raw-impl -->
-  <path stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)" d="M410,172 C380.2,183.9 325,176 325,206"/>
+  <path stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)" d="M410,172 C380.2,183.9 325,176 325,206"/>
   <!-- edge: hinge -> abstraction -->
-  <path stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)" d="M590,172 C619.8,183.9 675,176 675,206"/>
+  <path stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)" d="M590,172 C619.8,183.9 675,176 675,206"/>
 
   <!-- ================= LEFT BRANCH: raw implementation -> churn ================= -->
-  <rect id="raw-impl" x="90" y="208" width="320" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="f-reasoning-horizon-raw-impl" x="90" y="208" width="320" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="250" y="232" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Raw implementation as</text>
   <text x="250" y="253" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">working substrate</text>
   <!-- edge: raw-impl -> large-active -->
-  <line x1="250" y1="264" x2="250" y2="292" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
+  <line x1="250" y1="264" x2="250" y2="292" stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)"/>
 
-  <rect id="large-active" x="90" y="294" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-reasoning-horizon-large-active" x="90" y="294" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="250" y="324" text-anchor="middle" font-size="17" fill="#1c1917">Large active state</text>
   <!-- edge: large-active -> repeated-recon -->
-  <line x1="250" y1="342" x2="250" y2="370" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
+  <line x1="250" y1="342" x2="250" y2="370" stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)"/>
 
-  <rect id="repeated-recon" x="90" y="372" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-reasoning-horizon-repeated-recon" x="90" y="372" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="250" y="402" text-anchor="middle" font-size="17" fill="#1c1917">Repeated reconstruction</text>
   <!-- edge: repeated-recon -> structure-lost -->
-  <line x1="250" y1="420" x2="250" y2="448" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
+  <line x1="250" y1="420" x2="250" y2="448" stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)"/>
 
-  <rect id="structure-lost" x="90" y="450" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-reasoning-horizon-structure-lost" x="90" y="450" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="250" y="480" text-anchor="middle" font-size="17" fill="#1c1917">Relevant structure may be lost</text>
   <!-- edge: structure-lost -> churn -->
-  <line x1="250" y1="498" x2="250" y2="526" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
+  <line x1="250" y1="498" x2="250" y2="526" stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)"/>
 
-  <rect id="churn" x="150" y="528" width="200" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
+  <rect id="f-reasoning-horizon-churn" x="150" y="528" width="200" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
   <text x="250" y="563" text-anchor="middle" font-size="21" font-weight="700" fill="#b23b3b">Churn</text>
 
   <!-- ================= RIGHT BRANCH: purposeful abstraction -> longer coherent reasoning ============ -->
-  <rect id="abstraction" x="590" y="208" width="320" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <rect id="f-reasoning-horizon-abstraction" x="590" y="208" width="320" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
   <text x="750" y="242" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Purposeful abstraction</text>
   <!-- edge: abstraction -> smaller-state -->
-  <line x1="750" y1="264" x2="750" y2="292" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
+  <line x1="750" y1="264" x2="750" y2="292" stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)"/>
 
-  <rect id="smaller-state" x="590" y="294" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-reasoning-horizon-smaller-state" x="590" y="294" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="750" y="324" text-anchor="middle" font-size="17" fill="#1c1917">Smaller relevant state</text>
   <!-- edge: smaller-state -> lower-burden -->
-  <line x1="750" y1="342" x2="750" y2="370" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
+  <line x1="750" y1="342" x2="750" y2="370" stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)"/>
 
-  <rect id="lower-burden" x="590" y="372" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-reasoning-horizon-lower-burden" x="590" y="372" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="750" y="402" text-anchor="middle" font-size="17" fill="#1c1917">Lower reconstruction burden</text>
   <!-- edge: lower-burden -> longer-reasoning -->
-  <line x1="750" y1="420" x2="750" y2="448" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)"/>
+  <line x1="750" y1="420" x2="750" y2="448" stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)"/>
 
-  <rect id="longer-reasoning" x="620" y="450" width="260" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <rect id="f-reasoning-horizon-longer-reasoning" x="620" y="450" width="260" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="750" y="475" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Longer coherent</text>
   <text x="750" y="496" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">reasoning</text>
 
   <!-- ===== causal spine (foot) ===== -->
   <text x="90" y="626" font-size="13" font-weight="700" letter-spacing="1.5" fill="#57534e">THE CAUSAL SPINE</text>
   <g fill="#f6f4ef" stroke="#57534e" stroke-width="1.8">
-    <rect id="spine-fas" x="90" y="636" width="230" height="44" rx="9"/>
-    <rect id="spine-recon" x="385" y="636" width="230" height="44" rx="9"/>
-    <rect id="spine-rep" x="680" y="636" width="230" height="44" rx="9"/>
+    <rect id="f-reasoning-horizon-spine-fas" x="90" y="636" width="230" height="44" rx="9"/>
+    <rect id="f-reasoning-horizon-spine-recon" x="385" y="636" width="230" height="44" rx="9"/>
+    <rect id="f-reasoning-horizon-spine-rep" x="680" y="636" width="230" height="44" rx="9"/>
   </g>
   <text x="205" y="663" text-anchor="middle" font-size="13" fill="#1c1917">finite active state</text>
   <text x="500" y="663" text-anchor="middle" font-size="13" fill="#1c1917">reconstruction unavoidable</text>
   <text x="795" y="663" text-anchor="middle" font-size="13" fill="#1c1917">representation determines burden</text>
-  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#rh-k)">
+  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-reasoning-horizon-rh-k)">
     <!-- edge: spine-fas -> spine-recon -->
     <line x1="320" y1="658" x2="383" y2="658"/>
     <!-- edge: spine-recon -> spine-rep -->

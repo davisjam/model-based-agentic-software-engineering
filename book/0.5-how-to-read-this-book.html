@@ -707,10 +707,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="How to read this book — MAGE"><div class="apparatus-page"><header class="chap"><div class="kicker"><a href="0.1-the-mage-method-at-a-glance.html" aria-label="Beginning of Front Matter">Front Matter</a></div><h1>How to read this book</h1></header><p>The book asks one question in the Preface and answers it in the Conclusion. Everything between builds the answer. The Preface poses it — <em>how do we safely grant autonomy to commodity intelligence?</em> — and the Conclusion returns to it, gives the compact answer, and asks the converse: <em>what cannot be delegated?</em> Read straight through and the argument arrives in that deliberate order.</p>
 <p>The Parts follow the argument in sequence. Part I introduces the new engineering problem: it establishes the changed economics and explains why the question has become urgent when implementation turns abundant relative to judgment. Part II develops <strong>Modeling</strong> — how to choose purposeful representations that let finite reasoners work over larger system properties. Part III develops <strong>Alignment</strong> — how constraints, sensors, validators, and gates give engineering obligations authority. Modeling comes first because explicit abstraction can scale reasoning and enlarge the semantic surface over which Alignment can operate. Alignment can act on locally encoded obligations without separately externalizing them, but explicit models make richer semantics available to both reasoning and control. Part IV joins the two into a working method. Part V supplies the evidence: first the originating case in depth, then independent industrial practice in breadth. Part VI asks what that evidence means: it develops the theory, states its scope conditions and testable predictions, then follows the implications outward to software engineering, engineering more broadly, and the engineer. The <strong>Conclusion</strong> then answers the Preface and lands on what stays the engineer's responsibility. <a class="xref" href="0.5-how-to-read-this-book.html#fig-0-5-1">Figure&nbsp;0.5-1</a> shows the progression.</p>
 <figure id="fig-0-5-1" class="book-figure" data-label="book-map"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 940"
-     role="group" aria-labelledby="bmTitle bmDesc"
+     role="group" aria-labelledby="f-book-map-bmTitle f-book-map-bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bmTitle">A map of the book — a question posed in the Preface, answered in the Conclusion, across six Parts</title>
-  <desc id="bmDesc">The book is a call and a response wrapped around a single descent through six Parts. The
+  <title id="f-book-map-bmTitle">A map of the book — a question posed in the Preface, answered in the Conclusion, across six Parts</title>
+  <desc id="f-book-map-bmDesc">The book is a call and a response wrapped around a single descent through six Parts. The
     Preface poses the governing question: how do we safely grant autonomy to commodity intelligence? It leads
     to Part I, The New Engineering Problem — the changed economics. That leads to Part II, Modeling — make
     knowledge and intent explicit. That leads to Part III, Alignment — give obligations authority. Modeling
@@ -721,10 +721,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     visual argument ends there.</desc>
 
   <defs>
-    <marker id="bm2-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="f-book-map-bm2-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
-    <marker id="bm2-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="f-book-map-bm2-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
   </defs>
@@ -733,7 +733,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- CALL-AND-RESPONSE ARC — Preface (call) tied to Conclusion (response), down the left margin -->
   <path d="M 190 100 C 55 290, 55 760, 190 848" fill="none" stroke="#9a3f12" stroke-width="1.8"
-        stroke-dasharray="1 0" marker-end="url(#bm2-ah-rust)" opacity="0.85"/>
+        stroke-dasharray="1 0" marker-end="url(#f-book-map-bm2-ah-rust)" opacity="0.85"/>
   <text x="58" y="474" transform="rotate(-90 58 474)" text-anchor="middle" font-size="17"
         font-style="italic" fill="#9a3f12">call → response · the question returns, and turns</text>
 
@@ -742,43 +742,43 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="450" y="82" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Preface</text>
   <text x="450" y="104" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">poses the question:</text>
   <text x="450" y="123" text-anchor="middle" font-size="17" font-style="italic" fill="#1c1917">&#8220;How do we safely grant autonomy to commodity intelligence?&#8221;</text>
-  <line x1="450" y1="134" x2="450" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <line x1="450" y1="134" x2="450" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-book-map-bm2-ah)"/>
 
   <!-- PART I — The New Engineering Problem (ink frame) -->
   <rect x="190" y="160" width="520" height="80" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
   <text x="450" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Part I · The New Engineering Problem</text>
   <text x="450" y="221" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">changed economics</text>
-  <line x1="450" y1="240" x2="450" y2="264" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <line x1="450" y1="240" x2="450" y2="264" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-book-map-bm2-ah)"/>
 
   <!-- PART II — Modeling (green) -->
   <rect x="190" y="266" width="520" height="80" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
   <text x="450" y="302" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
   <text x="450" y="327" text-anchor="middle" font-size="17" font-style="italic" fill="#1f7a4d">make knowledge + intent explicit</text>
-  <line x1="450" y1="346" x2="450" y2="370" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <line x1="450" y1="346" x2="450" y2="370" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-book-map-bm2-ah)"/>
 
   <!-- PART III — Alignment (rust) -->
   <rect x="190" y="372" width="520" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="450" y="408" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
   <text x="450" y="433" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">give obligations authority</text>
-  <line x1="450" y1="452" x2="450" y2="476" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <line x1="450" y1="452" x2="450" y2="476" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-book-map-bm2-ah)"/>
 
   <!-- PART IV — The MAGE Method (neutral: joins the two) -->
   <rect x="190" y="478" width="520" height="80" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
   <text x="450" y="514" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
   <text x="450" y="539" text-anchor="middle" font-size="17" font-weight="600" fill="#1c1917">model · align · work · convert</text>
-  <line x1="450" y1="558" x2="450" y2="582" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <line x1="450" y1="558" x2="450" y2="582" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-book-map-bm2-ah)"/>
 
   <!-- PART V — The Evidence (fleet blue) -->
   <rect x="190" y="584" width="520" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="450" y="620" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
   <text x="450" y="645" text-anchor="middle" font-size="17" font-weight="600" fill="#2f5169">depth + breadth</text>
-  <line x1="450" y1="664" x2="450" y2="688" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <line x1="450" y1="664" x2="450" y2="688" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-book-map-bm2-ah)"/>
 
   <!-- PART VI — The Profession (purple) -->
   <rect x="190" y="690" width="520" height="80" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
   <text x="450" y="726" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
   <text x="450" y="751" text-anchor="middle" font-size="17" font-style="italic" fill="#5b4a72">theory · implications · engineer</text>
-  <line x1="450" y1="770" x2="450" y2="794" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <line x1="450" y1="770" x2="450" y2="794" stroke="#1c1917" stroke-width="2.2" marker-end="url(#f-book-map-bm2-ah)"/>
 
   <!-- CONCLUSION — the response (unnumbered matter, parallel to the Preface); the visual argument ends here -->
   <rect x="190" y="796" width="520" height="96" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>

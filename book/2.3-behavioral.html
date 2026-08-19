@@ -710,19 +710,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Engineering question</strong> — May recovery publish database state referring to a fallback artifact before that artifact is durably available?</li><li><strong>Model</strong> — three states — <code>FALLBACK_STAGED</code>, <code>FALLBACK_UPLOADED</code>, <code>DB_UPDATED</code> — and the legal transitions between them.</li><li><strong>Property</strong> — the fallback artifact becomes durable before database state may refer to it; the edge from <code>FALLBACK_STAGED</code> straight to <code>DB_UPDATED</code> does not exist.</li><li><strong>Quality attribute</strong> — crash-safety, data integrity, recoverability.</li></ul></blockquote>
 <p>The relevant model contains three states, and <a class="xref" href="2.3-behavioral.html#fig-2-3-1">Figure&nbsp;2.3-1</a> draws them in order: <code>FALLBACK_STAGED</code>, then <code>FALLBACK_UPLOADED</code> once the upload succeeds, then <code>DB_UPDATED</code> once durable state is written. The most important fact in the model is an edge that does <em>not</em> exist — the jump from <code>FALLBACK_STAGED</code> directly to <code>DB_UPDATED</code>, drawn broken and marked <em>not legal</em>. That missing edge is an engineering obligation: recovery may not declare the database update complete while skipping durable publication of the artifact it names.</p>
 <figure id="fig-2-3-1" class="book-figure" data-label="recovery-ordering-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 470"
-     role="img" aria-labelledby="roTitle roDesc"
+     role="img" aria-labelledby="f-recovery-ordering-model-roTitle f-recovery-ordering-model-roDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="roTitle">Recovery-ordering model: three legal states and one forbidden edge</title>
-  <desc id="roDesc">Three states in legal order. FALLBACK_STAGED transitions on upload success to
+  <title id="f-recovery-ordering-model-roTitle">Recovery-ordering model: three legal states and one forbidden edge</title>
+  <desc id="f-recovery-ordering-model-roDesc">Three states in legal order. FALLBACK_STAGED transitions on upload success to
     FALLBACK_UPLOADED, which transitions when durable state is updated to DB_UPDATED. The load-bearing fact
     is a forbidden edge: FALLBACK_STAGED may not go directly to DB_UPDATED. Durable state may not name an
     artifact recovery has not yet published.</desc>
 
   <defs>
-    <marker id="ro-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-recovery-ordering-model-ro-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="ro-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-recovery-ordering-model-ro-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
@@ -730,21 +730,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="285" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">RECOVERY MODEL</text>
 
   <!-- state 1 -->
-  <rect id="ro-staged" x="150" y="46" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="f-recovery-ordering-model-ro-staged" x="150" y="46" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="285" y="79" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">FALLBACK_STAGED</text>
   <!-- edge: ro-staged -> ro-uploaded -->
-  <line x1="285" y1="100" x2="285" y2="158.7" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ro-b)"/>
+  <line x1="285" y1="100" x2="285" y2="158.7" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-recovery-ordering-model-ro-b)"/>
   <text x="297" y="134" font-size="14" font-style="italic" fill="#57534e">upload succeeds</text>
 
   <!-- state 2 -->
-  <rect id="ro-uploaded" x="150" y="160" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="f-recovery-ordering-model-ro-uploaded" x="150" y="160" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="285" y="193" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">FALLBACK_UPLOADED</text>
   <!-- edge: ro-uploaded -> ro-db -->
-  <line x1="285" y1="214" x2="285" y2="272.7" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ro-b)"/>
+  <line x1="285" y1="214" x2="285" y2="272.7" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-recovery-ordering-model-ro-b)"/>
   <text x="297" y="248" font-size="14" font-style="italic" fill="#57534e">durable state updated</text>
 
   <!-- state 3 -->
-  <rect id="ro-db" x="150" y="274" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="f-recovery-ordering-model-ro-db" x="150" y="274" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="285" y="307" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">DB_UPDATED</text>
 
   <!-- forbidden / ABSENT transition, STAGED -> DB_UPDATED: drawn as a GHOST edge (faint, no live arrowhead)
@@ -768,23 +768,23 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The production implementation encodes this model as an explicit transition relation. That encoding can be executed, tested, and checked. But the model is not the transition-table syntax. The implementation contains uploads, exceptions, retries, logging, persistence, and other concerns; the model removes them to preserve one property: <strong>the fallback artifact becomes durable before database state may refer to it.</strong></p>
 <p>Executability does not change the underlying abstraction. It adds operations over the representation — running, testing, and checking it — without changing the reduction it expresses. <a class="xref" href="2.3-behavioral.html#fig-2-3-2">Figure&nbsp;2.3-2</a> reads top to bottom: the engineering question yields the reduced model, the model is realized as an explicit legal-transition relation, and only beneath that sits the implementation of uploads, persistence, retries, and error handling.</p>
 <figure id="fig-2-3-2" class="book-figure" data-label="model-first-encoding-second"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560"
-     role="img" aria-labelledby="mfTitle mfDesc"
+     role="img" aria-labelledby="f-model-first-encoding-second-mfTitle f-model-first-encoding-second-mfDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="mfTitle">Model first, encoding second: the model is the legal-transition relation, not its syntax</title>
-  <desc id="mfDesc">A vertical ladder of four layers. The engineering question: can durable state name an
+  <title id="f-model-first-encoding-second-mfTitle">Model first, encoding second: the model is the legal-transition relation, not its syntax</title>
+  <desc id="f-model-first-encoding-second-mfDesc">A vertical ladder of four layers. The engineering question: can durable state name an
     artifact recovery has not yet published? The model: a legal chain from STAGED to UPLOADED to DB_UPDATED,
     with a forbidden bypass edge from STAGED directly to DB_UPDATED. The encoding: an explicit
     legal-transition relation. The implementation: upload, persistence, retry, logging, error handling. The
     model is the reduced relation, distinct from the syntax and code that encode it.</desc>
 
   <defs>
-    <marker id="mf-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-model-first-encoding-second-mf-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="mf-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-model-first-encoding-second-mf-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="mf-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-model-first-encoding-second-mf-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
     </marker>
   </defs>
@@ -792,7 +792,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- layer 1: engineering question (ink) -->
   <text x="340" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">ENGINEERING QUESTION</text>
   <text x="340" y="52" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Can durable state name an artifact recovery has not yet published?</text>
-  <line x1="340" y1="62" x2="340" y2="86" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mf-b)"/>
+  <line x1="340" y1="62" x2="340" y2="86" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
 
   <!-- layer 2: MODEL (blue) -->
   <rect x="70" y="90" width="540" height="150" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
@@ -806,22 +806,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <rect x="468" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
     <text x="528" y="157">DB_UPDATED</text>
   </g>
-  <line x1="212" y1="152" x2="278" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mf-b)"/>
-  <line x1="400" y1="152" x2="466" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mf-b)"/>
+  <line x1="212" y1="152" x2="278" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
+  <line x1="400" y1="152" x2="466" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
   <!-- forbidden bypass STAGED -> DB_UPDATED (rust) -->
-  <path d="M152,172 C152,214 528,214 528,174" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#mf-r)"/>
+  <path d="M152,172 C152,214 528,214 528,174" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#f-model-first-encoding-second-mf-r)"/>
   <g stroke="#9a3f12" stroke-width="3.2" stroke-linecap="round">
     <line x1="329" y1="200" x2="351" y2="222"/>
     <line x1="351" y1="200" x2="329" y2="222"/>
   </g>
   <text x="340" y="234" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">may not skip publication</text>
-  <line x1="340" y1="240" x2="340" y2="266" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
+  <line x1="340" y1="240" x2="340" y2="266" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
 
   <!-- layer 3: ONE EXECUTABLE REPRESENTATION (gray) -->
   <rect x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="340" y="294" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
   <text x="340" y="313" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">explicit legal-transition relation</text>
-  <line x1="340" y1="322" x2="340" y2="348" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
+  <line x1="340" y1="322" x2="340" y2="348" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
 
   <!-- layer 4: IMPLEMENTATION (gray) -->
   <rect x="110" y="352" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
@@ -836,10 +836,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Some properties are different again. "This state never occurs" is a safety claim: one counterexample trace is enough to refute it. "Every submitted job eventually terminates" is a liveness claim: no finite successful trace establishes that the system cannot remain stuck forever. Those questions may require different checking machinery, but the modeling move is the same. First construct the reduced behavioral object on which the property can be stated.</p>
 <p>A state machine can also support formal reasoning. The engineering objective is to make the relevant property explicit over a defined behavioral model so that appropriate analysis or checking machinery can be applied. <a class="xref" href="2.3-behavioral.html#fig-2-3-3">Figure&nbsp;2.3-3</a> places the three question classes side by side.</p>
 <figure id="fig-2-3-3" class="book-figure" data-label="behavioral-property-classes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
-     role="img" aria-labelledby="bpcTitle bpcDesc"
+     role="img" aria-labelledby="f-behavioral-property-classes-bpcTitle f-behavioral-property-classes-bpcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bpcTitle">Behavioral models expose different classes of properties</title>
-  <desc id="bpcDesc">A single behavioral model of states, transitions, and legal sequences forks into three
+  <title id="f-behavioral-property-classes-bpcTitle">Behavioral models expose different classes of properties</title>
+  <desc id="f-behavioral-property-classes-bpcDesc">A single behavioral model of states, transitions, and legal sequences forks into three
     property questions. A local rule asks whether an edge is legal and is answered by a transition check.
     A reachable-state question asks whether a state can occur and is answered by a state-space search. A
     temporal property asks whether something will eventually occur and is answered by temporal model
@@ -847,7 +847,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     different checker.</desc>
 
   <defs>
-    <marker id="bpc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+    <marker id="f-behavioral-property-classes-bpc-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
             orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
@@ -876,19 +876,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="500" y1="92" x2="500" y2="116" stroke="#1c1917" stroke-width="2"/>
   <line x1="500" y1="116" x2="190" y2="116" stroke="#1c1917" stroke-width="2"/>
   <line x1="500" y1="116" x2="810" y2="116" stroke="#1c1917" stroke-width="2"/>
-  <line x1="190" y1="116" x2="190" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
-  <line x1="500" y1="116" x2="500" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
-  <line x1="810" y1="116" x2="810" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="190" y1="116" x2="190" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
+  <line x1="500" y1="116" x2="500" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
+  <line x1="810" y1="116" x2="810" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
 
-  <line x1="190" y1="248" x2="190" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
-  <line x1="500" y1="248" x2="500" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
-  <line x1="810" y1="248" x2="810" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="190" y1="248" x2="190" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
+  <line x1="500" y1="248" x2="500" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
+  <line x1="810" y1="248" x2="810" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
 
   <line x1="190" y1="310" x2="190" y2="376" stroke="#1c1917" stroke-width="2"/>
   <line x1="810" y1="310" x2="810" y2="376" stroke="#1c1917" stroke-width="2"/>
   <line x1="190" y1="376" x2="500" y2="376" stroke="#1c1917" stroke-width="2"/>
   <line x1="810" y1="376" x2="500" y2="376" stroke="#1c1917" stroke-width="2"/>
-  <line x1="500" y1="310" x2="500" y2="390" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)"/>
+  <line x1="500" y1="310" x2="500" y2="390" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="56" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#2f5169">BEHAVIORAL MODEL</text>

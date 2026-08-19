@@ -710,16 +710,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Neither side is sufficient by itself. Showing that an access-control model has the desired property does not establish that the implementation correctly realizes that model; inspecting implementation alone may make the intended access-control policy difficult to recover in the first place. Assurance must therefore move in both directions. Models make intended properties explicit and tractable for reasoning, while bidirectional traceability and Alignment help establish correspondence between those properties and their realization. Some claims can be evaluated over models, some over implementation, and some require evidence connecting the two. Traceability also connects assurance outward across the lifecycle: a compliance requirement may originate in regulation or product policy, constrain an architectural model and implementation components, require evidence from tests or operational measurements, and ultimately support a claim supplied to an auditor or other authority.</p>
 <p><a class="xref" href="appendix-h-assurance-and-compliance.html#fig-H-6-1">Figure&nbsp;H.6-1</a> shows this structure. Assurance is not a final check performed on finished code. It operates across representations of the product and the product as realized, selecting evidence appropriate to the claim being established.</p>
 <figure id="fig-H-6-1" class="book-figure" data-label="fig-h-assurance"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 660"
-     role="img" aria-labelledby="h6Title h6Desc"
+     role="img" aria-labelledby="f-h6-assurance-models-realization-h6Title f-h6-assurance-models-realization-h6Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="h6Title">Assurance across models and realization</title>
-  <desc id="h6Desc">An obligation becomes an assurance claim. Establishing the claim can require evidence about
+  <title id="f-h6-assurance-models-realization-h6Title">Assurance across models and realization</title>
+  <desc id="f-h6-assurance-models-realization-h6Desc">An obligation becomes an assurance claim. Establishing the claim can require evidence about
     modeled properties — architecture, behavior, data flow, access policy, invariants — about the realization —
     implementation, tests, static analysis, runtime evidence, memory safety — or about the correspondence between
     them, which traceability and Alignment supply. The combined evidence and argument establishes the claim.</desc>
 
   <defs>
-    <marker id="h6-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="f-h6-assurance-models-realization-h6-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
   </defs>
 
@@ -733,11 +733,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="320" y="138" font-size="14" font-weight="700" fill="#1c1917">ASSURANCE CLAIM</text>
   </g>
 
-  <line x1="320" y1="66" x2="320" y2="108" stroke="#57534e" stroke-width="2.2" marker-end="url(#h6-ah)"/>
+  <line x1="320" y1="66" x2="320" y2="108" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
 
   <!-- split to the two evidence bodies -->
-  <path d="M320,154 L320,180 L165,180 L165,206" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h6-ah)"/>
-  <path d="M320,154 L320,180 L475,180 L475,206" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h6-ah)"/>
+  <path d="M320,154 L320,180 L165,180 L165,206" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
+  <path d="M320,154 L320,180 L475,180 L475,206" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
 
   <!-- model evidence -->
   <rect x="50" y="208" width="230" height="168" rx="9" fill="#eef2f5" stroke="#2f5169" stroke-width="2.2"/>
@@ -767,7 +767,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="320" y="430" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">TRACEABILITY &amp; ALIGNMENT</text>
   <text x="320" y="450" text-anchor="middle" font-size="13" fill="#9a3f12">models ↔ code</text>
 
-  <line x1="320" y1="462" x2="320" y2="496" stroke="#57534e" stroke-width="2.2" marker-end="url(#h6-ah)"/>
+  <line x1="320" y1="462" x2="320" y2="496" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
 
   <g text-anchor="middle">
     <rect x="210" y="498" width="220" height="56" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
@@ -775,7 +775,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="320" y="542" font-size="14" font-weight="700" fill="#1c1917">ARGUMENT</text>
   </g>
 
-  <line x1="320" y1="554" x2="320" y2="588" stroke="#57534e" stroke-width="2.2" marker-end="url(#h6-ah)"/>
+  <line x1="320" y1="554" x2="320" y2="588" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
 
   <g text-anchor="middle">
     <rect x="206" y="590" width="228" height="44" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>

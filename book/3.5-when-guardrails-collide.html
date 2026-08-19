@@ -713,20 +713,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">3.5.2</span> Model Interactions Between Controls</h2>
 <p>Two collisions from the case study make it concrete. In the first, one mechanism required several commits collapsed into a single squashed one, while another read the resulting combined diff as unauthorized scope expansion and flagged it — two controls, one commit-set, contradictory demands, exposed only when one real commit activated both controls. In the second, two hooks fired on the same turn-end with no order declared between them, each able to block, and their composition was left implicit. Neither collision lives in any one control's code. Each lives in the space <em>between</em> two controls. That relation had not been represented. <a class="xref" href="3.5-when-guardrails-collide.html#fig-3-5-1">Figure&nbsp;3.5-1</a> draws it.</p>
 <figure id="fig-3-5-1" class="book-figure" data-label="collision-edge"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
-     role="img" aria-labelledby="ceTitle ceDesc"
+     role="img" aria-labelledby="f-collision-edge-ceTitle f-collision-edge-ceDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ceTitle">The conflict is the edge — two valid controls impose incompatible demands on one shared resource</title>
-  <desc id="ceDesc">Two control nodes — Control A, which requires a squashed commit, and Control B, which
+  <title id="f-collision-edge-ceTitle">The conflict is the edge — two valid controls impose incompatible demands on one shared resource</title>
+  <desc id="f-collision-edge-ceDesc">Two control nodes — Control A, which requires a squashed commit, and Control B, which
     rejects a broad diff — each correct when read alone. Both point by a solid arrow to one explicit shared
     resource, the commit set, that they act on. Below the commit set, a rust node marks the incompatible
     demands: the conflict belongs to the relation among the two controls and the resource they share, not to
     either control's own implementation.</desc>
 
   <defs>
-    <marker id="ce-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-collision-edge-ce-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
-    <marker id="ce-ah-churn" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-collision-edge-ce-ah-churn" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
     </marker>
   </defs>
@@ -747,15 +747,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="480" y="276" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">COMMIT SET</text>
 
   <!-- A acts on the shared resource -->
-  <path d="M300,132 C350,168 375,186 408,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ce-ah)"/>
+  <path d="M300,132 C350,168 375,186 408,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-collision-edge-ce-ah)"/>
   <text x="318" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
 
   <!-- B acts on the shared resource -->
-  <path d="M660,132 C610,168 585,186 552,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ce-ah)"/>
+  <path d="M660,132 C610,168 585,186 552,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-collision-edge-ce-ah)"/>
   <text x="642" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
 
   <!-- incompatibility hangs off the shared-resource node -->
-  <line x1="480" y1="294" x2="480" y2="332" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#ce-ah-churn)"/>
+  <line x1="480" y1="294" x2="480" y2="332" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#f-collision-edge-ce-ah-churn)"/>
   <rect x="250" y="336" width="460" height="70" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2.2" stroke-dasharray="7 6"/>
   <text x="480" y="368" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">incompatible demands</text>
   <text x="480" y="391" text-anchor="middle" font-size="19" font-style="italic" fill="#b23b3b">the conflict lives in this relation, not in either control</text>
@@ -769,11 +769,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Interactions are only half of governing the control estate. A catalogue tells you what controls exist; an interaction graph tells you where controls may collide. Neither tells you what <em>should</em> be governed but is not. For that, join the mechanisms to the obligations or failure classes that justify them.</p>
 <p>The result is a small requirements-traceability problem. An important obligation with no adequate mechanism is <strong>under-governance</strong>. A mechanism with no current obligation, failure class, or purpose is an <strong>orphan</strong> — candidate governance debt. The useful question is not "how many controls do we have?" It is whether consequential obligations have appropriate coverage and whether every surviving control can still explain why it exists. <a class="xref" href="3.5-when-guardrails-collide.html#fig-3-5-2">Figure&nbsp;3.5-2</a> sets the three views side by side over one control estate.</p>
 <figure id="fig-3-5-2" class="book-figure" data-label="census-trio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 620"
-     role="img" aria-labelledby="ctTitle ctDesc"
+     role="img" aria-labelledby="f-census-trio-ctTitle f-census-trio-ctDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ctTitle">Three views of one control estate: catalogue, interaction graph, and coverage of
+  <title id="f-census-trio-ctTitle">Three views of one control estate: catalogue, interaction graph, and coverage of
     obligations against mechanisms — the same three controls seen through three relations</title>
-  <desc id="ctDesc">Three panels over the same three controls, carried by stable identities: [A] squash rule,
+  <desc id="f-census-trio-ctDesc">Three panels over the same three controls, carried by stable identities: [A] squash rule,
     [B] brief guard, [C] lint gate. Left panel, the catalogue, lists the three controls that exist. Middle
     panel, the interaction graph, relates [A] and [B] through a shared resource, the commit set, where they
     collide; [C] stands alone. Right panel, the coverage view, relates controls to the obligations that
@@ -783,7 +783,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     relations its engineering question needs.</desc>
 
   <defs>
-    <marker id="ct-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-census-trio-ct-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
     </marker>
   </defs>
@@ -830,7 +830,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
   <!-- collision marked on the shared relation -->
   <line x1="620" y1="176" x2="660" y2="176" stroke="#b23b3b" stroke-width="2.4" stroke-dasharray="7 6"
-        marker-start="url(#ct-ah)" marker-end="url(#ct-ah)"/>
+        marker-start="url(#f-census-trio-ct-ah)" marker-end="url(#f-census-trio-ct-ah)"/>
   <text x="640" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">collision</text>
 
   <!-- [C] stands alone -->

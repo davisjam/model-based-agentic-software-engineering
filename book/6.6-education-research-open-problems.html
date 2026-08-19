@@ -731,10 +731,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Engineers increasingly need fluency in the moves these disciplines teach. DocAble provides the practical spectrum. A local ownership invariant is best carried by a database compare-and-set that makes competing claims mutually exclusive. A concurrency protocol whose failures live in interleavings is checked by exhaustive exploration of a bounded behavioral model. An eventual-termination requirement needs a temporal model because no finite collection of successful executions can establish that a job cannot remain stranded forever. The tools differ; the underlying engineering skill is recognizing the property, choosing a representation in which it becomes tractable, and selecting evidence adequate to the claim.</p>
 <p>A modern software-engineering curriculum should therefore teach state machines, invariants, types, model checking, temporal reasoning, and correspondence not primarily as specialist techniques, but as examples of a more general competence: turning consequential engineering questions into representations and evidence that machines can help carry. <a class="xref" href="6.6-education-research-open-problems.html#fig-6-6-1">Figure&nbsp;6.6-1</a> draws that progression.</p>
 <figure id="fig-6-6-1" class="book-figure" data-label="question-to-authority-progression"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640"
-     role="img" aria-labelledby="qapTitle qapDesc"
+     role="img" aria-labelledby="f-question-to-authority-progression-qapTitle f-question-to-authority-progression-qapDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="qapTitle">From engineering question to authority</title>
-  <desc id="qapDesc">A vertical progression. An engineering question leads to choosing a representation. The
+  <title id="f-question-to-authority-progression-qapTitle">From engineering question to authority</title>
+  <desc id="f-question-to-authority-progression-qapDesc">A vertical progression. An engineering question leads to choosing a representation. The
     representation forks the path: a closed state or action space leads to a structural constraint; a finite
     transition system leads to exhaustive state exploration; temporal behavior leads to temporal model
     checking. The branches re-converge to interpret the evidence and then to decide what deserves authority.
@@ -742,7 +742,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     machines can help carry, not any one tool.</desc>
 
   <defs>
-    <marker id="qap-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+    <marker id="f-question-to-authority-progression-qap-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
             orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
@@ -752,54 +752,54 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
 
   <!-- question (gray) -->
-  <rect id="question" x="340" y="26" width="320" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="f-question-to-authority-progression-question" x="340" y="26" width="320" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
 
   <!-- choose the representation (blue) -->
-  <rect id="choose-representation" x="330" y="110" width="340" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
+  <rect id="f-question-to-authority-progression-choose-representation" x="330" y="110" width="340" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
 
   <!-- representation boxes (blue) -->
-  <rect id="rep-closed" x="45" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
-  <rect id="rep-finite" x="360" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
-  <rect id="rep-temporal" x="675" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="f-question-to-authority-progression-rep-closed" x="45" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="f-question-to-authority-progression-rep-finite" x="360" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="f-question-to-authority-progression-rep-temporal" x="675" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
 
   <!-- mechanism boxes (gray) -->
-  <rect id="mech-constraint" x="45" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
-  <rect id="mech-explicit" x="360" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
-  <rect id="mech-temporal" x="675" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-question-to-authority-progression-mech-constraint" x="45" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-question-to-authority-progression-mech-explicit" x="360" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-question-to-authority-progression-mech-temporal" x="675" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
 
   <!-- interpret the evidence (gray) -->
-  <rect id="interpret" x="330" y="446" width="340" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="f-question-to-authority-progression-interpret" x="330" y="446" width="340" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
 
   <!-- decide authority (green) -->
-  <rect id="authority" x="310" y="536" width="380" height="58" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+  <rect id="f-question-to-authority-progression-authority" x="310" y="536" width="380" height="58" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
 
   <!-- ===== arrows ===== -->
   <!-- edge: question -> choose-representation -->
-  <line x1="500" y1="78" x2="500" y2="108" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <line x1="500" y1="78" x2="500" y2="108" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
 
   <!-- edge: choose-representation -> rep-closed -->
-  <path d="M500,162 L500,186 L185,186 L185,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <path d="M500,162 L500,186 L185,186 L185,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
   <!-- edge: choose-representation -> rep-finite -->
-  <path d="M500,162 L500,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <path d="M500,162 L500,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
   <!-- edge: choose-representation -> rep-temporal -->
-  <path d="M500,162 L500,186 L815,186 L815,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <path d="M500,162 L500,186 L815,186 L815,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
 
   <!-- edge: rep-closed -> mech-constraint -->
-  <line x1="185" y1="276" x2="185" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <line x1="185" y1="276" x2="185" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
   <!-- edge: rep-finite -> mech-explicit -->
-  <line x1="500" y1="276" x2="500" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <line x1="500" y1="276" x2="500" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
   <!-- edge: rep-temporal -> mech-temporal -->
-  <line x1="815" y1="276" x2="815" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <line x1="815" y1="276" x2="815" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
 
   <!-- edge: mech-constraint -> interpret -->
-  <path d="M185,376 L185,426 L500,426 L500,444" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <path d="M185,376 L185,426 L500,426 L500,444" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
   <!-- edge: mech-explicit -> interpret -->
-  <path d="M500,376 L500,444" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <path d="M500,376 L500,444" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
   <!-- edge: mech-temporal -> interpret -->
-  <path d="M815,376 L815,426 L500,426 L500,444" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <path d="M815,376 L815,426 L500,426 L500,444" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
 
   <!-- edge: interpret -> authority -->
-  <line x1="500" y1="498" x2="500" y2="534" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
+  <line x1="500" y1="498" x2="500" y2="534" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">engineering question</text>

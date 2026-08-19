@@ -711,11 +711,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Multiple actors or agents mutate important artifacts</strong>, making attribution and transformation history consequential.</li><li><strong>Partial or bypassed instrumentation is plausible</strong>, so "we log our writes" is not proof every write was logged.</li><li><strong>Transformation can silently lose product semantics</strong> — the output looks fine and is not.</li><li><strong>Incident reconstruction requires both facts at once</strong>: who changed what, and whether the result remained faithful.</li></ul>
 <h2><span class="sec-num">A.3.3</span> The Composition</h2>
 <figure id="fig-A-3-1" class="book-figure" data-label="auditable-transformation-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720"
-     role="img" aria-labelledby="atTitle atDesc"
+     role="img" aria-labelledby="f-auditable-transformation-stack-atTitle f-auditable-transformation-stack-atDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="atTitle">The Auditable-Transformation stack: a sanctioned mutation is marked, recorded,
+  <title id="f-auditable-transformation-stack-atTitle">The Auditable-Transformation stack: a sanctioned mutation is marked, recorded,
     covered, read back, and gated on fidelity</title>
-  <desc id="atDesc">A single solid load-bearing chain runs top to bottom. A sanctioned mutation enters. MARK
+  <desc id="f-auditable-transformation-stack-atDesc">A single solid load-bearing chain runs top to bottom. A sanctioned mutation enters. MARK
     attaches actor and action. EMIT persists a structured record. COVER detects any mutation that escaped
     attribution. READ reconstructs the transformation history. The FIDELITY GATE checks that the transformed
     artifact retained its required semantics. Every link is required: attribution without completeness is a
@@ -723,7 +723,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     alone cannot show the product survived. No dashed enhancement in this stack.</desc>
 
   <defs>
-    <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="f-auditable-transformation-stack-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -731,31 +731,31 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- SANCTIONED MUTATION -->
   <rect x="230" y="24" width="260" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6"/>
   <text x="360" y="55" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">SANCTIONED MUTATION</text>
-  <line x1="360" y1="76" x2="360" y2="114" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="360" y1="76" x2="360" y2="114" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- MARK -->
   <rect x="255" y="116" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="146" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">MARK</text>
   <text x="360" y="168" text-anchor="middle" font-size="14" fill="#57534e">actor &#183; action</text>
-  <line x1="360" y1="182" x2="360" y2="214" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="360" y1="182" x2="360" y2="214" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- EMIT -->
   <rect x="255" y="216" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="246" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">EMIT</text>
   <text x="360" y="268" text-anchor="middle" font-size="14" fill="#57534e">persist a structured record</text>
-  <line x1="360" y1="282" x2="360" y2="314" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="360" y1="282" x2="360" y2="314" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- COVER -->
   <rect x="245" y="316" width="230" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="346" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">COVER</text>
   <text x="360" y="368" text-anchor="middle" font-size="14" fill="#57534e">every mutation accounted for?</text>
-  <line x1="360" y1="388" x2="360" y2="420" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="360" y1="388" x2="360" y2="420" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- READ -->
   <rect x="245" y="422" width="230" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="452" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">READ</text>
   <text x="360" y="474" text-anchor="middle" font-size="14" fill="#57534e">reconstruct history</text>
-  <line x1="360" y1="494" x2="360" y2="526" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="360" y1="494" x2="360" y2="526" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- FIDELITY GATE (rust) -->
   <rect x="240" y="528" width="240" height="76" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
@@ -763,7 +763,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="360" y="580" text-anchor="middle" font-size="14" fill="#57534e">did semantics survive?</text>
 
   <!-- legend -->
-  <line x1="60" y1="552" x2="104" y2="552" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="60" y1="552" x2="104" y2="552" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
   <text x="112" y="557" font-size="14" fill="#57534e">load-bearing (required)</text>
   <text x="60" y="580" font-size="14" font-style="italic" fill="#57534e">the full chain is required</text>
 

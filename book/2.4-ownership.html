@@ -710,23 +710,23 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <ul><li><strong>Engineering question</strong> — Who currently appears to own this work, and when may the system treat that ownership as stale?</li><li><strong>Model</strong> — a lease over a work item: an owner, an epoch, a lifetime, and the transitions claim → release and expire → reclaimable.</li><li><strong>Property</strong> — each claim has an identifiable owner, epoch, and lifetime; an expired claim can be distinguished from a current one and reclaimed.</li><li><strong>Quality attribute</strong> — liveness, crash recovery, and progress under contention.</li></ul></blockquote>
 <p><a class="xref" href="2.4-ownership.html#fig-2-4-1">Figure&nbsp;2.4-1</a> draws the resulting ownership model. A claim installs an owner, an epoch, and a lifetime; a merge releases it; expiry makes the work reclaimable. The representation suppresses the machinery that realizes ownership — it need not describe Redis operations, database transactions, worker processes, broker delivery, or merge implementation to answer <em>who currently appears to own this work, and when may the system treat that ownership as stale?</em></p>
 <figure id="fig-2-4-1" class="book-figure" data-label="in-flight-ownership-states"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420"
-     role="img" aria-labelledby="ioTitle ioDesc"
+     role="img" aria-labelledby="f-in-flight-ownership-states-ioTitle f-in-flight-ownership-states-ioDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ioTitle">In-flight ownership: CLAIMED releases on merge or becomes reclaimable on expiry</title>
-  <desc id="ioDesc">A claim opens the CLAIMED state, carrying owner, epoch, and expires_at. Two
+  <title id="f-in-flight-ownership-states-ioTitle">In-flight ownership: CLAIMED releases on merge or becomes reclaimable on expiry</title>
+  <desc id="f-in-flight-ownership-states-ioDesc">A claim opens the CLAIMED state, carrying owner, epoch, and expires_at. Two
     transitions leave it. Merge releases the claim to a RELEASED outcome. Expiry moves it to RECLAIMABLE,
     a lapsed state from which another actor may claim it again. The model distinguishes a live claim from a
     stale one and states when the window has lapsed, without representing the storage machinery that
     implements the lease.</desc>
 
   <defs>
-    <marker id="io-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-in-flight-ownership-states-io-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
-    <marker id="io-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-in-flight-ownership-states-io-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="io-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-in-flight-ownership-states-io-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
     </marker>
   </defs>
@@ -735,7 +735,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- claim in -->
   <text x="360" y="54" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">claim</text>
-  <line x1="360" y1="60" x2="360" y2="76" stroke="#2f5169" stroke-width="2.2" marker-end="url(#io-b)"/>
+  <line x1="360" y1="60" x2="360" y2="76" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-in-flight-ownership-states-io-b)"/>
 
   <!-- CLAIMED (blue, the live claim) -->
   <rect x="230" y="78" width="260" height="80" rx="10" fill="#dae4ec" stroke="#2f5169" stroke-width="2.8"/>
@@ -743,11 +743,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="360" y="138" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; expires_at</text>
 
   <!-- merge transition -> RELEASED (green outcome, down-left) -->
-  <path d="M305,158 C260,198 215,205 182,244" fill="none" stroke="#155c38" stroke-width="2.4" marker-end="url(#io-g)"/>
+  <path d="M305,158 C260,198 215,205 182,244" fill="none" stroke="#155c38" stroke-width="2.4" marker-end="url(#f-in-flight-ownership-states-io-g)"/>
   <text x="215" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#155c38">merge</text>
 
   <!-- expiry transition -> RECLAIMABLE (gray, down-right) -->
-  <path d="M415,158 C460,198 505,205 538,244" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#io-k)"/>
+  <path d="M415,158 C460,198 505,205 538,244" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#f-in-flight-ownership-states-io-k)"/>
   <text x="505" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">expiry</text>
 
   <!-- RELEASED (green) -->
@@ -762,7 +762,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- another actor may claim: loop back from RECLAIMABLE to CLAIMED -->
   <path d="M642,268 C698,208 640,118 494,112" fill="none" stroke="#57534e" stroke-width="2"
-        stroke-dasharray="6 5" marker-end="url(#io-k)"/>
+        stroke-dasharray="6 5" marker-end="url(#f-in-flight-ownership-states-io-k)"/>
   <text x="660" y="182" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">another actor</text>
   <text x="660" y="199" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">may claim</text>
 
@@ -774,17 +774,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The difficult ownership failures do not necessarily appear in any one transition. They emerge from interleavings. Suppose one worker holds epoch 7, appears stale, and is reclaimed; another worker receives epoch 8; then the original worker wakes and attempts a late release using its old claim. Every individual action may be locally reasonable. The engineering question is whether their composition can destroy the current owner's lease or otherwise leave the system in an invalid state.</p>
 <p>The ownership model reduces that question to a finite state space: owner, epoch, lifecycle state, reclaim, and release are the relevant variables and moves. The implementation may involve databases, queues, Lua, workers, and timers, but those details need not all enter the model. The reduction exists so that the interleavings carrying the ownership property can be explored directly. <a class="xref" href="2.4-ownership.html#fig-2-4-2">Figure&nbsp;2.4-2</a> follows one such sequence to the fork an epoch fence closes.</p>
 <figure id="fig-2-4-2" class="book-figure" data-label="lease-interleaving-trace"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
-     role="img" aria-labelledby="litTitle litDesc"
+     role="img" aria-labelledby="f-lease-interleaving-trace-litTitle f-lease-interleaving-trace-litDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="litTitle">Why ownership becomes an interleaving problem</title>
-  <desc id="litDesc">A vertical state trace. Worker A owns epoch 7. Its lease appears stale, so the system
+  <title id="f-lease-interleaving-trace-litTitle">Why ownership becomes an interleaving problem</title>
+  <desc id="f-lease-interleaving-trace-litDesc">A vertical state trace. Worker A owns epoch 7. Its lease appears stale, so the system
     reclaims it and issues epoch 8 to worker B. Worker A is still alive and wakes to attempt a late clear
     with its old epoch 7. Without an epoch fence, that stale clear may clear worker B's current lease, a
     forbidden outcome. With an epoch fence, the stale clear is inapplicable to the current claim and
     becomes a no-op.</desc>
 
   <defs>
-    <marker id="lit-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
+    <marker id="f-lease-interleaving-trace-lit-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
             orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
@@ -803,13 +803,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="520" y="330" width="400" height="86" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
 
   <!-- ===== arrows ===== -->
-  <line x1="500" y1="78" x2="500" y2="116" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
-  <line x1="500" y1="170" x2="500" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+  <line x1="500" y1="78" x2="500" y2="116" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
+  <line x1="500" y1="170" x2="500" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
   <line x1="500" y1="262" x2="500" y2="292" stroke="#1c1917" stroke-width="2"/>
   <line x1="500" y1="292" x2="280" y2="292" stroke="#1c1917" stroke-width="2"/>
   <line x1="500" y1="292" x2="720" y2="292" stroke="#1c1917" stroke-width="2"/>
-  <line x1="280" y1="292" x2="280" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
-  <line x1="720" y1="292" x2="720" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+  <line x1="280" y1="292" x2="280" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
+  <line x1="720" y1="292" x2="720" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
@@ -830,16 +830,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Recovery is not permission.</strong> That distinction will matter in Part III: the same represented state can support different authority decisions.</p>
 <p>The lease also shows that model classes overlap. Active leases can be counted to estimate demand, so the same representation contributes to an ownership question — <em>who controls this work?</em> — and a measurement question — <em>how much work is genuinely in flight?</em> <a class="xref" href="2.4-ownership.html#fig-2-4-3">Figure&nbsp;2.4-3</a> draws that overlap: one represented fact fanning out into ownership, behavioral, and measurement views. The categories in this Part classify engineering questions, not mutually exclusive data structures.</p>
 <figure id="fig-2-4-3" class="book-figure" data-label="in-flight-lease-overlap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350"
-     role="img" aria-labelledby="ilTitle ilDesc"
+     role="img" aria-labelledby="f-in-flight-lease-overlap-ilTitle f-in-flight-lease-overlap-ilDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="ilTitle">One shared lease state answers ownership, behavioral, and measurement questions</title>
-  <desc id="ilDesc">A single shared lease state, carrying owner, epoch, and lifetime, sits at the top and
+  <title id="f-in-flight-lease-overlap-ilTitle">One shared lease state answers ownership, behavioral, and measurement questions</title>
+  <desc id="f-in-flight-lease-overlap-ilDesc">A single shared lease state, carrying owner, epoch, and lifetime, sits at the top and
     fans down to three purpose-views: ownership, who owns it; behavioral, when is it stale; and measurement,
     how many are active. One represented state, several engineering questions. Model classes distinguish
     purpose, not storage objects.</desc>
 
   <defs>
-    <marker id="il-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-in-flight-lease-overlap-il-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
     </marker>
   </defs>
@@ -850,7 +850,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="360" y="90" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; lifetime</text>
 
   <!-- fan DOWN to the three class views -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#il-b)">
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-in-flight-lease-overlap-il-b)">
     <path d="M320,104 C240,140 190,150 145,186"/>
     <path d="M360,104 L360,186"/>
     <path d="M400,104 C480,140 530,150 575,186"/>

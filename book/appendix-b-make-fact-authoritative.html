@@ -708,19 +708,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p><strong>Move.</strong> Choose one machine-readable representation as the authoritative source of the fact. Downstream consumers should query it or derive from it rather than maintain independently editable copies.</p>
 <p><a class="xref" href="appendix-b-make-fact-authoritative.html#fig-B-1-1">Figure&nbsp;B.1-1</a> contrasts the two states.</p>
 <figure id="fig-B-1-1" class="book-figure" data-label="fig-move01"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
-     role="img" aria-labelledby="c1Title c1Desc"
+     role="img" aria-labelledby="f-c1-make-fact-authoritative-c1Title f-c1-make-fact-authoritative-c1Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="c1Title">C.1 Make one source authoritative: from many disagreeing copies to one representation others derive from</title>
-  <desc id="c1Desc">Before: three copies of the same fact each feed a separate consumer, and because each copy can
+  <title id="f-c1-make-fact-authoritative-c1Title">C.1 Make one source authoritative: from many disagreeing copies to one representation others derive from</title>
+  <desc id="f-c1-make-fact-authoritative-c1Desc">Before: three copies of the same fact each feed a separate consumer, and because each copy can
     change independently, disagreement between them is an ordinary state. After: one authoritative representation
     carries the fact, and the three consumers derive or query it from that single source, so disagreement becomes
     detectable or impossible.</desc>
 
   <defs>
-    <marker id="c1-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-c1-make-fact-authoritative-c1-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
     </marker>
-    <marker id="c1-ah-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+    <marker id="f-c1-make-fact-authoritative-c1-ah-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/>
     </marker>
   </defs>
@@ -737,7 +737,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="82" y1="310" x2="118" y2="310" stroke="#b23b3b" stroke-width="1.6"/>
 
   <!-- BEFORE: each copy feeds its own consumer -->
-  <g stroke="#57534e" stroke-width="2" marker-end="url(#c1-ah)">
+  <g stroke="#57534e" stroke-width="2" marker-end="url(#f-c1-make-fact-authoritative-c1-ah)">
     <!-- edge: copy-a -> consumer-a -->
     <line x1="270" y1="110" x2="328.8" y2="110"/>
     <!-- edge: copy-b -> consumer-b -->
@@ -747,7 +747,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
 
   <!-- AFTER: the authoritative representation fans to the three consumers -->
-  <g stroke="#1f7a4d" stroke-width="2" fill="none" marker-end="url(#c1-ah-g)">
+  <g stroke="#1f7a4d" stroke-width="2" fill="none" marker-end="url(#f-c1-make-fact-authoritative-c1-ah-g)">
     <!-- edge: authoritative -> out-a -->
     <path d="M700,156 C660,196 648,220 648,250"/>
     <!-- edge: authoritative -> out-b -->
@@ -759,35 +759,35 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ===== NODE LAYER: drawn ON TOP so opaque fills cap the edge ends ===== -->
   <!-- three copies (failure pole) -->
   <g>
-    <rect id="copy-a" x="120" y="86"  width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+    <rect id="f-c1-make-fact-authoritative-copy-a" x="120" y="86"  width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
     <text x="195" y="115" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">copy A</text>
-    <rect id="copy-b" x="120" y="186" width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+    <rect id="f-c1-make-fact-authoritative-copy-b" x="120" y="186" width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
     <text x="195" y="215" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">copy B</text>
-    <rect id="copy-c" x="120" y="286" width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+    <rect id="f-c1-make-fact-authoritative-copy-c" x="120" y="286" width="150" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
     <text x="195" y="315" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">copy C</text>
   </g>
 
   <!-- consumers -->
   <g>
-    <rect id="consumer-a" x="330" y="90"  width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="f-c1-make-fact-authoritative-consumer-a" x="330" y="90"  width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="395" y="115" text-anchor="middle" font-size="15" fill="#1c1917">consumer A</text>
-    <rect id="consumer-b" x="330" y="190" width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="f-c1-make-fact-authoritative-consumer-b" x="330" y="190" width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="395" y="215" text-anchor="middle" font-size="15" fill="#1c1917">consumer B</text>
-    <rect id="consumer-c" x="330" y="290" width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="f-c1-make-fact-authoritative-consumer-c" x="330" y="290" width="130" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="395" y="315" text-anchor="middle" font-size="15" fill="#1c1917">consumer C</text>
   </g>
 
   <!-- authoritative representation (modeling pole) -->
-  <rect id="authoritative" x="628" y="86" width="300" height="70" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <rect id="f-c1-make-fact-authoritative-authoritative" x="628" y="86" width="300" height="70" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="778" y="118" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">AUTHORITATIVE</text>
   <text x="778" y="140" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">REPRESENTATION</text>
 
   <g>
-    <rect id="out-a" x="600" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="f-c1-make-fact-authoritative-out-a" x="600" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="648" y="275" text-anchor="middle" font-size="15" fill="#1c1917">A</text>
-    <rect id="out-b" x="730" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="f-c1-make-fact-authoritative-out-b" x="730" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="778" y="275" text-anchor="middle" font-size="15" fill="#1c1917">B</text>
-    <rect id="out-c" x="860" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="f-c1-make-fact-authoritative-out-c" x="860" y="250" width="96" height="40" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
     <text x="908" y="275" text-anchor="middle" font-size="15" fill="#1c1917">C</text>
   </g>
 
@@ -798,7 +798,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="778" y="372" text-anchor="middle" font-size="16" font-style="italic" fill="#155c38">disagreement becomes detectable or impossible</text>
 
   <!-- BEFORE -> AFTER transition (decorative; no node target) -->
-  <line x1="500" y1="200" x2="560" y2="200" stroke="#1c1917" stroke-width="3" marker-end="url(#c1-ah)"/>
+  <line x1="500" y1="200" x2="560" y2="200" stroke="#1c1917" stroke-width="3" marker-end="url(#f-c1-make-fact-authoritative-c1-ah)"/>
 
   <!-- footer -->
   <text x="500" y="500" text-anchor="middle" font-size="16" fill="#1c1917">Choose one representation to carry the fact, make it machine-readable, and derive the consumers from it.</text>
