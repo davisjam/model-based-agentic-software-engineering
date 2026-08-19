@@ -2746,17 +2746,26 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="380" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCABLE MODELING SUBSTRATE &#183; SIX PEER MODELS</text>
 
-  <!-- spokes: center to each peer (drawn first, under the boxes) -->
+  <!-- spokes: center to each peer (drawn first, under the boxes); each runs hub-center to peer-center so the
+       opaque ellipse + box fills cap the ends. The hub is an ellipse (not lint-legible), so a transparent
+       rect over it carries the id "shared-identities". -->
   <g stroke="#57534e" stroke-width="2" opacity="0.75">
-    <line x1="380" y1="290" x2="380" y2="140"/>
+    <!-- edge: structural -> shared-identities -->
+    <line x1="380" y1="290" x2="380" y2="112"/>
+    <!-- edge: behavioral -> shared-identities -->
     <line x1="380" y1="290" x2="549" y2="200"/>
+    <!-- edge: ownership -> shared-identities -->
     <line x1="380" y1="290" x2="549" y2="380"/>
-    <line x1="380" y1="290" x2="380" y2="440"/>
+    <!-- edge: decision -> shared-identities -->
+    <line x1="380" y1="290" x2="380" y2="468"/>
+    <!-- edge: measurement -> shared-identities -->
     <line x1="380" y1="290" x2="211" y2="380"/>
+    <!-- edge: provenance -> shared-identities -->
     <line x1="380" y1="290" x2="211" y2="200"/>
   </g>
 
   <!-- center: SHARED IDENTITIES (gray) -->
+  <rect id="fig-2-8-1-f-modeling-substrate-shared-identities" x="276" y="238" width="208" height="104" fill="none" stroke="none"/>
   <ellipse cx="380" cy="290" rx="104" ry="52" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
   <text x="380" y="285" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">SHARED</text>
   <text x="380" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">IDENTITIES</text>
@@ -2764,22 +2773,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- six peer models (blue) -->
   <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
     <!-- top -->
-    <rect x="305" y="86" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-1-f-modeling-substrate-structural" x="305" y="86" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="380" y="118">structural</text>
     <!-- upper-right -->
-    <rect x="474" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-1-f-modeling-substrate-behavioral" x="474" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="549" y="206">behavioral</text>
     <!-- lower-right -->
-    <rect x="474" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-1-f-modeling-substrate-ownership" x="474" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="549" y="386">ownership</text>
     <!-- bottom -->
-    <rect x="305" y="442" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-1-f-modeling-substrate-decision" x="305" y="442" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="380" y="474">decision</text>
     <!-- lower-left -->
-    <rect x="136" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-1-f-modeling-substrate-measurement" x="136" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="211" y="386">measurement</text>
     <!-- upper-left -->
-    <rect x="136" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-1-f-modeling-substrate-provenance" x="136" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="211" y="206">provenance</text>
   </g>
 
@@ -4001,10 +4010,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="640" y="56" text-anchor="middle" font-size="25" font-weight="700" fill="#1c1917">Interaction graph</text>
   <text x="640" y="86" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">what collides</text>
 
+  <!-- spokes drawn FIRST (under the nodes), center-to-center so the opaque node fills cap the ends -->
+  <g stroke="#1c1917" stroke-width="1.8" fill="none">
+    <!-- edge: squash-rule -> commit-set -->
+    <line x1="545" y1="176" x2="640" y2="291"/>
+    <!-- edge: brief-guard -> commit-set -->
+    <line x1="735" y1="176" x2="640" y2="291"/>
+  </g>
+
   <!-- [A] and [B] act on a shared resource; the collision hangs off it -->
   <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
-    <rect x="470" y="150" width="150" height="52" rx="7"/>
-    <rect x="660" y="150" width="150" height="52" rx="7"/>
+    <rect id="fig-3-5-2-f-census-trio-squash-rule" x="470" y="150" width="150" height="52" rx="7"/>
+    <rect id="fig-3-5-2-f-census-trio-brief-guard" x="660" y="150" width="150" height="52" rx="7"/>
   </g>
   <g font-size="18" fill="#1c1917" text-anchor="middle">
     <text x="545" y="183"><tspan font-weight="800" fill="#2f5169">[A]</tspan> squash rule</text>
@@ -4012,14 +4029,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
 
   <!-- shared resource node -->
-  <rect x="560" y="268" width="160" height="46" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+  <rect id="fig-3-5-2-f-census-trio-commit-set" x="560" y="268" width="160" height="46" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
   <text x="640" y="297" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">commit set</text>
-  <!-- edges A/B -> shared resource -->
-  <g stroke="#1c1917" stroke-width="1.8" fill="none">
-    <line x1="560" y1="202" x2="612" y2="268"/>
-    <line x1="720" y1="202" x2="668" y2="268"/>
-  </g>
   <!-- collision marked on the shared relation -->
+  <!-- edge: squash-rule .. brief-guard -->
   <line x1="620" y1="176" x2="660" y2="176" stroke="#b23b3b" stroke-width="2.4" stroke-dasharray="7 6"
         marker-start="url(#fig-3-5-2-f-census-trio-ct-ah)" marker-end="url(#fig-3-5-2-f-census-trio-ct-ah)"/>
   <text x="640" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">collision</text>
@@ -4035,16 +4048,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="945" y="128" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">obligation</text>
   <text x="1188" y="128" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">control</text>
 
-  <!-- matched edges (blue) -->
+  <!-- matched edges (blue), drawn UNDER the nodes; center-to-center so the fills cap the ends -->
   <g stroke="#2f5169" stroke-width="2.2">
-    <line x1="1012" y1="163" x2="1118" y2="163"/>
-    <line x1="1012" y1="235" x2="1118" y2="235"/>
+    <!-- edge: scope-bounded -> ctl-squash -->
+    <line x1="945" y1="163" x2="1188" y2="163"/>
+    <!-- edge: brief-followed -> ctl-brief -->
+    <line x1="945" y1="235" x2="1188" y2="235"/>
   </g>
 
   <!-- obligation nodes (left) -->
   <g fill="#eef2f6" stroke="#2f5169" stroke-width="1.8">
-    <rect x="878" y="143" width="134" height="40" rx="5"/>
-    <rect x="878" y="215" width="134" height="40" rx="5"/>
+    <rect id="fig-3-5-2-f-census-trio-scope-bounded" x="878" y="143" width="134" height="40" rx="5"/>
+    <rect id="fig-3-5-2-f-census-trio-brief-followed" x="878" y="215" width="134" height="40" rx="5"/>
   </g>
   <rect x="878" y="287" width="134" height="40" rx="5" fill="#ffffff" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
   <g text-anchor="middle" fill="#1c1917">
@@ -4055,8 +4070,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- control nodes (right), carrying the same identities -->
   <g fill="#e7edf3" stroke="#2f5169" stroke-width="1.8">
-    <rect x="1118" y="143" width="140" height="40" rx="5"/>
-    <rect x="1118" y="215" width="140" height="40" rx="5"/>
+    <rect id="fig-3-5-2-f-census-trio-ctl-squash" x="1118" y="143" width="140" height="40" rx="5"/>
+    <rect id="fig-3-5-2-f-census-trio-ctl-brief" x="1118" y="215" width="140" height="40" rx="5"/>
   </g>
   <rect x="1118" y="287" width="140" height="40" rx="5" fill="#ffffff" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
   <g text-anchor="middle" font-size="14" fill="#1c1917">
@@ -9580,49 +9595,64 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Internet infrastructure (CDN · edge · security) · agentic stack across hundreds of teams</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
-  <!-- door -->
-  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
-  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Policy-first</text>
-  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">governance</text>
-
-  <!-- door -> policy -->
-  <line x1="151" y1="205" x2="317" y2="205" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- one policy (filled hub) -->
-  <circle cx="330" cy="205" r="13" fill="#1c1917"/>
-  <text x="330" y="252" text-anchor="middle" font-size="16" fill="#78716c">one machine-checkable policy</text>
-
-  <!-- fan-out to many mechanisms -->
-  <line x1="343" y1="205" x2="600" y2="150" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="343" y1="205" x2="600" y2="178" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="343" y1="205" x2="600" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="343" y1="205" x2="600" y2="234" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="343" y1="205" x2="600" y2="262" stroke="#cfcabf" stroke-width="2.5"/>
-  <circle cx="600" cy="150" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="600" cy="178" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="600" cy="206" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="600" cy="234" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="600" cy="262" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <text x="600" y="130" text-anchor="middle" font-size="16" fill="#78716c">governs thousands of changes</text>
-
+  <!-- ===== edges (drawn UNDER the nodes; node fills cap the ends) ===== -->
+  <!-- edge: door -> policy -->
+  <line x1="140" y1="205" x2="330" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: policy -> mech-1 -->
+  <line x1="330" y1="205" x2="600" y2="150" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: policy -> mech-2 -->
+  <line x1="330" y1="205" x2="600" y2="178" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: policy -> mech-3 -->
+  <line x1="330" y1="205" x2="600" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: policy -> mech-4 -->
+  <line x1="330" y1="205" x2="600" y2="234" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: policy -> mech-5 -->
+  <line x1="330" y1="205" x2="600" y2="262" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: mech-3 -> landing -->
+  <line x1="600" y1="206" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
   <!-- caveat: the recurrence loop does not close (partial governance-conversion) -->
-  <path d="M600 268 C 500 322, 400 322, 356 282" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="5 5"/>
-  <circle cx="356" cy="282" r="4" fill="#fdfcf9" stroke="#78716c" stroke-width="2"/>
-  <text x="470" y="344" text-anchor="middle" font-size="16" fill="#78716c">recurrence loop only half-closed (◐)</text>
+  <!-- edge: mech-5 .. recur -->
+  <path d="M600 262 C 500 322, 400 322, 356 282" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="5 5"/>
 
-  <!-- mechanisms -> landing -->
-  <line x1="614" y1="206" x2="758" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <!-- ===== nodes (opaque fills cap the edge ends) ===== -->
+  <!-- door -->
+  <circle id="fig-F-1-f-field-guide-cloudflare-door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+
+  <!-- one machine-checkable policy (filled hub) -->
+  <circle id="fig-F-1-f-field-guide-cloudflare-policy" cx="330" cy="205" r="13" fill="#1c1917"/>
+
+  <!-- the mechanisms it governs -->
+  <circle id="fig-F-1-f-field-guide-cloudflare-mech-1" cx="600" cy="150" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-1-f-field-guide-cloudflare-mech-2" cx="600" cy="178" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-1-f-field-guide-cloudflare-mech-3" cx="600" cy="206" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-1-f-field-guide-cloudflare-mech-4" cx="600" cy="234" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-1-f-field-guide-cloudflare-mech-5" cx="600" cy="262" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+
+  <!-- recurrence loop's half-closed tail node -->
+  <circle id="fig-F-1-f-field-guide-cloudflare-recur" cx="356" cy="282" r="4" fill="#fdfcf9" stroke="#78716c" stroke-width="2"/>
 
   <!-- landing badge -->
+  <rect id="fig-F-1-f-field-guide-cloudflare-landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== labels ===== -->
+  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Policy-first</text>
+  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">governance</text>
+  <text x="330" y="252" text-anchor="middle" font-size="16" fill="#78716c">one machine-checkable policy</text>
+  <text x="600" y="130" text-anchor="middle" font-size="16" fill="#78716c">governs thousands of changes</text>
+  <text x="470" y="344" text-anchor="middle" font-size="16" fill="#78716c">recurrence loop only half-closed (◐)</text>
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="860" y="211" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Alignment</text>
 
   <!-- takeaway -->
   <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>
   <text x="500" y="404" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">One machine-checkable policy, authored once, governs thousands of later changes.</text>
 </svg><figcaption data-short="Cloudflare projected onto MAGE"><span class="fig-label">Figure F-1.</span> <em>Cloudflare projected onto MAGE.</em> Public evidence strongly supports structured policy, machine-checkable enforcement, and organizational-scale reuse; the governance-conversion loop stays interpretive.</figcaption></figure><p class="gallery-source">From <a href="appendix-field-guide.html#fig-F-1">Appendix F — Field Guide</a></p></section><hr><section class="gallery-item"><figure id="fig-F-2-fig-F-2" class="book-figure" data-label="field-guide-spotify"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Spotify — fleet-first autonomy to the Governed Engineering Environment">
+  <defs>
+    <marker id="fig-F-2-f-field-guide-spotify-arrow-up" markerWidth="18" markerHeight="16" refX="18" refY="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L18,8 L0,16 Z" fill="#57534e"/>
+    </marker>
+  </defs>
   <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
 
   <!-- header -->
@@ -9631,38 +9661,40 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Audio-streaming platform · fleet-scale autonomous-migration program</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
-  <!-- door -->
+  <!-- ===== edges (under nodes) ===== -->
+  <!-- edge: door -> f1 -->
+  <line x1="140" y1="205" x2="300" y2="250" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: fleet -> judgment -->
+  <!-- directed: judgment moves upstream; head seats on the judgment rim -->
+  <line x1="430" y1="238" x2="430" y2="157" stroke="#57534e" stroke-width="2.5" marker-end="url(#fig-F-2-f-field-guide-spotify-arrow-up)"/>
+  <!-- edge: judgment -> landing -->
+  <line x1="430" y1="145" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- ===== nodes (fills cap the undirected ends) ===== -->
+  <circle id="fig-F-2-f-field-guide-spotify-door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+  <circle id="fig-F-2-f-field-guide-spotify-f1" cx="300" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-2-f-field-guide-spotify-f2" cx="352" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-2-f-field-guide-spotify-f3" cx="404" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-2-f-field-guide-spotify-f4" cx="456" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-2-f-field-guide-spotify-f5" cx="508" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-2-f-field-guide-spotify-f6" cx="560" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <!-- transparent anchor over the fleet row: the upstream edge's named source node (zero visual change) -->
+  <rect id="fig-F-2-f-field-guide-spotify-fleet" x="290" y="234" width="280" height="28" fill="none" stroke="none"/>
+  <circle id="fig-F-2-f-field-guide-spotify-judgment" cx="430" cy="145" r="12" fill="#1c1917"/>
+  <rect id="fig-F-2-f-field-guide-spotify-landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== node labels ===== -->
   <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
   <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Fleet-first</text>
   <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">autonomy</text>
 
-  <!-- door -> fleet -->
-  <line x1="151" y1="212" x2="296" y2="250" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- fleet of agents implementing concurrently -->
-  <circle cx="300" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="352" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="404" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="456" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="508" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="560" cy="250" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
   <text x="430" y="284" text-anchor="middle" font-size="16" fill="#78716c">agents implement concurrently</text>
   <text x="430" y="306" text-anchor="middle" font-size="16" fill="#78716c">concurrent fleet execution</text>
 
-  <!-- judgment moves upstream -->
-  <line x1="430" y1="238" x2="430" y2="163" stroke="#57534e" stroke-width="2.5"/>
-  <polygon points="422,175 430,157 438,175" fill="#57534e"/>
-  <circle cx="430" cy="145" r="12" fill="#1c1917"/>
   <text x="430" y="128" text-anchor="middle" font-size="16" fill="#57534e">human judgment</text>
   <text x="448" y="206" text-anchor="start" font-size="16" fill="#78716c">moves upstream</text>
 
-  <!-- judgment -> landing (amplified by the environment) -->
-  <line x1="442" y1="150" x2="758" y2="198" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- landing badge -->
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="860" y="203" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Governed Engineering</text>
   <text x="860" y="223" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Environment</text>
 
@@ -9670,7 +9702,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>
   <text x="500" y="396" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Automate implementation and the scarce resource becomes the human decision —</text>
   <text x="500" y="418" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">what, where, when, and whether — placed where the environment amplifies it.</text>
-</svg><figcaption data-short="Spotify projected onto MAGE"><span class="fig-label">Figure F-2.</span> <em>Spotify projected onto MAGE.</em> Persistent estate representation feeds targeting, concurrent execution, and fleet-level supervision; the reading is judgment moving upstream, not the PR count.</figcaption></figure><p class="gallery-source">From <a href="appendix-field-guide.html#fig-F-2">Appendix F — Field Guide</a></p></section><hr><section class="gallery-item"><figure id="fig-F-3-fig-F-3" class="book-figure" data-label="field-guide-shopify"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Shopify — shared agent-ready environment to the Engineered Environment">
+</svg><figcaption data-short="Spotify projected onto MAGE"><span class="fig-label">Figure F-2.</span> <em>Spotify projected onto MAGE.</em> Persistent estate representation feeds targeting, concurrent execution, and fleet-level supervision; the reading is judgment moving upstream, not the PR count.</figcaption></figure><p class="gallery-source">From <a href="appendix-field-guide.html#fig-F-2">Appendix F — Field Guide</a></p></section><hr><section class="gallery-item"><figure id="fig-F-3-fig-F-3" class="book-figure" data-label="field-guide-shopify"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Shopify — shared agent-ready environment to the Engineering Environment">
   <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
 
   <!-- header -->
@@ -9679,44 +9711,48 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Commerce platform · org-wide agent use with hard monthly usage numbers</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
-  <!-- door -->
+  <!-- ===== edges (under nodes; undirected → run to node centres) ===== -->
+  <!-- edge: door -> s3 -->
+  <line x1="140" y1="205" x2="300" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <!-- session fan: one line per branch, each session circle -> corpus centre -->
+  <!-- edge: s1 -> corpus -->
+  <line x1="300" y1="165" x2="490" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: s2 -> corpus -->
+  <line x1="300" y1="185" x2="490" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: s3 -> corpus -->
+  <line x1="300" y1="205" x2="490" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: s4 -> corpus -->
+  <line x1="300" y1="225" x2="490" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: s5 -> corpus -->
+  <line x1="300" y1="245" x2="490" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: corpus -> skill -->
+  <line x1="490" y1="206" x2="650" y2="206" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: skill -> landing -->
+  <line x1="650" y1="206" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- ===== nodes (fills cap the edge ends) ===== -->
+  <circle id="fig-F-3-f-field-guide-shopify-door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+  <circle id="fig-F-3-f-field-guide-shopify-s1" cx="300" cy="165" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-3-f-field-guide-shopify-s2" cx="300" cy="185" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-3-f-field-guide-shopify-s3" cx="300" cy="205" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-3-f-field-guide-shopify-s4" cx="300" cy="225" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-3-f-field-guide-shopify-s5" cx="300" cy="245" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <rect id="fig-F-3-f-field-guide-shopify-corpus" x="400" y="180" width="180" height="52" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
+  <circle id="fig-F-3-f-field-guide-shopify-skill" cx="650" cy="206" r="11" fill="#1c1917"/>
+  <rect id="fig-F-3-f-field-guide-shopify-landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== node labels ===== -->
   <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
   <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Shared agent-</text>
   <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">ready environment</text>
 
-  <!-- door -> sessions -->
-  <line x1="151" y1="205" x2="286" y2="205" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- many sessions run in the open -->
-  <circle cx="300" cy="165" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="185" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="205" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="225" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="245" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <line x1="305" y1="165" x2="400" y2="200" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="305" y1="185" x2="400" y2="204" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="305" y1="205" x2="400" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="305" y1="225" x2="400" y2="210" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="305" y1="245" x2="400" y2="214" stroke="#cfcabf" stroke-width="2.5"/>
-
-  <!-- shared, observable corpus -->
-  <rect x="400" y="180" width="180" height="52" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
   <text x="490" y="202" text-anchor="middle" font-size="16" fill="#1c1917">shared, observable</text>
   <text x="490" y="222" text-anchor="middle" font-size="16" fill="#57534e">session corpus</text>
   <text x="490" y="258" text-anchor="middle" font-size="16" fill="#78716c">59,918 sessions · 5,170 channels · 7,000+ people</text>
 
-  <!-- corpus -> reusable skill -->
-  <line x1="580" y1="206" x2="639" y2="206" stroke="#cfcabf" stroke-width="3"/>
-  <circle cx="650" cy="206" r="11" fill="#1c1917"/>
   <text x="650" y="246" text-anchor="middle" font-size="16" fill="#57534e">reusable skill</text>
 
-  <!-- skill -> landing -->
-  <line x1="661" y1="205" x2="758" y2="205" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- landing badge -->
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="860" y="203" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Engineering</text>
   <text x="860" y="223" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Environment</text>
 
@@ -9733,51 +9769,62 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Developer tooling (containers) · autonomous coding fleet with a role graph</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
-  <!-- door -->
-  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
-  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Authority boundaries</text>
-  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">&amp; eval loops</text>
+  <!-- ===== edges (drawn UNDER the nodes; node fills cap the ends) ===== -->
+  <!-- edge: door -> role-4 -->
+  <line x1="140" y1="205" x2="300" y2="209" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: hub -> role-1 -->
+  <line x1="360" y1="209" x2="300" y2="140" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-2 -->
+  <line x1="360" y1="209" x2="300" y2="163" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-3 -->
+  <line x1="360" y1="209" x2="300" y2="186" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-4 -->
+  <line x1="360" y1="209" x2="300" y2="209" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-5 -->
+  <line x1="360" y1="209" x2="300" y2="232" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-6 -->
+  <line x1="360" y1="209" x2="300" y2="255" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-7 -->
+  <line x1="360" y1="209" x2="300" y2="278" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> gate -->
+  <line x1="360" y1="209" x2="570" y2="210" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: gate -> landing -->
+  <line x1="570" y1="210" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
 
-  <!-- door -> delegation hub -->
-  <line x1="151" y1="205" x2="296" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <!-- ===== nodes (opaque fills cap the edge ends) ===== -->
+  <!-- door -->
+  <circle id="fig-F-4-f-field-guide-docker-door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
 
   <!-- seven permission-backed roles -->
-  <circle cx="300" cy="140" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="163" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="186" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="209" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="232" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="255" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="278" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <line x1="349" y1="209" x2="305" y2="140" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="163" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="186" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="209" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="232" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="255" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="278" stroke="#cfcabf" stroke-width="2"/>
-  <circle cx="360" cy="209" r="11" fill="#1c1917"/>
-  <text x="330" y="305" text-anchor="middle" font-size="16" fill="#78716c">seven permission-backed roles</text>
-  <text x="330" y="325" text-anchor="middle" font-size="16" fill="#78716c">runs the shortest evidence horizon (◐)</text>
+  <circle id="fig-F-4-f-field-guide-docker-role-1" cx="300" cy="140" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-4-f-field-guide-docker-role-2" cx="300" cy="163" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-4-f-field-guide-docker-role-3" cx="300" cy="186" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-4-f-field-guide-docker-role-4" cx="300" cy="209" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-4-f-field-guide-docker-role-5" cx="300" cy="232" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-4-f-field-guide-docker-role-6" cx="300" cy="255" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="fig-F-4-f-field-guide-docker-role-7" cx="300" cy="278" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
 
-  <!-- hub -> gate -->
-  <line x1="371" y1="209" x2="521" y2="209" stroke="#cfcabf" stroke-width="3"/>
-  <text x="452" y="196" text-anchor="middle" font-size="16" fill="#78716c">determinize the tests</text>
+  <!-- delegation hub -->
+  <circle id="fig-F-4-f-field-guide-docker-hub" cx="360" cy="209" r="11" fill="#1c1917"/>
 
   <!-- the admission gate is deliberately left open, a human standing on it -->
   <line x1="545" y1="172" x2="545" y2="248" stroke="#1c1917" stroke-width="3"/>
   <line x1="595" y1="172" x2="595" y2="248" stroke="#1c1917" stroke-width="3"/>
-  <circle cx="570" cy="210" r="9" fill="#1c1917"/>
-  <text x="570" y="150" text-anchor="middle" font-size="16" fill="#57534e">semantic admission remains human</text>
-  <text x="570" y="272" text-anchor="middle" font-size="16" fill="#57534e">human on every merge</text>
-
-  <!-- gate -> landing -->
-  <line x1="596" y1="209" x2="758" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <circle id="fig-F-4-f-field-guide-docker-gate" cx="570" cy="210" r="9" fill="#1c1917"/>
 
   <!-- landing badge -->
+  <rect id="fig-F-4-f-field-guide-docker-landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== labels ===== -->
+  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Authority boundaries</text>
+  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">&amp; eval loops</text>
+  <text x="330" y="305" text-anchor="middle" font-size="16" fill="#78716c">seven permission-backed roles</text>
+  <text x="330" y="325" text-anchor="middle" font-size="16" fill="#78716c">runs the shortest evidence horizon (◐)</text>
+  <text x="452" y="196" text-anchor="middle" font-size="16" fill="#78716c">determinize the tests</text>
+  <text x="570" y="150" text-anchor="middle" font-size="16" fill="#57534e">semantic admission remains human</text>
+  <text x="570" y="272" text-anchor="middle" font-size="16" fill="#57534e">human on every merge</text>
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="860" y="211" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Alignment</text>
 
   <!-- takeaway -->
@@ -9793,16 +9840,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Industrial / model-based engineering · decades of model-first practice</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
-  <!-- door -->
-  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
-  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Model-first</text>
-  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">engineering</text>
+  <!-- ===== edges (under the shapes) ===== -->
+  <!-- door -> ladder base: the ladder base is a rail junction, not a single lint-legible node; seated by eye (unannotated). -->
+  <line x1="140" y1="205" x2="455" y2="290" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: top-rung -> landing -->
+  <!-- highest reached rung to the landing; curves down to clear the two nearest rung labels. -->
+  <path fill="none" d="M520,178 C560,200 700,205 860,205" stroke="#cfcabf" stroke-width="3"/>
 
-  <!-- door -> base of the ladder -->
-  <line x1="151" y1="215" x2="449" y2="290" stroke="#cfcabf" stroke-width="3"/>
+  <!-- ===== the modeling ladder + door + landing ===== -->
+  <circle id="fig-F-5-f-field-guide-siemens-door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
 
-  <!-- the modeling ladder: five reached rungs, a sixth absent -->
+  <!-- ladder rails -->
   <line x1="455" y1="150" x2="455" y2="300" stroke="#57534e" stroke-width="3"/>
   <line x1="520" y1="150" x2="520" y2="300" stroke="#57534e" stroke-width="3"/>
 
@@ -9816,25 +9864,29 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <circle cx="520" cy="262" r="4" fill="#1c1917"/>
   <circle cx="520" cy="234" r="4" fill="#1c1917"/>
   <circle cx="520" cy="206" r="4" fill="#1c1917"/>
-  <circle cx="520" cy="178" r="4" fill="#1c1917"/>
+  <circle id="fig-F-5-f-field-guide-siemens-top-rung" cx="520" cy="178" r="4" fill="#1c1917"/>
+
+  <!-- sixth rung absent: the drift gate, one rung short -->
+  <line x1="455" y1="150" x2="520" y2="150" stroke="#1c1917" stroke-width="2.5" stroke-dasharray="5 5"/>
+  <circle cx="520" cy="150" r="4" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+
+  <!-- landing badge -->
+  <rect id="fig-F-5-f-field-guide-siemens-landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== labels ===== -->
+  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Model-first</text>
+  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">engineering</text>
+
   <text x="532" y="294" text-anchor="start" font-size="16" fill="#57534e">behavioral</text>
   <text x="532" y="266" text-anchor="start" font-size="16" fill="#57534e">process</text>
   <text x="532" y="238" text-anchor="start" font-size="16" fill="#57534e">scenario</text>
   <text x="532" y="210" text-anchor="start" font-size="16" fill="#57534e">invariant</text>
   <text x="532" y="182" text-anchor="start" font-size="16" fill="#57534e">bidirectional traceability</text>
   <text x="455" y="320" text-anchor="start" font-size="16" fill="#78716c">the five rungs (executable tier)</text>
-
-  <!-- sixth rung absent: the drift gate, one rung short -->
-  <line x1="455" y1="150" x2="520" y2="150" stroke="#1c1917" stroke-width="2.5" stroke-dasharray="5 5"/>
-  <circle cx="520" cy="150" r="4" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
   <text x="532" y="154" text-anchor="start" font-size="16" fill="#78716c">drift gate — one rung short (◐)</text>
 
-  <!-- highest reached rung -> landing -->
-  <line x1="524" y1="178" x2="758" y2="200" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- landing badge -->
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="860" y="211" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Modeling</text>
 
   <!-- takeaway -->
@@ -9850,39 +9902,41 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Autonomous-driving software · platform-team / domain-team split</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
-  <!-- door -->
+  <!-- ===== edges (under nodes; undirected → run to node centres) ===== -->
+  <!-- edge: door -> platform -->
+  <line x1="140" y1="205" x2="392.5" y2="206" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: platform -> d1 -->
+  <line x1="392.5" y1="206" x2="620" y2="160" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: platform -> d2 -->
+  <line x1="392.5" y1="206" x2="620" y2="205" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: platform -> d3 -->
+  <line x1="392.5" y1="206" x2="620" y2="250" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: d2 -> landing -->
+  <line x1="620" y1="205" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- ===== nodes (fills cap the edge ends) ===== -->
+  <circle id="fig-F-6-f-field-guide-zenseact-door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+  <rect id="fig-F-6-f-field-guide-zenseact-platform" x="305" y="175" width="175" height="62" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+  <circle id="fig-F-6-f-field-guide-zenseact-d1" cx="620" cy="160" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <circle id="fig-F-6-f-field-guide-zenseact-d2" cx="620" cy="205" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <circle id="fig-F-6-f-field-guide-zenseact-d3" cx="620" cy="250" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <rect id="fig-F-6-f-field-guide-zenseact-landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== node labels ===== -->
   <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
   <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Autonomous</text>
   <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">knowledge work</text>
 
-  <!-- door -> platform -->
-  <line x1="151" y1="205" x2="300" y2="205" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- platform team owns the mechanisms (centralized) -->
-  <rect x="305" y="175" width="175" height="62" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="392" y="199" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">platform team</text>
   <text x="392" y="219" text-anchor="middle" font-size="16" fill="#57534e">auth · sessions ·</text>
   <text x="392" y="233" text-anchor="middle" font-size="16" fill="#57534e">execution · safety</text>
   <text x="392" y="260" text-anchor="middle" font-size="16" fill="#78716c">centralize the mechanisms</text>
 
-  <!-- domain teams own the judgment (decentralized) -->
-  <line x1="480" y1="205" x2="611" y2="160" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="480" y1="205" x2="611" y2="205" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="480" y1="205" x2="611" y2="250" stroke="#cfcabf" stroke-width="2.5"/>
-  <circle cx="620" cy="160" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <circle cx="620" cy="205" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <circle cx="620" cy="250" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
   <text x="630" y="138" text-anchor="middle" font-size="16" fill="#57534e">domain teams</text>
   <text x="630" y="288" text-anchor="middle" font-size="16" fill="#78716c">decentralize the judgment</text>
   <text x="630" y="308" text-anchor="middle" font-size="16" fill="#78716c">own agents · tools · instructions</text>
 
-  <!-- domain -> landing -->
-  <line x1="629" y1="205" x2="758" y2="205" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- landing badge -->
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="860" y="203" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Governed Engineering</text>
   <text x="860" y="223" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Environment</text>
 

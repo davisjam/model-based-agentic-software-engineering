@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- HAND-AUTHORED one-off (Field Guide card — Siemens) — NOT projector output; edit by hand and keep this header. -->
-<!-- Field-guide team card: Siemens's entry door (model-first engineering) -> MAGE landing (Modeling). label: field-guide-siemens. Reference/nav card art, not a role-coloured figure. -->
+<!-- Field-guide team card: Siemens's entry door (model-first engineering) climbs the modeling ladder and lands on MAGE Modeling. label: field-guide-siemens. Reference/nav card art, not a role-coloured figure. -->
+<!-- Connect grammar: the middle element is a climbing LADDER (rails + rungs), a compound glyph the node-reader cannot resolve to one id. The two id-legible nodes (door, landing) and the top reached-rung circle carry ids; the rung -> landing edge is annotated and runs (curving under the rung labels) to the landing centre. The door -> ladder-base connector targets the rail base, not a single node, so it stays unannotated and seated by eye. Edges drawn UNDER the shapes. -->
 <!-- semantic-families: neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Siemens — model-first engineering to the Modeling, one rung short of the drift gate">
   <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
@@ -11,16 +12,17 @@
   <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Industrial / model-based engineering · decades of model-first practice</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
-  <!-- door -->
-  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
-  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Model-first</text>
-  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">engineering</text>
+  <!-- ===== edges (under the shapes) ===== -->
+  <!-- door -> ladder base: the ladder base is a rail junction, not a single lint-legible node; seated by eye (unannotated). -->
+  <line x1="140" y1="205" x2="455" y2="290" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: top-rung -> landing -->
+  <!-- highest reached rung to the landing; curves down to clear the two nearest rung labels. -->
+  <path fill="none" d="M520,178 C560,200 700,205 860,205" stroke="#cfcabf" stroke-width="3"/>
 
-  <!-- door -> base of the ladder -->
-  <line x1="151" y1="215" x2="449" y2="290" stroke="#cfcabf" stroke-width="3"/>
+  <!-- ===== the modeling ladder + door + landing ===== -->
+  <circle id="door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
 
-  <!-- the modeling ladder: five reached rungs, a sixth absent -->
+  <!-- ladder rails -->
   <line x1="455" y1="150" x2="455" y2="300" stroke="#57534e" stroke-width="3"/>
   <line x1="520" y1="150" x2="520" y2="300" stroke="#57534e" stroke-width="3"/>
 
@@ -34,25 +36,29 @@
   <circle cx="520" cy="262" r="4" fill="#1c1917"/>
   <circle cx="520" cy="234" r="4" fill="#1c1917"/>
   <circle cx="520" cy="206" r="4" fill="#1c1917"/>
-  <circle cx="520" cy="178" r="4" fill="#1c1917"/>
+  <circle id="top-rung" cx="520" cy="178" r="4" fill="#1c1917"/>
+
+  <!-- sixth rung absent: the drift gate, one rung short -->
+  <line x1="455" y1="150" x2="520" y2="150" stroke="#1c1917" stroke-width="2.5" stroke-dasharray="5 5"/>
+  <circle cx="520" cy="150" r="4" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+
+  <!-- landing badge -->
+  <rect id="landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== labels ===== -->
+  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Model-first</text>
+  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">engineering</text>
+
   <text x="532" y="294" text-anchor="start" font-size="16" fill="#57534e">behavioral</text>
   <text x="532" y="266" text-anchor="start" font-size="16" fill="#57534e">process</text>
   <text x="532" y="238" text-anchor="start" font-size="16" fill="#57534e">scenario</text>
   <text x="532" y="210" text-anchor="start" font-size="16" fill="#57534e">invariant</text>
   <text x="532" y="182" text-anchor="start" font-size="16" fill="#57534e">bidirectional traceability</text>
   <text x="455" y="320" text-anchor="start" font-size="16" fill="#78716c">the five rungs (executable tier)</text>
-
-  <!-- sixth rung absent: the drift gate, one rung short -->
-  <line x1="455" y1="150" x2="520" y2="150" stroke="#1c1917" stroke-width="2.5" stroke-dasharray="5 5"/>
-  <circle cx="520" cy="150" r="4" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
   <text x="532" y="154" text-anchor="start" font-size="16" fill="#78716c">drift gate — one rung short (◐)</text>
 
-  <!-- highest reached rung -> landing -->
-  <line x1="524" y1="178" x2="758" y2="200" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- landing badge -->
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="860" y="211" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Modeling</text>
 
   <!-- takeaway -->

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- HAND-AUTHORED one-off (Field Guide card — Zenseact) — NOT projector output; edit by hand and keep this header. -->
-<!-- Field-guide team card: Zenseact's entry door (autonomous knowledge work) -> MAGE landing (Governed Engineering Environment). label: field-guide-zenseact. Reference/nav card art, not a role-coloured figure. -->
+<!-- Field-guide team card: Zenseact's entry door (autonomous knowledge work) plugs into MAGE landing (Governed Engineering Environment). label: field-guide-zenseact. Reference/nav card art, not a role-coloured figure. -->
+<!-- Connect grammar: edges drawn UNDER the nodes, each undirected end run to a node CENTRE (fill caps it). -->
 <!-- semantic-families: neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Zenseact — autonomous knowledge work to the Governed Engineering Environment">
   <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
@@ -11,39 +12,41 @@
   <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Autonomous-driving software · platform-team / domain-team split</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
-  <!-- door -->
+  <!-- ===== edges (under nodes; undirected → run to node centres) ===== -->
+  <!-- edge: door -> platform -->
+  <line x1="140" y1="205" x2="392.5" y2="206" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: platform -> d1 -->
+  <line x1="392.5" y1="206" x2="620" y2="160" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: platform -> d2 -->
+  <line x1="392.5" y1="206" x2="620" y2="205" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: platform -> d3 -->
+  <line x1="392.5" y1="206" x2="620" y2="250" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: d2 -> landing -->
+  <line x1="620" y1="205" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
+
+  <!-- ===== nodes (fills cap the edge ends) ===== -->
+  <circle id="door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+  <rect id="platform" x="305" y="175" width="175" height="62" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+  <circle id="d1" cx="620" cy="160" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <circle id="d2" cx="620" cy="205" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <circle id="d3" cx="620" cy="250" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <rect id="landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== node labels ===== -->
   <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
   <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Autonomous</text>
   <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">knowledge work</text>
 
-  <!-- door -> platform -->
-  <line x1="151" y1="205" x2="300" y2="205" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- platform team owns the mechanisms (centralized) -->
-  <rect x="305" y="175" width="175" height="62" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="392" y="199" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">platform team</text>
   <text x="392" y="219" text-anchor="middle" font-size="16" fill="#57534e">auth · sessions ·</text>
   <text x="392" y="233" text-anchor="middle" font-size="16" fill="#57534e">execution · safety</text>
   <text x="392" y="260" text-anchor="middle" font-size="16" fill="#78716c">centralize the mechanisms</text>
 
-  <!-- domain teams own the judgment (decentralized) -->
-  <line x1="480" y1="205" x2="611" y2="160" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="480" y1="205" x2="611" y2="205" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="480" y1="205" x2="611" y2="250" stroke="#cfcabf" stroke-width="2.5"/>
-  <circle cx="620" cy="160" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <circle cx="620" cy="205" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <circle cx="620" cy="250" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
   <text x="630" y="138" text-anchor="middle" font-size="16" fill="#57534e">domain teams</text>
   <text x="630" y="288" text-anchor="middle" font-size="16" fill="#78716c">decentralize the judgment</text>
   <text x="630" y="308" text-anchor="middle" font-size="16" fill="#78716c">own agents · tools · instructions</text>
 
-  <!-- domain -> landing -->
-  <line x1="629" y1="205" x2="758" y2="205" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- landing badge -->
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="860" y="203" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Governed Engineering</text>
   <text x="860" y="223" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Environment</text>
 

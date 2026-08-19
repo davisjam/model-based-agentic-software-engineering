@@ -719,17 +719,26 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="380" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCABLE MODELING SUBSTRATE &#183; SIX PEER MODELS</text>
 
-  <!-- spokes: center to each peer (drawn first, under the boxes) -->
+  <!-- spokes: center to each peer (drawn first, under the boxes); each runs hub-center to peer-center so the
+       opaque ellipse + box fills cap the ends. The hub is an ellipse (not lint-legible), so a transparent
+       rect over it carries the id "shared-identities". -->
   <g stroke="#57534e" stroke-width="2" opacity="0.75">
-    <line x1="380" y1="290" x2="380" y2="140"/>
+    <!-- edge: structural -> shared-identities -->
+    <line x1="380" y1="290" x2="380" y2="112"/>
+    <!-- edge: behavioral -> shared-identities -->
     <line x1="380" y1="290" x2="549" y2="200"/>
+    <!-- edge: ownership -> shared-identities -->
     <line x1="380" y1="290" x2="549" y2="380"/>
-    <line x1="380" y1="290" x2="380" y2="440"/>
+    <!-- edge: decision -> shared-identities -->
+    <line x1="380" y1="290" x2="380" y2="468"/>
+    <!-- edge: measurement -> shared-identities -->
     <line x1="380" y1="290" x2="211" y2="380"/>
+    <!-- edge: provenance -> shared-identities -->
     <line x1="380" y1="290" x2="211" y2="200"/>
   </g>
 
   <!-- center: SHARED IDENTITIES (gray) -->
+  <rect id="f-modeling-substrate-shared-identities" x="276" y="238" width="208" height="104" fill="none" stroke="none"/>
   <ellipse cx="380" cy="290" rx="104" ry="52" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
   <text x="380" y="285" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">SHARED</text>
   <text x="380" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">IDENTITIES</text>
@@ -737,22 +746,22 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- six peer models (blue) -->
   <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
     <!-- top -->
-    <rect x="305" y="86" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-modeling-substrate-structural" x="305" y="86" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="380" y="118">structural</text>
     <!-- upper-right -->
-    <rect x="474" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-modeling-substrate-behavioral" x="474" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="549" y="206">behavioral</text>
     <!-- lower-right -->
-    <rect x="474" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-modeling-substrate-ownership" x="474" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="549" y="386">ownership</text>
     <!-- bottom -->
-    <rect x="305" y="442" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-modeling-substrate-decision" x="305" y="442" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="380" y="474">decision</text>
     <!-- lower-left -->
-    <rect x="136" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-modeling-substrate-measurement" x="136" y="354" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="211" y="386">measurement</text>
     <!-- upper-left -->
-    <rect x="136" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-modeling-substrate-provenance" x="136" y="174" width="150" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="211" y="206">provenance</text>
   </g>
 

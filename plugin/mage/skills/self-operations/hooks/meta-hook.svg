@@ -24,26 +24,35 @@
   <!-- ===================== BEFORE ===================== -->
   <text x="30" y="40" font-family="monospace" font-size="16" letter-spacing="1.5" fill="#b23b3b">TODAY — N AD-HOC HOOKS</text>
 
+  <!-- five ad-hoc wires, drawn UNDER the nodes so each box fill caps the wire end (harness-side seated
+       inside the harness rect; control-side run to each control box's UN-ROTATED centre — the lint reads
+       un-rotated rect coords, so the fill caps the end at any angle). Undirected: both ends plug in. -->
+  <g stroke="#b23b3b" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.72">
+    <!-- edge: harness -> guard -->
+    <path d="M180 134 C 226 108, 238 88, 330 73"/>
+    <!-- edge: harness -> nudge -->
+    <path d="M180 148 C 226 138, 246 130, 340 123"/>
+    <!-- edge: harness -> telemetry -->
+    <path d="M180 160 C 222 168, 238 174, 332 175"/>
+    <!-- edge: harness -> steer -->
+    <path d="M180 170 C 224 200, 246 220, 340 227"/>
+    <!-- edge: harness -> banker -->
+    <path d="M180 180 C 220 238, 244 268, 332 279"/>
+  </g>
+
   <g transform="rotate(-0.6 118 150)">
-    <rect x="34" y="120" width="150" height="62" rx="10" fill="#f2f0ea" stroke="#57534e" stroke-width="1.5"/>
+    <rect id="harness" x="34" y="120" width="150" height="62" rx="10" fill="#f2f0ea" stroke="#57534e" stroke-width="1.5"/>
     <text x="109" y="147" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">harness</text>
     <text x="109" y="170" text-anchor="middle" font-size="18" fill="#57534e">config</text>
   </g>
 
   <!-- five scattered controls, individually wired -->
   <g font-size="17" fill="#1c1917">
-    <g transform="rotate(1.4 330 74)"><rect x="270" y="56" width="120" height="34" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="1.5" stroke-dasharray="5 3"/><text x="330" y="79" text-anchor="middle">guard</text></g>
-    <g transform="rotate(-1.4 340 124)"><rect x="280" y="106" width="120" height="34" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="1.5" stroke-dasharray="5 3"/><text x="340" y="129" text-anchor="middle">nudge</text></g>
-    <g transform="rotate(0.9 332 176)"><rect x="266" y="158" width="132" height="34" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="1.5" stroke-dasharray="5 3"/><text x="332" y="181" text-anchor="middle">telemetry</text></g>
-    <g transform="rotate(-0.9 340 228)"><rect x="280" y="210" width="120" height="34" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="1.5" stroke-dasharray="5 3"/><text x="340" y="233" text-anchor="middle">steer</text></g>
-    <g transform="rotate(1.2 332 280)"><rect x="272" y="262" width="120" height="34" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="1.5" stroke-dasharray="5 3"/><text x="332" y="285" text-anchor="middle">banker</text></g>
-  </g>
-  <g stroke="#b23b3b" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.72">
-    <path d="M184 134 C 226 108, 238 88, 268 74"/>
-    <path d="M186 148 C 226 138, 246 130, 278 124"/>
-    <path d="M186 160 C 222 168, 238 174, 264 178"/>
-    <path d="M184 170 C 224 200, 246 220, 278 230"/>
-    <path d="M180 180 C 220 238, 244 268, 270 280"/>
+    <g transform="rotate(1.4 330 74)"><rect id="guard" x="270" y="56" width="120" height="34" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="1.5" stroke-dasharray="5 3"/><text x="330" y="79" text-anchor="middle">guard</text></g>
+    <g transform="rotate(-1.4 340 124)"><rect id="nudge" x="280" y="106" width="120" height="34" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="1.5" stroke-dasharray="5 3"/><text x="340" y="129" text-anchor="middle">nudge</text></g>
+    <g transform="rotate(0.9 332 176)"><rect id="telemetry" x="266" y="158" width="132" height="34" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="1.5" stroke-dasharray="5 3"/><text x="332" y="181" text-anchor="middle">telemetry</text></g>
+    <g transform="rotate(-0.9 340 228)"><rect id="steer" x="280" y="210" width="120" height="34" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="1.5" stroke-dasharray="5 3"/><text x="340" y="233" text-anchor="middle">steer</text></g>
+    <g transform="rotate(1.2 332 280)"><rect id="banker" x="272" y="262" width="120" height="34" rx="7" fill="#ffffff" stroke="#b23b3b" stroke-width="1.5" stroke-dasharray="5 3"/><text x="332" y="285" text-anchor="middle">banker</text></g>
   </g>
   <text x="212" y="330" text-anchor="middle" font-size="16" fill="#57534e" font-style="italic">N seams · no census · welded to one harness</text>
 
@@ -55,20 +64,22 @@
   <!-- ===================== AFTER ===================== -->
   <text x="520" y="40" font-family="monospace" font-size="16" letter-spacing="1.5" fill="#9a3f12">ONE SEAM PER EVENT</text>
 
-  <rect x="514" y="122" width="106" height="60" rx="18" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.5"/>
+  <rect id="event" x="514" y="122" width="106" height="60" rx="18" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.5"/>
   <text x="567" y="149" text-anchor="middle" font-size="19" font-weight="600" fill="#9a3f12">event</text>
   <text x="567" y="171" text-anchor="middle" font-size="17" fill="#57534e">fires</text>
 
-  <path d="M622 152 L 662 152" stroke="#9a3f12" stroke-width="2.5" fill="none" marker-end="url(#mh-arrow)" stroke-linecap="round"/>
+  <!-- edge: event -> meta-hook -->
+  <path d="M620 152 L 664 152" stroke="#9a3f12" stroke-width="2.5" fill="none" marker-end="url(#mh-arrow)" stroke-linecap="round"/>
 
-  <rect x="666" y="116" width="120" height="72" rx="10" fill="#ffffff" stroke="#9a3f12" stroke-width="2.5"/>
+  <rect id="meta-hook" x="666" y="116" width="120" height="72" rx="10" fill="#ffffff" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="726" y="146" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">meta-hook</text>
   <text x="726" y="168" text-anchor="middle" font-size="17" fill="#57534e">one seam</text>
 
-  <path d="M786 152 L 826 152" stroke="#9a3f12" stroke-width="2.5" fill="none" marker-end="url(#mh-arrow)" stroke-linecap="round"/>
+  <!-- edge: meta-hook -> typed-registry -->
+  <path d="M786 152 L 828 152" stroke="#9a3f12" stroke-width="2.5" fill="none" marker-end="url(#mh-arrow)" stroke-linecap="round"/>
 
   <!-- typed registry = your governance layer -->
-  <rect x="830" y="86" width="164" height="176" rx="10" fill="#f2f0ea" stroke="#57534e" stroke-width="1.5"/>
+  <rect id="typed-registry" x="830" y="86" width="164" height="176" rx="10" fill="#f2f0ea" stroke="#57534e" stroke-width="1.5"/>
   <text x="912" y="112" text-anchor="middle" font-size="19" font-weight="600" fill="#1c1917">typed registry</text>
   <line x1="844" y1="124" x2="980" y2="124" stroke="#e4e0d8" stroke-width="1"/>
   <g font-family="monospace" font-size="15" fill="#57534e">

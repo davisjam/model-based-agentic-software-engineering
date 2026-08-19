@@ -814,10 +814,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="640" y="56" text-anchor="middle" font-size="25" font-weight="700" fill="#1c1917">Interaction graph</text>
   <text x="640" y="86" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">what collides</text>
 
+  <!-- spokes drawn FIRST (under the nodes), center-to-center so the opaque node fills cap the ends -->
+  <g stroke="#1c1917" stroke-width="1.8" fill="none">
+    <!-- edge: squash-rule -> commit-set -->
+    <line x1="545" y1="176" x2="640" y2="291"/>
+    <!-- edge: brief-guard -> commit-set -->
+    <line x1="735" y1="176" x2="640" y2="291"/>
+  </g>
+
   <!-- [A] and [B] act on a shared resource; the collision hangs off it -->
   <g fill="#e7edf3" stroke="#2f5169" stroke-width="2">
-    <rect x="470" y="150" width="150" height="52" rx="7"/>
-    <rect x="660" y="150" width="150" height="52" rx="7"/>
+    <rect id="f-census-trio-squash-rule" x="470" y="150" width="150" height="52" rx="7"/>
+    <rect id="f-census-trio-brief-guard" x="660" y="150" width="150" height="52" rx="7"/>
   </g>
   <g font-size="18" fill="#1c1917" text-anchor="middle">
     <text x="545" y="183"><tspan font-weight="800" fill="#2f5169">[A]</tspan> squash rule</text>
@@ -825,14 +833,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
 
   <!-- shared resource node -->
-  <rect x="560" y="268" width="160" height="46" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+  <rect id="f-census-trio-commit-set" x="560" y="268" width="160" height="46" rx="7" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
   <text x="640" y="297" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">commit set</text>
-  <!-- edges A/B -> shared resource -->
-  <g stroke="#1c1917" stroke-width="1.8" fill="none">
-    <line x1="560" y1="202" x2="612" y2="268"/>
-    <line x1="720" y1="202" x2="668" y2="268"/>
-  </g>
   <!-- collision marked on the shared relation -->
+  <!-- edge: squash-rule .. brief-guard -->
   <line x1="620" y1="176" x2="660" y2="176" stroke="#b23b3b" stroke-width="2.4" stroke-dasharray="7 6"
         marker-start="url(#f-census-trio-ct-ah)" marker-end="url(#f-census-trio-ct-ah)"/>
   <text x="640" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">collision</text>
@@ -848,16 +852,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="945" y="128" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">obligation</text>
   <text x="1188" y="128" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">control</text>
 
-  <!-- matched edges (blue) -->
+  <!-- matched edges (blue), drawn UNDER the nodes; center-to-center so the fills cap the ends -->
   <g stroke="#2f5169" stroke-width="2.2">
-    <line x1="1012" y1="163" x2="1118" y2="163"/>
-    <line x1="1012" y1="235" x2="1118" y2="235"/>
+    <!-- edge: scope-bounded -> ctl-squash -->
+    <line x1="945" y1="163" x2="1188" y2="163"/>
+    <!-- edge: brief-followed -> ctl-brief -->
+    <line x1="945" y1="235" x2="1188" y2="235"/>
   </g>
 
   <!-- obligation nodes (left) -->
   <g fill="#eef2f6" stroke="#2f5169" stroke-width="1.8">
-    <rect x="878" y="143" width="134" height="40" rx="5"/>
-    <rect x="878" y="215" width="134" height="40" rx="5"/>
+    <rect id="f-census-trio-scope-bounded" x="878" y="143" width="134" height="40" rx="5"/>
+    <rect id="f-census-trio-brief-followed" x="878" y="215" width="134" height="40" rx="5"/>
   </g>
   <rect x="878" y="287" width="134" height="40" rx="5" fill="#ffffff" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
   <g text-anchor="middle" fill="#1c1917">
@@ -868,8 +874,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- control nodes (right), carrying the same identities -->
   <g fill="#e7edf3" stroke="#2f5169" stroke-width="1.8">
-    <rect x="1118" y="143" width="140" height="40" rx="5"/>
-    <rect x="1118" y="215" width="140" height="40" rx="5"/>
+    <rect id="f-census-trio-ctl-squash" x="1118" y="143" width="140" height="40" rx="5"/>
+    <rect id="f-census-trio-ctl-brief" x="1118" y="215" width="140" height="40" rx="5"/>
   </g>
   <rect x="1118" y="287" width="140" height="40" rx="5" fill="#ffffff" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
   <g text-anchor="middle" font-size="14" fill="#1c1917">

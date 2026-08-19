@@ -11,43 +11,53 @@
   <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Internet infrastructure (CDN · edge · security) · agentic stack across hundreds of teams</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
-  <!-- door -->
-  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
-  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Policy-first</text>
-  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">governance</text>
-
-  <!-- door -> policy -->
-  <line x1="151" y1="205" x2="317" y2="205" stroke="#cfcabf" stroke-width="3"/>
-
-  <!-- one policy (filled hub) -->
-  <circle cx="330" cy="205" r="13" fill="#1c1917"/>
-  <text x="330" y="252" text-anchor="middle" font-size="16" fill="#78716c">one machine-checkable policy</text>
-
-  <!-- fan-out to many mechanisms -->
-  <line x1="343" y1="205" x2="600" y2="150" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="343" y1="205" x2="600" y2="178" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="343" y1="205" x2="600" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="343" y1="205" x2="600" y2="234" stroke="#cfcabf" stroke-width="2.5"/>
-  <line x1="343" y1="205" x2="600" y2="262" stroke="#cfcabf" stroke-width="2.5"/>
-  <circle cx="600" cy="150" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="600" cy="178" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="600" cy="206" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="600" cy="234" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="600" cy="262" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <text x="600" y="130" text-anchor="middle" font-size="16" fill="#78716c">governs thousands of changes</text>
-
+  <!-- ===== edges (drawn UNDER the nodes; node fills cap the ends) ===== -->
+  <!-- edge: door -> policy -->
+  <line x1="140" y1="205" x2="330" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: policy -> mech-1 -->
+  <line x1="330" y1="205" x2="600" y2="150" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: policy -> mech-2 -->
+  <line x1="330" y1="205" x2="600" y2="178" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: policy -> mech-3 -->
+  <line x1="330" y1="205" x2="600" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: policy -> mech-4 -->
+  <line x1="330" y1="205" x2="600" y2="234" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: policy -> mech-5 -->
+  <line x1="330" y1="205" x2="600" y2="262" stroke="#cfcabf" stroke-width="2.5"/>
+  <!-- edge: mech-3 -> landing -->
+  <line x1="600" y1="206" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
   <!-- caveat: the recurrence loop does not close (partial governance-conversion) -->
-  <path d="M600 268 C 500 322, 400 322, 356 282" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="5 5"/>
-  <circle cx="356" cy="282" r="4" fill="#fdfcf9" stroke="#78716c" stroke-width="2"/>
-  <text x="470" y="344" text-anchor="middle" font-size="16" fill="#78716c">recurrence loop only half-closed (◐)</text>
+  <!-- edge: mech-5 .. recur -->
+  <path d="M600 262 C 500 322, 400 322, 356 282" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="5 5"/>
 
-  <!-- mechanisms -> landing -->
-  <line x1="614" y1="206" x2="758" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <!-- ===== nodes (opaque fills cap the edge ends) ===== -->
+  <!-- door -->
+  <circle id="door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
+
+  <!-- one machine-checkable policy (filled hub) -->
+  <circle id="policy" cx="330" cy="205" r="13" fill="#1c1917"/>
+
+  <!-- the mechanisms it governs -->
+  <circle id="mech-1" cx="600" cy="150" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="mech-2" cx="600" cy="178" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="mech-3" cx="600" cy="206" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="mech-4" cx="600" cy="234" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="mech-5" cx="600" cy="262" r="6" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+
+  <!-- recurrence loop's half-closed tail node -->
+  <circle id="recur" cx="356" cy="282" r="4" fill="#fdfcf9" stroke="#78716c" stroke-width="2"/>
 
   <!-- landing badge -->
+  <rect id="landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== labels ===== -->
+  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Policy-first</text>
+  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">governance</text>
+  <text x="330" y="252" text-anchor="middle" font-size="16" fill="#78716c">one machine-checkable policy</text>
+  <text x="600" y="130" text-anchor="middle" font-size="16" fill="#78716c">governs thousands of changes</text>
+  <text x="470" y="344" text-anchor="middle" font-size="16" fill="#78716c">recurrence loop only half-closed (◐)</text>
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="860" y="211" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Alignment</text>
 
   <!-- takeaway -->

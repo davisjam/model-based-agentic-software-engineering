@@ -11,51 +11,62 @@
   <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Developer tooling (containers) · autonomous coding fleet with a role graph</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
-  <!-- door -->
-  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <circle cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
-  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Authority boundaries</text>
-  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">&amp; eval loops</text>
+  <!-- ===== edges (drawn UNDER the nodes; node fills cap the ends) ===== -->
+  <!-- edge: door -> role-4 -->
+  <line x1="140" y1="205" x2="300" y2="209" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: hub -> role-1 -->
+  <line x1="360" y1="209" x2="300" y2="140" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-2 -->
+  <line x1="360" y1="209" x2="300" y2="163" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-3 -->
+  <line x1="360" y1="209" x2="300" y2="186" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-4 -->
+  <line x1="360" y1="209" x2="300" y2="209" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-5 -->
+  <line x1="360" y1="209" x2="300" y2="232" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-6 -->
+  <line x1="360" y1="209" x2="300" y2="255" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> role-7 -->
+  <line x1="360" y1="209" x2="300" y2="278" stroke="#cfcabf" stroke-width="2"/>
+  <!-- edge: hub -> gate -->
+  <line x1="360" y1="209" x2="570" y2="210" stroke="#cfcabf" stroke-width="3"/>
+  <!-- edge: gate -> landing -->
+  <line x1="570" y1="210" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
 
-  <!-- door -> delegation hub -->
-  <line x1="151" y1="205" x2="296" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <!-- ===== nodes (opaque fills cap the edge ends) ===== -->
+  <!-- door -->
+  <circle id="door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>
 
   <!-- seven permission-backed roles -->
-  <circle cx="300" cy="140" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="163" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="186" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="209" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="232" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="255" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <circle cx="300" cy="278" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <line x1="349" y1="209" x2="305" y2="140" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="163" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="186" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="209" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="232" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="255" stroke="#cfcabf" stroke-width="2"/>
-  <line x1="349" y1="209" x2="305" y2="278" stroke="#cfcabf" stroke-width="2"/>
-  <circle cx="360" cy="209" r="11" fill="#1c1917"/>
-  <text x="330" y="305" text-anchor="middle" font-size="16" fill="#78716c">seven permission-backed roles</text>
-  <text x="330" y="325" text-anchor="middle" font-size="16" fill="#78716c">runs the shortest evidence horizon (◐)</text>
+  <circle id="role-1" cx="300" cy="140" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="role-2" cx="300" cy="163" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="role-3" cx="300" cy="186" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="role-4" cx="300" cy="209" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="role-5" cx="300" cy="232" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="role-6" cx="300" cy="255" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
+  <circle id="role-7" cx="300" cy="278" r="5" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
 
-  <!-- hub -> gate -->
-  <line x1="371" y1="209" x2="521" y2="209" stroke="#cfcabf" stroke-width="3"/>
-  <text x="452" y="196" text-anchor="middle" font-size="16" fill="#78716c">determinize the tests</text>
+  <!-- delegation hub -->
+  <circle id="hub" cx="360" cy="209" r="11" fill="#1c1917"/>
 
   <!-- the admission gate is deliberately left open, a human standing on it -->
   <line x1="545" y1="172" x2="545" y2="248" stroke="#1c1917" stroke-width="3"/>
   <line x1="595" y1="172" x2="595" y2="248" stroke="#1c1917" stroke-width="3"/>
-  <circle cx="570" cy="210" r="9" fill="#1c1917"/>
-  <text x="570" y="150" text-anchor="middle" font-size="16" fill="#57534e">semantic admission remains human</text>
-  <text x="570" y="272" text-anchor="middle" font-size="16" fill="#57534e">human on every merge</text>
-
-  <!-- gate -> landing -->
-  <line x1="596" y1="209" x2="758" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <circle id="gate" cx="570" cy="210" r="9" fill="#1c1917"/>
 
   <!-- landing badge -->
+  <rect id="landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
+
+  <!-- ===== labels ===== -->
+  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Authority boundaries</text>
+  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">&amp; eval loops</text>
+  <text x="330" y="305" text-anchor="middle" font-size="16" fill="#78716c">seven permission-backed roles</text>
+  <text x="330" y="325" text-anchor="middle" font-size="16" fill="#78716c">runs the shortest evidence horizon (◐)</text>
+  <text x="452" y="196" text-anchor="middle" font-size="16" fill="#78716c">determinize the tests</text>
+  <text x="570" y="150" text-anchor="middle" font-size="16" fill="#57534e">semantic admission remains human</text>
+  <text x="570" y="272" text-anchor="middle" font-size="16" fill="#57534e">human on every merge</text>
   <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <rect x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
   <text x="860" y="211" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Alignment</text>
 
   <!-- takeaway -->

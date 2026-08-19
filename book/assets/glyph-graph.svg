@@ -8,20 +8,26 @@
     heavier and in an accent colour — a small typed node-edge graph standing for a traceability or
     conflict graph.</desc>
   <g fill="none" stroke="#1c1917" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <!-- edges (some crossing) -->
+    <!-- edges drawn under the nodes; each runs to a node CENTRE (fill caps it). Undirected. -->
+    <!-- edge: tl -> hub -->
     <line x1="30" y1="30" x2="60" y2="60"/>
+    <!-- edge: tr -> hub -->
     <line x1="92" y1="28" x2="60" y2="60"/>
+    <!-- edge: hub -> bl -->
     <line x1="60" y1="60" x2="26" y2="94"/>
+    <!-- edge: hub -> br -->
     <line x1="60" y1="60" x2="94" y2="92"/>
+    <!-- edge: tl -> br -->
     <line x1="30" y1="30" x2="94" y2="92"/>
     <!-- one bolded accent edge (crossing the others) -->
+    <!-- edge: tr -> bl -->
     <line x1="92" y1="28" x2="26" y2="94" stroke="#9a3f12" stroke-width="3.4"/>
   </g>
   <g fill="#fdfcf9" stroke="#1c1917" stroke-width="2">
-    <circle cx="30" cy="30" r="7"/>
-    <circle cx="92" cy="28" r="7"/>
-    <circle cx="60" cy="60" r="7.5"/>
-    <circle cx="26" cy="94" r="7"/>
-    <circle cx="94" cy="92" r="7"/>
+    <circle id="tl" cx="30" cy="30" r="7"/>
+    <circle id="tr" cx="92" cy="28" r="7"/>
+    <circle id="hub" cx="60" cy="60" r="7.5"/>
+    <circle id="bl" cx="26" cy="94" r="7"/>
+    <circle id="br" cx="94" cy="92" r="7"/>
   </g>
 </svg>
