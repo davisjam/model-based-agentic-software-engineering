@@ -27,11 +27,15 @@
   </defs>
 
   <!-- ================= TOP RUNG — obligation legible ================= -->
-  <rect x="150" y="48" width="660" height="76" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="legible" x="150" y="48" width="660" height="76" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="480" y="84" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">OBLIGATION LEGIBLE</text>
   <text x="480" y="110" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">the completed unit of work</text>
 
-  <!-- the lift arrow: rises from above the event row up to the whole-unit box -->
+  <!-- transparent anchor over the event grain (bracket + event row): the source the lift arrow rises FROM.
+       fill/stroke none = zero visual change; the lint reads its geometry like any node. -->
+  <rect id="events" x="170" y="230" width="620" height="98" fill="none" stroke="none"/>
+  <!-- the lift arrow: rises from the event grain up to the whole-unit box -->
+  <!-- edge: events -> legible -->
   <line x1="480" y1="238" x2="480" y2="128" stroke="#2f5169" stroke-width="2.5" marker-end="url(#sgUp)"/>
   <text x="503" y="188" font-size="20" font-style="italic" fill="#2f5169">move mechanism</text>
 

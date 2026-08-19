@@ -769,10 +769,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="480" y="256" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">These classes may overlap.</text>
 
+  <!-- transparent anchor over the six-box class grid + the overlap note: the source the arrow descends FROM.
+       fill/stroke none = zero visual change; the lint reads its geometry like any node. -->
+  <rect id="f-model-classes-classes" x="40" y="58" width="880" height="210" fill="none" stroke="none"/>
   <!-- arrow down to the orthogonal representation-form axis -->
+  <!-- edge: classes -> forms -->
   <line x1="480" y1="264" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-classes-on-b)"/>
 
-  <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-model-classes-forms" x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="314" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#57534e">REPRESENTATION FORM</text>
   <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 

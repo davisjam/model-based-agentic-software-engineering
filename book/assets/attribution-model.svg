@@ -25,14 +25,19 @@
 
   <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">THE PROVENANCE MODEL</text>
 
+  <!-- edges drawn UNDER nodes: tails run inside source (fill caps), directed heads seat on target top border -->
+  <!-- edge: run -> operation -->
+  <line x1="350" y1="88" x2="350" y2="122" stroke="#2f5169" stroke-width="2.4" marker-end="url(#at-b)"/>
+  <!-- edge: operation -> derived-uses -->
+  <line x1="350" y1="238" x2="350" y2="278" stroke="#57534e" stroke-width="1.8" marker-end="url(#at-k)"/>
+
   <!-- RUN (blue, prominent) -->
-  <rect x="270" y="42" width="160" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
+  <rect id="run" x="270" y="42" width="160" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
   <text x="350" y="74" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RUN</text>
-  <line x1="350" y1="92" x2="350" y2="122" stroke="#2f5169" stroke-width="2.4" marker-end="url(#at-b)"/>
   <text x="362" y="112" font-size="14" font-style="italic" fill="#57534e">one run, many operations</text>
 
   <!-- OPERATION* with its recorded fields (the heart of the model) -->
-  <rect x="150" y="124" width="400" height="118" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="operation" x="150" y="124" width="400" height="118" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="350" y="153" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">OPERATION*</text>
   <text x="350" y="173" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">each records</text>
   <g fill="#fbfdff" stroke="#2f5169" stroke-width="1.8">
@@ -48,10 +53,9 @@
     <text x="492" y="210">evidence</text>
   </g>
 
-  <!-- secondary derived-uses tail (small, gray) -->
-  <line x1="350" y1="242" x2="350" y2="278" stroke="#57534e" stroke-width="1.8" marker-end="url(#at-k)"/>
+  <!-- secondary derived-uses tail label (line drawn under nodes, above) -->
   <text x="362" y="266" font-size="14" font-style="italic" fill="#57534e">derived uses (secondary)</text>
-  <rect x="215" y="280" width="270" height="42" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="derived-uses" x="215" y="280" width="270" height="42" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="350" y="306" text-anchor="middle" font-size="14.5" fill="#1c1917">audit &#183; debugging &#183; changelog</text>
 
   <!-- footer: protect the point -->

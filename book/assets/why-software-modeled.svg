@@ -36,9 +36,14 @@
         letter-spacing="1.2">WHY SOFTWARE MODELED DIFFERENTLY</text>
 
   <!-- ===================== THREE COLUMNS ===================== -->
+  <!-- resolving arrow drawn UNDER the columns: its tail runs to the middle card's centre (the opaque card
+       fill caps it, so only the segment below the card shows), its head seats on the claim banner's rim -->
+  <!-- edge: software -> claim -->
+  <line x1="490" y1="237" x2="490" y2="458" stroke="#1c1917" stroke-width="2.5" marker-end="url(#wsmArrow)"/>
+
   <!-- column frames -->
   <rect x="24"  y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
-  <rect x="344" y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <rect id="software" x="344" y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
   <rect x="664" y="72" width="292" height="330" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
 
   <!-- column A header — Older physical engineering -->
@@ -77,11 +82,8 @@
   <text x="684" y="320" font-size="15.5" fill="#1c1917">more live representations</text>
   <text x="698" y="340" font-size="15.5" font-weight="700" fill="#1c1917">become economical</text>
 
-  <!-- resolving arrow from the three columns to the claim -->
-  <line x1="490" y1="410" x2="490" y2="452" stroke="#1c1917" stroke-width="2.5" marker-end="url(#wsmArrow)"/>
-
   <!-- terminal — the claim, set dark for grayscale emphasis; deliberately NOT "software rejoins engineering" -->
-  <rect x="195" y="460" width="590" height="62" rx="10" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="claim" x="195" y="460" width="590" height="62" rx="10" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>
   <text x="490" y="499" text-anchor="middle" font-size="16" font-weight="700" fill="#f6f4ef"
         letter-spacing="0.3">THE MODEL / IMPLEMENTATION PRICE RATIO CHANGES</text>
 </svg>

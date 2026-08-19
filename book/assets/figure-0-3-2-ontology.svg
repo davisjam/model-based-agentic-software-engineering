@@ -62,10 +62,15 @@
 
   <text x="480" y="256" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">These classes may overlap.</text>
 
-  <!-- arrow down to the orthogonal representation-form axis -->
+  <!-- transparent anchor over the class-summary caption: the connector's source node (the model-class grid),
+       so the arrow tail plugs into a named node instead of floating in whitespace. Zero visual change. -->
+  <rect id="model-classes" x="360" y="242" width="240" height="26" fill="none" stroke="none"/>
+
+  <!-- arrow down to the orthogonal representation-form axis; drawn BEFORE rep-form so its fill caps the head -->
+  <!-- edge: model-classes -> rep-form -->
   <line x1="480" y1="264" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2" marker-end="url(#on-b)"/>
 
-  <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="rep-form" x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="314" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#57534e">REPRESENTATION FORM</text>
   <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 

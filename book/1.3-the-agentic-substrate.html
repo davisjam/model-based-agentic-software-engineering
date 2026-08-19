@@ -734,7 +734,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">The agentic substrate</text>
 
   <!-- ===== LEFT column: foundation model (blue) ===== -->
-  <rect x="60" y="72" width="400" height="242" rx="12" fill="#eef2f6" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-agentic-substrate-foundation-model" x="60" y="72" width="400" height="242" rx="12" fill="#eef2f6" stroke="#2f5169" stroke-width="2.6"/>
   <text x="260" y="102" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="1.5" fill="#2f5169">FOUNDATION MODEL</text>
 
   <g fill="#fbfaf7" stroke="#57534e" stroke-width="1.6">
@@ -749,7 +749,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="260" y="287" text-anchor="middle" font-size="16" fill="#1c1917">cheap repeated reasoning</text>
 
   <!-- ===== RIGHT column: agentic harness (gray) ===== -->
-  <rect x="540" y="72" width="400" height="242" rx="12" fill="#f3f1ee" stroke="#57534e" stroke-width="2.6"/>
+  <rect id="f-agentic-substrate-agentic-harness" x="540" y="72" width="400" height="242" rx="12" fill="#f3f1ee" stroke="#57534e" stroke-width="2.6"/>
   <text x="740" y="102" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="1.5" fill="#57534e">AGENTIC HARNESS</text>
 
   <g fill="#fbfaf7" stroke="#57534e" stroke-width="1.6">
@@ -771,11 +771,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- convergence: both substrate columns feed the agent, which sits INSIDE the environment.
        Paths curve down the outer flanks (clear of the centred header) into the agent's top edge. -->
-  <path d="M260,314 C260,410 360,430 452,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-agentic-substrate-as-k)"/>
-  <path d="M740,314 C740,410 640,430 548,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-agentic-substrate-as-k)"/>
+  <!-- edge: foundation-model -> agent (heads pre-aimed perpendicular into agent top) -->
+  <path d="M260,314 C260,410 452,420 452,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-agentic-substrate-as-k)"/>
+  <!-- edge: agentic-harness -> agent -->
+  <path d="M740,314 C740,410 548,420 548,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-agentic-substrate-as-k)"/>
 
   <!-- AGENT node (blue) — inside the environment container -->
-  <rect x="400" y="452" width="200" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <rect id="f-agentic-substrate-agent" x="400" y="452" width="200" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
   <text x="500" y="484" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Agent</text>
   <text x="500" y="506" text-anchor="middle" font-size="14.5" fill="#57534e">a tool-using reasoner</text>
 </svg><figcaption data-short="The agentic substrate"><span class="fig-label">Figure 1.3-1.</span> <em>The agentic substrate.</em> The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into observable, interceptable action. MAGE engineers the environment around the combination.</figcaption></figure>

@@ -731,11 +731,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <rect x="0" y="0" width="980" height="430" fill="#fdfcf9"/>
 
+  <!-- edges drawn UNDER nodes: tails run inside source (fill caps), directed heads seat on target perimeter -->
+  <!-- edge: input -> docable -->
+  <path d="M250,243 L378,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-docable-glimpse-dg-ah)"/>
+  <!-- edge: docable -> output -->
+  <path d="M570,243 L718,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-docable-glimpse-dg-ah)"/>
+
   <text x="490" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">A running glimpse of DocAble</text>
   <text x="490" y="70" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">One object in, one object back — the kind of production system these ideas govern.</text>
 
   <!-- ================= INPUT: an inaccessible document ================= -->
-  <rect x="110" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#b23b3b" stroke-width="2.5"/>
+  <rect id="f-docable-glimpse-input" x="110" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#b23b3b" stroke-width="2.5"/>
   <path d="M244,140 L260,156 L244,156 Z" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
   <!-- illegible text bars -->
   <rect x="126" y="166" width="92" height="7" rx="2" fill="#cfc9c0"/>
@@ -755,20 +761,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="185" y="357" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">unlabeled images · untagged · no reading order</text>
 
   <!-- ================= DocAble: the closed box ================= -->
-  <rect x="380" y="195" width="200" height="96" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <rect id="f-docable-glimpse-docable" x="380" y="195" width="200" height="96" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
   <text x="480" y="235" text-anchor="middle" font-size="26" font-weight="700" fill="#2f5169">DocAble</text>
   <text x="480" y="260" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">the production system</text>
   <text x="480" y="279" text-anchor="middle" font-size="12" fill="#57534e">scholaccess.com</text>
   <text x="480" y="312" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">what it does — not yet how</text>
 
-  <!-- arrows in / out -->
-  <path d="M262,243 L376,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-docable-glimpse-dg-ah)"/>
+  <!-- arrow labels (paths themselves drawn under nodes, above) -->
   <text x="319" y="233" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the upload</text>
-  <path d="M584,243 L716,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-docable-glimpse-dg-ah)"/>
   <text x="650" y="233" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the file, remediated</text>
 
   <!-- ================= OUTPUT: an accessible document + evidence ================= -->
-  <rect x="720" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#1f7a4d" stroke-width="2.5"/>
+  <rect id="f-docable-glimpse-output" x="720" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#1f7a4d" stroke-width="2.5"/>
   <path d="M854,140 L870,156 L854,156 Z" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.5"/>
   <!-- legible text bars -->
   <rect x="736" y="166" width="92" height="7" rx="2" fill="#57534e"/>

@@ -913,10 +913,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="480" y="256" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">These classes may overlap.</text>
 
+  <!-- transparent anchor over the six-box class grid + the overlap note: the source the arrow descends FROM.
+       fill/stroke none = zero visual change; the lint reads its geometry like any node. -->
+  <rect id="fig-0-3-1-f-model-classes-classes" x="40" y="58" width="880" height="210" fill="none" stroke="none"/>
   <!-- arrow down to the orthogonal representation-form axis -->
+  <!-- edge: classes -> forms -->
   <line x1="480" y1="264" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-0-3-1-f-model-classes-on-b)"/>
 
-  <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="fig-0-3-1-f-model-classes-forms" x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="314" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#57534e">REPRESENTATION FORM</text>
   <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 
@@ -1396,11 +1400,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <rect x="0" y="0" width="980" height="430" fill="#fdfcf9"/>
 
+  <!-- edges drawn UNDER nodes: tails run inside source (fill caps), directed heads seat on target perimeter -->
+  <!-- edge: input -> docable -->
+  <path d="M250,243 L378,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#fig-1-2-1-f-docable-glimpse-dg-ah)"/>
+  <!-- edge: docable -> output -->
+  <path d="M570,243 L718,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#fig-1-2-1-f-docable-glimpse-dg-ah)"/>
+
   <text x="490" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">A running glimpse of DocAble</text>
   <text x="490" y="70" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">One object in, one object back — the kind of production system these ideas govern.</text>
 
   <!-- ================= INPUT: an inaccessible document ================= -->
-  <rect x="110" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#b23b3b" stroke-width="2.5"/>
+  <rect id="fig-1-2-1-f-docable-glimpse-input" x="110" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#b23b3b" stroke-width="2.5"/>
   <path d="M244,140 L260,156 L244,156 Z" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
   <!-- illegible text bars -->
   <rect x="126" y="166" width="92" height="7" rx="2" fill="#cfc9c0"/>
@@ -1420,20 +1430,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="185" y="357" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">unlabeled images · untagged · no reading order</text>
 
   <!-- ================= DocAble: the closed box ================= -->
-  <rect x="380" y="195" width="200" height="96" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <rect id="fig-1-2-1-f-docable-glimpse-docable" x="380" y="195" width="200" height="96" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
   <text x="480" y="235" text-anchor="middle" font-size="26" font-weight="700" fill="#2f5169">DocAble</text>
   <text x="480" y="260" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">the production system</text>
   <text x="480" y="279" text-anchor="middle" font-size="12" fill="#57534e">scholaccess.com</text>
   <text x="480" y="312" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">what it does — not yet how</text>
 
-  <!-- arrows in / out -->
-  <path d="M262,243 L376,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#fig-1-2-1-f-docable-glimpse-dg-ah)"/>
+  <!-- arrow labels (paths themselves drawn under nodes, above) -->
   <text x="319" y="233" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the upload</text>
-  <path d="M584,243 L716,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#fig-1-2-1-f-docable-glimpse-dg-ah)"/>
   <text x="650" y="233" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">the file, remediated</text>
 
   <!-- ================= OUTPUT: an accessible document + evidence ================= -->
-  <rect x="720" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#1f7a4d" stroke-width="2.5"/>
+  <rect id="fig-1-2-1-f-docable-glimpse-output" x="720" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#1f7a4d" stroke-width="2.5"/>
   <path d="M854,140 L870,156 L854,156 Z" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.5"/>
   <!-- legible text bars -->
   <rect x="736" y="166" width="92" height="7" rx="2" fill="#57534e"/>
@@ -1569,7 +1577,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">The agentic substrate</text>
 
   <!-- ===== LEFT column: foundation model (blue) ===== -->
-  <rect x="60" y="72" width="400" height="242" rx="12" fill="#eef2f6" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="fig-1-3-1-f-agentic-substrate-foundation-model" x="60" y="72" width="400" height="242" rx="12" fill="#eef2f6" stroke="#2f5169" stroke-width="2.6"/>
   <text x="260" y="102" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="1.5" fill="#2f5169">FOUNDATION MODEL</text>
 
   <g fill="#fbfaf7" stroke="#57534e" stroke-width="1.6">
@@ -1584,7 +1592,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="260" y="287" text-anchor="middle" font-size="16" fill="#1c1917">cheap repeated reasoning</text>
 
   <!-- ===== RIGHT column: agentic harness (gray) ===== -->
-  <rect x="540" y="72" width="400" height="242" rx="12" fill="#f3f1ee" stroke="#57534e" stroke-width="2.6"/>
+  <rect id="fig-1-3-1-f-agentic-substrate-agentic-harness" x="540" y="72" width="400" height="242" rx="12" fill="#f3f1ee" stroke="#57534e" stroke-width="2.6"/>
   <text x="740" y="102" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="1.5" fill="#57534e">AGENTIC HARNESS</text>
 
   <g fill="#fbfaf7" stroke="#57534e" stroke-width="1.6">
@@ -1606,11 +1614,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- convergence: both substrate columns feed the agent, which sits INSIDE the environment.
        Paths curve down the outer flanks (clear of the centred header) into the agent's top edge. -->
-  <path d="M260,314 C260,410 360,430 452,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-3-1-f-agentic-substrate-as-k)"/>
-  <path d="M740,314 C740,410 640,430 548,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-3-1-f-agentic-substrate-as-k)"/>
+  <!-- edge: foundation-model -> agent (heads pre-aimed perpendicular into agent top) -->
+  <path d="M260,314 C260,410 452,420 452,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-3-1-f-agentic-substrate-as-k)"/>
+  <!-- edge: agentic-harness -> agent -->
+  <path d="M740,314 C740,410 548,420 548,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-3-1-f-agentic-substrate-as-k)"/>
 
   <!-- AGENT node (blue) — inside the environment container -->
-  <rect x="400" y="452" width="200" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <rect id="fig-1-3-1-f-agentic-substrate-agent" x="400" y="452" width="200" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
   <text x="500" y="484" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Agent</text>
   <text x="500" y="506" text-anchor="middle" font-size="14.5" fill="#57534e">a tool-using reasoner</text>
 </svg><figcaption data-short="The agentic substrate"><span class="fig-label">Figure 1.3-1.</span> <em>The agentic substrate.</em> The foundation model supplies inexpensive semantic reasoning under finite, probabilistic working conditions; the harness turns that reasoning into observable, interceptable action. MAGE engineers the environment around the combination.</figcaption></figure><p class="gallery-source">From <a href="1.3-the-agentic-substrate.html#fig-1-3-1">3 · The Agentic Substrate</a></p></section><hr><section class="gallery-item"><figure id="fig-1-3-2-fig-1-3-2" class="book-figure" data-label="reasoning-horizon-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700"
@@ -1829,11 +1839,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="480" y="256" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">These classes may overlap.</text>
 
+  <!-- transparent anchor over the six-box class grid + the overlap note: the class end of the many-to-many
+       relation. fill/stroke none = zero visual change; the lint reads its geometry like any node. -->
+  <rect id="fig-2-1-1-f-model-ontology-classes" x="40" y="58" width="880" height="204" fill="none" stroke="none"/>
   <!-- double-headed arrow to the orthogonal representation-form axis: the relation is MANY-TO-MANY -->
+  <!-- edge: classes -> forms -->
   <line x1="480" y1="266" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2"
         marker-start="url(#fig-2-1-1-f-model-ontology-on-b)" marker-end="url(#fig-2-1-1-f-model-ontology-on-b)"/>
 
-  <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="fig-2-1-1-f-model-ontology-forms" x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="314" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
   <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 
@@ -2322,30 +2336,35 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
+  <!-- fan DOWN to the three class views. CONNECT GRAMMAR: edges drawn FIRST (under every node) so the
+       opaque node fills cap the ends. Each undirected source end runs to the SHARED LEASE STATE center
+       (360,71); each directed head seats on its target's top border (head outside, tip touching). -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-4-3-f-in-flight-lease-overlap-il-b)">
+    <!-- edge: shared-lease -> ownership -->
+    <path d="M360,71 C300,120 145,156 145,186"/>
+    <!-- edge: shared-lease -> behavior -->
+    <path d="M360,71 L360,186"/>
+    <!-- edge: shared-lease -> measurement -->
+    <path d="M360,71 C420,120 575,156 575,186"/>
+  </g>
+
   <!-- SHARED LEASE STATE (gray, the one represented fact) at TOP -->
-  <rect x="250" y="38" width="220" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <rect id="fig-2-4-3-f-in-flight-lease-overlap-shared-lease" x="250" y="38" width="220" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
   <text x="360" y="70" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">SHARED LEASE STATE</text>
   <text x="360" y="90" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; lifetime</text>
 
-  <!-- fan DOWN to the three class views -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-4-3-f-in-flight-lease-overlap-il-b)">
-    <path d="M320,104 C240,140 190,150 145,186"/>
-    <path d="M360,104 L360,186"/>
-    <path d="M400,104 C480,140 530,150 575,186"/>
-  </g>
-
   <!-- OWNERSHIP -->
-  <rect x="45" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="fig-2-4-3-f-in-flight-lease-overlap-ownership" x="45" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="145" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">OWNERSHIP</text>
   <text x="145" y="252" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">who owns?</text>
 
   <!-- BEHAVIOR -->
-  <rect x="260" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="fig-2-4-3-f-in-flight-lease-overlap-behavior" x="260" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="360" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">BEHAVIOR</text>
   <text x="360" y="252" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">when stale?</text>
 
   <!-- MEASUREMENT -->
-  <rect x="475" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="fig-2-4-3-f-in-flight-lease-overlap-measurement" x="475" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="575" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">MEASUREMENT</text>
   <text x="575" y="252" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">how many active?</text>
 
@@ -2680,14 +2699,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">THE PROVENANCE MODEL</text>
 
+  <!-- edges drawn UNDER nodes: tails run inside source (fill caps), directed heads seat on target top border -->
+  <!-- edge: run -> operation -->
+  <line x1="350" y1="88" x2="350" y2="122" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-2-7-1-f-attribution-model-at-b)"/>
+  <!-- edge: operation -> derived-uses -->
+  <line x1="350" y1="238" x2="350" y2="278" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-2-7-1-f-attribution-model-at-k)"/>
+
   <!-- RUN (blue, prominent) -->
-  <rect x="270" y="42" width="160" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
+  <rect id="fig-2-7-1-f-attribution-model-run" x="270" y="42" width="160" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
   <text x="350" y="74" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RUN</text>
-  <line x1="350" y1="92" x2="350" y2="122" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-2-7-1-f-attribution-model-at-b)"/>
   <text x="362" y="112" font-size="14" font-style="italic" fill="#57534e">one run, many operations</text>
 
   <!-- OPERATION* with its recorded fields (the heart of the model) -->
-  <rect x="150" y="124" width="400" height="118" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="fig-2-7-1-f-attribution-model-operation" x="150" y="124" width="400" height="118" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="350" y="153" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">OPERATION*</text>
   <text x="350" y="173" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">each records</text>
   <g fill="#fbfdff" stroke="#2f5169" stroke-width="1.8">
@@ -2703,10 +2727,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="492" y="210">evidence</text>
   </g>
 
-  <!-- secondary derived-uses tail (small, gray) -->
-  <line x1="350" y1="242" x2="350" y2="278" stroke="#57534e" stroke-width="1.8" marker-end="url(#fig-2-7-1-f-attribution-model-at-k)"/>
+  <!-- secondary derived-uses tail label (line drawn under nodes, above) -->
   <text x="362" y="266" font-size="14" font-style="italic" fill="#57534e">derived uses (secondary)</text>
-  <rect x="215" y="280" width="270" height="42" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="fig-2-7-1-f-attribution-model-derived-uses" x="215" y="280" width="270" height="42" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="350" y="306" text-anchor="middle" font-size="14.5" fill="#1c1917">audit &#183; debugging &#183; changelog</text>
 
   <!-- footer: protect the point -->
@@ -2909,7 +2932,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="450" y="38" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Coverage of model correspondence</text>
 
   <!-- ===== MODELED SURFACE ===== -->
-  <rect x="120" y="66" width="660" height="170" rx="12" fill="#faf9f6" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="fig-2-8-4-f-model-sync-two-layer-net-modeled" x="120" y="66" width="660" height="170" rx="12" fill="#faf9f6" stroke="#57534e" stroke-width="2.4"/>
   <text x="150" y="96" font-size="16" font-weight="700" letter-spacing="1" fill="#1c1917">MODELED SURFACE</text>
 
   <!-- decidable -> mechanical check (green) -->
@@ -2922,14 +2945,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="170" y="199" font-size="15.5" font-weight="700" fill="#2f5169">semantic claims</text>
   <text x="750" y="199" text-anchor="end" font-size="15.5" font-weight="700" fill="#2f5169">&#8594;&#160; judgment</text>
 
+  <!-- refine loop arrow drawn UNDER the unmodeled surface: its tail runs into that surface (the opaque fill
+       caps it) and its head seats on the modeled surface's lower rim -->
+  <!-- edge: unmodeled .. modeled -->
+  <path d="M760,290 C760,270 760,254 760,238" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#fig-2-8-4-f-model-sync-two-layer-net-cv-r)"/>
+
   <!-- ===== UNMODELED SURFACE ===== -->
-  <rect x="120" y="266" width="660" height="70" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="8 5"/>
+  <rect id="fig-2-8-4-f-model-sync-two-layer-net-unmodeled" x="120" y="266" width="660" height="70" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="8 5"/>
   <text x="150" y="296" font-size="16" font-weight="700" letter-spacing="1" fill="#9a3f12">UNMODELED SURFACE</text>
   <text x="150" y="320" font-size="14.5" font-style="italic" fill="#57534e">no model-based coverage</text>
 
-  <!-- small optional refine note in the gap between the two surfaces, with a short loop arrow -->
+  <!-- small optional refine note in the gap between the two surfaces -->
   <text x="430" y="255" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">recurring miss &#8594; refine representation / control</text>
-  <path d="M760,266 C760,258 760,250 760,238" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#fig-2-8-4-f-model-sync-two-layer-net-cv-r)"/>
 
   <!-- footer: protect the point -->
   <text x="450" y="374" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Mechanical checks reach only what the representation makes decidable;</text>
@@ -3289,11 +3316,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- ================= TOP RUNG — obligation legible ================= -->
-  <rect x="150" y="48" width="660" height="76" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="fig-3-2-2-f-semantic-gap-levels-legible" x="150" y="48" width="660" height="76" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="480" y="84" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">OBLIGATION LEGIBLE</text>
   <text x="480" y="110" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">the completed unit of work</text>
 
-  <!-- the lift arrow: rises from above the event row up to the whole-unit box -->
+  <!-- transparent anchor over the event grain (bracket + event row): the source the lift arrow rises FROM.
+       fill/stroke none = zero visual change; the lint reads its geometry like any node. -->
+  <rect id="fig-3-2-2-f-semantic-gap-levels-events" x="170" y="230" width="620" height="98" fill="none" stroke="none"/>
+  <!-- the lift arrow: rises from the event grain up to the whole-unit box -->
+  <!-- edge: events -> legible -->
   <line x1="480" y1="238" x2="480" y2="128" stroke="#2f5169" stroke-width="2.5" marker-end="url(#fig-3-2-2-f-semantic-gap-levels-sgUp)"/>
   <text x="503" y="188" font-size="20" font-style="italic" fill="#2f5169">move mechanism</text>
 
@@ -3335,34 +3366,38 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
+  <!-- edges drawn UNDER nodes; the branch labels YES/NO ride the diagonals, so heads keep their angles -->
+  <!-- edge-grammar: keep-angles -->
+  <!-- edge: obligation -> decision -->
+  <line x1="480" y1="87" x2="480" y2="132" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-3-1-f-constraint-vs-sensor-caArrow)"/>
+  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-3-1-f-constraint-vs-sensor-caArrow)">
+    <!-- edge: decision -> constraint -->
+    <path d="M380,192 C320,222 290,232 262,254"/>
+    <!-- edge: decision -> sensor -->
+    <path d="M580,192 C640,222 670,232 698,254"/>
+  </g>
+
   <!-- top: the engineering obligation -->
-  <rect x="320" y="24" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="fig-3-3-1-f-constraint-vs-sensor-obligation" x="320" y="24" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="480" y="55" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">ENGINEERING OBLIGATION</text>
   <text x="480" y="79" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the property you must hold</text>
 
-  <!-- edge to the decision -->
-  <line x1="480" y1="90" x2="480" y2="132" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-3-1-f-constraint-vs-sensor-caArrow)"/>
-
   <!-- the selection decision -->
-  <rect x="264" y="136" width="432" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="fig-3-3-1-f-constraint-vs-sensor-decision" x="264" y="136" width="432" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Can the unwanted state be excluded cleanly?</text>
 
-  <!-- branch edges -->
-  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-3-1-f-constraint-vs-sensor-caArrow)">
-    <path d="M380,194 C320,222 290,232 262,254"/>
-    <path d="M580,194 C640,222 670,232 698,254"/>
-  </g>
+  <!-- branch labels (paths drawn under nodes, above) -->
   <text x="300" y="226" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">YES</text>
   <text x="662" y="226" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">NO</text>
 
   <!-- ============ LEFT — CONSTRAINT ============ -->
-  <rect x="95" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="fig-3-3-1-f-constraint-vs-sensor-constraint" x="95" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="260" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">CONSTRAINT</text>
   <text x="260" y="326" text-anchor="middle" font-size="19" fill="#1c1917">narrows what may happen</text>
   <text x="260" y="360" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
 
   <!-- ============ RIGHT — SENSOR ============ -->
-  <rect x="535" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="fig-3-3-1-f-constraint-vs-sensor-sensor" x="535" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="700" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">SENSOR</text>
   <text x="700" y="326" text-anchor="middle" font-size="18" fill="#1c1917">produces evidence of what happened</text>
   <text x="700" y="360" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
@@ -6813,9 +6848,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
         letter-spacing="1.2">WHY SOFTWARE MODELED DIFFERENTLY</text>
 
   <!-- ===================== THREE COLUMNS ===================== -->
+  <!-- resolving arrow drawn UNDER the columns: its tail runs to the middle card's centre (the opaque card
+       fill caps it, so only the segment below the card shows), its head seats on the claim banner's rim -->
+  <!-- edge: software -> claim -->
+  <line x1="490" y1="237" x2="490" y2="458" stroke="#1c1917" stroke-width="2.5" marker-end="url(#fig-6-5-1-f-why-software-modeled-wsmArrow)"/>
+
   <!-- column frames -->
   <rect x="24"  y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
-  <rect x="344" y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
+  <rect id="fig-6-5-1-f-why-software-modeled-software" x="344" y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>
   <rect x="664" y="72" width="292" height="330" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
 
   <!-- column A header — Older physical engineering -->
@@ -6854,11 +6894,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="684" y="320" font-size="15.5" fill="#1c1917">more live representations</text>
   <text x="698" y="340" font-size="15.5" font-weight="700" fill="#1c1917">become economical</text>
 
-  <!-- resolving arrow from the three columns to the claim -->
-  <line x1="490" y1="410" x2="490" y2="452" stroke="#1c1917" stroke-width="2.5" marker-end="url(#fig-6-5-1-f-why-software-modeled-wsmArrow)"/>
-
   <!-- terminal — the claim, set dark for grayscale emphasis; deliberately NOT "software rejoins engineering" -->
-  <rect x="195" y="460" width="590" height="62" rx="10" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="fig-6-5-1-f-why-software-modeled-claim" x="195" y="460" width="590" height="62" rx="10" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>
   <text x="490" y="499" text-anchor="middle" font-size="16" font-weight="700" fill="#f6f4ef"
         letter-spacing="0.3">THE MODEL / IMPLEMENTATION PRICE RATIO CHANGES</text>
 </svg><figcaption data-short="Why software modeled differently"><span class="fig-label">Figure 6.5-1.</span> <em>Why software modeled differently.</em> Software was never model-free. Compilation and reproduction were cheap, but producing and revising the detailed implementation required skilled labor, and code itself served as an executable engineering representation. Additional models therefore carried a standing correspondence cost. Commodity intelligence lowers both realization labor and parts of the cost of maintaining secondary representations, expanding the surfaces on which live models can repay their upkeep.</figcaption></figure><p class="gallery-source">From <a href="6.5-software-rejoins-engineering.html#fig-6-5-1">32 · Software Rejoins Engineering</a></p></section><hr><section class="gallery-item"><figure id="fig-6-5-2-fig-6-5-2" class="book-figure" data-label="established-traditions-new-composition"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 980"
@@ -8274,23 +8311,29 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
+  <!-- Heads seat on the box corners at ~56 deg; a perpendicular re-aim pulls the bottom arc up through the
+       "catches unmodeled reality" caption, so this figure keeps its head angles (seating still enforced). -->
+  <!-- edge-grammar: keep-angles -->
+
   <!-- MODEL (modeling pole) -->
-  <rect x="120" y="150" width="230" height="90" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <rect id="fig-B-3-1-f-c3-bidirectional-correspondence-model" x="120" y="150" width="230" height="90" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="235" y="192" text-anchor="middle" font-size="22" font-weight="700" fill="#155c38">MODEL</text>
   <text x="235" y="218" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">what we claim is true</text>
 
   <!-- REALITY (agent/system pole) -->
-  <rect x="650" y="150" width="230" height="90" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="fig-B-3-1-f-c3-bidirectional-correspondence-reality" x="650" y="150" width="230" height="90" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="765" y="192" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">REALITY</text>
   <text x="765" y="218" text-anchor="middle" font-size="14" font-style="italic" fill="#2f5169">the running system</text>
 
   <!-- top arc: MODEL claim -> REALITY (bows high, clears the label band) -->
+  <!-- edge: model -> reality -->
   <path d="M350,150 C445,92 555,92 652,150" fill="none" stroke="#9a3f12" stroke-width="2.5" marker-end="url(#fig-B-3-1-f-c3-bidirectional-correspondence-c3-ah-r)"/>
   <text x="500" y="80" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">claim</text>
   <text x="500" y="134" text-anchor="middle" font-size="15" fill="#1c1917">Does reality still satisfy the model?</text>
   <text x="500" y="153" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">catches a wrong modeled fact</text>
 
   <!-- bottom arc: REALITY -> MODEL (coverage) -->
+  <!-- edge: reality -> model -->
   <path d="M650,240 C548,310 452,310 348,240" fill="none" stroke="#9a3f12" stroke-width="2.5" marker-end="url(#fig-B-3-1-f-c3-bidirectional-correspondence-c3-ah-r)"/>
   <text x="500" y="260" text-anchor="middle" font-size="15" fill="#1c1917">Did something important appear outside the model?</text>
   <text x="500" y="279" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">catches unmodeled reality</text>
@@ -11421,11 +11464,15 @@ z
 
   <text x="480" y="256" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">These classes may overlap.</text>
 
+  <!-- transparent anchor over the six-box class grid + the overlap note: the class end of the many-to-many
+       relation. fill/stroke none = zero visual change; the lint reads its geometry like any node. -->
+  <rect id="fig-H-3-1-f-model-ontology-classes" x="40" y="58" width="880" height="204" fill="none" stroke="none"/>
   <!-- double-headed arrow to the orthogonal representation-form axis: the relation is MANY-TO-MANY -->
+  <!-- edge: classes -> forms -->
   <line x1="480" y1="266" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2"
         marker-start="url(#fig-H-3-1-f-model-ontology-on-b)" marker-end="url(#fig-H-3-1-f-model-ontology-on-b)"/>
 
-  <rect x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="fig-H-3-1-f-model-ontology-forms" x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="314" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
   <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 

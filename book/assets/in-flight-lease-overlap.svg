@@ -20,30 +20,35 @@
     </marker>
   </defs>
 
+  <!-- fan DOWN to the three class views. CONNECT GRAMMAR: edges drawn FIRST (under every node) so the
+       opaque node fills cap the ends. Each undirected source end runs to the SHARED LEASE STATE center
+       (360,71); each directed head seats on its target's top border (head outside, tip touching). -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#il-b)">
+    <!-- edge: shared-lease -> ownership -->
+    <path d="M360,71 C300,120 145,156 145,186"/>
+    <!-- edge: shared-lease -> behavior -->
+    <path d="M360,71 L360,186"/>
+    <!-- edge: shared-lease -> measurement -->
+    <path d="M360,71 C420,120 575,156 575,186"/>
+  </g>
+
   <!-- SHARED LEASE STATE (gray, the one represented fact) at TOP -->
-  <rect x="250" y="38" width="220" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <rect id="shared-lease" x="250" y="38" width="220" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
   <text x="360" y="70" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">SHARED LEASE STATE</text>
   <text x="360" y="90" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; lifetime</text>
 
-  <!-- fan DOWN to the three class views -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#il-b)">
-    <path d="M320,104 C240,140 190,150 145,186"/>
-    <path d="M360,104 L360,186"/>
-    <path d="M400,104 C480,140 530,150 575,186"/>
-  </g>
-
   <!-- OWNERSHIP -->
-  <rect x="45" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="ownership" x="45" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="145" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">OWNERSHIP</text>
   <text x="145" y="252" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">who owns?</text>
 
   <!-- BEHAVIOR -->
-  <rect x="260" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="behavior" x="260" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="360" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">BEHAVIOR</text>
   <text x="360" y="252" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">when stale?</text>
 
   <!-- MEASUREMENT -->
-  <rect x="475" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="measurement" x="475" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="575" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">MEASUREMENT</text>
   <text x="575" y="252" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">how many active?</text>
 
