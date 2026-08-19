@@ -8,8 +8,8 @@ itself hold as obligations, and how should it hold them?**
 Alignment is the move from guidance to authority. Some obligations require no rich system model: a
 permission can forbid network access, a type can rule out an illegal value, a sandbox can make an action
 unavailable. Explicit models extend that reach. Once architecture, ownership, behavior, measurement, or
-policy has been represented at the level where the property exists, the environment can govern questions
-that would otherwise need an agent or a human to reconstruct the missing semantics.
+policy is represented at the level where the property exists, the environment can govern questions
+that an agent or human would otherwise have to reconstruct from lower-level detail.
 
 <!-- principlebox -->
 > ### ALIGNMENT PRINCIPLE
@@ -28,6 +28,6 @@ Alignment gives selected engineering judgments durable authority in the environm
 can do; sensors produce evidence of what it did; validators judge that evidence against an obligation;
 gates decide what may advance. Some mechanisms can be designed before work begins. Others emerge when a
 failure exposes something the environment did not represent, observe, evaluate, or control. Those lessons
-can become durable engineering structure; when later work benefits from inheriting that structure, it
+can become durable engineering structure. When later work benefits from that structure, it
 becomes engineering capital. Once the control estate becomes consequential, it too becomes an engineering
 object.
