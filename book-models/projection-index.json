@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1214,
+    "total_sites": 1215,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 811,
+      "book-web": 812,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -713,7 +713,7 @@
         "book-web": [
           {
             "file": "book/0.1-the-mage-method-at-a-glance.html",
-            "occ": 8
+            "occ": 13
           },
           {
             "file": "book/0.3-the-books-language.html",
@@ -769,7 +769,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 28
+            "occ": 33
           }
         ],
         "book-pdf": [
@@ -5126,14 +5126,18 @@
             "occ": 3
           },
           {
+            "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
+            "occ": 1
+          },
+          {
             "file": "book/figures.html",
-            "occ": 2
+            "occ": 3
           }
         ],
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 8
+            "occ": 9
           }
         ]
       },

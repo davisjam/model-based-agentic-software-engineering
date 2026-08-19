@@ -72,6 +72,21 @@
 
   <rect x="0" y="0" width="1000" height="1020" fill="#fdfcf9"/>
 
+  <!-- edge-grammar: keep-angles -->
+  <!-- KEEP-ANGLES (this grammar-establishing overview's non-orthogonal edges are all deliberate):
+       (1) Two feedback rails are intentional curves — the light dotted long-range rail (capital .. finite,
+           "greater scope reopens the reasoning problem") and the Governance-conversion loop
+           (gee -> semantic-surface). Bending them to right angles would clutter the figure they anchor.
+       (2) The two dashed CHURN failure rails (modeling .. churn, alignment .. churn) deliberately SIDE-EXIT
+           the spine. Churn is a LATERAL failure attractor in the bottom-right corner, not a spine child;
+           leaving the box on its right side IS the grammar ("you left the success spine and fell off to the
+           side"), the rail's label rides the horizontal run, and both rails converge on the single drop into
+           Churn's top. A bottom flow-exit detour is impossible cleanly: the spine (Alignment, GEE, Capital,
+           the semantic-surface label) fully occupies the space below Modeling/Alignment, so a bottom route
+           would have to snake around the whole spine and would break the two rails' shared convergence. The
+           straight-vertical spine edges stay orthogonal by hand; opting the figure out only skips edges that
+           are already correct or deliberately not. -->
+
   <!-- =============== LONG-RANGE RAIL (drawn first, sits beneath everything) =============== -->
   <!-- edge: capital .. finite -->
   <path d="M384,828 C150,852 20,806 20,660 L20,150 C20,110 170,150 346,150"
