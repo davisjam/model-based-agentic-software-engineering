@@ -773,5 +773,55 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Executability does not make the record a complete behavioral model of the remediation system. It still omits the reasoning, analyses, control decisions, retries, and computations that produced those edits. The record says which consequential mutations happened, not why the system chose them.</p>
 <p>Record and replay separate three questions that are easy to conflate. The computation graph asks what computations may compose. The provenance record says which consequential mutations did occur. Replay adds a third: given that realized history, reproduce its effects. No one of these representations subsumes the others.</p>
 <p>The two representations are not joined today. A <code>PdfEdit</code>'s node identifier names a PDF structure element, not a computation-graph node, so a shared field name does not connect them. For a <code>TypedPatchProducer</code>, though, the runtime edits are the realized output of a modeled computation. Attributing those records to the producing computation identity would let one execution record be read against the static graph. DocAble keeps that design option open without taking it.</p>
+<p><a class="xref" href="2.7-provenance.html#fig-2-7-2">Figure&nbsp;2.7-2</a> sets the two representations side by side.</p>
+<figure id="fig-2-7-2" class="book-figure" data-label="two-reductions-static-realized"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540"
+     role="img" aria-labelledby="f-two-reductions-static-realized-trTitle f-two-reductions-static-realized-trDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-two-reductions-static-realized-trTitle">Computation structure versus realized history</title>
+  <desc id="f-two-reductions-static-realized-trDesc">Two reductions of the same remediation system, side by side. Left: the static computation graph — named passes joined by a typed data edge and a typed control gate, modeling what computations may compose. Right: one session's edit record — a run that emits a sequence of typed PdfEdit operations, recording what mutations did occur. A dashed link between them marks that they are not joined today; a shared computation identity would join them, and the join is added when a question needs it.</desc>
+  <defs>
+    <marker id="f-two-reductions-static-realized-tr-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/></marker>
+    <marker id="f-two-reductions-static-realized-tr-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="f-two-reductions-static-realized-tr-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+  </defs>
+  <rect x="40" y="96" width="415" height="418" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="525" y="96" width="435" height="418" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <!-- edge: bg_a -> bg_b -->
+  <line x1="225" y1="225" x2="225" y2="300" stroke="#1f7a4d" stroke-width="3" marker-end="url(#f-two-reductions-static-realized-tr-ah-green)"/>
+  <!-- edge: bg_c -> bg_b -->
+  <line x1="225" y1="410" x2="225" y2="350" stroke="#9a3f12" stroke-width="2.5" stroke-dasharray="9 5" marker-end="url(#f-two-reductions-static-realized-tr-ah-rust)"/>
+  <!-- edge: rg_sess -> rg_e1 -->
+  <line x1="735" y1="223" x2="735" y2="262" stroke="#2f5169" stroke-width="3" marker-end="url(#f-two-reductions-static-realized-tr-ah-blue)"/>
+  <!-- edge: rg_e1 -> rg_e2 -->
+  <line x1="735" y1="308" x2="735" y2="338" stroke="#2f5169" stroke-width="3" marker-end="url(#f-two-reductions-static-realized-tr-ah-blue)"/>
+  <!-- edge: rg_e2 -> rg_e3 -->
+  <line x1="735" y1="384" x2="735" y2="414" stroke="#2f5169" stroke-width="3" marker-end="url(#f-two-reductions-static-realized-tr-ah-blue)"/>
+  <rect id="f-two-reductions-static-realized-tr-jl" x="452" y="290" width="12" height="12" fill="none" stroke="none"/>
+  <rect id="f-two-reductions-static-realized-tr-jr" x="520" y="290" width="12" height="12" fill="none" stroke="none"/>
+  <!-- edge: tr-jl .. tr-jr -->
+  <line x1="458" y1="296" x2="526" y2="296" stroke="#57534e" stroke-width="2" stroke-dasharray="3 5"/>
+  <rect id="f-two-reductions-static-realized-bg_a" x="130" y="175" width="190" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-two-reductions-static-realized-bg_b" x="130" y="300" width="190" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-two-reductions-static-realized-bg_c" x="130" y="410" width="190" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-two-reductions-static-realized-rg_sess" x="565" y="175" width="340" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-two-reductions-static-realized-rg_e1" x="585" y="262" width="300" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-two-reductions-static-realized-rg_e2" x="585" y="338" width="300" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-two-reductions-static-realized-rg_e3" x="585" y="414" width="300" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="247" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Computation graph</text>
+  <text x="247" y="152" text-anchor="middle" font-size="13" font-weight="400" font-style="italic" fill="#57534e">what computations may compose</text>
+  <text x="742" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Edit record</text>
+  <text x="742" y="152" text-anchor="middle" font-size="13" font-weight="400" font-style="italic" fill="#57534e">what mutations one run did emit</text>
+  <text x="225" y="205" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">Analyze pass</text>
+  <text x="225" y="330" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">Remediate pass</text>
+  <text x="225" y="440" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">Route gate</text>
+  <text x="245" y="258" text-anchor="start" font-size="13" font-weight="700" fill="#1f7a4d">DATA_FLOW</text>
+  <text x="245" y="388" text-anchor="start" font-size="13" font-weight="700" fill="#9a3f12">CONTROL_GATE</text>
+  <text x="735" y="205" text-anchor="middle" font-size="17" font-weight="600" fill="#1c1917">Session run</text>
+  <text x="735" y="290" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">PdfEdit · SetAltText</text>
+  <text x="735" y="366" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">PdfEdit · TagFigure</text>
+  <text x="735" y="442" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">PdfEdit · SetReadingOrder</text>
+  <text x="492" y="282" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">not joined today</text>
+  <text x="247" y="498" text-anchor="middle" font-size="15" font-weight="600" fill="#155c38">static structure</text>
+  <text x="742" y="498" text-anchor="middle" font-size="15" font-weight="600" fill="#2f5169">realized history</text>
+</svg><figcaption data-short="Computation structure versus realized history"><span class="fig-label">Figure 2.7-2.</span> <em>Computation structure versus realized history.</em> The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They are separate reductions today: a shared computation identity would let a runtime edit be read against the static model, a join added when an engineering question needs it rather than by collapsing the two representations into one.</figcaption></figure>
 <p>There is an important limit, and it is worth stating precisely. A provenance model does not guarantee that every consequential operation actually records its attribution. That is an Alignment question. DocAble addresses it separately, by requiring typed mutation verbs to emit attribution records and checking that obligation structurally; Part III examines that mechanism. <strong>Part II models the evidence the operation should leave; Part III asks what mechanism, if any, gives that obligation authority.</strong></p>
 <p>The next and final chapter of this Part steps back from any single model to ask how the six fit together as a system.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">« Beginning of part</a><a href="2.6-measurement.html" aria-label="Previous chapter — 10 · Measurement Models: How Much, and Against What Bound?">« Previous chapter</a></div><span class="chapnav-here" title="11 · Provenance Models: What Happened, and What Evidence Records It?">11 · Provenance Models: What Happened, and What Evidence Records It?</span><div class="chapnav-fwd"><a href="2.8-system-knowledge.html" aria-label="Next chapter — 12 · System Knowledge: Connecting the Models">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — Alignment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

@@ -853,6 +853,172 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The mismatch does not establish that the model should have existed from the start. The pass decomposition itself emerged while the remediation system was being built, and some implementation freedom was useful while that structure was still shifting. By this point, though, composition had grown hard to reason about informally. The sparse graph was not evidence of missing documentation. It showed that the system had reached a point where a stronger representation could help us understand the territory.</p>
 <p>The next move was to derive the missing relationships from what each pass actually reads and writes. That raised a second question: what should an edge mean? A first sweep found 33 candidate producer–consumer edges, and typing them changed the picture. Twenty-two were values a pass read only inside a routing predicate (a <code>ShouldRun</code> or <code>IsRouted</code> decision) to choose whether it executed at all; those values never reached the pass's remediation output. Treating all 33 as one kind of dependency would have produced a graph dominated by routing. Two relations were hiding inside one: a value another computation consumes to produce its result, and a value another computation consults only to decide whether to run. Both are dependencies, and they are not the same dependency.</p>
 <p>The model was refined to keep them apart. Each PDF pass declares three sets over a typed facet vocabulary: <code>Produces</code>, <code>Consumes</code>, and <code>ConsumesForControl</code>. The graph projects a data edge from a produced facet that another pass consumes, and a control edge from a produced facet that another pass consumes for control. Re-typing the 33 candidates partitions them: 22 become <code>CONTROL_GATE</code> edges, and the remaining 11 carry payload — 10 <code>DATA_FLOW</code> edges plus one <code>CROSS_SERVICE</code> edge that preserves composition across a service boundary. The 11 payload-bearing edges stay distinct from the 22 control gates.</p>
+<p><a class="xref" href="2.2-structural.html#fig-2-2-3">Figure&nbsp;2.2-3</a> shows both moves in one picture: the sparse model as first built, and the typed partition that separated the payload-bearing edges from the control gates.</p>
+<figure id="fig-2-2-3" class="book-figure" data-label="from-nodes-to-composition"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 570"
+     role="img" aria-labelledby="f-from-nodes-to-composition-fncTitle f-from-nodes-to-composition-fncDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="f-from-nodes-to-composition-fncTitle">From nodes to composition</title>
+  <desc id="f-from-nodes-to-composition-fncDesc">Two panels. Left: a structural model as first built — a dense cloud of 113 computation nodes crossed by only two hand-authored edges, so the parts are modeled but their composition is not. Right: the derived typed graph — named passes joined by three visibly distinct relations, ten data-flow edges, twenty-two control gates, and one cross-service payload edge, over the Produces / Consumes / ConsumesForControl vocabulary.</desc>
+  <defs>
+    <marker id="f-from-nodes-to-composition-fnc-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/></marker>
+    <marker id="f-from-nodes-to-composition-fnc-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="f-from-nodes-to-composition-fnc-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
+    <marker id="f-from-nodes-to-composition-fnc-ah-gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+  </defs>
+  <rect x="40" y="96" width="430" height="458" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="512" y="96" width="448" height="458" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <!-- left: two hand-authored edges among the cloud -->
+  <!-- edge: la1 -> la2 -->
+  <line x1="150" y1="250" x2="261.2" y2="333.4" stroke="#155c38" stroke-width="3" marker-end="url(#f-from-nodes-to-composition-fnc-ah-green)"/>
+  <!-- edge: la2 -> la3 -->
+  <line x1="270" y1="340" x2="381.2" y2="256.6" stroke="#155c38" stroke-width="3" marker-end="url(#f-from-nodes-to-composition-fnc-ah-green)"/>
+  <!-- center: derive+type transition -->
+  <rect id="f-from-nodes-to-composition-fnc-lout" x="452" y="296" width="8" height="8" fill="none" stroke="none"/>
+  <rect id="f-from-nodes-to-composition-fnc-rin" x="520" y="296" width="8" height="8" fill="none" stroke="none"/>
+  <!-- edge: fnc-lout -> fnc-rin -->
+  <line x1="456" y1="300" x2="520" y2="300" stroke="#57534e" stroke-width="3" marker-end="url(#f-from-nodes-to-composition-fnc-ah-gray)"/>
+  <!-- edge: nb_pa -> nb_da -->
+  <line x1="620" y1="175" x2="845" y2="175" stroke="#1f7a4d" stroke-width="3" marker-end="url(#f-from-nodes-to-composition-fnc-ah-green)"/>
+  <!-- edge: nb_pb -> nb_db -->
+  <line x1="620" y1="300" x2="845" y2="300" stroke="#9a3f12" stroke-width="2.5" stroke-dasharray="9 5" marker-end="url(#f-from-nodes-to-composition-fnc-ah-rust)"/>
+  <!-- edge: nb_pc -> nb_dc -->
+  <line x1="620" y1="425" x2="845" y2="425" stroke="#2f5169" stroke-width="3" marker-end="url(#f-from-nodes-to-composition-fnc-ah-blue)"/>
+  <circle cx="69.8" cy="150.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="110.2" cy="146.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="144.4" cy="153.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="181.8" cy="141.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="215.1" cy="155.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="260.9" cy="146.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="303.6" cy="141.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="343.9" cy="157.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="370.0" cy="148.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="406.5" cy="141.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="455.5" cy="146.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="70.7" cy="185.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="110.6" cy="196.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="139.3" cy="187.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="186.1" cy="188.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="219.6" cy="193.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="259.1" cy="194.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="299.1" cy="181.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="331.1" cy="180.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="380.2" cy="192.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="412.9" cy="194.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="453.9" cy="193.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="73.4" cy="224.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="105.8" cy="234.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="193.0" cy="227.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="215.2" cy="232.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="252.5" cy="219.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="291.6" cy="228.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="332.3" cy="222.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="441.2" cy="229.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="62.4" cy="258.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="101.7" cy="258.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="191.7" cy="258.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="213.6" cy="259.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="255.5" cy="262.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="299.1" cy="259.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="342.1" cy="263.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="444.8" cy="263.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="74.9" cy="302.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="103.9" cy="302.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="151.4" cy="306.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="190.8" cy="311.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="222.5" cy="306.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="305.5" cy="296.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="341.6" cy="304.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="375.7" cy="302.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="421.0" cy="300.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="446.4" cy="297.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="73.1" cy="352.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="108.3" cy="336.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="137.6" cy="337.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="175.7" cy="339.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="225.4" cy="353.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="344.9" cy="346.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="369.8" cy="345.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="414.2" cy="336.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="444.1" cy="337.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="66.9" cy="380.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="104.1" cy="390.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="153.1" cy="375.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="192.8" cy="386.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="213.9" cy="389.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="268.9" cy="380.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="298.9" cy="376.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="335.6" cy="378.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="376.1" cy="380.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="406.2" cy="380.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="448.5" cy="387.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="73.1" cy="428.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="104.9" cy="423.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="142.0" cy="426.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="184.9" cy="417.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="224.2" cy="421.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="265.6" cy="423.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="302.8" cy="422.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="340.3" cy="422.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="368.6" cy="426.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="418.1" cy="427.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="445.3" cy="426.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="61.7" cy="461.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="101.5" cy="457.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="144.6" cy="453.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="187.9" cy="464.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="215.5" cy="466.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="257.5" cy="467.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="305.1" cy="455.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="332.9" cy="452.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="365.3" cy="458.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="406.8" cy="465.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="453.4" cy="462.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="67.1" cy="493.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="107.8" cy="491.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="138.6" cy="502.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="185.4" cy="499.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="227.2" cy="491.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="260.8" cy="499.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="291.9" cy="494.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="330.8" cy="503.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="369.7" cy="508.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="411.1" cy="492.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="454.2" cy="498.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="251.4" cy="427.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="182.8" cy="169.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="208.9" cy="319.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="165.4" cy="164.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="162.9" cy="367.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="205.3" cy="337.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="330.7" cy="275.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="275.2" cy="157.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle cx="114.8" cy="167.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
+  <circle id="f-from-nodes-to-composition-la1" cx="150" cy="250" r="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <circle id="f-from-nodes-to-composition-la2" cx="270" cy="340" r="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <circle id="f-from-nodes-to-composition-la3" cx="390" cy="250" r="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <rect id="f-from-nodes-to-composition-nb_pa" x="530" y="150" width="90" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-from-nodes-to-composition-nb_da" x="845" y="150" width="90" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-from-nodes-to-composition-nb_pb" x="530" y="275" width="90" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-from-nodes-to-composition-nb_db" x="845" y="275" width="90" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-from-nodes-to-composition-nb_pc" x="530" y="400" width="90" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-from-nodes-to-composition-nb_dc" x="845" y="400" width="90" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="255" y="132" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structural model, as first built</text>
+  <text x="736" y="132" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Derived typed graph</text>
+  <text x="575.0" y="181.0" text-anchor="middle" font-size="17" font-weight="600" fill="#1c1917">Pass A</text>
+  <text x="890.0" y="181.0" text-anchor="middle" font-size="17" font-weight="600" fill="#1c1917">Pass B</text>
+  <text x="575.0" y="306.0" text-anchor="middle" font-size="17" font-weight="600" fill="#1c1917">Pass A</text>
+  <text x="890.0" y="306.0" text-anchor="middle" font-size="17" font-weight="600" fill="#1c1917">Pass C</text>
+  <text x="575.0" y="431.0" text-anchor="middle" font-size="17" font-weight="600" fill="#1c1917">Pass B</text>
+  <text x="890.0" y="431.0" text-anchor="middle" font-size="17" font-weight="600" fill="#1c1917">Service</text>
+  <text x="732" y="166" text-anchor="middle" font-size="15" font-weight="700" fill="#1f7a4d">DATA_FLOW  ×10</text>
+  <text x="732" y="192" text-anchor="middle" font-size="13" font-weight="400" font-style="italic" fill="#57534e">Produces → Consumes</text>
+  <text x="732" y="291" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">CONTROL_GATE  ×22</text>
+  <text x="732" y="317" text-anchor="middle" font-size="13" font-weight="400" font-style="italic" fill="#57534e">ConsumesForControl</text>
+  <text x="732" y="416" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">CROSS_SERVICE  ×1</text>
+  <text x="732" y="442" text-anchor="middle" font-size="13" font-weight="400" font-style="italic" fill="#57534e">cross-boundary payload</text>
+  <text x="488" y="286" text-anchor="middle" font-size="16" font-weight="600" fill="#57534e">derive edges</text>
+  <text x="255" y="540" text-anchor="middle" font-size="17" font-weight="600" fill="#155c38">113 nodes · 2 edges</text>
+  <text x="736" y="540" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">11 payload edges · 22 control gates</text>
+</svg><figcaption data-short="From nodes to composition"><span class="fig-label">Figure 2.2-3.</span> <em>From nodes to composition.</em> The pass registry already supplied a stable vocabulary of computations, so projecting them as 113 nodes was meaningful, but two hand-authored edges could not represent how those computations composed. Typing the derived relations separated the payload-bearing edges — ten data-flow and one cross-service — from twenty-two control gates, over a Produces / Consumes / ConsumesForControl vocabulary.</figcaption></figure>
 <p>The distinction between data flow and control gating was not an ontology we prepared in advance and then encoded. It emerged while we tried to construct a model that could answer the engineering question. The representation did two jobs at once: it captured structure we already knew, and it exposed a distinction we had not previously expressed uniformly.</p>
 <p>The same exercise exposed a second dimension hidden by a bare node: how bounded each computation's effect is. Passes do not change the document the same way. Some produce a well-scoped typed patch onto the intermediate representation; some mutate document state directly; some only analyze or validate. The model records that as a <strong>mutation kind</strong> across 68 pass sites: 15 are <code>TypedPatchProducer</code> passes with a bounded typed effect, 40 are <code>DirectEditor</code> passes whose mutation is not yet reduced to a typed patch, and 13 are <code>ReadOnly</code>. <code>DirectEditor</code> is not a defect. The model says something narrower: the effect of those passes is not currently bounded by the typed-patch abstraction. Some of that freedom may be appropriate and some may later prove expensive; the classification makes the question inspectable instead of leaving it tacit. A model need not remove every implementation choice, but it should make it possible to distinguish deliberately preserved freedom from an unexamined choice.</p>
 <p>We had modeled the computations before we modeled their composition. The node projection worked because the implementation already carried stable computational units. Modeling their composition then did two further things: it separated data flow from control gating, and it made effect boundedness explicit where an untyped node had hidden it.</p>

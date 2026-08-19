@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- graph-example figure — fidelity-vs-authority.svg. Fold to book/assets/. -->
+<!-- semantic-families: modeling, governance, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620"
+     role="img" aria-labelledby="faTitle faDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="faTitle">Correspondence strength and authority direction are independent</title>
+  <desc id="faDesc">Two independent axes drawn as directed relations. Axis one, correspondence strength: the computation graph moved from a weak, hand-authored correspondence (implementation to a hand-authored graph that can drift) to a strong one (typed declarations projected to a graph and held by a blocking parity check). Axis two, authority direction: implementation stays the source of truth from which the model is derived, unchanged. A counterfactual, not built in DocAble, would reverse that authority by generating execution from the model. Stronger correspondence did not move the authority arrow.</desc>
+  <defs>
+    <marker id="fa-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/></marker>
+    <marker id="fa-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
+    <marker id="fa-ah-gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+  </defs>
+  <rect x="40" y="118" width="920" height="212" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="40" y="360" width="920" height="222" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <!-- edge: fa_impl1 -> fa_g1 -->
+  <line x1="460" y1="180" x2="660" y2="180" stroke="#9a3f12" stroke-width="2.5" stroke-dasharray="9 5" marker-end="url(#fa-ah-rust)"/>
+  <!-- edge: fa_impl2 -> fa_g2 -->
+  <line x1="460" y1="280" x2="660" y2="280" stroke="#1f7a4d" stroke-width="3" marker-end="url(#fa-ah-green)"/>
+  <!-- edge: fa_impl3 -> fa_m3 -->
+  <line x1="460" y1="430" x2="660" y2="430" stroke="#57534e" stroke-width="3" marker-end="url(#fa-ah-gray)"/>
+  <!-- edge: fa_m4 -> fa_e4 -->
+  <line x1="460" y1="540" x2="660" y2="540" stroke="#57534e" stroke-width="2.5" stroke-dasharray="9 5" marker-end="url(#fa-ah-gray)"/>
+  <rect id="fa_impl1" x="250" y="155" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="fa_g1" x="660" y="155" width="240" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="fa_impl2" x="250" y="255" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="fa_g2" x="660" y="255" width="240" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="fa_impl3" x="250" y="405" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="fa_m3" x="660" y="405" width="240" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="fa_m4" x="250" y="515" width="210" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="fa_e4" x="660" y="515" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="500" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Two independent axes: correspondence strength vs authority direction</text>
+  <text x="60" y="146" text-anchor="start" font-size="14" font-weight="700" fill="#57534e">AXIS 1 · CORRESPONDENCE STRENGTH</text>
+  <text x="60" y="388" text-anchor="start" font-size="14" font-weight="700" fill="#57534e">AXIS 2 · AUTHORITY DIRECTION</text>
+  <text x="355.0" y="185" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">implementation</text>
+  <text x="780.0" y="185" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">hand-authored graph</text>
+  <text x="355.0" y="285" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">typed declarations</text>
+  <text x="780.0" y="285" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">projected graph</text>
+  <text x="355.0" y="435" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">implementation</text>
+  <text x="780.0" y="435" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">computation model</text>
+  <text x="355.0" y="545" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">computation model</text>
+  <text x="780.0" y="545" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">execution</text>
+  <text x="560.0" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12">weak · can drift</text>
+  <text x="560.0" y="268" text-anchor="middle" font-size="13" font-weight="700" fill="#1f7a4d">strong · projected</text>
+  <text x="560.0" y="300" text-anchor="middle" font-size="13" font-weight="400" font-style="italic" fill="#9a3f12">blocking parity check</text>
+  <text x="560.0" y="418" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">derives — unchanged</text>
+  <text x="560.0" y="528" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">generate execution</text>
+  <text x="560.0" y="560" text-anchor="middle" font-size="12" font-weight="400" font-style="italic" fill="#57534e">not DocAble today</text>
+  <text x="500" y="610" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Correspondence grew stronger; the authority arrow did not move.</text>
+</svg>

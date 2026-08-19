@@ -818,7 +818,7 @@
             {
               "slug": "a-provenance-model-does-not-guarantee-every-operation-records-its-attribution",
               "text": "Whether every consequential operation actually records its attribution is an Alignment question, not something the provenance model itself guarantees.",
-              "block_index": 22
+              "block_index": 23
             }
           ]
         }
@@ -1152,22 +1152,22 @@
           "heading_text": "The Semantic Gap",
           "topic_sentence": "A second problem is placement.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 38,
           "points": [
             {
               "slug": "an-obligation-can-be-perfectly-stated-and-unenforceable-at-the-boundary-you-check",
               "text": "An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it.",
-              "block_index": 39
+              "block_index": 40
             },
             {
               "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
               "text": "A deployment can pass every earlier check and still serve a blank page; the property is legible only once the pieces compose in the served system.",
-              "block_index": 43
+              "block_index": 44
             },
             {
               "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
               "text": "Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work.",
-              "block_index": 45
+              "block_index": 46
             }
           ]
         },
@@ -1177,27 +1177,27 @@
           "heading_text": "The Earliest Decidable Boundary",
           "topic_sentence": "The agent-return check is one instance of a rule that runs under the whole of this Part:",
           "id_source": "derived",
-          "block_index": 51,
+          "block_index": 52,
           "points": [
             {
               "slug": "place-authority-at-the-earliest-boundary-where-the-obligation-is-legible-and-enforceable",
               "text": "The design rule: place authority at the earliest boundary where the obligation is both legible and enforceable.",
-              "block_index": 53
+              "block_index": 54
             },
             {
               "slug": "the-part-two-rhyme-coarsest-representation-earliest-boundary",
               "text": "The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
-              "block_index": 60
+              "block_index": 61
             },
             {
               "slug": "real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one",
               "text": "Real boundaries are sometimes approximate: semantic placement is an engineering trade-off, not a demand for a theoretically perfect hook.",
-              "block_index": 64
+              "block_index": 65
             },
             {
               "slug": "the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does",
               "text": "The chapter has supplied both requirements for authority; the next question is what the mechanism at that boundary actually does.",
-              "block_index": 66
+              "block_index": 67
             }
           ]
         }
@@ -3215,52 +3215,52 @@
             {
               "slug": "the-remediation-was-projection-not-more-arrows",
               "text": "The fix projected edges under a blocking parity check.",
-              "block_index": 50
+              "block_index": 51
             },
             {
               "slug": "degrees-of-freedom-economic-and-exploratory",
               "text": "Freedom is often economic, but also exploratory.",
-              "block_index": 52
+              "block_index": 53
             },
             {
               "slug": "two-signals-that-freedom-has-done-its-job",
               "text": "Recurring variation or complexity signals freedom's job is done.",
-              "block_index": 54
+              "block_index": 55
             },
             {
               "slug": "computations-stabilized-before-their-composition",
               "text": "The computations stabilized before their composition semantics did.",
-              "block_index": 56
+              "block_index": 57
             },
             {
               "slug": "residuals-are-part-of-the-lesson",
               "text": "The work is unfinished; stating residuals is modeling.",
-              "block_index": 58
+              "block_index": 59
             },
             {
               "slug": "the-two-worlds-first-deliberate-touch",
               "text": "Testing is where static and realized first deliberately touch.",
-              "block_index": 60
+              "block_index": 61
             },
             {
               "slug": "the-point-was-to-know-where-the-freedom-is",
               "text": "Modeling made the remaining freedom visible, not zero.",
-              "block_index": 62
+              "block_index": 63
             },
             {
               "slug": "a-convenient-call-silently-corrupted-the-product",
               "text": "A convenient one-line call stripped the accessibility structure the product exists to add, and nothing caught it.",
-              "block_index": 64
+              "block_index": 65
             },
             {
               "slug": "the-format-seam-hardened-in-layers",
               "text": "The response came in layers, and the sharpest was the enforcement itself mis-reporting green; the model stated the boundary, the API and check gave it authority, and the authority still had to be maintained.",
-              "block_index": 66
+              "block_index": 67
             },
             {
               "slug": "a-protection-boundary-works-only-over-the-paths-that-cross-it",
               "text": "A file path crossed a service boundary; a typed client made the mistake unrepresentable, and a human review found a bypass the tests missed — a protection boundary only governs the paths that cross it.",
-              "block_index": 69
+              "block_index": 70
             }
           ]
         },
@@ -3270,107 +3270,107 @@
           "heading_text": "The Delegation Staircase",
           "topic_sentence": "The five rungs are retrospective names for the changing center of gravity of my work—co-coder, QA, review lead, tech lead, architect—not a prescribed career ladder.",
           "id_source": "derived",
-          "block_index": 71,
+          "block_index": 72,
           "points": [
             {
               "slug": "mage-was-not-designed-as-an-org-chart",
               "text": "The five rung labels are retrospective names for the changing center of gravity of my own work, not a career ladder.",
-              "block_index": 73
+              "block_index": 74
             },
             {
               "slug": "the-staircase-has-two-interacting-supports",
               "text": "Alignment moved repeatable authority out of direct human review; Modeling moved system knowledge out of my head; human judgment moved toward the gaps the environment could not yet represent or decide.",
-              "block_index": 75
+              "block_index": 76
             },
             {
               "slug": "delegation-climbed-as-far-as-the-environment-could-carry-it",
               "text": "Delegation climbed as far as the engineered environment could carry it; when representation or authority was too weak, the operator fell back into tactical work.",
-              "block_index": 77
+              "block_index": 78
             },
             {
               "slug": "rung-co-coder",
               "text": "Direct human inspection carried everything; it failed as an operating model once generation outran review.",
-              "block_index": 79
+              "block_index": 80
             },
             {
               "slug": "rung-qa",
               "text": "Evaluation was delegated before authority was; the audit's value was diagnostic, and its decidable findings revealed questions that no longer needed a language model.",
-              "block_index": 81
+              "block_index": 82
             },
             {
               "slug": "rung-review-lead",
               "text": "Judgment was specialized and the decidable residue dropped into machinery; the probabilistic reviewers kept the questions the checks could not settle.",
-              "block_index": 83
+              "block_index": 84
             },
             {
               "slug": "rung-tech-lead",
               "text": "Representation made reasoning local; named zones externalized ownership so an agent could reason inside one region, and selected rules over the zone model received authority.",
-              "block_index": 85
+              "block_index": 86
             },
             {
               "slug": "rung-architect",
               "text": "Explicit models carried system-level knowledge; declaration did not make them true, so model drift became its own failure class answered by traceability.",
-              "block_index": 87
+              "block_index": 88
             },
             {
               "slug": "explicit-models-changed-what-could-be-checked",
               "text": "Explicit models changed what could be established mechanically, down to exhaustively exploring the finite ownership state space.",
-              "block_index": 89
+              "block_index": 90
             },
             {
               "slug": "temporal-properties-needed-tla-and-tlc",
               "text": "Temporal properties such as eventual termination ranged over executions, so I checked small TLA+ specifications with TLC.",
-              "block_index": 91
+              "block_index": 92
             },
             {
               "slug": "checking-the-model-created-a-second-obligation",
               "text": "Checking the model created a second obligation: why should a property established over the model be believed about the implementation?",
-              "block_index": 93
+              "block_index": 94
             },
             {
               "slug": "conformance-check-drift-became-an-alignment-problem",
               "text": "A conformance test drifted red for days; the durable response gave the formal checks the same drift controls as the models they supported.",
-              "block_index": 95
+              "block_index": 96
             },
             {
               "slug": "exhaustive-checking-and-correspondence-are-separate-claims",
               "text": "Exhaustive checking establishes a property of the model; correspondence evidence is the separate claim that the implementation still realizes it.",
-              "block_index": 97
+              "block_index": 98
             },
             {
               "slug": "formal-methods-entered-where-they-paid-off",
               "text": "DocAble gave each formal result only the authority its connection to the implementation could support.",
-              "block_index": 99
+              "block_index": 100
             },
             {
               "slug": "the-representation-changed-what-i-could-understand",
               "text": "The formal machinery mattered, but representation came first: naming behaviors changed what I could state and understand.",
-              "block_index": 101
+              "block_index": 102
             },
             {
               "slug": "vocabulary-shapes-what-an-engineer-can-see",
               "text": "Software engineering already accepts a milder version: a shared vocabulary shapes the properties an engineer can see and state.",
-              "block_index": 103
+              "block_index": 104
             },
             {
               "slug": "the-incident-represented-a-class",
               "text": "A later audit showed the incident was a class, not a one-off; mechanical correspondence checks retired a recurring class of stale-reference failure.",
-              "block_index": 106
+              "block_index": 107
             },
             {
               "slug": "modeling-found-real-bugs",
               "text": "Forcing an engineering relation into an explicit representation creates new questions the environment can ask; in three cases those questions exposed shipping defects green tests had missed.",
-              "block_index": 108
+              "block_index": 109
             },
             {
               "slug": "staircase-figure",
               "text": "The staircase shows delegation increasing as the environment absorbed two kinds of work; human judgment moved toward strategy and residual semantics rather than vanishing.",
-              "block_index": 112
+              "block_index": 113
             },
             {
               "slug": "delegation-depends-on-what-the-environment-can-carry",
               "text": "Delegation increased as the environment absorbed system knowledge (representation) and repeatable admission (authority); a weak model or weak controls pulled the operator back into tactical work; human judgment stayed at the unresolved edge.",
-              "block_index": 116
+              "block_index": 117
             }
           ]
         }

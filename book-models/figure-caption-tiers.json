@@ -1,6 +1,30 @@
 {
   "_note": "Declared caption-tier verdicts for the book's authored figure/table captions. Each key is a caption id: for a figure, the `figure:` asset path (already unique in chapter scope); for a table, `<chapter-file>::<short>` using the table's existing `[short: ...]` print-index name (single source of truth: the same string the list-of-tables uses). `tier` is A|B|C — the caption's argumentative role (A Anchor 4-8 sentences/60-120 words; B Supporting 2-4/25-70; C Reference 1-2/<=30). `kind` and `location` are the classification axes; `rationale` is one line. Mirrors the brick-fitness.json genre: a flat declared map with a _note provenance block, no hardcoded list in the builder or lint. Consumed by book-models/lint_caption_length.py, which measures each authored caption's length against its tier band (A carries a floor: an under-written anchor is a finding). A new figure/table with no row here is itself a finding (drift defense). Source of the first-pass verdicts + the ratified A/B borderline resolutions (constraint-vs-sensor=A, services-reactive-view=A, join-composite=A, llm-as-function-call=B): book/_design/drafts/caption-tier-model-260806.md. The lint lands AUDIT-ONLY (rule #55): the current tree squeezed every caption to <=3 sentences/<=50 words under the retired uniform cap, so all 17 A-tier captions are under-length today; the Phase-3 rewrite wave drains the findings to 0, then the lint promotes to blocking.",
   "tiers": {
+    "assets/from-nodes-to-composition.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part2",
+      "rationale": "two-panel worked example — the sparse as-built structural model beside the derived typed graph; supporting caption on projecting nodes vs typing the composition relations"
+    },
+    "assets/two-reductions-static-realized.svg": {
+      "tier": "B",
+      "kind": "comparison",
+      "location": "part2",
+      "rationale": "static computation structure beside one run's realized edit record; supporting caption on the two reductions being unjoined today and the join added when a question needs it"
+    },
+    "assets/fidelity-vs-authority.svg": {
+      "tier": "B",
+      "kind": "conceptual-axis",
+      "location": "part3",
+      "rationale": "correspondence strength and authority direction drawn as two independent directed axes; supporting caption on stronger correspondence not moving the authority arrow"
+    },
+    "assets/modeling-history.svg": {
+      "tier": "A",
+      "kind": "progression-diagram",
+      "location": "part5",
+      "rationale": "the top-to-bottom modeling history — a partial model growing the composition half it lacked, exposing dependency semantics and effect boundedness; anchor caption for the road-to-MAGE progression"
+    },
     "assets/h1-product-lifecycle.svg": {
       "tier": "A",
       "kind": "model-diagram",
