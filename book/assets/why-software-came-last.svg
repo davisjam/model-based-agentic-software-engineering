@@ -69,31 +69,34 @@
   <!-- table foot rule -->
   <line x1="30" y1="380" x2="880" y2="380" stroke="#a8a29e" stroke-width="1.5"/>
 
-  <!-- bridge into the resolving chain -->
-  <line x1="460" y1="392" x2="460" y2="430" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
-
   <!-- ===================== THE DOWNWARD CAUSAL CHAIN ===================== -->
+  <!-- edges drawn under the boxes; source runs to node centre, directed head seats on target rim.
+       The topmost arrow bridges from the comparison table (a region, not a named node) into the chain,
+       so it stays unannotated — its head seats on the driver box, its tail rises into the table. -->
+  <!-- bridge from the comparison table into the resolving chain (region source; unannotated) -->
+  <line x1="460" y1="392" x2="460" y2="436" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+  <!-- edge: commodity -> cheap-edges -->
+  <line x1="460" y1="464" x2="460" y2="534" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+  <!-- edge: cheap-edges -> viable -->
+  <line x1="460" y1="569" x2="460" y2="646" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+  <!-- edge: viable -> rejoins -->
+  <line x1="460" y1="674" x2="460" y2="744" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+
   <!-- driver -->
-  <rect x="280" y="438" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="commodity" x="280" y="438" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="460" y="470" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Commodity intelligence</text>
 
-  <line x1="460" y1="490" x2="460" y2="528" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
-
   <!-- the two edges the driver opens -->
-  <rect x="250" y="536" width="420" height="66" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="cheap-edges" x="250" y="536" width="420" height="66" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="460" y="562" text-anchor="middle" font-size="17" fill="#1c1917">implementation becomes cheap</text>
   <text x="460" y="588" text-anchor="middle" font-size="17" fill="#1c1917">reconciliation becomes cheap</text>
 
-  <line x1="460" y1="602" x2="460" y2="640" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
-
   <!-- the consequence -->
-  <rect x="280" y="648" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="viable" x="280" y="648" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="460" y="680" text-anchor="middle" font-size="18" fill="#1c1917">live models become viable</text>
 
-  <line x1="460" y1="700" x2="460" y2="738" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
-
   <!-- terminal — the claim, set dark for grayscale emphasis -->
-  <rect x="220" y="746" width="480" height="58" rx="9" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="rejoins" x="220" y="746" width="480" height="58" rx="9" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>
   <text x="460" y="782" text-anchor="middle" font-size="20" font-weight="700" fill="#f6f4ef"
         letter-spacing="0.5">SOFTWARE REJOINS ENGINEERING</text>
 </svg>

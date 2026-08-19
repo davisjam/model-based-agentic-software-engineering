@@ -236,24 +236,29 @@
   <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The lifecycle keeps its phases. The allocation of work across them changes.</text>
 
   <!-- ===== top row: the five lifecycle phases (unchanged) ===== -->
+  <!-- phase-chain edges (drawn under the boxes; source runs to node centre, directed head seats on target rim) -->
+  <g stroke="#57534e" stroke-width="1.5">
+    <!-- edge: requirements -> design -->
+    <line x1="124" y1="119" x2="226" y2="119" marker-end="url(#cf-1-wem-ah)"/>
+    <!-- edge: design -> implementation -->
+    <line x1="312" y1="119" x2="414" y2="119" marker-end="url(#cf-1-wem-ah)"/>
+    <!-- edge: implementation -> validation -->
+    <line x1="500" y1="119" x2="602" y2="119" marker-end="url(#cf-1-wem-ah)"/>
+    <!-- edge: validation -> operation -->
+    <line x1="688" y1="119" x2="790" y2="119" marker-end="url(#cf-1-wem-ah)"/>
+  </g>
   <g font-size="16" text-anchor="middle" fill="#1c1917">
-    <rect x="40"  y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="cf-1-requirements" x="40"  y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="124" y="124">Requirements</text>
-    <rect x="228" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="cf-1-design" x="228" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="312" y="124">Design</text>
-    <rect x="416" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="cf-1-implementation" x="416" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="500" y="124">Implementation</text>
-    <rect x="604" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="cf-1-validation" x="604" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="688" y="124">Validation</text>
-    <rect x="792" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="cf-1-operation" x="792" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="876" y="118">Operation /</text>
     <text x="876" y="136">maintenance</text>
-  </g>
-  <g stroke="#57534e" stroke-width="1.5">
-    <line x1="208" y1="119" x2="226" y2="119" marker-end="url(#cf-1-wem-ah)"/>
-    <line x1="396" y1="119" x2="414" y2="119" marker-end="url(#cf-1-wem-ah)"/>
-    <line x1="584" y1="119" x2="602" y2="119" marker-end="url(#cf-1-wem-ah)"/>
-    <line x1="772" y1="119" x2="790" y2="119" marker-end="url(#cf-1-wem-ah)"/>
   </g>
 
   <!-- ===== band 1: Human engineering judgment (rust) ===== -->

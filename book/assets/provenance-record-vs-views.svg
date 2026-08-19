@@ -30,33 +30,39 @@
 
   <!-- ===== LEFT: record-once model ===== -->
   <text x="230" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">RECORD ONCE, DERIVE VIEWS</text>
-  <rect x="150" y="60" width="160" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="l-action" x="150" y="60" width="160" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="230" y="89" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">ACTION</text>
+  <!-- edge: l-action -> prov-model -->
   <line x1="230" y1="106" x2="230" y2="132" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pv-b)"/>
-  <rect x="120" y="134" width="220" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="prov-model" x="120" y="134" width="220" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="230" y="166" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">PROVENANCE MODEL</text>
-  <!-- fan to three views -->
+  <!-- fan to three views (one path per branch) -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pv-b)">
-    <path d="M170,186 C130,214 105,220 100,244"/>
+    <!-- edge: prov-model -> v-audit -->
+    <path d="M170,186 C130,214 100,220 100,244"/>
+    <!-- edge: prov-model -> v-debug -->
     <path d="M230,186 L230,244"/>
-    <path d="M290,186 C330,214 355,220 360,244"/>
+    <!-- edge: prov-model -> v-changelog -->
+    <path d="M290,186 C330,214 360,220 360,244"/>
   </g>
   <g font-size="14.5" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="40" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+    <rect id="v-audit" x="40" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
     <text x="100" y="273">audit</text>
-    <rect x="170" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+    <rect id="v-debug" x="170" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
     <text x="230" y="273">debugging</text>
-    <rect x="300" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+    <rect id="v-changelog" x="300" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
     <text x="360" y="273">changelog</text>
   </g>
   <text x="230" y="316" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">derived views of one shared history</text>
 
   <!-- ===== RIGHT: the forbidden shortcut ===== -->
   <text x="685" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#9a3f12">NOT: ACTION &#8594; STORY</text>
-  <rect x="605" y="60" width="160" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="r-action" x="605" y="60" width="160" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="685" y="89" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">ACTION</text>
-  <!-- direct rust arrows to separate stories -->
+  <!-- direct rust arrows to separate stories (forbidden shortcut; struck-but-spanning, plug both ends) -->
+  <!-- edge: r-action .. s-audit -->
   <path d="M640,106 C580,150 560,200 560,244" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#pv-r)"/>
+  <!-- edge: r-action .. s-changelog -->
   <path d="M730,106 C800,150 820,200 820,244" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#pv-r)"/>
   <!-- X on the shortcut -->
   <g stroke="#9a3f12" stroke-width="3.4" stroke-linecap="round">
@@ -64,10 +70,10 @@
     <line x1="696" y1="150" x2="674" y2="172"/>
   </g>
   <g font-size="14" font-weight="700" text-anchor="middle" fill="#9a3f12">
-    <rect x="500" y="246" width="120" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+    <rect id="s-audit" x="500" y="246" width="120" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
     <text x="560" y="266">audit</text>
     <text x="560" y="283">story</text>
-    <rect x="760" y="246" width="120" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+    <rect id="s-changelog" x="760" y="246" width="120" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
     <text x="820" y="266">changelog</text>
     <text x="820" y="283">story</text>
   </g>

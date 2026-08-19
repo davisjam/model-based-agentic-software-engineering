@@ -746,28 +746,45 @@ Seam
   <rect x="0" y="0" width="720" height="520" fill="#fdfcf9"/>
   <text x="40" y="34" font-size="15" font-weight="600" fill="#57534e">Question: who owns this surface, and what may cross its boundary?</text>
 
+  <!-- ===== EDGES (drawn under nodes; solid source runs to node centre, directed head seats on target rim) ===== -->
+  <!-- edge: catalog -> web-zone (owns) -->
+  <line x1="360" y1="101" x2="217" y2="208" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- edge: catalog -> worker (permits) -->
+  <line x1="360" y1="101" x2="511" y2="208" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- edge: web-zone -> worker (sanctioned seam, gate glyph) -->
+  <line x1="175" y1="242" x2="469" y2="242" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- edge: web-zone .. raw-format-library (forbidden direct access, struck by X) -->
+  <line x1="175" y1="242" x2="188" y2="398" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- edge: repository-tree .. catalog (reverse-map the tree) -->
+  <path d="M540,428 C540,300 470,180 468,136" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#f-appendix-g-2-structure-boundaries-g2-solid)"/>
+
+  <!-- ===== NODES ===== -->
   <!-- COMPONENT CATALOG (authored representation) -->
   <text x="360" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED STRUCTURE</text>
-  <rect x="240" y="68" width="240" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="f-appendix-g-2-structure-boundaries-catalog" x="240" y="68" width="240" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="360" y="96" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">COMPONENT CATALOG</text>
   <text x="360" y="118" text-anchor="middle" font-size="14" fill="#57534e">ownership · seams</text>
 
-  <!-- owns (SOLID) -->
-  <line x1="315" y1="134" x2="195" y2="206" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-2-structure-boundaries-g2-solid)"/>
-  <text x="228" y="168" font-size="13" font-style="italic" fill="#57534e">owns</text>
-  <!-- permits (SOLID) -->
-  <line x1="405" y1="134" x2="540" y2="206" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-2-structure-boundaries-g2-solid)"/>
-  <text x="472" y="168" font-size="13" font-style="italic" fill="#57534e">permits</text>
-
   <!-- WEB ZONE (representation) -->
-  <rect x="90" y="210" width="170" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="f-appendix-g-2-structure-boundaries-web-zone" x="90" y="210" width="170" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="175" y="248" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">WEB ZONE</text>
   <!-- WORKER (representation) -->
-  <rect x="470" y="210" width="170" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="f-appendix-g-2-structure-boundaries-worker" x="470" y="210" width="170" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="555" y="248" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">WORKER</text>
 
-  <!-- sanctioned seam (SOLID) with heavy authority gate glyph -->
-  <line x1="260" y1="242" x2="470" y2="242" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- RAW FORMAT LIBRARY (observed / implementation) -->
+  <rect id="f-appendix-g-2-structure-boundaries-raw-format-library" x="90" y="400" width="200" height="56" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="190" y="426" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">RAW FORMAT</text>
+  <text x="190" y="446" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">LIBRARY</text>
+
+  <!-- REPOSITORY TREE (observed) reverse-mapped up (DASHED) -->
+  <rect id="f-appendix-g-2-structure-boundaries-repository-tree" x="440" y="400" width="200" height="56" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="540" y="432" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">REPOSITORY TREE</text>
+  <text x="540" y="474" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED STRUCTURE</text>
+
+  <!-- ===== edge labels + glyph decorations (on top of edges) ===== -->
+  <text x="228" y="168" font-size="13" font-style="italic" fill="#57534e">owns</text>
+  <text x="472" y="168" font-size="13" font-style="italic" fill="#57534e">permits</text>
   <text x="365" y="230" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">sanctioned seam</text>
   <!-- gate glyph: two heavy red bars = the guarded door (authority) -->
   <g stroke="#b23b3b" stroke-width="3.6">
@@ -776,8 +793,7 @@ Seam
   </g>
   <text x="363" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED · door</text>
 
-  <!-- forbidden direct access (DASHED, struck by X — a forbidden crossing, NOT a gate) -->
-  <line x1="175" y1="274" x2="185" y2="396" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- X struck through the forbidden crossing -->
   <g stroke="#b23b3b" stroke-width="3">
     <line x1="168" y1="326" x2="192" y2="344"/>
     <line x1="192" y1="326" x2="168" y2="344"/>
@@ -785,17 +801,6 @@ Seam
   <text x="210" y="336" font-size="13" font-style="italic" fill="#b23b3b">forbidden</text>
   <text x="210" y="352" font-size="13" font-style="italic" fill="#b23b3b">direct access</text>
 
-  <!-- RAW FORMAT LIBRARY (observed / implementation) -->
-  <rect x="90" y="400" width="200" height="56" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
-  <text x="190" y="426" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">RAW FORMAT</text>
-  <text x="190" y="446" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">LIBRARY</text>
-
-  <!-- REPOSITORY TREE (observed) reverse-mapped up (DASHED) -->
-  <rect x="440" y="400" width="200" height="56" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
-  <text x="540" y="432" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">REPOSITORY TREE</text>
-  <text x="540" y="474" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED STRUCTURE</text>
-
-  <path d="M540,400 C540,300 470,180 468,136" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#f-appendix-g-2-structure-boundaries-g2-solid)"/>
   <text x="590" y="300" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">reverse-map</text>
   <text x="590" y="316" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the tree</text>
 

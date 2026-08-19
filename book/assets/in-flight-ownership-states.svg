@@ -31,33 +31,38 @@
 
   <!-- claim in -->
   <text x="360" y="54" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">claim</text>
+  <rect id="claim" x="335" y="42" width="50" height="20" fill="none" stroke="none"/>
+  <!-- edge: claim -> claimed -->
   <line x1="360" y1="60" x2="360" y2="76" stroke="#2f5169" stroke-width="2.2" marker-end="url(#io-b)"/>
 
   <!-- CLAIMED (blue, the live claim) -->
-  <rect x="230" y="78" width="260" height="80" rx="10" fill="#dae4ec" stroke="#2f5169" stroke-width="2.8"/>
+  <rect id="claimed" x="230" y="78" width="260" height="80" rx="10" fill="#dae4ec" stroke="#2f5169" stroke-width="2.8"/>
   <text x="360" y="114" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">CLAIMED</text>
   <text x="360" y="138" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; expires_at</text>
 
   <!-- merge transition -> RELEASED (green outcome, down-left) -->
-  <path d="M305,158 C260,198 215,205 182,244" fill="none" stroke="#155c38" stroke-width="2.4" marker-end="url(#io-g)"/>
+  <!-- edge: claimed -> released -->
+  <path d="M305,158 C260,198 182,214 182,244" fill="none" stroke="#155c38" stroke-width="2.4" marker-end="url(#io-g)"/>
   <text x="215" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#155c38">merge</text>
 
   <!-- expiry transition -> RECLAIMABLE (gray, down-right) -->
-  <path d="M415,158 C460,198 505,205 538,244" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#io-k)"/>
+  <!-- edge: claimed .. reclaimable -->
+  <path d="M415,158 C460,198 538,214 538,244" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#io-k)"/>
   <text x="505" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">expiry</text>
 
   <!-- RELEASED (green) -->
-  <rect x="80" y="246" width="200" height="66" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
+  <rect id="released" x="80" y="246" width="200" height="66" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
   <text x="180" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">RELEASED</text>
   <text x="180" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#155c38">claim ends cleanly</text>
 
   <!-- RECLAIMABLE (gray) -->
-  <rect x="440" y="246" width="200" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="reclaimable" x="440" y="246" width="200" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="540" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">RECLAIMABLE</text>
   <text x="540" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">lease lapsed / stale</text>
 
   <!-- another actor may claim: loop back from RECLAIMABLE to CLAIMED -->
-  <path d="M642,268 C698,208 640,118 494,112" fill="none" stroke="#57534e" stroke-width="2"
+  <!-- edge: reclaimable .. claimed -->
+  <path d="M640,268 C698,208 640,118 494,112" fill="none" stroke="#57534e" stroke-width="2"
         stroke-dasharray="6 5" marker-end="url(#io-k)"/>
   <text x="660" y="182" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">another actor</text>
   <text x="660" y="199" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">may claim</text>

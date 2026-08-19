@@ -14,19 +14,23 @@
       <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
   </defs>
-  <!-- transitions -->
+  <!-- transitions (drawn UNDER the states; heads seated on each target rim, aimed radially) -->
   <g fill="none" stroke="#1c1917" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M42,32 C58,24 74,26 82,36" marker-end="url(#smHead)"/>
-    <path d="M88,50 C92,70 78,86 64,90" marker-end="url(#smHead)"/>
-    <path d="M46,86 C34,78 30,60 32,46" marker-end="url(#smHead)"/>
+    <!-- edge: s1 -> s2 -->
+    <path d="M42,32 C58,24 70.1,33.1 77.9,35" marker-end="url(#smHead)"/>
+    <!-- edge: s2 -> s3 -->
+    <path d="M86,49 C92,70 75.9,87 68.1,89" marker-end="url(#smHead)"/>
+    <!-- edge: s3 -> s1 -->
+    <path d="M46,86 C34,78 32,54.5 32,46.5" marker-end="url(#smHead)"/>
   </g>
   <!-- self-loop on the top-right state -->
-  <path d="M96,26 C112,18 112,42 98,40" fill="none" stroke="#9a3f12" stroke-width="2.4"
+  <!-- edge: s2 -> s2 -->
+  <path d="M94,28 C112,18 109.9,42.9 102.1,41" fill="none" stroke="#9a3f12" stroke-width="2.4"
         stroke-linecap="round" stroke-linejoin="round" marker-end="url(#smHeadA)"/>
   <!-- states -->
   <g fill="#fdfcf9" stroke="#1c1917" stroke-width="2">
-    <circle cx="32" cy="34" r="12"/>
-    <circle cx="90" cy="38" r="12"/>
-    <circle cx="56" cy="92" r="12"/>
+    <circle id="s1" cx="32" cy="34" r="12"/>
+    <circle id="s2" cx="90" cy="38" r="12"/>
+    <circle id="s3" cx="56" cy="92" r="12"/>
   </g>
 </svg>

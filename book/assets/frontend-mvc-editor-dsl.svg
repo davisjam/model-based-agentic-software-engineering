@@ -13,7 +13,7 @@
   <text x="30" y="42" font-size="21.6" font-weight="bold" fill="#2f5169">The editor: one MVC loop over the document</text>
 
   <!-- VIEW box (two-pane) -->
-  <rect x="24" y="66" width="300" height="150" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <rect id="view" x="24" y="66" width="300" height="150" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
   <text x="174" y="96" text-anchor="middle" font-size="19" font-weight="bold" fill="#2f5169">View — two-pane editor</text>
   <!-- left mini-pane -->
   <rect x="44" y="112" width="120" height="64" rx="2" fill="#ffffff" stroke="#2f5169" stroke-width="1.2"/>
@@ -27,21 +27,23 @@
   <text x="244" y="196" text-anchor="middle" font-size="19" fill="#2f5169">editable cards</text>
 
   <!-- gesture arrow View -> Controller -->
+  <!-- edge: view -> controller -->
   <line x1="174" y1="216" x2="174" y2="272" stroke="#1c1917" stroke-width="1.6" marker-end="url(#mvc-arrow)"/>
   <text x="186" y="248" text-anchor="start" font-size="19" font-style="italic" fill="#57534e">user gesture</text>
 
   <!-- CONTROLLER box -->
-  <rect x="24" y="276" width="300" height="96" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <rect id="controller" x="24" y="276" width="300" height="96" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
   <text x="174" y="308" text-anchor="middle" font-size="25" font-weight="bold" fill="#2f5169">Controller</text>
   <text x="174" y="336" text-anchor="middle" font-size="15" fill="#2f5169">emits one typed edit operation</text>
   <text x="174" y="357" text-anchor="middle" font-size="19" fill="#2f5169">— never a raw mutation</text>
 
   <!-- emit arrow Controller -> DSL -->
+  <!-- edge: controller -> dsl -->
   <line x1="324" y1="324" x2="424" y2="324" stroke="#1c1917" stroke-width="1.6" marker-end="url(#mvc-arrow)"/>
   <text x="374" y="312" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">emits</text>
 
   <!-- SHARED DSL box -->
-  <rect x="428" y="240" width="430" height="168" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="2"/>
+  <rect id="dsl" x="428" y="240" width="430" height="168" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="2"/>
   <text x="643" y="270" text-anchor="middle" font-size="24" font-weight="bold" fill="#7c6bb0">The shared edit language</text>
   <text x="643" y="292" text-anchor="middle" font-size="19" font-style="italic" fill="#7c6bb0">one closed set of edit operations</text>
   <text x="448" y="320" font-size="19" fill="#7c6bb0">set-alt-text · set-role · set-decorative</text>
@@ -50,15 +52,17 @@
   <text x="643" y="394" text-anchor="middle" font-size="19" font-style="italic" fill="#9a3f12">also what the pipeline produces</text>
 
   <!-- apply arrow DSL -> Model -->
+  <!-- edge: dsl -> model -->
   <line x1="643" y1="408" x2="643" y2="456" stroke="#1c1917" stroke-width="1.6" marker-end="url(#mvc-arrow)"/>
   <text x="655" y="436" text-anchor="start" font-size="19" font-style="italic" fill="#57534e">applies to</text>
 
   <!-- MODEL box -->
-  <rect x="428" y="460" width="430" height="66" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <rect id="model" x="428" y="460" width="430" height="66" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
   <text x="643" y="490" text-anchor="middle" font-size="25" font-weight="bold" fill="#2f5169">Model — the document IR</text>
   <text x="643" y="514" text-anchor="middle" font-size="19" fill="#2f5169">applies the op, returns updated state</text>
 
   <!-- re-render arrow Model -> View (long path up the left) -->
+  <!-- edge: model .. view -->
   <path d="M428,493 L12,493 L12,141 L20,141" fill="none" stroke="#2f5169" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#mvc-arrow)"/>
   <text x="40" y="470" text-anchor="start" font-size="19" font-style="italic" fill="#2f5169">re-render</text>
 

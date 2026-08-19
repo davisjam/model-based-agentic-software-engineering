@@ -30,22 +30,24 @@
   <rect x="0" y="0" width="1000" height="470" fill="#fdfcf9"/>
 
   <!-- trace states (blue) -->
-  <rect x="310" y="26" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <rect x="310" y="118" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <rect x="310" y="210" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="s1" x="310" y="26" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="s2" x="310" y="118" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="s3" x="310" y="210" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
 
   <!-- fork outcomes -->
-  <rect x="80" y="330" width="400" height="86" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
-  <rect x="520" y="330" width="400" height="86" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
+  <rect id="fl" x="80" y="330" width="400" height="86" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
+  <rect id="fr" x="520" y="330" width="400" height="86" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
 
   <!-- ===== arrows ===== -->
+  <!-- edge: s1 -> s2 -->
   <line x1="500" y1="78" x2="500" y2="116" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+  <!-- edge: s2 -> s3 -->
   <line x1="500" y1="170" x2="500" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
-  <line x1="500" y1="262" x2="500" y2="292" stroke="#1c1917" stroke-width="2"/>
-  <line x1="500" y1="292" x2="280" y2="292" stroke="#1c1917" stroke-width="2"/>
-  <line x1="500" y1="292" x2="720" y2="292" stroke="#1c1917" stroke-width="2"/>
-  <line x1="280" y1="292" x2="280" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
-  <line x1="720" y1="292" x2="720" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+  <!-- fork from s3 to two outcomes: one path per branch, sharing the trunk pixels -->
+  <!-- edge: s3 -> fl -->
+  <path d="M500,262 L500,292 L280,292 L280,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+  <!-- edge: s3 -> fr -->
+  <path d="M500,262 L500,292 L720,292 L720,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>

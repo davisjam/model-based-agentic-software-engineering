@@ -1739,34 +1739,36 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="470" y="86" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.5" fill="#9a3f12">PROBLEM</text>
   <text x="730" y="86" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.5" fill="#155c38">METHOD</text>
 
+  <!-- ===== EDGES (drawn under nodes; source runs to node centre, directed head seats on target rim) ===== -->
+  <!-- edge: trait-a -> representation-problem -->
+  <line x1="180" y1="138" x2="358" y2="138" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-4-1-f-substrate-to-method-sm-k)"/>
+  <!-- edge: representation-problem -> modeling -->
+  <line x1="470" y1="138" x2="618" y2="138" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-4-1-f-substrate-to-method-sm-k)"/>
+  <!-- edge: trait-b -> authority-problem -->
+  <line x1="180" y1="288" x2="358" y2="288" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-4-1-f-substrate-to-method-sm-k)"/>
+  <!-- edge: authority-problem -> alignment -->
+  <line x1="470" y1="288" x2="618" y2="288" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-4-1-f-substrate-to-method-sm-k)"/>
+
   <!-- ===== ROW A: representation problem -> modeling ===== -->
-  <rect x="40" y="110" width="280" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="fig-1-4-1-f-substrate-to-method-trait-a" x="40" y="110" width="280" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="180" y="143" text-anchor="middle" font-size="16.5" fill="#1c1917">finite working state</text>
 
-  <line x1="320" y1="138" x2="358" y2="138" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-4-1-f-substrate-to-method-sm-k)"/>
-
-  <rect x="360" y="110" width="220" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
+  <rect id="fig-1-4-1-f-substrate-to-method-representation-problem" x="360" y="110" width="220" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="470" y="143" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Representation problem</text>
 
-  <line x1="580" y1="138" x2="618" y2="138" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-4-1-f-substrate-to-method-sm-k)"/>
-
-  <rect x="620" y="108" width="264" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <rect id="fig-1-4-1-f-substrate-to-method-modeling" x="620" y="108" width="264" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
   <text x="752" y="134" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Modeling</text>
   <text x="752" y="155" text-anchor="middle" font-size="13.5" fill="#57534e">represent what agents reason through</text>
 
   <!-- ===== ROW B: authority problem -> alignment ===== -->
-  <rect x="40" y="252" width="280" height="72" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="fig-1-4-1-f-substrate-to-method-trait-b" x="40" y="252" width="280" height="72" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="180" y="282" text-anchor="middle" font-size="16" fill="#1c1917">probabilistic productive work</text>
   <text x="180" y="304" text-anchor="middle" font-size="16" fill="#1c1917">observable, interposable seams</text>
 
-  <line x1="320" y1="288" x2="358" y2="288" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-4-1-f-substrate-to-method-sm-k)"/>
-
-  <rect x="360" y="260" width="220" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
+  <rect id="fig-1-4-1-f-substrate-to-method-authority-problem" x="360" y="260" width="220" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="470" y="293" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Authority problem</text>
 
-  <line x1="580" y1="288" x2="618" y2="288" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-1-4-1-f-substrate-to-method-sm-k)"/>
-
-  <rect x="620" y="258" width="264" height="60" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+  <rect id="fig-1-4-1-f-substrate-to-method-alignment" x="620" y="258" width="264" height="60" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
   <text x="752" y="284" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Alignment</text>
   <text x="752" y="305" text-anchor="middle" font-size="13.5" fill="#57534e">give obligations authority</text>
 
@@ -2194,33 +2196,38 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- claim in -->
   <text x="360" y="54" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">claim</text>
+  <rect id="fig-2-4-1-f-in-flight-ownership-states-claim" x="335" y="42" width="50" height="20" fill="none" stroke="none"/>
+  <!-- edge: claim -> claimed -->
   <line x1="360" y1="60" x2="360" y2="76" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-4-1-f-in-flight-ownership-states-io-b)"/>
 
   <!-- CLAIMED (blue, the live claim) -->
-  <rect x="230" y="78" width="260" height="80" rx="10" fill="#dae4ec" stroke="#2f5169" stroke-width="2.8"/>
+  <rect id="fig-2-4-1-f-in-flight-ownership-states-claimed" x="230" y="78" width="260" height="80" rx="10" fill="#dae4ec" stroke="#2f5169" stroke-width="2.8"/>
   <text x="360" y="114" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">CLAIMED</text>
   <text x="360" y="138" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; expires_at</text>
 
   <!-- merge transition -> RELEASED (green outcome, down-left) -->
-  <path d="M305,158 C260,198 215,205 182,244" fill="none" stroke="#155c38" stroke-width="2.4" marker-end="url(#fig-2-4-1-f-in-flight-ownership-states-io-g)"/>
+  <!-- edge: claimed -> released -->
+  <path d="M305,158 C260,198 182,214 182,244" fill="none" stroke="#155c38" stroke-width="2.4" marker-end="url(#fig-2-4-1-f-in-flight-ownership-states-io-g)"/>
   <text x="215" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#155c38">merge</text>
 
   <!-- expiry transition -> RECLAIMABLE (gray, down-right) -->
-  <path d="M415,158 C460,198 505,205 538,244" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#fig-2-4-1-f-in-flight-ownership-states-io-k)"/>
+  <!-- edge: claimed .. reclaimable -->
+  <path d="M415,158 C460,198 538,214 538,244" fill="none" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#fig-2-4-1-f-in-flight-ownership-states-io-k)"/>
   <text x="505" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">expiry</text>
 
   <!-- RELEASED (green) -->
-  <rect x="80" y="246" width="200" height="66" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
+  <rect id="fig-2-4-1-f-in-flight-ownership-states-released" x="80" y="246" width="200" height="66" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
   <text x="180" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">RELEASED</text>
   <text x="180" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#155c38">claim ends cleanly</text>
 
   <!-- RECLAIMABLE (gray) -->
-  <rect x="440" y="246" width="200" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="fig-2-4-1-f-in-flight-ownership-states-reclaimable" x="440" y="246" width="200" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="540" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">RECLAIMABLE</text>
   <text x="540" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">lease lapsed / stale</text>
 
   <!-- another actor may claim: loop back from RECLAIMABLE to CLAIMED -->
-  <path d="M642,268 C698,208 640,118 494,112" fill="none" stroke="#57534e" stroke-width="2"
+  <!-- edge: reclaimable .. claimed -->
+  <path d="M640,268 C698,208 640,118 494,112" fill="none" stroke="#57534e" stroke-width="2"
         stroke-dasharray="6 5" marker-end="url(#fig-2-4-1-f-in-flight-ownership-states-io-k)"/>
   <text x="660" y="182" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">another actor</text>
   <text x="660" y="199" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">may claim</text>
@@ -2249,22 +2256,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="0" y="0" width="1000" height="470" fill="#fdfcf9"/>
 
   <!-- trace states (blue) -->
-  <rect x="310" y="26" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <rect x="310" y="118" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <rect x="310" y="210" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="fig-2-4-2-f-lease-interleaving-trace-s1" x="310" y="26" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="fig-2-4-2-f-lease-interleaving-trace-s2" x="310" y="118" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="fig-2-4-2-f-lease-interleaving-trace-s3" x="310" y="210" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
 
   <!-- fork outcomes -->
-  <rect x="80" y="330" width="400" height="86" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
-  <rect x="520" y="330" width="400" height="86" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
+  <rect id="fig-2-4-2-f-lease-interleaving-trace-fl" x="80" y="330" width="400" height="86" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
+  <rect id="fig-2-4-2-f-lease-interleaving-trace-fr" x="520" y="330" width="400" height="86" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
 
   <!-- ===== arrows ===== -->
+  <!-- edge: s1 -> s2 -->
   <line x1="500" y1="78" x2="500" y2="116" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-4-2-f-lease-interleaving-trace-lit-k)"/>
+  <!-- edge: s2 -> s3 -->
   <line x1="500" y1="170" x2="500" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-4-2-f-lease-interleaving-trace-lit-k)"/>
-  <line x1="500" y1="262" x2="500" y2="292" stroke="#1c1917" stroke-width="2"/>
-  <line x1="500" y1="292" x2="280" y2="292" stroke="#1c1917" stroke-width="2"/>
-  <line x1="500" y1="292" x2="720" y2="292" stroke="#1c1917" stroke-width="2"/>
-  <line x1="280" y1="292" x2="280" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-4-2-f-lease-interleaving-trace-lit-k)"/>
-  <line x1="720" y1="292" x2="720" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-4-2-f-lease-interleaving-trace-lit-k)"/>
+  <!-- fork from s3 to two outcomes: one path per branch, sharing the trunk pixels -->
+  <!-- edge: s3 -> fl -->
+  <path d="M500,262 L500,292 L280,292 L280,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-4-2-f-lease-interleaving-trace-lit-k)"/>
+  <!-- edge: s3 -> fr -->
+  <path d="M500,262 L500,292 L720,292 L720,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-2-4-2-f-lease-interleaving-trace-lit-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
@@ -3031,42 +3040,46 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- spine arrows between the five stations -->
   <g stroke="#9a3f12" stroke-width="2">
+    <!-- edge: s31 -> s32 -->
     <line x1="150" y1="195" x2="150" y2="285" marker-end="url(#fig-3-0-1-f-part3-nav-arc-na-arrow)"/>
+    <!-- edge: s32 -> s33 -->
     <line x1="150" y1="345" x2="150" y2="435" marker-end="url(#fig-3-0-1-f-part3-nav-arc-na-arrow)"/>
+    <!-- edge: s33 -> s34 -->
     <line x1="150" y1="495" x2="150" y2="585" marker-end="url(#fig-3-0-1-f-part3-nav-arc-na-arrow)"/>
+    <!-- edge: s34 -> s35 -->
     <line x1="150" y1="645" x2="150" y2="735" marker-end="url(#fig-3-0-1-f-part3-nav-arc-na-arrow)"/>
   </g>
 
   <!-- 3.1 WHERE -->
-  <circle cx="150" cy="165" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <circle id="fig-3-0-1-f-part3-nav-arc-s31" cx="150" cy="165" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="173" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.1</text>
   <text x="205" y="143" font-size="17" font-weight="700" fill="#9a3f12" letter-spacing="2">WHERE</text>
   <text x="205" y="169" font-size="21" font-weight="700" fill="#1c1917">Where can authority act?</text>
   <text x="205" y="195" font-size="17" fill="#57534e">3.1 · Where Authority Can Act</text>
 
   <!-- 3.2 WHAT -->
-  <circle cx="150" cy="315" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <circle id="fig-3-0-1-f-part3-nav-arc-s32" cx="150" cy="315" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="323" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.2</text>
   <text x="205" y="293" font-size="17" font-weight="700" fill="#9a3f12" letter-spacing="2">WHAT</text>
   <text x="205" y="319" font-size="21" font-weight="700" fill="#1c1917">What may it legitimately enforce?</text>
   <text x="205" y="345" font-size="17" fill="#57534e">3.2 · From Intent to Obligation</text>
 
   <!-- 3.3 HOW -->
-  <circle cx="150" cy="465" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <circle id="fig-3-0-1-f-part3-nav-arc-s33" cx="150" cy="465" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="473" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.3</text>
   <text x="205" y="443" font-size="17" font-weight="700" fill="#9a3f12" letter-spacing="2">HOW</text>
   <text x="205" y="469" font-size="21" font-weight="700" fill="#1c1917">How does a mechanism carry authority?</text>
   <text x="205" y="495" font-size="17" fill="#57534e">3.3 · The Four Mechanism Roles</text>
 
   <!-- 3.4 LEARN -->
-  <circle cx="150" cy="615" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <circle id="fig-3-0-1-f-part3-nav-arc-s34" cx="150" cy="615" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="623" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.4</text>
   <text x="205" y="593" font-size="17" font-weight="700" fill="#9a3f12" letter-spacing="2">LEARN</text>
   <text x="205" y="619" font-size="21" font-weight="700" fill="#1c1917">How does the environment acquire new obligations and controls?</text>
   <text x="205" y="645" font-size="17" fill="#57534e">3.4 · Growing the Governed Environment</text>
 
   <!-- 3.5 GOVERN -->
-  <circle cx="150" cy="765" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <circle id="fig-3-0-1-f-part3-nav-arc-s35" cx="150" cy="765" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="773" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.5</text>
   <text x="205" y="743" font-size="17" font-weight="700" fill="#9a3f12" letter-spacing="2">GOVERN</text>
   <text x="205" y="769" font-size="21" font-weight="700" fill="#1c1917">How is the control estate itself governed?</text>
@@ -3675,19 +3688,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- 1: dangerous fallback exists (latent hazard) -->
-  <rect x="250" y="40" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="fig-3-4-2-f-judgment-without-consequence-n1" x="250" y="40" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="400" y="71" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">dangerous fallback exists</text>
   <text x="400" y="90" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">auto-resolve conflicts by taking one side</text>
+  <!-- edge: n1 -> n2 -->
   <line x1="400" y1="102" x2="400" y2="144" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-3-4-2-f-judgment-without-consequence-jc-n)"/>
 
   <!-- 2: sensor / audit detects (sensing works) -->
-  <rect x="250" y="148" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="fig-3-4-2-f-judgment-without-consequence-n2" x="250" y="148" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="400" y="179" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">sensor / audit detects condition</text>
   <text x="400" y="198" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a guard sees the substrate-class conflict</text>
+  <!-- edge: n2 -> n3 -->
   <line x1="400" y1="210" x2="400" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-3-4-2-f-judgment-without-consequence-jc-n)"/>
 
   <!-- 3: validator: unsafe (evaluation correct) — the verdict -->
-  <rect x="250" y="256" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="fig-3-4-2-f-judgment-without-consequence-n3" x="250" y="256" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="400" y="287" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">validator: UNSAFE</text>
   <text x="400" y="306" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the verdict — correctly identified as dangerous</text>
 
@@ -3721,12 +3736,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="400" y1="440" x2="400" y2="472" stroke="#9a3f12" stroke-width="3.2" marker-end="url(#fig-3-4-2-f-judgment-without-consequence-jc-r)"/>
 
   <!-- 4: operation proceeds anyway -->
-  <rect x="250" y="476" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="fig-3-4-2-f-judgment-without-consequence-n4" x="250" y="476" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="400" y="513" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">operation proceeds anyway</text>
+  <!-- edge: n4 -> n5 -->
   <line x1="400" y1="538" x2="400" y2="580" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#fig-3-4-2-f-judgment-without-consequence-jc-r)"/>
 
   <!-- 5: content lost (terminal harm) -->
-  <rect x="250" y="584" width="300" height="62" rx="10" fill="#9a3f12" stroke="#7a3210" stroke-width="2.4"/>
+  <rect id="fig-3-4-2-f-judgment-without-consequence-n5" x="250" y="584" width="300" height="62" rx="10" fill="#9a3f12" stroke="#7a3210" stroke-width="2.4"/>
   <text x="400" y="615" text-anchor="middle" font-size="18.5" font-weight="700" fill="#ffffff">content lost</text>
   <text x="400" y="634" text-anchor="middle" font-size="13" font-style="italic" fill="#f4e3d6">the tree silently loses content</text>
 
@@ -5296,28 +5312,65 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Two views of the evidence</text>
   <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">Depth versus breadth — together they motivate the theory in Part VI.</text>
 
+  <!-- THE EVIDENCE — a bare text node given a transparent rect anchor so the lint can read its geometry -->
+  <rect id="fig-5-0-1-f-two-views-of-the-evidence-evidence" x="428" y="90" width="144" height="24" fill="none" stroke="none"/>
   <text x="500" y="106" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="2" fill="#1c1917">THE EVIDENCE</text>
 
-  <!-- split from the apex to the two column headers -->
-  <g stroke="#57534e" stroke-width="2" fill="none">
-    <line x1="500" y1="114" x2="260" y2="158"/>
-    <line x1="500" y1="114" x2="740" y2="158"/>
-  </g>
+  <!-- ===== EDGES (drawn under nodes) ===== -->
+  <!-- split from the apex to the two column headers (undirected fork; each branch runs apex-centre to node centre) -->
+  <!-- edge: evidence -> originating-case -->
+  <line x1="500" y1="102" x2="260" y2="192" stroke="#57534e" stroke-width="2" fill="none"/>
+  <!-- edge: evidence -> industrial -->
+  <line x1="500" y1="102" x2="740" y2="192" stroke="#57534e" stroke-width="2" fill="none"/>
 
+  <!-- connectors from headers to bullet lists (decorative; source/target is a text region, left unannotated) -->
+  <line x1="260" y1="224" x2="260" y2="252" stroke="#57534e" stroke-width="1.6"/>
+  <line x1="740" y1="224" x2="740" y2="252" stroke="#57534e" stroke-width="1.6"/>
+
+  <!-- arrows from the bullet lists down to the two questions (source is the bullet region, not a node, so unannotated;
+       head seats on the question box) -->
+  <line x1="260" y1="362" x2="260" y2="411" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#fig-5-0-1-f-two-views-of-the-evidence-tve-arrow-green)"/>
+  <line x1="740" y1="362" x2="740" y2="411" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-5-0-1-f-two-views-of-the-evidence-tve-arrow-blue)"/>
+
+  <!-- convergence: a two-branch MERGE, one path per branch; both run box-centre to analytic-gen rim and overlap the trunk -->
+  <!-- edge: how-emerge -> analytic-gen -->
+  <path d="M260,441 L260,468 L500,508 L500,554" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-5-0-1-f-two-views-of-the-evidence-tve-arrow-rust)"/>
+  <!-- edge: how-travel -> analytic-gen -->
+  <path d="M740,441 L740,468 L500,508 L500,554" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#fig-5-0-1-f-two-views-of-the-evidence-tve-arrow-rust)"/>
+
+  <!-- analytic-gen down to Part VI. The caption "constructs + mechanisms worth explaining" is an on-edge label
+       sitting between the two boxes, so the source cannot run up into analytic-gen without crossing it: left
+       straight + unannotated, head seated on the Part VI rim. -->
+  <line x1="500" y1="650" x2="500" y2="690" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-5-0-1-f-two-views-of-the-evidence-tve-arrow-rust)"/>
+
+  <!-- ===== NODES ===== -->
   <!-- left column header — ORIGINATING CASE (modeling-green) -->
-  <rect x="60" y="160" width="400" height="64" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <rect id="fig-5-0-1-f-two-views-of-the-evidence-originating-case" x="60" y="160" width="400" height="64" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="260" y="192" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">ORIGINATING CASE</text>
   <text x="260" y="214" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">DocAble</text>
 
   <!-- right column header — INDUSTRIAL RECONSTRUCTIONS (agent-blue) -->
-  <rect x="540" y="160" width="400" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="fig-5-0-1-f-two-views-of-the-evidence-industrial" x="540" y="160" width="400" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="740" y="192" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">INDUSTRIAL RECONSTRUCTIONS</text>
   <text x="740" y="214" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">independent systems</text>
 
-  <!-- connectors from headers to bullet lists -->
-  <line x1="260" y1="224" x2="260" y2="252" stroke="#57534e" stroke-width="1.6"/>
-  <line x1="740" y1="224" x2="740" y2="252" stroke="#57534e" stroke-width="1.6"/>
+  <!-- question boxes -->
+  <rect id="fig-5-0-1-f-two-views-of-the-evidence-how-emerge" x="60" y="414" width="400" height="54" rx="8" fill="#fdfcf9" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="260" y="447" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">HOW DID IT EMERGE?</text>
 
+  <rect id="fig-5-0-1-f-two-views-of-the-evidence-how-travel" x="540" y="414" width="400" height="54" rx="8" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="740" y="447" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">HOW FAR DOES IT TRAVEL?</text>
+
+  <!-- ANALYTIC GENERALIZATION -->
+  <rect id="fig-5-0-1-f-two-views-of-the-evidence-analytic-gen" x="300" y="556" width="400" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
+  <text x="500" y="592" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">ANALYTIC GENERALIZATION</text>
+
+  <!-- PART VI destination -->
+  <rect id="fig-5-0-1-f-two-views-of-the-evidence-part-vi" x="260" y="692" width="480" height="64" rx="10" fill="#f3efe7" stroke="#1c1917" stroke-width="2.6"/>
+  <text x="500" y="716" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#57534e">PART VI</text>
+  <text x="500" y="740" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">A THEORY OF MAGE</text>
+
+  <!-- ===== descriptive text on top of the edges ===== -->
   <!-- left bullets -->
   <g font-size="16" fill="#57534e" text-anchor="middle">
     <text x="260" y="268">high process depth</text>
@@ -5334,36 +5387,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="740" y="349">alternative realizations</text>
   </g>
 
-  <!-- arrows from bullets down to the two questions -->
-  <line x1="260" y1="362" x2="260" y2="408" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#fig-5-0-1-f-two-views-of-the-evidence-tve-arrow-green)"/>
-  <line x1="740" y1="362" x2="740" y2="408" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-5-0-1-f-two-views-of-the-evidence-tve-arrow-blue)"/>
-
-  <!-- question boxes -->
-  <rect x="60" y="414" width="400" height="54" rx="8" fill="#fdfcf9" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="260" y="447" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">HOW DID IT EMERGE?</text>
-
-  <rect x="540" y="414" width="400" height="54" rx="8" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="740" y="447" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">HOW FAR DOES IT TRAVEL?</text>
-
-  <!-- convergence -->
-  <g stroke="#57534e" stroke-width="2" fill="none">
-    <line x1="260" y1="468" x2="497" y2="508"/>
-    <line x1="740" y1="468" x2="503" y2="508"/>
-  </g>
-  <line x1="500" y1="510" x2="500" y2="550" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#fig-5-0-1-f-two-views-of-the-evidence-tve-arrow-rust)"/>
-
-  <!-- ANALYTIC GENERALIZATION -->
-  <rect x="300" y="556" width="400" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
-  <text x="500" y="592" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">ANALYTIC GENERALIZATION</text>
-
   <text x="500" y="638" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">constructs + mechanisms worth explaining</text>
-
-  <line x1="500" y1="650" x2="500" y2="686" stroke="#1c1917" stroke-width="2.2" marker-end="url(#fig-5-0-1-f-two-views-of-the-evidence-tve-arrow-rust)"/>
-
-  <!-- PART VI destination -->
-  <rect x="260" y="692" width="480" height="64" rx="10" fill="#f3efe7" stroke="#1c1917" stroke-width="2.6"/>
-  <text x="500" y="716" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#57534e">PART VI</text>
-  <text x="500" y="740" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">A THEORY OF MAGE</text>
 
   <text x="500" y="792" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Neither view supplies causal or population-level estimates.</text>
 </svg><figcaption data-short="Two views of the evidence"><span class="fig-label">Figure 5.0-1.</span> <em>Two views of the evidence.</em> The originating case supplies longitudinal depth: sequence, mechanism, and within-case recurrence. Independent industrial reconstructions supply variation across systems and organizations but less process visibility. Together they motivate the theoretical account developed in Part VI.</figcaption></figure><p class="gallery-source">From <a href="part-5-intro.html#fig-5-0-1">The Evidence</a></p></section><hr><section class="gallery-item"><figure id="fig-5-2-1-fig-5-2-1" class="book-figure" data-label="build-stages-timeline"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 770"
@@ -5705,31 +5729,33 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- CALLER -->
-  <rect x="24" y="150" width="200" height="112" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
+  <rect id="fig-5-3-2-f-llm-as-function-call-caller" x="24" y="150" width="200" height="112" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
   <text x="124" y="182" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">Deterministic</text>
   <text x="124" y="206" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">caller</text>
   <text x="124" y="230" text-anchor="middle" font-size="19" fill="#2f5169">owns the workflow;</text>
   <text x="124" y="252" text-anchor="middle" font-size="19" fill="#2f5169">decides each step</text>
 
   <!-- input contract -->
+  <!-- edge: caller -> model -->
   <line x1="224" y1="206" x2="330" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#fig-5-3-2-f-llm-as-function-call-lfc-arrow)"/>
   <text x="279" y="184" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">typed input</text>
   <text x="279" y="200" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">contract</text>
 
   <!-- MODEL (probabilistic — dashed) -->
-  <rect x="334" y="150" width="200" height="112" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <rect id="fig-5-3-2-f-llm-as-function-call-model" x="334" y="150" width="200" height="112" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="434" y="184" text-anchor="middle" font-size="24" font-weight="bold" fill="#1c1917">Model</text>
   <text x="434" y="210" text-anchor="middle" font-size="19" fill="#57534e">the probabilistic</text>
   <text x="434" y="232" text-anchor="middle" font-size="19" fill="#57534e">“function” — one</text>
   <text x="434" y="254" text-anchor="middle" font-size="19" fill="#57534e">bounded task</text>
 
   <!-- output contract -->
+  <!-- edge: model -> validator -->
   <line x1="534" y1="206" x2="640" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#fig-5-3-2-f-llm-as-function-call-lfc-arrow)"/>
   <text x="589" y="184" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">typed output</text>
   <text x="589" y="200" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">contract</text>
 
   <!-- VALIDATOR -->
-  <rect x="644" y="150" width="240" height="112" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
+  <rect id="fig-5-3-2-f-llm-as-function-call-validator" x="644" y="150" width="240" height="112" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
   <text x="764" y="188" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">Deterministic</text>
   <text x="764" y="212" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">validator</text>
   <text x="764" y="240" text-anchor="middle" font-size="19" fill="#2f5169">checks the candidate</text>
@@ -5739,13 +5765,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="589" y1="210" x2="589" y2="300" stroke="#b23b3b" stroke-width="1" stroke-dasharray="3 3"/>
   <text x="589" y="108" text-anchor="middle" font-size="19" font-weight="bold" fill="#b23b3b">trust boundary</text>
 
-  <!-- PASS out -->
+  <!-- PASS out: transparent anchor over the "result incorporated" text so the edge terminates on a named node -->
+  <rect id="fig-5-3-2-f-llm-as-function-call-result" x="940" y="168" width="150" height="42" fill="none" stroke="none"/>
+  <!-- edge: validator -> result -->
   <line x1="884" y1="188" x2="936" y2="188" stroke="#1c1917" stroke-width="1.4" marker-end="url(#fig-5-3-2-f-llm-as-function-call-lfc-arrow)"/>
   <text x="910" y="176" text-anchor="middle" font-size="19" font-weight="bold" fill="#1f7a4d">pass</text>
   <text x="946" y="182" text-anchor="start" font-size="19" fill="#1f7a4d">result</text>
   <text x="946" y="202" text-anchor="start" font-size="19" fill="#1f7a4d">incorporated</text>
 
   <!-- FAIL loop back to caller -->
+  <!-- edge: validator .. caller -->
   <path d="M764,262 L764,330 L124,330 L124,262" fill="none" stroke="#b23b3b" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#fig-5-3-2-f-llm-as-function-call-lfc-arrow)"/>
   <text x="444" y="350" text-anchor="middle" font-size="19" font-weight="bold" fill="#b23b3b">fail → caller retries or falls back</text>
 
@@ -6617,24 +6646,29 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The lifecycle keeps its phases. The allocation of work across them changes.</text>
 
   <!-- ===== top row: the five lifecycle phases (unchanged) ===== -->
+  <!-- phase-chain edges (drawn under the boxes; source runs to node centre, directed head seats on target rim) -->
+  <g stroke="#57534e" stroke-width="1.5">
+    <!-- edge: requirements -> design -->
+    <line x1="124" y1="119" x2="226" y2="119" marker-end="url(#fig-6-4-2-f-where-effort-moves-wem-ah)"/>
+    <!-- edge: design -> implementation -->
+    <line x1="312" y1="119" x2="414" y2="119" marker-end="url(#fig-6-4-2-f-where-effort-moves-wem-ah)"/>
+    <!-- edge: implementation -> validation -->
+    <line x1="500" y1="119" x2="602" y2="119" marker-end="url(#fig-6-4-2-f-where-effort-moves-wem-ah)"/>
+    <!-- edge: validation -> operation -->
+    <line x1="688" y1="119" x2="790" y2="119" marker-end="url(#fig-6-4-2-f-where-effort-moves-wem-ah)"/>
+  </g>
   <g font-size="16" text-anchor="middle" fill="#1c1917">
-    <rect x="40"  y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="fig-6-4-2-f-where-effort-moves-requirements" x="40"  y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="124" y="124">Requirements</text>
-    <rect x="228" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="fig-6-4-2-f-where-effort-moves-design" x="228" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="312" y="124">Design</text>
-    <rect x="416" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="fig-6-4-2-f-where-effort-moves-implementation" x="416" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="500" y="124">Implementation</text>
-    <rect x="604" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="fig-6-4-2-f-where-effort-moves-validation" x="604" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="688" y="124">Validation</text>
-    <rect x="792" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="fig-6-4-2-f-where-effort-moves-operation" x="792" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="876" y="118">Operation /</text>
     <text x="876" y="136">maintenance</text>
-  </g>
-  <g stroke="#57534e" stroke-width="1.5">
-    <line x1="208" y1="119" x2="226" y2="119" marker-end="url(#fig-6-4-2-f-where-effort-moves-wem-ah)"/>
-    <line x1="396" y1="119" x2="414" y2="119" marker-end="url(#fig-6-4-2-f-where-effort-moves-wem-ah)"/>
-    <line x1="584" y1="119" x2="602" y2="119" marker-end="url(#fig-6-4-2-f-where-effort-moves-wem-ah)"/>
-    <line x1="772" y1="119" x2="790" y2="119" marker-end="url(#fig-6-4-2-f-where-effort-moves-wem-ah)"/>
   </g>
 
   <!-- ===== band 1: Human engineering judgment (rust) ===== -->
@@ -8794,28 +8828,45 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="0" y="0" width="720" height="520" fill="#fdfcf9"/>
   <text x="40" y="34" font-size="15" font-weight="600" fill="#57534e">Question: who owns this surface, and what may cross its boundary?</text>
 
+  <!-- ===== EDGES (drawn under nodes; solid source runs to node centre, directed head seats on target rim) ===== -->
+  <!-- edge: catalog -> web-zone (owns) -->
+  <line x1="360" y1="101" x2="217" y2="208" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-1-f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- edge: catalog -> worker (permits) -->
+  <line x1="360" y1="101" x2="511" y2="208" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-1-f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- edge: web-zone -> worker (sanctioned seam, gate glyph) -->
+  <line x1="175" y1="242" x2="469" y2="242" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-1-f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- edge: web-zone .. raw-format-library (forbidden direct access, struck by X) -->
+  <line x1="175" y1="242" x2="188" y2="398" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fig-C-1-1-f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- edge: repository-tree .. catalog (reverse-map the tree) -->
+  <path d="M540,428 C540,300 470,180 468,136" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fig-C-1-1-f-appendix-g-2-structure-boundaries-g2-solid)"/>
+
+  <!-- ===== NODES ===== -->
   <!-- COMPONENT CATALOG (authored representation) -->
   <text x="360" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED STRUCTURE</text>
-  <rect x="240" y="68" width="240" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="fig-C-1-1-f-appendix-g-2-structure-boundaries-catalog" x="240" y="68" width="240" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="360" y="96" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">COMPONENT CATALOG</text>
   <text x="360" y="118" text-anchor="middle" font-size="14" fill="#57534e">ownership · seams</text>
 
-  <!-- owns (SOLID) -->
-  <line x1="315" y1="134" x2="195" y2="206" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-1-f-appendix-g-2-structure-boundaries-g2-solid)"/>
-  <text x="228" y="168" font-size="13" font-style="italic" fill="#57534e">owns</text>
-  <!-- permits (SOLID) -->
-  <line x1="405" y1="134" x2="540" y2="206" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-1-f-appendix-g-2-structure-boundaries-g2-solid)"/>
-  <text x="472" y="168" font-size="13" font-style="italic" fill="#57534e">permits</text>
-
   <!-- WEB ZONE (representation) -->
-  <rect x="90" y="210" width="170" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="fig-C-1-1-f-appendix-g-2-structure-boundaries-web-zone" x="90" y="210" width="170" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="175" y="248" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">WEB ZONE</text>
   <!-- WORKER (representation) -->
-  <rect x="470" y="210" width="170" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="fig-C-1-1-f-appendix-g-2-structure-boundaries-worker" x="470" y="210" width="170" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="555" y="248" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">WORKER</text>
 
-  <!-- sanctioned seam (SOLID) with heavy authority gate glyph -->
-  <line x1="260" y1="242" x2="470" y2="242" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-1-f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- RAW FORMAT LIBRARY (observed / implementation) -->
+  <rect id="fig-C-1-1-f-appendix-g-2-structure-boundaries-raw-format-library" x="90" y="400" width="200" height="56" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="190" y="426" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">RAW FORMAT</text>
+  <text x="190" y="446" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">LIBRARY</text>
+
+  <!-- REPOSITORY TREE (observed) reverse-mapped up (DASHED) -->
+  <rect id="fig-C-1-1-f-appendix-g-2-structure-boundaries-repository-tree" x="440" y="400" width="200" height="56" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="540" y="432" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">REPOSITORY TREE</text>
+  <text x="540" y="474" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED STRUCTURE</text>
+
+  <!-- ===== edge labels + glyph decorations (on top of edges) ===== -->
+  <text x="228" y="168" font-size="13" font-style="italic" fill="#57534e">owns</text>
+  <text x="472" y="168" font-size="13" font-style="italic" fill="#57534e">permits</text>
   <text x="365" y="230" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">sanctioned seam</text>
   <!-- gate glyph: two heavy red bars = the guarded door (authority) -->
   <g stroke="#b23b3b" stroke-width="3.6">
@@ -8824,8 +8875,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
   <text x="363" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED · door</text>
 
-  <!-- forbidden direct access (DASHED, struck by X — a forbidden crossing, NOT a gate) -->
-  <line x1="175" y1="274" x2="185" y2="396" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fig-C-1-1-f-appendix-g-2-structure-boundaries-g2-solid)"/>
+  <!-- X struck through the forbidden crossing -->
   <g stroke="#b23b3b" stroke-width="3">
     <line x1="168" y1="326" x2="192" y2="344"/>
     <line x1="192" y1="326" x2="168" y2="344"/>
@@ -8833,17 +8883,6 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="210" y="336" font-size="13" font-style="italic" fill="#b23b3b">forbidden</text>
   <text x="210" y="352" font-size="13" font-style="italic" fill="#b23b3b">direct access</text>
 
-  <!-- RAW FORMAT LIBRARY (observed / implementation) -->
-  <rect x="90" y="400" width="200" height="56" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
-  <text x="190" y="426" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">RAW FORMAT</text>
-  <text x="190" y="446" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">LIBRARY</text>
-
-  <!-- REPOSITORY TREE (observed) reverse-mapped up (DASHED) -->
-  <rect x="440" y="400" width="200" height="56" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
-  <text x="540" y="432" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">REPOSITORY TREE</text>
-  <text x="540" y="474" text-anchor="middle" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED STRUCTURE</text>
-
-  <path d="M540,400 C540,300 470,180 468,136" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fig-C-1-1-f-appendix-g-2-structure-boundaries-g2-solid)"/>
   <text x="590" y="300" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">reverse-map</text>
   <text x="590" y="316" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the tree</text>
 
@@ -8995,6 +9034,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="Stable topology, variable execution policy"><span class="fig-label">Figure C.3-1.</span> <em>Stable topology, variable execution policy.</em> Deployment topology represents component placement and connectivity. Host execution policy separately maps host profiles to scheduling behavior, allowing scheduling to vary without changing the topology.</figcaption></figure><p class="gallery-source">From <a href="appendix-c-execution-and-placement.html#fig-C-3-1">C.3 Execution and Placement</a></p></section><hr><section class="gallery-item"><figure id="fig-C-4-1-fig-C-4-1" class="book-figure" data-label="fig-g5-measurement-authority"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520"
      role="img" aria-labelledby="fig-C-4-1-f-appendix-g-5-measurement-authority-g5Title fig-C-4-1-f-appendix-g-5-measurement-authority-g5Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <!-- edge-grammar: keep-angles -->
   <title id="fig-C-4-1-f-appendix-g-5-measurement-authority-g5Title">Measurement does not imply authority — a number earns a gate only when evidence warrants it</title>
   <desc id="fig-C-4-1-f-appendix-g-5-measurement-authority-g5Desc">A running system is observed along a dashed arrow into a measurement box holding latency, cost,
     and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison
@@ -9076,6 +9116,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="Measurement does not imply authority"><span class="fig-label">Figure C.4-1.</span> <em>Measurement does not imply authority.</em> A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence justifies warning or admission authority.</figcaption></figure><p class="gallery-source">From <a href="appendix-c-measurement.html#fig-C-4-1">C.4 Measurement</a></p></section><hr><section class="gallery-item"><figure id="fig-C-5-1-fig-C-5-1" class="book-figure" data-label="fig-g6-facts-before-prose"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500"
      role="img" aria-labelledby="fig-C-5-1-f-appendix-g-6-facts-before-prose-g6Title fig-C-5-1-f-appendix-g-6-facts-before-prose-g6Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <!-- edge-grammar: keep-angles -->
   <title id="fig-C-5-1-f-appendix-g-6-facts-before-prose-g6Title">Facts before prose — the strongest documentation is generated from facts the system already knows</title>
   <desc id="fig-C-5-1-f-appendix-g-6-facts-before-prose-g6Desc">An engineering action leaves a provenance fact recording what, who, and how, along a solid arrow.
     From that fact two solid branches descend. The left branch, validation and audit, is mechanically checkable: it
@@ -9344,45 +9385,49 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- ============ self-governance (governance rust) — engineers/improves the environment ============ -->
-  <rect x="350" y="44" width="300" height="90" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <rect id="fig-E-2-1-f-figure-composition-self-governance" x="350" y="44" width="300" height="90" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="500" y="88" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Self-Governance</text>
   <text x="500" y="114" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">engineers &amp; improves the environment</text>
 
   <!-- ============ GEE (modeling green) — the one environment all three act on ============ -->
-  <rect x="338" y="286" width="324" height="110" rx="16" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <rect id="fig-E-2-1-f-figure-composition-gee" x="338" y="286" width="324" height="110" rx="16" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="500" y="328" text-anchor="middle" font-size="26" font-weight="700" fill="#1f7a4d">GEE</text>
   <text x="500" y="354" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the governed engineering environment</text>
   <text x="500" y="376" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the one thing all three skills act on</text>
 
   <!-- ============ self-operate (agent blue) — runs the operational lifecycles ============ -->
-  <rect x="350" y="548" width="300" height="90" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="fig-E-2-1-f-figure-composition-self-operate" x="350" y="548" width="300" height="90" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="500" y="592" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">Self-Operate</text>
   <text x="500" y="618" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">runs the operational lifecycles</text>
 
   <!-- ============ self-communicate (neutral) — supplies the craft ============ -->
-  <rect x="44" y="298" width="244" height="88" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="fig-E-2-1-f-figure-composition-self-communicate" x="44" y="298" width="244" height="88" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="166" y="338" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">Self-Communicate</text>
   <text x="166" y="362" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the craft for representations</text>
 
   <!-- ================= edges ================= -->
 
   <!-- SG → GEE : improves (down) -->
+  <!-- edge: self-governance -> gee -->
   <line x1="500" y1="134" x2="500" y2="282" stroke="#9a3f12" stroke-width="2" marker-end="url(#fig-E-2-1-f-figure-composition-scArrowRust)"/>
   <text x="516" y="196" text-anchor="start" font-size="15" font-weight="700" fill="#9a3f12">improves</text>
   <text x="516" y="215" text-anchor="start" font-size="12.5" fill="#57534e">mints models &amp; mechanisms</text>
 
   <!-- SO → GEE : operates (up) -->
-  <line x1="500" y1="546" x2="500" y2="400" stroke="#2f5169" stroke-width="2" marker-end="url(#fig-E-2-1-f-figure-composition-scArrowBlue)"/>
+  <!-- edge: self-operate -> gee -->
+  <line x1="500" y1="548" x2="500" y2="400" stroke="#2f5169" stroke-width="2" marker-end="url(#fig-E-2-1-f-figure-composition-scArrowBlue)"/>
   <text x="516" y="468" text-anchor="start" font-size="15" font-weight="700" fill="#2f5169">operates</text>
   <text x="516" y="487" text-anchor="start" font-size="12.5" fill="#57534e">runs the lifecycles</text>
 
   <!-- SO → SG : evidence return (dashed, up the right side) -->
-  <path d="M650,592 C840,560 878,470 878,340 C878,210 840,120 652,90"
+  <!-- edge: self-operate .. self-governance -->
+  <path d="M650,592 C840,560 878,470 878,340 C878,210 700,90 652,90"
         fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#fig-E-2-1-f-figure-composition-scArrowGray)"/>
   <text x="792" y="332" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">evidence</text>
   <text x="792" y="351" text-anchor="middle" font-size="12.5" fill="#57534e">returns deficiencies</text>
 
   <!-- SC → GEE : documents (right) -->
+  <!-- edge: self-communicate -> gee -->
   <line x1="288" y1="342" x2="336" y2="342" stroke="#57534e" stroke-width="2" marker-end="url(#fig-E-2-1-f-figure-composition-scArrowGray)"/>
   <text x="312" y="332" text-anchor="middle" font-size="12" fill="#57534e">documents</text>
 </svg><figcaption data-short="Three orthogonal skills act on one governed engineering environment"><span class="fig-label">Figure E.2-1.</span> Three orthogonal skills act on one governed engineering environment. Self-governance improves it; self-operate runs it and returns evidence; self-communicate governs the representations both produce.</figcaption></figure><p class="gallery-source">From <a href="appendix-e-applying-the-recipe.html#fig-E-2-1">Appendix E - 2. Applying the Recipe</a></p></section><hr><section class="gallery-item"><figure id="fig-F-1-fig-F-1" class="book-figure" data-label="field-guide-cloudflare"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Field Guide card: Cloudflare — policy-first governance to the Alignment">
@@ -11138,35 +11183,50 @@ z
 
   <!-- four lifecycle boxes -->
   <g>
-    <rect x="28"  y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="fig-H-1-1-f-h1-product-lifecycle-discovery" x="28"  y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="134" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">PRODUCT</text>
     <text x="134" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">DISCOVERY</text>
 
-    <rect x="274" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="fig-H-1-1-f-h1-product-lifecycle-engineering" x="274" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="380" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">ENGINEERING &amp;</text>
     <text x="380" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">REALIZATION</text>
 
-    <rect x="520" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="fig-H-1-1-f-h1-product-lifecycle-product-mgmt" x="520" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="626" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">PRODUCT MGMT &amp;</text>
     <text x="626" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">MAINTENANCE</text>
 
-    <rect x="766" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="fig-H-1-1-f-h1-product-lifecycle-operations" x="766" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="872" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">OPERATIONS &amp;</text>
     <text x="872" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INCIDENTS</text>
   </g>
 
   <!-- flow arrows between boxes -->
   <g stroke="#57534e" stroke-width="2.6" marker-end="url(#fig-H-1-1-f-h1-product-lifecycle-h1-ah)">
+    <!-- edge: discovery -> engineering -->
     <line x1="240" y1="101" x2="272" y2="101"/>
+    <!-- edge: engineering -> product-mgmt -->
     <line x1="486" y1="101" x2="518" y2="101"/>
+    <!-- edge: product-mgmt -> operations -->
     <line x1="732" y1="101" x2="764" y2="101"/>
   </g>
 
-  <!-- questions under each box -->
+  <!-- transparent anchors over each question pair, so the down-tick plugs into a named node -->
+  <g fill="none" stroke="none">
+    <rect id="fig-H-1-1-f-h1-product-lifecycle-q-discovery"    x="44"  y="160" width="180" height="46"/>
+    <rect id="fig-H-1-1-f-h1-product-lifecycle-q-engineering"  x="290" y="160" width="180" height="46"/>
+    <rect id="fig-H-1-1-f-h1-product-lifecycle-q-product-mgmt" x="536" y="160" width="180" height="46"/>
+    <rect id="fig-H-1-1-f-h1-product-lifecycle-q-operations"   x="782" y="160" width="180" height="46"/>
+  </g>
+
+  <!-- questions under each box: box -> its question anchor -->
   <g stroke="#57534e" stroke-width="1.6" marker-end="url(#fig-H-1-1-f-h1-product-lifecycle-h1-ah)">
+    <!-- edge: discovery -> q-discovery -->
     <line x1="134" y1="138" x2="134" y2="156"/>
+    <!-- edge: engineering -> q-engineering -->
     <line x1="380" y1="138" x2="380" y2="156"/>
+    <!-- edge: product-mgmt -> q-product-mgmt -->
     <line x1="626" y1="138" x2="626" y2="156"/>
+    <!-- edge: operations -> q-operations -->
     <line x1="872" y1="138" x2="872" y2="156"/>
   </g>
   <g font-size="16" fill="#57534e" text-anchor="middle" font-style="italic">
@@ -11197,7 +11257,7 @@ z
   <line x1="500" y1="428" x2="500" y2="488" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#fig-H-1-1-f-h1-product-lifecycle-h1-ah-u)"/>
 
   <!-- Assurance & Compliance — drawn below, cross-cutting (umber accent) -->
-  <rect x="336" y="490" width="328" height="82" rx="11" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <rect id="fig-H-1-1-f-h1-product-lifecycle-assurance" x="336" y="490" width="328" height="82" rx="11" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="500" y="526" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">ASSURANCE &amp;</text>
   <text x="500" y="550" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">COMPLIANCE</text>
   <text x="712" y="536" font-size="15" font-style="italic" fill="#9a3f12">cross-cutting</text>

@@ -119,6 +119,12 @@ right in the one layout the author eyeballed and drifts the moment the line move
       the coordinate-rounding floor); its **`--fix`** auto-repairs it deterministically — re-aiming a cubic's
       last control point, or bending a straight line / M-L path into a gentle curve that departs along its
       chord and arrives perpendicular. `python3 book-models/lint_figure_dangling_edge.py --fix`.
+    - **`--fix` cannot see labels; `keep-angles` opts a figure out.** The auto-repair bends a head to
+      perpendicular geometrically — it does not know a `<text>` label sits on the diagonal it would sweep
+      through. On a decision-tree whose branch labels ("no"/"yes") ride the diagonal, a *straight* diagonal
+      that clears the label beats a perpendicular curve through it. Such a figure carries a standalone
+      `<!-- edge-grammar: keep-angles -->` marker: the angle check and `--fix` both leave its head angles
+      alone (seating is still enforced), so a later `--fix` never re-introduces the collision.
   - **Forbidden / absent edges.** Two idioms, opposite handling. A *deliberately-unreached ghost* — an arc
     that curves away and is struck through to read as "does not connect" — is exempt from connect-inside;
     forcing it onto the node contradicts its meaning, so leave it unannotated (the lint skips it). A

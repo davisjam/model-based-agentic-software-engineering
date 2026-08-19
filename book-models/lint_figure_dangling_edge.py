@@ -62,6 +62,12 @@ _EDGE_RE = re.compile(
     re.S)
 # the FLOAT-OK opt-out is a distinct standalone marker comment, matched whole so prose can't trip it
 _FLOAT_OK_RE = re.compile(r'<!--\s*edge-grammar:\s*float-ok\s*-->')
+# KEEP-ANGLES opt-out: a figure whose directed heads MUST stay at a non-perpendicular angle — e.g. a
+# decision-tree whose diagonal branch would, if bent perpendicular, route its curve THROUGH an on-edge label
+# ("no"/"yes"). `--fix` cannot see label collisions, so such a figure carries a standalone
+# `<!-- edge-grammar: keep-angles -->` marker: the angle CHECK and `--fix` both leave its angles alone
+# (seating is still enforced). The straight diagonal that clears the label beats a perpendicular curve through it.
+_KEEP_ANGLES_RE = re.compile(r'<!--\s*edge-grammar:\s*keep-angles\s*-->')
 
 
 def _nodes(svg: str) -> dict:
@@ -291,8 +297,8 @@ def fix(path: str) -> int:
     the SVG back. Straight <line>s are left alone: a seated endpoint already lies on its aim ray, and moving
     the other end risks un-seating it. Idempotent — a second run finds nothing to re-aim."""
     svg = open(path, encoding="utf-8").read()
-    if "<!-- edge:" not in svg:
-        return 0
+    if "<!-- edge:" not in svg or _KEEP_ANGLES_RE.search(svg):
+        return 0                         # keep-angles: leave this figure's (intentionally non-perpendicular) heads alone
     nodes = _nodes(svg)
     replacements = []
     for m in _EDGE_RE.finditer(svg):
@@ -369,6 +375,7 @@ def analyze(path: str) -> list:
     # strict connect-inside is the default; opt out only with a real standalone marker COMMENT
     # (a distinct `<!-- edge-grammar: float-ok -->`), not prose that merely names the token.
     tol = _TOL if _FLOAT_OK_RE.search(svg) else 0.0
+    check_angles = not _KEEP_ANGLES_RE.search(svg)   # keep-angles figures accept non-perpendicular heads
     findings = []
     for m in _EDGE_RE.finditer(svg):
         src, op, dst = m.group(1), m.group(2), m.group(3)
@@ -406,8 +413,9 @@ def analyze(path: str) -> list:
                 bad.append(_describe(b, d_last))
             findings.append(f"edge {label}: " + ("; ".join(bad) or "endpoints do not cover both nodes"))
         # ANGLE check — independent of seating: a directed head must POINT AT the node it plugs into.
-        node_a, node_b = _seat_assignment(a, b, na, nb)
-        findings.extend(_angle_findings(drawable, a, b, node_a, node_b, d_first, d_last, label, src, dst))
+        if check_angles:
+            node_a, node_b = _seat_assignment(a, b, na, nb)
+            findings.extend(_angle_findings(drawable, a, b, node_a, node_b, d_first, d_last, label, src, dst))
     return findings
 
 

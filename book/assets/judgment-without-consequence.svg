@@ -30,19 +30,21 @@
   </defs>
 
   <!-- 1: dangerous fallback exists (latent hazard) -->
-  <rect x="250" y="40" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="n1" x="250" y="40" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="400" y="71" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">dangerous fallback exists</text>
   <text x="400" y="90" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">auto-resolve conflicts by taking one side</text>
+  <!-- edge: n1 -> n2 -->
   <line x1="400" y1="102" x2="400" y2="144" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
 
   <!-- 2: sensor / audit detects (sensing works) -->
-  <rect x="250" y="148" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="n2" x="250" y="148" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="400" y="179" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">sensor / audit detects condition</text>
   <text x="400" y="198" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a guard sees the substrate-class conflict</text>
+  <!-- edge: n2 -> n3 -->
   <line x1="400" y1="210" x2="400" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
 
   <!-- 3: validator: unsafe (evaluation correct) — the verdict -->
-  <rect x="250" y="256" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="n3" x="250" y="256" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="400" y="287" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">validator: UNSAFE</text>
   <text x="400" y="306" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the verdict — correctly identified as dangerous</text>
 
@@ -76,12 +78,13 @@
   <line x1="400" y1="440" x2="400" y2="472" stroke="#9a3f12" stroke-width="3.2" marker-end="url(#jc-r)"/>
 
   <!-- 4: operation proceeds anyway -->
-  <rect x="250" y="476" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="n4" x="250" y="476" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="400" y="513" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">operation proceeds anyway</text>
+  <!-- edge: n4 -> n5 -->
   <line x1="400" y1="538" x2="400" y2="580" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#jc-r)"/>
 
   <!-- 5: content lost (terminal harm) -->
-  <rect x="250" y="584" width="300" height="62" rx="10" fill="#9a3f12" stroke="#7a3210" stroke-width="2.4"/>
+  <rect id="n5" x="250" y="584" width="300" height="62" rx="10" fill="#9a3f12" stroke="#7a3210" stroke-width="2.4"/>
   <text x="400" y="615" text-anchor="middle" font-size="18.5" font-weight="700" fill="#ffffff">content lost</text>
   <text x="400" y="634" text-anchor="middle" font-size="13" font-style="italic" fill="#f4e3d6">the tree silently loses content</text>
 

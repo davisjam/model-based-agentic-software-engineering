@@ -34,34 +34,36 @@
   <text x="470" y="86" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.5" fill="#9a3f12">PROBLEM</text>
   <text x="730" y="86" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.5" fill="#155c38">METHOD</text>
 
+  <!-- ===== EDGES (drawn under nodes; source runs to node centre, directed head seats on target rim) ===== -->
+  <!-- edge: trait-a -> representation-problem -->
+  <line x1="180" y1="138" x2="358" y2="138" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
+  <!-- edge: representation-problem -> modeling -->
+  <line x1="470" y1="138" x2="618" y2="138" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
+  <!-- edge: trait-b -> authority-problem -->
+  <line x1="180" y1="288" x2="358" y2="288" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
+  <!-- edge: authority-problem -> alignment -->
+  <line x1="470" y1="288" x2="618" y2="288" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
+
   <!-- ===== ROW A: representation problem -> modeling ===== -->
-  <rect x="40" y="110" width="280" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="trait-a" x="40" y="110" width="280" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="180" y="143" text-anchor="middle" font-size="16.5" fill="#1c1917">finite working state</text>
 
-  <line x1="320" y1="138" x2="358" y2="138" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
-
-  <rect x="360" y="110" width="220" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
+  <rect id="representation-problem" x="360" y="110" width="220" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="470" y="143" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Representation problem</text>
 
-  <line x1="580" y1="138" x2="618" y2="138" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
-
-  <rect x="620" y="108" width="264" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <rect id="modeling" x="620" y="108" width="264" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
   <text x="752" y="134" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Modeling</text>
   <text x="752" y="155" text-anchor="middle" font-size="13.5" fill="#57534e">represent what agents reason through</text>
 
   <!-- ===== ROW B: authority problem -> alignment ===== -->
-  <rect x="40" y="252" width="280" height="72" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="trait-b" x="40" y="252" width="280" height="72" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="180" y="282" text-anchor="middle" font-size="16" fill="#1c1917">probabilistic productive work</text>
   <text x="180" y="304" text-anchor="middle" font-size="16" fill="#1c1917">observable, interposable seams</text>
 
-  <line x1="320" y1="288" x2="358" y2="288" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
-
-  <rect x="360" y="260" width="220" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
+  <rect id="authority-problem" x="360" y="260" width="220" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="470" y="293" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Authority problem</text>
 
-  <line x1="580" y1="288" x2="618" y2="288" stroke="#57534e" stroke-width="2.4" marker-end="url(#sm-k)"/>
-
-  <rect x="620" y="258" width="264" height="60" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+  <rect id="alignment" x="620" y="258" width="264" height="60" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
   <text x="752" y="284" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Alignment</text>
   <text x="752" y="305" text-anchor="middle" font-size="13.5" fill="#57534e">give obligations authority</text>
 

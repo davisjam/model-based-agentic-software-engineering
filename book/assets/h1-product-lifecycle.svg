@@ -23,35 +23,50 @@
 
   <!-- four lifecycle boxes -->
   <g>
-    <rect x="28"  y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="discovery" x="28"  y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="134" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">PRODUCT</text>
     <text x="134" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">DISCOVERY</text>
 
-    <rect x="274" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="engineering" x="274" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="380" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">ENGINEERING &amp;</text>
     <text x="380" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">REALIZATION</text>
 
-    <rect x="520" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="product-mgmt" x="520" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="626" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">PRODUCT MGMT &amp;</text>
     <text x="626" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">MAINTENANCE</text>
 
-    <rect x="766" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="operations" x="766" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="872" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">OPERATIONS &amp;</text>
     <text x="872" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INCIDENTS</text>
   </g>
 
   <!-- flow arrows between boxes -->
   <g stroke="#57534e" stroke-width="2.6" marker-end="url(#h1-ah)">
+    <!-- edge: discovery -> engineering -->
     <line x1="240" y1="101" x2="272" y2="101"/>
+    <!-- edge: engineering -> product-mgmt -->
     <line x1="486" y1="101" x2="518" y2="101"/>
+    <!-- edge: product-mgmt -> operations -->
     <line x1="732" y1="101" x2="764" y2="101"/>
   </g>
 
-  <!-- questions under each box -->
+  <!-- transparent anchors over each question pair, so the down-tick plugs into a named node -->
+  <g fill="none" stroke="none">
+    <rect id="q-discovery"    x="44"  y="160" width="180" height="46"/>
+    <rect id="q-engineering"  x="290" y="160" width="180" height="46"/>
+    <rect id="q-product-mgmt" x="536" y="160" width="180" height="46"/>
+    <rect id="q-operations"   x="782" y="160" width="180" height="46"/>
+  </g>
+
+  <!-- questions under each box: box -> its question anchor -->
   <g stroke="#57534e" stroke-width="1.6" marker-end="url(#h1-ah)">
+    <!-- edge: discovery -> q-discovery -->
     <line x1="134" y1="138" x2="134" y2="156"/>
+    <!-- edge: engineering -> q-engineering -->
     <line x1="380" y1="138" x2="380" y2="156"/>
+    <!-- edge: product-mgmt -> q-product-mgmt -->
     <line x1="626" y1="138" x2="626" y2="156"/>
+    <!-- edge: operations -> q-operations -->
     <line x1="872" y1="138" x2="872" y2="156"/>
   </g>
   <g font-size="16" fill="#57534e" text-anchor="middle" font-style="italic">
@@ -82,7 +97,7 @@
   <line x1="500" y1="428" x2="500" y2="488" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#h1-ah-u)"/>
 
   <!-- Assurance & Compliance — drawn below, cross-cutting (umber accent) -->
-  <rect x="336" y="490" width="328" height="82" rx="11" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <rect id="assurance" x="336" y="490" width="328" height="82" rx="11" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="500" y="526" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">ASSURANCE &amp;</text>
   <text x="500" y="550" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">COMPLIANCE</text>
   <text x="712" y="536" font-size="15" font-style="italic" fill="#9a3f12">cross-cutting</text>
