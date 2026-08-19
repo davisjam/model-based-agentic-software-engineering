@@ -6284,16 +6284,6 @@
         }
       ]
     },
-    "section-id:how-coding-agents-work-and-fail": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "0.3-the-books-language::how-coding-agents-work-and-fail",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:how-could-we-test-this": {
       "kind": "section-id",
       "dependents": [
@@ -6911,6 +6901,16 @@
           "view": "outcomes",
           "element": "size-the-leap-to-the-model-and-the-guarantee::size-the-leap-a-transformation-makes-to-the-m",
           "role": "primary-unit"
+        }
+      ]
+    },
+    "section-id:software-agents": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "0.3-the-books-language::software-agents",
+          "role": "section-anchor"
         }
       ]
     },
