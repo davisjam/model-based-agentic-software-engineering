@@ -50,8 +50,8 @@
   </g>
 
   <!-- generators -> artifacts -->
-  <path d="M594,80 C640,72 655,64 704,55" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
-  <path d="M594,110 C640,118 655,128 705,140" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
+  <path d="M594,80 C640,72 674,55.3 704,55" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
+  <path d="M594,110 C640,118 675,138.9 705,140" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
 
   <!-- ===== parity gates (decision diamond) ===== -->
   <polygon points="480,275 580,330 480,385 380,330" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -59,7 +59,7 @@
   <text x="480" y="350" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">gates</text>
 
   <!-- model -> parity gates (down the left, into the diamond's top vertex) -->
-  <path d="M165,158 C165,240 340,255 478,276" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
+  <path d="M165,158 C165,240 476.9,246 478,276" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
   <!-- reality -> parity gates -->
   <line x1="284" y1="330" x2="379" y2="330" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
 
