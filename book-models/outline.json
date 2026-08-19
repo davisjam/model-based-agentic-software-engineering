@@ -7,7 +7,7 @@
     "derived_ids": 147,
     "missing_topic_sentence": 1,
     "sections_drained": 109,
-    "paragraph_points": 450
+    "paragraph_points": 475
   },
   "chapters": [
     {
@@ -578,19 +578,34 @@
               "block_index": 16
             },
             {
+              "slug": "unmodeled-freedom-has-an-exploratory-role",
+              "text": "Early unmodeled freedom is exploratory, not only economy.",
+              "block_index": 18
+            },
+            {
+              "slug": "modeling-can-be-an-instrument-of-discovery",
+              "text": "Complexity can make a model an instrument of discovery.",
+              "block_index": 20
+            },
+            {
+              "slug": "unknown-tacit-free-are-a-present-state-not-a-ladder",
+              "text": "Unknown, tacit, and free are present states, not a ladder.",
+              "block_index": 23
+            },
+            {
               "slug": "the-question-decides-what-to-keep",
               "text": "Hold the system constant, change the question, and the model changes; there is no single model of the system.",
-              "block_index": 19
+              "block_index": 25
             },
             {
               "slug": "there-is-no-model-of-the-system",
               "text": "There is no model of the system, only purposeful reductions that each answer one question.",
-              "block_index": 22
+              "block_index": 28
             },
             {
               "slug": "a-reduction-first-even-when-executable",
               "text": "A model is a reduction first, even when it runs; executability changes what you can DO with it, not whether it abstracts.",
-              "block_index": 24
+              "block_index": 30
             }
           ]
         },
@@ -600,27 +615,27 @@
           "heading_text": "Structure Makes Representations Machine-Operable",
           "topic_sentence": "Externalizing knowledge saves reconstruction only if a machine can read it back.",
           "id_source": "derived",
-          "block_index": 26,
+          "block_index": 32,
           "points": [
             {
               "slug": "structured-is-the-word-doing-the-work",
               "text": "Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined.",
-              "block_index": 28
+              "block_index": 34
             },
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage.",
-              "block_index": 31
+              "block_index": 37
             },
             {
               "slug": "shape-does-not-distinguish-a-model-semantics-do",
               "text": "A knowledge graph exposes what exists; an engineering model carries the semantics a question needs. Shape does not distinguish them.",
-              "block_index": 34
+              "block_index": 40
             },
             {
               "slug": "industry-already-lives-here",
               "text": "Externalized knowledge representation is the lightest form of Modeling, and most of industry already stands on it.",
-              "block_index": 36
+              "block_index": 42
             }
           ]
         },
@@ -630,27 +645,27 @@
           "heading_text": "Representations Support Accumulating Capabilities",
           "topic_sentence": "Structured representations can support progressively different capabilities: externalized knowledge, typed relationships, explicit semantics, stated properties, derivation, generation, traceability, and checking.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 44,
           "points": [
             {
               "slug": "capability-comes-in-rungs",
               "text": "A representation gains capability one property at a time: externalize, structure, add semantics and obligation, derive or check. Each capability answers more questions.",
-              "block_index": 40
+              "block_index": 46
             },
             {
               "slug": "capability-is-not-maturity-authority-is-a-separate-axis",
               "text": "Capability is a separate dimension from authority; strong local controls can exist with little modeling, and a rich model may remain advisory.",
-              "block_index": 43
+              "block_index": 49
             },
             {
               "slug": "the-consequence-is-selective-modeling",
               "text": "The consequence is not \"model everything\" but selective modeling: model facts repeatedly reconstructed and properties repeatedly adjudicated.",
-              "block_index": 45
+              "block_index": 51
             },
             {
               "slug": "modeling-expands-the-surface-authority-can-operate-over",
               "text": "Modeling does not create authority and authority does not require modeling; modeling expands the semantic surface over which authority can operate.",
-              "block_index": 47
+              "block_index": 53
             }
           ]
         },
@@ -660,22 +675,22 @@
           "heading_text": "Six Classes of Engineering Question",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 49,
+          "block_index": 55,
           "points": [
             {
               "slug": "the-six-class-ontology-is-useful-not-exhaustive",
               "text": "The classification caveat: six classes organized by the engineering question a model answers, useful rather than exhaustive, and able to overlap.",
-              "block_index": 51
+              "block_index": 57
             },
             {
               "slug": "the-classes-are-views-not-boxes",
               "text": "The classes classify questions, not data structures; one represented fact can answer several. The lease is Ownership, Behavioral, and Measurement at once.",
-              "block_index": 55
+              "block_index": 61
             },
             {
               "slug": "system-knowledge-is-substrate-not-a-seventh-class",
               "text": "System knowledge is the connected substrate where the six classes meet, not a seventh peer class.",
-              "block_index": 58
+              "block_index": 64
             }
           ]
         },
@@ -685,17 +700,17 @@
           "heading_text": "Purpose Comes First; Representation Follows",
           "topic_sentence": "The class names a model's purpose.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 66,
           "points": [
             {
               "slug": "purpose-and-shape-are-different-axes",
               "text": "A model's class (its purpose) is a different axis from its representation shape (graph, state machine, table); the same purpose admits several forms.",
-              "block_index": 62
+              "block_index": 68
             },
             {
               "slug": "several-forms-can-serve-one-purpose",
               "text": "The engineering question fixes the purpose; several forms may serve it, and one form may serve several purposes.",
-              "block_index": 64
+              "block_index": 70
             }
           ]
         },
@@ -705,22 +720,22 @@
           "heading_text": "The Six Model Classes",
           "topic_sentence": "Each of the next six chapters takes one class through one production model from DocAble:",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 72,
           "points": [
             {
               "slug": "one-class-per-chapter-then-the-substrate",
               "text": "Each of the next six chapters takes one class through one DocAble model; the final chapter treats the connected substrate.",
-              "block_index": 68
+              "block_index": 74
             },
             {
               "slug": "the-substrate-and-the-forward-boundary",
               "text": "The final chapter treats the models as a connected substrate; Part III gives selected properties consequence.",
-              "block_index": 71
+              "block_index": 77
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment gives selected properties consequence.",
-              "block_index": 73
+              "block_index": 79
             }
           ]
         }
@@ -781,9 +796,14 @@
               "block_index": 12
             },
             {
+              "slug": "join-static-and-runtime-only-when-a-question-pays",
+              "text": "Join static and runtime only when a question pays.",
+              "block_index": 15
+            },
+            {
               "slug": "an-agent-enters-through-the-object-its-task-names-and-traverses-outward",
               "text": "Semantic unity lets an agent enter the substrate at the entity its task names and follow relations outward, taking only the connected slice the question needs.",
-              "block_index": 15
+              "block_index": 17
             }
           ]
         },
@@ -793,47 +813,57 @@
           "heading_text": "Maintain Explicit Correspondence",
           "topic_sentence": "Multiple models create a correspondence problem: represented facts can diverge from the system or from one another.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 20,
           "points": [
             {
               "slug": "a-family-of-models-risks-a-second-system-of-record-that-diverges",
               "text": "A family of models invites an obvious danger — a second system of record that quietly diverges from the first — and the answer is to engineer the relationship between map and territory, not to stop modeling.",
-              "block_index": 20
+              "block_index": 22
             },
             {
               "slug": "name-the-direction-of-derivation-up-front",
               "text": "A model and the code stay equal by derivation, and derivation runs in one of two directions; the machinery that keeps them equal depends on which.",
-              "block_index": 23
+              "block_index": 25
+            },
+            {
+              "slug": "the-computation-graph-is-the-fullest-derive-case",
+              "text": "The graph derives both nodes and edges from declarations.",
+              "block_index": 32
+            },
+            {
+              "slug": "derivation-solves-correspondence-not-architecture-quality",
+              "text": "Derivation settles correspondence, not whether the architecture is good.",
+              "block_index": 34
             },
             {
               "slug": "where-neither-is-fully-derivable-maintain-traceability-and-check-decidable-predicates",
               "text": "Where neither side can be fully derived from the other, maintain traceability between them and check the predicates that are mechanically decidable.",
-              "block_index": 30
+              "block_index": 36
             },
             {
               "slug": "two-layers-cover-the-relationship-mechanical-and-judgment",
               "text": "Mechanical correspondence has a declared surface: some claims are decidable, others remain semantic and require judgment, and still others are not modeled at all.",
-              "block_index": 33
+              "block_index": 39
             },
             {
               "slug": "two-gaps-remain-the-semantic-miss-and-the-unmodeled-region",
               "text": "Two different gaps: a semantic miss, where correspondence still holds syntactically but meaning has changed, and an unmodeled region, which has no model-based coverage.",
-              "block_index": 35
+              "block_index": 41
             },
             {
               "slug": "an-executable-model-is-its-schema-plus-its-checked-predicates",
               "text": "Operationally, an executable model is its structured schema plus the predicates a machine can check over that schema; a schema without checked predicates is only half the pattern.",
-              "block_index": 38
+              "block_index": 44
             },
             {
               "slug": "no-synchronization-mechanism-proves-semantic-correctness",
               "text": "Synchronization does not establish that the model is correct; a model can be perfectly in sync and still express the wrong architecture.",
-              "block_index": 43
+              "block_index": 49
             },
             {
               "slug": "the-narrow-guarantee-is-the-boundary-part-iii-begins-at",
               "text": "The bounded guarantee — decide the decidable over the claimed surface — is the boundary Part III opens on, where agreement is distinguished from correctness.",
-              "block_index": 46
+              "block_index": 52
             }
           ]
         },
@@ -843,37 +873,42 @@
           "heading_text": "Modeling Makes Properties Available to Alignment",
           "topic_sentence": "A model does not govern the system merely by existing.",
           "id_source": "derived",
-          "block_index": 48,
+          "block_index": 54,
           "points": [
             {
               "slug": "a-model-does-not-govern-by-existing-it-makes-a-property-explicit",
               "text": "A model does not govern the system by existing; each class can name a property — a forbidden dependency, an illegal transition, a budget, an evidence requirement — without preventing its violation.",
-              "block_index": 49
+              "block_index": 55
+            },
+            {
+              "slug": "the-graph-supplies-structural-property-part-iii-judges-correctness",
+              "text": "The graph supplies a property; Part III judges correctness.",
+              "block_index": 57
             },
             {
               "slug": "modeling-makes-a-property-explicit-alignment-gives-selected-properties-consequence",
               "text": "That separation is deliberate: modeling makes an engineering property explicit, and Alignment gives selected properties consequence — a constraint, a sensor, or a validated gate.",
-              "block_index": 51
+              "block_index": 59
             },
             {
               "slug": "the-richer-the-representation-the-richer-the-properties-available-to-govern",
               "text": "The richer the representation, the richer the properties available to govern; local syntactic properties need little modeling, but architecture, temporal obligations, distributed ownership, and end-to-end policy need semantics before they can be judged.",
-              "block_index": 54
+              "block_index": 62
             },
             {
               "slug": "alignment-does-not-require-a-separately-represented-model-its-limit-is-what-the-environment-can-state-and-observe",
               "text": "Alignment does not require a separately represented model — a sandbox, compiler, and test already carry real authority over observable behavior.",
-              "block_index": 56
+              "block_index": 64
             },
             {
               "slug": "models-change-the-scale-of-the-questions-we-can-reason-about",
               "text": "Models expand the semantic reach of authority: making architecture, behavior, ownership, decisions, measurements, and provenance explicit makes properties available that would otherwise be reconstructed each time.",
-              "block_index": 58
+              "block_index": 66
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-authority-is-a-separate-question",
               "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Part III asks the separate question of authority.",
-              "block_index": 60
+              "block_index": 68
             }
           ]
         }
@@ -1044,22 +1079,22 @@
           "heading_text": "The Semantic Gap",
           "topic_sentence": "A second problem is placement.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 37,
           "points": [
             {
               "slug": "an-obligation-can-be-perfectly-stated-and-unenforceable-at-the-boundary-you-check",
               "text": "An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it.",
-              "block_index": 29
+              "block_index": 39
             },
             {
               "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
               "text": "A deployment can pass every earlier check and still serve a blank page; the property is legible only once the pieces compose in the served system.",
-              "block_index": 33
+              "block_index": 43
             },
             {
               "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
               "text": "Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work.",
-              "block_index": 35
+              "block_index": 45
             }
           ]
         },
@@ -1069,27 +1104,27 @@
           "heading_text": "The Earliest Decidable Boundary",
           "topic_sentence": "The agent-return check is one instance of a rule that runs under the whole of this Part:",
           "id_source": "derived",
-          "block_index": 41,
+          "block_index": 51,
           "points": [
             {
               "slug": "place-authority-at-the-earliest-boundary-where-the-obligation-is-legible-and-enforceable",
               "text": "The design rule: place authority at the earliest boundary where the obligation is both legible and enforceable.",
-              "block_index": 43
+              "block_index": 53
             },
             {
               "slug": "the-part-two-rhyme-coarsest-representation-earliest-boundary",
               "text": "The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
-              "block_index": 50
+              "block_index": 60
             },
             {
               "slug": "real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one",
               "text": "Real boundaries are sometimes approximate: semantic placement is an engineering trade-off, not a demand for a theoretically perfect hook.",
-              "block_index": 54
+              "block_index": 64
             },
             {
               "slug": "the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does",
               "text": "The chapter has supplied both requirements for authority; the next question is what the mechanism at that boundary actually does.",
-              "block_index": 56
+              "block_index": 66
             }
           ]
         }
@@ -3060,19 +3095,104 @@
               "block_index": 29
             },
             {
+              "slug": "field-note-i-modeled-computations-before-composition",
+              "text": "I modeled the computations early, their composition late.",
+              "block_index": 31
+            },
+            {
+              "slug": "what-i-had-not-modeled-was-composition",
+              "text": "No pass declared its composition in a common vocabulary.",
+              "block_index": 33
+            },
+            {
+              "slug": "early-freedom-was-productive-exploration",
+              "text": "Early freedom was productive exploration, not day-one debt.",
+              "block_index": 35
+            },
+            {
+              "slug": "the-balance-changed-as-the-pipeline-grew",
+              "text": "As the pipeline grew, loose composition became expensive.",
+              "block_index": 37
+            },
+            {
+              "slug": "i-had-modeled-both-ends-not-the-middle",
+              "text": "I modeled both ends, but not their relationship.",
+              "block_index": 39
+            },
+            {
+              "slug": "complexity-motivated-the-model",
+              "text": "Complexity made the graph an instrument to reduce it.",
+              "block_index": 41
+            },
+            {
+              "slug": "consumer-in-what-sense-data-vs-control",
+              "text": "Most candidate edges were control, not data flow.",
+              "block_index": 43
+            },
+            {
+              "slug": "mutation-kind-classification-made-freedom-visible",
+              "text": "Mutation-kind classification showed where freedom remained, not fault.",
+              "block_index": 45
+            },
+            {
+              "slug": "this-changed-how-i-read-the-earlier-freedom",
+              "text": "Building the model, not a prepared ontology, found the distinctions.",
+              "block_index": 47
+            },
+            {
+              "slug": "the-remediation-was-projection-not-more-arrows",
+              "text": "The fix projected edges under a blocking parity check.",
+              "block_index": 50
+            },
+            {
+              "slug": "degrees-of-freedom-economic-and-exploratory",
+              "text": "Freedom is often economic, but also exploratory.",
+              "block_index": 52
+            },
+            {
+              "slug": "two-signals-that-freedom-has-done-its-job",
+              "text": "Recurring variation or complexity signals freedom's job is done.",
+              "block_index": 54
+            },
+            {
+              "slug": "computations-stabilized-before-their-composition",
+              "text": "The computations stabilized before their composition semantics did.",
+              "block_index": 56
+            },
+            {
+              "slug": "residuals-are-part-of-the-lesson",
+              "text": "The work is unfinished; stating residuals is modeling.",
+              "block_index": 58
+            },
+            {
+              "slug": "the-two-worlds-first-deliberate-touch",
+              "text": "Testing is where static and realized first deliberately touch.",
+              "block_index": 60
+            },
+            {
+              "slug": "the-point-was-to-know-where-the-freedom-is",
+              "text": "Modeling made the remaining freedom visible, not zero.",
+              "block_index": 62
+            },
+            {
+              "slug": "callback-a-finished-architecture-hides-its-history",
+              "text": "A finished architecture hides the history that produced it.",
+              "block_index": 64
+            },
+            {
               "slug": "a-convenient-call-silently-corrupted-the-product",
               "text": "A convenient one-line call stripped the accessibility structure the product exists to add, and nothing caught it.",
-              "block_index": 31
+              "block_index": 66
             },
             {
               "slug": "the-format-seam-hardened-in-layers",
               "text": "The response came in layers, and the sharpest was the enforcement itself mis-reporting green; the model stated the boundary, the API and check gave it authority, and the authority still had to be maintained.",
-              "block_index": 33
+              "block_index": 68
             },
             {
               "slug": "a-protection-boundary-works-only-over-the-paths-that-cross-it",
               "text": "A file path crossed a service boundary; a typed client made the mistake unrepresentable, and a human review found a bypass the tests missed — a protection boundary only governs the paths that cross it.",
-              "block_index": 36
+              "block_index": 71
             }
           ]
         },
@@ -3082,107 +3202,107 @@
           "heading_text": "The Delegation Staircase",
           "topic_sentence": "The five rungs are retrospective names for the changing center of gravity of my work—co-coder, QA, review lead, tech lead, architect—not a prescribed career ladder.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 73,
           "points": [
             {
               "slug": "mage-was-not-designed-as-an-org-chart",
               "text": "The five rung labels are retrospective names for the changing center of gravity of my own work, not a career ladder.",
-              "block_index": 40
+              "block_index": 75
             },
             {
               "slug": "the-staircase-has-two-interacting-supports",
               "text": "Alignment moved repeatable authority out of direct human review; Modeling moved system knowledge out of my head; human judgment moved toward the gaps the environment could not yet represent or decide.",
-              "block_index": 42
+              "block_index": 77
             },
             {
               "slug": "delegation-climbed-as-far-as-the-environment-could-carry-it",
               "text": "Delegation climbed as far as the engineered environment could carry it; when representation or authority was too weak, the operator fell back into tactical work.",
-              "block_index": 44
+              "block_index": 79
             },
             {
               "slug": "rung-co-coder",
               "text": "Direct human inspection carried everything; it failed as an operating model once generation outran review.",
-              "block_index": 46
+              "block_index": 81
             },
             {
               "slug": "rung-qa",
               "text": "Evaluation was delegated before authority was; the audit's value was diagnostic, and its decidable findings revealed questions that no longer needed a language model.",
-              "block_index": 48
+              "block_index": 83
             },
             {
               "slug": "rung-review-lead",
               "text": "Judgment was specialized and the decidable residue dropped into machinery; the probabilistic reviewers kept the questions the checks could not settle.",
-              "block_index": 50
+              "block_index": 85
             },
             {
               "slug": "rung-tech-lead",
               "text": "Representation made reasoning local; named zones externalized ownership so an agent could reason inside one region, and selected rules over the zone model received authority.",
-              "block_index": 52
+              "block_index": 87
             },
             {
               "slug": "rung-architect",
               "text": "Explicit models carried system-level knowledge; declaration did not make them true, so model drift became its own failure class answered by traceability.",
-              "block_index": 54
+              "block_index": 89
             },
             {
               "slug": "explicit-models-changed-what-could-be-checked",
               "text": "Explicit models changed what could be established mechanically, down to exhaustively exploring the finite ownership state space.",
-              "block_index": 56
+              "block_index": 91
             },
             {
               "slug": "temporal-properties-needed-tla-and-tlc",
               "text": "Temporal properties such as eventual termination ranged over executions, so I checked small TLA+ specifications with TLC.",
-              "block_index": 58
+              "block_index": 93
             },
             {
               "slug": "checking-the-model-created-a-second-obligation",
               "text": "Checking the model created a second obligation: why should a property established over the model be believed about the implementation?",
-              "block_index": 60
+              "block_index": 95
             },
             {
               "slug": "conformance-check-drift-became-an-alignment-problem",
               "text": "A conformance test drifted red for days; the durable response gave the formal checks the same drift controls as the models they supported.",
-              "block_index": 62
+              "block_index": 97
             },
             {
               "slug": "exhaustive-checking-and-correspondence-are-separate-claims",
               "text": "Exhaustive checking establishes a property of the model; correspondence evidence is the separate claim that the implementation still realizes it.",
-              "block_index": 64
+              "block_index": 99
             },
             {
               "slug": "formal-methods-entered-where-they-paid-off",
               "text": "DocAble gave each formal result only the authority its connection to the implementation could support.",
-              "block_index": 66
+              "block_index": 101
             },
             {
               "slug": "the-representation-changed-what-i-could-understand",
               "text": "The formal machinery mattered, but representation came first: naming behaviors changed what I could state and understand.",
-              "block_index": 68
+              "block_index": 103
             },
             {
               "slug": "vocabulary-shapes-what-an-engineer-can-see",
               "text": "Software engineering already accepts a milder version: a shared vocabulary shapes the properties an engineer can see and state.",
-              "block_index": 70
+              "block_index": 105
             },
             {
               "slug": "the-incident-represented-a-class",
               "text": "A later audit showed the incident was a class, not a one-off; mechanical correspondence checks retired a recurring class of stale-reference failure.",
-              "block_index": 73
+              "block_index": 108
             },
             {
               "slug": "modeling-found-real-bugs",
               "text": "Forcing an engineering relation into an explicit representation creates new questions the environment can ask; in three cases those questions exposed shipping defects green tests had missed.",
-              "block_index": 75
+              "block_index": 110
             },
             {
               "slug": "staircase-figure",
               "text": "The staircase shows delegation increasing as the environment absorbed two kinds of work; human judgment moved toward strategy and residual semantics rather than vanishing.",
-              "block_index": 79
+              "block_index": 114
             },
             {
               "slug": "delegation-depends-on-what-the-environment-can-carry",
               "text": "Delegation increased as the environment absorbed system knowledge (representation) and repeatable admission (authority); a weak model or weak controls pulled the operator back into tactical work; human judgment stayed at the unresolved edge.",
-              "block_index": 83
+              "block_index": 118
             }
           ]
         }
@@ -3640,6 +3760,11 @@
               "slug": "frontier-concerns-obligations-degrees-of-freedom-concern-realization",
               "text": "The frontier concerns obligations; degrees of freedom concern realization.",
               "block_index": 47
+            },
+            {
+              "slug": "degrees-of-freedom-can-carry-exploratory-value",
+              "text": "Degrees of freedom can also carry exploratory value.",
+              "block_index": 50
             }
           ]
         }
