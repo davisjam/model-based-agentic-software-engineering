@@ -1206,6 +1206,19 @@ def cmd_validate(_args) -> int:
     if nonortho:
         print(f"  [ortho] AUDIT-ONLY: {lfeso.summary_line(nonortho)} — "
               f"run `python3 book-models/lint_figure_edge_should_be_orthogonal.py` (does not gate)")
+    # FIGURE LEGEND-TEXT-OVERFLOW — the boxed-label-clears-its-box-RIGHT-border sensor over book/assets/*.svg
+    # (the right-edge complement to the whole-box overflow sensor above). A legend row's label is left-anchored
+    # and starts part way across its box, so it can be narrower than the box yet still run past the box's right
+    # border — the whole-box sensor cannot see this. This one resolves each label's text-anchor to its rendered
+    # right extent (reusing the overflow sensor's glyph-advance width model) and flags a label that crosses the
+    # visible box right border. AUDIT-ONLY-first per the repo's blocking-lint discipline: a fix-wave has drained
+    # the corpus to 0, but a new geometric sensor over a hand-authored corpus PRINTS (does not increment
+    # n_issues) until a follow-up flips it blocking. See book-models/lint_figure_legend_text_overflow.py.
+    import lint_figure_legend_text_overflow as lflto  # noqa: E402 — audit-only right-border overflow sensor
+    legend_over = lflto.findings()
+    if legend_over:
+        print(f"  [legendovf] AUDIT-ONLY: {lflto.summary_line(legend_over)} — "
+              f"run `python3 book-models/lint_figure_legend_text_overflow.py` (does not gate)")
     # HEADING CASE — the headings-are-Title-Case sensor over the book's TWO heading sources: markdown `#`
     # headings in book/part*/ + book/appendix-*/, AND the appendix ENTRY titles in build_book.py's `_*_PAGES`
     # / `_STACKS` page-list tuples. For each heading off the ratified Title-Case convention it emits the

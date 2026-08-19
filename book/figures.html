@@ -6936,7 +6936,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="846.5" y="484" text-anchor="middle" font-size="14.08" font-weight="700" fill="#1f7a4d">B</text>
 
   <!-- ============ LEGEND: the four dynamics (grayscale key — numbers carry meaning) ============ -->
-  <rect x="40" y="1048" width="800" height="140" rx="8" fill="#f6f4ef" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="40" y="1048" width="810" height="140" rx="8" fill="#f6f4ef" stroke="#e4e0d8" stroke-width="1.5"/>
 
   <circle cx="70" cy="1078" r="14" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.4"/>
   <text x="70" y="1084" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">1</text>
@@ -6963,7 +6963,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="692" y="1113" text-anchor="start" font-size="14.08" fill="#57534e">enlarges ambition</text>
 
   <!-- R / B loop-typing note (system-dynamics convention) -->
-  <line x1="56" y1="1132" x2="824" y2="1132" stroke="#e4e0d8" stroke-width="1"/>
+  <line x1="56" y1="1132" x2="834" y2="1132" stroke="#e4e0d8" stroke-width="1"/>
   <rect x="56" y="1146" width="17" height="17" rx="3" fill="#fdfcf9" stroke="#1f7a4d" stroke-width="2"/>
   <text x="64.5" y="1159" text-anchor="middle" font-size="14.08" font-weight="700" fill="#1f7a4d">B</text>
   <text x="80" y="1159" text-anchor="start" font-size="14.08" fill="#1c1917"><tspan font-weight="700">balancing</tspan> — loops [2]+[3] seek fit, damping churn (goal-seeking).</text>
@@ -7979,7 +7979,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="380" y="438" text-anchor="middle" font-size="14" fill="#57534e">prevent unsafe progress</text>
 
   <!-- legend (prominent, boxed) -->
-  <rect x="500" y="392" width="230" height="86" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="500" y="392" width="248" height="86" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
   <line x1="518" y1="418" x2="562" y2="418" stroke="#2f5169" stroke-width="2.6" marker-end="url(#fig-A-4-1-f-observe-react-stack-ah)"/>
   <text x="572" y="423" font-size="14" fill="#57534e">load-bearing (required)</text>
   <line x1="518" y1="452" x2="562" y2="452" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#fig-A-4-1-f-observe-react-stack-aho)"/>
@@ -8108,7 +8108,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="592" y="300" font-size="14" font-weight="700" fill="#2f5169" transform="rotate(90 592 300)">next iteration</text>
 
   <!-- legend -->
-  <rect x="60" y="522" width="250" height="60" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="60" y="522" width="266" height="60" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
   <line x1="78" y1="552" x2="122" y2="552" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-A-6-1-f-governance-conversion-stack-ah)"/>
   <text x="132" y="557" font-size="14" fill="#57534e">load-bearing loop (all required)</text>
 
@@ -8186,7 +8186,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M560,411 L507,411" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#fig-A-7-1-f-context-delivery-stack-aho)"/>
 
   <!-- legend (top-left, clear of the centered top box) -->
-  <rect x="30" y="26" width="196" height="76" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="30" y="26" width="248" height="76" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
   <line x1="48" y1="52" x2="92" y2="52" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-A-7-1-f-context-delivery-stack-ah)"/>
   <text x="102" y="57" font-size="14" fill="#57534e">load-bearing (required)</text>
   <line x1="48" y1="82" x2="92" y2="82" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#fig-A-7-1-f-context-delivery-stack-aho)"/>
@@ -9459,22 +9459,29 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="452" y="170" font-size="14" font-style="italic" fill="#57534e">scheduled under</text>
   <text x="452" y="186" font-size="14" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
 
-  <!-- HOST EXECUTION POLICY table (representation, variable overlay) -->
+  <!-- HOST EXECUTION POLICY table (representation, variable overlay).
+       Grid geometry (even rows): title band 200-236, then four 26px rows 236-340 (header + 3 data).
+       Row dividers span the full table width; the column divider runs the full body height. -->
   <rect id="fig-C-3-1-f-appendix-g-4-host-execution-policy-policy" x="220" y="200" width="300" height="140" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
-  <text x="370" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">HOST EXECUTION POLICY</text>
-  <line x1="220" y1="238" x2="520" y2="238" stroke="#8a2f2f" stroke-width="1.2"/>
-  <line x1="360" y1="238" x2="360" y2="340" stroke="#8a2f2f" stroke-width="1.2"/>
-  <text x="290" y="256" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">host profile</text>
-  <text x="440" y="256" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">scheduling</text>
-  <line x1="220" y1="264" x2="520" y2="264" stroke="#e3d3cd" stroke-width="1"/>
-  <text x="290" y="286" text-anchor="middle" font-size="15" fill="#1c1917">elastic</text>
-  <text x="440" y="286" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">fan out</text>
-  <line x1="220" y1="298" x2="520" y2="298" stroke="#e3d3cd" stroke-width="1"/>
-  <text x="290" y="318" text-anchor="middle" font-size="15" fill="#1c1917">metered</text>
-  <text x="440" y="318" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">bounded fan</text>
-  <line x1="220" y1="330" x2="520" y2="330" stroke="#e3d3cd" stroke-width="1"/>
-  <text x="290" y="336" text-anchor="middle" font-size="15" fill="#1c1917">scarce</text>
-  <text x="440" y="336" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">serialize</text>
+  <text x="370" y="224" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">HOST EXECUTION POLICY</text>
+  <!-- strong rule under the title; column divider spans header + all data rows -->
+  <line x1="220" y1="236" x2="520" y2="236" stroke="#8a2f2f" stroke-width="1.2"/>
+  <line x1="360" y1="236" x2="360" y2="340" stroke="#8a2f2f" stroke-width="1.2"/>
+  <!-- header row (236-262) -->
+  <text x="290" y="254" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">host profile</text>
+  <text x="440" y="254" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">scheduling</text>
+  <line x1="220" y1="262" x2="520" y2="262" stroke="#e3d3cd" stroke-width="1"/>
+  <!-- data row 1 (262-288) -->
+  <text x="290" y="280" text-anchor="middle" font-size="15" fill="#1c1917">elastic</text>
+  <text x="440" y="280" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">fan out</text>
+  <line x1="220" y1="288" x2="520" y2="288" stroke="#e3d3cd" stroke-width="1"/>
+  <!-- data row 2 (288-314) -->
+  <text x="290" y="306" text-anchor="middle" font-size="15" fill="#1c1917">metered</text>
+  <text x="440" y="306" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">bounded fan</text>
+  <line x1="220" y1="314" x2="520" y2="314" stroke="#e3d3cd" stroke-width="1"/>
+  <!-- data row 3 (314-340) -->
+  <text x="290" y="332" text-anchor="middle" font-size="15" fill="#1c1917">scarce</text>
+  <text x="440" y="332" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">serialize</text>
 
   <text x="360" y="372" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Load rationing lives in the scheduler — no deploy edge carries the LOAD intent.</text>
   <text x="40" y="418" font-size="14" font-style="italic" fill="#57534e">Legend: see Figure C-1.  No gate here: the policy is a representation; Part III decides any authority.</text>

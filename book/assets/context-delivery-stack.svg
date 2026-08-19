@@ -72,7 +72,7 @@
   <path d="M560,411 L507,411" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
 
   <!-- legend (top-left, clear of the centered top box) -->
-  <rect x="30" y="26" width="196" height="76" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="30" y="26" width="248" height="76" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
   <line x1="48" y1="52" x2="92" y2="52" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
   <text x="102" y="57" font-size="14" fill="#57534e">load-bearing (required)</text>
   <line x1="48" y1="82" x2="92" y2="82" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>

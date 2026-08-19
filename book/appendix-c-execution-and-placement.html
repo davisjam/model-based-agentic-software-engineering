@@ -760,22 +760,29 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="452" y="170" font-size="14" font-style="italic" fill="#57534e">scheduled under</text>
   <text x="452" y="186" font-size="14" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
 
-  <!-- HOST EXECUTION POLICY table (representation, variable overlay) -->
+  <!-- HOST EXECUTION POLICY table (representation, variable overlay).
+       Grid geometry (even rows): title band 200-236, then four 26px rows 236-340 (header + 3 data).
+       Row dividers span the full table width; the column divider runs the full body height. -->
   <rect id="f-appendix-g-4-host-execution-policy-policy" x="220" y="200" width="300" height="140" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
-  <text x="370" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">HOST EXECUTION POLICY</text>
-  <line x1="220" y1="238" x2="520" y2="238" stroke="#8a2f2f" stroke-width="1.2"/>
-  <line x1="360" y1="238" x2="360" y2="340" stroke="#8a2f2f" stroke-width="1.2"/>
-  <text x="290" y="256" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">host profile</text>
-  <text x="440" y="256" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">scheduling</text>
-  <line x1="220" y1="264" x2="520" y2="264" stroke="#e3d3cd" stroke-width="1"/>
-  <text x="290" y="286" text-anchor="middle" font-size="15" fill="#1c1917">elastic</text>
-  <text x="440" y="286" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">fan out</text>
-  <line x1="220" y1="298" x2="520" y2="298" stroke="#e3d3cd" stroke-width="1"/>
-  <text x="290" y="318" text-anchor="middle" font-size="15" fill="#1c1917">metered</text>
-  <text x="440" y="318" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">bounded fan</text>
-  <line x1="220" y1="330" x2="520" y2="330" stroke="#e3d3cd" stroke-width="1"/>
-  <text x="290" y="336" text-anchor="middle" font-size="15" fill="#1c1917">scarce</text>
-  <text x="440" y="336" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">serialize</text>
+  <text x="370" y="224" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">HOST EXECUTION POLICY</text>
+  <!-- strong rule under the title; column divider spans header + all data rows -->
+  <line x1="220" y1="236" x2="520" y2="236" stroke="#8a2f2f" stroke-width="1.2"/>
+  <line x1="360" y1="236" x2="360" y2="340" stroke="#8a2f2f" stroke-width="1.2"/>
+  <!-- header row (236-262) -->
+  <text x="290" y="254" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">host profile</text>
+  <text x="440" y="254" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">scheduling</text>
+  <line x1="220" y1="262" x2="520" y2="262" stroke="#e3d3cd" stroke-width="1"/>
+  <!-- data row 1 (262-288) -->
+  <text x="290" y="280" text-anchor="middle" font-size="15" fill="#1c1917">elastic</text>
+  <text x="440" y="280" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">fan out</text>
+  <line x1="220" y1="288" x2="520" y2="288" stroke="#e3d3cd" stroke-width="1"/>
+  <!-- data row 2 (288-314) -->
+  <text x="290" y="306" text-anchor="middle" font-size="15" fill="#1c1917">metered</text>
+  <text x="440" y="306" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">bounded fan</text>
+  <line x1="220" y1="314" x2="520" y2="314" stroke="#e3d3cd" stroke-width="1"/>
+  <!-- data row 3 (314-340) -->
+  <text x="290" y="332" text-anchor="middle" font-size="15" fill="#1c1917">scarce</text>
+  <text x="440" y="332" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">serialize</text>
 
   <text x="360" y="372" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Load rationing lives in the scheduler — no deploy edge carries the LOAD intent.</text>
   <text x="40" y="418" font-size="14" font-style="italic" fill="#57534e">Legend: see Figure C-1.  No gate here: the policy is a representation; Part III decides any authority.</text>

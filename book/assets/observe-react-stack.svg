@@ -68,7 +68,7 @@
   <text x="380" y="438" text-anchor="middle" font-size="14" fill="#57534e">prevent unsafe progress</text>
 
   <!-- legend (prominent, boxed) -->
-  <rect x="500" y="392" width="230" height="86" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="500" y="392" width="248" height="86" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
   <line x1="518" y1="418" x2="562" y2="418" stroke="#2f5169" stroke-width="2.6" marker-end="url(#ah)"/>
   <text x="572" y="423" font-size="14" fill="#57534e">load-bearing (required)</text>
   <line x1="518" y1="452" x2="562" y2="452" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>

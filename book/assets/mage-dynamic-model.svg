@@ -205,7 +205,7 @@
   <text x="846.5" y="484" text-anchor="middle" font-size="14.08" font-weight="700" fill="#1f7a4d">B</text>
 
   <!-- ============ LEGEND: the four dynamics (grayscale key — numbers carry meaning) ============ -->
-  <rect x="40" y="1048" width="800" height="140" rx="8" fill="#f6f4ef" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="40" y="1048" width="810" height="140" rx="8" fill="#f6f4ef" stroke="#e4e0d8" stroke-width="1.5"/>
 
   <circle cx="70" cy="1078" r="14" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.4"/>
   <text x="70" y="1084" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">1</text>
@@ -232,7 +232,7 @@
   <text x="692" y="1113" text-anchor="start" font-size="14.08" fill="#57534e">enlarges ambition</text>
 
   <!-- R / B loop-typing note (system-dynamics convention) -->
-  <line x1="56" y1="1132" x2="824" y2="1132" stroke="#e4e0d8" stroke-width="1"/>
+  <line x1="56" y1="1132" x2="834" y2="1132" stroke="#e4e0d8" stroke-width="1"/>
   <rect x="56" y="1146" width="17" height="17" rx="3" fill="#fdfcf9" stroke="#1f7a4d" stroke-width="2"/>
   <text x="64.5" y="1159" text-anchor="middle" font-size="14.08" font-weight="700" fill="#1f7a4d">B</text>
   <text x="80" y="1159" text-anchor="start" font-size="14.08" fill="#1c1917"><tspan font-weight="700">balancing</tspan> — loops [2]+[3] seek fit, damping churn (goal-seeking).</text>
