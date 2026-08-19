@@ -7209,6 +7209,31 @@
         }
       ]
     },
+    "section-id:the-new-bottleneck": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "claims",
+          "element": "churn-is-symptom",
+          "role": "claim-home"
+        },
+        {
+          "view": "claims",
+          "element": "fleet-scaling-bounds",
+          "role": "claim-home"
+        },
+        {
+          "view": "claims",
+          "element": "three-not-knowings",
+          "role": "claim-home"
+        },
+        {
+          "view": "outline",
+          "element": "0.4-preface::the-new-bottleneck",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:the-old-dream-with-a-new-substrate": {
       "kind": "section-id",
       "dependents": [
@@ -7515,31 +7540,6 @@
         {
           "view": "outline",
           "element": "6.4-reorganization-of-se::was-implementation-ever-the-bottleneck",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:what-changed": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "claims",
-          "element": "churn-is-symptom",
-          "role": "claim-home"
-        },
-        {
-          "view": "claims",
-          "element": "fleet-scaling-bounds",
-          "role": "claim-home"
-        },
-        {
-          "view": "claims",
-          "element": "three-not-knowings",
-          "role": "claim-home"
-        },
-        {
-          "view": "outline",
-          "element": "0.4-preface::what-changed",
           "role": "section-anchor"
         }
       ]

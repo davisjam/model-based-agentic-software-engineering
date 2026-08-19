@@ -72,9 +72,9 @@
         "churn — the symptom",
         "the three not-knowings — the causes"
       ],
-      "home": "what-changed",
+      "home": "the-new-bottleneck",
       "asserted_at": [
-        "what-changed"
+        "the-new-bottleneck"
       ],
       "contradicted_by": "Treating churn as the root problem to fix directly, or a technique aimed at the symptom rather than a cause.",
       "watch_phrases": [],
@@ -92,9 +92,9 @@
         "reasoning power and context window — the real bounds",
         "Brooks N² communication overhead"
       ],
-      "home": "what-changed",
+      "home": "the-new-bottleneck",
       "asserted_at": [
-        "what-changed",
+        "the-new-bottleneck",
         "reorganization-of-se"
       ],
       "contradicted_by": "Blaming coordination / communication overhead; OR treating the context window as the sole bound, ignoring reasoning capacity.",
@@ -112,9 +112,9 @@
       "kind": "scope-boundary",
       "statement": "Churn's recurring causes are weak representation (knowledge rediscovered) and weak authority (obligations re-inspected).",
       "distinguishes": [],
-      "home": "what-changed",
+      "home": "the-new-bottleneck",
       "asserted_at": [
-        "what-changed"
+        "the-new-bottleneck"
       ],
       "contradicted_by": "Enumerating a fixed count of churn causes unrelated to weak representation or weak authority.",
       "watch_phrases": [],
