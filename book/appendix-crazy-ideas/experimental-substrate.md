@@ -1,0 +1,11 @@
+Commodity intelligence may create an unusual empirical opportunity for software-engineering research. Studies of human engineering practice contend with substantial variation in experience, familiarity, reasoning style, and local practice. Agentic systems remain stochastic and evolve across releases, but more of the reasoning substrate can be held approximately fixed: model version, repository state, tool surface, prompt, sampling procedure, task family, and engineered environment.
+
+Repeated trials can therefore estimate stochastic variation while one representation, mechanism, or authority policy changes. Some system-scale questions become more directly interventional: not only *do teams using practice X report better outcomes?*, but *what changes when representation A is replaced by representation B, or admission policy A by policy B, under otherwise matched conditions?*[^ci-productivity]
+
+This suggests an experimental science in which the engineered environment itself becomes an independent variable. Cross reasoning engines with environments. Hold the task family fixed while changing the available models. Add or remove a validator. Vary correspondence strength. Compare thin and richly represented repositories. Measure durable throughput, reconstruction effort, defect escape, human intervention, and the distribution of engineering work.
+
+The opportunity is broader than MAGE. MAGE supplies one theory about which environmental variables should matter; other architectures should supply competing theories. The methodological conjecture is that commodity reasoners make some previously organizationally confounded software-engineering questions experimentally tractable enough for stronger causal study.
+
+**Possible paper seed:** *Software Engineering With a Standardized Reasoner: Commodity Intelligence as an Experimental Instrument.*
+
+[^ci-productivity]: The existing productivity record already runs both ways: a field experiment across thousands of developers measured a real rise in completed tasks [cite: cui2025genai], while experienced developers in familiar repositories ran measurably slower with early tooling even as they believed themselves faster [cite: metr2025productivity]. The spread motivates the design: agent effects are context-dependent, so "AI use" is too coarse a variable to test on its own.

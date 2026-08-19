@@ -3704,6 +3704,19 @@ _PRODUCT_LIFECYCLE_PAGES: list[tuple[str, str]] = [
     ("engineering-capital-across-time-and-space",           "Engineering Capital Across Time and Space"),
 ]
 
+# APPENDIX — Crazy Ideas. A TEMPORARY holding area for material carved out of Part 6 as outside the book's
+# core argument but worth keeping as research-paper seeds (front-door _opening.md carries the editorial-status
+# note; CI.1 "Commodity Intelligence as an Experimental Substrate" from the removed §6.3.5, CI.2 "Model
+# Induction From Realized Work" from the removed §6.5.5, which also re-homes the relocated model-induction
+# figure). Wired as a normal hand-authored appendix so it stays reachable; it is expected to be CUT before
+# publication. Appended LAST so it re-letters no earlier appendix. Content-page slugs are `appendix-i-<stem>`.
+_CRAZY_IDEAS_DIR = HERE / "appendix-crazy-ideas"
+_APPENDIX_CRAZY_IDEAS_OPENING_SLUG = "appendix-crazy-ideas"
+_CRAZY_IDEAS_PAGES: list[tuple[str, str]] = [
+    ("experimental-substrate", "Commodity Intelligence as an Experimental Substrate"),
+    ("model-induction",        "Model Induction from Realized Work"),
+]
+
 
 # APPENDIX D — Operator's Reference. Hand-authored, like the stacks Part and the skill recipe: a front-door
 # page whose opening prose lives here, then one authored markdown page per operational reference card under
@@ -4858,6 +4871,17 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
         opening_slug=_APPENDIX_PRODUCT_LIFECYCLE_OPENING_SLUG,
         opening_prose=_load_opening(_PRODUCT_LIFECYCLE_DIR / "_opening.md"),
         content_dir=_PRODUCT_LIFECYCLE_DIR, pages_source=_PRODUCT_LIFECYCLE_PAGES,
+        locator_figs=True, locator_heading=True)
+
+    # ── APPENDIX I — Crazy Ideas. A TEMPORARY holding area for material carved out of Part 6 (the removed
+    #    §6.3.5 and §6.5.5) as research-paper seeds outside the book's core argument; expected to be cut
+    #    before publication. Wired as a normal hand-authored appendix so it stays reachable via the pager.
+    #    Appended LAST so it re-letters no earlier appendix. CI.2 re-homes the relocated model-induction figure.
+    chapters += build_hand_authored_appendix(
+        next_part + 8, letter="I", part_name="Crazy Ideas",
+        opening_slug=_APPENDIX_CRAZY_IDEAS_OPENING_SLUG,
+        opening_prose=_load_opening(_CRAZY_IDEAS_DIR / "_opening.md"),
+        content_dir=_CRAZY_IDEAS_DIR, pages_source=_CRAZY_IDEAS_PAGES,
         locator_figs=True, locator_heading=True)
     return chapters
 
