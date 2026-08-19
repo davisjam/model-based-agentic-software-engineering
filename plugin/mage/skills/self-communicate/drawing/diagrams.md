@@ -93,12 +93,22 @@ right in the one layout the author eyeballed and drifts the moment the line move
     *picture* — always pair it with the render-and-look step below.
   - **Directed edges invert the attach move.** The center-plug rule above is for an *undirected* relation
     line. A *directed* edge — one carrying an arrowhead or a crow's-foot cardinality glyph — must do the
-    opposite: land the endpoint on the target's **perimeter** (box border / circle rim, or a few px inside)
-    and keep the **edge drawn on top of** the target, so the arrowhead sits outside the fill and stays
-    visible. Run a directed endpoint to the center and the node fill *buries the arrowhead* — erasing the
-    very mark that carries the edge's direction. (The lint accepts both: its rect test is border-inclusive
-    and its circle test is `dist ≤ r`, so a rim landing counts as inside — this is an authoring convention,
-    not a lint change.) A migration sweep found this is the dominant genre: most real diagrams are directed.
+    opposite: seat the endpoint on the target's **perimeter** so the **arrowhead tip touches the boundary
+    and the head body sits OUTSIDE the fill**, with the edge drawn on top. Run a directed endpoint to the
+    center and the node fill *buries the arrowhead* — erasing the mark that carries the edge's direction.
+    - **The failure to avoid** is the *inner-rim* seat: pushing the endpoint a few px INSIDE the node so a
+      "must be inside" check passes leaves the whole arrowhead a hair under the border — it reads as landed
+      *in* the node, not *arriving at* it. Seat it the other way: the head base just OUTSIDE the rim.
+    - **The seating recipe.** For a target node with center `C` and an approaching endpoint coming from
+      point `P`, set the line's end to `E = C − (r + tip) · unit(C − P)` for a circle (radius `r`), or to
+      the point where segment `P→C` crosses the box border, nudged `tip` px back outward, for a box. `tip`
+      is the marker's tip overhang (~1–3px for a thin arrowhead) so the tip lands right on the boundary.
+      Then **render and zoom the arrowhead** to confirm the head sits on the rim — this is sub-pixel work
+      the numbers get close to but the eye settles (exemplar: the observed-vs-declared figure's A→B / A→C).
+    - **The lint is marker-aware.** It reads `marker-end`/`marker-start`: a directed end is allowed to sit
+      slightly *outside* the rim (up to a marker length) and is flagged if it is *buried* deep inside — the
+      opposite of the undirected must-be-inside rule. So correct directed seating passes and a buried head
+      is caught; you do not have to push the endpoint inside to satisfy it. Most real diagrams are directed.
   - **Forbidden / absent edges.** Two idioms, opposite handling. A *deliberately-unreached ghost* — an arc
     that curves away and is struck through to read as "does not connect" — is exempt from connect-inside;
     forcing it onto the node contradicts its meaning, so leave it unannotated (the lint skips it). A

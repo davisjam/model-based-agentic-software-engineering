@@ -99,15 +99,35 @@ def _endpoints(tag: str) -> tuple | None:
     return ((nums[0], nums[1]), (nums[-2], nums[-1]))
 
 
-def _touches(pt: tuple, node: tuple, tol: float) -> bool:
-    """True if pt lands on/inside `node` allowing `tol` px of external slack. Strict grammar passes tol=0
-    (must be inside the disc / rect); float-ok passes tol=_TOL (a small graze outside the rim counts)."""
+_DIR_OUT = 7.0   # a DIRECTED end (arrowhead) may sit up to this many px OUTSIDE the rim: the head body then
+                 # stays outside the fill and the tip reaches in. Seating it inside would BURY the arrowhead.
+_DIR_BURY = 6.0  # ...but no deeper than this many px INSIDE — a head swallowed further than this reads buried.
+
+
+def _signed(pt: tuple, node: tuple) -> float:
+    """Signed distance from pt to the node boundary: NEGATIVE inside (depth to nearest edge), POSITIVE
+    outside (gap). Zero on the boundary."""
     px, py = pt
     if node[0] == "circle":
         _, cx, cy, r = node
-        return math.hypot(px - cx, py - cy) <= r + tol
+        return math.hypot(px - cx, py - cy) - r
     _, x, y, w, h = node
-    return (x - tol) <= px <= (x + w + tol) and (y - tol) <= py <= (y + h + tol)
+    if x <= px <= x + w and y <= py <= y + h:
+        return -min(px - x, x + w - px, py - y, y + h - py)
+    dx = max(x - px, 0.0, px - (x + w))
+    dy = max(y - py, 0.0, py - (y + h))
+    return math.hypot(dx, dy)
+
+
+def _ok_end(pt: tuple, node: tuple, directed: bool, tol: float) -> bool:
+    """Is `pt` an acceptable landing on `node`?
+      * UNDIRECTED end — must sit on/inside the node (signed <= tol; tol=0 strict, _TOL under float-ok).
+      * DIRECTED end (arrowhead) — must seat AT the perimeter with the head body OUTSIDE the fill, so its
+        base straddles the boundary: buried no deeper than _DIR_BURY, floating no farther than _DIR_OUT."""
+    s = _signed(pt, node)
+    if directed:
+        return -_DIR_BURY <= s <= _DIR_OUT
+    return s <= tol
 
 
 def analyze(path: str) -> list:
@@ -133,15 +153,23 @@ def analyze(path: str) -> list:
             continue
         a, b = ep
         na, nb = nodes[src], nodes[dst]
-        # each endpoint must land on/inside one distinct declared node (src<->one end, dst<->other end)
-        ok = (_touches(a, na, tol) and _touches(b, nb, tol)) or (_touches(a, nb, tol) and _touches(b, na, tol))
+        # `marker-end` makes the LAST point an arrowhead; `marker-start` the FIRST. A directed end seats at
+        # the perimeter (head outside), an undirected end sits inside — so each end is checked by its kind.
+        d_first = "marker-start" in drawable
+        d_last = "marker-end" in drawable
+        # each endpoint must land on one distinct declared node; try both first/last <-> src/dst pairings
+        ok = ((_ok_end(a, na, d_first, tol) and _ok_end(b, nb, d_last, tol))
+              or (_ok_end(a, nb, d_first, tol) and _ok_end(b, na, d_last, tol)))
         if not ok:
-            verb = "grazes past" if tol else "floats outside"
+            def _describe(pt: tuple, directed: bool) -> str:
+                s = min(_signed(pt, na), _signed(pt, nb))
+                where = f"floats {s:.0f}px outside" if s > 0 else f"is buried {-s:.0f}px inside"
+                return f"{'arrowhead' if directed else 'end'} ({pt[0]:.0f},{pt[1]:.0f}) {where} both {src} and {dst}"
             bad = []
-            if not (_touches(a, na, tol) or _touches(a, nb, tol)):
-                bad.append(f"end ({a[0]:.0f},{a[1]:.0f}) {verb} both {src} and {dst}")
-            if not (_touches(b, na, tol) or _touches(b, nb, tol)):
-                bad.append(f"end ({b[0]:.0f},{b[1]:.0f}) {verb} both {src} and {dst}")
+            if not (_ok_end(a, na, d_first, tol) or _ok_end(a, nb, d_first, tol)):
+                bad.append(_describe(a, d_first))
+            if not (_ok_end(b, na, d_last, tol) or _ok_end(b, nb, d_last, tol)):
+                bad.append(_describe(b, d_last))
             findings.append(f"edge {label}: " + ("; ".join(bad) or "endpoints do not cover both nodes"))
     return findings
 
