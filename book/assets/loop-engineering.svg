@@ -51,7 +51,7 @@
   <!-- edge: output -> admission-gate -->
   <path d="M775,210 L775,73 L602,73" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
   <!-- edge: admission-gate -> modeled-state -->
-  <path d="M360,73 L185,73 L185,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
+  <path d="M376,108 L376,158 L294,158 L294,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
 
   <!-- fail branch: gate → reason again (dotted) -->
   <!-- edge: admission-gate .. agent-reasoning -->

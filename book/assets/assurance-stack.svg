@@ -34,11 +34,11 @@
   <!-- fan to three discharge lanes: one path per branch, each perpendicular into its lane's top -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
     <!-- edge: census -> test -->
-    <path d="M305,167 L200,167 L200,256"/>
+    <path d="M321,200 L321,228 L264,228 L264,256"/>
     <!-- edge: census -> lint -->
     <line x1="410" y1="200" x2="410" y2="256"/>
     <!-- edge: census -> prove -->
-    <path d="M515,167 L620,167 L620,256"/>
+    <path d="M499,200 L499,228 L556,228 L556,256"/>
   </g>
   <rect x="252" y="216" width="316" height="18" fill="#fdfcf9"/>
   <text x="410" y="228" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">discharge with evidence appropriate to the property</text>
@@ -59,11 +59,11 @@
   <!-- converge to COVERAGE: one path per branch, each perpendicular into COVERAGE's top -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
     <!-- edge: test -> coverage -->
-    <path d="M200,328 L200,429 L298,429"/>
+    <path d="M264,328 L264,360 L316,360 L316,392"/>
     <!-- edge: lint -> coverage -->
     <line x1="410" y1="328" x2="410" y2="392"/>
     <!-- edge: prove -> coverage -->
-    <path d="M620,328 L620,429 L522,429"/>
+    <path d="M556,328 L556,360 L504,360 L504,392"/>
   </g>
 
   <!-- COVERAGE (green) -->

@@ -66,11 +66,11 @@
 
   <!-- ===== permitted edges (solid) — worker fan-out; curves arrive perpendicular into each service ===== -->
   <!-- edge: worker -> render -->
-  <path d="M240,336 C296,309 370,262 400,262" fill="none" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <path d="M240,334 L319,334 L319,268 L398,268" fill="none" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
   <!-- edge: worker -> ocr -->
   <line x1="240" y1="343" x2="398" y2="343" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
   <!-- edge: worker -> generation -->
-  <path d="M165,368 L165,427 L398,427" fill="none" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <path d="M240,352 L319,352 L319,418 L398,418" fill="none" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
 
   <!-- ===== legend: every unshown edge is forbidden ===== -->
   <text x="150" y="483" text-anchor="end" font-size="16" fill="#57534e">any edge not drawn</text>

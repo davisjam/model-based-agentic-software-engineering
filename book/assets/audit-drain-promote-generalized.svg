@@ -49,11 +49,11 @@
   <!-- fan to three -->
   <g fill="none" stroke-width="2.4">
     <!-- edge: partition -> drain -->
-    <path d="M378,177 L160,177 L160,230" stroke="#57534e" marker-end="url(#adp-n)"/>
+    <path d="M394,200 L394,215 L244,215 L244,230" stroke="#57534e" marker-end="url(#adp-n)"/>
     <!-- edge: partition -> redesign -->
     <path d="M480,200 L480,230" stroke="#2f5169" marker-end="url(#adp-b)"/>
     <!-- edge: partition -> accept-exempt -->
-    <path d="M582,177 L800,177 L800,230" stroke="#57534e" marker-end="url(#adp-n)"/>
+    <path d="M566,200 L566,215 L716,215 L716,230" stroke="#57534e" marker-end="url(#adp-n)"/>
   </g>
 
   <!-- drain (gray) -->
@@ -74,7 +74,7 @@
   <!-- drain + redesign merge into identify obligation -->
   <g fill="none" stroke-width="2.4">
     <!-- edge: drain -> identify-obligation -->
-    <path d="M160,290 L160,375 L328,375" stroke="#57534e" marker-end="url(#adp-n)"/>
+    <path d="M244,290 L244,317 L346,317 L346,344" stroke="#57534e" marker-end="url(#adp-n)"/>
     <!-- edge: redesign -> identify-obligation -->
     <path d="M480,290 L480,344" stroke="#2f5169" marker-end="url(#adp-b)"/>
   </g>

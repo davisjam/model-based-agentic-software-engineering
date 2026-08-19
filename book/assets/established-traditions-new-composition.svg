@@ -15,8 +15,9 @@
 <!-- semantic-families: modeling, governance, neutral -->
 <!-- Connect-grammar: the vertical spine (Modeling/Alignment -> GEE -> Engineering capital -> Trustworthy
      autonomy, plus governance conversion out of the boundary) is annotated node->node. The two column->MAGE
-     convergence connectors have a COLUMN of four traditions as their source (a group region, not a single
-     lint-legible node), so they are left unannotated and seated by eye per the grammar's group-trunk rule. -->
+     convergence connectors have a COLUMN of four traditions as their source; each column carries a
+     transparent-rect anchor (eng-traditions / ai-traditions) so the group-region source is a lint-legible
+     node and the router routes the convergence out the column's flow border into the MAGE boundary top. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 980" width="1000" height="980"
      role="group" aria-labelledby="etTitle etDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -44,10 +45,15 @@
   <rect x="0" y="0" width="1000" height="980" fill="#fdfcf9"/>
   <text x="500" y="40" text-anchor="middle" font-size="21" font-weight="700" letter-spacing="1.2" fill="#1c1917">ESTABLISHED TRADITIONS, NEW COMPOSITION</text>
 
-  <!-- both columns converge into the MAGE boundary (group-trunk: source is a column of traditions, not a
-       single node — left unannotated, seated by eye; head plugs into the MAGE boundary top) -->
-  <line x1="262" y1="210" x2="380" y2="264" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
-  <line x1="738" y1="210" x2="620" y2="264" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
+  <!-- both columns converge into the MAGE boundary. Each column of four traditions carries a transparent-rect
+       anchor (fill/stroke none) spanning its boxes, so the group-region source is a lint-legible node and the
+       router can route the convergence out the column's bottom (flow border) into the MAGE boundary top. -->
+  <rect id="eng-traditions" x="48" y="94" width="428" height="112" fill="none" stroke="none"/>
+  <rect id="ai-traditions" x="524" y="94" width="428" height="112" fill="none" stroke="none"/>
+  <!-- edge: eng-traditions -> mage -->
+  <line x1="304" y1="206" x2="304" y2="264" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
+  <!-- edge: ai-traditions -> mage -->
+  <line x1="696" y1="206" x2="696" y2="264" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
 
   <!-- ── ENGINEERING TRADITIONS (left) ── -->
   <text x="262" y="80" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#155c38">ENGINEERING TRADITIONS</text>
@@ -82,9 +88,9 @@
 
   <!-- interior edges: Modeling / Alignment -> Governed Engineering Environment -->
   <!-- edge: modeling -> gee -->
-  <path d="M322,337 C370,410 400,430 400,454" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
+  <path d="M334,370 L334,454" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
   <!-- edge: alignment -> gee -->
-  <path d="M678,337 C630,410 600,430 600,454" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
+  <path d="M666,370 L666,454" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
 
   <rect id="modeling" x="176" y="304" width="292" height="66" rx="9" fill="#fff" stroke="#c4a894" stroke-width="1.6"/>
   <text x="322" y="332" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Modeling</text>

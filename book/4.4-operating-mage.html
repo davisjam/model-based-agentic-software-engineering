@@ -748,18 +748,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <path d="M500,86 L500,122" marker-end="url(#f-event-reaction-fire-er-ah)"/>
     <!-- fan to three branches (one path per branch) -->
     <!-- edge: fire -> execute -->
-    <path d="M360,153 L215,153 L215,224" marker-end="url(#f-event-reaction-fire-er-ah)"/>
+    <path d="M376,182 L376,203 L324,203 L324,224" marker-end="url(#f-event-reaction-fire-er-ah)"/>
     <!-- edge: fire -> delegate -->
     <path d="M500,182 L500,224" marker-end="url(#f-event-reaction-fire-er-ah)"/>
     <!-- edge: fire -> escalate -->
-    <path d="M640,153 L785,153 L785,224" marker-end="url(#f-event-reaction-fire-er-ah)"/>
+    <path d="M624,182 L624,203 L676,203 L676,224" marker-end="url(#f-event-reaction-fire-er-ah)"/>
     <!-- converge to next lifecycle state (one path per branch, sharing the trunk into the box) -->
     <!-- edge: execute -> next -->
-    <path d="M215,296 L215,421 L358,421" marker-end="url(#f-event-reaction-fire-er-ah)"/>
+    <path d="M324,296 L324,342 L376,342 L376,388" marker-end="url(#f-event-reaction-fire-er-ah)"/>
     <!-- edge: delegate -> next -->
     <path d="M500,296 L500,388" marker-end="url(#f-event-reaction-fire-er-ah)"/>
     <!-- edge: escalate -> next -->
-    <path d="M785,296 L785,421 L642,421" marker-end="url(#f-event-reaction-fire-er-ah)"/>
+    <path d="M676,296 L676,342 L624,342 L624,388" marker-end="url(#f-event-reaction-fire-er-ah)"/>
   </g>
 
   <!-- dashed rust loop: the lifecycle advances and the next transition binds again -->
@@ -839,11 +839,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- fan to three kinds -->
   <!-- edge: model-steps -> deterministic -->
-  <path d="M390,186 L250,186 L250,254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
+  <path d="M406,212 L406,233 L364,233 L364,254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
   <!-- edge: model-steps -> bounded -->
   <line x1="500" y1="212" x2="500" y2="254" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
   <!-- edge: model-steps -> irreducible -->
-  <path d="M610,186 L750,186 L750,254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
+  <path d="M594,212 L594,233 L636,233 L636,254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
 
   <!-- deterministic = solid rust -->
   <rect id="f-externalizing-judgment-deterministic" x="120" y="256" width="260" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
@@ -878,9 +878,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- merge: three forms converge into the sanctioned action (one path per branch) -->
   <!-- edge: tool -> sanctioned-action -->
-  <path d="M250,426 L250,551 L378,551" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
+  <path d="M344,426 L344,473 L396,473 L396,520" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
   <!-- edge: human -> sanctioned-action -->
-  <path d="M750,426 L750,551 L622,551" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
+  <path d="M656,426 L656,473 L604,473 L604,520" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
   <!-- edge: prepared-context -> sanctioned-action -->
   <line x1="500" y1="426" x2="500" y2="520" stroke="#57534e" stroke-width="2" marker-end="url(#f-externalizing-judgment-ej-ah)"/>
   <text x="640" y="492" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">lifecycle event invokes the right form</text>

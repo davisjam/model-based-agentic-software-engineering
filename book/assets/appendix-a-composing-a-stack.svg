@@ -38,11 +38,11 @@
   <!-- fan out to three guarantees (one path per branch; curves arrive perpendicular into each top) -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
     <!-- edge: failure -> guar-1 -->
-    <path d="M285,239 L180,239 L180,328"/>
+    <path d="M301,268 L301,298 L239,298 L239,328"/>
     <!-- edge: failure -> guar-2 -->
     <line x1="410" y1="268" x2="410" y2="328"/>
     <!-- edge: failure -> guar-3 -->
-    <path d="M535,239 L640,239 L640,328"/>
+    <path d="M519,268 L519,298 L581,298 L581,328"/>
   </g>
 
   <!-- guarantee x3 -->
@@ -74,11 +74,11 @@
   <!-- converge to dependency check (one path per branch; curves arrive perpendicular into the top) -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
     <!-- edge: mech-1 -> dependency -->
-    <path d="M180,486 L180,570 L283,570"/>
+    <path d="M239,486 L239,513 L301,513 L301,540"/>
     <!-- edge: mech-2 -> dependency -->
     <line x1="410" y1="486" x2="410" y2="540"/>
     <!-- edge: mech-3 -> dependency -->
-    <path d="M640,486 L640,570 L537,570"/>
+    <path d="M581,486 L581,513 L519,513 L519,540"/>
   </g>
 
   <!-- dependency check -->

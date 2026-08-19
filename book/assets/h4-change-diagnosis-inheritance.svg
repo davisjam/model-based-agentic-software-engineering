@@ -80,7 +80,7 @@
 
   <!-- branch: fork from the decision, one path per branch -->
   <!-- edge: recurring-lesson -> history -->
-  <path d="M255,608 L150,608 L150,662" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h4-ah)"/>
+  <path d="M271,624 L271,643 L214,643 L214,662" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h4-ah)"/>
   <!-- edge: recurring-lesson -> durable-structure -->
   <path d="M396.5,624 L396.5,662" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#h4-ah-u)"/>
   <text x="182" y="642" text-anchor="middle" font-size="13" fill="#57534e">no</text>

@@ -24,7 +24,7 @@
   <!-- edge: source -> join -->
   <line x1="500" y1="96" x2="500" y2="156" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
   <!-- edge: source -> generate -->
-  <path d="M620,68 L800,68 L800,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
+  <path d="M620,80 L664,80 L664,174 L708,174" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
 
   <rect id="query" x="110" y="158" width="180" height="54" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="200" y="191" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">QUERY</text>
@@ -35,7 +35,7 @@
 
   <!-- merge: each op -> consumers (one path per branch) -->
   <!-- edge: query -> consumers -->
-  <path d="M200,212 L200,300 L378,300" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
+  <path d="M290,196 L334,196 L334,288 L378,288" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
   <!-- edge: join -> consumers -->
   <line x1="500" y1="212" x2="500" y2="270" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
   <!-- edge: generate -> consumers -->

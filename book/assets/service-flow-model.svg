@@ -39,11 +39,11 @@
   <!-- web -> {worker, document editor, other} — one path per branch, each seats on its own node -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sf-b)">
     <!-- edge: web -> worker -->
-    <path d="M295,137 L180,137 L180,214"/>
+    <path d="M311,160 L311,187 L239,187 L239,214"/>
     <!-- edge: web -> doc-editor -->
     <path d="M360,160 L360,214"/>
     <!-- edge: web -> other -->
-    <path d="M425,137 L540,137 L540,214"/>
+    <path d="M409,160 L409,187 L481,187 L481,214"/>
   </g>
 
   <rect id="worker" x="105" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
@@ -63,7 +63,7 @@
     <!-- edge: worker -> render -->
     <path d="M190,264 L190,330"/>
     <!-- edge: worker -> ocr -->
-    <path d="M210,264 C270,300 300,308 300,330"/>
+    <path d="M239,264 L239,297 L261,297 L261,330"/>
   </g>
 
   <rect id="generation" x="25" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>

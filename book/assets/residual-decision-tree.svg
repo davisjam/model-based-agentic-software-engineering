@@ -34,7 +34,7 @@
 
   <!-- Q1 no -> RESIDUAL -->
   <!-- edge: q1 -> residual -->
-  <path d="M360,59 L175,59 L175,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M376,88 L376,119 L264,119 L264,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="300" y="112" text-anchor="middle" font-size="15" font-style="italic" fill="#8a2f2f">no</text>
   <rect id="residual" x="70" y="152" width="210" height="66" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
   <text x="175" y="181" text-anchor="middle" font-size="18" font-weight="800" fill="#8a2f2f">RESIDUAL</text>
@@ -51,7 +51,7 @@
 
   <!-- Q2 no -> JUDGMENT REQUIRED -->
   <!-- edge: q2 -> judgment -->
-  <path d="M430,210 L430,242 L245,242 L245,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M426,210 L426,241 L354,241 L354,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="352" y="234" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
   <rect id="judgment" x="120" y="274" width="250" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="245" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">JUDGMENT REQUIRED</text>

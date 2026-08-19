@@ -55,11 +55,11 @@
   <!-- fan to three branches: one path per branch, each partition -> its head; src ends seated inside partition -->
   <g fill="none" stroke="#57534e" stroke-width="2.4">
     <!-- edge: partition -> legit-shape -->
-    <path d="M360,250 L160,250 L160,300" marker-end="url(#dm-n)"/>
+    <path d="M376,274 L376,287 L252,287 L252,300" marker-end="url(#dm-n)"/>
     <!-- edge: partition -> mechanical-debt -->
     <path d="M480,274 L480,300" marker-end="url(#dm-n)"/>
     <!-- edge: partition -> latent-concept -->
-    <path d="M600,250 L780,250 L780,300" marker-end="url(#dm-n)"/>
+    <path d="M584,274 L584,287 L688,287 L688,300" marker-end="url(#dm-n)"/>
   </g>
 
   <!-- branch heads -->
@@ -100,7 +100,7 @@
   <!-- NAME THE MODEL fans to vocabulary + relations; src ends seated inside name-model -->
   <g fill="none" stroke="#2f5169" stroke-width="2.4">
     <!-- edge: name-model -> typed-vocab -->
-    <path d="M760,443 C620,478 300,480 300,510" marker-end="url(#dm-b)"/>
+    <path d="M684,445 L684,477.5 L424,477.5 L424,510" marker-end="url(#dm-b)"/>
     <!-- edge: name-model -> explicit-relations -->
     <path d="M724,445 L724,510" marker-end="url(#dm-b)"/>
   </g>

@@ -33,11 +33,11 @@
   <!-- fan: SYSTEM ENTITY -> first three models (blue), from the entity centre -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ji-b)">
     <!-- edge: system-entity -> structural -->
-    <path d="M290,49 L130,49 L130,132"/>
+    <path d="M306,74 L306,103 L209,103 L209,132"/>
     <!-- edge: system-entity -> behavioral -->
     <path d="M380,74 L380,132"/>
     <!-- edge: system-entity -> decision -->
-    <path d="M470,49 L630,49 L630,132"/>
+    <path d="M454,74 L454,103 L551,103 L551,132"/>
   </g>
 
   <!-- SYSTEM ENTITY (gray) -->
@@ -47,11 +47,11 @@
   <!-- converge: first three models -> stable identity hub (gray), from each model centre -->
   <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#ji-k)">
     <!-- edge: structural -> stable-identity -->
-    <path d="M130,182 L130,272 L268,272"/>
+    <path d="M209,182 L209,214 L286,214 L286,246"/>
     <!-- edge: behavioral -> stable-identity -->
     <path d="M380,182 L380,246"/>
     <!-- edge: decision -> stable-identity -->
-    <path d="M630,182 L630,272 L492,272"/>
+    <path d="M551,182 L551,214 L474,214 L474,246"/>
   </g>
 
   <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
@@ -66,11 +66,11 @@
   <!-- fan: stable identity -> second three models (blue), from the hub centre -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ji-b)">
     <!-- edge: stable-identity -> ownership -->
-    <path d="M270,272 L130,272 L130,354"/>
+    <path d="M286,296 L286,325 L209,325 L209,354"/>
     <!-- edge: stable-identity -> measurement -->
     <path d="M380,296 L380,354"/>
     <!-- edge: stable-identity -> provenance -->
-    <path d="M490,272 L630,272 L630,354"/>
+    <path d="M474,296 L474,325 L551,325 L551,354"/>
   </g>
 
   <rect id="stable-identity" x="270" y="248" width="220" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>

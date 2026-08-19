@@ -35,9 +35,9 @@
   <!-- edges UNDER the boxes; source ends run to the quantity/bound centers, capped by their fill -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pa-b)">
     <!-- edge: quantity -> comparison -->
-    <path d="M105,125 C220,143 238,158 268,158"/>
+    <path d="M170,132.7 L219,132.7 L219,157.3 L268,157.3"/>
     <!-- edge: bound -> comparison -->
-    <path d="M105,205 C220,187 238,172 268,172"/>
+    <path d="M170,197.3 L219,197.3 L219,172.7 L268,172.7"/>
   </g>
   <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
     <rect id="quantity" x="40" y="102" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
@@ -60,7 +60,7 @@
     <!-- edge: same-model -> degrade -->
     <path d="M767.5,146 L767.5,190"/>
     <!-- edge: same-model -> gate -->
-    <path d="M810,123 L884,123 L884,190"/>
+    <path d="M810,130.7 L821.5,130.7 L821.5,206.7 L833,206.7"/>
   </g>
   <rect id="same-model" x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="715" y="129" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">same model</text>

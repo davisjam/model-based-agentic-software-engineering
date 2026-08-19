@@ -45,7 +45,7 @@
 
   <!-- the loop closes: coverage -> refine the generator (dotted) -->
   <!-- edge: coverage .. generator -->
-  <path d="M450,455 L145,455 L145,248" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-loop)"/>
+  <path d="M466,400 L466,324 L234,324 L234,248" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-loop)"/>
 
   <!-- coverage -> (where traceability exists) joins model-claim coverage back to the claim/oracle (dotted) -->
   <!-- edge: coverage .. oracle -->

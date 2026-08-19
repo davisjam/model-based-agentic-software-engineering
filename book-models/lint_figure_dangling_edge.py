@@ -426,15 +426,21 @@ def fix(path: str) -> int:
 
 
 # ---- orthogonal auto-router (--orthogonalize): re-route a declared edge to a straight H/V segment (when
-#      the two node rects are axis-alignable) or a single right-angled elbow (when it must turn), seated
-#      PERPENDICULAR on each rect's mid-border. This is the correct-by-construction fix behind the heuristic
-#      "a box-to-box edge should be orthogonal": a straight edge cannot skim a border, and an elbow's final
-#      segment drops perpendicular into the entered side so orient="auto" seats the head — and any marker-mid
-#      glyph — square. Deterministic + idempotent: the route derives from node geometry alone, not the
-#      current (possibly wrong) drawn coordinates, so a second run reproduces it byte-for-byte. ----
+#      the two node rects are axis-alignable), a two-turn FLOW ELBOW (down-across-down for top-down; the
+#      parent-flow-exit route for a downstream child), or a single right-angled elbow (when it must turn but
+#      is not a downstream child), seated PERPENDICULAR on each rect's mid-border. This is the
+#      correct-by-construction fix behind the heuristic "a box-to-box edge should be orthogonal": a straight
+#      edge cannot skim a border, and an elbow's final segment drops perpendicular into the entered side so
+#      orient="auto" seats the head — and any marker-mid glyph — square. The flow elbow additionally forces a
+#      child edge to LEAVE THE PARENT'S FLOW BORDER (bottom for top-down) rather than a perpendicular side, so
+#      the source keeps reading as the parent (the fix for a fan-out that side-exits and breaks the hierarchy).
+#      Deterministic + idempotent: the route derives from node geometry + the figure's dominant flow axis
+#      alone, not the current (possibly wrong) drawn coordinates, so a second run reproduces it byte-for-byte. ----
 _ALIGN_MIN = 12.0    # min shared-span overlap (px) for two rects to be axis-alignable -> a straight segment
 _GAP_DIR = 2.0       # a directed end seats this many px OUTSIDE the entered border (head tip lands ~on it)
 _CLEAR_INSET = 3.0   # shrink an obstacle node by this when testing whether an elbow segment clears it
+_FLOW_MIN_SEP = 8.0  # min gap ALONG the flow axis for a downstream flow-exit route (source & target stacked)
+_FLOW_MARGIN = 16.0  # inset from a flow-border's ends when distributing fan exit/enter points across it
 
 
 def _bounds(node: tuple) -> tuple:
@@ -468,6 +474,178 @@ def _seg_hits_rect(p: tuple, q: tuple, rect: tuple, inset: float) -> bool:
     return sx0 <= rx1 and sx1 >= rx0 and sy0 <= ry1 and sy1 >= ry0
 
 
+# ---- flow-direction detection + the parent-flow-exit route ----
+# THE RULE. A parent/source node's outgoing edge to a downstream child must LEAVE from the FLOW-DIRECTION
+# border — the source's BOTTOM in a top-down figure, the facing SIDE in a left-to-right one — and enter the
+# child's LEADING border (its TOP for top-down). It must NOT leave the source's perpendicular left/right
+# sides: a child edge exiting a side breaks the parent->child hierarchy visually (the source stops reading as
+# the parent). For a fan-out — one source, several children spread below — every edge leaves the source's
+# bottom (exits distributed along the bottom edge from a short common trunk), goes down, runs horizontal to
+# above each child, and drops into the child's top. This is a 3-segment "flow elbow" (down, across, down for
+# top-down); a single elbow can exit the flow border OR enter the leading border, never both, so a diagonal
+# downstream child needs the two-turn route. Flow direction is read per figure from the dominant edge
+# direction (below), so the same rule serves top-down and left-to-right figures.
+def _pt_in(p: tuple, b: tuple) -> bool:
+    return b[0] <= p[0] <= b[2] and b[1] <= p[1] <= b[3]
+
+
+def _obstacles(nodes: dict, src: str, dst: str) -> list:
+    """Bounds of every node that could block a route from `src` to `dst`, EXCLUDING src, dst, and any node
+    that CONTAINS either endpoint's center — a container/background region (a MAGE-boundary box drawn around
+    its children) is not a sibling obstacle to an edge between things inside it, so it must not veto interior
+    routing. Siblings inside the same container stay obstacles."""
+    sc, dc = _ctr(nodes[src]), _ctr(nodes[dst])
+    out = []
+    for k, v in nodes.items():
+        if k in (src, dst):
+            continue
+        b = _bounds(v)
+        if _pt_in(sc, b) or _pt_in(dc, b):
+            continue
+        out.append(b)
+    return out
+
+
+def _axis_of(vx: float, vy: float) -> tuple | None:
+    """(axis, sign) for a flow vector, or None if it is too short to trust. Ties favour 'v' (books flow
+    top-down more often than left-to-right)."""
+    if abs(vx) < 1.0 and abs(vy) < 1.0:
+        return None
+    if abs(vy) >= abs(vx):
+        return ("v", 1.0 if vy >= 0 else -1.0)
+    return ("h", 1.0 if vx >= 0 else -1.0)
+
+
+def _figure_flow(svg: str, nodes: dict) -> tuple | None:
+    """The figure's dominant flow direction as (axis, sign): axis 'v' (top-down) or 'h' (left-to-right);
+    sign +1 (downstream = larger coord) or -1.
+
+    PRIMARY signal — the SOURCE->SINK centroid vector. Sources are nodes with out-edges and no in-edges (the
+    roots), sinks nodes with in-edges and no out-edges (the leaves); the vector from the sources' centroid to
+    the sinks' centroid is the graph's overall flow. This is robust to FAN SPREAD: a top-down figure whose
+    parent fans to several children spread horizontally has large per-edge horizontal deltas, so a naive
+    total-travel-magnitude vote misreads it as left-to-right — but its roots still sit above its leaves, so
+    the centroid vector points down. FALLBACK (a pure cycle with no clear root/leaf) — the total per-edge
+    travel magnitude. None if no edge resolves to two known nodes."""
+    outdeg: dict = {}
+    indeg: dict = {}
+    adx = ady = sdx = sdy = 0.0
+    n = 0
+    for m in _EDGE_RE.finditer(svg):
+        src, dst = m.group(1), m.group(3)
+        if src not in nodes or dst not in nodes:
+            continue
+        outdeg[src] = outdeg.get(src, 0) + 1
+        indeg[dst] = indeg.get(dst, 0) + 1
+        (sx, sy), (dx, dy) = _ctr(nodes[src]), _ctr(nodes[dst])
+        adx += abs(dx - sx); ady += abs(dy - sy)
+        sdx += dx - sx; sdy += dy - sy
+        n += 1
+    if n == 0:
+        return None
+    involved = set(outdeg) | set(indeg)
+    sources = [k for k in involved if outdeg.get(k, 0) > 0 and indeg.get(k, 0) == 0]
+    sinks = [k for k in involved if indeg.get(k, 0) > 0 and outdeg.get(k, 0) == 0]
+    if sources and sinks:
+        scx = sum(_ctr(nodes[k])[0] for k in sources) / len(sources)
+        scy = sum(_ctr(nodes[k])[1] for k in sources) / len(sources)
+        kcx = sum(_ctr(nodes[k])[0] for k in sinks) / len(sinks)
+        kcy = sum(_ctr(nodes[k])[1] for k in sinks) / len(sinks)
+        axis = _axis_of(kcx - scx, kcy - scy)
+        if axis is not None:
+            return axis
+    return _axis_of(sdx, sdy) or (("v", 1.0) if ady >= adx else ("h", 1.0))
+
+
+def _downstream(start_node: tuple, end_node: tuple, flow: tuple) -> bool:
+    """Is `end_node` downstream of `start_node` along the flow axis, separated by >= _FLOW_MIN_SEP? Only a
+    genuinely downstream child gets the flow-exit route; a same-level or upstream edge falls back to the
+    single-elbow logic."""
+    axis, sign = flow
+    sx0, sy0, sx1, sy1 = _bounds(start_node)
+    dx0, dy0, dx1, dy1 = _bounds(end_node)
+    if axis == "v":
+        return (dy0 >= sy1 + _FLOW_MIN_SEP) if sign >= 0 else (dy1 <= sy0 - _FLOW_MIN_SEP)
+    return (dx0 >= sx1 + _FLOW_MIN_SEP) if sign >= 0 else (dx1 <= sx0 - _FLOW_MIN_SEP)
+
+
+def _clamp_span(v: float, lo: float, hi: float) -> float:
+    """`v` clamped into [lo, hi] with a _FLOW_MARGIN inset (capped at a third of the span) so a fan's exit /
+    enter points sit off the border's corners; the border midpoint when the span is too small to inset."""
+    span = hi - lo
+    if span <= 0:
+        return (lo + hi) / 2.0
+    m = min(_FLOW_MARGIN, span / 3.0)
+    a, b = lo + m, hi - m
+    return max(a, min(v, b))
+
+
+def _dedupe_route(route: list) -> list:
+    """Drop repeated and colinear interior points so a degenerate flow elbow (source & target aligned) reads
+    back as a straight segment rather than a zero-length jog."""
+    pts = [route[0]]
+    for p in route[1:]:
+        if abs(p[0] - pts[-1][0]) > 1e-6 or abs(p[1] - pts[-1][1]) > 1e-6:
+            pts.append(p)
+    i = 1
+    while i < len(pts) - 1:
+        a, b, c = pts[i - 1], pts[i], pts[i + 1]
+        colinear = (abs(a[0] - b[0]) <= 1e-6 and abs(b[0] - c[0]) <= 1e-6) or \
+                   (abs(a[1] - b[1]) <= 1e-6 and abs(b[1] - c[1]) <= 1e-6)
+        if colinear:
+            del pts[i]
+        else:
+            i += 1
+    return pts
+
+
+def _flow_route(start_node: tuple, end_node: tuple, directed_start: bool, directed_end: bool,
+                flow: tuple, obstacles: list) -> list | None:
+    """The 3-segment flow-exit route: exit `start_node` on its downstream flow border, run to the shared-gap
+    midline, then enter `end_node` on its upstream flow border — so the source reads as the parent and the
+    head drops perpendicular into the child's leading border. The exit point is distributed toward the target
+    and the enter point toward the source, so a fan-out spreads along the parent's bottom and a fan-in spreads
+    across the child's top. Returns None when the target is not downstream or every routing is blocked."""
+    # The parent-flow-exit rule is a rect-BORDER concept — a box has a distinct bottom vs left/right side. A
+    # circle has no such distinction: it seats RADIALLY, and a flow-exit on its bounding-box border floats off
+    # the circle everywhere but the four cardinal points. So leave circle endpoints to the single-elbow path,
+    # which seats them on a cardinal point.
+    if start_node[0] != "rect" or end_node[0] != "rect":
+        return None
+    if not _downstream(start_node, end_node, flow):
+        return None
+    axis, sign = flow
+    sx0, sy0, sx1, sy1 = _bounds(start_node)
+    dx0, dy0, dx1, dy1 = _bounds(end_node)
+    scx, scy = _ctr(start_node)
+    dcx, dcy = _ctr(end_node)
+    g_s = _GAP_DIR if directed_start else 0.0
+    g_e = _GAP_DIR if directed_end else 0.0
+    if axis == "v":
+        if sign >= 0:
+            ey, ty = sy1 + g_s, dy0 - g_e          # exit source bottom, enter target top
+        else:
+            ey, ty = sy0 - g_s, dy1 + g_e          # (up-flow) exit source top, enter target bottom
+        ex = _clamp_span(dcx, sx0, sx1)            # exit x on source flow border, toward the target
+        tx = _clamp_span(scx, dx0, dx1)            # enter x on target flow border, from the source
+        mid = (ey + ty) / 2.0
+        route = [(ex, ey), (ex, mid), (tx, mid), (tx, ty)]
+    else:
+        if sign >= 0:
+            ex, tx = sx1 + g_s, dx0 - g_e          # exit source right, enter target left
+        else:
+            ex, tx = sx0 - g_s, dx1 + g_e
+        ey = _clamp_span(dcy, sy0, sy1)
+        ty = _clamp_span(scy, dy0, dy1)
+        mid = (ex + tx) / 2.0
+        route = [(ex, ey), (mid, ey), (mid, ty), (tx, ty)]
+    route = _dedupe_route(route)
+    if any(_seg_hits_rect(route[i], route[i + 1], ob, _CLEAR_INSET)
+           for i in range(len(route) - 1) for ob in obstacles):
+        return None
+    return route
+
+
 def _straight_axis(start_node: tuple, end_node: tuple, obstacles: list) -> str | None:
     """Can a CLEAN straight segment connect the two rects? Returns 'v' (a vertical corridor: x-spans overlap
     by >= _ALIGN_MIN, rects y-separated) or 'h' (a horizontal corridor), else None. The corridor must ALSO
@@ -493,14 +671,19 @@ def _straight_axis(start_node: tuple, end_node: tuple, obstacles: list) -> str |
 
 
 def _ortho_route(start_node: tuple, end_node: tuple, directed_start: bool, directed_end: bool,
-                 obstacles: list) -> list | None:
-    """The orthogonal poly-line [start_pt, (corner,) end_pt] from `start_node` to `end_node`:
+                 obstacles: list, flow: tuple | None = None) -> list | None:
+    """The orthogonal poly-line [start_pt, ..., end_pt] from `start_node` to `end_node`:
       * STRAIGHT H/V when the rects overlap on an axis by >= _ALIGN_MIN and are separated on the other —
-        seated on the shared-span midpoint of each rect's facing border;
-      * a single ELBOW when the target sits in a diagonal quadrant — the orientation (H-then-V / V-then-H)
-        chosen so it clears every obstacle rect, preferring the one whose long run matches the dominant axis.
+        seated on the shared-span midpoint of each rect's facing border (this already exits/enters the flow
+        borders);
+      * a FLOW ELBOW (down, across, down for top-down) when `flow` is known and the target is a downstream
+        child in a diagonal quadrant — exits the source's flow border and enters the child's leading border,
+        so the source reads as the parent (the parent-flow-exit rule; overrides the dominant-axis single
+        elbow, which would exit a perpendicular side);
+      * a single ELBOW otherwise (no flow known, or a same-level / upstream edge) — the orientation chosen so
+        it clears every obstacle rect, preferring the one whose long run matches the dominant axis.
     A directed end seats _GAP_DIR px OUTSIDE its border (head body stays outside the fill); an undirected end
-    sits on its border. Returns None when no clean route exists (overlapping rects, or both elbow orientations
+    sits on its border. Returns None when no clean route exists (overlapping rects, or every orientation
     blocked) — the caller then LEAVES the edge for a hand pass rather than emit a bad route."""
     sx0, sy0, sx1, sy1 = _bounds(start_node)
     dx0, dy0, dx1, dy1 = _bounds(end_node)
@@ -520,6 +703,13 @@ def _ortho_route(start_node: tuple, end_node: tuple, directed_start: bool, direc
         if scx <= dcx:
             return [(sx1 + g_s, ymid), (dx0 - g_e, ymid)]
         return [(sx0 - g_s, ymid), (dx1 + g_e, ymid)]
+
+    # FLOW ELBOW — a downstream child gets the two-turn route out the parent's flow border (overrides the
+    # dominant-axis single elbow below, which would exit a perpendicular side and break the hierarchy read).
+    if flow is not None:
+        fr = _flow_route(start_node, end_node, directed_start, directed_end, flow, obstacles)
+        if fr is not None:
+            return fr
 
     # ELBOW — a clean single right angle needs the target in a diagonal quadrant (separated on both axes)
     hdir = "right" if dx0 >= sx1 else "left" if dx1 <= sx0 else None
@@ -588,6 +778,7 @@ def orthogonalize(path: str, straights_only: bool = False) -> tuple:
     if "<!-- edge:" not in svg or _KEEP_ANGLES_RE.search(svg):
         return (0, [])
     nodes = _nodes(svg)
+    flow = _figure_flow(svg, nodes)
     replacements = []
     skipped = []
     for m in _EDGE_RE.finditer(svg):
@@ -605,8 +796,11 @@ def orthogonalize(path: str, straights_only: bool = False) -> tuple:
         d_first = "marker-start" in drawable or g_start
         d_last = "marker-end" in drawable or g_end
         start_node, end_node = _seat_assignment(a, b, na, nb)   # physical a<->start_node, b<->end_node
-        obstacles = [_bounds(v) for k, v in nodes.items() if k not in (src, dst)]
-        route = _ortho_route(start_node, end_node, d_first, d_last, obstacles)
+        obstacles = _obstacles(nodes, src, dst)
+        # the flow-exit route is keyed on the DECLARED source (src), so orient flow toward the declared dst:
+        # only route out the parent's flow border when the SEATED start is the declared source.
+        edge_flow = flow if start_node is nodes[src] else None
+        route = _ortho_route(start_node, end_node, d_first, d_last, obstacles, edge_flow)
         if route is None:
             if not straights_only:      # a curve-turn with no clean elbow -> hand pass; straights-only defers it
                 skipped.append(f"{src} {op} {dst}")

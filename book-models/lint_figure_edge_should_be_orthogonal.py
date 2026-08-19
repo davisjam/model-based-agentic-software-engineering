@@ -16,6 +16,12 @@ WHAT IT FLAGS (declared edges only — `<!-- edge: SRC -> DST -->` / `.. -->`; u
     as a curve, a slope, or an elbow. It should be one straight axis-aligned segment.
   * **CURVE-SHOULD-ELBOW.** The rects are NOT axis-alignable (the edge must turn), yet it turns with a curve
     or a diagonal instead of a single right angle. It should be one orthogonal elbow.
+  * **PARENT-SIDE-EXIT.** A downstream child edge whose SOURCE end leaves the parent on a PERPENDICULAR side
+    (a left/right border in a top-down figure) rather than the flow border (the parent's bottom). This breaks
+    the parent->child hierarchy read — even a clean ortho-elbow that side-exits trips it. The figure's flow
+    axis is read from the dominant edge direction; the flow-exit router re-routes the edge out the parent's
+    flow border. Fires independently of shape, so a side-exiting elbow that no other rule catches is still
+    flagged (its guard against regression).
   * **HEAD-NOT-PERPENDICULAR.** A directed head whose end-travel is not perpendicular to the border it enters
     (the geometric residue when neither route case above already fired) — the head skims the border.
 
@@ -65,8 +71,17 @@ _classify = _dedge._classify
 class Finding:
     svg: str
     edge: str
-    kind: str      # SLOPE_ALIGNABLE | CURVE_TURN | HEAD_SKEW
+    kind: str      # SLOPE_ALIGNABLE | CURVE_TURN | PARENT_SIDE_EXIT | HEAD_SKEW
     detail: str
+
+
+def _side_exit(src_pt: tuple, src_node: tuple, flow: tuple) -> bool:
+    """Does the edge leave `src_node` on a PERPENDICULAR side — a left/right border in a top-down figure, a
+    top/bottom border in a left-to-right one — rather than the flow border? The source endpoint's inward
+    normal (via _aim) names the border it sits on: for a vertical-flow figure a horizontal normal (|x|>|y|)
+    means a left/right exit; for a horizontal-flow figure a vertical normal means a top/bottom exit."""
+    ax, ay = _dedge._aim(src_node, src_pt)
+    return abs(ax) > abs(ay) if flow[0] == "v" else abs(ay) > abs(ax)
 
 
 def analyze(path: pathlib.Path) -> list:
@@ -74,6 +89,7 @@ def analyze(path: pathlib.Path) -> list:
     if "<!-- edge:" not in svg or _dedge._KEEP_ANGLES_RE.search(svg):
         return []                       # not adopted, or opted out of orthogonality
     nodes = _dedge._nodes(svg)
+    flow = _dedge._figure_flow(svg, nodes)   # the figure's dominant flow axis, for the parent-flow-exit check
     findings: list = []
     for m in _dedge._EDGE_RE.finditer(svg):
         src, op, dst = m.group(1), m.group(2), m.group(3)
@@ -85,15 +101,17 @@ def analyze(path: pathlib.Path) -> list:
             continue
         label = f"{src} {op} {dst}"
         na, nb = nodes[src], nodes[dst]
-        # Obstacle-aware alignability, shared verbatim with the router: two rects are straight-alignable only
-        # when a straight corridor connects them AND clears every other node — a feedback/skip edge that would
-        # run over an intervening box is NOT SLOPE_ALIGNABLE (it must route around), so the router leaves it for
-        # a later pass and this sensor classifies it CURVE_TURN, never straightening it over the stack.
-        obstacles = [_dedge._bounds(v) for k, v in nodes.items() if k not in (src, dst)]
+        # Obstacle-aware alignability, shared verbatim with the router (container-aware _obstacles too): two
+        # rects are straight-alignable only when a straight corridor connects them AND clears every sibling
+        # node — a feedback/skip edge that would run over an intervening box is NOT SLOPE_ALIGNABLE (it must
+        # route around), so the router leaves it for a later pass and this sensor classifies it CURVE_TURN.
+        obstacles = _dedge._obstacles(nodes, src, dst)
         axis = _dedge._straight_axis(na, nb, obstacles)
         vertical_alignable = axis == "v"
         horizontal_alignable = axis == "h"
         shape = _classify(drawable)
+        a, b = ep
+        node_a, node_b = _dedge._seat_assignment(a, b, na, nb)
 
         flagged = False
         if vertical_alignable and shape != "straight-v":
@@ -109,15 +127,29 @@ def analyze(path: pathlib.Path) -> list:
                                     f"drawn {shape}; nodes are not axis-alignable — want a single right-angled elbow"))
             flagged = True
 
+        # PARENT-FLOW-EXIT — independent of shape (a clean ortho-elbow can still exit the wrong border). A
+        # downstream child edge whose SOURCE end leaves a perpendicular side breaks the parent->child read;
+        # the flow-exit router re-routes it out the parent's flow border. Skip when the edge is already
+        # SLOPE_ALIGNABLE (its straight fix exits the flow border) to avoid double-reporting the same edge.
+        # Rect endpoints only — the flow-border concept needs a box's distinct sides; a circle seats radially
+        # (its cardinal-point elbow is not a "side exit"), so the router leaves circles to the single elbow.
+        if flow is not None and na[0] == "rect" and nb[0] == "rect" \
+                and not vertical_alignable and not horizontal_alignable:
+            src_pt = a if node_a is na else b
+            if _dedge._downstream(na, nb, flow) and _side_exit(src_pt, na, flow):
+                border = "left/right side" if flow[0] == "v" else "top/bottom side"
+                fb = "bottom (top-down)" if flow[0] == "v" else "facing side (left-to-right)"
+                findings.append(Finding(path.name, label, "PARENT_SIDE_EXIT",
+                                        f"leaves {src} on its {border}; a downstream child edge must exit the "
+                                        f"flow border — {fb}"))
+
         if flagged:
             continue
         # HEAD-NOT-PERPENDICULAR — the residue: geometry looked orthogonal but a directed head still skims.
-        a, b = ep
         drawable_start = m.start() + m.group(0).rfind("<")
         g_start, g_end = _dedge._enclosing_markers(svg, drawable_start)
         d_first = "marker-start" in drawable or g_start
         d_last = "marker-end" in drawable or g_end
-        node_a, node_b = _dedge._seat_assignment(a, b, na, nb)
         for pt, node, directed, at_last, side in ((a, node_a, d_first, False, src),
                                                   (b, node_b, d_last, True, dst)):
             if not directed:

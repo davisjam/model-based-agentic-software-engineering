@@ -119,6 +119,22 @@ right in the one layout the author eyeballed and drifts the moment the line move
       the coordinate-rounding floor); its **`--fix`** auto-repairs it deterministically — re-aiming a cubic's
       last control point, or bending a straight line / M-L path into a gentle curve that departs along its
       chord and arrives perpendicular. `python3 book-models/lint_figure_dangling_edge.py --fix`.
+    - **A child edge LEAVES THE PARENT'S FLOW BORDER, not a perpendicular side.** A parent/source node's
+      outgoing edge to a downstream child must leave the flow-direction border — the source's **bottom** in a
+      top-down figure, the facing **side** in a left-to-right one — and enter the child's **leading** border
+      (the child's top for top-down). It must **not** exit the source's perpendicular left/right side: a child
+      edge leaving a side breaks the parent→child hierarchy, because the source stops reading as the parent.
+      For a **fan-out** (one source, several children spread below), every edge leaves the source's bottom —
+      the exits distributed along the bottom edge, or a short common trunk dropping from bottom-centre that
+      then branches — runs down, goes horizontal to above each child, and drops into the child's top. This is
+      a **two-turn flow elbow** (down, across, down for top-down): a single elbow can exit the flow border OR
+      enter the leading border, never both, so a diagonal downstream child needs the two turns. The
+      orthogonal router builds it: it reads the figure's flow axis from the dominant source→sink direction,
+      then for a downstream child forces the exit onto the parent's flow border (overriding the dominant-axis
+      single-elbow choice, which would exit a side). `python3 book-models/lint_figure_dangling_edge.py
+      --orthogonalize`. The `figure-edge-should-be-orthogonal` sensor flags a **PARENT_SIDE_EXIT** — a
+      downstream child edge that leaves its parent on a perpendicular side — independently of the edge's drawn
+      shape, so even a clean ortho-elbow that side-exits is caught and cannot regress.
     - **`--fix` cannot see labels; `keep-angles` opts a figure out.** The auto-repair bends a head to
       perpendicular geometrically — it does not know a `<text>` label sits on the diagonal it would sweep
       through. On a decision-tree whose branch labels ("no"/"yes") ride the diagonal, a *straight* diagonal

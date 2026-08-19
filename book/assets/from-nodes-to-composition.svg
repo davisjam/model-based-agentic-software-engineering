@@ -22,7 +22,7 @@
   <rect id="fnc-lout" x="452" y="296" width="8" height="8" fill="none" stroke="none"/>
   <rect id="fnc-rin" x="520" y="296" width="8" height="8" fill="none" stroke="none"/>
   <!-- edge: fnc-lout -> fnc-rin -->
-  <line x1="456" y1="300" x2="520" y2="300" stroke="#57534e" stroke-width="3" marker-end="url(#fnc-ah-gray)"/>
+  <line x1="460" y1="300" x2="518" y2="300" stroke="#57534e" stroke-width="3" marker-end="url(#fnc-ah-gray)"/>
   <!-- edge: nb_pa -> nb_da -->
   <line x1="620" y1="175" x2="843" y2="175" stroke="#1f7a4d" stroke-width="3" marker-end="url(#fnc-ah-green)"/>
   <!-- edge: nb_pb -> nb_db -->
