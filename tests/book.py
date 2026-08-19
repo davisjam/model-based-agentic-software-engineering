@@ -770,6 +770,60 @@ def check_ir_render_fidelity() -> "tuple[str, list[str]]":
     return (FAIL if active else PASS), active
 
 
+def check_footnote_defs_multiline() -> "tuple[str, list[str]]":
+    """Unit test for `build_book.collect_footnote_defs`, the SSOT footnote-definition collector both
+    projections (HTML `md_to_html`, Typst `render_chapter` via `bb.collect_footnote_defs`) share. A footnote
+    definition is its own blank-separated block, so a HARD-WRAPPED body spans several physical lines; the
+    collector must gather every continuation line until the block boundary (blank / next `[^…]:` / EOF) and
+    NOT leak the tail into the kept body (the 260819 `[^static-graph]` leak into §3.2). Cases: (a) a
+    multi-line wrapped def is collected FULLY with no continuation left in the body; (b) a one-line def is
+    unchanged (the equivalence that makes the whole book behavior-identical); (c) two adjacent
+    blank-separated defs collect separately; (d) a def's gather STOPS at the blank line so following prose is
+    kept, not swallowed."""
+    import sys as _sys  # noqa: E402 — local path bootstrap so the book/ builder is importable
+    if BOOK not in _sys.path:
+        _sys.path.insert(0, BOOK)
+    import build_book as _bb  # noqa: E402 — the collector lives in the book builder
+
+    issues: list[str] = []
+
+    # (a) hard-wrapped (unindented) multi-line def: fully joined, nothing leaks into the kept body.
+    md_a = "Body para.\n\n[^wrap]: first line of the note\ncontinuation two\ncontinuation three\n\nAfter."
+    kept_a, defs_a = _bb.collect_footnote_defs(md_a)
+    if defs_a.get("wrap") != "first line of the note continuation two continuation three":
+        issues.append(f"(a) multi-line def not fully gathered: {defs_a.get('wrap')!r}")
+    if "continuation" in kept_a:
+        issues.append(f"(a) continuation leaked into kept body: {kept_a!r}")
+    if "Body para." not in kept_a or "After." not in kept_a:
+        issues.append(f"(a) surrounding body lines dropped: {kept_a!r}")
+
+    # (b) one-line def: identical to the historical single-line behavior (label -> stripped first-line text).
+    md_b = "Intro.\n\n[^solo]: the whole note on one line\n\nTail."
+    kept_b, defs_b = _bb.collect_footnote_defs(md_b)
+    if defs_b.get("solo") != "the whole note on one line":
+        issues.append(f"(b) one-line def changed: {defs_b.get('solo')!r}")
+    if "[^solo]:" in kept_b:
+        issues.append(f"(b) one-line def not stripped from body: {kept_b!r}")
+
+    # (c) two adjacent blank-separated defs: collected as two distinct entries.
+    md_c = "[^one]: first note\n\n[^two]: second note\n"
+    _kept_c, defs_c = _bb.collect_footnote_defs(md_c)
+    if defs_c.get("one") != "first note" or defs_c.get("two") != "second note":
+        issues.append(f"(c) adjacent defs not separated: {defs_c!r}")
+
+    # (d) gather stops at the blank line: the prose after the blank is body, not swallowed into the def.
+    md_d = "[^d]: note body line one\nnote body line two\n\nThis prose is body, not the note.\n"
+    kept_d, defs_d = _bb.collect_footnote_defs(md_d)
+    if defs_d.get("d") != "note body line one note body line two":
+        issues.append(f"(d) def over/under-gathered: {defs_d.get('d')!r}")
+    if "This prose is body" not in kept_d:
+        issues.append(f"(d) following prose was swallowed: {kept_d!r}")
+    if "note body" in kept_d:
+        issues.append(f"(d) def body leaked into kept: {kept_d!r}")
+
+    return (FAIL if issues else PASS), issues
+
+
 def check_index_scan_hoist_parity() -> "tuple[str, list[str]]":
     """BLOCKING byte-identity gate for the index-scan hoist optimization. `_scan_term_refs` was made
     O(pages) instead of O(terms×pages) by precomputing each page's normalized shape — the point-decorator-

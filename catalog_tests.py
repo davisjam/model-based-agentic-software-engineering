@@ -36,6 +36,7 @@ from typing import Callable, NamedTuple
 from tests.book import (
     check_caption_orphan_gate,
     check_float_ref_gate,
+    check_footnote_defs_multiline,
     check_index_scan_hoist_parity,
     check_ir_render_fidelity,
     check_no_stray_comments,
@@ -200,6 +201,12 @@ CHECKS = [
     Check("book: no orphaned table caption (caption rides with its body; PDF sensor)", 1,
           lambda strict: check_caption_orphan_gate()),
     Check("book: IR render-complete blocks render byte-identically (C->A migration net)", 1, lambda strict: check_ir_render_fidelity()),
+    # Unit test for the SSOT footnote-definition collector `build_book.collect_footnote_defs`: a hard-wrapped
+    # (multi-line, unindented) `[^label]:` definition is gathered fully to the block boundary and its
+    # continuation never leaks into the kept body (the 260819 [^static-graph] §3.2 leak), while a one-line def
+    # stays behavior-identical. See tests/book.py.
+    Check("book: collect_footnote_defs gathers multi-line wrapped defs (footnote-def-collector unit)", 1,
+          lambda strict: check_footnote_defs_multiline()),
     # BLOCKING byte-identity net for the index-scan hoist: the O(pages) precomputed `_scan_term_refs` MUST
     # agree with the naive per-term-renormalize reference (the pre-optimization algorithm, kept as the
     # oracle) for every index term over the live chapters. book-index.html is an always-rebuild aggregate,

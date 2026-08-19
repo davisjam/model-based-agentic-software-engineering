@@ -682,25 +682,40 @@ _NOTE_GLYPHS = ("*", "†", "‡", "§", "‖", "¶")
 # a SINGLE note (define once, like `[cite:]`); the definition text runs through the SAME inline pipeline, so
 # a nested `[cite:]` / link / `[[abbr]]` inside a footnote renders. SSOT for the renderer, the Typst twin
 # (book_typst imports these), AND the FOOTNOTE-MARKUP sensor (verify_pdf) — so the gate can never drift from
-# what the build parses. A definition body must live on its one source line (the book's authoring style).
+# what the build parses. A definition is its own blank-separated block; a hard-wrapped body spans several
+# physical lines, gathered until the next block boundary (blank line / new def / EOF) — see the collector.
 _FOOTNOTE_DEF_RE = re.compile(r"^\[\^([A-Za-z0-9._-]+)\]:[ \t]*(.*)$")
 _FOOTNOTE_REF_RE = re.compile(r"\[\^([A-Za-z0-9._-]+)\]")
 
 
 def collect_footnote_defs(md: str) -> "tuple[str, dict[str, str]]":
     """Split a chapter body into `(body_without_definition_lines, {label: definition_md})`. A line matching
-    `[^label]: text` is a footnote DEFINITION: it is removed from the flow and its text collected for render
-    at the reference site; every other line is returned untouched. A repeated definition for one label keeps
-    the last (deterministic; the book has none). The SSOT both projections (HTML `md_to_html`, Typst
-    `render_chapter`) call, so they cannot disagree on which lines are definitions or on the extracted text."""
+    `[^label]: text` STARTS a footnote DEFINITION; since a definition is its own blank-separated block, a
+    hard-wrapped body spans several physical lines, so the collector CONSUMES the start line plus every
+    following continuation line until the block ends — a blank line, the next `[^…]:` def-start, or EOF —
+    and joins them single-spaced into the definition text (continuation lines need no indent). The whole
+    definition block is removed from the flow and its text collected for render at the reference site; every
+    other line is returned untouched. A repeated definition for one label keeps the last (deterministic; the
+    book has none). The SSOT both projections (HTML `md_to_html`, Typst `render_chapter`) call, so they
+    cannot disagree on which lines are definitions or on the extracted text. A one-line def has no
+    continuation, so this reduces to the single-line behavior."""
     defs: dict[str, str] = {}
     kept: list[str] = []
-    for line in md.splitlines():
-        m = _FOOTNOTE_DEF_RE.match(line)
+    lines = md.splitlines()
+    i, n = 0, len(lines)
+    while i < n:
+        m = _FOOTNOTE_DEF_RE.match(lines[i])
         if m:
-            defs[m.group(1)] = m.group(2).strip()
+            pieces = [m.group(2).strip()]
+            i += 1
+            # Gather continuation lines until the block boundary (blank / next def / EOF). No indent required.
+            while i < n and lines[i].strip() != "" and not _FOOTNOTE_DEF_RE.match(lines[i]):
+                pieces.append(lines[i].strip())
+                i += 1
+            defs[m.group(1)] = " ".join(p for p in pieces if p).strip()
         else:
-            kept.append(line)
+            kept.append(lines[i])
+            i += 1
     return "\n".join(kept), defs
 
 # The rendered Chicago strings (per key: note_html / works_cited_html / bib_html / csl), loaded once from
