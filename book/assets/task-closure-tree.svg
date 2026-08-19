@@ -66,7 +66,7 @@
   <rect id="not" x="560" y="192" width="120" height="52" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="620" y="226" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">NOT</text>
   <!-- edge: not -> error-fallback -->
-  <path stroke="#1c1917" stroke-width="2" marker-end="url(#tc-ah)" d="M620,244 C624.2,262.2 632,266 632,296"/>
+  <path fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#tc-ah)" d="M620,244 C624.2,262.2 632,266 632,296"/>
 
   <!-- error-fallback leaf -->
   <rect id="error-fallback" x="525" y="300" width="230" height="78" rx="8" fill="#eef4fb" stroke="#2f5169" stroke-width="2"/>

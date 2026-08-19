@@ -279,6 +279,10 @@ def _line_to_perp_cubic(tag: str, a: tuple, b: tuple, node_b: tuple, d_last: boo
     if d is None:
         return None
     core = re.sub(r'\s(x1|y1|x2|y2)="[^"]*"', '', tag).replace("<line", "<path", 1)
+    # a <line> carries no fill (it is a stroke); a <path> defaults to fill="black" and would fill the curve
+    # as a solid blob — so declare fill="none" unless the source already sets a fill.
+    if "fill=" not in core:
+        core = core.replace("<path", '<path fill="none"', 1)
     return core.replace("/>", f' d="{d}"/>', 1)
 
 
