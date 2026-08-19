@@ -353,6 +353,169 @@ def fix(path: str) -> int:
     return len(replacements)
 
 
+# ---- orthogonal auto-router (--orthogonalize): re-route a declared edge to a straight H/V segment (when
+#      the two node rects are axis-alignable) or a single right-angled elbow (when it must turn), seated
+#      PERPENDICULAR on each rect's mid-border. This is the correct-by-construction fix behind the heuristic
+#      "a box-to-box edge should be orthogonal": a straight edge cannot skim a border, and an elbow's final
+#      segment drops perpendicular into the entered side so orient="auto" seats the head — and any marker-mid
+#      glyph — square. Deterministic + idempotent: the route derives from node geometry alone, not the
+#      current (possibly wrong) drawn coordinates, so a second run reproduces it byte-for-byte. ----
+_ALIGN_MIN = 12.0    # min shared-span overlap (px) for two rects to be axis-alignable -> a straight segment
+_GAP_DIR = 2.0       # a directed end seats this many px OUTSIDE the entered border (head tip lands ~on it)
+_CLEAR_INSET = 3.0   # shrink an obstacle node by this when testing whether an elbow segment clears it
+
+
+def _bounds(node: tuple) -> tuple:
+    """(x0, y0, x1, y1) axis-aligned bounds of a node — a rect as-is, a circle by its bounding square."""
+    if node[0] == "rect":
+        _, x, y, w, h = node
+        return (x, y, x + w, y + h)
+    _, cx, cy, r = node
+    return (cx - r, cy - r, cx + r, cy + r)
+
+
+def _ctr(node: tuple) -> tuple:
+    x0, y0, x1, y1 = _bounds(node)
+    return ((x0 + x1) / 2.0, (y0 + y1) / 2.0)
+
+
+def _span_overlap(a0: float, a1: float, b0: float, b1: float) -> tuple:
+    """(overlap_length, overlap_midpoint) of intervals [a0,a1] and [b0,b1]; length<=0 means no overlap."""
+    lo, hi = max(a0, b0), min(a1, b1)
+    return (hi - lo, (lo + hi) / 2.0)
+
+
+def _seg_hits_rect(p: tuple, q: tuple, rect: tuple, inset: float) -> bool:
+    """Does the axis-aligned segment p->q pass through `rect`'s interior (shrunk by `inset` so a segment
+    grazing a border does not count)?"""
+    rx0, ry0, rx1, ry1 = rect[0] + inset, rect[1] + inset, rect[2] - inset, rect[3] - inset
+    if rx1 <= rx0 or ry1 <= ry0:
+        return False
+    sx0, sx1 = min(p[0], q[0]), max(p[0], q[0])
+    sy0, sy1 = min(p[1], q[1]), max(p[1], q[1])
+    return sx0 <= rx1 and sx1 >= rx0 and sy0 <= ry1 and sy1 >= ry0
+
+
+def _ortho_route(start_node: tuple, end_node: tuple, directed_start: bool, directed_end: bool,
+                 obstacles: list) -> list | None:
+    """The orthogonal poly-line [start_pt, (corner,) end_pt] from `start_node` to `end_node`:
+      * STRAIGHT H/V when the rects overlap on an axis by >= _ALIGN_MIN and are separated on the other —
+        seated on the shared-span midpoint of each rect's facing border;
+      * a single ELBOW when the target sits in a diagonal quadrant — the orientation (H-then-V / V-then-H)
+        chosen so it clears every obstacle rect, preferring the one whose long run matches the dominant axis.
+    A directed end seats _GAP_DIR px OUTSIDE its border (head body stays outside the fill); an undirected end
+    sits on its border. Returns None when no clean route exists (overlapping rects, or both elbow orientations
+    blocked) — the caller then LEAVES the edge for a hand pass rather than emit a bad route."""
+    sx0, sy0, sx1, sy1 = _bounds(start_node)
+    dx0, dy0, dx1, dy1 = _bounds(end_node)
+    scx, scy = _ctr(start_node)
+    dcx, dcy = _ctr(end_node)
+    xov, xmid = _span_overlap(sx0, sx1, dx0, dx1)
+    yov, ymid = _span_overlap(sy0, sy1, dy0, dy1)
+    v_sep = (sy1 <= dy0) or (dy1 <= sy0)   # rects separated along y -> a vertical corridor can run between
+    h_sep = (sx1 <= dx0) or (dx1 <= sx0)   # rects separated along x -> a horizontal corridor can run between
+    g_s = _GAP_DIR if directed_start else 0.0
+    g_e = _GAP_DIR if directed_end else 0.0
+
+    if xov >= _ALIGN_MIN and v_sep:        # STRAIGHT VERTICAL
+        if scy <= dcy:
+            return [(xmid, sy1 + g_s), (xmid, dy0 - g_e)]
+        return [(xmid, sy0 - g_s), (xmid, dy1 + g_e)]
+    if yov >= _ALIGN_MIN and h_sep:        # STRAIGHT HORIZONTAL
+        if scx <= dcx:
+            return [(sx1 + g_s, ymid), (dx0 - g_e, ymid)]
+        return [(sx0 - g_s, ymid), (dx1 + g_e, ymid)]
+
+    # ELBOW — a clean single right angle needs the target in a diagonal quadrant (separated on both axes)
+    hdir = "right" if dx0 >= sx1 else "left" if dx1 <= sx0 else None
+    vdir = "down" if dy0 >= sy1 else "up" if dy1 <= sy0 else None
+    if hdir is None or vdir is None:
+        return None   # rects overlap on one axis but by < _ALIGN_MIN -> ambiguous; leave for a hand pass
+
+    def h_then_v() -> list:
+        ax = sx1 + g_s if hdir == "right" else sx0 - g_s        # exit start on its horizontal side
+        by = dy0 - g_e if vdir == "down" else dy1 + g_e         # enter end top/bottom (perpendicular)
+        return [(ax, scy), (dcx, scy), (dcx, by)]
+
+    def v_then_h() -> list:
+        ay = sy1 + g_s if vdir == "down" else sy0 - g_s         # exit start on its vertical side
+        bx = dx0 - g_e if hdir == "right" else dx1 + g_e        # enter end left/right (perpendicular)
+        return [(scx, ay), (scx, dcy), (bx, dcy)]
+
+    prefer_h = abs(dcx - scx) >= abs(dcy - scy)
+    for build in ([h_then_v, v_then_h] if prefer_h else [v_then_h, h_then_v]):
+        route = build()
+        if not any(_seg_hits_rect(route[i], route[i + 1], ob, _CLEAR_INSET)
+                   for i in range(len(route) - 1) for ob in obstacles):
+            return route
+    return None   # both elbow orientations cross a third node -> leave for a hand pass
+
+
+def _emit_ortho(tag: str, route: list) -> str:
+    """Rewrite drawable `tag`'s geometry to the orthogonal `route`, preserving stroke/marker/style attrs.
+    A 2-point route is a straight segment; a 3-point route is an elbow. A <line> stays a <line> for a
+    straight route and becomes a <path> (fill=none) for an elbow; a <path> is rewritten in place."""
+    d = "M" + _fmt(route[0][0]) + "," + _fmt(route[0][1]) + "".join(
+        f" L{_fmt(x)},{_fmt(y)}" for x, y in route[1:])
+    if tag.startswith("<line"):
+        if len(route) == 2:
+            new = tag
+            for attr, val in (("x1", route[0][0]), ("y1", route[0][1]),
+                              ("x2", route[1][0]), ("y2", route[1][1])):
+                if re.search(rf'\b{attr}="', new):
+                    new = re.sub(rf'\b{attr}="[^"]*"', f'{attr}="{_fmt(val)}"', new, count=1)
+                else:
+                    new = new.replace("<line", f'<line {attr}="{_fmt(val)}"', 1)
+            return new
+        core = re.sub(r'\s(x1|y1|x2|y2)="[^"]*"', "", tag).replace("<line", "<path", 1)
+        if "fill=" not in core:
+            core = core.replace("<path", '<path fill="none"', 1)
+        return core.replace("/>", f' d="{d}"/>', 1)
+    if re.search(r'\bd="', tag):
+        return re.sub(r'\bd="[^"]*"', f'd="{d}"', tag, count=1)
+    return tag.replace("/>", f' d="{d}"/>', 1)
+
+
+def orthogonalize(path: str) -> tuple:
+    """Re-route every declared edge in `path` to an orthogonal segment/elbow and write the SVG back.
+    Returns (n_rerouted, [left-for-hand-pass edge labels]). A keep-angles figure is skipped wholesale.
+    Idempotent: routes derive from node geometry, so a second run reproduces them and changes nothing."""
+    svg = open(path, encoding="utf-8").read()
+    if "<!-- edge:" not in svg or _KEEP_ANGLES_RE.search(svg):
+        return (0, [])
+    nodes = _nodes(svg)
+    replacements = []
+    skipped = []
+    for m in _EDGE_RE.finditer(svg):
+        src, op, dst = m.group(1), m.group(2), m.group(3)
+        if src not in nodes or dst not in nodes:
+            continue
+        drawable = m.group(0)[m.group(0).rfind("<"):]
+        ep = _endpoints(drawable)
+        if ep is None:
+            continue
+        a, b = ep
+        na, nb = nodes[src], nodes[dst]
+        drawable_start = m.start() + m.group(0).rfind("<")
+        g_start, g_end = _enclosing_markers(svg, drawable_start)
+        d_first = "marker-start" in drawable or g_start
+        d_last = "marker-end" in drawable or g_end
+        start_node, end_node = _seat_assignment(a, b, na, nb)   # physical a<->start_node, b<->end_node
+        obstacles = [_bounds(v) for k, v in nodes.items() if k not in (src, dst)]
+        route = _ortho_route(start_node, end_node, d_first, d_last, obstacles)
+        if route is None:
+            skipped.append(f"{src} {op} {dst}")
+            continue
+        new_tag = _emit_ortho(drawable, route)
+        if new_tag and new_tag != drawable:
+            replacements.append((drawable, new_tag))
+    for old, new in replacements:
+        svg = svg.replace(old, new, 1)
+    if replacements:
+        open(path, "w", encoding="utf-8").write(svg)
+    return (len(replacements), skipped)
+
+
 def _enclosing_markers(svg: str, pos: int) -> tuple:
     """(has_marker_start, has_marker_end) contributed by any <g> still OPEN at byte `pos`. A marker can be set
     on an enclosing group instead of the drawable itself (e.g. `<g marker-end=...><line/></g>`), so directed
@@ -422,8 +585,30 @@ def analyze(path: str) -> list:
 def main() -> int:
     argv = sys.argv[1:]
     do_fix = "--fix" in argv
-    argv = [a for a in argv if a != "--fix"]
+    do_orth = "--orthogonalize" in argv
+    argv = [a for a in argv if a not in ("--fix", "--orthogonalize")]
     files = [os.path.abspath(argv[0])] if argv else sorted(glob.glob(os.path.join(_ASSETS, "*.svg")))
+    if do_orth:
+        total_routed = 0
+        left = []
+        print("== figure-orthogonal-router --orthogonalize — re-route declared edges to straight/elbow "
+              "orthogonal, heads seated perpendicular ==")
+        for f in files:
+            try:
+                n, sk = orthogonalize(f)
+            except Exception as exc:  # pragma: no cover
+                print(f"  {os.path.basename(f)}: could not orthogonalize ({exc})")
+                continue
+            if n:
+                print(f"  {os.path.basename(f)} — re-routed {n} edge(s)")
+            for s in sk:
+                print(f"  {os.path.basename(f)} — LEFT '{s}' for a hand pass (no clean orthogonal route)")
+            total_routed += n
+            left += sk
+        print(f"  {total_routed} edge(s) re-routed"
+              + (f"; {len(left)} left for a hand pass" if left else "")
+              if total_routed or left else "  nothing to route — every declared edge already orthogonal")
+        print()  # fall through to a verification pass over the (now orthogonal) files
     if do_fix:
         total_fixed = 0
         print("== figure-arrowhead-angle --fix — re-aim misaimed directed heads at their target center ==")

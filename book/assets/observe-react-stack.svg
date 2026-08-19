@@ -36,7 +36,7 @@
   <rect id="runtime" x="596" y="134" width="92" height="28" fill="none" stroke="none"/>
   <text x="640" y="148" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">runtime</text>
   <!-- edge: runtime -> watch -->
-  <line x1="600" y1="153" x2="474" y2="153" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
+  <line x1="596" y1="148" x2="472" y2="148" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- WATCH -> RESPOND (SOLID load-bearing) -->
   <!-- edge: watch -> respond -->
@@ -47,9 +47,11 @@
   <text x="150" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">BEAT</text>
   <text x="150" y="242" text-anchor="middle" font-size="14" fill="#57534e">liveness heartbeat</text>
   <!-- edge: watch .. beat -->
-  <path d="M300,168 C260,190 250,214 232,214" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
-  <!-- edge: beat .. respond -->
-  <path d="M224,240 C270,258 300,255 300,270" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <path d="M290,153 L150,153 L150,194" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <!-- edge: beat .. respond — hand-routed V-then-H (exit BEAT bottom, enter RESPOND left): the router's
+       node-clearance elbow entered RESPOND's TOP at x=380, colliding with the WATCH->RESPOND spine arrow
+       (an edge-vs-edge overlap the node-only clearance check cannot see). -->
+  <path d="M150,256 L150,305 L288,305" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
 
   <!-- RESPOND (solid) -->
   <rect id="respond" x="290" y="272" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>

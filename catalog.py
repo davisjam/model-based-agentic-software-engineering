@@ -1192,6 +1192,20 @@ def cmd_validate(_args) -> int:
     if collisions:
         print(f"  [labelcol] AUDIT-ONLY: {lflc.summary_line(collisions)} — "
               f"run `python3 book-models/lint_figure_label_collision.py` (does not gate)")
+    # FIGURE EDGE-SHOULD-BE-ORTHOGONAL — the declared-edge-routes-orthogonally sensor over book/assets/*.svg
+    # (the routing complement to the dangling-edge seating sensor): a declared box-to-box edge drawn
+    # curved/sloped between axis-alignable nodes (want a straight H/V), or turning with a curve instead of a
+    # single right angle (want an elbow), seats its head — and any mid-edge glyph — off the border normal. It
+    # mechanizes the orthogonal-routing heuristic and enumerates the book-wide offender set the router
+    # (`lint_figure_dangling_edge.py --orthogonalize`) drains; keep-angles figures opt out. AUDIT-ONLY-first
+    # per the repo's blocking-lint discipline: the corpus predates the orthogonal default, so it PRINTS the
+    # re-route worklist (a committer sees the backlog) but does NOT increment n_issues; a figure fix-wave
+    # drains it and a follow-up flips it blocking. See book-models/lint_figure_edge_should_be_orthogonal.py.
+    import lint_figure_edge_should_be_orthogonal as lfeso  # noqa: E402 — audit-only orthogonal-routing sensor
+    nonortho = lfeso.findings()
+    if nonortho:
+        print(f"  [ortho] AUDIT-ONLY: {lfeso.summary_line(nonortho)} — "
+              f"run `python3 book-models/lint_figure_edge_should_be_orthogonal.py` (does not gate)")
     # HEADING CASE — the headings-are-Title-Case sensor over the book's TWO heading sources: markdown `#`
     # headings in book/part*/ + book/appendix-*/, AND the appendix ENTRY titles in build_book.py's `_*_PAGES`
     # / `_STACKS` page-list tuples. For each heading off the ratified Title-Case convention it emits the

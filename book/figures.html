@@ -7939,7 +7939,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="fig-A-4-1-f-observe-react-stack-runtime" x="596" y="134" width="92" height="28" fill="none" stroke="none"/>
   <text x="640" y="148" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">runtime</text>
   <!-- edge: runtime -> watch -->
-  <line x1="600" y1="153" x2="474" y2="153" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-A-4-1-f-observe-react-stack-ah)"/>
+  <line x1="596" y1="148" x2="472" y2="148" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-A-4-1-f-observe-react-stack-ah)"/>
 
   <!-- WATCH -> RESPOND (SOLID load-bearing) -->
   <!-- edge: watch -> respond -->
@@ -7950,9 +7950,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="150" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">BEAT</text>
   <text x="150" y="242" text-anchor="middle" font-size="14" fill="#57534e">liveness heartbeat</text>
   <!-- edge: watch .. beat -->
-  <path d="M300,168 C260,190 250,214 232,214" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#fig-A-4-1-f-observe-react-stack-aho)"/>
-  <!-- edge: beat .. respond -->
-  <path d="M224,240 C270,258 300,255 300,270" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#fig-A-4-1-f-observe-react-stack-aho)"/>
+  <path d="M290,153 L150,153 L150,194" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#fig-A-4-1-f-observe-react-stack-aho)"/>
+  <!-- edge: beat .. respond — hand-routed V-then-H (exit BEAT bottom, enter RESPOND left): the router's
+       node-clearance elbow entered RESPOND's TOP at x=380, colliding with the WATCH->RESPOND spine arrow
+       (an edge-vs-edge overlap the node-only clearance check cannot see). -->
+  <path d="M150,256 L150,305 L288,305" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#fig-A-4-1-f-observe-react-stack-aho)"/>
 
   <!-- RESPOND (solid) -->
   <rect id="fig-A-4-1-f-observe-react-stack-respond" x="290" y="272" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -8028,7 +8030,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="650" y="204" text-anchor="middle" font-size="14" fill="#57534e">tighten / relax</text>
   <text x="650" y="222" text-anchor="middle" font-size="14" fill="#57534e">when justified</text>
   <!-- edge: pressure .. mediator -->
-  <path d="M560,192 C540,192 540,190 528,190" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#fig-A-5-1-f-resource-mediation-stack-aho)"/>
+  <path d="M560,190 L527,190" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#fig-A-5-1-f-resource-mediation-stack-aho)"/>
 
   <!-- legend -->
   <rect x="60" y="360" width="250" height="86" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
@@ -8133,9 +8135,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- fork to two lanes -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#fig-A-7-1-f-context-delivery-stack-ah)">
     <!-- edge: eng-knowledge -> standing-policy -->
-    <path d="M410,80 C330,112 260,110 260,140"/>
+    <path d="M305,80 L305,140"/>
     <!-- edge: eng-knowledge -> task-slice -->
-    <path d="M410,80 C490,112 560,110 560,140"/>
+    <path d="M515,80 L515,140"/>
   </g>
 
   <!-- STANDING POLICY -->
@@ -8151,9 +8153,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- converge to ACTOR CONTEXT -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#fig-A-7-1-f-context-delivery-stack-ah)">
     <!-- edge: standing-policy -> actor-context -->
-    <path d="M260,216 C260,252 388,240 388,270"/>
+    <path d="M335,216 L335,270"/>
     <!-- edge: task-slice -> actor-context -->
-    <path d="M560,216 C560,252 432,240 432,270"/>
+    <path d="M485,216 L485,270"/>
   </g>
 
   <!-- ACTOR CONTEXT -->
@@ -8173,7 +8175,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="665" y="420" text-anchor="middle" font-size="14" fill="#57534e">reminder /</text>
   <text x="665" y="438" text-anchor="middle" font-size="14" fill="#57534e">deterministic gate</text>
   <!-- edge: point-of-action .. action -->
-  <path d="M560,411 L508,411" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#fig-A-7-1-f-context-delivery-stack-aho)"/>
+  <path d="M560,411 L507,411" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#fig-A-7-1-f-context-delivery-stack-aho)"/>
 
   <!-- legend (top-left, clear of the centered top box) -->
   <rect x="30" y="26" width="196" height="76" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
@@ -8223,11 +8225,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- fan out to three guarantees (one path per branch; curves arrive perpendicular into each top) -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#fig-A-8-1-f-appendix-a-composing-a-stack-ah)">
     <!-- edge: failure -> guar-1 -->
-    <path d="M410,268 C260,300 180,300 180,328"/>
+    <path d="M285,239 L180,239 L180,328"/>
     <!-- edge: failure -> guar-2 -->
     <line x1="410" y1="268" x2="410" y2="328"/>
     <!-- edge: failure -> guar-3 -->
-    <path d="M410,268 C560,300 640,300 640,328"/>
+    <path d="M535,239 L640,239 L640,328"/>
   </g>
 
   <!-- guarantee x3 -->
@@ -8259,11 +8261,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- converge to dependency check (one path per branch; curves arrive perpendicular into the top) -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#fig-A-8-1-f-appendix-a-composing-a-stack-ah)">
     <!-- edge: mech-1 -> dependency -->
-    <path d="M180,486 C180,522 350,528 350,540"/>
+    <path d="M180,486 L180,570 L283,570"/>
     <!-- edge: mech-2 -> dependency -->
     <line x1="410" y1="486" x2="410" y2="540"/>
     <!-- edge: mech-3 -> dependency -->
-    <path d="M640,486 C640,522 470,528 470,540"/>
+    <path d="M640,486 L640,570 L537,570"/>
   </g>
 
   <!-- dependency check -->
@@ -9139,7 +9141,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="fig-C-1-f-appendix-g-1-executable-model-question" x="230" y="34" width="260" height="44" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
   <text x="360" y="62" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ENGINEERING QUESTION</text>
   <!-- edge: question -> model -->
-  <line x1="360" y1="78" x2="360" y2="112" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
+  <line x1="360" y1="78" x2="360" y2="110" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
 
   <!-- MODEL (representation) -->
   <rect id="fig-C-1-f-appendix-g-1-executable-model-model" x="230" y="112" width="260" height="80" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
@@ -9150,20 +9152,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- AUTHORED intent in (SOLID, from left) -->
   <rect id="fig-C-1-f-appendix-g-1-executable-model-authored" x="60" y="136" width="70" height="34" fill="none" stroke="none"/>
   <!-- edge: authored -> model -->
-  <line x1="120" y1="152" x2="230" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
+  <line x1="130" y1="153" x2="228" y2="153" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
   <text x="95" y="147" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED</text>
   <text x="95" y="164" text-anchor="middle" font-size="13" fill="#57534e">intent</text>
 
   <!-- DERIVED facts in (DASHED, from right) -->
   <rect id="fig-C-1-f-appendix-g-1-executable-model-derived" x="596" y="136" width="64" height="34" fill="none" stroke="none"/>
   <!-- edge: derived .. model -->
-  <line x1="600" y1="152" x2="490" y2="152" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
+  <line x1="596" y1="153" x2="492" y2="153" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
   <text x="628" y="147" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
   <text x="628" y="164" text-anchor="middle" font-size="13" fill="#57534e">facts</text>
 
   <!-- declares / generates (SOLID down) -->
   <!-- edge: model -> artifacts -->
-  <line x1="360" y1="192" x2="360" y2="228" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
+  <line x1="360" y1="192" x2="360" y2="226" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
   <text x="474" y="214" font-size="13" font-style="italic" fill="#57534e">declares / generates</text>
 
   <!-- CODE / CONFIG / RUNTIME / ARTIFACTS (observed / implementation) -->
@@ -9173,7 +9175,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- observe / re-derive (DASHED down) -->
   <!-- edge: artifacts .. check -->
-  <line x1="360" y1="292" x2="360" y2="330" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
+  <line x1="360" y1="292" x2="360" y2="328" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
   <text x="474" y="309" font-size="13" font-style="italic" fill="#57534e">observe / re-derive</text>
   <text x="474" y="325" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED</text>
 
@@ -9185,23 +9187,27 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- decision (transparent anchor over the label — the fork hub) -->
   <rect id="fig-C-1-f-appendix-g-1-executable-model-disagreement" x="305" y="424" width="110" height="24" fill="none" stroke="none"/>
   <!-- edge: check -> disagreement -->
-  <line x1="360" y1="394" x2="360" y2="420" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
+  <line x1="360" y1="394" x2="360" y2="422" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
   <text x="360" y="438" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">disagreement?</text>
 
-  <!-- NO leg: advisory / report-only (plain, no authority) — seated by eye (decision leg) -->
-  <line x1="330" y1="448" x2="200" y2="480" stroke="#2f5169" stroke-width="2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
-  <text x="250" y="462" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">no</text>
+  <!-- NO leg: advisory / report-only (plain, no authority) — hand-routed as an orthogonal elbow (exit the
+       disagreement hub left, drop into advisory's top border) so the head seats perpendicular, not skimming. -->
+  <path d="M305,436 L185,436 L185,482" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-solid)"/>
+  <text x="243" y="430" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">no</text>
   <rect id="fig-C-1-f-appendix-g-1-executable-model-advisory" x="70" y="484" width="230" height="46" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
   <text x="185" y="506" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">advisory · report-only</text>
   <text x="185" y="523" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">informs the engineer</text>
 
-  <!-- YES leg: finding / gate where warranted (HEAVY authority + gate glyph) — seated by eye; glyph rides the straight leg -->
-  <line x1="390" y1="448" x2="512" y2="480" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-auth)"/>
-  <text x="470" y="462" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">yes</text>
-  <!-- gate glyph: two heavy bars across the authority arrow -->
+  <!-- YES leg: finding / gate where warranted (HEAVY authority + gate glyph) — hand-routed as an orthogonal
+       elbow (exit the disagreement hub right, drop into finding/gate's top border). Orthogonal routing seats
+       the CHECKED gate glyph SQUARE by construction: on the vertical shaft the two bars run horizontal,
+       perpendicular to their local segment (matching the legend's CHECKED row), not tilted along a diagonal. -->
+  <path d="M415,436 L540,436 L540,482" fill="none" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#fig-C-1-f-appendix-g-1-executable-model-g1-auth)"/>
+  <text x="478" y="430" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">yes</text>
+  <!-- gate glyph: two heavy bars ACROSS the authority arrow's vertical shaft (horizontal = perpendicular) -->
   <g stroke="#b23b3b" stroke-width="3.4">
-    <line x1="447" y1="456" x2="455" y2="474"/>
-    <line x1="458" y1="452" x2="466" y2="470"/>
+    <line x1="531" y1="457" x2="549" y2="457"/>
+    <line x1="531" y1="465" x2="549" y2="465"/>
   </g>
   <rect x="420" y="484" width="240" height="52" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
   <text x="540" y="507" text-anchor="middle" font-size="14" font-weight="700" fill="#b23b3b">finding / gate</text>
