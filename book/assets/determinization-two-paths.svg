@@ -59,16 +59,19 @@
   <text x="70" y="168" font-size="17" font-weight="700" fill="#1c1917">Path 1 · Direct mechanization</text>
   <text x="70" y="190" font-size="14.5" font-style="italic" fill="#9a3f12">Alignment alone moves this frontier</text>
 
-  <rect x="70" y="204" width="230" height="66" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="sj-artifact" x="70" y="204" width="230" height="66" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
   <text x="185" y="232" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">semantic judgment</text>
   <text x="185" y="254" text-anchor="middle" font-size="15" fill="#57534e">over artifact</text>
 
-  <path d="M300,237 L392,237" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dtp-mut)"/>
+  <!-- one edge sj-artifact -> test-gate, drawn two-tone across the frontier: muted underlay runs the full
+       span (lint-legible, rust head at the target); a rust overlay recolours the crossing (right) portion -->
+  <!-- edge: sj-artifact -> test-gate -->
+  <path d="M300,237 L658,237" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dtp-rust)"/>
   <text x="346" y="226" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">property is</text>
   <text x="346" y="243" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">already decidable</text>
 
   <!-- crosses the frontier into the deterministic side -->
-  <rect x="662" y="204" width="268" height="66" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <rect id="test-gate" x="662" y="204" width="268" height="66" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="796" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">test / validator / constraint / gate</text>
   <path d="M392,237 L658,237" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#dtp-rust)"/>
 
@@ -76,23 +79,27 @@
   <text x="70" y="330" font-size="17" font-weight="700" fill="#1c1917">Path 2 · Representation shift</text>
   <text x="70" y="352" font-size="14.5" font-style="italic" fill="#1f7a4d">Modeling moves this frontier</text>
 
-  <rect x="70" y="366" width="196" height="66" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="sj-impl" x="70" y="366" width="196" height="66" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
   <text x="168" y="394" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">semantic judgment</text>
   <text x="168" y="416" text-anchor="middle" font-size="15" fill="#57534e">over implementation</text>
 
+  <!-- edge: sj-impl -> structured-model -->
   <path d="M266,399 L322,399" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#dtp-green)"/>
   <text x="294" y="383" text-anchor="middle" font-size="12" font-style="italic" fill="#1f7a4d">externalize</text>
   <text x="294" y="419" text-anchor="middle" font-size="12" font-style="italic" fill="#1f7a4d">state / relations</text>
 
-  <rect x="324" y="366" width="200" height="66" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <rect id="structured-model" x="324" y="366" width="200" height="66" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="424" y="404" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">structured model</text>
 
-  <path d="M524,399 L596,399" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#dtp-green)"/>
+  <!-- one edge structured-model -> repeatable-decision, two-tone across the frontier: green underlay runs the
+       full span (lint-legible, rust head at the target); a rust overlay recolours the crossing (right) portion -->
+  <!-- edge: structured-model -> repeatable-decision -->
+  <path d="M524,399 L658,399" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#dtp-rust)"/>
   <text x="560" y="383" text-anchor="middle" font-size="12" font-style="italic" fill="#1f7a4d">predicate</text>
   <text x="560" y="419" text-anchor="middle" font-size="12" font-style="italic" fill="#1f7a4d">over model</text>
 
   <!-- crosses the frontier into the deterministic side -->
-  <rect x="662" y="366" width="268" height="66" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <rect id="repeatable-decision" x="662" y="366" width="268" height="66" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="796" y="404" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">repeatable decision</text>
   <path d="M600,399 L658,399" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#dtp-rust)"/>
 

@@ -19,36 +19,40 @@
   </defs>
 
   <!-- CONTROL ESTATE -->
-  <rect x="180" y="30" width="250" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <rect id="control-estate" x="180" y="30" width="250" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="305" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL ESTATE</text>
   <text x="305" y="82" text-anchor="middle" font-size="14" fill="#57534e">rules &#183; gates &#183;</text>
   <text x="305" y="100" text-anchor="middle" font-size="14" fill="#57534e">models &#183; sensors</text>
 
   <text x="318" y="132" font-size="14" font-style="italic" fill="#57534e">inspect / query</text>
+  <!-- edge: control-estate -> gap-impact -->
   <line x1="305" y1="110" x2="305" y2="156" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- GAP / IMPACT -->
-  <rect x="180" y="158" width="250" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="gap-impact" x="180" y="158" width="250" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="305" y="188" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">GAP / IMPACT</text>
   <text x="305" y="210" text-anchor="middle" font-size="14" fill="#57534e">where is control</text>
   <text x="305" y="228" text-anchor="middle" font-size="14" fill="#57534e">weak or coupled?</text>
 
   <text x="322" y="272" font-size="14" font-style="italic" fill="#7a5c12">recurring failure?</text>
+  <!-- edge: gap-impact -> interpret -->
   <line x1="305" y1="238" x2="305" y2="296" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- INTERPRET (rust) -->
-  <rect x="180" y="298" width="250" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <rect id="interpret" x="180" y="298" width="250" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="305" y="328" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">INTERPRET</text>
   <text x="305" y="350" text-anchor="middle" font-size="14" fill="#57534e">failure class &#8594;</text>
   <text x="305" y="368" text-anchor="middle" font-size="14" fill="#57534e">durable control</text>
 
+  <!-- edge: interpret -> update-estate -->
   <line x1="305" y1="378" x2="305" y2="424" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- UPDATE ESTATE -->
-  <rect x="195" y="426" width="220" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="update-estate" x="195" y="426" width="220" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="305" y="464" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">UPDATE ESTATE</text>
 
   <!-- curved solid feedback UPDATE ESTATE -> CONTROL ESTATE (next iteration) -->
+  <!-- edge: update-estate -> control-estate -->
   <path d="M415,458 C560,458 580,200 580,140 C580,90 500,72 432,70"
         stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>
   <text x="592" y="300" font-size="14" font-weight="700" fill="#2f5169" transform="rotate(90 592 300)">next iteration</text>

@@ -911,42 +911,47 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <text x="40" y="36" font-size="16" font-weight="600" fill="#57534e">One seam, hardened in layers &#8212; each forced by a residual failure.</text>
 
+  <!-- forcing arrows (drawn UNDER the nodes: tail runs to source center, head seats on target top) -->
+  <!-- edge: convenient-call -> silent-corruption -->
+  <line x1="200" y1="118" x2="200" y2="171" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
+  <!-- edge: silent-corruption -> library-policy -->
+  <line x1="200" y1="196" x2="200" y2="249" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
+  <!-- edge: library-policy -> typed-seam -->
+  <line x1="200" y1="274" x2="200" y2="327" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
+  <!-- edge: typed-seam -> build-time-ban -->
+  <line x1="200" y1="352" x2="200" y2="405" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
+  <!-- edge: build-time-ban -> gate-integrity -->
+  <line x1="200" y1="430" x2="200" y2="483" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
+
   <!-- 1: convenient call -->
-  <rect x="95" y="96" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="f-pdf-seam-layers-convenient-call" x="95" y="96" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="124" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">convenient call</text>
   <text x="330" y="123" font-size="13" font-style="italic" fill="#57534e">chosen because it was one line</text>
 
   <!-- 2: silent corruption (the founding failure) -->
-  <rect x="95" y="174" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="f-pdf-seam-layers-silent-corruption" x="95" y="174" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="202" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">silent corruption</text>
   <text x="330" y="201" font-size="13" fill="#b23b3b">tag tree stripped &#8212; the eye can't catch it</text>
 
   <!-- 3: library policy -->
-  <rect x="95" y="252" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="f-pdf-seam-layers-library-policy" x="95" y="252" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="280" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">library policy</text>
   <text x="330" y="279" font-size="13" font-style="italic" fill="#57534e">one canonical library per format</text>
 
   <!-- 4: typed seam -->
-  <rect x="95" y="330" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="f-pdf-seam-layers-typed-seam" x="95" y="330" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="358" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">typed seam</text>
   <text x="330" y="357" font-size="13" font-style="italic" fill="#57534e">all mutation through one model</text>
 
   <!-- 5: build-time ban -->
-  <rect x="95" y="408" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="f-pdf-seam-layers-build-time-ban" x="95" y="408" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="436" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">build-time ban</text>
   <text x="330" y="435" font-size="13" font-style="italic" fill="#57534e">enforced, not remembered</text>
 
   <!-- 6: gate integrity (the enforcement itself under scrutiny) — heavy stroke = authority -->
-  <rect x="95" y="486" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
+  <rect id="f-pdf-seam-layers-gate-integrity" x="95" y="486" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
   <text x="200" y="514" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">gate integrity</text>
   <text x="330" y="513" font-size="13" font-style="italic" fill="#57534e">the check itself was caught mis-reporting</text>
-
-  <!-- forcing arrows (each failure forces the next layer) -->
-  <line x1="200" y1="143" x2="200" y2="171" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
-  <line x1="200" y1="221" x2="200" y2="249" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
-  <line x1="200" y1="299" x2="200" y2="327" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
-  <line x1="200" y1="377" x2="200" y2="405" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
-  <line x1="200" y1="455" x2="200" y2="483" stroke="#2b2825" stroke-width="2" marker-end="url(#f-pdf-seam-layers-psl-ar)"/>
 
   <text x="320" y="576" text-anchor="middle" font-size="13" fill="#57534e">An engineering history, not a system model.</text>
 </svg><figcaption data-short="One Seam, Hardened in Layers"><span class="fig-label">Figure 5.3-3.</span> <em>One Seam, Hardened in Layers.</em> A convenient library call silently corrupted the accessibility structure the product exists to add. That failure motivated a canonical-library policy and a typed mutation seam that concentrated every format change in one place. A build-time ban then refused the raw calls that would bypass the seam. Later the enforcement itself misreported success when a stale repository root hid real findings, forcing a repair to the gate. Each layer answers a specific failure rather than a plan drawn in advance.</figcaption></figure>

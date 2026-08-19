@@ -9,7 +9,11 @@
      the picture shows the model reaching a would-be gate that was consciously not switched on. Shared house
      grammar: entity box (fill #f6f4ef, stroke #2b2825); solid arrow = actual step; DASHED muted stroke =
      derived / not-yet-actual (the deferred transition and the ghost gate). Palette: page #fdfcf9, ink
-     #1c1917/#2b2825, muted #57534e, box fill #f6f4ef. -->
+     #1c1917/#2b2825, muted #57534e, box fill #f6f4ef.
+     CONNECT-GRAMMAR (edge-terminates-on-named-node): each box carries a stable id; each transition is
+     declared with an edge comment (solid for an actual step, dotted for the deferred report-to-authority
+     transition) and drawn UNDER the nodes, tail at the source box CENTER, head seated on the target box
+     top perimeter aiming straight in. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" width="640" height="600"
      role="group" aria-labelledby="mngTitle mngDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -35,44 +39,51 @@
 
   <text x="40" y="36" font-size="16" font-weight="600" fill="#57534e">A model left unbound on purpose: modeled, observed, reported, not enforced.</text>
 
+  <!-- transitions (drawn UNDER the nodes: tail runs to source center, head seats on target top) -->
+  <!-- actual steps (solid) -->
+  <!-- edge: timeout -> measurement -->
+  <line x1="200" y1="122" x2="200" y2="175" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <!-- edge: measurement -> model -->
+  <line x1="200" y1="200" x2="200" y2="253" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <!-- edge: model -> evidence -->
+  <line x1="200" y1="278" x2="200" y2="331" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <!-- edge: evidence -> report -->
+  <line x1="200" y1="356" x2="200" y2="409" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <!-- deferred transition (dashed = would-be, not switched on) -->
+  <!-- edge: report .. authority -->
+  <line x1="200" y1="434" x2="200" y2="487" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#mng-arM)"/>
+
   <!-- 1: timeout -->
-  <rect x="100" y="100" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="timeout" x="100" y="100" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="128" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">timeout</text>
   <text x="330" y="131" font-size="13" font-style="italic" fill="#57534e">a bare kill, after the budget was spent</text>
 
   <!-- 2: measurement -->
-  <rect x="100" y="178" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="measurement" x="100" y="178" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="206" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">measurement</text>
   <text x="330" y="209" font-size="13" font-style="italic" fill="#57534e">one incident, timestamped, provisional</text>
 
   <!-- 3: model  (rhyme node) -->
-  <rect x="100" y="256" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="model" x="100" y="256" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="284" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">model</text>
   <text x="330" y="287" font-size="13" font-style="italic" fill="#57534e">per-chunk worst case vs the ceiling</text>
 
   <!-- 4: evidence  (rhyme node) -->
-  <rect x="100" y="334" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="evidence" x="100" y="334" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="362" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">evidence</text>
   <text x="330" y="365" font-size="13" font-style="italic" fill="#57534e">a would-be breach, made observable</text>
 
   <!-- 5: report  (rhyme node) -->
-  <rect x="100" y="412" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="report" x="100" y="412" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="440" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">report</text>
   <text x="330" y="443" font-size="13" font-style="italic" fill="#57534e">surfaced, not enforced</text>
 
   <!-- 6: authority — deferred, drawn as a ghost (dashed muted = not-yet-actual) -->
-  <rect x="100" y="490" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4"/>
+  <rect id="authority" x="100" y="490" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4"/>
   <text x="200" y="518" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">? authority</text>
   <text x="330" y="515" font-size="13" fill="#57534e">[ no gate yet &#8212; deliberately deferred ]</text>
 
-  <!-- actual steps (solid) -->
-  <line x1="200" y1="147" x2="200" y2="175" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
-  <line x1="200" y1="225" x2="200" y2="253" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
-  <line x1="200" y1="303" x2="200" y2="331" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
-  <line x1="200" y1="381" x2="200" y2="409" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
-
-  <!-- deferred transition (dashed = would-be, not switched on) with a question glyph beside it -->
-  <line x1="200" y1="459" x2="200" y2="487" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#mng-arM)"/>
+  <!-- question glyph beside the deferred transition -->
   <text x="222" y="479" font-size="20" font-weight="700" fill="#57534e">?</text>
 
   <text x="320" y="576" text-anchor="middle" font-size="13" fill="#57534e">An engineering history, not a system model.</text>

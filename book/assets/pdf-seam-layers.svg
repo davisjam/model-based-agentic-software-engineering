@@ -8,7 +8,10 @@
      accent. The terminal node (the gate that itself failed) carries the heavy stroke that marks authority
      under scrutiny. Shared house grammar: entity box (fill #f6f4ef, stroke #2b2825); solid arrow = the next
      step it forced; muted bracket text = the principle added. Palette: page #fdfcf9, ink #1c1917/#2b2825,
-     muted #57534e, accent-negative #b23b3b, box fill #f6f4ef. -->
+     muted #57534e, accent-negative #b23b3b, box fill #f6f4ef.
+     CONNECT-GRAMMAR (edge-terminates-on-named-node): each box carries a stable id; each forcing arrow is
+     declared with an edge comment (SRC to DST) and drawn UNDER the nodes, running from the source
+     box CENTER (fill caps the tail) to the target box top perimeter (arrowhead outside, aiming straight in). -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" width="640" height="600"
      role="group" aria-labelledby="pslTitle pslDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
@@ -31,42 +34,47 @@
 
   <text x="40" y="36" font-size="16" font-weight="600" fill="#57534e">One seam, hardened in layers &#8212; each forced by a residual failure.</text>
 
+  <!-- forcing arrows (drawn UNDER the nodes: tail runs to source center, head seats on target top) -->
+  <!-- edge: convenient-call -> silent-corruption -->
+  <line x1="200" y1="118" x2="200" y2="171" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+  <!-- edge: silent-corruption -> library-policy -->
+  <line x1="200" y1="196" x2="200" y2="249" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+  <!-- edge: library-policy -> typed-seam -->
+  <line x1="200" y1="274" x2="200" y2="327" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+  <!-- edge: typed-seam -> build-time-ban -->
+  <line x1="200" y1="352" x2="200" y2="405" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+  <!-- edge: build-time-ban -> gate-integrity -->
+  <line x1="200" y1="430" x2="200" y2="483" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
+
   <!-- 1: convenient call -->
-  <rect x="95" y="96" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="convenient-call" x="95" y="96" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="124" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">convenient call</text>
   <text x="330" y="123" font-size="13" font-style="italic" fill="#57534e">chosen because it was one line</text>
 
   <!-- 2: silent corruption (the founding failure) -->
-  <rect x="95" y="174" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="silent-corruption" x="95" y="174" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="202" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">silent corruption</text>
   <text x="330" y="201" font-size="13" fill="#b23b3b">tag tree stripped &#8212; the eye can't catch it</text>
 
   <!-- 3: library policy -->
-  <rect x="95" y="252" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="library-policy" x="95" y="252" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="280" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">library policy</text>
   <text x="330" y="279" font-size="13" font-style="italic" fill="#57534e">one canonical library per format</text>
 
   <!-- 4: typed seam -->
-  <rect x="95" y="330" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="typed-seam" x="95" y="330" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="358" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">typed seam</text>
   <text x="330" y="357" font-size="13" font-style="italic" fill="#57534e">all mutation through one model</text>
 
   <!-- 5: build-time ban -->
-  <rect x="95" y="408" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="build-time-ban" x="95" y="408" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="200" y="436" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">build-time ban</text>
   <text x="330" y="435" font-size="13" font-style="italic" fill="#57534e">enforced, not remembered</text>
 
   <!-- 6: gate integrity (the enforcement itself under scrutiny) — heavy stroke = authority -->
-  <rect x="95" y="486" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
+  <rect id="gate-integrity" x="95" y="486" width="210" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
   <text x="200" y="514" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">gate integrity</text>
   <text x="330" y="513" font-size="13" font-style="italic" fill="#57534e">the check itself was caught mis-reporting</text>
-
-  <!-- forcing arrows (each failure forces the next layer) -->
-  <line x1="200" y1="143" x2="200" y2="171" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
-  <line x1="200" y1="221" x2="200" y2="249" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
-  <line x1="200" y1="299" x2="200" y2="327" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
-  <line x1="200" y1="377" x2="200" y2="405" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
-  <line x1="200" y1="455" x2="200" y2="483" stroke="#2b2825" stroke-width="2" marker-end="url(#psl-ar)"/>
 
   <text x="320" y="576" text-anchor="middle" font-size="13" fill="#57534e">An engineering history, not a system model.</text>
 </svg>

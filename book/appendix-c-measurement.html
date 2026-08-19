@@ -741,48 +741,61 @@ Bound
   <rect x="0" y="0" width="720" height="520" fill="#fdfcf9"/>
   <text x="40" y="34" font-size="15" font-weight="600" fill="#57534e">Question: what bound is declared — and what happens when it is exceeded?</text>
 
-  <!-- RUNNING SYSTEM (observed / implementation) -->
-  <rect x="250" y="52" width="220" height="50" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
-  <text x="360" y="83" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">RUNNING SYSTEM</text>
+  <!-- Edges drawn before the node they enter so the node fill caps the ends;
+       the decision is a bare text label carried by a transparent rect anchor. -->
 
-  <!-- observe (DASHED) -->
+  <!-- edge: system .. measurement (dashed observe) -->
   <line x1="360" y1="102" x2="360" y2="138" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#f-appendix-g-5-measurement-authority-g5-solid)"/>
   <text x="374" y="118" font-size="13" font-style="italic" fill="#57534e">observe</text>
   <text x="374" y="134" font-size="13" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED</text>
 
-  <!-- MEASUREMENT (representation) -->
-  <rect x="250" y="138" width="220" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
-  <text x="360" y="166" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">MEASUREMENT</text>
-  <text x="360" y="189" text-anchor="middle" font-size="14" fill="#57534e">latency · cost · queue</text>
-
-  <!-- compare (SOLID) -->
+  <!-- edge: measurement -> bound (compare) -->
   <line x1="360" y1="204" x2="360" y2="240" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-5-measurement-authority-g5-solid)"/>
   <text x="374" y="226" font-size="13" font-style="italic" fill="#57534e">compare</text>
 
-  <!-- DECLARED BOUND (representation) -->
-  <rect x="250" y="240" width="220" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
-  <text x="360" y="268" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">DECLARED BOUND</text>
-  <text x="360" y="289" text-anchor="middle" font-size="13" fill="#57534e">threshold · scope · statistic</text>
-
-  <!-- decision -->
+  <!-- edge: bound -> decision -->
   <line x1="360" y1="300" x2="360" y2="326" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-5-measurement-authority-g5-solid)"/>
-  <text x="360" y="344" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">evidence sufficient?</text>
 
-  <!-- NO leg: report only (plain) -->
+  <!-- NO leg -->
+  <!-- edge: decision -> report -->
   <line x1="330" y1="354" x2="200" y2="390" stroke="#2f5169" stroke-width="2" marker-end="url(#f-appendix-g-5-measurement-authority-g5-solid)"/>
   <text x="248" y="368" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">no</text>
-  <rect x="80" y="394" width="220" height="54" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
-  <text x="190" y="420" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">REPORT ONLY</text>
-  <text x="190" y="439" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">surfaced, not enforced</text>
 
-  <!-- YES leg: admission gate (HEAVY authority + gate glyph) -->
+  <!-- YES leg (HEAVY authority + gate glyph) -->
+  <!-- edge: decision -> gate -->
   <line x1="390" y1="354" x2="512" y2="390" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#f-appendix-g-5-measurement-authority-g5-auth)"/>
   <text x="470" y="368" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">yes</text>
+  <!-- completion-gate glyph decorating the yes branch (not a connect-grammar edge) -->
   <g stroke="#b23b3b" stroke-width="3.4">
     <line x1="447" y1="362" x2="455" y2="380"/>
     <line x1="458" y1="358" x2="466" y2="376"/>
   </g>
-  <rect x="420" y="394" width="250" height="58" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
+
+  <!-- RUNNING SYSTEM (observed / implementation) -->
+  <rect id="f-appendix-g-5-measurement-authority-system" x="250" y="52" width="220" height="50" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="360" y="83" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">RUNNING SYSTEM</text>
+
+  <!-- MEASUREMENT (representation) -->
+  <rect id="f-appendix-g-5-measurement-authority-measurement" x="250" y="138" width="220" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="360" y="166" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">MEASUREMENT</text>
+  <text x="360" y="189" text-anchor="middle" font-size="14" fill="#57534e">latency · cost · queue</text>
+
+  <!-- DECLARED BOUND (representation) -->
+  <rect id="f-appendix-g-5-measurement-authority-bound" x="250" y="240" width="220" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="360" y="268" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">DECLARED BOUND</text>
+  <text x="360" y="289" text-anchor="middle" font-size="13" fill="#57534e">threshold · scope · statistic</text>
+
+  <!-- decision: transparent anchor over the text label, sized to include the fan-out junction -->
+  <rect id="f-appendix-g-5-measurement-authority-decision" x="280" y="328" width="160" height="30" fill="none" stroke="none"/>
+  <text x="360" y="344" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">evidence sufficient?</text>
+
+  <!-- REPORT ONLY (plain) -->
+  <rect id="f-appendix-g-5-measurement-authority-report" x="80" y="394" width="220" height="54" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
+  <text x="190" y="420" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">REPORT ONLY</text>
+  <text x="190" y="439" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">surfaced, not enforced</text>
+
+  <!-- WARNING / ADMISSION GATE (HEAVY authority) -->
+  <rect id="f-appendix-g-5-measurement-authority-gate" x="420" y="394" width="250" height="58" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
   <text x="545" y="418" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">WARNING / ADMISSION GATE</text>
   <text x="545" y="438" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
 

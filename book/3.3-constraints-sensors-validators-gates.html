@@ -906,41 +906,48 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
+  <!-- Edges drawn before the nodes they enter so the node fills cap the ends. -->
+
+  <!-- edge: model -> policy -->
+  <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#f-cost-authority-gradient-cg-r)"/>
+
+  <!-- fan-out edges to the three responses (one path per branch) -->
+  <g fill="none" stroke-width="2.4">
+    <!-- edge: policy -> observe -->
+    <path d="M420,170 C360,190 195,184 195,212" stroke="#57534e" marker-end="url(#f-cost-authority-gradient-cg-n)"/>
+    <!-- edge: policy -> adapt -->
+    <path d="M480,170 L480,212" stroke="#2f5169" marker-end="url(#f-cost-authority-gradient-cg-b)"/>
+    <!-- edge: policy -> gate -->
+    <path d="M540,170 C600,190 765,184 765,212" stroke="#9a3f12" marker-end="url(#f-cost-authority-gradient-cg-r)"/>
+  </g>
+
+  <!-- edge: adapt -> throttle -->
+  <line x1="480" y1="280" x2="480" y2="312" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-cost-authority-gradient-cg-n)"/>
+
   <!-- source model -->
-  <rect x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-cost-authority-gradient-model" x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="480" y="59" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
   <text x="480" y="81" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">related measured quantities</text>
 
-  <!-- edge to policy -->
-  <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#f-cost-authority-gradient-cg-r)"/>
-
   <!-- the policy that attaches the obligation to the value -->
-  <rect x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="f-cost-authority-gradient-policy" x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="480" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">policy attached to the value</text>
 
-  <!-- fan-out edges to the three responses -->
-  <g fill="none" stroke-width="2.4">
-    <path d="M420,170 C360,190 250,196 195,212" stroke="#57534e" marker-end="url(#f-cost-authority-gradient-cg-n)"/>
-    <path d="M480,170 L480,212" stroke="#2f5169" marker-end="url(#f-cost-authority-gradient-cg-b)"/>
-    <path d="M540,170 C600,190 710,196 765,212" stroke="#9a3f12" marker-end="url(#f-cost-authority-gradient-cg-r)"/>
-  </g>
-
   <!-- RESPONSE: observe -->
-  <rect x="70" y="216" width="250" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-cost-authority-gradient-observe" x="70" y="216" width="250" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="195" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">OBSERVE</text>
   <text x="195" y="268" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">report evidence, no consequence</text>
 
   <!-- RESPONSE: adapt -> throttle / soft completion -->
-  <rect x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="f-cost-authority-gradient-adapt" x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="480" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ADAPT</text>
   <text x="480" y="268" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">change load</text>
 
-  <line x1="480" y1="280" x2="480" y2="312" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-cost-authority-gradient-cg-n)"/>
-  <rect x="360" y="316" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-cost-authority-gradient-throttle" x="360" y="316" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="347" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">throttle · soft completion</text>
 
   <!-- RESPONSE: gate (with a small dormant annotation, not extra nodes) -->
-  <rect x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="f-cost-authority-gradient-gate" x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="765" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">GATE</text>
   <text x="765" y="268" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">block admission</text>
   <text x="765" y="306" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">dormant unless configured</text>

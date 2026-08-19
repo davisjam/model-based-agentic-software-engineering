@@ -46,7 +46,7 @@
   </g>
 
   <!-- connective tissue (solid outline; contents roman) -->
-  <rect x="300" y="150" width="400" height="132" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="connective-tissue" x="300" y="150" width="400" height="132" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="500" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">CONNECTIVE TISSUE</text>
   <g text-anchor="middle" font-size="15" fill="#57534e">
     <text x="500" y="206">shared identity</text>
@@ -61,6 +61,12 @@
     <path d="M640,282 C700,314 750,320 750,344"/>
   </g>
 
+  <!-- transparent anchors: the two lower surface names are bare-text nodes; each carries an id so its flow
+       edge into connected knowledge can plug in (fill:none stroke:none => zero visual change). -->
+  <g fill="none" stroke="none">
+    <rect id="operations" x="110" y="334" width="280" height="28"/>
+    <rect id="assurance"  x="612" y="334" width="276" height="28"/>
+  </g>
   <g text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">
     <text x="250" y="348">OPERATIONS &amp; INCIDENT RESPONSE</text>
     <text x="750" y="348">ASSURANCE &amp; COMPLIANCE</text>
@@ -70,20 +76,29 @@
     <line x1="612" y1="358" x2="888" y2="358"/>
   </g>
 
-  <!-- lower surfaces -> shared bus -> one downward arrow into connected knowledge (flow) -->
-  <g stroke="#57534e" stroke-width="1.8" fill="none">
-    <path d="M250,358 L250,388 L500,388"/>
-    <path d="M750,358 L750,388 L500,388"/>
+  <!-- lower surfaces -> shared bus -> connected knowledge (flow); one path per branch so each terminates
+       on the box, sharing the trunk down the centre and arriving vertically into its top -->
+  <g stroke="#57534e" stroke-width="1.8" fill="none" marker-end="url(#h8-ah)">
+    <!-- edge: operations -> connected-knowledge -->
+    <path d="M250,358 L250,388 L500,388 L500,412"/>
+    <!-- edge: assurance -> connected-knowledge -->
+    <path d="M750,358 L750,388 L500,388 L500,412"/>
   </g>
-  <line x1="500" y1="388" x2="500" y2="412" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
 
-  <rect x="316" y="414" width="368" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.5"/>
+  <rect id="connected-knowledge" x="316" y="414" width="368" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.5"/>
   <text x="500" y="446" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">CONNECTED ENGINEERING KNOWLEDGE</text>
 
   <!-- knowledge related to reasoning and Alignment (two uses, plain lines) -->
   <g stroke="#57534e" stroke-width="1.8" fill="none">
     <path d="M410,466 C360,498 300,504 300,528"/>
     <path d="M590,466 C640,498 700,504 700,528"/>
+  </g>
+
+  <!-- transparent anchors: AUTONOMOUS REASONING and ALIGNMENT are bare-text column headings; each anchor
+       spans the heading + its list so the flow edge into the GEE plugs into a named node. -->
+  <g fill="none" stroke="none">
+    <rect id="autonomous-reasoning" x="175" y="520" width="250" height="132"/>
+    <rect id="alignment"            x="612" y="520" width="176" height="132"/>
   </g>
 
   <text x="300" y="532" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">AUTONOMOUS REASONING</text>
@@ -104,20 +119,25 @@
     <text x="700" y="632">gates</text>
   </g>
 
-  <!-- reasoning AND Alignment each constitute the GEE: two separate arrows (flow) -->
-  <path d="M300,648 C300,676 420,676 470,690" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
-  <path d="M700,648 C700,676 580,676 530,690" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
+  <!-- reasoning AND Alignment each constitute the GEE: two separate arrows (flow); last control point pulled
+       back above the endpoint so each head arrives perpendicular into the GEE's top border -->
+  <!-- edge: autonomous-reasoning -> gee -->
+  <path d="M300,648 C300,676 470,660 470,690" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
+  <!-- edge: alignment -> gee -->
+  <path d="M700,648 C700,676 530,660 530,690" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
 
-  <rect x="330" y="694" width="340" height="56" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <rect id="gee" x="330" y="694" width="340" height="56" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="500" y="718" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">GOVERNED ENGINEERING</text>
   <text x="500" y="738" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">ENVIRONMENT</text>
 
   <!-- GEE produces the product (flow) -->
+  <!-- edge: gee -> product -->
   <line x1="500" y1="750" x2="500" y2="772" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
-  <rect x="440" y="774" width="120" height="30" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="product" x="440" y="774" width="120" height="30" rx="7" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="500" y="795" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">PRODUCT</text>
 
   <!-- governance-conversion feedback: product experience back to the connective tissue (routed down the left margin) -->
+  <!-- edge: product .. connective-tissue -->
   <path d="M440,789 C150,789 34,760 34,215 C34,190 44,214 298,214" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="7 4" marker-end="url(#h8-ah-u)"/>
   <text x="20" y="470" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12" transform="rotate(-90 20 470)">experience · failures · evidence · governance conversion</text>
 </svg>

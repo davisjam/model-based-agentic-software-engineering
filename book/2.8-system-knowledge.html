@@ -1029,43 +1029,48 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
 
   <!-- ===== LEFT: DIRECT PATH ===== -->
   <text x="185" y="72" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1" fill="#57534e">DIRECT PATH</text>
-  <rect x="55" y="250" width="260" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="f-modeling-creates-surfaces-territory-action" x="55" y="250" width="260" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="185" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TERRITORY / ACTION</text>
   <text x="185" y="304" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
-  <!-- direct arrow onto Alignment (left landing) -->
-  <path d="M185,316 C185,372 250,392 300,406" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-kk)"/>
+  <!-- direct arrow onto Alignment (left landing); last control point above the endpoint so the head arrives perpendicular into ALIGNMENT's top -->
+  <!-- edge: territory-action -> alignment -->
+  <path d="M185,316 C185,372 300,376 300,406" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-kk)"/>
   <text x="196" y="360" text-anchor="start" font-size="14" font-weight="700" fill="#57534e">acted on directly</text>
   <text x="196" y="377" text-anchor="start" font-size="14" font-style="italic" fill="#57534e">local observable obligation</text>
 
   <!-- ===== RIGHT: MODEL-MEDIATED PATH ===== -->
   <text x="535" y="72" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1" fill="#2f5169">MODEL-MEDIATED PATH</text>
   <!-- TERRITORY -->
-  <rect x="405" y="86" width="260" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-modeling-creates-surfaces-territory" x="405" y="86" width="260" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="535" y="116" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">TERRITORY</text>
+  <!-- edge: territory -> model -->
   <line x1="535" y1="134" x2="535" y2="168" stroke="#1c1917" stroke-width="2" marker-end="url(#f-modeling-creates-surfaces-mc-k)"/>
   <text x="547" y="156" font-size="14" font-style="italic" fill="#57534e">abstraction</text>
   <!-- MODEL -->
-  <rect x="405" y="170" width="260" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="f-modeling-creates-surfaces-model" x="405" y="170" width="260" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="535" y="200" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">MODEL</text>
+  <!-- edge: model -> explicit-property -->
   <line x1="535" y1="218" x2="535" y2="252" stroke="#1c1917" stroke-width="2" marker-end="url(#f-modeling-creates-surfaces-mc-k)"/>
   <text x="547" y="240" font-size="14" font-style="italic" fill="#57534e">makes explicit</text>
   <!-- EXPLICIT PROPERTY -->
-  <rect x="405" y="254" width="260" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="f-modeling-creates-surfaces-explicit-property" x="405" y="254" width="260" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="535" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">EXPLICIT PROPERTY</text>
-  <!-- model arrow onto Alignment (right landing) -->
-  <path d="M535,308 C535,364 470,384 420,406" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-b)"/>
+  <!-- model arrow onto Alignment (right landing); last control point above the endpoint so the head arrives perpendicular into ALIGNMENT's top -->
+  <!-- edge: explicit-property -> alignment -->
+  <path d="M535,308 C535,364 420,376 420,406" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-b)"/>
   <text x="524" y="360" text-anchor="end" font-size="14" font-weight="700" fill="#2f5169">available to</text>
   <text x="524" y="377" text-anchor="end" font-size="14" font-style="italic" fill="#2f5169">richer semantic obligation</text>
 
   <!-- ===== THE JOIN: ALIGNMENT ===== -->
-  <rect x="225" y="410" width="270" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
+  <rect id="f-modeling-creates-surfaces-alignment" x="225" y="410" width="270" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="360" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">ALIGNMENT</text>
   <text x="360" y="462" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">constraint &#183; sensor &#183; validator &#183; gate</text>
+  <!-- edge: alignment -> consequence -->
   <line x1="360" y1="476" x2="360" y2="524" stroke="#155c38" stroke-width="2.4" marker-end="url(#f-modeling-creates-surfaces-mc-g)"/>
   <text x="372" y="504" font-size="14" font-style="italic" fill="#155c38">gives consequence</text>
 
   <!-- ===== CONSEQUENCE ===== -->
-  <rect x="255" y="526" width="210" height="54" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
+  <rect id="f-modeling-creates-surfaces-consequence" x="255" y="526" width="210" height="54" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
   <text x="360" y="559" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">CONSEQUENCE</text>
 
   <!-- footer: protect the point -->

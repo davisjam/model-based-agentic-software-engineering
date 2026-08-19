@@ -24,46 +24,59 @@
   <rect x="0" y="0" width="720" height="500" fill="#fdfcf9"/>
   <text x="40" y="34" font-size="15" font-weight="600" fill="#57534e">Question: what happened, and which account of it must stay true?</text>
 
-  <!-- ENGINEERING ACTION (observed) -->
-  <rect x="250" y="48" width="220" height="46" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
-  <text x="360" y="77" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">ENGINEERING ACTION</text>
+  <!-- Edges drawn before the node they enter so the node fill caps the ends. -->
+
+  <!-- edge: action -> provenance -->
   <line x1="360" y1="94" x2="360" y2="126" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g6-solid)"/>
 
-  <!-- PROVENANCE FACT (representation) -->
-  <rect x="250" y="126" width="220" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
-  <text x="360" y="154" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">PROVENANCE FACT</text>
-  <text x="360" y="177" text-anchor="middle" font-size="14" fill="#57534e">what · who · how</text>
-
   <!-- left branch: validation / audit (SOLID) -> CHECKED completion gate -->
+  <!-- edge: provenance -> validation -->
   <line x1="300" y1="192" x2="185" y2="242" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g6-solid)"/>
   <text x="205" y="216" font-size="13" font-style="italic" fill="#57534e">validation / audit</text>
+  <!-- completion-gate glyph decorating the validation branch (not a connect-grammar edge) -->
   <g stroke="#b23b3b" stroke-width="3.4">
     <line x1="238" y1="209" x2="230" y2="227"/>
     <line x1="249" y1="213" x2="241" y2="231"/>
   </g>
-  <rect x="70" y="246" width="210" height="58" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
-  <text x="175" y="270" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">VALIDATION / AUDIT</text>
-  <text x="175" y="290" text-anchor="middle" font-size="12" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED · completion gate</text>
 
   <!-- right branch: generated documentation (SOLID, re-derivable) -->
+  <!-- edge: provenance -> generated -->
   <line x1="420" y1="192" x2="540" y2="242" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g6-solid)"/>
   <text x="470" y="212" font-size="13" font-style="italic" fill="#57534e">generated</text>
   <text x="470" y="228" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">re-derivable</text>
-  <rect x="450" y="246" width="210" height="58" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+
+  <!-- edge: generated -> human -->
+  <line x1="555" y1="304" x2="555" y2="344" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g6-solid)"/>
+
+  <!-- edge: prose .. drift (DASHED) -->
+  <line x1="260" y1="368" x2="330" y2="368" stroke="#57534e" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g6-muted)"/>
+
+  <!-- ENGINEERING ACTION (observed) -->
+  <rect id="action" x="250" y="48" width="220" height="46" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="360" y="77" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">ENGINEERING ACTION</text>
+
+  <!-- PROVENANCE FACT (representation) -->
+  <rect id="provenance" x="250" y="126" width="220" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <text x="360" y="154" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">PROVENANCE FACT</text>
+  <text x="360" y="177" text-anchor="middle" font-size="14" fill="#57534e">what · who · how</text>
+
+  <rect id="validation" x="70" y="246" width="210" height="58" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
+  <text x="175" y="270" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">VALIDATION / AUDIT</text>
+  <text x="175" y="290" text-anchor="middle" font-size="12" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED · completion gate</text>
+
+  <rect id="generated" x="450" y="246" width="210" height="58" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="555" y="270" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">GENERATED</text>
   <text x="555" y="290" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">DOCUMENTATION</text>
 
   <!-- generated -> human explanation (SOLID, faithful) -->
-  <line x1="555" y1="304" x2="555" y2="344" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g6-solid)"/>
-  <rect x="460" y="344" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
+  <rect id="human" x="460" y="344" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
   <text x="560" y="373" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">human explanation</text>
 
   <!-- prose maintained independently -> drift risk (DASHED) -->
-  <rect x="60" y="344" width="200" height="48" rx="8" fill="#f4f2ee" stroke="#57534e" stroke-width="1.6"/>
+  <rect id="prose" x="60" y="344" width="200" height="48" rx="8" fill="#f4f2ee" stroke="#57534e" stroke-width="1.6"/>
   <text x="160" y="366" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">prose maintained</text>
   <text x="160" y="384" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">independently</text>
-  <line x1="260" y1="368" x2="330" y2="368" stroke="#57534e" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g6-muted)"/>
-  <rect x="332" y="344" width="150" height="48" rx="8" fill="#fdfcf9" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <rect id="drift" x="332" y="344" width="150" height="48" rx="8" fill="#fdfcf9" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
   <text x="407" y="373" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">drift risk</text>
 
   <text x="360" y="432" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Generate from facts the system already knows — do not keep a second hand-maintained copy.</text>
