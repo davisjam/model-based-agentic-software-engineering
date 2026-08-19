@@ -236,7 +236,7 @@ GLOSSARY_CHAPTER_LABEL = "the-books-language"
 # Dashboard (its metric table, now Appendix D.1 — `appendix-d-operators-dashboard`) is the second. The
 # renderer frames these in a `.apparatus-page` box (HTML) / a `#block` frame (Typst) — see the CSS
 # `.apparatus-page` swap-point block and `_APPARATUS_ONEPAGER_TITLES` in book_typst.py.
-_APPARATUS_ONEPAGER_LABELS = {"how-to-read-this-book"}  # chapter members — matched by identity label
+_APPARATUS_ONEPAGER_LABELS = {"how-to-read-this-book", "the-mage-method-at-a-glance"}  # chapter members — matched by identity label
 _APPARATUS_ONEPAGER_APPENDIX_SLUGS = {"appendix-d-operators-dashboard"}  # appendix — off the renumber axis
 # "What This Book Argues" — the six central claims. The renderer wraps its content in an `.argues-page`
 # class so the claims list reads as a deliberate front-matter feature (larger body, more air between

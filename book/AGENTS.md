@@ -51,7 +51,7 @@ from the path, and reads the title metadata from each file.
 
 ```
 book/
-  frontmatter/    0.1-the-mage-method-at-a-glance.md … 0.6-acknowledgments.md (6 chapters)         (Part 0 — Front Matter)
+  frontmatter/    0.1-what-this-book-argues.md … 0.6-acknowledgments.md (6 chapters)         (Part 0 — Front Matter)
   part1/          1.1-the-printer.md … 1.4-the-new-engineering-problem.md (4 chapters)              (Part 1 — The New Engineering Problem)
   part2/          2.1-context-is-the-first-modeling-problem.md … 2.7-scenarios-and-the-joined-model.md (7 chapters)  (Part 2 — Modeling)
   part3/          3.1-where-authority-can-act.md … 3.5-when-guardrails-collide.md (5 chapters)              (Part 3 — Alignment)
