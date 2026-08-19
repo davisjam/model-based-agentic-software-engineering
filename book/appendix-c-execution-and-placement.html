@@ -732,27 +732,31 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="360" y="66" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169" letter-spacing="0.5">STABLE ENGINEERING VIEW</text>
 
   <!-- topology row (representation) -->
-  <rect x="40"  y="78" width="120" height="54" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="f-appendix-g-4-host-execution-policy-web" x="40"  y="78" width="120" height="54" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="100" y="111" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">web</text>
-  <rect x="210" y="78" width="120" height="54" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="f-appendix-g-4-host-execution-policy-queue" x="210" y="78" width="120" height="54" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="270" y="111" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">queue</text>
-  <rect x="380" y="78" width="120" height="54" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="f-appendix-g-4-host-execution-policy-worker" x="380" y="78" width="120" height="54" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="440" y="111" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">worker</text>
-  <rect x="550" y="78" width="120" height="54" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="f-appendix-g-4-host-execution-policy-storage" x="550" y="78" width="120" height="54" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="610" y="111" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">storage</text>
 
   <!-- topology edges (SOLID declared) -->
+  <!-- edge: web -> queue -->
   <line x1="160" y1="105" x2="210" y2="105" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-4-host-execution-policy-g4-solid)"/>
+  <!-- edge: queue -> worker -->
   <line x1="330" y1="105" x2="380" y2="105" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-4-host-execution-policy-g4-solid)"/>
+  <!-- edge: worker -> storage -->
   <line x1="500" y1="105" x2="550" y2="105" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-appendix-g-4-host-execution-policy-g4-solid)"/>
 
   <!-- scheduled under (DASHED) worker -> policy -->
-  <line x1="440" y1="132" x2="440" y2="196" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#f-appendix-g-4-host-execution-policy-g4-solid)"/>
+  <!-- edge: worker .. policy -->
+  <line x1="440" y1="132" x2="440" y2="199" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#f-appendix-g-4-host-execution-policy-g4-solid)"/>
   <text x="452" y="170" font-size="14" font-style="italic" fill="#57534e">scheduled under</text>
   <text x="452" y="186" font-size="14" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
 
   <!-- HOST EXECUTION POLICY table (representation, variable overlay) -->
-  <rect x="220" y="200" width="300" height="140" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="f-appendix-g-4-host-execution-policy-policy" x="220" y="200" width="300" height="140" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="370" y="226" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">HOST EXECUTION POLICY</text>
   <line x1="220" y1="238" x2="520" y2="238" stroke="#8a2f2f" stroke-width="1.2"/>
   <line x1="360" y1="238" x2="360" y2="340" stroke="#8a2f2f" stroke-width="1.2"/>

@@ -27,45 +27,52 @@
   <text x="360" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">SERVICE-FLOW MODEL</text>
 
   <!-- Internet (gray, external) -->
-  <rect x="290" y="42" width="140" height="42" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="internet" x="290" y="42" width="140" height="42" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="360" y="69" text-anchor="middle" font-size="16" fill="#1c1917">Internet</text>
+  <!-- edge: internet -> web -->
   <line x1="360" y1="84" x2="360" y2="112" stroke="#57534e" stroke-width="2" marker-end="url(#sf-k)"/>
 
   <!-- web (blue) -->
-  <rect x="295" y="114" width="130" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="web" x="295" y="114" width="130" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="360" y="142" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">web</text>
 
-  <!-- web -> {worker, document editor, other} -->
+  <!-- web -> {worker, document editor, other} — one path per branch, each seats on its own node -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sf-b)">
-    <path d="M320,160 C250,186 210,192 180,214"/>
+    <!-- edge: web -> worker -->
+    <path d="M320,160 C250,186 180,184 180,214"/>
+    <!-- edge: web -> doc-editor -->
     <path d="M360,160 L360,214"/>
-    <path d="M400,160 C470,186 510,192 540,214"/>
+    <!-- edge: web -> other -->
+    <path d="M400,160 C470,186 540,184 540,214"/>
   </g>
 
-  <rect x="105" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="worker" x="105" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="180" y="245" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">worker</text>
 
-  <rect x="285" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="doc-editor" x="285" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="360" y="239" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">document</text>
   <text x="360" y="256" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">editor</text>
 
-  <rect x="465" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="other" x="465" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="540" y="245" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">other</text>
 
-  <!-- worker -> {generation, render, OCR} -->
+  <!-- worker -> {generation, render, OCR} — one path per branch -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sf-b)">
+    <!-- edge: worker -> generation -->
     <path d="M155,264 C110,300 80,308 80,330"/>
-    <path d="M180,264 L190,330"/>
+    <!-- edge: worker -> render -->
+    <path d="M180,264 C183.5,287.1 190,300 190,330"/>
+    <!-- edge: worker -> ocr -->
     <path d="M210,264 C270,300 300,308 300,330"/>
   </g>
 
-  <rect x="25" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="generation" x="25" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="80" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">generation</text>
 
-  <rect x="135" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="render" x="135" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="190" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">render</text>
 
-  <rect x="245" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="ocr" x="245" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="300" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">OCR</text>
 
   <!-- footer: protect the point -->

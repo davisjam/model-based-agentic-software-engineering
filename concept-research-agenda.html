@@ -452,30 +452,34 @@
   <text x="772" y="118" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#9a3f12">MECHANISMS</text>
   <text x="772" y="140" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the controls that meet them</text>
 
-  <!-- match lines (green = coverage), drawn behind the chips -->
+  <!-- match lines (green = coverage), drawn behind the chips; each source runs to the obligation
+       centre (capped by its fill), each directed head seats on the mechanism's left border -->
   <g stroke="#1f7a4d" stroke-width="2.2" fill="none">
-    <path d="M356,190 L644,190" marker-end="url(#cf-2-gc-cov)"/>
-    <path d="M356,246 L644,246" marker-end="url(#cf-2-gc-cov)"/>
-    <path d="M356,302 L644,302" marker-end="url(#cf-2-gc-cov)"/>
+    <!-- edge: obligation-1 -> mechanism-1 -->
+    <path d="M242,190 L644,190" marker-end="url(#cf-2-gc-cov)"/>
+    <!-- edge: obligation-2 -> mechanism-2 -->
+    <path d="M242,246 L644,246" marker-end="url(#cf-2-gc-cov)"/>
+    <!-- edge: obligation-3 -> mechanism-3 -->
+    <path d="M242,302 L644,302" marker-end="url(#cf-2-gc-cov)"/>
   </g>
 
   <!-- obligation chips (left, rust) -->
-  <rect x="128" y="166" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="cf-2-obligation-1" x="128" y="166" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="242" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
-  <rect x="128" y="222" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="cf-2-obligation-2" x="128" y="222" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="242" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
-  <rect x="128" y="278" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="cf-2-obligation-3" x="128" y="278" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="242" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligation</text>
   <!-- the under-governed obligation (no line to any mechanism) -->
   <rect x="128" y="334" width="228" height="48" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.6"/>
   <text x="242" y="364" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">Uncovered obligation</text>
 
   <!-- mechanism chips (right, rust) -->
-  <rect x="644" y="166" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="cf-2-mechanism-1" x="644" y="166" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="758" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
-  <rect x="644" y="222" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="cf-2-mechanism-2" x="644" y="222" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="758" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
-  <rect x="644" y="278" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="cf-2-mechanism-3" x="644" y="278" width="228" height="48" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="758" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanism</text>
   <!-- the debt mechanism (no line to any obligation) -->
   <rect x="644" y="334" width="228" height="48" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.6"/>

@@ -732,48 +732,55 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- SPEC -->
-  <rect x="315" y="28" width="190" height="62" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-assurance-stack-spec" x="315" y="28" width="190" height="62" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="410" y="56" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">SPEC</text>
   <text x="410" y="78" text-anchor="middle" font-size="13" fill="#57534e">state the obligations</text>
 
-  <line x1="410" y1="90" x2="410" y2="132" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-assurance-stack-ah)"/>
+  <!-- edge: spec -> census -->
+  <line x1="410" y1="90" x2="410" y2="133" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-assurance-stack-ah)"/>
 
   <!-- CENSUS -->
-  <rect x="305" y="134" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-assurance-stack-census" x="305" y="134" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="410" y="164" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">CENSUS</text>
   <text x="410" y="186" text-anchor="middle" font-size="13" fill="#57534e">what must be discharged?</text>
 
-  <!-- fan to three discharge lanes -->
+  <!-- fan to three discharge lanes: one path per branch, each perpendicular into its lane's top -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-assurance-stack-ah)">
-    <path d="M410,200 C300,232 220,236 200,256"/>
+    <!-- edge: census -> test -->
+    <path d="M410,200 C320,206 200,226 200,256"/>
+    <!-- edge: census -> lint -->
     <line x1="410" y1="200" x2="410" y2="256"/>
-    <path d="M410,200 C520,232 600,236 620,256"/>
+    <!-- edge: census -> prove -->
+    <path d="M410,200 C500,206 620,226 620,256"/>
   </g>
   <rect x="252" y="216" width="316" height="18" fill="#fdfcf9"/>
   <text x="410" y="228" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">discharge with evidence appropriate to the property</text>
 
   <!-- TEST / LINT / PROVE -->
-  <rect x="120" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-assurance-stack-test" x="120" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="200" y="288" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">TEST</text>
   <text x="200" y="310" text-anchor="middle" font-size="13" fill="#57534e">examples</text>
 
-  <rect x="330" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-assurance-stack-lint" x="330" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="410" y="288" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">LINT</text>
   <text x="410" y="310" text-anchor="middle" font-size="13" fill="#57534e">structure</text>
 
-  <rect x="540" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-assurance-stack-prove" x="540" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="620" y="288" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">PROVE</text>
   <text x="620" y="310" text-anchor="middle" font-size="13" fill="#57534e">semantics</text>
 
-  <!-- converge to COVERAGE -->
+  <!-- converge to COVERAGE: one path per branch, each perpendicular into COVERAGE's top -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-assurance-stack-ah)">
-    <path d="M200,328 C200,368 320,376 360,392"/>
+    <!-- edge: test -> coverage -->
+    <path d="M200,328 C200,372 360,362 360,392"/>
+    <!-- edge: lint -> coverage -->
     <line x1="410" y1="328" x2="410" y2="392"/>
-    <path d="M620,328 C620,368 500,376 460,392"/>
+    <!-- edge: prove -> coverage -->
+    <path d="M620,328 C620,372 460,362 460,392"/>
   </g>
 
   <!-- COVERAGE (green) -->
-  <rect x="300" y="394" width="220" height="70" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-assurance-stack-coverage" x="300" y="394" width="220" height="70" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="410" y="424" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">COVERAGE</text>
   <text x="410" y="446" text-anchor="middle" font-size="13" fill="#57534e">obligation &#8594; evidence</text>
 

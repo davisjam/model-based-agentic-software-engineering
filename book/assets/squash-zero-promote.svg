@@ -30,36 +30,40 @@
   </defs>
 
   <!-- start -->
-  <circle cx="70" cy="150" r="12" fill="#1c1917"/>
+  <circle id="start" cx="70" cy="150" r="12" fill="#1c1917"/>
   <text x="70" y="192" text-anchor="middle" font-size="17" fill="#57534e">new lint</text>
 
   <!-- state 1: audit-only -->
-  <rect x="130" y="110" width="230" height="80" rx="10" fill="#faf1e6" stroke="#b23b3b" stroke-width="2.5"/>
+  <rect id="audit" x="130" y="110" width="230" height="80" rx="10" fill="#faf1e6" stroke="#b23b3b" stroke-width="2.5"/>
   <text x="245" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Audit-only</text>
   <text x="245" y="172" text-anchor="middle" font-size="18" fill="#57534e">reports, blocks nothing</text>
 
   <!-- state 2: draining (the middle work) -->
-  <rect x="430" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="drain" x="430" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="545" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Findings → 0</text>
   <text x="545" y="172" text-anchor="middle" font-size="18" fill="#1c1917">a fix wave drains it</text>
 
   <!-- state 3: blocking -->
-  <rect x="730" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="blocking" x="730" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="845" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Blocking</text>
   <text x="845" y="172" text-anchor="middle" font-size="16" fill="#1c1917">fails a regressing commit</text>
 
-  <!-- edges along the spine -->
+  <!-- edges along the spine (one edge comment per branch drawable) -->
   <g fill="none" stroke="#1c1917" stroke-width="2.5" marker-end="url(#szpArrow)">
+    <!-- edge: start -> audit -->
     <path d="M82,150 L128,150"/>
+    <!-- edge: audit -> drain -->
     <path d="M360,150 L428,150"/>
+    <!-- edge: drain -> blocking -->
     <path d="M660,150 L728,150"/>
   </g>
   <text x="395" y="140" text-anchor="middle" font-size="16" fill="#57534e">land</text>
   <text x="695" y="140" text-anchor="middle" font-size="16" fill="#57534e">at zero</text>
 
-  <!-- fix-wave loop under the middle state -->
+  <!-- fix-wave loop under the middle state (self-loop drain -> drain) -->
   <g fill="none" stroke="#2f5169" stroke-width="2.5" marker-end="url(#szpArrow)">
-    <path d="M490,190 C460,250 630,250 600,192"/>
+    <!-- edge: drain -> drain -->
+    <path d="M490,190 C460,250 600,222 600,192"/>
   </g>
   <text x="545" y="268" text-anchor="middle" font-size="18" font-style="italic" fill="#2f5169">behavior-preserving fixes, under test coverage</text>
 

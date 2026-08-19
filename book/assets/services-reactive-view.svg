@@ -14,36 +14,39 @@
   <text x="30" y="40" font-size="21.12" font-weight="bold" fill="#2f5169">The reactive seam</text>
 
   <!-- web front door -->
-  <rect x="24" y="70" width="178" height="90" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <rect id="web" x="24" y="70" width="178" height="90" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
   <text x="113" y="105" text-anchor="middle" font-size="21.12" font-weight="bold" fill="#2f5169">Web</text>
   <text x="113" y="132" text-anchor="middle" font-size="19" fill="#2f5169">front door;</text>
   <text x="113" y="151" text-anchor="middle" font-size="19" fill="#2f5169">splits into chunks</text>
 
   <!-- enqueue arrow -->
+  <!-- edge: web -> queue -->
   <line x1="202" y1="115" x2="267" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
   <text x="236" y="103" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">enqueue</text>
 
   <!-- queue -->
-  <rect x="271" y="70" width="132" height="90" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="1.8"/>
+  <rect id="queue" x="271" y="70" width="132" height="90" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="1.8"/>
   <text x="337" y="112" text-anchor="middle" font-size="21.12" font-weight="bold" fill="#7c6bb0">Queue</text>
   <text x="337" y="139" text-anchor="middle" font-size="19" fill="#7c6bb0">chunk = task</text>
 
   <!-- push arrow -->
+  <!-- edge: queue -> worker -->
   <line x1="403" y1="115" x2="468" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
   <text x="437" y="103" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">hands off</text>
 
   <!-- worker -->
-  <rect x="472" y="70" width="200" height="90" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <rect id="worker" x="472" y="70" width="200" height="90" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
   <text x="572" y="105" text-anchor="middle" font-size="21.12" font-weight="bold" fill="#2f5169">Worker</text>
   <text x="572" y="132" text-anchor="middle" font-size="19" fill="#2f5169">stateless;</text>
   <text x="572" y="151" text-anchor="middle" font-size="19" fill="#2f5169">remediates a chunk</text>
 
   <!-- publish arrow to fan-in -->
+  <!-- edge: worker -> fanin -->
   <line x1="672" y1="115" x2="738" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
   <text x="707" y="103" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">publishes</text>
 
   <!-- fan-in -->
-  <rect x="742" y="70" width="114" height="90" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="1.8"/>
+  <rect id="fanin" x="742" y="70" width="114" height="90" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="1.8"/>
   <text x="799" y="106" text-anchor="middle" font-size="24" font-weight="bold" fill="#7c6bb0">Fan-in</text>
   <text x="799" y="133" text-anchor="middle" font-size="19" fill="#7c6bb0">assembles</text>
   <text x="799" y="151" text-anchor="middle" font-size="19" fill="#7c6bb0">the file</text>

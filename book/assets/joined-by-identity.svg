@@ -27,46 +27,61 @@
     </marker>
   </defs>
 
+  <!-- Edges precede the nodes they touch, so each node's opaque fill caps the source ends
+       (run to node centres) while the directed heads seat on the target borders, head outside. -->
+
+  <!-- fan: SYSTEM ENTITY -> first three models (blue), from the entity centre -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ji-b)">
+    <!-- edge: system-entity -> structural -->
+    <path d="M380,49 C210,100 130,102 130,132"/>
+    <!-- edge: system-entity -> behavioral -->
+    <path d="M380,49 L380,132"/>
+    <!-- edge: system-entity -> decision -->
+    <path d="M380,49 C550,100 630,102 630,132"/>
+  </g>
+
   <!-- SYSTEM ENTITY (gray) -->
-  <rect x="290" y="24" width="180" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <rect id="system-entity" x="290" y="24" width="180" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
   <text x="380" y="55" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">SYSTEM ENTITY</text>
 
-  <!-- fan to first three models (blue) -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ji-b)">
-    <path d="M310,74 C210,100 155,106 130,132"/>
-    <path d="M380,74 L380,132"/>
-    <path d="M450,74 C550,100 605,106 630,132"/>
+  <!-- converge: first three models -> stable identity hub (gray), from each model centre -->
+  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#ji-k)">
+    <!-- edge: structural -> stable-identity -->
+    <path d="M130,158 C155,220 320,216 320,246"/>
+    <!-- edge: behavioral -> stable-identity -->
+    <path d="M380,158 L380,246"/>
+    <!-- edge: decision -> stable-identity -->
+    <path d="M630,158 C605,220 440,216 440,246"/>
   </g>
+
   <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="35" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="structural" x="35" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="130" y="163">structural model</text>
-    <rect x="285" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="behavioral" x="285" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="380" y="163">behavioral model</text>
-    <rect x="535" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="decision" x="535" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="630" y="163">decision model</text>
   </g>
 
-  <!-- converge to stable identity hub (gray) -->
-  <g fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#ji-k)">
-    <path d="M130,182 C155,220 310,230 320,246"/>
-    <path d="M380,182 L380,246"/>
-    <path d="M630,182 C605,220 450,230 440,246"/>
+  <!-- fan: stable identity -> second three models (blue), from the hub centre -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ji-b)">
+    <!-- edge: stable-identity -> ownership -->
+    <path d="M380,272 C210,322 130,324 130,354"/>
+    <!-- edge: stable-identity -> measurement -->
+    <path d="M380,272 L380,354"/>
+    <!-- edge: stable-identity -> provenance -->
+    <path d="M380,272 C550,322 630,324 630,354"/>
   </g>
-  <rect x="270" y="248" width="220" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+
+  <rect id="stable-identity" x="270" y="248" width="220" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
   <text x="380" y="278" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">stable identity</text>
 
-  <!-- fan to second three models (blue) -->
-  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#ji-b)">
-    <path d="M320,296 C210,322 155,328 130,354"/>
-    <path d="M380,296 L380,354"/>
-    <path d="M440,296 C550,322 605,328 630,354"/>
-  </g>
   <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
-    <rect x="35" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="ownership" x="35" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="130" y="385">ownership model</text>
-    <rect x="285" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="measurement" x="285" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="380" y="385">measurement model</text>
-    <rect x="535" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="provenance" x="535" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="630" y="385">provenance model</text>
   </g>
 

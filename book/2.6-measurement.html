@@ -841,37 +841,46 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- ===== LEFT: PART II MODEL ===== -->
   <text x="235" y="82" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">PART II &#183; MODEL</text>
+  <!-- edges UNDER the boxes; source ends run to the quantity/bound centers, capped by their fill -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-modeling-perp-authority-pa-b)">
+    <!-- edge: quantity -> comparison -->
+    <path d="M105,125 C220,143 238,158 268,158"/>
+    <!-- edge: bound -> comparison -->
+    <path d="M105,205 C220,187 238,172 268,172"/>
+  </g>
   <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect x="40" y="102" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-modeling-perp-authority-quantity" x="40" y="102" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="105" y="131">quantity</text>
-    <rect x="40" y="182" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-modeling-perp-authority-bound" x="40" y="182" width="130" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="105" y="211">bound</text>
-    <rect x="270" y="142" width="150" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+    <rect id="f-modeling-perp-authority-comparison" x="270" y="142" width="150" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
     <text x="345" y="171">comparison</text>
   </g>
-  <path d="M170,125 C220,143 230,152 268,158" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-modeling-perp-authority-pa-b)"/>
-  <path d="M170,205 C220,187 230,178 268,172" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-modeling-perp-authority-pa-b)"/>
   <text x="235" y="262" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What quantity and bound matter?&#8221;</text>
 
   <!-- ===== RIGHT: PART III AUTHORITY DECISION ===== -->
   <text x="715" y="82" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">PART III &#183; AUTHORITY DECISION</text>
-  <rect x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="715" y="129" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">same model</text>
-  <!-- fan to four authority decisions -->
+  <!-- fan to four authority decisions — one path per branch, all from the same-model centre (715,123) -->
   <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-modeling-perp-authority-pa-k)">
-    <path d="M650,146 C600,168 570,172 554,190"/>
-    <path d="M690,146 C670,168 662,172 664,190"/>
-    <path d="M740,146 C760,168 768,172 776,190"/>
-    <path d="M780,146 C830,168 860,172 886,190"/>
+    <!-- edge: same-model -> observe -->
+    <path d="M715,123 C600,168 554,160 554,190"/>
+    <!-- edge: same-model -> adapt -->
+    <path d="M715,123 C670,168 664,160 664,190"/>
+    <!-- edge: same-model -> degrade -->
+    <path d="M715,123 C760,168 776,160 776,190"/>
+    <!-- edge: same-model -> gate -->
+    <path d="M715,123 C830,168 886,160 886,190"/>
   </g>
+  <rect id="f-modeling-perp-authority-same-model" x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="715" y="129" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">same model</text>
   <g font-size="14.5" font-weight="700" text-anchor="middle">
-    <rect x="505" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="f-modeling-perp-authority-observe" x="505" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="554" y="220" fill="#57534e">observe</text>
-    <rect x="615" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <rect id="f-modeling-perp-authority-adapt" x="615" y="192" width="98" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="664" y="220" fill="#57534e">adapt</text>
-    <rect x="725" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+    <rect id="f-modeling-perp-authority-degrade" x="725" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
     <text x="774" y="220" fill="#9a3f12">degrade</text>
-    <rect x="835" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+    <rect id="f-modeling-perp-authority-gate" x="835" y="192" width="98" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
     <text x="884" y="220" fill="#9a3f12">gate</text>
   </g>
   <text x="715" y="270" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;What consequence is justified?&#8221;</text>

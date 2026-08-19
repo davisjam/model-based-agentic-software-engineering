@@ -13,42 +13,46 @@
   <text x="30" y="48" font-size="30" font-weight="bold" fill="#2f5169">Two producers, one edit language</text>
 
   <!-- HUMAN PATH (top) -->
-  <rect x="24" y="76" width="270" height="86" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <rect id="editor" x="24" y="76" width="270" height="86" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
   <text x="159" y="112" text-anchor="middle" font-size="25" font-weight="bold" fill="#2f5169">Editor (human)</text>
   <text x="159" y="142" text-anchor="middle" font-size="24" fill="#2f5169">emits ops by hand</text>
 
   <!-- AUTOMATED PATH (bottom): task -> function -->
-  <rect x="24" y="288" width="264" height="86" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <rect id="remediation" x="24" y="288" width="264" height="86" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
   <text x="156" y="324" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">Remediation</text>
   <text x="156" y="352" text-anchor="middle" font-size="22" fill="#2f5169">task (e.g. alt text)</text>
 
   <!-- task->edit function box (dashed model inside) -->
-  <line x1="290" y1="331" x2="316" y2="331" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
-  <rect x="320" y="238" width="386" height="196" rx="3" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
+  <!-- edge: remediation -> ttef -->
+  <line x1="288" y1="331" x2="317" y2="331" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
+  <rect id="ttef" x="320" y="238" width="386" height="196" rx="3" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
   <text x="513" y="276" text-anchor="middle" font-size="24" font-weight="bold" fill="#9a3f12">task-to-edit function</text>
   <text x="513" y="302" text-anchor="middle" font-size="19" font-style="italic" fill="#9a3f12">an instance of LLM-as-function-call</text>
   <!-- model (dashed) inside -->
-  <rect x="344" y="320" width="146" height="92" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <rect id="model" x="344" y="320" width="146" height="92" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="417" y="358" text-anchor="middle" font-size="24" font-weight="bold" fill="#1c1917">Model</text>
   <text x="417" y="386" text-anchor="middle" font-size="19" fill="#57534e">bounded call</text>
   <!-- validator inside -->
-  <rect x="506" y="320" width="178" height="92" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
+  <rect id="validator" x="506" y="320" width="178" height="92" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
   <text x="595" y="358" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">Validator</text>
   <text x="595" y="386" text-anchor="middle" font-size="19" fill="#2f5169">checks candidate</text>
-  <line x1="492" y1="366" x2="502" y2="366" stroke="#1c1917" stroke-width="1.4" marker-end="url(#dsl-arrow)"/>
+  <!-- edge: model -> validator -->
+  <line x1="490" y1="366" x2="503" y2="366" stroke="#1c1917" stroke-width="1.4" marker-end="url(#dsl-arrow)"/>
 
   <!-- both converge to DSL -->
-  <line x1="294" y1="119" x2="736" y2="119" stroke="#1c1917" stroke-width="1.6"/>
-  <line x1="736" y1="119" x2="736" y2="144" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
-  <line x1="706" y1="331" x2="736" y2="331" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
+  <!-- editor's L-shaped run to the shared edit language: one path so both ends land on named nodes -->
+  <!-- edge: editor -> dsl -->
+  <path fill="none" d="M294,119 L736,119 L736,145" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
+  <!-- edge: ttef -> docmodel -->
+  <line x1="706" y1="331" x2="737" y2="331" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
 
   <!-- SHARED DSL -->
-  <rect x="632" y="146" width="256" height="80" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="2"/>
+  <rect id="dsl" x="632" y="146" width="256" height="80" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="2"/>
   <text x="760" y="178" text-anchor="middle" font-size="24" font-weight="bold" fill="#7c6bb0">Shared edit</text>
   <text x="760" y="206" text-anchor="middle" font-size="24" font-weight="bold" fill="#7c6bb0">language</text>
 
   <!-- DSL -> document model -->
-  <rect x="740" y="292" width="316" height="82" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
+  <rect id="docmodel" x="740" y="292" width="316" height="82" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
   <text x="898" y="326" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">Document model</text>
   <text x="898" y="354" text-anchor="middle" font-size="19" fill="#2f5169">applies + stamps each edit</text>
 

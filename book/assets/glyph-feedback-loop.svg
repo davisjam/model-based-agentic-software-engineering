@@ -16,18 +16,25 @@
       <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
     </marker>
   </defs>
-  <!-- three arcs around the cycle (clockwise): sense -> act -> observe -> back -->
+  <!-- keep-angles: a 120px glyph of tangential loop arcs; the perpendicular auto-fix (L=30) would
+       distort it, and a loop arrow reads correctly arriving tangent to its node. Heads are hand-seated. -->
+  <!-- edge-grammar: keep-angles -->
+  <!-- three arcs around the cycle (clockwise): sense -> act -> observe -> back. Each arc starts inside
+       its source node (capped by the fill) and its head seats ~2px outside the target node's rim. -->
   <g fill="none" stroke="#1c1917" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M64,26 A38 38 0 0 1 96,80" marker-end="url(#loopHead)"/>
-    <path d="M92,86 A38 38 0 0 1 32,90" marker-end="url(#loopHead)"/>
+    <!-- edge: loop-a -> loop-b -->
+    <path d="M64,26 A38 38 0 0 1 93.1,74.2" marker-end="url(#loopHead)"/>
+    <!-- edge: loop-b -> loop-c -->
+    <path d="M92,86 A38 38 0 0 1 33.8,90.9" marker-end="url(#loopHead)"/>
   </g>
   <!-- closing accent arc -->
-  <path d="M26,84 A38 38 0 0 1 54,25" fill="none" stroke="#9a3f12" stroke-width="2.6"
+  <!-- edge: loop-c -> loop-a -->
+  <path d="M26,84 A38 38 0 0 1 49.1,25.8" fill="none" stroke="#9a3f12" stroke-width="2.6"
         stroke-linecap="round" stroke-linejoin="round" marker-end="url(#loopHeadA)"/>
   <!-- three nodes on the loop -->
   <g fill="#fdfcf9" stroke="#1c1917" stroke-width="2">
-    <circle cx="60" cy="24" r="9"/>
-    <circle cx="98" cy="84" r="9"/>
-    <circle cx="24" cy="86" r="9"/>
+    <circle id="loop-a" cx="60" cy="24" r="9"/>
+    <circle id="loop-b" cx="98" cy="84" r="9"/>
+    <circle id="loop-c" cx="24" cy="86" r="9"/>
   </g>
 </svg>

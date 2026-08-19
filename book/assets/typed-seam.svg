@@ -33,24 +33,27 @@
   <!-- question marker (consistent across the figure set) -->
   <text x="40" y="38" font-size="16" font-weight="600" fill="#57534e">Question: Where may document mutation occur?</text>
 
-  <!-- entity boxes -->
-  <rect x="25" y="120" width="160" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <!-- entity boxes (edges are drawn AFTER these so the node fills cap the ends) -->
+  <rect id="passes" x="25" y="120" width="160" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="105" y="150" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">remediation</text>
   <text x="105" y="172" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">passes</text>
 
-  <rect x="235" y="120" width="170" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="model" x="235" y="120" width="170" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="320" y="157" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">format model</text>
   <text x="320" y="206" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the only door</text>
 
-  <rect x="450" y="120" width="180" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="library" x="450" y="120" width="180" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="540" y="157" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">format library</text>
 
   <!-- permitted arrows (solid) -->
+  <!-- edge: passes -> model -->
   <line x1="185" y1="152" x2="235" y2="152" stroke="#2b2825" stroke-width="2" marker-end="url(#ts-ar)"/>
+  <!-- edge: model -> library -->
   <line x1="405" y1="152" x2="450" y2="152" stroke="#2b2825" stroke-width="2" marker-end="url(#ts-ar)"/>
   <text x="427" y="138" text-anchor="middle" font-size="16" fill="#57534e">permitted</text>
 
-  <!-- forbidden bypass: routed below the row, struck with an X -->
+  <!-- forbidden bypass: routed below the row, struck with an X (a struck-but-spanning "no edge" — plug both ends, annotate dotted) -->
+  <!-- edge: passes .. library -->
   <path d="M105,184 L105,250 L540,250 L540,184" fill="none" stroke="#b0aaa2" stroke-width="1.8"
         marker-end="url(#ts-arF)"/>
   <line x1="312" y1="240" x2="332" y2="260" stroke="#b23b3b" stroke-width="2.6"/>

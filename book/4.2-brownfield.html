@@ -823,55 +823,62 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="96" y="96" width="768" height="104" rx="12" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.2"/>
   <text x="112" y="88" font-size="15" font-weight="700" fill="#1f7a4d">REPRESENTATION &#8594; stronger, more consumable</text>
 
-  <!-- rep chip 1: informal -->
-  <rect x="118" y="112" width="210" height="74" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="223" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Informal</text>
-  <text x="223" y="170" text-anchor="middle" font-size="13.5" fill="#57534e">prose &#183; wiki &#183; diagram</text>
-
-  <!-- rep chip 2: structured -->
-  <rect x="384" y="112" width="210" height="74" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="489" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structured</text>
-  <text x="489" y="170" text-anchor="middle" font-size="13.5" fill="#57534e">typed shape a tool can parse</text>
-
-  <!-- rep chip 3: executable -->
-  <rect x="650" y="112" width="210" height="74" rx="9" fill="#cfe6d6" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="755" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Executable</text>
-  <text x="755" y="170" text-anchor="middle" font-size="13.5" fill="#57534e">consumed by a tool</text>
-
-  <!-- rep arrows -->
-  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-representation-authority-ra-ah)">
-    <path d="M330,149 L382,149"/>
-    <path d="M596,149 L648,149"/>
-  </g>
-
   <!-- ===================== BOTTOM LANE — AUTHORITY ===================== -->
   <rect x="96" y="284" width="768" height="104" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="1.2"/>
   <text x="112" y="276" font-size="15" font-weight="700" fill="#2f5169">CONSEQUENCE &#8594; how represented claims are used</text>
 
+  <!-- Edges drawn UNDER the chips: each source end runs to the node CENTER, so the chip's opaque
+       fill caps it; each directed end seats on the target's left/top border, head just outside. -->
+  <!-- rep arrows -->
+  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-representation-authority-ra-ah)">
+    <!-- edge: informal -> structured -->
+    <path d="M223,149 L382,149"/>
+    <!-- edge: structured -> executable -->
+    <path d="M489,149 L648,149"/>
+  </g>
+
+  <!-- auth arrows -->
+  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-representation-authority-ra-ah)">
+    <!-- edge: guidance -> correspondence -->
+    <path d="M223,337 L382,337"/>
+    <!-- edge: correspondence -> under-enforcement -->
+    <path d="M489,337 L648,337"/>
+  </g>
+
+  <!-- ===================== SELECTIVE ATTACHMENT — one dashed vertical, no crossing ===================== -->
+  <!-- edge: executable .. under-enforcement -->
+  <path d="M755,149 L755,298" fill="none" stroke="#b23b3b" stroke-width="2.4"
+        stroke-dasharray="7 5" marker-end="url(#f-representation-authority-ra-ah-red)"/>
+
+  <!-- rep chip 1: informal -->
+  <rect id="f-representation-authority-informal" x="118" y="112" width="210" height="74" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="223" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Informal</text>
+  <text x="223" y="170" text-anchor="middle" font-size="13.5" fill="#57534e">prose &#183; wiki &#183; diagram</text>
+
+  <!-- rep chip 2: structured -->
+  <rect id="f-representation-authority-structured" x="384" y="112" width="210" height="74" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
+  <text x="489" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structured</text>
+  <text x="489" y="170" text-anchor="middle" font-size="13.5" fill="#57534e">typed shape a tool can parse</text>
+
+  <!-- rep chip 3: executable -->
+  <rect id="f-representation-authority-executable" x="650" y="112" width="210" height="74" rx="9" fill="#cfe6d6" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="755" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Executable</text>
+  <text x="755" y="170" text-anchor="middle" font-size="13.5" fill="#57534e">consumed by a tool</text>
+
   <!-- auth chip 1: optional context -->
-  <rect x="118" y="300" width="210" height="74" rx="9" fill="#f6f4ef" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="f-representation-authority-guidance" x="118" y="300" width="210" height="74" rx="9" fill="#f6f4ef" stroke="#2f5169" stroke-width="2.2"/>
   <text x="223" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Guidance</text>
   <text x="223" y="358" text-anchor="middle" font-size="13.5" fill="#57534e">read if useful</text>
 
   <!-- auth chip 2: audited correspondence -->
-  <rect x="384" y="300" width="210" height="74" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="f-representation-authority-correspondence" x="384" y="300" width="210" height="74" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="489" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Correspondence</text>
   <text x="489" y="358" text-anchor="middle" font-size="13.5" fill="#57534e">join checked &#183; drift surfaced</text>
 
   <!-- auth chip 3: under enforcement -->
-  <rect x="650" y="300" width="210" height="74" rx="9" fill="#dbe6ef" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-representation-authority-under-enforcement" x="650" y="300" width="210" height="74" rx="9" fill="#dbe6ef" stroke="#2f5169" stroke-width="2.6"/>
   <text x="755" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">Under enforcement</text>
   <text x="755" y="358" text-anchor="middle" font-size="13.5" fill="#57534e">selected obligations gated</text>
-
-  <!-- auth arrows -->
-  <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#f-representation-authority-ra-ah)">
-    <path d="M330,337 L382,337"/>
-    <path d="M596,337 L648,337"/>
-  </g>
-
-  <!-- ===================== SELECTIVE ATTACHMENT — one dashed vertical, no crossing ===================== -->
-  <path d="M755,186 L755,298" fill="none" stroke="#b23b3b" stroke-width="2.4"
-        stroke-dasharray="7 5" marker-end="url(#f-representation-authority-ra-ah-red)"/>
   <text x="772" y="234" font-size="13.5" font-style="italic" fill="#b23b3b">authority attaches</text>
   <text x="772" y="252" font-size="13.5" font-style="italic" fill="#b23b3b">to selected obligations —</text>
   <text x="772" y="270" font-size="13.5" font-style="italic" fill="#b23b3b">when trusted and warranted</text>
@@ -923,36 +930,40 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- start -->
-  <circle cx="70" cy="150" r="12" fill="#1c1917"/>
+  <circle id="f-squash-zero-promote-start" cx="70" cy="150" r="12" fill="#1c1917"/>
   <text x="70" y="192" text-anchor="middle" font-size="17" fill="#57534e">new lint</text>
 
   <!-- state 1: audit-only -->
-  <rect x="130" y="110" width="230" height="80" rx="10" fill="#faf1e6" stroke="#b23b3b" stroke-width="2.5"/>
+  <rect id="f-squash-zero-promote-audit" x="130" y="110" width="230" height="80" rx="10" fill="#faf1e6" stroke="#b23b3b" stroke-width="2.5"/>
   <text x="245" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Audit-only</text>
   <text x="245" y="172" text-anchor="middle" font-size="18" fill="#57534e">reports, blocks nothing</text>
 
   <!-- state 2: draining (the middle work) -->
-  <rect x="430" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="f-squash-zero-promote-drain" x="430" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="545" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Findings → 0</text>
   <text x="545" y="172" text-anchor="middle" font-size="18" fill="#1c1917">a fix wave drains it</text>
 
   <!-- state 3: blocking -->
-  <rect x="730" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="f-squash-zero-promote-blocking" x="730" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="845" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Blocking</text>
   <text x="845" y="172" text-anchor="middle" font-size="16" fill="#1c1917">fails a regressing commit</text>
 
-  <!-- edges along the spine -->
+  <!-- edges along the spine (one edge comment per branch drawable) -->
   <g fill="none" stroke="#1c1917" stroke-width="2.5" marker-end="url(#f-squash-zero-promote-szpArrow)">
+    <!-- edge: start -> audit -->
     <path d="M82,150 L128,150"/>
+    <!-- edge: audit -> drain -->
     <path d="M360,150 L428,150"/>
+    <!-- edge: drain -> blocking -->
     <path d="M660,150 L728,150"/>
   </g>
   <text x="395" y="140" text-anchor="middle" font-size="16" fill="#57534e">land</text>
   <text x="695" y="140" text-anchor="middle" font-size="16" fill="#57534e">at zero</text>
 
-  <!-- fix-wave loop under the middle state -->
+  <!-- fix-wave loop under the middle state (self-loop drain -> drain) -->
   <g fill="none" stroke="#2f5169" stroke-width="2.5" marker-end="url(#f-squash-zero-promote-szpArrow)">
-    <path d="M490,190 C460,250 630,250 600,192"/>
+    <!-- edge: drain -> drain -->
+    <path d="M490,190 C460,250 600,222 600,192"/>
   </g>
   <text x="545" y="268" text-anchor="middle" font-size="18" font-style="italic" fill="#2f5169">behavior-preserving fixes, under test coverage</text>
 
