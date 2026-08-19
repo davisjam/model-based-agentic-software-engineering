@@ -7,7 +7,7 @@
     "derived_ids": 147,
     "missing_topic_sentence": 1,
     "sections_drained": 109,
-    "paragraph_points": 475
+    "paragraph_points": 474
   },
   "chapters": [
     {
@@ -3175,24 +3175,19 @@
               "block_index": 62
             },
             {
-              "slug": "callback-a-finished-architecture-hides-its-history",
-              "text": "A finished architecture hides the history that produced it.",
-              "block_index": 64
-            },
-            {
               "slug": "a-convenient-call-silently-corrupted-the-product",
               "text": "A convenient one-line call stripped the accessibility structure the product exists to add, and nothing caught it.",
-              "block_index": 66
+              "block_index": 64
             },
             {
               "slug": "the-format-seam-hardened-in-layers",
               "text": "The response came in layers, and the sharpest was the enforcement itself mis-reporting green; the model stated the boundary, the API and check gave it authority, and the authority still had to be maintained.",
-              "block_index": 68
+              "block_index": 66
             },
             {
               "slug": "a-protection-boundary-works-only-over-the-paths-that-cross-it",
               "text": "A file path crossed a service boundary; a typed client made the mistake unrepresentable, and a human review found a bypass the tests missed — a protection boundary only governs the paths that cross it.",
-              "block_index": 71
+              "block_index": 69
             }
           ]
         },
@@ -3202,107 +3197,107 @@
           "heading_text": "The Delegation Staircase",
           "topic_sentence": "The five rungs are retrospective names for the changing center of gravity of my work—co-coder, QA, review lead, tech lead, architect—not a prescribed career ladder.",
           "id_source": "derived",
-          "block_index": 73,
+          "block_index": 71,
           "points": [
             {
               "slug": "mage-was-not-designed-as-an-org-chart",
               "text": "The five rung labels are retrospective names for the changing center of gravity of my own work, not a career ladder.",
-              "block_index": 75
+              "block_index": 73
             },
             {
               "slug": "the-staircase-has-two-interacting-supports",
               "text": "Alignment moved repeatable authority out of direct human review; Modeling moved system knowledge out of my head; human judgment moved toward the gaps the environment could not yet represent or decide.",
-              "block_index": 77
+              "block_index": 75
             },
             {
               "slug": "delegation-climbed-as-far-as-the-environment-could-carry-it",
               "text": "Delegation climbed as far as the engineered environment could carry it; when representation or authority was too weak, the operator fell back into tactical work.",
-              "block_index": 79
+              "block_index": 77
             },
             {
               "slug": "rung-co-coder",
               "text": "Direct human inspection carried everything; it failed as an operating model once generation outran review.",
-              "block_index": 81
+              "block_index": 79
             },
             {
               "slug": "rung-qa",
               "text": "Evaluation was delegated before authority was; the audit's value was diagnostic, and its decidable findings revealed questions that no longer needed a language model.",
-              "block_index": 83
+              "block_index": 81
             },
             {
               "slug": "rung-review-lead",
               "text": "Judgment was specialized and the decidable residue dropped into machinery; the probabilistic reviewers kept the questions the checks could not settle.",
-              "block_index": 85
+              "block_index": 83
             },
             {
               "slug": "rung-tech-lead",
               "text": "Representation made reasoning local; named zones externalized ownership so an agent could reason inside one region, and selected rules over the zone model received authority.",
-              "block_index": 87
+              "block_index": 85
             },
             {
               "slug": "rung-architect",
               "text": "Explicit models carried system-level knowledge; declaration did not make them true, so model drift became its own failure class answered by traceability.",
-              "block_index": 89
+              "block_index": 87
             },
             {
               "slug": "explicit-models-changed-what-could-be-checked",
               "text": "Explicit models changed what could be established mechanically, down to exhaustively exploring the finite ownership state space.",
-              "block_index": 91
+              "block_index": 89
             },
             {
               "slug": "temporal-properties-needed-tla-and-tlc",
               "text": "Temporal properties such as eventual termination ranged over executions, so I checked small TLA+ specifications with TLC.",
-              "block_index": 93
+              "block_index": 91
             },
             {
               "slug": "checking-the-model-created-a-second-obligation",
               "text": "Checking the model created a second obligation: why should a property established over the model be believed about the implementation?",
-              "block_index": 95
+              "block_index": 93
             },
             {
               "slug": "conformance-check-drift-became-an-alignment-problem",
               "text": "A conformance test drifted red for days; the durable response gave the formal checks the same drift controls as the models they supported.",
-              "block_index": 97
+              "block_index": 95
             },
             {
               "slug": "exhaustive-checking-and-correspondence-are-separate-claims",
               "text": "Exhaustive checking establishes a property of the model; correspondence evidence is the separate claim that the implementation still realizes it.",
-              "block_index": 99
+              "block_index": 97
             },
             {
               "slug": "formal-methods-entered-where-they-paid-off",
               "text": "DocAble gave each formal result only the authority its connection to the implementation could support.",
-              "block_index": 101
+              "block_index": 99
             },
             {
               "slug": "the-representation-changed-what-i-could-understand",
               "text": "The formal machinery mattered, but representation came first: naming behaviors changed what I could state and understand.",
-              "block_index": 103
+              "block_index": 101
             },
             {
               "slug": "vocabulary-shapes-what-an-engineer-can-see",
               "text": "Software engineering already accepts a milder version: a shared vocabulary shapes the properties an engineer can see and state.",
-              "block_index": 105
+              "block_index": 103
             },
             {
               "slug": "the-incident-represented-a-class",
               "text": "A later audit showed the incident was a class, not a one-off; mechanical correspondence checks retired a recurring class of stale-reference failure.",
-              "block_index": 108
+              "block_index": 106
             },
             {
               "slug": "modeling-found-real-bugs",
               "text": "Forcing an engineering relation into an explicit representation creates new questions the environment can ask; in three cases those questions exposed shipping defects green tests had missed.",
-              "block_index": 110
+              "block_index": 108
             },
             {
               "slug": "staircase-figure",
               "text": "The staircase shows delegation increasing as the environment absorbed two kinds of work; human judgment moved toward strategy and residual semantics rather than vanishing.",
-              "block_index": 114
+              "block_index": 112
             },
             {
               "slug": "delegation-depends-on-what-the-environment-can-carry",
               "text": "Delegation increased as the environment absorbed system knowledge (representation) and repeatable admission (authority); a weak model or weak controls pulled the operator back into tactical work; human judgment stayed at the unresolved edge.",
-              "block_index": 118
+              "block_index": 116
             }
           ]
         }
