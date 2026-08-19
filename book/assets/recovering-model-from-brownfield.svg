@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Part IV §4.2 — recovering-model-from-brownfield.svg (hand-authored; folds to book/assets/).
+     The SOFTWARE-path slice of the model-induction move (the software column of the relocated
+     three-domain figure, redesigned for Part 4). A single vertical chain: realized code -> repeated
+     low-level forms -> candidate regularities -> contextual comparison -> latent concept ->
+     ENGINEERING JUDGMENT NAMES IT -> explicit model / typed vocabulary -> future work reasons through
+     the concept. The intellectual point the geometry must carry: MECHANICAL DISCOVERY of repetition
+     (nodes 1-5, gray) is SEPARATE from the ENGINEERING JUDGMENT that names the concept (node 6, rust) —
+     repetition alone does not produce a model. The right-gutter brackets group the chain into its three
+     phases and name them, and the color turns at the judgment step. Grammar: gray #57534e = neutral,
+     machine-found candidate (the agent finds repetition, compares, proposes); rust #9a3f12 = the
+     engineer's naming (the judgment step); blue #2f5169 = the named model / vocabulary (the payoff);
+     green #155c38 = the downstream economics (future work reasons through it). Hand-authored: a single
+     vertical induction chain with phase-bracket gutter is not a Mermaid graph shape. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 912" width="680" height="912"
+     role="img" aria-labelledby="rmbTitle rmbDesc"
+     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+  <title id="rmbTitle">Recovering a model from brownfield structure: a vertical chain from realized code up to a named model, where mechanical discovery of repetition is separate from the engineering judgment that names the concept</title>
+  <desc id="rmbDesc">A single vertical chain of eight stages, read top to bottom. The first five stages are
+    the mechanical-discovery phase (drawn neutral gray): realized code — repos, diffs, existing
+    implementation; then repeated low-level forms — raw strings, tuples, repeated loops, ad hoc
+    structures; then candidate regularities surfaced by weak detectors, retrieval, and clustering; then
+    contextual comparison, which asks which repetitions carry the same engineering meaning; then a latent
+    concept, a repeated semantic shape. The chain then crosses into the engineering-judgment phase (drawn
+    in rust): engineering judgment names it. Naming produces the reusable-surface phase: an explicit model
+    or typed vocabulary — JobId, MutationSpec, PdfModel, relations — and then future work that reasons
+    through the concept, so tools search and check it and agents reuse it rather than re-derive it. A
+    bracket in the right gutter groups and labels the three phases. The point the figure makes: detectors
+    surface repetition, but repetition alone is not an abstraction — engineering judgment decides which
+    recurring form carries a concept worth naming.</desc>
+
+  <defs>
+    <marker id="rmb-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
+    </marker>
+    <marker id="rmb-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
+    </marker>
+    <marker id="rmb-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
+    </marker>
+    <marker id="rmb-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#155c38"/>
+    </marker>
+  </defs>
+
+  <!-- ===== heading ===== -->
+  <text x="356" y="42" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Brownfield model induction</text>
+
+  <!-- ===== NODES (the vertical chain) ===== -->
+  <!-- 1. realized code (discovery) -->
+  <rect id="n1" x="40" y="70" width="400" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="240" y="100" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">realized code</text>
+  <text x="240" y="122" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">repos · diffs · existing implementation</text>
+
+  <!-- 2. repeated low-level forms (discovery) -->
+  <rect id="n2" x="40" y="166" width="400" height="88" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="240" y="196" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">repeated low-level forms</text>
+  <text x="240" y="218" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">raw strings · tuples ·</text>
+  <text x="240" y="236" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">repeated loops · ad hoc structures</text>
+
+  <!-- 3. candidate regularities (discovery) -->
+  <rect id="n3" x="40" y="280" width="400" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="240" y="310" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">candidate regularities</text>
+  <text x="240" y="332" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">weak detectors · retrieval · clustering</text>
+
+  <!-- 4. contextual comparison (discovery) -->
+  <rect id="n4" x="40" y="376" width="400" height="88" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="240" y="406" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">contextual comparison</text>
+  <text x="240" y="428" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">which repetitions carry the</text>
+  <text x="240" y="446" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">same engineering meaning?</text>
+
+  <!-- 5. latent concept (discovery) -->
+  <rect id="n5" x="40" y="490" width="400" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <text x="240" y="520" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">latent concept</text>
+  <text x="240" y="542" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">a repeated semantic shape</text>
+
+  <!-- 6. engineering judgment names it (JUDGMENT — the pivot) -->
+  <rect id="n6" x="40" y="586" width="400" height="64" rx="10" fill="#f6ece4" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="240" y="626" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">engineering judgment names it</text>
+
+  <!-- 7. explicit model / typed vocabulary (reusable surface) -->
+  <rect id="n7" x="40" y="676" width="400" height="70" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="240" y="706" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">explicit model / typed vocabulary</text>
+  <text x="240" y="728" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">JobId · MutationSpec · PdfModel · relations</text>
+
+  <!-- 8. future work reasons through the concept (reusable surface) -->
+  <rect id="n8" x="40" y="772" width="400" height="112" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4"/>
+  <text x="240" y="802" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">future work reasons</text>
+  <text x="240" y="824" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">through the concept</text>
+  <text x="240" y="846" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">tools search and check it ·</text>
+  <text x="240" y="864" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">agents reuse rather than re-derive</text>
+
+  <!-- ===== EDGES (directed; drawn on top so heads seat on the target border) ===== -->
+  <!-- edge: n1 -> n2 -->
+  <line x1="240" y1="138" x2="240" y2="164" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
+  <!-- edge: n2 -> n3 -->
+  <line x1="240" y1="252" x2="240" y2="278" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
+  <!-- edge: n3 -> n4 -->
+  <line x1="240" y1="348" x2="240" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
+  <!-- edge: n4 -> n5 -->
+  <line x1="240" y1="462" x2="240" y2="488" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
+  <!-- edge: n5 -> n6  (discovery crosses into judgment) -->
+  <line x1="240" y1="558" x2="240" y2="584" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#rmb-r)"/>
+  <!-- edge: n6 -> n7  (naming produces the model) -->
+  <line x1="240" y1="648" x2="240" y2="674" stroke="#2f5169" stroke-width="2.3" marker-end="url(#rmb-b)"/>
+  <!-- edge: n7 -> n8  (the model enables downstream reuse) -->
+  <line x1="240" y1="744" x2="240" y2="770" stroke="#155c38" stroke-width="2.3" marker-end="url(#rmb-g)"/>
+
+  <!-- ===== PHASE BRACKETS (right gutter; grouping only — no arrowheads, not edges) ===== -->
+  <!-- discovery: nodes 1-5 -->
+  <path d="M472,70 L480,70 L480,560 L472,560" fill="none" stroke="#57534e" stroke-width="2.0"/>
+  <text x="494" y="308" font-size="15" font-weight="700" fill="#57534e">mechanical</text>
+  <text x="494" y="326" font-size="15" font-weight="700" fill="#57534e">discovery</text>
+  <text x="494" y="345" font-size="12" font-style="italic" fill="#57534e">the agent finds it</text>
+  <!-- judgment: node 6 -->
+  <path d="M472,586 L480,586 L480,650 L472,650" fill="none" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="494" y="609" font-size="15" font-weight="700" fill="#9a3f12">engineering</text>
+  <text x="494" y="627" font-size="15" font-weight="700" fill="#9a3f12">judgment</text>
+  <text x="494" y="645" font-size="12" font-style="italic" fill="#9a3f12">the engineer names it</text>
+  <!-- reusable surface: nodes 7-8 -->
+  <path d="M472,676 L480,676 L480,884 L472,884" fill="none" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="494" y="772" font-size="15" font-weight="700" fill="#2f5169">reusable</text>
+  <text x="494" y="790" font-size="15" font-weight="700" fill="#2f5169">surface</text>
+  <text x="494" y="809" font-size="12" font-style="italic" fill="#57534e">reused, not re-derived</text>
+</svg>

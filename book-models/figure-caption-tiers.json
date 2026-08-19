@@ -1105,6 +1105,12 @@
       "location": "part4",
       "rationale": "discovering models during a brownfield migration — weak signals partition into legitimate shape, mechanical debt, and latent concept, then naming the earned concepts changes the substrate later migration and enforcement run on; anchor for §4.2 Finding the Model in the Code"
     },
+    "assets/recovering-model-from-brownfield.svg": {
+      "tier": "A",
+      "kind": "process-flow",
+      "location": "part4",
+      "rationale": "recovering a model from brownfield structure — the software induction chain from realized code up to a named model, with the mechanical-discovery phase held separate from the engineering judgment that names the concept; anchor for §4.2 Recover Latent Models from the Implementation"
+    },
     "assets/audit-drain-promote-generalized.svg": {
       "tier": "A",
       "kind": "process-flow",
