@@ -18,54 +18,63 @@
 
   <text x="500" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">III &#183; Externalizing Judgment</text>
 
-  <rect x="360" y="66" width="280" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <rect id="recurring-procedure" x="360" y="66" width="280" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="500" y="99" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">RECURRING PROCEDURE</text>
+  <!-- edge: recurring-procedure -> model-steps -->
   <line x1="500" y1="120" x2="500" y2="158" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
 
-  <rect x="390" y="160" width="220" height="52" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="model-steps" x="390" y="160" width="220" height="52" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="500" y="192" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">MODEL THE STEPS</text>
 
   <!-- fan to three kinds -->
-  <path d="M500 212 C 420 236 300 238 250 254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <!-- edge: model-steps -> deterministic -->
+  <path d="M500,212 C420,236 250,224 250,254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <!-- edge: model-steps -> bounded -->
   <line x1="500" y1="212" x2="500" y2="254" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
-  <path d="M500 212 C 580 236 700 238 750 254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <!-- edge: model-steps -> irreducible -->
+  <path d="M500,212 C580,236 750,224 750,254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
 
   <!-- deterministic = solid rust -->
-  <rect x="120" y="256" width="260" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <rect id="deterministic" x="120" y="256" width="260" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="250" y="284" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">DETERMINISTIC</text>
   <text x="250" y="304" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">OUTCOME</text>
   <!-- bounded = dashed blue -->
-  <rect x="370" y="256" width="260" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2" stroke-dasharray="7 5"/>
+  <rect id="bounded" x="370" y="256" width="260" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2" stroke-dasharray="7 5"/>
   <text x="500" y="284" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">BOUNDED</text>
   <text x="500" y="304" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">JUDGMENT</text>
   <!-- irreducible = dotted dark -->
-  <rect x="620" y="256" width="260" height="64" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2" stroke-dasharray="2 4"/>
+  <rect id="irreducible" x="620" y="256" width="260" height="64" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2" stroke-dasharray="2 4"/>
   <text x="750" y="284" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">IRREDUCIBLE</text>
   <text x="750" y="304" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">JUDGMENT</text>
 
+  <!-- edge: deterministic -> tool -->
   <line x1="250" y1="320" x2="250" y2="360" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <!-- edge: bounded -> prepared-context -->
   <line x1="500" y1="320" x2="500" y2="360" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <!-- edge: irreducible -> human -->
   <line x1="750" y1="320" x2="750" y2="360" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
 
   <!-- forms -->
-  <rect x="140" y="362" width="220" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <rect id="tool" x="140" y="362" width="220" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="250" y="390" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">TOOL</text>
   <text x="250" y="410" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">executable</text>
-  <rect x="390" y="362" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2" stroke-dasharray="7 5"/>
+  <rect id="prepared-context" x="390" y="362" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2" stroke-dasharray="7 5"/>
   <text x="500" y="388" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">PREPARED CONTEXT</text>
   <text x="500" y="408" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">+ procedure</text>
-  <rect x="640" y="362" width="220" height="64" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2" stroke-dasharray="2 4"/>
+  <rect id="human" x="640" y="362" width="220" height="64" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2" stroke-dasharray="2 4"/>
   <text x="750" y="388" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">HUMAN</text>
   <text x="750" y="408" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">decision</text>
 
-  <!-- merge -->
-  <path d="M250 426 C 250 452 430 456 486 468" fill="none" stroke="#57534e" stroke-width="2"/>
-  <path d="M750 426 C 750 452 570 456 514 468" fill="none" stroke="#57534e" stroke-width="2"/>
-  <line x1="500" y1="426" x2="500" y2="468" stroke="#57534e" stroke-width="2"/>
-  <line x1="500" y1="468" x2="500" y2="520" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <!-- merge: three forms converge into the sanctioned action (one path per branch) -->
+  <!-- edge: tool -> sanctioned-action -->
+  <path d="M250,426 C250,470 500,491 500,521" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <!-- edge: human -> sanctioned-action -->
+  <path d="M750,426 C750,470 500,491 500,521" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <!-- edge: prepared-context -> sanctioned-action -->
+  <line x1="500" y1="426" x2="500" y2="521" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
   <text x="640" y="492" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">lifecycle event invokes the right form</text>
 
-  <rect x="380" y="522" width="240" height="58" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
+  <rect id="sanctioned-action" x="380" y="522" width="240" height="58" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
   <text x="500" y="557" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">SANCTIONED ACTION</text>
 
   <text x="500" y="636" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Type the judgment inside a procedure — don't flatten it into prose or automation.</text>

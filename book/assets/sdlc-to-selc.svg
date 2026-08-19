@@ -19,29 +19,30 @@
 
   <!-- ======== LANE 1: SDLC ======== -->
   <text x="26" y="22" font-size="15.04" font-weight="700" fill="#57534e" letter-spacing="1.5">SDLC — CONVENTIONAL</text>
-  <path d="M 850 46 C 850 30, 90 30, 90 44" fill="none" stroke="#57534e" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#arr-cycle)"/>
+  <!-- edge: maint1 .. req1 (life-cycle return; drawn under the boxes so the fills cap the source) -->
+  <path d="M 850 50 C 850 30, 90 30, 90 44" fill="none" stroke="#57534e" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#arr-cycle)"/>
 
   <g font-size="15.04" text-anchor="middle" fill="#1c1917" word-spacing="1.2">
-    <rect x="26"  y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="req1" x="26"  y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="90"  y="74">Requirements</text>
-    <rect x="178" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="spec1" x="178" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="242" y="74">Specification</text>
-    <rect x="330" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="design1" x="330" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="394" y="74">Design</text>
-    <rect x="482" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/>
+    <rect id="impl1" x="482" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.6"/>
     <text font-size="14.45" x="546" y="68" font-weight="600">Implementation</text>
     <text x="546" y="84" font-size="14.41" fill="#57534e">eats the calendar</text>
-    <rect x="634" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="valid1" x="634" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="698" y="74">Validation</text>
-    <rect x="786" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
+    <rect id="maint1" x="786" y="48" width="128" height="44" rx="6" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="850" y="74">Maintenance</text>
   </g>
   <g stroke="#57534e" stroke-width="1.4">
-    <line x1="154" y1="70" x2="172" y2="70" marker-end="url(#arr-ink)"/>
-    <line x1="306" y1="70" x2="324" y2="70" marker-end="url(#arr-ink)"/>
-    <line x1="458" y1="70" x2="476" y2="70" marker-end="url(#arr-ink)"/>
-    <line x1="610" y1="70" x2="628" y2="70" marker-end="url(#arr-ink)"/>
-    <line x1="762" y1="70" x2="780" y2="70" marker-end="url(#arr-ink)"/>
+    <!-- edge: req1 -> spec1 --><line x1="154" y1="70" x2="172" y2="70" marker-end="url(#arr-ink)"/>
+    <!-- edge: spec1 -> design1 --><line x1="306" y1="70" x2="324" y2="70" marker-end="url(#arr-ink)"/>
+    <!-- edge: design1 -> impl1 --><line x1="458" y1="70" x2="476" y2="70" marker-end="url(#arr-ink)"/>
+    <!-- edge: impl1 -> valid1 --><line x1="610" y1="70" x2="628" y2="70" marker-end="url(#arr-ink)"/>
+    <!-- edge: valid1 -> maint1 --><line x1="762" y1="70" x2="780" y2="70" marker-end="url(#arr-ink)"/>
   </g>
   <path d="M 26 102 L 26 108 L 914 108 L 914 102" fill="none" stroke="#57534e" stroke-width="1.2"/>
   <text x="470" y="126" font-size="15.04" text-anchor="middle" fill="#1c1917" font-weight="600">the engineering role — every seat, and above all the developer’s</text>
@@ -53,33 +54,34 @@
 
   <!-- ======== LANE 2: SELC ======== -->
   <text x="26" y="182" font-size="15.04" font-weight="700" fill="#57534e" letter-spacing="1.5">SELC — MAGE</text>
-  <path d="M 850 202 C 850 188, 90 188, 90 200" fill="none" stroke="#57534e" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#arr-cycle)"/>
+  <!-- edge: maint2 .. req2 (life-cycle return; drawn under the boxes so the fills cap the source) -->
+  <path d="M 850 208 C 850 188, 90 188, 90 200" fill="none" stroke="#57534e" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#arr-cycle)"/>
 
   <g font-size="15.04" text-anchor="middle" fill="#1c1917" word-spacing="1.2">
-    <rect x="26"  y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
+    <rect id="req2" x="26"  y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
     <text x="90"  y="232">Requirements</text>
-    <rect x="178" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
+    <rect id="spec2" x="178" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
     <text x="242" y="226">Specification</text>
     <text x="242" y="242" font-size="12.65" fill="#57534e">authored as models</text>
-    <rect x="330" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
+    <rect id="design2" x="330" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
     <text x="394" y="226">Design</text>
     <text x="394" y="242" font-size="12.65" fill="#57534e">authored as models</text>
-    <rect x="482" y="206" width="128" height="44" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
+    <rect id="impl2" x="482" y="206" width="128" height="44" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
     <text font-size="14.45" x="546" y="226" font-weight="600" fill="#2f5169">Implementation</text>
     <text x="546" y="242" font-size="15.04" fill="#2f5169">the agents</text>
-    <rect x="634" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
+    <rect id="valid2" x="634" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
     <text x="698" y="226">Validation</text>
     <text x="698" y="242" font-size="13.82" fill="#57534e">gates, not reading</text>
-    <rect x="786" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
+    <rect id="maint2" x="786" y="206" width="128" height="44" rx="6" fill="#fdfcf9" stroke="#9a3f12"/>
     <text x="850" y="226">Maintenance</text>
     <text x="850" y="242" font-size="13.6" fill="#57534e">run as governance</text>
   </g>
   <g stroke="#57534e" stroke-width="1.4">
-    <line x1="154" y1="228" x2="172" y2="228" marker-end="url(#arr-ink)"/>
-    <line x1="306" y1="228" x2="324" y2="228" marker-end="url(#arr-ink)"/>
-    <line x1="458" y1="228" x2="476" y2="228" marker-end="url(#arr-ink)"/>
-    <line x1="610" y1="228" x2="628" y2="228" marker-end="url(#arr-ink)"/>
-    <line x1="762" y1="228" x2="780" y2="228" marker-end="url(#arr-ink)"/>
+    <!-- edge: req2 -> spec2 --><line x1="154" y1="228" x2="172" y2="228" marker-end="url(#arr-ink)"/>
+    <!-- edge: spec2 -> design2 --><line x1="306" y1="228" x2="324" y2="228" marker-end="url(#arr-ink)"/>
+    <!-- edge: design2 -> impl2 --><line x1="458" y1="228" x2="476" y2="228" marker-end="url(#arr-ink)"/>
+    <!-- edge: impl2 -> valid2 --><line x1="610" y1="228" x2="628" y2="228" marker-end="url(#arr-ink)"/>
+    <!-- edge: valid2 -> maint2 --><line x1="762" y1="228" x2="780" y2="228" marker-end="url(#arr-ink)"/>
   </g>
 
   <path d="M 26 260 L 26 266 L 458 266 L 458 260" fill="none" stroke="#9a3f12" stroke-width="1.2"/>

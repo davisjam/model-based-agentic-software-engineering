@@ -801,56 +801,64 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="0" y="0" width="900" height="940" fill="#fdfcf9"/>
 
   <!-- CALL-AND-RESPONSE ARC — Preface (call) tied to Conclusion (response), down the left margin -->
-  <path d="M 190 100 C 55 290, 55 760, 190 848" fill="none" stroke="#9a3f12" stroke-width="1.8"
+  <!-- edge: preface -> conclusion -->
+  <path d="M 190 100 C 55 290, 90 848, 190 848" fill="none" stroke="#9a3f12" stroke-width="1.8"
         stroke-dasharray="1 0" marker-end="url(#bm2-ah-rust)" opacity="0.85"/>
   <text x="58" y="474" transform="rotate(-90 58 474)" text-anchor="middle" font-size="17"
         font-style="italic" fill="#9a3f12">call → response · the question returns, and turns</text>
 
   <!-- PREFACE — the call (unnumbered matter) -->
-  <rect x="190" y="48" width="520" height="86" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.2"/>
+  <rect id="preface" x="190" y="48" width="520" height="86" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.2"/>
   <text x="450" y="82" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Preface</text>
   <text x="450" y="104" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">poses the question:</text>
   <text x="450" y="123" text-anchor="middle" font-size="17" font-style="italic" fill="#1c1917">&#8220;How do we safely grant autonomy to commodity intelligence?&#8221;</text>
+  <!-- edge: preface -> part-1 -->
   <line x1="450" y1="134" x2="450" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART I — The New Engineering Problem (ink frame) -->
-  <rect x="190" y="160" width="520" height="80" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <rect id="part-1" x="190" y="160" width="520" height="80" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
   <text x="450" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Part I · The New Engineering Problem</text>
   <text x="450" y="221" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">changed economics</text>
+  <!-- edge: part-1 -> part-2 -->
   <line x1="450" y1="240" x2="450" y2="264" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART II — Modeling (green) -->
-  <rect x="190" y="266" width="520" height="80" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <rect id="part-2" x="190" y="266" width="520" height="80" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
   <text x="450" y="302" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
   <text x="450" y="327" text-anchor="middle" font-size="17" font-style="italic" fill="#1f7a4d">make knowledge + intent explicit</text>
+  <!-- edge: part-2 -> part-3 -->
   <line x1="450" y1="346" x2="450" y2="370" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART III — Alignment (rust) -->
-  <rect x="190" y="372" width="520" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="part-3" x="190" y="372" width="520" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="450" y="408" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
   <text x="450" y="433" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">give obligations authority</text>
+  <!-- edge: part-3 -> part-4 -->
   <line x1="450" y1="452" x2="450" y2="476" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART IV — The MAGE Method (neutral: joins the two) -->
-  <rect x="190" y="478" width="520" height="80" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="part-4" x="190" y="478" width="520" height="80" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
   <text x="450" y="514" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
   <text x="450" y="539" text-anchor="middle" font-size="17" font-weight="600" fill="#1c1917">model · align · work · convert</text>
+  <!-- edge: part-4 -> part-5 -->
   <line x1="450" y1="558" x2="450" y2="582" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART V — The Evidence (fleet blue) -->
-  <rect x="190" y="584" width="520" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="part-5" x="190" y="584" width="520" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="450" y="620" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
   <text x="450" y="645" text-anchor="middle" font-size="17" font-weight="600" fill="#2f5169">depth + breadth</text>
+  <!-- edge: part-5 -> part-6 -->
   <line x1="450" y1="664" x2="450" y2="688" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- PART VI — The Profession (purple) -->
-  <rect x="190" y="690" width="520" height="80" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <rect id="part-6" x="190" y="690" width="520" height="80" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
   <text x="450" y="726" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
   <text x="450" y="751" text-anchor="middle" font-size="17" font-style="italic" fill="#5b4a72">theory · implications · engineer</text>
+  <!-- edge: part-6 -> conclusion -->
   <line x1="450" y1="770" x2="450" y2="794" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
 
   <!-- CONCLUSION — the response (unnumbered matter, parallel to the Preface); the visual argument ends here -->
-  <rect x="190" y="796" width="520" height="96" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
+  <rect id="conclusion" x="190" y="796" width="520" height="96" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
   <text x="450" y="828" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
   <text x="450" y="851" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
   <text x="450" y="875" text-anchor="middle" font-size="17" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>

@@ -22,39 +22,46 @@
   </defs>
 
   <!-- OPERATING MODEL -->
-  <rect x="255" y="24" width="250" height="52" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="operating-model" x="255" y="24" width="250" height="52" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="380" y="55" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">OPERATING MODEL</text>
+  <!-- edge: operating-model -> watch -->
   <line x1="380" y1="76" x2="380" y2="118" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- WATCH -->
-  <rect x="290" y="120" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="watch" x="290" y="120" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="380" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">WATCH</text>
   <text x="380" y="172" text-anchor="middle" font-size="14" fill="#57534e">observe divergence</text>
 
-  <!-- runtime feed into WATCH (solid observed input) -->
+  <!-- runtime feed into WATCH (solid observed input); transparent anchor makes the text a graph node -->
+  <rect id="runtime" x="596" y="134" width="92" height="28" fill="none" stroke="none"/>
   <text x="640" y="148" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">runtime</text>
+  <!-- edge: runtime -> watch -->
   <line x1="600" y1="153" x2="474" y2="153" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- WATCH -> RESPOND (SOLID load-bearing) -->
+  <!-- edge: watch -> respond -->
   <line x1="380" y1="186" x2="380" y2="270" stroke="#2f5169" stroke-width="2.6" marker-end="url(#ah)"/>
 
   <!-- BEAT (dashed enhancement, offset left) -->
-  <rect x="70" y="196" width="160" height="60" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <rect id="beat" x="70" y="196" width="160" height="60" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="150" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">BEAT</text>
   <text x="150" y="242" text-anchor="middle" font-size="14" fill="#57534e">liveness heartbeat</text>
-  <path d="M300,168 C250,180 250,200 232,214" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
-  <path d="M232,238 C270,256 300,264 300,288" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <!-- edge: watch .. beat -->
+  <path d="M300,168 C260,190 250,214 232,214" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
+  <!-- edge: beat .. respond -->
+  <path d="M224,240 C270,258 300,255 300,270" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
 
   <!-- RESPOND (solid) -->
-  <rect x="290" y="272" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="respond" x="290" y="272" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="380" y="302" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RESPOND</text>
   <text x="380" y="324" text-anchor="middle" font-size="14" fill="#57534e">bounded recovery</text>
 
   <!-- RESPOND -> BLOCK (dashed enhancement) -->
+  <!-- edge: respond .. block -->
   <line x1="380" y1="338" x2="380" y2="384" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>
 
   <!-- BLOCK (dashed) -->
-  <rect x="280" y="386" width="200" height="76" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <rect id="block" x="280" y="386" width="200" height="76" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="380" y="416" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">BLOCK</text>
   <text x="380" y="438" text-anchor="middle" font-size="14" fill="#57534e">prevent unsafe progress</text>
 

@@ -28,44 +28,54 @@
   <line x1="500" y1="150" x2="500" y2="170" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
 
   <!-- agent row (blue = the acting party / generation core) -->
-  <rect x="112" y="182" width="150" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="1.5"/>
+  <!-- edge: observed-state -> agent -->
+  <line x1="262" y1="211" x2="408" y2="211" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <!-- edge: agent -> proposed-action -->
+  <line x1="590" y1="211" x2="698" y2="211" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <!-- edge: agent -> action-surface -->
+  <line x1="500" y1="252" x2="500" y2="298" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <rect id="observed-state" x="112" y="182" width="150" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="1.5"/>
   <text x="187" y="216" text-anchor="middle" font-size="14" fill="#1c1917">observed state</text>
-  <rect x="410" y="170" width="180" height="82" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="agent" x="410" y="170" width="180" height="82" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="500" y="205" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">AGENT</text>
   <text x="500" y="228" text-anchor="middle" font-size="12" fill="#57534e">reasons &#183; generates</text>
-  <rect x="700" y="182" width="150" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="1.5"/>
+  <rect id="proposed-action" x="700" y="182" width="150" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="1.5"/>
   <text x="775" y="216" text-anchor="middle" font-size="14" fill="#1c1917">proposed action</text>
-  <line x1="262" y1="211" x2="408" y2="211" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
-  <line x1="590" y1="211" x2="698" y2="211" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
-  <line x1="500" y1="252" x2="500" y2="298" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
-
-  <!-- action surface (neutral) -->
-  <rect x="388" y="300" width="224" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="500" y="333" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">ACTION SURFACE</text>
 
   <!-- split to two governance touch-points -->
-  <path d="M500 356 C 430 385 340 385 280 407" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
-  <path d="M500 356 C 570 385 660 385 720 407" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
-  <rect x="155" y="410" width="250" height="72" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
+  <!-- edge: action-surface -> prevent -->
+  <path d="M500 356 C 430 385 280 378 280 408" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <!-- edge: action-surface -> observe -->
+  <path d="M500 356 C 570 385 720 378 720 408" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+
+  <!-- action surface (neutral) -->
+  <rect id="action-surface" x="388" y="300" width="224" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <text x="500" y="333" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">ACTION SURFACE</text>
+
+  <rect id="prevent" x="155" y="410" width="250" height="72" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
   <text x="280" y="442" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">STRUCTURALLY</text>
   <text x="280" y="464" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">PREVENT</text>
-  <rect x="595" y="410" width="250" height="72" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
+  <rect id="observe" x="595" y="410" width="250" height="72" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
   <text x="720" y="442" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">OBSERVE /</text>
   <text x="720" y="464" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">VALIDATE</text>
 
   <!-- merge to last safe boundary -->
-  <path d="M280 482 C 280 510 400 512 432 528" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
-  <path d="M720 482 C 720 510 600 512 568 528" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
-  <rect x="350" y="530" width="300" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5" stroke-dasharray="7 5"/>
-  <text x="500" y="567" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">LAST SAFE BOUNDARY</text>
+  <!-- edge: prevent -> boundary -->
+  <path d="M280 482 C 300 512 432 500 432 528" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <!-- edge: observe -> boundary -->
+  <path d="M720 482 C 700 512 568 500 568 528" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <!-- edge: boundary -> evidence -->
   <line x1="500" y1="592" x2="500" y2="630" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <rect id="boundary" x="350" y="530" width="300" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5" stroke-dasharray="7 5"/>
+  <text x="500" y="567" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">LAST SAFE BOUNDARY</text>
 
-  <rect x="368" y="632" width="264" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
-  <text x="500" y="667" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">RE-ESTABLISH EVIDENCE</text>
+  <!-- edge: evidence -> consequence -->
   <line x1="500" y1="690" x2="500" y2="726" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <rect id="evidence" x="368" y="632" width="264" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="500" y="667" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">RE-ESTABLISH EVIDENCE</text>
 
   <!-- consequence (dark terminal) -->
-  <rect x="400" y="728" width="200" height="62" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
+  <rect id="consequence" x="400" y="728" width="200" height="62" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
   <text x="500" y="765" text-anchor="middle" font-size="18" font-weight="700" fill="#fdfcf9">CONSEQUENCE</text>
 
   <!-- lifecycle feedback (dashed rust = governance loop back into the environment) -->

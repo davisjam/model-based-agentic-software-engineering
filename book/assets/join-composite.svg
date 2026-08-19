@@ -64,10 +64,10 @@
   <path d="M534,222 C566,248 588,258 616,272" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
   <text x="600" y="250" font-size="18" font-style="italic" fill="#57534e">no</text>
 
-  <rect x="345" y="276" width="200" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="local-staging" x="345" y="276" width="200" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="445" y="314" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">local + staging</text>
 
-  <rect x="560" y="276" width="140" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="staging-only" x="560" y="276" width="140" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="630" y="314" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">staging only</text>
 
   <line x1="445" y1="340" x2="455" y2="392" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
@@ -97,22 +97,26 @@
   <rect x="730" y="60" width="430" height="470" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
   <text x="746" y="94" font-size="22" font-weight="700" fill="#1c1917">Scheduler</text>
 
-  <rect x="800" y="150" width="290" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="plan-host" x="800" y="150" width="290" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="945" y="188" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">plan_for(host)</text>
   <text x="945" y="216" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">reads the per-host profile</text>
 
-  <!-- JOIN edge 3: the resulting test set -> scheduler (both tiers feed the plan) -->
-  <path d="M547,300 C650,256 720,206 796,184" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
-  <path d="M702,300 C744,268 760,224 796,204" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
+  <!-- JOIN edge 3: the resulting test set -> scheduler (both tiers feed the plan; seat on plan's left border) -->
+  <!-- edge: local-staging -> plan-host -->
+  <path d="M545,300 C640,250 766,184 796,184" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
+  <!-- edge: staging-only -> plan-host -->
+  <path d="M700,300 C744,268 766,204 796,204" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
 
   <!-- the plan's two modes: SHAPE encodes parallel (rounded) vs serialize (square) -->
-  <path d="M810,270 C800,300 806,320 850,352" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
+  <!-- edge: plan-host -> fan-out -->
+  <path d="M810,238 C800,290 850,322 850,352" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
   <text x="880" y="330" font-size="18" font-style="italic" fill="#57534e">cost gate only</text>
-  <rect x="770" y="356" width="320" height="60" rx="30" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <rect id="fan-out" x="770" y="356" width="320" height="60" rx="30" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="930" y="393" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">fan out — parallel</text>
 
-  <path d="M790,270 C762,330 764,410 812,462" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
+  <!-- edge: plan-host -> serialize -->
+  <path d="M830,238 C790,340 812,432 812,462" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
   <text x="880" y="448" font-size="18" font-style="italic" fill="#57534e">cost gate + a scarce host</text>
-  <rect x="770" y="466" width="320" height="60" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <rect id="serialize" x="770" y="466" width="320" height="60" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="930" y="503" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">serialize — fan / join</text>
 </svg>

@@ -1004,19 +1004,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="62" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">Two routes by which repeated judgment becomes machinery</text>
 
   <!-- root: REPEATED JUDGMENT -->
-  <rect x="360" y="84" width="280" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-determinization-frontier-repeated-judgment" x="360" y="84" width="280" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
   <text x="500" y="117" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">REPEATED JUDGMENT</text>
 
-  <!-- T-split: neutral, still undecided -->
-  <g fill="none" stroke="#57534e" stroke-width="1.8">
-    <path d="M500,138 L500,162"/>
-    <path d="M250,162 L750,162"/>
-  </g>
+  <!-- transparent anchors: the two decidability questions are nodes (the split criterion) -->
+  <rect id="f-determinization-frontier-left-question" x="178" y="196" width="144" height="34" fill="none" stroke="none"/>
+  <rect id="f-determinization-frontier-right-question" x="678" y="196" width="144" height="34" fill="none" stroke="none"/>
 
-  <!-- left branch: rust (Alignment) from the split onward -->
-  <path d="M250,162 L250,190" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-determinization-frontier-df-rust)"/>
-  <!-- right branch: green (Modeling) from the split onward -->
-  <path d="M750,162 L750,190" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#f-determinization-frontier-df-green)"/>
+  <!-- T-split: neutral (still undecided) trunk forks to each decidability question; one path per branch -->
+  <!-- edge: repeated-judgment -> left-question -->
+  <path d="M500,138 L500,162 L250,162 L250,193" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-determinization-frontier-df-mut)"/>
+  <!-- edge: repeated-judgment -> right-question -->
+  <path d="M500,138 L500,162 L750,162 L750,193" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#f-determinization-frontier-df-mut)"/>
 
   <!-- decidability judgment labels -->
   <text x="250" y="207" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">property already</text>
@@ -1024,40 +1023,51 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="750" y="207" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">property requires</text>
   <text x="750" y="223" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">reconstruction</text>
 
+  <!-- the route family colors the connector from the answered question onward -->
+  <!-- edge: left-question -> alignment -->
   <path d="M250,230 L250,254" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-determinization-frontier-df-rust)"/>
+  <!-- edge: right-question -> modeling -->
   <path d="M750,230 L750,254" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#f-determinization-frontier-df-green)"/>
 
   <!-- ALIGNMENT / MODELING -->
-  <rect x="145" y="254" width="210" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <rect id="f-determinization-frontier-alignment" x="145" y="254" width="210" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="250" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ALIGNMENT</text>
   <text x="250" y="302" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">encode predicate</text>
 
-  <rect x="645" y="254" width="210" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <rect id="f-determinization-frontier-modeling" x="645" y="254" width="210" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="750" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">MODELING</text>
   <text x="750" y="302" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">change representation</text>
 
+  <!-- edge: alignment -> align-terminal -->
   <path d="M250,318 L250,342" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-determinization-frontier-df-rust)"/>
+  <!-- edge: modeling -> model-terminal -->
   <path d="M750,318 L750,342" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#f-determinization-frontier-df-green)"/>
 
   <!-- terminal boxes: encoded outcome / structured relation -->
-  <rect x="135" y="342" width="230" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <rect id="f-determinization-frontier-align-terminal" x="135" y="342" width="230" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="250" y="370" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">test / validator</text>
   <text x="250" y="390" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">constraint / gate</text>
 
-  <rect x="635" y="342" width="230" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <rect id="f-determinization-frontier-model-terminal" x="635" y="342" width="230" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="750" y="380" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">structured relation</text>
 
-  <!-- convergence: symmetric elbows into the shared merge point -->
+  <!-- transparent anchor: the shared "predicate over model" step is a node both routes converge on -->
+  <rect id="f-determinization-frontier-predicate-over-model" x="470" y="428" width="60" height="52" fill="none" stroke="none"/>
+
+  <!-- convergence: symmetric elbows into the shared merge point; one path per branch -->
+  <!-- edge: align-terminal -> predicate-over-model -->
   <path d="M250,406 L250,434 L470,434" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#f-determinization-frontier-df-rust)"/>
+  <!-- edge: model-terminal -> predicate-over-model -->
   <path d="M750,406 L750,434 L530,434" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#f-determinization-frontier-df-green)"/>
 
   <text x="500" y="454" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">predicate</text>
   <text x="500" y="470" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">over model</text>
 
+  <!-- edge: predicate-over-model -> repeatable-decision -->
   <path d="M500,478 L500,502" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#f-determinization-frontier-df-rust)"/>
 
   <!-- outcome: REPEATABLE DECISION -->
-  <rect x="340" y="502" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
+  <rect id="f-determinization-frontier-repeatable-decision" x="340" y="502" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
   <text x="500" y="542" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">REPEATABLE DECISION</text>
 
   <text x="500" y="606" text-anchor="middle" font-size="15.5" font-weight="700" font-style="italic" fill="#9a3f12">←— determinization frontier —→</text>

@@ -1129,69 +1129,79 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- ===== audit -> findings -> partition ===== -->
-  <rect x="390" y="30" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-audit-drain-promote-generalized-audit" x="390" y="30" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="58" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">audit</text>
+  <!-- edge: audit -> findings -->
   <line x1="480" y1="74" x2="480" y2="90" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
 
-  <rect x="390" y="92" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-audit-drain-promote-generalized-findings" x="390" y="92" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="120" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">findings</text>
+  <!-- edge: findings -> partition -->
   <line x1="480" y1="136" x2="480" y2="152" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
 
-  <rect x="378" y="154" width="204" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <rect id="f-audit-drain-promote-generalized-partition" x="378" y="154" width="204" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
   <text x="480" y="183" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">partition</text>
 
   <!-- fan to three -->
   <g fill="none" stroke-width="2.4">
-    <path d="M408,200 C300,214 220,216 160,230" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
+    <!-- edge: partition -> drain -->
+    <path d="M408,200 C300,214 160,200 160,230" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
+    <!-- edge: partition -> redesign -->
     <path d="M480,200 L480,230" stroke="#2f5169" marker-end="url(#f-audit-drain-promote-generalized-adp-b)"/>
-    <path d="M552,200 C660,214 740,216 800,230" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
+    <!-- edge: partition -> accept-exempt -->
+    <path d="M552,200 C660,214 800,200 800,230" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
   </g>
 
   <!-- drain (gray) -->
-  <rect x="60" y="232" width="200" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-audit-drain-promote-generalized-drain" x="60" y="232" width="200" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="160" y="260" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">drain</text>
   <text x="160" y="279" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">mechanical work</text>
 
   <!-- redesign (blue - produces a model) -->
-  <rect x="380" y="232" width="200" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="f-audit-drain-promote-generalized-redesign" x="380" y="232" width="200" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="480" y="260" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">redesign</text>
   <text x="480" y="279" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">new structure</text>
 
   <!-- accept / exempt (gray dead-end) -->
-  <rect x="700" y="232" width="200" height="58" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-audit-drain-promote-generalized-accept-exempt" x="700" y="232" width="200" height="58" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
   <text x="800" y="260" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">accept / exempt</text>
   <text x="800" y="279" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">leave as-is</text>
 
   <!-- drain + redesign merge into identify obligation -->
   <g fill="none" stroke-width="2.4">
-    <path d="M160,290 C160,320 330,320 438,344" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
+    <!-- edge: drain -> identify-obligation -->
+    <path d="M160,290 C160,320 438,314 438,344" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
+    <!-- edge: redesign -> identify-obligation -->
     <path d="M480,290 L480,344" stroke="#2f5169" marker-end="url(#f-audit-drain-promote-generalized-adp-b)"/>
   </g>
 
   <!-- identify obligation (rust - the property) -->
-  <rect x="330" y="346" width="300" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="f-audit-drain-promote-generalized-identify-obligation" x="330" y="346" width="300" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="480" y="373" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">identify obligation</text>
   <text x="480" y="393" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">the property that deserves authority</text>
+  <!-- edge: identify-obligation -> choose-mechanism -->
   <line x1="480" y1="404" x2="480" y2="426" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
 
   <!-- choose final mechanism -->
-  <rect x="330" y="428" width="300" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-audit-drain-promote-generalized-choose-mechanism" x="330" y="428" width="300" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="454" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">choose final mechanism</text>
   <text x="480" y="473" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">which authority fits the property</text>
 
   <!-- resolve two ways -->
   <g fill="none" stroke-width="2.4">
-    <path d="M420,482 C360,506 348,510 340,532" stroke="#9a3f12" marker-end="url(#f-audit-drain-promote-generalized-adp-r)"/>
-    <path d="M540,482 C600,506 612,510 620,532" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
+    <!-- edge: choose-mechanism -> promote -->
+    <path d="M420,482 C360,506 340,502 340,532" stroke="#9a3f12" marker-end="url(#f-audit-drain-promote-generalized-adp-r)"/>
+    <!-- edge: choose-mechanism -> retain -->
+    <path d="M540,482 C600,506 620,502 620,532" stroke="#57534e" marker-end="url(#f-audit-drain-promote-generalized-adp-n)"/>
   </g>
 
   <!-- PROMOTE (rust) -->
-  <rect x="215" y="534" width="250" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <rect id="f-audit-drain-promote-generalized-promote" x="215" y="534" width="250" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="340" y="563" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">PROMOTE</text>
   <text x="340" y="585" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">stronger authority</text>
 
   <!-- RETAIN (gray) -->
-  <rect x="495" y="534" width="250" height="66" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-audit-drain-promote-generalized-retain" x="495" y="534" width="250" height="66" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2.2"/>
   <text x="620" y="563" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">RETAIN</text>
   <text x="620" y="585" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">audit signal</text>
 
