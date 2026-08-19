@@ -58,9 +58,9 @@
   <!-- spokes drawn FIRST (under the nodes), center-to-center so the opaque node fills cap the ends -->
   <g stroke="#1c1917" stroke-width="1.8" fill="none">
     <!-- edge: squash-rule -> commit-set -->
-    <line x1="545" y1="176" x2="640" y2="291"/>
+    <line x1="590" y1="202" x2="590" y2="268"/>
     <!-- edge: brief-guard -> commit-set -->
-    <line x1="735" y1="176" x2="640" y2="291"/>
+    <line x1="690" y1="202" x2="690" y2="268"/>
   </g>
 
   <!-- [A] and [B] act on a shared resource; the collision hangs off it -->

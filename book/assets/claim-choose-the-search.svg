@@ -54,11 +54,11 @@
 
   <!-- ===== arrows ===== -->
   <!-- edge: claim-question -> claim-inputs -->
-  <path d="M500,82 L500,104 L185,104 L185,128" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <path d="M277.5,82 L277.5,128" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
   <!-- edge: claim-question -> claim-states -->
   <path d="M500,82 L500,128" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
   <!-- edge: claim-question -> claim-temporal -->
-  <path d="M500,82 L500,104 L815,104 L815,128" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
+  <path d="M722.5,82 L722.5,128" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>
 
   <!-- edge: claim-inputs -> search-inputs -->
   <line x1="185" y1="182" x2="185" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#ccs-k)"/>

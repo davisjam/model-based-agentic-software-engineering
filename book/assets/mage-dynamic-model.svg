@@ -77,6 +77,8 @@
 
   <!-- ============ [4] PURPLE capability-amplification loop (drawn first, behind boxes) ==== -->
   <g class="loop loop4">
+    <!-- edge-grammar: keep-angles -->
+    <!-- Opts out of orthogonalization: a system-dynamics model whose agentic-capacity <-> governed-environment pair is two-way (exercises / the capability-amplification loop); straightening both collapses the paired arcs onto one line. -->
     <!-- edge: governed-environment -> agentic-capacity -->
     <path d="M600,236 C500,182 200,218 200,248" fill="none" stroke="#7c6bb0" stroke-width="3"
           stroke-linecap="round" marker-end="url(#mageDM-dm-purple)"/>

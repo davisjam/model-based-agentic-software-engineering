@@ -45,9 +45,9 @@
   <line x1="500" y1="170" x2="500" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
   <!-- fork from s3 to two outcomes: one path per branch, sharing the trunk pixels -->
   <!-- edge: s3 -> fl -->
-  <path d="M500,262 L500,292 L280,292 L280,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+  <path d="M395,262 L395,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
   <!-- edge: s3 -> fr -->
-  <path d="M500,262 L500,292 L720,292 L720,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
+  <path d="M605,262 L605,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>

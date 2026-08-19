@@ -13,13 +13,13 @@
   <!-- edge: mh_s2 -> mh_s3 -->
   <line x1="500" y1="294" x2="500" y2="350" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_s3 -> mh_dl -->
-  <path d="M500,424 L310,462 L310,485" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <path d="M350,424 L350,483" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_s3 -> mh_dr -->
-  <path d="M500,424 L690,462 L690,485" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <path d="M650,424 L650,483" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_dl -> mh_s5 -->
-  <path d="M310,645 L310,672 L500,672 L500,700" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <path d="M350,645 L350,698" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_dr -> mh_s5 -->
-  <path d="M690,645 L690,672 L500,672 L500,700" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <path d="M650,645 L650,698" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_s5 -> mh_s6 -->
   <line x1="500" y1="774" x2="500" y2="830" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_s6 -> mh_s7 -->

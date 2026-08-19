@@ -82,7 +82,7 @@
   <!-- arrows -->
   <g fill="none" stroke="#1c1917" stroke-width="2.2" marker-end="url(#dpArrow)">
     <!-- edge: doc-in -> front-door -->
-    <path d="M58,82 L58,92 L128,92"/>
+    <path d="M107,74 L128,74"/>
     <!-- edge: front-door -> dispatcher -->
     <path d="M310,92 L378,92"/>
     <!-- edge: dispatcher -> remediation-core -->

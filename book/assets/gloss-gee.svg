@@ -24,9 +24,9 @@
 
   <!-- fork to two ways of obtaining something to act on: one path per branch, sharing the trunk+bus pixels -->
   <!-- edge: obligation -> directly-observable -->
-  <path d="M500,122 L500,150 L280,150 L280,182" fill="none" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <path d="M415,122 L415,182" fill="none" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <!-- edge: obligation -> explicit-model -->
-  <path d="M500,122 L500,150 L720,150 L720,182" fill="none" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <path d="M585,122 L585,182" fill="none" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <text x="500" y="172" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">acted on through one of two surfaces</text>
 
   <!-- LEFT input: a directly observable action or artifact (obligation locally encoded) -->
@@ -44,9 +44,9 @@
 
   <!-- join: both surfaces meet at the mechanism; one path per branch (light) shares the bus+trunk pixels -->
   <!-- edge: directly-observable -> gov-mechanism -->
-  <path d="M275,280 L275,292 L500,292 L500,322" fill="none" stroke="#cfcabf" stroke-width="3"/>
+  <path d="M385,280 L385,322" fill="none" stroke="#cfcabf" stroke-width="3"/>
   <!-- edge: explicit-model -> gov-mechanism -->
-  <path d="M725,280 L725,292 L500,292 L500,322" fill="none" stroke="#cfcabf" stroke-width="3"/>
+  <path d="M615,280 L615,322" fill="none" stroke="#cfcabf" stroke-width="3"/>
   <!-- dark 'enforced by' trunk overlay carries the visible arrowhead into the mechanism -->
   <path d="M500,292 L500,322" fill="none" stroke="#57534e" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <text x="512" y="312" font-size="15" fill="#78716c">enforced by</text>

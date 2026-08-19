@@ -92,9 +92,9 @@
   <!-- outputs (2) — fork: one path per branch, each seated on its own node -->
   <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)">
     <!-- edge: validate -> remediated -->
-    <path d="M340,594 C300,616 225,610 225,640"/>
+    <path d="M337.5,594 L337.5,640"/>
     <!-- edge: validate -> evidence -->
-    <path d="M420,594 C460,616 535,610 535,640"/>
+    <path d="M422.5,594 L422.5,640"/>
   </g>
   <rect id="remediated" x="90" y="642" width="270" height="46" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="225" y="670" text-anchor="middle" font-size="15.5" fill="#1c1917">remediated document</text>

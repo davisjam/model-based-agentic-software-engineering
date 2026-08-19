@@ -24,9 +24,9 @@
 
   <!-- split into facts branch and obligations branch (last control aimed above each head, so the head dives in) -->
   <!-- edge: model-spec -> derive-facts -->
-  <path d="M500,122 C430,148 282,138 282,168" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <path d="M385,122 L385,168" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
   <!-- edge: model-spec -> derive-obligations -->
-  <path d="M500,122 C570,148 718,138 718,168" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <path d="M615,122 L615,168" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
 
   <rect id="derive-facts" x="150" y="170" width="260" height="66" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="280" y="198" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">DERIVE FACTS</text>
@@ -57,11 +57,11 @@
 
   <!-- fan to three evidence artifacts (neutral); the two diagonals dive in via last control above the head -->
   <!-- edge: select-evidence -> test -->
-  <path d="M720 442 C 660 466 560 462 560 490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <path d="M610,442 L610,490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
   <!-- edge: select-evidence -> lint -->
   <line x1="720" y1="442" x2="720" y2="490" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
   <!-- edge: select-evidence -> search-proof -->
-  <path d="M720 442 C 790 466 885 462 885 490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <path d="M827.5,442 L827.5,490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
 
   <rect id="test" x="490" y="492" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="560" y="522" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">TEST</text>
@@ -73,11 +73,11 @@
 
   <!-- merge to claim coverage (green emphasis); last control aimed at the claim centre -->
   <!-- edge: test -> claim-coverage -->
-  <path d="M560,542 C600,570 700,564 700,594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <path d="M605,542 L605,594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
   <!-- edge: lint -> claim-coverage -->
   <line x1="720" y1="542" x2="720" y2="594" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
   <!-- edge: search-proof -> claim-coverage -->
-  <path d="M885,542 C845,570 740,564 740,594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
+  <path d="M832.5,542 L832.5,594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
 
   <rect id="claim-coverage" x="580" y="596" width="280" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="720" y="630" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">CLAIM COVERAGE</text>

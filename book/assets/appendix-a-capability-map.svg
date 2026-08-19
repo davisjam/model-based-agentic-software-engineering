@@ -27,9 +27,9 @@
   <!-- fork MC -> assurance / auditable (one path per branch; each terminates on its own node) -->
   <g stroke="#57534e" stroke-width="2" fill="none" marker-end="url(#ah)">
     <!-- edge: model-coherence -> assurance -->
-    <path d="M450,108 C380,146 260,148 260,178"/>
+    <path d="M350,108 L350,180"/>
     <!-- edge: model-coherence -> auditable -->
-    <path d="M450,108 C560,146 650,148 650,178"/>
+    <path d="M550,108 L550,180"/>
   </g>
 
   <!-- ASSURANCE -->
@@ -46,9 +46,9 @@
   <!-- converge to observe-react (merge: one path per branch) -->
   <g stroke="#57534e" stroke-width="2" fill="none" marker-end="url(#ah)">
     <!-- edge: assurance -> observe-react -->
-    <path d="M255,260 C255,300 420,290 420,320"/>
+    <path d="M350,260 L350,320"/>
     <!-- edge: auditable -> observe-react -->
-    <path d="M655,260 C655,300 480,290 480,320"/>
+    <path d="M550,260 L550,320"/>
   </g>
 
   <!-- OBSERVE -> REACT -->

@@ -94,9 +94,9 @@
   <!-- resolve two ways -->
   <g fill="none" stroke-width="2.4">
     <!-- edge: choose-mechanism -> promote -->
-    <path d="M420,482 C360,506 340,502 340,532" stroke="#9a3f12" marker-end="url(#adp-r)"/>
+    <path d="M397.5,482 L397.5,532" stroke="#9a3f12" marker-end="url(#adp-r)"/>
     <!-- edge: choose-mechanism -> retain -->
-    <path d="M540,482 C600,506 620,502 620,532" stroke="#57534e" marker-end="url(#adp-n)"/>
+    <path d="M562.5,482 L562.5,532" stroke="#57534e" marker-end="url(#adp-n)"/>
   </g>
 
   <!-- PROMOTE (rust) -->

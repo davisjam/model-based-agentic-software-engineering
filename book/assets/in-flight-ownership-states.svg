@@ -32,6 +32,8 @@
   <!-- claim in -->
   <text x="360" y="54" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">claim</text>
   <rect id="claim" x="335" y="42" width="50" height="20" fill="none" stroke="none"/>
+  <!-- edge-grammar: keep-angles -->
+  <!-- Opts out of orthogonalization: a state machine whose claimed <-> reclaimable pair carries two distinct directed transitions (expiry down / reclaim up); straightening both merges them into one double-headed line. -->
   <!-- edge: claim -> claimed -->
   <line x1="360" y1="60" x2="360" y2="76" stroke="#2f5169" stroke-width="2.2" marker-end="url(#io-b)"/>
 

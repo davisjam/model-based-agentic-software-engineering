@@ -36,15 +36,15 @@
     <!-- edge: entity -> decision -->
     <path d="M470,272 C505,258 558,250 558,232"/>          <!-- to right: seat on decision bottom border -->
     <!-- edge: entity -> behavioral -->
-    <path d="M460,258 C500,210 508,177 508,147"/>          <!-- to upper-right: behavioral bottom border -->
+    <path d="M470,255 L470,147"/>          <!-- to upper-right: behavioral bottom border -->
     <!-- edge: entity -> structural -->
-    <path d="M360,258 C320,210 312,177 312,147"/>          <!-- to upper-left: structural bottom border -->
+    <path d="M350,255 L350,147"/>          <!-- to upper-left: structural bottom border -->
     <!-- edge: entity -> ownership -->
     <path d="M350,272 C315,258 262,250 262,232"/>          <!-- to left: seat on ownership bottom border -->
     <!-- edge: entity -> provenance -->
-    <path d="M360,322 C320,370 312,405 312,435"/>          <!-- to lower-left: provenance top border -->
+    <path d="M350,327 L350,435"/>          <!-- to lower-left: provenance top border -->
     <!-- edge: entity -> measurement -->
-    <path d="M460,322 C500,370 508,405 508,435"/>          <!-- to lower-right: measurement top border -->
+    <path d="M470,327 L470,435"/>          <!-- to lower-right: measurement top border -->
   </g>
 
   <!-- named ENTITY (gray identity, center) -->

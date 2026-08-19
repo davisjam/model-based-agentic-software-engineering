@@ -839,11 +839,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- ===== arrows ===== -->
   <!-- edge: claim-question -> claim-inputs -->
-  <path d="M500,82 L500,104 L185,104 L185,128" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-claim-choose-the-search-ccs-k)"/>
+  <path d="M277.5,82 L277.5,128" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-claim-choose-the-search-ccs-k)"/>
   <!-- edge: claim-question -> claim-states -->
   <path d="M500,82 L500,128" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-claim-choose-the-search-ccs-k)"/>
   <!-- edge: claim-question -> claim-temporal -->
-  <path d="M500,82 L500,104 L815,104 L815,128" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-claim-choose-the-search-ccs-k)"/>
+  <path d="M722.5,82 L722.5,128" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-claim-choose-the-search-ccs-k)"/>
 
   <!-- edge: claim-inputs -> search-inputs -->
   <line x1="185" y1="182" x2="185" y2="236" stroke="#1c1917" stroke-width="2" marker-end="url(#f-claim-choose-the-search-ccs-k)"/>
@@ -920,9 +920,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- split into facts branch and obligations branch (last control aimed above each head, so the head dives in) -->
   <!-- edge: model-spec -> derive-facts -->
-  <path d="M500,122 C430,148 282,138 282,168" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
+  <path d="M385,122 L385,168" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
   <!-- edge: model-spec -> derive-obligations -->
-  <path d="M500,122 C570,148 718,138 718,168" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
+  <path d="M615,122 L615,168" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
 
   <rect id="f-models-to-evidence-derive-facts" x="150" y="170" width="260" height="66" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="280" y="198" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">DERIVE FACTS</text>
@@ -953,11 +953,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- fan to three evidence artifacts (neutral); the two diagonals dive in via last control above the head -->
   <!-- edge: select-evidence -> test -->
-  <path d="M720 442 C 660 466 560 462 560 490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
+  <path d="M610,442 L610,490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
   <!-- edge: select-evidence -> lint -->
   <line x1="720" y1="442" x2="720" y2="490" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
   <!-- edge: select-evidence -> search-proof -->
-  <path d="M720 442 C 790 466 885 462 885 490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
+  <path d="M827.5,442 L827.5,490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
 
   <rect id="f-models-to-evidence-test" x="490" y="492" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="560" y="522" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">TEST</text>
@@ -969,11 +969,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- merge to claim coverage (green emphasis); last control aimed at the claim centre -->
   <!-- edge: test -> claim-coverage -->
-  <path d="M560,542 C600,570 700,564 700,594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
+  <path d="M605,542 L605,594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
   <!-- edge: lint -> claim-coverage -->
   <line x1="720" y1="542" x2="720" y2="594" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
   <!-- edge: search-proof -> claim-coverage -->
-  <path d="M885,542 C845,570 740,564 740,594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
+  <path d="M832.5,542 L832.5,594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
 
   <rect id="f-models-to-evidence-claim-coverage" x="580" y="596" width="280" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="720" y="630" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">CLAIM COVERAGE</text>
@@ -1034,7 +1034,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- coverage -> (where traceability exists) joins model-claim coverage back to the claim/oracle (dotted) -->
   <!-- edge: coverage .. oracle -->
-  <path d="M806,462 C822,455 822,340 822,266" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#f-generative-loop-gl-ah-loop)"/>
+  <path d="M695,400 L695,266" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#f-generative-loop-gl-ah-loop)"/>
 
   <!-- ===== NODES (on top; fills cap the edge ends) ===== -->
   <!-- generator -->

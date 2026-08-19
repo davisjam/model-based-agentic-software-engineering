@@ -70,7 +70,7 @@
   <!-- edge: foundation-model -> agent (heads pre-aimed perpendicular into agent top) -->
   <path d="M260,314 C260,410 452,420 452,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
   <!-- edge: agentic-harness -> agent -->
-  <path d="M740,314 C740,410 548,420 548,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
+  <path d="M570,314 L570,450" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#as-k)"/>
 
   <!-- AGENT node (blue) — inside the environment container -->
   <rect id="agent" x="400" y="452" width="200" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>

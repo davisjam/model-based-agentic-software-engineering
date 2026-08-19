@@ -39,11 +39,11 @@
   <!-- fan to three views (one path per branch) -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pv-b)">
     <!-- edge: prov-model -> v-audit -->
-    <path d="M170,186 C130,214 100,220 100,244"/>
+    <path d="M140,186 L140,244"/>
     <!-- edge: prov-model -> v-debug -->
     <path d="M230,186 L230,244"/>
     <!-- edge: prov-model -> v-changelog -->
-    <path d="M290,186 C330,214 360,220 360,244"/>
+    <path d="M320,186 L320,244"/>
   </g>
   <g font-size="14.5" font-weight="700" text-anchor="middle" fill="#2f5169">
     <rect id="v-audit" x="40" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -61,7 +61,7 @@
   <text x="685" y="89" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">ACTION</text>
   <!-- direct rust arrows to separate stories (forbidden shortcut; struck-but-spanning, plug both ends) -->
   <!-- edge: r-action .. s-audit -->
-  <path d="M640,106 C580,150 560,200 560,244" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#pv-r)"/>
+  <path d="M612.5,106 L612.5,244" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#pv-r)"/>
   <!-- edge: r-action .. s-changelog -->
   <path d="M730,106 C800,150 820,200 820,244" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#pv-r)"/>
   <!-- X on the shortcut -->

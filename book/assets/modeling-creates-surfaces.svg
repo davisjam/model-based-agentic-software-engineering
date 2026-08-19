@@ -41,7 +41,7 @@
   <text x="185" y="304" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
   <!-- direct arrow onto Alignment (left landing); last control point above the endpoint so the head arrives perpendicular into ALIGNMENT's top -->
   <!-- edge: territory-action -> alignment -->
-  <path d="M185,316 C185,372 300,376 300,406" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#mc-kk)"/>
+  <path d="M270,316 L270,408" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#mc-kk)"/>
   <text x="196" y="360" text-anchor="start" font-size="14" font-weight="700" fill="#57534e">acted on directly</text>
   <text x="196" y="377" text-anchor="start" font-size="14" font-style="italic" fill="#57534e">local observable obligation</text>
 
@@ -64,7 +64,7 @@
   <text x="535" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">EXPLICIT PROPERTY</text>
   <!-- model arrow onto Alignment (right landing); last control point above the endpoint so the head arrives perpendicular into ALIGNMENT's top -->
   <!-- edge: explicit-property -> alignment -->
-  <path d="M535,308 C535,364 420,376 420,406" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#mc-b)"/>
+  <path d="M450,308 L450,408" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#mc-b)"/>
   <text x="524" y="360" text-anchor="end" font-size="14" font-weight="700" fill="#2f5169">available to</text>
   <text x="524" y="377" text-anchor="end" font-size="14" font-style="italic" fill="#2f5169">richer semantic obligation</text>
 

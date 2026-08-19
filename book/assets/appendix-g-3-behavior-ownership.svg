@@ -34,6 +34,8 @@
   <text x="590" y="111" text-anchor="middle" font-size="19" font-weight="700" fill="#8a2f2f">DONE</text>
 
   <!-- claim / complete (SOLID) -->
+  <!-- edge-grammar: keep-angles -->
+  <!-- Opts out of orthogonalization: free <-> leased is a two-way ownership pair drawn as arcs that bow apart; a straight pair would collapse the two directed transitions onto one line. -->
   <!-- edge: free -> leased -->
   <line x1="200" y1="104" x2="290" y2="104" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g3-solid)"/>
   <text x="245" y="96" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">claim</text>

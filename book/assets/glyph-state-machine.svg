@@ -16,6 +16,8 @@
   </defs>
   <!-- transitions (drawn UNDER the states; heads seated on each target rim, aimed radially) -->
   <g fill="none" stroke="#1c1917" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- edge-grammar: keep-angles -->
+    <!-- Opts out of orthogonalization: state-machine transitions are deliberately arced between circle nodes (a triangle plus a self-loop); a straight segment between two circles enters off-radial, so its head skims. -->
     <!-- edge: s1 -> s2 -->
     <path d="M42,32 C58,24 70.1,33.1 77.9,35" marker-end="url(#smHead)"/>
     <!-- edge: s2 -> s3 -->

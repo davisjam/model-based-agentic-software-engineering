@@ -741,6 +741,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- claim in -->
   <text x="360" y="54" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">claim</text>
   <rect id="f-in-flight-ownership-states-claim" x="335" y="42" width="50" height="20" fill="none" stroke="none"/>
+  <!-- edge-grammar: keep-angles -->
+  <!-- Opts out of orthogonalization: a state machine whose claimed <-> reclaimable pair carries two distinct directed transitions (expiry down / reclaim up); straightening both merges them into one double-headed line. -->
   <!-- edge: claim -> claimed -->
   <line x1="360" y1="60" x2="360" y2="76" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-in-flight-ownership-states-io-b)"/>
 
@@ -819,9 +821,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="500" y1="170" x2="500" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
   <!-- fork from s3 to two outcomes: one path per branch, sharing the trunk pixels -->
   <!-- edge: s3 -> fl -->
-  <path d="M500,262 L500,292 L280,292 L280,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
+  <path d="M395,262 L395,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
   <!-- edge: s3 -> fr -->
-  <path d="M500,262 L500,292 L720,292 L720,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
+  <path d="M605,262 L605,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>

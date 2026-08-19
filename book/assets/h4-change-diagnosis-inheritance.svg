@@ -33,9 +33,9 @@
   <!-- fork/merge: one path per branch, each seated on its own node -->
   <g stroke="#57534e" stroke-width="2.2" fill="none" marker-end="url(#h4-ah)">
     <!-- edge: change-model -> diagnosis -->
-    <path d="M180,116 C211.5,130 270,126 270,156"/>
+    <path d="M213,116 L213,156"/>
     <!-- edge: system-knowledge -> diagnosis -->
-    <path d="M500,116 C468.5,130 410,126 410,156"/>
+    <path d="M467,116 L467,156"/>
   </g>
 
   <!-- diagnosis -->
@@ -82,7 +82,7 @@
   <!-- edge: recurring-lesson -> history -->
   <path d="M340,622 L150,622 L150,662" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#h4-ah)"/>
   <!-- edge: recurring-lesson -> durable-structure -->
-  <path d="M340,622 L500,622 L500,662" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#h4-ah-u)"/>
+  <path d="M396.5,624 L396.5,662" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#h4-ah-u)"/>
   <text x="182" y="642" text-anchor="middle" font-size="13" fill="#57534e">no</text>
   <text x="468" y="642" text-anchor="middle" font-size="13" fill="#9a3f12">yes</text>
 

@@ -46,6 +46,8 @@
   <text x="835" y="190" text-anchor="middle" font-size="15" fill="#57534e">&#183; validator</text>
 
   <!-- edges -->
+  <!-- edge-grammar: keep-angles -->
+  <!-- Opts out of orthogonalization: checker <-> invariants is a two-way pair drawn as arcs that bow apart; straightening both collapses them onto one line. -->
   <!-- edge: model -> invariants -->
   <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
   <text x="332" y="130" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">supports</text>

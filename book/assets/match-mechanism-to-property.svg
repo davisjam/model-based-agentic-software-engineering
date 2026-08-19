@@ -57,7 +57,7 @@
   <!-- edge: obligation -> q-exclude -->
   <path d="M500,84 L500,106 L185,106 L185,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
   <!-- edge: obligation -> q-badstate -->
-  <path d="M500,84 L500,112 M500,132 L500,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M500,84 L500,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
   <!-- edge: obligation -> q-eventuality -->
   <path d="M500,84 L500,106 L815,106 L815,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
 
@@ -76,11 +76,11 @@
   <line x1="815" y1="302" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
 
   <!-- edge: s-constraint -> gate -->
-  <path d="M185,396 L185,450 L500,450 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M302.5,396 L302.5,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
   <!-- edge: s-explicit -> gate -->
   <path d="M500,396 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
   <!-- edge: s-temporal -> gate -->
-  <path d="M815,396 L815,450 L500,450 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M697.5,396 L697.5,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="61" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="0.5" fill="#9a3f12">ENGINEERING OBLIGATION</text>

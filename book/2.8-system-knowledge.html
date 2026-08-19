@@ -811,15 +811,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <!-- edge: entity -> decision -->
     <path d="M470,272 C505,258 558,250 558,232"/>          <!-- to right: seat on decision bottom border -->
     <!-- edge: entity -> behavioral -->
-    <path d="M460,258 C500,210 508,177 508,147"/>          <!-- to upper-right: behavioral bottom border -->
+    <path d="M470,255 L470,147"/>          <!-- to upper-right: behavioral bottom border -->
     <!-- edge: entity -> structural -->
-    <path d="M360,258 C320,210 312,177 312,147"/>          <!-- to upper-left: structural bottom border -->
+    <path d="M350,255 L350,147"/>          <!-- to upper-left: structural bottom border -->
     <!-- edge: entity -> ownership -->
     <path d="M350,272 C315,258 262,250 262,232"/>          <!-- to left: seat on ownership bottom border -->
     <!-- edge: entity -> provenance -->
-    <path d="M360,322 C320,370 312,405 312,435"/>          <!-- to lower-left: provenance top border -->
+    <path d="M350,327 L350,435"/>          <!-- to lower-left: provenance top border -->
     <!-- edge: entity -> measurement -->
-    <path d="M460,322 C500,370 508,405 508,435"/>          <!-- to lower-right: measurement top border -->
+    <path d="M470,327 L470,435"/>          <!-- to lower-right: measurement top border -->
   </g>
 
   <!-- named ENTITY (gray identity, center) -->
@@ -951,7 +951,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- refine loop arrow drawn UNDER the unmodeled surface: its tail runs into that surface (the opaque fill
        caps it) and its head seats on the modeled surface's lower rim -->
   <!-- edge: unmodeled .. modeled -->
-  <path d="M760,290 C760,270 760,254 760,238" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#f-model-sync-two-layer-net-cv-r)"/>
+  <path d="M450,266 L450,238" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#f-model-sync-two-layer-net-cv-r)"/>
 
   <!-- ===== UNMODELED SURFACE ===== -->
   <rect id="f-model-sync-two-layer-net-unmodeled" x="120" y="266" width="660" height="70" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="8 5"/>
@@ -1005,6 +1005,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="835" y="190" text-anchor="middle" font-size="15" fill="#57534e">&#183; validator</text>
 
   <!-- edges -->
+  <!-- edge-grammar: keep-angles -->
+  <!-- Opts out of orthogonalization: checker <-> invariants is a two-way pair drawn as arcs that bow apart; straightening both collapses them onto one line. -->
   <!-- edge: model -> invariants -->
   <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-coherence-triangle-ct-k)"/>
   <text x="332" y="130" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">supports</text>
@@ -1069,7 +1071,7 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
   <text x="185" y="304" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">a test, a diff, a sandbox run</text>
   <!-- direct arrow onto Alignment (left landing); last control point above the endpoint so the head arrives perpendicular into ALIGNMENT's top -->
   <!-- edge: territory-action -> alignment -->
-  <path d="M185,316 C185,372 300,376 300,406" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-kk)"/>
+  <path d="M270,316 L270,408" fill="none" stroke="#57534e" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-kk)"/>
   <text x="196" y="360" text-anchor="start" font-size="14" font-weight="700" fill="#57534e">acted on directly</text>
   <text x="196" y="377" text-anchor="start" font-size="14" font-style="italic" fill="#57534e">local observable obligation</text>
 
@@ -1092,7 +1094,7 @@ assert all(invariant(s) for s in reachable_states())  # check every reachable st
   <text x="535" y="287" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">EXPLICIT PROPERTY</text>
   <!-- model arrow onto Alignment (right landing); last control point above the endpoint so the head arrives perpendicular into ALIGNMENT's top -->
   <!-- edge: explicit-property -> alignment -->
-  <path d="M535,308 C535,364 420,376 420,406" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-b)"/>
+  <path d="M450,308 L450,408" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-modeling-creates-surfaces-mc-b)"/>
   <text x="524" y="360" text-anchor="end" font-size="14" font-weight="700" fill="#2f5169">available to</text>
   <text x="524" y="377" text-anchor="end" font-size="14" font-style="italic" fill="#2f5169">richer semantic obligation</text>
 

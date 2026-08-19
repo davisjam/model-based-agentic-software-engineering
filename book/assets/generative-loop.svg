@@ -49,7 +49,7 @@
 
   <!-- coverage -> (where traceability exists) joins model-claim coverage back to the claim/oracle (dotted) -->
   <!-- edge: coverage .. oracle -->
-  <path d="M806,462 C822,455 822,340 822,266" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-loop)"/>
+  <path d="M695,400 L695,266" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-loop)"/>
 
   <!-- ===== NODES (on top; fills cap the edge ends) ===== -->
   <!-- generator -->

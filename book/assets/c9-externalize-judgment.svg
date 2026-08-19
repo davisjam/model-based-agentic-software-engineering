@@ -57,9 +57,9 @@
 
   <!-- split: generated procedure / reasoning guidance -->
   <!-- edge: operational-model -> generated-procedure -->
-  <path d="M420,328 C340,364 300,364 300,394" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
+  <path d="M375,328 L375,396" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
   <!-- edge: operational-model -> reasoning-guidance -->
-  <path d="M580,328 C660,364 700,364 700,394" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
+  <path d="M625,328 L625,396" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
 
   <rect id="generated-procedure" x="180" y="398" width="240" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="300" y="426" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">generated</text>
@@ -71,9 +71,9 @@
 
   <!-- converge to OPERATOR -->
   <!-- edge: generated-procedure -> operator -->
-  <path d="M300,458 C300,494 452,484 452,514" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
+  <path d="M405,458 L405,516" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
   <!-- edge: reasoning-guidance -> operator -->
-  <path d="M700,458 C700,494 548,484 548,514" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
+  <path d="M595,458 L595,516" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
 
   <rect id="operator" x="390" y="518" width="220" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="500" y="554" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">OPERATOR</text>

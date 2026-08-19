@@ -59,9 +59,9 @@
   <!-- worker -> {generation, render, OCR} — one path per branch -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sf-b)">
     <!-- edge: worker -> generation -->
-    <path d="M155,264 C110,300 80,308 80,330"/>
+    <path d="M120,264 L120,330"/>
     <!-- edge: worker -> render -->
-    <path d="M180,264 C183.5,287.1 190,300 190,330"/>
+    <path d="M190,264 L190,330"/>
     <!-- edge: worker -> ocr -->
     <path d="M210,264 C270,300 300,308 300,330"/>
   </g>

@@ -48,11 +48,11 @@
        still reads as one drop that splits, while every edge terminates on its own named format node. -->
   <g fill="none" stroke="#57534e" stroke-width="2">
     <!-- edge: impl -> docx -->
-    <path d="M320,286 C267.5,296.9 170,287 170,317" marker-end="url(#dm-k)"/>
+    <path d="M200,286 L200,318" marker-end="url(#dm-k)"/>
     <!-- edge: impl -> pptx -->
-    <path d="M320,286 C306,296.9 280,287 280,317" marker-end="url(#dm-k)"/>
+    <path d="M280,286 L280,318" marker-end="url(#dm-k)"/>
     <!-- edge: impl -> xlsx -->
-    <path d="M320,286 C344.5,296.9 390,287 390,317" marker-end="url(#dm-k)"/>
+    <path d="M390,286 L390,318" marker-end="url(#dm-k)"/>
     <!-- edge: impl -> pdf -->
     <path d="M320,286 C383,296.9 500,287 500,317" marker-end="url(#dm-k)"/>
   </g>

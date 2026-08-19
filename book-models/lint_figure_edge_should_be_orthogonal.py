@@ -53,78 +53,12 @@ ASSETS = HERE.parent / "book" / "assets"
 # legitimately meet at non-perpendicular angles).
 EXCLUDE_PREFIXES = ("cover", "velocity-")
 
-_AXIS_TOL = 1.0     # px: a segment whose shorter-axis delta is <= this counts as axis-aligned (H or V)
 _HEAD_TOL = 3.0     # degrees a directed head may deviate from the border normal (the sibling's _ANGLE_TOL)
 
-
-def _polyline_points(d: str) -> list:
-    """Points of an M/L/H/V-only path (a straight segment or an orthogonal elbow). Curves are classified
-    before this is called, so only line commands need handling."""
-    toks = re.findall(r"[MmLlHhVvZz]|-?\d*\.?\d+(?:[eE][-+]?\d+)?", d)
-    pts: list = []
-    cur = (0.0, 0.0)
-    i = 0
-    cmd = None
-    while i < len(toks):
-        t = toks[i]
-        if t.isalpha():
-            cmd = t
-            i += 1
-            continue
-        if cmd is None:
-            i += 1
-            continue
-        rel, C = cmd.islower(), cmd.upper()
-        if C in ("M", "L"):
-            x, y = float(toks[i]), float(toks[i + 1])
-            i += 2
-            cur = (cur[0] + x, cur[1] + y) if rel else (x, y)
-            pts.append(cur)
-        elif C == "H":
-            x = float(toks[i]); i += 1
-            cur = (cur[0] + x if rel else x, cur[1]); pts.append(cur)
-        elif C == "V":
-            y = float(toks[i]); i += 1
-            cur = (cur[0], cur[1] + y if rel else y); pts.append(cur)
-        else:
-            i += 1
-    return pts
-
-
-def _classify(tag: str) -> str:
-    """The drawn shape of an edge: 'straight-v' | 'straight-h' | 'slope' | 'curve' | 'ortho-elbow' |
-    'nonortho-elbow' | 'degenerate'."""
-    if tag.startswith("<line"):
-        ep = _dedge._endpoints(tag)
-        if ep is None:
-            return "degenerate"
-        (x1, y1), (x2, y2) = ep
-        if abs(x2 - x1) <= _AXIS_TOL:
-            return "straight-v"
-        if abs(y2 - y1) <= _AXIS_TOL:
-            return "straight-h"
-        return "slope"
-    dm = re.search(r'\bd="([^"]*)"', tag)
-    if not dm:
-        return "degenerate"
-    d = dm.group(1)
-    if re.search(r"[CcSsQqTtAa]", d):
-        return "curve"
-    pts = _polyline_points(d)
-    if len(pts) < 2:
-        return "degenerate"
-    segs = list(zip(pts, pts[1:]))
-    all_axis = all(abs(a[0] - b[0]) <= _AXIS_TOL or abs(a[1] - b[1]) <= _AXIS_TOL for a, b in segs)
-    if not all_axis:
-        return "nonortho-elbow" if len(pts) > 2 else "slope"
-    if len(pts) == 2:
-        (x1, y1), (x2, y2) = pts
-        if abs(x2 - x1) <= _AXIS_TOL:
-            return "straight-v"
-        if abs(y2 - y1) <= _AXIS_TOL:
-            return "straight-h"
-        return "slope"
-    return "ortho-elbow"
+# The drawn-shape classifier lives in the sibling router module so this sensor and the router's straights-only
+# gate share ONE definition of "straight-v/straight-h/slope/curve/…" — the two can never disagree on which
+# drawn edges are already correctly straight.
+_classify = _dedge._classify
 
 
 @dataclass
@@ -151,14 +85,14 @@ def analyze(path: pathlib.Path) -> list:
             continue
         label = f"{src} {op} {dst}"
         na, nb = nodes[src], nodes[dst]
-        sx0, sy0, sx1, sy1 = _dedge._bounds(na)
-        dx0, dy0, dx1, dy1 = _dedge._bounds(nb)
-        xov, _ = _dedge._span_overlap(sx0, sx1, dx0, dx1)
-        yov, _ = _dedge._span_overlap(sy0, sy1, dy0, dy1)
-        v_sep = (sy1 <= dy0) or (dy1 <= sy0)
-        h_sep = (sx1 <= dx0) or (dx1 <= sx0)
-        vertical_alignable = xov >= _dedge._ALIGN_MIN and v_sep
-        horizontal_alignable = yov >= _dedge._ALIGN_MIN and h_sep
+        # Obstacle-aware alignability, shared verbatim with the router: two rects are straight-alignable only
+        # when a straight corridor connects them AND clears every other node — a feedback/skip edge that would
+        # run over an intervening box is NOT SLOPE_ALIGNABLE (it must route around), so the router leaves it for
+        # a later pass and this sensor classifies it CURVE_TURN, never straightening it over the stack.
+        obstacles = [_dedge._bounds(v) for k, v in nodes.items() if k not in (src, dst)]
+        axis = _dedge._straight_axis(na, nb, obstacles)
+        vertical_alignable = axis == "v"
+        horizontal_alignable = axis == "h"
         shape = _classify(drawable)
 
         flagged = False

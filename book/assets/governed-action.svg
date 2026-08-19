@@ -44,9 +44,9 @@
 
   <!-- split to two governance touch-points -->
   <!-- edge: action-surface -> prevent -->
-  <path d="M500 356 C 430 385 280 378 280 408" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <path d="M396.5,356 L396.5,408" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
   <!-- edge: action-surface -> observe -->
-  <path d="M500 356 C 570 385 720 378 720 408" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <path d="M603.5,356 L603.5,408" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
 
   <!-- action surface (neutral) -->
   <rect id="action-surface" x="388" y="300" width="224" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
@@ -61,9 +61,9 @@
 
   <!-- merge to last safe boundary -->
   <!-- edge: prevent -> boundary -->
-  <path d="M280 482 C 300 512 432 500 432 528" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <path d="M377.5,482 L377.5,528" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
   <!-- edge: observe -> boundary -->
-  <path d="M720 482 C 700 512 568 500 568 528" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
+  <path d="M622.5,482 L622.5,528" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
   <!-- edge: boundary -> evidence -->
   <line x1="500" y1="592" x2="500" y2="630" stroke="#57534e" stroke-width="2" marker-end="url(#ga-ah)"/>
   <rect id="boundary" x="350" y="530" width="300" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5" stroke-dasharray="7 5"/>

@@ -35,7 +35,7 @@
   <rect id="printer" x="40" y="108" width="182" height="46" rx="9" fill="#faf9f6" stroke="#a8a29e" stroke-width="1.6" stroke-dasharray="4 3"/>
   <text x="131" y="136" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">The Printer</text>
   <!-- edge: printer .. modeling -->
-  <path d="M150,154 C176,214 236,264 236,294" fill="none" stroke="#a8a29e" stroke-width="1.6" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#ci-mute)"/>
+  <path d="M166,154 L166,294" fill="none" stroke="#a8a29e" stroke-width="1.6" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#ci-mute)"/>
   <text x="92" y="236" text-anchor="start" font-size="13" font-style="italic" fill="#a8a29e">a metaphor for</text>
   <text x="92" y="250" text-anchor="start" font-size="13" font-style="italic" fill="#a8a29e">explicit intent</text>
 
@@ -52,9 +52,9 @@
 
   <!-- Engineering work -> each principle (they address different constraints) -->
   <!-- edge: eng-work -> modeling -->
-  <path d="M418,238 C360,262 276,264 276,294" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
+  <path d="M379,238 L379,294" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
   <!-- edge: eng-work -> alignment -->
-  <path d="M562,238 C620,262 704,264 704,294" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
+  <path d="M601,238 L601,294" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
   <text x="490" y="270" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">address different constraints</text>
 
   <!-- Modeling Principle (green) -->
@@ -77,7 +77,7 @@
   <!-- lessons -> Governance Conversion. The lessons carried forward are the two principles'; a single
        connector must seat on one node, so it plugs into Modeling (the left principle) and keeps the label. -->
   <!-- edge: modeling -> governance -->
-  <path d="M388,377 C400,404 344,420 344,450" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
+  <path d="M275,378 L275,450" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
   <text x="470" y="424" text-anchor="start" font-size="13" font-style="italic" fill="#78716c">makes their lessons durable</text>
 
   <!-- Governance Conversion (gray) -->

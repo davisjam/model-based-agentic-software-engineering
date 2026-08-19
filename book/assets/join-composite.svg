@@ -109,7 +109,7 @@
 
   <!-- the plan's two modes: SHAPE encodes parallel (rounded) vs serialize (square) -->
   <!-- edge: plan-host -> fan-out -->
-  <path d="M810,238 C800,290 850,322 850,352" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
+  <path d="M945,238 L945,354" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
   <text x="880" y="330" font-size="18" font-style="italic" fill="#57534e">cost gate only</text>
   <rect id="fan-out" x="770" y="356" width="320" height="60" rx="30" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="930" y="393" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">fan out — parallel</text>

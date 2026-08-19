@@ -57,9 +57,9 @@
   <text x="470" y="459" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">customer</text>
 
   <!-- edge: registry .. validation -->
-  <path fill="none" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#pd-arM)" d="M250,274 C225.5,297.1 180,310 180,340"/>
+  <path fill="none" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#pd-arM)" d="M202.5,274 L202.5,338"/>
   <!-- edge: registry .. changelog -->
-  <path fill="none" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#pd-arM)" d="M350,274 C378,297.1 430,310 430,340"/>
+  <path fill="none" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#pd-arM)" d="M407.5,274 L407.5,338"/>
   <text x="300" y="318" text-anchor="middle" font-size="16" fill="#57534e">derived, not authored</text>
 
   <!-- edge: changelog -> customer -->

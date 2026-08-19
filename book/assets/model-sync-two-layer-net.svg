@@ -41,7 +41,7 @@
   <!-- refine loop arrow drawn UNDER the unmodeled surface: its tail runs into that surface (the opaque fill
        caps it) and its head seats on the modeled surface's lower rim -->
   <!-- edge: unmodeled .. modeled -->
-  <path d="M760,290 C760,270 760,254 760,238" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#cv-r)"/>
+  <path d="M450,266 L450,238" fill="none" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#cv-r)"/>
 
   <!-- ===== UNMODELED SURFACE ===== -->
   <rect id="unmodeled" x="120" y="266" width="660" height="70" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="8 5"/>

@@ -23,9 +23,9 @@
 
   <!-- split to the two layers -->
   <!-- edge: eng-knowledge -> standing-context -->
-  <path d="M500,100 C420,128 270,126 270,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
+  <path d="M390,100 L390,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
   <!-- edge: eng-knowledge -> task-slice -->
-  <path d="M500,100 C580,128 730,126 730,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
+  <path d="M610,100 L610,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
 
   <!-- standing context: SOLID = always resident -->
   <rect id="standing-context" x="110" y="158" width="320" height="82" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
@@ -41,9 +41,9 @@
 
   <!-- both layers merge into agent context -->
   <!-- edge: standing-context -> agent-context -->
-  <path d="M270,240 C270,272 466,262 466,292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
+  <path d="M400,240 L400,292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
   <!-- edge: task-slice -> agent-context -->
-  <path d="M730,240 C730,272 534,262 534,292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
+  <path d="M600,240 L600,292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dc-ah)"/>
 
   <!-- agent context (blue = the acting party) -->
   <rect id="agent-context" x="370" y="294" width="260" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>

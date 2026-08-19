@@ -80,9 +80,9 @@
        on the box, sharing the trunk down the centre and arriving vertically into its top -->
   <g stroke="#57534e" stroke-width="1.8" fill="none" marker-end="url(#h8-ah)">
     <!-- edge: operations -> connected-knowledge -->
-    <path d="M250,358 L250,388 L500,388 L500,412"/>
+    <path d="M353,362 L353,412"/>
     <!-- edge: assurance -> connected-knowledge -->
-    <path d="M750,358 L750,388 L500,388 L500,412"/>
+    <path d="M648,362 L648,412"/>
   </g>
 
   <rect id="connected-knowledge" x="316" y="414" width="368" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.5"/>
@@ -122,9 +122,9 @@
   <!-- reasoning AND Alignment each constitute the GEE: two separate arrows (flow); last control point pulled
        back above the endpoint so each head arrives perpendicular into the GEE's top border -->
   <!-- edge: autonomous-reasoning -> gee -->
-  <path d="M300,648 C300,676 470,660 470,690" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
+  <path d="M377.5,652 L377.5,692" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
   <!-- edge: alignment -> gee -->
-  <path d="M700,648 C700,676 530,660 530,690" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
+  <path d="M641,652 L641,692" fill="none" stroke="#57534e" stroke-width="2.2" marker-end="url(#h8-ah)"/>
 
   <rect id="gee" x="330" y="694" width="340" height="56" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="500" y="718" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">GOVERNED ENGINEERING</text>

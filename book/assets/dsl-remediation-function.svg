@@ -42,7 +42,7 @@
   <!-- both converge to DSL -->
   <!-- editor's L-shaped run to the shared edit language: one path so both ends land on named nodes -->
   <!-- edge: editor -> dsl -->
-  <path fill="none" d="M294,119 L736,119 L736,145" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
+  <path fill="none" d="M294,154 L630,154" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
   <!-- edge: ttef -> docmodel -->
   <line x1="706" y1="331" x2="737" y2="331" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
 

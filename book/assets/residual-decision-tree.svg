@@ -69,7 +69,7 @@
 
   <!-- Q3 no -> EVALUATED ONLY -->
   <!-- edge: q3 -> evaluated -->
-  <path d="M480,332 L480,364 L360,364 L360,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M470,332 L470,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="410" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
   <rect id="evaluated" x="240" y="396" width="240" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="360" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">EVALUATED ONLY</text>

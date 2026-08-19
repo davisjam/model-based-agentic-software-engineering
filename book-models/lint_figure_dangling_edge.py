@@ -49,6 +49,7 @@ import sys
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ASSETS = os.path.normpath(os.path.join(_HERE, "..", "book", "assets"))
 _TOL = 7.0  # px slack for the opt-in FLOAT-OK grammar only; the strict default requires 0 slack (inside)
+_AXIS_TOL = 1.0  # px: a segment whose shorter-axis delta is <= this counts as axis-aligned (H or V)
 _FIX_DOC = "plugin/mage/skills/self-communicate/drawing/diagrams.md (edge-terminates-on-named-node)"
 
 _NUM = r"-?\d*\.?\d+(?:[eE][-+]?\d+)?"
@@ -106,6 +107,77 @@ def _endpoints(tag: str) -> tuple | None:
     if len(nums) < 4:
         return None
     return ((nums[0], nums[1]), (nums[-2], nums[-1]))
+
+
+def _polyline_points(d: str) -> list:
+    """Points of an M/L/H/V-only path (a straight segment or an orthogonal elbow). Curves are classified
+    before this is called, so only line commands need handling."""
+    toks = re.findall(r"[MmLlHhVvZz]|-?\d*\.?\d+(?:[eE][-+]?\d+)?", d)
+    pts: list = []
+    cur = (0.0, 0.0)
+    i = 0
+    cmd = None
+    while i < len(toks):
+        t = toks[i]
+        if t.isalpha():
+            cmd = t
+            i += 1
+            continue
+        if cmd is None:
+            i += 1
+            continue
+        rel, C = cmd.islower(), cmd.upper()
+        if C in ("M", "L"):
+            x, y = float(toks[i]), float(toks[i + 1])
+            i += 2
+            cur = (cur[0] + x, cur[1] + y) if rel else (x, y)
+            pts.append(cur)
+        elif C == "H":
+            x = float(toks[i]); i += 1
+            cur = (cur[0] + x if rel else x, cur[1]); pts.append(cur)
+        elif C == "V":
+            y = float(toks[i]); i += 1
+            cur = (cur[0], cur[1] + y if rel else y); pts.append(cur)
+        else:
+            i += 1
+    return pts
+
+
+def _classify(tag: str) -> str:
+    """The drawn shape of an edge: 'straight-v' | 'straight-h' | 'slope' | 'curve' | 'ortho-elbow' |
+    'nonortho-elbow' | 'degenerate'. Shared by the should-be-orthogonal sensor and the straights-only
+    router gate, so the two agree on which drawn edges are already correctly straight."""
+    if tag.startswith("<line"):
+        ep = _endpoints(tag)
+        if ep is None:
+            return "degenerate"
+        (x1, y1), (x2, y2) = ep
+        if abs(x2 - x1) <= _AXIS_TOL:
+            return "straight-v"
+        if abs(y2 - y1) <= _AXIS_TOL:
+            return "straight-h"
+        return "slope"
+    dm = re.search(r'\bd="([^"]*)"', tag)
+    if not dm:
+        return "degenerate"
+    d = dm.group(1)
+    if re.search(r"[CcSsQqTtAa]", d):
+        return "curve"
+    pts = _polyline_points(d)
+    if len(pts) < 2:
+        return "degenerate"
+    segs = list(zip(pts, pts[1:]))
+    all_axis = all(abs(a[0] - b[0]) <= _AXIS_TOL or abs(a[1] - b[1]) <= _AXIS_TOL for a, b in segs)
+    if not all_axis:
+        return "nonortho-elbow" if len(pts) > 2 else "slope"
+    if len(pts) == 2:
+        (x1, y1), (x2, y2) = pts
+        if abs(x2 - x1) <= _AXIS_TOL:
+            return "straight-v"
+        if abs(y2 - y1) <= _AXIS_TOL:
+            return "straight-h"
+        return "slope"
+    return "ortho-elbow"
 
 
 _DIR_OUT = 7.0   # a DIRECTED end (arrowhead) may sit up to this many px OUTSIDE the rim: the head body then
@@ -396,6 +468,30 @@ def _seg_hits_rect(p: tuple, q: tuple, rect: tuple, inset: float) -> bool:
     return sx0 <= rx1 and sx1 >= rx0 and sy0 <= ry1 and sy1 >= ry0
 
 
+def _straight_axis(start_node: tuple, end_node: tuple, obstacles: list) -> str | None:
+    """Can a CLEAN straight segment connect the two rects? Returns 'v' (a vertical corridor: x-spans overlap
+    by >= _ALIGN_MIN, rects y-separated) or 'h' (a horizontal corridor), else None. The corridor must ALSO
+    clear every obstacle rect — a straight edge that would run THROUGH a third node (a feedback/skip edge over
+    a stack of boxes) is NOT axis-alignable; it genuinely has to route around, so it is left for a later pass
+    rather than drawn straight over the intervening nodes. This is the single alignability predicate the
+    should-be-orthogonal sensor and the router share, so the two agree on SLOPE_ALIGNABLE by construction."""
+    sx0, sy0, sx1, sy1 = _bounds(start_node)
+    dx0, dy0, dx1, dy1 = _bounds(end_node)
+    xov, xmid = _span_overlap(sx0, sx1, dx0, dx1)
+    yov, ymid = _span_overlap(sy0, sy1, dy0, dy1)
+    v_sep = (sy1 <= dy0) or (dy1 <= sy0)
+    h_sep = (sx1 <= dx0) or (dx1 <= sx0)
+    if xov >= _ALIGN_MIN and v_sep:
+        ylo, yhi = (sy1, dy0) if sy1 <= dy0 else (dy1, sy0)
+        if not any(_seg_hits_rect((xmid, ylo), (xmid, yhi), ob, _CLEAR_INSET) for ob in obstacles):
+            return "v"
+    if yov >= _ALIGN_MIN and h_sep:
+        xlo, xhi = (sx1, dx0) if sx1 <= dx0 else (dx1, sx0)
+        if not any(_seg_hits_rect((xlo, ymid), (xhi, ymid), ob, _CLEAR_INSET) for ob in obstacles):
+            return "h"
+    return None
+
+
 def _ortho_route(start_node: tuple, end_node: tuple, directed_start: bool, directed_end: bool,
                  obstacles: list) -> list | None:
     """The orthogonal poly-line [start_pt, (corner,) end_pt] from `start_node` to `end_node`:
@@ -410,18 +506,17 @@ def _ortho_route(start_node: tuple, end_node: tuple, directed_start: bool, direc
     dx0, dy0, dx1, dy1 = _bounds(end_node)
     scx, scy = _ctr(start_node)
     dcx, dcy = _ctr(end_node)
-    xov, xmid = _span_overlap(sx0, sx1, dx0, dx1)
-    yov, ymid = _span_overlap(sy0, sy1, dy0, dy1)
-    v_sep = (sy1 <= dy0) or (dy1 <= sy0)   # rects separated along y -> a vertical corridor can run between
-    h_sep = (sx1 <= dx0) or (dx1 <= sx0)   # rects separated along x -> a horizontal corridor can run between
+    _, xmid = _span_overlap(sx0, sx1, dx0, dx1)
+    _, ymid = _span_overlap(sy0, sy1, dy0, dy1)
     g_s = _GAP_DIR if directed_start else 0.0
     g_e = _GAP_DIR if directed_end else 0.0
 
-    if xov >= _ALIGN_MIN and v_sep:        # STRAIGHT VERTICAL
+    axis = _straight_axis(start_node, end_node, obstacles)   # obstacle-aware: a straight run over a third node
+    if axis == "v":                        # STRAIGHT VERTICAL
         if scy <= dcy:
             return [(xmid, sy1 + g_s), (xmid, dy0 - g_e)]
         return [(xmid, sy0 - g_s), (xmid, dy1 + g_e)]
-    if yov >= _ALIGN_MIN and h_sep:        # STRAIGHT HORIZONTAL
+    if axis == "h":                        # STRAIGHT HORIZONTAL
         if scx <= dcx:
             return [(sx1 + g_s, ymid), (dx0 - g_e, ymid)]
         return [(sx0 - g_s, ymid), (dx1 + g_e, ymid)]
@@ -476,10 +571,19 @@ def _emit_ortho(tag: str, route: list) -> str:
     return tag.replace("/>", f' d="{d}"/>', 1)
 
 
-def orthogonalize(path: str) -> tuple:
+def orthogonalize(path: str, straights_only: bool = False) -> tuple:
     """Re-route every declared edge in `path` to an orthogonal segment/elbow and write the SVG back.
     Returns (n_rerouted, [left-for-hand-pass edge labels]). A keep-angles figure is skipped wholesale.
-    Idempotent: routes derive from node geometry, so a second run reproduces them and changes nothing."""
+    Idempotent: routes derive from node geometry, so a second run reproduces them and changes nothing.
+
+    STRAIGHTS-ONLY (the "safe straights first" pass). With `straights_only=True` the router touches ONLY the
+    edges the should-be-orthogonal sensor classifies SLOPE_ALIGNABLE — endpoints axis-alignable, so the fix is
+    a single straight H/V segment — and LEAVES every CURVE_TURN edge (one needing a right-angled elbow) exactly
+    as drawn for a later pass. The gate reuses the same primitives as the sensor: `_ortho_route` yields a
+    2-point route precisely when the rects are axis-alignable (same `_ALIGN_MIN`/`_span_overlap`/separation
+    test the sensor's `analyze` runs), and a drawn edge already in the correct straight orientation
+    (`_classify`) is left alone — exactly the sensor's "flag only when shape != the wanted straight" rule. So
+    "straightened by this pass" == "was SLOPE_ALIGNABLE", by construction."""
     svg = open(path, encoding="utf-8").read()
     if "<!-- edge:" not in svg or _KEEP_ANGLES_RE.search(svg):
         return (0, [])
@@ -504,8 +608,15 @@ def orthogonalize(path: str) -> tuple:
         obstacles = [_bounds(v) for k, v in nodes.items() if k not in (src, dst)]
         route = _ortho_route(start_node, end_node, d_first, d_last, obstacles)
         if route is None:
-            skipped.append(f"{src} {op} {dst}")
+            if not straights_only:      # a curve-turn with no clean elbow -> hand pass; straights-only defers it
+                skipped.append(f"{src} {op} {dst}")
             continue
+        if straights_only:
+            if len(route) != 2:
+                continue                # would need an elbow (CURVE_TURN) — leave exactly as-is for a later pass
+            want = "straight-v" if abs(route[0][0] - route[1][0]) <= _AXIS_TOL else "straight-h"
+            if _classify(drawable) == want:
+                continue                # already the correct straight — the sensor would not flag it
         new_tag = _emit_ortho(drawable, route)
         if new_tag and new_tag != drawable:
             replacements.append((drawable, new_tag))
@@ -585,17 +696,20 @@ def analyze(path: str) -> list:
 def main() -> int:
     argv = sys.argv[1:]
     do_fix = "--fix" in argv
-    do_orth = "--orthogonalize" in argv
-    argv = [a for a in argv if a not in ("--fix", "--orthogonalize")]
+    straights_only = "--straights-only" in argv
+    do_orth = ("--orthogonalize" in argv) or straights_only   # --straights-only implies orthogonalize
+    argv = [a for a in argv if a not in ("--fix", "--orthogonalize", "--straights-only")]
     files = [os.path.abspath(argv[0])] if argv else sorted(glob.glob(os.path.join(_ASSETS, "*.svg")))
     if do_orth:
         total_routed = 0
         left = []
-        print("== figure-orthogonal-router --orthogonalize — re-route declared edges to straight/elbow "
-              "orthogonal, heads seated perpendicular ==")
+        mode = "straights-only (SLOPE_ALIGNABLE edges only; curve-turns deferred)" if straights_only \
+            else "straight + elbow"
+        print(f"== figure-orthogonal-router --orthogonalize [{mode}] — re-route declared edges to orthogonal, "
+              "heads seated perpendicular ==")
         for f in files:
             try:
-                n, sk = orthogonalize(f)
+                n, sk = orthogonalize(f, straights_only=straights_only)
             except Exception as exc:  # pragma: no cover
                 print(f"  {os.path.basename(f)}: could not orthogonalize ({exc})")
                 continue
