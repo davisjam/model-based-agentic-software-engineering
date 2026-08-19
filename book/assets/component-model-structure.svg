@@ -40,9 +40,9 @@
 
   <!-- registry -> the three consumers -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M305,90 C420,80 470,74 554,69" marker-end="url(#cm-ah)"/>
-    <path d="M305,120 C420,130 470,145 554,157" marker-end="url(#cm-ah)"/>
-    <path d="M305,145 C420,180 460,220 554,246" marker-end="url(#cm-ah)"/>
+    <path d="M305,90 C420,80 470,74 559,68" marker-end="url(#cm-ah)"/>
+    <path d="M305,120 C420,130 470,145 559,158" marker-end="url(#cm-ah)"/>
+    <path d="M305,145 C420,180 460,220 559,247" marker-end="url(#cm-ah)"/>
   </g>
 
   <!-- ===== reality: the real directory tree (cylinder) ===== -->
@@ -60,7 +60,7 @@
   <text x="565" y="382" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">test</text>
 
   <!-- registry -> reverse-mapping test (down past the tree cylinder) -->
-  <path d="M290,158 C350,230 420,280 502,322" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#cm-ah)"/>
+  <path d="M290,158 C350,230 420,280 499,320" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#cm-ah)"/>
   <!-- tree -> reverse-mapping test -->
-  <line x1="305" y1="362" x2="447" y2="362" stroke="#1c1917" stroke-width="2" marker-end="url(#cm-ah)"/>
+  <line x1="305" y1="362" x2="444" y2="362" stroke="#1c1917" stroke-width="2" marker-end="url(#cm-ah)"/>
 </svg>

@@ -130,6 +130,20 @@ def _ok_end(pt: tuple, node: tuple, directed: bool, tol: float) -> bool:
     return s <= tol
 
 
+def _enclosing_markers(svg: str, pos: int) -> tuple:
+    """(has_marker_start, has_marker_end) contributed by any <g> still OPEN at byte `pos`. A marker can be set
+    on an enclosing group instead of the drawable itself (e.g. `<g marker-end=...><line/></g>`), so directed
+    detection must look up the group stack, not only the drawable's own attributes."""
+    opens = []
+    for gm in re.finditer(r'<g\b[^>]*>|</g\s*>', svg[:pos]):
+        if gm.group(0).startswith("</g"):
+            if opens:
+                opens.pop()
+        else:
+            opens.append(gm.group(0))
+    return (any("marker-start" in g for g in opens), any("marker-end" in g for g in opens))
+
+
 def analyze(path: str) -> list:
     svg = open(path, encoding="utf-8").read()
     if "<!-- edge:" not in svg:
@@ -155,8 +169,11 @@ def analyze(path: str) -> list:
         na, nb = nodes[src], nodes[dst]
         # `marker-end` makes the LAST point an arrowhead; `marker-start` the FIRST. A directed end seats at
         # the perimeter (head outside), an undirected end sits inside — so each end is checked by its kind.
-        d_first = "marker-start" in drawable
-        d_last = "marker-end" in drawable
+        # The marker may sit on the drawable OR on an enclosing <g>, so check both.
+        drawable_start = m.start() + m.group(0).rfind("<")
+        g_start, g_end = _enclosing_markers(svg, drawable_start)
+        d_first = "marker-start" in drawable or g_start
+        d_last = "marker-end" in drawable or g_end
         # each endpoint must land on one distinct declared node; try both first/last <-> src/dst pairings
         ok = ((_ok_end(a, na, d_first, tol) and _ok_end(b, nb, d_last, tol))
               or (_ok_end(a, nb, d_first, tol) and _ok_end(b, na, d_last, tol)))
