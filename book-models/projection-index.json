@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1189,
+    "total_sites": 1190,
     "by_projection": {
       "book-pdf": 17,
-      "book-web": 785,
+      "book-web": 786,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -42,6 +42,10 @@
           {
             "file": "book/2.1-context-is-the-first-modeling-problem.html",
             "occ": 7
+          },
+          {
+            "file": "book/2.7-provenance.html",
+            "occ": 1
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -227,7 +231,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 51
+            "occ": 52
           }
         ]
       },
@@ -995,7 +999,7 @@
           },
           {
             "file": "book/2.7-provenance.html",
-            "occ": 19
+            "occ": 20
           },
           {
             "file": "book/2.8-system-knowledge.html",
@@ -2201,7 +2205,7 @@
           },
           {
             "file": "book/2.7-provenance.html",
-            "occ": 19
+            "occ": 24
           },
           {
             "file": "book/2.8-system-knowledge.html",
