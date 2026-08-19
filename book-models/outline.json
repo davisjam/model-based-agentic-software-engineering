@@ -63,7 +63,7 @@
           "heading_text": "Why MAGE? Why Models?",
           "topic_sentence": "This book—Model-Based Agentic Software Engineering (MAGE)—argues that modeling becomes central when implementation becomes abundant.",
           "id_source": "derived",
-          "block_index": 7,
+          "block_index": 6,
           "points": []
         },
         {
@@ -72,7 +72,7 @@
           "heading_text": "Where the theory came from",
           "topic_sentence": "This book began with one hard engineering problem, watched closely over months of building a real production system.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 12,
           "points": []
         },
         {
@@ -81,16 +81,16 @@
           "heading_text": "What changed",
           "topic_sentence": "Commodity intelligence accelerates realization without proportionally enlarging the representations, evidence, or authority available to govern it.",
           "id_source": "derived",
-          "block_index": 16,
+          "block_index": 15,
           "points": []
         },
         {
-          "section_id": "why-i-built-a-production-system-to-study-this",
+          "section_id": "the-originating-system",
           "level": 2,
-          "heading_text": "Why I built a production system to study this",
+          "heading_text": "The originating system",
           "topic_sentence": "This book began with DocAble, a production service for remediating inaccessible documents.",
           "id_source": "derived",
-          "block_index": 23,
+          "block_index": 22,
           "points": []
         },
         {
@@ -99,7 +99,7 @@
           "heading_text": "Evidence and scope",
           "topic_sentence": "MAGE rests on two complementary kinds of evidence.",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 27,
           "points": []
         },
         {
@@ -108,7 +108,7 @@
           "heading_text": "What the method turned out to be",
           "topic_sentence": "Two principles organize MAGE:",
           "id_source": "derived",
-          "block_index": 33,
+          "block_index": 29,
           "points": []
         },
         {
@@ -117,7 +117,7 @@
           "heading_text": "Who this book is for",
           "topic_sentence": "This book is for software engineers who suspect the ground has moved and want to know where to stand.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 36,
           "points": []
         }
       ],

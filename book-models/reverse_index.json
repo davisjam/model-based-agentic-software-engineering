@@ -7229,6 +7229,21 @@
         }
       ]
     },
+    "section-id:the-originating-system": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "claims",
+          "element": "grounding-case-not-proof",
+          "role": "claim-home"
+        },
+        {
+          "view": "outline",
+          "element": "0.4-preface::the-originating-system",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:the-part-that-stays-yours": {
       "kind": "section-id",
       "dependents": [
@@ -7770,21 +7785,6 @@
         {
           "view": "outline",
           "element": "4.3-validating-change::why-abundance-changes-the-economics",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:why-i-built-a-production-system-to-study-this": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "claims",
-          "element": "grounding-case-not-proof",
-          "role": "claim-home"
-        },
-        {
-          "view": "outline",
-          "element": "0.4-preface::why-i-built-a-production-system-to-study-this",
           "role": "section-anchor"
         }
       ]
