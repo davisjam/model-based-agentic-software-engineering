@@ -593,7 +593,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="1.1-the-printer.html">1&nbsp; The Printer</a></li>
 <li><a class="current" href="1.2-mage-by-example.html">2&nbsp; MAGE by Example: Summary of the DocAble Case</a></li>
 <li><a class="" href="1.3-the-agentic-substrate.html">3&nbsp; The Agentic Substrate</a></li>
-<li><a class="" href="1.4-the-new-engineering-problem.html">4&nbsp; The New Engineering Problem</a></li>
+<li><a class="" href="1.4-the-new-engineering-problem.html">4&nbsp; Two Problems the Method Must Solve</a></li>
 <li class="part">Part 2 — Modeling</li>
 <li><a class="" href="part-2-intro.html">Modeling</a></li>
 <li><a class="" href="2.1-context-is-the-first-modeling-problem.html">5&nbsp; From Context to Engineering Models</a></li>
@@ -799,6 +799,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- caption -->
   <text x="490" y="400" text-anchor="middle" font-size="15.5" font-style="italic" fill="#57534e">Here is the kind of production system these ideas govern — what it does, not yet how.</text>
 </svg><figcaption data-short="DocAble from the user&#x27;s view"><span class="fig-label">Figure 1.2-1.</span> <em>DocAble from the user's view.</em> An inaccessible document goes in; a remediated document and evidence of the consequential changes come back. Internal structure is omitted because it is not yet relevant.</figcaption></figure>
+<p>The simple interface hides a large production system. At the observation point used in this book, DocAble comprised roughly 491,090 lines of production code, governed by a support apparatus about three times larger (1,501,907 lines, a 3.0× support-to-production ratio). The examples that follow isolate individual engineering questions from that system; they should not be read as the architecture of a small document-processing script.</p>
 <h2><span class="sec-num">1.2.3</span> One System, Several Engineering Questions</h2>
 <p>Building DocAble well is not one engineering problem. Different questions require different representations.</p>
 <p>Ask what the system contains and how its parts relate, and you want a structural view. Ask what happens to a document after upload, and you want behavior: the states a job moves through and the transitions that are legal. Ask which component may call another, and you want a model of permitted relationships. Ask whether the system is fast and cheap enough, and you want measurements and their allowable envelopes. Ask whether the evidence returned with a document faithfully describes what happened, and you want provenance.</p>

@@ -7,7 +7,7 @@
     "derived_ids": 145,
     "missing_topic_sentence": 1,
     "sections_drained": 111,
-    "paragraph_points": 488
+    "paragraph_points": 489
   },
   "chapters": [
     {
@@ -63,7 +63,7 @@
           "heading_text": "Why MAGE? Why Models?",
           "topic_sentence": "This book—Model-Based Agentic Software Engineering (MAGE)—argues that modeling becomes central when implementation becomes abundant.",
           "id_source": "derived",
-          "block_index": 5,
+          "block_index": 7,
           "points": []
         },
         {
@@ -72,16 +72,16 @@
           "heading_text": "Where the theory came from",
           "topic_sentence": "This book began with one hard engineering problem, watched closely over months of building a real production system.",
           "id_source": "derived",
-          "block_index": 12,
+          "block_index": 13,
           "points": []
         },
         {
           "section_id": "what-changed",
           "level": 2,
           "heading_text": "What changed",
-          "topic_sentence": "Large software systems have always exceeded what any one engineer can keep in mind.",
+          "topic_sentence": "Commodity intelligence accelerates realization without proportionally enlarging the representations, evidence, or authority available to govern it.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 16,
           "points": []
         },
         {
@@ -90,7 +90,7 @@
           "heading_text": "Why I built a production system to study this",
           "topic_sentence": "This book began with DocAble, a production service for remediating inaccessible documents.",
           "id_source": "derived",
-          "block_index": 22,
+          "block_index": 23,
           "points": []
         },
         {
@@ -99,16 +99,16 @@
           "heading_text": "Evidence and scope",
           "topic_sentence": "MAGE rests on two complementary kinds of evidence.",
           "id_source": "derived",
-          "block_index": 28,
+          "block_index": 29,
           "points": []
         },
         {
           "section_id": "what-the-method-turned-out-to-be",
           "level": 2,
           "heading_text": "What the method turned out to be",
-          "topic_sentence": "Two principles organize MAGE.",
+          "topic_sentence": "Two principles organize MAGE:",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 33,
           "points": []
         },
         {
@@ -117,7 +117,7 @@
           "heading_text": "Who this book is for",
           "topic_sentence": "This book is for software engineers who suspect the ground has moved and want to know where to stand.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 40,
           "points": []
         }
       ],
@@ -277,6 +277,11 @@
               "slug": "the-figure-stops-at-the-boundary",
               "text": "The glimpse stops at the boundary; before looking inside, we need only know what engineering result the system is supposed to produce.",
               "block_index": 14
+            },
+            {
+              "slug": "the-interface-hides-a-large-production-system",
+              "text": "The simple interface hides a large production system.",
+              "block_index": 17
             }
           ]
         },
@@ -286,27 +291,27 @@
           "heading_text": "One System, Several Engineering Questions",
           "topic_sentence": "Building DocAble well is not one engineering problem.",
           "id_source": "derived",
-          "block_index": 17,
+          "block_index": 19,
           "points": [
             {
               "slug": "building-well-is-several-problems",
               "text": "Building DocAble well is not one engineering problem; different questions require different representations.",
-              "block_index": 19
+              "block_index": 21
             },
             {
               "slug": "five-questions-five-representations",
               "text": "Structure, behavior, decisions, measurement, and provenance are different questions, each wanting its own representation of the same system.",
-              "block_index": 21
+              "block_index": 23
             },
             {
               "slug": "no-single-model-of-docable",
               "text": "The system has not changed between these questions; the representation has. No single model is best for all of them — each is a purposeful reduction that preserves the facts one question needs and suppresses detail it does not.",
-              "block_index": 23
+              "block_index": 25
             },
             {
               "slug": "the-central-modeling-move",
               "text": "That is the modeling move Part II develops.",
-              "block_index": 25
+              "block_index": 27
             }
           ]
         },
@@ -316,22 +321,22 @@
           "heading_text": "The Territory",
           "topic_sentence": "Before Parts II and III represent DocAble through different engineering models, we need enough common territory to know what those models refer to.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 29,
           "points": [
             {
               "slug": "enough-common-territory-to-locate-the-models",
               "text": "Before Parts II and III represent DocAble through different engineering models, we need enough common territory to know what those models refer to.",
-              "block_index": 29
+              "block_index": 31
             },
             {
               "slug": "the-territory-vocabulary",
               "text": "A job is one document's trip; a chunk is a portion processed independently; workers claim and process chunks, calling specialized services; queues coordinate the handoffs; the outputs are the remediated document and its evidence.",
-              "block_index": 38
+              "block_index": 40
             },
             {
               "slug": "one-worker-several-models",
               "text": "The same worker appears differently in later models — a deployable component, an actor in a lifecycle, an owner of a resource, a subject of an access policy, or a source of measurements; not competing descriptions, but different properties of the same system.",
-              "block_index": 40
+              "block_index": 42
             }
           ]
         },
@@ -341,27 +346,27 @@
           "heading_text": "How the Book Uses DocAble",
           "topic_sentence": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires.",
           "id_source": "derived",
-          "block_index": 42,
+          "block_index": 44,
           "points": [
             {
               "slug": "docable-shown-at-method-resolution",
               "text": "DocAble is the book's deepest worked example because its engineering can be shown at the resolution the method requires; Part II asks which representations make properties tractable, Part III how obligations acquire authority.",
-              "block_index": 44
+              "block_index": 46
             },
             {
               "slug": "part-v-examines-the-build-itself",
               "text": "Part V uses DocAble differently: it examines the build itself — what failed, what those failures revealed, and how recurring judgments became models, controls, and other durable engineering structure.",
-              "block_index": 46
+              "block_index": 48
             },
             {
               "slug": "docable-is-depth-not-the-whole-evidence",
               "text": "DocAble provides depth, not the book's entire evidentiary basis; other engineering organizations reappear to show where related structures recur, where they take different forms, and where the evidence supports a more limited interpretation.",
-              "block_index": 48
+              "block_index": 50
             },
             {
               "slug": "bridge-to-the-substrate",
               "text": "We can now examine the productive substrate that makes autonomous implementation possible.",
-              "block_index": 50
+              "block_index": 52
             }
           ]
         }
@@ -427,14 +432,19 @@
               "block_index": 24
             },
             {
+              "slug": "compaction-extends-the-episode-but-keeps-the-problem",
+              "text": "Compaction extends the episode but keeps the underlying problem.",
+              "block_index": 27
+            },
+            {
               "slug": "capability-moves-the-wall-not-abolishes-it",
               "text": "Better representations move the boundary by using available working state more effectively; they do not abolish the locality problem — a stronger reasoner recovers relevant state more effectively but still operates with finite active state.",
-              "block_index": 27
+              "block_index": 29
             },
             {
               "slug": "the-chain-stated-end-to-end",
               "text": "Practice at codebase scale reports the same effect; the point is not a line-count threshold but that raw implementation is an expensive reasoning substrate when the question depends on a much smaller set of relationships.",
-              "block_index": 29
+              "block_index": 31
             }
           ]
         },
@@ -444,22 +454,22 @@
           "heading_text": "The Horizon Is a Locality Problem",
           "topic_sentence": "Seen this way, the reasoning horizon is not an exotic property of language models.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 34,
           "points": [
             {
               "slug": "the-reasoning-horizon-is-a-familiar-systems-problem",
               "text": "The reasoning horizon is not exotic; it is a familiar systems problem — useful state must be kept close enough to the computation that consumes it, and agentic reasoning presents an analogous locality problem for reasoning state.",
-              "block_index": 34
+              "block_index": 36
             },
             {
               "slug": "new-architectures-move-constants-not-the-principle",
               "text": "Larger windows, persistent memory, retrieval, or new architectures move the boundaries and change the constants; they do not remove the underlying engineering problem that question-relevant state must stay available and cheap to reason over while irrelevant detail stays outside the active working set.",
-              "block_index": 36
+              "block_index": 38
             },
             {
               "slug": "reasoning-horizon-is-broader-than-context-engineering",
               "text": "Retrieval and external memory make more raw state available; they do not decide which abstraction makes the engineering property tractable — MAGE is semantic compression through purposeful representation.",
-              "block_index": 38
+              "block_index": 40
             }
           ]
         },
@@ -469,21 +479,16 @@
           "heading_text": "Probabilistic Work Needs External Authority",
           "topic_sentence": "The second problem is not that agents make mistakes while human programmers do not.",
           "id_source": "derived",
-          "block_index": 40,
+          "block_index": 42,
           "points": [
             {
               "slug": "authorship-is-separate-from-assurance",
               "text": "Software engineering has always separated authorship from assurance — we compile instead of trusting a prediction, test instead of accepting an explanation — because the producer's confidence is not enough.",
-              "block_index": 42
+              "block_index": 44
             },
             {
               "slug": "authority-must-reside-outside-the-agent",
               "text": "Commodity intelligence makes that separation more important because implementation is cheap and repeatable; an agent can propose, inspect, explain, and repair, but another judgment from the same substrate does not create authority — the environment must establish what evidence counts.",
-              "block_index": 44
-            },
-            {
-              "slug": "alignment-has-semantic-reach-and-modeling-moves-the-boundary-outward",
-              "text": "Some obligations need little modeling — a sandbox, compiler, test, or permission system holds them; those are real Alignment, limited by semantic reach. Modeling expands that semantic reach, making broader properties available to the reasoner and to deterministic machinery.",
               "block_index": 46
             }
           ]
@@ -574,8 +579,8 @@
       ],
       "preamble_points": [
         {
-          "slug": "substrate-changes-in-two-ways",
-          "text": "Commodity intelligence changes the economics of implementation without abolishing scale, uncertainty, and assurance; the substrate makes two old problems especially consequential — representation for a finite reasoner, and authority outside the producing run.",
+          "slug": "substrate-leaves-two-problems",
+          "text": "Two problems remain: representation, and authority outside the producing run.",
           "block_index": 0
         }
       ]
