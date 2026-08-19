@@ -594,6 +594,32 @@ Two more transformations from the author's own edits, same conservative posture 
     - **Calibrate the front matter to Part I.** Part I already uses the plain form far more often; the front
       matter should sound like Part I, not more academic than it.
 
+## House-style calibration — nominalizations in the theoretical register (260819)
+
+11. **Name a thing when the theory needs a thing; once named, make it act.** Item 10's plain-verb rule is
+    NOT a blanket war on nouns. A theoretical chapter (Part VI especially) *needs* named constructs — it is
+    where MAGE stops describing a method and supplies the vocabulary someone else could argue about,
+    operationalize, falsify, or extend. The register there should stay more theoretical than the rest of the
+    book; that is desirable, not a defect. The rule is narrower:
+    - **Keep nouns that establish a theoretical object.** *environment quality, governance pressure, durable
+      throughput, defect escape, representation leverage, engineering capital, determinization frontier,
+      degrees of freedom, governability, representation engineering, synthesis frontier, control estate* —
+      these earn their nominal form because the theory forms claims about them and puts them in tables.
+      Established technical vocabulary (*defect escape*) is not "simplified" merely for being a noun phrase.
+    - **Prefer verbs *after* the definition.** The target pattern is *define the noun, then make it act*:
+      "Call the boundary the determinization frontier. Alignment moves the frontier; Modeling moves it."
+      "Engineering capital enlarges the region that can be delegated to search." The hotspot to fix is the
+      opposite: several already-defined constructs interacting through weak verbs (*constitutes, provides,
+      produces, operate over, becomes suitable for*) when the sentence could say what each one *does*.
+    - **Cut disposable abstract nouns** that were never defined as constructs: *mechanism count, adoption
+      order, organization of engineering work, judgment operation, complementary pressures.* Prefer "how
+      engineering work is organized" over "the organization of engineering work."
+    - **Cut authorial evaluation** the text can simply make without: *interesting, useful critique, naturally,
+      particularly interesting.* State the claim; let the reader judge it (this composes with the
+      describe-don't-sell rule).
+    - **The test at each site:** is this the technical term the theory is teaching, or just the abstract
+      phrase I happened to reach for to connect two other terms? Keep the first; verbalize the second.
+
 ## Glossary entries — first sentence is the definition
 
 A glossary entry defines a term; it does not pitch it. The house rule:

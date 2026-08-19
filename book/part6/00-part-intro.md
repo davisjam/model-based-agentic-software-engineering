@@ -4,11 +4,10 @@ under sustained engineering pressure; the industrial reconstructions showed rela
 appearing independently, under different constraints. Neither establishes a universal law. Together they
 give us something worth explaining.
 
-This Part attempts that explanation. It begins with a theory of how agentic capacity interacts with the
-engineered environment, states where that theory should hold, and derives predictions that can be
-tested. The argument then widens: if the account is substantially right, what changes in software
-engineering, how that change relates to older engineering practice, and what remains the engineer's
-responsibility.
+Part VI attempts that explanation. It begins with a theory of how agentic capacity interacts with the
+engineered environment, states its scope conditions, and derives testable predictions. The argument then
+widens to ask what changes in software engineering, how those changes relate to older engineering
+practice, and what remains the engineer's responsibility.
 
 As implementation becomes cheaper, engineering effort moves toward
 representation, evidence, authority, and judgment. Engineers increasingly reason through models and
