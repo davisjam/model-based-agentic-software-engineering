@@ -75,78 +75,93 @@
   <text x="114" y="451" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">engineering</text>
   <text x="114" y="462" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">judgment names it</text>
   <!-- ===== COL: SOFTWARE ===== -->
-  <rect x="218" y="100" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <rect id="sw-realized" x="218" y="100" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
   <text x="332.0" y="128" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">realized code</text>
   <text x="332.0" y="148" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">repos · diffs · PRs</text>
-  <rect x="218" y="192" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <rect id="sw-forms" x="218" y="192" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
   <text x="332.0" y="220" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">repeated low-level forms</text>
   <text x="332.0" y="240" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">dict.Put · raw argv · loops</text>
-  <rect x="218" y="284" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <rect id="sw-candidate" x="218" y="284" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
   <text x="332.0" y="312" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate regularities</text>
   <text x="332.0" y="332" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">primitive density · clusters</text>
-  <rect x="218" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
+  <rect id="sw-latent" x="218" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
   <text x="332.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
   <text x="332.0" y="424" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a repeated semantic shape</text>
-  <rect x="218" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="sw-vocab" x="218" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="332.0" y="496" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">typed vocabulary + relations</text>
   <text x="332.0" y="516" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">PdfModel · JobId · MutationSpec</text>
-  <rect x="218" y="560" width="228" height="66" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4"/>
+  <rect id="sw-tools" x="218" y="560" width="228" height="66" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4"/>
   <text x="332.0" y="588" text-anchor="middle" font-size="14.5" font-weight="700" fill="#155c38">tools search &amp; check it</text>
   <text x="332.0" y="608" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">agents reuse, don't re-derive</text>
-  <line x1="332" y1="167" x2="332" y2="190" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
-  <line x1="332" y1="259" x2="332" y2="282" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
-  <line x1="332" y1="351" x2="332" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
-  <line x1="332" y1="443" x2="332" y2="466" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#g-r)"/>
-  <line x1="332" y1="535" x2="332" y2="558" stroke="#155c38" stroke-width="2.3" marker-end="url(#g-g)"/>
+  <!-- edge: sw-realized -> sw-forms -->
+  <line x1="332" y1="165" x2="332" y2="190" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <!-- edge: sw-forms -> sw-candidate -->
+  <line x1="332" y1="257" x2="332" y2="282" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <!-- edge: sw-candidate -> sw-latent -->
+  <line x1="332" y1="349" x2="332" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <!-- edge: sw-latent -> sw-vocab -->
+  <line x1="332" y1="441" x2="332" y2="466" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#g-r)"/>
+  <!-- edge: sw-vocab -> sw-tools -->
+  <line x1="332" y1="533" x2="332" y2="558" stroke="#155c38" stroke-width="2.3" marker-end="url(#g-g)"/>
   <!-- ===== COL: KNOWLEDGE WORK ===== -->
-  <rect x="462" y="100" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <rect id="kw-docs" x="462" y="100" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
   <text x="576.0" y="128" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">documents · records</text>
   <text x="576.0" y="148" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">conversations · notes</text>
-  <rect x="462" y="192" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <rect id="kw-terms" x="462" y="192" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
   <text x="576.0" y="220" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">repeated terms + relations</text>
   <text x="576.0" y="240" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">phrases · entity patterns</text>
-  <rect x="462" y="284" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <rect id="kw-clusters" x="462" y="284" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
   <text x="576.0" y="312" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate clusters</text>
   <text x="576.0" y="332" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">synonyms · concept groups</text>
-  <rect x="462" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <rect id="kw-latent" x="462" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
   <text x="576.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
   <text x="576.0" y="424" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a domain distinction</text>
-  <rect x="462" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4" stroke-dasharray="5 3"/>
+  <rect id="kw-term" x="462" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4" stroke-dasharray="5 3"/>
   <text x="576.0" y="496" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">canonical term + relations</text>
   <text x="576.0" y="516" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">the agreed name</text>
-  <rect x="462" y="560" width="228" height="66" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4" stroke-dasharray="5 3"/>
+  <rect id="kw-lexicon" x="462" y="560" width="228" height="66" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4" stroke-dasharray="5 3"/>
   <text x="576.0" y="588" text-anchor="middle" font-size="14.5" font-weight="700" fill="#155c38">lexicon · ontology · schema</text>
   <text x="576.0" y="608" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">future reading joins through it</text>
-  <line x1="576" y1="167" x2="576" y2="190" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
-  <line x1="576" y1="259" x2="576" y2="282" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
-  <line x1="576" y1="351" x2="576" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
-  <line x1="576" y1="443" x2="576" y2="466" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#g-r)"/>
-  <line x1="576" y1="535" x2="576" y2="558" stroke="#155c38" stroke-width="2.3" marker-end="url(#g-g)"/>
+  <!-- edge: kw-docs -> kw-terms -->
+  <line x1="576" y1="165" x2="576" y2="190" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <!-- edge: kw-terms -> kw-clusters -->
+  <line x1="576" y1="257" x2="576" y2="282" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <!-- edge: kw-clusters -> kw-latent -->
+  <line x1="576" y1="349" x2="576" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <!-- edge: kw-latent -> kw-term -->
+  <line x1="576" y1="441" x2="576" y2="466" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#g-r)"/>
+  <!-- edge: kw-term -> kw-lexicon -->
+  <line x1="576" y1="533" x2="576" y2="558" stroke="#155c38" stroke-width="2.3" marker-end="url(#g-g)"/>
   <!-- ===== COL: MECHANICAL / CAD ===== -->
-  <rect x="706" y="100" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <rect id="cad-drawings" x="706" y="100" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
   <text x="820.0" y="128" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">drawings · assemblies</text>
   <text x="820.0" y="148" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">geometry</text>
-  <rect x="706" y="192" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <rect id="cad-geom" x="706" y="192" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
   <text x="820.0" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">repeated geometry + constraints</text>
   <text x="820.0" y="240" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">interfaces · parameter bundles</text>
-  <rect x="706" y="284" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <rect id="cad-pattern" x="706" y="284" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
   <text x="820.0" y="312" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">candidate pattern / component</text>
   <text x="820.0" y="332" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a reusable form</text>
-  <rect x="706" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
+  <rect id="cad-latent" x="706" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
   <text x="820.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
   <text x="820.0" y="424" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a design regularity</text>
-  <rect x="706" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4" stroke-dasharray="5 3"/>
+  <rect id="cad-feature" x="706" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4" stroke-dasharray="5 3"/>
   <text x="820.0" y="496" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">named feature / component</text>
   <text x="820.0" y="516" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">constraint-model · interface</text>
-  <rect x="706" y="560" width="228" height="66" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4" stroke-dasharray="5 3"/>
+  <rect id="cad-vocab" x="706" y="560" width="228" height="66" rx="10" fill="#e7f0ea" stroke="#155c38" stroke-width="2.4" stroke-dasharray="5 3"/>
   <text x="820.0" y="578" text-anchor="middle" font-size="14.5" font-weight="700" fill="#155c38">reusable engineering</text>
   <text x="820.0" y="595" text-anchor="middle" font-size="14.5" font-weight="700" fill="#155c38">vocabulary</text>
   <text x="820.0" y="614" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">future designs refer to it</text>
-  <line x1="820" y1="167" x2="820" y2="190" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
-  <line x1="820" y1="259" x2="820" y2="282" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
-  <line x1="820" y1="351" x2="820" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
-  <line x1="820" y1="443" x2="820" y2="466" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#g-r)"/>
-  <line x1="820" y1="535" x2="820" y2="558" stroke="#155c38" stroke-width="2.3" marker-end="url(#g-g)"/>
+  <!-- edge: cad-drawings -> cad-geom -->
+  <line x1="820" y1="165" x2="820" y2="190" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <!-- edge: cad-geom -> cad-pattern -->
+  <line x1="820" y1="257" x2="820" y2="282" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <!-- edge: cad-pattern -> cad-latent -->
+  <line x1="820" y1="349" x2="820" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#g-k)"/>
+  <!-- edge: cad-latent -> cad-feature -->
+  <line x1="820" y1="441" x2="820" y2="466" stroke="#9a3f12" stroke-width="2.3" marker-end="url(#g-r)"/>
+  <!-- edge: cad-feature -> cad-vocab -->
+  <line x1="820" y1="533" x2="820" y2="558" stroke="#155c38" stroke-width="2.3" marker-end="url(#g-g)"/>
   <!-- footer: the curl -->
   <line x1="40" y1="656" x2="920" y2="656" stroke="#e7e2da" stroke-width="1.4"/>
   <text x="480" y="682" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">Model induction converts repeated form into reusable engineering vocabulary.</text>

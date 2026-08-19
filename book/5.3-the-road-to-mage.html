@@ -722,18 +722,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- upload -->
   <g>
-    <rect x="18" y="150" width="120" height="100" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+    <rect id="upload" x="18" y="150" width="120" height="100" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
     <text x="78" y="192" text-anchor="middle" font-size="17" font-weight="700" fill="#3730a3">Upload</text>
     <text x="78" y="214" text-anchor="middle" font-size="13" fill="#4338ca">a PPTX, DOCX,</text>
     <text x="78" y="230" text-anchor="middle" font-size="13" fill="#4338ca">XLSX, or PDF</text>
   </g>
-  <line x1="140" y1="200" x2="176" y2="200" stroke="#475569" stroke-width="2" marker-end="url(#sysov-arrow)"/>
+  <!-- edge: upload -> front-door -->
+  <line x1="138" y1="200" x2="176" y2="200" stroke="#475569" stroke-width="2" marker-end="url(#sysov-arrow)"/>
 
   <!-- six responsibility boxes -->
   <!-- box template: width 138, gap to arrow -->
   <g font-size="14">
     <!-- 1 Front door -->
-    <rect x="178" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <rect id="front-door" x="178" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
     <text x="248" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">1 · Front door</text>
     <text x="248" y="178" text-anchor="middle" fill="#334155">authenticate,</text>
     <text x="248" y="196" text-anchor="middle" fill="#334155">meter quota,</text>
@@ -741,7 +742,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="248" y="256" text-anchor="middle" font-size="12" fill="#64748b">deterministic</text>
 
     <!-- 2 Dispatcher -->
-    <rect x="338" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <rect id="dispatcher" x="338" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
     <text x="408" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">2 · Dispatcher</text>
     <text x="408" y="178" text-anchor="middle" fill="#334155">split into</text>
     <text x="408" y="196" text-anchor="middle" fill="#334155">chunks — slides,</text>
@@ -749,7 +750,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="408" y="256" text-anchor="middle" font-size="12" fill="#64748b">deterministic</text>
 
     <!-- 3 Remediation core -->
-    <rect x="498" y="120" width="140" height="160" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <rect id="remediation-core" x="498" y="120" width="140" height="160" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
     <text x="568" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="#7c2d12">3 · Remediation</text>
     <text x="568" y="166" text-anchor="middle" font-size="15" font-weight="700" fill="#7c2d12">core</text>
     <text x="568" y="192" text-anchor="middle" fill="#78350f">rule OR a</text>
@@ -758,7 +759,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="568" y="256" text-anchor="middle" font-size="12" fill="#92400e">model + code</text>
 
     <!-- 4 Check engine -->
-    <rect x="658" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <rect id="check-engine" x="658" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
     <text x="728" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">4 · Check engine</text>
     <text x="728" y="178" text-anchor="middle" fill="#334155">map each finding</text>
     <text x="728" y="196" text-anchor="middle" fill="#334155">to a standard</text>
@@ -766,7 +767,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="728" y="256" text-anchor="middle" font-size="12" fill="#64748b">deterministic</text>
 
     <!-- 5 Fidelity validator -->
-    <rect x="818" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <rect id="fidelity-validator" x="818" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
     <text x="888" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">5 · Fidelity</text>
     <text x="888" y="166" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">validator</text>
     <text x="888" y="192" text-anchor="middle" fill="#334155">catch more</text>
@@ -775,7 +776,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="888" y="256" text-anchor="middle" font-size="12" fill="#64748b">deterministic</text>
 
     <!-- 6 Provenance layer -->
-    <rect x="978" y="120" width="124" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <rect id="provenance-layer" x="978" y="120" width="124" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
     <text x="1040" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">6 · Provenance</text>
     <text x="1040" y="166" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">layer</text>
     <text x="1040" y="192" text-anchor="middle" fill="#334155">stamp every</text>
@@ -786,17 +787,23 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- inter-stage arrows -->
   <g stroke="#475569" stroke-width="2">
+    <!-- edge: front-door -> dispatcher -->
     <line x1="318" y1="200" x2="336" y2="200" marker-end="url(#sysov-arrow)"/>
+    <!-- edge: dispatcher -> remediation-core -->
     <line x1="478" y1="200" x2="496" y2="200" marker-end="url(#sysov-arrow)"/>
+    <!-- edge: remediation-core -> check-engine -->
     <line x1="638" y1="200" x2="656" y2="200" marker-end="url(#sysov-arrow)"/>
+    <!-- edge: check-engine -> fidelity-validator -->
     <line x1="798" y1="200" x2="816" y2="200" marker-end="url(#sysov-arrow)"/>
+    <!-- edge: fidelity-validator -> provenance-layer -->
     <line x1="958" y1="200" x2="976" y2="200" marker-end="url(#sysov-arrow)"/>
   </g>
 
   <!-- output arrow down + result -->
+  <!-- edge: provenance-layer -> result -->
   <line x1="1040" y1="280" x2="1040" y2="316" stroke="#475569" stroke-width="2" marker-end="url(#sysov-arrow)"/>
   <g>
-    <rect x="820" y="320" width="290" height="64" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+    <rect id="result" x="820" y="320" width="290" height="64" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
     <text x="965" y="348" text-anchor="middle" font-size="15" font-weight="700" fill="#065f46">Corrected file + evidence</text>
     <text x="965" y="368" text-anchor="middle" font-size="13" fill="#047857">standards findings · fidelity · provenance</text>
   </g>

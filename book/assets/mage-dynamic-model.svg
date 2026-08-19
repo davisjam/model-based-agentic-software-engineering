@@ -77,7 +77,8 @@
 
   <!-- ============ [4] PURPLE capability-amplification loop (drawn first, behind boxes) ==== -->
   <g class="loop loop4">
-    <path d="M600,236 C500,182 322,178 186,246" fill="none" stroke="#7c6bb0" stroke-width="3"
+    <!-- edge: governed-environment -> agentic-capacity -->
+    <path d="M600,236 C500,182 200,218 200,248" fill="none" stroke="#7c6bb0" stroke-width="3"
           stroke-linecap="round" marker-end="url(#mageDM-dm-purple)"/>
     <circle cx="400" cy="176" r="16" fill="#fdfcf9" stroke="#7c6bb0" stroke-width="2.5"/>
     <text x="400" y="182" text-anchor="middle" font-size="18" font-weight="700" fill="#7c6bb0">4</text>
@@ -87,7 +88,8 @@
 
   <!-- ============ [3] GREEN governance-adaptation return (behind boxes) ============ -->
   <g class="loop loop3">
-    <path d="M670,972 L846,972 L846,338 L814,338" fill="none" stroke="#1f7a4d" stroke-width="2.6"
+    <!-- edge: governance-adaptation -> governed-environment -->
+    <path d="M670,972 L846,972 L846,338 L811,338" fill="none" stroke="#1f7a4d" stroke-width="2.6"
           stroke-linejoin="round" marker-end="url(#mageDM-dm-green)"/>
     <text x="862" y="655" text-anchor="middle" font-size="14.08" font-style="italic" fill="#1f7a4d"
           transform="rotate(-90 862 655)">adapts &#8594; a better E</text>
@@ -95,12 +97,18 @@
 
   <!-- ============ NEUTRAL SPINE (shared system plumbing) ============ -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M305,298 L556,290" marker-end="url(#mageDM-dm-ink)"/>   <!-- capacity -> E -->
-    <path d="M180,365 L180,466" marker-end="url(#mageDM-dm-ink)"/>   <!-- capacity -> work -->
-    <path d="M305,525 L556,525" marker-end="url(#mageDM-dm-ink)"/>   <!-- work -> performance -->
-    <path d="M685,415 L685,466" marker-end="url(#mageDM-dm-ink)"/>   <!-- E -> performance -->
-    <path d="M628,595 L512,662" marker-end="url(#mageDM-dm-ink)"/>   <!-- performance -> pressure -->
-    <path d="M205,580 L320,662" marker-end="url(#mageDM-dm-ink)"/>   <!-- work -> pressure (mismatch) -->
+    <!-- edge: agentic-capacity -> governed-environment -->
+    <path d="M305,298 L559,290" marker-end="url(#mageDM-dm-ink)"/>   <!-- capacity -> E -->
+    <!-- edge: agentic-capacity -> agentic-work -->
+    <path d="M180,365 L180,469" marker-end="url(#mageDM-dm-ink)"/>   <!-- capacity -> work -->
+    <!-- edge: agentic-work -> realized-performance -->
+    <path d="M305,525 L559,525" marker-end="url(#mageDM-dm-ink)"/>   <!-- work -> performance -->
+    <!-- edge: governed-environment -> realized-performance -->
+    <path d="M685,415 L685,469" marker-end="url(#mageDM-dm-ink)"/>   <!-- E -> performance -->
+    <!-- edge: realized-performance -> governance-pressure -->
+    <path d="M628,595 C587.8,619.1 513,634 513,664" marker-end="url(#mageDM-dm-ink)"/>   <!-- performance -> pressure -->
+    <!-- edge: agentic-work -> governance-pressure -->
+    <path d="M205,580 C245.6,609.4 321,634 321,664" marker-end="url(#mageDM-dm-ink)"/>   <!-- work -> pressure (mismatch) -->
   </g>
   <text x="430" y="283" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">exercises</text>
   <text x="702" y="448" text-anchor="start" font-size="14.08" font-style="italic" fill="#57534e">shapes</text>
@@ -108,7 +116,8 @@
 
   <!-- ============ [1] BLUE bootstrap input (not a feedback loop) ============ -->
   <g class="loop loop1">
-    <path d="M518,135 C556,172 596,200 634,232" fill="none" stroke="#2f5169" stroke-width="3"
+    <!-- edge: prior-knowledge -> governed-environment -->
+    <path d="M518,135 C556,172 634,204 634,234" fill="none" stroke="#2f5169" stroke-width="3"
           stroke-linecap="round" marker-end="url(#mageDM-dm-blue)"/>
     <circle cx="585" cy="182" r="16" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.5"/>
     <text x="585" y="188" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">1</text>
@@ -117,7 +126,8 @@
 
   <!-- ============ [2] RED churn / discovery loop ============ -->
   <g class="loop loop2">
-    <path d="M410,765 L410,801" fill="none" stroke="#b23b3b" stroke-width="3" marker-end="url(#mageDM-dm-red)"/>
+    <!-- edge: governance-pressure -> structural-diagnosis -->
+    <path d="M410,765 L410,804" fill="none" stroke="#b23b3b" stroke-width="3" marker-end="url(#mageDM-dm-red)"/>
     <circle cx="452" cy="784" r="15" fill="#fdfcf9" stroke="#b23b3b" stroke-width="2.5"/>
     <text x="452" y="790" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">2</text>
     <text x="486" y="789" text-anchor="start" font-size="14.08" font-style="italic" font-weight="600" fill="#b23b3b">Pressure / discovery</text>
@@ -125,7 +135,8 @@
 
   <!-- ============ [3] GREEN governance-adaptation edge ============ -->
   <g class="loop loop3">
-    <path d="M410,885 L410,921" fill="none" stroke="#1f7a4d" stroke-width="3" marker-end="url(#mageDM-dm-green)"/>
+    <!-- edge: structural-diagnosis -> governance-adaptation -->
+    <path d="M410,885 L410,924" fill="none" stroke="#1f7a4d" stroke-width="3" marker-end="url(#mageDM-dm-green)"/>
     <circle cx="452" cy="904" r="15" fill="#fdfcf9" stroke="#1f7a4d" stroke-width="2.5"/>
     <text x="452" y="910" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">3</text>
     <text x="486" y="909" text-anchor="start" font-size="14.08" font-style="italic" font-weight="600" fill="#1f7a4d">Governance adaptation</text>
@@ -133,19 +144,19 @@
 
   <!-- ============ BOXES (shared system) ============ -->
   <!-- Prior engineering knowledge (bootstrap input) -->
-  <rect x="270" y="40" width="320" height="95" rx="9" fill="#f6f4ef" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="prior-knowledge" x="270" y="40" width="320" height="95" rx="9" fill="#f6f4ef" stroke="#2f5169" stroke-width="2.2"/>
   <text x="430" y="76" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Prior engineering knowledge</text>
   <text x="430" y="102" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">standards &#183; requirements</text>
   <text x="430" y="121" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">brownfield assets &#183; prior lessons</text>
 
   <!-- Agentic capacity -->
-  <rect x="55" y="250" width="250" height="115" rx="9" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="agentic-capacity" x="55" y="250" width="250" height="115" rx="9" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.2"/>
   <text x="180" y="292" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Agentic capacity</text>
   <text x="180" y="318" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">model capability</text>
   <text x="180" y="337" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">concurrency &#183; raw velocity</text>
 
   <!-- Governed environment E (the hub) -->
-  <rect x="560" y="235" width="250" height="180" rx="9" fill="#f6f4ef" stroke="#1f7a4d" stroke-width="3.2"/>
+  <rect id="governed-environment" x="560" y="235" width="250" height="180" rx="9" fill="#f6f4ef" stroke="#1f7a4d" stroke-width="3.2"/>
   <text x="685" y="280" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Governed</text>
   <text x="685" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">environment</text>
   <text x="685" y="330" text-anchor="middle" font-size="21" font-weight="700" fill="#1f7a4d">E</text>
@@ -154,31 +165,31 @@
   <text x="685" y="392" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">coherence &#183; economy</text>
 
   <!-- Agentic work -->
-  <rect x="55" y="470" width="250" height="110" rx="9" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="agentic-work" x="55" y="470" width="250" height="110" rx="9" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.2"/>
   <text x="180" y="512" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Agentic work</text>
   <text x="180" y="538" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">attempted change</text>
   <text x="180" y="557" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">task frontier</text>
 
   <!-- Realized performance -->
-  <rect x="560" y="470" width="250" height="125" rx="9" fill="#fdfcf9" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="realized-performance" x="560" y="470" width="250" height="125" rx="9" fill="#fdfcf9" stroke="#57534e" stroke-width="2.2"/>
   <text x="685" y="508" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Realized performance</text>
   <text x="685" y="534" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">durable throughput</text>
   <text x="685" y="553" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">defect escape</text>
   <text x="685" y="572" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">human attention</text>
 
   <!-- Governance pressure -->
-  <rect x="150" y="665" width="520" height="100" rx="9" fill="#fdfcf9" stroke="#b23b3b" stroke-width="2.4"/>
+  <rect id="governance-pressure" x="150" y="665" width="520" height="100" rx="9" fill="#fdfcf9" stroke="#b23b3b" stroke-width="2.4"/>
   <text x="410" y="700" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">Governance pressure</text>
   <text x="410" y="726" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">churn &#183; recurring failure &#183; escaped defect</text>
   <text x="410" y="745" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">repeated intervention &#183; control friction</text>
 
   <!-- Structural diagnosis -->
-  <rect x="150" y="805" width="520" height="80" rx="9" fill="#fdfcf9" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="structural-diagnosis" x="150" y="805" width="520" height="80" rx="9" fill="#fdfcf9" stroke="#57534e" stroke-width="2.2"/>
   <text x="410" y="840" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structural diagnosis</text>
   <text x="410" y="866" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">local defect &#183; missing representation &#183; weak authority &#183; stale mechanism?</text>
 
   <!-- Governance adaptation -->
-  <rect x="150" y="925" width="520" height="95" rx="9" fill="#fdfcf9" stroke="#1f7a4d" stroke-width="2.4"/>
+  <rect id="governance-adaptation" x="150" y="925" width="520" height="95" rx="9" fill="#fdfcf9" stroke="#1f7a4d" stroke-width="2.4"/>
   <text x="410" y="962" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Governance adaptation</text>
   <text x="410" y="990" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">represent &#183; constrain &#183; validate &#183; strengthen &#183; reconcile &#183; retire</text>
   <text x="410" y="1010" text-anchor="middle" font-size="14.08" font-style="italic" fill="#57534e">changes the shape of future work</text>

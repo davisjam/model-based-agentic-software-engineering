@@ -105,10 +105,20 @@ right in the one layout the author eyeballed and drifts the moment the line move
       is the marker's tip overhang (~1–3px for a thin arrowhead) so the tip lands right on the boundary.
       Then **render and zoom the arrowhead** to confirm the head sits on the rim — this is sub-pixel work
       the numbers get close to but the eye settles (exemplar: the observed-vs-declared figure's A→B / A→C).
-    - **The lint is marker-aware.** It reads `marker-end`/`marker-start`: a directed end is allowed to sit
-      slightly *outside* the rim (up to a marker length) and is flagged if it is *buried* deep inside — the
-      opposite of the undirected must-be-inside rule. So correct directed seating passes and a buried head
-      is caught; you do not have to push the endpoint inside to satisfy it. Most real diagrams are directed.
+    - **The lint is marker-aware.** It reads `marker-end`/`marker-start` (on the drawable OR an enclosing
+      `<g>`): a directed end is allowed to sit slightly *outside* the rim (up to a marker length) and is
+      flagged if it is *buried* deep inside — the opposite of the undirected must-be-inside rule. So correct
+      directed seating passes and a buried head is caught; you do not have to push the endpoint inside to
+      satisfy it. Most real diagrams are directed.
+    - **A head arrives PERPENDICULAR into the border it crosses.** `orient="auto"` points a head along the
+      edge's end tangent, so a curve (or diagonal line) approaching at a shallow angle lays its head flat
+      along the border — it reads as landing *in* the node, not *arriving at* it. The head must aim into the
+      node: **radially** for a circle, along the **inward normal of the entered edge** for a box — which for
+      a WIDE box is *not* aiming at the box centre (an arrow dropping straight into the top of a wide box is
+      correct though the centre lies far to one side). The lint checks this (tolerance a few degrees above
+      the coordinate-rounding floor); its **`--fix`** auto-repairs it deterministically — re-aiming a cubic's
+      last control point, or bending a straight line / M-L path into a gentle curve that departs along its
+      chord and arrives perpendicular. `python3 book-models/lint_figure_dangling_edge.py --fix`.
   - **Forbidden / absent edges.** Two idioms, opposite handling. A *deliberately-unreached ghost* — an arc
     that curves away and is struck through to read as "does not connect" — is exempt from connect-inside;
     forcing it onto the node contradicts its meaning, so leave it unannotated (the lint skips it). A
@@ -123,6 +133,12 @@ right in the one layout the author eyeballed and drifts the moment the line move
     recognizes only `id`-bearing `<circle>`/`<rect>`, so a `<polygon>` (diamond, parallelogram, hexagon) or
     a cylinder group can't yet carry a lint-legible id — annotate such a figure only after adding a
     transparent-rect anchor, or leave it float-fixed-by-eye until the node reader grows those shapes.
+  - **Fork / merge — one path per branch.** A connector the reader sees as a single trunk that *splits* to
+    N targets (or N sources that *merge* into one head) has no single drawable whose two ends land on named
+    nodes. Encode it as **one `<path>` per logical branch**, each running source→target so each terminates on
+    its own node; the branches share/overlap pixels along the trunk, so it still reads as one fork/merge while
+    every edge is lint-legible. (Recurred across several chapter graphs — obligation→N-questions forks,
+    N-methods→gate merges.)
 - **Reach for the format's named shape in general** — `<rect rx>` for a rounded box, `<marker>` for an
   arrow, a `<pattern>` / `<symbol>` for a repeated motif, a Mermaid edge label for an edge label — before
   composing one from strokes. The named form is shorter to write, reads correctly to a tool and a screen

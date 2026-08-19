@@ -233,71 +233,83 @@
   <rect x="0" y="0" width="1000" height="700" fill="#fdfcf9"/>
 
   <!-- ===== shared top: the horizon condition ===== -->
-  <rect x="270" y="24" width="460" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="cf-1-task" x="270" y="24" width="460" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="500" y="50" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Task exceeds the finite active state</text>
   <text x="500" y="72" text-anchor="middle" font-size="16" fill="#57534e">some reasoning state must be reconstructed</text>
 
+  <!-- edge: task -> hinge -->
   <line x1="500" y1="84" x2="500" y2="106" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)"/>
 
   <!-- ===== HINGE: the branch node (rust) ===== -->
-  <rect x="310" y="108" width="380" height="64" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
+  <rect id="cf-1-hinge" x="310" y="108" width="380" height="64" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
   <text x="500" y="135" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#9a3f12">REPRESENTATION MATTERS</text>
   <text x="500" y="157" text-anchor="middle" font-size="15" fill="#57534e">it determines how much must be reconstructed</text>
 
-  <!-- fork arrows from hinge node to the two branch heads -->
-  <line x1="410" y1="172" x2="260" y2="206" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)"/>
-  <line x1="590" y1="172" x2="740" y2="206" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)"/>
+  <!-- fork arrows from hinge node to the two branch heads (seated toward each head's centre) -->
+  <!-- edge: hinge -> raw-impl -->
+  <path stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)" d="M410,172 C380.2,183.9 325,176 325,206"/>
+  <!-- edge: hinge -> abstraction -->
+  <path stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)" d="M590,172 C619.8,183.9 675,176 675,206"/>
 
   <!-- ================= LEFT BRANCH: raw implementation -> churn ================= -->
-  <rect x="90" y="208" width="320" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="cf-1-raw-impl" x="90" y="208" width="320" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="250" y="232" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Raw implementation as</text>
   <text x="250" y="253" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">working substrate</text>
+  <!-- edge: raw-impl -> large-active -->
   <line x1="250" y1="264" x2="250" y2="292" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)"/>
 
-  <rect x="90" y="294" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="cf-1-large-active" x="90" y="294" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="250" y="324" text-anchor="middle" font-size="17" fill="#1c1917">Large active state</text>
+  <!-- edge: large-active -> repeated-recon -->
   <line x1="250" y1="342" x2="250" y2="370" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)"/>
 
-  <rect x="90" y="372" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="cf-1-repeated-recon" x="90" y="372" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="250" y="402" text-anchor="middle" font-size="17" fill="#1c1917">Repeated reconstruction</text>
+  <!-- edge: repeated-recon -> structure-lost -->
   <line x1="250" y1="420" x2="250" y2="448" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)"/>
 
-  <rect x="90" y="450" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="cf-1-structure-lost" x="90" y="450" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="250" y="480" text-anchor="middle" font-size="17" fill="#1c1917">Relevant structure may be lost</text>
+  <!-- edge: structure-lost -> churn -->
   <line x1="250" y1="498" x2="250" y2="526" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)"/>
 
-  <rect x="150" y="528" width="200" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
+  <rect id="cf-1-churn" x="150" y="528" width="200" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
   <text x="250" y="563" text-anchor="middle" font-size="21" font-weight="700" fill="#b23b3b">Churn</text>
 
   <!-- ================= RIGHT BRANCH: purposeful abstraction -> longer coherent reasoning ============ -->
-  <rect x="590" y="208" width="320" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <rect id="cf-1-abstraction" x="590" y="208" width="320" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
   <text x="750" y="242" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Purposeful abstraction</text>
+  <!-- edge: abstraction -> smaller-state -->
   <line x1="750" y1="264" x2="750" y2="292" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)"/>
 
-  <rect x="590" y="294" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="cf-1-smaller-state" x="590" y="294" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="750" y="324" text-anchor="middle" font-size="17" fill="#1c1917">Smaller relevant state</text>
+  <!-- edge: smaller-state -> lower-burden -->
   <line x1="750" y1="342" x2="750" y2="370" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)"/>
 
-  <rect x="590" y="372" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="cf-1-lower-burden" x="590" y="372" width="320" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="750" y="402" text-anchor="middle" font-size="17" fill="#1c1917">Lower reconstruction burden</text>
+  <!-- edge: lower-burden -> longer-reasoning -->
   <line x1="750" y1="420" x2="750" y2="448" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)"/>
 
-  <rect x="620" y="450" width="260" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <rect id="cf-1-longer-reasoning" x="620" y="450" width="260" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="750" y="475" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Longer coherent</text>
   <text x="750" y="496" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">reasoning</text>
 
   <!-- ===== causal spine (foot) ===== -->
   <text x="90" y="626" font-size="13" font-weight="700" letter-spacing="1.5" fill="#57534e">THE CAUSAL SPINE</text>
   <g fill="#f6f4ef" stroke="#57534e" stroke-width="1.8">
-    <rect x="90" y="636" width="230" height="44" rx="9"/>
-    <rect x="385" y="636" width="230" height="44" rx="9"/>
-    <rect x="680" y="636" width="230" height="44" rx="9"/>
+    <rect id="cf-1-spine-fas" x="90" y="636" width="230" height="44" rx="9"/>
+    <rect id="cf-1-spine-recon" x="385" y="636" width="230" height="44" rx="9"/>
+    <rect id="cf-1-spine-rep" x="680" y="636" width="230" height="44" rx="9"/>
   </g>
   <text x="205" y="663" text-anchor="middle" font-size="13" fill="#1c1917">finite active state</text>
   <text x="500" y="663" text-anchor="middle" font-size="13" fill="#1c1917">reconstruction unavoidable</text>
   <text x="795" y="663" text-anchor="middle" font-size="13" fill="#1c1917">representation determines burden</text>
   <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#cf-1-rh-k)">
+    <!-- edge: spine-fas -> spine-recon -->
     <line x1="320" y1="658" x2="383" y2="658"/>
+    <!-- edge: spine-recon -> spine-rep -->
     <line x1="615" y1="658" x2="678" y2="658"/>
   </g>
 </svg></figure>

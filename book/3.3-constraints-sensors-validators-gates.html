@@ -799,46 +799,54 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="0" y="0" width="1000" height="610" fill="#fdfcf9"/>
 
   <!-- top: engineering obligation (rust) -->
-  <rect x="320" y="26" width="360" height="58" rx="12" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
+  <rect id="obligation" x="320" y="26" width="360" height="58" rx="12" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
 
   <!-- property-question boxes (gray) -->
-  <rect x="45" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <rect x="360" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <rect x="675" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="q-exclude" x="45" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="q-badstate" x="360" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="q-eventuality" x="675" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
 
   <!-- mechanism boxes (gray, the Move) -->
-  <rect x="45" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
-  <rect x="360" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
-  <rect x="675" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="m-constraint" x="45" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="m-explicit" x="360" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="m-temporal" x="675" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
 
   <!-- method sub-boxes (gray) -->
-  <rect x="45" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
-  <rect x="360" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
-  <rect x="675" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
+  <rect id="s-constraint" x="45" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
+  <rect id="s-explicit" x="360" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
+  <rect id="s-temporal" x="675" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
 
   <!-- gate (green) -->
-  <rect x="280" y="470" width="440" height="72" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+  <rect id="gate" x="280" y="470" width="440" height="72" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
 
   <!-- ===== arrows ===== -->
-  <line x1="500" y1="84" x2="500" y2="106" stroke="#1c1917" stroke-width="2"/>
-  <line x1="185" y1="106" x2="815" y2="106" stroke="#1c1917" stroke-width="2"/>
-  <line x1="185" y1="106" x2="185" y2="138" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
-  <line x1="500" y1="106" x2="500" y2="138" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
-  <line x1="815" y1="106" x2="815" y2="138" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <!-- edge: obligation -> q-exclude -->
+  <path d="M500,84 L500,106 L185,106 L185,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <!-- edge: obligation -> q-badstate -->
+  <path d="M500,84 L500,112 M500,132 L500,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <!-- edge: obligation -> q-eventuality -->
+  <path d="M500,84 L500,106 L815,106 L815,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
 
+  <!-- edge: q-exclude -> m-constraint -->
   <line x1="185" y1="194" x2="185" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <!-- edge: q-badstate -> m-explicit -->
   <line x1="500" y1="194" x2="500" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <!-- edge: q-eventuality -> m-temporal -->
   <line x1="815" y1="194" x2="815" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
 
+  <!-- edge: m-constraint -> s-constraint -->
   <line x1="185" y1="302" x2="185" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <!-- edge: m-explicit -> s-explicit -->
   <line x1="500" y1="302" x2="500" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <!-- edge: m-temporal -> s-temporal -->
   <line x1="815" y1="302" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
 
-  <line x1="185" y1="396" x2="185" y2="450" stroke="#1c1917" stroke-width="2"/>
-  <line x1="815" y1="396" x2="815" y2="450" stroke="#1c1917" stroke-width="2"/>
-  <line x1="185" y1="450" x2="500" y2="450" stroke="#1c1917" stroke-width="2"/>
-  <line x1="815" y1="450" x2="500" y2="450" stroke="#1c1917" stroke-width="2"/>
-  <line x1="500" y1="396" x2="500" y2="468" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <!-- edge: s-constraint -> gate -->
+  <path d="M185,396 L185,450 L500,450 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <!-- edge: s-explicit -> gate -->
+  <path d="M500,396 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <!-- edge: s-temporal -> gate -->
+  <path d="M815,396 L815,450 L500,450 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="61" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="0.5" fill="#9a3f12">ENGINEERING OBLIGATION</text>

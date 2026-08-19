@@ -25,7 +25,10 @@ THE SCHEMA (opt-in per figure; see plugin/mage/skills/self-communicate/drawing/d
 
 WHAT IT REPORTS: an endpoint that does not land inside its declared node under the figure's grammar
 ("declared target vs reality" divergence); an `edge:` comment naming an id the SVG does not define; a declared
-edge whose paired drawable is missing.
+edge whose paired drawable is missing; AND a directed ARROWHEAD whose end-travel direction is not parallel to
+(target-node-center - endpoint) — i.e. the head skims the border instead of pointing INTO the node
+(_ANGLE_TOL degrees). `--fix` auto-repairs the angle on curved (cubic) edges: it re-aims the control point
+adjacent to the head so orient="auto" points the head in, preserving the endpoint and the curve's sweep.
 
 SCOPE. Only figures that have adopted the schema (contain at least one `<!-- edge: ... -->` comment) are
 checked; un-annotated figures are skipped, so adoption is incremental (H.9-1 first).
@@ -130,6 +133,216 @@ def _ok_end(pt: tuple, node: tuple, directed: bool, tol: float) -> bool:
     return s <= tol
 
 
+# ---- arrowhead-angle check (a directed head must POINT AT its target node's center) ----
+# THE DEFECT CLASS. A directed marker is `orient="auto"`, so the head follows the edge's END TANGENT. When a
+# curved edge approaches its target at a shallow angle, that tangent runs nearly PARALLEL to the target's
+# border and the head skims flat along the edge instead of arriving head-on. Every head in these figures is
+# hand-set to arrive head-on, so the invariant is exact: the end-travel direction (line: x2-x1,y2-y1 ; path:
+# endpoint - adjacent control point) must be PARALLEL to the inward aim — RADIAL for a circle, the inward
+# NORMAL of the entered edge for a box (a head drops PERPENDICULAR into the border it crosses; see _aim).
+_ANGLE_TOL = 3.0  # degrees. Correctly-aimed heads in the migrated corpus deviate <=0.5 deg (1-decimal
+                  # coordinate rounding + fan hubs sharing a source point). 3 deg sits ~6x above that floor,
+                  # so no correct head trips it, yet it still catches a visibly skimming head: the smallest
+                  # real misaim found was 3.2 deg and flat heads ran 16-70 deg. Tighten toward the 0.5 floor
+                  # only if a future correct figure never exceeds it.
+
+
+def _aim(node: tuple, pt: tuple) -> tuple:
+    """Ideal INWARD aim direction for a directed head landing at `pt` on `node` — the direction the head
+    should travel to arrive head-on.
+      * circle: RADIAL, toward the center (center − pt).
+      * rect: the inward NORMAL of the border the head crosses (the nearest edge). A head must arrive
+        PERPENDICULAR to the border it enters, which for a WIDE box is NOT the same as aiming at the box
+        center: an arrow dropping straight into the top of a wide box is correct even though the centre lies
+        far to one side. Aiming at the centre would wrongly flag (and tilt) every perpendicular off-centre head."""
+    if node[0] == "circle":
+        return (node[1] - pt[0], node[2] - pt[1])
+    _, x, y, w, h = node
+    px, py = pt
+    cands = [(abs(py - y), (0.0, 1.0)), (abs(py - (y + h)), (0.0, -1.0)),
+             (abs(px - x), (1.0, 0.0)), (abs(px - (x + w)), (-1.0, 0.0))]
+    return min(cands, key=lambda c: c[0])[1]
+
+
+def _ang_between(u: tuple, v: tuple):
+    """Unsigned angle in degrees between vectors u and v; None if either is ~zero-length."""
+    if math.hypot(*u) < 1e-9 or math.hypot(*v) < 1e-9:
+        return None
+    d = math.degrees(math.atan2(u[1], u[0]) - math.atan2(v[1], v[0])) % 360.0
+    return d if d <= 180.0 else 360.0 - d
+
+
+def _travel(tag: str, at_last: bool):
+    """Outward end-travel vector at one end (endpoint minus the adjacent interior point). This is the
+    direction `orient="auto"` points the head. line: the far endpoint is the adjacent point; path: the
+    neighbouring control point in the d list."""
+    if tag.startswith("<line"):
+        vals = [_ATTR(tag, a) for a in ("x1", "y1", "x2", "y2")]
+        if None in vals:
+            return None
+        x1, y1, x2, y2 = (float(v) for v in vals)
+        return (x2 - x1, y2 - y1) if at_last else (x1 - x2, y1 - y2)
+    d = re.search(r'\bd="([^"]*)"', tag)
+    if not d:
+        return None
+    nums = [float(n) for n in re.findall(_NUM, d.group(1))]
+    if len(nums) < 4:
+        return None
+    if at_last:
+        return (nums[-2] - nums[-4], nums[-1] - nums[-3])
+    return (nums[0] - nums[2], nums[1] - nums[3])
+
+
+def _seat_assignment(a, b, na, nb):
+    """Which physical endpoint plugs into which declared node — the pairing with least total boundary
+    distance. Returns (node_of_a, node_of_b)."""
+    p1 = abs(_signed(a, na)) + abs(_signed(b, nb))
+    p2 = abs(_signed(a, nb)) + abs(_signed(b, na))
+    return (na, nb) if p1 <= p2 else (nb, na)
+
+
+def _angle_findings(drawable, a, b, node_a, node_b, d_first, d_last, label, src, dst):
+    """Angle findings for the directed end(s) of one edge: a head whose travel deviates > _ANGLE_TOL from
+    (target-center - endpoint)."""
+    out = []
+    for pt, node, directed, at_last, side in ((a, node_a, d_first, False, "src"),
+                                              (b, node_b, d_last, True, "dst")):
+        if not directed:
+            continue
+        trav = _travel(drawable, at_last)
+        if trav is None:
+            continue
+        aim = _aim(node, pt)
+        dev = _ang_between(trav, aim)
+        if dev is not None and dev > _ANGLE_TOL:
+            out.append(f"edge {label}: {side}-side head ({pt[0]:.0f},{pt[1]:.0f}) aims {dev:.0f} deg off "
+                       f"perpendicular into the {dst if side == 'dst' else src} border (head skims instead of pointing in)")
+    return out
+
+
+# ---- auto-repair (--fix): re-aim the control point adjacent to a misaimed directed head ----
+_CUBIC_RE = re.compile(
+    r'^\s*M\s*(' + _NUM + r')[ ,]+(' + _NUM + r')\s*'
+    r'C\s*(' + _NUM + r')[ ,]+(' + _NUM + r')\s+'
+    r'(' + _NUM + r')[ ,]+(' + _NUM + r')\s+'
+    r'(' + _NUM + r')[ ,]+(' + _NUM + r')\s*$')
+
+
+def _fmt(v: float) -> str:
+    s = f"{v:.1f}"
+    return s[:-2] if s.endswith(".0") else s
+
+
+def _reaim_cubic(d: str, aim: tuple, at_last: bool, L: float = 30.0):
+    """Re-aim the control point ADJACENT to the directed end so the end tangent points in the inward `aim`
+    direction; keep the endpoint and the far control point (preserves the curve's sweep). Returns the new d,
+    or None if d is not a single cubic (leave those for a human)."""
+    m = _CUBIC_RE.match(d.strip())
+    if not m:
+        return None
+    x0, y0, x1, y1, x2, y2, x3, y3 = (float(g) for g in m.groups())
+    n = math.hypot(*aim) or 1.0
+    ux, uy = aim[0] / n, aim[1] / n
+    if at_last:
+        x2, y2 = x3 - L * ux, y3 - L * uy   # control OPPOSITE the inward aim -> tangent (endpoint-control) = aim
+    else:
+        x1, y1 = x0 - L * ux, y0 - L * uy
+    return f"M{_fmt(x0)},{_fmt(y0)} C{_fmt(x1)},{_fmt(y1)} {_fmt(x2)},{_fmt(y2)} {_fmt(x3)},{_fmt(y3)}"
+
+
+_STRAIGHT_D_RE = re.compile(
+    r'^\s*M\s*(' + _NUM + r')[ ,]+(' + _NUM + r')\s*L\s*(' + _NUM + r')[ ,]+(' + _NUM + r')\s*$')
+
+
+def _perp_cubic_d(a: tuple, b: tuple, node_b: tuple, L: float = 30.0):
+    """A cubic `d` from a to b that departs along the chord and ARRIVES PERPENDICULAR into node_b's border —
+    the fix for a straight directed segment (line or M-L path) whose head skims. None if b already aims in."""
+    aim = _aim(node_b, b)
+    dev = _ang_between((b[0] - a[0], b[1] - a[1]), aim)
+    if dev is None or dev <= _ANGLE_TOL:
+        return None
+    n = math.hypot(*aim) or 1.0
+    ux, uy = aim[0] / n, aim[1] / n
+    cp2 = (b[0] - L * ux, b[1] - L * uy)                                   # arrive perpendicular
+    cp1 = (a[0] + 0.35 * (b[0] - a[0]), a[1] + 0.35 * (b[1] - a[1]))       # depart along the chord
+    return (f"M{_fmt(a[0])},{_fmt(a[1])} C{_fmt(cp1[0])},{_fmt(cp1[1])} "
+            f"{_fmt(cp2[0])},{_fmt(cp2[1])} {_fmt(b[0])},{_fmt(b[1])}")
+
+
+def _line_to_perp_cubic(tag: str, a: tuple, b: tuple, node_b: tuple, d_last: bool):
+    """Convert a misaimed directed straight <line> into a <path> cubic (a straight line has no control point
+    to re-aim, so it must become a curve). Handles the common marker-end (last) directed head. Returns the
+    new <path ...> tag, or None if nothing to do."""
+    if not d_last:
+        return None
+    d = _perp_cubic_d(a, b, node_b)
+    if d is None:
+        return None
+    core = re.sub(r'\s(x1|y1|x2|y2)="[^"]*"', '', tag).replace("<line", "<path", 1)
+    return core.replace("/>", f' d="{d}"/>', 1)
+
+
+def fix(path: str) -> int:
+    """Re-aim every misaimed directed CUBIC head in `path` perpendicular into its target's border and write
+    the SVG back. Straight <line>s are left alone: a seated endpoint already lies on its aim ray, and moving
+    the other end risks un-seating it. Idempotent — a second run finds nothing to re-aim."""
+    svg = open(path, encoding="utf-8").read()
+    if "<!-- edge:" not in svg:
+        return 0
+    nodes = _nodes(svg)
+    replacements = []
+    for m in _EDGE_RE.finditer(svg):
+        src, dst = m.group(1), m.group(3)
+        if src not in nodes or dst not in nodes:
+            continue
+        drawable = m.group(0)[m.group(0).rfind("<"):]
+        ep = _endpoints(drawable)
+        if ep is None:
+            continue
+        a, b = ep
+        na, nb = nodes[src], nodes[dst]
+        g_start, g_end = _enclosing_markers(svg, m.start() + m.group(0).rfind("<"))
+        d_first = "marker-start" in drawable or g_start
+        d_last = "marker-end" in drawable or g_end
+        node_a, node_b = _seat_assignment(a, b, na, nb)
+        if drawable.startswith("<path"):
+            dm = re.search(r'\bd="([^"]*)"', drawable)
+            if not dm:
+                continue
+            d = dm.group(1)
+            new_d = d
+            for pt, node, directed, at_last in ((a, node_a, d_first, False), (b, node_b, d_last, True)):
+                if not directed:
+                    continue
+                trav = _travel(f'<path d="{new_d}"/>', at_last)
+                aim = _aim(node, pt)
+                dev = _ang_between(trav, aim) if trav else None
+                if dev is None or dev <= _ANGLE_TOL:
+                    continue
+                cand = _reaim_cubic(new_d, aim, at_last)
+                if cand is not None:
+                    new_d = cand
+            if new_d == d and d_last:                       # a straight M-L path: bend it to arrive perpendicular
+                sm = _STRAIGHT_D_RE.match(d.strip())
+                if sm:
+                    a2 = (float(sm.group(1)), float(sm.group(2)))
+                    b2 = (float(sm.group(3)), float(sm.group(4)))
+                    cand = _perp_cubic_d(a2, b2, node_b)
+                    if cand is not None:
+                        new_d = cand
+            if new_d != d:
+                replacements.append((drawable, drawable.replace(f'd="{d}"', f'd="{new_d}"', 1)))
+        elif drawable.startswith("<line"):
+            new_tag = _line_to_perp_cubic(drawable, a, b, node_b, d_last)
+            if new_tag is not None:
+                replacements.append((drawable, new_tag))
+    for old, new in replacements:
+        svg = svg.replace(old, new, 1)
+    if replacements:
+        open(path, "w", encoding="utf-8").write(svg)
+    return len(replacements)
+
+
 def _enclosing_markers(svg: str, pos: int) -> tuple:
     """(has_marker_start, has_marker_end) contributed by any <g> still OPEN at byte `pos`. A marker can be set
     on an enclosing group instead of the drawable itself (e.g. `<g marker-end=...><line/></g>`), so directed
@@ -188,14 +401,34 @@ def analyze(path: str) -> list:
             if not (_ok_end(b, na, d_last, tol) or _ok_end(b, nb, d_last, tol)):
                 bad.append(_describe(b, d_last))
             findings.append(f"edge {label}: " + ("; ".join(bad) or "endpoints do not cover both nodes"))
+        # ANGLE check — independent of seating: a directed head must POINT AT the node it plugs into.
+        node_a, node_b = _seat_assignment(a, b, na, nb)
+        findings.extend(_angle_findings(drawable, a, b, node_a, node_b, d_first, d_last, label, src, dst))
     return findings
 
 
 def main() -> int:
     argv = sys.argv[1:]
+    do_fix = "--fix" in argv
+    argv = [a for a in argv if a != "--fix"]
     files = [os.path.abspath(argv[0])] if argv else sorted(glob.glob(os.path.join(_ASSETS, "*.svg")))
+    if do_fix:
+        total_fixed = 0
+        print("== figure-arrowhead-angle --fix — re-aim misaimed directed heads at their target center ==")
+        for f in files:
+            try:
+                n = fix(f)
+            except Exception as exc:  # pragma: no cover
+                print(f"  {os.path.basename(f)}: could not fix ({exc})")
+                continue
+            if n:
+                print(f"  {os.path.basename(f)} — re-aimed {n} directed head(s)")
+            total_fixed += n
+        print(f"  {total_fixed} head(s) re-aimed"
+              if total_fixed else "  nothing to fix — every head already aims at its target center")
+        print()  # then fall through to a verification pass over the (now repaired) files
     total = 0
-    print("== figure-dangling-edge — every declared edge must touch its named nodes "
+    print("== figure-dangling-edge + arrowhead-angle — declared edges touch their nodes AND heads aim in "
           "[AUDIT-ONLY, exits 0] ==")
     for f in files:
         try:

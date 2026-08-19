@@ -40,35 +40,43 @@
   <text x="52" y="80" font-size="15" font-style="italic" fill="#57534e">improve the agent's access to software</text>
 
   <!-- agent -->
-  <rect x="430" y="98" width="140" height="46" rx="9" fill="#fff" stroke="#57534e" stroke-width="2"/>
+  <rect id="agent" x="430" y="98" width="140" height="46" rx="9" fill="#fff" stroke="#57534e" stroke-width="2"/>
   <text x="500" y="127" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Agent</text>
 
   <!-- three inputs -->
   <g font-size="14.5" fill="#44403c" text-anchor="middle">
-    <rect x="96"  y="196" width="212" height="58" rx="9" fill="#fff" stroke="#c9c2b4" stroke-width="1.5"/>
+    <rect id="retrieval" x="96"  y="196" width="212" height="58" rx="9" fill="#fff" stroke="#c9c2b4" stroke-width="1.5"/>
     <text x="202" y="221">retrieval / context</text>
     <text x="202" y="241" font-size="12.5" fill="#78716c">repository-level retrieval</text>
-    <rect x="394" y="196" width="212" height="58" rx="9" fill="#fff" stroke="#c9c2b4" stroke-width="1.5"/>
+    <rect id="interfaces" x="394" y="196" width="212" height="58" rx="9" fill="#fff" stroke="#c9c2b4" stroke-width="1.5"/>
     <text x="500" y="221">interfaces / tools</text>
     <text x="500" y="241" font-size="12.5" fill="#78716c">agent-computer interface</text>
-    <rect x="692" y="196" width="212" height="58" rx="9" fill="#fff" stroke="#c9c2b4" stroke-width="1.5"/>
+    <rect id="program-structure" x="692" y="196" width="212" height="58" rx="9" fill="#fff" stroke="#c9c2b4" stroke-width="1.5"/>
     <text x="798" y="221">program structure</text>
     <text x="798" y="241" font-size="12.5" fill="#78716c">program-aware search</text>
   </g>
-  <!-- agent → inputs -->
-  <line x1="470" y1="150" x2="230" y2="192" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
-  <line x1="500" y1="150" x2="500" y2="192" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
-  <line x1="530" y1="150" x2="770" y2="192" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
-  <!-- inputs → repository -->
-  <line x1="202" y1="254" x2="430" y2="296" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <!-- agent -> inputs: middle runs straight; the two diagonals swoop and dive in (last control aimed at target centre) -->
+  <!-- edge: agent -> retrieval -->
+  <path d="M470,144 C390,175 215,164 215,194" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <!-- edge: agent -> interfaces -->
+  <line x1="500" y1="144" x2="500" y2="192" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <!-- edge: agent -> program-structure -->
+  <path d="M530,144 C610,175 785,164 785,194" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <!-- inputs -> repository -->
+  <!-- edge: retrieval -> repository -->
+  <path d="M202,254 C300,272 445,264 445,294" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <!-- edge: interfaces -> repository -->
   <line x1="500" y1="254" x2="500" y2="292" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
-  <line x1="798" y1="254" x2="570" y2="296" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <!-- edge: program-structure -> repository -->
+  <path d="M798,254 C700,272 555,264 555,294" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
 
   <!-- repository / task -->
-  <rect x="384" y="296" width="232" height="44" rx="9" fill="#efe9dd" stroke="#a8a093" stroke-width="1.8"/>
+  <rect id="repository" x="384" y="296" width="232" height="44" rx="9" fill="#efe9dd" stroke="#a8a093" stroke-width="1.8"/>
   <text x="500" y="323" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Repository / task</text>
-  <!-- → patch -->
+  <!-- -> patch (bare-text target gets a transparent anchor) -->
+  <!-- edge: repository -> patch -->
   <line x1="500" y1="340" x2="500" y2="356" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <rect id="patch" x="418" y="358" width="164" height="14" fill="none" stroke="none"/>
   <text x="500" y="371" text-anchor="middle" font-size="14.5" fill="#57534e">patch / implementation</text>
 
   <!-- ───────────── transition band ───────────── -->
@@ -81,12 +89,13 @@
   <text x="52" y="518" font-size="15" font-style="italic" fill="#57534e">engineer the environment</text>
 
   <!-- engineer -->
-  <rect x="430" y="536" width="140" height="46" rx="9" fill="#fff" stroke="#155c38" stroke-width="2"/>
+  <rect id="engineer" x="430" y="536" width="140" height="46" rx="9" fill="#fff" stroke="#155c38" stroke-width="2"/>
   <text x="500" y="565" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Engineer</text>
+  <!-- edge: engineer -> gee -->
   <line x1="500" y1="582" x2="500" y2="606" stroke="#155c38" stroke-width="1.8" marker-end="url(#coeArrow)"/>
 
   <!-- governed engineering environment -->
-  <rect x="96" y="612" width="808" height="196" rx="12" fill="#e9f2ec" stroke="#155c38" stroke-width="2.4"/>
+  <rect id="gee" x="96" y="612" width="808" height="196" rx="12" fill="#e9f2ec" stroke="#155c38" stroke-width="2.4"/>
   <text x="120" y="640" font-size="16" font-weight="700" letter-spacing=".4" fill="#155c38">Governed Engineering Environment</text>
   <text x="884" y="640" text-anchor="end" font-size="12.5" font-style="italic" fill="#3f6d51">first-class engineered object</text>
 
@@ -101,13 +110,17 @@
   <rect x="120" y="718" width="764" height="34" rx="8" fill="#f4f8f5" stroke="#cadbcf" stroke-width="1.3"/>
   <text x="500" y="740" text-anchor="middle" font-size="13.5" fill="#44403c">evidence &#183; controls &#183; infrastructure &#183; workflows</text>
 
-  <!-- agents → implementation, nested -->
-  <rect x="380" y="760" width="240" height="38" rx="8" fill="#fff" stroke="#a9c6b5" stroke-width="1.5"/>
+  <!-- agents -> implementation, nested (bare-text target gets a transparent anchor) -->
+  <rect id="agents-box" x="380" y="760" width="240" height="38" rx="8" fill="#fff" stroke="#a9c6b5" stroke-width="1.5"/>
   <text x="430" y="784" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">agents</text>
+  <!-- edge: agents-box -> implementation -->
   <line x1="480" y1="779" x2="512" y2="779" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <rect id="implementation" x="510" y="770" width="104" height="14" fill="none" stroke="none"/>
   <text x="566" y="784" text-anchor="middle" font-size="13.5" fill="#44403c">implementation</text>
 
-  <!-- GEE → product -->
+  <!-- GEE -> product (bare-text target gets a transparent anchor) -->
+  <!-- edge: gee -> product -->
   <line x1="500" y1="808" x2="500" y2="828" stroke="#155c38" stroke-width="1.8" marker-end="url(#coeArrow)"/>
+  <rect id="product" x="458" y="832" width="84" height="17" fill="none" stroke="none"/>
   <text x="500" y="850" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Product</text>
 </svg>
