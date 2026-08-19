@@ -54,8 +54,9 @@
   <!-- edge: uploaded -> db-updated -->
   <line x1="400" y1="152" x2="466" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mf-b)"/>
   <!-- forbidden bypass STAGED -> DB_UPDATED (rust, struck-but-spanning) -->
+  <!-- edge-grammar: keep-angles -->
   <!-- edge: staged .. db-updated -->
-  <path d="M212,152 L240,152 L240,211 L440,211 L440,152 L468,152" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#mf-r)"/>
+  <path d="M152,172 C152,214 528,214 528,174" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#mf-r)"/>
   <g stroke="#9a3f12" stroke-width="3.2" stroke-linecap="round">
     <line x1="329" y1="200" x2="351" y2="222"/>
     <line x1="351" y1="200" x2="329" y2="222"/>

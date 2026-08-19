@@ -94,29 +94,32 @@
   <path d="M252,516 C300,498 322,468 352,438" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
 
   <!-- ===== Scheduler (ONE box emits the plan) ===== -->
-  <rect x="730" y="60" width="430" height="470" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
+  <!-- plan_for(host) is seated at the feeder ROW (y≈280), not above it, so the two test-tier
+       feeders join it with short, mostly-horizontal edges (no up-and-over, no diamond crossing).
+       fan-out / serialize sit BELOW it; the panel grows to hold them. -->
+  <rect x="730" y="60" width="430" height="530" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
   <text x="746" y="94" font-size="22" font-weight="700" fill="#1c1917">Scheduler</text>
 
-  <rect id="plan-host" x="800" y="150" width="290" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="945" y="188" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">plan_for(host)</text>
-  <text x="945" y="216" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">reads the per-host profile</text>
+  <rect id="plan-host" x="800" y="280" width="290" height="92" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <text x="945" y="320" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">plan_for(host)</text>
+  <text x="945" y="348" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">reads the per-host profile</text>
 
   <!-- JOIN edge 3: the resulting test set -> scheduler (both tiers feed the plan; seat on plan's left border) -->
-  <!-- edge: local-staging -> plan-host -->
-  <path d="M545,308 L552,308 L552,384 L760,384 L760,194 L798,194" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
-  <!-- edge: staging-only -> plan-host -->
-  <path d="M700,292 L749,292 L749,222 L798,222" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
+  <!-- edge: staging-only -> plan-host (short horizontal, straight into the left border) -->
+  <path d="M700,308 L800,308" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
+  <!-- edge: local-staging -> plan-host (drops just below the feeder row, runs under staging-only, into the left border) -->
+  <path d="M525,340 L525,356 L800,356" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
 
   <!-- the plan's two modes: SHAPE encodes parallel (rounded) vs serialize (square) -->
   <!-- edge: plan-host -> fan-out -->
-  <path d="M945,238 L945,354" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
-  <text x="880" y="330" font-size="18" font-style="italic" fill="#57534e">cost gate only</text>
-  <rect id="fan-out" x="770" y="356" width="320" height="60" rx="30" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="930" y="393" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">fan out — parallel</text>
+  <path d="M945,372 L945,410" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
+  <text x="795" y="397" font-size="18" font-style="italic" fill="#57534e">cost gate only</text>
+  <rect id="fan-out" x="770" y="410" width="320" height="60" rx="30" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="930" y="447" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">fan out — parallel</text>
 
-  <!-- edge: plan-host -> serialize -->
-  <path d="M830,238 C790,340 812,432 812,462" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
-  <text x="880" y="448" font-size="18" font-style="italic" fill="#57534e">cost gate + a scarce host</text>
-  <rect id="serialize" x="770" y="466" width="320" height="60" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="930" y="503" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">serialize — fan / join</text>
+  <!-- edge: plan-host -> serialize (routes down the right, clear of fan-out, into serialize's right border) -->
+  <path d="M1065,372 L1065,392 L1122,392 L1122,535 L1090,535" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
+  <text x="800" y="495" font-size="18" font-style="italic" fill="#57534e">cost gate + a scarce host</text>
+  <rect id="serialize" x="770" y="505" width="320" height="60" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <text x="930" y="542" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">serialize — fan / join</text>
 </svg>

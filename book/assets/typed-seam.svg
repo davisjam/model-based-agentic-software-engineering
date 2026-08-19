@@ -53,8 +53,9 @@
   <text x="427" y="138" text-anchor="middle" font-size="16" fill="#57534e">permitted</text>
 
   <!-- forbidden bypass: routed below the row, struck with an X (a struck-but-spanning "no edge" — plug both ends, annotate dotted) -->
+  <!-- edge-grammar: keep-angles -->
   <!-- edge: passes .. library -->
-  <path d="M185,152 L210,152 L210,250 L540,250 L540,184" fill="none" stroke="#b0aaa2" stroke-width="1.8"
+  <path d="M105,184 L105,250 L540,250 L540,184" fill="none" stroke="#b0aaa2" stroke-width="1.8"
         marker-end="url(#ts-arF)"/>
   <line x1="312" y1="240" x2="332" y2="260" stroke="#b23b3b" stroke-width="2.6"/>
   <line x1="332" y1="240" x2="312" y2="260" stroke="#b23b3b" stroke-width="2.6"/>
