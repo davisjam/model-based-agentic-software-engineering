@@ -33,98 +33,114 @@
   </defs>
 
   <!-- ===== EXISTING CODEBASE (territory) ===== -->
-  <rect x="360" y="32" width="240" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="existing-codebase" x="360" y="32" width="240" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">EXISTING CODEBASE</text>
   <text x="480" y="76" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the territory</text>
+  <!-- edge: existing-codebase -> weak-signals -->
   <line x1="480" y1="84" x2="480" y2="98" stroke="#57534e" stroke-width="2.4" marker-end="url(#dm-n)"/>
 
   <!-- ===== WEAK DISCOVERY SIGNALS ===== -->
-  <rect x="325" y="100" width="310" height="106" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="weak-signals" x="325" y="100" width="310" height="106" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="128" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">weak discovery signals</text>
   <text x="480" y="153" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">primitive density</text>
   <text x="480" y="173" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">repeated shapes</text>
   <text x="480" y="193" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">component / boundary view</text>
+  <!-- edge: weak-signals -> partition -->
   <line x1="480" y1="206" x2="480" y2="224" stroke="#57534e" stroke-width="2.4" marker-end="url(#dm-n)"/>
 
   <!-- ===== PARTITION FINDINGS (pivot) ===== -->
-  <rect x="360" y="226" width="240" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
+  <rect id="partition" x="360" y="226" width="240" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
   <text x="480" y="256" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">PARTITION FINDINGS</text>
 
-  <!-- fan to three branches -->
+  <!-- fan to three branches: one path per branch, each partition -> its head; src ends seated inside partition -->
   <g fill="none" stroke="#57534e" stroke-width="2.4">
-    <path d="M408,274 C300,290 220,286 160,300" marker-end="url(#dm-n)"/>
-    <path d="M480,274 L480,300" marker-end="url(#dm-n)"/>
-    <path d="M552,274 C660,290 720,286 780,300" marker-end="url(#dm-n)"/>
+    <!-- edge: partition -> legit-shape -->
+    <path d="M408,272 C300,290 160,270 160,300" marker-end="url(#dm-n)"/>
+    <!-- edge: partition -> mechanical-debt -->
+    <path d="M480,272 L480,300" marker-end="url(#dm-n)"/>
+    <!-- edge: partition -> latent-concept -->
+    <path d="M552,272 C660,290 780,270 780,300" marker-end="url(#dm-n)"/>
   </g>
 
   <!-- branch heads -->
-  <rect x="52" y="302" width="216" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="legit-shape" x="52" y="302" width="216" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="160" y="332" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">LEGITIMATE SHAPE</text>
   <text x="160" y="354" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">protocol &#183; tool &#183; boundary &#183; test</text>
 
-  <rect x="372" y="302" width="216" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="mechanical-debt" x="372" y="302" width="216" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="332" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">MECHANICAL DEBT</text>
   <text x="480" y="354" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">annotation &#183; cleanup</text>
 
-  <rect x="672" y="302" width="216" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="latent-concept" x="672" y="302" width="216" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="780" y="332" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">LATENT CONCEPT</text>
   <text x="780" y="354" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">repeated semantic shape</text>
 
   <!-- heads to outcomes -->
+  <!-- edge: legit-shape -> accept-exempt -->
   <line x1="160" y1="368" x2="160" y2="388" stroke="#57534e" stroke-width="2.4" marker-end="url(#dm-n)"/>
+  <!-- edge: mechanical-debt -> codemod -->
   <line x1="480" y1="368" x2="480" y2="388" stroke="#57534e" stroke-width="2.4" marker-end="url(#dm-n)"/>
-  <line x1="780" y1="368" x2="780" y2="385" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dm-b)"/>
+  <!-- edge: latent-concept -> name-model -->
+  <line x1="780" y1="368" x2="780" y2="383" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dm-b)"/>
 
   <!-- terminal outcomes (gray dead-ends) -->
-  <rect x="60" y="390" width="200" height="52" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
+  <rect id="accept-exempt" x="60" y="390" width="200" height="52" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
   <text x="160" y="415" text-anchor="middle" font-size="16.5" font-weight="700" fill="#1c1917">accept / exempt</text>
   <text x="160" y="433" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">leave as-is</text>
 
-  <rect x="380" y="390" width="200" height="52" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
+  <rect id="codemod" x="380" y="390" width="200" height="52" rx="10" fill="#f0ece5" stroke="#57534e" stroke-width="2"/>
   <text x="480" y="415" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">codemod</text>
   <text x="480" y="433" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">mechanical fix</text>
 
   <!-- live branch: NAME THE MODEL (blue) -->
-  <rect x="668" y="385" width="224" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="name-model" x="668" y="385" width="224" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="780" y="411" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">NAME THE MODEL</text>
   <text x="780" y="432" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the concept earns a name</text>
 
-  <!-- NAME THE MODEL fans to vocabulary + relations -->
+  <!-- NAME THE MODEL fans to vocabulary + relations; src ends seated inside name-model -->
   <g fill="none" stroke="#2f5169" stroke-width="2.4">
-    <path d="M760,445 C620,478 430,478 300,510" marker-end="url(#dm-b)"/>
-    <path d="M792,445 C740,476 690,480 640,510" marker-end="url(#dm-b)"/>
+    <!-- edge: name-model -> typed-vocab -->
+    <path d="M760,443 C620,478 300,480 300,510" marker-end="url(#dm-b)"/>
+    <!-- edge: name-model -> explicit-relations -->
+    <path d="M792,443 C740,476 640,480 640,510" marker-end="url(#dm-b)"/>
   </g>
 
-  <rect x="160" y="512" width="280" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="typed-vocab" x="160" y="512" width="280" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="300" y="540" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">typed vocabulary</text>
   <text x="300" y="562" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">JobId &#183; ChunkId &#183; MutationSpec &#8230;</text>
 
-  <rect x="500" y="512" width="280" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="explicit-relations" x="500" y="512" width="280" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="640" y="540" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">explicit relations</text>
   <text x="640" y="562" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">ownership &#183; boundary &#183; behavior &#8230;</text>
 
-  <!-- merge into MIGRATE CONSUMERS -->
+  <!-- merge into MIGRATE CONSUMERS: one path per branch, each vocab/relations -> migrate-consumers -->
   <g fill="none" stroke="#2f5169" stroke-width="2.4">
-    <path d="M300,578 C300,602 380,606 428,622" marker-end="url(#dm-b)"/>
-    <path d="M640,578 C640,602 580,606 532,622" marker-end="url(#dm-b)"/>
+    <!-- edge: typed-vocab -> migrate-consumers -->
+    <path d="M300,576 C300,602 428,592 428,622" marker-end="url(#dm-b)"/>
+    <!-- edge: explicit-relations -> migrate-consumers -->
+    <path d="M640,576 C640,602 532,592 532,622" marker-end="url(#dm-b)"/>
   </g>
 
-  <rect x="330" y="624" width="300" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="migrate-consumers" x="330" y="624" width="300" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="650" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">MIGRATE CONSUMERS</text>
   <text x="480" y="671" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">codemods + agents</text>
+  <!-- edge: migrate-consumers -> narrower-enforcement -->
   <line x1="480" y1="682" x2="480" y2="706" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#dm-r)"/>
 
   <!-- NARROWER ENFORCEMENT (rust) -->
-  <rect x="330" y="708" width="300" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="narrower-enforcement" x="330" y="708" width="300" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="480" y="734" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">NARROWER ENFORCEMENT</text>
   <text x="480" y="755" text-anchor="middle" font-size="14" font-style="italic" fill="#9a3f12">types &#183; lints &#183; drift guard</text>
+  <!-- edge: narrower-enforcement -> stronger-substrate -->
   <line x1="480" y1="766" x2="480" y2="790" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dm-b)"/>
 
   <!-- STRONGER MODEL SUBSTRATE (blue) -->
-  <rect x="315" y="792" width="330" height="56" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="stronger-substrate" x="315" y="792" width="330" height="56" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="480" y="826" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">STRONGER MODEL SUBSTRATE</text>
 
-  <!-- next pass -->
+  <!-- next pass: transparent anchor over the label so the dashed edge plugs into a named node -->
+  <rect id="next-pass" x="770" y="812" width="70" height="18" fill="none" stroke="none"/>
+  <!-- edge: stronger-substrate .. next-pass -->
   <line x1="645" y1="820" x2="766" y2="820" stroke="#57534e" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#dm-n)"/>
   <text x="774" y="825" font-size="14" font-style="italic" fill="#57534e">next pass</text>
 

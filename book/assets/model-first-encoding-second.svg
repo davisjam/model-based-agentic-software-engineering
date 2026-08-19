@@ -30,41 +30,49 @@
   </defs>
 
   <!-- layer 1: engineering question (ink) -->
+  <!-- transparent anchor: the engineering question is the source node of the ladder -->
+  <rect id="question" x="110" y="16" width="460" height="48" fill="none" stroke="none"/>
   <text x="340" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">ENGINEERING QUESTION</text>
   <text x="340" y="52" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Can durable state name an artifact recovery has not yet published?</text>
+  <!-- edge: question -> model -->
   <line x1="340" y1="62" x2="340" y2="86" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mf-b)"/>
 
   <!-- layer 2: MODEL (blue) -->
-  <rect x="70" y="90" width="540" height="150" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="model" x="70" y="90" width="540" height="150" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="94" y="116" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">MODEL</text>
   <!-- legal chain -->
   <g font-size="15" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect x="92" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
+    <rect id="staged" x="92" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
     <text x="152" y="157">STAGED</text>
-    <rect x="280" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
+    <rect id="uploaded" x="280" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
     <text x="340" y="157">UPLOADED</text>
-    <rect x="468" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
+    <rect id="db-updated" x="468" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
     <text x="528" y="157">DB_UPDATED</text>
   </g>
+  <!-- edge: staged -> uploaded -->
   <line x1="212" y1="152" x2="278" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mf-b)"/>
+  <!-- edge: uploaded -> db-updated -->
   <line x1="400" y1="152" x2="466" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mf-b)"/>
-  <!-- forbidden bypass STAGED -> DB_UPDATED (rust) -->
+  <!-- forbidden bypass STAGED -> DB_UPDATED (rust, struck-but-spanning) -->
+  <!-- edge: staged .. db-updated -->
   <path d="M152,172 C152,214 528,214 528,174" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#mf-r)"/>
   <g stroke="#9a3f12" stroke-width="3.2" stroke-linecap="round">
     <line x1="329" y1="200" x2="351" y2="222"/>
     <line x1="351" y1="200" x2="329" y2="222"/>
   </g>
   <text x="340" y="234" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">may not skip publication</text>
+  <!-- edge: model -> encoding -->
   <line x1="340" y1="240" x2="340" y2="266" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
 
   <!-- layer 3: ONE EXECUTABLE REPRESENTATION (gray) -->
-  <rect x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="encoding" x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="340" y="294" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
   <text x="340" y="313" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">explicit legal-transition relation</text>
+  <!-- edge: encoding -> implementation -->
   <line x1="340" y1="322" x2="340" y2="348" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
 
   <!-- layer 4: IMPLEMENTATION (gray) -->
-  <rect x="110" y="352" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="implementation" x="110" y="352" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="340" y="376" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">IMPLEMENTATION</text>
   <text x="340" y="399" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">upload + persistence + retry + logging + error handling + &#8230;</text>
 

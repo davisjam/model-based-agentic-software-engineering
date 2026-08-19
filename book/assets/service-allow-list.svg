@@ -30,41 +30,47 @@
 
   <!-- ===== left spine: public boundary + public node descend to the worker ===== -->
   <!-- Internet (public boundary, blue) -->
-  <rect x="90" y="66" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="internet" x="90" y="66" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="165" y="97" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Internet</text>
 
   <!-- web (the only public node, blue) -->
-  <rect x="90" y="150" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="web" x="90" y="150" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="165" y="181" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">web</text>
   <text x="252" y="181" font-size="16" fill="#57534e">the only public node</text>
 
   <!-- doc editor -->
-  <rect x="90" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="doc-editor" x="90" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="165" y="265" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">doc editor</text>
 
   <!-- worker -->
-  <rect x="90" y="318" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="worker" x="90" y="318" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="165" y="349" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">worker</text>
 
   <!-- ===== right column: the three services the worker may reach ===== -->
-  <rect x="400" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="render" x="400" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="475" y="265" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">render</text>
 
-  <rect x="400" y="318" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="ocr" x="400" y="318" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="475" y="349" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">OCR</text>
 
-  <rect x="400" y="402" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
+  <rect id="generation" x="400" y="402" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
   <text x="475" y="433" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">generation</text>
 
   <!-- ===== permitted edges (solid) — spine ===== -->
+  <!-- edge: internet -> web -->
   <line x1="165" y1="116" x2="165" y2="150" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <!-- edge: web -> doc-editor -->
   <line x1="165" y1="200" x2="165" y2="234" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <!-- edge: doc-editor -> worker -->
   <line x1="165" y1="284" x2="165" y2="318" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
 
-  <!-- ===== permitted edges (solid) — worker fan-out ===== -->
-  <line x1="240" y1="336" x2="400" y2="262" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <!-- ===== permitted edges (solid) — worker fan-out; curves arrive perpendicular into each service ===== -->
+  <!-- edge: worker -> render -->
+  <path d="M240,336 C296,309 370,262 400,262" fill="none" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <!-- edge: worker -> ocr -->
   <line x1="240" y1="343" x2="400" y2="343" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
-  <line x1="240" y1="350" x2="400" y2="424" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <!-- edge: worker -> generation -->
+  <path d="M240,350 C296,376 370,424 400,424" fill="none" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
 
   <!-- ===== legend: every unshown edge is forbidden ===== -->
   <text x="150" y="483" text-anchor="end" font-size="16" fill="#57534e">any edge not drawn</text>

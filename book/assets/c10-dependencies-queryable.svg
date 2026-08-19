@@ -22,41 +22,48 @@
   </defs>
 
   <!-- CHANGE X -->
-  <rect x="400" y="30" width="200" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="change" x="400" y="30" width="200" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="500" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHANGE X</text>
   <text x="500" y="76" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">proposed</text>
+  <!-- edge: change -> substrate -->
   <line x1="500" y1="84" x2="500" y2="132" stroke="#57534e" stroke-width="2.2" marker-end="url(#c10-ah-n)"/>
 
   <!-- SUBSTRATE NODE -->
-  <rect x="350" y="136" width="300" height="58" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.4"/>
+  <rect id="substrate" x="350" y="136" width="300" height="58" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.4"/>
   <text x="500" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">SUBSTRATE NODE</text>
 
-  <!-- fan to three dependents -->
-  <path d="M420,194 C320,222 250,232 214,250" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#c10-ah-r)"/>
+  <!-- fan to three dependents (one path per branch) -->
+  <!-- edge: substrate -> control-a -->
+  <path d="M420,194 C320,222 214,220 214,250" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#c10-ah-r)"/>
+  <!-- edge: substrate .. control-b -->
   <line x1="500" y1="194" x2="500" y2="250" stroke="#57534e" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#c10-ah-n)"/>
-  <path d="M580,194 C680,222 750,232 786,250" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#c10-ah-g)"/>
+  <!-- edge: substrate -> model-c -->
+  <path d="M580,194 C680,222 786,220 786,250" fill="none" stroke="#1f7a4d" stroke-width="2.2" marker-end="url(#c10-ah-g)"/>
 
   <!-- CONTROL A (blocks) -->
-  <rect x="110" y="254" width="200" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <rect id="control-a" x="110" y="254" width="200" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="210" y="282" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">CONTROL A</text>
   <text x="210" y="304" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">blocks</text>
 
   <!-- CONTROL B (unaffected) -->
-  <rect x="400" y="254" width="200" height="64" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <rect id="control-b" x="400" y="254" width="200" height="64" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="500" y="282" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">CONTROL B</text>
   <text x="500" y="304" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">unaffected</text>
 
   <!-- MODEL C (derives) -->
-  <rect x="690" y="254" width="200" height="64" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <rect id="model-c" x="690" y="254" width="200" height="64" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="790" y="282" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">MODEL C</text>
   <text x="790" y="304" text-anchor="middle" font-size="14" font-weight="700" fill="#155c38">derives</text>
 
-  <!-- converge to BLAST RADIUS -->
-  <path d="M210,318 C210,362 400,378 452,398" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c10-ah-n)"/>
+  <!-- converge to BLAST RADIUS (one path per branch) -->
+  <!-- edge: control-a -> blast -->
+  <path d="M210,318 C210,362 452,368 452,398" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c10-ah-n)"/>
+  <!-- edge: control-b -> blast -->
   <line x1="500" y1="318" x2="500" y2="398" stroke="#57534e" stroke-width="2" marker-end="url(#c10-ah-n)"/>
-  <path d="M790,318 C790,362 600,378 548,398" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c10-ah-n)"/>
+  <!-- edge: model-c -> blast -->
+  <path d="M790,318 C790,362 548,368 548,398" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c10-ah-n)"/>
 
-  <rect x="340" y="402" width="320" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
+  <rect id="blast" x="340" y="402" width="320" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
   <text x="500" y="439" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">BLAST RADIUS</text>
 
   <!-- footer -->

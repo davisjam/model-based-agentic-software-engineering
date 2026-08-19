@@ -790,41 +790,49 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- layer 1: engineering question (ink) -->
+  <!-- transparent anchor: the engineering question is the source node of the ladder -->
+  <rect id="f-model-first-encoding-second-question" x="110" y="16" width="460" height="48" fill="none" stroke="none"/>
   <text x="340" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">ENGINEERING QUESTION</text>
   <text x="340" y="52" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Can durable state name an artifact recovery has not yet published?</text>
+  <!-- edge: question -> model -->
   <line x1="340" y1="62" x2="340" y2="86" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
 
   <!-- layer 2: MODEL (blue) -->
-  <rect x="70" y="90" width="540" height="150" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-model-first-encoding-second-model" x="70" y="90" width="540" height="150" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="94" y="116" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">MODEL</text>
   <!-- legal chain -->
   <g font-size="15" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect x="92" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
+    <rect id="f-model-first-encoding-second-staged" x="92" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
     <text x="152" y="157">STAGED</text>
-    <rect x="280" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
+    <rect id="f-model-first-encoding-second-uploaded" x="280" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
     <text x="340" y="157">UPLOADED</text>
-    <rect x="468" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
+    <rect id="f-model-first-encoding-second-db-updated" x="468" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
     <text x="528" y="157">DB_UPDATED</text>
   </g>
+  <!-- edge: staged -> uploaded -->
   <line x1="212" y1="152" x2="278" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
+  <!-- edge: uploaded -> db-updated -->
   <line x1="400" y1="152" x2="466" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
-  <!-- forbidden bypass STAGED -> DB_UPDATED (rust) -->
+  <!-- forbidden bypass STAGED -> DB_UPDATED (rust, struck-but-spanning) -->
+  <!-- edge: staged .. db-updated -->
   <path d="M152,172 C152,214 528,214 528,174" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#f-model-first-encoding-second-mf-r)"/>
   <g stroke="#9a3f12" stroke-width="3.2" stroke-linecap="round">
     <line x1="329" y1="200" x2="351" y2="222"/>
     <line x1="351" y1="200" x2="329" y2="222"/>
   </g>
   <text x="340" y="234" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">may not skip publication</text>
+  <!-- edge: model -> encoding -->
   <line x1="340" y1="240" x2="340" y2="266" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
 
   <!-- layer 3: ONE EXECUTABLE REPRESENTATION (gray) -->
-  <rect x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-model-first-encoding-second-encoding" x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="340" y="294" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
   <text x="340" y="313" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">explicit legal-transition relation</text>
+  <!-- edge: encoding -> implementation -->
   <line x1="340" y1="322" x2="340" y2="348" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
 
   <!-- layer 4: IMPLEMENTATION (gray) -->
-  <rect x="110" y="352" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-model-first-encoding-second-implementation" x="110" y="352" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="340" y="376" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">IMPLEMENTATION</text>
   <text x="340" y="399" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">upload + persistence + retry + logging + error handling + &#8230;</text>
 
@@ -857,38 +865,56 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
 
   <!-- top: behavioral model (blue) -->
-  <rect x="320" y="28" width="360" height="64" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <rect id="f-behavioral-property-classes-model" x="320" y="28" width="360" height="64" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
 
   <!-- property-class headers (gray) -->
-  <rect x="60" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <rect x="370" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <rect x="680" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-behavioral-property-classes-q-local" x="60" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-behavioral-property-classes-q-reach" x="370" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-behavioral-property-classes-q-temporal" x="680" y="150" width="260" height="52" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
 
   <!-- checker boxes (gray) -->
-  <rect x="60" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
-  <rect x="370" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
-  <rect x="680" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-behavioral-property-classes-chk-local" x="60" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-behavioral-property-classes-chk-reach" x="370" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-behavioral-property-classes-chk-temporal" x="680" y="260" width="260" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2"/>
+
+  <!-- transparent anchors: each property question is a node (the checker plugs into it) -->
+  <rect id="f-behavioral-property-classes-ask-local" x="110" y="216" width="160" height="26" fill="none" stroke="none"/>
+  <rect id="f-behavioral-property-classes-ask-reach" x="405" y="216" width="190" height="26" fill="none" stroke="none"/>
+  <rect id="f-behavioral-property-classes-ask-temporal" x="690" y="216" width="240" height="26" fill="none" stroke="none"/>
 
   <!-- evidence (green) -->
-  <rect x="290" y="392" width="420" height="64" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+  <rect id="f-behavioral-property-classes-evidence" x="290" y="392" width="420" height="64" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
 
-  <!-- ===== arrows ===== -->
-  <line x1="500" y1="92" x2="500" y2="116" stroke="#1c1917" stroke-width="2"/>
-  <line x1="500" y1="116" x2="190" y2="116" stroke="#1c1917" stroke-width="2"/>
-  <line x1="500" y1="116" x2="810" y2="116" stroke="#1c1917" stroke-width="2"/>
-  <line x1="190" y1="116" x2="190" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
-  <line x1="500" y1="116" x2="500" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
-  <line x1="810" y1="116" x2="810" y2="148" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
+  <!-- ===== edges (drawn under labels) ===== -->
+  <!-- fork: behavioral model -> the three property-class headers (one path per branch) -->
+  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)">
+    <!-- edge: model -> q-local -->
+    <path d="M500,92 L500,116 L190,116 L190,148"/>
+    <!-- edge: model -> q-reach -->
+    <path d="M500,92 L500,148"/>
+    <!-- edge: model -> q-temporal -->
+    <path d="M500,92 L500,116 L810,116 L810,148"/>
+  </g>
 
-  <line x1="190" y1="248" x2="190" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
-  <line x1="500" y1="248" x2="500" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
-  <line x1="810" y1="248" x2="810" y2="258" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
+  <!-- each property question -> the checker that answers it -->
+  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)">
+    <!-- edge: ask-local -> chk-local -->
+    <path d="M190,241 L190,258"/>
+    <!-- edge: ask-reach -> chk-reach -->
+    <path d="M500,241 L500,258"/>
+    <!-- edge: ask-temporal -> chk-temporal -->
+    <path d="M810,241 L810,258"/>
+  </g>
 
-  <line x1="190" y1="310" x2="190" y2="376" stroke="#1c1917" stroke-width="2"/>
-  <line x1="810" y1="310" x2="810" y2="376" stroke="#1c1917" stroke-width="2"/>
-  <line x1="190" y1="376" x2="500" y2="376" stroke="#1c1917" stroke-width="2"/>
-  <line x1="810" y1="376" x2="500" y2="376" stroke="#1c1917" stroke-width="2"/>
-  <line x1="500" y1="310" x2="500" y2="390" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)"/>
+  <!-- merge: the three checkers converge on evidence (one path per branch) -->
+  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)">
+    <!-- edge: chk-local -> evidence -->
+    <path d="M190,310 L190,376 L500,376 L500,390"/>
+    <!-- edge: chk-reach -> evidence -->
+    <path d="M500,310 L500,390"/>
+    <!-- edge: chk-temporal -> evidence -->
+    <path d="M810,310 L810,376 L500,376 L500,390"/>
+  </g>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="56" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#2f5169">BEHAVIORAL MODEL</text>

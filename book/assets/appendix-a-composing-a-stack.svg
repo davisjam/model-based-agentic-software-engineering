@@ -20,67 +20,80 @@
   </defs>
 
   <!-- CAPABILITY -->
-  <rect x="290" y="24" width="240" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="capability" x="290" y="24" width="240" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="410" y="59" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">CAPABILITY</text>
+  <!-- edge: capability -> question -->
   <line x1="410" y1="82" x2="410" y2="118" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- question -->
-  <rect x="255" y="120" width="310" height="52" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
+  <rect id="question" x="255" y="120" width="310" height="52" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="410" y="152" text-anchor="middle" font-size="17" font-weight="700" fill="#7a5c12">&#8220;What makes this false?&#8221;</text>
+  <!-- edge: question -> failure -->
   <line x1="410" y1="172" x2="410" y2="208" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- FAILURE CLASSES (red) -->
-  <rect x="285" y="210" width="250" height="58" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+  <rect id="failure" x="285" y="210" width="250" height="58" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
   <text x="410" y="245" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">FAILURE CLASSES</text>
 
-  <!-- fan out to three guarantees -->
+  <!-- fan out to three guarantees (one path per branch; curves arrive perpendicular into each top) -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
-    <path d="M410,268 C260,300 200,304 180,328"/>
+    <!-- edge: failure -> guar-1 -->
+    <path d="M410,268 C260,300 180,300 180,328"/>
+    <!-- edge: failure -> guar-2 -->
     <line x1="410" y1="268" x2="410" y2="328"/>
-    <path d="M410,268 C560,300 620,304 640,328"/>
+    <!-- edge: failure -> guar-3 -->
+    <path d="M410,268 C560,300 640,300 640,328"/>
   </g>
 
   <!-- guarantee x3 -->
-  <rect x="105" y="330" width="150" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="guar-1" x="105" y="330" width="150" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="180" y="364" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">guarantee</text>
-  <rect x="335" y="330" width="150" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="guar-2" x="335" y="330" width="150" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="410" y="364" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">guarantee</text>
-  <rect x="565" y="330" width="150" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="guar-3" x="565" y="330" width="150" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="640" y="364" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">guarantee</text>
 
   <!-- guarantee -> mechanism -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
+    <!-- edge: guar-1 -> mech-1 -->
     <line x1="180" y1="386" x2="180" y2="428"/>
+    <!-- edge: guar-2 -> mech-2 -->
     <line x1="410" y1="386" x2="410" y2="428"/>
+    <!-- edge: guar-3 -> mech-3 -->
     <line x1="640" y1="386" x2="640" y2="428"/>
   </g>
 
   <!-- mechanism x3 -->
-  <rect x="105" y="430" width="150" height="56" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="mech-1" x="105" y="430" width="150" height="56" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="180" y="464" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">mechanism</text>
-  <rect x="335" y="430" width="150" height="56" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="mech-2" x="335" y="430" width="150" height="56" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="410" y="464" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">mechanism</text>
-  <rect x="565" y="430" width="150" height="56" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="mech-3" x="565" y="430" width="150" height="56" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="640" y="464" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">mechanism</text>
 
-  <!-- converge to dependency check -->
+  <!-- converge to dependency check (one path per branch; curves arrive perpendicular into the top) -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
-    <path d="M180,486 C180,522 320,528 350,540"/>
+    <!-- edge: mech-1 -> dependency -->
+    <path d="M180,486 C180,522 350,528 350,540"/>
+    <!-- edge: mech-2 -> dependency -->
     <line x1="410" y1="486" x2="410" y2="540"/>
-    <path d="M640,486 C640,522 500,528 470,540"/>
+    <!-- edge: mech-3 -> dependency -->
+    <path d="M640,486 C640,522 470,528 470,540"/>
   </g>
 
   <!-- dependency check -->
-  <rect x="285" y="542" width="250" height="56" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
+  <rect id="dependency" x="285" y="542" width="250" height="56" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="410" y="576" text-anchor="middle" font-size="17" font-weight="700" fill="#7a5c12">dependency check</text>
+  <!-- edge: dependency -> load-bearing -->
   <line x1="410" y1="598" x2="410" y2="634" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- LOAD-BEARING COMPOSITION (rust emphasis) -->
-  <rect x="255" y="636" width="310" height="64" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <rect id="load-bearing" x="255" y="636" width="310" height="64" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="410" y="674" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">LOAD-BEARING COMPOSITION</text>
+  <!-- edge: load-bearing -> stack -->
   <line x1="410" y1="700" x2="410" y2="736" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- ENGINEERING STACK (green outcome) -->
-  <rect x="285" y="738" width="250" height="60" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <rect id="stack" x="285" y="738" width="250" height="60" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="410" y="774" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">ENGINEERING STACK</text>
 </svg>
