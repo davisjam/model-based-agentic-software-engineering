@@ -29,6 +29,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 # design_tokens.py is stdlib-only too.
 sys.path.insert(0, os.path.join(ROOT, "book-models"))
 import design_tokens as _dtokens  # noqa: E402 — the design-token projector (stdlib-only)
+from svg_id_namespace import namespace_svg_ids  # noqa: E402 — shared inlined-SVG id-namespacer
 
 CSS_ROOT_BLOCK = _dtokens.css_root_block()
 FONTS_LINK = _dtokens.google_fonts_link()
@@ -1967,7 +1968,7 @@ def render_md(md: str) -> str:
             fig_svg = _inline_svg_figure("assets/" + asset, caption, cls="cc-body-fig")
             if fig_svg:
                 fig_ns[0] += 1
-                out.append(_ns_svg_ids(fig_svg, f"cf-{fig_ns[0]}"))
+                out.append(namespace_svg_ids(fig_svg, f"cf-{fig_ns[0]}"))
             i += 1; continue
         if st.startswith("```"):
             i += 1
@@ -2324,22 +2325,6 @@ def _inline_svg(rel_path: str) -> str:
     return m.group(0) if m else ""
 
 
-def _ns_svg_ids(svg: str, ns: str) -> str:
-    """Namespace every id="…" (and its #id references) inside an inlined SVG with a `ns-` prefix, so
-    the same figure spliced twice (summary thumb + body) — or the same asset reused across cards —
-    never yields a duplicate element id (check_no_duplicate_ids fails on any repeat). Rewrites
-    id="x" → id="ns-x", url(#x) → url(#ns-x), href="#x" → href="#ns-x", and xlink:href likewise."""
-    ids = set(re.findall(r'\bid="([^"]+)"', svg))
-    if not ids:
-        return svg
-    for i in sorted(ids, key=len, reverse=True):
-        esc = re.escape(i)
-        svg = re.sub(rf'\bid="{esc}"', f'id="{ns}-{i}"', svg)
-        svg = re.sub(rf'url\(#{esc}\)', f'url(#{ns}-{i})', svg)
-        svg = re.sub(rf'(xlink:href|href)="#{esc}"', rf'\1="#{ns}-{i}"', svg)
-    return svg
-
-
 # ── The site AS A PROJECTION of the book's typed models ──────────────────────────────────────────
 # The definitions section and the outcomes section are DERIVED VIEWS: their content is read straight
 # from the model files at build time (book/data/definitions.json, book-models/outcomes.json filtered by
@@ -2554,7 +2539,7 @@ def _idea_figure(rec: dict) -> str:
     """The slot's figure, spliced inline with its internal ids namespaced per-slot (so no two figures — or
     a figure reused — collide on element ids). Falls back to empty if the asset is missing."""
     svg = _inline_svg("assets/" + rec.get("figure", ""))
-    return _ns_svg_ids(svg, "bi-" + rec.get("_slug", rec.get("id", "x")))
+    return namespace_svg_ids(svg, "bi-" + rec.get("_slug", rec.get("id", "x")))
 
 
 def _big_idea_band(rec: dict, figright: bool = False, bigfig: bool = False,
@@ -2983,7 +2968,7 @@ def _comparative_body() -> str:
     p.append("<h1>Comparative analysis</h1>")
     p.append('<div class="concept-band"><span class="concept-chip">Chapter 6, in miniature</span>'
              '<span class="concept-kicker">the six reconstructions, read at once</span></div>')
-    hero = _ns_svg_ids(_inline_svg("assets/six-company-map.svg"), "cmp-hero")
+    hero = namespace_svg_ids(_inline_svg("assets/six-company-map.svg"), "cmp-hero")
     if hero:
         p.append(f'<figure class="cc-body-fig">{hero}</figure>')
     # The distinctive material is data the model owns; the sentences below it are the model's authored
@@ -3054,7 +3039,7 @@ def _theory_svg_figure(asset: str, ns: str, caption: str = "") -> str:
     """One shared-source book asset inlined as a figure, its ids namespaced so two figures on one page never
     collide (check_no_duplicate_ids). Empty caption renders no figcaption. Falls back to "" if the asset is
     missing."""
-    svg = _ns_svg_ids(_inline_svg("assets/" + asset), ns)
+    svg = namespace_svg_ids(_inline_svg("assets/" + asset), ns)
     if not svg:
         return ""
     cap = f"<figcaption>{_inline(caption)}</figcaption>" if caption else ""
@@ -3244,7 +3229,7 @@ def _landing_theory_glance() -> str:
     hand-authored frame line, and a link to the standalone Theory page (F-theory: BOTH a landing element
     and a page). The card is the shared-source theory-of-mage-card.svg, its ids namespaced against the
     landing’s other inlined figures. Falls back to "" if the asset is missing."""
-    svg = _ns_svg_ids(_inline_svg("assets/theory-of-mage-card.svg"), "tg-card")
+    svg = namespace_svg_ids(_inline_svg("assets/theory-of-mage-card.svg"), "tg-card")
     if not svg:
         return ""
     return (
@@ -4200,7 +4185,7 @@ def cmd_build(_args) -> int:
     # landing index.html = a projection of the Big-Ideas model (hero + six minimal BRICKS + the closing
     # conclusion + three ways-in buttons), then the census and the quiet vocabulary/definitions/outcomes
     # reference strip. Every brick is rendered from book-models/landing-big-ideas.json; figures splice as
-    # bare responsive <svg> with their internal ids namespaced per brick (_ns_svg_ids) so no two figures
+    # bare responsive <svg> with their internal ids namespaced per brick (namespace_svg_ids) so no two figures
     # collide (check_no_duplicate_ids). In the two-tier split the brick shows figure · title · claim + one
     # "→ read the concept" link; the rich material lives on each concept ENTRY (rendered in the md loop
     # above). The landing ENDS at the closing CTA + the three ways-in cards — no on-landing census

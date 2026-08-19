@@ -61,6 +61,7 @@ ROOT = HERE.parent  # the catalogue root — the appendix reads the entry .md fi
 # typed token model. Inlined into the book CSS below.
 sys.path.insert(0, str(ROOT / "book-models"))
 import design_tokens as _dtokens  # noqa: E402 — the design-token projector (stdlib-only)
+from svg_id_namespace import namespace_svg_ids  # noqa: E402 — shared inlined-SVG id-namespacer
 
 _TOKENS = _dtokens.load()
 CSS_ROOT_BLOCK = _dtokens.css_root_block(_TOKENS)
@@ -1160,27 +1161,6 @@ def _plain(s: str) -> str:
 _WIDE_FIGURES = {"assets/research-arc.svg"}
 
 
-def _ns_fig_ids(svg: str, prefix: str) -> str:
-    """Namespace every internal id in an inlined figure SVG with `prefix-`, plus every reference to it, so a
-    figure's node/marker/title ids never collide with a heading slug or a sibling figure on the same page
-    (a duplicate element id fails the no-dup-id gate). Rewrites `id="x"`, `url(#x)`, `href`/`xlink:href="#x"`,
-    and the space-separated id lists in `aria-labelledby`/`aria-describedby`."""
-    ids = set(re.findall(r'\bid="([^"]+)"', svg))
-    if not ids:
-        return svg
-    for i in sorted(ids, key=len, reverse=True):
-        esc = re.escape(i)
-        svg = re.sub(rf'\bid="{esc}"', f'id="{prefix}-{i}"', svg)
-        svg = re.sub(rf'url\(#{esc}\)', f'url(#{prefix}-{i})', svg)
-        svg = re.sub(rf'(xlink:href|href)="#{esc}"', rf'\1="#{prefix}-{i}"', svg)
-
-    def _fix_aria(m: "re.Match[str]") -> str:
-        toks = " ".join(f"{prefix}-{t}" if t in ids else t for t in m.group(2).split())
-        return f'{m.group(1)}="{toks}"'
-
-    return re.sub(r'\b(aria-labelledby|aria-describedby)="([^"]*)"', _fix_aria, svg)
-
-
 def _figure_block(comment: str) -> str:
     """Render a `<!-- figure: <path> | <caption> -->` directive into a <figure>.
 
@@ -1219,7 +1199,7 @@ def _figure_block(comment: str) -> str:
         # heading slug or a sibling figure on the same page (duplicate-id → the no-dup-id gate FAILs). The
         # SOURCE svg keeps its raw ids (the figure lint + the Typst PDF path read those); only this inlined
         # HTML copy is prefixed.
-        svg = _ns_fig_ids(svg, "f-" + re.sub(r"[^a-z0-9]+", "-", asset.stem.lower()).strip("-"))
+        svg = namespace_svg_ids(svg, "f-" + re.sub(r"[^a-z0-9]+", "-", asset.stem.lower()).strip("-"))
         # Neutralize the intrinsic width/height so the viewBox drives responsive scaling; CSS caps it.
         svg = re.sub(r'(<svg\b[^>]*?)\swidth="[^"]*"', r"\1", svg, count=1)
         svg = re.sub(r'(<svg\b[^>]*?)\sheight="[^"]*"', r"\1", svg, count=1)
