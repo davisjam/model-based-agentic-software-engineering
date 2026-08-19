@@ -729,36 +729,41 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- SANCTIONED MUTATION -->
-  <rect x="230" y="24" width="260" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6"/>
+  <rect id="f-auditable-transformation-stack-sanctioned-mutation" x="230" y="24" width="260" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6"/>
   <text x="360" y="55" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">SANCTIONED MUTATION</text>
+  <!-- edge: sanctioned-mutation -> mark -->
   <line x1="360" y1="76" x2="360" y2="114" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- MARK -->
-  <rect x="255" y="116" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-auditable-transformation-stack-mark" x="255" y="116" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="146" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">MARK</text>
   <text x="360" y="168" text-anchor="middle" font-size="14" fill="#57534e">actor &#183; action</text>
+  <!-- edge: mark -> emit -->
   <line x1="360" y1="182" x2="360" y2="214" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- EMIT -->
-  <rect x="255" y="216" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-auditable-transformation-stack-emit" x="255" y="216" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="246" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">EMIT</text>
   <text x="360" y="268" text-anchor="middle" font-size="14" fill="#57534e">persist a structured record</text>
+  <!-- edge: emit -> cover -->
   <line x1="360" y1="282" x2="360" y2="314" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- COVER -->
-  <rect x="245" y="316" width="230" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-auditable-transformation-stack-cover" x="245" y="316" width="230" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="346" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">COVER</text>
   <text x="360" y="368" text-anchor="middle" font-size="14" fill="#57534e">every mutation accounted for?</text>
+  <!-- edge: cover -> read -->
   <line x1="360" y1="388" x2="360" y2="420" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- READ -->
-  <rect x="245" y="422" width="230" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-auditable-transformation-stack-read" x="245" y="422" width="230" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="452" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">READ</text>
   <text x="360" y="474" text-anchor="middle" font-size="14" fill="#57534e">reconstruct history</text>
+  <!-- edge: read -> fidelity-gate -->
   <line x1="360" y1="494" x2="360" y2="526" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- FIDELITY GATE (rust) -->
-  <rect x="240" y="528" width="240" height="76" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <rect id="f-auditable-transformation-stack-fidelity-gate" x="240" y="528" width="240" height="76" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="360" y="558" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">FIDELITY GATE</text>
   <text x="360" y="580" text-anchor="middle" font-size="14" fill="#57534e">did semantics survive?</text>
 

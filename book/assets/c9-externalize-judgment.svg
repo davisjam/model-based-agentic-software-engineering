@@ -20,52 +20,62 @@
   </defs>
 
   <!-- SYSTEM MODEL -->
-  <rect x="360" y="34" width="280" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <rect id="system-model" x="360" y="34" width="280" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="500" y="70" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">SYSTEM MODEL</text>
 
   <!-- fan to three aspects -->
   <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)">
-    <path d="M440,92 C340,118 250,120 218,146"/>
+    <!-- edge: system-model -> healthy -->
+    <path d="M440,92 C340,118 218,116 218,146"/>
+    <!-- edge: system-model -> states -->
     <line x1="500" y1="92" x2="500" y2="146"/>
-    <path d="M560,92 C660,118 750,120 782,146"/>
+    <!-- edge: system-model -> relations -->
+    <path d="M560,92 C660,118 782,116 782,146"/>
   </g>
 
   <g>
-    <rect x="130" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+    <rect id="healthy" x="130" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
     <text x="210" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">healthy?</text>
-    <rect x="420" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+    <rect id="states" x="420" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
     <text x="500" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">states</text>
-    <rect x="710" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
+    <rect id="relations" x="710" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
     <text x="790" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">relations</text>
   </g>
 
   <!-- converge to OPERATIONAL MODEL -->
   <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)">
-    <path d="M210,198 C210,238 380,250 432,266"/>
+    <!-- edge: healthy -> operational-model -->
+    <path d="M210,198 C210,238 432,236 432,266"/>
+    <!-- edge: states -> operational-model -->
     <line x1="500" y1="198" x2="500" y2="266"/>
-    <path d="M790,198 C790,238 620,250 568,266"/>
+    <!-- edge: relations -> operational-model -->
+    <path d="M790,198 C790,238 568,236 568,266"/>
   </g>
 
-  <rect x="330" y="270" width="340" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
+  <rect id="operational-model" x="330" y="270" width="340" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="500" y="306" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">OPERATIONAL MODEL</text>
 
   <!-- split: generated procedure / reasoning guidance -->
-  <path d="M420,328 C340,364 320,376 300,394" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
-  <path d="M580,328 C660,364 680,376 700,394" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
+  <!-- edge: operational-model -> generated-procedure -->
+  <path d="M420,328 C340,364 300,364 300,394" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
+  <!-- edge: operational-model -> reasoning-guidance -->
+  <path d="M580,328 C660,364 700,364 700,394" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
 
-  <rect x="180" y="398" width="240" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="generated-procedure" x="180" y="398" width="240" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="300" y="426" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">generated</text>
   <text x="300" y="448" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">procedure</text>
 
-  <rect x="580" y="398" width="240" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
+  <rect id="reasoning-guidance" x="580" y="398" width="240" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
   <text x="700" y="426" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">reasoning</text>
   <text x="700" y="448" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">guidance</text>
 
   <!-- converge to OPERATOR -->
-  <path d="M300,458 C300,494 430,504 452,514" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
-  <path d="M700,458 C700,494 570,504 548,514" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
+  <!-- edge: generated-procedure -> operator -->
+  <path d="M300,458 C300,494 452,484 452,514" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
+  <!-- edge: reasoning-guidance -> operator -->
+  <path d="M700,458 C700,494 548,484 548,514" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
 
-  <rect x="390" y="518" width="220" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="operator" x="390" y="518" width="220" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="500" y="554" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">OPERATOR</text>
 
   <!-- footer -->

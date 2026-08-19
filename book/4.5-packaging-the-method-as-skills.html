@@ -821,41 +821,48 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- engineering knowledge (green = modeling/knowledge) -->
-  <rect x="350" y="40" width="300" height="60" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-deliver-context-two-layer-eng-knowledge" x="350" y="40" width="300" height="60" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="500" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">ENGINEERING KNOWLEDGE</text>
   <text x="500" y="90" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">models &#183; rules &#183; procedures</text>
 
   <!-- split to the two layers -->
-  <path d="M500 100 C 420 128 320 130 270 156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
-  <path d="M500 100 C 580 128 680 130 730 156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
+  <!-- edge: eng-knowledge -> standing-context -->
+  <path d="M500,100 C420,128 270,126 270,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
+  <!-- edge: eng-knowledge -> task-slice -->
+  <path d="M500,100 C580,128 730,126 730,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
 
   <!-- standing context: SOLID = always resident -->
-  <rect x="110" y="158" width="320" height="82" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
+  <rect id="f-deliver-context-two-layer-standing-context" x="110" y="158" width="320" height="82" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="270" y="187" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">STANDING CONTEXT</text>
   <text x="270" y="209" text-anchor="middle" font-size="13" fill="#57534e">mission &#183; compact method</text>
   <text x="270" y="227" text-anchor="middle" font-size="13" fill="#57534e">compact policy</text>
 
   <!-- task-relevant slice: DASHED = retrieved on demand -->
-  <rect x="570" y="158" width="320" height="82" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="7 5"/>
+  <rect id="f-deliver-context-two-layer-task-slice" x="570" y="158" width="320" height="82" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="7 5"/>
   <text x="730" y="187" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">TASK-RELEVANT SLICE</text>
   <text x="730" y="209" text-anchor="middle" font-size="13" fill="#57534e">richer models, procedures,</text>
   <text x="730" y="227" text-anchor="middle" font-size="13" fill="#57534e">examples &#8212; retrieved when needed</text>
 
   <!-- both layers merge into agent context -->
-  <path d="M270 240 C 270 272 420 276 466 292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
-  <path d="M730 240 C 730 272 580 276 534 292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
+  <!-- edge: standing-context -> agent-context -->
+  <path d="M270,240 C270,272 466,262 466,292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
+  <!-- edge: task-slice -> agent-context -->
+  <path d="M730,240 C730,272 534,262 534,292" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
 
   <!-- agent context (blue = the acting party) -->
-  <rect x="370" y="294" width="260" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="f-deliver-context-two-layer-agent-context" x="370" y="294" width="260" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="500" y="329" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">AGENT CONTEXT</text>
+  <!-- edge: agent-context -> work -->
   <line x1="500" y1="352" x2="500" y2="392" stroke="#57534e" stroke-width="2" marker-end="url(#f-deliver-context-two-layer-dc-ah)"/>
 
   <!-- work (dark terminal) -->
-  <rect x="410" y="394" width="180" height="56" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
+  <rect id="f-deliver-context-two-layer-work" x="410" y="394" width="180" height="56" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
   <text x="500" y="429" text-anchor="middle" font-size="17" font-weight="700" fill="#fdfcf9">WORK</text>
 
   <!-- lifecycle event re-surfaces the right slice (dashed rust = governance loop) -->
-  <path d="M590 422 H 905 V 199 H 894" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#f-deliver-context-two-layer-dc-ah-rust)"/>
+  <!-- explicit L form (same pixels as H905 V199 H894) so the endpoint reads true -->
+  <!-- edge: work .. task-slice -->
+  <path d="M590 422 L 905 422 L 905 199 L 894 199" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#f-deliver-context-two-layer-dc-ah-rust)"/>
   <text x="908" y="316" text-anchor="middle" transform="rotate(90 908 316)" font-size="12" font-style="italic" fill="#9a3f12">lifecycle event re-surfaces what matters now</text>
 
   <text x="500" y="512" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Keep standing context small enough to stay standing — retrieve the rest per task.</text>

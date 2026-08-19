@@ -22,47 +22,53 @@
   <text x="40" y="34" font-size="15" font-weight="600" fill="#57534e">Question: does an important journey have coverage, placement, and policy — all at once?</text>
 
   <!-- USER JOURNEY (representation) -->
-  <rect x="250" y="48" width="220" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="journey" x="250" y="48" width="220" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="360" y="76" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">USER JOURNEY</text>
   <text x="360" y="97" text-anchor="middle" font-size="13" fill="#57534e">goal · criticality</text>
 
   <!-- join: endpoint identity (DASHED) -->
+  <!-- edge: journey .. service -->
   <line x1="360" y1="108" x2="360" y2="158" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
   <text x="374" y="138" font-size="12.5" font-style="italic" fill="#57534e">endpoint identity</text>
 
   <!-- SERVICE / NODE (representation) -->
-  <rect x="280" y="158" width="160" height="56" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="service" x="280" y="158" width="160" height="56" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="360" y="185" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">SERVICE / NODE</text>
   <text x="360" y="205" text-anchor="middle" font-size="12" fill="#57534e">stable identity</text>
 
   <!-- fork to coverage / test placement (DASHED joins) -->
-  <path d="M320,214 C270,238 220,244 205,262" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
-  <path d="M400,214 C450,238 500,244 515,262" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
+  <!-- edge: service .. coverage -->
+  <path d="M320,214 C270,238 205,232 205,262" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
+  <!-- edge: service .. placement -->
+  <path d="M400,214 C450,238 515,232 515,262" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
 
   <!-- COVERAGE (representation) -->
-  <rect x="110" y="266" width="180" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="coverage" x="110" y="266" width="180" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="200" y="294" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">COVERAGE</text>
   <text x="200" y="314" text-anchor="middle" font-size="13" fill="#57534e">exercised?</text>
   <!-- TEST PLACEMENT (representation) -->
-  <rect x="430" y="266" width="180" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="placement" x="430" y="266" width="180" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="520" y="294" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">TEST PLACEMENT</text>
   <text x="520" y="314" text-anchor="middle" font-size="13" fill="#57534e">where run?</text>
 
   <!-- converge to execution policy (DASHED joins) -->
-  <path d="M205,326 C220,352 300,362 320,378" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
-  <path d="M515,326 C500,352 420,362 400,378" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
+  <!-- edge: coverage .. policy -->
+  <path d="M205,326 C220,352 320,348 320,378" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
+  <!-- edge: placement .. policy -->
+  <path d="M515,326 C500,352 400,348 400,378" fill="none" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
 
   <!-- EXECUTION POLICY (representation) -->
-  <rect x="270" y="380" width="180" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="policy" x="270" y="380" width="180" height="60" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="360" y="408" text-anchor="middle" font-size="16" font-weight="700" fill="#8a2f2f">EXECUTION POLICY</text>
   <text x="360" y="428" text-anchor="middle" font-size="13" fill="#57534e">plan_for(host)</text>
 
   <!-- join: host identity (DASHED) -->
+  <!-- edge: policy .. joined -->
   <line x1="360" y1="440" x2="360" y2="486" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
   <text x="374" y="468" font-size="12.5" font-style="italic" fill="#57534e">host identity</text>
 
   <!-- JOINED VIEW (composite representation — heavier umber border, NO authority) -->
-  <rect x="248" y="486" width="224" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2.8"/>
+  <rect id="joined" x="248" y="486" width="224" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2.8"/>
   <text x="360" y="514" text-anchor="middle" font-size="17" font-weight="700" fill="#8a2f2f">JOINED VIEW</text>
   <text x="360" y="536" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">not a mega-model</text>
 

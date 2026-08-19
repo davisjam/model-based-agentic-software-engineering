@@ -1003,51 +1003,59 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- ===== the forward spine: generator -> system -> oracle -> counterexample ===== -->
+  <!-- ===== EDGES (drawn UNDER the nodes; each node fill caps its ends) ===== -->
+  <!-- forward spine -->
+  <g stroke="#1c1917" stroke-width="2" fill="none">
+    <!-- edge: generator -> system -->
+    <path d="M145,198 L308,198" marker-end="url(#f-generative-loop-gl-ah)"/>
+    <!-- edge: system -> oracle -->
+    <path d="M415,198 L578,198" marker-end="url(#f-generative-loop-gl-ah)"/>
+    <!-- edge: oracle -> counterexample -->
+    <path d="M710,198 L898,198" marker-end="url(#f-generative-loop-gl-ah)"/>
+  </g>
+
+  <!-- edge: counterexample -> coverage -->
+  <path d="M1020,198 C1010,340 842,448 812,448" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-generative-loop-gl-ah)"/>
+
+  <!-- the loop closes: coverage -> refine the generator (dotted) -->
+  <!-- edge: coverage .. generator -->
+  <path d="M455,470 C300,486 145,360 145,250" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#f-generative-loop-gl-ah-loop)"/>
+
+  <!-- coverage -> (where traceability exists) joins model-claim coverage back to the claim/oracle (dotted) -->
+  <!-- edge: coverage .. oracle -->
+  <path d="M806,462 C822,455 822,340 822,266" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#f-generative-loop-gl-ah-loop)"/>
+
+  <!-- ===== NODES (on top; fills cap the edge ends) ===== -->
   <!-- generator -->
-  <rect x="40" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-generative-loop-generator" x="40" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="145" y="192" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">generator</text>
   <text x="145" y="220" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">makes inputs</text>
 
   <!-- system -->
-  <rect x="310" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-generative-loop-system" x="310" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="415" y="192" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">system</text>
   <text x="415" y="220" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">under test</text>
 
   <!-- independent oracle (accent) -->
-  <rect x="580" y="132" width="260" height="132" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <rect id="f-generative-loop-oracle" x="580" y="132" width="260" height="132" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="710" y="176" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">independent oracle</text>
   <text x="710" y="204" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">judges the outcome</text>
   <text x="710" y="236" text-anchor="middle" font-size="16.5" fill="#57534e">property · contract ·</text>
   <text x="710" y="256" text-anchor="middle" font-size="16.5" fill="#57534e">reference impl · model · human</text>
 
   <!-- counterexample (churn) -->
-  <rect x="900" y="132" width="240" height="132" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+  <rect id="f-generative-loop-counterexample" x="900" y="132" width="240" height="132" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
   <text x="1020" y="176" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">counterexample</text>
   <text x="1020" y="206" text-anchor="middle" font-size="17.5" fill="#b23b3b">shrink / diagnose to</text>
   <text x="1020" y="228" text-anchor="middle" font-size="17.5" fill="#b23b3b">the stable obligation</text>
 
-  <!-- forward arrows -->
-  <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M250,198 L306,198" marker-end="url(#f-generative-loop-gl-ah)"/>
-    <path d="M520,198 L576,198" marker-end="url(#f-generative-loop-gl-ah)"/>
-    <path d="M840,198 L896,198" marker-end="url(#f-generative-loop-gl-ah)"/>
-  </g>
-
-  <!-- ===== coverage (governed) ===== -->
-  <rect x="450" y="400" width="360" height="110" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <!-- coverage (governed) -->
+  <rect id="f-generative-loop-coverage" x="450" y="400" width="360" height="110" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="630" y="440" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">coverage: did we reach the claim?</text>
   <text x="630" y="470" text-anchor="middle" font-size="17.5" fill="#57534e">input-space · line/branch · model-claim</text>
 
-  <!-- counterexample -> coverage -->
-  <path d="M1020,266 C1015,340 900,420 812,448" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-generative-loop-gl-ah)"/>
-
-  <!-- the loop closes: coverage -> refine the generator -->
-  <path d="M448,470 C280,486 170,400 145,250" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#f-generative-loop-gl-ah-loop)"/>
+  <!-- ===== edge labels (on top) ===== -->
   <text x="250" y="400" text-anchor="middle" font-size="18.5" font-style="italic" fill="#57534e">refine the generator</text>
-
-  <!-- coverage -> (where traceability exists) joins model-claim coverage back to the claim/oracle -->
-  <path d="M812,462 C930,452 895,330 838,270" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#f-generative-loop-gl-ah-loop)"/>
   <text x="905" y="392" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">model-claim coverage</text>
   <text x="905" y="414" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
 </svg><figcaption data-short="Generate, Judge, Search Again"><span class="fig-label">Figure 4.3-4.</span> <em>Generate, Judge, Search Again.</em> One loop, whatever the oracle's source: a <strong>generator</strong> makes inputs, the <strong>system</strong> runs them, an <strong>independent oracle</strong> judges each outcome, a <strong>counterexample</strong> feeds back to shrink or diagnose, and <strong>coverage</strong> asks whether the search reached the region the claim is about — refining the generator, and where traceability exists joining model-claim coverage back to the claim. The oracle may be a declared property, a robustness contract, a reference implementation, or a structured model; the loop does not care which.</figcaption></figure>

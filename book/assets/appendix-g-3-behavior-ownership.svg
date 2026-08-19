@@ -26,21 +26,24 @@
   <text x="245" y="66" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169" letter-spacing="0.5">BEHAVIORAL STATE</text>
 
   <!-- states (representation) -->
-  <rect x="60" y="76" width="140" height="56" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="free" x="60" y="76" width="140" height="56" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="130" y="111" text-anchor="middle" font-size="19" font-weight="700" fill="#8a2f2f">FREE</text>
-  <rect x="290" y="76" width="140" height="56" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="leased" x="290" y="76" width="140" height="56" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="360" y="111" text-anchor="middle" font-size="19" font-weight="700" fill="#8a2f2f">LEASED</text>
-  <rect x="520" y="76" width="140" height="56" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="done" x="520" y="76" width="140" height="56" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="590" y="111" text-anchor="middle" font-size="19" font-weight="700" fill="#8a2f2f">DONE</text>
 
   <!-- claim / complete (SOLID) -->
+  <!-- edge: free -> leased -->
   <line x1="200" y1="104" x2="290" y2="104" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g3-solid)"/>
   <text x="245" y="96" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">claim</text>
+  <!-- edge: leased -> done -->
   <line x1="430" y1="104" x2="520" y2="104" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g3-solid)"/>
   <text x="475" y="96" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">complete</text>
 
   <!-- expiry / release LEASED -> FREE (SOLID, curved back) -->
-  <path d="M320,132 C270,188 180,188 130,134" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g3-solid)"/>
+  <!-- edge: leased -> free -->
+  <path d="M320,132 C270,188 130,164 130,134" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g3-solid)"/>
   <text x="225" y="184" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">expiry / release</text>
 
   <!-- DONE terminal: no re-entry (red X) -->
@@ -52,24 +55,26 @@
   <text x="618" y="174" font-size="15" font-style="italic" fill="#b23b3b">no re-entry</text>
 
   <!-- specializes: LEASED -> ownership overlay (SOLID, authored) -->
+  <!-- edge: leased -> overlay -->
   <line x1="360" y1="132" x2="360" y2="236" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g3-solid)"/>
   <text x="372" y="192" font-size="15" font-style="italic" fill="#57534e">specializes</text>
 
-  <text x="360" y="228" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169" letter-spacing="0.5">OWNERSHIP OVERLAY</text>
+  <text x="360" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169" letter-spacing="0.5">OWNERSHIP OVERLAY</text>
   <!-- ownership overlay (representation) -->
-  <rect x="268" y="236" width="184" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
+  <rect id="overlay" x="268" y="236" width="184" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="360" y="264" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">lease_owner = W17</text>
   <text x="360" y="288" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">lease_until = t</text>
 
   <!-- authorizes action -> worker (HEAVY authority + gate glyph) -->
+  <!-- edge: overlay -> worker -->
   <line x1="452" y1="269" x2="560" y2="269" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g3-auth)"/>
-  <text x="506" y="258" text-anchor="middle" font-size="15" font-style="italic" fill="#b23b3b">authorizes action</text>
+  <text x="512" y="230" text-anchor="middle" font-size="15" font-style="italic" fill="#b23b3b">authorizes action</text>
   <g stroke="#b23b3b" stroke-width="3.6">
-    <line x1="500" y1="257" x2="500" y2="281"/>
-    <line x1="512" y1="257" x2="512" y2="281"/>
+    <line x1="500" y1="259" x2="500" y2="279"/>
+    <line x1="512" y1="259" x2="512" y2="279"/>
   </g>
-  <text x="506" y="298" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED · lease/CAS</text>
-  <rect x="560" y="242" width="120" height="54" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
+  <text x="506" y="326" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED · lease/CAS</text>
+  <rect id="worker" x="560" y="242" width="120" height="54" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
   <text x="620" y="275" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">worker</text>
 
   <!-- invariant band -->

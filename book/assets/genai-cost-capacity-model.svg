@@ -23,40 +23,52 @@
 
   <text x="330" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">TWO ENVELOPES, NOT ONE</text>
 
+  <!-- ===== EDGES (drawn UNDER the nodes; each node fill caps its ends) ===== -->
+  <g fill="none" stroke="#2f5169" stroke-width="2.2">
+    <!-- generation work forks to the two chains (one path per branch) -->
+    <!-- edge: genwork -> usage -->
+    <path d="M90,171 C176,120 158,101 188,101" marker-end="url(#gc-b)"/>
+    <!-- edge: genwork -> concurrency -->
+    <path d="M90,171 C176,222 158,267 188,267" marker-end="url(#gc-b)"/>
+    <!-- top chain -->
+    <!-- edge: usage -> cost -->
+    <path d="M245,101 L338,101" marker-end="url(#gc-b)"/>
+    <!-- edge: cost -> cost-budget -->
+    <path d="M390,101 L478,101" marker-end="url(#gc-b)"/>
+    <!-- bottom chain -->
+    <!-- edge: concurrency -> capacity -->
+    <path d="M245,267 L338,267" marker-end="url(#gc-b)"/>
+    <!-- edge: capacity -> capacity-envelope -->
+    <path d="M390,267 L478,267" marker-end="url(#gc-b)"/>
+  </g>
+
+  <!-- ===== NODES (on top) ===== -->
   <!-- generation work (source, left, spans both chains) -->
-  <rect x="24" y="128" width="132" height="86" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="genwork" x="24" y="128" width="132" height="86" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="90" y="166" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">generation</text>
   <text x="90" y="186" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">work</text>
 
-  <!-- split to the two chains -->
-  <path d="M156,150 C176,120 178,110 190,100" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
-  <path d="M156,192 C176,222 178,232 190,242" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
-
   <!-- ===== TOP CHAIN: usage -> cost -> budget ===== -->
   <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect x="190" y="76" width="110" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="usage" x="190" y="76" width="110" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="245" y="107">usage</text>
-    <rect x="340" y="76" width="100" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="cost" x="340" y="76" width="100" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="390" y="107">cost</text>
-    <rect x="480" y="76" width="150" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+    <rect id="cost-budget" x="480" y="76" width="150" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
     <text x="555" y="99" font-size="15">cost</text>
     <text x="555" y="118" font-size="15">budget</text>
   </g>
-  <line x1="300" y1="101" x2="338" y2="101" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
-  <line x1="440" y1="101" x2="478" y2="101" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
 
   <!-- ===== BOTTOM CHAIN: concurrency -> capacity -> capacity envelope ===== -->
   <g font-size="16" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect x="190" y="242" width="110" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="concurrency" x="190" y="242" width="110" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="245" y="266" font-size="14">concurrency</text>
-    <rect x="340" y="242" width="100" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="capacity" x="340" y="242" width="100" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="390" y="273">capacity</text>
-    <rect x="480" y="242" width="150" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+    <rect id="capacity-envelope" x="480" y="242" width="150" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
     <text x="555" y="265" font-size="15">capacity</text>
     <text x="555" y="284" font-size="15">envelope</text>
   </g>
-  <line x1="300" y1="267" x2="338" y2="267" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
-  <line x1="440" y1="267" x2="478" y2="267" stroke="#2f5169" stroke-width="2.2" marker-end="url(#gc-b)"/>
 
   <!-- footer: protect the two-envelopes point -->
   <text x="330" y="346" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Two chains, two envelopes &#8212; usage feeds a cost budget,</text>

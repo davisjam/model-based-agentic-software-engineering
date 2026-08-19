@@ -737,22 +737,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="30" y="120" font-size="16" font-weight="700" letter-spacing="1.5" fill="#57534e">CLASSICAL</text>
   <text x="30" y="140" font-size="16" font-style="italic" fill="#57534e">engineer writes the implementation</text>
 
-  <!-- Row nudged down so the boxes sit 20px BELOW the italic sub-label (mirrors the AGENTIC row): the
-       sub-label at y=140 clears the box tops at y=160, so no box paints over the label (z-order fixed). -->
+  <!-- Row edges drawn UNDER the boxes (fills cap the undirected starts); heads seat on the next box's
+       left perimeter. The sub-label at y=140 clears the box tops at y=160, so no box paints over it. -->
   <g fill="none" stroke="#57534e" stroke-width="2.4">
-    <path d="M300,185 L378,185" marker-end="url(#f-engineering-leverage-lev-k)"/>
-    <path d="M590,185 L668,185" marker-end="url(#f-engineering-leverage-lev-k)"/>
+    <!-- edge: c-engineer -> c-impl -->
+    <path d="M225,185 L378,185" marker-end="url(#f-engineering-leverage-lev-k)"/>
+    <!-- edge: c-impl -> c-product -->
+    <path d="M485,185 L668,185" marker-end="url(#f-engineering-leverage-lev-k)"/>
   </g>
 
-  <rect x="150" y="160" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-engineering-leverage-c-engineer" x="150" y="160" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="225" y="191" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
 
   <!-- primary node: implementation -->
-  <rect x="380" y="156" width="210" height="58" rx="9" fill="#f3efe7" stroke="#9a3f12" stroke-width="3.2"/>
+  <rect id="f-engineering-leverage-c-impl" x="380" y="156" width="210" height="58" rx="9" fill="#f3efe7" stroke="#9a3f12" stroke-width="3.2"/>
   <text x="485" y="189" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Implementation</text>
   <text x="485" y="234" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">primary engineered object</text>
 
-  <rect x="670" y="160" width="170" height="50" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <rect id="f-engineering-leverage-c-product" x="670" y="160" width="170" height="50" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="755" y="191" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Product</text>
 
   <!-- divider between regimes -->
@@ -763,32 +765,37 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="30" y="318" font-size="16" font-style="italic" fill="#57534e">agents write the implementation</text>
 
   <g fill="none" stroke="#57534e" stroke-width="2.4">
-    <path d="M150,363 L173,363" marker-end="url(#f-engineering-leverage-lev-k)"/>
-    <path d="M370,363 L393,363" marker-end="url(#f-engineering-leverage-lev-k)"/>
-    <path d="M527,363 L550,363" marker-end="url(#f-engineering-leverage-lev-k)"/>
-    <path d="M720,363 L743,363" marker-end="url(#f-engineering-leverage-lev-k)"/>
+    <!-- edge: a-engineer -> a-env -->
+    <path d="M90,363 L173,363" marker-end="url(#f-engineering-leverage-lev-k)"/>
+    <!-- edge: a-env -> a-agents -->
+    <path d="M272,363 L391,363" marker-end="url(#f-engineering-leverage-lev-k)"/>
+    <!-- edge: a-agents -> a-impl -->
+    <path d="M460,363 L548,363" marker-end="url(#f-engineering-leverage-lev-k)"/>
+    <!-- edge: a-impl -> a-product -->
+    <path d="M635,363 L741,363" marker-end="url(#f-engineering-leverage-lev-k)"/>
   </g>
 
-  <rect x="30" y="338" width="120" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-engineering-leverage-a-engineer" x="30" y="338" width="120" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="90" y="369" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Engineer</text>
 
   <!-- primary node: engineered environment -->
-  <rect x="175" y="332" width="195" height="62" rx="9" fill="#e3f0e7" stroke="#9a3f12" stroke-width="3.4"/>
+  <rect id="f-engineering-leverage-a-env" x="175" y="332" width="195" height="62" rx="9" fill="#e3f0e7" stroke="#9a3f12" stroke-width="3.4"/>
   <text x="272" y="358" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Engineered</text>
   <text x="272" y="379" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Environment</text>
   <text x="272" y="416" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">primary engineered lever</text>
 
-  <rect x="393" y="338" width="134" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-engineering-leverage-a-agents" x="393" y="338" width="134" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="460" y="369" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Agents</text>
 
-  <rect x="550" y="338" width="170" height="50" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <rect id="f-engineering-leverage-a-impl" x="550" y="338" width="170" height="50" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
   <text x="635" y="369" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Implementation</text>
 
-  <rect x="743" y="338" width="150" height="50" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <rect id="f-engineering-leverage-a-product" x="743" y="338" width="150" height="50" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="818" y="369" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Product</text>
 
   <!-- zoom/expansion lines: the wide footer strip is a zoomed-in view of the Engineered Environment node.
-       Dotted guides run from the node's two bottom corners out to the footer box's two top corners. -->
+       Dotted guides run from the node's two bottom corners out to the footer box's two top corners.
+       Callout geometry (corner-to-corner), not a relationship edge — left unannotated. -->
   <g fill="none" stroke="#a8a29e" stroke-width="1.2" stroke-dasharray="3 4">
     <line x1="175" y1="394" x2="120" y2="452"/>
     <line x1="370" y1="394" x2="880" y2="452"/>

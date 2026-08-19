@@ -732,47 +732,53 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- ENGINEERING KNOWLEDGE -->
-  <rect x="240" y="24" width="340" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-context-delivery-stack-eng-knowledge" x="240" y="24" width="340" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="410" y="49" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">ENGINEERING KNOWLEDGE</text>
   <text x="410" y="70" text-anchor="middle" font-size="14" fill="#57534e">models &#183; rules &#183; decisions</text>
 
   <!-- fork to two lanes -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-context-delivery-stack-ah)">
-    <path d="M410,80 C330,112 280,116 260,140"/>
-    <path d="M410,80 C490,112 540,116 560,140"/>
+    <!-- edge: eng-knowledge -> standing-policy -->
+    <path d="M410,80 C330,112 260,110 260,140"/>
+    <!-- edge: eng-knowledge -> task-slice -->
+    <path d="M410,80 C490,112 560,110 560,140"/>
   </g>
 
   <!-- STANDING POLICY -->
-  <rect x="150" y="142" width="220" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-context-delivery-stack-standing-policy" x="150" y="142" width="220" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="260" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">STANDING POLICY</text>
   <text x="260" y="194" text-anchor="middle" font-size="14" fill="#57534e">always seen</text>
 
   <!-- TASK SLICE -->
-  <rect x="450" y="142" width="220" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-context-delivery-stack-task-slice" x="450" y="142" width="220" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="560" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">TASK SLICE</text>
   <text x="560" y="194" text-anchor="middle" font-size="14" fill="#57534e">retrieved as needed</text>
 
   <!-- converge to ACTOR CONTEXT -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-context-delivery-stack-ah)">
-    <path d="M260,216 C260,252 360,258 388,270"/>
-    <path d="M560,216 C560,252 460,258 432,270"/>
+    <!-- edge: standing-policy -> actor-context -->
+    <path d="M260,216 C260,252 388,240 388,270"/>
+    <!-- edge: task-slice -> actor-context -->
+    <path d="M560,216 C560,252 432,240 432,270"/>
   </g>
 
   <!-- ACTOR CONTEXT -->
-  <rect x="300" y="272" width="220" height="62" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="f-context-delivery-stack-actor-context" x="300" y="272" width="220" height="62" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="410" y="309" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">ACTOR CONTEXT</text>
 
+  <!-- edge: actor-context -> action -->
   <line x1="410" y1="334" x2="410" y2="378" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-context-delivery-stack-ah)"/>
 
   <!-- ACTION -->
-  <rect x="315" y="380" width="190" height="62" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-context-delivery-stack-action" x="315" y="380" width="190" height="62" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="410" y="417" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">ACTION</text>
 
   <!-- POINT-OF-ACTION (dashed enhancement) -> ACTION -->
-  <rect x="560" y="372" width="210" height="80" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <rect id="f-context-delivery-stack-point-of-action" x="560" y="372" width="210" height="80" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="665" y="400" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">POINT-OF-ACTION</text>
   <text x="665" y="420" text-anchor="middle" font-size="14" fill="#57534e">reminder /</text>
   <text x="665" y="438" text-anchor="middle" font-size="14" fill="#57534e">deterministic gate</text>
+  <!-- edge: point-of-action .. action -->
   <path d="M560,411 L508,411" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#f-context-delivery-stack-aho)"/>
 
   <!-- legend (top-left, clear of the centered top box) -->

@@ -31,23 +31,23 @@
 
   <!-- branch boxes; the +1 (Scenarios) is accent-filled to mark it as the validator -->
   <g>
-    <rect x="40"  y="70" width="164" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+    <rect id="logical" x="40"  y="70" width="164" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
     <text x="122" y="102" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Logical</text>
     <text x="122" y="128" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">what it is</text>
 
-    <rect x="223" y="70" width="164" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+    <rect id="process" x="223" y="70" width="164" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
     <text x="305" y="102" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Process</text>
     <text x="305" y="128" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">runs at once</text>
 
-    <rect x="406" y="70" width="188" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+    <rect id="development" x="406" y="70" width="188" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
     <text x="500" y="102" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Development</text>
     <text x="500" y="128" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">how it’s packaged</text>
 
-    <rect x="613" y="70" width="164" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+    <rect id="physical" x="613" y="70" width="164" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
     <text x="695" y="102" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Physical</text>
     <text x="695" y="128" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">where it runs</text>
 
-    <rect x="796" y="70" width="164" height="74" rx="8" fill="#2f5169" stroke="#2f5169" stroke-width="2.5"/>
+    <rect id="scenarios" x="796" y="70" width="164" height="74" rx="8" fill="#2f5169" stroke="#2f5169" stroke-width="2.5"/>
     <text x="878" y="98"  text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Scenarios</text>
     <text x="878" y="122" text-anchor="middle" font-size="18" fill="#e7edf3">the +1 —</text>
     <text x="878" y="140" text-anchor="middle" font-size="18" fill="#e7edf3">validates the four</text>
@@ -55,16 +55,21 @@
 
   <!-- branch stems fanning up from the trunk bar (y=300) to each box base (y=144) -->
   <g stroke="#2f5169" stroke-width="2.5" fill="none">
+    <!-- edge: trunk -> logical -->
     <path d="M122,300 L122,146" marker-end="url(#tvUp)"/>
+    <!-- edge: trunk -> process -->
     <path d="M305,300 L305,146" marker-end="url(#tvUp)"/>
+    <!-- edge: trunk -> development -->
     <path d="M500,300 L500,146" marker-end="url(#tvUp)"/>
+    <!-- edge: trunk -> physical -->
     <path d="M695,300 L695,146" marker-end="url(#tvUp)"/>
+    <!-- edge: trunk -> scenarios -->
     <path d="M878,300 L878,146" marker-end="url(#tvUp)"/>
   </g>
 
   <!-- ================= THE SHARED TRUNK (bottom) ================= -->
   <!-- the trunk bar every branch grows from -->
-  <rect x="40" y="300" width="920" height="8" rx="4" fill="#2f5169"/>
+  <rect id="trunk" x="40" y="300" width="920" height="8" rx="4" fill="#2f5169"/>
   <text x="500" y="342" text-anchor="middle" font-size="26" font-weight="700" fill="#2f5169">Shared substrate — machinery that keeps the views connected</text>
 
   <!-- the four trunk components -->
