@@ -576,6 +576,24 @@ Two more transformations from the author's own edits, same conservative posture 
      *After:* "the collision **is a property of** the interaction" *(a wrong copula-swap: "property of" is
      the precise relation between a conflict and the interaction it belongs to; "lives in" is looser.)*
 
+## House-style calibration — the register pass: introduce the noun once, then use plain verbs (260819)
+
+10. **Introduce the technical noun once. Then explain it with ordinary verbs.** The front matter's failure
+    mode is register drift: stacking the canonical nouns (*consequential, externalize, representation,
+    realization, authority, semantic, tractable, reconstruct, mechanism, durable, governance, instantiate,
+    methodological, lineage, empirical, reflexive*) into a single dense clause, so the reader meets several
+    abstractions at once. The fix is a **register pass, not a conceptual pass**: keep the structure, the
+    claims, and the MAGE vocabulary; simplify the surrounding sentences so the reader learns one new idea at
+    a time. Name the technical noun the first time it is taught, then carry the sentence on plain verbs.
+    - *Before:* "Alignment operationalizes consequential obligations through authoritative admission mechanisms."
+      *After:* "Alignment gives obligations authority. A gate can then block work that violates them."
+    - **The audit move:** search the front matter for each word in the list above and ask at every site —
+      *is this the technical term being taught here, or merely the fancy word I happened to use?* If the
+      latter, simplify it; if it is the canonical term at its teaching site, keep it. Do **not** strip the
+      vocabulary mechanically — many of these are the terms the book exists to define.
+    - **Calibrate the front matter to Part I.** Part I already uses the plain form far more often; the front
+      matter should sound like Part I, not more academic than it.
+
 ## Glossary entries — first sentence is the definition
 
 A glossary entry defines a term; it does not pitch it. The house rule:

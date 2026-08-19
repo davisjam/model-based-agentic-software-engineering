@@ -99,9 +99,9 @@
   <!-- Scale x Finite reasoning (the top two boxes merged: Scale is the enduring source of the finite
        reasoning horizon, so they now read as ONE node — the problem the method answers) -->
   <rect id="scale-finite" x="350" y="56" width="300" height="104" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="500" y="86" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Scale &#215; Finite reasoning</text>
+  <text x="500" y="86" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Scale &#215; finite reasoning</text>
   <text x="500" y="110" text-anchor="middle" font-size="13" fill="#57534e">large systems exceed any one reasoner;</text>
-  <text x="500" y="127" text-anchor="middle" font-size="13" fill="#57534e">relevant state must be abstracted</text>
+  <text x="500" y="127" text-anchor="middle" font-size="13" fill="#57534e">relevant state must be simplified</text>
   <text x="500" y="144" text-anchor="middle" font-size="13" fill="#57534e">or reconstructed</text>
   <!-- edge: scale-finite -> imbalance -->
   <path d="M500,160 L500,230" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#mm-ah)"/>
@@ -127,8 +127,8 @@
   <path d="M500,454 L500,556" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#mm-ah)"/>
   <!-- the relationship label's background doubles as the node the governance-conversion loop plugs into -->
   <rect id="semantic-surface" x="342" y="486" width="316" height="38" fill="#fdfcf9"/>
-  <text x="500" y="502" text-anchor="middle" font-size="13" font-weight="600" fill="#1f7a4d">expands the semantic surface</text>
-  <text x="500" y="519" text-anchor="middle" font-size="13" font-weight="600" fill="#1f7a4d">governance can act on</text>
+  <text x="500" y="502" text-anchor="middle" font-size="13" font-weight="600" fill="#1f7a4d">makes more of the</text>
+  <text x="500" y="519" text-anchor="middle" font-size="13" font-weight="600" fill="#1f7a4d">system governable</text>
 
   <!-- Alignment Principle -->
   <rect id="alignment" x="350" y="558" width="300" height="84" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
@@ -141,10 +141,10 @@
   <!-- Governed Engineering Environment (synthesis — teal) -->
   <rect id="gee" x="330" y="676" width="340" height="60" rx="8" fill="#e6f1ee" stroke="#1c6b5f" stroke-width="2.8"/>
   <text x="500" y="702" text-anchor="middle" font-size="17" font-weight="700" fill="#185c52">Governed Engineering Environment</text>
-  <text x="500" y="723" text-anchor="middle" font-size="13" font-style="italic" fill="#185c52">where both principles meet and effort compounds</text>
+  <text x="500" y="723" text-anchor="middle" font-size="13" font-style="italic" fill="#185c52">where Modeling and Alignment work together</text>
   <!-- edge: gee -> capital -->
   <path d="M500,736 L500,788" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#mm-ah)"/>
-  <text x="512" y="762" font-size="13" fill="#57534e">when future value exceeds carrying cost</text>
+  <text x="512" y="762" font-size="13" fill="#57534e">when future value exceeds upkeep</text>
 
   <!-- Engineering Capital (positive outcome — green) -->
   <rect id="capital" x="384" y="790" width="232" height="80" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3.4"/>
@@ -176,8 +176,8 @@
   <!-- =============== CHURN: the failure attractor, reached by two dashed paths =============== -->
   <rect id="churn" x="700" y="846" width="280" height="96" rx="9" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.4"/>
   <text x="840" y="886" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">Engineering Churn</text>
-  <text x="840" y="910" text-anchor="middle" font-size="13" font-style="italic" fill="#b23b3b">effort re-paid, never settling</text>
-  <text x="840" y="927" text-anchor="middle" font-size="13" font-style="italic" fill="#b23b3b">into durable structure</text>
+  <text x="840" y="910" text-anchor="middle" font-size="13" font-style="italic" fill="#b23b3b">the same work</text>
+  <text x="840" y="927" text-anchor="middle" font-size="13" font-style="italic" fill="#b23b3b">gets paid for again</text>
 
   <!-- weak representation -> reconstruction (leaves the Modeling side) -->
   <!-- edge: modeling .. churn -->
