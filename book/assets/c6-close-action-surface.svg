@@ -26,25 +26,29 @@
   <text x="60" y="52" font-size="17" font-weight="700" letter-spacing="0.06em" fill="#1c1917">OPEN &#183; any route</text>
 
   <!-- actor -->
-  <rect x="60" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="actor-open" x="60" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="115" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">actor</text>
 
-  <!-- scattered thin DASHED routes (chaos read by dash + fan) -->
+  <!-- scattered thin DASHED routes (chaos read by dash + fan); heads seated on each target's left border -->
   <g fill="none" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#c6-ah-open)">
-    <path d="M170,244 C240,150 300,132 360,120"/>
-    <path d="M170,252 C250,214 300,206 360,200"/>
-    <path d="M170,262 C250,286 300,290 360,296"/>
-    <path d="M170,272 C240,360 300,378 360,388"/>
+    <!-- edge: actor-open -> raw-surface-1 -->
+    <path d="M170,244 C240,150 333,120 363,120"/>
+    <!-- edge: actor-open -> raw-surface-2 -->
+    <path d="M170,252 C250,214 333,200 363,200"/>
+    <!-- edge: actor-open -> helper -->
+    <path d="M170,262 C250,286 333,296 363,296"/>
+    <!-- edge: actor-open -> unknown-routes -->
+    <path d="M170,272 C240,360 333,388 363,388"/>
   </g>
 
   <g font-size="15" fill="#1c1917">
-    <rect x="364" y="100" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="raw-surface-1" x="364" y="100" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
     <text x="439" y="125" text-anchor="middle">raw surface</text>
-    <rect x="364" y="180" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="raw-surface-2" x="364" y="180" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
     <text x="439" y="205" text-anchor="middle">raw surface</text>
-    <rect x="364" y="276" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="helper" x="364" y="276" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
     <text x="439" y="301" text-anchor="middle">helper</text>
-    <rect x="364" y="368" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="unknown-routes" x="364" y="368" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
     <text x="439" y="393" text-anchor="middle" font-weight="700">unknown routes</text>
   </g>
 
@@ -57,27 +61,31 @@
   <text x="560" y="52" font-size="17" font-weight="700" letter-spacing="0.06em" fill="#1c1917">CLOSED &#183; one named seam</text>
 
   <!-- actor -->
-  <rect x="560" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="actor-closed" x="560" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="615" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">actor</text>
 
   <!-- solid HEAVY funnel to a bold SEAM -->
-  <line x1="670" y1="256" x2="712" y2="256" stroke="#1c1917" stroke-width="3" marker-end="url(#c6-ah-closed)"/>
-  <rect x="718" y="222" width="112" height="68" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="4"/>
+  <!-- edge: actor-closed -> seam -->
+  <line x1="670" y1="256" x2="715" y2="256" stroke="#1c1917" stroke-width="3" marker-end="url(#c6-ah-closed)"/>
+  <rect id="seam" x="718" y="222" width="112" height="68" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="4"/>
   <text x="774" y="262" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">SEAM</text>
 
-  <!-- fan to three verbs, solid heavy -->
+  <!-- fan to three verbs, solid heavy; heads seated on each verb's left border (approach horizontal) -->
   <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#c6-ah-closed)">
-    <path d="M830,240 C868,196 878,184 900,168"/>
-    <line x1="830" y1="256" x2="898" y2="256"/>
-    <path d="M830,272 C868,316 878,328 900,344"/>
+    <!-- edge: seam -> verb-a -->
+    <path d="M830,240 C845,180 850,168 864,168"/>
+    <!-- edge: seam -> verb-b -->
+    <line x1="830" y1="256" x2="864" y2="256"/>
+    <!-- edge: seam -> verb-c -->
+    <path d="M830,272 C845,332 850,344 864,344"/>
   </g>
 
   <g font-size="16" font-weight="700" fill="#1c1917">
-    <rect x="866" y="148" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <rect id="verb-a" x="866" y="148" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
     <text x="913" y="173" text-anchor="middle">VERB A</text>
-    <rect x="866" y="236" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <rect id="verb-b" x="866" y="236" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
     <text x="913" y="261" text-anchor="middle">VERB B</text>
-    <rect x="866" y="324" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <rect id="verb-c" x="866" y="324" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
     <text x="913" y="349" text-anchor="middle">VERB C</text>
   </g>
 

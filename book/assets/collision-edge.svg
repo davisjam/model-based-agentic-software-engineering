@@ -25,32 +25,36 @@
     </marker>
   </defs>
 
+  <!-- A acts on the shared resource -->
+  <!-- edge: control-a -> commit-set -->
+  <path d="M300,132 C350,168 408,182 408,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ce-ah)"/>
+  <text x="318" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
+
+  <!-- B acts on the shared resource -->
+  <!-- edge: control-b -> commit-set -->
+  <path d="M660,132 C610,168 552,182 552,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ce-ah)"/>
+  <text x="642" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
+
+  <!-- incompatibility hangs off the shared-resource node -->
+  <!-- edge: commit-set -> incompatible -->
+  <line x1="480" y1="294" x2="480" y2="332" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#ce-ah-churn)"/>
+
   <!-- Control A (top-left) -->
-  <rect x="60" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="control-a" x="60" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="225" y="82" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Control A</text>
   <text x="225" y="112" text-anchor="middle" font-size="19" fill="#57534e">requires a squashed commit &#10003;</text>
 
   <!-- Control B (top-right) -->
-  <rect x="570" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="control-b" x="570" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="735" y="82" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Control B</text>
   <text x="735" y="112" text-anchor="middle" font-size="19" fill="#57534e">rejects a broad diff &#10003;</text>
 
   <!-- the shared resource, an explicit node both controls act on -->
-  <rect x="380" y="214" width="200" height="80" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <rect id="commit-set" x="380" y="214" width="200" height="80" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
   <text x="480" y="248" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">shared resource</text>
   <text x="480" y="276" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">COMMIT SET</text>
 
-  <!-- A acts on the shared resource -->
-  <path d="M300,132 C350,168 375,186 408,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ce-ah)"/>
-  <text x="318" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
-
-  <!-- B acts on the shared resource -->
-  <path d="M660,132 C610,168 585,186 552,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#ce-ah)"/>
-  <text x="642" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
-
-  <!-- incompatibility hangs off the shared-resource node -->
-  <line x1="480" y1="294" x2="480" y2="332" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#ce-ah-churn)"/>
-  <rect x="250" y="336" width="460" height="70" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2.2" stroke-dasharray="7 6"/>
+  <rect id="incompatible" x="250" y="336" width="460" height="70" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2.2" stroke-dasharray="7 6"/>
   <text x="480" y="368" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">incompatible demands</text>
   <text x="480" y="391" text-anchor="middle" font-size="19" font-style="italic" fill="#b23b3b">the conflict lives in this relation, not in either control</text>
 </svg>

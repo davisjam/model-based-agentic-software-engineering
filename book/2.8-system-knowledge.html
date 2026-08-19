@@ -785,39 +785,46 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- TASK enters INTO the entity -->
-  <rect x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-substrate-traversal-task" x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="410" y="52" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
+  <!-- edge: task -> entity -->
   <line x1="410" y1="68" x2="410" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-substrate-traversal-st-k)"/>
   <text x="422" y="160" font-size="12.5" font-style="italic" fill="#57534e">enters at a named entity</text>
 
-  <!-- spokes: entity to the six relations (drawn under the boxes) -->
+  <!-- spokes: entity to the six relations (drawn under the boxes); heads seated on each box's near border -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-substrate-traversal-st-b)">
-    <path d="M470,272 C520,244 560,222 588,206"/>          <!-- to right (0deg) -->
-    <path d="M460,258 C500,210 505,170 508,145"/>          <!-- to upper-right (60deg) -->
-    <path d="M360,258 C320,210 315,170 312,145"/>          <!-- to upper-left (120deg) -->
-    <path d="M350,272 C300,244 260,222 232,206"/>          <!-- to left (180deg) -->
-    <path d="M360,322 C320,370 315,410 312,437"/>          <!-- to lower-left (240deg) -->
-    <path d="M460,322 C500,370 505,410 508,437"/>          <!-- to lower-right (300deg) -->
+    <!-- edge: entity -> decision -->
+    <path d="M470,272 C505,258 558,250 558,232"/>          <!-- to right: seat on decision bottom border -->
+    <!-- edge: entity -> behavioral -->
+    <path d="M460,258 C500,210 508,177 508,147"/>          <!-- to upper-right: behavioral bottom border -->
+    <!-- edge: entity -> structural -->
+    <path d="M360,258 C320,210 312,177 312,147"/>          <!-- to upper-left: structural bottom border -->
+    <!-- edge: entity -> ownership -->
+    <path d="M350,272 C315,258 262,250 262,232"/>          <!-- to left: seat on ownership bottom border -->
+    <!-- edge: entity -> provenance -->
+    <path d="M360,322 C320,370 312,405 312,435"/>          <!-- to lower-left: provenance top border -->
+    <!-- edge: entity -> measurement -->
+    <path d="M460,322 C500,370 508,405 508,435"/>          <!-- to lower-right: measurement top border -->
   </g>
 
   <!-- named ENTITY (gray identity, center) -->
-  <rect x="315" y="255" width="190" height="72" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
+  <rect id="f-substrate-traversal-entity" x="315" y="255" width="190" height="72" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
   <text x="410" y="288" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">named ENTITY</text>
   <text x="410" y="310" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">e.g. a job, a service</text>
 
   <!-- six relation boxes (blue peers) -->
   <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect x="535" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-substrate-traversal-decision" x="535" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="610" y="211">decision</text>
-    <rect x="435" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-substrate-traversal-behavioral" x="435" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="510" y="126">behavioral</text>
-    <rect x="235" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-substrate-traversal-structural" x="235" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="310" y="126">structural</text>
-    <rect x="135" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-substrate-traversal-ownership" x="135" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="210" y="211">ownership</text>
-    <rect x="235" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-substrate-traversal-provenance" x="235" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="310" y="468">provenance</text>
-    <rect x="435" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="f-substrate-traversal-measurement" x="435" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="510" y="468">measurement</text>
   </g>
 
@@ -857,32 +864,35 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ===== Panel 1: DERIVE ===== -->
   <text x="160" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">DERIVE</text>
   <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation is source of truth</text>
-  <rect x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-derive-generate-trace-impl-derive" x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="160" y="219" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">implementation</text>
+  <!-- edge: impl-derive -> model-derive -->
   <line x1="160" y1="188" x2="160" y2="128" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-derive-generate-trace-dg-b)"/>
   <text x="172" y="162" font-size="13.5" font-style="italic" fill="#2f5169">derive</text>
-  <rect x="55" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="f-derive-generate-trace-model-derive" x="55" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="160" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
 
   <!-- ===== Panel 2: GENERATE ===== -->
   <text x="480" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">GENERATE</text>
   <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model is source of truth</text>
-  <rect x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="f-derive-generate-trace-model-generate" x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="480" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
+  <!-- edge: model-generate -> impl-generate -->
   <line x1="480" y1="128" x2="480" y2="188" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-derive-generate-trace-dg-k)"/>
   <text x="492" y="162" font-size="13.5" font-style="italic" fill="#2f5169">generate</text>
-  <rect x="375" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-derive-generate-trace-impl-generate" x="375" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="219" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">implementation / config</text>
 
   <!-- ===== Panel 3: TRACE + CHECK ===== -->
   <text x="800" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE + CHECK</text>
   <text x="800" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">neither fully determines the other</text>
-  <rect x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="f-derive-generate-trace-model-trace" x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="800" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
   <!-- two-way link with rust decidable check -->
+  <!-- edge: model-trace -> system -->
   <line x1="800" y1="136" x2="800" y2="180" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#f-derive-generate-trace-dg-r)" marker-end="url(#f-derive-generate-trace-dg-r)"/>
   <text x="812" y="163" font-size="12.5" font-weight="700" fill="#9a3f12">check (decidable)</text>
-  <rect x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-derive-generate-trace-system" x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="800" y="211" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">system</text>
 
   <!-- footer: protect the point -->
@@ -955,32 +965,35 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- STRUCTURED MODEL (blue) -->
-  <rect x="30" y="96" width="270" height="130" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-coherence-triangle-model" x="30" y="96" width="270" height="130" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="165" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">STRUCTURED MODEL</text>
   <text x="165" y="167" text-anchor="middle" font-size="16" fill="#57534e">records &#183; edges &#183; states</text>
   <text x="165" y="196" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a job: free / leased / done</text>
 
   <!-- INVARIANTS (rust) -->
-  <rect x="365" y="96" width="270" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <rect id="f-coherence-triangle-invariants" x="365" y="96" width="270" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="500" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INVARIANTS</text>
   <text x="500" y="165" text-anchor="middle" font-size="15" fill="#57534e">stable ids + declared domains</text>
   <rect x="388" y="180" width="224" height="34" rx="6" fill="#fbfdff" stroke="#9a3f12" stroke-width="1.2"/>
   <text x="500" y="203" text-anchor="middle" font-size="15" fill="#9a3f12">leased &#8660; owner exists</text>
 
   <!-- CHECKER (green) -->
-  <rect x="700" y="96" width="270" height="130" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
+  <rect id="f-coherence-triangle-checker" x="700" y="96" width="270" height="130" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
   <text x="835" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">CHECKER</text>
   <text x="835" y="167" text-anchor="middle" font-size="15" fill="#57534e">model check &#183; drift lint</text>
   <text x="835" y="190" text-anchor="middle" font-size="15" fill="#57534e">&#183; validator</text>
 
   <!-- edges -->
+  <!-- edge: model -> invariants -->
   <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-coherence-triangle-ct-k)"/>
   <text x="332" y="130" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">supports</text>
   <text x="332" y="146" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">predicates over</text>
+  <!-- edge: invariants -> checker -->
   <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-coherence-triangle-ct-k)"/>
   <text x="667" y="138" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">evaluated by</text>
 
   <!-- side arrow: recurring failure -> new/refined invariant -->
+  <!-- edge: checker .. invariants -->
   <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#f-coherence-triangle-ct-r)"/>
   <text x="668" y="320" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
 

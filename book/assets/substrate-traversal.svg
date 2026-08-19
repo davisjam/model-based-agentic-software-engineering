@@ -25,39 +25,46 @@
   </defs>
 
   <!-- TASK enters INTO the entity -->
-  <rect x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="task" x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="410" y="52" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
+  <!-- edge: task -> entity -->
   <line x1="410" y1="68" x2="410" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#st-k)"/>
   <text x="422" y="160" font-size="12.5" font-style="italic" fill="#57534e">enters at a named entity</text>
 
-  <!-- spokes: entity to the six relations (drawn under the boxes) -->
+  <!-- spokes: entity to the six relations (drawn under the boxes); heads seated on each box's near border -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#st-b)">
-    <path d="M470,272 C520,244 560,222 588,206"/>          <!-- to right (0deg) -->
-    <path d="M460,258 C500,210 505,170 508,145"/>          <!-- to upper-right (60deg) -->
-    <path d="M360,258 C320,210 315,170 312,145"/>          <!-- to upper-left (120deg) -->
-    <path d="M350,272 C300,244 260,222 232,206"/>          <!-- to left (180deg) -->
-    <path d="M360,322 C320,370 315,410 312,437"/>          <!-- to lower-left (240deg) -->
-    <path d="M460,322 C500,370 505,410 508,437"/>          <!-- to lower-right (300deg) -->
+    <!-- edge: entity -> decision -->
+    <path d="M470,272 C505,258 558,250 558,232"/>          <!-- to right: seat on decision bottom border -->
+    <!-- edge: entity -> behavioral -->
+    <path d="M460,258 C500,210 508,177 508,147"/>          <!-- to upper-right: behavioral bottom border -->
+    <!-- edge: entity -> structural -->
+    <path d="M360,258 C320,210 312,177 312,147"/>          <!-- to upper-left: structural bottom border -->
+    <!-- edge: entity -> ownership -->
+    <path d="M350,272 C315,258 262,250 262,232"/>          <!-- to left: seat on ownership bottom border -->
+    <!-- edge: entity -> provenance -->
+    <path d="M360,322 C320,370 312,405 312,435"/>          <!-- to lower-left: provenance top border -->
+    <!-- edge: entity -> measurement -->
+    <path d="M460,322 C500,370 508,405 508,435"/>          <!-- to lower-right: measurement top border -->
   </g>
 
   <!-- named ENTITY (gray identity, center) -->
-  <rect x="315" y="255" width="190" height="72" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
+  <rect id="entity" x="315" y="255" width="190" height="72" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
   <text x="410" y="288" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">named ENTITY</text>
   <text x="410" y="310" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">e.g. a job, a service</text>
 
   <!-- six relation boxes (blue peers) -->
   <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect x="535" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="decision" x="535" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="610" y="211">decision</text>
-    <rect x="435" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="behavioral" x="435" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="510" y="126">behavioral</text>
-    <rect x="235" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="structural" x="235" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="310" y="126">structural</text>
-    <rect x="135" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="ownership" x="135" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="210" y="211">ownership</text>
-    <rect x="235" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="provenance" x="235" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="310" y="468">provenance</text>
-    <rect x="435" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="measurement" x="435" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="510" y="468">measurement</text>
   </g>
 

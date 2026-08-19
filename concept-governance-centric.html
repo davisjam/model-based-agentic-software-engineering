@@ -245,18 +245,21 @@
   <rect x="52" y="212" width="392" height="272" rx="12" fill="#f6f4ef" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="4 6"/>
   <text x="248" y="470" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">environment — a passive backdrop</text>
 
-  <!-- engineer -->
-  <rect x="80" y="176" width="150" height="58" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="155" y="212" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
+  <!-- arrow onto the agent: engineer works ON the agent. Drawn UNDER the nodes; the swoop runs down the
+       clear left channel (left of both the object-ring caption and the prompts caption) and seats
+       PERPENDICULAR into the agent's left edge, so it plugs in without crossing either label. -->
+  <!-- edge: engineer-l -> agent-l -->
+  <path d="M135,232 C105,300 130,369 219,369" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#cf-1-eao-fleet)"/>
 
-  <!-- arrow onto the agent -->
-  <path d="M200,266 C236,286 250,300 262,314" fill="none" stroke="#2f5169" stroke-width="2.6" marker-end="url(#cf-1-eao-fleet)"/>
+  <!-- engineer -->
+  <rect id="cf-1-engineer-l" x="80" y="176" width="150" height="58" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <text x="155" y="212" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
   <text x="150" y="300" font-size="16" font-style="italic" fill="#57534e">prompts · tunes · wraps</text>
 
   <!-- the agent (the object, ring-marked) -->
   <circle cx="290" cy="368" r="66" fill="none" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="3 5"/>
   <circle cx="290" cy="368" r="54" fill="none" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="3 5"/>
-  <rect x="222" y="340" width="136" height="58" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
+  <rect id="cf-1-agent-l" x="222" y="340" width="136" height="58" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
   <text x="290" y="376" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Agent</text>
   <text x="290" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">the object of engineering</text>
 
@@ -271,21 +274,26 @@
   <text x="750" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">the object of engineering</text>
 
   <!-- obligations -> mechanisms bound INTO the environment -->
-  <rect x="576" y="288" width="150" height="52" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="cf-1-obligations" x="576" y="288" width="150" height="52" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="651" y="320" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Obligations</text>
+  <!-- edge: obligations -> mechanisms -->
   <path d="M726,314 L766,314" fill="none" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#cf-1-eao-accent)"/>
-  <rect x="768" y="288" width="156" height="52" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <rect id="cf-1-mechanisms" x="768" y="288" width="156" height="52" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="846" y="320" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Mechanisms</text>
 
+  <!-- engineer works on the environment. Drawn UNDER the nodes; the swoop rises through the clear channel
+       left of the "operates inside" caption and seats PERPENDICULAR into the agent's left edge. -->
+  <!-- edge: engineer-b -> agent-r -->
+  <path d="M610,520 C600,470 620,432 683,432" fill="none" stroke="#2f5169" stroke-width="2.8" marker-end="url(#cf-1-eao-fleet)"/>
+
   <!-- the agent OPERATES INSIDE the environment (not the object) -->
-  <rect x="686" y="404" width="128" height="56" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="cf-1-agent-r" x="686" y="404" width="128" height="56" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="750" y="439" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Agent</text>
   <text x="750" y="480" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">operates inside — not the object</text>
 
   <!-- engineer works on the environment -->
-  <rect x="560" y="516" width="150" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="cf-1-engineer-b" x="560" y="516" width="150" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="635" y="550" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
-  <path d="M700,520 C740,502 754,498 762,494" fill="none" stroke="#2f5169" stroke-width="2.8" marker-end="url(#cf-1-eao-fleet)"/>
   <text x="726" y="548" font-size="16" font-style="italic" fill="#57534e">governs · models</text>
 
   <text x="500" y="590" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The move: the object of engineering jumps from the agent to the governed environment the agent operates in.</text>

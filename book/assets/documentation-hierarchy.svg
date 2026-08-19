@@ -27,6 +27,11 @@
     </marker>
   </defs>
 
+  <!-- edge-grammar: keep-angles -->
+  <!-- The three binding edges are near-vertical straight drops that each carry a green drift-check badge
+       riding on the edge midpoint. A perpendicular auto re-aim would bow the edge off its badge, so the
+       straight seated diagonal is kept and the angle check is opted out (seating still enforced). -->
+
   <!-- panel divider -->
   <line x1="480" y1="70" x2="480" y2="530" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="6 6"/>
 
@@ -63,7 +68,7 @@
   <text x="720" y="90" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">linked models, each its own concern — not one master</text>
 
   <!-- the model LAYER: a band of several linked models (a stratum, not one apex point) -->
-  <rect x="545" y="100" width="350" height="98" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <rect id="model-layer" x="545" y="100" width="350" height="98" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
   <text x="720" y="126" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">structured model layer</text>
   <!-- three linked model chips inside the band -->
   <g fill="#ffffff" stroke="#2f5169" stroke-width="1.6">
@@ -84,9 +89,9 @@
 
   <!-- the three bound below -->
   <g stroke="#2f5169" stroke-width="2" fill="#ffffff">
-    <rect x="565" y="330" width="130" height="60" rx="8"/>
-    <rect x="745" y="330" width="130" height="60" rx="8"/>
-    <rect x="655" y="440" width="130" height="60" rx="8"/>
+    <rect id="docs" x="565" y="330" width="130" height="60" rx="8"/>
+    <rect id="code" x="745" y="330" width="130" height="60" rx="8"/>
+    <rect id="tests" x="655" y="440" width="130" height="60" rx="8"/>
   </g>
   <g font-size="21" fill="#1c1917" text-anchor="middle">
     <text x="630" y="367">docs</text>
@@ -96,8 +101,11 @@
 
   <!-- binding edges from the LAYER (varied origins along the band, not one point) to each island -->
   <g stroke="#2f5169" stroke-width="2.5" fill="none">
+    <!-- edge: model-layer -> docs -->
     <line x1="612" y1="198" x2="630" y2="326" marker-end="url(#dhArrow)"/>
+    <!-- edge: model-layer -> code -->
     <line x1="828" y1="198" x2="810" y2="326" marker-end="url(#dhArrow)"/>
+    <!-- edge: model-layer -> tests -->
     <line x1="720" y1="198" x2="720" y2="436" marker-end="url(#dhArrow)"/>
   </g>
 

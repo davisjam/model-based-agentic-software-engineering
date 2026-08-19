@@ -27,14 +27,14 @@
   <line x1="218" y1="85" x2="294" y2="85" stroke="#1c1917" stroke-width="2" marker-end="url(#df-ah)"/>
   <text x="257" y="42" text-anchor="middle" font-size="16.64" font-style="italic" fill="#57534e">bytes</text>
 
-  <rect x="300" y="55" width="120" height="60" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="parse" x="300" y="55" width="120" height="60" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="92" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Parse</text>
 
-  <!-- -> Remediate -->
-  <line x1="424" y1="85" x2="544" y2="85" stroke="#1c1917" stroke-width="2" marker-end="url(#df-ah)"/>
+  <!-- edge: parse -> remediate -->
+  <line x1="419" y1="85" x2="544" y2="85" stroke="#1c1917" stroke-width="2" marker-end="url(#df-ah)"/>
   <text x="484" y="42" text-anchor="middle" font-size="16.64" font-style="italic" fill="#57534e">structured model</text>
 
-  <rect x="550" y="55" width="160" height="60" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="remediate" x="550" y="55" width="160" height="60" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="630" y="92" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Remediate</text>
 
   <!-- -> output document -->

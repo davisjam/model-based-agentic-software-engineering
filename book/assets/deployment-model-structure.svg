@@ -19,7 +19,7 @@
   </defs>
 
   <!-- ===== the build host ===== -->
-  <rect x="40" y="50" width="330" height="310" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <rect id="build-host" x="40" y="50" width="330" height="310" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="60" y="88" font-size="20" font-weight="700" fill="#1c1917">Build host</text>
 
   <rect x="70" y="120" width="270" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -28,28 +28,33 @@
   <rect x="70" y="240" width="270" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="205" y="280" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Build semaphore</text>
 
-  <!-- host -> cluster: the image crosses the boundary -->
-  <line x1="374" y1="205" x2="554" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#dm-ah)"/>
+  <!-- host -> cluster: the image crosses the boundary (start seated on the host's right edge x370) -->
+  <!-- edge: build-host -> runtime-cluster -->
+  <line x1="370" y1="205" x2="554" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#dm-ah)"/>
   <text x="465" y="184" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">produces the image</text>
 
   <!-- ===== the runtime cluster ===== -->
-  <rect x="560" y="50" width="580" height="310" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
+  <rect id="runtime-cluster" x="560" y="50" width="580" height="310" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="580" y="88" font-size="20" font-weight="700" fill="#1c1917">Runtime cluster</text>
 
-  <rect x="590" y="173" width="130" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="web" x="590" y="173" width="130" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="655" y="213" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Web</text>
 
-  <line x1="724" y1="205" x2="782" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#dm-ah)"/>
+  <!-- edge: web -> queue -->
+  <line x1="720" y1="205" x2="782" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#dm-ah)"/>
 
-  <!-- the queue (cylinder) -->
+  <!-- the queue (cylinder). A <path>/<ellipse> cylinder cannot carry a lint-legible id, so a transparent
+       <rect> anchor sized over the cylinder body gives the edges a readable node (zero visual change). -->
   <g>
+    <rect id="queue" x="788" y="158" width="130" height="82" fill="none" stroke="none"/>
     <path d="M 788,168 v 62 a 65,10 0 0 0 130,0 v -62" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <ellipse cx="853" cy="168" rx="65" ry="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <text x="853" y="213" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Queue</text>
   </g>
 
-  <line x1="922" y1="205" x2="980" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#dm-ah)"/>
+  <!-- edge: queue -> worker -->
+  <line x1="918" y1="205" x2="980" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#dm-ah)"/>
 
-  <rect x="986" y="173" width="130" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="worker" x="986" y="173" width="130" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="1051" y="213" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Worker</text>
 </svg>

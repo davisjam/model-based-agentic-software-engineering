@@ -38,19 +38,23 @@
   <text x="250" y="286" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">COST_GATE</text>
   <text x="250" y="310" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">host-identical — stays in the graph</text>
 
-  <rect x="55" y="342" width="390" height="76" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
+  <rect id="load" x="55" y="342" width="390" height="76" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.5"/>
   <text x="250" y="382" text-anchor="middle" font-size="24" font-weight="700" fill="#b23b3b">LOAD</text>
   <text x="250" y="406" text-anchor="middle" font-size="19" font-style="italic" fill="#b23b3b">banned from the graph</text>
 
   <!-- ===== the load intent migrates off the graph ===== -->
-  <path d="M448,380 C530,372 558,268 608,204" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#dp-thick)"/>
+  <!-- The migrates head enters Scheduler's lower-left on a diagonal; a perpendicular auto-repair re-aim
+       would sweep the curve through the on-curve "migrates" label, so this figure keeps its head angles. -->
+  <!-- edge-grammar: keep-angles -->
+  <!-- edge: load -> scheduler -->
+  <path d="M444,380 C530,372 558,268 608,204" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#dp-thick)"/>
   <text x="516" y="304" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">migrates</text>
 
   <!-- ===== Zone 2 — off the graph, the Scheduler ===== -->
   <rect x="530" y="70" width="440" height="400" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
   <text x="550" y="106" font-size="20" font-weight="700" fill="#1c1917">Off the graph — the Scheduler</text>
 
-  <rect x="610" y="150" width="300" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="scheduler" x="610" y="150" width="300" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="760" y="190" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Scheduler</text>
   <text x="760" y="216" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">reads a per-host profile</text>
 

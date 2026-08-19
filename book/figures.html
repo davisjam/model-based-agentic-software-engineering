@@ -1859,29 +1859,42 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="320" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCUMENT-MUTATION MODEL</text>
 
   <!-- remediation logic (blue) -->
-  <rect x="185" y="44" width="270" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="fig-2-2-1-f-document-mutation-model-remediation" x="185" y="44" width="270" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="320" y="76" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">remediation logic</text>
+  <!-- edge: remediation -> model -->
   <line x1="320" y1="96" x2="320" y2="132" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-2-1-f-document-mutation-model-dm-b)"/>
   <text x="332" y="119" font-size="14" font-style="italic" fill="#57534e">operates through</text>
 
   <!-- structured document model = the seam (blue, emphasized) -->
-  <rect x="160" y="134" width="320" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
+  <rect id="fig-2-2-1-f-document-mutation-model-model" x="160" y="134" width="320" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
   <text x="320" y="162" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">structured document model</text>
   <text x="320" y="183" text-anchor="middle" font-size="14" font-style="italic" fill="#2f5169">the sanctioned seam</text>
+  <!-- edge: model -> impl -->
   <line x1="320" y1="196" x2="320" y2="232" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-2-1-f-document-mutation-model-dm-b)"/>
   <text x="332" y="219" font-size="14" font-style="italic" fill="#57534e">realized through</text>
 
   <!-- format-specific implementation (gray) -->
-  <rect x="180" y="234" width="280" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="fig-2-2-1-f-document-mutation-model-impl" x="180" y="234" width="280" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="320" y="266" text-anchor="middle" font-size="17" fill="#1c1917">format-specific implementation</text>
-  <line x1="320" y1="286" x2="320" y2="318" stroke="#57534e" stroke-width="2" marker-end="url(#fig-2-2-1-f-document-mutation-model-dm-k)"/>
+  <!-- impl fans to each concrete format: one path per branch, all sharing the trunk origin (320,286) so it
+       still reads as one drop that splits, while every edge terminates on its own named format node. -->
+  <g fill="none" stroke="#57534e" stroke-width="2">
+    <!-- edge: impl -> docx -->
+    <path d="M320,286 C267.5,296.9 170,287 170,317" marker-end="url(#fig-2-2-1-f-document-mutation-model-dm-k)"/>
+    <!-- edge: impl -> pptx -->
+    <path d="M320,286 C306,296.9 280,287 280,317" marker-end="url(#fig-2-2-1-f-document-mutation-model-dm-k)"/>
+    <!-- edge: impl -> xlsx -->
+    <path d="M320,286 C344.5,296.9 390,287 390,317" marker-end="url(#fig-2-2-1-f-document-mutation-model-dm-k)"/>
+    <!-- edge: impl -> pdf -->
+    <path d="M320,286 C383,296.9 500,287 500,317" marker-end="url(#fig-2-2-1-f-document-mutation-model-dm-k)"/>
+  </g>
 
   <!-- formats row (gray) -->
   <g fill="#f6f4ef" stroke="#57534e" stroke-width="2">
-    <rect x="120" y="320" width="100" height="44" rx="9"/>
-    <rect x="230" y="320" width="100" height="44" rx="9"/>
-    <rect x="340" y="320" width="100" height="44" rx="9"/>
-    <rect x="450" y="320" width="100" height="44" rx="9"/>
+    <rect id="fig-2-2-1-f-document-mutation-model-docx" x="120" y="320" width="100" height="44" rx="9"/>
+    <rect id="fig-2-2-1-f-document-mutation-model-pptx" x="230" y="320" width="100" height="44" rx="9"/>
+    <rect id="fig-2-2-1-f-document-mutation-model-xlsx" x="340" y="320" width="100" height="44" rx="9"/>
+    <rect id="fig-2-2-1-f-document-mutation-model-pdf" x="450" y="320" width="100" height="44" rx="9"/>
   </g>
   <text x="170" y="348" text-anchor="middle" font-size="16" fill="#1c1917">DOCX</text>
   <text x="280" y="348" text-anchor="middle" font-size="16" fill="#1c1917">PPTX</text>
@@ -2555,21 +2568,23 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- current value (top-left peer) -->
-  <rect x="40" y="46" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="fig-2-6-2-f-measured-quantity-comparison-current-value" x="40" y="46" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="150" y="78" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">CURRENT VALUE</text>
   <text x="150" y="99" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">what is now</text>
 
   <!-- reference bound (bottom-left peer, declared separately) -->
-  <rect x="40" y="166" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="fig-2-6-2-f-measured-quantity-comparison-reference-bound" x="40" y="166" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="150" y="198" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">REFERENCE BOUND</text>
   <text x="150" y="219" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">declared separately</text>
 
-  <!-- converge into comparison -->
-  <path d="M260,78 C310,96 320,120 360,132" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-f-measured-quantity-comparison-mq-b)"/>
-  <path d="M260,198 C310,180 320,156 360,144" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-f-measured-quantity-comparison-mq-b)"/>
+  <!-- converge into comparison (two peers into one node; heads seated on the comparison's left border) -->
+  <!-- edge: current-value -> comparison -->
+  <path d="M260,78 C310,96 336,134 366,134" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-f-measured-quantity-comparison-mq-b)"/>
+  <!-- edge: reference-bound -> comparison -->
+  <path d="M260,198 C310,180 336,142 366,142" fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-6-2-f-measured-quantity-comparison-mq-b)"/>
 
   <!-- comparison -->
-  <rect x="368" y="108" width="160" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="fig-2-6-2-f-measured-quantity-comparison-comparison" x="368" y="108" width="160" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="448" y="144" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">COMPARISON</text>
 
   <!-- footer: protect the point -->
@@ -2770,39 +2785,46 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- TASK enters INTO the entity -->
-  <rect x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="fig-2-8-2-f-substrate-traversal-task" x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="410" y="52" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
+  <!-- edge: task -> entity -->
   <line x1="410" y1="68" x2="410" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#fig-2-8-2-f-substrate-traversal-st-k)"/>
   <text x="422" y="160" font-size="12.5" font-style="italic" fill="#57534e">enters at a named entity</text>
 
-  <!-- spokes: entity to the six relations (drawn under the boxes) -->
+  <!-- spokes: entity to the six relations (drawn under the boxes); heads seated on each box's near border -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#fig-2-8-2-f-substrate-traversal-st-b)">
-    <path d="M470,272 C520,244 560,222 588,206"/>          <!-- to right (0deg) -->
-    <path d="M460,258 C500,210 505,170 508,145"/>          <!-- to upper-right (60deg) -->
-    <path d="M360,258 C320,210 315,170 312,145"/>          <!-- to upper-left (120deg) -->
-    <path d="M350,272 C300,244 260,222 232,206"/>          <!-- to left (180deg) -->
-    <path d="M360,322 C320,370 315,410 312,437"/>          <!-- to lower-left (240deg) -->
-    <path d="M460,322 C500,370 505,410 508,437"/>          <!-- to lower-right (300deg) -->
+    <!-- edge: entity -> decision -->
+    <path d="M470,272 C505,258 558,250 558,232"/>          <!-- to right: seat on decision bottom border -->
+    <!-- edge: entity -> behavioral -->
+    <path d="M460,258 C500,210 508,177 508,147"/>          <!-- to upper-right: behavioral bottom border -->
+    <!-- edge: entity -> structural -->
+    <path d="M360,258 C320,210 312,177 312,147"/>          <!-- to upper-left: structural bottom border -->
+    <!-- edge: entity -> ownership -->
+    <path d="M350,272 C315,258 262,250 262,232"/>          <!-- to left: seat on ownership bottom border -->
+    <!-- edge: entity -> provenance -->
+    <path d="M360,322 C320,370 312,405 312,435"/>          <!-- to lower-left: provenance top border -->
+    <!-- edge: entity -> measurement -->
+    <path d="M460,322 C500,370 508,405 508,435"/>          <!-- to lower-right: measurement top border -->
   </g>
 
   <!-- named ENTITY (gray identity, center) -->
-  <rect x="315" y="255" width="190" height="72" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
+  <rect id="fig-2-8-2-f-substrate-traversal-entity" x="315" y="255" width="190" height="72" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
   <text x="410" y="288" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">named ENTITY</text>
   <text x="410" y="310" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">e.g. a job, a service</text>
 
   <!-- six relation boxes (blue peers) -->
   <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect x="535" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-2-f-substrate-traversal-decision" x="535" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="610" y="211">decision</text>
-    <rect x="435" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-2-f-substrate-traversal-behavioral" x="435" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="510" y="126">behavioral</text>
-    <rect x="235" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-2-f-substrate-traversal-structural" x="235" y="95" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="310" y="126">structural</text>
-    <rect x="135" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-2-f-substrate-traversal-ownership" x="135" y="180" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="210" y="211">ownership</text>
-    <rect x="235" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-2-f-substrate-traversal-provenance" x="235" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="310" y="468">provenance</text>
-    <rect x="435" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+    <rect id="fig-2-8-2-f-substrate-traversal-measurement" x="435" y="437" width="150" height="50" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="510" y="468">measurement</text>
   </g>
 
@@ -2837,32 +2859,35 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ===== Panel 1: DERIVE ===== -->
   <text x="160" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">DERIVE</text>
   <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation is source of truth</text>
-  <rect x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="fig-2-8-3-f-derive-generate-trace-impl-derive" x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="160" y="219" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">implementation</text>
+  <!-- edge: impl-derive -> model-derive -->
   <line x1="160" y1="188" x2="160" y2="128" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-2-8-3-f-derive-generate-trace-dg-b)"/>
   <text x="172" y="162" font-size="13.5" font-style="italic" fill="#2f5169">derive</text>
-  <rect x="55" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="fig-2-8-3-f-derive-generate-trace-model-derive" x="55" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="160" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
 
   <!-- ===== Panel 2: GENERATE ===== -->
   <text x="480" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">GENERATE</text>
   <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model is source of truth</text>
-  <rect x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="fig-2-8-3-f-derive-generate-trace-model-generate" x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="480" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
+  <!-- edge: model-generate -> impl-generate -->
   <line x1="480" y1="128" x2="480" y2="188" stroke="#2f5169" stroke-width="2.4" marker-end="url(#fig-2-8-3-f-derive-generate-trace-dg-k)"/>
   <text x="492" y="162" font-size="13.5" font-style="italic" fill="#2f5169">generate</text>
-  <rect x="375" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="fig-2-8-3-f-derive-generate-trace-impl-generate" x="375" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="219" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">implementation / config</text>
 
   <!-- ===== Panel 3: TRACE + CHECK ===== -->
   <text x="800" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE + CHECK</text>
   <text x="800" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">neither fully determines the other</text>
-  <rect x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <rect id="fig-2-8-3-f-derive-generate-trace-model-trace" x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="800" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
   <!-- two-way link with rust decidable check -->
+  <!-- edge: model-trace -> system -->
   <line x1="800" y1="136" x2="800" y2="180" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#fig-2-8-3-f-derive-generate-trace-dg-r)" marker-end="url(#fig-2-8-3-f-derive-generate-trace-dg-r)"/>
   <text x="812" y="163" font-size="12.5" font-weight="700" fill="#9a3f12">check (decidable)</text>
-  <rect x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="fig-2-8-3-f-derive-generate-trace-system" x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="800" y="211" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">system</text>
 
   <!-- footer: protect the point -->
@@ -2929,32 +2954,35 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- STRUCTURED MODEL (blue) -->
-  <rect x="30" y="96" width="270" height="130" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="fig-2-8-5-f-coherence-triangle-model" x="30" y="96" width="270" height="130" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="165" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">STRUCTURED MODEL</text>
   <text x="165" y="167" text-anchor="middle" font-size="16" fill="#57534e">records &#183; edges &#183; states</text>
   <text x="165" y="196" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a job: free / leased / done</text>
 
   <!-- INVARIANTS (rust) -->
-  <rect x="365" y="96" width="270" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <rect id="fig-2-8-5-f-coherence-triangle-invariants" x="365" y="96" width="270" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="500" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INVARIANTS</text>
   <text x="500" y="165" text-anchor="middle" font-size="15" fill="#57534e">stable ids + declared domains</text>
   <rect x="388" y="180" width="224" height="34" rx="6" fill="#fbfdff" stroke="#9a3f12" stroke-width="1.2"/>
   <text x="500" y="203" text-anchor="middle" font-size="15" fill="#9a3f12">leased &#8660; owner exists</text>
 
   <!-- CHECKER (green) -->
-  <rect x="700" y="96" width="270" height="130" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
+  <rect id="fig-2-8-5-f-coherence-triangle-checker" x="700" y="96" width="270" height="130" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
   <text x="835" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">CHECKER</text>
   <text x="835" y="167" text-anchor="middle" font-size="15" fill="#57534e">model check &#183; drift lint</text>
   <text x="835" y="190" text-anchor="middle" font-size="15" fill="#57534e">&#183; validator</text>
 
   <!-- edges -->
+  <!-- edge: model -> invariants -->
   <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-5-f-coherence-triangle-ct-k)"/>
   <text x="332" y="130" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">supports</text>
   <text x="332" y="146" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">predicates over</text>
+  <!-- edge: invariants -> checker -->
   <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-5-f-coherence-triangle-ct-k)"/>
   <text x="667" y="138" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">evaluated by</text>
 
   <!-- side arrow: recurring failure -> new/refined invariant -->
+  <!-- edge: checker .. invariants -->
   <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#fig-2-8-5-f-coherence-triangle-ct-r)"/>
   <text x="668" y="320" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
 
@@ -3864,32 +3892,36 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
+  <!-- A acts on the shared resource -->
+  <!-- edge: control-a -> commit-set -->
+  <path d="M300,132 C350,168 408,182 408,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-f-collision-edge-ce-ah)"/>
+  <text x="318" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
+
+  <!-- B acts on the shared resource -->
+  <!-- edge: control-b -> commit-set -->
+  <path d="M660,132 C610,168 552,182 552,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-f-collision-edge-ce-ah)"/>
+  <text x="642" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
+
+  <!-- incompatibility hangs off the shared-resource node -->
+  <!-- edge: commit-set -> incompatible -->
+  <line x1="480" y1="294" x2="480" y2="332" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#fig-3-5-1-f-collision-edge-ce-ah-churn)"/>
+
   <!-- Control A (top-left) -->
-  <rect x="60" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="fig-3-5-1-f-collision-edge-control-a" x="60" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="225" y="82" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Control A</text>
   <text x="225" y="112" text-anchor="middle" font-size="19" fill="#57534e">requires a squashed commit &#10003;</text>
 
   <!-- Control B (top-right) -->
-  <rect x="570" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="fig-3-5-1-f-collision-edge-control-b" x="570" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="735" y="82" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Control B</text>
   <text x="735" y="112" text-anchor="middle" font-size="19" fill="#57534e">rejects a broad diff &#10003;</text>
 
   <!-- the shared resource, an explicit node both controls act on -->
-  <rect x="380" y="214" width="200" height="80" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <rect id="fig-3-5-1-f-collision-edge-commit-set" x="380" y="214" width="200" height="80" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
   <text x="480" y="248" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">shared resource</text>
   <text x="480" y="276" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">COMMIT SET</text>
 
-  <!-- A acts on the shared resource -->
-  <path d="M300,132 C350,168 375,186 408,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-f-collision-edge-ce-ah)"/>
-  <text x="318" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
-
-  <!-- B acts on the shared resource -->
-  <path d="M660,132 C610,168 585,186 552,212" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#fig-3-5-1-f-collision-edge-ce-ah)"/>
-  <text x="642" y="188" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acts on</text>
-
-  <!-- incompatibility hangs off the shared-resource node -->
-  <line x1="480" y1="294" x2="480" y2="332" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#fig-3-5-1-f-collision-edge-ce-ah-churn)"/>
-  <rect x="250" y="336" width="460" height="70" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2.2" stroke-dasharray="7 6"/>
+  <rect id="fig-3-5-1-f-collision-edge-incompatible" x="250" y="336" width="460" height="70" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2.2" stroke-dasharray="7 6"/>
   <text x="480" y="368" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">incompatible demands</text>
   <text x="480" y="391" text-anchor="middle" font-size="19" font-style="italic" fill="#b23b3b">the conflict lives in this relation, not in either control</text>
 </svg><figcaption data-short="The conflict is the edge"><span class="fig-label">Figure 3.5-1.</span> <em>The conflict is the edge.</em> Two controls may be individually valid yet impose incompatible demands on the same resource. The interaction belongs to the relation among the controls and shared resource, not necessarily to either control's implementation.</figcaption></figure><p class="gallery-source">From <a href="3.5-when-guardrails-collide.html#fig-3-5-1">17 · Governing the Control Estate</a></p></section><hr><section class="gallery-item"><figure id="fig-3-5-2-fig-3-5-2" class="book-figure" data-label="census-trio"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 620"
@@ -4033,41 +4065,46 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- node 1: uncertain need -->
-  <rect x="55" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
+  <rect id="fig-4-1-1-f-precision-follows-knowledge-uncertain-need" x="55" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
   <text x="160" y="108" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Uncertain need</text>
   <text x="160" y="136" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">customer signal &#183; hypothesis</text>
 
   <!-- node 2: explore -->
-  <rect x="300" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
+  <rect id="fig-4-1-1-f-precision-follows-knowledge-explore" x="300" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
   <text x="405" y="108" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">explore</text>
   <text x="405" y="136" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">prototype &#183; observe &#183; measure</text>
 
   <!-- node 3: stabilizing claim -->
-  <rect x="545" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
+  <rect id="fig-4-1-1-f-precision-follows-knowledge-stabilizing-claim" x="545" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
   <text x="650" y="108" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">stabilizing claim</text>
   <text x="650" y="136" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">requirement &#183; quality target</text>
 
   <!-- node 4: model -->
-  <rect x="790" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
+  <rect id="fig-4-1-1-f-precision-follows-knowledge-model" x="790" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
   <text x="895" y="108" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">model</text>
   <text x="895" y="136" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">representation &#183; property</text>
 
   <!-- node 5: align -->
-  <rect x="1035" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
+  <rect id="fig-4-1-1-f-precision-follows-knowledge-align" x="1035" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
   <text x="1140" y="108" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">align</text>
   <text x="1140" y="136" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">validator &#183; gate</text>
 
   <!-- forward connectors, straight, along the spine -->
   <g fill="none" stroke="#1c1917" stroke-width="2.5" marker-end="url(#fig-4-1-1-f-precision-follows-knowledge-pfkArrow)">
+    <!-- edge: uncertain-need -> explore -->
     <path d="M265,115 L298,115"/>
+    <!-- edge: explore -> stabilizing-claim -->
     <path d="M510,115 L543,115"/>
+    <!-- edge: stabilizing-claim -> model -->
     <path d="M755,115 L788,115"/>
+    <!-- edge: model -> align -->
     <path d="M1000,115 L1033,115"/>
   </g>
 
   <!-- return connector: explore back to uncertain need, thin and dashed — the problem itself can change -->
   <g fill="none" stroke="#1c1917" stroke-width="2" stroke-dasharray="6,5" marker-end="url(#fig-4-1-1-f-precision-follows-knowledge-pfkArrow)">
-    <path d="M298,163 C298,222 266,222 266,163"/>
+    <!-- edge: explore .. uncertain-need -->
+    <path d="M306,159 C306,220 258,220 258,163"/>
   </g>
   <text x="282" y="248" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">problem can change</text>
 </svg><figcaption data-short="Precision follows knowledge — uncertain need → explore → stabilizing claim → represent → govern where justified"><span class="fig-label">Figure 4.1-1.</span> <em>Precision Follows Knowledge.</em> Explore uncertain needs; represent claims as they stabilize; grant authority only when an obligation is stable and consequential enough to justify it.</figcaption></figure><p class="gallery-source">From <a href="4.1-the-mage-workflow.html#fig-4-1-1">18 · The MAGE Workflow</a></p></section><hr><section class="gallery-item"><figure id="fig-4-2-1-fig-4-2-1" class="book-figure" data-label="migration-2x2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620"
@@ -7257,42 +7294,47 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- MODEL COHERENCE -->
-  <rect x="320" y="30" width="260" height="78" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="fig-A-1-f-appendix-a-capability-map-model-coherence" x="320" y="30" width="260" height="78" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="450" y="62" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">MODEL COHERENCE</text>
   <text x="450" y="86" text-anchor="middle" font-size="14" fill="#57534e">representation stays joined to reality</text>
 
-  <!-- fork MC -> assurance / auditable -->
+  <!-- fork MC -> assurance / auditable (one path per branch; each terminates on its own node) -->
   <g stroke="#57534e" stroke-width="2" fill="none" marker-end="url(#fig-A-1-f-appendix-a-capability-map-ah)">
-    <path d="M450,108 C380,146 300,150 260,178"/>
-    <path d="M450,108 C560,146 610,150 650,178"/>
+    <!-- edge: model-coherence -> assurance -->
+    <path d="M450,108 C380,146 260,148 260,178"/>
+    <!-- edge: model-coherence -> auditable -->
+    <path d="M450,108 C560,146 650,148 650,178"/>
   </g>
 
   <!-- ASSURANCE -->
-  <rect x="130" y="182" width="250" height="78" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="fig-A-1-f-appendix-a-capability-map-assurance" x="130" y="182" width="250" height="78" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="255" y="214" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">ASSURANCE</text>
   <text x="255" y="238" text-anchor="middle" font-size="14" fill="#57534e">obligations get discharged</text>
 
   <!-- AUDITABLE TRANSFORMATION -->
-  <rect x="520" y="182" width="270" height="78" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="fig-A-1-f-appendix-a-capability-map-auditable" x="520" y="182" width="270" height="78" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="655" y="207" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">AUDITABLE</text>
   <text x="655" y="228" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">TRANSFORMATION</text>
   <text x="655" y="249" text-anchor="middle" font-size="14" fill="#57534e">change is legible</text>
 
-  <!-- converge to observe-react -->
+  <!-- converge to observe-react (merge: one path per branch) -->
   <g stroke="#57534e" stroke-width="2" fill="none" marker-end="url(#fig-A-1-f-appendix-a-capability-map-ah)">
-    <path d="M255,260 C255,300 380,308 420,320"/>
-    <path d="M655,260 C655,300 520,308 480,320"/>
+    <!-- edge: assurance -> observe-react -->
+    <path d="M255,260 C255,300 420,290 420,320"/>
+    <!-- edge: auditable -> observe-react -->
+    <path d="M655,260 C655,300 480,290 480,320"/>
   </g>
 
   <!-- OBSERVE -> REACT -->
-  <rect x="320" y="322" width="260" height="70" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="fig-A-1-f-appendix-a-capability-map-observe-react" x="320" y="322" width="260" height="70" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="450" y="352" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">OBSERVE &#8594; REACT</text>
   <text x="450" y="376" text-anchor="middle" font-size="14" fill="#57534e">detect and act</text>
 
+  <!-- edge: observe-react -> governance-conversion -->
   <line x1="450" y1="392" x2="450" y2="430" stroke="#57534e" stroke-width="2" marker-end="url(#fig-A-1-f-appendix-a-capability-map-ah)"/>
 
   <!-- GOVERNANCE CONVERSION -->
-  <rect x="315" y="432" width="270" height="78" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <rect id="fig-A-1-f-appendix-a-capability-map-governance-conversion" x="315" y="432" width="270" height="78" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="450" y="464" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">GOVERNANCE CONVERSION</text>
   <text x="450" y="488" text-anchor="middle" font-size="14" fill="#57534e">useful judgment &#8594; durable structure</text>
 
@@ -8398,25 +8440,29 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="60" y="52" font-size="17" font-weight="700" letter-spacing="0.06em" fill="#1c1917">OPEN &#183; any route</text>
 
   <!-- actor -->
-  <rect x="60" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="fig-B-6-1-f-c6-close-action-surface-actor-open" x="60" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="115" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">actor</text>
 
-  <!-- scattered thin DASHED routes (chaos read by dash + fan) -->
+  <!-- scattered thin DASHED routes (chaos read by dash + fan); heads seated on each target's left border -->
   <g fill="none" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4" marker-end="url(#fig-B-6-1-f-c6-close-action-surface-c6-ah-open)">
-    <path d="M170,244 C240,150 300,132 360,120"/>
-    <path d="M170,252 C250,214 300,206 360,200"/>
-    <path d="M170,262 C250,286 300,290 360,296"/>
-    <path d="M170,272 C240,360 300,378 360,388"/>
+    <!-- edge: actor-open -> raw-surface-1 -->
+    <path d="M170,244 C240,150 333,120 363,120"/>
+    <!-- edge: actor-open -> raw-surface-2 -->
+    <path d="M170,252 C250,214 333,200 363,200"/>
+    <!-- edge: actor-open -> helper -->
+    <path d="M170,262 C250,286 333,296 363,296"/>
+    <!-- edge: actor-open -> unknown-routes -->
+    <path d="M170,272 C240,360 333,388 363,388"/>
   </g>
 
   <g font-size="15" fill="#1c1917">
-    <rect x="364" y="100" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="fig-B-6-1-f-c6-close-action-surface-raw-surface-1" x="364" y="100" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
     <text x="439" y="125" text-anchor="middle">raw surface</text>
-    <rect x="364" y="180" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="fig-B-6-1-f-c6-close-action-surface-raw-surface-2" x="364" y="180" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
     <text x="439" y="205" text-anchor="middle">raw surface</text>
-    <rect x="364" y="276" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="fig-B-6-1-f-c6-close-action-surface-helper" x="364" y="276" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
     <text x="439" y="301" text-anchor="middle">helper</text>
-    <rect x="364" y="368" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <rect id="fig-B-6-1-f-c6-close-action-surface-unknown-routes" x="364" y="368" width="150" height="40" rx="6" fill="#fdfcf9" stroke="#57534e" stroke-width="1.4" stroke-dasharray="6 4"/>
     <text x="439" y="393" text-anchor="middle" font-weight="700">unknown routes</text>
   </g>
 
@@ -8429,27 +8475,31 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="560" y="52" font-size="17" font-weight="700" letter-spacing="0.06em" fill="#1c1917">CLOSED &#183; one named seam</text>
 
   <!-- actor -->
-  <rect x="560" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
+  <rect id="fig-B-6-1-f-c6-close-action-surface-actor-closed" x="560" y="230" width="110" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="615" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">actor</text>
 
   <!-- solid HEAVY funnel to a bold SEAM -->
-  <line x1="670" y1="256" x2="712" y2="256" stroke="#1c1917" stroke-width="3" marker-end="url(#fig-B-6-1-f-c6-close-action-surface-c6-ah-closed)"/>
-  <rect x="718" y="222" width="112" height="68" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="4"/>
+  <!-- edge: actor-closed -> seam -->
+  <line x1="670" y1="256" x2="715" y2="256" stroke="#1c1917" stroke-width="3" marker-end="url(#fig-B-6-1-f-c6-close-action-surface-c6-ah-closed)"/>
+  <rect id="fig-B-6-1-f-c6-close-action-surface-seam" x="718" y="222" width="112" height="68" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="4"/>
   <text x="774" y="262" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">SEAM</text>
 
-  <!-- fan to three verbs, solid heavy -->
+  <!-- fan to three verbs, solid heavy; heads seated on each verb's left border (approach horizontal) -->
   <g fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#fig-B-6-1-f-c6-close-action-surface-c6-ah-closed)">
-    <path d="M830,240 C868,196 878,184 900,168"/>
-    <line x1="830" y1="256" x2="898" y2="256"/>
-    <path d="M830,272 C868,316 878,328 900,344"/>
+    <!-- edge: seam -> verb-a -->
+    <path d="M830,240 C845,180 850,168 864,168"/>
+    <!-- edge: seam -> verb-b -->
+    <line x1="830" y1="256" x2="864" y2="256"/>
+    <!-- edge: seam -> verb-c -->
+    <path d="M830,272 C845,332 850,344 864,344"/>
   </g>
 
   <g font-size="16" font-weight="700" fill="#1c1917">
-    <rect x="866" y="148" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <rect id="fig-B-6-1-f-c6-close-action-surface-verb-a" x="866" y="148" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
     <text x="913" y="173" text-anchor="middle">VERB A</text>
-    <rect x="866" y="236" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <rect id="fig-B-6-1-f-c6-close-action-surface-verb-b" x="866" y="236" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
     <text x="913" y="261" text-anchor="middle">VERB B</text>
-    <rect x="866" y="324" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
+    <rect id="fig-B-6-1-f-c6-close-action-surface-verb-c" x="866" y="324" width="94" height="40" rx="6" fill="#fdfcf9" stroke="#1c1917" stroke-width="2"/>
     <text x="913" y="349" text-anchor="middle">VERB C</text>
   </g>
 
