@@ -28,7 +28,7 @@
 
   <!-- join: endpoint identity (DASHED) -->
   <!-- edge: journey .. service -->
-  <line x1="360" y1="108" x2="360" y2="158" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
+  <line x1="360" y1="108" x2="360" y2="156" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
   <text x="374" y="138" font-size="12.5" font-style="italic" fill="#57534e">endpoint identity</text>
 
   <!-- SERVICE / NODE (representation) -->
@@ -64,7 +64,7 @@
 
   <!-- join: host identity (DASHED) -->
   <!-- edge: policy .. joined -->
-  <line x1="360" y1="440" x2="360" y2="486" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
+  <line x1="360" y1="440" x2="360" y2="484" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g7-dash)"/>
   <text x="374" y="468" font-size="12.5" font-style="italic" fill="#57534e">host identity</text>
 
   <!-- JOINED VIEW (composite representation — heavier umber border, NO authority) -->

@@ -20,11 +20,11 @@
 
   <!-- fan: source of truth -> each derivation op (one path per branch) -->
   <!-- edge: source -> query -->
-  <path d="M500,96 C400,126 200,126 200,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
+  <path d="M380,68 L200,68 L200,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
   <!-- edge: source -> join -->
   <line x1="500" y1="96" x2="500" y2="156" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
   <!-- edge: source -> generate -->
-  <path d="M500,96 C600,126 800,126 800,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
+  <path d="M620,68 L800,68 L800,156" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
 
   <rect id="query" x="110" y="158" width="180" height="54" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="200" y="191" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">QUERY</text>
@@ -35,11 +35,11 @@
 
   <!-- merge: each op -> consumers (one path per branch) -->
   <!-- edge: query -> consumers -->
-  <path d="M200,212 C200,244 476,240 476,270" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
+  <path d="M200,212 L200,300 L378,300" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
   <!-- edge: join -> consumers -->
   <line x1="500" y1="212" x2="500" y2="270" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
   <!-- edge: generate -> consumers -->
-  <path d="M800,212 C800,244 524,240 524,270" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
+  <path d="M800,212 L800,300 L622,300" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
 
   <rect id="consumers" x="380" y="272" width="240" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
   <text x="500" y="306" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">CONSUMERS</text>
@@ -51,6 +51,6 @@
   <text x="620" y="415" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">WORLD</text>
   <!-- parity check: dashed rust, double-headed = governance correspondence -->
   <!-- edge: model .. world -->
-  <line x1="463" y1="409" x2="537" y2="409" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#dd-ah-rust)" marker-end="url(#dd-ah-rust)"/>
+  <line x1="462" y1="409" x2="538" y2="409" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#dd-ah-rust)" marker-end="url(#dd-ah-rust)"/>
   <text x="500" y="456" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3f12">parity</text>
 </svg>

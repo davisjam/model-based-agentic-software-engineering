@@ -42,11 +42,11 @@
        centre (capped by its fill), each directed head seats on the mechanism's left border -->
   <g stroke="#1f7a4d" stroke-width="2.2" fill="none">
     <!-- edge: obligation-1 -> mechanism-1 -->
-    <path d="M242,190 L644,190" marker-end="url(#gc-cov)"/>
+    <path d="M356,190 L642,190" marker-end="url(#gc-cov)"/>
     <!-- edge: obligation-2 -> mechanism-2 -->
-    <path d="M242,246 L644,246" marker-end="url(#gc-cov)"/>
+    <path d="M356,246 L642,246" marker-end="url(#gc-cov)"/>
     <!-- edge: obligation-3 -> mechanism-3 -->
-    <path d="M242,302 L644,302" marker-end="url(#gc-cov)"/>
+    <path d="M356,302 L642,302" marker-end="url(#gc-cov)"/>
   </g>
 
   <!-- obligation chips (left, rust) -->

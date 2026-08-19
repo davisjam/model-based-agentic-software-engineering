@@ -13,22 +13,22 @@
 
   <!-- ===== edges (drawn UNDER the nodes; node fills cap the ends) ===== -->
   <!-- edge: door -> policy -->
-  <line x1="140" y1="205" x2="330" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="151" y1="205" x2="317" y2="205" stroke="#cfcabf" stroke-width="3"/>
   <!-- edge: policy -> mech-1 -->
-  <line x1="330" y1="205" x2="600" y2="150" stroke="#cfcabf" stroke-width="2.5"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M330,192 L330,150 L594,150"/>
   <!-- edge: policy -> mech-2 -->
-  <line x1="330" y1="205" x2="600" y2="178" stroke="#cfcabf" stroke-width="2.5"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M330,192 L330,178 L594,178"/>
   <!-- edge: policy -> mech-3 -->
-  <line x1="330" y1="205" x2="600" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <line x1="330" y1="206" x2="594" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
   <!-- edge: policy -> mech-4 -->
-  <line x1="330" y1="205" x2="600" y2="234" stroke="#cfcabf" stroke-width="2.5"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M330,218 L330,234 L594,234"/>
   <!-- edge: policy -> mech-5 -->
-  <line x1="330" y1="205" x2="600" y2="262" stroke="#cfcabf" stroke-width="2.5"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M330,218 L330,262 L594,262"/>
   <!-- edge: mech-3 -> landing -->
-  <line x1="600" y1="206" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="606" y1="206" x2="760" y2="206" stroke="#cfcabf" stroke-width="3"/>
   <!-- caveat: the recurrence loop does not close (partial governance-conversion) -->
   <!-- edge: mech-5 .. recur -->
-  <path d="M600 262 C 500 322, 400 322, 356 282" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="5 5"/>
+  <path d="M594,262 L356,262 L356,278" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="5 5"/>
 
   <!-- ===== nodes (opaque fills cap the edge ends) ===== -->
   <!-- door -->

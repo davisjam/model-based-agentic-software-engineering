@@ -22,9 +22,9 @@
   <line x1="140" y1="205" x2="300" y2="250" stroke="#cfcabf" stroke-width="3"/>
   <!-- edge: fleet -> judgment -->
   <!-- directed: judgment moves upstream; head seats on the judgment rim -->
-  <line x1="430" y1="238" x2="430" y2="157" stroke="#57534e" stroke-width="2.5" marker-end="url(#arrow-up)"/>
+  <line x1="430" y1="234" x2="430" y2="159" stroke="#57534e" stroke-width="2.5" marker-end="url(#arrow-up)"/>
   <!-- edge: judgment -> landing -->
-  <line x1="430" y1="145" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="3" d="M442,145 L860,145 L860,181"/>
 
   <!-- ===== nodes (fills cap the undirected ends) ===== -->
   <circle id="door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>

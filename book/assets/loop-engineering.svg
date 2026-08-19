@@ -43,19 +43,19 @@
   <!-- ===== EDGE LAYER: drawn UNDER the nodes; directional arrows plug to the target box near-edge ===== -->
   <!-- forward path -->
   <!-- edge: modeled-state -> agent-reasoning -->
-  <line x1="310" y1="262" x2="355" y2="262" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
+  <line x1="310" y1="262.5" x2="353" y2="262.5" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
   <!-- edge: agent-reasoning -> output -->
-  <line x1="605" y1="262" x2="650" y2="262" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
+  <line x1="605" y1="262.5" x2="648" y2="262.5" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
 
   <!-- feedback path: output → gate → next turn's input (elbow routes) -->
   <!-- edge: output -> admission-gate -->
-  <path d="M 775 210 L 775 72 L 600 72" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
+  <path d="M775,210 L775,73 L602,73" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
   <!-- edge: admission-gate -> modeled-state -->
-  <path d="M 360 72 L 185 72 L 185 210" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
+  <path d="M360,73 L185,73 L185,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#leArrow)"/>
 
   <!-- fail branch: gate → reason again (dotted) -->
   <!-- edge: admission-gate .. agent-reasoning -->
-  <path d="M 480 108 L 480 210" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#leArrowGreen)"/>
+  <path d="M480,108 L480,208" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#leArrowGreen)"/>
 
   <!-- ===== NODE LAYER: drawn ON TOP so opaque fills cap the edge ends ===== -->
   <!-- the admission gate on the feedback path (lever 4) -->

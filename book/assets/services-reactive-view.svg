@@ -21,7 +21,7 @@
 
   <!-- enqueue arrow -->
   <!-- edge: web -> queue -->
-  <line x1="202" y1="115" x2="267" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
+  <line x1="202" y1="115" x2="269" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
   <text x="236" y="103" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">enqueue</text>
 
   <!-- queue -->
@@ -31,7 +31,7 @@
 
   <!-- push arrow -->
   <!-- edge: queue -> worker -->
-  <line x1="403" y1="115" x2="468" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
+  <line x1="403" y1="115" x2="470" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
   <text x="437" y="103" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">hands off</text>
 
   <!-- worker -->
@@ -42,7 +42,7 @@
 
   <!-- publish arrow to fan-in -->
   <!-- edge: worker -> fanin -->
-  <line x1="672" y1="115" x2="738" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
+  <line x1="672" y1="115" x2="740" y2="115" stroke="#1c1917" stroke-width="1.6" marker-end="url(#srv-arrow)"/>
   <text x="707" y="103" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">publishes</text>
 
   <!-- fan-in -->

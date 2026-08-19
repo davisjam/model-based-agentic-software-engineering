@@ -34,7 +34,7 @@
 
   <!-- Q1 no -> RESIDUAL -->
   <!-- edge: q1 -> residual -->
-  <path d="M380,88 L380,120 L175,120 L175,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M360,59 L175,59 L175,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="300" y="112" text-anchor="middle" font-size="15" font-style="italic" fill="#8a2f2f">no</text>
   <rect id="residual" x="70" y="152" width="210" height="66" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
   <text x="175" y="181" text-anchor="middle" font-size="18" font-weight="800" fill="#8a2f2f">RESIDUAL</text>
@@ -42,7 +42,7 @@
 
   <!-- Q1 yes -> Q2 -->
   <!-- edge: q1 -> q2 -->
-  <path d="M560,88 L560,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M545,88 L545,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="576" y="120" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
 
   <!-- Q2 -->
@@ -59,7 +59,7 @@
 
   <!-- Q2 yes -> Q3 -->
   <!-- edge: q2 -> q3 -->
-  <path d="M610,210 L610,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M595,210 L595,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="626" y="242" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
 
   <!-- Q3 -->
@@ -77,7 +77,7 @@
 
   <!-- Q3 yes -> GOVERNED -->
   <!-- edge: q3 -> governed -->
-  <path d="M660,332 L660,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
+  <path d="M670,332 L670,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
   <text x="676" y="364" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
   <rect id="governed" x="560" y="396" width="230" height="66" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2.4"/>
   <text x="675" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#2f5137">GOVERNED</text>

@@ -30,9 +30,9 @@
 
   <!-- edges drawn UNDER nodes: tails run inside source (fill caps), directed heads seat on target perimeter -->
   <!-- edge: input -> docable -->
-  <path d="M250,243 L378,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
+  <path d="M260,243 L378,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
   <!-- edge: docable -> output -->
-  <path d="M570,243 L718,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
+  <path d="M580,243 L718,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
 
   <text x="490" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">A running glimpse of DocAble</text>
   <text x="490" y="70" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">One object in, one object back — the kind of production system these ideas govern.</text>

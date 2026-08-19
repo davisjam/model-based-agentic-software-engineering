@@ -27,19 +27,19 @@
   <g fill="none" stroke="#2f5169" stroke-width="2.2">
     <!-- generation work forks to the two chains (one path per branch) -->
     <!-- edge: genwork -> usage -->
-    <path d="M90,171 C176,120 158,101 188,101" marker-end="url(#gc-b)"/>
+    <path d="M156,171 L245,171 L245,128" marker-end="url(#gc-b)"/>
     <!-- edge: genwork -> concurrency -->
-    <path d="M90,171 C176,222 158,267 188,267" marker-end="url(#gc-b)"/>
+    <path d="M156,171 L245,171 L245,240" marker-end="url(#gc-b)"/>
     <!-- top chain -->
     <!-- edge: usage -> cost -->
-    <path d="M245,101 L338,101" marker-end="url(#gc-b)"/>
+    <path d="M300,101 L338,101" marker-end="url(#gc-b)"/>
     <!-- edge: cost -> cost-budget -->
-    <path d="M390,101 L478,101" marker-end="url(#gc-b)"/>
+    <path d="M440,101 L478,101" marker-end="url(#gc-b)"/>
     <!-- bottom chain -->
     <!-- edge: concurrency -> capacity -->
-    <path d="M245,267 L338,267" marker-end="url(#gc-b)"/>
+    <path d="M300,267 L338,267" marker-end="url(#gc-b)"/>
     <!-- edge: capacity -> capacity-envelope -->
-    <path d="M390,267 L478,267" marker-end="url(#gc-b)"/>
+    <path d="M440,267 L478,267" marker-end="url(#gc-b)"/>
   </g>
 
   <!-- ===== NODES (on top) ===== -->

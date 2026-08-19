@@ -32,7 +32,7 @@
   <text x="220" y="132" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">one chosen input</text>
 
   <!-- edge: input -> output -->
-  <line x1="350" y1="125" x2="607" y2="125" stroke="#1c1917" stroke-width="2" marker-end="url(#eg-ah)"/>
+  <line x1="350" y1="125" x2="608" y2="125" stroke="#1c1917" stroke-width="2" marker-end="url(#eg-ah)"/>
 
   <rect id="output" x="610" y="95" width="280" height="60" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="750" y="132" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">one expected output ✓</text>

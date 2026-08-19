@@ -15,21 +15,21 @@
   <!-- edge: door -> role-4 -->
   <line x1="140" y1="205" x2="300" y2="209" stroke="#cfcabf" stroke-width="3"/>
   <!-- edge: hub -> role-1 -->
-  <line x1="360" y1="209" x2="300" y2="140" stroke="#cfcabf" stroke-width="2"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2" d="M360,198 L360,140 L305,140"/>
   <!-- edge: hub -> role-2 -->
-  <line x1="360" y1="209" x2="300" y2="163" stroke="#cfcabf" stroke-width="2"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2" d="M360,198 L360,163 L305,163"/>
   <!-- edge: hub -> role-3 -->
-  <line x1="360" y1="209" x2="300" y2="186" stroke="#cfcabf" stroke-width="2"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2" d="M360,198 L360,186 L305,186"/>
   <!-- edge: hub -> role-4 -->
   <line x1="360" y1="209" x2="300" y2="209" stroke="#cfcabf" stroke-width="2"/>
   <!-- edge: hub -> role-5 -->
-  <line x1="360" y1="209" x2="300" y2="232" stroke="#cfcabf" stroke-width="2"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2" d="M360,220 L360,232 L305,232"/>
   <!-- edge: hub -> role-6 -->
-  <line x1="360" y1="209" x2="300" y2="255" stroke="#cfcabf" stroke-width="2"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2" d="M360,220 L360,255 L305,255"/>
   <!-- edge: hub -> role-7 -->
-  <line x1="360" y1="209" x2="300" y2="278" stroke="#cfcabf" stroke-width="2"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2" d="M360,220 L360,278 L305,278"/>
   <!-- edge: hub -> gate -->
-  <line x1="360" y1="209" x2="570" y2="210" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="360" y1="210" x2="561" y2="210" stroke="#cfcabf" stroke-width="3"/>
   <!-- edge: gate -> landing -->
   <line x1="579" y1="210" x2="760" y2="210" stroke="#cfcabf" stroke-width="3"/>
 

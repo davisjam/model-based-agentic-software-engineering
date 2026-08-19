@@ -67,7 +67,7 @@
   <rect id="classes" x="40" y="58" width="880" height="204" fill="none" stroke="none"/>
   <!-- double-headed arrow to the orthogonal representation-form axis: the relation is MANY-TO-MANY -->
   <!-- edge: classes -> forms -->
-  <line x1="480" y1="266" x2="480" y2="286" stroke="#2f5169" stroke-width="2.2"
+  <line x1="480" y1="264" x2="480" y2="288" stroke="#2f5169" stroke-width="2.2"
         marker-start="url(#on-b)" marker-end="url(#on-b)"/>
 
   <rect id="forms" x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>

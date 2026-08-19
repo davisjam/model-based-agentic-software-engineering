@@ -55,21 +55,21 @@
   <!-- fork: behavioral model -> the three property-class headers (one path per branch) -->
   <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)">
     <!-- edge: model -> q-local -->
-    <path d="M500,92 L500,116 L190,116 L190,148"/>
+    <path d="M320,60 L190,60 L190,148"/>
     <!-- edge: model -> q-reach -->
     <path d="M500,92 L500,148"/>
     <!-- edge: model -> q-temporal -->
-    <path d="M500,92 L500,116 L810,116 L810,148"/>
+    <path d="M680,60 L810,60 L810,148"/>
   </g>
 
   <!-- each property question -> the checker that answers it -->
   <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#bpc-k)">
     <!-- edge: ask-local -> chk-local -->
-    <path d="M190,241 L190,258"/>
+    <path d="M190,242 L190,258"/>
     <!-- edge: ask-reach -> chk-reach -->
-    <path d="M500,241 L500,258"/>
+    <path d="M500,242 L500,258"/>
     <!-- edge: ask-temporal -> chk-temporal -->
-    <path d="M810,241 L810,258"/>
+    <path d="M810,242 L810,258"/>
   </g>
 
   <!-- merge: the three checkers converge on evidence (one path per branch) -->

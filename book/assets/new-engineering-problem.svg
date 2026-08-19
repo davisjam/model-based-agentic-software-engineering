@@ -53,9 +53,9 @@
   <text x="30" y="124" font-size="16" font-style="italic" fill="#57534e">the engineer writes most implementation directly</text>
 
   <!-- edge: eng-c -> impl-c -->
-  <path d="M300,173 L346,173" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#nep-neutral)"/>
+  <path d="M300,173 L348,173" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#nep-neutral)"/>
   <!-- edge: impl-c -> pq-c -->
-  <path d="M560,173 L606,173" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#nep-neutral)"/>
+  <path d="M560,173 L608,173" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#nep-neutral)"/>
 
   <rect id="eng-c" x="150" y="146" width="150" height="54" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="225" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Engineer</text>
@@ -68,7 +68,7 @@
   <!-- transparent anchor spanning the arrow tail + the label so the annotation arrow plugs into a named node -->
   <rect id="classical-effort" x="310" y="228" width="290" height="26" fill="none" stroke="none"/>
   <!-- edge: classical-effort -> impl-c -->
-  <line x1="455" y1="230" x2="455" y2="204" stroke="#57534e" stroke-width="1.8" marker-end="url(#nep-neutral)"/>
+  <line x1="455" y1="228" x2="455" y2="202" stroke="#57534e" stroke-width="1.8" marker-end="url(#nep-neutral)"/>
   <text x="455" y="248" text-anchor="middle" font-size="16" fill="#57534e">substantial direct engineering effort</text>
 
   <!-- divider between the two regimes -->
@@ -107,7 +107,7 @@
   <!-- transparent anchor spanning the arrow tail + the label so the annotation arrow plugs into a named node -->
   <rect id="primary-lever" x="159" y="430" width="200" height="26" fill="none" stroke="none"/>
   <!-- edge: primary-lever -> env -->
-  <line x1="259" y1="432" x2="259" y2="406" stroke="#9a3f12" stroke-width="2" marker-end="url(#nep-accent)"/>
+  <line x1="259" y1="430" x2="259" y2="404" stroke="#9a3f12" stroke-width="2" marker-end="url(#nep-accent)"/>
   <text x="259" y="450" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">primary engineered lever</text>
 
   <!-- leverage framing callout (NOT "determines quality") -->

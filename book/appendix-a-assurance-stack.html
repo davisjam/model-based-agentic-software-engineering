@@ -742,7 +742,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="410" y="78" text-anchor="middle" font-size="13" fill="#57534e">state the obligations</text>
 
   <!-- edge: spec -> census -->
-  <line x1="410" y1="90" x2="410" y2="133" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-assurance-stack-ah)"/>
+  <line x1="410" y1="90" x2="410" y2="132" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-assurance-stack-ah)"/>
 
   <!-- CENSUS -->
   <rect id="f-assurance-stack-census" x="305" y="134" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -752,11 +752,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- fan to three discharge lanes: one path per branch, each perpendicular into its lane's top -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-assurance-stack-ah)">
     <!-- edge: census -> test -->
-    <path d="M410,200 C320,206 200,226 200,256"/>
+    <path d="M305,167 L200,167 L200,256"/>
     <!-- edge: census -> lint -->
     <line x1="410" y1="200" x2="410" y2="256"/>
     <!-- edge: census -> prove -->
-    <path d="M410,200 C500,206 620,226 620,256"/>
+    <path d="M515,167 L620,167 L620,256"/>
   </g>
   <rect x="252" y="216" width="316" height="18" fill="#fdfcf9"/>
   <text x="410" y="228" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">discharge with evidence appropriate to the property</text>
@@ -777,11 +777,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- converge to COVERAGE: one path per branch, each perpendicular into COVERAGE's top -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-assurance-stack-ah)">
     <!-- edge: test -> coverage -->
-    <path d="M200,328 C200,372 360,362 360,392"/>
+    <path d="M200,328 L200,429 L298,429"/>
     <!-- edge: lint -> coverage -->
     <line x1="410" y1="328" x2="410" y2="392"/>
     <!-- edge: prove -> coverage -->
-    <path d="M620,328 C620,372 460,362 460,392"/>
+    <path d="M620,328 L620,429 L522,429"/>
   </g>
 
   <!-- COVERAGE (green) -->

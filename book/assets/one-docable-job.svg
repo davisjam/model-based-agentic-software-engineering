@@ -56,7 +56,7 @@
   <rect id="workers" x="290" y="266" width="180" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="380" y="293" text-anchor="middle" font-size="16" fill="#1c1917">workers claim work</text>
   <!-- edge: workers -> ocr -->
-  <line x1="380" y1="310" x2="380" y2="334" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <line x1="409" y1="310" x2="409" y2="334" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
   <text x="392" y="328" font-size="13.5" font-style="italic" fill="#57534e">call specialized services</text>
 
   <!-- services row (4) -->
@@ -71,7 +71,7 @@
   <text x="409" y="365" text-anchor="middle" font-size="15" fill="#1c1917">OCR</text>
   <text x="598" y="365" text-anchor="middle" font-size="15" fill="#1c1917">document / format machinery</text>
   <!-- edge: ocr -> repaired -->
-  <line x1="380" y1="384" x2="380" y2="408" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
+  <line x1="409" y1="384" x2="409" y2="408" stroke="#57534e" stroke-width="2" marker-end="url(#oj-k)"/>
 
   <!-- repaired pieces -->
   <rect id="repaired" x="295" y="410" width="170" height="44" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>

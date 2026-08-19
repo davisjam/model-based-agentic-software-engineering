@@ -45,11 +45,11 @@
   <!-- edges: AND -> three children (fork: one path per branch) -->
   <g fill="none" stroke="#1c1917" stroke-width="2">
     <!-- edge: and -> artifact-rendered -->
-    <path d="M360,150 C270,172 148,176 148,206" marker-end="url(#tc-ah)"/>
+    <path d="M300,117 L145,117 L145,208" marker-end="url(#tc-ah)"/>
     <!-- edge: and -> control-inspectable -->
     <path d="M390,150 L390,208" marker-end="url(#tc-ah)"/>
     <!-- edge: and -> not -->
-    <path d="M480,116 C545,140 616,162 616,192" marker-end="url(#tc-ah)"/>
+    <path d="M480,117 L620,117 L620,190" marker-end="url(#tc-ah)"/>
   </g>
 
   <!-- leaf 1 -->

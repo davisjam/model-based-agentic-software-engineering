@@ -738,14 +738,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="f-recovery-ordering-model-ro-staged" x="150" y="46" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="285" y="79" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">FALLBACK_STAGED</text>
   <!-- edge: ro-staged -> ro-uploaded -->
-  <line x1="285" y1="100" x2="285" y2="158.7" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-recovery-ordering-model-ro-b)"/>
+  <line x1="285" y1="100" x2="285" y2="158" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-recovery-ordering-model-ro-b)"/>
   <text x="297" y="134" font-size="14" font-style="italic" fill="#57534e">upload succeeds</text>
 
   <!-- state 2 -->
   <rect id="f-recovery-ordering-model-ro-uploaded" x="150" y="160" width="270" height="54" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="285" y="193" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">FALLBACK_UPLOADED</text>
   <!-- edge: ro-uploaded -> ro-db -->
-  <line x1="285" y1="214" x2="285" y2="272.7" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-recovery-ordering-model-ro-b)"/>
+  <line x1="285" y1="214" x2="285" y2="272" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-recovery-ordering-model-ro-b)"/>
   <text x="297" y="248" font-size="14" font-style="italic" fill="#57534e">durable state updated</text>
 
   <!-- state 3 -->
@@ -800,7 +800,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="340" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">ENGINEERING QUESTION</text>
   <text x="340" y="52" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Can durable state name an artifact recovery has not yet published?</text>
   <!-- edge: question -> model -->
-  <line x1="340" y1="62" x2="340" y2="86" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
+  <line x1="340" y1="64" x2="340" y2="88" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
 
   <!-- layer 2: MODEL (blue) -->
   <rect id="f-model-first-encoding-second-model" x="70" y="90" width="540" height="150" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
@@ -827,14 +827,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
   <text x="340" y="234" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">may not skip publication</text>
   <!-- edge: model -> encoding -->
-  <line x1="340" y1="240" x2="340" y2="266" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
+  <line x1="340" y1="240" x2="340" y2="268" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
 
   <!-- layer 3: ONE EXECUTABLE REPRESENTATION (gray) -->
   <rect id="f-model-first-encoding-second-encoding" x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="340" y="294" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
   <text x="340" y="313" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">explicit legal-transition relation</text>
   <!-- edge: encoding -> implementation -->
-  <line x1="340" y1="322" x2="340" y2="348" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
+  <line x1="340" y1="322" x2="340" y2="350" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
 
   <!-- layer 4: IMPLEMENTATION (gray) -->
   <rect id="f-model-first-encoding-second-implementation" x="110" y="352" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
@@ -894,21 +894,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- fork: behavioral model -> the three property-class headers (one path per branch) -->
   <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)">
     <!-- edge: model -> q-local -->
-    <path d="M500,92 L500,116 L190,116 L190,148"/>
+    <path d="M320,60 L190,60 L190,148"/>
     <!-- edge: model -> q-reach -->
     <path d="M500,92 L500,148"/>
     <!-- edge: model -> q-temporal -->
-    <path d="M500,92 L500,116 L810,116 L810,148"/>
+    <path d="M680,60 L810,60 L810,148"/>
   </g>
 
   <!-- each property question -> the checker that answers it -->
   <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-behavioral-property-classes-bpc-k)">
     <!-- edge: ask-local -> chk-local -->
-    <path d="M190,241 L190,258"/>
+    <path d="M190,242 L190,258"/>
     <!-- edge: ask-reach -> chk-reach -->
-    <path d="M500,241 L500,258"/>
+    <path d="M500,242 L500,258"/>
     <!-- edge: ask-temporal -> chk-temporal -->
-    <path d="M810,241 L810,258"/>
+    <path d="M810,242 L810,258"/>
   </g>
 
   <!-- merge: the three checkers converge on evidence (one path per branch) -->

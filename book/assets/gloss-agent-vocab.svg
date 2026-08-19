@@ -29,7 +29,7 @@
 
   <!-- runs on -->
   <!-- edge: application -> harness -->
-  <line x1="330" y1="156" x2="330" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <line x1="330" y1="156" x2="330" y2="174" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="342" y="171" font-size="16" fill="#78716c">runs on</text>
 
   <!-- Agent Harness (taller; holds three chips) -->
@@ -46,7 +46,7 @@
 
   <!-- wraps -->
   <!-- edge: harness -> foundation -->
-  <line x1="330" y1="288" x2="330" y2="308" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <line x1="330" y1="288" x2="330" y2="306" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="342" y="303" font-size="16" fill="#78716c">wraps</text>
 
   <!-- Foundation Model -->
@@ -56,7 +56,7 @@
 
   <!-- bounded by -->
   <!-- edge: foundation -> bounded-state -->
-  <line x1="330" y1="372" x2="330" y2="392" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <line x1="330" y1="372" x2="330" y2="390" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="342" y="387" font-size="16" fill="#78716c">bounded by</text>
 
   <!-- Bounded working state (the context window is its present instance) -->
@@ -71,7 +71,7 @@
 
   <!-- requires -->
   <!-- edge: task -> horizon -->
-  <line x1="820" y1="138" x2="820" y2="178" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <line x1="820" y1="138" x2="820" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="832" y="162" font-size="16" fill="#78716c">requires</text>
 
   <!-- Reasoning Horizon -->
@@ -80,7 +80,7 @@
 
   <!-- may exceed -->
   <!-- edge: horizon -> avail-state -->
-  <line x1="820" y1="224" x2="820" y2="264" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <line x1="820" y1="224" x2="820" y2="262" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="832" y="248" font-size="16" fill="#78716c">may exceed</text>
 
   <!-- Available working state (context window is one present limit) -->
@@ -90,7 +90,7 @@
 
   <!-- contributes to -->
   <!-- edge: avail-state -> churn -->
-  <line x1="820" y1="322" x2="820" y2="362" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
+  <line x1="820" y1="322" x2="820" y2="360" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
   <text x="832" y="346" font-size="16" fill="#78716c">contributes to</text>
 
   <!-- Churn -->

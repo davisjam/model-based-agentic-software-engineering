@@ -42,16 +42,16 @@
   <!-- transitions (drawn UNDER the nodes: tail runs to source center, head seats on target top) -->
   <!-- actual steps (solid) -->
   <!-- edge: timeout -> measurement -->
-  <line x1="200" y1="122" x2="200" y2="175" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="144" x2="200" y2="176" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
   <!-- edge: measurement -> model -->
-  <line x1="200" y1="200" x2="200" y2="253" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="222" x2="200" y2="254" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
   <!-- edge: model -> evidence -->
-  <line x1="200" y1="278" x2="200" y2="331" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="300" x2="200" y2="332" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
   <!-- edge: evidence -> report -->
-  <line x1="200" y1="356" x2="200" y2="409" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
+  <line x1="200" y1="378" x2="200" y2="410" stroke="#2b2825" stroke-width="2" marker-end="url(#mng-ar)"/>
   <!-- deferred transition (dashed = would-be, not switched on) -->
   <!-- edge: report .. authority -->
-  <line x1="200" y1="434" x2="200" y2="487" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#mng-arM)"/>
+  <line x1="200" y1="456" x2="200" y2="488" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#mng-arM)"/>
 
   <!-- 1: timeout -->
   <rect id="timeout" x="100" y="100" width="200" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>

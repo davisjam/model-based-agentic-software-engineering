@@ -38,11 +38,11 @@
     <text x="850" y="74">Maintenance</text>
   </g>
   <g stroke="#57534e" stroke-width="1.4">
-    <!-- edge: req1 -> spec1 --><line x1="154" y1="70" x2="172" y2="70" marker-end="url(#arr-ink)"/>
-    <!-- edge: spec1 -> design1 --><line x1="306" y1="70" x2="324" y2="70" marker-end="url(#arr-ink)"/>
-    <!-- edge: design1 -> impl1 --><line x1="458" y1="70" x2="476" y2="70" marker-end="url(#arr-ink)"/>
-    <!-- edge: impl1 -> valid1 --><line x1="610" y1="70" x2="628" y2="70" marker-end="url(#arr-ink)"/>
-    <!-- edge: valid1 -> maint1 --><line x1="762" y1="70" x2="780" y2="70" marker-end="url(#arr-ink)"/>
+    <!-- edge: req1 -> spec1 --><line x1="154" y1="70" x2="176" y2="70" marker-end="url(#arr-ink)"/>
+    <!-- edge: spec1 -> design1 --><line x1="306" y1="70" x2="328" y2="70" marker-end="url(#arr-ink)"/>
+    <!-- edge: design1 -> impl1 --><line x1="458" y1="70" x2="480" y2="70" marker-end="url(#arr-ink)"/>
+    <!-- edge: impl1 -> valid1 --><line x1="610" y1="70" x2="632" y2="70" marker-end="url(#arr-ink)"/>
+    <!-- edge: valid1 -> maint1 --><line x1="762" y1="70" x2="784" y2="70" marker-end="url(#arr-ink)"/>
   </g>
   <path d="M 26 102 L 26 108 L 914 108 L 914 102" fill="none" stroke="#57534e" stroke-width="1.2"/>
   <text x="470" y="126" font-size="15.04" text-anchor="middle" fill="#1c1917" font-weight="600">the engineering role — every seat, and above all the developer’s</text>
@@ -77,11 +77,11 @@
     <text x="850" y="242" font-size="13.6" fill="#57534e">run as governance</text>
   </g>
   <g stroke="#57534e" stroke-width="1.4">
-    <!-- edge: req2 -> spec2 --><line x1="154" y1="228" x2="172" y2="228" marker-end="url(#arr-ink)"/>
-    <!-- edge: spec2 -> design2 --><line x1="306" y1="228" x2="324" y2="228" marker-end="url(#arr-ink)"/>
-    <!-- edge: design2 -> impl2 --><line x1="458" y1="228" x2="476" y2="228" marker-end="url(#arr-ink)"/>
-    <!-- edge: impl2 -> valid2 --><line x1="610" y1="228" x2="628" y2="228" marker-end="url(#arr-ink)"/>
-    <!-- edge: valid2 -> maint2 --><line x1="762" y1="228" x2="780" y2="228" marker-end="url(#arr-ink)"/>
+    <!-- edge: req2 -> spec2 --><line x1="154" y1="228" x2="176" y2="228" marker-end="url(#arr-ink)"/>
+    <!-- edge: spec2 -> design2 --><line x1="306" y1="228" x2="328" y2="228" marker-end="url(#arr-ink)"/>
+    <!-- edge: design2 -> impl2 --><line x1="458" y1="228" x2="480" y2="228" marker-end="url(#arr-ink)"/>
+    <!-- edge: impl2 -> valid2 --><line x1="610" y1="228" x2="632" y2="228" marker-end="url(#arr-ink)"/>
+    <!-- edge: valid2 -> maint2 --><line x1="762" y1="228" x2="784" y2="228" marker-end="url(#arr-ink)"/>
   </g>
 
   <path d="M 26 260 L 26 266 L 458 266 L 458 260" fill="none" stroke="#9a3f12" stroke-width="1.2"/>

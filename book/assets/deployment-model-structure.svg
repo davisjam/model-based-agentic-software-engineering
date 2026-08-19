@@ -30,7 +30,7 @@
 
   <!-- host -> cluster: the image crosses the boundary (start seated on the host's right edge x370) -->
   <!-- edge: build-host -> runtime-cluster -->
-  <line x1="370" y1="205" x2="554" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#dm-ah)"/>
+  <line x1="370" y1="205" x2="558" y2="205" stroke="#1c1917" stroke-width="2" marker-end="url(#dm-ah)"/>
   <text x="465" y="184" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">produces the image</text>
 
   <!-- ===== the runtime cluster ===== -->

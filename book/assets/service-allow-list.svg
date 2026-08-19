@@ -58,19 +58,19 @@
 
   <!-- ===== permitted edges (solid) — spine ===== -->
   <!-- edge: internet -> web -->
-  <line x1="165" y1="116" x2="165" y2="150" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="165" y1="116" x2="165" y2="148" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
   <!-- edge: web -> doc-editor -->
-  <line x1="165" y1="200" x2="165" y2="234" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="165" y1="200" x2="165" y2="232" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
   <!-- edge: doc-editor -> worker -->
-  <line x1="165" y1="284" x2="165" y2="318" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="165" y1="284" x2="165" y2="316" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
 
   <!-- ===== permitted edges (solid) — worker fan-out; curves arrive perpendicular into each service ===== -->
   <!-- edge: worker -> render -->
   <path d="M240,336 C296,309 370,262 400,262" fill="none" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
   <!-- edge: worker -> ocr -->
-  <line x1="240" y1="343" x2="400" y2="343" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <line x1="240" y1="343" x2="398" y2="343" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
   <!-- edge: worker -> generation -->
-  <path d="M240,350 C296,376 370,424 400,424" fill="none" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
+  <path d="M165,368 L165,427 L398,427" fill="none" stroke="#2b2825" stroke-width="2" marker-end="url(#sal-ar)"/>
 
   <!-- ===== legend: every unshown edge is forbidden ===== -->
   <text x="150" y="483" text-anchor="end" font-size="16" fill="#57534e">any edge not drawn</text>

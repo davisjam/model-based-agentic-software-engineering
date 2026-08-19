@@ -746,11 +746,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- web -> {worker, document editor, other} — one path per branch, each seats on its own node -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-service-flow-model-sf-b)">
     <!-- edge: web -> worker -->
-    <path d="M320,160 C250,186 180,184 180,214"/>
+    <path d="M295,137 L180,137 L180,214"/>
     <!-- edge: web -> doc-editor -->
     <path d="M360,160 L360,214"/>
     <!-- edge: web -> other -->
-    <path d="M400,160 C470,186 540,184 540,214"/>
+    <path d="M425,137 L540,137 L540,214"/>
   </g>
 
   <rect id="f-service-flow-model-worker" x="105" y="216" width="150" height="48" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
@@ -821,9 +821,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="320" y="227" fill="#57534e">C</text>
   </g>
   <!-- edge: ov-obs-a -> ov-obs-b -->
-  <line x1="175" y1="110" x2="293" y2="110" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-observed-vs-declared-ov-k)"/>
+  <line x1="176" y1="110" x2="292" y2="110" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-observed-vs-declared-ov-k)"/>
   <!-- edge: ov-obs-a -> ov-obs-c -->
-  <line x1="169" y1="123" x2="297" y2="205" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-observed-vs-declared-ov-k)"/>
+  <path fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-observed-vs-declared-ov-k)" d="M150,136 L150,220 L292,220"/>
   <text x="225" y="286" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1c1917">&#8220;Does A call C?&#8221;</text>
 
   <!-- ===== RIGHT: MODEL (blue, declared) ===== -->
@@ -837,11 +837,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <text x="770" y="227" fill="#2f5169">C</text>
   </g>
   <!-- edge: ov-dec-a -> ov-dec-b -->
-  <line x1="624" y1="110" x2="743" y2="110" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-observed-vs-declared-ov-b)"/>
+  <line x1="626" y1="110" x2="742" y2="110" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-observed-vs-declared-ov-b)"/>
   <text x="684" y="98" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">declared</text>
   <!-- no edge A..C: rust dashed + X (absent relation — endpoints still plug into both circles) -->
   <!-- edge: ov-dec-a .. ov-dec-c -->
-  <line x1="619" y1="123" x2="751" y2="207" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="7 6" opacity="0.85"/>
+  <path fill="none" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="7 6" opacity="0.85" d="M600,136 L600,220 L744,220"/>
   <g stroke="#9a3f12" stroke-width="3.4" stroke-linecap="round">
     <line x1="674" y1="157" x2="696" y2="179"/>
     <line x1="696" y1="157" x2="674" y2="179"/>

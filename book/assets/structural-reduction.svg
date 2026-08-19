@@ -49,7 +49,7 @@
   <!-- reduction arrow: territory reduces to the surviving seam. Tail seats on the territory's right border,
        head on the seam box's left border (was floating in the whitespace between the two groups). -->
   <!-- edge: territory -> seam -->
-  <line x1="430" y1="190" x2="600" y2="190" stroke="#2f5169" stroke-width="2.6" marker-end="url(#sr-b)"/>
+  <line x1="430" y1="168" x2="598" y2="168" stroke="#2f5169" stroke-width="2.6" marker-end="url(#sr-b)"/>
   <text x="484" y="178" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">purposeful</text>
   <text x="484" y="212" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">reduction</text>
 

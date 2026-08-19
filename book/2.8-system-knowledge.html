@@ -729,13 +729,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
        rect over it carries the id "shared-identities". -->
   <g stroke="#57534e" stroke-width="2" opacity="0.75">
     <!-- edge: structural -> shared-identities -->
-    <line x1="380" y1="290" x2="380" y2="112"/>
+    <line x1="380" y1="238" x2="380" y2="138"/>
     <!-- edge: behavioral -> shared-identities -->
     <line x1="380" y1="290" x2="549" y2="200"/>
     <!-- edge: ownership -> shared-identities -->
     <line x1="380" y1="290" x2="549" y2="380"/>
     <!-- edge: decision -> shared-identities -->
-    <line x1="380" y1="290" x2="380" y2="468"/>
+    <line x1="380" y1="342" x2="380" y2="442"/>
     <!-- edge: measurement -> shared-identities -->
     <line x1="380" y1="290" x2="211" y2="380"/>
     <!-- edge: provenance -> shared-identities -->
@@ -803,19 +803,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="f-substrate-traversal-task" x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="410" y="52" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
   <!-- edge: task -> entity -->
-  <line x1="410" y1="68" x2="410" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-substrate-traversal-st-k)"/>
+  <line x1="410" y1="68" x2="410" y2="253" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-substrate-traversal-st-k)"/>
   <text x="422" y="160" font-size="12.5" font-style="italic" fill="#57534e">enters at a named entity</text>
 
   <!-- spokes: entity to the six relations (drawn under the boxes); heads seated on each box's near border -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-substrate-traversal-st-b)">
     <!-- edge: entity -> decision -->
-    <path d="M470,272 C505,258 558,250 558,232"/>          <!-- to right: seat on decision bottom border -->
+    <path d="M505,291 L610,291 L610,232"/>          <!-- to right: seat on decision bottom border -->
     <!-- edge: entity -> behavioral -->
     <path d="M470,255 L470,147"/>          <!-- to upper-right: behavioral bottom border -->
     <!-- edge: entity -> structural -->
     <path d="M350,255 L350,147"/>          <!-- to upper-left: structural bottom border -->
     <!-- edge: entity -> ownership -->
-    <path d="M350,272 C315,258 262,250 262,232"/>          <!-- to left: seat on ownership bottom border -->
+    <path d="M315,291 L210,291 L210,232"/>          <!-- to left: seat on ownership bottom border -->
     <!-- edge: entity -> provenance -->
     <path d="M350,327 L350,435"/>          <!-- to lower-left: provenance top border -->
     <!-- edge: entity -> measurement -->
@@ -882,7 +882,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="f-derive-generate-trace-impl-derive" x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="160" y="219" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">implementation</text>
   <!-- edge: impl-derive -> model-derive -->
-  <line x1="160" y1="188" x2="160" y2="128" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-derive-generate-trace-dg-b)"/>
+  <line x1="160" y1="188" x2="160" y2="130" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-derive-generate-trace-dg-b)"/>
   <text x="172" y="162" font-size="13.5" font-style="italic" fill="#2f5169">derive</text>
   <rect id="f-derive-generate-trace-model-derive" x="55" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="160" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
@@ -893,7 +893,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="f-derive-generate-trace-model-generate" x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="480" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
   <!-- edge: model-generate -> impl-generate -->
-  <line x1="480" y1="128" x2="480" y2="188" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-derive-generate-trace-dg-k)"/>
+  <line x1="480" y1="128" x2="480" y2="186" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-derive-generate-trace-dg-k)"/>
   <text x="492" y="162" font-size="13.5" font-style="italic" fill="#2f5169">generate</text>
   <rect id="f-derive-generate-trace-impl-generate" x="375" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="219" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">implementation / config</text>
@@ -905,7 +905,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="800" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
   <!-- two-way link with rust decidable check -->
   <!-- edge: model-trace -> system -->
-  <line x1="800" y1="136" x2="800" y2="180" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#f-derive-generate-trace-dg-r)" marker-end="url(#f-derive-generate-trace-dg-r)"/>
+  <line x1="800" y1="138" x2="800" y2="178" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#f-derive-generate-trace-dg-r)" marker-end="url(#f-derive-generate-trace-dg-r)"/>
   <text x="812" y="163" font-size="12.5" font-weight="700" fill="#9a3f12">check (decidable)</text>
   <rect id="f-derive-generate-trace-system" x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="800" y="211" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">system</text>

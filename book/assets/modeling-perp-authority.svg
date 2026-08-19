@@ -54,13 +54,13 @@
   <!-- fan to four authority decisions — one path per branch, all from the same-model centre (715,123) -->
   <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#pa-k)">
     <!-- edge: same-model -> observe -->
-    <path d="M715,123 C600,168 554,160 554,190"/>
+    <path d="M620,123 L554,123 L554,190"/>
     <!-- edge: same-model -> adapt -->
     <path d="M666.5,146 L666.5,190"/>
     <!-- edge: same-model -> degrade -->
     <path d="M767.5,146 L767.5,190"/>
     <!-- edge: same-model -> gate -->
-    <path d="M715,123 C830,168 886,160 886,190"/>
+    <path d="M810,123 L884,123 L884,190"/>
   </g>
   <rect id="same-model" x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="715" y="129" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">same model</text>

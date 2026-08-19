@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Class glyph: GRAPH. A small node-edge graph with crossing edges and one bolded edge,
      reading as "typed graph / traceability". Umber Monograph palette; ink + accent only. -->
+<!-- edge-grammar: keep-angles -->
+<!-- KEEP diagonals (Pass B2): decorative class GLYPH — a symmetric X of diagonal spokes IS the icon;
+     orthogonalizing the spokes makes an asymmetric tangle. Siblings glyph-feedback-loop / glyph-state-machine
+     keep-angles for the same reason. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120"
      role="img" aria-labelledby="glyphGraphTitle glyphGraphDesc">
   <title id="glyphGraphTitle">Graph class glyph</title>

@@ -45,7 +45,7 @@
   <rect id="tr-representation" x="560" y="112" width="212" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="666" y="145" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">representation</text>
   <!-- edge: tr-implementation -> tr-representation -->
-  <line x1="433.2" y1="139" x2="558.8" y2="139" stroke="#2f5169" stroke-width="2.4" marker-start="url(#tr-b0)" marker-end="url(#tr-b)"/>
+  <line x1="434" y1="139" x2="558" y2="139" stroke="#2f5169" stroke-width="2.4" marker-start="url(#tr-b0)" marker-end="url(#tr-b)"/>
   <text x="496" y="128" text-anchor="middle" font-size="14.5" font-style="italic" fill="#2f5169">&#8220;Do they agree?&#8221;</text>
   <text x="822" y="145" font-size="15" font-weight="700" fill="#2f5169">agreement</text>
 
@@ -61,7 +61,7 @@
   <rect id="tr-obligation" x="560" y="284" width="212" height="54" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="666" y="317" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">independent obligation</text>
   <!-- edge: tr-artifact-conf -> tr-obligation -->
-  <line x1="432" y1="311" x2="558.8" y2="311" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#tr-r)"/>
+  <line x1="432" y1="311" x2="558" y2="311" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#tr-r)"/>
   <text x="496" y="300" text-anchor="middle" font-size="14.5" font-style="italic" fill="#9a3f12">&#8220;Does it satisfy?&#8221;</text>
   <text x="822" y="317" font-size="15" font-weight="700" fill="#9a3f12">conformance</text>
 
@@ -77,7 +77,7 @@
   <rect id="tr-receiving" x="560" y="456" width="212" height="54" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
   <text x="666" y="489" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">receiving environment</text>
   <!-- edge: tr-artifact-acc -> tr-receiving -->
-  <line x1="432" y1="483" x2="558.8" y2="483" stroke="#155c38" stroke-width="2.4" marker-end="url(#tr-g)"/>
+  <line x1="432" y1="483" x2="558" y2="483" stroke="#155c38" stroke-width="2.4" marker-end="url(#tr-g)"/>
   <text x="496" y="472" text-anchor="middle" font-size="14.5" font-style="italic" fill="#155c38">&#8220;Will it accept?&#8221;</text>
   <text x="822" y="489" font-size="15" font-weight="700" fill="#155c38">acceptance</text>
 

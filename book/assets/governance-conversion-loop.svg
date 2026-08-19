@@ -58,13 +58,13 @@
   <!-- forward arrows -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
     <!-- edge: velocity-rises -> failure-recurs -->
-    <path d="M240,122 L271,122" marker-end="url(#gc-ah)"/>
+    <path d="M240,122 L273,122" marker-end="url(#gc-ah)"/>
     <!-- edge: failure-recurs -> diagnose -->
-    <path d="M485,122 L516,122" marker-end="url(#gc-ah)"/>
+    <path d="M485,122 L518,122" marker-end="url(#gc-ah)"/>
     <!-- edge: diagnose -> encode-mechanism -->
-    <path d="M730,122 L761,122" marker-end="url(#gc-ah)"/>
+    <path d="M730,122 L763,122" marker-end="url(#gc-ah)"/>
     <!-- edge: encode-mechanism -> class-cant-recur -->
-    <path d="M975,122 L1006,122" marker-end="url(#gc-ah)"/>
+    <path d="M975,122 L1008,122" marker-end="url(#gc-ah)"/>
   </g>
 
   <!-- dashed return path: prevention -> velocity -->

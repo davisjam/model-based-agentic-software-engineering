@@ -60,13 +60,13 @@
 
   <!-- SG → GEE : improves (down) -->
   <!-- edge: self-governance -> gee -->
-  <line x1="500" y1="134" x2="500" y2="282" stroke="#9a3f12" stroke-width="2" marker-end="url(#scArrowRust)"/>
+  <line x1="500" y1="134" x2="500" y2="284" stroke="#9a3f12" stroke-width="2" marker-end="url(#scArrowRust)"/>
   <text x="516" y="196" text-anchor="start" font-size="15" font-weight="700" fill="#9a3f12">improves</text>
   <text x="516" y="215" text-anchor="start" font-size="12.5" fill="#57534e">mints models &amp; mechanisms</text>
 
   <!-- SO → GEE : operates (up) -->
   <!-- edge: self-operate -> gee -->
-  <line x1="500" y1="548" x2="500" y2="400" stroke="#2f5169" stroke-width="2" marker-end="url(#scArrowBlue)"/>
+  <line x1="500" y1="548" x2="500" y2="398" stroke="#2f5169" stroke-width="2" marker-end="url(#scArrowBlue)"/>
   <text x="516" y="468" text-anchor="start" font-size="15" font-weight="700" fill="#2f5169">operates</text>
   <text x="516" y="487" text-anchor="start" font-size="12.5" fill="#57534e">runs the lifecycles</text>
 

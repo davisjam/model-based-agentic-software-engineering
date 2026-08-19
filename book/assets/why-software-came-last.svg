@@ -76,11 +76,11 @@
   <!-- bridge from the comparison table into the resolving chain (region source; unannotated) -->
   <line x1="460" y1="392" x2="460" y2="436" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
   <!-- edge: commodity -> cheap-edges -->
-  <line x1="460" y1="464" x2="460" y2="534" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+  <line x1="460" y1="490" x2="460" y2="534" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
   <!-- edge: cheap-edges -> viable -->
-  <line x1="460" y1="569" x2="460" y2="646" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+  <line x1="460" y1="602" x2="460" y2="646" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
   <!-- edge: viable -> rejoins -->
-  <line x1="460" y1="674" x2="460" y2="744" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
+  <line x1="460" y1="700" x2="460" y2="744" stroke="#1c1917" stroke-width="2" marker-end="url(#wsclArrow)"/>
 
   <!-- driver -->
   <rect id="commodity" x="280" y="438" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>

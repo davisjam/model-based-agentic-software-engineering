@@ -19,7 +19,7 @@
 
   <!-- input contract -->
   <!-- edge: caller -> model -->
-  <line x1="224" y1="206" x2="330" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
+  <line x1="224" y1="206" x2="332" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
   <text x="279" y="184" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">typed input</text>
   <text x="279" y="200" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">contract</text>
 
@@ -32,7 +32,7 @@
 
   <!-- output contract -->
   <!-- edge: model -> validator -->
-  <line x1="534" y1="206" x2="640" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
+  <line x1="534" y1="206" x2="642" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
   <text x="589" y="184" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">typed output</text>
   <text x="589" y="200" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">contract</text>
 
@@ -50,7 +50,7 @@
   <!-- PASS out: transparent anchor over the "result incorporated" text so the edge terminates on a named node -->
   <rect id="result" x="940" y="168" width="150" height="42" fill="none" stroke="none"/>
   <!-- edge: validator -> result -->
-  <line x1="884" y1="188" x2="936" y2="188" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
+  <line x1="884" y1="189" x2="938" y2="189" stroke="#1c1917" stroke-width="1.4" marker-end="url(#lfc-arrow)"/>
   <text x="910" y="176" text-anchor="middle" font-size="19" font-weight="bold" fill="#1f7a4d">pass</text>
   <text x="946" y="182" text-anchor="start" font-size="19" fill="#1f7a4d">result</text>
   <text x="946" y="202" text-anchor="start" font-size="19" fill="#1f7a4d">incorporated</text>

@@ -24,7 +24,7 @@
 
   <!-- task->edit function box (dashed model inside) -->
   <!-- edge: remediation -> ttef -->
-  <line x1="288" y1="331" x2="317" y2="331" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
+  <line x1="288" y1="331" x2="318" y2="331" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
   <rect id="ttef" x="320" y="238" width="386" height="196" rx="3" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
   <text x="513" y="276" text-anchor="middle" font-size="24" font-weight="bold" fill="#9a3f12">task-to-edit function</text>
   <text x="513" y="302" text-anchor="middle" font-size="19" font-style="italic" fill="#9a3f12">an instance of LLM-as-function-call</text>
@@ -44,7 +44,7 @@
   <!-- edge: editor -> dsl -->
   <path fill="none" d="M294,154 L630,154" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
   <!-- edge: ttef -> docmodel -->
-  <line x1="706" y1="331" x2="737" y2="331" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
+  <line x1="706" y1="333" x2="738" y2="333" stroke="#1c1917" stroke-width="1.6" marker-end="url(#dsl-arrow)"/>
 
   <!-- SHARED DSL -->
   <rect id="dsl" x="632" y="146" width="256" height="80" rx="3" fill="#f2effb" stroke="#7c6bb0" stroke-width="2"/>

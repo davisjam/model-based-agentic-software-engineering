@@ -28,19 +28,19 @@
   <rect id="task" x="335" y="24" width="150" height="44" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="410" y="52" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
   <!-- edge: task -> entity -->
-  <line x1="410" y1="68" x2="410" y2="252" stroke="#57534e" stroke-width="2.4" marker-end="url(#st-k)"/>
+  <line x1="410" y1="68" x2="410" y2="253" stroke="#57534e" stroke-width="2.4" marker-end="url(#st-k)"/>
   <text x="422" y="160" font-size="12.5" font-style="italic" fill="#57534e">enters at a named entity</text>
 
   <!-- spokes: entity to the six relations (drawn under the boxes); heads seated on each box's near border -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#st-b)">
     <!-- edge: entity -> decision -->
-    <path d="M470,272 C505,258 558,250 558,232"/>          <!-- to right: seat on decision bottom border -->
+    <path d="M505,291 L610,291 L610,232"/>          <!-- to right: seat on decision bottom border -->
     <!-- edge: entity -> behavioral -->
     <path d="M470,255 L470,147"/>          <!-- to upper-right: behavioral bottom border -->
     <!-- edge: entity -> structural -->
     <path d="M350,255 L350,147"/>          <!-- to upper-left: structural bottom border -->
     <!-- edge: entity -> ownership -->
-    <path d="M350,272 C315,258 262,250 262,232"/>          <!-- to left: seat on ownership bottom border -->
+    <path d="M315,291 L210,291 L210,232"/>          <!-- to left: seat on ownership bottom border -->
     <!-- edge: entity -> provenance -->
     <path d="M350,327 L350,435"/>          <!-- to lower-left: provenance top border -->
     <!-- edge: entity -> measurement -->

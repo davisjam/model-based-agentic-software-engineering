@@ -39,7 +39,7 @@
   <!-- resolving arrow drawn UNDER the columns: its tail runs to the middle card's centre (the opaque card
        fill caps it, so only the segment below the card shows), its head seats on the claim banner's rim -->
   <!-- edge: software -> claim -->
-  <line x1="490" y1="237" x2="490" y2="458" stroke="#1c1917" stroke-width="2.5" marker-end="url(#wsmArrow)"/>
+  <line x1="490" y1="402" x2="490" y2="458" stroke="#1c1917" stroke-width="2.5" marker-end="url(#wsmArrow)"/>
 
   <!-- column frames -->
   <rect x="24"  y="72" width="292" height="330" rx="10" fill="#f6f4ef" stroke="#a8a29e" stroke-width="1.5"/>

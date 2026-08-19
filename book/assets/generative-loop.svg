@@ -33,19 +33,19 @@
   <!-- forward spine -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
     <!-- edge: generator -> system -->
-    <path d="M145,198 L308,198" marker-end="url(#gl-ah)"/>
+    <path d="M250,198 L308,198" marker-end="url(#gl-ah)"/>
     <!-- edge: system -> oracle -->
-    <path d="M415,198 L578,198" marker-end="url(#gl-ah)"/>
+    <path d="M520,198 L578,198" marker-end="url(#gl-ah)"/>
     <!-- edge: oracle -> counterexample -->
-    <path d="M710,198 L898,198" marker-end="url(#gl-ah)"/>
+    <path d="M840,198 L898,198" marker-end="url(#gl-ah)"/>
   </g>
 
   <!-- edge: counterexample -> coverage -->
-  <path d="M1020,198 C1010,340 842,448 812,448" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#gl-ah)"/>
+  <path d="M1020,264 L1020,455 L812,455" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#gl-ah)"/>
 
   <!-- the loop closes: coverage -> refine the generator (dotted) -->
   <!-- edge: coverage .. generator -->
-  <path d="M455,470 C300,486 145,360 145,250" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-loop)"/>
+  <path d="M450,455 L145,455 L145,248" fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gl-ah-loop)"/>
 
   <!-- coverage -> (where traceability exists) joins model-claim coverage back to the claim/oracle (dotted) -->
   <!-- edge: coverage .. oracle -->

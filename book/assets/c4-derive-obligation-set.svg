@@ -21,11 +21,11 @@
   <!-- Edges drawn before the node they enter so the node fill caps the end. -->
 
   <!-- edge: model -> assured -->
-  <line x1="500" y1="88" x2="500" y2="124" stroke="#57534e" stroke-width="2" marker-end="url(#c4-ah)"/>
+  <line x1="500" y1="88" x2="500" y2="126" stroke="#57534e" stroke-width="2" marker-end="url(#c4-ah)"/>
   <text x="512" y="112" font-size="14" font-style="italic" fill="#1f7a4d">derive</text>
 
   <!-- edge: assured -> evidence -->
-  <line x1="500" y1="188" x2="500" y2="224" stroke="#57534e" stroke-width="2" marker-end="url(#c4-ah)"/>
+  <line x1="500" y1="188" x2="500" y2="226" stroke="#57534e" stroke-width="2" marker-end="url(#c4-ah)"/>
   <text x="512" y="212" font-size="14" font-style="italic" fill="#57534e">compare</text>
 
   <!-- split to COVERED / GAP (one path per branch) -->
@@ -35,7 +35,7 @@
   <path d="M605,288 L605,364" fill="none" stroke="#b23b3b" stroke-width="2" marker-end="url(#c4-ah-r)"/>
 
   <!-- edge: gap -> finding -->
-  <line x1="680" y1="420" x2="680" y2="456" stroke="#b23b3b" stroke-width="2" marker-end="url(#c4-ah-r)"/>
+  <line x1="680" y1="420" x2="680" y2="458" stroke="#b23b3b" stroke-width="2" marker-end="url(#c4-ah-r)"/>
 
   <!-- MODEL -->
   <rect id="model" x="370" y="30" width="260" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>

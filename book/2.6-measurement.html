@@ -735,19 +735,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <g fill="none" stroke="#2f5169" stroke-width="2.2">
     <!-- generation work forks to the two chains (one path per branch) -->
     <!-- edge: genwork -> usage -->
-    <path d="M90,171 C176,120 158,101 188,101" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M156,171 L245,171 L245,128" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
     <!-- edge: genwork -> concurrency -->
-    <path d="M90,171 C176,222 158,267 188,267" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M156,171 L245,171 L245,240" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
     <!-- top chain -->
     <!-- edge: usage -> cost -->
-    <path d="M245,101 L338,101" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M300,101 L338,101" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
     <!-- edge: cost -> cost-budget -->
-    <path d="M390,101 L478,101" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M440,101 L478,101" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
     <!-- bottom chain -->
     <!-- edge: concurrency -> capacity -->
-    <path d="M245,267 L338,267" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M300,267 L338,267" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
     <!-- edge: capacity -> capacity-envelope -->
-    <path d="M390,267 L478,267" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
+    <path d="M440,267 L478,267" marker-end="url(#f-genai-cost-capacity-model-gc-b)"/>
   </g>
 
   <!-- ===== NODES (on top) ===== -->
@@ -870,13 +870,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- fan to four authority decisions — one path per branch, all from the same-model centre (715,123) -->
   <g fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-modeling-perp-authority-pa-k)">
     <!-- edge: same-model -> observe -->
-    <path d="M715,123 C600,168 554,160 554,190"/>
+    <path d="M620,123 L554,123 L554,190"/>
     <!-- edge: same-model -> adapt -->
     <path d="M666.5,146 L666.5,190"/>
     <!-- edge: same-model -> degrade -->
     <path d="M767.5,146 L767.5,190"/>
     <!-- edge: same-model -> gate -->
-    <path d="M715,123 C830,168 886,160 886,190"/>
+    <path d="M810,123 L884,123 L884,190"/>
   </g>
   <rect id="f-modeling-perp-authority-same-model" x="620" y="100" width="190" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="715" y="129" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">same model</text>

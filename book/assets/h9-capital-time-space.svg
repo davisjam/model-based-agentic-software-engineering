@@ -8,6 +8,9 @@
        node with no floating gap at any angle. In a busy figure a line must not float offset from
        its node. (Simple figures may opt into a looser rim-touch grammar with an
        "edge-grammar: float-ok" marker comment; this figure uses the strict connect-inside default.) -->
+<!-- edge-grammar: keep-angles -->
+<!-- KEEP curves (Pass B2): ~14 long, cross-diagram edges over a dense field; elbowing them all would
+     produce an orthogonal tangle worse than the swoops. Dense/high-crossing figure. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 940" width="980" height="940"
      role="img" aria-labelledby="h9Title h9Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">

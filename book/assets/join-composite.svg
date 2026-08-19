@@ -103,9 +103,9 @@
 
   <!-- JOIN edge 3: the resulting test set -> scheduler (both tiers feed the plan; seat on plan's left border) -->
   <!-- edge: local-staging -> plan-host -->
-  <path d="M545,300 C640,250 766,184 796,184" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
+  <path d="M445,276 L445,194 L798,194" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
   <!-- edge: staging-only -> plan-host -->
-  <path d="M700,300 C744,268 766,204 796,204" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
+  <path d="M700,308 L945,308 L945,240" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
 
   <!-- the plan's two modes: SHAPE encodes parallel (rounded) vs serialize (square) -->
   <!-- edge: plan-host -> fan-out -->

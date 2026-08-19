@@ -9,9 +9,9 @@
     <marker id="mh-ah-gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
   </defs>
   <!-- edge: mh_s1 -> mh_s2 -->
-  <line x1="500" y1="164" x2="500" y2="220" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <line x1="500" y1="164" x2="500" y2="218" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_s2 -> mh_s3 -->
-  <line x1="500" y1="294" x2="500" y2="350" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <line x1="500" y1="294" x2="500" y2="348" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_s3 -> mh_dl -->
   <path d="M350,424 L350,483" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_s3 -> mh_dr -->
@@ -21,9 +21,9 @@
   <!-- edge: mh_dr -> mh_s5 -->
   <path d="M650,645 L650,698" fill="none" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_s5 -> mh_s6 -->
-  <line x1="500" y1="774" x2="500" y2="830" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <line x1="500" y1="774" x2="500" y2="828" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <!-- edge: mh_s6 -> mh_s7 -->
-  <line x1="500" y1="904" x2="500" y2="960" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
+  <line x1="500" y1="904" x2="500" y2="958" stroke="#57534e" stroke-width="2.5" marker-end="url(#mh-ah-gray)"/>
   <rect id="mh_s1" x="230" y="90" width="540" height="74" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <rect id="mh_s2" x="230" y="220" width="540" height="74" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <rect id="mh_s3" x="230" y="350" width="540" height="74" rx="12" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>

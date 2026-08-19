@@ -100,7 +100,7 @@
 
   <!-- governance conversion carries recurring judgment OUT of the boundary into engineering capital -->
   <!-- edge: mage -> capital -->
-  <path d="M500,630 L500,676" fill="none" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#etAr)"/>
+  <path d="M500,632 L500,676" fill="none" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#etAr)"/>
 
   <!-- ENGINEERING CAPITAL — astride the lower boundary (a consequence, not an input) -->
   <rect id="capital" x="300" y="678" width="400" height="66" rx="10" fill="#eef7f0" stroke="#155c38" stroke-width="2"/>
@@ -108,7 +108,7 @@
   <text x="500" y="727" text-anchor="middle" font-size="12.5" fill="#57534e">recurring judgment, made durable</text>
 
   <!-- edge: capital -> autonomy -->
-  <path d="M500,711 L500,786" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
+  <path d="M500,744 L500,786" fill="none" stroke="#57534e" stroke-width="1.6" marker-end="url(#etA)"/>
 
   <!-- TRUSTWORTHY AUTONOMY — the intended outcome, outside the boundary -->
   <rect id="autonomy" x="340" y="788" width="320" height="58" rx="10" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8" stroke-dasharray="6 4"/>

@@ -39,9 +39,9 @@
     <text x="320" y="227" fill="#57534e">C</text>
   </g>
   <!-- edge: ov-obs-a -> ov-obs-b -->
-  <line x1="175" y1="110" x2="293" y2="110" stroke="#57534e" stroke-width="2.4" marker-end="url(#ov-k)"/>
+  <line x1="176" y1="110" x2="292" y2="110" stroke="#57534e" stroke-width="2.4" marker-end="url(#ov-k)"/>
   <!-- edge: ov-obs-a -> ov-obs-c -->
-  <line x1="169" y1="123" x2="297" y2="205" stroke="#57534e" stroke-width="2.4" marker-end="url(#ov-k)"/>
+  <path fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#ov-k)" d="M150,136 L150,220 L292,220"/>
   <text x="225" y="286" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1c1917">&#8220;Does A call C?&#8221;</text>
 
   <!-- ===== RIGHT: MODEL (blue, declared) ===== -->
@@ -55,11 +55,11 @@
     <text x="770" y="227" fill="#2f5169">C</text>
   </g>
   <!-- edge: ov-dec-a -> ov-dec-b -->
-  <line x1="624" y1="110" x2="743" y2="110" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ov-b)"/>
+  <line x1="626" y1="110" x2="742" y2="110" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ov-b)"/>
   <text x="684" y="98" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">declared</text>
   <!-- no edge A..C: rust dashed + X (absent relation — endpoints still plug into both circles) -->
   <!-- edge: ov-dec-a .. ov-dec-c -->
-  <line x1="619" y1="123" x2="751" y2="207" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="7 6" opacity="0.85"/>
+  <path fill="none" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="7 6" opacity="0.85" d="M600,136 L600,220 L744,220"/>
   <g stroke="#9a3f12" stroke-width="3.4" stroke-linecap="round">
     <line x1="674" y1="157" x2="696" y2="179"/>
     <line x1="696" y1="157" x2="674" y2="179"/>

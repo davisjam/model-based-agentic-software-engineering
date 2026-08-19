@@ -71,7 +71,7 @@
 
   <!-- Modeling EXPANDS (not enables) Alignment -->
   <!-- edge: modeling -> alignment -->
-  <path d="M390,332 L586,332" fill="none" stroke="#1f7a4d" stroke-width="2.6" marker-end="url(#ci-green)"/>
+  <path d="M390,337 L588,337" fill="none" stroke="#1f7a4d" stroke-width="2.6" marker-end="url(#ci-green)"/>
   <text x="488" y="322" text-anchor="middle" font-size="13" font-weight="700" fill="#1f7a4d">expands the semantic surface for</text>
 
   <!-- lessons -> Governance Conversion. The lessons carried forward are the two principles'; a single
@@ -87,7 +87,7 @@
 
   <!-- Governance Conversion -> Engineering Capital -->
   <!-- edge: governance -> capital -->
-  <path d="M440,487 L556,487" fill="none" stroke="#1f7a4d" stroke-width="2.6" marker-end="url(#ci-green)"/>
+  <path d="M440,487 L558,487" fill="none" stroke="#1f7a4d" stroke-width="2.6" marker-end="url(#ci-green)"/>
   <text x="498" y="478" text-anchor="middle" font-size="13" font-weight="700" fill="#155c38">compounds into</text>
 
   <!-- Engineering Capital (green outcome) -->

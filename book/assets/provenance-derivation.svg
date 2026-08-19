@@ -42,9 +42,9 @@
   <text x="435" y="255" font-size="16" fill="#57534e">[the only source]</text>
 
   <!-- edge: mutation -> stamp -->
-  <line x1="300" y1="116" x2="300" y2="146" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
+  <line x1="300" y1="116" x2="300" y2="144" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
   <!-- edge: stamp -> registry -->
-  <line x1="300" y1="192" x2="300" y2="222" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
+  <line x1="300" y1="192" x2="300" y2="220" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
 
   <!-- the two derived views (dashed = derived, not authored) -->
   <rect id="validation" x="70" y="340" width="160" height="48" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
@@ -63,7 +63,7 @@
   <text x="300" y="318" text-anchor="middle" font-size="16" fill="#57534e">derived, not authored</text>
 
   <!-- edge: changelog -> customer -->
-  <line x1="470" y1="388" x2="470" y2="430" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
+  <line x1="470" y1="388" x2="470" y2="428" stroke="#2b2825" stroke-width="2" marker-end="url(#pd-ar)"/>
   <text x="385" y="410" text-anchor="end" font-size="16" fill="#57534e">one row per entry</text>
 
   <text x="300" y="490" text-anchor="middle" font-size="16" fill="#57534e">the changelog is derived from the stamps, not kept in parallel</text>

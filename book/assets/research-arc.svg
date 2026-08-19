@@ -43,13 +43,13 @@
   <!-- spine arrows (neutral) + edge labels naming the inference; src ends seated inside the source box -->
   <g stroke="#57534e" stroke-width="2.2" fill="none">
     <!-- edge: docable -> early-mage -->
-    <line x1="500" y1="146" x2="500" y2="180" marker-end="url(#ra-ah)"/>
+    <line x1="500" y1="148" x2="500" y2="180" marker-end="url(#ra-ah)"/>
     <!-- edge: early-mage -> industrial-accounts -->
-    <line x1="500" y1="238" x2="500" y2="272" marker-end="url(#ra-ah)"/>
+    <line x1="500" y1="240" x2="500" y2="272" marker-end="url(#ra-ah)"/>
     <!-- edge: industrial-accounts -> comparative-recon -->
-    <line x1="500" y1="330" x2="500" y2="364" marker-end="url(#ra-ah)"/>
+    <line x1="500" y1="332" x2="500" y2="364" marker-end="url(#ra-ah)"/>
     <!-- edge: comparative-recon -> mage-theory -->
-    <line x1="500" y1="422" x2="500" y2="456" marker-end="url(#ra-ah)"/>
+    <line x1="500" y1="424" x2="500" y2="456" marker-end="url(#ra-ah)"/>
   </g>
   <g font-size="16" font-style="italic" fill="#57534e" text-anchor="start">
     <text x="516" y="169">induces</text>

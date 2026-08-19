@@ -47,9 +47,9 @@
 
   <!-- permitted arrows (solid) -->
   <!-- edge: passes -> model -->
-  <line x1="185" y1="152" x2="235" y2="152" stroke="#2b2825" stroke-width="2" marker-end="url(#ts-ar)"/>
+  <line x1="185" y1="152" x2="233" y2="152" stroke="#2b2825" stroke-width="2" marker-end="url(#ts-ar)"/>
   <!-- edge: model -> library -->
-  <line x1="405" y1="152" x2="450" y2="152" stroke="#2b2825" stroke-width="2" marker-end="url(#ts-ar)"/>
+  <line x1="405" y1="152" x2="448" y2="152" stroke="#2b2825" stroke-width="2" marker-end="url(#ts-ar)"/>
   <text x="427" y="138" text-anchor="middle" font-size="16" fill="#57534e">permitted</text>
 
   <!-- forbidden bypass: routed below the row, struck with an X (a struck-but-spanning "no edge" — plug both ends, annotate dotted) -->

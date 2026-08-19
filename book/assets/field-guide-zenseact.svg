@@ -14,15 +14,15 @@
 
   <!-- ===== edges (under nodes; undirected → run to node centres) ===== -->
   <!-- edge: door -> platform -->
-  <line x1="140" y1="205" x2="392.5" y2="206" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="151" y1="205" x2="305" y2="205" stroke="#cfcabf" stroke-width="3"/>
   <!-- edge: platform -> d1 -->
-  <line x1="392.5" y1="206" x2="620" y2="160" stroke="#cfcabf" stroke-width="2.5"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M392.5,175 L392.5,160 L611,160"/>
   <!-- edge: platform -> d2 -->
-  <line x1="392.5" y1="206" x2="620" y2="205" stroke="#cfcabf" stroke-width="2.5"/>
+  <line x1="480" y1="205" x2="611" y2="205" stroke="#cfcabf" stroke-width="2.5"/>
   <!-- edge: platform -> d3 -->
-  <line x1="392.5" y1="206" x2="620" y2="250" stroke="#cfcabf" stroke-width="2.5"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M392.5,237 L392.5,250 L611,250"/>
   <!-- edge: d2 -> landing -->
-  <line x1="620" y1="205" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="629" y1="205" x2="760" y2="205" stroke="#cfcabf" stroke-width="3"/>
 
   <!-- ===== nodes (fills cap the edge ends) ===== -->
   <circle id="door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>

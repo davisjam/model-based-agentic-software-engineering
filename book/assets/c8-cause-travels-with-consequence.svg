@@ -33,12 +33,12 @@
 
   <!-- ===== EDGE LAYER: drawn UNDER the boxes; directional arrows plug to the target box near-edge ===== -->
   <!-- edge: cause -> action -->
-  <line x1="180" y1="90" x2="180" y2="150" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#c8-ah-r)"/>
+  <line x1="180" y1="90" x2="180" y2="148" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#c8-ah-r)"/>
   <g stroke="#57534e" stroke-width="2.2" marker-end="url(#c8-ah-n)">
     <!-- edge: action -> change -->
-    <line x1="260" y1="179" x2="420" y2="179"/>
+    <line x1="260" y1="179" x2="418" y2="179"/>
     <!-- edge: change -> artifact -->
-    <line x1="580" y1="179" x2="740" y2="179"/>
+    <line x1="580" y1="179" x2="738" y2="179"/>
   </g>
 
   <!-- provenance rail: identity carried under all three (decorative bracket; no node target) -->

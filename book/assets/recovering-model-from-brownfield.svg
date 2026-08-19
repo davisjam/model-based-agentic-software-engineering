@@ -93,13 +93,13 @@
 
   <!-- ===== EDGES (directed; drawn on top so heads seat on the target border) ===== -->
   <!-- edge: n1 -> n2 -->
-  <line x1="240" y1="138" x2="240" y2="164" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
+  <line x1="240" y1="140" x2="240" y2="164" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
   <!-- edge: n2 -> n3 -->
-  <line x1="240" y1="252" x2="240" y2="278" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
+  <line x1="240" y1="254" x2="240" y2="278" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
   <!-- edge: n3 -> n4 -->
-  <line x1="240" y1="348" x2="240" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
+  <line x1="240" y1="350" x2="240" y2="374" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
   <!-- edge: n4 -> n5 -->
-  <line x1="240" y1="462" x2="240" y2="488" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
+  <line x1="240" y1="464" x2="240" y2="488" stroke="#57534e" stroke-width="2.3" marker-end="url(#rmb-k)"/>
   <!-- edge: n5 -> n6  (discovery crosses into judgment) -->
   <line x1="240" y1="558" x2="240" y2="584" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#rmb-r)"/>
   <!-- edge: n6 -> n7  (naming produces the model) -->

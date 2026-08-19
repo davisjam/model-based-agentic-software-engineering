@@ -28,11 +28,11 @@
 
   <!-- fan to three kinds -->
   <!-- edge: model-steps -> deterministic -->
-  <path d="M500,212 C420,236 250,224 250,254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <path d="M390,186 L250,186 L250,254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
   <!-- edge: model-steps -> bounded -->
   <line x1="500" y1="212" x2="500" y2="254" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
   <!-- edge: model-steps -> irreducible -->
-  <path d="M500,212 C580,236 750,224 750,254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <path d="M610,186 L750,186 L750,254" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
 
   <!-- deterministic = solid rust -->
   <rect id="deterministic" x="120" y="256" width="260" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
@@ -67,11 +67,11 @@
 
   <!-- merge: three forms converge into the sanctioned action (one path per branch) -->
   <!-- edge: tool -> sanctioned-action -->
-  <path d="M250,426 C250,470 500,491 500,521" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <path d="M250,426 L250,551 L378,551" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
   <!-- edge: human -> sanctioned-action -->
-  <path d="M750,426 C750,470 500,491 500,521" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <path d="M750,426 L750,551 L622,551" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
   <!-- edge: prepared-context -> sanctioned-action -->
-  <line x1="500" y1="426" x2="500" y2="521" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
+  <line x1="500" y1="426" x2="500" y2="520" stroke="#57534e" stroke-width="2" marker-end="url(#ej-ah)"/>
   <text x="640" y="492" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">lifecycle event invokes the right form</text>
 
   <rect id="sanctioned-action" x="380" y="522" width="240" height="58" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>

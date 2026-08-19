@@ -40,11 +40,11 @@
   <!-- BEFORE: each copy feeds its own consumer -->
   <g stroke="#57534e" stroke-width="2" marker-end="url(#c1-ah)">
     <!-- edge: copy-a -> consumer-a -->
-    <line x1="270" y1="110" x2="328.8" y2="110"/>
+    <line x1="270" y1="110" x2="328" y2="110"/>
     <!-- edge: copy-b -> consumer-b -->
-    <line x1="270" y1="210" x2="328.8" y2="210"/>
+    <line x1="270" y1="210" x2="328" y2="210"/>
     <!-- edge: copy-c -> consumer-c -->
-    <line x1="270" y1="310" x2="328.8" y2="310"/>
+    <line x1="270" y1="310" x2="328" y2="310"/>
   </g>
 
   <!-- AFTER: the authoritative representation fans to the three consumers -->
@@ -52,7 +52,7 @@
     <!-- edge: authoritative -> out-a -->
     <path d="M662,156 L662,248"/>
     <!-- edge: authoritative -> out-b -->
-    <line x1="778" y1="156" x2="778" y2="248.8"/>
+    <line x1="778" y1="156" x2="778" y2="248"/>
     <!-- edge: authoritative -> out-c -->
     <path d="M894,156 L894,248"/>
   </g>

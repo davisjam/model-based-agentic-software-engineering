@@ -21,21 +21,21 @@
   <!-- ===== EDGES (drawn UNDER the nodes; each node fill caps its ends) ===== -->
   <g fill="none" stroke="#57534e" stroke-width="2">
     <!-- edge: lifecycle -> fire -->
-    <path d="M500,60 L500,122" marker-end="url(#er-ah)"/>
+    <path d="M500,86 L500,122" marker-end="url(#er-ah)"/>
     <!-- fan to three branches (one path per branch) -->
     <!-- edge: fire -> execute -->
-    <path d="M500,153 C410,200 220,194 220,224" marker-end="url(#er-ah)"/>
+    <path d="M360,153 L215,153 L215,224" marker-end="url(#er-ah)"/>
     <!-- edge: fire -> delegate -->
-    <path d="M500,153 L500,224" marker-end="url(#er-ah)"/>
+    <path d="M500,182 L500,224" marker-end="url(#er-ah)"/>
     <!-- edge: fire -> escalate -->
-    <path d="M500,153 C590,200 780,194 780,224" marker-end="url(#er-ah)"/>
+    <path d="M640,153 L785,153 L785,224" marker-end="url(#er-ah)"/>
     <!-- converge to next lifecycle state (one path per branch, sharing the trunk into the box) -->
     <!-- edge: execute -> next -->
-    <path d="M215,261 C215,340 500,358 500,388" marker-end="url(#er-ah)"/>
+    <path d="M215,296 L215,421 L358,421" marker-end="url(#er-ah)"/>
     <!-- edge: delegate -> next -->
-    <path d="M500,261 L500,388" marker-end="url(#er-ah)"/>
+    <path d="M500,296 L500,388" marker-end="url(#er-ah)"/>
     <!-- edge: escalate -> next -->
-    <path d="M785,261 C785,340 500,358 500,388" marker-end="url(#er-ah)"/>
+    <path d="M785,296 L785,421 L642,421" marker-end="url(#er-ah)"/>
   </g>
 
   <!-- dashed rust loop: the lifecycle advances and the next transition binds again -->

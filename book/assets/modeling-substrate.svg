@@ -22,13 +22,13 @@
        rect over it carries the id "shared-identities". -->
   <g stroke="#57534e" stroke-width="2" opacity="0.75">
     <!-- edge: structural -> shared-identities -->
-    <line x1="380" y1="290" x2="380" y2="112"/>
+    <line x1="380" y1="238" x2="380" y2="138"/>
     <!-- edge: behavioral -> shared-identities -->
     <line x1="380" y1="290" x2="549" y2="200"/>
     <!-- edge: ownership -> shared-identities -->
     <line x1="380" y1="290" x2="549" y2="380"/>
     <!-- edge: decision -> shared-identities -->
-    <line x1="380" y1="290" x2="380" y2="468"/>
+    <line x1="380" y1="342" x2="380" y2="442"/>
     <!-- edge: measurement -> shared-identities -->
     <line x1="380" y1="290" x2="211" y2="380"/>
     <!-- edge: provenance -> shared-identities -->

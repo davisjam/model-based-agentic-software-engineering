@@ -66,7 +66,7 @@
   <!-- one edge sj-artifact -> test-gate, drawn two-tone across the frontier: muted underlay runs the full
        span (lint-legible, rust head at the target); a rust overlay recolours the crossing (right) portion -->
   <!-- edge: sj-artifact -> test-gate -->
-  <path d="M300,237 L658,237" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dtp-rust)"/>
+  <path d="M300,237 L660,237" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dtp-rust)"/>
   <text x="346" y="226" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">property is</text>
   <text x="346" y="243" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">already decidable</text>
 
@@ -94,7 +94,7 @@
   <!-- one edge structured-model -> repeatable-decision, two-tone across the frontier: green underlay runs the
        full span (lint-legible, rust head at the target); a rust overlay recolours the crossing (right) portion -->
   <!-- edge: structured-model -> repeatable-decision -->
-  <path d="M524,399 L658,399" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#dtp-rust)"/>
+  <path d="M524,399 L660,399" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#dtp-rust)"/>
   <text x="560" y="383" text-anchor="middle" font-size="12" font-style="italic" fill="#1f7a4d">predicate</text>
   <text x="560" y="419" text-anchor="middle" font-size="12" font-style="italic" fill="#1f7a4d">over model</text>
 

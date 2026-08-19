@@ -57,18 +57,18 @@
   </g>
   <!-- agent -> inputs: middle runs straight; the two diagonals swoop and dive in (last control aimed at target centre) -->
   <!-- edge: agent -> retrieval -->
-  <path d="M470,144 C390,175 215,164 215,194" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <path d="M430,121 L202,121 L202,194" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
   <!-- edge: agent -> interfaces -->
-  <line x1="500" y1="144" x2="500" y2="192" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <line x1="500" y1="144" x2="500" y2="194" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
   <!-- edge: agent -> program-structure -->
-  <path d="M530,144 C610,175 785,164 785,194" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <path d="M570,121 L798,121 L798,194" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
   <!-- inputs -> repository -->
   <!-- edge: retrieval -> repository -->
-  <path d="M202,254 C300,272 445,264 445,294" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <path d="M202,254 L202,318 L382,318" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
   <!-- edge: interfaces -> repository -->
-  <line x1="500" y1="254" x2="500" y2="292" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <line x1="500" y1="254" x2="500" y2="294" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
   <!-- edge: program-structure -> repository -->
-  <path d="M798,254 C700,272 555,264 555,294" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
+  <path d="M798,254 L798,318 L618,318" fill="none" stroke="#57534e" stroke-width="1.5" marker-end="url(#coeArrow)"/>
 
   <!-- repository / task -->
   <rect id="repository" x="384" y="296" width="232" height="44" rx="9" fill="#efe9dd" stroke="#a8a093" stroke-width="1.8"/>
@@ -92,7 +92,7 @@
   <rect id="engineer" x="430" y="536" width="140" height="46" rx="9" fill="#fff" stroke="#155c38" stroke-width="2"/>
   <text x="500" y="565" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Engineer</text>
   <!-- edge: engineer -> gee -->
-  <line x1="500" y1="582" x2="500" y2="606" stroke="#155c38" stroke-width="1.8" marker-end="url(#coeArrow)"/>
+  <line x1="500" y1="582" x2="500" y2="610" stroke="#155c38" stroke-width="1.8" marker-end="url(#coeArrow)"/>
 
   <!-- governed engineering environment -->
   <rect id="gee" x="96" y="612" width="808" height="196" rx="12" fill="#e9f2ec" stroke="#155c38" stroke-width="2.4"/>
@@ -120,7 +120,7 @@
 
   <!-- GEE -> product (bare-text target gets a transparent anchor) -->
   <!-- edge: gee -> product -->
-  <line x1="500" y1="808" x2="500" y2="828" stroke="#155c38" stroke-width="1.8" marker-end="url(#coeArrow)"/>
+  <line x1="500" y1="808" x2="500" y2="830" stroke="#155c38" stroke-width="1.8" marker-end="url(#coeArrow)"/>
   <rect id="product" x="458" y="832" width="84" height="17" fill="none" stroke="none"/>
   <text x="500" y="850" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Product</text>
 </svg>

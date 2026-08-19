@@ -17,7 +17,7 @@
   <line x1="140" y1="205" x2="300" y2="205" stroke="#cfcabf" stroke-width="3"/>
   <!-- session fan: one line per branch, each session circle -> corpus centre -->
   <!-- edge: s1 -> corpus -->
-  <line x1="300" y1="165" x2="490" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M305,165 L490,165 L490,180"/>
   <!-- edge: s2 -> corpus -->
   <line x1="300" y1="185" x2="490" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
   <!-- edge: s3 -> corpus -->
@@ -25,11 +25,11 @@
   <!-- edge: s4 -> corpus -->
   <line x1="300" y1="225" x2="490" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
   <!-- edge: s5 -> corpus -->
-  <line x1="300" y1="245" x2="490" y2="206" stroke="#cfcabf" stroke-width="2.5"/>
+  <path fill="none" stroke="#cfcabf" stroke-width="2.5" d="M305,245 L490,245 L490,232"/>
   <!-- edge: corpus -> skill -->
-  <line x1="490" y1="206" x2="650" y2="206" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="580" y1="206" x2="639" y2="206" stroke="#cfcabf" stroke-width="3"/>
   <!-- edge: skill -> landing -->
-  <line x1="650" y1="206" x2="860" y2="205" stroke="#cfcabf" stroke-width="3"/>
+  <line x1="661" y1="206" x2="760" y2="206" stroke="#cfcabf" stroke-width="3"/>
 
   <!-- ===== nodes (fills cap the edge ends) ===== -->
   <circle id="door" cx="140" cy="205" r="11" fill="#fdfcf9" stroke="#1c1917" stroke-width="3"/>

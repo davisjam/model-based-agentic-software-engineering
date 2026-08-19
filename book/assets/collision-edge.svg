@@ -37,7 +37,7 @@
 
   <!-- incompatibility hangs off the shared-resource node -->
   <!-- edge: commit-set -> incompatible -->
-  <line x1="480" y1="294" x2="480" y2="332" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#ce-ah-churn)"/>
+  <line x1="480" y1="294" x2="480" y2="334" stroke="#b23b3b" stroke-width="2.4" marker-end="url(#ce-ah-churn)"/>
 
   <!-- Control A (top-left) -->
   <rect id="control-a" x="60" y="44" width="330" height="88" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>

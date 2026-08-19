@@ -56,14 +56,14 @@
   <text x="500" y="350" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governance Mechanism</text>
   <text x="500" y="371" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
   <!-- edge: gov-mechanism -> gee -->
-  <line x1="500" y1="384" x2="500" y2="422" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <line x1="500" y1="384" x2="500" y2="420" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <text x="512" y="408" font-size="15" fill="#78716c">governs</text>
 
   <!-- Governed Engineering Environment -->
   <rect id="gee" x="290" y="422" width="420" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="500" y="454" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governed Engineering Environment</text>
   <!-- edge: gee -> eng-capital -->
-  <line x1="500" y1="474" x2="500" y2="512" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
+  <line x1="500" y1="474" x2="500" y2="510" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <text x="512" y="498" font-size="15" fill="#78716c">can accumulate as</text>
 
   <!-- Engineering Capital — terminal (dark) -->

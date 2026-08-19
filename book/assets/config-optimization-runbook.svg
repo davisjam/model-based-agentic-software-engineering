@@ -46,7 +46,7 @@
   <text x="510" y="284" text-anchor="middle" font-size="16" fill="#e7edf3">reasoning decides</text>
 
   <!-- edge: judgment -> determinize-experiment -->
-  <line x1="631" y1="260" x2="686" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
+  <line x1="632" y1="260" x2="686" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
 
   <rect id="determinize-experiment" x="688" y="200" width="250" height="120" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="813" y="252" text-anchor="middle" font-size="25" font-weight="700" fill="#2f5169">Determinize</text>

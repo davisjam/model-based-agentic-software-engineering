@@ -25,11 +25,11 @@
        (360,71); each directed head seats on its target's top border (head outside, tip touching). -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#il-b)">
     <!-- edge: shared-lease -> ownership -->
-    <path d="M360,71 C300,120 145,156 145,186"/>
+    <path d="M250,71 L145,71 L145,186"/>
     <!-- edge: shared-lease -> behavior -->
-    <path d="M360,71 L360,186"/>
+    <path d="M360,104 L360,186"/>
     <!-- edge: shared-lease -> measurement -->
-    <path d="M360,71 C420,120 575,156 575,186"/>
+    <path d="M470,71 L575,71 L575,186"/>
   </g>
 
   <!-- SHARED LEASE STATE (gray, the one represented fact) at TOP -->

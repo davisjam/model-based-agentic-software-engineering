@@ -35,7 +35,7 @@
   <text x="340" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">ENGINEERING QUESTION</text>
   <text x="340" y="52" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Can durable state name an artifact recovery has not yet published?</text>
   <!-- edge: question -> model -->
-  <line x1="340" y1="62" x2="340" y2="86" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mf-b)"/>
+  <line x1="340" y1="64" x2="340" y2="88" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mf-b)"/>
 
   <!-- layer 2: MODEL (blue) -->
   <rect id="model" x="70" y="90" width="540" height="150" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
@@ -62,14 +62,14 @@
   </g>
   <text x="340" y="234" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">may not skip publication</text>
   <!-- edge: model -> encoding -->
-  <line x1="340" y1="240" x2="340" y2="266" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
+  <line x1="340" y1="240" x2="340" y2="268" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
 
   <!-- layer 3: ONE EXECUTABLE REPRESENTATION (gray) -->
   <rect id="encoding" x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="340" y="294" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
   <text x="340" y="313" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">explicit legal-transition relation</text>
   <!-- edge: encoding -> implementation -->
-  <line x1="340" y1="322" x2="340" y2="348" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
+  <line x1="340" y1="322" x2="340" y2="350" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
 
   <!-- layer 4: IMPLEMENTATION (gray) -->
   <rect id="implementation" x="110" y="352" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>

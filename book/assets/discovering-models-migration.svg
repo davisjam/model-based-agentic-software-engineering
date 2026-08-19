@@ -55,11 +55,11 @@
   <!-- fan to three branches: one path per branch, each partition -> its head; src ends seated inside partition -->
   <g fill="none" stroke="#57534e" stroke-width="2.4">
     <!-- edge: partition -> legit-shape -->
-    <path d="M408,272 C300,290 160,270 160,300" marker-end="url(#dm-n)"/>
+    <path d="M360,250 L160,250 L160,300" marker-end="url(#dm-n)"/>
     <!-- edge: partition -> mechanical-debt -->
-    <path d="M480,272 L480,300" marker-end="url(#dm-n)"/>
+    <path d="M480,274 L480,300" marker-end="url(#dm-n)"/>
     <!-- edge: partition -> latent-concept -->
-    <path d="M552,272 C660,290 780,270 780,300" marker-end="url(#dm-n)"/>
+    <path d="M600,250 L780,250 L780,300" marker-end="url(#dm-n)"/>
   </g>
 
   <!-- branch heads -->
@@ -141,7 +141,7 @@
   <!-- next pass: transparent anchor over the label so the dashed edge plugs into a named node -->
   <rect id="next-pass" x="770" y="812" width="70" height="18" fill="none" stroke="none"/>
   <!-- edge: stronger-substrate .. next-pass -->
-  <line x1="645" y1="820" x2="766" y2="820" stroke="#57534e" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#dm-n)"/>
+  <line x1="645" y1="821" x2="768" y2="821" stroke="#57534e" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#dm-n)"/>
   <text x="774" y="825" font-size="14" font-style="italic" fill="#57534e">next pass</text>
 
   <!-- footer: protect the point -->

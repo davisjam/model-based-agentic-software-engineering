@@ -37,17 +37,17 @@
   <rect id="active-rail" x="299" y="80" width="12" height="402" fill="none" stroke="none"/>
   <line x1="305" y1="86" x2="305" y2="476" stroke="#d9b3ae" stroke-width="1.6"/>
   <!-- edge: queued -> active-rail -->
-  <line x1="290" y1="86"  x2="305" y2="86"  stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="290" y1="94"  x2="299" y2="94"  stroke="#d9b3ae" stroke-width="1.6"/>
   <!-- edge: claimed -> active-rail -->
-  <line x1="290" y1="164" x2="305" y2="164" stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="290" y1="164" x2="299" y2="164" stroke="#d9b3ae" stroke-width="1.6"/>
   <!-- edge: plan-dispatch -> active-rail -->
-  <line x1="290" y1="242" x2="305" y2="242" stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="290" y1="242" x2="299" y2="242" stroke="#d9b3ae" stroke-width="1.6"/>
   <!-- edge: waiting -> active-rail -->
-  <line x1="290" y1="320" x2="305" y2="320" stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="290" y1="320" x2="299" y2="320" stroke="#d9b3ae" stroke-width="1.6"/>
   <!-- edge: merging -> active-rail -->
-  <line x1="290" y1="398" x2="305" y2="398" stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="290" y1="398" x2="299" y2="398" stroke="#d9b3ae" stroke-width="1.6"/>
   <!-- edge: finalizing -> active-rail -->
-  <line x1="290" y1="476" x2="305" y2="476" stroke="#d9b3ae" stroke-width="1.6"/>
+  <line x1="290" y1="468" x2="299" y2="468" stroke="#d9b3ae" stroke-width="1.6"/>
 
   <!-- ===== the state column (left) ===== -->
   <rect id="queued" x="110" y="64"  width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
@@ -67,23 +67,23 @@
 
   <!-- legal transitions (solid, straight) -->
   <!-- edge: queued -> claimed -->
-  <line x1="200" y1="108" x2="200" y2="142" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="108" x2="200" y2="140" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
   <!-- edge: claimed -> plan-dispatch -->
-  <line x1="200" y1="186" x2="200" y2="220" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="186" x2="200" y2="218" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
   <!-- edge: plan-dispatch -> waiting -->
-  <line x1="200" y1="264" x2="200" y2="298" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="264" x2="200" y2="296" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
   <!-- edge: waiting -> merging -->
-  <line x1="200" y1="342" x2="200" y2="376" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="342" x2="200" y2="374" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
   <!-- edge: merging -> finalizing -->
-  <line x1="200" y1="420" x2="200" y2="454" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="420" x2="200" y2="452" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
   <!-- edge: finalizing -> completed -->
-  <line x1="200" y1="498" x2="200" y2="532" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
+  <line x1="200" y1="498" x2="200" y2="530" stroke="#2b2825" stroke-width="2" marker-end="url(#jl-ar)"/>
 
   <!-- ===== FAILED terminal (right, red) ===== -->
   <rect id="failed" x="395" y="298" width="150" height="44" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.4"/>
   <text x="470" y="327" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">FAILED</text>
   <!-- edge: active-rail -> failed -->
-  <line x1="305" y1="320" x2="395" y2="320" stroke="#b23b3b" stroke-width="2" marker-end="url(#jl-arR)"/>
+  <line x1="311" y1="320" x2="393" y2="320" stroke="#b23b3b" stroke-width="2" marker-end="url(#jl-arR)"/>
   <text x="330" y="308" font-size="16" fill="#b23b3b">any active state</text>
   <text x="470" y="364" text-anchor="middle" font-size="16" fill="#b23b3b">terminal — no re-entry into processing</text>
 </svg>
