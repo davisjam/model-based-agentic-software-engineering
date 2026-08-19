@@ -1,3 +1,3 @@
 **A temporary holding area — not part of the argument**
 
-**Editorial status.** This appendix is a temporary holding area for ideas removed from the manuscript because they extend beyond the claims the book needs to make. They are retained here as seeds for later research and should be removed before publication. Nothing here is load-bearing for MAGE; the two notes below are paper seeds, parked so the manuscript does not lose track of them.
+**Editorial status.** This appendix is a temporary holding area for research directions generated while developing the manuscript but extending beyond the claims the book needs to make. Nothing here is load-bearing for MAGE. The notes preserve conjectures, study designs, and possible paper agendas so they can be developed separately rather than enlarging the book's argument. Remove this appendix before publication.

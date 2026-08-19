@@ -2,7 +2,7 @@
 <!-- Part VI §6.5 — model-induction-general.svg (draft; folds to book/assets/).
      The SAME abstraction move, shown once and instantiated three ways: realized work → repeated
      low-level forms → (weak detectors / retrieval / clustering) candidate regularities → (contextual
-     comparison) a latent concept → (engineering judgment names it) an explicit model / vocabulary →
+     comparison) a candidate abstraction → (engineering judgment adopts / names it) an explicit model / vocabulary →
      future work reasons through the concept directly. The LEFT RAIL is the canonical move (its stages +
      the method that carries each step); the THREE COLUMNS instantiate it in SOFTWARE, KNOWLEDGE WORK,
      and MECHANICAL / CAD. Software is the GROUNDED column (DocAble evidence, solid strokes); knowledge
@@ -18,16 +18,16 @@
   <title id="miTitle">Models can be induced from the work: the same abstraction move — repeated form to named model — runs in software, knowledge work, and CAD</title>
   <desc id="miDesc">A left rail states the general move as a column of stages joined by the method that
     carries each step: realized work; then repeated low-level forms; then, by weak detectors, retrieval,
-    and clustering, candidate regularities; then, by contextual comparison, a latent concept; then, by an
-    engineering judgment that names it, an explicit model or vocabulary; then future work that reasons
+    and clustering, candidate regularities; then, by contextual comparison, a candidate abstraction; then, by an
+    engineering judgment that adopts and names it, an explicit model or vocabulary; then future work that reasons
     through the concept directly. Three columns to the right instantiate the same move. In software
     (grounded in DocAble evidence): realized code, repeated primitive forms, candidate regularities such
-    as primitive density, a latent semantic shape, a typed vocabulary with relations, and tools and agents
+    as primitive density, a candidate abstraction (a repeated semantic shape), a typed vocabulary with relations, and tools and agents
     that reuse it. In knowledge work (a generalization, inferred): documents and records, repeated terms
-    and relations, candidate synonym clusters, a latent domain distinction, a canonical term with
+    and relations, candidate synonym clusters, a candidate abstraction (a domain distinction), a canonical term with
     relations, and a lexicon, ontology, or schema. In mechanical CAD (a generalization, inferred):
-    drawings and assemblies, repeated geometry and constraints, a candidate pattern or component, a latent
-    design regularity, a named feature or constraint model, and a reusable engineering vocabulary. The
+    drawings and assemblies, repeated geometry and constraints, a candidate pattern or component, a candidate
+    abstraction (a design regularity), a named feature or constraint model, and a reusable engineering vocabulary. The
     agent finds repetition, compares, and proposes structure; the engineer decides which distinctions
     matter and names the concept.</desc>
 
@@ -61,7 +61,7 @@
   <rect x="26" y="284" width="176" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
   <text x="114.0" y="321" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate regularities</text>
   <rect x="26" y="376" width="176" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
-  <text x="114.0" y="413" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
+  <text x="114.0" y="413" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate abstraction</text>
   <rect x="26" y="468" width="176" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="114.0" y="486" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">explicit model</text>
   <text x="114.0" y="503" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">/ vocabulary</text>
@@ -72,8 +72,8 @@
   <text x="114" y="278" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">retrieval, clustering</text>
   <text x="114" y="359" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">contextual</text>
   <text x="114" y="370" text-anchor="middle" font-size="11" font-style="italic" fill="#57534e">comparison</text>
-  <text x="114" y="451" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">engineering</text>
-  <text x="114" y="462" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">judgment names it</text>
+  <text x="114" y="451" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">engineering judgment</text>
+  <text x="114" y="462" text-anchor="middle" font-size="11" font-style="italic" fill="#9a3f12">adopts / names</text>
   <!-- ===== COL: SOFTWARE ===== -->
   <rect id="sw-realized" x="218" y="100" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
   <text x="332.0" y="128" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">realized code</text>
@@ -85,7 +85,7 @@
   <text x="332.0" y="312" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate regularities</text>
   <text x="332.0" y="332" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">primitive density · clusters</text>
   <rect id="sw-latent" x="218" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>
-  <text x="332.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
+  <text x="332.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate abstraction</text>
   <text x="332.0" y="424" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a repeated semantic shape</text>
   <rect id="sw-vocab" x="218" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="332.0" y="496" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">typed vocabulary + relations</text>
@@ -114,7 +114,7 @@
   <text x="576.0" y="312" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate clusters</text>
   <text x="576.0" y="332" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">synonyms · concept groups</text>
   <rect id="kw-latent" x="462" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
-  <text x="576.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
+  <text x="576.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate abstraction</text>
   <text x="576.0" y="424" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a domain distinction</text>
   <rect id="kw-term" x="462" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4" stroke-dasharray="5 3"/>
   <text x="576.0" y="496" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">canonical term + relations</text>
@@ -143,7 +143,7 @@
   <text x="820.0" y="312" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">candidate pattern / component</text>
   <text x="820.0" y="332" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a reusable form</text>
   <rect id="cad-latent" x="706" y="376" width="228" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0" stroke-dasharray="5 3"/>
-  <text x="820.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">latent concept</text>
+  <text x="820.0" y="404" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1c1917">candidate abstraction</text>
   <text x="820.0" y="424" text-anchor="middle" font-size="11.5" font-style="italic" fill="#57534e">a design regularity</text>
   <rect id="cad-feature" x="706" y="468" width="228" height="66" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4" stroke-dasharray="5 3"/>
   <text x="820.0" y="496" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">named feature / component</text>

@@ -3706,15 +3706,17 @@ _PRODUCT_LIFECYCLE_PAGES: list[tuple[str, str]] = [
 
 # APPENDIX — Crazy Ideas. A TEMPORARY holding area for material carved out of Part 6 as outside the book's
 # core argument but worth keeping as research-paper seeds (front-door _opening.md carries the editorial-status
-# note; CI.1 "Commodity Intelligence as an Experimental Substrate" from the removed §6.3.5, CI.2 "Model
-# Induction From Realized Work" from the removed §6.5.5, which also re-homes the relocated model-induction
-# figure). Wired as a normal hand-authored appendix so it stays reachable; it is expected to be CUT before
+# note; I.1 "Commodity Intelligence as an Experimental Instrument for Software Engineering" from the removed
+# §6.3.5, I.2 "Model Induction from Realized Work" from the removed §6.5.5 — which also re-homes the relocated
+# model-induction figure — and I.3 "Model-Based Agentic Engineering Beyond Software" recovering the removed
+# §6.5.9 idea). Wired as a normal hand-authored appendix so it stays reachable; it is expected to be CUT before
 # publication. Appended LAST so it re-letters no earlier appendix. Content-page slugs are `appendix-i-<stem>`.
 _CRAZY_IDEAS_DIR = HERE / "appendix-crazy-ideas"
 _APPENDIX_CRAZY_IDEAS_OPENING_SLUG = "appendix-crazy-ideas"
 _CRAZY_IDEAS_PAGES: list[tuple[str, str]] = [
-    ("experimental-substrate", "Commodity Intelligence as an Experimental Substrate"),
+    ("experimental-substrate", "Commodity Intelligence as an Experimental Instrument for Software Engineering"),
     ("model-induction",        "Model Induction from Realized Work"),
+    ("model-based-agentic-engineering-beyond-software", "Model-Based Agentic Engineering Beyond Software"),
 ]
 
 
