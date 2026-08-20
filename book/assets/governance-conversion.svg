@@ -64,11 +64,11 @@
 
   <!-- 5 branch labels (what was missing) -->
   <g font-weight="700" fill="#2f5169" text-anchor="middle">
-    <text x="110" y="230" font-size="16">representation / semantics</text>
-    <text x="305" y="230" font-size="16">obligation</text>
-    <text x="500" y="230" font-size="16">evidence</text>
-    <text x="695" y="230" font-size="16">evaluation</text>
-    <text x="890" y="230" font-size="16">consequence</text>
+    <text x="110" y="230" font-size="4.23">representation / semantics</text>
+    <text x="305" y="230" font-size="10.25">obligation</text>
+    <text x="500" y="230" font-size="11.53">evidence</text>
+    <text x="695" y="230" font-size="9.87">evaluation</text>
+    <text x="890" y="230" font-size="8.27">consequence</text>
   </g>
 
   <!-- connectors category anchor → encoded answer -->
@@ -93,7 +93,7 @@
     <rect id="gc-box-validator" x="625" y="290" width="140" height="46" rx="6"/>
     <rect id="gc-box-gate"      x="812" y="290" width="156" height="46" rx="6"/>
   </g>
-  <g font-size="17" fill="#1c1917" text-anchor="middle">
+  <g font-size="18" fill="#1c1917" text-anchor="middle">
     <text x="110" y="319">model</text>
     <text x="305" y="319">invariant</text>
     <text x="500" y="319">sensor</text>
@@ -128,5 +128,5 @@
   <rect id="gc-capital" x="330" y="600" width="340" height="56" rx="10" fill="#3d6b4a" stroke="#2f5137" stroke-width="2"/>
   <text x="500" y="635" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">ENGINEERING CAPITAL</text>
 
-  <text x="500" y="702" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a failure is not a request for another gate — diagnose what was missing, then encode it</text>
+  <text x="500" y="702" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">a failure is not a request for another gate — diagnose what was missing, then encode it</text>
 </svg>

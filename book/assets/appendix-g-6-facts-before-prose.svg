@@ -44,7 +44,7 @@
   <!-- edge: provenance -> generated -->
   <line x1="420" y1="192" x2="540" y2="242" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g6-solid)"/>
   <text x="470" y="212" font-size="13" font-style="italic" fill="#57534e">generated</text>
-  <text x="470" y="228" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">re-derivable</text>
+  <text x="470" y="228" font-size="12.96" font-weight="700" fill="#2f5169" letter-spacing="0.5">re-derivable</text>
 
   <!-- edge: generated -> human -->
   <line x1="555" y1="304" x2="555" y2="344" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g6-solid)"/>
@@ -63,7 +63,7 @@
 
   <rect id="validation" x="70" y="246" width="210" height="58" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
   <text x="175" y="270" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">VALIDATION / AUDIT</text>
-  <text x="175" y="290" text-anchor="middle" font-size="12" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED · completion gate</text>
+  <text x="175" y="290" text-anchor="middle" font-size="12.96" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED · completion gate</text>
 
   <rect id="generated" x="450" y="246" width="210" height="58" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="555" y="270" text-anchor="middle" font-size="15" font-weight="700" fill="#8a2f2f">GENERATED</text>
@@ -82,5 +82,5 @@
   <text x="407" y="384" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">correspondence</text>
 
   <text x="360" y="432" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Generate from facts the system already knows — do not keep a second hand-maintained copy.</text>
-  <text x="40" y="470" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Solid + re-derivable stays faithful; a dashed prose edge may drift.</text>
+  <text x="40" y="470" font-size="12.96" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Solid + re-derivable stays faithful; a dashed prose edge may drift.</text>
 </svg>

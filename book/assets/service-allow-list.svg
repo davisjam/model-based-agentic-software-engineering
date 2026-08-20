@@ -31,30 +31,30 @@
   <!-- ===== left spine: public boundary + public node descend to the worker ===== -->
   <!-- Internet (public boundary, blue) -->
   <rect id="internet" x="90" y="66" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="165" y="97" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Internet</text>
+  <text x="165" y="97" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">Internet</text>
 
   <!-- web (the only public node, blue) -->
   <rect id="web" x="90" y="150" width="150" height="50" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="165" y="181" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">web</text>
+  <text x="165" y="181" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">web</text>
   <text x="252" y="181" font-size="16" fill="#57534e">the only public node</text>
 
   <!-- doc editor -->
   <rect id="doc-editor" x="90" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="165" y="265" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">doc editor</text>
+  <text x="165" y="265" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">doc editor</text>
 
   <!-- worker -->
   <rect id="worker" x="90" y="318" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="165" y="349" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">worker</text>
+  <text x="165" y="349" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">worker</text>
 
   <!-- ===== right column: the three services the worker may reach ===== -->
   <rect id="render" x="400" y="234" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="475" y="265" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">render</text>
+  <text x="475" y="265" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">render</text>
 
   <rect id="ocr" x="400" y="318" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="475" y="349" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">OCR</text>
+  <text x="475" y="349" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">OCR</text>
 
   <rect id="generation" x="400" y="402" width="150" height="50" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="475" y="433" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">generation</text>
+  <text x="475" y="433" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">generation</text>
 
   <!-- ===== permitted edges (solid) — spine ===== -->
   <!-- edge: internet -> web -->

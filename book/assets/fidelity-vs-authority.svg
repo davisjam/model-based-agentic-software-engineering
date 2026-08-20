@@ -29,21 +29,21 @@
   <rect id="fa_m4" x="250" y="515" width="210" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <rect id="fa_e4" x="660" y="515" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="500" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Two independent axes: correspondence strength vs authority direction</text>
-  <text x="60" y="146" text-anchor="start" font-size="14" font-weight="700" fill="#57534e">AXIS 1 · CORRESPONDENCE STRENGTH</text>
-  <text x="60" y="388" text-anchor="start" font-size="14" font-weight="700" fill="#57534e">AXIS 2 · AUTHORITY DIRECTION</text>
-  <text x="355.0" y="185" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">implementation</text>
-  <text x="780.0" y="185" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">hand-authored graph</text>
-  <text x="355.0" y="285" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">typed declarations</text>
-  <text x="780.0" y="285" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">projected graph</text>
-  <text x="355.0" y="435" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">implementation</text>
-  <text x="780.0" y="435" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">computation model</text>
-  <text x="355.0" y="545" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">computation model</text>
-  <text x="780.0" y="545" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">execution</text>
-  <text x="560.0" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3f12">weak · can drift</text>
-  <text x="560.0" y="268" text-anchor="middle" font-size="13" font-weight="700" fill="#1f7a4d">strong · projected</text>
-  <text x="560.0" y="300" text-anchor="middle" font-size="13" font-weight="400" font-style="italic" fill="#9a3f12">blocking parity check</text>
-  <text x="560.0" y="418" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">derives — unchanged</text>
-  <text x="560.0" y="528" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">generate execution</text>
-  <text x="560.0" y="560" text-anchor="middle" font-size="12" font-weight="400" font-style="italic" fill="#57534e">not DocAble today</text>
-  <text x="500" y="610" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Correspondence grew stronger; the authority arrow did not move.</text>
+  <text x="60" y="146" text-anchor="start" font-size="18" font-weight="700" fill="#57534e">AXIS 1 · CORRESPONDENCE STRENGTH</text>
+  <text x="60" y="388" text-anchor="start" font-size="18" font-weight="700" fill="#57534e">AXIS 2 · AUTHORITY DIRECTION</text>
+  <text x="355.0" y="185" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">implementation</text>
+  <text x="780.0" y="185" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">hand-authored graph</text>
+  <text x="355.0" y="285" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">typed declarations</text>
+  <text x="780.0" y="285" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">projected graph</text>
+  <text x="355.0" y="435" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">implementation</text>
+  <text x="780.0" y="435" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">computation model</text>
+  <text x="355.0" y="545" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">computation model</text>
+  <text x="780.0" y="545" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">execution</text>
+  <text x="560.0" y="168" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">weak · can drift</text>
+  <text x="560.0" y="268" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">strong · projected</text>
+  <text x="560.0" y="300" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#9a3f12">blocking parity check</text>
+  <text x="560.0" y="418" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">derives — unchanged</text>
+  <text x="560.0" y="528" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">generate execution</text>
+  <text x="560.0" y="560" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">not DocAble today</text>
+  <text x="500" y="610" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Correspondence grew stronger; the authority arrow did not move.</text>
 </svg>

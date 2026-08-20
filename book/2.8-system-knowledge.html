@@ -806,7 +806,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="410" y="52" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
   <!-- edge: task -> entity -->
   <line x1="410" y1="68" x2="410" y2="253" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-substrate-traversal-st-k)"/>
-  <text x="422" y="160" font-size="12.5" font-style="italic" fill="#57534e">enters at a named entity</text>
+  <text x="422" y="160" font-size="14.76" font-style="italic" fill="#57534e">enters at a named entity</text>
 
   <!-- spokes: entity to the six relations (drawn under the boxes); heads seated on each box's near border -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-substrate-traversal-st-b)">
@@ -827,7 +827,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- named ENTITY (gray identity, center) -->
   <rect id="f-substrate-traversal-entity" x="315" y="255" width="190" height="72" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
   <text x="410" y="288" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">named ENTITY</text>
-  <text x="410" y="310" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">e.g. a job, a service</text>
+  <text x="410" y="310" text-anchor="middle" font-size="14.76" font-style="italic" fill="#57534e">e.g. a job, a service</text>
 
   <!-- six relation boxes (blue peers) -->
   <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
@@ -847,7 +847,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- footer: protect the point -->
   <text x="410" y="524" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1c1917">Retrieve only the relations needed for the current question.</text>
-  <text x="410" y="546" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">No order among the six &#8212; enter at the entity, follow what the question needs.</text>
+  <text x="410" y="546" text-anchor="middle" font-size="14.76" font-style="italic" fill="#57534e">No order among the six &#8212; enter at the entity, follow what the question needs.</text>
 </svg><figcaption data-short="Task-driven traversal"><span class="fig-label">Figure 2.8-2.</span> <em>Task-driven traversal.</em> A task enters the substrate through a named system entity and follows only the model relations required by its engineering question.</figcaption></figure>
 <h2><span class="sec-num">2.8.2</span> Maintain Explicit Correspondence</h2>
 <p id="idx-def-map-and-territory">Multiple models create a correspondence problem: represented facts can diverge from the system or from one another. Engineer the relationship between map and territory so divergence is caught rather than assumed away. Which machinery you reach for depends on which side is the source of truth.</p>
@@ -879,41 +879,41 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="640" y1="44" x2="640" y2="252" stroke="#d9d3c8" stroke-width="1.6"/>
 
   <!-- ===== Panel 1: DERIVE ===== -->
-  <text x="160" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">DERIVE</text>
-  <text x="160" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">implementation is source of truth</text>
+  <text x="160" y="40" text-anchor="middle" font-size="17.28" font-weight="700" letter-spacing="1" fill="#2f5169">DERIVE</text>
+  <text x="160" y="64" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">implementation is source of truth</text>
   <rect id="f-derive-generate-trace-impl-derive" x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="160" y="219" text-anchor="middle" font-size="15.5" font-weight="700" fill="#57534e">implementation</text>
+  <text x="160" y="219" text-anchor="middle" font-size="17.28" font-weight="700" fill="#57534e">implementation</text>
   <!-- edge: impl-derive -> model-derive -->
   <line x1="160" y1="188" x2="160" y2="130" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-derive-generate-trace-dg-b)"/>
-  <text x="172" y="162" font-size="13.5" font-style="italic" fill="#2f5169">derive</text>
+  <text x="172" y="162" font-size="17.28" font-style="italic" fill="#2f5169">derive</text>
   <rect id="f-derive-generate-trace-model-derive" x="55" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="160" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
+  <text x="160" y="109" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">model</text>
 
   <!-- ===== Panel 2: GENERATE ===== -->
-  <text x="480" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">GENERATE</text>
-  <text x="480" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">model is source of truth</text>
+  <text x="480" y="40" text-anchor="middle" font-size="17.28" font-weight="700" letter-spacing="1" fill="#2f5169">GENERATE</text>
+  <text x="480" y="64" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">model is source of truth</text>
   <rect id="f-derive-generate-trace-model-generate" x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="480" y="109" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
+  <text x="480" y="109" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">model</text>
   <!-- edge: model-generate -> impl-generate -->
   <line x1="480" y1="128" x2="480" y2="186" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-derive-generate-trace-dg-k)"/>
-  <text x="492" y="162" font-size="13.5" font-style="italic" fill="#2f5169">generate</text>
+  <text x="492" y="162" font-size="17.28" font-style="italic" fill="#2f5169">generate</text>
   <rect id="f-derive-generate-trace-impl-generate" x="375" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="480" y="219" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">implementation / config</text>
+  <text x="480" y="219" text-anchor="middle" font-size="16.42" font-weight="700" fill="#57534e">implementation / config</text>
 
   <!-- ===== Panel 3: TRACE + CHECK ===== -->
-  <text x="800" y="40" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE + CHECK</text>
-  <text x="800" y="64" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">neither fully determines the other</text>
+  <text x="800" y="40" text-anchor="middle" font-size="17.28" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE + CHECK</text>
+  <text x="800" y="64" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">neither fully determines the other</text>
   <rect id="f-derive-generate-trace-model-trace" x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="800" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">model</text>
+  <text x="800" y="117" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">model</text>
   <!-- two-way link with rust decidable check -->
   <!-- edge: model-trace -> system -->
   <line x1="800" y1="138" x2="800" y2="178" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#f-derive-generate-trace-dg-r)" marker-end="url(#f-derive-generate-trace-dg-r)"/>
-  <text x="812" y="163" font-size="12.5" font-weight="700" fill="#9a3f12">check (decidable)</text>
+  <text x="812" y="163" font-size="17.28" font-weight="700" fill="#9a3f12">check (decidable)</text>
   <rect id="f-derive-generate-trace-system" x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="800" y="211" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">system</text>
+  <text x="800" y="211" text-anchor="middle" font-size="17.28" font-weight="700" fill="#57534e">system</text>
 
   <!-- footer: protect the point -->
-  <text x="480" y="284" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Three correspondence patterns &#8212; derive where implementation leads, generate where the model leads, trace and check where neither does.</text>
+  <text x="480" y="284" text-anchor="middle" font-size="17.28" font-style="italic" fill="#1c1917">Three correspondence patterns &#8212; derive where implementation leads, generate where the model leads, trace and check where neither does.</text>
 </svg><figcaption data-short="Three correspondence patterns"><span class="fig-label">Figure 2.8-3.</span> <em>Three correspondence patterns.</em> Derive where implementation is the source of truth; generate where the model is the source of truth; otherwise maintain traceability and check the correspondences that are decidable.</figcaption></figure>
 <p>The remediation computation graph is DocAble's fullest instance of the derive case, for both nodes and edges. Registered passes supply the computational entities. Each PDF pass also declares its typed <code>Produces</code>, <code>Consumes</code>, and <code>ConsumesForControl</code> facets, and the graph projects its structural relations from those declarations: nodes projected from the registered computations, edges projected from the typed composition. Change a pass's declared IO and the projected edge set changes with it. No second, hand-maintained list of data-flow edges sits beside the code waiting to fall behind, and a blocking parity check fails if the projection and the declarations disagree.</p>
 <p>The graph is derived, but it remains a model: it suppresses method bodies, internal algorithms, runtime history, timing, and most document state, keeping only the entities and relations its structural questions need. Derivation prevents one kind of drift by construction, since an engineer never authors the edges, but it does not establish that the underlying architecture is good, nor that the declared relations capture every obligation that matters. Those are separate claims, and Part III separates them.</p>
@@ -938,17 +938,17 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- ===== MODELED SURFACE ===== -->
   <rect id="f-model-sync-two-layer-net-modeled" x="120" y="66" width="660" height="170" rx="12" fill="#faf9f6" stroke="#57534e" stroke-width="2.4"/>
-  <text x="150" y="96" font-size="16" font-weight="700" letter-spacing="1" fill="#1c1917">MODELED SURFACE</text>
+  <text x="150" y="96" font-size="16.2" font-weight="700" letter-spacing="1" fill="#1c1917">MODELED SURFACE</text>
 
   <!-- decidable -> mechanical check (green) -->
   <rect x="145" y="112" width="610" height="46" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="2.2"/>
-  <text x="170" y="141" font-size="15.5" font-weight="700" fill="#155c38">decidable claims</text>
-  <text x="750" y="141" text-anchor="end" font-size="15.5" font-weight="700" fill="#155c38">&#8594;&#160; mechanical check</text>
+  <text x="170" y="141" font-size="16.2" font-weight="700" fill="#155c38">decidable claims</text>
+  <text x="750" y="141" text-anchor="end" font-size="16.2" font-weight="700" fill="#155c38">&#8594;&#160; mechanical check</text>
 
   <!-- semantic -> judgment (blue) -->
   <rect x="145" y="170" width="610" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="170" y="199" font-size="15.5" font-weight="700" fill="#2f5169">semantic claims</text>
-  <text x="750" y="199" text-anchor="end" font-size="15.5" font-weight="700" fill="#2f5169">&#8594;&#160; judgment</text>
+  <text x="170" y="199" font-size="16.2" font-weight="700" fill="#2f5169">semantic claims</text>
+  <text x="750" y="199" text-anchor="end" font-size="16.2" font-weight="700" fill="#2f5169">&#8594;&#160; judgment</text>
 
   <!-- refine loop arrow drawn UNDER the unmodeled surface: its tail runs into that surface (the opaque fill
        caps it) and its head seats on the modeled surface's lower rim -->
@@ -957,15 +957,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- ===== UNMODELED SURFACE ===== -->
   <rect id="f-model-sync-two-layer-net-unmodeled" x="120" y="266" width="660" height="70" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="8 5"/>
-  <text x="150" y="296" font-size="16" font-weight="700" letter-spacing="1" fill="#9a3f12">UNMODELED SURFACE</text>
-  <text x="150" y="320" font-size="14.5" font-style="italic" fill="#57534e">no model-based coverage</text>
+  <text x="150" y="296" font-size="16.2" font-weight="700" letter-spacing="1" fill="#9a3f12">UNMODELED SURFACE</text>
+  <text x="150" y="320" font-size="16.2" font-style="italic" fill="#57534e">no model-based coverage</text>
 
   <!-- small optional refine note in the gap between the two surfaces -->
-  <text x="430" y="255" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">recurring miss &#8594; refine representation / control</text>
+  <text x="430" y="255" text-anchor="middle" font-size="16.2" font-style="italic" fill="#9a3f12">recurring miss &#8594; refine representation / control</text>
 
   <!-- footer: protect the point -->
-  <text x="450" y="374" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Mechanical checks reach only what the representation makes decidable;</text>
-  <text x="450" y="396" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">semantic claims need judgment, and unmodeled properties have no coverage.</text>
+  <text x="450" y="374" text-anchor="middle" font-size="16.2" font-style="italic" fill="#1c1917">Mechanical checks reach only what the representation makes decidable;</text>
+  <text x="450" y="396" text-anchor="middle" font-size="16.2" font-style="italic" fill="#57534e">semantic claims need judgment, and unmodeled properties have no coverage.</text>
 </svg><figcaption data-short="Coverage of model correspondence"><span class="fig-label">Figure 2.8-4.</span> <em>Coverage of model correspondence.</em> Mechanical checks cover only claims the representation makes decidable; semantic claims still require judgment, and unmodeled properties have no model-based coverage.</figcaption></figure>
 <p>For invariant-bearing models, one useful executable pattern is a structured schema plus checked predicates over that schema. The schema defines entities, relations, fields, or states; the predicates state properties that a checker evaluates over the declared domain. Other executable models may instead drive generation, simulation, transformation, or analysis. A schema alone does not establish correspondence to a changing system; checks or derivations are needed where that correspondence matters. <a class="xref" href="2.8-system-knowledge.html#fig-2-8-5">Figure&nbsp;2.8-5</a> draws that relationship.</p>
 <figure id="fig-2-8-5" class="book-figure" data-label="coherence-triangle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380"
@@ -990,40 +990,41 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- STRUCTURED MODEL (blue) -->
   <rect id="f-coherence-triangle-model" x="30" y="96" width="270" height="130" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="165" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">STRUCTURED MODEL</text>
-  <text x="165" y="167" text-anchor="middle" font-size="16" fill="#57534e">records &#183; edges &#183; states</text>
-  <text x="165" y="196" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a job: free / leased / done</text>
+  <text x="165" y="167" text-anchor="middle" font-size="18" fill="#57534e">records &#183; edges &#183; states</text>
+  <text x="165" y="196" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">a job: free / leased / done</text>
 
   <!-- INVARIANTS (rust) -->
   <rect id="f-coherence-triangle-invariants" x="365" y="96" width="270" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="500" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INVARIANTS</text>
-  <text x="500" y="165" text-anchor="middle" font-size="15" fill="#57534e">stable ids + declared domains</text>
+  <text x="500" y="165" text-anchor="middle" font-size="18" fill="#57534e">stable ids + declared domains</text>
   <rect x="388" y="180" width="224" height="34" rx="6" fill="#fbfdff" stroke="#9a3f12" stroke-width="1.2"/>
-  <text x="500" y="203" text-anchor="middle" font-size="15" fill="#9a3f12">leased &#8660; owner exists</text>
+  <text x="500" y="203" text-anchor="middle" font-size="18" fill="#9a3f12">leased &#8660; owner exists</text>
 
   <!-- CHECKER (green) -->
   <rect id="f-coherence-triangle-checker" x="700" y="96" width="270" height="130" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
   <text x="835" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">CHECKER</text>
-  <text x="835" y="167" text-anchor="middle" font-size="15" fill="#57534e">model check &#183; drift lint</text>
-  <text x="835" y="190" text-anchor="middle" font-size="15" fill="#57534e">&#183; validator</text>
+  <text x="835" y="167" text-anchor="middle" font-size="18" fill="#57534e">model check &#183; drift lint</text>
+  <text x="835" y="190" text-anchor="middle" font-size="18" fill="#57534e">&#183; validator</text>
 
   <!-- edges -->
   <!-- edge-grammar: keep-angles -->
   <!-- Opts out of orthogonalization: checker <-> invariants is a two-way pair drawn as arcs that bow apart; straightening both collapses them onto one line. -->
   <!-- edge: model -> invariants -->
   <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-coherence-triangle-ct-k)"/>
-  <text x="332" y="130" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">supports</text>
-  <text x="332" y="146" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">predicates over</text>
+  <text x="332" y="130" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">supports</text>
+  <text x="332" y="146" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">predicates over</text>
   <!-- edge: invariants -> checker -->
   <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-coherence-triangle-ct-k)"/>
-  <text x="667" y="138" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">evaluated by</text>
+  <text x="667" y="138" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">evaluated by</text>
 
   <!-- side arrow: recurring failure -> new/refined invariant -->
   <!-- edge: checker .. invariants -->
   <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#f-coherence-triangle-ct-r)"/>
-  <text x="668" y="320" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
+  <text x="668" y="320" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
 
   <!-- footer: protect the point -->
-  <text x="500" y="358" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">One executable-model pattern &#8212; the model supplies the domain, invariants state properties, a checker evaluates them; not the definition of executability.</text>
+  <!-- summary line removed 260820 (figure-min-font wave): duplicated the md caption and overflowed the viewBox when bumped to floor size — the caption carries it. -->
+
 </svg><figcaption data-short="Checked predicates over a structured model"><span class="fig-label">Figure 2.8-5.</span> <em>Checked predicates over a structured model.</em> A structured model supplies the domain; invariants state properties over that domain; a checker evaluates them at a declared cadence. This is one executable-model pattern, not the definition of executability.</figcaption></figure>
 <blockquote id="idx-def-invariant" class="concept-inset"><p class="inset-title" id="inset-invariant">Inset — What is an invariant?</p>
 <p>An <strong>invariant</strong> is a property required to hold over a declared domain of states, structures, or observations. In a behavioral state machine, the invariant may be a predicate that must hold in every reachable state; in a structural model, it may require every observed dependency to belong to a declared set; in a measurement model, it may require a quantity to remain within a hard capacity bound. State both the property <em>and</em> the domain the checker claims to establish it over.</p>

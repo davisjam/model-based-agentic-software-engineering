@@ -14,55 +14,55 @@
     <marker id="vh-av2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
   <rect x="0" y="0" width="1000" height="500" fill="#fdfcf9"/>
-  <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
+  <text x="95" y="40" font-size="18" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">Software agents</text>
 
   <!-- column headers -->
-  <text x="330" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the stack</text>
-  <text x="825" y="78" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a characteristic limit</text>
+  <text x="330" y="78" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the stack</text>
+  <text x="825" y="78" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">a characteristic limit</text>
 
   <!-- ===== LEFT: the four-layer stack ===== -->
   <!-- Application -->
   <rect id="application" x="80" y="92" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="100" y="122" font-size="20" font-weight="bold" fill="#1c1917">Application</text>
-  <text x="100" y="144" font-size="16" fill="#57534e">your codebase</text>
+  <text x="100" y="144" font-size="18" fill="#57534e">your codebase</text>
 
   <!-- runs on -->
   <!-- edge: application -> harness -->
   <line x1="330" y1="156" x2="330" y2="174" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
-  <text x="342" y="171" font-size="16" fill="#78716c">runs on</text>
+  <text x="342" y="171" font-size="18" fill="#78716c">runs on</text>
 
   <!-- Agent Harness (taller; holds three chips) -->
   <rect id="harness" x="80" y="176" width="500" height="112" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="100" y="206" font-size="20" font-weight="bold" fill="#1c1917">Agent Harness</text>
-  <text x="100" y="227" font-size="16" fill="#57534e">Claude Code, OpenCode, and their kin</text>
-  <text x="100" y="258" font-size="16" fill="#78716c">hosts</text>
+  <text x="100" y="227" font-size="18" fill="#57534e">Claude Code, OpenCode, and their kin</text>
+  <text x="100" y="258" font-size="18" fill="#78716c">hosts</text>
   <rect x="150" y="246" width="112" height="30" rx="15" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="206" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Skills</text>
+  <text x="206" y="266" text-anchor="middle" font-size="18" fill="#1c1917">Skills</text>
   <rect x="272" y="246" width="112" height="30" rx="15" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="328" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Tools</text>
+  <text x="328" y="266" text-anchor="middle" font-size="18" fill="#1c1917">Tools</text>
   <rect x="394" y="246" width="112" height="30" rx="15" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
-  <text x="450" y="266" text-anchor="middle" font-size="16" fill="#1c1917">Hooks</text>
+  <text x="450" y="266" text-anchor="middle" font-size="18" fill="#1c1917">Hooks</text>
 
   <!-- wraps -->
   <!-- edge: harness -> foundation -->
   <line x1="330" y1="288" x2="330" y2="306" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
-  <text x="342" y="303" font-size="16" fill="#78716c">wraps</text>
+  <text x="342" y="303" font-size="18" fill="#78716c">wraps</text>
 
   <!-- Foundation Model -->
   <rect id="foundation" x="80" y="308" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="100" y="338" font-size="20" font-weight="bold" fill="#1c1917">Foundation Model</text>
-  <text x="100" y="360" font-size="16" fill="#57534e">the trained model</text>
+  <text x="100" y="360" font-size="18" fill="#57534e">the trained model</text>
 
   <!-- bounded by -->
   <!-- edge: foundation -> bounded-state -->
   <line x1="330" y1="372" x2="330" y2="390" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
-  <text x="342" y="387" font-size="16" fill="#78716c">bounded by</text>
+  <text x="342" y="387" font-size="18" fill="#78716c">bounded by</text>
 
   <!-- Bounded working state (the context window is its present instance) -->
   <rect id="bounded-state" x="80" y="392" width="500" height="64" rx="6" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="100" y="422" font-size="20" font-weight="bold" fill="#1c1917">Bounded working state</text>
-  <text x="100" y="444" font-size="16" fill="#57534e">what the model holds at once — the context window today</text>
+  <text x="100" y="444" font-size="17.57" fill="#57534e">what the model holds at once — the context window today</text>
 
   <!-- ===== RIGHT: softened causal tail ===== -->
   <!-- large engineering task -->
@@ -72,7 +72,7 @@
   <!-- requires -->
   <!-- edge: task -> horizon -->
   <line x1="820" y1="138" x2="820" y2="176" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
-  <text x="832" y="162" font-size="16" fill="#78716c">requires</text>
+  <text x="832" y="162" font-size="18" fill="#78716c">requires</text>
 
   <!-- Reasoning Horizon -->
   <rect id="horizon" x="690" y="178" width="260" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
@@ -81,17 +81,17 @@
   <!-- may exceed -->
   <!-- edge: horizon -> avail-state -->
   <line x1="820" y1="224" x2="820" y2="262" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
-  <text x="832" y="248" font-size="16" fill="#78716c">may exceed</text>
+  <text x="832" y="248" font-size="18" fill="#78716c">may exceed</text>
 
   <!-- Available working state (context window is one present limit) -->
   <rect id="avail-state" x="690" y="264" width="260" height="58" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
   <text x="820" y="290" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Available working state</text>
-  <text x="820" y="311" text-anchor="middle" font-size="12.4" font-style="italic" fill="#57534e">context window is one present limit</text>
+  <text x="820" y="311" text-anchor="middle" font-size="15.29" font-style="italic" fill="#57534e">context window is one present limit</text>
 
   <!-- contributes to -->
   <!-- edge: avail-state -> churn -->
   <line x1="820" y1="322" x2="820" y2="360" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-av2)"/>
-  <text x="832" y="346" font-size="16" fill="#78716c">contributes to</text>
+  <text x="832" y="346" font-size="18" fill="#78716c">contributes to</text>
 
   <!-- Churn -->
   <rect id="churn" x="690" y="362" width="260" height="46" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2"/>
@@ -105,7 +105,7 @@
   <path d="M580,424 L636,424 L636,293 L688,293" fill="none" stroke="#cfcabf" stroke-width="3" stroke-dasharray="4 4" marker-end="url(#vh-av2)"/>
 
   <!-- the glossary term that annotates the stack but isn't a layer -->
-  <text x="95" y="484" font-size="16" fill="#57534e"><tspan font-weight="bold">Fleet:</tspan> multiple agents working on a shared engineering system.</text>
+  <text x="95" y="484" font-size="18" fill="#57534e"><tspan font-weight="bold">Fleet:</tspan> multiple agents working on a shared engineering system.</text>
 
   <!-- R13 zoom cue: FRAME-echo corner-brackets — a family-membership signal (this figure zooms sideways into the agent substrate). -->
   <g fill="none" stroke="#57534e" stroke-width="2.5">

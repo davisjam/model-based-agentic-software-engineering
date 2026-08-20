@@ -112,15 +112,15 @@
   <path d="M472,70 L480,70 L480,560 L472,560" fill="none" stroke="#57534e" stroke-width="2.0"/>
   <text x="494" y="308" font-size="15" font-weight="700" fill="#57534e">mechanical</text>
   <text x="494" y="326" font-size="15" font-weight="700" fill="#57534e">discovery</text>
-  <text x="494" y="345" font-size="12" font-style="italic" fill="#57534e">the agent finds it</text>
+  <text x="494" y="345" font-size="12.24" font-style="italic" fill="#57534e">the agent finds it</text>
   <!-- judgment: node 6 -->
   <path d="M472,586 L480,586 L480,650 L472,650" fill="none" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="494" y="609" font-size="15" font-weight="700" fill="#9a3f12">engineering</text>
   <text x="494" y="627" font-size="15" font-weight="700" fill="#9a3f12">judgment</text>
-  <text x="494" y="645" font-size="12" font-style="italic" fill="#9a3f12">the engineer names it</text>
+  <text x="494" y="645" font-size="12.24" font-style="italic" fill="#9a3f12">the engineer names it</text>
   <!-- reusable surface: nodes 7-8 -->
   <path d="M472,676 L480,676 L480,884 L472,884" fill="none" stroke="#2f5169" stroke-width="2.4"/>
   <text x="494" y="772" font-size="15" font-weight="700" fill="#2f5169">reusable</text>
   <text x="494" y="790" font-size="15" font-weight="700" fill="#2f5169">surface</text>
-  <text x="494" y="809" font-size="12" font-style="italic" fill="#57534e">reused, not re-derived</text>
+  <text x="494" y="809" font-size="12.24" font-style="italic" fill="#57534e">reused, not re-derived</text>
 </svg>

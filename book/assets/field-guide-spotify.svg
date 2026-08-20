@@ -12,9 +12,9 @@
   <rect x="0" y="0" width="1000" height="430" fill="#fdfcf9"/>
 
   <!-- header -->
-  <text x="48" y="44" font-size="16" fill="#57534e">Field Guide · card</text>
+  <text x="48" y="44" font-size="18" fill="#57534e">Field Guide · card</text>
   <text x="952" y="44" text-anchor="end" font-size="22" font-weight="bold" fill="#1c1917">Spotify</text>
-  <text x="952" y="68" text-anchor="end" font-size="16" font-style="italic" fill="#57534e">Audio-streaming platform · fleet-scale autonomous-migration program</text>
+  <text x="952" y="68" text-anchor="end" font-size="18" font-style="italic" fill="#57534e">Audio-streaming platform · fleet-scale autonomous-migration program</text>
   <line x1="40" y1="86" x2="960" y2="86" stroke="#cfcabf" stroke-width="1.5"/>
 
   <!-- ===== edges (under nodes) ===== -->
@@ -40,22 +40,22 @@
   <rect id="landing" x="760" y="181" width="200" height="48" rx="8" fill="#fdfcf9" stroke="#1c1917" stroke-width="2.4"/>
 
   <!-- ===== node labels ===== -->
-  <text x="140" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
-  <text x="140" y="252" text-anchor="middle" font-size="16" fill="#57534e">Fleet-first</text>
-  <text x="140" y="272" text-anchor="middle" font-size="16" fill="#57534e">autonomy</text>
+  <text x="140" y="150" text-anchor="middle" font-size="18" letter-spacing="1" fill="#78716c">ENTERS THROUGH</text>
+  <text x="140" y="252" text-anchor="middle" font-size="18" fill="#57534e">Fleet-first</text>
+  <text x="140" y="272" text-anchor="middle" font-size="18" fill="#57534e">autonomy</text>
 
-  <text x="430" y="284" text-anchor="middle" font-size="16" fill="#78716c">agents implement concurrently</text>
-  <text x="430" y="306" text-anchor="middle" font-size="16" fill="#78716c">concurrent fleet execution</text>
+  <text x="430" y="284" text-anchor="middle" font-size="18" fill="#78716c">agents implement concurrently</text>
+  <text x="430" y="306" text-anchor="middle" font-size="18" fill="#78716c">concurrent fleet execution</text>
 
-  <text x="430" y="128" text-anchor="middle" font-size="16" fill="#57534e">human judgment</text>
-  <text x="448" y="206" text-anchor="start" font-size="16" fill="#78716c">moves upstream</text>
+  <text x="430" y="128" text-anchor="middle" font-size="18" fill="#57534e">human judgment</text>
+  <text x="448" y="206" text-anchor="start" font-size="18" fill="#78716c">moves upstream</text>
 
-  <text x="860" y="150" text-anchor="middle" font-size="16" letter-spacing="1" fill="#78716c">LANDS ON</text>
-  <text x="860" y="203" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Governed Engineering</text>
-  <text x="860" y="223" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c1917">Environment</text>
+  <text x="860" y="150" text-anchor="middle" font-size="18" letter-spacing="1" fill="#78716c">LANDS ON</text>
+  <text x="860" y="203" text-anchor="middle" font-size="16.88" font-weight="bold" fill="#1c1917">Governed Engineering</text>
+  <text x="860" y="223" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Environment</text>
 
   <!-- takeaway -->
   <line x1="40" y1="368" x2="960" y2="368" stroke="#cfcabf" stroke-width="1.5"/>
-  <text x="500" y="396" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Automate implementation and the scarce resource becomes the human decision —</text>
-  <text x="500" y="418" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">what, where, when, and whether — placed where the environment amplifies it.</text>
+  <text x="500" y="396" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Automate implementation and the scarce resource becomes the human decision —</text>
+  <text x="500" y="418" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">what, where, when, and whether — placed where the environment amplifies it.</text>
 </svg>

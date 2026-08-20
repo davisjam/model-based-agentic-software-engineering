@@ -29,7 +29,7 @@
   <text x="410" y="52" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">TASK</text>
   <!-- edge: task -> entity -->
   <line x1="410" y1="68" x2="410" y2="253" stroke="#57534e" stroke-width="2.4" marker-end="url(#st-k)"/>
-  <text x="422" y="160" font-size="12.5" font-style="italic" fill="#57534e">enters at a named entity</text>
+  <text x="422" y="160" font-size="14.76" font-style="italic" fill="#57534e">enters at a named entity</text>
 
   <!-- spokes: entity to the six relations (drawn under the boxes); heads seated on each box's near border -->
   <g fill="none" stroke="#2f5169" stroke-width="2.2" marker-end="url(#st-b)">
@@ -50,7 +50,7 @@
   <!-- named ENTITY (gray identity, center) -->
   <rect id="entity" x="315" y="255" width="190" height="72" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.8"/>
   <text x="410" y="288" text-anchor="middle" font-size="16.5" font-weight="700" fill="#57534e">named ENTITY</text>
-  <text x="410" y="310" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">e.g. a job, a service</text>
+  <text x="410" y="310" text-anchor="middle" font-size="14.76" font-style="italic" fill="#57534e">e.g. a job, a service</text>
 
   <!-- six relation boxes (blue peers) -->
   <g font-size="15.5" font-weight="700" fill="#2f5169" text-anchor="middle">
@@ -70,5 +70,5 @@
 
   <!-- footer: protect the point -->
   <text x="410" y="524" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1c1917">Retrieve only the relations needed for the current question.</text>
-  <text x="410" y="546" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">No order among the six &#8212; enter at the entity, follow what the question needs.</text>
+  <text x="410" y="546" text-anchor="middle" font-size="14.76" font-style="italic" fill="#57534e">No order among the six &#8212; enter at the entity, follow what the question needs.</text>
 </svg>

@@ -21,7 +21,7 @@
   <!-- SPEC -->
   <rect id="spec" x="315" y="28" width="190" height="62" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="410" y="56" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">SPEC</text>
-  <text x="410" y="78" text-anchor="middle" font-size="13" fill="#57534e">state the obligations</text>
+  <text x="410" y="78" text-anchor="middle" font-size="14.76" fill="#57534e">state the obligations</text>
 
   <!-- edge: spec -> census -->
   <line x1="410" y1="90" x2="410" y2="132" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
@@ -29,7 +29,7 @@
   <!-- CENSUS -->
   <rect id="census" x="305" y="134" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="410" y="164" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">CENSUS</text>
-  <text x="410" y="186" text-anchor="middle" font-size="13" fill="#57534e">what must be discharged?</text>
+  <text x="410" y="186" text-anchor="middle" font-size="14.76" fill="#57534e">what must be discharged?</text>
 
   <!-- fan to three discharge lanes: one path per branch, each perpendicular into its lane's top -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
@@ -41,20 +41,20 @@
     <path d="M499,200 L499,228 L556,228 L556,256"/>
   </g>
   <rect x="252" y="216" width="316" height="18" fill="#fdfcf9"/>
-  <text x="410" y="228" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">discharge with evidence appropriate to the property</text>
+  <text x="410" y="228" text-anchor="middle" font-size="12.72" font-style="italic" fill="#57534e">discharge with evidence appropriate to the property</text>
 
   <!-- TEST / LINT / PROVE -->
   <rect id="test" x="120" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="200" y="288" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">TEST</text>
-  <text x="200" y="310" text-anchor="middle" font-size="13" fill="#57534e">examples</text>
+  <text x="200" y="310" text-anchor="middle" font-size="14.76" fill="#57534e">examples</text>
 
   <rect id="lint" x="330" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="410" y="288" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">LINT</text>
-  <text x="410" y="310" text-anchor="middle" font-size="13" fill="#57534e">structure</text>
+  <text x="410" y="310" text-anchor="middle" font-size="14.76" fill="#57534e">structure</text>
 
   <rect id="prove" x="540" y="258" width="160" height="70" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="620" y="288" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">PROVE</text>
-  <text x="620" y="310" text-anchor="middle" font-size="13" fill="#57534e">semantics</text>
+  <text x="620" y="310" text-anchor="middle" font-size="14.76" fill="#57534e">semantics</text>
 
   <!-- converge to COVERAGE: one path per branch, each perpendicular into COVERAGE's top -->
   <g stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)">
@@ -69,13 +69,13 @@
   <!-- COVERAGE (green) -->
   <rect id="coverage" x="300" y="394" width="220" height="70" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="410" y="424" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">COVERAGE</text>
-  <text x="410" y="446" text-anchor="middle" font-size="13" fill="#57534e">obligation &#8594; evidence</text>
+  <text x="410" y="446" text-anchor="middle" font-size="14.76" fill="#57534e">obligation &#8594; evidence</text>
 
   <!-- legend (all-solid note) -->
   <line x1="90" y1="504" x2="134" y2="504" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
-  <text x="142" y="509" font-size="13" fill="#57534e">load-bearing (required)</text>
-  <text x="90" y="532" font-size="13" font-style="italic" fill="#57534e">no dashed rung &#8212; every step required</text>
+  <text x="142" y="509" font-size="14.76" fill="#57534e">load-bearing (required)</text>
+  <text x="90" y="532" font-size="14.76" font-style="italic" fill="#57534e">no dashed rung &#8212; every step required</text>
 
   <!-- caption -->
-  <text x="410" y="572" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. Discharge an obligation at the level where the property becomes legible.</text>
+  <text x="410" y="572" text-anchor="middle" font-size="14.76" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. Discharge an obligation at the level where the property becomes legible.</text>
 </svg>

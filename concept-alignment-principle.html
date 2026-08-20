@@ -241,27 +241,27 @@
   <!-- top: the engineering obligation -->
   <rect id="cf-1-obligation" x="320" y="24" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="480" y="55" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">ENGINEERING OBLIGATION</text>
-  <text x="480" y="79" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the property you must hold</text>
+  <text x="480" y="79" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">the property you must hold</text>
 
   <!-- the selection decision -->
   <rect id="cf-1-decision" x="264" y="136" width="432" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
   <text x="480" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Can the unwanted state be excluded cleanly?</text>
 
   <!-- branch labels (paths drawn under nodes, above) -->
-  <text x="300" y="226" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">YES</text>
-  <text x="662" y="226" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">NO</text>
+  <text x="300" y="226" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">YES</text>
+  <text x="662" y="226" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">NO</text>
 
   <!-- ============ LEFT — CONSTRAINT ============ -->
   <rect id="cf-1-constraint" x="95" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="260" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">CONSTRAINT</text>
   <text x="260" y="326" text-anchor="middle" font-size="19" fill="#1c1917">narrows what may happen</text>
-  <text x="260" y="360" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
+  <text x="260" y="360" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
 
   <!-- ============ RIGHT — SENSOR ============ -->
   <rect id="cf-1-sensor" x="535" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="700" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">SENSOR</text>
   <text x="700" y="326" text-anchor="middle" font-size="18" fill="#1c1917">produces evidence of what happened</text>
-  <text x="700" y="360" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
+  <text x="700" y="360" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
 </svg></figure>
 <p>A probabilistic reasoner cannot certify its own output, and its confidence is not evidence. The same prompt can yield a right answer today and a wrong one tomorrow, and the model reports both with equal assurance. So correctness cannot rest on the agent's promise. It has to rest on a mechanism outside the agent — decided once, and checked on every later change no matter who made it.</p>
 <p>Alignment names four roles that mechanism can play. A <strong>constraint</strong> removes the wrong move from the action space. A <strong>sensor</strong> observes the work and produces evidence. A <strong>validator</strong> evaluates that evidence against the obligation. A <strong>gate</strong> controls whether the work may advance. One tool often bundles several; the four stay useful because they separate the distinct moves — prevention, observation, judgment, admission — a single tool blurs together.</p>

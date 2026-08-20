@@ -77,22 +77,22 @@
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">WHAT CLAIM ARE YOU TRYING TO ESTABLISH?</text>
 
-  <text x="185" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">ONE / MANY INPUTS</text>
-  <text x="185" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">input &#8594; output</text>
-  <text x="500" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">REACHABLE STATES</text>
-  <text x="500" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">sequences / races</text>
-  <text x="815" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">TEMPORAL BEHAVIOR</text>
-  <text x="815" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">eventually / always</text>
+  <text x="185" y="154" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">ONE / MANY INPUTS</text>
+  <text x="185" y="174" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">input &#8594; output</text>
+  <text x="500" y="154" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">REACHABLE STATES</text>
+  <text x="500" y="174" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">sequences / races</text>
+  <text x="815" y="154" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">TEMPORAL BEHAVIOR</text>
+  <text x="815" y="174" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">eventually / always</text>
 
-  <text x="185" y="261" text-anchor="middle" font-size="13.5" fill="#1c1917">examples / property</text>
-  <text x="185" y="279" text-anchor="middle" font-size="13.5" fill="#1c1917">tests / fuzzing</text>
-  <text x="500" y="270" text-anchor="middle" font-size="14" fill="#1c1917">explicit-state model checking</text>
-  <text x="815" y="270" text-anchor="middle" font-size="14" fill="#1c1917">temporal model checking</text>
+  <text x="185" y="261" text-anchor="middle" font-size="18" fill="#1c1917">examples / property</text>
+  <text x="185" y="279" text-anchor="middle" font-size="18" fill="#1c1917">tests / fuzzing</text>
+  <text x="500" y="270" text-anchor="middle" font-size="18" fill="#1c1917">explicit-state model checking</text>
+  <text x="815" y="270" text-anchor="middle" font-size="18" fill="#1c1917">temporal model checking</text>
 
-  <text x="185" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample input</text>
-  <text x="500" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample trace</text>
-  <text x="815" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample execution</text>
+  <text x="185" y="361" text-anchor="middle" font-size="18" fill="#9a3f12">counterexample input</text>
+  <text x="500" y="361" text-anchor="middle" font-size="18" fill="#9a3f12">counterexample trace</text>
+  <text x="815" y="361" text-anchor="middle" font-size="18" fill="#9a3f12">counterexample execution</text>
 
-  <text x="500" y="449" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">Prefer structural prevention before any of these</text>
-  <text x="500" y="470" text-anchor="middle" font-size="15" fill="#57534e">when the invalid state can simply be excluded.</text>
+  <text x="500" y="449" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Prefer structural prevention before any of these</text>
+  <text x="500" y="470" text-anchor="middle" font-size="18" fill="#57534e">when the invalid state can simply be excluded.</text>
 </svg>

@@ -34,7 +34,7 @@
   <!-- CONTROLLER box -->
   <rect id="controller" x="24" y="276" width="300" height="96" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
   <text x="174" y="308" text-anchor="middle" font-size="25" font-weight="bold" fill="#2f5169">Controller</text>
-  <text x="174" y="336" text-anchor="middle" font-size="15" fill="#2f5169">emits one typed edit operation</text>
+  <text x="174" y="336" text-anchor="middle" font-size="16.2" fill="#2f5169">emits one typed edit operation</text>
   <text x="174" y="357" text-anchor="middle" font-size="19" fill="#2f5169">— never a raw mutation</text>
 
   <!-- emit arrow Controller -> DSL -->

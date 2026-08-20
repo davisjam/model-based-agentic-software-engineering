@@ -766,19 +766,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- RELEASED (green) -->
   <rect id="f-in-flight-ownership-states-released" x="80" y="246" width="200" height="66" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
   <text x="180" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">RELEASED</text>
-  <text x="180" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#155c38">claim ends cleanly</text>
+  <text x="180" y="300" text-anchor="middle" font-size="12.96" font-style="italic" fill="#155c38">claim ends cleanly</text>
 
   <!-- RECLAIMABLE (gray) -->
   <rect id="f-in-flight-ownership-states-reclaimable" x="440" y="246" width="200" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="540" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">RECLAIMABLE</text>
-  <text x="540" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">lease lapsed / stale</text>
+  <text x="540" y="300" text-anchor="middle" font-size="12.96" font-style="italic" fill="#57534e">lease lapsed / stale</text>
 
   <!-- another actor may claim: loop back from RECLAIMABLE to CLAIMED -->
   <!-- edge: reclaimable .. claimed -->
   <path d="M640,268 C698,208 640,118 494,112" fill="none" stroke="#57534e" stroke-width="2"
         stroke-dasharray="6 5" marker-end="url(#f-in-flight-ownership-states-io-k)"/>
-  <text x="660" y="182" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">another actor</text>
-  <text x="660" y="199" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">may claim</text>
+  <text x="660" y="182" text-anchor="middle" font-size="12.96" font-style="italic" fill="#57534e">another actor</text>
+  <text x="660" y="199" text-anchor="middle" font-size="12.96" font-style="italic" fill="#57534e">may claim</text>
 
   <!-- footer: protect the point -->
   <text x="360" y="372" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Merge releases the claim; expiry makes it reclaimable.</text>
@@ -828,20 +828,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M605,262 L605,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
-  <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
-  <text x="500" y="150" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">reclaim + issue epoch 8 to worker B</text>
-  <text x="500" y="242" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A attempts late clear(epoch 7)</text>
+  <text x="500" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
+  <text x="500" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">reclaim + issue epoch 8 to worker B</text>
+  <text x="500" y="242" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">worker A attempts late clear(epoch 7)</text>
 
   <!-- side labels on the vertical steps (free text, in the gaps) -->
-  <text x="516" y="102" font-size="14" font-style="italic" fill="#57534e">lease appears stale</text>
-  <text x="516" y="194" font-size="14" font-style="italic" fill="#57534e">A is still alive</text>
+  <text x="516" y="102" font-size="18" font-style="italic" fill="#57534e">lease appears stale</text>
+  <text x="516" y="194" font-size="18" font-style="italic" fill="#57534e">A is still alive</text>
 
   <!-- fork branch labels -->
-  <text x="280" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">without epoch fence</text>
-  <text x="280" y="392" text-anchor="middle" font-size="15" fill="#1c1917">may clear B&#8217;s current lease &#10007;</text>
+  <text x="280" y="360" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">without epoch fence</text>
+  <text x="280" y="392" text-anchor="middle" font-size="18" fill="#1c1917">may clear B&#8217;s current lease &#10007;</text>
 
-  <text x="720" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">with epoch fence</text>
-  <text x="720" y="392" text-anchor="middle" font-size="15" fill="#1c1917">stale clear is a no-op &#10003;</text>
+  <text x="720" y="360" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">with epoch fence</text>
+  <text x="720" y="392" text-anchor="middle" font-size="18" fill="#1c1917">stale clear is a no-op &#10003;</text>
 </svg><figcaption data-short="Why ownership becomes an interleaving problem"><span class="fig-label">Figure 2.4-2.</span> <em>Why ownership becomes an interleaving problem.</em> Reclaim and reissue can overlap a stale holder's late release. An epoch fence makes the old holder's release inapplicable to the current claim.</figcaption></figure>
 <p><strong>Recovery is not permission.</strong> That distinction will matter in Part III: the same represented state can support different authority decisions.</p>
 <p>The lease also shows that model classes overlap. Active leases can be counted to estimate demand, so the same representation contributes to an ownership question — <em>who controls this work?</em> — and a measurement question — <em>how much work is genuinely in flight?</em> <a class="xref" href="2.4-ownership.html#fig-2-4-3">Figure&nbsp;2.4-3</a> draws that overlap: one represented fact fanning out into ownership, behavioral, and measurement views. The categories in this Part classify engineering questions, not mutually exclusive data structures.</p>

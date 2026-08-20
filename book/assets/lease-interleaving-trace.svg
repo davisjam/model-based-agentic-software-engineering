@@ -50,18 +50,18 @@
   <path d="M605,262 L605,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#lit-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
-  <text x="500" y="58" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
-  <text x="500" y="150" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">reclaim + issue epoch 8 to worker B</text>
-  <text x="500" y="242" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">worker A attempts late clear(epoch 7)</text>
+  <text x="500" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
+  <text x="500" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">reclaim + issue epoch 8 to worker B</text>
+  <text x="500" y="242" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">worker A attempts late clear(epoch 7)</text>
 
   <!-- side labels on the vertical steps (free text, in the gaps) -->
-  <text x="516" y="102" font-size="14" font-style="italic" fill="#57534e">lease appears stale</text>
-  <text x="516" y="194" font-size="14" font-style="italic" fill="#57534e">A is still alive</text>
+  <text x="516" y="102" font-size="18" font-style="italic" fill="#57534e">lease appears stale</text>
+  <text x="516" y="194" font-size="18" font-style="italic" fill="#57534e">A is still alive</text>
 
   <!-- fork branch labels -->
-  <text x="280" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">without epoch fence</text>
-  <text x="280" y="392" text-anchor="middle" font-size="15" fill="#1c1917">may clear B&#8217;s current lease &#10007;</text>
+  <text x="280" y="360" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">without epoch fence</text>
+  <text x="280" y="392" text-anchor="middle" font-size="18" fill="#1c1917">may clear B&#8217;s current lease &#10007;</text>
 
-  <text x="720" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">with epoch fence</text>
-  <text x="720" y="392" text-anchor="middle" font-size="15" fill="#1c1917">stale clear is a no-op &#10003;</text>
+  <text x="720" y="360" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">with epoch fence</text>
+  <text x="720" y="392" text-anchor="middle" font-size="18" fill="#1c1917">stale clear is a no-op &#10003;</text>
 </svg>

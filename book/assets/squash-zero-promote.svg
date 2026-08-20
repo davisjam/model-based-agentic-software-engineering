@@ -31,7 +31,7 @@
 
   <!-- start -->
   <circle id="start" cx="70" cy="150" r="12" fill="#1c1917"/>
-  <text x="70" y="192" text-anchor="middle" font-size="17" fill="#57534e">new lint</text>
+  <text x="70" y="192" text-anchor="middle" font-size="18" fill="#57534e">new lint</text>
 
   <!-- state 1: audit-only -->
   <rect id="audit" x="130" y="110" width="230" height="80" rx="10" fill="#faf1e6" stroke="#b23b3b" stroke-width="2.5"/>
@@ -46,7 +46,7 @@
   <!-- state 3: blocking -->
   <rect id="blocking" x="730" y="110" width="230" height="80" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="845" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Blocking</text>
-  <text x="845" y="172" text-anchor="middle" font-size="16" fill="#1c1917">fails a regressing commit</text>
+  <text x="845" y="172" text-anchor="middle" font-size="18" fill="#1c1917">fails a regressing commit</text>
 
   <!-- edges along the spine (one edge comment per branch drawable) -->
   <g fill="none" stroke="#1c1917" stroke-width="2.5" marker-end="url(#szpArrow)">
@@ -57,8 +57,8 @@
     <!-- edge: drain -> blocking -->
     <path d="M660,150 L728,150"/>
   </g>
-  <text x="395" y="140" text-anchor="middle" font-size="16" fill="#57534e">land</text>
-  <text x="695" y="140" text-anchor="middle" font-size="16" fill="#57534e">at zero</text>
+  <text x="395" y="140" text-anchor="middle" font-size="18" fill="#57534e">land</text>
+  <text x="695" y="140" text-anchor="middle" font-size="18" fill="#57534e">at zero</text>
 
   <!-- fix-wave loop under the middle state (self-loop drain -> drain) -->
   <g fill="none" stroke="#2f5169" stroke-width="2.5" marker-end="url(#szpArrow)">
@@ -72,5 +72,5 @@
   <g fill="none" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#szpArrowRed)">
     <path d="M845,206 C845,240 940,240 966,206"/>
   </g>
-  <text x="812" y="300" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">a detected violation now blocks re-entry</text>
+  <text x="812" y="300" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">a detected violation now blocks re-entry</text>
 </svg>

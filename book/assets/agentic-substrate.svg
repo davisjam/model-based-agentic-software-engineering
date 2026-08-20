@@ -31,7 +31,7 @@
 
   <!-- ===== LEFT column: foundation model (blue) ===== -->
   <rect id="foundation-model" x="60" y="72" width="400" height="242" rx="12" fill="#eef2f6" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="260" y="102" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="1.5" fill="#2f5169">FOUNDATION MODEL</text>
+  <text x="260" y="102" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1.5" fill="#2f5169">FOUNDATION MODEL</text>
 
   <g fill="#fbfaf7" stroke="#57534e" stroke-width="1.6">
     <rect x="78" y="116" width="364" height="42" rx="8"/>
@@ -39,14 +39,14 @@
     <rect x="78" y="212" width="364" height="42" rx="8"/>
     <rect x="78" y="260" width="364" height="42" rx="8"/>
   </g>
-  <text x="260" y="143" text-anchor="middle" font-size="16" fill="#1c1917">semantic reasoning</text>
-  <text x="260" y="191" text-anchor="middle" font-size="16" fill="#1c1917">probabilistic output</text>
-  <text x="260" y="239" text-anchor="middle" font-size="16" fill="#1c1917">bounded working state</text>
-  <text x="260" y="287" text-anchor="middle" font-size="16" fill="#1c1917">cheap repeated reasoning</text>
+  <text x="260" y="143" text-anchor="middle" font-size="18" fill="#1c1917">semantic reasoning</text>
+  <text x="260" y="191" text-anchor="middle" font-size="18" fill="#1c1917">probabilistic output</text>
+  <text x="260" y="239" text-anchor="middle" font-size="18" fill="#1c1917">bounded working state</text>
+  <text x="260" y="287" text-anchor="middle" font-size="18" fill="#1c1917">cheap repeated reasoning</text>
 
   <!-- ===== RIGHT column: agentic harness (gray) ===== -->
   <rect id="agentic-harness" x="540" y="72" width="400" height="242" rx="12" fill="#f3f1ee" stroke="#57534e" stroke-width="2.6"/>
-  <text x="740" y="102" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="1.5" fill="#57534e">AGENTIC HARNESS</text>
+  <text x="740" y="102" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1.5" fill="#57534e">AGENTIC HARNESS</text>
 
   <g fill="#fbfaf7" stroke="#57534e" stroke-width="1.6">
     <rect x="558" y="116" width="364" height="42" rx="8"/>
@@ -54,16 +54,16 @@
     <rect x="558" y="212" width="364" height="42" rx="8"/>
     <rect x="558" y="260" width="364" height="42" rx="8"/>
   </g>
-  <text x="740" y="143" text-anchor="middle" font-size="16" fill="#1c1917">tool-mediated action</text>
-  <text x="740" y="191" text-anchor="middle" font-size="16" fill="#1c1917">interposition</text>
-  <text x="740" y="239" text-anchor="middle" font-size="16" fill="#1c1917">lifecycle visibility</text>
-  <text x="740" y="287" text-anchor="middle" font-size="16" fill="#1c1917">parallel execution</text>
+  <text x="740" y="143" text-anchor="middle" font-size="18" fill="#1c1917">tool-mediated action</text>
+  <text x="740" y="191" text-anchor="middle" font-size="18" fill="#1c1917">interposition</text>
+  <text x="740" y="239" text-anchor="middle" font-size="18" fill="#1c1917">lifecycle visibility</text>
+  <text x="740" y="287" text-anchor="middle" font-size="18" fill="#1c1917">parallel execution</text>
 
   <!-- ===== ENGINEERED ENVIRONMENT container (green) — ENCLOSES the agent; drawn FIRST so it sits behind
              the convergence arrows + the agent node. Its label rides the TOP edge as a container header. ===== -->
   <rect x="180" y="344" width="640" height="224" rx="14" fill="#e3f0e7" stroke="#155c38" stroke-width="3.2"/>
   <text x="500" y="373" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Engineered Environment</text>
-  <text x="500" y="395" text-anchor="middle" font-size="14.5" fill="#57534e">models &#183; obligations &#183; evidence &#183; controls</text>
+  <text x="500" y="395" text-anchor="middle" font-size="18" fill="#57534e">models &#183; obligations &#183; evidence &#183; controls</text>
 
   <!-- convergence: both substrate columns feed the agent, which sits INSIDE the environment.
        Paths curve down the outer flanks (clear of the centred header) into the agent's top edge. -->
@@ -75,5 +75,5 @@
   <!-- AGENT node (blue) — inside the environment container -->
   <rect id="agent" x="400" y="452" width="200" height="76" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
   <text x="500" y="484" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Agent</text>
-  <text x="500" y="506" text-anchor="middle" font-size="14.5" fill="#57534e">a tool-using reasoner</text>
+  <text x="500" y="506" text-anchor="middle" font-size="18" fill="#57534e">a tool-using reasoner</text>
 </svg>

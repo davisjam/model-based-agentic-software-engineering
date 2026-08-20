@@ -3,45 +3,107 @@
   "option": "umber-monograph",
   "accent_name": "burnt umber",
   "palette": {
-    "ink":          "#1c1917",
-    "paper":        "#fdfcf9",
-    "panel":        "#f6f4ef",
-    "rule":         "#e4e0d8",
-    "muted":        "#57534e",
-    "accent":       "#9a3f12",
-    "accent-tint":  "#faf1e6",
-    "link":         "#9a3f12",
-    "code-bg":      "#f3efe7",
-
-    "box-thesis-rule":  "#15803d",  "box-thesis-fill":  "#eef7ee",
-    "box-def-rule":     "#1f6fae",  "box-def-fill":     "#eef4fb",
-    "box-inset-rule":   "#7c6bb0",  "box-inset-fill":   "#f2effb",
-
-    "diagram-churn":    "#b23b3b",  "diagram-churn-fill":    "#fbeaea",
-    "diagram-fleet":    "#2f5169",  "diagram-fleet-fill":    "#e7edf3",
-    "diagram-governed": "#1f7a4d",  "diagram-governed-fill": "#e3f0e7",
-    "diagram-trust":    "#155c38",  "diagram-trust-fill":    "#eef7f0"
+    "ink": "#1c1917",
+    "paper": "#fdfcf9",
+    "panel": "#f6f4ef",
+    "rule": "#e4e0d8",
+    "muted": "#57534e",
+    "accent": "#9a3f12",
+    "accent-tint": "#faf1e6",
+    "link": "#9a3f12",
+    "code-bg": "#f3efe7",
+    "box-thesis-rule": "#15803d",
+    "box-thesis-fill": "#eef7ee",
+    "box-def-rule": "#1f6fae",
+    "box-def-fill": "#eef4fb",
+    "box-inset-rule": "#7c6bb0",
+    "box-inset-fill": "#f2effb",
+    "diagram-churn": "#b23b3b",
+    "diagram-churn-fill": "#fbeaea",
+    "diagram-fleet": "#2f5169",
+    "diagram-fleet-fill": "#e7edf3",
+    "diagram-governed": "#1f7a4d",
+    "diagram-governed-fill": "#e3f0e7",
+    "diagram-trust": "#155c38",
+    "diagram-trust-fill": "#eef7f0"
   },
   "type": {
-    "display": { "family": "Source Serif 4",
-                 "css-stack": "\"Source Serif 4\", Charter, \"IBM Plex Serif\", Georgia, serif",
-                 "typst-stack": ["Source Serif 4", "Charter", "New Computer Modern"],
-                 "display-weight": 600, "display-tracking-em": -0.01 },
-    "body":    { "family": "Source Sans 3",
-                 "css-stack": "\"Source Sans 3\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
-                 "typst-stack": ["Source Sans 3", "Helvetica"] },
-    "mono":    { "family": "IBM Plex Mono",
-                 "css-stack": "\"IBM Plex Mono\", \"SF Mono\", Menlo, Consolas, monospace",
-                 "typst-stack": ["IBM Plex Mono", "Menlo"] },
-    "scale-px": [12, 14, 16, 18, 22, 28, 36, 52],
-    "roles": { "micro": 0, "meta": 1, "card-body": 2, "body": 3,
-               "card-title": 4, "section": 5, "thesis-title": 6, "display": 7 },
-    "line-height": { "body": 1.62, "display": 1.08, "card": 1.5 }
+    "display": {
+      "family": "Source Serif 4",
+      "css-stack": "\"Source Serif 4\", Charter, \"IBM Plex Serif\", Georgia, serif",
+      "typst-stack": [
+        "Source Serif 4",
+        "Charter",
+        "New Computer Modern"
+      ],
+      "display-weight": 600,
+      "display-tracking-em": -0.01
+    },
+    "body": {
+      "family": "Source Sans 3",
+      "css-stack": "\"Source Sans 3\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "typst-stack": [
+        "Source Sans 3",
+        "Helvetica"
+      ]
+    },
+    "mono": {
+      "family": "IBM Plex Mono",
+      "css-stack": "\"IBM Plex Mono\", \"SF Mono\", Menlo, Consolas, monospace",
+      "typst-stack": [
+        "IBM Plex Mono",
+        "Menlo"
+      ]
+    },
+    "scale-px": [
+      12,
+      14,
+      16,
+      18,
+      22,
+      28,
+      36,
+      52
+    ],
+    "roles": {
+      "micro": 0,
+      "meta": 1,
+      "card-body": 2,
+      "body": 3,
+      "card-title": 4,
+      "section": 5,
+      "thesis-title": 6,
+      "display": 7
+    },
+    "line-height": {
+      "body": 1.62,
+      "display": 1.08,
+      "card": 1.5
+    }
   },
-  "space-px":  [4, 8, 16, 24, 32, 48, 64],
-  "radius-px": { "card": 10, "chip": 4, "code": 6 },
-  "border-px": { "hairline": 1, "accent-bar": 3, "box-rule": 4 },
-  "figure": { "font-role": "body", "label-min-px": 12 },
+  "space-px": [
+    4,
+    8,
+    16,
+    24,
+    32,
+    48,
+    64
+  ],
+  "radius-px": {
+    "card": 10,
+    "chip": 4,
+    "code": 6
+  },
+  "border-px": {
+    "hairline": 1,
+    "accent-bar": 3,
+    "box-rule": 4
+  },
+  "figure": {
+    "font-role": "body",
+    "label-min-px": 12
+  },
   "figure_styles": {
     "_note": "Enforceable geometry for hand-authored house SVGs (book/assets/*.svg). The overflow sensor keys its padding threshold off box.text_pad_min_px; design-token-drift gates palette+font membership. Sizes/padding quoted at canvas.reference_width_px; scale proportionally with the viewBox.",
     "canvas": {
@@ -51,26 +113,51 @@
       "reference_width_px": 1000
     },
     "box": {
-      "radius_px":        { "label": 6, "content": 10, "hero": 16, "pill": 10 },
-      "min_content_px":   { "w": 120, "h": 40 },
-      "text_pad_min_px":     16,
+      "radius_px": {
+        "label": 6,
+        "content": 10,
+        "hero": 16,
+        "pill": 10
+      },
+      "min_content_px": {
+        "w": 120,
+        "h": 40
+      },
+      "text_pad_min_px": 16,
       "text_pad_comfort_px": 24,
-      "nested_gutter_px":    24,
-      "sibling_gutter_px":   16
+      "nested_gutter_px": 24,
+      "sibling_gutter_px": 16
     },
     "stroke_px": {
-      "hairline":     1,
-      "box":          1.5,
+      "hairline": 1,
+      "box": 1.5,
       "box_emphasis": 2.5,
-      "connector":    2,
-      "spine":        3
+      "connector": 2,
+      "spine": 3
     },
     "font": {
-      "role_px":  { "figure_title": 24, "box_title": 18, "label": 14, "sub_label": 12, "caption": 14 },
-      "band_px":  { "floor": 16, "ceiling": 28 },
-      "min_px":   12,
-      "weight":   { "title": 700, "emphasis": 600, "body": 400 },
-      "anchor":   { "box_label": "middle", "kicker": "start", "caption": "middle" }
+      "role_px": {
+        "figure_title": 26,
+        "box_title": 22,
+        "label": 20,
+        "sub_label": 18,
+        "caption": 14
+      },
+      "band_px": {
+        "floor": 18,
+        "ceiling": 28
+      },
+      "min_px": 12,
+      "weight": {
+        "title": 700,
+        "emphasis": 600,
+        "body": 400
+      },
+      "anchor": {
+        "box_label": "middle",
+        "kicker": "start",
+        "caption": "middle"
+      }
     },
     "arrow": {
       "viewbox": "0 0 10 10",
@@ -81,50 +168,104 @@
       "marker_units": "userSpaceOnUse",
       "path": "M0 0 L10 5 L0 10 z"
     },
-    "line": { "cap_decorative": "round", "join": "round" }
+    "line": {
+      "cap_decorative": "round",
+      "join": "round"
+    }
   },
   "figure_semantics": {
     "_note": "The house colour LANGUAGE for scientific figures (INV-SEM). A figure author picks a colour BY ROLE, not by hex. Each family ALIASES one palette reference-token (by *_key), so the semantic layer never re-states a hex — the *_key is authoritative and design_tokens.py `check` asserts the convenience copy equals palette[*_key]. Readers read colour as meaning: green=modeling, rust=governance, blue=agent, gray=neutral, red=failure. See book/_design/drafts/figure-semantics-DESIGN-260807.md.",
     "families": {
       "modeling": {
         "token": "modeling-green",
-        "stroke_key": "diagram-governed",    "stroke": "#1f7a4d",
-        "emphasis_key": "diagram-trust",      "emphasis": "#155c38",
-        "fill_key": "diagram-governed-fill",  "fill": "#e3f0e7",
-        "roles": ["modeling", "knowledge", "environment", "representation", "model", "invariant", "reasoning"],
+        "stroke_key": "diagram-governed",
+        "stroke": "#1f7a4d",
+        "emphasis_key": "diagram-trust",
+        "emphasis": "#155c38",
+        "fill_key": "diagram-governed-fill",
+        "fill": "#e3f0e7",
+        "roles": [
+          "modeling",
+          "knowledge",
+          "environment",
+          "representation",
+          "model",
+          "invariant",
+          "reasoning"
+        ],
         "gloss": "the engineered object and its representations — what we model, know, and can reason over"
       },
       "governance": {
         "token": "governance-rust",
-        "stroke_key": "accent",       "stroke": "#9a3f12",
-        "fill_key": "accent-tint",    "fill": "#faf1e6",
-        "roles": ["governance", "policy", "conversion", "control", "gate", "determinization", "guarantee"],
+        "stroke_key": "accent",
+        "stroke": "#9a3f12",
+        "fill_key": "accent-tint",
+        "fill": "#faf1e6",
+        "roles": [
+          "governance",
+          "policy",
+          "conversion",
+          "control",
+          "gate",
+          "determinization",
+          "guarantee"
+        ],
         "gloss": "the controls that convert soft guidance into hard guarantees"
       },
       "agent": {
         "token": "agent-blue",
-        "stroke_key": "diagram-fleet",       "stroke": "#2f5169",
-        "fill_key": "diagram-fleet-fill",    "fill": "#e7edf3",
-        "roles": ["engineer", "agent", "autonomy", "fleet", "human", "operator"],
+        "stroke_key": "diagram-fleet",
+        "stroke": "#2f5169",
+        "fill_key": "diagram-fleet-fill",
+        "fill": "#e7edf3",
+        "roles": [
+          "engineer",
+          "agent",
+          "autonomy",
+          "fleet",
+          "human",
+          "operator"
+        ],
         "gloss": "the acting party — the human engineer or the agent fleet"
       },
       "neutral": {
         "token": "neutral-gray",
-        "stroke_key": "muted",  "stroke": "#57534e",
-        "roles": ["neutral", "implementation", "artifact", "scaffold", "connector", "note", "axis"],
+        "stroke_key": "muted",
+        "stroke": "#57534e",
+        "roles": [
+          "neutral",
+          "implementation",
+          "artifact",
+          "scaffold",
+          "connector",
+          "note",
+          "axis"
+        ],
         "gloss": "implementation-level artifacts and scaffolding that carry no thesis weight"
       },
       "failure": {
         "token": "failure-red",
-        "stroke_key": "diagram-churn",      "stroke": "#b23b3b",
-        "fill_key": "diagram-churn-fill",   "fill": "#fbeaea",
-        "roles": ["failure", "alert", "problem", "churn", "unremediated", "before", "regression"],
+        "stroke_key": "diagram-churn",
+        "stroke": "#b23b3b",
+        "fill_key": "diagram-churn-fill",
+        "fill": "#fbeaea",
+        "roles": [
+          "failure",
+          "alert",
+          "problem",
+          "churn",
+          "unremediated",
+          "before",
+          "regression"
+        ],
         "gloss": "the problem pole — unremediated churn, the failing before-state, the alert"
       }
     },
     "supporting": {
       "_note": "Non-semantic figure neutrals every figure uses — text, page ground, hairlines. NOT a role family; family_of_hex() returns None for these.",
-      "ink_key": "ink", "paper_key": "paper", "rule_key": "rule"
+      "ink_key": "ink",
+      "paper_key": "paper",
+      "rule_key": "rule"
     }
   }
 }

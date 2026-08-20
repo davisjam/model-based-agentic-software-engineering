@@ -15,14 +15,14 @@
 
   <line x1="130" y1="280" x2="920" y2="280" stroke="#e4e0d8" stroke-width="1"/>
   <line x1="130" y1="180" x2="920" y2="180" stroke="#e4e0d8" stroke-width="1"/>
-  <text x="118" y="284" text-anchor="end" font-size="16" fill="#57534e">20%</text>
-  <text x="118" y="184" text-anchor="end" font-size="16" fill="#57534e">40%</text>
-  <text x="118" y="384" text-anchor="end" font-size="16" fill="#57534e">0%</text>
+  <text x="118" y="284" text-anchor="end" font-size="18" fill="#57534e">20%</text>
+  <text x="118" y="184" text-anchor="end" font-size="18" fill="#57534e">40%</text>
+  <text x="118" y="384" text-anchor="end" font-size="18" fill="#57534e">0%</text>
 
   <line x1="130" y1="380" x2="920" y2="380" stroke="#1c1917" stroke-width="1.5"/>
 
   <line x1="130" y1="330" x2="920" y2="330" stroke="#57534e" stroke-width="1.5" stroke-dasharray="6 5"/>
-  <text x="138" y="322" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">loop target — orphan rate ≤ 10%</text>
+  <text x="138" y="322" text-anchor="start" font-size="18" font-style="italic" fill="#57534e">loop target — orphan rate ≤ 10%</text>
 
   <polyline points="130,100 228.8,105 327.5,120 426.3,185 525,219 623.8,229.5 722.5,275.5 821.3,305.5 920,340.6"
             fill="none" stroke="#1f7a4d" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
@@ -40,9 +40,9 @@
   <text x="426.3" y="171" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">39%</text>
   <text x="920"   y="362" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">7.89%</text>
 
-  <text x="130"   y="406" text-anchor="middle" font-size="16" fill="#57534e">pilot</text>
-  <text x="426.3" y="406" text-anchor="middle" font-size="16" fill="#57534e">wave-1</text>
-  <text x="920"   y="406" text-anchor="middle" font-size="16" fill="#57534e">landing</text>
+  <text x="130"   y="406" text-anchor="middle" font-size="18" fill="#57534e">pilot</text>
+  <text x="426.3" y="406" text-anchor="middle" font-size="18" fill="#57534e">wave-1</text>
+  <text x="920"   y="406" text-anchor="middle" font-size="18" fill="#57534e">landing</text>
 
-  <text x="130" y="440" text-anchor="start" font-size="16" font-style="italic" fill="#57534e">orphan rate over nine tracer re-runs · exact value per run in the table</text>
+  <text x="130" y="440" text-anchor="start" font-size="18" font-style="italic" fill="#57534e">orphan rate over nine tracer re-runs · exact value per run in the table</text>
 </svg>

@@ -40,14 +40,14 @@
   <text x="36" y="94" font-size="22" font-weight="700" fill="#1c1917">Journey</text>
 
   <rect x="40" y="112" width="230" height="104" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="155" y="150" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Journey: goal</text>
-  <text x="155" y="184" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">criticality: MAJOR</text>
+  <text x="155" y="150" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">Journey: goal</text>
+  <text x="155" y="184" text-anchor="middle" font-size="21.24" font-weight="700" fill="#9a3f12">criticality: MAJOR</text>
 
   <line x1="155" y1="216" x2="155" y2="264" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
-  <text x="178" y="246" font-size="18" font-style="italic" fill="#57534e">calls</text>
+  <text x="178" y="246" font-size="21.24" font-style="italic" fill="#57534e">calls</text>
 
   <polygon points="82,272 250,272 238,330 70,330" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="155" y="306" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">endpoint</text>
+  <text x="155" y="306" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">endpoint</text>
 
   <!-- ===== Selector ===== -->
   <rect x="310" y="60" width="400" height="470" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
@@ -57,24 +57,24 @@
   <path d="M252,300 C330,262 380,214 428,178" fill="none" stroke="#1c1917" stroke-width="4" marker-end="url(#jc-join)"/>
 
   <polygon points="510,116 596,176 510,236 424,176" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="510" y="184" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">major?</text>
+  <text x="510" y="184" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">major?</text>
 
   <path d="M486,222 C466,246 452,258 442,272" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
-  <text x="454" y="250" text-anchor="end" font-size="18" font-style="italic" fill="#57534e">yes</text>
+  <text x="454" y="250" text-anchor="end" font-size="21.24" font-style="italic" fill="#57534e">yes</text>
   <path d="M534,222 C566,248 588,258 616,272" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
-  <text x="600" y="250" font-size="18" font-style="italic" fill="#57534e">no</text>
+  <text x="600" y="250" font-size="21.24" font-style="italic" fill="#57534e">no</text>
 
   <rect id="local-staging" x="345" y="276" width="200" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="445" y="314" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">local + staging</text>
+  <text x="445" y="314" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">local + staging</text>
 
   <rect id="staging-only" x="560" y="276" width="140" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="630" y="314" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">staging only</text>
+  <text x="630" y="314" text-anchor="middle" font-size="20.47" font-weight="700" fill="#1c1917">staging only</text>
 
   <line x1="445" y1="340" x2="455" y2="392" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
 
   <polygon points="355,432 382,398 578,398 605,432 578,466 382,466"
            fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="480" y="439" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Coverage-floor lint</text>
+  <text x="480" y="439" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">Coverage-floor lint</text>
 
   <!-- ===== Coverage ===== -->
   <rect x="20" y="420" width="280" height="240" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
@@ -83,12 +83,12 @@
   <g>
     <path d="M 60,494 v 70 a 95,10 0 0 0 190,0 v -70" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
     <ellipse cx="155" cy="494" rx="95" ry="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="155" y="540" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">covered?</text>
+    <text x="155" y="540" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">covered?</text>
   </g>
 
   <!-- JOIN edge 2: endpoint -> coverage (same node, checked for any test at all) -->
   <line x1="200" y1="332" x2="200" y2="482" stroke="#57534e" stroke-width="4" stroke-dasharray="9 6" marker-end="url(#jc-join-mut)"/>
-  <text x="214" y="408" font-size="18" font-style="italic" fill="#57534e">node join</text>
+  <text x="214" y="408" font-size="21.24" font-style="italic" fill="#57534e">node join</text>
 
   <!-- covered? feeds the floor lint -->
   <path d="M252,516 C300,498 322,468 352,438" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
@@ -102,7 +102,7 @@
 
   <rect id="plan-host" x="800" y="280" width="290" height="92" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="945" y="320" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">plan_for(host)</text>
-  <text x="945" y="348" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">reads the per-host profile</text>
+  <text x="945" y="348" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">reads the per-host profile</text>
 
   <!-- JOIN edge 3: the resulting test set -> scheduler (both tiers feed the plan; seat on plan's left border) -->
   <!-- edge: staging-only -> plan-host (short horizontal, straight into the left border) -->
@@ -113,13 +113,13 @@
   <!-- the plan's two modes: SHAPE encodes parallel (rounded) vs serialize (square) -->
   <!-- edge: plan-host -> fan-out -->
   <path d="M945,372 L945,410" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
-  <text x="795" y="397" font-size="18" font-style="italic" fill="#57534e">cost gate only</text>
+  <text x="795" y="397" font-size="21.24" font-style="italic" fill="#57534e">cost gate only</text>
   <rect id="fan-out" x="770" y="410" width="320" height="60" rx="30" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="930" y="447" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">fan out — parallel</text>
+  <text x="930" y="447" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">fan out — parallel</text>
 
   <!-- edge: plan-host -> serialize (routes down the right, clear of fan-out, into serialize's right border) -->
   <path d="M1065,372 L1065,392 L1122,392 L1122,535 L1090,535" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#jc-ah)"/>
-  <text x="800" y="495" font-size="18" font-style="italic" fill="#57534e">cost gate + a scarce host</text>
+  <text x="800" y="495" font-size="21.24" font-style="italic" fill="#57534e">cost gate + a scarce host</text>
   <rect id="serialize" x="770" y="505" width="320" height="60" rx="6" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="930" y="542" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">serialize — fan / join</text>
+  <text x="930" y="542" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">serialize — fan / join</text>
 </svg>

@@ -84,21 +84,21 @@
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="56" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#2f5169">BEHAVIORAL MODEL</text>
-  <text x="500" y="80" text-anchor="middle" font-size="15" fill="#57534e">states &#183; transitions &#183; legal sequences</text>
+  <text x="500" y="80" text-anchor="middle" font-size="18" fill="#57534e">states &#183; transitions &#183; legal sequences</text>
 
-  <text x="190" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">LOCAL RULE</text>
-  <text x="500" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">REACHABLE-STATE</text>
-  <text x="810" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">TEMPORAL PROPERTY</text>
+  <text x="190" y="182" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">LOCAL RULE</text>
+  <text x="500" y="182" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">REACHABLE-STATE</text>
+  <text x="810" y="182" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TEMPORAL PROPERTY</text>
 
-  <text x="190" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">is this edge legal?</text>
-  <text x="500" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">can this state occur?</text>
-  <text x="810" y="233" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">will this eventually occur?</text>
+  <text x="190" y="233" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">is this edge legal?</text>
+  <text x="500" y="233" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">can this state occur?</text>
+  <text x="810" y="233" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">will this eventually occur?</text>
 
-  <text x="190" y="290" text-anchor="middle" font-size="15" fill="#1c1917">transition check</text>
-  <text x="500" y="290" text-anchor="middle" font-size="15" fill="#1c1917">state-space search</text>
-  <text x="810" y="290" text-anchor="middle" font-size="15" fill="#1c1917">temporal model checking</text>
+  <text x="190" y="290" text-anchor="middle" font-size="18" fill="#1c1917">transition check</text>
+  <text x="500" y="290" text-anchor="middle" font-size="18" fill="#1c1917">state-space search</text>
+  <text x="810" y="290" text-anchor="middle" font-size="18" fill="#1c1917">temporal model checking</text>
 
   <text x="500" y="431" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">EVIDENCE ABOUT BEHAVIOR</text>
 
-  <text x="500" y="512" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Same model family; different property, different checker.</text>
+  <text x="500" y="512" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Same model family; different property, different checker.</text>
 </svg>

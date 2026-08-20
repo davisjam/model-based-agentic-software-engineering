@@ -29,9 +29,9 @@
   <line x1="470" y1="56" x2="470" y2="336" stroke="#d9d3c8" stroke-width="1.6"/>
 
   <!-- ===== LEFT: record-once model ===== -->
-  <text x="230" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">RECORD ONCE, DERIVE VIEWS</text>
+  <text x="230" y="40" text-anchor="middle" font-size="16.2" font-weight="700" letter-spacing="1.2" fill="#2f5169">RECORD ONCE, DERIVE VIEWS</text>
   <rect id="l-action" x="150" y="60" width="160" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="230" y="89" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">ACTION</text>
+  <text x="230" y="89" text-anchor="middle" font-size="16.2" font-weight="700" fill="#57534e">ACTION</text>
   <!-- edge: l-action -> prov-model -->
   <line x1="230" y1="106" x2="230" y2="132" stroke="#2f5169" stroke-width="2.2" marker-end="url(#pv-b)"/>
   <rect id="prov-model" x="120" y="134" width="220" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
@@ -45,7 +45,7 @@
     <!-- edge: prov-model -> v-changelog -->
     <path d="M320,186 L320,244"/>
   </g>
-  <g font-size="14.5" font-weight="700" text-anchor="middle" fill="#2f5169">
+  <g font-size="16.2" font-weight="700" text-anchor="middle" fill="#2f5169">
     <rect id="v-audit" x="40" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
     <text x="100" y="273">audit</text>
     <rect id="v-debug" x="170" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -53,12 +53,12 @@
     <rect id="v-changelog" x="300" y="246" width="120" height="44" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
     <text x="360" y="273">changelog</text>
   </g>
-  <text x="230" y="316" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">derived views of one shared history</text>
+  <text x="230" y="316" text-anchor="middle" font-size="16.2" font-style="italic" fill="#57534e">derived views of one shared history</text>
 
   <!-- ===== RIGHT: the forbidden shortcut ===== -->
-  <text x="685" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#9a3f12">NOT: ACTION &#8594; STORY</text>
+  <text x="685" y="40" text-anchor="middle" font-size="16.2" font-weight="700" letter-spacing="1.2" fill="#9a3f12">NOT: ACTION &#8594; STORY</text>
   <rect id="r-action" x="605" y="60" width="160" height="46" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="685" y="89" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">ACTION</text>
+  <text x="685" y="89" text-anchor="middle" font-size="16.2" font-weight="700" fill="#57534e">ACTION</text>
   <!-- direct rust arrows to separate stories (forbidden shortcut; struck-but-spanning, plug both ends) -->
   <!-- edge: r-action .. s-audit -->
   <path d="M612.5,106 L612.5,244" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#pv-r)"/>
@@ -69,7 +69,7 @@
     <line x1="674" y1="150" x2="696" y2="172"/>
     <line x1="696" y1="150" x2="674" y2="172"/>
   </g>
-  <g font-size="14" font-weight="700" text-anchor="middle" fill="#9a3f12">
+  <g font-size="16.2" font-weight="700" text-anchor="middle" fill="#9a3f12">
     <rect id="s-audit" x="500" y="246" width="120" height="44" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
     <text x="560" y="266">audit</text>
     <text x="560" y="283">story</text>
@@ -77,8 +77,8 @@
     <text x="820" y="266">changelog</text>
     <text x="820" y="283">story</text>
   </g>
-  <text x="685" y="316" text-anchor="middle" font-size="13.5" font-style="italic" fill="#9a3f12">separately-maintained accounts drift apart</text>
+  <text x="685" y="316" text-anchor="middle" font-size="16.2" font-style="italic" fill="#9a3f12">separately-maintained accounts drift apart</text>
 
   <!-- footer: protect the point -->
-  <text x="450" y="378" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">One structured history, many explanations derived from it &#8212; not several stories of the same action.</text>
+  <text x="450" y="378" text-anchor="middle" font-size="16.2" font-style="italic" fill="#1c1917">One structured history, many explanations derived from it &#8212; not several stories of the same action.</text>
 </svg>

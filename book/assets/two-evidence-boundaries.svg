@@ -16,13 +16,13 @@
   </defs>
 
   <!-- top anchors -->
-  <text x="200" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">work begins</text>
+  <text x="200" y="52" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">work begins</text>
   <line x1="200" y1="64" x2="200" y2="150" stroke="#57534e" stroke-width="2" marker-end="url(#tb-ah)"/>
-  <text x="800" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">consequence</text>
+  <text x="800" y="52" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">consequence</text>
   <line x1="800" y1="64" x2="800" y2="150" stroke="#57534e" stroke-width="2" marker-end="url(#tb-ah)"/>
 
   <!-- between-checks note -->
-  <text x="500" y="148" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">relevant state may change between checks</text>
+  <text x="500" y="148" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">relevant state may change between checks</text>
 
   <!-- the axis -->
   <line x1="90" y1="176" x2="915" y2="176" stroke="#57534e" stroke-width="2.5" marker-end="url(#tb-ah)"/>
@@ -32,11 +32,11 @@
   <path d="M800 162 L814 176 L800 190 L786 176 Z" fill="#9a3f12" stroke="#9a3f12" stroke-width="2.5"/>
 
   <!-- lower labels -->
-  <text x="200" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">EARLIEST LEGIBLE</text>
-  <text x="200" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">BOUNDARY</text>
-  <text x="200" y="272" text-anchor="middle" font-size="12" fill="#57534e">catch cheaply near the cause</text>
+  <text x="200" y="222" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">EARLIEST LEGIBLE</text>
+  <text x="200" y="242" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">BOUNDARY</text>
+  <text x="200" y="272" text-anchor="middle" font-size="18" fill="#57534e">catch cheaply near the cause</text>
 
-  <text x="800" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">LAST SAFE</text>
-  <text x="800" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">BOUNDARY</text>
-  <text x="800" y="272" text-anchor="middle" font-size="12" fill="#57534e">re-establish what must hold</text>
+  <text x="800" y="222" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">LAST SAFE</text>
+  <text x="800" y="242" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">BOUNDARY</text>
+  <text x="800" y="272" text-anchor="middle" font-size="18" fill="#57534e">re-establish what must hold</text>
 </svg>

@@ -28,75 +28,75 @@
   </defs>
 
   <rect x="0" y="0" width="980" height="660" fill="#fdfcf9"/>
-  <text x="60" y="42" font-size="15" fill="#78716c">Glossary · concept map</text>
+  <text x="60" y="42" font-size="17.64" fill="#78716c">Glossary · concept map</text>
   <text x="920" y="42" text-anchor="end" font-size="19" font-weight="700" fill="#1c1917">The core ideas</text>
 
   <!-- The Printer — subordinate metaphor (small, muted, top-left) -->
   <rect id="printer" x="40" y="108" width="182" height="46" rx="9" fill="#faf9f6" stroke="#a8a29e" stroke-width="1.6" stroke-dasharray="4 3"/>
-  <text x="131" y="136" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">The Printer</text>
+  <text x="131" y="136" text-anchor="middle" font-size="17.64" font-style="italic" fill="#78716c">The Printer</text>
   <!-- edge: printer .. modeling -->
   <path d="M166,154 L166,294" fill="none" stroke="#a8a29e" stroke-width="1.6" stroke-dasharray="2 4" stroke-linecap="round" marker-end="url(#ci-mute)"/>
-  <text x="92" y="236" text-anchor="start" font-size="13" font-style="italic" fill="#a8a29e">a metaphor for</text>
-  <text x="92" y="250" text-anchor="start" font-size="13" font-style="italic" fill="#a8a29e">explicit intent</text>
+  <text x="92" y="236" text-anchor="start" font-size="17.64" font-style="italic" fill="#a8a29e">a metaphor for</text>
+  <text x="92" y="250" text-anchor="start" font-size="17.64" font-style="italic" fill="#a8a29e">explicit intent</text>
 
   <!-- Commodity intelligence (blue) -->
   <rect id="commodity" x="340" y="66" width="300" height="62" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
   <text x="490" y="104" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">Commodity intelligence</text>
   <!-- edge: commodity -> eng-work -->
   <path d="M490,128 L490,180" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#ci-neutral)"/>
-  <text x="504" y="158" text-anchor="start" font-size="13" font-weight="600" fill="#57534e">changes the economics of</text>
+  <text x="504" y="158" text-anchor="start" font-size="17.64" font-weight="600" fill="#57534e">changes the economics of</text>
 
   <!-- Engineering work (gray) -->
   <rect id="eng-work" x="368" y="182" width="244" height="56" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="490" y="216" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Engineering work</text>
+  <text x="490" y="216" text-anchor="middle" font-size="17.64" font-weight="700" fill="#1c1917">Engineering work</text>
 
   <!-- Engineering work -> each principle (they address different constraints) -->
   <!-- edge: eng-work -> modeling -->
   <path d="M379,238 L379,294" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
   <!-- edge: eng-work -> alignment -->
   <path d="M601,238 L601,294" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
-  <text x="490" y="270" text-anchor="middle" font-size="13" font-style="italic" fill="#78716c">address different constraints</text>
+  <text x="490" y="270" text-anchor="middle" font-size="17.64" font-style="italic" fill="#78716c">address different constraints</text>
 
   <!-- Modeling Principle (green) -->
   <rect id="modeling" x="110" y="296" width="280" height="82" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="250" y="330" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">Modeling Principle</text>
-  <text x="250" y="353" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">make knowledge &amp; intent</text>
-  <text x="250" y="369" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">explicit</text>
+  <text x="250" y="330" text-anchor="middle" font-size="17.64" font-weight="700" fill="#1f7a4d">Modeling Principle</text>
+  <text x="250" y="353" text-anchor="middle" font-size="17.64" font-style="italic" fill="#57534e">make knowledge &amp; intent</text>
+  <text x="250" y="369" text-anchor="middle" font-size="17.64" font-style="italic" fill="#57534e">explicit</text>
 
   <!-- Alignment Principle (rust) -->
   <rect id="alignment" x="590" y="296" width="280" height="82" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="730" y="330" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Alignment Principle</text>
-  <text x="730" y="353" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">give obligations</text>
-  <text x="730" y="369" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">authority</text>
+  <text x="730" y="330" text-anchor="middle" font-size="17.64" font-weight="700" fill="#9a3f12">Alignment Principle</text>
+  <text x="730" y="353" text-anchor="middle" font-size="17.64" font-style="italic" fill="#57534e">give obligations</text>
+  <text x="730" y="369" text-anchor="middle" font-size="17.64" font-style="italic" fill="#57534e">authority</text>
 
   <!-- Modeling EXPANDS (not enables) Alignment -->
   <!-- edge: modeling -> alignment -->
   <path d="M390,337 L588,337" fill="none" stroke="#1f7a4d" stroke-width="2.6" marker-end="url(#ci-green)"/>
-  <text x="488" y="322" text-anchor="middle" font-size="13" font-weight="700" fill="#1f7a4d">expands the semantic surface for</text>
+  <text x="488" y="322" text-anchor="middle" font-size="17.64" font-weight="700" fill="#1f7a4d">expands the semantic surface for</text>
 
   <!-- lessons -> Governance Conversion. The lessons carried forward are the two principles'; a single
        connector must seat on one node, so it plugs into Modeling (the left principle) and keeps the label. -->
   <!-- edge: modeling -> governance -->
   <path d="M275,378 L275,450" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#ci-neutral)"/>
-  <text x="470" y="424" text-anchor="start" font-size="13" font-style="italic" fill="#78716c">makes their lessons durable</text>
+  <text x="470" y="424" text-anchor="start" font-size="17.64" font-style="italic" fill="#78716c">makes their lessons durable</text>
 
   <!-- Governance Conversion (gray) -->
   <rect id="governance" x="160" y="452" width="280" height="70" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <text x="300" y="484" text-anchor="middle" font-size="16" font-weight="700" fill="#44403c">Governance Conversion</text>
-  <text x="300" y="506" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">recurring lessons into durable structure</text>
+  <text x="300" y="484" text-anchor="middle" font-size="17.64" font-weight="700" fill="#44403c">Governance Conversion</text>
+  <text x="300" y="506" text-anchor="middle" font-size="14.81" font-style="italic" fill="#57534e">recurring lessons into durable structure</text>
 
   <!-- Governance Conversion -> Engineering Capital -->
   <!-- edge: governance -> capital -->
   <path d="M440,487 L558,487" fill="none" stroke="#1f7a4d" stroke-width="2.6" marker-end="url(#ci-green)"/>
-  <text x="498" y="478" text-anchor="middle" font-size="13" font-weight="700" fill="#155c38">compounds into</text>
+  <text x="498" y="478" text-anchor="middle" font-size="17.64" font-weight="700" fill="#155c38">compounds into</text>
 
   <!-- Engineering Capital (green outcome) -->
   <rect id="capital" x="560" y="452" width="280" height="70" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
-  <text x="700" y="484" text-anchor="middle" font-size="17" font-weight="800" fill="#155c38">Engineering Capital</text>
-  <text x="700" y="506" text-anchor="middle" font-size="13" font-style="italic" fill="#155c38">durable models &amp; controls accumulate</text>
+  <text x="700" y="484" text-anchor="middle" font-size="17.64" font-weight="800" fill="#155c38">Engineering Capital</text>
+  <text x="700" y="506" text-anchor="middle" font-size="15.1" font-style="italic" fill="#155c38">durable models &amp; controls accumulate</text>
 
   <!-- footer -->
   <line x1="60" y1="576" x2="920" y2="576" stroke="#cfcabf" stroke-width="1.5"/>
-  <text x="60" y="604" font-size="14" fill="#57534e">Commodity intelligence changes the economics of engineering. Modeling and Alignment address different constraints;</text>
-  <text x="60" y="626" font-size="14" fill="#57534e">governance conversion makes their lessons durable as engineering capital.</text>
+  <text x="60" y="604" font-size="17.64" fill="#57534e">Commodity intelligence changes the economics of engineering. Modeling and Alignment address different constraints;</text>
+  <text x="60" y="626" font-size="17.64" fill="#57534e">governance conversion makes their lessons durable as engineering capital.</text>
 </svg>

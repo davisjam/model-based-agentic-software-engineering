@@ -37,24 +37,24 @@
   <rect id="model-bad" x="60" y="80" width="150" height="56" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="135" y="114" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL</text>
 
-  <text x="285" y="98" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">copy</text>
+  <text x="285" y="98" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">copy</text>
 
   <rect id="snapshot" x="366" y="80" width="160" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="446" y="114" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">SNAPSHOT</text>
+  <text x="446" y="114" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">SNAPSHOT</text>
 
   <rect id="check-bad" x="646" y="80" width="150" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="721" y="114" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">CHECK</text>
+  <text x="721" y="114" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHECK</text>
 
-  <text x="150" y="176" font-size="14" fill="#b23b3b">the model changes&#8230;</text>
+  <text x="150" y="176" font-size="18" fill="#b23b3b">the model changes&#8230;</text>
   <!-- transparent text-label anchor for the consequence -->
   <rect id="stale-bad" x="364" y="186" width="220" height="24" fill="none" stroke="none"/>
-  <text x="366" y="200" font-size="15" font-weight="700" fill="#b23b3b">&#8230; the snapshot does not &#8212; the check trusts a stale answer</text>
+  <text x="366" y="200" font-size="7.36" font-weight="700" fill="#b23b3b">&#8230; the snapshot does not &#8212; the check trusts a stale answer</text>
 
   <!-- divider -->
   <line x1="60" y1="252" x2="940" y2="252" stroke="#e4e0d8" stroke-width="1.5"/>
 
   <!-- ============ GOOD ============ -->
-  <text x="60" y="300" font-size="16" font-weight="700" letter-spacing="0.06em" fill="#1f7a4d">GOOD &#183; query at the point of use</text>
+  <text x="60" y="300" font-size="18" font-weight="700" letter-spacing="0.06em" fill="#1f7a4d">GOOD &#183; query at the point of use</text>
 
   <!-- edge: model-good -> check-good (query) -->
   <line x1="135" y1="352" x2="644" y2="352" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#c2-ah-g)"/>
@@ -64,16 +64,16 @@
   <rect id="model-good" x="60" y="324" width="150" height="56" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="135" y="358" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL</text>
 
-  <text x="425" y="342" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#1f7a4d">query &#8212; no second editable truth</text>
+  <text x="425" y="342" text-anchor="middle" font-size="18" font-weight="700" font-style="italic" fill="#1f7a4d">query &#8212; no second editable truth</text>
 
   <rect id="check-good" x="646" y="324" width="150" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="721" y="358" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">CHECK</text>
+  <text x="721" y="358" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHECK</text>
 
-  <text x="150" y="416" font-size="14" fill="#1f7a4d">the model changes&#8230;</text>
+  <text x="150" y="416" font-size="18" fill="#1f7a4d">the model changes&#8230;</text>
   <!-- transparent text-label anchor for the consequence -->
   <rect id="fresh-good" x="364" y="426" width="220" height="24" fill="none" stroke="none"/>
-  <text x="366" y="440" font-size="15" font-weight="700" fill="#155c38">&#8230; the next check sees it &#8212; coupled to the interface, not yesterday's answer</text>
+  <text x="366" y="440" font-size="5.74" font-weight="700" fill="#155c38">&#8230; the next check sees it &#8212; coupled to the interface, not yesterday's answer</text>
 
   <!-- footer -->
-  <text x="500" y="496" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Consume authority by query or derivation; a snapshot is a new truth free to drift.</text>
+  <text x="500" y="496" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">Consume authority by query or derivation; a snapshot is a new truth free to drift.</text>
 </svg>

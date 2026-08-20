@@ -61,49 +61,49 @@
   <!-- the admission gate on the feedback path (lever 4) -->
   <rect id="admission-gate" x="360" y="38" width="240" height="70" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <circle cx="392" cy="62" r="12" fill="#1f7a4d"/>
-  <text x="392" y="67" text-anchor="middle" font-size="15.36" font-weight="700" fill="#ffffff">4</text>
+  <text x="392" y="67" text-anchor="middle" font-size="17.28" font-weight="700" fill="#ffffff">4</text>
   <text x="492" y="68" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Admission rule</text>
-  <text x="480" y="94" text-anchor="middle" font-size="15.36" font-style="italic" fill="#57534e">may the result advance?</text>
+  <text x="480" y="94" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">may the result advance?</text>
 
   <!-- Modeled state (lever 1, blue) -->
   <rect id="modeled-state" x="60" y="210" width="250" height="105" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="185" y="262" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Modeled state</text>
-  <text x="185" y="292" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">what the agent sees</text>
+  <text x="185" y="292" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">what the agent sees</text>
 
   <!-- Agent reasoning -->
   <rect id="agent-reasoning" x="355" y="210" width="250" height="105" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.8"/>
   <text x="480" y="262" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Agent reasoning</text>
-  <text x="480" y="292" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">then action</text>
+  <text x="480" y="292" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">then action</text>
 
   <!-- Output -->
   <rect id="output" x="650" y="210" width="250" height="105" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="1.8"/>
   <text x="775" y="262" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">Output</text>
-  <text x="775" y="292" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a candidate result</text>
+  <text x="775" y="292" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">a candidate result</text>
 
   <!-- ===== ANNOTATIONS (edge labels + lever callouts) ===== -->
-  <text x="300" y="127" text-anchor="middle" font-size="15.36" font-style="italic" fill="#57534e">the next turn's input</text>
-  <text x="494" y="160" font-size="15.36" font-style="italic" fill="#1f7a4d">fails — run again</text>
+  <text x="300" y="127" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">the next turn's input</text>
+  <text x="494" y="160" font-size="17.28" font-style="italic" fill="#1f7a4d">fails — run again</text>
 
   <!-- lever 1 — the state exposed (Modeling Principle) -->
   <circle cx="86" cy="352" r="12" fill="#2f5169"/>
-  <text x="86" y="357" text-anchor="middle" font-size="15.36" font-weight="700" fill="#ffffff">1</text>
+  <text x="86" y="357" text-anchor="middle" font-size="17.28" font-weight="700" fill="#ffffff">1</text>
   <text x="196" y="358" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">The state exposed</text>
-  <text x="185" y="382" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">a model, deliberately reduced</text>
-  <text x="185" y="403" text-anchor="middle" font-size="16" font-style="italic" fill="#2f5169">— the Modeling Principle lever</text>
+  <text x="185" y="382" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">a model, deliberately reduced</text>
+  <text x="185" y="403" text-anchor="middle" font-size="17.28" font-style="italic" fill="#2f5169">— the Modeling Principle lever</text>
 
   <!-- lever 2 — the action surface -->
   <circle cx="378" cy="352" r="12" fill="#1f7a4d"/>
-  <text x="378" y="357" text-anchor="middle" font-size="15.36" font-weight="700" fill="#ffffff">2</text>
+  <text x="378" y="357" text-anchor="middle" font-size="17.28" font-weight="700" fill="#ffffff">2</text>
   <text x="492" y="358" text-anchor="middle" font-size="19" font-weight="700" fill="#1f7a4d">The action surface</text>
-  <text x="480" y="382" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">tools and sanctioned seams —</text>
-  <text x="480" y="403" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the wrong move is unavailable</text>
+  <text x="480" y="382" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">tools and sanctioned seams —</text>
+  <text x="480" y="403" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">the wrong move is unavailable</text>
 
   <!-- lever 3 — the success criterion -->
   <circle cx="662" cy="352" r="12" fill="#1f7a4d"/>
-  <text x="662" y="357" text-anchor="middle" font-size="15.36" font-weight="700" fill="#ffffff">3</text>
+  <text x="662" y="357" text-anchor="middle" font-size="17.28" font-weight="700" fill="#ffffff">3</text>
   <text x="793" y="358" text-anchor="middle" font-size="19" font-weight="700" fill="#1f7a4d">The success criterion</text>
-  <text x="775" y="382" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">progress is measured, not felt</text>
+  <text x="775" y="382" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">progress is measured, not felt</text>
 
   <!-- the principles split -->
-  <text x="480" y="446" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Lever 1 is the Modeling Principle at work; levers 2, 3, and 4 are the Alignment Principle, enforced.</text>
+  <text x="480" y="446" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">Lever 1 is the Modeling Principle at work; levers 2, 3, and 4 are the Alignment Principle, enforced.</text>
 </svg>

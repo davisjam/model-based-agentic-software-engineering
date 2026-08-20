@@ -45,18 +45,18 @@
   <!-- ===================== COLUMN AXIS — AUTHORITY REACH ===================== -->
   <text x="565" y="98" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">AUTHORITY REACH</text>
   <text x="415" y="136" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">thin</text>
-  <text x="415" y="158" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">few obligations enforced</text>
+  <text x="415" y="158" text-anchor="middle" font-size="16.92" font-style="italic" fill="#57534e">few obligations enforced</text>
   <text x="715" y="136" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">strong</text>
-  <text x="715" y="158" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">obligations gated at a boundary</text>
+  <text x="715" y="158" text-anchor="middle" font-size="16.92" font-style="italic" fill="#57534e">obligations gated at a boundary</text>
 
   <!-- ===================== ROW AXIS — REPRESENTATION REACH ===================== -->
   <text x="34" y="400" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d" transform="rotate(-90 34 400)">REPRESENTATION REACH</text>
   <text x="150" y="286" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Rich</text>
-  <text x="150" y="308" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">much of the system is</text>
-  <text x="150" y="326" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">externalized &amp; trustworthy</text>
+  <text x="150" y="308" text-anchor="middle" font-size="16.92" font-style="italic" fill="#57534e">much of the system is</text>
+  <text x="150" y="326" text-anchor="middle" font-size="16.92" font-style="italic" fill="#57534e">externalized &amp; trustworthy</text>
   <text x="150" y="494" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Thin</text>
-  <text x="150" y="516" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">little externalized</text>
-  <text x="150" y="534" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">structure</text>
+  <text x="150" y="516" text-anchor="middle" font-size="16.92" font-style="italic" fill="#57534e">little externalized</text>
+  <text x="150" y="534" text-anchor="middle" font-size="16.92" font-style="italic" fill="#57534e">structure</text>
 
   <!-- ===================== FOUR CELLS (uniform fill — no northeast gradient) ===================== -->
   <g fill="#f6f4ef" stroke="#57534e" stroke-width="1.6">
@@ -77,32 +77,32 @@
   </g>
 
   <!-- top-left: rich x thin authority -->
-  <text x="415" y="236" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">rich &#215; thin authority</text>
+  <text x="415" y="236" text-anchor="middle" font-size="16.92" font-style="italic" fill="#57534e">rich &#215; thin authority</text>
   <text x="415" y="288" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Understands &#8212;</text>
   <text x="415" y="314" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">humans enforce</text>
-  <text x="415" y="348" text-anchor="middle" font-size="16" fill="#1c1917">rich models, but people</text>
-  <text x="415" y="368" text-anchor="middle" font-size="16" fill="#1c1917">still catch the violations</text>
+  <text x="415" y="348" text-anchor="middle" font-size="16.92" fill="#1c1917">rich models, but people</text>
+  <text x="415" y="368" text-anchor="middle" font-size="16.92" fill="#1c1917">still catch the violations</text>
 
   <!-- top-right: rich x strong authority -->
-  <text x="715" y="236" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">rich &#215; strong authority</text>
+  <text x="715" y="236" text-anchor="middle" font-size="16.92" font-style="italic" fill="#57534e">rich &#215; strong authority</text>
   <text x="715" y="294" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Rich governed surface</text>
-  <text x="715" y="336" text-anchor="middle" font-size="16" fill="#1c1917">trustworthy models and</text>
-  <text x="715" y="356" text-anchor="middle" font-size="16" fill="#1c1917">authority at the right boundary</text>
+  <text x="715" y="336" text-anchor="middle" font-size="16.92" fill="#1c1917">trustworthy models and</text>
+  <text x="715" y="356" text-anchor="middle" font-size="16.92" fill="#1c1917">authority at the right boundary</text>
 
   <!-- bottom-left: thin x thin authority -->
-  <text x="415" y="444" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">thin &#215; thin authority</text>
+  <text x="415" y="444" text-anchor="middle" font-size="16.92" font-style="italic" fill="#57534e">thin &#215; thin authority</text>
   <text x="415" y="500" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Reconstruction</text>
   <text x="415" y="526" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">+ human gap</text>
-  <text x="415" y="560" text-anchor="middle" font-size="16" fill="#1c1917">little structure, little authority &#8212;</text>
-  <text x="415" y="580" text-anchor="middle" font-size="16" fill="#1c1917">humans carry both</text>
+  <text x="415" y="560" text-anchor="middle" font-size="16.92" fill="#1c1917">little structure, little authority &#8212;</text>
+  <text x="415" y="580" text-anchor="middle" font-size="16.92" fill="#1c1917">humans carry both</text>
 
   <!-- bottom-right: thin x strong authority -->
-  <text x="715" y="444" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">thin &#215; strong authority</text>
+  <text x="715" y="444" text-anchor="middle" font-size="16.92" font-style="italic" fill="#57534e">thin &#215; strong authority</text>
   <text x="715" y="500" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Direct / local alignment</text>
-  <text x="715" y="544" text-anchor="middle" font-size="16" fill="#1c1917">tests, sandboxes, permissions</text>
-  <text x="715" y="564" text-anchor="middle" font-size="16" fill="#1c1917">govern what they observe &#8212;</text>
-  <text x="715" y="584" text-anchor="middle" font-size="16" fill="#1c1917">no rich model required</text>
+  <text x="715" y="544" text-anchor="middle" font-size="16.92" fill="#1c1917">tests, sandboxes, permissions</text>
+  <text x="715" y="564" text-anchor="middle" font-size="16.92" fill="#1c1917">govern what they observe &#8212;</text>
+  <text x="715" y="584" text-anchor="middle" font-size="16.92" fill="#1c1917">no rich model required</text>
 
   <!-- ===================== READING LINES ===================== -->
-  <text x="470" y="644" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">Next move = address the highest-value gap.</text>
+  <text x="470" y="644" text-anchor="middle" font-size="16.92" font-weight="600" fill="#1c1917">Next move = address the highest-value gap.</text>
 </svg>

@@ -29,59 +29,59 @@
 
   <!-- Q1 -->
   <rect id="q1" x="360" y="30" width="320" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
-  <text x="520" y="55" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Is the obligation explicit in a</text>
-  <text x="520" y="77" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">form the environment can use?</text>
+  <text x="520" y="55" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Is the obligation explicit in a</text>
+  <text x="520" y="77" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">form the environment can use?</text>
 
   <!-- Q1 no -> RESIDUAL -->
   <!-- edge: q1 -> residual -->
   <path d="M376,88 L376,119 L264,119 L264,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
-  <text x="300" y="112" text-anchor="middle" font-size="15" font-style="italic" fill="#8a2f2f">no</text>
+  <text x="300" y="112" text-anchor="middle" font-size="18" font-style="italic" fill="#8a2f2f">no</text>
   <rect id="residual" x="70" y="152" width="210" height="66" rx="8" fill="#f6ece9" stroke="#b23b3b" stroke-width="2"/>
   <text x="175" y="181" text-anchor="middle" font-size="18" font-weight="800" fill="#8a2f2f">RESIDUAL</text>
-  <text x="175" y="203" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">human must reconstruct it</text>
+  <text x="175" y="203" text-anchor="middle" font-size="16.24" font-style="italic" fill="#57534e">human must reconstruct it</text>
 
   <!-- Q1 yes -> Q2 -->
   <!-- edge: q1 -> q2 -->
   <path d="M545,88 L545,150" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
-  <text x="576" y="120" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
+  <text x="576" y="120" text-anchor="middle" font-size="18" font-style="italic" fill="#2f5137">yes</text>
 
   <!-- Q2 -->
   <rect id="q2" x="410" y="152" width="320" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
-  <text x="570" y="187" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Can it be evaluated adequately?</text>
+  <text x="570" y="187" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Can it be evaluated adequately?</text>
 
   <!-- Q2 no -> JUDGMENT REQUIRED -->
   <!-- edge: q2 -> judgment -->
   <path d="M426,210 L426,241 L354,241 L354,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
-  <text x="352" y="234" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
+  <text x="352" y="234" text-anchor="middle" font-size="18" font-style="italic" fill="#7a5c12">no</text>
   <rect id="judgment" x="120" y="274" width="250" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="245" y="303" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">JUDGMENT REQUIRED</text>
-  <text x="245" y="325" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">no adequate evaluator available</text>
+  <text x="245" y="325" text-anchor="middle" font-size="15.75" font-style="italic" fill="#57534e">no adequate evaluator available</text>
 
   <!-- Q2 yes -> Q3 -->
   <!-- edge: q2 -> q3 -->
   <path d="M595,210 L595,272" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
-  <text x="626" y="242" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
+  <text x="626" y="242" text-anchor="middle" font-size="18" font-style="italic" fill="#2f5137">yes</text>
 
   <!-- Q3 -->
   <rect id="q3" x="460" y="274" width="320" height="58" rx="8" fill="#eef2f6" stroke="#2f5169" stroke-width="2"/>
-  <text x="620" y="299" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Does authority act</text>
-  <text x="620" y="321" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">on the result?</text>
+  <text x="620" y="299" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Does authority act</text>
+  <text x="620" y="321" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">on the result?</text>
 
   <!-- Q3 no -> EVALUATED ONLY -->
   <!-- edge: q3 -> evaluated -->
   <path d="M470,332 L470,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
-  <text x="410" y="356" text-anchor="middle" font-size="15" font-style="italic" fill="#7a5c12">no</text>
+  <text x="410" y="356" text-anchor="middle" font-size="18" font-style="italic" fill="#7a5c12">no</text>
   <rect id="evaluated" x="240" y="396" width="240" height="66" rx="8" fill="#fbf6e9" stroke="#a6801f" stroke-width="2"/>
   <text x="360" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#7a5c12">EVALUATED ONLY</text>
-  <text x="360" y="447" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">evaluated, yet un-gated</text>
+  <text x="360" y="447" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">evaluated, yet un-gated</text>
 
   <!-- Q3 yes -> GOVERNED -->
   <!-- edge: q3 -> governed -->
   <path d="M670,332 L670,394" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#hg-ah)"/>
-  <text x="676" y="364" text-anchor="middle" font-size="15" font-style="italic" fill="#2f5137">yes</text>
+  <text x="676" y="364" text-anchor="middle" font-size="18" font-style="italic" fill="#2f5137">yes</text>
   <rect id="governed" x="560" y="396" width="230" height="66" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2.4"/>
   <text x="675" y="425" text-anchor="middle" font-size="18" font-weight="800" fill="#2f5137">GOVERNED</text>
-  <text x="675" y="447" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">authoritative consequence</text>
+  <text x="675" y="447" text-anchor="middle" font-size="17.6" font-style="italic" fill="#57534e">authoritative consequence</text>
 
-  <text x="500" y="512" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">design choices, not maturity levels — different obligations stop in different places</text>
+  <text x="500" y="512" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">design choices, not maturity levels — different obligations stop in different places</text>
 </svg>

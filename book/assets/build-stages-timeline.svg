@@ -21,9 +21,9 @@
     The stages are labels drawn afterward, not a preplanned roadmap.</desc>
 
   <!-- column headers -->
-  <text x="128" y="66" font-size="14" font-weight="700" letter-spacing="0.06em" fill="#57534e">STAGE</text>
-  <text x="372" y="66" font-size="14" font-weight="700" letter-spacing="0.06em" fill="#57534e">THE PRESSURE</text>
-  <text x="672" y="66" font-size="14" font-weight="700" letter-spacing="0.06em" fill="#57534e">THE CONSEQUENCE</text>
+  <text x="128" y="66" font-size="18" font-weight="700" letter-spacing="0.06em" fill="#57534e">STAGE</text>
+  <text x="372" y="66" font-size="18" font-weight="700" letter-spacing="0.06em" fill="#57534e">THE PRESSURE</text>
+  <text x="672" y="66" font-size="18" font-weight="700" letter-spacing="0.06em" fill="#57534e">THE CONSEQUENCE</text>
   <line x1="60" y1="80" x2="980" y2="80" stroke="#1c1917" stroke-width="1.5"/>
 
   <!-- vertical spine through the stage nodes -->
@@ -33,76 +33,76 @@
 
   <!-- 1 · Feasibility -->
   <circle cx="76" cy="128" r="7" fill="#9a3f12"/>
-  <text x="76" y="132.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fbf9f4">1</text>
-  <text x="100" y="123" font-size="17" font-weight="700" fill="#9a3f12">Feasibility</text>
-  <text x="100" y="143" font-size="13" fill="#57534e">a probe in a meeting</text>
-  <text x="360" y="124" font-size="15" fill="#1c1917">Vision-language capability</text>
-  <text x="360" y="143" font-size="15" fill="#1c1917">became usable</text>
+  <text x="76" y="132.5" text-anchor="middle" font-size="18" font-weight="700" fill="#fbf9f4">1</text>
+  <text x="100" y="123" font-size="18" font-weight="700" fill="#9a3f12">Feasibility</text>
+  <text x="100" y="143" font-size="18" fill="#57534e">a probe in a meeting</text>
+  <text x="360" y="124" font-size="18" fill="#1c1917">Vision-language capability</text>
+  <text x="360" y="143" font-size="18" fill="#1c1917">became usable</text>
   <text x="628" y="133" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="133" font-size="15" fill="#1c1917">the build began</text>
+  <text x="662" y="133" font-size="18" fill="#1c1917">the build began</text>
 
   <!-- 2 · PowerPoint -->
   <circle cx="76" cy="224" r="7" fill="#9a3f12"/>
-  <text x="76" y="228.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fbf9f4">2</text>
-  <text x="100" y="219" font-size="17" font-weight="700" fill="#9a3f12">PowerPoint</text>
-  <text x="100" y="239" font-size="13" fill="#57534e">the first format</text>
-  <text x="360" y="220" font-size="15" fill="#1c1917">Colleagues supplied</text>
-  <text x="360" y="239" font-size="15" fill="#1c1917">their own decks</text>
+  <text x="76" y="228.5" text-anchor="middle" font-size="18" font-weight="700" fill="#fbf9f4">2</text>
+  <text x="100" y="219" font-size="18" font-weight="700" fill="#9a3f12">PowerPoint</text>
+  <text x="100" y="239" font-size="18" fill="#57534e">the first format</text>
+  <text x="360" y="220" font-size="18" fill="#1c1917">Colleagues supplied</text>
+  <text x="360" y="239" font-size="18" fill="#1c1917">their own decks</text>
   <text x="628" y="229" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="222" font-size="15" fill="#1c1917">the first real</text>
-  <text x="662" y="241" font-size="15" fill="#1c1917">remediation pipeline</text>
+  <text x="662" y="222" font-size="18" fill="#1c1917">the first real</text>
+  <text x="662" y="241" font-size="18" fill="#1c1917">remediation pipeline</text>
 
   <!-- 3 · Format expansion -->
   <circle cx="76" cy="320" r="7" fill="#9a3f12"/>
-  <text x="76" y="324.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fbf9f4">3</text>
-  <text x="100" y="315" font-size="17" font-weight="700" fill="#9a3f12">Format expansion</text>
-  <text x="100" y="335" font-size="13" fill="#57534e">Word · Excel · PDF</text>
-  <text x="360" y="316" font-size="15" fill="#1c1917">New formats broke the</text>
-  <text x="360" y="335" font-size="15" fill="#1c1917">one-size-fits-all assumptions</text>
+  <text x="76" y="324.5" text-anchor="middle" font-size="18" font-weight="700" fill="#fbf9f4">3</text>
+  <text x="100" y="315" font-size="18" font-weight="700" fill="#9a3f12">Format expansion</text>
+  <text x="100" y="335" font-size="18" fill="#57534e">Word · Excel · PDF</text>
+  <text x="360" y="316" font-size="18" fill="#1c1917">New formats broke the</text>
+  <text x="360" y="335" font-size="18" fill="#1c1917">one-size-fits-all assumptions</text>
   <text x="628" y="325" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="325" font-size="15" fill="#1c1917">the architecture differentiated</text>
+  <text x="662" y="325" font-size="18" fill="#1c1917">the architecture differentiated</text>
 
   <!-- 4 · SaaS -->
   <circle cx="76" cy="416" r="7" fill="#9a3f12"/>
-  <text x="76" y="420.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fbf9f4">4</text>
-  <text x="100" y="411" font-size="17" font-weight="700" fill="#9a3f12">SaaS</text>
-  <text x="100" y="431" font-size="13" fill="#57534e">a deployed service</text>
-  <text x="360" y="412" font-size="15" fill="#1c1917">Real users on</text>
-  <text x="360" y="431" font-size="15" fill="#1c1917">real documents</text>
+  <text x="76" y="420.5" text-anchor="middle" font-size="18" font-weight="700" fill="#fbf9f4">4</text>
+  <text x="100" y="411" font-size="18" font-weight="700" fill="#9a3f12">SaaS</text>
+  <text x="100" y="431" font-size="18" fill="#57534e">a deployed service</text>
+  <text x="360" y="412" font-size="18" fill="#1c1917">Real users on</text>
+  <text x="360" y="431" font-size="18" fill="#1c1917">real documents</text>
   <text x="628" y="421" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="414" font-size="15" fill="#1c1917">auth, quota, cost, security —</text>
-  <text x="662" y="433" font-size="15" fill="#1c1917">and the first fidelity limits</text>
+  <text x="662" y="414" font-size="18" fill="#1c1917">auth, quota, cost, security —</text>
+  <text x="662" y="433" font-size="18" fill="#1c1917">and the first fidelity limits</text>
 
   <!-- 5 · Standards -->
   <circle cx="76" cy="512" r="7" fill="#9a3f12"/>
-  <text x="76" y="516.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fbf9f4">5</text>
-  <text x="100" y="507" font-size="17" font-weight="700" fill="#9a3f12">Standards</text>
-  <text x="100" y="527" font-size="13" fill="#57534e">a defensible claim</text>
-  <text x="360" y="508" font-size="15" fill="#1c1917">The need for a defensible</text>
-  <text x="360" y="527" font-size="15" fill="#1c1917">accessibility claim</text>
+  <text x="76" y="516.5" text-anchor="middle" font-size="18" font-weight="700" fill="#fbf9f4">5</text>
+  <text x="100" y="507" font-size="18" font-weight="700" fill="#9a3f12">Standards</text>
+  <text x="100" y="527" font-size="18" fill="#57534e">a defensible claim</text>
+  <text x="360" y="508" font-size="18" fill="#1c1917">The need for a defensible</text>
+  <text x="360" y="527" font-size="18" fill="#1c1917">accessibility claim</text>
   <text x="628" y="517" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="517" font-size="15" fill="#1c1917">standards-grounded validation</text>
+  <text x="662" y="517" font-size="18" fill="#1c1917">standards-grounded validation</text>
 
   <!-- 6 · Hardening -->
   <circle cx="76" cy="608" r="7" fill="#9a3f12"/>
-  <text x="76" y="612.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fbf9f4">6</text>
-  <text x="100" y="603" font-size="17" font-weight="700" fill="#9a3f12">Hardening</text>
-  <text x="100" y="623" font-size="13" fill="#57534e">structural work</text>
-  <text x="360" y="604" font-size="15" fill="#1c1917">Time became available</text>
-  <text x="360" y="623" font-size="15" fill="#1c1917">for structural work</text>
+  <text x="76" y="612.5" text-anchor="middle" font-size="18" font-weight="700" fill="#fbf9f4">6</text>
+  <text x="100" y="603" font-size="18" font-weight="700" fill="#9a3f12">Hardening</text>
+  <text x="100" y="623" font-size="18" fill="#57534e">structural work</text>
+  <text x="360" y="604" font-size="18" fill="#1c1917">Time became available</text>
+  <text x="360" y="623" font-size="18" fill="#1c1917">for structural work</text>
   <text x="628" y="613" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="613" font-size="15" fill="#1c1917">models, tests, gates, provenance</text>
+  <text x="662" y="613" font-size="18" fill="#1c1917">models, tests, gates, provenance</text>
 
   <!-- 7 · Serverless -->
   <circle cx="76" cy="700" r="7" fill="#9a3f12"/>
-  <text x="76" y="704.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fbf9f4">7</text>
-  <text x="100" y="695" font-size="17" font-weight="700" fill="#9a3f12">Serverless</text>
-  <text x="100" y="715" font-size="13" fill="#57534e">re-platforming</text>
-  <text x="360" y="696" font-size="15" fill="#1c1917">Idle cost exposed the</text>
-  <text x="360" y="715" font-size="15" fill="#1c1917">wrong deployment shape</text>
+  <text x="76" y="704.5" text-anchor="middle" font-size="18" font-weight="700" fill="#fbf9f4">7</text>
+  <text x="100" y="695" font-size="18" font-weight="700" fill="#9a3f12">Serverless</text>
+  <text x="100" y="715" font-size="18" fill="#57534e">re-platforming</text>
+  <text x="360" y="696" font-size="18" fill="#1c1917">Idle cost exposed the</text>
+  <text x="360" y="715" font-size="18" fill="#1c1917">wrong deployment shape</text>
   <text x="628" y="705" font-size="20" fill="#9a3f12">&#8594;</text>
-  <text x="662" y="705" font-size="15" fill="#1c1917">a re-platforming</text>
+  <text x="662" y="705" font-size="18" fill="#1c1917">a re-platforming</text>
 
   <!-- footer note -->
-  <text x="60" y="752" font-size="14" font-style="italic" fill="#57534e">Stages are labels drawn afterward, not a plan followed at the time.</text>
+  <text x="60" y="752" font-size="18" font-style="italic" fill="#57534e">Stages are labels drawn afterward, not a plan followed at the time.</text>
 </svg>

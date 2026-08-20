@@ -21,12 +21,12 @@
 
   <!-- current value (top-left peer) -->
   <rect id="current-value" x="40" y="46" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="150" y="78" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">CURRENT VALUE</text>
+  <text x="150" y="78" text-anchor="middle" font-size="14.56" font-weight="700" fill="#2f5169">CURRENT VALUE</text>
   <text x="150" y="99" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">what is now</text>
 
   <!-- reference bound (bottom-left peer, declared separately) -->
   <rect id="reference-bound" x="40" y="166" width="220" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="150" y="198" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">REFERENCE BOUND</text>
+  <text x="150" y="198" text-anchor="middle" font-size="14.56" font-weight="700" fill="#2f5169">REFERENCE BOUND</text>
   <text x="150" y="219" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">declared separately</text>
 
   <!-- converge into comparison (two peers into one node; heads seated on the comparison's left border) -->
@@ -37,7 +37,7 @@
 
   <!-- comparison -->
   <rect id="comparison" x="368" y="108" width="160" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="448" y="144" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">COMPARISON</text>
+  <text x="448" y="144" text-anchor="middle" font-size="14.56" font-weight="700" fill="#2f5169">COMPARISON</text>
 
   <!-- footer: protect the point -->
   <text x="280" y="264" text-anchor="middle" font-size="13.5" font-style="italic" fill="#1c1917">The bound is declared apart from the quantity.</text>

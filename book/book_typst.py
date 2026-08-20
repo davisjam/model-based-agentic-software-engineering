@@ -645,7 +645,7 @@ def _render_table(block: Block_t) -> str:
 _WIDE_FIGURES = {"assets/research-arc.svg"}
 
 
-def _render_figure(block: Block_t, width: str = "100%", bare: bool = False) -> str:
+def _render_figure(block: Block_t, width: str = "94%", bare: bool = False) -> str:
     """A `<!-- figure: path | caption -->` → `#figure(image(path), caption: […])`, numbered + labelled.
     `width` sizes the image (default 85% of the measure; a `_WIDE_FIGURES` member renders at 100%; the
     wrapped author portrait passes a small width so it sits beside the bio, see `render_chapter`).

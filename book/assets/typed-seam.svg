@@ -35,15 +35,15 @@
 
   <!-- entity boxes (edges are drawn AFTER these so the node fills cap the ends) -->
   <rect id="passes" x="25" y="120" width="160" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="105" y="150" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">remediation</text>
-  <text x="105" y="172" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">passes</text>
+  <text x="105" y="150" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">remediation</text>
+  <text x="105" y="172" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">passes</text>
 
   <rect id="model" x="235" y="120" width="170" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="320" y="157" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">format model</text>
+  <text x="320" y="157" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">format model</text>
   <text x="320" y="206" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the only door</text>
 
   <rect id="library" x="450" y="120" width="180" height="64" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="540" y="157" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">format library</text>
+  <text x="540" y="157" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">format library</text>
 
   <!-- permitted arrows (solid) -->
   <!-- edge: passes -> model -->

@@ -32,13 +32,13 @@
 
   <!-- the write chain (solid) -->
   <rect id="mutation" x="215" y="70" width="170" height="46" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="300" y="99" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">mutation</text>
+  <text x="300" y="99" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">mutation</text>
 
   <rect id="stamp" x="215" y="146" width="170" height="46" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="300" y="175" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">stamp</text>
+  <text x="300" y="175" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">stamp</text>
 
   <rect id="registry" x="175" y="222" width="250" height="52" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2.4"/>
-  <text x="300" y="255" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">provenance registry</text>
+  <text x="300" y="255" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">provenance registry</text>
   <text x="435" y="255" font-size="16" fill="#57534e">[the only source]</text>
 
   <!-- edge: mutation -> stamp -->
@@ -48,13 +48,13 @@
 
   <!-- the two derived views (dashed = derived, not authored) -->
   <rect id="validation" x="70" y="340" width="160" height="48" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="150" y="370" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">validation</text>
+  <text x="150" y="370" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">validation</text>
 
   <rect id="changelog" x="390" y="340" width="160" height="48" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="470" y="370" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">changelog</text>
+  <text x="470" y="370" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">changelog</text>
 
   <rect id="customer" x="390" y="430" width="160" height="46" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="470" y="459" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">customer</text>
+  <text x="470" y="459" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">customer</text>
 
   <!-- edge: registry .. validation -->
   <path fill="none" stroke="#57534e" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#pd-arM)" d="M202.5,274 L202.5,338"/>

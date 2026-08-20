@@ -24,9 +24,9 @@
   </defs>
 
   <!-- LEFT: full territory (gray) — deliberately noisy but UNIFORM; no item is visually privileged -->
-  <text x="235" y="34" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">TERRITORY</text>
+  <text x="235" y="34" text-anchor="middle" font-size="17.28" font-weight="700" letter-spacing="1.2" fill="#57534e">TERRITORY</text>
   <rect id="territory" x="40" y="48" width="390" height="284" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-  <g font-size="15" fill="#57534e" text-anchor="middle">
+  <g font-size="17.28" fill="#57534e" text-anchor="middle">
     <text x="118" y="88">UI</text>
     <text x="235" y="88">queue</text>
     <text x="352" y="88">workers</text>
@@ -43,33 +43,33 @@
     <text x="235" y="216">format libs</text>
     <text x="352" y="216">billing</text>
   </g>
-  <text x="235" y="278" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">most of the system is not relevant</text>
-  <text x="235" y="300" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">to this question</text>
+  <text x="235" y="278" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">most of the system is not relevant</text>
+  <text x="235" y="300" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">to this question</text>
 
   <!-- reduction arrow: territory reduces to the surviving seam. Tail seats on the territory's right border,
        head on the seam box's left border (was floating in the whitespace between the two groups). -->
   <!-- edge: territory -> seam -->
   <line x1="430" y1="168" x2="598" y2="168" stroke="#2f5169" stroke-width="2.6" marker-end="url(#sr-b)"/>
-  <text x="484" y="178" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">purposeful</text>
-  <text x="484" y="212" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">reduction</text>
+  <text x="484" y="178" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">purposeful</text>
+  <text x="484" y="212" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">reduction</text>
 
   <!-- RIGHT: reduced model (blue) -->
-  <text x="745" y="34" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">MODEL</text>
+  <text x="745" y="34" text-anchor="middle" font-size="17.28" font-weight="700" letter-spacing="1.2" fill="#2f5169">MODEL</text>
   <rect id="rem-logic" x="600" y="60" width="290" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="745" y="92" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">remediation logic</text>
+  <text x="745" y="92" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">remediation logic</text>
   <!-- edge: rem-logic -> seam -->
   <line x1="745" y1="112" x2="745" y2="140" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sr-b)"/>
   <!-- the ONE thing the reduction preserves: the seam. Highlighted; the other two layers are ordinary blue. -->
   <rect id="seam" x="600" y="142" width="290" height="52" rx="10" fill="#d3e0ea" stroke="#2f5169" stroke-width="3.4"/>
-  <text x="745" y="168" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5169">structured document model</text>
-  <text x="745" y="186" text-anchor="middle" font-size="12.5" font-style="italic" fill="#2f5169">the surviving seam</text>
+  <text x="745" y="168" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">structured document model</text>
+  <text x="745" y="186" text-anchor="middle" font-size="17.28" font-style="italic" fill="#2f5169">the surviving seam</text>
   <!-- edge: seam -> format-impl -->
   <line x1="745" y1="194" x2="745" y2="222" stroke="#2f5169" stroke-width="2.2" marker-end="url(#sr-b)"/>
   <rect id="format-impl" x="600" y="224" width="290" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="745" y="256" text-anchor="middle" font-size="17" font-weight="700" fill="#2f5169">format implementation</text>
-  <text x="745" y="302" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Question preserved:</text>
-  <text x="745" y="322" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">&#8220;Where may document mutation occur?&#8221;</text>
+  <text x="745" y="256" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">format implementation</text>
+  <text x="745" y="302" text-anchor="middle" font-size="17.28" font-weight="700" fill="#1c1917">Question preserved:</text>
+  <text x="745" y="322" text-anchor="middle" font-size="17.28" font-style="italic" fill="#1c1917">&#8220;Where may document mutation occur?&#8221;</text>
 
   <!-- footer: protect the point -->
-  <text x="480" y="372" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The question determines what survives the reduction.</text>
+  <text x="480" y="372" text-anchor="middle" font-size="17.28" font-style="italic" fill="#1c1917">The question determines what survives the reduction.</text>
 </svg>

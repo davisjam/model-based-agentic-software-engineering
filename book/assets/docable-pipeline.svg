@@ -28,56 +28,56 @@
 
   <!-- input cap (transparent anchor so the inbound edge terminates on a named node) -->
   <rect id="doc-in" x="12" y="58" width="95" height="30" fill="none" stroke="none"/>
-  <text x="58" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="#57534e">a document</text>
+  <text x="58" y="72" text-anchor="middle" font-size="14.32" font-weight="700" fill="#57534e">a document</text>
 
   <!-- ============ working half (top row) ============ -->
   <g>
     <rect id="front-door" x="130" y="60" width="180" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="220" y="98" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">front door</text>
-    <text x="220" y="146" text-anchor="middle" font-size="16.96" font-style="italic" fill="#57534e">upload, identity, quota</text>
+    <text x="220" y="98" text-anchor="middle" font-size="19.08" font-weight="700" fill="#1c1917">front door</text>
+    <text x="220" y="146" text-anchor="middle" font-size="19.08" font-style="italic" fill="#57534e">upload, identity, quota</text>
 
     <rect id="dispatcher" x="380" y="60" width="180" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="470" y="98" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">dispatcher</text>
-    <text x="470" y="146" text-anchor="middle" font-size="16.96" font-style="italic" fill="#57534e">splits it into chunks of work</text>
+    <text x="470" y="98" text-anchor="middle" font-size="19.08" font-weight="700" fill="#1c1917">dispatcher</text>
+    <text x="470" y="146" text-anchor="middle" font-size="19.08" font-style="italic" fill="#57534e">splits it into chunks of work</text>
 
     <!-- remediation-core node anchor spans the box + its two-line caption, so the descent edge leaves the
          stage below the caption without a stroke crossing the glyphs; the visible box is unlabeled. -->
     <rect id="remediation-core" x="630" y="60" width="220" height="120" fill="none" stroke="none"/>
     <rect x="630" y="60" width="220" height="64" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="740" y="98" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">remediation core</text>
-    <text x="740" y="146" text-anchor="middle" font-size="16.96" font-style="italic" fill="#57534e">rules where rules suffice,</text>
-    <text x="740" y="164" text-anchor="middle" font-size="16.96" font-style="italic" fill="#57534e">a bounded model call where judgment is needed</text>
+    <text x="740" y="98" text-anchor="middle" font-size="19.08" font-weight="700" fill="#1c1917">remediation core</text>
+    <text x="740" y="146" text-anchor="middle" font-size="18.23" font-style="italic" fill="#57534e">rules where rules suffice,</text>
+    <text x="740" y="164" text-anchor="middle" font-size="9.49" font-style="italic" fill="#57534e">a bounded model call where judgment is needed</text>
   </g>
 
   <!-- ============ trust half (bottom row, banded) ============ -->
   <rect x="110" y="230" width="770" height="180" rx="12" fill="none" stroke="#1f7a4d"
         stroke-width="2" stroke-dasharray="7 5"/>
-  <text x="860" y="256" text-anchor="end" font-size="16.96" font-weight="700" fill="#1f7a4d">the trust half — nothing ships unchecked</text>
+  <text x="860" y="256" text-anchor="end" font-size="19.08" font-weight="700" fill="#1f7a4d">the trust half — nothing ships unchecked</text>
 
   <g>
     <rect id="checker" x="150" y="280" width="180" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-    <text x="240" y="318" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">checker</text>
-    <text x="240" y="366" text-anchor="middle" font-size="16.96" font-style="italic" fill="#57534e">every finding mapped to</text>
-    <text x="240" y="384" text-anchor="middle" font-size="16.96" font-style="italic" fill="#57534e">a clause of the standard</text>
+    <text x="240" y="318" text-anchor="middle" font-size="19.08" font-weight="700" fill="#1c1917">checker</text>
+    <text x="240" y="366" text-anchor="middle" font-size="19.08" font-style="italic" fill="#57534e">every finding mapped to</text>
+    <text x="240" y="384" text-anchor="middle" font-size="19.08" font-style="italic" fill="#57534e">a clause of the standard</text>
 
     <rect id="fidelity-validator" x="400" y="280" width="180" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-    <text x="490" y="310" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">fidelity</text>
-    <text x="490" y="330" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">validator</text>
-    <text x="490" y="366" text-anchor="middle" font-size="16.96" font-style="italic" fill="#57534e">asserts the meaning</text>
-    <text x="490" y="384" text-anchor="middle" font-size="16.96" font-style="italic" fill="#57534e">survived</text>
+    <text x="490" y="310" text-anchor="middle" font-size="19.08" font-weight="700" fill="#1c1917">fidelity</text>
+    <text x="490" y="330" text-anchor="middle" font-size="19.08" font-weight="700" fill="#1c1917">validator</text>
+    <text x="490" y="366" text-anchor="middle" font-size="19.08" font-style="italic" fill="#57534e">asserts the meaning</text>
+    <text x="490" y="384" text-anchor="middle" font-size="19.08" font-style="italic" fill="#57534e">survived</text>
 
     <rect id="provenance-layer" x="650" y="280" width="180" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-    <text x="740" y="310" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">provenance</text>
-    <text x="740" y="330" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">layer</text>
-    <text x="740" y="366" text-anchor="middle" font-size="16.96" font-style="italic" fill="#57534e">stamps every</text>
-    <text x="740" y="384" text-anchor="middle" font-size="16.96" font-style="italic" fill="#57534e">inserted artifact</text>
+    <text x="740" y="310" text-anchor="middle" font-size="19.08" font-weight="700" fill="#1c1917">provenance</text>
+    <text x="740" y="330" text-anchor="middle" font-size="19.08" font-weight="700" fill="#1c1917">layer</text>
+    <text x="740" y="366" text-anchor="middle" font-size="19.08" font-style="italic" fill="#57534e">stamps every</text>
+    <text x="740" y="384" text-anchor="middle" font-size="19.08" font-style="italic" fill="#57534e">inserted artifact</text>
   </g>
 
   <!-- output cap (transparent anchor so the outbound edge terminates on a named node) -->
   <rect id="out-file" x="908" y="298" width="128" height="54" fill="none" stroke="none"/>
-  <text x="975" y="306" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">the file,</text>
-  <text x="975" y="326" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">remediated —</text>
-  <text x="975" y="346" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">with evidence</text>
+  <text x="975" y="306" text-anchor="middle" font-size="19.08" font-weight="700" fill="#9a3f12">the file,</text>
+  <text x="975" y="326" text-anchor="middle" font-size="16.67" font-weight="700" fill="#9a3f12">remediated —</text>
+  <text x="975" y="346" text-anchor="middle" font-size="16.6" font-weight="700" fill="#9a3f12">with evidence</text>
 
   <!-- arrows -->
   <g fill="none" stroke="#1c1917" stroke-width="2.2" marker-end="url(#dpArrow)">

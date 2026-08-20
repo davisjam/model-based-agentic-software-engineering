@@ -33,7 +33,7 @@
   <!-- transparent anchor: the engineering question is the source node of the ladder -->
   <rect id="question" x="110" y="16" width="460" height="48" fill="none" stroke="none"/>
   <text x="340" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">ENGINEERING QUESTION</text>
-  <text x="340" y="52" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Can durable state name an artifact recovery has not yet published?</text>
+  <text x="340" y="52" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">Can durable state name an artifact recovery has not yet published?</text>
   <!-- edge: question -> model -->
   <line x1="340" y1="64" x2="340" y2="88" stroke="#2f5169" stroke-width="2.2" marker-end="url(#mf-b)"/>
 

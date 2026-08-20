@@ -30,9 +30,9 @@
   <text x="450" y="40" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">From substrate to method</text>
 
   <!-- column headers -->
-  <text x="180" y="86" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.5" fill="#57534e">SUBSTRATE TRAIT</text>
-  <text x="470" y="86" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.5" fill="#9a3f12">PROBLEM</text>
-  <text x="730" y="86" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.5" fill="#155c38">METHOD</text>
+  <text x="180" y="86" text-anchor="middle" font-size="16.2" font-weight="700" letter-spacing="1.5" fill="#57534e">SUBSTRATE TRAIT</text>
+  <text x="470" y="86" text-anchor="middle" font-size="16.2" font-weight="700" letter-spacing="1.5" fill="#9a3f12">PROBLEM</text>
+  <text x="730" y="86" text-anchor="middle" font-size="16.2" font-weight="700" letter-spacing="1.5" fill="#155c38">METHOD</text>
 
   <!-- ===== EDGES (drawn under nodes; source runs to node centre, directed head seats on target rim) ===== -->
   <!-- edge: trait-a -> representation-problem -->
@@ -53,20 +53,20 @@
 
   <rect id="modeling" x="620" y="108" width="264" height="60" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
   <text x="752" y="134" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Modeling</text>
-  <text x="752" y="155" text-anchor="middle" font-size="13.5" fill="#57534e">represent what agents reason through</text>
+  <text x="752" y="155" text-anchor="middle" font-size="14.01" fill="#57534e">represent what agents reason through</text>
 
   <!-- ===== ROW B: authority problem -> alignment ===== -->
   <rect id="trait-b" x="40" y="252" width="280" height="72" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="180" y="282" text-anchor="middle" font-size="16" fill="#1c1917">probabilistic productive work</text>
-  <text x="180" y="304" text-anchor="middle" font-size="16" fill="#1c1917">observable, interposable seams</text>
+  <text x="180" y="282" text-anchor="middle" font-size="16.2" fill="#1c1917">probabilistic productive work</text>
+  <text x="180" y="304" text-anchor="middle" font-size="16.2" fill="#1c1917">observable, interposable seams</text>
 
   <rect id="authority-problem" x="360" y="260" width="220" height="56" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
   <text x="470" y="293" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Authority problem</text>
 
   <rect id="alignment" x="620" y="258" width="264" height="60" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
   <text x="752" y="284" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">Alignment</text>
-  <text x="752" y="305" text-anchor="middle" font-size="13.5" fill="#57534e">give obligations authority</text>
+  <text x="752" y="305" text-anchor="middle" font-size="16.2" fill="#57534e">give obligations authority</text>
 
   <!-- rhyme with the MAGE overview, without reproducing it -->
-  <text x="450" y="384" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">Part I derives the two core activities; Part IV composes them into the MAGE method.</text>
+  <text x="450" y="384" text-anchor="middle" font-size="16.2" font-style="italic" fill="#57534e">Part I derives the two core activities; Part IV composes them into the MAGE method.</text>
 </svg>

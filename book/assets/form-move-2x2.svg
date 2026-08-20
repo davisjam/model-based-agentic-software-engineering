@@ -12,7 +12,7 @@
     a mechanism picks one value on each axis — so any move can be built soft or hard.</desc>
 
   
-  <text x="450" y="46" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Form and move are two independent axes</text>
+  <text x="450" y="46" text-anchor="middle" font-size="23.4" font-weight="700" fill="#1c1917">Form and move are two independent axes</text>
 
   
   <text x="405" y="128" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">Constraint</text>
@@ -21,7 +21,7 @@
   <text x="700" y="152" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">catches it after</text>
 
   
-  <text x="552" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">move →</text>
+  <text x="552" y="98" text-anchor="middle" font-size="16.2" font-weight="700" fill="#1c1917">move →</text>
 
   
   
@@ -31,7 +31,7 @@
   <text x="128" y="478" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">Hard</text>
   <text x="128" y="502" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">holds a line</text>
   
-  <text x="128" y="192" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">↓ form</text>
+  <text x="128" y="192" text-anchor="middle" font-size="16.2" font-weight="700" fill="#1c1917">↓ form</text>
 
   
   
@@ -46,21 +46,21 @@
   </g>
 
   
-  <text x="405" y="222" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">soft constraint</text>
+  <text x="405" y="222" text-anchor="middle" font-size="16.2" font-weight="700" fill="#57534e">soft constraint</text>
   <text x="405" y="292" text-anchor="middle" font-size="21" fill="#1c1917">a structured model</text>
   <text x="405" y="320" text-anchor="middle" font-size="21" fill="#1c1917">that aims</text>
 
   
-  <text x="705" y="222" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">soft sensor</text>
+  <text x="705" y="222" text-anchor="middle" font-size="16.2" font-weight="700" fill="#57534e">soft sensor</text>
   <text x="705" y="292" text-anchor="middle" font-size="21" fill="#1c1917">a convention</text>
   <text x="705" y="320" text-anchor="middle" font-size="21" fill="#1c1917">that reminds</text>
 
   
-  <text x="405" y="434" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">hard constraint</text>
+  <text x="405" y="434" text-anchor="middle" font-size="16.2" font-weight="700" fill="#57534e">hard constraint</text>
   <text x="405" y="504" text-anchor="middle" font-size="21" fill="#1c1917">an enum the</text>
   <text x="405" y="532" text-anchor="middle" font-size="21" fill="#1c1917">compiler enforces</text>
 
   
-  <text x="705" y="434" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">hard sensor</text>
+  <text x="705" y="434" text-anchor="middle" font-size="16.2" font-weight="700" fill="#57534e">hard sensor</text>
   <text x="705" y="518" text-anchor="middle" font-size="21" fill="#1c1917">a lint that blocks</text>
 </svg>

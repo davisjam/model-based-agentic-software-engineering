@@ -751,24 +751,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="f-c2-derive-dont-copy-model-bad" x="60" y="80" width="150" height="56" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="135" y="114" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL</text>
 
-  <text x="285" y="98" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">copy</text>
+  <text x="285" y="98" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">copy</text>
 
   <rect id="f-c2-derive-dont-copy-snapshot" x="366" y="80" width="160" height="56" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="446" y="114" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">SNAPSHOT</text>
+  <text x="446" y="114" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">SNAPSHOT</text>
 
   <rect id="f-c2-derive-dont-copy-check-bad" x="646" y="80" width="150" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="721" y="114" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">CHECK</text>
+  <text x="721" y="114" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHECK</text>
 
-  <text x="150" y="176" font-size="14" fill="#b23b3b">the model changes&#8230;</text>
+  <text x="150" y="176" font-size="18" fill="#b23b3b">the model changes&#8230;</text>
   <!-- transparent text-label anchor for the consequence -->
   <rect id="f-c2-derive-dont-copy-stale-bad" x="364" y="186" width="220" height="24" fill="none" stroke="none"/>
-  <text x="366" y="200" font-size="15" font-weight="700" fill="#b23b3b">&#8230; the snapshot does not &#8212; the check trusts a stale answer</text>
+  <text x="366" y="200" font-size="7.36" font-weight="700" fill="#b23b3b">&#8230; the snapshot does not &#8212; the check trusts a stale answer</text>
 
   <!-- divider -->
   <line x1="60" y1="252" x2="940" y2="252" stroke="#e4e0d8" stroke-width="1.5"/>
 
   <!-- ============ GOOD ============ -->
-  <text x="60" y="300" font-size="16" font-weight="700" letter-spacing="0.06em" fill="#1f7a4d">GOOD &#183; query at the point of use</text>
+  <text x="60" y="300" font-size="18" font-weight="700" letter-spacing="0.06em" fill="#1f7a4d">GOOD &#183; query at the point of use</text>
 
   <!-- edge: model-good -> check-good (query) -->
   <line x1="135" y1="352" x2="644" y2="352" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#f-c2-derive-dont-copy-c2-ah-g)"/>
@@ -778,18 +778,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="f-c2-derive-dont-copy-model-good" x="60" y="324" width="150" height="56" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="135" y="358" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL</text>
 
-  <text x="425" y="342" text-anchor="middle" font-size="15" font-weight="700" font-style="italic" fill="#1f7a4d">query &#8212; no second editable truth</text>
+  <text x="425" y="342" text-anchor="middle" font-size="18" font-weight="700" font-style="italic" fill="#1f7a4d">query &#8212; no second editable truth</text>
 
   <rect id="f-c2-derive-dont-copy-check-good" x="646" y="324" width="150" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="721" y="358" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">CHECK</text>
+  <text x="721" y="358" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHECK</text>
 
-  <text x="150" y="416" font-size="14" fill="#1f7a4d">the model changes&#8230;</text>
+  <text x="150" y="416" font-size="18" fill="#1f7a4d">the model changes&#8230;</text>
   <!-- transparent text-label anchor for the consequence -->
   <rect id="f-c2-derive-dont-copy-fresh-good" x="364" y="426" width="220" height="24" fill="none" stroke="none"/>
-  <text x="366" y="440" font-size="15" font-weight="700" fill="#155c38">&#8230; the next check sees it &#8212; coupled to the interface, not yesterday's answer</text>
+  <text x="366" y="440" font-size="5.74" font-weight="700" fill="#155c38">&#8230; the next check sees it &#8212; coupled to the interface, not yesterday's answer</text>
 
   <!-- footer -->
-  <text x="500" y="496" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">Consume authority by query or derivation; a snapshot is a new truth free to drift.</text>
+  <text x="500" y="496" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">Consume authority by query or derivation; a snapshot is a new truth free to drift.</text>
 </svg><figcaption data-short="Query, don&#x27;t snapshot"><span class="fig-label">Figure B.2-1.</span> <em>Query, don't snapshot.</em> BAD — the model is copied into a snapshot that a check reads; the model changes, the snapshot does not. GOOD — the check queries the model directly, so the next check sees the change.</figcaption></figure>
 <p><strong>Example — Live model consumption.</strong> Model-aware lints, tests, and agent briefs query the current representation instead of embedding copied values. When the modeled architecture changes, consumers see the new state through the model interface; there are no stale copies to find and update.</p>
 <p><strong>Example — Generated artifacts.</strong> Consumers that should not query at run time can instead be generated from the authoritative model at build time. The downstream artifact is still derived from the model rather than maintained as a second source of truth.</p>

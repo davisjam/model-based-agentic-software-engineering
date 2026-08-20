@@ -20,7 +20,7 @@
 
   <!-- model / spec (green = modeling) -->
   <rect id="model-spec" x="360" y="66" width="280" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="500" y="100" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">MODEL / SPECIFICATION</text>
+  <text x="500" y="100" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL / SPECIFICATION</text>
 
   <!-- split into facts branch and obligations branch (last control aimed above each head, so the head dives in) -->
   <!-- edge: model-spec -> derive-facts -->
@@ -29,31 +29,31 @@
   <path d="M615,122 L615,168" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
 
   <rect id="derive-facts" x="150" y="170" width="260" height="66" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="280" y="198" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">DERIVE FACTS</text>
-  <text x="280" y="218" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">&amp; RELATIONS</text>
+  <text x="280" y="198" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">DERIVE FACTS</text>
+  <text x="280" y="218" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">&amp; RELATIONS</text>
 
   <rect id="derive-obligations" x="590" y="170" width="260" height="66" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="720" y="196" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">DERIVE OBLIGATIONS</text>
-  <text x="720" y="216" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">what must hold?</text>
+  <text x="720" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">DERIVE OBLIGATIONS</text>
+  <text x="720" y="216" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">what must hold?</text>
 
   <!-- facts branch -> current view (terminal side output, neutral) -->
   <!-- edge: derive-facts -> current-view -->
   <line x1="280" y1="236" x2="280" y2="282" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
   <rect id="current-view" x="170" y="284" width="220" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="280" y="316" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CURRENT VIEW</text>
+  <text x="280" y="316" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CURRENT VIEW</text>
 
   <!-- obligations branch -> census -->
   <!-- edge: derive-obligations -> census -->
   <line x1="720" y1="236" x2="720" y2="282" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
   <rect id="census" x="590" y="284" width="260" height="52" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="720" y="316" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">OBLIGATION CENSUS</text>
+  <text x="720" y="316" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">OBLIGATION CENSUS</text>
 
   <!-- census -> select evidence (dashed rust = governance choice) -->
   <!-- edge: census -> select-evidence -->
   <line x1="720" y1="336" x2="720" y2="382" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
   <rect id="select-evidence" x="590" y="384" width="260" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
-  <text x="720" y="412" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">SELECT EVIDENCE</text>
-  <text x="720" y="432" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">for claim shape</text>
+  <text x="720" y="412" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">SELECT EVIDENCE</text>
+  <text x="720" y="432" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">for claim shape</text>
 
   <!-- fan to three evidence artifacts (neutral); the two diagonals dive in via last control above the head -->
   <!-- edge: select-evidence -> test -->
@@ -64,12 +64,12 @@
   <path d="M827.5,442 L827.5,490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
 
   <rect id="test" x="490" y="492" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="560" y="522" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">TEST</text>
+  <text x="560" y="522" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TEST</text>
   <rect id="lint" x="650" y="492" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="720" y="522" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">LINT</text>
+  <text x="720" y="522" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">LINT</text>
   <rect id="search-proof" x="805" y="492" width="160" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="885" y="516" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">SEARCH /</text>
-  <text x="885" y="533" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">PROOF</text>
+  <text x="885" y="516" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">SEARCH /</text>
+  <text x="885" y="533" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">PROOF</text>
 
   <!-- merge to claim coverage (green emphasis); last control aimed at the claim centre -->
   <!-- edge: test -> claim-coverage -->
@@ -80,14 +80,14 @@
   <path d="M832.5,542 L832.5,594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#me-ah)"/>
 
   <rect id="claim-coverage" x="580" y="596" width="280" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="720" y="630" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">CLAIM COVERAGE</text>
+  <text x="720" y="630" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">CLAIM COVERAGE</text>
 
   <!-- uncovered claim -> visible debt (dotted red = failure) -->
   <!-- edge: claim-coverage -> visible-debt -->
   <line x1="720" y1="654" x2="720" y2="690" stroke="#b23b3b" stroke-width="2" marker-end="url(#me-ah-red)"/>
-  <text x="738" y="676" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">uncovered claim?</text>
+  <text x="738" y="676" text-anchor="start" font-size="18" font-style="italic" fill="#57534e">uncovered claim?</text>
   <rect id="visible-debt" x="600" y="692" width="240" height="54" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2" stroke-dasharray="2 4"/>
-  <text x="720" y="724" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">VISIBLE DEBT</text>
+  <text x="720" y="724" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">VISIBLE DEBT</text>
 
-  <text x="500" y="800" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Coverage is meaningful only relative to a named population.</text>
+  <text x="500" y="800" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Coverage is meaningful only relative to a named population.</text>
 </svg>

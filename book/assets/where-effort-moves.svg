@@ -36,7 +36,7 @@
 
   <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
   <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where engineering effort moves</text>
-  <text x="500" y="70" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The lifecycle keeps its phases. The allocation of work across them changes.</text>
+  <text x="500" y="70" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">The lifecycle keeps its phases. The allocation of work across them changes.</text>
 
   <!-- ===== top row: the five lifecycle phases (unchanged) ===== -->
   <!-- phase-chain edges (drawn under the boxes; source runs to node centre, directed head seats on target rim) -->
@@ -50,7 +50,7 @@
     <!-- edge: validation -> operation -->
     <line x1="772" y1="119" x2="790" y2="119" marker-end="url(#wem-ah)"/>
   </g>
-  <g font-size="16" text-anchor="middle" fill="#1c1917">
+  <g font-size="18" text-anchor="middle" fill="#1c1917">
     <rect id="requirements" x="40"  y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
     <text x="124" y="124">Requirements</text>
     <rect id="design" x="228" y="96" width="168" height="46" rx="7" fill="#f6f4ef" stroke="#e4e0d8"/>
@@ -66,8 +66,8 @@
 
   <!-- ===== band 1: Human engineering judgment (rust) ===== -->
   <rect x="40" y="168" width="920" height="86" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="60" y="196" font-size="17" font-weight="700" fill="#9a3f12">Human engineering judgment</text>
-  <g font-size="15" fill="#1c1917">
+  <text x="60" y="196" font-size="18" font-weight="700" fill="#9a3f12">Human engineering judgment</text>
+  <g font-size="18" fill="#1c1917">
     <text x="60" y="228">intent</text>
     <text x="230" y="228">abstractions</text>
     <text x="440" y="228">tradeoffs</text>
@@ -77,32 +77,32 @@
 
   <!-- ===== band 2: Fleet (blue), weighted under Implementation ===== -->
   <rect x="40" y="266" width="920" height="86" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="60" y="294" font-size="17" font-weight="700" fill="#2f5169">Fleet</text>
+  <text x="60" y="294" font-size="18" font-weight="700" fill="#2f5169">Fleet</text>
   <!-- emphasis block under the Implementation phase column -->
   <rect x="416" y="304" width="168" height="34" rx="6" fill="#fdfcf9" stroke="#2f5169" stroke-width="1.6"/>
-  <text x="500" y="326" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2f5169">implementation</text>
-  <g font-size="15" fill="#1c1917">
+  <text x="500" y="326" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">implementation</text>
+  <g font-size="18" fill="#1c1917">
     <text x="60" y="326">analysis</text>
     <text x="230" y="326">transformation</text>
     <text x="620" y="326">routine</text>
-    <text x="620" y="344" font-size="13.5" fill="#57534e">remediation</text>
+    <text x="620" y="344" font-size="18" fill="#57534e">remediation</text>
   </g>
 
   <!-- ===== band 3: Governed environment (green), spans all phases ===== -->
   <rect x="40" y="364" width="920" height="98" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="60" y="392" font-size="17" font-weight="700" fill="#155c38">Governed environment</text>
-  <text x="470" y="392" font-size="14.5" font-style="italic" fill="#57534e">carries repeatable structure across every phase</text>
-  <g font-size="15" fill="#1c1917">
+  <text x="60" y="392" font-size="18" font-weight="700" fill="#155c38">Governed environment</text>
+  <text x="470" y="392" font-size="18" font-style="italic" fill="#57534e">carries repeatable structure across every phase</text>
+  <g font-size="18" fill="#1c1917">
     <text x="60" y="426">models / context</text>
     <text x="270" y="426">permissions /</text>
-    <text x="270" y="444" font-size="13.5" fill="#57534e">constraints</text>
+    <text x="270" y="444" font-size="18" fill="#57534e">constraints</text>
     <text x="470" y="426">evidence /</text>
-    <text x="470" y="444" font-size="13.5" fill="#57534e">validators</text>
+    <text x="470" y="444" font-size="18" fill="#57534e">validators</text>
     <text x="650" y="426">admission</text>
     <text x="800" y="426">operational</text>
-    <text x="800" y="444" font-size="13.5" fill="#57534e">controls</text>
+    <text x="800" y="444" font-size="18" fill="#57534e">controls</text>
   </g>
 
-  <text x="500" y="502" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Implementation shifts to the fleet; human effort concentrates in intent, abstraction, evidence, tradeoffs, and adaptation.</text>
-  <text x="500" y="530" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Delegation changes the allocation of work, not the engineer's accountability for the system.</text>
+  <text x="500" y="502" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Implementation shifts to the fleet; human effort concentrates in intent, abstraction, evidence, tradeoffs, and adaptation.</text>
+  <text x="500" y="530" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Delegation changes the allocation of work, not the engineer's accountability for the system.</text>
 </svg>

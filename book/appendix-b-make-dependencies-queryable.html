@@ -738,7 +738,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- CHANGE X -->
   <rect id="f-c10-dependencies-queryable-change" x="400" y="30" width="200" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="500" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHANGE X</text>
-  <text x="500" y="76" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">proposed</text>
+  <text x="500" y="76" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">proposed</text>
   <!-- edge: change -> substrate -->
   <line x1="500" y1="84" x2="500" y2="134" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-c10-dependencies-queryable-c10-ah-n)"/>
 
@@ -756,18 +756,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- CONTROL A (blocks) -->
   <rect id="f-c10-dependencies-queryable-control-a" x="110" y="254" width="200" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="210" y="282" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">CONTROL A</text>
-  <text x="210" y="304" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">blocks</text>
+  <text x="210" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL A</text>
+  <text x="210" y="304" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">blocks</text>
 
   <!-- CONTROL B (unaffected) -->
   <rect id="f-c10-dependencies-queryable-control-b" x="400" y="254" width="200" height="64" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
-  <text x="500" y="282" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">CONTROL B</text>
-  <text x="500" y="304" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">unaffected</text>
+  <text x="500" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL B</text>
+  <text x="500" y="304" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">unaffected</text>
 
   <!-- MODEL C (derives) -->
   <rect id="f-c10-dependencies-queryable-model-c" x="690" y="254" width="200" height="64" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
-  <text x="790" y="282" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">MODEL C</text>
-  <text x="790" y="304" text-anchor="middle" font-size="14" font-weight="700" fill="#155c38">derives</text>
+  <text x="790" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL C</text>
+  <text x="790" y="304" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">derives</text>
 
   <!-- converge to BLAST RADIUS (one path per branch) -->
   <!-- edge: control-a -> blast -->
@@ -781,8 +781,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="439" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">BLAST RADIUS</text>
 
   <!-- footer -->
-  <text x="500" y="510" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">Declare each dependency as typed metadata on the dependent.</text>
-  <text x="500" y="536" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Change impact becomes a graph query over declared dependencies.</text>
+  <text x="500" y="510" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Declare each dependency as typed metadata on the dependent.</text>
+  <text x="500" y="536" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Change impact becomes a graph query over declared dependencies.</text>
 </svg><figcaption data-short="Impact as a graph query"><span class="fig-label">Figure B.10-1.</span> <em>Impact as a graph query.</em> A proposed change reaches a substrate node; typed dependency edges identify the controls and models that depend on it, and their union defines the affected set.</figcaption></figure>
 <p><strong>Example — Control blast radius.</strong> Each control declares its substrate dependencies as structured metadata. A query identifies which controls depend on a proposed substrate change and how each relation should be interpreted.</p>
 <p><strong>Example — Traceability.</strong> Symbol-anchored traceability applies the same move across engineering artifacts. Model elements, lints, code, proofs, and registries join through derived, re-checked edges. The resulting graph lets engineers query what a change affects and inspect why.</p>

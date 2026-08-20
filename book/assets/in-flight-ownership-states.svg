@@ -55,19 +55,19 @@
   <!-- RELEASED (green) -->
   <rect id="released" x="80" y="246" width="200" height="66" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
   <text x="180" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">RELEASED</text>
-  <text x="180" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#155c38">claim ends cleanly</text>
+  <text x="180" y="300" text-anchor="middle" font-size="12.96" font-style="italic" fill="#155c38">claim ends cleanly</text>
 
   <!-- RECLAIMABLE (gray) -->
   <rect id="reclaimable" x="440" y="246" width="200" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
   <text x="540" y="280" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">RECLAIMABLE</text>
-  <text x="540" y="300" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">lease lapsed / stale</text>
+  <text x="540" y="300" text-anchor="middle" font-size="12.96" font-style="italic" fill="#57534e">lease lapsed / stale</text>
 
   <!-- another actor may claim: loop back from RECLAIMABLE to CLAIMED -->
   <!-- edge: reclaimable .. claimed -->
   <path d="M640,268 C698,208 640,118 494,112" fill="none" stroke="#57534e" stroke-width="2"
         stroke-dasharray="6 5" marker-end="url(#io-k)"/>
-  <text x="660" y="182" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">another actor</text>
-  <text x="660" y="199" text-anchor="middle" font-size="12.5" font-style="italic" fill="#57534e">may claim</text>
+  <text x="660" y="182" text-anchor="middle" font-size="12.96" font-style="italic" fill="#57534e">another actor</text>
+  <text x="660" y="199" text-anchor="middle" font-size="12.96" font-style="italic" fill="#57534e">may claim</text>
 
   <!-- footer: protect the point -->
   <text x="360" y="372" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Merge releases the claim; expiry makes it reclaimable.</text>

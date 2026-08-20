@@ -46,11 +46,11 @@
 
   <rect x="0" y="0" width="1000" height="600" fill="#fdfcf9"/>
   <text x="500" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">A new engineering problem</text>
-  <text x="500" y="66" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">When agents perform the implementation, engineering leverage moves into the environment.</text>
+  <text x="500" y="66" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">When agents perform the implementation, engineering leverage moves into the environment.</text>
 
   <!-- ===== CLASSICAL pipeline (top) ===== -->
-  <text x="30" y="104" font-size="16" font-weight="700" letter-spacing="1.5" fill="#57534e">CLASSICAL SE</text>
-  <text x="30" y="124" font-size="16" font-style="italic" fill="#57534e">the engineer writes most implementation directly</text>
+  <text x="30" y="104" font-size="18" font-weight="700" letter-spacing="1.5" fill="#57534e">CLASSICAL SE</text>
+  <text x="30" y="124" font-size="18" font-style="italic" fill="#57534e">the engineer writes most implementation directly</text>
 
   <!-- edge: eng-c -> impl-c -->
   <path d="M300,173 L348,173" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#nep-neutral)"/>
@@ -69,14 +69,14 @@
   <rect id="classical-effort" x="310" y="228" width="290" height="26" fill="none" stroke="none"/>
   <!-- edge: classical-effort -> impl-c -->
   <line x1="455" y1="228" x2="455" y2="202" stroke="#57534e" stroke-width="1.8" marker-end="url(#nep-neutral)"/>
-  <text x="455" y="248" text-anchor="middle" font-size="16" fill="#57534e">substantial direct engineering effort</text>
+  <text x="455" y="248" text-anchor="middle" font-size="16.35" fill="#57534e">substantial direct engineering effort</text>
 
   <!-- divider between the two regimes -->
   <line x1="30" y1="272" x2="970" y2="272" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="5 6"/>
 
   <!-- ===== AGENTIC pipeline (bottom) ===== -->
-  <text x="30" y="304" font-size="16" font-weight="700" letter-spacing="1.5" fill="#155c38">AGENTIC SE</text>
-  <text x="30" y="324" font-size="16" font-style="italic" fill="#57534e">agents perform the implementation, inside an engineered environment</text>
+  <text x="30" y="304" font-size="18" font-weight="700" letter-spacing="1.5" fill="#155c38">AGENTIC SE</text>
+  <text x="30" y="324" font-size="18" font-style="italic" fill="#57534e">agents perform the implementation, inside an engineered environment</text>
 
   <!-- edge: eng-a -> env -->
   <path d="M146,371 L166,371" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#nep-neutral)"/>
@@ -101,21 +101,21 @@
   <text x="602" y="378" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Implementation</text>
 
   <rect id="pq-a" x="712" y="344" width="150" height="54" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="787" y="378" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Product quality</text>
+  <text x="787" y="378" text-anchor="middle" font-size="17.62" font-weight="700" fill="#1c1917">Product quality</text>
 
   <!-- agentic lever annotation: the environment is the primary engineered lever -->
   <!-- transparent anchor spanning the arrow tail + the label so the annotation arrow plugs into a named node -->
   <rect id="primary-lever" x="159" y="430" width="200" height="26" fill="none" stroke="none"/>
   <!-- edge: primary-lever -> env -->
   <line x1="259" y1="430" x2="259" y2="404" stroke="#9a3f12" stroke-width="2" marker-end="url(#nep-accent)"/>
-  <text x="259" y="450" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">primary engineered lever</text>
+  <text x="259" y="450" text-anchor="middle" font-size="14.91" font-weight="700" fill="#9a3f12">primary engineered lever</text>
 
   <!-- leverage framing callout (NOT "determines quality") -->
-  <text x="620" y="446" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Engineering leverage moves into the environment.</text>
-  <text x="620" y="468" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the instructions, representations, constraints, and evidence that shape autonomous work</text>
+  <text x="620" y="446" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">Engineering leverage moves into the environment.</text>
+  <text x="620" y="468" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the instructions, representations, constraints, and evidence that shape autonomous work</text>
 
   <!-- ===== the environment, unpacked ===== -->
   <rect x="150" y="500" width="700" height="70" rx="12" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="500" y="530" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">Inside the Engineered Environment (the governed engineering environment)</text>
-  <text x="500" y="554" text-anchor="middle" font-size="16" fill="#57534e">models · policies · evidence · validators · infrastructure</text>
+  <text x="500" y="530" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Inside the Engineered Environment (the governed engineering environment)</text>
+  <text x="500" y="554" text-anchor="middle" font-size="18" fill="#57534e">models · policies · evidence · validators · infrastructure</text>
 </svg>

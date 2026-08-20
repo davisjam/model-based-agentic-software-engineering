@@ -51,19 +51,19 @@
 
   <!-- ===== the state column (left) ===== -->
   <rect id="queued" x="110" y="64"  width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="200" y="93"  text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">QUEUED</text>
+  <text x="200" y="93"  text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">QUEUED</text>
   <rect id="claimed" x="110" y="142" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="200" y="171" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CLAIMED</text>
+  <text x="200" y="171" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">CLAIMED</text>
   <rect id="plan-dispatch" x="110" y="220" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="200" y="249" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">PLAN + DISPATCH</text>
+  <text x="200" y="249" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">PLAN + DISPATCH</text>
   <rect id="waiting" x="110" y="298" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="200" y="327" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">WAITING</text>
+  <text x="200" y="327" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">WAITING</text>
   <rect id="merging" x="110" y="376" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="200" y="405" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">MERGING</text>
+  <text x="200" y="405" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">MERGING</text>
   <rect id="finalizing" x="110" y="454" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#2b2825" stroke-width="2"/>
-  <text x="200" y="483" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">FINALIZING</text>
+  <text x="200" y="483" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">FINALIZING</text>
   <rect id="completed" x="110" y="532" width="180" height="44" rx="8" fill="#f6f4ef" stroke="#155c38" stroke-width="2.8"/>
-  <text x="200" y="561" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">COMPLETED</text>
+  <text x="200" y="561" text-anchor="middle" font-size="16.64" font-weight="700" fill="#1c1917">COMPLETED</text>
 
   <!-- legal transitions (solid, straight) -->
   <!-- edge: queued -> claimed -->
@@ -81,7 +81,7 @@
 
   <!-- ===== FAILED terminal (right, red) ===== -->
   <rect id="failed" x="395" y="298" width="150" height="44" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2.4"/>
-  <text x="470" y="327" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">FAILED</text>
+  <text x="470" y="327" text-anchor="middle" font-size="16.64" font-weight="700" fill="#b23b3b">FAILED</text>
   <!-- edge: active-rail -> failed -->
   <line x1="311" y1="320" x2="393" y2="320" stroke="#b23b3b" stroke-width="2" marker-end="url(#jl-arR)"/>
   <text x="330" y="308" font-size="16" fill="#b23b3b">any active state</text>

@@ -23,18 +23,18 @@
 
   <!-- kicker -->
   <text x="52" y="44" font-size="24" font-weight="700" fill="#9a3f12">Problem &#8594; Move</text>
-  <text x="52" y="70" font-size="16" font-style="italic" fill="#57534e">ten recurring problems and the engineering move that addresses each</text>
+  <text x="52" y="70" font-size="18" font-style="italic" fill="#57534e">ten recurring problems and the engineering move that addresses each</text>
 
   <!-- column headers -->
-  <text x="96"  y="118" font-size="14" font-weight="700" letter-spacing="0.07em" fill="#b23b3b">RECURRING PROBLEM</text>
-  <text x="524" y="118" font-size="14" font-weight="700" letter-spacing="0.07em" fill="#9a3f12">ENGINEERING MOVE</text>
+  <text x="96"  y="118" font-size="18" font-weight="700" letter-spacing="0.07em" fill="#b23b3b">RECURRING PROBLEM</text>
+  <text x="524" y="118" font-size="18" font-weight="700" letter-spacing="0.07em" fill="#9a3f12">ENGINEERING MOVE</text>
   <line x1="52" y1="130" x2="952" y2="130" stroke="#1c1917" stroke-width="1.5"/>
 
   <!-- ================= 10 rows (top y = 146 + 50*(i-1)) ================= -->
-  <g font-size="17">
+  <g font-size="18">
     <!-- row 1 -->
     <rect x="52"  y="146" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>
-    <text x="72"  y="172" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">B.1</text>
+    <text x="72"  y="172" text-anchor="middle" font-size="17.18" font-weight="700" fill="#57534e">B.1</text>
     <rect id="p1" x="96"  y="146" width="376" height="40" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.2"/>
     <text x="112" y="172" fill="#1c1917">many truths disagree</text>
     <!-- edge: p1 -> m1 -->
@@ -44,7 +44,7 @@
 
     <!-- row 2 -->
     <rect x="52"  y="196" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>
-    <text x="72"  y="222" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">B.2</text>
+    <text x="72"  y="222" text-anchor="middle" font-size="17.18" font-weight="700" fill="#57534e">B.2</text>
     <rect id="p2" x="96"  y="196" width="376" height="40" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.2"/>
     <text x="112" y="222" fill="#1c1917">copies drift from authority</text>
     <!-- edge: p2 -> m2 -->
@@ -54,7 +54,7 @@
 
     <!-- row 3 -->
     <rect x="52"  y="246" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>
-    <text x="72"  y="272" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">B.3</text>
+    <text x="72"  y="272" text-anchor="middle" font-size="17.18" font-weight="700" fill="#57534e">B.3</text>
     <rect id="p3" x="96"  y="246" width="376" height="40" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.2"/>
     <text x="112" y="272" fill="#1c1917">model and reality diverge</text>
     <!-- edge: p3 -> m3 -->
@@ -64,7 +64,7 @@
 
     <!-- row 4 -->
     <rect x="52"  y="296" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>
-    <text x="72"  y="322" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">B.4</text>
+    <text x="72"  y="322" text-anchor="middle" font-size="17.18" font-weight="700" fill="#57534e">B.4</text>
     <rect id="p4" x="96"  y="296" width="376" height="40" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.2"/>
     <text x="112" y="322" fill="#1c1917">assurance has invisible holes</text>
     <!-- edge: p4 -> m4 -->
@@ -74,7 +74,7 @@
 
     <!-- row 5 -->
     <rect x="52"  y="346" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>
-    <text x="72"  y="372" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">B.5</text>
+    <text x="72"  y="372" text-anchor="middle" font-size="17.18" font-weight="700" fill="#57534e">B.5</text>
     <rect id="p5" x="96"  y="346" width="376" height="40" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.2"/>
     <text x="112" y="372" fill="#1c1917">checks are too early / too late</text>
     <!-- edge: p5 -> m5 -->
@@ -84,7 +84,7 @@
 
     <!-- row 6 -->
     <rect x="52"  y="396" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>
-    <text x="72"  y="422" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">B.6</text>
+    <text x="72"  y="422" text-anchor="middle" font-size="17.18" font-weight="700" fill="#57534e">B.6</text>
     <rect id="p6" x="96"  y="396" width="376" height="40" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.2"/>
     <text x="112" y="422" fill="#1c1917">actions evade governance</text>
     <!-- edge: p6 -> m6 -->
@@ -94,7 +94,7 @@
 
     <!-- row 7 -->
     <rect x="52"  y="446" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>
-    <text x="72"  y="472" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">B.7</text>
+    <text x="72"  y="472" text-anchor="middle" font-size="17.18" font-weight="700" fill="#57534e">B.7</text>
     <rect id="p7" x="96"  y="446" width="376" height="40" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.2"/>
     <text x="112" y="472" fill="#1c1917">rules exist but aren't present</text>
     <!-- edge: p7 -> m7 -->
@@ -104,7 +104,7 @@
 
     <!-- row 8 -->
     <rect x="52"  y="496" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>
-    <text x="72"  y="522" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">B.8</text>
+    <text x="72"  y="522" text-anchor="middle" font-size="17.18" font-weight="700" fill="#57534e">B.8</text>
     <rect id="p8" x="96"  y="496" width="376" height="40" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.2"/>
     <text x="112" y="522" fill="#1c1917">why gets lost after the change</text>
     <!-- edge: p8 -> m8 -->
@@ -114,7 +114,7 @@
 
     <!-- row 9 -->
     <rect x="52"  y="546" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>
-    <text x="72"  y="572" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">B.9</text>
+    <text x="72"  y="572" text-anchor="middle" font-size="17.18" font-weight="700" fill="#57534e">B.9</text>
     <rect id="p9" x="96"  y="546" width="376" height="40" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.2"/>
     <text x="112" y="572" fill="#1c1917">operators reconstruct procedure</text>
     <!-- edge: p9 -> m9 -->
@@ -124,7 +124,7 @@
 
     <!-- row 10 -->
     <rect x="52"  y="596" width="40" height="40" rx="6" fill="#f6f4ef" stroke="#57534e" stroke-width="1"/>
-    <text x="72"  y="622" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">B.10</text>
+    <text x="72"  y="622" text-anchor="middle" font-size="13.66" font-weight="700" fill="#57534e">B.10</text>
     <rect id="p10" x="96"  y="596" width="376" height="40" rx="6" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.2"/>
     <text x="112" y="622" fill="#1c1917">changes have hidden dependents</text>
     <!-- edge: p10 -> m10 -->

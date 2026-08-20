@@ -58,10 +58,10 @@
 
   <rect x="0" y="0" width="1000" height="720" fill="#fdfcf9"/>
   <text x="500" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where the frontier goes next</text>
-  <text x="500" y="64" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">The open work of MAGE sorts into four kinds — each welded to the hypothesis that makes it falsifiable.</text>
+  <text x="500" y="64" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">The open work of MAGE sorts into four kinds — each welded to the hypothesis that makes it falsifiable.</text>
 
   <!-- legend: status border key (left) + colour key (right) -->
-  <g font-size="16" fill="#57534e">
+  <g font-size="18" fill="#57534e">
     <rect x="40" y="80" width="26" height="16" rx="3" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8" stroke-dasharray="6 4"/>
     <text x="72" y="93">conjectured</text>
     <rect x="182" y="80" width="26" height="16" rx="3" fill="#fdfcf9" stroke="#57534e" stroke-width="1.8"/>
@@ -94,7 +94,7 @@
   <!-- A3 Assurance frontier (MAGE-II) — conjectured, rust, dashed -->
   <rect id="a3" x="496" y="140" width="216" height="72" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="6 4"/>
   <text x="604" y="171" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Assurance frontier</text>
-  <text x="604" y="193" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the MAGE-II conjecture</text>
+  <text x="604" y="193" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the MAGE-II conjecture</text>
 
   <!-- A4 Development completeness & supply chain — open, green -->
   <rect id="a4" x="724" y="140" width="216" height="72" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
@@ -115,32 +115,32 @@
   <!-- A5 Governance census — established, rust; the ONE node that expands -->
   <rect id="a5" x="40" y="342" width="430" height="118" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
   <text x="255" y="368" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Governance census</text>
-  <text x="255" y="388" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">counts, not opinions</text>
+  <text x="255" y="388" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">counts, not opinions</text>
   <!-- three established metric chips + one dashed conjectured chip -->
   <rect x="48" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
-  <text x="99" y="430" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Coverage</text>
+  <text x="99" y="430" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Coverage</text>
   <rect x="154" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
-  <text x="205" y="421" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Under-</text>
-  <text x="205" y="441" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">governance</text>
+  <text x="205" y="421" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Under-</text>
+  <text x="205" y="441" text-anchor="middle" font-size="15.48" font-weight="700" fill="#1c1917">governance</text>
   <rect x="260" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8"/>
-  <text x="311" y="421" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">Governance</text>
-  <text x="311" y="441" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">debt</text>
+  <text x="311" y="421" text-anchor="middle" font-size="15.2" font-weight="700" fill="#1c1917">Governance</text>
+  <text x="311" y="441" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">debt</text>
   <rect id="prop-latency" x="366" y="398" width="102" height="54" rx="6" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="6 4"/>
-  <text x="417" y="421" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">Propagation</text>
-  <text x="417" y="441" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">-latency</text>
+  <text x="417" y="421" text-anchor="middle" font-size="14.69" font-weight="700" fill="#9a3f12">Propagation</text>
+  <text x="417" y="441" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">-latency</text>
 
   <!-- A6 Learning propagation + organizational scaling — open, blue -->
   <rect id="a6" x="512" y="342" width="220" height="100" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="1.8"/>
-  <text x="622" y="375" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Learning</text>
-  <text x="622" y="396" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">propagation +</text>
-  <text x="622" y="417" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">organizational</text>
-  <text x="622" y="438" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">scaling</text>
+  <text x="622" y="375" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Learning</text>
+  <text x="622" y="396" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">propagation +</text>
+  <text x="622" y="417" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">organizational</text>
+  <text x="622" y="438" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">scaling</text>
 
   <!-- A7 Generalization beyond software (MBAE) — conjectured, green, dashed -->
   <rect id="a7" x="762" y="342" width="194" height="100" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8" stroke-dasharray="6 4"/>
-  <text x="859" y="384" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Generalization</text>
-  <text x="859" y="406" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">beyond software</text>
-  <text x="859" y="428" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">(MBAE)</text>
+  <text x="859" y="384" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Generalization</text>
+  <text x="859" y="406" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">beyond software</text>
+  <text x="859" y="428" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">(MBAE)</text>
 
   <!-- census propagation-latency chip ⇢ A6 : "future metric" (dashed, the one place regions touch) -->
   <!-- Label painted later, ON TOP of the dropper web + on a canvas halo (see "edge-label plate" below). -->
@@ -185,9 +185,9 @@
        "future metric" label sits just above the census box's top border so its halo does not break it. -->
   <g>
     <rect x="160" y="270" width="196" height="21" rx="5" fill="#fdfcf9"/>
-    <text x="258" y="284" text-anchor="middle" font-size="16" font-style="italic" font-weight="700" fill="#1f7a4d">richer models move it</text>
+    <text x="258" y="284" text-anchor="middle" font-size="17.57" font-style="italic" font-weight="700" fill="#1f7a4d">richer models move it</text>
     <rect x="398" y="327" width="128" height="14" rx="5" fill="#fdfcf9"/>
-    <text x="462" y="340" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">future metric</text>
+    <text x="462" y="340" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">future metric</text>
   </g>
 
   <!-- ============ H1-H8 ANCHOR RAIL (id + one-word name) ============ -->
@@ -212,7 +212,7 @@
     <text x="787" y="586">H7</text>
     <text x="903" y="586">H8</text>
   </g>
-  <g font-size="16" fill="#57534e" text-anchor="middle">
+  <g font-size="18" fill="#57534e" text-anchor="middle">
     <text x="91"  y="620">exposure</text>
     <text x="207" y="620">moderation</text>
     <text x="323" y="620">assurance</text>
@@ -224,7 +224,7 @@
   </g>
 
   <!-- caption: names the four kinds, the honesty bound, and the home sections (index, don't duplicate) -->
-  <text x="500" y="652" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">Dashed = a conjecture the book states but does not prove. The map indexes; the prose expands. None is settled here.</text>
-  <text x="500" y="675" text-anchor="middle" font-size="16" fill="#57534e">Homes — §6.5: determinization, census, organizational topology · §6.2: assurance, development completeness</text>
-  <text x="500" y="697" text-anchor="middle" font-size="16" fill="#57534e">§6.1: modeling moves the frontier, learning propagation.</text>
+  <text x="500" y="652" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Dashed = a conjecture the book states but does not prove. The map indexes; the prose expands. None is settled here.</text>
+  <text x="500" y="675" text-anchor="middle" font-size="18" fill="#57534e">Homes — §6.5: determinization, census, organizational topology · §6.2: assurance, development completeness</text>
+  <text x="500" y="697" text-anchor="middle" font-size="18" fill="#57534e">§6.1: modeling moves the frontier, learning propagation.</text>
 </svg>

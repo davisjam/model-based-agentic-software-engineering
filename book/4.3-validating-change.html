@@ -758,7 +758,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
        relation (a container boundary is context, never an endpoint), so it is intentionally unannotated;
        seated by eye between the panels. -->
   <line x1="480" y1="194" x2="480" y2="266" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#f-example-vs-generative-eg-ah-mut)"/>
-  <text x="500" y="236" font-size="17" font-style="italic" fill="#57534e">from one pinned point to the whole space</text>
+  <text x="500" y="236" font-size="17.28" font-style="italic" fill="#57534e">from one pinned point to the whole space</text>
 
   <!-- ===== generative test ===== -->
   <rect x="30" y="270" width="900" height="210" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
@@ -770,7 +770,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- generator -> specification-holds? : the target is a <polygon> diamond, not a lint-legible node;
        seated BY EYE — tail on generator's right rim, head touching the diamond's left vertex (360,382). -->
   <line x1="250" y1="382" x2="358" y2="382" stroke="#1c1917" stroke-width="2" marker-end="url(#f-example-vs-generative-eg-ah)"/>
-  <text x="309" y="336" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">inputs drawn from the space</text>
+  <text x="309" y="336" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">inputs drawn from the space</text>
 
   <!-- specification check (decision diamond) -->
   <polygon points="500,322 640,382 500,442 360,382" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
@@ -780,12 +780,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- specification-holds? -> shrink/RCA cause : source is the <polygon> diamond (not lint-legible);
        seated BY EYE — tail just outside the diamond's right vertex (640,382), head touching cause's left rim. -->
   <line x1="642" y1="382" x2="687" y2="382" stroke="#1c1917" stroke-width="2" marker-end="url(#f-example-vs-generative-eg-ah)"/>
-  <text x="664" y="364" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">no</text>
+  <text x="664" y="364" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">no</text>
 
   <rect x="690" y="337" width="215" height="110" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="797" y="370" text-anchor="middle" font-size="17" fill="#b23b3b">shrink / RCA to the</text>
-  <text x="797" y="394" text-anchor="middle" font-size="17" fill="#b23b3b">minimal or spec-point</text>
-  <text x="797" y="418" text-anchor="middle" font-size="17" fill="#b23b3b">cause</text>
+  <text x="797" y="370" text-anchor="middle" font-size="17.28" fill="#b23b3b">shrink / RCA to the</text>
+  <text x="797" y="394" text-anchor="middle" font-size="17.28" fill="#b23b3b">minimal or spec-point</text>
+  <text x="797" y="418" text-anchor="middle" font-size="17.28" fill="#b23b3b">cause</text>
 </svg><figcaption data-short="A Point and a Space"><span class="fig-label">Figure 4.3-1.</span> <em>A Point and a Space.</em> An example pins one chosen case; a generative test states a property over a domain and searches for a counterexample. Use the broader claim when the obligation itself is broad enough to support it.</figcaption></figure>
 <p>A failing example invites a local repair, because the evidence names one point: patch the branch that makes <em>that</em> input pass and the example goes green. A broader property makes that repair easier to falsify if the underlying class remains open — the generator keeps drawing neighbours that still exercise the law, so a branch-cut that satisfied one input fails the next. <em>When the defect exposes a general law, preserve the law rather than only the example that revealed it.</em></p>
 <p>The techniques that generate evidence this way share one loop — <strong>generate, execute, judge, shrink or diagnose</strong> — and differ in the generator that makes the inputs and the oracle that judges them. <strong>None is a maturity rung.</strong> Choose the generator and oracle that match the property you are trying to falsify (<a href="#inset-technique-comparison">Inset 1</a> lays them side by side).</p>
@@ -864,24 +864,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">WHAT CLAIM ARE YOU TRYING TO ESTABLISH?</text>
 
-  <text x="185" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">ONE / MANY INPUTS</text>
-  <text x="185" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">input &#8594; output</text>
-  <text x="500" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">REACHABLE STATES</text>
-  <text x="500" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">sequences / races</text>
-  <text x="815" y="154" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2f5169">TEMPORAL BEHAVIOR</text>
-  <text x="815" y="174" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">eventually / always</text>
+  <text x="185" y="154" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">ONE / MANY INPUTS</text>
+  <text x="185" y="174" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">input &#8594; output</text>
+  <text x="500" y="154" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">REACHABLE STATES</text>
+  <text x="500" y="174" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">sequences / races</text>
+  <text x="815" y="154" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">TEMPORAL BEHAVIOR</text>
+  <text x="815" y="174" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">eventually / always</text>
 
-  <text x="185" y="261" text-anchor="middle" font-size="13.5" fill="#1c1917">examples / property</text>
-  <text x="185" y="279" text-anchor="middle" font-size="13.5" fill="#1c1917">tests / fuzzing</text>
-  <text x="500" y="270" text-anchor="middle" font-size="14" fill="#1c1917">explicit-state model checking</text>
-  <text x="815" y="270" text-anchor="middle" font-size="14" fill="#1c1917">temporal model checking</text>
+  <text x="185" y="261" text-anchor="middle" font-size="18" fill="#1c1917">examples / property</text>
+  <text x="185" y="279" text-anchor="middle" font-size="18" fill="#1c1917">tests / fuzzing</text>
+  <text x="500" y="270" text-anchor="middle" font-size="18" fill="#1c1917">explicit-state model checking</text>
+  <text x="815" y="270" text-anchor="middle" font-size="18" fill="#1c1917">temporal model checking</text>
 
-  <text x="185" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample input</text>
-  <text x="500" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample trace</text>
-  <text x="815" y="361" text-anchor="middle" font-size="14" fill="#9a3f12">counterexample execution</text>
+  <text x="185" y="361" text-anchor="middle" font-size="18" fill="#9a3f12">counterexample input</text>
+  <text x="500" y="361" text-anchor="middle" font-size="18" fill="#9a3f12">counterexample trace</text>
+  <text x="815" y="361" text-anchor="middle" font-size="18" fill="#9a3f12">counterexample execution</text>
 
-  <text x="500" y="449" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">Prefer structural prevention before any of these</text>
-  <text x="500" y="470" text-anchor="middle" font-size="15" fill="#57534e">when the invalid state can simply be excluded.</text>
+  <text x="500" y="449" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Prefer structural prevention before any of these</text>
+  <text x="500" y="470" text-anchor="middle" font-size="18" fill="#57534e">when the invalid state can simply be excluded.</text>
 </svg><figcaption data-short="Let the claim choose the search"><span class="fig-label">Figure 4.3-2.</span> <em>Let the claim choose the search.</em> Input/output properties, reachable-state invariants, and temporal properties require different kinds of falsifying evidence. Structural exclusion is preferable when the invalid behavior can be removed from the admissible space entirely.</figcaption></figure>
 <p>Start with prevention. If the forbidden state can be removed structurally, remove it. DocAble's pervasive work-item ownership rule is enforced by a database compare-and-set: an update succeeds only while the row remains in the expected prior state. Concurrent claimants race on the same transition, and only one can win. For that local ownership property, the runtime constraint can enforce the required transition directly; a temporal specification would answer a broader question than the one being asked.</p>
 <p>When the property lives in interleavings, reduce the relevant state until it can be explored. DocAble's in-flight lease has this shape: a worker can appear stale and be reclaimed, another worker can acquire a fresh epoch, and the first can later wake and attempt release. The ownership question does not require the rest of the implementation. A reduced transition model retains only lifecycle state, lease epochs, reclaim, release, and the variables needed to state the invariants.</p>
@@ -918,7 +918,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- model / spec (green = modeling) -->
   <rect id="f-models-to-evidence-model-spec" x="360" y="66" width="280" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="500" y="100" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">MODEL / SPECIFICATION</text>
+  <text x="500" y="100" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL / SPECIFICATION</text>
 
   <!-- split into facts branch and obligations branch (last control aimed above each head, so the head dives in) -->
   <!-- edge: model-spec -> derive-facts -->
@@ -927,31 +927,31 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M615,122 L615,168" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
 
   <rect id="f-models-to-evidence-derive-facts" x="150" y="170" width="260" height="66" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="280" y="198" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">DERIVE FACTS</text>
-  <text x="280" y="218" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">&amp; RELATIONS</text>
+  <text x="280" y="198" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">DERIVE FACTS</text>
+  <text x="280" y="218" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">&amp; RELATIONS</text>
 
   <rect id="f-models-to-evidence-derive-obligations" x="590" y="170" width="260" height="66" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="720" y="196" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">DERIVE OBLIGATIONS</text>
-  <text x="720" y="216" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">what must hold?</text>
+  <text x="720" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">DERIVE OBLIGATIONS</text>
+  <text x="720" y="216" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">what must hold?</text>
 
   <!-- facts branch -> current view (terminal side output, neutral) -->
   <!-- edge: derive-facts -> current-view -->
   <line x1="280" y1="236" x2="280" y2="282" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
   <rect id="f-models-to-evidence-current-view" x="170" y="284" width="220" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="280" y="316" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">CURRENT VIEW</text>
+  <text x="280" y="316" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CURRENT VIEW</text>
 
   <!-- obligations branch -> census -->
   <!-- edge: derive-obligations -> census -->
   <line x1="720" y1="236" x2="720" y2="282" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
   <rect id="f-models-to-evidence-census" x="590" y="284" width="260" height="52" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="720" y="316" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">OBLIGATION CENSUS</text>
+  <text x="720" y="316" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">OBLIGATION CENSUS</text>
 
   <!-- census -> select evidence (dashed rust = governance choice) -->
   <!-- edge: census -> select-evidence -->
   <line x1="720" y1="336" x2="720" y2="382" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
   <rect id="f-models-to-evidence-select-evidence" x="590" y="384" width="260" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2" stroke-dasharray="7 5"/>
-  <text x="720" y="412" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">SELECT EVIDENCE</text>
-  <text x="720" y="432" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">for claim shape</text>
+  <text x="720" y="412" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">SELECT EVIDENCE</text>
+  <text x="720" y="432" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">for claim shape</text>
 
   <!-- fan to three evidence artifacts (neutral); the two diagonals dive in via last control above the head -->
   <!-- edge: select-evidence -> test -->
@@ -962,12 +962,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M827.5,442 L827.5,490" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
 
   <rect id="f-models-to-evidence-test" x="490" y="492" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="560" y="522" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">TEST</text>
+  <text x="560" y="522" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TEST</text>
   <rect id="f-models-to-evidence-lint" x="650" y="492" width="140" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="720" y="522" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">LINT</text>
+  <text x="720" y="522" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">LINT</text>
   <rect id="f-models-to-evidence-search-proof" x="805" y="492" width="160" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="885" y="516" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">SEARCH /</text>
-  <text x="885" y="533" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1917">PROOF</text>
+  <text x="885" y="516" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">SEARCH /</text>
+  <text x="885" y="533" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">PROOF</text>
 
   <!-- merge to claim coverage (green emphasis); last control aimed at the claim centre -->
   <!-- edge: test -> claim-coverage -->
@@ -978,16 +978,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M832.5,542 L832.5,594" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah)"/>
 
   <rect id="f-models-to-evidence-claim-coverage" x="580" y="596" width="280" height="58" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="720" y="630" text-anchor="middle" font-size="16" font-weight="700" fill="#155c38">CLAIM COVERAGE</text>
+  <text x="720" y="630" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">CLAIM COVERAGE</text>
 
   <!-- uncovered claim -> visible debt (dotted red = failure) -->
   <!-- edge: claim-coverage -> visible-debt -->
   <line x1="720" y1="654" x2="720" y2="690" stroke="#b23b3b" stroke-width="2" marker-end="url(#f-models-to-evidence-me-ah-red)"/>
-  <text x="738" y="676" text-anchor="start" font-size="12" font-style="italic" fill="#57534e">uncovered claim?</text>
+  <text x="738" y="676" text-anchor="start" font-size="18" font-style="italic" fill="#57534e">uncovered claim?</text>
   <rect id="f-models-to-evidence-visible-debt" x="600" y="692" width="240" height="54" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2" stroke-dasharray="2 4"/>
-  <text x="720" y="724" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">VISIBLE DEBT</text>
+  <text x="720" y="724" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">VISIBLE DEBT</text>
 
-  <text x="500" y="800" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Coverage is meaningful only relative to a named population.</text>
+  <text x="500" y="800" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Coverage is meaningful only relative to a named population.</text>
 </svg><figcaption data-short="From models to evidence — model/spec → derive obligations → census → choose evidence (test/lint/search-proof) → claim coverage"><span class="fig-label">Figure 4.3-3.</span> <em>From models to evidence.</em> Coverage becomes meaningful only after the engineering obligations have been named. Explicit models can derive that population; tests, lints, searches, proofs, and human review then supply evidence appropriate to each claim.</figcaption></figure>
 <p>With the census in hand, a high aggregate percentage stops being reassurance and becomes a place to look: <em>this invariant has no exercising test.</em></p>
 <h2><span class="sec-num">4.3.5</span> Did the Search Cover the Claim?</h2>
@@ -1041,36 +1041,36 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ===== NODES (on top; fills cap the edge ends) ===== -->
   <!-- generator -->
   <rect id="f-generative-loop-generator" x="40" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="145" y="192" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">generator</text>
-  <text x="145" y="220" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">makes inputs</text>
+  <text x="145" y="192" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">generator</text>
+  <text x="145" y="220" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">makes inputs</text>
 
   <!-- system -->
   <rect id="f-generative-loop-system" x="310" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="415" y="192" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">system</text>
-  <text x="415" y="220" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">under test</text>
+  <text x="415" y="192" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">system</text>
+  <text x="415" y="220" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">under test</text>
 
   <!-- independent oracle (accent) -->
   <rect id="f-generative-loop-oracle" x="580" y="132" width="260" height="132" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="710" y="176" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">independent oracle</text>
-  <text x="710" y="204" text-anchor="middle" font-size="18.88" font-style="italic" fill="#57534e">judges the outcome</text>
-  <text x="710" y="236" text-anchor="middle" font-size="16.5" fill="#57534e">property · contract ·</text>
-  <text x="710" y="256" text-anchor="middle" font-size="16.5" fill="#57534e">reference impl · model · human</text>
+  <text x="710" y="176" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">independent oracle</text>
+  <text x="710" y="204" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">judges the outcome</text>
+  <text x="710" y="236" text-anchor="middle" font-size="21.24" fill="#57534e">property · contract ·</text>
+  <text x="710" y="256" text-anchor="middle" font-size="16.8" fill="#57534e">reference impl · model · human</text>
 
   <!-- counterexample (churn) -->
   <rect id="f-generative-loop-counterexample" x="900" y="132" width="240" height="132" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="1020" y="176" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">counterexample</text>
-  <text x="1020" y="206" text-anchor="middle" font-size="17.5" fill="#b23b3b">shrink / diagnose to</text>
-  <text x="1020" y="228" text-anchor="middle" font-size="17.5" fill="#b23b3b">the stable obligation</text>
+  <text x="1020" y="176" text-anchor="middle" font-size="21.24" font-weight="700" fill="#b23b3b">counterexample</text>
+  <text x="1020" y="206" text-anchor="middle" font-size="21.24" fill="#b23b3b">shrink / diagnose to</text>
+  <text x="1020" y="228" text-anchor="middle" font-size="21.24" fill="#b23b3b">the stable obligation</text>
 
   <!-- coverage (governed) -->
   <rect id="f-generative-loop-coverage" x="450" y="400" width="360" height="110" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="630" y="440" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">coverage: did we reach the claim?</text>
-  <text x="630" y="470" text-anchor="middle" font-size="17.5" fill="#57534e">input-space · line/branch · model-claim</text>
+  <text x="630" y="440" text-anchor="middle" font-size="20.44" font-weight="700" fill="#1c1917">coverage: did we reach the claim?</text>
+  <text x="630" y="470" text-anchor="middle" font-size="18.63" fill="#57534e">input-space · line/branch · model-claim</text>
 
   <!-- ===== edge labels (on top) ===== -->
-  <text x="250" y="400" text-anchor="middle" font-size="18.5" font-style="italic" fill="#57534e">refine the generator</text>
-  <text x="905" y="392" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">model-claim coverage</text>
-  <text x="905" y="414" text-anchor="middle" font-size="16.5" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
+  <text x="250" y="400" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">refine the generator</text>
+  <text x="905" y="392" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">model-claim coverage</text>
+  <text x="905" y="414" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
 </svg><figcaption data-short="Generate, Judge, Search Again"><span class="fig-label">Figure 4.3-4.</span> <em>Generate, Judge, Search Again.</em> One loop, whatever the oracle's source: a <strong>generator</strong> makes inputs, the <strong>system</strong> runs them, an <strong>independent oracle</strong> judges each outcome, a <strong>counterexample</strong> feeds back to shrink or diagnose, and <strong>coverage</strong> asks whether the search reached the region the claim is about — refining the generator, and where traceability exists joining model-claim coverage back to the claim. The oracle may be a declared property, a robustness contract, a reference implementation, or a structured model; the loop does not care which.</figcaption></figure>
 <h2><span class="sec-num">4.3.6</span> Give the Verdict the Right Consequence</h2>
 <p>Validation may report or gate. Where a verdict should control admission, place that authority outside the producer's discretion. At consequential boundaries, consider re-deriving evidence whose freshness or independence matters to the admission decision rather than relying automatically on an earlier marker. A fuzz campaign may run nightly and report counterexamples without controlling merge; a cost validator may stay advisory; a security invariant may deserve immediate refusal. <strong>Authority is a separate design decision from evidence quality.</strong></p>
@@ -1095,13 +1095,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- top anchors -->
-  <text x="200" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">work begins</text>
+  <text x="200" y="52" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">work begins</text>
   <line x1="200" y1="64" x2="200" y2="150" stroke="#57534e" stroke-width="2" marker-end="url(#f-two-evidence-boundaries-tb-ah)"/>
-  <text x="800" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">consequence</text>
+  <text x="800" y="52" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">consequence</text>
   <line x1="800" y1="64" x2="800" y2="150" stroke="#57534e" stroke-width="2" marker-end="url(#f-two-evidence-boundaries-tb-ah)"/>
 
   <!-- between-checks note -->
-  <text x="500" y="148" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">relevant state may change between checks</text>
+  <text x="500" y="148" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">relevant state may change between checks</text>
 
   <!-- the axis -->
   <line x1="90" y1="176" x2="915" y2="176" stroke="#57534e" stroke-width="2.5" marker-end="url(#f-two-evidence-boundaries-tb-ah)"/>
@@ -1111,13 +1111,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M800 162 L814 176 L800 190 L786 176 Z" fill="#9a3f12" stroke="#9a3f12" stroke-width="2.5"/>
 
   <!-- lower labels -->
-  <text x="200" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">EARLIEST LEGIBLE</text>
-  <text x="200" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">BOUNDARY</text>
-  <text x="200" y="272" text-anchor="middle" font-size="12" fill="#57534e">catch cheaply near the cause</text>
+  <text x="200" y="222" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">EARLIEST LEGIBLE</text>
+  <text x="200" y="242" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">BOUNDARY</text>
+  <text x="200" y="272" text-anchor="middle" font-size="18" fill="#57534e">catch cheaply near the cause</text>
 
-  <text x="800" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">LAST SAFE</text>
-  <text x="800" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">BOUNDARY</text>
-  <text x="800" y="272" text-anchor="middle" font-size="12" fill="#57534e">re-establish what must hold</text>
+  <text x="800" y="222" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">LAST SAFE</text>
+  <text x="800" y="242" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">BOUNDARY</text>
+  <text x="800" y="272" text-anchor="middle" font-size="18" fill="#57534e">re-establish what must hold</text>
 </svg><figcaption data-short="Two evidence boundaries — earliest legible boundary catches cheaply near the cause; last safe boundary re-establishes what must hold"><span class="fig-label">Figure 4.3-5.</span> <em>Two evidence boundaries.</em> Evaluate a property as soon as it can honestly be decided, but for consequential work, a later boundary may re-establish evidence whose freshness matters before admission or exposure. Early evaluation limits wasted work; final evaluation protects against stale evidence and intervening change.</figcaption></figure>
 <p>The second check is not a substitute for the first, and it need not repeat every earlier check. Where a second boundary is warranted, re-run or otherwise re-establish the evidence whose freshness matters to admission. A test result recorded hours ago describes the revision that produced it. A review verdict describes the change that was reviewed. A deployment rehearsal describes the configuration it exercised. If relevant state can change before admission, the evidence can cease to describe the artifact now crossing the boundary — a recorded claim is a statement about the past, not the present, and it rots as sibling work churns the ground under it.</p>
 <p><strong>Done is a claim, not a stored fact.</strong> At a consequential boundary, ensure that the evidence still justifies the consequence; where freshness cannot otherwise be established cheaply, re-derive the relevant evidence rather than trusting a stale green checkmark. The gain compounds with velocity: the more often a system ships, the more often an un-gated build reaches someone, so a cheap re-check at the last safe boundary is worth more, not less, as release frequency rises.</p>

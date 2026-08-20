@@ -38,7 +38,7 @@
   <rect x="0" y="0" width="1000" height="560" fill="#fdfcf9"/>
 
   <text x="500" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Churn and Compounding: two feedback regimes</text>
-  <text x="500" y="70" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">The same environment, opposite signs — effort dissipates, or accrues as engineering capital.</text>
+  <text x="500" y="70" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">The same environment, opposite signs — effort dissipates, or accrues as engineering capital.</text>
 
   <!-- divider -->
   <line x1="500" y1="92" x2="500" y2="532" stroke="#e4e0d8" stroke-width="1.5" stroke-dasharray="6 6"/>
@@ -46,32 +46,32 @@
   <!-- ================= LEFT: CHURN (negative, read downward) ================= -->
   <text x="250" y="118" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">CHURN − effort dissipates</text>
 
-  <text x="250" y="168" text-anchor="middle" font-size="17" fill="#1c1917">more agentic effort</text>
+  <text x="250" y="168" text-anchor="middle" font-size="18" fill="#1c1917">more agentic effort</text>
   <line x1="250" y1="180" x2="250" y2="212" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#mageSign-red)"/>
-  <text x="250" y="238" text-anchor="middle" font-size="17" fill="#1c1917">work outruns a weak environment</text>
+  <text x="250" y="238" text-anchor="middle" font-size="18" fill="#1c1917">work outruns a weak environment</text>
   <line x1="250" y1="250" x2="250" y2="282" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#mageSign-red)"/>
-  <text x="250" y="308" text-anchor="middle" font-size="17" fill="#1c1917">rediscover · undo · reconcile</text>
+  <text x="250" y="308" text-anchor="middle" font-size="18" fill="#1c1917">rediscover · undo · reconcile</text>
   <line x1="250" y1="320" x2="250" y2="352" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#mageSign-red)"/>
-  <text x="250" y="378" text-anchor="middle" font-size="17" font-weight="600" fill="#b23b3b">less durable progress</text>
+  <text x="250" y="378" text-anchor="middle" font-size="18" font-weight="600" fill="#b23b3b">less durable progress</text>
 
   <!-- churn feedback: the class recurs -->
   <path d="M150,376 C104,320 104,220 150,166" fill="none" stroke="#b23b3b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#mageSign-red)"/>
-  <text x="250" y="430" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the same failure class recurs</text>
+  <text x="250" y="430" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the same failure class recurs</text>
 
   <!-- ================= RIGHT: COMPOUNDING (positive, read upward) ================= -->
   <text x="750" y="118" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">COMPOUNDING + effort accrues</text>
 
-  <text x="750" y="430" text-anchor="middle" font-size="17" fill="#1c1917">more agentic effort</text>
+  <text x="750" y="430" text-anchor="middle" font-size="18" fill="#1c1917">more agentic effort</text>
   <line x1="750" y1="418" x2="750" y2="392" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#mageSign-grn)"/>
-  <text x="750" y="378" text-anchor="middle" font-size="17" fill="#1c1917">failure → judgment → conversion</text>
+  <text x="750" y="378" text-anchor="middle" font-size="18" fill="#1c1917">failure → judgment → conversion</text>
   <line x1="750" y1="366" x2="750" y2="340" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#mageSign-grn)"/>
-  <text x="750" y="326" text-anchor="middle" font-size="17" font-weight="600" fill="#1f7a4d">+ engineering capital (a durable mechanism)</text>
+  <text x="750" y="326" text-anchor="middle" font-size="18" font-weight="600" fill="#1f7a4d">+ engineering capital (a durable mechanism)</text>
   <line x1="750" y1="314" x2="750" y2="288" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#mageSign-grn)"/>
-  <text x="750" y="274" text-anchor="middle" font-size="17" fill="#1c1917">environment more capable — while the capital stays fit</text>
+  <text x="750" y="274" text-anchor="middle" font-size="18" fill="#1c1917">environment more capable — while the capital stays fit</text>
   <line x1="750" y1="262" x2="750" y2="236" stroke="#1f7a4d" stroke-width="2.5" marker-end="url(#mageSign-grn)"/>
-  <text x="750" y="222" text-anchor="middle" font-size="17" fill="#1c1917">more ambitious work, at a falling per-change cost</text>
+  <text x="750" y="222" text-anchor="middle" font-size="18" fill="#1c1917">more ambitious work, at a falling per-change cost</text>
 
   <!-- compounding feedback: the gain reinforces -->
   <path d="M858,224 C904,290 904,360 858,424" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#mageSign-grn)"/>
-  <text x="750" y="470" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">the gain reinforces — in the well-fit region</text>
+  <text x="750" y="470" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the gain reinforces — in the well-fit region</text>
 </svg>

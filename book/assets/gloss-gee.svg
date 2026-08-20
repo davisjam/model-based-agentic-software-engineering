@@ -14,7 +14,7 @@
     <marker id="vh-gee2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
   <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
-  <text x="95" y="40" font-size="17" fill="#57534e">Glossary · concept map</text>
+  <text x="95" y="40" font-size="18" fill="#57534e">Glossary · concept map</text>
   <text x="905" y="40" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">The Governed Engineering Environment</text>
 
   <!-- ===== the input: an engineering obligation ===== -->
@@ -27,20 +27,20 @@
   <path d="M415,122 L415,182" fill="none" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
   <!-- edge: obligation -> explicit-model -->
   <path d="M585,122 L585,182" fill="none" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
-  <text x="500" y="172" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">acted on through one of two surfaces</text>
+  <text x="500" y="172" text-anchor="middle" font-size="18" font-style="italic" fill="#78716c">acted on through one of two surfaces</text>
 
   <!-- LEFT input: a directly observable action or artifact (obligation locally encoded) -->
   <rect id="directly-observable" x="110" y="184" width="330" height="96" rx="8" fill="#fdfcf9" stroke="#57534e" stroke-width="2.4"/>
   <text x="275" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Directly observable</text>
   <text x="275" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">action or artifact</text>
-  <text x="275" y="256" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">a test, a diff, a sandbox run —</text>
-  <text x="275" y="274" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">obligation locally encoded</text>
+  <text x="275" y="256" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">a test, a diff, a sandbox run —</text>
+  <text x="275" y="274" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">obligation locally encoded</text>
 
   <!-- RIGHT input: an explicit model / invariant (richer semantics) -->
   <rect id="explicit-model" x="560" y="184" width="330" height="96" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2.4"/>
   <text x="725" y="214" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Explicit model / invariant</text>
   <text x="725" y="236" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">richer semantics</text>
-  <text x="725" y="255" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">states properties observation cannot reach</text>
+  <text x="725" y="255" text-anchor="middle" font-size="16.03" font-style="italic" fill="#57534e">states properties observation cannot reach</text>
 
   <!-- join: both surfaces meet at the mechanism; one path per branch (light) shares the bus+trunk pixels -->
   <!-- edge: directly-observable -> gov-mechanism -->
@@ -49,22 +49,22 @@
   <path d="M615,280 L615,322" fill="none" stroke="#cfcabf" stroke-width="3"/>
   <!-- dark 'enforced by' trunk overlay carries the visible arrowhead into the mechanism -->
   <path d="M500,292 L500,322" fill="none" stroke="#57534e" stroke-width="3" marker-end="url(#vh-gee2)"/>
-  <text x="512" y="312" font-size="15" fill="#78716c">enforced by</text>
+  <text x="512" y="312" font-size="18" fill="#78716c">enforced by</text>
 
   <!-- ===== the JOIN point: Governance Mechanism ===== -->
   <rect id="gov-mechanism" x="330" y="322" width="340" height="62" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="500" y="350" text-anchor="middle" font-size="19" font-weight="bold" fill="#1c1917">Governance Mechanism</text>
-  <text x="500" y="371" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
+  <text x="500" y="371" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Constraint · Sensor · Validator · Gate</text>
   <!-- edge: gov-mechanism -> gee -->
   <line x1="500" y1="384" x2="500" y2="420" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
-  <text x="512" y="408" font-size="15" fill="#78716c">governs</text>
+  <text x="512" y="408" font-size="18" fill="#78716c">governs</text>
 
   <!-- Governed Engineering Environment -->
   <rect id="gee" x="290" y="422" width="420" height="52" rx="8" fill="#f6f4ef" stroke="#cfcabf" stroke-width="2"/>
   <text x="500" y="454" text-anchor="middle" font-size="18" font-weight="bold" fill="#1c1917">Governed Engineering Environment</text>
   <!-- edge: gee -> eng-capital -->
   <line x1="500" y1="474" x2="500" y2="510" stroke="#cfcabf" stroke-width="3" marker-end="url(#vh-gee2)"/>
-  <text x="512" y="498" font-size="15" fill="#78716c">can accumulate as</text>
+  <text x="512" y="498" font-size="18" fill="#78716c">can accumulate as</text>
 
   <!-- Engineering Capital — terminal (dark) -->
   <rect id="eng-capital" x="390" y="512" width="220" height="52" rx="8" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>

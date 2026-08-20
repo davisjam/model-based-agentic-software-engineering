@@ -16,8 +16,8 @@
   </defs>
 
   <!-- endpoint labels -->
-  <text x="100" y="120" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">work begins</text>
-  <text x="900" y="120" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">consequence</text>
+  <text x="100" y="120" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">work begins</text>
+  <text x="900" y="120" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">consequence</text>
   <line x1="100" y1="132" x2="100" y2="212" stroke="#57534e" stroke-width="2" marker-end="url(#c5-ah)"/>
   <line x1="900" y1="132" x2="900" y2="212" stroke="#b23b3b" stroke-width="2" marker-end="url(#c5-ah)"/>
 
@@ -26,23 +26,23 @@
 
   <!-- too early: open node -->
   <circle cx="250" cy="230" r="11" fill="#fdfcf9" stroke="#57534e" stroke-width="2.5"/>
-  <text x="250" y="272" text-anchor="middle" font-size="15" font-weight="700" fill="#57534e">too early</text>
-  <text x="250" y="292" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">property not yet</text>
-  <text x="250" y="310" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">legible</text>
+  <text x="250" y="272" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">too early</text>
+  <text x="250" y="292" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">property not yet</text>
+  <text x="250" y="310" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">legible</text>
 
   <!-- earliest legible: filled green node, CHECK -->
   <circle cx="440" cy="230" r="13" fill="#1f7a4d" stroke="#155c38" stroke-width="2.5"/>
-  <text x="440" y="272" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">earliest legible</text>
-  <text x="440" y="291" text-anchor="middle" font-size="15" font-weight="700" fill="#155c38">boundary</text>
-  <text x="440" y="200" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">CHECK</text>
+  <text x="440" y="272" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">earliest legible</text>
+  <text x="440" y="291" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">boundary</text>
+  <text x="440" y="200" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">CHECK</text>
 
   <!-- last safe: rust node (dashed ring to differ in grayscale), RE-CHECK -->
   <circle cx="740" cy="230" r="13" fill="#9a3f12" stroke="#9a3f12" stroke-width="2.5"/>
   <circle cx="740" cy="230" r="20" fill="none" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="4 3"/>
-  <text x="740" y="272" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">last safe</text>
-  <text x="740" y="291" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3f12">boundary</text>
-  <text x="740" y="200" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">RE-CHECK</text>
-  <text x="740" y="322" text-anchor="middle" font-size="13" font-style="italic" fill="#9a3f12">point of no return</text>
+  <text x="740" y="272" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">last safe</text>
+  <text x="740" y="291" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">boundary</text>
+  <text x="740" y="200" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">RE-CHECK</text>
+  <text x="740" y="322" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">point of no return</text>
 
   <!-- consequence X -->
   <g stroke="#b23b3b" stroke-width="3.5" stroke-linecap="round">
@@ -51,5 +51,5 @@
   </g>
 
   <!-- footer / TOCTOU -->
-  <text x="500" y="392" text-anchor="middle" font-size="16" fill="#1c1917">Enforce at the earliest boundary that can decide the property; if later work can invalidate the evidence, re-establish it at the last.</text>
+  <text x="500" y="392" text-anchor="middle" font-size="18" fill="#1c1917">Enforce at the earliest boundary that can decide the property; if later work can invalidate the evidence, re-establish it at the last.</text>
 </svg>

@@ -26,17 +26,17 @@
 
   <!-- ===== MODELED SURFACE ===== -->
   <rect id="modeled" x="120" y="66" width="660" height="170" rx="12" fill="#faf9f6" stroke="#57534e" stroke-width="2.4"/>
-  <text x="150" y="96" font-size="16" font-weight="700" letter-spacing="1" fill="#1c1917">MODELED SURFACE</text>
+  <text x="150" y="96" font-size="16.2" font-weight="700" letter-spacing="1" fill="#1c1917">MODELED SURFACE</text>
 
   <!-- decidable -> mechanical check (green) -->
   <rect x="145" y="112" width="610" height="46" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="2.2"/>
-  <text x="170" y="141" font-size="15.5" font-weight="700" fill="#155c38">decidable claims</text>
-  <text x="750" y="141" text-anchor="end" font-size="15.5" font-weight="700" fill="#155c38">&#8594;&#160; mechanical check</text>
+  <text x="170" y="141" font-size="16.2" font-weight="700" fill="#155c38">decidable claims</text>
+  <text x="750" y="141" text-anchor="end" font-size="16.2" font-weight="700" fill="#155c38">&#8594;&#160; mechanical check</text>
 
   <!-- semantic -> judgment (blue) -->
   <rect x="145" y="170" width="610" height="46" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="170" y="199" font-size="15.5" font-weight="700" fill="#2f5169">semantic claims</text>
-  <text x="750" y="199" text-anchor="end" font-size="15.5" font-weight="700" fill="#2f5169">&#8594;&#160; judgment</text>
+  <text x="170" y="199" font-size="16.2" font-weight="700" fill="#2f5169">semantic claims</text>
+  <text x="750" y="199" text-anchor="end" font-size="16.2" font-weight="700" fill="#2f5169">&#8594;&#160; judgment</text>
 
   <!-- refine loop arrow drawn UNDER the unmodeled surface: its tail runs into that surface (the opaque fill
        caps it) and its head seats on the modeled surface's lower rim -->
@@ -45,13 +45,13 @@
 
   <!-- ===== UNMODELED SURFACE ===== -->
   <rect id="unmodeled" x="120" y="266" width="660" height="70" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2" stroke-dasharray="8 5"/>
-  <text x="150" y="296" font-size="16" font-weight="700" letter-spacing="1" fill="#9a3f12">UNMODELED SURFACE</text>
-  <text x="150" y="320" font-size="14.5" font-style="italic" fill="#57534e">no model-based coverage</text>
+  <text x="150" y="296" font-size="16.2" font-weight="700" letter-spacing="1" fill="#9a3f12">UNMODELED SURFACE</text>
+  <text x="150" y="320" font-size="16.2" font-style="italic" fill="#57534e">no model-based coverage</text>
 
   <!-- small optional refine note in the gap between the two surfaces -->
-  <text x="430" y="255" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">recurring miss &#8594; refine representation / control</text>
+  <text x="430" y="255" text-anchor="middle" font-size="16.2" font-style="italic" fill="#9a3f12">recurring miss &#8594; refine representation / control</text>
 
   <!-- footer: protect the point -->
-  <text x="450" y="374" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Mechanical checks reach only what the representation makes decidable;</text>
-  <text x="450" y="396" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">semantic claims need judgment, and unmodeled properties have no coverage.</text>
+  <text x="450" y="374" text-anchor="middle" font-size="16.2" font-style="italic" fill="#1c1917">Mechanical checks reach only what the representation makes decidable;</text>
+  <text x="450" y="396" text-anchor="middle" font-size="16.2" font-style="italic" fill="#57534e">semantic claims need judgment, and unmodeled properties have no coverage.</text>
 </svg>

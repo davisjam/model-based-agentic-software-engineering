@@ -39,14 +39,14 @@
   <rect id="authored" x="60" y="136" width="70" height="34" fill="none" stroke="none"/>
   <!-- edge: authored -> model -->
   <line x1="130" y1="153" x2="228" y2="153" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
-  <text x="95" y="147" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED</text>
+  <text x="95" y="147" text-anchor="middle" font-size="10.44" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED</text>
   <text x="95" y="164" text-anchor="middle" font-size="13" fill="#57534e">intent</text>
 
   <!-- DERIVED facts in (DASHED, from right) -->
   <rect id="derived" x="596" y="136" width="64" height="34" fill="none" stroke="none"/>
   <!-- edge: derived .. model -->
   <line x1="596" y1="153" x2="492" y2="153" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g1-solid)"/>
-  <text x="628" y="147" text-anchor="middle" font-size="13" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
+  <text x="628" y="147" text-anchor="middle" font-size="11.98" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
   <text x="628" y="164" text-anchor="middle" font-size="13" fill="#57534e">facts</text>
 
   <!-- declares / generates (SOLID down) -->
@@ -63,7 +63,7 @@
   <!-- edge: artifacts .. check -->
   <line x1="360" y1="292" x2="360" y2="328" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g1-solid)"/>
   <text x="474" y="309" font-size="13" font-style="italic" fill="#57534e">observe / re-derive</text>
-  <text x="474" y="325" font-size="12" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED</text>
+  <text x="474" y="325" font-size="12.96" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED</text>
 
   <!-- CORRESPONDENCE / INVARIANT CHECK (representation) -->
   <rect id="check" x="230" y="330" width="260" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
@@ -74,7 +74,7 @@
   <rect id="disagreement" x="305" y="424" width="110" height="24" fill="none" stroke="none"/>
   <!-- edge: check -> disagreement -->
   <line x1="360" y1="394" x2="360" y2="422" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
-  <text x="360" y="438" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">disagreement?</text>
+  <text x="360" y="438" text-anchor="middle" font-size="13.45" font-weight="700" fill="#1c1917">disagreement?</text>
 
   <!-- NO leg: advisory / report-only (plain, no authority) — hand-routed as an orthogonal elbow (exit the
        disagreement hub left, drop into advisory's top border) so the head seats perpendicular, not skimming. -->
@@ -82,7 +82,7 @@
   <text x="243" y="430" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">no</text>
   <rect id="advisory" x="70" y="484" width="230" height="46" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
   <text x="185" y="506" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">advisory · report-only</text>
-  <text x="185" y="523" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">informs the engineer</text>
+  <text x="185" y="523" text-anchor="middle" font-size="12.96" font-style="italic" fill="#57534e">informs the engineer</text>
 
   <!-- YES leg: finding / gate where warranted (HEAVY authority + gate glyph) — hand-routed as an orthogonal
        elbow (exit the disagreement hub right, drop into finding/gate's top border). Orthogonal routing seats
@@ -97,7 +97,7 @@
   </g>
   <rect x="420" y="484" width="240" height="52" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
   <text x="540" y="507" text-anchor="middle" font-size="14" font-weight="700" fill="#b23b3b">finding / gate</text>
-  <text x="540" y="525" text-anchor="middle" font-size="12" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED — where warranted</text>
+  <text x="540" y="525" text-anchor="middle" font-size="12.96" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED — where warranted</text>
 
   <text x="360" y="566" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">Not every model traverses every edge — a useful representation may stay advisory.</text>
 
@@ -124,5 +124,5 @@
   <text x="186" y="729" font-size="13.5" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
   <text x="186" y="746" font-size="13" fill="#1c1917">heavy boundary + gate glyph = real authority (can block)</text>
 
-  <text x="80" y="768" font-size="12" font-style="italic" fill="#57534e">Rounded boxes denote representations. Meaning is encoded by line style, weight, and glyph — not color.</text>
+  <text x="80" y="768" font-size="12.32" font-style="italic" fill="#57534e">Rounded boxes denote representations. Meaning is encoded by line style, weight, and glyph — not color.</text>
 </svg>
