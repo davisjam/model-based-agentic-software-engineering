@@ -116,7 +116,7 @@
 
   <!-- ===================== the method trunk band (holds both spines) ===================== -->
   <g class="node" data-k="trunk"><rect x="50" y="524" width="980" height="56" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.5"/>
-    <text x="540" y="547" text-anchor="middle" font-size="19.44" font-weight="700" fill="#9a3f12">THE METHOD TRUNK — 14 mechanisms that hold every model true</text>
+    <text x="540" y="547" text-anchor="middle" font-size="19.44" font-weight="700" fill="#9a3f12">THE METHOD TRUNK — 14 shared mechanisms</text>
     <text x="540" y="566" text-anchor="middle" font-size="19.44" fill="#57534e">executable source-of-truth · drift &amp; parity gates · verification · coverage→node · codegen · query surface · …</text></g>
   <!-- fleet-spine anchor pill on the trunk -->
   <rect x="240" y="514" width="180" height="20" rx="10" fill="#fdfcf9" stroke="#1f6fae"/>
