@@ -22,8 +22,9 @@ Abundance does not make implementation unimportant; it changes where additional 
 earns the greatest return. A factory with unlimited machine capacity and one inspector has not
 stopped manufacturing; inspection has become the throughput constraint. In software, agents can now
 produce changes faster than engineers can specify, understand, validate, and govern them. Models
-amortize representation and judgment across many acts of implementation; validators and gates can
-amortize selected judgments about acceptance. Rational effort therefore moves toward representation,
-evidence, authority, and the engineered environment that carries them. This Part asks what follows from that
+let later work reuse representations and judgments across many acts of implementation; validators and gates can
+likewise carry selected acceptance judgments forward. Engineering effort therefore moves toward deciding
+what to represent, what evidence to require, which obligations to give authority, and how the surrounding
+environment should carry them. This Part asks what follows from that
 shift: what remains hard, which properties of the new substrate matter, and what engineering
 problems they leave us to solve.
