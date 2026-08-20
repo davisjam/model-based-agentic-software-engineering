@@ -58,8 +58,8 @@
 
   <!-- side arrow: recurring failure -> new/refined invariant -->
   <!-- edge: checker .. invariants -->
-  <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ct-r)"/>
-  <text x="668" y="320" text-anchor="middle" font-size="20" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
+  <path d="M835,226 C835,302 620,316 500,316 C500,316 500,278 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ct-r)"/>
+  <text x="668" y="342" text-anchor="middle" font-size="20" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
 
   <!-- footer: protect the point -->
   <!-- summary line removed 260820 (figure-min-font wave): duplicated the md caption and overflowed the viewBox when bumped to floor size — the caption carries it. -->
