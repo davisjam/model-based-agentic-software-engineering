@@ -1,111 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Hand-authored SVG (label: book-map). frontmatter-figures-260814 SIMPLIFY pass. The call/response geometry
-     — the left-margin arc from Preface to Conclusion, the ink spine down six Parts — is PRESERVED, but the
-     figure is simplified aggressively per the front-matter pass:
-     (1) ONE gloss per Part, no sub-concepts (the per-Part detail lives in the Parts themselves);
-     (2) the visual argument now ENDS at the Conclusion's answer, RESPONSIBILITY — the muted apparatus tail
-         (Appendices, Colophon, About the Author, the "argument is over" transition) is DELETED from the
-         vertical; book-furniture belongs in ordinary text beneath the figure, not in the argument's spine;
-     (3) the canvas is shortened to end just past the Conclusion (viewBox height 940), and the
-         call-and-response arc's lower control points + endpoint are re-fitted to the Conclusion's position.
-     Palette: Umber Monograph tokens — matter (Preface + Conclusion) ink #1c1917 on warm paper #f4efe6;
-     Part I ink #1c1917; Part II green #1f7a4d (Modeling); Part III accent #9a3f12 (Alignment); Part IV
-     neutral #57534e; Part V fleet #2f5169 (the DocAble case); Part VI purple #5b4a72 (the profession).
-     The call-and-response arc is rust #9a3f12 — the governance accent, because the answer the Conclusion
-     lands on is Responsibility. -->
+<!-- Hand-authored SVG (label: book-map). frontmatter-figures-260820 pass: the "call and response" metaphor
+     is retired in favour of a plain "question / argument / answer" framing. A single clean descent through
+     the six Parts, from the Preface's opening question to the Conclusion's answer + its converse, with two
+     DOTTED branches hanging the appendix Parts off the argument (Part IV to Practice, Part V to Evidence),
+     mirroring the two short reading paths. FONT NOTE: the viewBox width is held to 920 so every label
+     normalizes into the figure font band (abs x 1000/920 lands in 16-28px) and renders near body size in the
+     PDF column; the canvas is kept short (660) so the whole section still fits one page. Palette: Umber
+     Monograph tokens per Part; appendix destinations muted #78716c with a dashed border. -->
 <!-- semantic-families: agent, governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 940" width="900" height="940"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 660" width="920" height="660"
      role="group" aria-labelledby="bmTitle bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bmTitle">A map of the book — a question posed in the Preface, answered in the Conclusion, across six Parts</title>
-  <desc id="bmDesc">The book is a call and a response wrapped around a single descent through six Parts. The
-    Preface poses the governing question: how do we safely grant autonomy to commodity intelligence? It leads
-    to Part I, The New Engineering Problem — the changed economics. That leads to Part II, Modeling — make
-    knowledge and intent explicit. That leads to Part III, Alignment — give obligations authority. Modeling
-    comes first as a principled progression, not as a dependency. That leads to Part IV, The MAGE Method —
-    model, align, work, convert. That leads to Part V, The Evidence — depth and breadth. That leads to Part
-    VI, The Profession — theory, implications, and the engineer. The book then reaches the Conclusion, which
-    returns to the Preface's question and asks its converse: what cannot be delegated? Responsibility. The
-    visual argument ends there.</desc>
+  <title id="bmTitle">The book's argument — a question posed in the Preface, answered in the Conclusion, across six Parts, with the two appendix Parts branching off</title>
+  <desc id="bmDesc">A single descent through the book's argument. The Preface poses the opening question: how
+    do we safely grant autonomy to commodity intelligence? It leads to Part I, The New Engineering Problem —
+    changed economics. Then Part II, Modeling — make knowledge and intent explicit. Then Part III, Alignment —
+    give obligations authority. Then Part IV, The MAGE Method — model, align, work, convert; a dotted branch
+    runs to Appendix Part I, Practice (use and extend). Then Part V, The Evidence — depth and breadth; a
+    dotted branch runs to Appendix Part II, Evidence (inspect the empirical record). Then Part VI, The
+    Profession — theory, implications, engineer. The descent ends at the Conclusion, which returns to the
+    Preface's question and asks its converse: what cannot be delegated? Responsibility. The dotted appendix
+    branches are related destinations, not steps in the argument.</desc>
 
   <defs>
-    <marker id="bm2-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="bm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
     </marker>
-    <marker id="bm2-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
+    <marker id="bm-ah-muted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#78716c"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="900" height="940" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="920" height="660" fill="#fdfcf9"/>
 
-  <!-- CALL-AND-RESPONSE ARC — Preface (call) tied to Conclusion (response), down the left margin -->
-  <!-- edge-grammar: keep-angles -->
-  <!-- KEEP-CURVE (side-exit escape): the preface -> conclusion edge is the figure's call-and-response
-       feedback arc — it deliberately leaves Preface on the LEFT margin and sweeps the whole six-Part descent
-       to return into the Conclusion, carrying the rotated "the question returns, and turns" label along its
-       length. This swoop IS the figure ("a call and a response wrapped around a single descent"); an
-       orthogonal detour out the bottom would destroy the metaphor. The other edges are clean straight
-       verticals, so opting the figure out costs no real coverage. -->
-  <!-- edge: preface -> conclusion -->
-  <path d="M 190 100 C 55 290, 90 848, 190 848" fill="none" stroke="#9a3f12" stroke-width="1.8"
-        stroke-dasharray="1 0" marker-end="url(#bm2-ah-rust)" opacity="0.85"/>
-  <text x="58" y="474" transform="rotate(-90 58 474)" text-anchor="middle" font-size="17"
-        font-style="italic" fill="#9a3f12">call → response · the question returns, and turns</text>
+  <!-- top framing kicker -->
+  <text x="244" y="26" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e"
+        letter-spacing="0.05em">question&#8201;&#8594;&#8201;argument&#8201;&#8594;&#8201;answer</text>
 
-  <!-- PREFACE — the call (unnumbered matter) -->
-  <rect id="preface" x="190" y="48" width="520" height="86" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="450" y="82" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Preface</text>
-  <text x="450" y="104" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">poses the question:</text>
-  <text x="450" y="123" text-anchor="middle" font-size="17" font-style="italic" fill="#1c1917">&#8220;How do we safely grant autonomy to commodity intelligence?&#8221;</text>
-  <!-- edge: preface -> part-1 -->
-  <line x1="450" y1="134" x2="450" y2="158" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <!-- PREFACE — the opening question (unnumbered matter) -->
+  <rect id="preface" x="24" y="40" width="440" height="74" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="244" y="68" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Preface</text>
+  <text x="244" y="91" text-anchor="middle" font-size="16" font-style="italic" fill="#1c1917">&#8220;How do we safely grant autonomy</text>
+  <text x="244" y="109" text-anchor="middle" font-size="16" font-style="italic" fill="#1c1917">to commodity intelligence?&#8221;</text>
+  <line x1="244" y1="114" x2="244" y2="128" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
-  <!-- PART I — The New Engineering Problem (ink frame) -->
-  <rect id="part-1" x="190" y="160" width="520" height="80" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
-  <text x="450" y="196" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Part I · The New Engineering Problem</text>
-  <text x="450" y="221" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">changed economics</text>
-  <!-- edge: part-1 -> part-2 -->
-  <line x1="450" y1="240" x2="450" y2="264" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <!-- PART I -->
+  <rect id="part-1" x="24" y="128" width="440" height="56" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.2"/>
+  <text x="244" y="153" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">Part I · The New Engineering Problem</text>
+  <text x="244" y="173" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">changed economics</text>
+  <line x1="244" y1="184" x2="244" y2="198" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
   <!-- PART II — Modeling (green) -->
-  <rect id="part-2" x="190" y="266" width="520" height="80" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
-  <text x="450" y="302" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part II · Modeling</text>
-  <text x="450" y="327" text-anchor="middle" font-size="17" font-style="italic" fill="#1f7a4d">make knowledge + intent explicit</text>
-  <!-- edge: part-2 -> part-3 -->
-  <line x1="450" y1="346" x2="450" y2="370" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <rect id="part-2" x="24" y="198" width="440" height="56" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.4"/>
+  <text x="244" y="223" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Part II · Modeling</text>
+  <text x="244" y="243" text-anchor="middle" font-size="16" font-style="italic" fill="#1f7a4d">make knowledge + intent explicit</text>
+  <line x1="244" y1="254" x2="244" y2="268" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
   <!-- PART III — Alignment (rust) -->
-  <rect id="part-3" x="190" y="372" width="520" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="450" y="408" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part III · Alignment</text>
-  <text x="450" y="433" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">give obligations authority</text>
-  <!-- edge: part-3 -> part-4 -->
-  <line x1="450" y1="452" x2="450" y2="476" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <rect id="part-3" x="24" y="268" width="440" height="56" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="244" y="293" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Part III · Alignment</text>
+  <text x="244" y="313" text-anchor="middle" font-size="16" font-style="italic" fill="#9a3f12">give obligations authority</text>
+  <line x1="244" y1="324" x2="244" y2="338" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
   <!-- PART IV — The MAGE Method (neutral: joins the two) -->
-  <rect id="part-4" x="190" y="478" width="520" height="80" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="450" y="514" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
-  <text x="450" y="539" text-anchor="middle" font-size="17" font-weight="600" fill="#1c1917">model · align · work · convert</text>
-  <!-- edge: part-4 -> part-5 -->
-  <line x1="450" y1="558" x2="450" y2="582" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <rect id="part-4" x="24" y="338" width="440" height="56" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
+  <text x="244" y="363" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part IV · The MAGE Method</text>
+  <text x="244" y="383" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">model · align · work · convert</text>
+  <line x1="244" y1="394" x2="244" y2="408" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+
+  <!-- PART IV to Appendix Part I (DOTTED branch — related destination, not a step) -->
+  <line x1="464" y1="366" x2="580" y2="366" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
+  <rect id="appendix-1" x="580" y="338" width="320" height="56" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.8" stroke-dasharray="5 3"/>
+  <text x="740" y="363" text-anchor="middle" font-size="17" font-weight="700" fill="#44403c">Appendix Part I · Practice</text>
+  <text x="740" y="383" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">use + extend</text>
 
   <!-- PART V — The Evidence (fleet blue) -->
-  <rect id="part-5" x="190" y="584" width="520" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="450" y="620" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
-  <text x="450" y="645" text-anchor="middle" font-size="17" font-weight="600" fill="#2f5169">depth + breadth</text>
-  <!-- edge: part-5 -> part-6 -->
-  <line x1="450" y1="664" x2="450" y2="688" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <rect id="part-5" x="24" y="408" width="440" height="56" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="244" y="433" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Part V · The Evidence</text>
+  <text x="244" y="453" text-anchor="middle" font-size="16" font-weight="600" fill="#2f5169">depth + breadth</text>
+  <line x1="244" y1="464" x2="244" y2="478" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+
+  <!-- PART V to Appendix Part II (DOTTED branch) -->
+  <line x1="464" y1="436" x2="580" y2="436" stroke="#78716c" stroke-width="1.8" stroke-dasharray="2 4" marker-end="url(#bm-ah-muted)"/>
+  <rect id="appendix-2" x="580" y="408" width="320" height="56" rx="8" fill="#faf8f4" stroke="#78716c" stroke-width="1.8" stroke-dasharray="5 3"/>
+  <text x="740" y="433" text-anchor="middle" font-size="17" font-weight="700" fill="#44403c">Appendix Part II · Evidence</text>
+  <text x="740" y="453" text-anchor="middle" font-size="15" font-style="italic" fill="#78716c">inspect the empirical record</text>
 
   <!-- PART VI — The Profession (purple) -->
-  <rect id="part-6" x="190" y="690" width="520" height="80" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
-  <text x="450" y="726" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
-  <text x="450" y="751" text-anchor="middle" font-size="17" font-style="italic" fill="#5b4a72">theory · implications · engineer</text>
-  <!-- edge: part-6 -> conclusion -->
-  <line x1="450" y1="770" x2="450" y2="794" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm2-ah)"/>
+  <rect id="part-6" x="24" y="478" width="440" height="56" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
+  <text x="244" y="503" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
+  <text x="244" y="523" text-anchor="middle" font-size="16" font-style="italic" fill="#5b4a72">theory · implications · engineer</text>
+  <line x1="244" y1="534" x2="244" y2="548" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
-  <!-- CONCLUSION — the response (unnumbered matter, parallel to the Preface); the visual argument ends here -->
-  <rect id="conclusion" x="190" y="796" width="520" height="96" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="450" y="828" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
-  <text x="450" y="851" text-anchor="middle" font-size="17" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
-  <text x="450" y="875" text-anchor="middle" font-size="17" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
+  <!-- CONCLUSION — the answer + its converse (unnumbered matter); the argument ends here -->
+  <rect id="conclusion" x="24" y="548" width="440" height="76" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="244" y="576" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
+  <text x="244" y="598" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
+  <text x="244" y="617" text-anchor="middle" font-size="16" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
 </svg>

@@ -422,10 +422,10 @@
       "rationale": "book-level method synthesis; reader learns the whole method from the caption"
     },
     "assets/book-map.svg": {
-      "tier": "B",
+      "tier": "C",
       "kind": "roadmap",
       "location": "frontmatter",
-      "rationale": "the book's own map — preface-3 (R41) sets a terse two-sentence progression caption (representation → authority, no arrow narration), a Supporting-tier orientation caption rather than a length-earning Anchor"
+      "rationale": "the book's own map — the how-to-read compression (260820) makes the figure self-explanatory and the caption a one-line Reference label naming what the figure traces (question → argument → answer), not a length-earning Supporting caption"
     },
     "assets/docable-glimpse.svg": {
       "tier": "B",
