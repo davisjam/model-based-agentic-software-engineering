@@ -36,10 +36,10 @@
 
   <!-- ===== NODES ===== -->
   <!-- COMPONENT CATALOG (authored representation) -->
-  <text x="360" y="60" text-anchor="middle" font-size="12.96" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED STRUCTURE</text>
+  <text x="360" y="60" text-anchor="middle" font-size="14.4" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED STRUCTURE</text>
   <rect id="catalog" x="240" y="68" width="240" height="66" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="360" y="96" text-anchor="middle" font-size="18" font-weight="700" fill="#8a2f2f">COMPONENT CATALOG</text>
-  <text x="360" y="118" text-anchor="middle" font-size="14" fill="#57534e">ownership · seams</text>
+  <text x="360" y="118" text-anchor="middle" font-size="14.4" fill="#57534e">ownership · seams</text>
 
   <!-- WEB ZONE (representation) -->
   <rect id="web-zone" x="90" y="210" width="170" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
@@ -56,29 +56,29 @@
   <!-- REPOSITORY TREE (observed) reverse-mapped up (DASHED) -->
   <rect id="repository-tree" x="440" y="400" width="200" height="56" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
   <text x="540" y="432" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">REPOSITORY TREE</text>
-  <text x="540" y="474" text-anchor="middle" font-size="12.96" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED STRUCTURE</text>
+  <text x="540" y="474" text-anchor="middle" font-size="14.4" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED STRUCTURE</text>
 
   <!-- ===== edge labels + glyph decorations (on top of edges) ===== -->
-  <text x="228" y="168" font-size="13" font-style="italic" fill="#57534e">owns</text>
-  <text x="472" y="168" font-size="13" font-style="italic" fill="#57534e">permits</text>
-  <text x="365" y="230" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">sanctioned seam</text>
+  <text x="228" y="168" font-size="14.4" font-style="italic" fill="#57534e">owns</text>
+  <text x="472" y="168" font-size="14.4" font-style="italic" fill="#57534e">permits</text>
+  <text x="365" y="230" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">sanctioned seam</text>
   <!-- gate glyph: two heavy red bars = the guarded door (authority) -->
   <g stroke="#b23b3b" stroke-width="3.6">
     <line x1="357" y1="230" x2="357" y2="254"/>
     <line x1="369" y1="230" x2="369" y2="254"/>
   </g>
-  <text x="363" y="272" text-anchor="middle" font-size="12.96" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED · door</text>
+  <text x="363" y="272" text-anchor="middle" font-size="14.4" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED · door</text>
 
   <!-- X struck through the forbidden crossing -->
   <g stroke="#b23b3b" stroke-width="3">
     <line x1="168" y1="326" x2="192" y2="344"/>
     <line x1="192" y1="326" x2="168" y2="344"/>
   </g>
-  <text x="210" y="336" font-size="13" font-style="italic" fill="#b23b3b">forbidden</text>
-  <text x="210" y="352" font-size="13" font-style="italic" fill="#b23b3b">direct access</text>
+  <text x="210" y="336" font-size="14.4" font-style="italic" fill="#b23b3b">forbidden</text>
+  <text x="210" y="352" font-size="14.4" font-style="italic" fill="#b23b3b">direct access</text>
 
-  <text x="590" y="300" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">reverse-map</text>
-  <text x="590" y="316" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the tree</text>
+  <text x="590" y="300" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">reverse-map</text>
+  <text x="590" y="316" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">the tree</text>
 
-  <text x="40" y="502" font-size="12.96" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Gate glyph = a guarded door (authority); X = a forbidden crossing with no door.</text>
+  <text x="40" y="502" font-size="14.4" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Gate glyph = a guarded door (authority); X = a forbidden crossing with no door.</text>
 </svg>

@@ -54,30 +54,30 @@
   <!-- ===== NODE LAYER: drawn ON TOP so opaque fills cap the edge ends ===== -->
   <!-- CAUSE (provenance origin) -->
   <rect id="cause" x="90" y="34" width="180" height="56" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="180" y="69" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">CAUSE</text>
+  <text x="180" y="69" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">CAUSE</text>
 
   <!-- chain: ACTION -> CHANGE -> ARTIFACT -->
   <g>
     <rect id="action" x="100" y="150" width="160" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="180" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ACTION</text>
+    <text x="180" y="186" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ACTION</text>
     <rect id="change" x="420" y="150" width="160" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="500" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHANGE</text>
+    <text x="500" y="186" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CHANGE</text>
     <rect id="artifact" x="740" y="150" width="180" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="830" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ARTIFACT</text>
+    <text x="830" y="186" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ARTIFACT</text>
   </g>
 
   <!-- reconstruct WHY box -->
   <rect id="reconstruct-why" x="700" y="334" width="260" height="58" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
-  <text x="830" y="370" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">reconstruct WHY</text>
+  <text x="830" y="370" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">reconstruct WHY</text>
 
   <!-- ===== ANNOTATIONS (labels) ===== -->
-  <text x="192" y="124" font-size="18" font-style="italic" fill="#9a3f12">mint identity</text>
-  <g font-size="18" font-weight="700" fill="#9a3f12" text-anchor="middle">
+  <text x="192" y="124" font-size="20" font-style="italic" fill="#9a3f12">mint identity</text>
+  <g font-size="20" font-weight="700" fill="#9a3f12" text-anchor="middle">
     <text x="340" y="264">id</text>
     <text x="665" y="264">id</text>
   </g>
-  <text x="500" y="300" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">the identity travels with the work &#8212; and can be checked for completeness</text>
+  <text x="500" y="300" text-anchor="middle" font-size="20" font-style="italic" fill="#9a3f12">the identity travels with the work &#8212; and can be checked for completeness</text>
 
   <!-- footer -->
-  <text x="60" y="440" font-size="18" fill="#1c1917">Capture provenance at the causal event and carry it forward with the resulting change.</text>
+  <text x="60" y="440" font-size="20" fill="#1c1917">Capture provenance at the causal event and carry it forward with the resulting change.</text>
 </svg>

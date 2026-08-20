@@ -23,14 +23,14 @@
 
   <!-- CHANGE X -->
   <rect id="change" x="400" y="30" width="200" height="54" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CHANGE X</text>
-  <text x="500" y="76" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">proposed</text>
+  <text x="500" y="58" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CHANGE X</text>
+  <text x="500" y="76" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">proposed</text>
   <!-- edge: change -> substrate -->
   <line x1="500" y1="84" x2="500" y2="134" stroke="#57534e" stroke-width="2.2" marker-end="url(#c10-ah-n)"/>
 
   <!-- SUBSTRATE NODE -->
   <rect id="substrate" x="350" y="136" width="300" height="58" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="500" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">SUBSTRATE NODE</text>
+  <text x="500" y="172" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">SUBSTRATE NODE</text>
 
   <!-- fan to three dependents (one path per branch) -->
   <!-- edge: substrate -> control-a -->
@@ -42,18 +42,18 @@
 
   <!-- CONTROL A (blocks) -->
   <rect id="control-a" x="110" y="254" width="200" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="210" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL A</text>
-  <text x="210" y="304" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">blocks</text>
+  <text x="210" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">CONTROL A</text>
+  <text x="210" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">blocks</text>
 
   <!-- CONTROL B (unaffected) -->
   <rect id="control-b" x="400" y="254" width="200" height="64" rx="10" fill="#fdfcf9" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
-  <text x="500" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL B</text>
-  <text x="500" y="304" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">unaffected</text>
+  <text x="500" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">CONTROL B</text>
+  <text x="500" y="304" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">unaffected</text>
 
   <!-- MODEL C (derives) -->
   <rect id="model-c" x="690" y="254" width="200" height="64" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
-  <text x="790" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL C</text>
-  <text x="790" y="304" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">derives</text>
+  <text x="790" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">MODEL C</text>
+  <text x="790" y="304" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">derives</text>
 
   <!-- converge to BLAST RADIUS (one path per branch) -->
   <!-- edge: control-a -> blast -->
@@ -64,9 +64,9 @@
   <path d="M706,318 L706,359 L644,359 L644,400" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c10-ah-n)"/>
 
   <rect id="blast" x="340" y="402" width="320" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
-  <text x="500" y="439" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">BLAST RADIUS</text>
+  <text x="500" y="439" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">BLAST RADIUS</text>
 
   <!-- footer -->
-  <text x="500" y="510" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Declare each dependency as typed metadata on the dependent.</text>
-  <text x="500" y="536" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Change impact becomes a graph query over declared dependencies.</text>
+  <text x="500" y="510" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Declare each dependency as typed metadata on the dependent.</text>
+  <text x="500" y="536" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Change impact becomes a graph query over declared dependencies.</text>
 </svg>

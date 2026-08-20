@@ -828,13 +828,13 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <line x1="329" y1="200" x2="351" y2="222"/>
     <line x1="351" y1="200" x2="329" y2="222"/>
   </g>
-  <text x="340" y="234" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">may not skip publication</text>
+  <text x="340" y="234" text-anchor="middle" font-size="13.6" font-style="italic" fill="#9a3f12">may not skip publication</text>
   <!-- edge: model -> encoding -->
   <line x1="340" y1="240" x2="340" y2="268" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
 
   <!-- layer 3: ONE EXECUTABLE REPRESENTATION (gray) -->
   <rect id="f-model-first-encoding-second-encoding" x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="340" y="294" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
+  <text x="340" y="294" text-anchor="middle" font-size="13.6" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
   <text x="340" y="313" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">explicit legal-transition relation</text>
   <!-- edge: encoding -> implementation -->
   <line x1="340" y1="322" x2="340" y2="350" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
@@ -925,24 +925,24 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </g>
 
   <!-- ===== labels (drawn last, on top) ===== -->
-  <text x="500" y="56" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="1" fill="#2f5169">BEHAVIORAL MODEL</text>
-  <text x="500" y="80" text-anchor="middle" font-size="18" fill="#57534e">states &#183; transitions &#183; legal sequences</text>
+  <text x="500" y="56" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="1" fill="#2f5169">BEHAVIORAL MODEL</text>
+  <text x="500" y="80" text-anchor="middle" font-size="20" fill="#57534e">states &#183; transitions &#183; legal sequences</text>
 
-  <text x="190" y="182" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">LOCAL RULE</text>
-  <text x="500" y="182" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">REACHABLE-STATE</text>
-  <text x="810" y="182" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">TEMPORAL PROPERTY</text>
+  <text x="190" y="182" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">LOCAL RULE</text>
+  <text x="500" y="182" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">REACHABLE-STATE</text>
+  <text x="810" y="182" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">TEMPORAL PROPERTY</text>
 
-  <text x="190" y="233" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">is this edge legal?</text>
-  <text x="500" y="233" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">can this state occur?</text>
-  <text x="810" y="233" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">will this eventually occur?</text>
+  <text x="190" y="233" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">is this edge legal?</text>
+  <text x="500" y="233" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">can this state occur?</text>
+  <text x="810" y="233" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">will this eventually occur?</text>
 
-  <text x="190" y="290" text-anchor="middle" font-size="18" fill="#1c1917">transition check</text>
-  <text x="500" y="290" text-anchor="middle" font-size="18" fill="#1c1917">state-space search</text>
-  <text x="810" y="290" text-anchor="middle" font-size="18" fill="#1c1917">temporal model checking</text>
+  <text x="190" y="290" text-anchor="middle" font-size="20" fill="#1c1917">transition check</text>
+  <text x="500" y="290" text-anchor="middle" font-size="20" fill="#1c1917">state-space search</text>
+  <text x="810" y="290" text-anchor="middle" font-size="20" fill="#1c1917">temporal model checking</text>
 
-  <text x="500" y="431" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">EVIDENCE ABOUT BEHAVIOR</text>
+  <text x="500" y="431" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">EVIDENCE ABOUT BEHAVIOR</text>
 
-  <text x="500" y="512" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Same model family; different property, different checker.</text>
+  <text x="500" y="512" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Same model family; different property, different checker.</text>
 </svg><figcaption data-short="Behavioral models expose different classes of properties"><span class="fig-label">Figure 2.3-3.</span> <em>Behavioral models expose different classes of properties.</em> A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question.</figcaption></figure>
 <p>The recovery ordering is a sharp slice of a larger behavioral model. A DocAble job also carries a full lifecycle — queued, leased, remediating, awaiting-merge, completed or failed — with its own legal transitions and its own invariants. The full lifecycle answers broader workflow questions; the three-state recovery ordering is the sharper reduction for crash-safe publication.</p>
 <p>The next chapter turns from <em>what may happen, and in what order</em>, to ownership: <em>who may hold the work while it happens, and for how long.</em></p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">« Beginning of part</a><a href="2.2-structural.html" aria-label="Previous chapter — 6 · Structural Models: What Is Connected to What?">« Previous chapter</a></div><span class="chapnav-here" title="7 · Behavioral Models: What May Happen?">7 · Behavioral Models: What May Happen?</span><div class="chapnav-fwd"><a href="2.4-ownership.html" aria-label="Next chapter — 8 · Ownership Models: Who Controls What, and When?">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — Alignment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

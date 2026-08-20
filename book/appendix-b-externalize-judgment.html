@@ -749,11 +749,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <g>
     <rect id="f-c9-externalize-judgment-healthy" x="130" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="210" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">healthy?</text>
+    <text x="210" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">healthy?</text>
     <rect id="f-c9-externalize-judgment-states" x="420" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="500" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">states</text>
+    <text x="500" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">states</text>
     <rect id="f-c9-externalize-judgment-relations" x="710" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="790" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">relations</text>
+    <text x="790" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">relations</text>
   </g>
 
   <!-- converge to OPERATIONAL MODEL -->
@@ -776,12 +776,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M625,328 L625,396" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-c9-externalize-judgment-c9-ah)"/>
 
   <rect id="f-c9-externalize-judgment-generated-procedure" x="180" y="398" width="240" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="300" y="426" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">generated</text>
-  <text x="300" y="448" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">procedure</text>
+  <text x="300" y="426" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">generated</text>
+  <text x="300" y="448" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">procedure</text>
 
   <rect id="f-c9-externalize-judgment-reasoning-guidance" x="580" y="398" width="240" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="700" y="426" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">reasoning</text>
-  <text x="700" y="448" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">guidance</text>
+  <text x="700" y="426" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">reasoning</text>
+  <text x="700" y="448" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">guidance</text>
 
   <!-- converge to OPERATOR -->
   <!-- edge: generated-procedure -> operator -->
@@ -790,10 +790,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M595,458 L595,516" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#f-c9-externalize-judgment-c9-ah-b)"/>
 
   <rect id="f-c9-externalize-judgment-operator" x="390" y="518" width="220" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="500" y="554" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">OPERATOR</text>
+  <text x="500" y="554" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">OPERATOR</text>
 
   <!-- footer -->
-  <text x="500" y="606" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Separate what can be generated or executed from what still needs judgment &#8212; and keep the representation tied to the system it describes.</text>
+  <text x="500" y="606" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Separate what can be generated or executed from what still needs judgment &#8212; and keep the representation tied to the system it describes.</text>
 </svg><figcaption data-short="From system model to operational guidance"><span class="fig-label">Figure B.9-1.</span> <em>From system model to operational guidance.</em> Healthy-state predicates, states, and relations feed an operational model that produces generated procedure where possible and reasoning guidance where judgment remains necessary.</figcaption></figure>
 <p><strong>Example — Generated runbook.</strong> DocAble's lifecycle model names operational subsystems and their healthy-state predicates. The operator runbook is generated from that representation, keeping procedure aligned with the system model. When a subsystem's healthy-state predicate changes, the generated runbook changes with it.</p>
 <p><strong>Example — Event-bound playbook.</strong> The orchestrator reacts to typed fleet events through per-topic playbooks. The playbook records the trigger and response once, so the orchestrator can execute them when the event recurs rather than reconstructing the procedure each time.</p>

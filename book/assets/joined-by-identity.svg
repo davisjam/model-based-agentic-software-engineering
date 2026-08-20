@@ -54,7 +54,7 @@
     <path d="M551,182 L551,214 L474,214 L474,246"/>
   </g>
 
-  <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
+  <g font-size="15.2" font-weight="700" text-anchor="middle" fill="#2f5169">
     <rect id="structural" x="35" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="130" y="163">structural model</text>
     <rect id="behavioral" x="285" y="134" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
@@ -76,7 +76,7 @@
   <rect id="stable-identity" x="270" y="248" width="220" height="48" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
   <text x="380" y="278" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">stable identity</text>
 
-  <g font-size="15" font-weight="700" text-anchor="middle" fill="#2f5169">
+  <g font-size="15.2" font-weight="700" text-anchor="middle" fill="#2f5169">
     <rect id="ownership" x="35" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
     <text x="130" y="385">ownership model</text>
     <rect id="measurement" x="285" y="356" width="190" height="48" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
@@ -86,6 +86,6 @@
   </g>
 
   <!-- footer: the working rule (check line in rust) -->
-  <text x="380" y="436" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">derive where possible &#183; trace where necessary &#183; <tspan fill="#9a3f12" font-weight="700">check only what is decidable</tspan></text>
+  <text x="380" y="436" text-anchor="middle" font-size="15.2" font-style="italic" fill="#1c1917">derive where possible &#183; trace where necessary &#183; <tspan fill="#9a3f12" font-weight="700">check only what is decidable</tspan></text>
   <text x="380" y="458" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">Heterogeneous models joined by shared identity &#8212; not one universal graph.</text>
 </svg>

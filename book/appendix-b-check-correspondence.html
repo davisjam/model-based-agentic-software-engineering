@@ -736,30 +736,30 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- MODEL (modeling pole) -->
   <rect id="f-c3-bidirectional-correspondence-model" x="120" y="150" width="230" height="90" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
   <text x="235" y="192" text-anchor="middle" font-size="22" font-weight="700" fill="#155c38">MODEL</text>
-  <text x="235" y="218" text-anchor="middle" font-size="18" font-style="italic" fill="#1f7a4d">what we claim is true</text>
+  <text x="235" y="218" text-anchor="middle" font-size="20" font-style="italic" fill="#1f7a4d">what we claim is true</text>
 
   <!-- REALITY (agent/system pole) -->
   <rect id="f-c3-bidirectional-correspondence-reality" x="650" y="150" width="230" height="90" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="765" y="192" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">REALITY</text>
-  <text x="765" y="218" text-anchor="middle" font-size="18" font-style="italic" fill="#2f5169">the running system</text>
+  <text x="765" y="218" text-anchor="middle" font-size="20" font-style="italic" fill="#2f5169">the running system</text>
 
   <!-- top arc: MODEL claim -> REALITY (bows high, clears the label band) -->
   <!-- edge: model -> reality -->
   <path d="M350,150 C445,92 555,92 652,150" fill="none" stroke="#9a3f12" stroke-width="2.5" marker-end="url(#f-c3-bidirectional-correspondence-c3-ah-r)"/>
-  <text x="500" y="80" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">claim</text>
-  <text x="500" y="134" text-anchor="middle" font-size="18" fill="#1c1917">Does reality still satisfy the model?</text>
-  <text x="500" y="153" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">catches a wrong modeled fact</text>
+  <text x="500" y="80" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">claim</text>
+  <text x="500" y="134" text-anchor="middle" font-size="20" fill="#1c1917">Does reality still satisfy the model?</text>
+  <text x="500" y="153" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">catches a wrong modeled fact</text>
 
   <!-- bottom arc: REALITY -> MODEL (coverage) -->
   <!-- edge: reality -> model -->
   <path d="M650,240 C548,310 452,310 348,240" fill="none" stroke="#9a3f12" stroke-width="2.5" marker-end="url(#f-c3-bidirectional-correspondence-c3-ah-r)"/>
-  <text x="500" y="260" text-anchor="middle" font-size="18" fill="#1c1917">Did something important appear outside the model?</text>
-  <text x="500" y="279" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">catches unmodeled reality</text>
-  <text x="500" y="330" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">coverage</text>
+  <text x="500" y="260" text-anchor="middle" font-size="20" fill="#1c1917">Did something important appear outside the model?</text>
+  <text x="500" y="279" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">catches unmodeled reality</text>
+  <text x="500" y="330" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">coverage</text>
 
   <!-- footer -->
-  <text x="500" y="410" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">Treat correspondence as an invariant, and check it in both directions.</text>
-  <text x="500" y="438" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">One direction catches wrong modeled facts; the other catches reality the model never admitted.</text>
+  <text x="500" y="410" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Treat correspondence as an invariant, and check it in both directions.</text>
+  <text x="500" y="438" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">One direction catches wrong modeled facts; the other catches reality the model never admitted.</text>
 </svg><figcaption data-short="Correspondence runs both ways"><span class="fig-label">Figure B.3-1.</span> <em>Correspondence runs both ways.</em> A two-way loop joins MODEL and REALITY. One arrow asks whether reality still satisfies the model, catching a wrong modeled fact; the other asks whether something important appeared outside the model, catching unmodeled reality.</figcaption></figure>
 <p><strong>Example — Architecture drift.</strong> A component-and-zone model declares where code belongs and which dependencies it may take. A gate compares the declared architecture against the imports the implementation actually makes. A change that violates the modeled structure fails the check at commit time.</p>
 <p><strong>Example — Governance coverage.</strong> The same correspondence idea runs the other way. An orphan-coverage walk starts from code and asks what model or control governs it. Uncovered code is not automatically wrong; it shows where implementation currently sits outside the modeled governance estate and requires an explicit decision.</p>

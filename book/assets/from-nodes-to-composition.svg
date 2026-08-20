@@ -150,19 +150,19 @@
   <rect id="nb_dc" x="845" y="400" width="90" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="255" y="132" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structural model, as first built</text>
   <text x="736" y="132" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Derived typed graph</text>
-  <text x="575.0" y="181.0" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Pass A</text>
-  <text x="890.0" y="181.0" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Pass B</text>
-  <text x="575.0" y="306.0" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Pass A</text>
-  <text x="890.0" y="306.0" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Pass C</text>
-  <text x="575.0" y="431.0" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Pass B</text>
-  <text x="890.0" y="431.0" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Service</text>
-  <text x="732" y="166" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">DATA_FLOW  ×10</text>
-  <text x="732" y="192" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">Produces → Consumes</text>
-  <text x="732" y="291" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL_GATE  ×22</text>
-  <text x="732" y="317" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">ConsumesForControl</text>
-  <text x="732" y="416" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">CROSS_SERVICE  ×1</text>
-  <text x="732" y="442" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">cross-boundary payload</text>
-  <text x="488" y="286" text-anchor="middle" font-size="18" font-weight="600" fill="#57534e">derive edges</text>
-  <text x="255" y="540" text-anchor="middle" font-size="18" font-weight="600" fill="#155c38">113 nodes · 2 edges</text>
-  <text x="736" y="540" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">11 payload edges · 22 control gates</text>
+  <text x="575.0" y="181.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Pass A</text>
+  <text x="890.0" y="181.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Pass B</text>
+  <text x="575.0" y="306.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Pass A</text>
+  <text x="890.0" y="306.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Pass C</text>
+  <text x="575.0" y="431.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Pass B</text>
+  <text x="890.0" y="431.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Service</text>
+  <text x="732" y="166" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">DATA_FLOW  ×10</text>
+  <text x="732" y="192" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">Produces → Consumes</text>
+  <text x="732" y="291" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">CONTROL_GATE  ×22</text>
+  <text x="732" y="317" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">ConsumesForControl</text>
+  <text x="732" y="416" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">CROSS_SERVICE  ×1</text>
+  <text x="732" y="442" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">cross-boundary payload</text>
+  <text x="488" y="286" text-anchor="middle" font-size="20" font-weight="600" fill="#57534e">derive edges</text>
+  <text x="255" y="540" text-anchor="middle" font-size="20" font-weight="600" fill="#155c38">113 nodes · 2 edges</text>
+  <text x="736" y="540" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">11 payload edges · 22 control gates</text>
 </svg>

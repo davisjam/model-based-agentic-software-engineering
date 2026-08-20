@@ -744,43 +744,43 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- MARK -->
   <rect id="f-auditable-transformation-stack-mark" x="255" y="116" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="146" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">MARK</text>
-  <text x="360" y="168" text-anchor="middle" font-size="14" fill="#57534e">actor &#183; action</text>
+  <text x="360" y="168" text-anchor="middle" font-size="14.4" fill="#57534e">actor &#183; action</text>
   <!-- edge: mark -> emit -->
   <line x1="360" y1="182" x2="360" y2="214" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- EMIT -->
   <rect id="f-auditable-transformation-stack-emit" x="255" y="216" width="210" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="246" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">EMIT</text>
-  <text x="360" y="268" text-anchor="middle" font-size="14" fill="#57534e">persist a structured record</text>
+  <text x="360" y="268" text-anchor="middle" font-size="14.4" fill="#57534e">persist a structured record</text>
   <!-- edge: emit -> cover -->
   <line x1="360" y1="282" x2="360" y2="314" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- COVER -->
   <rect id="f-auditable-transformation-stack-cover" x="245" y="316" width="230" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="346" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">COVER</text>
-  <text x="360" y="368" text-anchor="middle" font-size="14" fill="#57534e">every mutation accounted for?</text>
+  <text x="360" y="368" text-anchor="middle" font-size="14.4" fill="#57534e">every mutation accounted for?</text>
   <!-- edge: cover -> read -->
   <line x1="360" y1="388" x2="360" y2="420" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- READ -->
   <rect id="f-auditable-transformation-stack-read" x="245" y="422" width="230" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="360" y="452" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">READ</text>
-  <text x="360" y="474" text-anchor="middle" font-size="14" fill="#57534e">reconstruct history</text>
+  <text x="360" y="474" text-anchor="middle" font-size="14.4" fill="#57534e">reconstruct history</text>
   <!-- edge: read -> fidelity-gate -->
   <line x1="360" y1="494" x2="360" y2="526" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
 
   <!-- FIDELITY GATE (rust) -->
   <rect id="f-auditable-transformation-stack-fidelity-gate" x="240" y="528" width="240" height="76" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="360" y="558" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">FIDELITY GATE</text>
-  <text x="360" y="580" text-anchor="middle" font-size="14" fill="#57534e">did semantics survive?</text>
+  <text x="360" y="580" text-anchor="middle" font-size="14.4" fill="#57534e">did semantics survive?</text>
 
   <!-- legend -->
   <line x1="60" y1="552" x2="104" y2="552" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-auditable-transformation-stack-ah)"/>
-  <text x="112" y="557" font-size="14" fill="#57534e">load-bearing (required)</text>
-  <text x="60" y="580" font-size="14" font-style="italic" fill="#57534e">the full chain is required</text>
+  <text x="112" y="557" font-size="14.4" fill="#57534e">load-bearing (required)</text>
+  <text x="60" y="580" font-size="14.4" font-style="italic" fill="#57534e">the full chain is required</text>
 
   <!-- caption -->
-  <text x="360" y="656" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. This joins causal legibility to product fidelity — broader than logging.</text>
+  <text x="360" y="656" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. This joins causal legibility to product fidelity — broader than logging.</text>
 </svg><figcaption data-short="The auditable-transformation composition"><span class="fig-label">Figure A.3-1.</span> The auditable-transformation composition. A sanctioned mutation flows through MARK (attach actor and action) to EMIT (persist a structured record); COVER detects any mutation that escaped attribution; READ reconstructs the transformation history from the records; a FIDELITY GATE checks that the transformed artifact kept its required semantics. Solid path: the load-bearing composition.</figcaption></figure>
 <h2><span class="sec-num">A.3.4</span> Constituent Moves</h2>
 <table id="tbl-A-3-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table A.3-1.</span></caption><thead><tr><th>Move</th><th>Role</th></tr></thead><tbody><tr><td><strong>MARK</strong></td><td>Attach identity and context to the mutation.</td></tr><tr><td><strong>EMIT</strong></td><td>Persist a structured record.</td></tr><tr><td><strong>COVER</strong></td><td>Detect mutations that escaped attribution.</td></tr><tr><td><strong>READ</strong></td><td>Reconstruct the transformation history.</td></tr><tr><td><strong>FIDELITY</strong></td><td>Check that the transformed artifact retained its required semantics.</td></tr></tbody></table>

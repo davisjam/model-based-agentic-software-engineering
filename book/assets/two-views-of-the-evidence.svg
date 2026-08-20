@@ -46,11 +46,11 @@
   <rect x="0" y="0" width="1000" height="820" fill="#fdfcf9"/>
 
   <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Two views of the evidence</text>
-  <text x="500" y="70" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Depth versus breadth — together they motivate the theory in Part VI.</text>
+  <text x="500" y="70" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Depth versus breadth — together they motivate the theory in Part VI.</text>
 
   <!-- THE EVIDENCE — a bare text node given a transparent rect anchor so the lint can read its geometry -->
   <rect id="evidence" x="428" y="90" width="144" height="24" fill="none" stroke="none"/>
-  <text x="500" y="106" text-anchor="middle" font-size="15.01" font-weight="700" letter-spacing="2" fill="#1c1917">THE EVIDENCE</text>
+  <text x="500" y="106" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2" fill="#1c1917">THE EVIDENCE</text>
 
   <!-- ===== EDGES (drawn under nodes) ===== -->
   <!-- split from the apex to the two column headers (undirected fork; each branch runs apex-centre to node centre) -->
@@ -82,33 +82,33 @@
   <!-- ===== NODES ===== -->
   <!-- left column header — ORIGINATING CASE (modeling-green) -->
   <rect id="originating-case" x="60" y="160" width="400" height="64" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="260" y="192" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">ORIGINATING CASE</text>
-  <text x="260" y="214" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">DocAble</text>
+  <text x="260" y="192" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">ORIGINATING CASE</text>
+  <text x="260" y="214" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">DocAble</text>
 
   <!-- right column header — INDUSTRIAL RECONSTRUCTIONS (agent-blue) -->
   <rect id="industrial" x="540" y="160" width="400" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="740" y="192" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">INDUSTRIAL RECONSTRUCTIONS</text>
-  <text x="740" y="214" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">independent systems</text>
+  <text x="740" y="192" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">INDUSTRIAL RECONSTRUCTIONS</text>
+  <text x="740" y="214" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">independent systems</text>
 
   <!-- question boxes -->
   <rect id="how-emerge" x="60" y="414" width="400" height="54" rx="8" fill="#fdfcf9" stroke="#1f7a4d" stroke-width="2.2"/>
-  <text x="260" y="447" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">HOW DID IT EMERGE?</text>
+  <text x="260" y="447" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">HOW DID IT EMERGE?</text>
 
   <rect id="how-travel" x="540" y="414" width="400" height="54" rx="8" fill="#fdfcf9" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="740" y="447" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">HOW FAR DOES IT TRAVEL?</text>
+  <text x="740" y="447" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">HOW FAR DOES IT TRAVEL?</text>
 
   <!-- ANALYTIC GENERALIZATION -->
   <rect id="analytic-gen" x="300" y="556" width="400" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.8"/>
-  <text x="500" y="592" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">ANALYTIC GENERALIZATION</text>
+  <text x="500" y="592" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">ANALYTIC GENERALIZATION</text>
 
   <!-- PART VI destination -->
   <rect id="part-vi" x="260" y="692" width="480" height="64" rx="10" fill="#f3efe7" stroke="#1c1917" stroke-width="2.6"/>
-  <text x="500" y="716" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="2" fill="#57534e">PART VI</text>
+  <text x="500" y="716" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2" fill="#57534e">PART VI</text>
   <text x="500" y="740" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">A THEORY OF MAGE</text>
 
   <!-- ===== descriptive text on top of the edges ===== -->
   <!-- left bullets -->
-  <g font-size="18" fill="#57534e" text-anchor="middle">
+  <g font-size="20" fill="#57534e" text-anchor="middle">
     <text x="260" y="268">high process depth</text>
     <text x="260" y="295">longitudinal history</text>
     <text x="260" y="322">incidents + responses</text>
@@ -116,14 +116,14 @@
   </g>
 
   <!-- right bullets -->
-  <g font-size="18" fill="#57534e" text-anchor="middle">
+  <g font-size="20" fill="#57534e" text-anchor="middle">
     <text x="740" y="268">greater variation</text>
     <text x="740" y="295">selected mechanisms</text>
     <text x="740" y="322">different constraints</text>
     <text x="740" y="349">alternative realizations</text>
   </g>
 
-  <text x="500" y="638" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">constructs + mechanisms worth explaining</text>
+  <text x="500" y="638" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">constructs + mechanisms worth explaining</text>
 
-  <text x="500" y="792" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Neither view supplies causal or population-level estimates.</text>
+  <text x="500" y="792" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Neither view supplies causal or population-level estimates.</text>
 </svg>

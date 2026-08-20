@@ -16,7 +16,7 @@
   </defs>
 
   <rect id="source" x="380" y="40" width="240" height="56" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="500" y="74" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">SOURCE OF TRUTH</text>
+  <text x="500" y="74" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">SOURCE OF TRUTH</text>
 
   <!-- fan: source of truth -> each derivation op (one path per branch) -->
   <!-- edge: source -> query -->
@@ -27,11 +27,11 @@
   <path d="M620,80 L664,80 L664,174 L708,174" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
 
   <rect id="query" x="110" y="158" width="180" height="54" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="200" y="191" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">QUERY</text>
+  <text x="200" y="191" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">QUERY</text>
   <rect id="join" x="410" y="158" width="180" height="54" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="500" y="191" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">JOIN</text>
+  <text x="500" y="191" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">JOIN</text>
   <rect id="generate" x="710" y="158" width="180" height="54" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="800" y="191" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">GENERATE</text>
+  <text x="800" y="191" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">GENERATE</text>
 
   <!-- merge: each op -> consumers (one path per branch) -->
   <!-- edge: query -> consumers -->
@@ -42,15 +42,15 @@
   <path d="M800,212 L800,300 L622,300" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#dd-ah)"/>
 
   <rect id="consumers" x="380" y="272" width="240" height="56" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="500" y="306" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CONSUMERS</text>
+  <text x="500" y="306" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CONSUMERS</text>
 
-  <text x="500" y="366" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">when neither side fully determines the other</text>
+  <text x="500" y="366" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">when neither side fully determines the other</text>
   <rect id="model" x="300" y="384" width="160" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="380" y="415" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">MODEL</text>
+  <text x="380" y="415" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">MODEL</text>
   <rect id="world" x="540" y="384" width="160" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="620" y="415" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">WORLD</text>
+  <text x="620" y="415" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">WORLD</text>
   <!-- parity check: dashed rust, double-headed = governance correspondence -->
   <!-- edge: model .. world -->
   <line x1="462" y1="409" x2="538" y2="409" stroke="#9a3f12" stroke-width="2" stroke-dasharray="6 4" marker-start="url(#dd-ah-rust)" marker-end="url(#dd-ah-rust)"/>
-  <text x="500" y="456" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">parity</text>
+  <text x="500" y="456" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">parity</text>
 </svg>

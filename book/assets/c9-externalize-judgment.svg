@@ -35,11 +35,11 @@
 
   <g>
     <rect id="healthy" x="130" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="210" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">healthy?</text>
+    <text x="210" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">healthy?</text>
     <rect id="states" x="420" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="500" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">states</text>
+    <text x="500" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">states</text>
     <rect id="relations" x="710" y="150" width="160" height="48" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.8"/>
-    <text x="790" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">relations</text>
+    <text x="790" y="180" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">relations</text>
   </g>
 
   <!-- converge to OPERATIONAL MODEL -->
@@ -62,12 +62,12 @@
   <path d="M625,328 L625,396" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#c9-ah)"/>
 
   <rect id="generated-procedure" x="180" y="398" width="240" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="300" y="426" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">generated</text>
-  <text x="300" y="448" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">procedure</text>
+  <text x="300" y="426" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">generated</text>
+  <text x="300" y="448" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">procedure</text>
 
   <rect id="reasoning-guidance" x="580" y="398" width="240" height="60" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.2"/>
-  <text x="700" y="426" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">reasoning</text>
-  <text x="700" y="448" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">guidance</text>
+  <text x="700" y="426" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">reasoning</text>
+  <text x="700" y="448" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">guidance</text>
 
   <!-- converge to OPERATOR -->
   <!-- edge: generated-procedure -> operator -->
@@ -76,8 +76,8 @@
   <path d="M595,458 L595,516" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#c9-ah-b)"/>
 
   <rect id="operator" x="390" y="518" width="220" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="500" y="554" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">OPERATOR</text>
+  <text x="500" y="554" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">OPERATOR</text>
 
   <!-- footer -->
-  <text x="500" y="606" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Separate what can be generated or executed from what still needs judgment &#8212; and keep the representation tied to the system it describes.</text>
+  <text x="500" y="606" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Separate what can be generated or executed from what still needs judgment &#8212; and keep the representation tied to the system it describes.</text>
 </svg>

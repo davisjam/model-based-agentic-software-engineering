@@ -43,28 +43,28 @@
   <line x1="590" y1="130" x2="590" y2="378" stroke="#d6d3d1" stroke-width="1.5"/>
 
   <!-- row 1: Realization -->
-  <text x="45" y="168" font-size="17" font-weight="700" fill="#1c1917">Realization</text>
-  <text x="415" y="168" text-anchor="middle" font-size="17" fill="#1c1917">expensive</text>
-  <text x="745" y="168" text-anchor="middle" font-size="17" fill="#1c1917">cheap</text>
+  <text x="45" y="168" font-size="18.4" font-weight="700" fill="#1c1917">Realization</text>
+  <text x="415" y="168" text-anchor="middle" font-size="18.4" fill="#1c1917">expensive</text>
+  <text x="745" y="168" text-anchor="middle" font-size="18.4" fill="#1c1917">cheap</text>
   <line x1="30" y1="196" x2="880" y2="196" stroke="#ece9e4" stroke-width="1"/>
 
   <!-- row 2: Artifact -->
-  <text x="45" y="224" font-size="17" font-weight="700" fill="#1c1917">Artifact</text>
-  <text x="415" y="224" text-anchor="middle" font-size="17" fill="#1c1917">changes slowly</text>
-  <text x="745" y="224" text-anchor="middle" font-size="17" fill="#1c1917">changes constantly</text>
+  <text x="45" y="224" font-size="18.4" font-weight="700" fill="#1c1917">Artifact</text>
+  <text x="415" y="224" text-anchor="middle" font-size="18.4" fill="#1c1917">changes slowly</text>
+  <text x="745" y="224" text-anchor="middle" font-size="18.4" fill="#1c1917">changes constantly</text>
   <line x1="30" y1="252" x2="880" y2="252" stroke="#ece9e4" stroke-width="1"/>
 
   <!-- row 3: Model upkeep -->
-  <text x="45" y="280" font-size="17" font-weight="700" fill="#1c1917">Model upkeep</text>
-  <text x="415" y="280" text-anchor="middle" font-size="17" fill="#1c1917">amortized</text>
-  <text x="745" y="280" text-anchor="middle" font-size="17" fill="#1c1917">standing labor</text>
+  <text x="45" y="280" font-size="18.4" font-weight="700" fill="#1c1917">Model upkeep</text>
+  <text x="415" y="280" text-anchor="middle" font-size="18.4" fill="#1c1917">amortized</text>
+  <text x="745" y="280" text-anchor="middle" font-size="18.4" fill="#1c1917">standing labor</text>
   <line x1="30" y1="308" x2="880" y2="308" stroke="#ece9e4" stroke-width="1"/>
 
   <!-- row 4: Result (column B is two lines) -->
-  <text x="45" y="344" font-size="17" font-weight="700" fill="#1c1917">Result</text>
-  <text x="415" y="344" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">model first</text>
-  <text x="745" y="332" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">model drift,</text>
-  <text x="745" y="356" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">thin models</text>
+  <text x="45" y="344" font-size="18.4" font-weight="700" fill="#1c1917">Result</text>
+  <text x="415" y="344" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">model first</text>
+  <text x="745" y="332" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">model drift,</text>
+  <text x="745" y="356" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">thin models</text>
 
   <!-- table foot rule -->
   <line x1="30" y1="380" x2="880" y2="380" stroke="#a8a29e" stroke-width="1.5"/>
@@ -84,16 +84,16 @@
 
   <!-- driver -->
   <rect id="commodity" x="280" y="438" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="460" y="470" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Commodity intelligence</text>
+  <text x="460" y="470" text-anchor="middle" font-size="18.4" font-weight="700" fill="#1c1917">Commodity intelligence</text>
 
   <!-- the two edges the driver opens -->
   <rect id="cheap-edges" x="250" y="536" width="420" height="66" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="460" y="562" text-anchor="middle" font-size="17" fill="#1c1917">implementation becomes cheap</text>
-  <text x="460" y="588" text-anchor="middle" font-size="17" fill="#1c1917">reconciliation becomes cheap</text>
+  <text x="460" y="562" text-anchor="middle" font-size="18.4" fill="#1c1917">implementation becomes cheap</text>
+  <text x="460" y="588" text-anchor="middle" font-size="18.4" fill="#1c1917">reconciliation becomes cheap</text>
 
   <!-- the consequence -->
   <rect id="viable" x="280" y="648" width="360" height="52" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="460" y="680" text-anchor="middle" font-size="18" fill="#1c1917">live models become viable</text>
+  <text x="460" y="680" text-anchor="middle" font-size="18.4" fill="#1c1917">live models become viable</text>
 
   <!-- terminal — the claim, set dark for grayscale emphasis -->
   <rect id="rejoins" x="220" y="746" width="480" height="58" rx="9" fill="#1c1917" stroke="#2f5169" stroke-width="2.5"/>

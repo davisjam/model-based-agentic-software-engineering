@@ -814,21 +814,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="f-two-reductions-static-realized-rg_e2" x="585" y="338" width="300" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <rect id="f-two-reductions-static-realized-rg_e3" x="585" y="414" width="300" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="247" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Computation graph</text>
-  <text x="247" y="152" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">what computations may compose</text>
+  <text x="247" y="152" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">what computations may compose</text>
   <text x="742" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Edit record</text>
-  <text x="742" y="152" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">what mutations one run did emit</text>
-  <text x="225" y="205" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Analyze pass</text>
-  <text x="225" y="330" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Remediate pass</text>
-  <text x="225" y="440" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Route gate</text>
-  <text x="245" y="258" text-anchor="start" font-size="18" font-weight="700" fill="#1f7a4d">DATA_FLOW</text>
-  <text x="245" y="388" text-anchor="start" font-size="18" font-weight="700" fill="#9a3f12">CONTROL_GATE</text>
-  <text x="735" y="205" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Session run</text>
-  <text x="735" y="290" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">PdfEdit · SetAltText</text>
-  <text x="735" y="366" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">PdfEdit · TagFigure</text>
-  <text x="735" y="442" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">PdfEdit · SetReadingOrder</text>
-  <text x="492" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">not joined today</text>
-  <text x="247" y="498" text-anchor="middle" font-size="18" font-weight="600" fill="#155c38">static structure</text>
-  <text x="742" y="498" text-anchor="middle" font-size="18" font-weight="600" fill="#2f5169">realized history</text>
+  <text x="742" y="152" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">what mutations one run did emit</text>
+  <text x="225" y="205" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Analyze pass</text>
+  <text x="225" y="330" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Remediate pass</text>
+  <text x="225" y="440" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Route gate</text>
+  <text x="245" y="258" text-anchor="start" font-size="20" font-weight="700" fill="#1f7a4d">DATA_FLOW</text>
+  <text x="245" y="388" text-anchor="start" font-size="20" font-weight="700" fill="#9a3f12">CONTROL_GATE</text>
+  <text x="735" y="205" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Session run</text>
+  <text x="735" y="290" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">PdfEdit · SetAltText</text>
+  <text x="735" y="366" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">PdfEdit · TagFigure</text>
+  <text x="735" y="442" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">PdfEdit · SetReadingOrder</text>
+  <text x="492" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">not joined today</text>
+  <text x="247" y="498" text-anchor="middle" font-size="20" font-weight="600" fill="#155c38">static structure</text>
+  <text x="742" y="498" text-anchor="middle" font-size="20" font-weight="600" fill="#2f5169">realized history</text>
 </svg><figcaption data-short="Computation structure versus realized history"><span class="fig-label">Figure 2.7-2.</span> <em>Computation structure versus realized history.</em> The computation graph models declared computations and their typed composition; the per-session edit record logs the consequential mutations one run actually produced. They remain separate reductions today. A shared computation identity could join runtime edits to the static model when an engineering question requires that relation, without collapsing the two representations into one.</figcaption></figure>
 <p>There is an important limit, and it is worth stating precisely. A provenance model does not guarantee that every consequential operation actually records its attribution. That is an Alignment question. DocAble addresses it separately, by requiring typed mutation verbs to emit attribution records and checking that obligation structurally; Part III examines that mechanism. <strong>Part II models the evidence the operation should leave; Part III asks what mechanism, if any, gives that obligation authority.</strong></p>
 <p>The next and final chapter of this Part steps back from any single model to ask how the six fit together as a system.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">« Beginning of part</a><a href="2.6-measurement.html" aria-label="Previous chapter — 10 · Measurement Models: How Much, and Against What Bound?">« Previous chapter</a></div><span class="chapnav-here" title="11 · Provenance Models: What Happened, and What Evidence Records It?">11 · Provenance Models: What Happened, and What Evidence Records It?</span><div class="chapnav-fwd"><a href="2.8-system-knowledge.html" aria-label="Next chapter — 12 · System Knowledge: Connecting the Models">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — Alignment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

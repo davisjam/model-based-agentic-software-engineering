@@ -82,21 +82,21 @@
   <line x1="500" y1="498" x2="500" y2="534" stroke="#1c1917" stroke-width="2" marker-end="url(#qap-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
-  <text x="500" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">engineering question</text>
-  <text x="500" y="142" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">choose the representation</text>
+  <text x="500" y="58" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">engineering question</text>
+  <text x="500" y="142" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">choose the representation</text>
 
-  <text x="185" y="240" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">closed state /</text>
-  <text x="185" y="260" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">action space</text>
-  <text x="500" y="240" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">finite transition</text>
-  <text x="500" y="260" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">system</text>
-  <text x="815" y="250" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">temporal behavior</text>
+  <text x="185" y="240" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">closed state /</text>
+  <text x="185" y="260" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">action space</text>
+  <text x="500" y="240" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">finite transition</text>
+  <text x="500" y="260" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">system</text>
+  <text x="815" y="250" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">temporal behavior</text>
 
-  <text x="185" y="352" text-anchor="middle" font-size="18" fill="#1c1917">structural constraint</text>
-  <text x="500" y="345" text-anchor="middle" font-size="18" fill="#1c1917">exhaustive state</text>
-  <text x="500" y="365" text-anchor="middle" font-size="18" fill="#1c1917">exploration</text>
-  <text x="815" y="345" text-anchor="middle" font-size="18" fill="#1c1917">temporal model</text>
-  <text x="815" y="365" text-anchor="middle" font-size="18" fill="#1c1917">checking</text>
+  <text x="185" y="352" text-anchor="middle" font-size="20" fill="#1c1917">structural constraint</text>
+  <text x="500" y="345" text-anchor="middle" font-size="20" fill="#1c1917">exhaustive state</text>
+  <text x="500" y="365" text-anchor="middle" font-size="20" fill="#1c1917">exploration</text>
+  <text x="815" y="345" text-anchor="middle" font-size="20" fill="#1c1917">temporal model</text>
+  <text x="815" y="365" text-anchor="middle" font-size="20" fill="#1c1917">checking</text>
 
-  <text x="500" y="478" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">interpret the evidence</text>
-  <text x="500" y="571" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">decide what deserves authority</text>
+  <text x="500" y="478" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">interpret the evidence</text>
+  <text x="500" y="571" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">decide what deserves authority</text>
 </svg>

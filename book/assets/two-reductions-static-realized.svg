@@ -34,19 +34,19 @@
   <rect id="rg_e2" x="585" y="338" width="300" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <rect id="rg_e3" x="585" y="414" width="300" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="247" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Computation graph</text>
-  <text x="247" y="152" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">what computations may compose</text>
+  <text x="247" y="152" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">what computations may compose</text>
   <text x="742" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Edit record</text>
-  <text x="742" y="152" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">what mutations one run did emit</text>
-  <text x="225" y="205" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Analyze pass</text>
-  <text x="225" y="330" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Remediate pass</text>
-  <text x="225" y="440" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Route gate</text>
-  <text x="245" y="258" text-anchor="start" font-size="18" font-weight="700" fill="#1f7a4d">DATA_FLOW</text>
-  <text x="245" y="388" text-anchor="start" font-size="18" font-weight="700" fill="#9a3f12">CONTROL_GATE</text>
-  <text x="735" y="205" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">Session run</text>
-  <text x="735" y="290" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">PdfEdit · SetAltText</text>
-  <text x="735" y="366" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">PdfEdit · TagFigure</text>
-  <text x="735" y="442" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">PdfEdit · SetReadingOrder</text>
-  <text x="492" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">not joined today</text>
-  <text x="247" y="498" text-anchor="middle" font-size="18" font-weight="600" fill="#155c38">static structure</text>
-  <text x="742" y="498" text-anchor="middle" font-size="18" font-weight="600" fill="#2f5169">realized history</text>
+  <text x="742" y="152" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">what mutations one run did emit</text>
+  <text x="225" y="205" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Analyze pass</text>
+  <text x="225" y="330" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Remediate pass</text>
+  <text x="225" y="440" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Route gate</text>
+  <text x="245" y="258" text-anchor="start" font-size="20" font-weight="700" fill="#1f7a4d">DATA_FLOW</text>
+  <text x="245" y="388" text-anchor="start" font-size="20" font-weight="700" fill="#9a3f12">CONTROL_GATE</text>
+  <text x="735" y="205" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Session run</text>
+  <text x="735" y="290" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">PdfEdit · SetAltText</text>
+  <text x="735" y="366" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">PdfEdit · TagFigure</text>
+  <text x="735" y="442" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">PdfEdit · SetReadingOrder</text>
+  <text x="492" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">not joined today</text>
+  <text x="247" y="498" text-anchor="middle" font-size="20" font-weight="600" fill="#155c38">static structure</text>
+  <text x="742" y="498" text-anchor="middle" font-size="20" font-weight="600" fill="#2f5169">realized history</text>
 </svg>

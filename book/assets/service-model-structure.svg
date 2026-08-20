@@ -65,8 +65,8 @@
 
   <!-- parity gates -> build blocked -->
   <line x1="584" y1="330" x2="719" y2="330" stroke="#1c1917" stroke-width="2" marker-end="url(#sm-ah)"/>
-  <text x="650" y="300" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">either side</text>
-  <text x="650" y="320" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">diverges</text>
+  <text x="650" y="300" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">either side</text>
+  <text x="650" y="320" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">diverges</text>
 
   <!-- build blocked (stadium, failure) -->
   <rect x="720" y="300" width="210" height="60" rx="30" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>

@@ -30,37 +30,37 @@
 
   <!-- ===== row 1 ===== -->
   <rect x="40" y="58" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="178" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">STRUCTURAL</text>
-  <text x="178" y="113" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">what exists?</text>
-  <text x="178" y="132" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">how are parts related?</text>
+  <text x="178" y="90" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">STRUCTURAL</text>
+  <text x="178" y="113" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">what exists?</text>
+  <text x="178" y="132" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">how are parts related?</text>
 
   <rect x="342" y="58" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="480" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">BEHAVIORAL</text>
-  <text x="480" y="113" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">what may happen?</text>
-  <text x="480" y="132" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">in what order?</text>
+  <text x="480" y="90" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">BEHAVIORAL</text>
+  <text x="480" y="113" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">what may happen?</text>
+  <text x="480" y="132" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">in what order?</text>
 
   <rect x="644" y="58" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="782" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">OWNERSHIP</text>
-  <text x="782" y="113" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">who controls it?</text>
-  <text x="782" y="132" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">for how long?</text>
+  <text x="782" y="90" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">OWNERSHIP</text>
+  <text x="782" y="113" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">who controls it?</text>
+  <text x="782" y="132" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">for how long?</text>
 
   <!-- ===== row 2 ===== -->
   <rect x="40" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="178" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">DECISION</text>
-  <text x="178" y="207" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">what is allowed?</text>
-  <text x="178" y="226" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">which choice?</text>
+  <text x="178" y="184" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">DECISION</text>
+  <text x="178" y="207" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">what is allowed?</text>
+  <text x="178" y="226" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">which choice?</text>
 
   <rect x="342" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="480" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">MEASUREMENT</text>
-  <text x="480" y="207" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">how much?</text>
-  <text x="480" y="226" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">what envelope?</text>
+  <text x="480" y="184" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">MEASUREMENT</text>
+  <text x="480" y="207" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">how much?</text>
+  <text x="480" y="226" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">what envelope?</text>
 
   <rect x="644" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="782" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">PROVENANCE</text>
-  <text x="782" y="207" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">what happened?</text>
-  <text x="782" y="226" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">what evidence?</text>
+  <text x="782" y="184" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">PROVENANCE</text>
+  <text x="782" y="207" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">what happened?</text>
+  <text x="782" y="226" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">what evidence?</text>
 
-  <text x="480" y="256" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">These classes may overlap.</text>
+  <text x="480" y="256" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">These classes may overlap.</text>
 
   <!-- transparent anchor over the six-box class grid + the overlap note: the class end of the many-to-many
        relation. fill/stroke none = zero visual change; the lint reads its geometry like any node. -->
@@ -71,8 +71,8 @@
         marker-start="url(#on-b)" marker-end="url(#on-b)"/>
 
   <rect id="forms" x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="314" text-anchor="middle" font-size="17.28" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
-  <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
+  <text x="480" y="314" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
+  <text x="480" y="342" text-anchor="middle" font-size="19.2" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
 
-  <text x="480" y="394" text-anchor="middle" font-size="17.28" font-style="italic" fill="#1c1917">Connected through shared identity and traceability, these models form the system&#8217;s explicit engineering knowledge.</text>
+  <text x="480" y="394" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Connected through shared identity and traceability, these models form the system&#8217;s explicit engineering knowledge.</text>
 </svg>

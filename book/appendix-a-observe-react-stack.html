@@ -747,11 +747,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- WATCH -->
   <rect id="f-observe-react-stack-watch" x="290" y="120" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="380" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">WATCH</text>
-  <text x="380" y="172" text-anchor="middle" font-size="14" fill="#57534e">observe divergence</text>
+  <text x="380" y="172" text-anchor="middle" font-size="15.2" fill="#57534e">observe divergence</text>
 
   <!-- runtime feed into WATCH (solid observed input); transparent anchor makes the text a graph node -->
   <rect id="f-observe-react-stack-runtime" x="596" y="134" width="92" height="28" fill="none" stroke="none"/>
-  <text x="640" y="148" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">runtime</text>
+  <text x="640" y="148" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">runtime</text>
   <!-- edge: runtime -> watch -->
   <line x1="596" y1="148" x2="472" y2="148" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-observe-react-stack-ah)"/>
 
@@ -762,7 +762,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- BEAT (dashed enhancement, offset left) -->
   <rect id="f-observe-react-stack-beat" x="70" y="196" width="160" height="60" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="150" y="222" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">BEAT</text>
-  <text x="150" y="242" text-anchor="middle" font-size="14" fill="#57534e">liveness heartbeat</text>
+  <text x="150" y="242" text-anchor="middle" font-size="15.2" fill="#57534e">liveness heartbeat</text>
   <!-- edge: watch .. beat -->
   <path d="M290,153 L150,153 L150,194" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#f-observe-react-stack-aho)"/>
   <!-- edge: beat .. respond — hand-routed V-then-H (exit BEAT bottom, enter RESPOND left): the router's
@@ -773,7 +773,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- RESPOND (solid) -->
   <rect id="f-observe-react-stack-respond" x="290" y="272" width="180" height="66" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="380" y="302" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RESPOND</text>
-  <text x="380" y="324" text-anchor="middle" font-size="14" fill="#57534e">bounded recovery</text>
+  <text x="380" y="324" text-anchor="middle" font-size="15.2" fill="#57534e">bounded recovery</text>
 
   <!-- RESPOND -> BLOCK (dashed enhancement) -->
   <!-- edge: respond .. block -->
@@ -782,18 +782,18 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- BLOCK (dashed) -->
   <rect id="f-observe-react-stack-block" x="280" y="386" width="200" height="76" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="380" y="416" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">BLOCK</text>
-  <text x="380" y="438" text-anchor="middle" font-size="14" fill="#57534e">prevent unsafe progress</text>
+  <text x="380" y="438" text-anchor="middle" font-size="15.2" fill="#57534e">prevent unsafe progress</text>
 
   <!-- legend (prominent, boxed) -->
   <rect x="500" y="392" width="248" height="86" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
   <line x1="518" y1="418" x2="562" y2="418" stroke="#2f5169" stroke-width="2.6" marker-end="url(#f-observe-react-stack-ah)"/>
-  <text x="572" y="423" font-size="14" fill="#57534e">load-bearing (required)</text>
+  <text x="572" y="423" font-size="15.2" fill="#57534e">load-bearing (required)</text>
   <line x1="518" y1="452" x2="562" y2="452" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#f-observe-react-stack-aho)"/>
-  <text x="572" y="457" font-size="14" fill="#57534e">enhancement (not required)</text>
+  <text x="572" y="457" font-size="15.2" fill="#57534e">enhancement (not required)</text>
 
   <!-- caption -->
-  <text x="380" y="524" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">WATCH &#8594; RESPOND is the load-bearing path. Heartbeats and blocking authority</text>
-  <text x="380" y="546" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">strengthen it where the failure class requires them.</text>
+  <text x="380" y="524" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">WATCH &#8594; RESPOND is the load-bearing path. Heartbeats and blocking authority</text>
+  <text x="380" y="546" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">strengthen it where the failure class requires them.</text>
 </svg><figcaption data-short="The observe → react composition"><span class="fig-label">Figure A.4-1.</span> The observe → react composition. An operating model drives WATCH, which reads runtime state; WATCH flows to RESPOND, which recovers. That solid path is load-bearing. Two dashed attachments strengthen it where the failure class demands: BEAT adds a liveness heartbeat so a hung process reads differently from a slow one, and BLOCK adds the authority to prevent unsafe progress. Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required for the capability.</figcaption></figure>
 <h2><span class="sec-num">A.4.4</span> Constituent Moves</h2>
 <table id="tbl-A-4-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table A.4-1.</span></caption><thead><tr><th>Move</th><th>Role</th></tr></thead><tbody><tr><td><strong>WATCH</strong></td><td>Read runtime state against the operating model, so divergence surfaces as a signal.</td></tr><tr><td><strong>RESPOND</strong></td><td>Connect each signal to a bounded recovery action.</td></tr><tr><td><strong>BEAT</strong></td><td><em>(strengthens)</em> Emit periodic liveness so a wedged process reads differently from a slow one.</td></tr><tr><td><strong>BLOCK</strong></td><td><em>(strengthens)</em> Refuse unsafe progress where continuing is worse than stopping.</td></tr></tbody></table>

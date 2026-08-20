@@ -29,10 +29,10 @@
 
   <!-- ============ NEGATIVE ============ -->
   <text x="250" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">NEGATIVE CONSTRAINT</text>
-  <text x="250" y="94" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">removes a forbidden action</text>
+  <text x="250" y="94" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">removes a forbidden action</text>
 
   <rect id="po-ordinary" x="120" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="250" y="166" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">ordinary code</text>
+  <text x="250" y="166" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">ordinary code</text>
 
   <!-- forbidden edge: barred, crossed (absent relation — endpoints still plug into both boxes) -->
   <!-- edge: po-ordinary .. po-rawlib -->
@@ -42,23 +42,23 @@
     <line x1="228" y1="220" x2="272" y2="242"/>
     <line x1="272" y1="220" x2="228" y2="242"/>
   </g>
-  <text x="298" y="236" font-size="17.28" font-weight="700" font-style="italic" fill="#9a3f12">must not call</text>
+  <text x="298" y="236" font-size="19.2" font-weight="700" font-style="italic" fill="#9a3f12">must not call</text>
 
   <rect id="po-rawlib" x="120" y="274" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
-  <text x="250" y="312" text-anchor="middle" font-size="18.5" font-weight="700" fill="#57534e">raw library</text>
+  <text x="250" y="312" text-anchor="middle" font-size="19.2" font-weight="700" fill="#57534e">raw library</text>
 
   <!-- ============ POSITIVE ============ -->
   <text x="710" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">POSITIVE CONSTRAINT</text>
-  <text x="710" y="94" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">requires evidence-producing behavior</text>
+  <text x="710" y="94" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">requires evidence-producing behavior</text>
 
   <rect id="po-verb" x="580" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="710" y="166" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">mutation verb</text>
+  <text x="710" y="166" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">mutation verb</text>
 
-  <text x="758" y="236" font-size="17.28" font-weight="700" font-style="italic" fill="#9a3f12">must call</text>
+  <text x="758" y="236" font-size="19.2" font-weight="700" font-style="italic" fill="#9a3f12">must call</text>
 
   <rect id="po-stamp" x="580" y="274" width="260" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="710" y="305" text-anchor="middle" font-size="18.5" font-weight="700" fill="#9a3f12">MUST stamp</text>
-  <text x="710" y="325" text-anchor="middle" font-size="17.28" font-style="italic" fill="#9a3f12">emit attribution evidence</text>
+  <text x="710" y="305" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">MUST stamp</text>
+  <text x="710" y="325" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">emit attribution evidence</text>
 
   <!-- required edge: solid rust arrow, drawn ON TOP of its target box so the arrowhead is not capped -->
   <!-- edge: po-verb -> po-stamp -->
@@ -66,5 +66,5 @@
 
   <!-- footer: protect the point -->
   <line x1="40" y1="376" x2="920" y2="376" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="408" text-anchor="middle" font-size="17.28" font-style="italic" fill="#1c1917">Both are source-time rules &#8212; they restrict the admissible implementation space from opposite directions.</text>
+  <text x="480" y="408" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Both are source-time rules &#8212; they restrict the admissible implementation space from opposite directions.</text>
 </svg>

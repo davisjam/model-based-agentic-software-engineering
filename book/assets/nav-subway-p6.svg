@@ -4,19 +4,19 @@
 <!-- semantic-families: neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 180" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="nav-subway-p6">
   <rect x="0" y="0" width="1000" height="180" fill="#fdfcf9"/>
-  <text x="95" y="42" font-size="18" fill="#57534e">Where am I in the book?</text>
-  <text x="905" y="42" text-anchor="end" font-size="18" font-weight="bold" fill="#1c1917">Part 6 · The Profession</text>
+  <text x="95" y="42" font-size="20" fill="#57534e">Where am I in the book?</text>
+  <text x="905" y="42" text-anchor="end" font-size="20" font-weight="bold" fill="#1c1917">Part 6 · The Profession</text>
   <line x1="95.0" y1="100" x2="905.0" y2="100" stroke="#cfcabf" stroke-width="3"/>
   <circle cx="95.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="95.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">The Problem</text>
+  <text x="95.0" y="134.0" text-anchor="middle" font-size="20" font-weight="normal" fill="#57534e">The Problem</text>
   <circle cx="257.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="257.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Modeling</text>
+  <text x="257.0" y="134.0" text-anchor="middle" font-size="20" font-weight="normal" fill="#57534e">Modeling</text>
   <circle cx="419.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="419.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Alignment</text>
+  <text x="419.0" y="134.0" text-anchor="middle" font-size="20" font-weight="normal" fill="#57534e">Alignment</text>
   <circle cx="581.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="581.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Method</text>
+  <text x="581.0" y="134.0" text-anchor="middle" font-size="20" font-weight="normal" fill="#57534e">Method</text>
   <circle cx="743.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="743.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Evidence</text>
+  <text x="743.0" y="134.0" text-anchor="middle" font-size="20" font-weight="normal" fill="#57534e">Evidence</text>
   <circle cx="905.0" cy="100" r="15" fill="#1c1917" stroke="#1c1917" stroke-width="3"/>
   <text x="905.0" y="145.0" text-anchor="middle" font-size="24" font-weight="bold" fill="#1c1917">Profession</text>
 </svg>

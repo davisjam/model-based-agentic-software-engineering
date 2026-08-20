@@ -29,19 +29,19 @@
   <text x="50" y="74" font-size="20" font-weight="700" fill="#1c1917">Example-based test</text>
 
   <rect id="input" x="90" y="95" width="260" height="60" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="220" y="132" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">one chosen input</text>
+  <text x="220" y="132" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">one chosen input</text>
 
   <!-- edge: input -> output -->
   <line x1="350" y1="125" x2="608" y2="125" stroke="#1c1917" stroke-width="2" marker-end="url(#eg-ah)"/>
 
   <rect id="output" x="610" y="95" width="280" height="60" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="750" y="132" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">one expected output ✓</text>
+  <text x="750" y="132" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">one expected output ✓</text>
 
   <!-- the shift: a panel-to-panel transition between the two fill="none" containers, NOT a node-edge
        relation (a container boundary is context, never an endpoint), so it is intentionally unannotated;
        seated by eye between the panels. -->
   <line x1="480" y1="194" x2="480" y2="266" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#eg-ah-mut)"/>
-  <text x="500" y="236" font-size="17.28" font-style="italic" fill="#57534e">from one pinned point to the whole space</text>
+  <text x="500" y="236" font-size="19.2" font-style="italic" fill="#57534e">from one pinned point to the whole space</text>
 
   <!-- ===== generative test ===== -->
   <rect x="30" y="270" width="900" height="210" rx="10" fill="none" stroke="#57534e" stroke-width="1.5"/>
@@ -53,20 +53,20 @@
   <!-- generator -> specification-holds? : the target is a <polygon> diamond, not a lint-legible node;
        seated BY EYE — tail on generator's right rim, head touching the diamond's left vertex (360,382). -->
   <line x1="250" y1="382" x2="358" y2="382" stroke="#1c1917" stroke-width="2" marker-end="url(#eg-ah)"/>
-  <text x="309" y="336" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">inputs drawn from the space</text>
+  <text x="309" y="336" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">inputs drawn from the space</text>
 
   <!-- specification check (decision diamond) -->
   <polygon points="500,322 640,382 500,442 360,382" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="500" y="376" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">specification</text>
-  <text x="500" y="400" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">holds?</text>
+  <text x="500" y="376" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">specification</text>
+  <text x="500" y="400" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">holds?</text>
 
   <!-- specification-holds? -> shrink/RCA cause : source is the <polygon> diamond (not lint-legible);
        seated BY EYE — tail just outside the diamond's right vertex (640,382), head touching cause's left rim. -->
   <line x1="642" y1="382" x2="687" y2="382" stroke="#1c1917" stroke-width="2" marker-end="url(#eg-ah)"/>
-  <text x="664" y="364" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">no</text>
+  <text x="664" y="364" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">no</text>
 
   <rect x="690" y="337" width="215" height="110" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="797" y="370" text-anchor="middle" font-size="17.28" fill="#b23b3b">shrink / RCA to the</text>
-  <text x="797" y="394" text-anchor="middle" font-size="17.28" fill="#b23b3b">minimal or spec-point</text>
-  <text x="797" y="418" text-anchor="middle" font-size="17.28" fill="#b23b3b">cause</text>
+  <text x="797" y="370" text-anchor="middle" font-size="19.2" fill="#b23b3b">shrink / RCA to the</text>
+  <text x="797" y="394" text-anchor="middle" font-size="19.2" fill="#b23b3b">minimal or spec-point</text>
+  <text x="797" y="418" text-anchor="middle" font-size="19.2" fill="#b23b3b">cause</text>
 </svg>

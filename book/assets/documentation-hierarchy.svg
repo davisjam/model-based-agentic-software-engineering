@@ -64,8 +64,8 @@
 
   <!-- ================= RIGHT PANEL — the MAGE move ================= -->
   <text x="720" y="42" text-anchor="middle" font-size="23" font-weight="700" fill="#1c1917">The MAGE move</text>
-  <text x="720" y="68" text-anchor="middle" font-size="19" font-style="italic" fill="#1f7a4d">a structured model layer binds the islands</text>
-  <text x="720" y="90" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">linked models, each its own concern — not one master</text>
+  <text x="720" y="68" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1f7a4d">a structured model layer binds the islands</text>
+  <text x="720" y="90" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">linked models, each its own concern — not one master</text>
 
   <!-- the model LAYER: a band of several linked models (a stratum, not one apex point) -->
   <rect id="model-layer" x="545" y="100" width="350" height="98" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="3"/>
@@ -76,7 +76,7 @@
     <rect x="672" y="142" width="96" height="34" rx="5"/>
     <rect x="784" y="142" width="96" height="34" rx="5"/>
   </g>
-  <g font-size="18" fill="#1c1917" text-anchor="middle">
+  <g font-size="19.2" fill="#1c1917" text-anchor="middle">
     <text x="608" y="164">intent</text>
     <text x="720" y="164">structure</text>
     <text x="832" y="164">behavior</text>
@@ -119,5 +119,5 @@
     <path d="M730,312 L735,318 L745,306" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
-  <text x="720" y="533" text-anchor="middle" font-size="19" font-style="italic" fill="#1f7a4d">checked: the layer must match the territory</text>
+  <text x="720" y="533" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1f7a4d">checked: the layer must match the territory</text>
 </svg>

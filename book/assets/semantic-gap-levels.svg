@@ -29,7 +29,7 @@
   <!-- ================= TOP RUNG — obligation legible ================= -->
   <rect id="legible" x="150" y="48" width="660" height="76" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="480" y="84" text-anchor="middle" font-size="23.04" font-weight="700" fill="#2f5169">OBLIGATION LEGIBLE</text>
-  <text x="480" y="110" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">the completed unit of work</text>
+  <text x="480" y="110" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">the completed unit of work</text>
 
   <!-- transparent anchor over the event grain (bracket + event row): the source the lift arrow rises FROM.
        fill/stroke none = zero visual change; the lint reads its geometry like any node. -->
@@ -52,7 +52,7 @@
     <rect x="598" y="284" width="86" height="44" rx="4"/>
     <rect x="704" y="284" width="86" height="44" rx="4"/>
   </g>
-  <g font-size="19" fill="#1c1917" text-anchor="middle">
+  <g font-size="19.2" fill="#1c1917" text-anchor="middle">
     <text x="213" y="312">commit</text>
     <text x="319" y="312">commit</text>
     <text x="425" y="312">commit</text>

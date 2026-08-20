@@ -24,7 +24,7 @@
     </marker>
   </defs>
 
-  <text x="360" y="28" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">SERVICE-FLOW MODEL</text>
+  <text x="360" y="28" text-anchor="middle" font-size="14.4" font-weight="700" letter-spacing="1.2" fill="#2f5169">SERVICE-FLOW MODEL</text>
 
   <!-- Internet (gray, external) -->
   <rect id="internet" x="290" y="42" width="140" height="42" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>

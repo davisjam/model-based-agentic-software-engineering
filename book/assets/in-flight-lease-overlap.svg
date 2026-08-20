@@ -35,7 +35,7 @@
   <!-- SHARED LEASE STATE (gray, the one represented fact) at TOP -->
   <rect id="shared-lease" x="250" y="38" width="220" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.6"/>
   <text x="360" y="70" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">SHARED LEASE STATE</text>
-  <text x="360" y="90" text-anchor="middle" font-size="13.5" font-style="italic" fill="#57534e">owner &#183; epoch &#183; lifetime</text>
+  <text x="360" y="90" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">owner &#183; epoch &#183; lifetime</text>
 
   <!-- OWNERSHIP -->
   <rect id="ownership" x="45" y="188" width="200" height="94" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>

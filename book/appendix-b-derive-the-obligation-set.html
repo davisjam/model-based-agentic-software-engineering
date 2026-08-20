@@ -736,11 +736,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- edge: model -> assured -->
   <line x1="500" y1="88" x2="500" y2="126" stroke="#57534e" stroke-width="2" marker-end="url(#f-c4-derive-obligation-set-c4-ah)"/>
-  <text x="512" y="112" font-size="18" font-style="italic" fill="#1f7a4d">derive</text>
+  <text x="512" y="112" font-size="20" font-style="italic" fill="#1f7a4d">derive</text>
 
   <!-- edge: assured -> evidence -->
   <line x1="500" y1="188" x2="500" y2="226" stroke="#57534e" stroke-width="2" marker-end="url(#f-c4-derive-obligation-set-c4-ah)"/>
-  <text x="512" y="212" font-size="18" font-style="italic" fill="#57534e">compare</text>
+  <text x="512" y="212" font-size="20" font-style="italic" fill="#57534e">compare</text>
 
   <!-- split to COVERED / GAP (one path per branch) -->
   <!-- edge: evidence -> covered -->
@@ -757,28 +757,28 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- WHAT MUST BE TESTED (obligation, modeling pole) -->
   <rect id="f-c4-derive-obligation-set-assured" x="330" y="128" width="340" height="60" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="500" y="156" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">WHAT MUST BE ASSURED</text>
-  <text x="500" y="178" text-anchor="middle" font-size="18" font-style="italic" fill="#1f7a4d">seams &#183; failure edges &#183; invariants</text>
+  <text x="500" y="156" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">WHAT MUST BE ASSURED</text>
+  <text x="500" y="178" text-anchor="middle" font-size="20" font-style="italic" fill="#1f7a4d">seams &#183; failure edges &#183; invariants</text>
 
   <!-- EXISTING EVIDENCE (neutral) -->
   <rect id="f-c4-derive-obligation-set-evidence" x="350" y="228" width="300" height="60" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
-  <text x="500" y="256" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">EXISTING EVIDENCE</text>
-  <text x="500" y="278" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">tests &#183; checks that actually exist</text>
+  <text x="500" y="256" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">EXISTING EVIDENCE</text>
+  <text x="500" y="278" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">tests &#183; checks that actually exist</text>
 
   <!-- COVERED -->
   <rect id="f-c4-derive-obligation-set-covered" x="200" y="366" width="240" height="54" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="320" y="399" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">COVERED</text>
+  <text x="320" y="399" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">COVERED</text>
 
   <!-- GAP -->
   <rect id="f-c4-derive-obligation-set-gap" x="560" y="366" width="240" height="54" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="680" y="399" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">GAP</text>
+  <text x="680" y="399" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">GAP</text>
 
   <!-- FINDING -->
   <rect id="f-c4-derive-obligation-set-finding" x="560" y="460" width="240" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="680" y="492" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">FINDING</text>
+  <text x="680" y="492" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">FINDING</text>
 
   <!-- footer -->
-  <text x="500" y="546" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">Measure the required set minus the present evidence &#8212; not the evidence you happen to have written.</text>
+  <text x="500" y="546" text-anchor="middle" font-size="20" font-style="italic" fill="#9a3f12">Measure the required set minus the present evidence &#8212; not the evidence you happen to have written.</text>
 </svg><figcaption data-short="Required set minus present evidence"><span class="fig-label">Figure B.4-1.</span> <em>Required set minus present evidence.</em> The model derives what must be assured; that required set is compared against existing evidence; the intersection is covered, and the remainder is a gap that raises a finding.</figcaption></figure>
 <p><strong>Example — Test obligations.</strong> Structured models expose seams, failure edges, and invariants. Those elements generate a census of what should be tested. Compare that census with the existing suite, and every missing test becomes mechanically visible and can block the gate.</p>
 <p><strong>Example — Governance obligations.</strong> The same move applies to controls. When governance targets are explicit, the environment classifies controls by what they protect and surfaces every target with no control — or only advisory guidance. Here the evidence is governance mechanisms rather than tests, but the move is the same: derive the required set, compare it with what exists, and report what is missing.</p>

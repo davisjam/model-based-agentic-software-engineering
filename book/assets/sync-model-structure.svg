@@ -20,10 +20,10 @@
     <text x="200" y="207" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">SyncLock</text>
     <rect x="60" y="220" width="280" height="36" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2"/>
     <text x="76" y="244" font-size="20" fill="#1c1917">path</text>
-    <text x="324" y="244" text-anchor="end" font-size="18" fill="#57534e">string · PK</text>
+    <text x="324" y="244" text-anchor="end" font-size="19.2" fill="#57534e">string · PK</text>
     <rect x="60" y="256" width="280" height="36" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2"/>
     <text x="76" y="280" font-size="20" fill="#1c1917">cap</text>
-    <text x="324" y="280" text-anchor="end" font-size="18" fill="#57534e">int</text>
+    <text x="324" y="280" text-anchor="end" font-size="19.2" fill="#57534e">int</text>
   </g>
 
   <!-- ===== LockAcquirer (many) ===== -->
@@ -32,10 +32,10 @@
     <text x="760" y="77" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">LockAcquirer</text>
     <rect x="620" y="90" width="280" height="36" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2"/>
     <text x="636" y="114" font-size="20" fill="#1c1917">site</text>
-    <text x="884" y="114" text-anchor="end" font-size="18" fill="#57534e">string · PK</text>
+    <text x="884" y="114" text-anchor="end" font-size="19.2" fill="#57534e">string · PK</text>
     <rect x="620" y="126" width="280" height="36" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2"/>
     <text x="636" y="150" font-size="20" fill="#1c1917">path</text>
-    <text x="884" y="150" text-anchor="end" font-size="18" fill="#57534e">string · FK</text>
+    <text x="884" y="150" text-anchor="end" font-size="19.2" fill="#57534e">string · FK</text>
   </g>
 
   <!-- ===== LockOrdering (many) ===== -->
@@ -44,10 +44,10 @@
     <text x="760" y="327" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">LockOrdering</text>
     <rect x="620" y="340" width="280" height="36" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2"/>
     <text x="636" y="364" font-size="20" fill="#1c1917">before</text>
-    <text x="884" y="364" text-anchor="end" font-size="18" fill="#57534e">string · FK</text>
+    <text x="884" y="364" text-anchor="end" font-size="19.2" fill="#57534e">string · FK</text>
     <rect x="620" y="376" width="280" height="36" fill="#fdfcf9" stroke="#9a3f12" stroke-width="2"/>
     <text x="636" y="400" font-size="20" fill="#1c1917">after</text>
-    <text x="884" y="400" text-anchor="end" font-size="18" fill="#57534e">string · FK</text>
+    <text x="884" y="400" text-anchor="end" font-size="19.2" fill="#57534e">string · FK</text>
   </g>
 
   <!-- ===== relationship: SyncLock one-to-many LockAcquirer, "acquired at" ===== -->
@@ -62,7 +62,7 @@
     <line x1="590" y1="108" x2="616" y2="108"/>
     <line x1="590" y1="108" x2="616" y2="120"/>
   </g>
-  <text x="522" y="94" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">acquired at</text>
+  <text x="522" y="94" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">acquired at</text>
 
   <!-- ===== relationship: SyncLock one-to-many LockOrdering, "constrains" ===== -->
   <path d="M340,262 H470 V358 H576" fill="none" stroke="#1c1917" stroke-width="2"/>
@@ -74,5 +74,5 @@
     <line x1="590" y1="358" x2="616" y2="358"/>
     <line x1="590" y1="358" x2="616" y2="370"/>
   </g>
-  <text x="522" y="344" text-anchor="middle" font-size="19" font-style="italic" fill="#57534e">constrains</text>
+  <text x="522" y="344" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">constrains</text>
 </svg>

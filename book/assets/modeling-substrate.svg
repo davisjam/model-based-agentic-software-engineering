@@ -15,7 +15,7 @@
     each joined to it. No model sits above another. Traceability, derivation, and query surfaces surround
     them in a footer band, not inside the identity center. The unity is semantic, not a hierarchy.</desc>
 
-  <text x="380" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCABLE MODELING SUBSTRATE &#183; SIX PEER MODELS</text>
+  <text x="380" y="30" text-anchor="middle" font-size="15.2" font-weight="700" letter-spacing="1.2" fill="#2f5169">DOCABLE MODELING SUBSTRATE &#183; SIX PEER MODELS</text>
 
   <!-- spokes: center to each peer (drawn first, under the boxes); each runs hub-center to peer-center so the
        opaque ellipse + box fills cap the ends. The hub is an ellipse (not lint-legible), so a transparent
@@ -65,8 +65,8 @@
 
   <!-- surrounding band: traceability / derivation / query surfaces (NOT in the identity box) -->
   <rect x="90" y="516" width="580" height="34" rx="12" fill="none" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5"/>
-  <text x="380" y="538" text-anchor="middle" font-size="14.5" font-weight="700" fill="#57534e">traceability &#183; derivation &#183; query surfaces</text>
+  <text x="380" y="538" text-anchor="middle" font-size="15.2" font-weight="700" fill="#57534e">traceability &#183; derivation &#183; query surfaces</text>
 
   <!-- footer: protect the point -->
-  <text x="380" y="570" text-anchor="middle" font-size="15" font-style="italic" fill="#1c1917">Six peer models joined through shared identities &#8212; no tiers, no single universal graph.</text>
+  <text x="380" y="570" text-anchor="middle" font-size="15.2" font-style="italic" fill="#1c1917">Six peer models joined through shared identities &#8212; no tiers, no single universal graph.</text>
 </svg>

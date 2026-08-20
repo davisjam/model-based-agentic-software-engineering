@@ -22,21 +22,21 @@
   </defs>
 
   <!-- move labels (left) -->
-  <text x="70" y="66" font-size="14.04" font-weight="700" fill="#9a3f12">DECLARE</text>
-  <text x="70" y="192" font-size="14.04" font-weight="700" fill="#9a3f12">MEDIATE</text>
-  <text x="650" y="142" text-anchor="middle" font-size="14.04" font-weight="700" fill="#57534e">ADAPT</text>
+  <text x="70" y="66" font-size="15.6" font-weight="700" fill="#9a3f12">DECLARE</text>
+  <text x="70" y="192" font-size="15.6" font-weight="700" fill="#9a3f12">MEDIATE</text>
+  <text x="650" y="142" text-anchor="middle" font-size="15.6" font-weight="700" fill="#57534e">ADAPT</text>
 
   <!-- RESOURCE POLICY -->
   <rect id="policy" x="255" y="34" width="270" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="390" y="66" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RESOURCE POLICY</text>
-  <text x="390" y="90" text-anchor="middle" font-size="14.04" fill="#57534e">capacity &#183; scope</text>
+  <text x="390" y="90" text-anchor="middle" font-size="15.6" fill="#57534e">capacity &#183; scope</text>
   <!-- edge: policy -> mediator -->
   <line x1="390" y1="106" x2="390" y2="152" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
   <!-- MEDIATOR -->
   <rect id="mediator" x="255" y="154" width="270" height="72" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="390" y="186" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">MEDIATOR</text>
-  <text x="390" y="210" text-anchor="middle" font-size="14.04" fill="#57534e">admit &#8804; N actors</text>
+  <text x="390" y="210" text-anchor="middle" font-size="15.6" fill="#57534e">admit &#8804; N actors</text>
   <!-- edge: mediator -> resource -->
   <line x1="390" y1="226" x2="390" y2="272" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
 
@@ -47,19 +47,19 @@
   <!-- LIVE PRESSURE (dashed enhancement) -> MEDIATOR -->
   <rect id="pressure" x="560" y="150" width="180" height="90" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="650" y="182" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">LIVE PRESSURE</text>
-  <text x="650" y="204" text-anchor="middle" font-size="14.04" fill="#57534e">tighten / relax</text>
-  <text x="650" y="222" text-anchor="middle" font-size="14.04" fill="#57534e">when justified</text>
+  <text x="650" y="204" text-anchor="middle" font-size="15.6" fill="#57534e">tighten / relax</text>
+  <text x="650" y="222" text-anchor="middle" font-size="15.6" fill="#57534e">when justified</text>
   <!-- edge: pressure .. mediator -->
   <path d="M560,190 L527,190" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" fill="none" marker-end="url(#aho)"/>
 
   <!-- legend -->
   <rect x="60" y="360" width="250" height="86" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
   <line x1="78" y1="386" x2="122" y2="386" stroke="#2f5169" stroke-width="2.4" marker-end="url(#ah)"/>
-  <text x="132" y="391" font-size="14.04" fill="#57534e">load-bearing (required)</text>
+  <text x="132" y="391" font-size="15.6" fill="#57534e">load-bearing (required)</text>
   <line x1="78" y1="420" x2="122" y2="420" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#aho)"/>
-  <text x="132" y="425" font-size="14.04" fill="#57534e">enhancement (not required)</text>
+  <text x="132" y="425" font-size="15.6" fill="#57534e">enhancement (not required)</text>
 
   <!-- caption -->
-  <text x="390" y="486" text-anchor="middle" font-size="14.04" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required.</text>
-  <text x="390" y="510" text-anchor="middle" font-size="14.04" font-style="italic" fill="#57534e">N=1 and N&gt;1 are settings of the same mediator, not separate stacks.</text>
+  <text x="390" y="486" text-anchor="middle" font-size="15.6" font-style="italic" fill="#57534e">Solid path: the load-bearing composition. Dashed attachment: a useful enhancement, not required.</text>
+  <text x="390" y="510" text-anchor="middle" font-size="15.6" font-style="italic" fill="#57534e">N=1 and N&gt;1 are settings of the same mediator, not separate stacks.</text>
 </svg>

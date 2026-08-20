@@ -61,13 +61,13 @@
     <line x1="329" y1="200" x2="351" y2="222"/>
     <line x1="351" y1="200" x2="329" y2="222"/>
   </g>
-  <text x="340" y="234" text-anchor="middle" font-size="12.5" font-style="italic" fill="#9a3f12">may not skip publication</text>
+  <text x="340" y="234" text-anchor="middle" font-size="13.6" font-style="italic" fill="#9a3f12">may not skip publication</text>
   <!-- edge: model -> encoding -->
   <line x1="340" y1="240" x2="340" y2="268" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>
 
   <!-- layer 3: ONE EXECUTABLE REPRESENTATION (gray) -->
   <rect id="encoding" x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="340" y="294" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
+  <text x="340" y="294" text-anchor="middle" font-size="13.6" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
   <text x="340" y="313" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">explicit legal-transition relation</text>
   <!-- edge: encoding -> implementation -->
   <line x1="340" y1="322" x2="340" y2="350" stroke="#57534e" stroke-width="2.2" marker-end="url(#mf-k)"/>

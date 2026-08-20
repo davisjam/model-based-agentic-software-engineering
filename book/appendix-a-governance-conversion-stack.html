@@ -738,28 +738,28 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- CONTROL ESTATE -->
   <rect id="f-governance-conversion-stack-control-estate" x="180" y="30" width="250" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="305" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL ESTATE</text>
-  <text x="305" y="82" text-anchor="middle" font-size="14" fill="#57534e">rules &#183; gates &#183;</text>
-  <text x="305" y="100" text-anchor="middle" font-size="14" fill="#57534e">models &#183; sensors</text>
+  <text x="305" y="82" text-anchor="middle" font-size="14.4" fill="#57534e">rules &#183; gates &#183;</text>
+  <text x="305" y="100" text-anchor="middle" font-size="14.4" fill="#57534e">models &#183; sensors</text>
 
-  <text x="318" y="132" font-size="14" font-style="italic" fill="#57534e">inspect / query</text>
+  <text x="318" y="132" font-size="14.4" font-style="italic" fill="#57534e">inspect / query</text>
   <!-- edge: control-estate -> gap-impact -->
   <line x1="305" y1="110" x2="305" y2="156" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-governance-conversion-stack-ah)"/>
 
   <!-- GAP / IMPACT -->
   <rect id="f-governance-conversion-stack-gap-impact" x="180" y="158" width="250" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="305" y="188" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">GAPS / COUPLING</text>
-  <text x="305" y="210" text-anchor="middle" font-size="14" fill="#57534e">where is control</text>
-  <text x="305" y="228" text-anchor="middle" font-size="14" fill="#57534e">weak, stale, or entangled?</text>
+  <text x="305" y="210" text-anchor="middle" font-size="14.4" fill="#57534e">where is control</text>
+  <text x="305" y="228" text-anchor="middle" font-size="14.4" fill="#57534e">weak, stale, or entangled?</text>
 
-  <text x="322" y="272" font-size="14" font-style="italic" fill="#7a5c12">recurring failure?</text>
+  <text x="322" y="272" font-size="14.4" font-style="italic" fill="#7a5c12">recurring failure?</text>
   <!-- edge: gap-impact -> interpret -->
   <line x1="305" y1="238" x2="305" y2="296" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-governance-conversion-stack-ah)"/>
 
   <!-- INTERPRET (rust) -->
   <rect id="f-governance-conversion-stack-interpret" x="180" y="298" width="250" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="305" y="328" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">INTERPRET</text>
-  <text x="305" y="350" text-anchor="middle" font-size="14" fill="#57534e">failure class &#8594;</text>
-  <text x="305" y="368" text-anchor="middle" font-size="14" fill="#57534e">durable control</text>
+  <text x="305" y="350" text-anchor="middle" font-size="14.4" fill="#57534e">failure class &#8594;</text>
+  <text x="305" y="368" text-anchor="middle" font-size="14.4" fill="#57534e">durable control</text>
 
   <!-- edge: interpret -> update-estate -->
   <line x1="305" y1="378" x2="305" y2="424" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-governance-conversion-stack-ah)"/>
@@ -772,15 +772,15 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- edge: update-estate -> control-estate -->
   <path d="M415,458 C560,458 580,200 580,140 C580,90 500,72 432,70"
         stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-governance-conversion-stack-ah)"/>
-  <text x="592" y="300" font-size="14" font-weight="700" fill="#2f5169" transform="rotate(90 592 300)">next iteration</text>
+  <text x="592" y="300" font-size="14.4" font-weight="700" fill="#2f5169" transform="rotate(90 592 300)">next iteration</text>
 
   <!-- legend -->
   <rect x="60" y="522" width="266" height="60" rx="8" fill="#fdfcf9" stroke="#e4e0d8" stroke-width="1.5"/>
   <line x1="78" y1="552" x2="122" y2="552" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-governance-conversion-stack-ah)"/>
-  <text x="132" y="557" font-size="14" fill="#57534e">load-bearing loop (all required)</text>
+  <text x="132" y="557" font-size="14.4" fill="#57534e">load-bearing loop (all required)</text>
 
   <!-- caption -->
-  <text x="360" y="622" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Solid loop: the load-bearing composition. Four moves, not six mandatory stages.</text>
+  <text x="360" y="622" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">Solid loop: the load-bearing composition. Four moves, not six mandatory stages.</text>
 </svg><figcaption data-short="The governance-conversion composition, a loop"><span class="fig-label">Figure A.6-1.</span> The governance-conversion composition, a loop. The CONTROL ESTATE — rules, gates, models, sensors — is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE ESTATE folds it in; a solid feedback edge returns to the estate for the next iteration. The four moves form the load-bearing loop.</figcaption></figure>
 <h2><span class="sec-num">A.6.4</span> Constituent Moves</h2>
 <table id="tbl-A-6-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table A.6-1.</span></caption><thead><tr><th>Move</th><th>Role</th></tr></thead><tbody><tr><td><strong>MODEL</strong></td><td>Make the control estate explicit — rules, gates, models, sensors.</td></tr><tr><td><strong>EXPOSE</strong></td><td>Query the estate for gaps, staleness, and coupling.</td></tr><tr><td><strong>CONVERT</strong></td><td>Interpret a recurring failure class into a new or strengthened control.</td></tr><tr><td><strong>UPDATE</strong></td><td>Fold the control back into the estate; the model changes with it.</td></tr></tbody></table>

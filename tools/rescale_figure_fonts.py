@@ -239,6 +239,10 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--dry-run", action="store_true", help="plan only; write nothing")
     ap.add_argument("--only", nargs="*", help="restrict to these figures (name or stem)")
+    ap.add_argument("--hard-floor", action="store_true",
+                    help="skip Stage-2 overflow-fit: labels stay AT the band floor rather than being shrunk "
+                         "below it to fit a too-small box (the house rule forbids solving density by "
+                         "shrinking type — the box, not the font, is then the thing to widen)")
     args = ap.parse_args(argv)
 
     r = Rescaler()
@@ -253,7 +257,9 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  [skip] {svg.name}: no viewBox width")
             continue
         text1, changes = r.band_snap(text0, vb_w)
-        text2, fits = r.overflow_fits(text1, vb_w)
+        # --hard-floor: keep Stage-1's floor-snap; SKIP Stage-2 overflow-fit (which would shrink a label
+        # below the floor to fit a too-small box — the house rule forbids solving density by shrinking type).
+        text2, fits = (text1, []) if args.hard_floor else r.overflow_fits(text1, vb_w)
         if not changes and not fits:
             continue
         if not _geometry_unchanged(text0, text2):
