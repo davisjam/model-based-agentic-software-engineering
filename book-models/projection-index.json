@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1216,
+    "total_sites": 1212,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 813,
+      "book-web": 809,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -176,22 +176,6 @@
             "occ": 6
           },
           {
-            "file": "book/appendix-h-engineering-and-realization.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
-            "occ": 2
-          },
-          {
-            "file": "book/appendix-h-one-product-several-surfaces.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-operations-and-incidents.html",
-            "occ": 1
-          },
-          {
             "file": "book/appendix-h-product-management-and-maintenance.html",
             "occ": 4
           },
@@ -239,7 +223,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 54
+            "occ": 50
           }
         ]
       },
@@ -1287,23 +1271,23 @@
           },
           {
             "file": "book/appendix-h-assurance-and-compliance.html",
-            "occ": 27
-          },
-          {
-            "file": "book/appendix-h-differential-adoption.html",
             "occ": 22
           },
           {
+            "file": "book/appendix-h-differential-adoption.html",
+            "occ": 19
+          },
+          {
             "file": "book/appendix-h-engineering-and-realization.html",
-            "occ": 41
+            "occ": 32
           },
           {
             "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
-            "occ": 89
+            "occ": 56
           },
           {
             "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
-            "occ": 34
+            "occ": 28
           },
           {
             "file": "book/appendix-h-one-product-several-surfaces.html",
@@ -1311,7 +1295,7 @@
           },
           {
             "file": "book/appendix-h-operations-and-incidents.html",
-            "occ": 32
+            "occ": 26
           },
           {
             "file": "book/appendix-h-product-discovery.html",
@@ -1319,7 +1303,7 @@
           },
           {
             "file": "book/appendix-h-product-management-and-maintenance.html",
-            "occ": 31
+            "occ": 23
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -1343,7 +1327,7 @@
           },
           {
             "file": "book/appendix-product-lifecycle.html",
-            "occ": 25
+            "occ": 24
           },
           {
             "file": "book/appendix-skill-recipe.html",
@@ -1367,7 +1351,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 292
+            "occ": 284
           },
           {
             "file": "book/index.html",
@@ -1909,7 +1893,7 @@
           },
           {
             "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
-            "occ": 23
+            "occ": 19
           },
           {
             "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
@@ -2529,35 +2513,35 @@
           },
           {
             "file": "book/appendix-h-assurance-and-compliance.html",
-            "occ": 12
+            "occ": 10
           },
           {
             "file": "book/appendix-h-differential-adoption.html",
-            "occ": 5
+            "occ": 6
           },
           {
             "file": "book/appendix-h-engineering-and-realization.html",
-            "occ": 16
+            "occ": 8
           },
           {
             "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
-            "occ": 11
+            "occ": 10
           },
           {
             "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
-            "occ": 7
+            "occ": 6
           },
           {
             "file": "book/appendix-h-one-product-several-surfaces.html",
-            "occ": 7
+            "occ": 8
           },
           {
             "file": "book/appendix-h-operations-and-incidents.html",
-            "occ": 9
+            "occ": 8
           },
           {
             "file": "book/appendix-h-product-discovery.html",
-            "occ": 5
+            "occ": 4
           },
           {
             "file": "book/appendix-h-product-management-and-maintenance.html",
@@ -2609,7 +2593,7 @@
           },
           {
             "file": "book/figures.html",
-            "occ": 422
+            "occ": 414
           },
           {
             "file": "book/index.html",
@@ -2617,7 +2601,7 @@
           },
           {
             "file": "book/list-of-figures.html",
-            "occ": 25
+            "occ": 24
           },
           {
             "file": "book/part-1-intro.html",
@@ -3184,6 +3168,10 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-product-lifecycle.html",
+            "occ": 1
+          },
+          {
             "file": "book/book-index.html",
             "occ": 1
           },
@@ -3199,7 +3187,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 10
+            "occ": 11
           }
         ]
       },
@@ -3754,10 +3742,6 @@
             "occ": 2
           },
           {
-            "file": "book/appendix-h-product-discovery.html",
-            "occ": 1
-          },
-          {
             "file": "book/appendix-skill-recipe.html",
             "occ": 1
           },
@@ -3777,7 +3761,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 12
+            "occ": 11
           }
         ]
       },
@@ -4219,7 +4203,7 @@
           },
           {
             "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
-            "occ": 5
+            "occ": 4
           },
           {
             "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
@@ -4717,11 +4701,11 @@
           },
           {
             "file": "book/appendix-h-assurance-and-compliance.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/appendix-h-differential-adoption.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/appendix-h-engineering-and-realization.html",
@@ -4737,7 +4721,7 @@
           },
           {
             "file": "book/appendix-h-one-product-several-surfaces.html",
-            "occ": 2
+            "occ": 1
           },
           {
             "file": "book/appendix-h-operations-and-incidents.html",

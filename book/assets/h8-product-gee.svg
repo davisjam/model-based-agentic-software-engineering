@@ -47,10 +47,10 @@
 
   <!-- connective tissue (solid outline; contents roman) -->
   <rect id="connective-tissue" x="300" y="150" width="400" height="132" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="500" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">CONNECTIVE TISSUE</text>
+  <text x="500" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1917">SHARED RELATIONS</text>
   <g text-anchor="middle" font-size="15" fill="#57534e">
-    <text x="500" y="206">shared identity</text>
-    <text x="500" y="228">relations · provenance</text>
+    <text x="500" y="206">identity</text>
+    <text x="500" y="228">provenance</text>
     <text x="500" y="250">temporal scope</text>
     <text x="500" y="272">obligations</text>
   </g>

@@ -711,83 +711,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · H.3 Engineering &amp; Realization — MAGE"><header class="chap"><div class="kicker"><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">Appendix H — Configuring MAGE Across the Product Lifecycle</a></div><h1>H.3 Engineering &amp; Realization</h1></header><p><strong>Engineering question.</strong> How should the product or requested change be realized while satisfying its obligations?</p>
 <p>Engineering &amp; Realization is the lifecycle surface treated most extensively in the rest of this book. Part 2 develops the models through which engineers and agents reason about a system; Part 3 develops the mechanisms that give selected properties authority; Part 4 puts those activities into engineering practice. The purpose here is therefore not to repeat that treatment, but to locate it among the other product-lifecycle surfaces.</p>
-<p>This surface particularly benefits from explicit system models because realization repeatedly encounters questions whose answers are expensive to reconstruct from source alone:</p>
-<ul><li>What owns this state?</li><li>Which transitions are legal?</li><li>What does this interface promise?</li><li>Which architectural boundary must this change preserve?</li><li>What depends on this concept?</li><li>Which resource constraint governs this operation?</li></ul>
-<p>Part 2 groups the models used to answer such questions into six overlapping classes: structural, behavioral, ownership, decision, measurement, and provenance. The classes distinguish the engineering questions a model answers rather than prescribing a representation or partitioning the system.</p>
-<p><a class="xref" href="appendix-h-engineering-and-realization.html#fig-H-3-1">Figure&nbsp;H.3-1</a> gathers the six classes by the engineering question each answers.</p>
-<figure id="fig-H-3-1" class="book-figure" data-label="fig-h-model-ontology"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 415"
-     role="img" aria-labelledby="f-model-ontology-onTitle f-model-ontology-onDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-model-ontology-onTitle">MAGE's working model ontology: six model classes and their engineering questions</title>
-  <desc id="f-model-ontology-onDesc">Six model classes, each a box carrying the two engineering questions it answers.
-    Structural: what exists, how related. Behavioral: what may happen, in what order. Ownership: who
-    controls, for how long. Decision: what is allowed, what choice. Measurement: how much, what envelope.
-    Provenance: what happened, what evidence. The classes may overlap. Below them, a separate axis: the
-    representation form used to encode a model — graph, registry, state machine, contract, table, or
-    quantitative relation — distinct from the class. Connected through shared identity and traceability,
-    these models form the system's explicit engineering knowledge.</desc>
-
-  <defs>
-    <marker id="f-model-ontology-on-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
-            orient="auto-start-reverse" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-  </defs>
-
-  <text x="480" y="34" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">MODEL CLASS &#8212; What engineering question does it answer?</text>
-
-  <!-- ===== row 1 ===== -->
-  <rect x="40" y="58" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="178" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">STRUCTURAL</text>
-  <text x="178" y="113" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what exists?</text>
-  <text x="178" y="132" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">how are parts related?</text>
-
-  <rect x="342" y="58" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="480" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">BEHAVIORAL</text>
-  <text x="480" y="113" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what may happen?</text>
-  <text x="480" y="132" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">in what order?</text>
-
-  <rect x="644" y="58" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="782" y="90" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">OWNERSHIP</text>
-  <text x="782" y="113" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">who controls it?</text>
-  <text x="782" y="132" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">for how long?</text>
-
-  <!-- ===== row 2 ===== -->
-  <rect x="40" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="178" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">DECISION</text>
-  <text x="178" y="207" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what is allowed?</text>
-  <text x="178" y="226" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">which choice?</text>
-
-  <rect x="342" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="480" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">MEASUREMENT</text>
-  <text x="480" y="207" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">how much?</text>
-  <text x="480" y="226" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what envelope?</text>
-
-  <rect x="644" y="152" width="276" height="82" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="782" y="184" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">PROVENANCE</text>
-  <text x="782" y="207" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what happened?</text>
-  <text x="782" y="226" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">what evidence?</text>
-
-  <text x="480" y="256" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">These classes may overlap.</text>
-
-  <!-- transparent anchor over the six-box class grid + the overlap note: the class end of the many-to-many
-       relation. fill/stroke none = zero visual change; the lint reads its geometry like any node. -->
-  <rect id="f-model-ontology-classes" x="40" y="58" width="880" height="204" fill="none" stroke="none"/>
-  <!-- double-headed arrow to the orthogonal representation-form axis: the relation is MANY-TO-MANY -->
-  <!-- edge: classes -> forms -->
-  <line x1="480" y1="264" x2="480" y2="288" stroke="#2f5169" stroke-width="2.2"
-        marker-start="url(#f-model-ontology-on-b)" marker-end="url(#f-model-ontology-on-b)"/>
-
-  <rect id="f-model-ontology-forms" x="90" y="290" width="780" height="70" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="314" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#57534e">EXAMPLE REPRESENTATION FORMS</text>
-  <text x="480" y="342" text-anchor="middle" font-size="17.5" fill="#1c1917">graph &#183; registry &#183; state machine &#183; contract &#183; table &#183; quantitative relation</text>
-
-  <text x="480" y="394" text-anchor="middle" font-size="16" font-style="italic" fill="#1c1917">Connected through shared identity and traceability, these models form the system&#8217;s explicit engineering knowledge.</text>
-</svg><figcaption data-short="MAGE&#x27;s working model ontology"><span class="fig-label">Figure H.3-1.</span> <em>MAGE's working model ontology.</em> Repeated from Figure 2.1-1. The six overlapping classes distinguish models by the engineering questions they answer. In Engineering &amp; Realization, these models provide explicit system knowledge against which changes can be reasoned about, realized, and aligned.</figcaption></figure>
-<p>What matters in the lifecycle view is where this system knowledge comes from and where it goes. Engineering does not manufacture all of its own obligations. Product discovery supplies needs, accepted requirements, and consequential product decisions. Product management supplies the intent and rationale for particular changes. Assurance contributes obligations that realization must satisfy. Operations supplies evidence from the behavior of the realized product.</p>
-<p>Engineering &amp; Realization connects those inputs to models of the system being changed. In the other direction, it exports structure that neighboring surfaces can reuse: component identity, architecture, behavior, interfaces, dependencies, resource relationships, and evidence about the realized change. The same represented entity can therefore participate across lifecycle surfaces. A requirement from discovery can trace to a component and behavioral obligation in engineering; operational evidence can resolve to the same component; an assurance claim can refer to the requirement, the governing model, and evidence from the realized system.</p>
-<p>Within this surface, the book's usual MAGE account applies. Modeling exposes consequential system knowledge and intent to reasoning; Alignment gives selected obligations authority. Where a model exposes a stable property that machinery can decide, deterministic validation, analysis, generation, or enforcement may replace semantic judgment. Part 2 explicitly keeps authority separate from representation: richer models expand the semantic surface over which authority can operate; they do not themselves confer it.</p>
-<p>That process need not eliminate realization freedom. Engineering specifies what must be true while leaving other implementation choices open. For a change whose governing obligations are already represented, an agent can reason across those obligations and choose among acceptable realizations. At the limit, the governing models may become sufficiently complete that transformation, generation, or synthesis is preferable to autonomous reasoning. More commonly, the obligations constrain the realization without determining it.</p>
-<p>Those remaining choices are the realization's degrees of freedom. They are not a fixed budget that engineering gradually consumes. New functionality can extend the realization surface and create new choices; discovery of a tacit obligation can reveal that an apparent freedom was never genuine; stronger Alignment can constrain a choice that was previously left open. For the realization at hand, the relevant question is simply which choices the governing obligations determine and which they deliberately leave to realization.</p>
+<p>Engineering &amp; Realization is the surface treated throughout Parts II–IV. Its characteristic models include structural, behavioral, ownership, decision, measurement, and provenance views of the realized system (the six model classes, <a class="xref" href="2.1-context-is-the-first-modeling-problem.html#fig-2-1-1">Figure&nbsp;2.1-1</a>). The lifecycle question here is not what those models are, but where their knowledge and obligations come from and where they go.</p>
+<p>Engineering does not manufacture all of its own obligations. Product discovery supplies needs, accepted requirements, and consequential product decisions. Product management supplies the intent and rationale for particular changes. Assurance contributes obligations that realization must satisfy. Operations supplies evidence from the behavior of the realized product.</p>
+<p>Engineering connects those inputs to the system being changed and exposes structure that neighboring surfaces can reuse: component identity, architecture, behavior, interfaces, dependencies, resource relationships, and evidence about the realized change. Shared identity lets the same entity connect lifecycle surfaces. A requirement from discovery can trace to a component and behavioral obligation in engineering; operational evidence can resolve to the same component; an assurance claim can refer to the requirement, the governing model, and evidence from the realized system.</p>
+<p>Parts II–IV supply the corresponding Modeling and Alignment practices.</p>
+<p>Engineering need not eliminate realization freedom. Governing models determine some choices while deliberately leaving others open; new functionality may create choices, a newly discovered obligation may remove apparent freedom, and stronger Alignment may constrain a choice previously left open. The relevant question for any realization is which choices the governing obligations determine and which remain free.</p>
 <p><strong>MAGE profile.</strong></p>
 <ul><li><em>Characteristic models.</em> Structural, behavioral, ownership, decision, measurement, and provenance models of the realized system; commonly including architecture, state machines, contracts, dependencies, knowledge graphs, resource relations, and invariants.</li><li><em>Lifetime.</em> Change-scoped through system-lived, depending on the model and the correspondence it claims.</li><li><em>Alignment posture.</em> Strong where consequential properties are decidable: tests, analyses, validators, model checking, constraints, permissions, and gates.</li><li><em>Role of autonomous reasoning.</em> Reasoning across interacting semantic constraints and realizing changes where governing obligations are explicit but implementation remains underdetermined.</li><li><em>Determinization opportunity.</em> High where modeling exposes stable properties that deterministic machinery can evaluate or realize.</li><li><em>Degrees of freedom.</em> Implementation choices left open after the governing obligations for the realization are accounted for.</li><li><em>Smallest useful adoption.</em> Externalize one repeatedly reconstructed or consequential system property, connect it to the surrounding lifecycle knowledge it depends on, and give stable obligations over it proportionate evidence and authority.</li><li><em>Lifecycle connections.</em> Product decisions and requirements from Discovery; change intent from Product Management; operational topology and evidence from Operations; assurance obligations and evidence requirements across the surface.</li></ul><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">« Beginning of part</a><a href="appendix-h-product-discovery.html" aria-label="Previous chapter — H.2 Product Discovery">« Previous chapter</a></div><span class="chapnav-here" title="H.3 Engineering &amp; Realization">H.3 Engineering &amp; Realization</span><div class="chapnav-fwd"><a href="appendix-h-product-management-and-maintenance.html" aria-label="Next chapter — H.4 Product Management &amp; Maintenance">Next chapter »</a><a href="appendix-crazy-ideas.html" aria-label="Next part — Appendix I — Crazy Ideas">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
