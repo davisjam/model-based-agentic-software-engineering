@@ -31,17 +31,7 @@ Part V uses two views of the evidence; [ref:two-views-of-the-evidence] sets them
 <!-- label: two-views-of-the-evidence -->
 <!-- figure: assets/two-views-of-the-evidence.svg | *Two views of the evidence.* The originating case supplies longitudinal depth: sequence, mechanism, and within-case recurrence. Independent industrial reconstructions supply variation across systems and organizations but less process visibility. Together they motivate the theoretical account developed in Part VI. -->
 
-The evidence in this Part comes in two forms. The first is longitudinal process evidence from DocAble. It can
-establish sequence: this failure occurred, this response followed, and later evidence showed whether the
-same failure recurred over the measured surface. It can show observed recurrence and nonrecurrence within one
-system and reconstruct how particular engineering structures emerged. It cannot establish that MAGE caused every improvement, that
-another organization would encounter the same failures, or that the resulting quantities are universal targets.
-
-The final chapter widens the lens. Six public industrial accounts describe how independent organizations structure
-autonomous engineering work under different constraints. Those accounts lack DocAble's process depth: they
-expose selected mechanisms rather than the full histories that produced them. Their value is variation. They
-show comparable moves arising independently, different realizations of the same engineering problem, and
-boundaries the originating case could not expose.
+DocAble supplies sequence, mechanism, and within-case recurrence, but not causal or population-level estimates. The six industrial reconstructions supply variation and alternative realizations, but less process history. Together they motivate rather than establish the theoretical account developed in Part VI.
 
 Parts II–IV presented the compressed method. Here the direction reverses. Chapters 5.1–5.4 return to the
 originating case from which much of that terminology was induced, so the wrong turns matter. A finished

@@ -1,7 +1,5 @@
 **Engineering question.** How should the product or requested change be realized while satisfying its obligations?
 
-Engineering & Realization is the lifecycle surface treated most extensively in the rest of this book. Part 2 develops the models through which engineers and agents reason about a system; Part 3 develops the mechanisms that give selected properties authority; Part 4 puts those activities into engineering practice. The purpose here is therefore not to repeat that treatment, but to locate it among the other product-lifecycle surfaces.
-
 Engineering & Realization is the surface treated throughout Parts II–IV. Its characteristic models include structural, behavioral, ownership, decision, measurement, and provenance views of the realized system (the six model classes, [ref:model-ontology]). The lifecycle question here is not what those models are, but where their knowledge and obligations come from and where they go.
 
 Engineering does not manufacture all of its own obligations. Product discovery supplies needs, accepted requirements, and consequential product decisions. Product management supplies the intent and rationale for particular changes. Assurance contributes obligations that realization must satisfy. Operations supplies evidence from the behavior of the realized product.

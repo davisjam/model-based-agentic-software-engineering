@@ -50,7 +50,7 @@ self-communicate/
   drawing/   diagrams.md  charts.md  tables.md  svg-audit.py
 ```
 
-One directory per leg, one file per facet — the tree *is* the orthogonal-model set.
+One directory per concern, one file per facet — the tree *is* the orthogonal-model set.
 
 ### Lesson
 
