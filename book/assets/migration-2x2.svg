@@ -34,18 +34,18 @@
   <text x="460" y="48" text-anchor="middle" font-size="23.92" font-weight="700" fill="#1c1917">Two axes fix where a migration starts</text>
 
   <!-- column axis: how much intent is settled -->
-  <text x="565" y="98" text-anchor="middle" font-size="16.56" font-weight="700" fill="#1c1917">how settled the intent is &#8594;</text>
+  <text x="565" y="98" text-anchor="middle" font-size="18.4" font-weight="700" fill="#1c1917">how settled the intent is &#8594;</text>
   <text x="415" y="132" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">Intent uncertain</text>
-  <text x="415" y="156" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">what to build is open</text>
+  <text x="415" y="156" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">what to build is open</text>
   <text x="715" y="132" text-anchor="middle" font-size="23" font-weight="700" fill="#2f5169">Intent settled</text>
-  <text x="715" y="156" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">the contract is known</text>
+  <text x="715" y="156" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">the contract is known</text>
 
   <!-- row axis: how much system exists -->
-  <text x="130" y="200" text-anchor="middle" font-size="16.56" font-weight="700" fill="#1c1917">&#8595; how much exists</text>
+  <text x="130" y="200" text-anchor="middle" font-size="18.4" font-weight="700" fill="#1c1917">&#8595; how much exists</text>
   <text x="130" y="290" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">Little</text>
-  <text x="130" y="314" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a blank page</text>
+  <text x="130" y="314" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">a blank page</text>
   <text x="130" y="486" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">Much</text>
-  <text x="130" y="510" text-anchor="middle" font-size="17" font-style="italic" fill="#57534e">a live estate</text>
+  <text x="130" y="510" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e">a live estate</text>
 
   <!-- left (uncertain) column: lighter fill -->
   <g fill="#f6f4ef" stroke="#2f5169" stroke-width="2">
@@ -59,26 +59,26 @@
   </g>
 
   <!-- top-left: little x uncertain -->
-  <text x="415" y="230" text-anchor="middle" font-size="16.56" font-weight="700" fill="#57534e">little &#215; uncertain</text>
+  <text x="415" y="230" text-anchor="middle" font-size="18.4" font-weight="700" fill="#57534e">little &#215; uncertain</text>
   <text x="415" y="292" text-anchor="middle" font-size="23.92" font-weight="700" fill="#1c1917">Explore</text>
-  <text x="415" y="330" text-anchor="middle" font-size="16.56" fill="#1c1917">build enough to learn</text>
-  <text x="415" y="354" text-anchor="middle" font-size="16.56" fill="#1c1917">before you specify</text>
+  <text x="415" y="330" text-anchor="middle" font-size="18.4" fill="#1c1917">build enough to learn</text>
+  <text x="415" y="354" text-anchor="middle" font-size="18.4" fill="#1c1917">before you specify</text>
 
   <!-- top-right: little x settled -->
-  <text x="715" y="230" text-anchor="middle" font-size="16.56" font-weight="700" fill="#57534e">little &#215; settled</text>
+  <text x="715" y="230" text-anchor="middle" font-size="18.4" font-weight="700" fill="#57534e">little &#215; settled</text>
   <text x="715" y="292" text-anchor="middle" font-size="23.92" font-weight="700" fill="#1c1917">Model early</text>
-  <text x="715" y="330" text-anchor="middle" font-size="16.56" fill="#1c1917">a known contract earns</text>
-  <text x="715" y="354" text-anchor="middle" font-size="16.56" fill="#1c1917">modeling from the start</text>
+  <text x="715" y="330" text-anchor="middle" font-size="18.4" fill="#1c1917">a known contract earns</text>
+  <text x="715" y="354" text-anchor="middle" font-size="18.4" fill="#1c1917">modeling from the start</text>
 
   <!-- bottom-left: much x uncertain -->
-  <text x="415" y="442" text-anchor="middle" font-size="16.56" font-weight="700" fill="#57534e">much &#215; uncertain</text>
+  <text x="415" y="442" text-anchor="middle" font-size="18.4" font-weight="700" fill="#57534e">much &#215; uncertain</text>
   <text x="415" y="504" text-anchor="middle" font-size="23.92" font-weight="700" fill="#1c1917">Recover, explore</text>
-  <text x="415" y="542" text-anchor="middle" font-size="16.56" fill="#1c1917">surface the latent structure,</text>
-  <text x="415" y="566" text-anchor="middle" font-size="16.56" fill="#1c1917">then probe the open intent</text>
+  <text x="415" y="542" text-anchor="middle" font-size="18.4" fill="#1c1917">surface the latent structure,</text>
+  <text x="415" y="566" text-anchor="middle" font-size="18.4" fill="#1c1917">then probe the open intent</text>
 
   <!-- bottom-right: much x settled — R45b: recover, RECONCILE, govern -->
-  <text x="715" y="442" text-anchor="middle" font-size="16.56" font-weight="700" fill="#57534e">much &#215; settled</text>
+  <text x="715" y="442" text-anchor="middle" font-size="18.4" font-weight="700" fill="#57534e">much &#215; settled</text>
   <text x="715" y="502" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Recover, reconcile, govern</text>
-  <text x="715" y="540" text-anchor="middle" font-size="16.56" fill="#1c1917">surface latent models and controls,</text>
-  <text x="715" y="564" text-anchor="middle" font-size="16.56" fill="#1c1917">reconcile them, then govern</text>
+  <text x="715" y="540" text-anchor="middle" font-size="18.4" fill="#1c1917">surface latent models and controls,</text>
+  <text x="715" y="564" text-anchor="middle" font-size="18.4" fill="#1c1917">reconcile them, then govern</text>
 </svg>

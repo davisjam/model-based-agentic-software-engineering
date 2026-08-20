@@ -47,7 +47,7 @@
 
   <!-- method sub-boxes (gray) -->
   <rect id="s-constraint" x="45" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
-  <rect id="s-explicit" x="360" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
+  <rect id="s-explicit" x="350.98" y="330" width="298.05" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
   <rect id="s-temporal" x="675" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
 
   <!-- gate (green) -->
@@ -83,31 +83,32 @@
   <path d="M697.5,396 L697.5,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
-  <text x="500" y="61" text-anchor="middle" font-size="18" font-weight="700" letter-spacing="0.5" fill="#9a3f12">ENGINEERING OBLIGATION</text>
+  <text x="500" y="61" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="0.5" fill="#9a3f12">ENGINEERING OBLIGATION</text>
 
-  <text x="500" y="126" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">What kind of property is it?</text>
+  <text x="500" y="126" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">What kind of property is it?</text>
 
-  <text x="185" y="164" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CAN EXCLUDE IT?</text>
-  <text x="500" y="164" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">BAD STATE / TRACE?</text>
-  <text x="815" y="164" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">EVENTUALITY / FAIRNESS?</text>
-  <text x="185" y="185" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">yes</text>
-  <text x="500" y="185" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">yes</text>
-  <text x="815" y="185" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">yes</text>
+  <text x="185" y="164" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CAN EXCLUDE IT?</text>
+  <text x="500" y="164" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">BAD STATE / TRACE?</text>
+  <text x="815" y="164" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">EVENTUALITY / FAIRNESS?</text>
+  <text x="185" y="185" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">yes</text>
+  <text x="500" y="185" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">yes</text>
+  <text x="815" y="185" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">yes</text>
 
-  <text x="185" y="283" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">CONSTRAINT</text>
-  <text x="500" y="283" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">VALIDATOR</text>
-  <text x="815" y="283" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">VALIDATOR</text>
+  <text x="185" y="283" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CONSTRAINT</text>
+  <text x="500" y="283" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">VALIDATOR</text>
+  <text x="815" y="283" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">VALIDATOR</text>
 
-  <text x="185" y="358" text-anchor="middle" font-size="18" fill="#1c1917">structural prevention</text>
-  <text x="185" y="380" text-anchor="middle" font-size="14.51" fill="#57534e">DB compare-and-set / closed transition</text>
-  <text x="500" y="352" text-anchor="middle" font-size="18" fill="#1c1917">state-space search</text>
-  <text x="500" y="370" text-anchor="middle" font-size="18" fill="#57534e">purpose-built model checker</text>
-  <text x="500" y="386" text-anchor="middle" font-size="18" fill="#57534e">(bounded explicit-state)</text>
-  <text x="815" y="358" text-anchor="middle" font-size="18" fill="#1c1917">temporal model checking</text>
-  <text x="815" y="380" text-anchor="middle" font-size="18" fill="#57534e">TLA+ / TLC where warranted</text>
+  <text x="185" y="358" text-anchor="middle" font-size="20" fill="#1c1917">structural prevention</text>
+  <text x="185" y="380" text-anchor="middle" font-size="20" fill="#57534e">DB compare-and-set /</text>
+  <text x="185" y="402" text-anchor="middle" font-size="20" fill="#57534e">closed transition</text>
+  <text x="500" y="352" text-anchor="middle" font-size="20" fill="#1c1917">state-space search</text>
+  <text x="500" y="370" text-anchor="middle" font-size="20" fill="#57534e">purpose-built model checker</text>
+  <text x="500" y="386" text-anchor="middle" font-size="20" fill="#57534e">(bounded explicit-state)</text>
+  <text x="815" y="358" text-anchor="middle" font-size="20" fill="#1c1917">temporal model checking</text>
+  <text x="815" y="380" text-anchor="middle" font-size="20" fill="#57534e">TLA+ / TLC where warranted</text>
 
-  <text x="500" y="502" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">GATE, IF THE VERDICT</text>
-  <text x="500" y="525" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">SHOULD CONTROL ADMISSION</text>
+  <text x="500" y="502" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">GATE, IF THE VERDICT</text>
+  <text x="500" y="525" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">SHOULD CONTROL ADMISSION</text>
 
-  <text x="500" y="576" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Alternatives selected by the property &#8212; not stages on a maturity ladder.</text>
+  <text x="500" y="576" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Alternatives selected by the property &#8212; not stages on a maturity ladder.</text>
 </svg>

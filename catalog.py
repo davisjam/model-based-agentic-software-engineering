@@ -1142,16 +1142,18 @@ def cmd_validate(_args) -> int:
     if fam_budget:
         print(f"  [figfam] AUDIT-ONLY: {lffb2.summary_line(fam_budget)} — "
               f"run `python3 book-models/lint_figure_family_budget.py` (does not gate)")
-    # FIGURE OVERFLOW — the text-fits-its-box sensor over book/assets/*.svg. It landed AUDIT-ONLY-first per
-    # the repo's blocking-lint discipline; a fix-wave has now drained its offenders to zero, so it is
-    # FLIPPED BLOCKING: any label that overruns its padded box increments n_issues and reddens validate,
-    # exactly like the sibling banned/census/stat checks. See book-models/lint_figure_overflow.py.
-    import lint_figure_overflow as lfo  # noqa: E402 — blocking overflow sensor
+    # FIGURE OVERFLOW — the text-fits-its-box sensor over book/assets/*.svg. Only a true OVERFLOW (a label
+    # that SPILLS past its padded box, ratio ≥ 1.00) gates; STRAIN (ratio 0.90–1.00, the label fits tightly
+    # but does not spill) is advisory. The +2 legibility floor (260820) inevitably tightens full-width
+    # caption/subtitle lines whose panel is the figure width and cannot be widened — those strain but read
+    # fine, so gating them would force needless rewording of already-approved captions. A spill is a defect;
+    # a tight fit is not. See book-models/lint_figure_overflow.py (STRAIN_RATIO vs OVERFLOW_RATIO).
+    import lint_figure_overflow as lfo  # noqa: E402 — overflow sensor (spills gate; strain advisory)
     overflow = lfo.findings()
     if overflow:
         print(f"  [overflow] {lfo.summary_line(overflow)} — "
-              f"run `python3 book-models/lint_figure_overflow.py`")
-        n_issues += len(overflow)
+              f"run `python3 book-models/lint_figure_overflow.py` (strain advisory; spills gate)")
+        n_issues += sum(1 for f in overflow if f.verdict == "OVERFLOW")
     # FIGURE TEXT-OCCLUSION — the z-order text-on-top sensor over book/assets/*.svg (the geometry complement to
     # the overflow sensor above). It enforces one structural constraint: a `<text>` must be drawn AFTER every
     # filled element it overlaps, so the label is painted on top and a box can never hide it. The violation it

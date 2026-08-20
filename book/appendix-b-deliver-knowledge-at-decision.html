@@ -734,36 +734,36 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- RULES: stacked-doc shape (knowledge / modeling pole) -->
-  <rect x="150" y="78" width="200" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2" transform="translate(10 10)"/>
+  <rect x="141.69" y="78" width="216.61" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2" transform="translate(10 10)"/>
   <rect x="150" y="78" width="200" height="64" rx="8" fill="#e3f0e7" stroke="#155c38" stroke-width="2.4"/>
-  <text x="250" y="106" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">RULES</text>
-  <text x="250" y="128" text-anchor="middle" font-size="18" font-style="italic" fill="#1f7a4d">the governing corpus</text>
+  <text x="250" y="106" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">RULES</text>
+  <text x="250" y="128" text-anchor="middle" font-size="20" font-style="italic" fill="#1f7a4d">the governing corpus</text>
 
   <!-- WORK: solid box (action / agent pole) -->
-  <rect x="650" y="78" width="200" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="750" y="106" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">WORK</text>
-  <text x="750" y="128" text-anchor="middle" font-size="17.48" font-style="italic" fill="#2f5169">the files being changed</text>
+  <rect x="631.8" y="78" width="236.4" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="750" y="106" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">WORK</text>
+  <text x="750" y="128" text-anchor="middle" font-size="20" font-style="italic" fill="#2f5169">the files being changed</text>
 
   <!-- RULES edge: DASHED, "relevant to" -->
   <path d="M260,152 C270,210 320,222 396,242" fill="none" stroke="#1f7a4d" stroke-width="2" stroke-dasharray="7 4" marker-end="url(#f-c7-knowledge-at-decision-c7-ah-dash)"/>
-  <text x="300" y="200" font-size="18" font-style="italic" fill="#1f7a4d">relevant to</text>
+  <text x="300" y="200" font-size="20" font-style="italic" fill="#1f7a4d">relevant to</text>
 
   <!-- WORK edge: SOLID -->
   <path d="M740,152 C730,210 680,222 604,242" fill="none" stroke="#2f5169" stroke-width="2.4" marker-end="url(#f-c7-knowledge-at-decision-c7-ah-solid)"/>
-  <text x="640" y="200" font-size="18" font-style="italic" fill="#2f5169">scopes</text>
+  <text x="640" y="200" font-size="20" font-style="italic" fill="#2f5169">scopes</text>
 
   <!-- CONTEXT SELECTION funnel (trapezoid, governance) -->
   <polygon points="350,250 650,250 588,320 412,320" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
-  <text x="500" y="292" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTEXT SELECTION</text>
+  <text x="500" y="292" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">CONTEXT SELECTION</text>
 
   <!-- to DECISION -->
   <line x1="500" y1="320" x2="500" y2="366" stroke="#1c1917" stroke-width="2.6" marker-end="url(#f-c7-knowledge-at-decision-c7-ah-solid)"/>
   <rect x="390" y="370" width="220" height="60" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="500" y="407" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">DECISION</text>
+  <text x="500" y="407" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">DECISION</text>
 
   <!-- footer -->
-  <text x="500" y="478" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">Bind the relevant knowledge to the work surface where it matters.</text>
-  <text x="500" y="504" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Make discovery a property of the environment, not a test of memory or search skill.</text>
+  <text x="500" y="478" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">Bind the relevant knowledge to the work surface where it matters.</text>
+  <text x="500" y="504" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Make discovery a property of the environment, not a test of memory or search skill.</text>
 </svg><figcaption data-short="Knowledge delivery at the decision point"><span class="fig-label">Figure B.7-1.</span> <em>Knowledge delivery at the decision point.</em> Context selection joins the current work with the rules relevant to its scope and supplies that subset to the decision. The distinction is encoded by shape and line style rather than color.</figcaption></figure>
 <p><strong>Example — File-scoped context.</strong> Dynamic context injection selects the rules governing the files in a task and injects those rules into the agent's brief. The relevant rules arrive with the assignment rather than leaving the agent to find them in the full governance corpus.</p>
 <p><strong>Example — Dispatch admission.</strong> Brief linting applies the same principle one step earlier. A task cannot launch until its brief contains the required markers and context.</p>
