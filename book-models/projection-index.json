@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1216,
+    "total_sites": 1215,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 813,
+      "book-web": 812,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -173,7 +173,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 5
+            "occ": 7
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -193,7 +193,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 6
+            "occ": 8
           },
           {
             "file": "book/book-index.html",
@@ -1295,7 +1295,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 63
+            "occ": 74
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -1339,7 +1339,7 @@
           },
           {
             "file": "book/bibliography.html",
-            "occ": 75
+            "occ": 80
           },
           {
             "file": "book/book-index.html",
@@ -2078,10 +2078,6 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.3-the-mage-method-at-a-glance.html",
-            "occ": 1
-          },
-          {
             "file": "book/0.4-the-books-language.html",
             "occ": 5
           },
@@ -2113,7 +2109,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 8
+            "occ": 7
           }
         ]
       },
@@ -2545,7 +2541,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 16
+            "occ": 14
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",

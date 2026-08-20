@@ -177,7 +177,7 @@ def _inline(s: str, stash: list[str]) -> str:
         inner = _inline(raw_note, stash)
         if len(raw_note.split()) > _MARGIN_NOTE_MAX_WORDS:
             return _hold(f"#footnote[{inner}]")
-        return _hold(f"#sidenote([{inner}], footnote[{inner}], marked: true)")
+        return _hold(f"#footnote[{inner}]")   # sidenotes → footnotes (Tufte margin retired 260820)
     s = bb._NOTE_MARKER_RE.sub(_note, s)
     # 1d. Standard-markdown footnotes `[^label]` → a Typst `#footnote`. The FIRST reference emits the note
     #     body (its definition text, pulled out of the flow into `_FN_STATE["defs"]` and run through the SAME
@@ -576,7 +576,7 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
         quote_fallback = f"quote(block: true)[\n{_indent(inner)}\n]"
         if len(stripped.split()) > _MARGIN_NOTE_MAX_WORDS:
             return f"#{quote_fallback}"
-        return f"#sidenote([\n{_indent(inner)}\n], {quote_fallback})"
+        return f"#footnote[\n{_indent(inner)}\n]"   # em-led aside → footnote (Tufte margin retired 260820)
     return f"#quote(block: true)[\n{_indent(inner)}\n]"
 
 
@@ -645,7 +645,7 @@ def _render_table(block: Block_t) -> str:
 _WIDE_FIGURES = {"assets/research-arc.svg"}
 
 
-def _render_figure(block: Block_t, width: str = "85%", bare: bool = False) -> str:
+def _render_figure(block: Block_t, width: str = "100%", bare: bool = False) -> str:
     """A `<!-- figure: path | caption -->` → `#figure(image(path), caption: […])`, numbered + labelled.
     `width` sizes the image (default 85% of the measure; a `_WIDE_FIGURES` member renders at 100%; the
     wrapped author portrait passes a small width so it sits beside the bio, see `render_chapter`).
@@ -1379,10 +1379,10 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 #set document(title: "Model-Based Agentic Software Engineering")
 // Asymmetric geometry: a narrow binding margin + a wide OUTER margin that holds the Tufte note column.
 // Text box = left 0.875in + measure 4.75in; note column = 0.375in gutter + 1.9in note + 0.6in trim.
-// 0.875 + 4.75 + 2.875 = 8.5in. The `#sidenote` helper (end of this preamble) places short editorial
+// 0.875 + 5.75 + 1.875 = 8.5in (measure widened 260820: fewer Tufte notes than the wide margin justified). The `#sidenote` helper (end of this preamble) places short editorial
 // notes + em-led asides into that outer margin; long ones fall back in-column via a measure-gate.
-#set page(paper: "us-letter", margin: (left: 0.875in, right: 2.875in, y: 1in), numbering: "1", fill: dt.paper)
-#set text(font: dt.font-body, size: 11pt, lang: "en", fill: dt.ink)
+#set page(paper: "us-letter", margin: (x: 1.125in, y: 1in), numbering: "1", fill: dt.paper)
+#set text(font: dt.font-body, size: 12pt, lang: "en", fill: dt.ink)
 #set par(justify: true, leading: 0.62em, first-line-indent: 0pt, spacing: 0.9em)
 #set heading(numbering: none)
 // "Calm authority" hierarchy: SEMIBOLD is the quiet default weight for every heading; only the Part
@@ -1507,8 +1507,8 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 //    falls back to its in-column render (footnote / quote) by construction. See §"Tufte margin-note
 //    layout" design. `_mn-cursor` is a per-page anti-collision cursor holding the previous note's bottom.
 #let _mn-cursor = state("mn-cursor", (page: 0, bottom: 0pt))
-#let _MN-WIDTH  = 1.9in          // note-column width
-#let _MN-DX     = 4.75in + 0.375in   // text measure + gutter — flow-region left origin → note column
+#let _MN-WIDTH  = 1.3in          // note-column width (narrowed with the reclaimed margin)
+#let _MN-DX     = 5.75in + 0.35in    // text measure + gutter — flow-region left origin → note column
 #let _MN-TOP    = 1in            // page y-margin; `place(top+left)` anchors here, so dy = base - _MN-TOP
 #let _MN-BUDGET = 3.2in          // max note height allowed in the margin; taller → in-column fallback
 #let _MN-VGAP   = 6pt            // min vertical gap between two stacked notes on one page (absolute, not em)
@@ -2036,7 +2036,7 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
     if _any_cites(doc):
         bib_rel = _root_rel(bb.HERE / "references.bib", root)
         parts.append("#pagebreak()")
-        parts.append(f'#bibliography({_typst_str(bib_rel)}, style: "chicago-notes", title: "Bibliography")')
+        parts.append(f'#bibliography({_typst_str(bib_rel)}, style: "nature", title: "Bibliography")')
     result = "\n\n".join(parts) + "\n"
     # Clear the split-section context so a later whole-book emission (or the next section) starts clean. An
     # unknown-slug `raise SystemExit` above aborts the whole process, so it needs no reset here.

@@ -4,7 +4,7 @@
 
 #### Verso — Evidence
 
-**What the public record shows.** Spotify's Honk system moves large-scale code migration from distributed manual implementation toward centrally scoped, fleet-executed work. A migration that could previously involve hundreds of teams over weeks can instead be scoped by one engineer over a few days; tooling identifies and schedules targets, agents execute changes concurrently, and the engineer supervises the fleet and handles exceptions.[^sp-honk]
+**What the public record shows.** Spotify's Honk system moves large-scale code migration from distributed manual implementation toward centrally scoped, fleet-executed work. A migration that could previously involve hundreds of teams over weeks can instead be scoped by one engineer over a few days; tooling identifies and schedules targets, agents execute changes concurrently, and the engineer supervises the fleet and handles exceptions.[cite: spotify2026honk]
 
 Spotify's surrounding engineering estate also matters. Its System Model and Backstage catalog carry service identities, ownership, dependencies, endpoints, and lineage, giving fleet tooling a representation through which migrations can be targeted rather than requiring each agent to rediscover the repository landscape.[^sp-estate]
 
@@ -12,7 +12,6 @@ Spotify's surrounding engineering estate also matters. Its System Model and Back
 
 **Portable lesson.** Scale implementation; concentrate human judgment on what to change and where.
 
-[^sp-honk]: Max Charas and Marc Bruggmann, "Honk: Autonomous Code Migration at Spotify," Spotify Engineering, 2026. Already in the manuscript bibliography.
 [^sp-estate]: Spotify System Model and Backstage service catalog, as recorded in the §5.5 reconstruction (service identities, ownership, dependencies, endpoints, lineage).
 [^sp-prfreq]: 76% PR-frequency figure as reported in the Honk account; cited here strictly as an activity measure, not as evidence of durable throughput.
 

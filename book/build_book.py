@@ -6147,8 +6147,8 @@ def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
 
 # ── Overflow (margin-bleed) sensor ───────────────────────────────────────────────────────────────────
 # The book's page geometry (set in the Typst preamble): US-Letter portrait (8.5×11in) with an ASYMMETRIC
-# margin — a 0.875in binding margin + a 4.75in text measure (text box ends 5.625in from the left) + a wide
-# 2.875in OUTER margin holding the Tufte note column (0.375in gutter · 1.9in note · 0.6in trim). The wide
+# margin — a 0.875in binding margin + a 5.75in text measure (text box ends 6.625in from the left) + a
+# 1.875in OUTER margin holding the Tufte note column (0.35in gutter · 1.3in note · 0.225in trim). The wide
 # apparatus flips to landscape (11×8.5in, 0.6in x-margins, no note column). `pdftotext -bbox` reports word
 # boxes in PDF points (72/in) with each page's width, so the edges below are derived from page width alone.
 #
@@ -6163,8 +6163,8 @@ def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
 # Landscape apparatus keeps the original single-edge check (page_w − 0.6in); it has no note column.
 _PT_PER_IN = 72.0
 _LANDSCAPE_PAGE_W_PT = 11.0 * _PT_PER_IN        # 792 — the flipped apparatus page
-_BODY_TEXT_RIGHT_PT = 5.625 * _PT_PER_IN        # 405 — portrait text box right edge (0.875in + 4.75in)
-_BODY_OUTER_TRIM_PT = 0.6 * _PT_PER_IN          # 43.2 — note column → physical page-edge trim
+_BODY_TEXT_RIGHT_PT = 7.375 * _PT_PER_IN        # 531 — portrait text box right edge (1.125in + 6.25in)
+_BODY_OUTER_TRIM_PT = 0.225 * _PT_PER_IN        # 16.2 — note column → physical page-edge trim
 _LANDSCAPE_XMARGIN_PT = 0.6 * _PT_PER_IN        # 43.2 — landscape apparatus x-margin
 # The narrow 4.75in text edge governs BODY-SIZE type (running text ~13pt + code). DISPLAY type — the cover
 # title, the Part-divider headings — sits on a page with its OWN full-width CENTERED layout, so it legibly

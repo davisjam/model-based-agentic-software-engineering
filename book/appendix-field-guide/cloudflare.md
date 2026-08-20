@@ -4,7 +4,7 @@
 
 #### Verso — Evidence
 
-**What the public record shows.** Cloudflare describes an engineering-standards system in which requirements originating in RFCs are extracted into structured, machine-readable form. Requirements that can be checked mechanically can become custom checks; obligations requiring semantic judgment remain review questions. This separates the authority to establish policy from the machinery that applies it repeatedly.[^cf-reimann]
+**What the public record shows.** Cloudflare describes an engineering-standards system in which requirements originating in RFCs are extracted into structured, machine-readable form. Requirements that can be checked mechanically can become custom checks; obligations requiring semantic judgment remain review questions. This separates the authority to establish policy from the machinery that applies it repeatedly.[cite: reimann2026codex]
 
 The important move is not AI review itself, but turning policy into an artifact that later work inherits.
 
@@ -12,7 +12,6 @@ The important move is not AI review itself, but turning policy into an artifact 
 
 **Portable lesson.** A policy decision gains multiplicative reach when the environment can apply it without requiring another person to reconstruct it.
 
-[^cf-reimann]: Timo Reimann, "How Cloudflare Enforces Engineering Standards Using AI," Cloudflare, Aug. 4, 2026. Already in the manuscript bibliography.
 
 #### Recto — MAGE Interpretation
 
