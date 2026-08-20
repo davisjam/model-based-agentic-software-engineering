@@ -46,7 +46,7 @@
 
   <rect x="0" y="0" width="1000" height="720" fill="#fdfcf9"/>
   <text x="500" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The representation capability ladder</text>
-  <text x="500" y="68" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">One ladder — representational capabilities, ordered. Not a maturity model.</text>
+  <text x="500" y="68" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Representational capabilities, ordered — not a maturity model.</text>
 
   <!-- left strip: the single representational gradient, pale (bottom) -> deep (top) -->
   <rect x="120" y="120" width="14" height="488" rx="7" fill="url(#mlReach)" stroke="#e4e0d8" stroke-width="1"/>
@@ -58,7 +58,7 @@
   <rect x="150" y="120" width="540" height="54" rx="8" fill="#9ccdb0" stroke="#1f7a4d" stroke-width="2.8"/>
   <text x="176" y="153" font-size="20" font-weight="700" fill="#155c38">8</text>
   <text x="206" y="144" font-size="18" font-weight="700" fill="#1c1917">Mechanically maintained correspondence</text>
-  <text x="206" y="164" font-size="16.67" fill="#3f4d44">The environment refuses to let model and territory silently diverge.</text>
+  <text x="206" y="164" font-size="20" fill="#3f4d44">mechanically detect divergence</text>
 
   <!-- rung 7 — Traceability -->
   <rect x="150" y="182" width="540" height="54" rx="8" fill="#abd5bb" stroke="#1f7a4d" stroke-width="2.2"/>
