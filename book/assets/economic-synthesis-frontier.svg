@@ -1,87 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Fig 6.5 economic-synthesis-frontier.svg. Fold to book/assets/. -->
-<!-- The economic synthesis frontier. THREE NESTED regions, not the ASCII's stacked boxes:
-     (1) OUTER, dashed neutral — TECHNICALLY AMENABLE TO SYNTHESIS / SEARCH. The outer envelope of what
-         could in principle be specified, searched, and evaluated — labelled as a region, not a fixed
-         technical limit. Dashed + gray to read as a limit,
-         not a worked region.
-     (2) MIDDLE, rust (#9a3f12 governance-accent, the book's "new economics / commodity intelligence
-         changes the price list" colour) — MAGE-ERA ECONOMICALLY WORTHWHILE REGION. The larger economic
-         region MAGE predicts, carrying the four movers (cheaper representation, stronger learned search,
-         cheap candidate realization, scalable evaluation).
-     (3) INNER, gray (#57534e neutral, the historical/implementation baseline) — OLD ECONOMICALLY
-         WORTHWHILE REGION, nested inside the MAGE-era region: compilers, optimization, synthesis,
-         selected MDE. Old ⊂ MAGE-era ⊂ technically-amenable.
-     A rust arrow at the base shows the economic boundary MOVING OUTWARD (modal — "MAGE-predicted"),
-     inside the technically amenable region. Below the outer boundary: a note that models
-     can still pay outside the synthesis region through reasoning, comparison, and assurance; then the
-     existing note that consequentially underspecified questions remain iterative (reworded from "remain
-     outside the boundary"). Palette: Umber Monograph tokens only. -->
-<!-- semantic-families: governance, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 594" width="760" height="594"
+<!-- Fig 6.5-3 economic-synthesis-frontier.svg. Fold to book/assets/. REDRAWN 260820 (part6-6.5.5 rewrite):
+     THE EXPANDING ECONOMICS OF EXPLICIT ENGINEERING. A vertical figure — assurance demand / consequence of
+     failure increases UPWARD. Three stacked regions with two inward-moving price frontiers between them:
+     (top) FULL FORMALIZATION (formal blue), (middle) MODELING + ALIGNMENT DESIGN SPACE (green — the region
+     MAGE principally concerns), (bottom) CODE-CENTRIC / INFORMAL ENGINEERING (gray). Between top and middle,
+     the FORMALIZATION FRONTIER descends (rust ↓); between bottom and middle, the MAGE FRONTIER rises (rust ↑).
+     A right-side bracket names both: COMMODITY INTELLIGENCE CHANGES BOTH PRICE FRONTIERS. The middle is
+     labelled MODELING + ALIGNMENT DESIGN SPACE, NOT "MAGE" — MAGE includes the upper limiting case too, so
+     labelling the middle "MAGE" would define it by opposition to formal methods. Palette: Umber Monograph
+     tokens (formal blue #2f5169, governance rust #9a3f12, modeling green #155c38/#e3f0e7, neutral #57534e). -->
+<!-- semantic-families: governance, modeling, neutral -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1090" width="720" height="1090"
      role="img" aria-labelledby="esfTitle esfDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="esfTitle">The economic synthesis frontier: MAGE moves the economic boundary of worthwhile
-    synthesis outward within the technically amenable region</title>
-  <desc id="esfDesc">Three nested regions. The outermost, drawn with a dashed gray boundary, is labelled
-    technically amenable to synthesis or search — the envelope of what could in principle be specified,
-    searched, and evaluated. Nested inside it, a large rust region is the MAGE-era economically
-    worthwhile region, carrying four movers: cheaper representation, stronger learned search, cheap
-    candidate realization, and scalable evaluation. Nested inside that, a smaller gray region is the old
-    economically worthwhile region — compilers, optimization, synthesis, and selected model-driven
-    engineering. So the old worthwhile region sits inside the MAGE-era one, which sits inside the
-    technically amenable region. A rust arrow along the base shows the economic boundary moving outward,
-    a move MAGE predicts; the outer boundary marks the technically amenable region, not a fixed limit.
-    Below the outer boundary, a note reads: models can still pay outside the synthesis region through
-    reasoning, comparison, and assurance, and consequentially underspecified questions remain
-    iterative.</desc>
+  <title id="esfTitle">The expanding economics of explicit engineering: two price frontiers move inward as
+    commodity intelligence lowers their cost</title>
+  <desc id="esfDesc">A vertical figure in which assurance demand and consequence of failure increase upward.
+    At the top sits full formalization — common semantics, specification, proof, trustworthy derivation, and
+    synthesis or deterministic generation. Below it, the formalization frontier moves downward as cheaper
+    specification, proof, model construction, and derivation lower its cost. In the middle is the Modeling
+    and Alignment design space, where heterogeneous models, selective authority, heterogeneous evidence, and
+    remaining degrees of freedom coexist. Beneath it, the MAGE frontier moves upward as cheaper
+    representation, reconciliation, realization, and evaluation make selective structure worthwhile. At the
+    bottom is code-centric and informal engineering — code, tests, conventions, and local human judgment. A
+    bracket beside the two inward-moving frontiers reads: commodity intelligence changes both price
+    frontiers. A note observes that the frontiers need not meet, and that consequentially underspecified
+    questions remain iterative.</desc>
 
   <defs>
-    <marker id="esf-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/>
-    </marker>
+    <marker id="esf-up-rust" viewBox="0 0 10 10" refX="5" refY="2" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,10 L5,0 L10,10 z" fill="#9a3f12"/></marker>
+    <marker id="esf-dn-rust" viewBox="0 0 10 10" refX="5" refY="8" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L5,10 L10,0 z" fill="#9a3f12"/></marker>
+    <marker id="esf-up-ink" viewBox="0 0 10 10" refX="5" refY="2" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,10 L5,0 L10,10 z" fill="#57534e"/></marker>
   </defs>
 
-  <rect x="0" y="0" width="760" height="594" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="720" height="1090" fill="#fdfcf9"/>
 
-  <!-- ============ OUTER BOUNDARY NAME (the technically amenable envelope) ============ -->
-  <text x="380" y="42" text-anchor="middle" font-size="15.2" font-weight="700" letter-spacing="2.4" fill="#57534e">TECHNICALLY AMENABLE TO SYNTHESIS / SEARCH</text>
+  <!-- ============ TITLE ============ -->
+  <text x="340" y="46" text-anchor="middle" font-size="21" font-weight="700" letter-spacing="0.4" fill="#1c1917">THE EXPANDING ECONOMICS OF EXPLICIT ENGINEERING</text>
 
-  <!-- ============ (1) OUTER — technically amenable region ============ -->
-  <rect x="40" y="58" width="680" height="418" rx="16" fill="#f6f4ef" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5"/>
-  <text x="380" y="459" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">technically amenable region</text>
+  <!-- ============ HIGH end of the assurance axis ============ -->
+  <text x="340" y="90" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.5" fill="#57534e">HIGH</text>
+  <text x="340" y="112" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">assurance demand / consequence of failure</text>
+  <line x1="340" y1="148" x2="340" y2="130" stroke="#57534e" stroke-width="2" marker-end="url(#esf-up-ink)"/>
 
-  <!-- ============ (2) MIDDLE — MAGE-era economically worthwhile region ============ -->
-  <rect x="72" y="132" width="616" height="300" rx="12" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="380" y="160" text-anchor="middle" font-size="15.2" font-weight="700" letter-spacing="1.2" fill="#9a3f12">MAGE-ERA ECONOMICALLY WORTHWHILE REGION</text>
-  <text x="380" y="181" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">where structuring for machine realization now pays</text>
+  <!-- ============ FULL FORMALIZATION (top region) ============ -->
+  <rect x="100" y="156" width="480" height="128" rx="10" fill="#eef2f7" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="340" y="188" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">FULL FORMALIZATION</text>
+  <text x="340" y="216" text-anchor="middle" font-size="16" fill="#1c1917">common semantics · specification</text>
+  <text x="340" y="242" text-anchor="middle" font-size="16" fill="#1c1917">proof · trustworthy derivation</text>
+  <text x="340" y="268" text-anchor="middle" font-size="16" fill="#1c1917">synthesis / deterministic generation</text>
 
-  <!-- movers (right column, clear of the nested old region) -->
-  <text x="344" y="232" font-size="15.2" font-style="italic" fill="#9a3f12">the movers that widen it</text>
-  <text x="344" y="262" font-size="15.2" fill="#1c1917">·  cheaper representation</text>
-  <text x="344" y="288" font-size="15.2" fill="#1c1917">·  stronger learned search</text>
-  <text x="344" y="314" font-size="15.2" fill="#1c1917">·  cheap candidate realization</text>
-  <text x="344" y="340" font-size="15.2" fill="#1c1917">·  scalable evaluation</text>
+  <!-- ============ FORMALIZATION FRONTIER — descends toward the design space ============ -->
+  <line x1="120" y1="304" x2="560" y2="304" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <line x1="340" y1="312" x2="340" y2="330" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-dn-rust)"/>
+  <text x="340" y="356" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">FORMALIZATION FRONTIER</text>
+  <text x="340" y="380" text-anchor="middle" font-size="16" fill="#1c1917">cheaper specification · proof</text>
+  <text x="340" y="404" text-anchor="middle" font-size="16" fill="#1c1917">model construction · derivation</text>
+  <line x1="340" y1="418" x2="340" y2="440" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-dn-rust)"/>
 
-  <!-- ============ (3) INNER — old economically worthwhile region ============ -->
-  <rect x="100" y="210" width="214" height="188" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="1.8"/>
-  <text x="207" y="238" text-anchor="middle" font-size="15.2" font-weight="700" fill="#57534e">OLD ECONOMICALLY</text>
-  <text x="207" y="256" text-anchor="middle" font-size="15.2" font-weight="700" fill="#57534e">WORTHWHILE REGION</text>
-  <text x="120" y="290" font-size="15.2" fill="#1c1917">compilers</text>
-  <text x="120" y="312" font-size="15.2" fill="#1c1917">optimization</text>
-  <text x="120" y="334" font-size="15.2" fill="#1c1917">synthesis</text>
-  <text x="120" y="356" font-size="15.2" fill="#1c1917">selected MDE</text>
+  <!-- ============ MODELING + ALIGNMENT DESIGN SPACE (middle — the region MAGE principally concerns) ============ -->
+  <rect x="100" y="448" width="480" height="212" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+  <text x="340" y="484" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">MODELING + ALIGNMENT</text>
+  <text x="340" y="508" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">DESIGN SPACE</text>
+  <text x="340" y="546" text-anchor="middle" font-size="16" fill="#1c1917">heterogeneous models</text>
+  <text x="340" y="572" text-anchor="middle" font-size="16" fill="#1c1917">selective authority</text>
+  <text x="340" y="598" text-anchor="middle" font-size="16" fill="#1c1917">heterogeneous evidence</text>
+  <text x="340" y="624" text-anchor="middle" font-size="16" fill="#1c1917">degrees of freedom remain</text>
 
-  <!-- ============ the predicted outward move (economic boundary, not the amenable-region boundary) ============ -->
-  <text x="498" y="400" text-anchor="middle" font-size="15.2" font-style="italic" fill="#9a3f12">MAGE-predicted outward move</text>
-  <line x1="324" y1="412" x2="672" y2="412" stroke="#9a3f12" stroke-width="2" marker-end="url(#esf-ah-rust)"/>
-  <line x1="324" y1="406" x2="324" y2="418" stroke="#9a3f12" stroke-width="2"/>
+  <!-- note beneath the middle region -->
+  <text x="340" y="688" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">The frontiers need not meet. Consequentially underspecified</text>
+  <text x="340" y="708" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">questions remain iterative.</text>
 
-  <!-- ============ outside-the-synthesis-region note ============ -->
-  <text x="380" y="497" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">models can still pay outside the synthesis region</text>
-  <text x="380" y="517" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">through reasoning · comparison · assurance</text>
+  <!-- ============ MAGE FRONTIER — rises toward the design space ============ -->
+  <line x1="340" y1="748" x2="340" y2="730" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-up-rust)"/>
+  <text x="340" y="774" text-anchor="middle" font-size="16" fill="#1c1917">cheaper representation · reconciliation</text>
+  <text x="340" y="798" text-anchor="middle" font-size="16" fill="#1c1917">realization · evaluation</text>
+  <text x="340" y="822" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">MAGE FRONTIER</text>
+  <line x1="340" y1="858" x2="340" y2="840" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-up-rust)"/>
 
-  <!-- ============ outside the outer boundary ============ -->
-  <text x="380" y="551" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">consequentially underspecified questions</text>
-  <text x="380" y="572" text-anchor="middle" font-size="15.2" font-style="italic" fill="#57534e">remain iterative</text>
+  <!-- ============ CODE-CENTRIC / INFORMAL ENGINEERING (bottom region) ============ -->
+  <line x1="120" y1="874" x2="560" y2="874" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <rect x="100" y="884" width="480" height="110" rx="10" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
+  <text x="340" y="916" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">CODE-CENTRIC / INFORMAL ENGINEERING</text>
+  <text x="340" y="944" text-anchor="middle" font-size="16" fill="#1c1917">code · tests · conventions</text>
+  <text x="340" y="970" text-anchor="middle" font-size="16" fill="#1c1917">local human judgment</text>
+
+  <!-- ============ LOW end of the assurance axis ============ -->
+  <line x1="340" y1="1030" x2="340" y2="1012" stroke="#57534e" stroke-width="2" marker-end="url(#esf-up-ink)"/>
+  <text x="340" y="1058" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.5" fill="#57534e">LOW</text>
+
+  <!-- ============ side bracket over the two inward frontiers ============ -->
+  <path d="M600,312 H628 V858 H600" fill="none" stroke="#9a3f12" stroke-width="1.8"/>
+  <text x="654" y="585" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="0.6" fill="#9a3f12" transform="rotate(90 654 585)">COMMODITY INTELLIGENCE CHANGES BOTH PRICE FRONTIERS</text>
 </svg>

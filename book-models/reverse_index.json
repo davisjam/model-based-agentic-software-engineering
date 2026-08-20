@@ -5749,7 +5749,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::block-55",
+          "element": "6.5-software-rejoins-engineering::block-58",
           "role": "paragraph-point"
         }
       ]
@@ -7094,6 +7094,16 @@
         }
       ]
     },
+    "section-id:the-expanding-economics-of-explicit-engineering": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.5-software-rejoins-engineering::the-expanding-economics-of-explicit-engineering",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:the-feasibility-probe": {
       "kind": "section-id",
       "dependents": [
@@ -7625,16 +7635,6 @@
         {
           "view": "outline",
           "element": "5.4-failures-that-became-infrastructure::what-this-case-supports",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:when-realization-becomes-search": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.5-software-rejoins-engineering::when-realization-becomes-search",
           "role": "section-anchor"
         }
       ]
