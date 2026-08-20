@@ -776,11 +776,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- 5 branch labels (what was missing) -->
   <g font-weight="700" fill="#2f5169" text-anchor="middle">
-    <text x="110" y="230" font-size="4.23">representation / semantics</text>
-    <text x="305" y="230" font-size="10.25">obligation</text>
-    <text x="500" y="230" font-size="11.53">evidence</text>
-    <text x="695" y="230" font-size="9.87">evaluation</text>
-    <text x="890" y="230" font-size="8.27">consequence</text>
+    <text x="110" y="230" font-size="20">representation</text>
+    <text x="305" y="230" font-size="20">obligation</text>
+    <text x="500" y="230" font-size="20">evidence</text>
+    <text x="695" y="230" font-size="20">evaluation</text>
+    <text x="890" y="230" font-size="20">consequence</text>
   </g>
 
   <!-- connectors category anchor → encoded answer -->
@@ -803,9 +803,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     <rect id="f-governance-conversion-gc-box-invariant" x="235" y="290" width="140" height="46" rx="6"/>
     <rect id="f-governance-conversion-gc-box-sensor"    x="430" y="290" width="140" height="46" rx="6"/>
     <rect id="f-governance-conversion-gc-box-validator" x="625" y="290" width="140" height="46" rx="6"/>
-    <rect id="f-governance-conversion-gc-box-gate"      x="812" y="290" width="156" height="46" rx="6"/>
+    <rect id="f-governance-conversion-gc-box-gate"      x="802.11" y="290" width="175.79" height="46" rx="6"/>
   </g>
-  <g font-size="18" fill="#1c1917" text-anchor="middle">
+  <g font-size="20" fill="#1c1917" text-anchor="middle">
     <text x="110" y="319">model</text>
     <text x="305" y="319">invariant</text>
     <text x="500" y="319">sensor</text>
@@ -833,14 +833,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="500" y1="462" x2="500" y2="504" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-governance-conversion-gc-ah)"/>
 
   <rect id="f-governance-conversion-gc-future" x="210" y="506" width="580" height="50" rx="8" fill="#eef3ee" stroke="#3d6b4a" stroke-width="2"/>
-  <text x="500" y="537" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5137">FUTURE WORK BENEFITS FROM INHERITING IT</text>
+  <text x="500" y="537" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5137">FUTURE WORK BENEFITS FROM INHERITING IT</text>
   <!-- edge: gc-future -> gc-capital -->
   <line x1="500" y1="556" x2="500" y2="598" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-governance-conversion-gc-ah)"/>
 
   <rect id="f-governance-conversion-gc-capital" x="330" y="600" width="340" height="56" rx="10" fill="#3d6b4a" stroke="#2f5137" stroke-width="2"/>
   <text x="500" y="635" text-anchor="middle" font-size="21" font-weight="800" fill="#ffffff">ENGINEERING CAPITAL</text>
 
-  <text x="500" y="702" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">a failure is not a request for another gate — diagnose what was missing, then encode it</text>
+  <text x="500" y="702" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">a failure is not a request for another gate — diagnose what was missing, then encode it</text>
 </svg><figcaption data-short="Governance conversion"><span class="fig-label">Figure 3.4-1.</span> <em>Governance conversion.</em> When a recurring failure exposes missing representation, obligation, evidence, evaluation, or consequence, encode the missing structure at the appropriate layer. Future work inherits the result as engineering capital when the durable structure continues to lower future cost or uncertainty.</figcaption></figure>
 <h2><span class="sec-num">3.4.3</span> Correct Judgment Without Consequence</h2>
 <p>A merge automation drained a backlog of agent worktrees into the mainline each tick. Most rebased cleanly; a fraction conflicted, and a single convenience option resolved those conflicts by taking one side automatically. On overlapping edits it silently dropped content. An audit already understood the danger: a guard detected when a conflict touched substrate-class files, judged the resolution unsafe, and logged it correctly — as a warning only. The operation proceeded, and the tree lost content. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-2">Figure&nbsp;3.4-2</a> traces the cascade.</p>
