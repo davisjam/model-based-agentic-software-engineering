@@ -3,9 +3,9 @@
      THE EXPANDING ECONOMICS OF EXPLICIT ENGINEERING. A vertical figure — assurance demand / consequence of
      failure increases UPWARD. Three stacked regions with two inward-moving price frontiers between them:
      (top) FULL FORMALIZATION (formal blue), (middle) MODELING + ALIGNMENT DESIGN SPACE (green — the region
-     MAGE principally concerns), (bottom) CODE-CENTRIC / INFORMAL ENGINEERING (gray). Between top and middle,
+     MAGE principally concerns), (bottom) CODE-CENTRIC ENGINEERING (gray). Between top and middle,
      the FORMALIZATION FRONTIER descends (rust ↓); between bottom and middle, the MAGE FRONTIER rises (rust ↑).
-     A right-side bracket names both: COMMODITY INTELLIGENCE CHANGES BOTH PRICE FRONTIERS. The middle is
+     A right-side bracket names both: COMMODITY INTELLIGENCE MOVES BOTH ECONOMIC FRONTIERS. The middle is
      labelled MODELING + ALIGNMENT DESIGN SPACE, NOT "MAGE" — MAGE includes the upper limiting case too, so
      labelling the middle "MAGE" would define it by opposition to formal methods. Palette: Umber Monograph
      tokens (formal blue #2f5169, governance rust #9a3f12, modeling green #155c38/#e3f0e7, neutral #57534e). -->
@@ -15,22 +15,21 @@
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="esfTitle">The expanding economics of explicit engineering: two price frontiers move inward as
     commodity intelligence lowers their cost</title>
-  <desc id="esfDesc">A vertical figure in which assurance demand and consequence of failure increase upward.
-    At the top sits full formalization — common semantics, specification, proof, trustworthy derivation, and
+  <desc id="esfDesc">A vertical figure in which assurance demand and consequence increase upward.
+    At the top sits full formalization — common formal semantics, specification, proof, trustworthy derivation, and
     synthesis or deterministic generation. Below it, the formalization frontier moves downward as cheaper
-    specification, proof, model construction, and derivation lower its cost. In the middle is the Modeling
-    and Alignment design space, where heterogeneous models, selective authority, heterogeneous evidence, and
+    specification, proof construction, model construction, and trustworthy derivation lower its cost. In the middle is the Modeling
+    and Alignment design space, where heterogeneous models, selective authority, heterogeneous enforcement, and
     remaining degrees of freedom coexist. Beneath it, the MAGE frontier moves upward as cheaper
     representation, reconciliation, realization, and evaluation make selective structure worthwhile. At the
-    bottom is code-centric and informal engineering — code, tests, conventions, and local human judgment. A
-    bracket beside the two inward-moving frontiers reads: commodity intelligence changes both price
-    frontiers. A note observes that the frontiers need not meet, and that consequentially underspecified
+    bottom is code-centric engineering — code, tests, conventions, and local human judgment. A
+    bracket beside the two inward-moving frontiers reads: commodity intelligence moves both economic
+    frontiers. A note observes that the frontiers need not meet, and that underspecified
     questions remain iterative.</desc>
 
   <defs>
-    <marker id="esf-up-rust" viewBox="0 0 10 10" refX="5" refY="2" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,10 L5,0 L10,10 z" fill="#9a3f12"/></marker>
-    <marker id="esf-dn-rust" viewBox="0 0 10 10" refX="5" refY="8" markerWidth="10" markerHeight="10" orient="auto"><path d="M0,0 L5,10 L10,0 z" fill="#9a3f12"/></marker>
-    <marker id="esf-up-ink" viewBox="0 0 10 10" refX="5" refY="2" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,10 L5,0 L10,10 z" fill="#57534e"/></marker>
+    <marker id="esf-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9a3f12"/></marker>
+    <marker id="esf-ink" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#57534e"/></marker>
   </defs>
 
   <rect x="0" y="0" width="720" height="1090" fill="#fdfcf9"/>
@@ -40,23 +39,23 @@
 
   <!-- ============ HIGH end of the assurance axis ============ -->
   <text x="340" y="90" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.5" fill="#57534e">HIGH</text>
-  <text x="340" y="112" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">assurance demand / consequence of failure</text>
-  <line x1="340" y1="148" x2="340" y2="130" stroke="#57534e" stroke-width="2" marker-end="url(#esf-up-ink)"/>
+  <text x="340" y="112" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">assurance demand / consequence</text>
+  <line x1="340" y1="148" x2="340" y2="130" stroke="#57534e" stroke-width="2" marker-end="url(#esf-ink)"/>
 
   <!-- ============ FULL FORMALIZATION (top region) ============ -->
   <rect x="100" y="156" width="480" height="128" rx="10" fill="#eef2f7" stroke="#2f5169" stroke-width="2.4"/>
   <text x="340" y="188" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">FULL FORMALIZATION</text>
-  <text x="340" y="216" text-anchor="middle" font-size="16" fill="#1c1917">common semantics · specification</text>
+  <text x="340" y="216" text-anchor="middle" font-size="16" fill="#1c1917">common formal semantics · specification</text>
   <text x="340" y="242" text-anchor="middle" font-size="16" fill="#1c1917">proof · trustworthy derivation</text>
   <text x="340" y="268" text-anchor="middle" font-size="16" fill="#1c1917">synthesis / deterministic generation</text>
 
   <!-- ============ FORMALIZATION FRONTIER — descends toward the design space ============ -->
   <line x1="120" y1="304" x2="560" y2="304" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="7 5"/>
-  <line x1="340" y1="312" x2="340" y2="330" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-dn-rust)"/>
+  <line x1="340" y1="312" x2="340" y2="330" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-rust)"/>
   <text x="340" y="356" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">FORMALIZATION FRONTIER</text>
-  <text x="340" y="380" text-anchor="middle" font-size="16" fill="#1c1917">cheaper specification · proof</text>
-  <text x="340" y="404" text-anchor="middle" font-size="16" fill="#1c1917">model construction · derivation</text>
-  <line x1="340" y1="418" x2="340" y2="440" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-dn-rust)"/>
+  <text x="340" y="380" text-anchor="middle" font-size="16" fill="#1c1917">cheaper specification · proof construction</text>
+  <text x="340" y="404" text-anchor="middle" font-size="16" fill="#1c1917">model construction · trustworthy derivation</text>
+  <line x1="340" y1="418" x2="340" y2="440" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-rust)"/>
 
   <!-- ============ MODELING + ALIGNMENT DESIGN SPACE (middle — the region MAGE principally concerns) ============ -->
   <rect x="100" y="448" width="480" height="212" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
@@ -64,32 +63,32 @@
   <text x="340" y="508" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">DESIGN SPACE</text>
   <text x="340" y="546" text-anchor="middle" font-size="16" fill="#1c1917">heterogeneous models</text>
   <text x="340" y="572" text-anchor="middle" font-size="16" fill="#1c1917">selective authority</text>
-  <text x="340" y="598" text-anchor="middle" font-size="16" fill="#1c1917">heterogeneous evidence</text>
+  <text x="340" y="598" text-anchor="middle" font-size="16" fill="#1c1917">heterogeneous enforcement</text>
   <text x="340" y="624" text-anchor="middle" font-size="16" fill="#1c1917">degrees of freedom remain</text>
 
   <!-- note beneath the middle region -->
-  <text x="340" y="688" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">The frontiers need not meet. Consequentially underspecified</text>
-  <text x="340" y="708" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">questions remain iterative.</text>
+  <text x="340" y="688" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">The frontiers need not meet.</text>
+  <text x="340" y="708" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">Underspecified questions remain iterative.</text>
 
   <!-- ============ MAGE FRONTIER — rises toward the design space ============ -->
-  <line x1="340" y1="748" x2="340" y2="730" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-up-rust)"/>
+  <line x1="340" y1="748" x2="340" y2="730" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-rust)"/>
   <text x="340" y="774" text-anchor="middle" font-size="16" fill="#1c1917">cheaper representation · reconciliation</text>
   <text x="340" y="798" text-anchor="middle" font-size="16" fill="#1c1917">realization · evaluation</text>
   <text x="340" y="822" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3f12">MAGE FRONTIER</text>
-  <line x1="340" y1="858" x2="340" y2="840" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-up-rust)"/>
+  <line x1="340" y1="858" x2="340" y2="840" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#esf-rust)"/>
 
   <!-- ============ CODE-CENTRIC / INFORMAL ENGINEERING (bottom region) ============ -->
   <line x1="120" y1="874" x2="560" y2="874" stroke="#57534e" stroke-width="1.6" stroke-dasharray="7 5"/>
   <rect x="100" y="884" width="480" height="110" rx="10" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="340" y="916" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">CODE-CENTRIC / INFORMAL ENGINEERING</text>
+  <text x="340" y="916" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">CODE-CENTRIC ENGINEERING</text>
   <text x="340" y="944" text-anchor="middle" font-size="16" fill="#1c1917">code · tests · conventions</text>
   <text x="340" y="970" text-anchor="middle" font-size="16" fill="#1c1917">local human judgment</text>
 
   <!-- ============ LOW end of the assurance axis ============ -->
-  <line x1="340" y1="1030" x2="340" y2="1012" stroke="#57534e" stroke-width="2" marker-end="url(#esf-up-ink)"/>
+  <line x1="340" y1="1030" x2="340" y2="1012" stroke="#57534e" stroke-width="2" marker-end="url(#esf-ink)"/>
   <text x="340" y="1058" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.5" fill="#57534e">LOW</text>
 
   <!-- ============ side bracket over the two inward frontiers ============ -->
   <path d="M600,312 H628 V858 H600" fill="none" stroke="#9a3f12" stroke-width="1.8"/>
-  <text x="654" y="585" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="0.6" fill="#9a3f12" transform="rotate(90 654 585)">COMMODITY INTELLIGENCE CHANGES BOTH PRICE FRONTIERS</text>
+  <text x="654" y="585" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="0.6" fill="#9a3f12" transform="rotate(90 654 585)">COMMODITY INTELLIGENCE MOVES BOTH ECONOMIC FRONTIERS</text>
 </svg>

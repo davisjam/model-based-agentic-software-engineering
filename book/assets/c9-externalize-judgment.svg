@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- RB Engineering-Moves figure — c9-externalize-judgment.svg. Fold to book/assets/. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="1000" height="650"
      role="img" aria-labelledby="c9Title c9Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="c9Title">C.9 Externalize recurring operational judgment: derive an operational model from the system model, then serve the operator</title>
@@ -79,5 +79,6 @@
   <text x="500" y="554" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">OPERATOR</text>
 
   <!-- footer -->
-  <text x="500" y="606" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Separate what can be generated or executed from what still needs judgment &#8212; and keep the representation tied to the system it describes.</text>
+  <text x="500" y="606" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Separate what can be generated or executed from what still needs judgment &#8212;</text>
+  <text x="500" y="630" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">and keep the representation tied to the system it describes.</text>
 </svg>

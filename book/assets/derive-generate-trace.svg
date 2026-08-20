@@ -6,7 +6,7 @@
      TRACE + CHECK: model <-> system, neither derives the other; check the decidable correspondences.
      Grammar: gray #57534e = territory/implementation; blue #2f5169 = model; rust #9a3f12 = the decidable
      check on a maintained two-way correspondence. Hand-authored (three correspondence panels). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" width="960" height="300"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" width="960" height="340"
      role="img" aria-labelledby="dgTitle dgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="dgTitle">Three correspondence patterns: derive, generate, trace and check</title>
@@ -66,5 +66,6 @@
   <text x="800" y="211" text-anchor="middle" font-size="19.2" font-weight="700" fill="#57534e">system</text>
 
   <!-- footer: protect the point -->
-  <text x="480" y="284" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Three correspondence patterns &#8212; derive where implementation leads, generate where the model leads, trace and check where neither does.</text>
+  <text x="480" y="296" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Three correspondence patterns &#8212; derive where implementation leads,</text>
+  <text x="480" y="320" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">generate where the model leads, trace and check where neither does.</text>
 </svg>

@@ -1065,7 +1065,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <blockquote class="aside-sidenote def-inset"><p><strong>What modeling exposed that green tests missed.</strong> Three live defects came into view when previously implicit relations were represented explicitly:</p>
 <ul><li><strong>A cross-runtime exit code</strong> one runtime emitted and the other had never enumerated, so a genuine failure was silently misfiled as a generic error.</li><li><strong>Asymmetric cleanup after redelivery</strong> — a failure path purged a job's database rows and blobs but skipped the queue structures its sibling path always cleaned, leaking chunks on a rare edge.</li><li><strong>A last-write-wins editor race</strong> in which two concurrent saves silently discarded one's work.</li></ul></blockquote>
 <p><a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-5">Figure&nbsp;5.3-5</a> draws the five-rung climb.</p>
-<figure id="fig-5-3-5" class="book-figure" data-label="mage-staircase"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 830"
+<figure id="fig-5-3-5" class="book-figure" data-label="mage-staircase"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1340 830"
      role="group" aria-labelledby="f-mage-staircase-dsTitle f-mage-staircase-dsDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-mage-staircase-dsTitle">The delegation staircase — five ascending steps from Co-coder to Architect; delegated work climbs, the engineered environment accumulates, and residual human burden narrows but never vanishes</title>
