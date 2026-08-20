@@ -44,7 +44,6 @@
   <rect id="gee" x="338" y="286" width="324" height="110" rx="16" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
   <text x="500" y="328" text-anchor="middle" font-size="26" font-weight="700" fill="#1f7a4d">GEE</text>
   <text x="500" y="354" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">the governed engineering environment</text>
-  <text x="500" y="376" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the one thing all three skills act on</text>
 
   <!-- ============ self-operate (agent blue) — runs the operational lifecycles ============ -->
   <rect id="self-operate" x="350" y="548" width="300" height="90" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
@@ -54,7 +53,7 @@
   <!-- ============ self-communicate (neutral) — supplies the craft ============ -->
   <rect id="self-communicate" x="44" y="298" width="244" height="88" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <text x="166" y="338" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">Self-Communicate</text>
-  <text x="166" y="362" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">the craft for representations</text>
+  <text x="166" y="362" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">governs representations</text>
 
   <!-- ================= edges ================= -->
 
