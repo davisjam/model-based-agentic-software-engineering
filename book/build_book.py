@@ -3903,42 +3903,50 @@ def _appendix_contents_md(ordered: list[dict]) -> str:
 # The legacy role-ordered v1 projection (and its `ADA_APPENDIX_V2` env toggle) was retired after the cutover.
 
 
-# The appendices mode-marker page — a synthetic divider that sits immediately BEFORE Appendix A, giving the
-# appendices their own identity (the reader leaves the argument and enters the reference manual). It is NOT a
-# numbered Part ("Part 7" is back matter) and NOT an appendix front-door; the `is_appendix_divider` flag routes
-# it to its own distinct rendering on both surfaces (web: `main.wrap.appendices-divider`; PDF: a dedicated
-# `_part_divider_typst` branch). It takes its own part number, one below Appendix A, so it heads its own
-# TOC/index group and — in the PDF — its own bookmark-parent divider page.
-_APPENDICES_DIVIDER_SLUG = "appendices-front-door"
-_APPENDICES_DIVIDER_TITLE = "Appendices"
-_APPENDICES_DIVIDER_SUBTITLE = "The Working References"
+# The two appendix-Part dividers — synthetic mode-marker pages that head the two appendix Parts, giving the
+# appendices a conceptual hierarchy (the reader leaves the argument and enters the reference manual, split by
+# purpose). Part I (Practice) sits immediately BEFORE Appendix A; Part II (Evidence) immediately BEFORE
+# Appendix G. Neither is a numbered Part ("Part 7" is back matter); the `is_appendix_divider` flag routes each
+# to its own distinct rendering on both surfaces (web: `.appendices-divider`; PDF: a level-1 bookmark PARENT,
+# so A–F nest under Part I and G–H under Part II). Each takes its own part number, one below the appendix it
+# precedes, so it heads its own TOC/index group and PDF bookmark-parent divider page. Per-record `subtitle`
+# (two Parts, two subtitles).
+_APPENDICES_PART1_SLUG = "appendix-part-1-practice"
+_APPENDICES_PART1_TITLE = "Appendix Part I — Practice"
+_APPENDICES_PART1_SUBTITLE = "Using and Extending MAGE"
+_APPENDICES_PART2_SLUG = "appendix-part-2-evidence"
+_APPENDICES_PART2_TITLE = "Appendix Part II — Evidence"
+_APPENDICES_PART2_SUBTITLE = "The Empirical Record"
+_APPENDICES_DIVIDER_SLUGS = (_APPENDICES_PART1_SLUG, _APPENDICES_PART2_SLUG)
 
 
-def _appendices_divider_record(part: int) -> dict:
-    """The synthetic mode-marker record that heads the appendices (see `_APPENDICES_DIVIDER_SLUG`). Shaped
-    like a chapter record so the pager / TOC / index machinery renders it, but flagged `is_appendix_divider`
-    so every number-suppression and styling site treats it as its own distinct page — neither a numbered Part
-    divider nor an appendix front-door."""
+def _appendices_divider_record(part: int, slug: str, title: str, subtitle: str, body_filename: str) -> dict:
+    """A synthetic appendix-Part mode-marker record. Shaped like a chapter record so the pager / TOC / index
+    machinery renders it, but flagged `is_appendix_divider` so every number-suppression and styling site treats
+    it as its own distinct page — a level-1 PDF-bookmark parent for the appendices that follow it (until the
+    next divider). `subtitle` is carried per-record (two Parts, two subtitles)."""
     return {
-        "slug": _APPENDICES_DIVIDER_SLUG,
+        "slug": slug,
         "part": part,
-        "part_title": _APPENDICES_DIVIDER_TITLE,
+        "part_title": title,
         "chapter": 0,
-        "chapter_title": _APPENDICES_DIVIDER_TITLE,
-        "body_md": _load_opening(HERE / "appendix-front-door.md"),
+        "chapter_title": title,
+        "subtitle": subtitle,
+        "body_md": _load_opening(HERE / body_filename),
         "is_appendix_divider": True,
         "mermaid": False,
     }
 
 
 def build_appendix_chapters(next_part: int, for_print: bool = False) -> list[dict]:
-    """Assemble the value-ordered A/B/C/D appendix projection. Every caller — the web
-    build, the print/PDF build, and `expected_page_slugs` — routes through here, so the whole appendix is
-    assembled in one place. The appendices open with the mode-marker divider (`_appendices_divider_record`),
-    which takes `next_part`; the appendix families shift one part up so each keeps its own part number → its
-    own divider / bookmark parent."""
-    divider = _appendices_divider_record(next_part)
-    return [divider] + _build_appendix_chapters_v2(next_part + 1, for_print)
+    """Assemble the value-ordered appendix projection. Every caller — the web build, the print/PDF build, and
+    `expected_page_slugs` — routes through here, so the whole appendix is assembled in one place. The
+    appendices open with the Part I (Practice) divider (`_appendices_divider_record`), which takes `next_part`;
+    the Part II (Evidence) divider is inserted before Appendix G inside `_build_appendix_chapters_v2`. Each
+    appendix family keeps its own part number → its own TOC group / PDF bookmark parent."""
+    part1 = _appendices_divider_record(next_part, _APPENDICES_PART1_SLUG, _APPENDICES_PART1_TITLE,
+                                       _APPENDICES_PART1_SUBTITLE, "appendix-part-1-practice.md")
+    return [part1] + _build_appendix_chapters_v2(next_part + 1, for_print)
 
 
 #: The terminal book-object apparatus, in reading order: the Colophon first (the traditional making-of note),
@@ -4858,21 +4866,28 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
         content_dir=_PRODUCT_LIFECYCLE_DIR, pages_source=_PRODUCT_LIFECYCLE_PAGES,
         locator_figs=True, locator_heading=True)
 
+    # ── APPENDIX PART II divider — Evidence. Sits immediately BEFORE Appendix G; a level-1 PDF-bookmark
+    #    parent so G–H nest under it (as A–F nest under the Part I divider). Takes part next_part+6, one below
+    #    Appendix G, so G–H shift up one part number.
+    chapters.append(_appendices_divider_record(
+        next_part + 6, _APPENDICES_PART2_SLUG, _APPENDICES_PART2_TITLE,
+        _APPENDICES_PART2_SUBTITLE, "appendix-part-2-evidence.md"))
+
     # ── APPENDIX G — Field Guide (re-lettered from F). The six studied teams as one-page reference cards (a
     #    single deck page). A team-first reference ("who was that team again?"), distinct from Section 6.6's
-    #    comparative read. Opens the G–H "inspect the evidence" band: the external industrial reconstructions.
-    chapters += build_field_guide_chapters(part=next_part + 6, letter="G", locator_figs=True)
+    #    comparative read. Opens the Evidence Part (G–H): the external industrial reconstructions.
+    chapters += build_field_guide_chapters(part=next_part + 7, letter="G", locator_figs=True)
 
     # ── APPENDIX H — Evidence Ledger: The DocAble Case (re-lettered from G). The raw count tables
-    #    behind Part V's curves (support-ratio LoC, per-path churn, control-growth counts). Closes the G–H
-    #    evidence band. Routed through the shared hand-authored appendix builder in SINGLE_DECK mode:
+    #    behind Part V's curves (support-ratio LoC, per-path churn, control-growth counts). Closes the Evidence
+    #    Part. Routed through the shared hand-authored appendix builder in SINGLE_DECK mode:
     #    the lone evidence-tables page is inlined under the front-door opening so the appendix reads as
     #    one deck, not a Part with exactly one content chapter (which the only-child heading sensor reds —
     #    a single-page evidence ledger is a legitimate shape, so give it the genuine single-page form
     #    rather than splitting the three tables artificially). The Part-V "The Build" chapter links the
     #    front-door via `[appendix: appendix-evidence-ledger]`, the slug single_deck preserves.
     chapters += build_hand_authored_appendix(
-        next_part + 7, letter="H", part_name="Evidence Ledger: The DocAble Case",
+        next_part + 8, letter="H", part_name="Evidence Ledger: The DocAble Case",
         opening_slug=_APPENDIX_EVIDENCE_LEDGER_OPENING_SLUG,
         opening_prose=_load_opening(_EVIDENCE_LEDGER_DIR / "_opening.md"),
         content_dir=_EVIDENCE_LEDGER_DIR, pages_source=_EVIDENCE_LEDGER_PAGES,
@@ -4883,7 +4898,7 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
     #    before publication. Wired as a normal hand-authored appendix so it stays reachable via the pager.
     #    Appended LAST so it re-letters no earlier appendix. CI.2 re-homes the relocated model-induction figure.
     chapters += build_hand_authored_appendix(
-        next_part + 8, letter="I", part_name="Crazy Ideas",
+        next_part + 9, letter="I", part_name="Crazy Ideas",
         opening_slug=_APPENDIX_CRAZY_IDEAS_OPENING_SLUG,
         opening_prose=_load_opening(_CRAZY_IDEAS_DIR / "_opening.md"),
         content_dir=_CRAZY_IDEAS_DIR, pages_source=_CRAZY_IDEAS_PAGES,
@@ -6934,7 +6949,7 @@ def build() -> int:
             # paragraph set left in a measured column. The subtitle is structural, not markdown, so it stays
             # out of the one-<h1> heading stream.
             subtitle = (f'<p class="appendices-divider-sub">'
-                        f'{html.escape(_APPENDICES_DIVIDER_SUBTITLE)}</p>')
+                        f'{html.escape(c.get("subtitle", ""))}</p>')
             content = (f'{header}{subtitle}'
                        f'<div class="appendices-divider-body">{body}</div>')
         else:
@@ -6946,7 +6961,7 @@ def build() -> int:
         # Preface"; collapse that to the single label. The divider keeps its mode-marker title, which already
         # names MAGE ("Appendices — The Working References"); every other page ends "— MAGE".
         if c.get("is_appendix_divider"):
-            page_title = f'{_APPENDICES_DIVIDER_TITLE} — {_APPENDICES_DIVIDER_SUBTITLE}'
+            page_title = f'{c["chapter_title"]} — {c.get("subtitle", "")}'
         else:
             descriptor = (c["chapter_title"] if num_label == c["chapter_title"]
                           else f'{num_label} · {c["chapter_title"]}')

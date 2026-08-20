@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1210,
+    "total_sites": 1216,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 807,
+      "book-web": 813,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -927,7 +927,7 @@
           },
           {
             "file": "book/0.2-how-to-read-this-book.html",
-            "occ": 25
+            "occ": 27
           },
           {
             "file": "book/0.3-the-mage-method-at-a-glance.html",
@@ -1088,10 +1088,6 @@
           {
             "file": "book/about-the-author.html",
             "occ": 20
-          },
-          {
-            "file": "book/appendices-front-door.html",
-            "occ": 28
           },
           {
             "file": "book/appendix-a-assurance-stack.html",
@@ -1299,7 +1295,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 64
+            "occ": 63
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -1320,6 +1316,14 @@
           {
             "file": "book/appendix-operators-reference.html",
             "occ": 21
+          },
+          {
+            "file": "book/appendix-part-1-practice.html",
+            "occ": 27
+          },
+          {
+            "file": "book/appendix-part-2-evidence.html",
+            "occ": 19
           },
           {
             "file": "book/appendix-product-lifecycle.html",
@@ -1385,7 +1389,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 115
+            "occ": 116
           }
         ]
       },
@@ -1700,10 +1704,6 @@
             "occ": 3
           },
           {
-            "file": "book/appendices-front-door.html",
-            "occ": 3
-          },
-          {
             "file": "book/appendix-a-assurance-stack.html",
             "occ": 3
           },
@@ -1909,7 +1909,7 @@
           },
           {
             "file": "book/appendix-field-guide.html",
-            "occ": 11
+            "occ": 10
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -1930,6 +1930,14 @@
           {
             "file": "book/appendix-operators-reference.html",
             "occ": 3
+          },
+          {
+            "file": "book/appendix-part-1-practice.html",
+            "occ": 3
+          },
+          {
+            "file": "book/appendix-part-2-evidence.html",
+            "occ": 4
           },
           {
             "file": "book/appendix-product-lifecycle.html",
@@ -1995,7 +2003,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 115
+            "occ": 116
           }
         ]
       },
@@ -2332,10 +2340,6 @@
             "occ": 4
           },
           {
-            "file": "book/appendices-front-door.html",
-            "occ": 7
-          },
-          {
             "file": "book/appendix-a-assurance-stack.html",
             "occ": 5
           },
@@ -2564,6 +2568,14 @@
             "occ": 4
           },
           {
+            "file": "book/appendix-part-1-practice.html",
+            "occ": 5
+          },
+          {
+            "file": "book/appendix-part-2-evidence.html",
+            "occ": 4
+          },
+          {
             "file": "book/appendix-product-lifecycle.html",
             "occ": 4
           },
@@ -2627,7 +2639,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 115
+            "occ": 116
           }
         ]
       },
@@ -3384,10 +3396,6 @@
             "occ": 1
           },
           {
-            "file": "book/appendices-front-door.html",
-            "occ": 1
-          },
-          {
             "file": "book/appendix-a-assurance-stack.html",
             "occ": 1
           },
@@ -3616,6 +3624,14 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-part-1-practice.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-part-2-evidence.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-product-lifecycle.html",
             "occ": 1
           },
@@ -3679,7 +3695,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 115
+            "occ": 116
           }
         ]
       },
@@ -3843,7 +3859,7 @@
           },
           {
             "file": "book/0.2-how-to-read-this-book.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/0.3-the-mage-method-at-a-glance.html",
@@ -4004,10 +4020,6 @@
           {
             "file": "book/about-the-author.html",
             "occ": 4
-          },
-          {
-            "file": "book/appendices-front-door.html",
-            "occ": 3
           },
           {
             "file": "book/appendix-a-assurance-stack.html",
@@ -4238,6 +4250,14 @@
             "occ": 3
           },
           {
+            "file": "book/appendix-part-1-practice.html",
+            "occ": 3
+          },
+          {
+            "file": "book/appendix-part-2-evidence.html",
+            "occ": 3
+          },
+          {
             "file": "book/appendix-product-lifecycle.html",
             "occ": 3
           },
@@ -4301,7 +4321,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 115
+            "occ": 116
           }
         ]
       },
@@ -4513,10 +4533,6 @@
           },
           {
             "file": "book/about-the-author.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendices-front-door.html",
             "occ": 1
           },
           {
@@ -4748,6 +4764,14 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-part-1-practice.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-part-2-evidence.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-product-lifecycle.html",
             "occ": 2
           },
@@ -4811,7 +4835,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 115
+            "occ": 116
           }
         ]
       },

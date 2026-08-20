@@ -1695,8 +1695,10 @@ def _is_part_page(ch: "ir.Chapter") -> bool:
 
 def _is_appendix_divider(ch: "ir.Chapter") -> bool:
     """The appendices mode-marker — the synthetic divider `build_appendix_chapters` prepends before Appendix A
-    (web twin: the record's `is_appendix_divider` flag). The IR carries no flags, so match on the minted slug."""
-    return ch.slug == bb._APPENDICES_DIVIDER_SLUG
+    (web twin: the record's `is_appendix_divider` flag). The IR carries no flags, so match on the minted slug.
+    Two dividers now: Part I (Practice) before Appendix A, Part II (Evidence) before Appendix G — each a
+    level-1 bookmark parent, so A–F nest under Part I and G–H under Part II."""
+    return ch.slug in bb._APPENDICES_DIVIDER_SLUGS
 
 
 def _is_coda(ch: "ir.Chapter") -> bool:
@@ -1707,17 +1709,26 @@ def _is_coda(ch: "ir.Chapter") -> bool:
     return ch.slug == "4.6-portable-moves"
 
 
-def _appendices_divider_typst() -> str:
-    """The appendices mode-marker divider page — distinct from a numbered Part divider: a muted 'Reference'
-    kicker over the big 'Appendices' title, then the subtitle in the accent italic, marking the reader's shift
-    out of the argument and into the reference manual. A LEVEL-1 heading, so it becomes the PDF-bookmark PARENT
-    the appendix families would otherwise sit beside; the author paragraph flows after via `render_chapter`."""
+#: Per-Part divider text (title, subtitle), keyed by the minted slug — the PDF twin of the web records'
+#: `chapter_title` + `subtitle`. Two Parts: Practice (A–F) and Evidence (G–H).
+_APPENDIX_DIVIDER_TEXT = {
+    bb._APPENDICES_PART1_SLUG: (bb._APPENDICES_PART1_TITLE, bb._APPENDICES_PART1_SUBTITLE),
+    bb._APPENDICES_PART2_SLUG: (bb._APPENDICES_PART2_TITLE, bb._APPENDICES_PART2_SUBTITLE),
+}
+
+
+def _appendices_divider_typst(ch: "ir.Chapter") -> str:
+    """An appendix-Part mode-marker divider page — distinct from a numbered Part divider: the big Part title
+    ("Appendix Part I — Practice"), then its subtitle in the accent italic, marking the reader's shift out of
+    the argument and into the reference manual. A LEVEL-1 heading, so it becomes the PDF-bookmark PARENT under
+    which its appendices (A–F for Part I, G–H for Part II) nest; the opener paragraph flows after via
+    `render_chapter`."""
+    title_s, sub_s = _APPENDIX_DIVIDER_TEXT[ch.slug]
     opener = "#pagebreak(to: \"odd\")\n" if OUTPUT_TYPE == "print" else "#pagebreak()\n"
-    title = inline_typst(bb._APPENDICES_DIVIDER_TITLE)
-    sub = inline_typst(bb._APPENDICES_DIVIDER_SUBTITLE)
+    title = inline_typst(title_s)
+    sub = inline_typst(sub_s)
     heading = (
-        f"  = #text(size: 1.05em, fill: dt.muted, tracking: 0.08em)[#upper[Reference]~]"
-        f"#linebreak()#text(size: 2.4em, weight: \"bold\")[{title}]\n"
+        f"  = #text(size: 2.4em, weight: \"bold\")[{title}]\n"
         f"  #v(0.35em)\n"
         f"  #text(size: 1.35em, fill: dt.accent, style: \"italic\")[{sub}]\n"
     )
@@ -1833,7 +1844,7 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
         return None
     # The appendices mode-marker takes its own part (one below Appendix A); render its distinct divider.
     if _is_appendix_divider(ch):
-        return _appendices_divider_typst()
+        return _appendices_divider_typst(ch)
     part_titles = bb._PART_TITLES
     label = ""
     is_numbered = part in part_titles and part <= 6
