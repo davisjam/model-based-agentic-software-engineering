@@ -36,22 +36,22 @@
   <!-- node 1: uncertain need -->
   <rect id="uncertain-need" x="55" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
   <text x="160" y="108" text-anchor="middle" font-size="23.4" font-weight="700" fill="#1c1917">Uncertain need</text>
-  <text x="160" y="136" text-anchor="middle" font-size="15.21" font-style="italic" fill="#57534e">customer signal &#183; hypothesis</text>
+  <text x="160" y="138" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">signal &#183; hypothesis</text>
 
   <!-- node 2: explore -->
   <rect id="explore" x="300" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
   <text x="405" y="108" text-anchor="middle" font-size="23.4" font-weight="700" fill="#1c1917">explore</text>
-  <text x="405" y="136" text-anchor="middle" font-size="14.57" font-style="italic" fill="#57534e">prototype &#183; observe &#183; measure</text>
+  <text x="405" y="138" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">prototype &#183; measure</text>
 
   <!-- node 3: stabilizing claim -->
   <rect id="stabilizing-claim" x="545" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
   <text x="650" y="108" text-anchor="middle" font-size="23.4" font-weight="700" fill="#1c1917">stabilizing claim</text>
-  <text x="650" y="136" text-anchor="middle" font-size="15.51" font-style="italic" fill="#57534e">requirement &#183; quality target</text>
+  <text x="650" y="138" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">quality target</text>
 
   <!-- node 4: model -->
   <rect id="model" x="790" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
   <text x="895" y="108" text-anchor="middle" font-size="23.4" font-weight="700" fill="#1c1917">model</text>
-  <text x="895" y="136" text-anchor="middle" font-size="17.07" font-style="italic" fill="#57534e">representation &#183; property</text>
+  <text x="895" y="138" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">representation</text>
 
   <!-- node 5: align -->
   <rect id="align" x="1035" y="70" width="210" height="90" rx="10" fill="#faf1e6" stroke="#1c1917" stroke-width="2.5"/>
