@@ -2066,7 +2066,7 @@ z
 <table id="tbl-H-2" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table H-2.</span></caption><thead><tr><th>Window</th><th class="num">web/ added</th><th class="num">web/ deleted</th><th class="num">backend/ added</th><th class="num">backend/ deleted</th></tr></thead><tbody><tr><td>Prototype</td><td class="num">22,539</td><td class="num">7,717</td><td class="num">48,636</td><td class="num">10,166</td></tr><tr><td>Mechanization</td><td class="num">371,855</td><td class="num">161,044</td><td class="num">941,120</td><td class="num">286,378</td></tr><tr><td>Hardening</td><td class="num">179,649</td><td class="num">33,983</td><td class="num">109,188</td><td class="num">3,767</td></tr><tr><td>Loop management</td><td class="num">96,825</td><td class="num">14,332</td><td class="num">116,313</td><td class="num">9,708</td></tr></tbody></table>
 <p>The mechanization window contains the largest add-and-delete volume, particularly in <code>backend/</code>. Deletions fall sharply in the later windows, and both paths become strongly net-additive. <a class="xref" href="appendix-evidence-ledger.html#fig-H-2">Figure&nbsp;H-2</a> plots these counts.</p>
 <p>These counts are a repository-motion proxy, not the theoretical concept of churn used elsewhere in the book. Generated bundles and vendored trees are included where they occur; Part V's accounting note describes that bounded inflation.</p>
-<figure id="fig-H-2" class="book-figure" data-label="churn-per-path"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520"
+<figure id="fig-H-2" class="book-figure" data-label="churn-per-path"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 548"
      role="img" aria-labelledby="f-churn-per-path-chTitle f-churn-per-path-chDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-churn-per-path-chTitle">Path churn across four windows — web/ and backend/</title>
@@ -2090,17 +2090,17 @@ z
   <line x1="118" y1="460"   x2="942" y2="460"   stroke="#e4e0d8" stroke-width="1"/>
 
   <!-- tick labels -->
-  <text x="110" y="240.9" text-anchor="end" font-size="18" fill="#57534e">250K</text>
-  <text x="110" y="177.7" text-anchor="end" font-size="18" fill="#57534e">500K</text>
-  <text x="110" y="114.5" text-anchor="end" font-size="18" fill="#57534e">750K</text>
-  <text x="110" y="304"   text-anchor="end" font-size="18" fill="#57534e">0</text>
-  <text x="110" y="357.3" text-anchor="end" font-size="18" fill="#57534e">100K</text>
-  <text x="110" y="410.7" text-anchor="end" font-size="18" fill="#57534e">200K</text>
-  <text x="110" y="464"   text-anchor="end" font-size="18" fill="#57534e">300K</text>
+  <text x="110" y="240.9" text-anchor="end" font-size="20" fill="#57534e">250K</text>
+  <text x="110" y="177.7" text-anchor="end" font-size="20" fill="#57534e">500K</text>
+  <text x="110" y="114.5" text-anchor="end" font-size="20" fill="#57534e">750K</text>
+  <text x="110" y="304"   text-anchor="end" font-size="20" fill="#57534e">0</text>
+  <text x="110" y="357.3" text-anchor="end" font-size="20" fill="#57534e">100K</text>
+  <text x="110" y="410.7" text-anchor="end" font-size="20" fill="#57534e">200K</text>
+  <text x="110" y="464"   text-anchor="end" font-size="20" fill="#57534e">300K</text>
 
   <!-- axis-direction kickers -->
-  <text x="60" y="150" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e" transform="rotate(-90 60 150)">lines added ↑</text>
-  <text x="60" y="410" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e" transform="rotate(-90 60 410)">lines deleted ↓</text>
+  <text x="60" y="150" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e" transform="rotate(-90 60 150)">lines added ↑</text>
+  <text x="60" y="410" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e" transform="rotate(-90 60 410)">lines deleted ↓</text>
 
   <!-- Window 1 — prototype -->
   <rect x="170.5" y="294.3" width="44" height="5.7"  fill="#2f5169"/>
@@ -2130,20 +2130,20 @@ z
   <line x1="118" y1="300" x2="942" y2="300" stroke="#1c1917" stroke-width="2"/>
 
   <!-- peak annotation (free-floating, clear of the bar top) -->
-  <text x="457.5" y="52" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">backend/ +941,120 / −286,378</text>
+  <text x="457.5" y="52" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">backend/ +941,120 / −286,378</text>
 
   <!-- window labels -->
-  <text x="222.5" y="487" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">prototype</text>
-  <text x="427.5" y="487" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">mechanization</text>
-  <text x="632.5" y="487" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">hardening</text>
-  <text x="837.5" y="487" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">loop-mgmt</text>
+  <text x="222.5" y="487" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">prototype</text>
+  <text x="427.5" y="487" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">mechanization</text>
+  <text x="632.5" y="487" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">hardening</text>
+  <text x="837.5" y="487" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">loop-mgmt</text>
 
-  <!-- legend -->
-  <text x="118" y="510" text-anchor="start" font-size="18" fill="#57534e">bars rise with additions, fall with deletions</text>
-  <rect x="440" y="500" width="16" height="12" fill="#2f5169"/>
-  <text x="462" y="510" text-anchor="start" font-size="18" fill="#1c1917">web/ (Python service + worker)</text>
-  <rect x="720" y="500" width="16" height="12" fill="#b23b3b"/>
-  <text x="742" y="510" text-anchor="start" font-size="18" fill="#1c1917">backend/ (C# CLI + rule engine)</text>
+  <!-- legend — series key on one row, the reading note on its own row below -->
+  <rect x="118" y="505" width="16" height="12" fill="#2f5169"/>
+  <text x="140" y="515" text-anchor="start" font-size="20" fill="#1c1917">web/ (Python service + worker)</text>
+  <rect x="490" y="505" width="16" height="12" fill="#b23b3b"/>
+  <text x="512" y="515" text-anchor="start" font-size="20" fill="#1c1917">backend/ (C# CLI + rule engine)</text>
+  <text x="118" y="539" text-anchor="start" font-size="20" font-style="italic" fill="#57534e">bars rise with additions, fall with deletions</text>
 </svg><figcaption data-short="Product-Path Line Motion"><span class="fig-label">Figure H-2.</span> <em>Product-Path Line Motion.</em> Lines added above the baseline and deleted below it, by path and study window. Mechanization contains the largest observed line motion. The later reduction in deletions is consistent with less structural rewriting but does not establish its cause.</figcaption></figure>
 <h3 id="control-growth">G.2.4 Growth of Countable Controls</h3>
 <p>Project-specific lint files and gate scripts were counted at four repository states, using <code>git ls-tree</code> at the corresponding window SHA.</p>
