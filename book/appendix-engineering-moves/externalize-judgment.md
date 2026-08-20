@@ -1,6 +1,6 @@
 **Problem.** Operational work remains expensive when each incident requires an operator to reconstruct the same judgment: what healthy state looks like, what a symptom means, which procedure applies, and what evidence confirms recovery.
 
-**Move.** Represent recurring operational judgment explicitly. Derive or execute the parts that can be mechanized, preserve explicit guidance for the parts that still require judgment, and maintain correspondence with the system being operated.
+**Move.** Make recurring operational judgment explicit. Generate or execute what can be mechanized; provide guidance where judgment remains necessary; and keep both tied to the system they describe.
 
 [ref:fig-move09] traces the system model into the operational model.
 
@@ -9,6 +9,6 @@
 
 **Example — Generated runbook.** DocAble's lifecycle model names operational subsystems and their healthy-state predicates. The operator runbook is generated from that representation, keeping procedure aligned with the system model. When a subsystem's healthy-state predicate changes, the generated runbook changes with it.
 
-**Example — Event-bound playbook.** The orchestrator reacts to typed fleet events through per-topic playbooks. The triggering condition and the response structure are externalized, not reconstructed each time the event recurs. This mechanism externalizes the same recurring judgment in an event-driven form that the system can execute when the triggering condition occurs.
+**Example — Event-bound playbook.** The orchestrator reacts to typed fleet events through per-topic playbooks. The playbook records the trigger and response once, so the orchestrator can execute them when the event recurs rather than reconstructing the procedure each time.
 
-**Explore:** Lifecycle model → generated runbook · Operational playbooks · Operator runbook skill · Encoded Operational Judgment · Orchestrator-as-reactor. (MAGE Mechanism Catalog.)
+**Related mechanisms:** Lifecycle model → generated runbook · Operational playbooks · Operator runbook skill · Encoded Operational Judgment · Orchestrator-as-reactor.

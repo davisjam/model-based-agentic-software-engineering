@@ -9,6 +9,6 @@
 
 **Example — Control blast radius.** Each control declares its substrate dependencies as structured metadata. A query identifies which controls depend on a proposed substrate change and how each relation should be interpreted.
 
-**Example — Traceability.** Symbol-anchored traceability applies the same move across engineering artifacts. Model elements, lints, code, proofs, and registries join through derived, re-checked edges. The resulting graph supports both change-impact analysis and review by making those dependencies queryable.
+**Example — Traceability.** Symbol-anchored traceability applies the same move across engineering artifacts. Model elements, lints, code, proofs, and registries join through derived, re-checked edges. The resulting graph lets engineers query what a change affects and inspect why.
 
-**Explore:** Control ↔ substrate dependency · Computed Control Blast Radius · Governance Graph · Symbol-anchored traceability · Derived Traceability. (MAGE Mechanism Catalog.)
+**Related mechanisms:** Control ↔ substrate dependency · Computed Control Blast Radius · Governance Graph · Symbol-anchored traceability · Derived Traceability.

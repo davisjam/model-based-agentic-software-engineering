@@ -1,4 +1,4 @@
-**Problem.** Consequential facts are duplicated across consumers. A service relationship may appear in deployment configuration, policy, documentation, and tests; a timeout may appear in callers, workers, and orchestration. Once those copies can change independently, disagreement becomes a normal system state.
+**Problem.** Consequential facts are duplicated across consumers. A service relationship may appear in deployment configuration, policy, documentation, and tests; a timeout may appear in callers, workers, and orchestration. Once those copies can change independently, disagreement becomes an ordinary state.
 
 **Move.** Choose one machine-readable representation as the authoritative source of the fact. Downstream consumers should query it or derive from it rather than maintain independently editable copies.
 
@@ -9,6 +9,6 @@
 
 **Example — Service policy.** DocAble represents permitted service flows in a structured service model. Network policy and wiring derive from that model rather than maintaining independent accounts of permitted communication. A service relationship is authored once and propagated to its consumers.
 
-**Example — Timeout ordering.** Scattered wall-clock budgets are represented in one timeout-budget model whose nesting relation is checked mechanically. The model exposes an ordering property—inner budgets must fit inside outer ones—that would otherwise remain distributed across implementations.
+**Example — Timeout ordering.** Scattered wall-clock budgets are represented in one timeout-budget model whose nesting relation is checked mechanically. The model makes the required ordering explicit: inner budgets must fit inside outer ones. Without it, that rule remains scattered across implementations.
 
-**Explore:** Service-flow / API model · Executable Source of Truth · Model-driven codegen · Timeout-budget ordering model · Required-configuration-per-role manifest · Synchronization model. (MAGE Mechanism Catalog.)
+**Related mechanisms:** Service-flow / API model · Executable Source of Truth · Model-driven codegen · Timeout-budget ordering model · Required-configuration-per-role manifest · Synchronization model.
