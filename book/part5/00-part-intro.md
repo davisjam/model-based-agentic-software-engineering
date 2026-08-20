@@ -40,7 +40,7 @@ another organization would encounter the same failures, or that the resulting qu
 The final chapter widens the lens. Six public industrial accounts describe how independent organizations structure
 autonomous engineering work under different constraints. Those accounts lack DocAble's process depth: they
 expose selected mechanisms rather than the full histories that produced them. Their value is variation. They
-can show comparable moves arising independently, different realizations of the same engineering problem, and
+show comparable moves arising independently, different realizations of the same engineering problem, and
 boundaries the originating case could not expose.
 
 Parts II–IV presented the compressed method. Here the direction reverses. Chapters 5.1–5.4 return to the
