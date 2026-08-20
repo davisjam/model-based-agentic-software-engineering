@@ -31,10 +31,10 @@
 
   <text x="510" y="128" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Fence the judgment step between deterministic ends</text>
 
-  <rect id="determinize-data" x="60" y="200" width="250" height="120" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect id="determinize-data" x="47.14" y="200" width="275.71" height="120" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="185" y="252" text-anchor="middle" font-size="25" font-weight="700" fill="#2f5169">Determinize</text>
-  <text x="185" y="284" text-anchor="middle" font-size="18.36" font-style="italic" fill="#57534e">data space</text>
-  <text x="185" y="310" text-anchor="middle" font-size="18.36" fill="#57534e">mechanical · automatable</text>
+  <text x="185" y="284" text-anchor="middle" font-size="20.4" font-style="italic" fill="#57534e">data space</text>
+  <text x="185" y="310" text-anchor="middle" font-size="20.4" fill="#57534e">mechanical · automatable</text>
 
   <!-- edge: determinize-data -> judgment (extended to seat on the diamond's left tip; was floating 28px short) -->
   <line x1="309" y1="260" x2="386" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
@@ -43,20 +43,20 @@
   <!-- transparent lint anchor over the Judgment diamond (a <polygon> can't carry a lint-legible id) -->
   <rect id="judgment" x="388" y="192" width="244" height="136" fill="none" stroke="none"/>
   <text x="510" y="256" text-anchor="middle" font-size="25" font-weight="700" fill="#ffffff">Judgment</text>
-  <text x="510" y="284" text-anchor="middle" font-size="18.36" fill="#e7edf3">reasoning decides</text>
+  <text x="510" y="284" text-anchor="middle" font-size="20.4" fill="#e7edf3">reasoning decides</text>
 
   <!-- edge: judgment -> determinize-experiment -->
   <line x1="632" y1="260" x2="686" y2="260" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
 
-  <rect id="determinize-experiment" x="688" y="200" width="250" height="120" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="determinize-experiment" x="675.14" y="200" width="275.71" height="120" rx="6" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="813" y="252" text-anchor="middle" font-size="25" font-weight="700" fill="#2f5169">Determinize</text>
-  <text x="813" y="284" text-anchor="middle" font-size="18.36" font-style="italic" fill="#57534e">experiment space</text>
-  <text x="813" y="310" text-anchor="middle" font-size="18.36" fill="#57534e">mechanical · automatable</text>
+  <text x="813" y="284" text-anchor="middle" font-size="20.4" font-style="italic" fill="#57534e">experiment space</text>
+  <text x="813" y="310" text-anchor="middle" font-size="20.4" fill="#57534e">mechanical · automatable</text>
 
   <!-- edge: determinize-experiment -> logged-trace -->
   <line x1="813" y1="320" x2="813" y2="390" stroke="#2f5169" stroke-width="2.2" marker-end="url(#cor-ah)"/>
   <rect id="logged-trace" x="628" y="392" width="370" height="112" rx="6" fill="#ffffff" stroke="#2f5169" stroke-width="1.5" stroke-dasharray="6 4"/>
   <text x="813" y="430" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Logged trace</text>
-  <text x="813" y="462" text-anchor="middle" font-size="18.36" fill="#57534e">why this configuration was chosen</text>
-  <text x="813" y="490" text-anchor="middle" font-size="18.36" font-style="italic" fill="#57534e">captured: step 3 is deterministic</text>
+  <text x="813" y="462" text-anchor="middle" font-size="20.4" fill="#57534e">why this configuration was chosen</text>
+  <text x="813" y="490" text-anchor="middle" font-size="20.4" font-style="italic" fill="#57534e">captured: step 3 is deterministic</text>
 </svg>

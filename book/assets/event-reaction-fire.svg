@@ -45,37 +45,37 @@
   <!-- ===== NODES (on top) ===== -->
   <!-- lifecycle (neutral) -->
   <rect id="lifecycle" x="380" y="34" width="240" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="1.5"/>
-  <text x="500" y="66" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">LIFECYCLE</text>
+  <text x="500" y="66" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">LIFECYCLE</text>
 
   <!-- deterministic fire (governance rust, SOLID + emphasis = the firing is deterministic) -->
-  <rect id="fire" x="360" y="124" width="280" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="500" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">DETERMINISTIC FIRE</text>
-  <text x="500" y="170" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">the reaction fires on the event</text>
+  <rect id="fire" x="350.75" y="124" width="298.49" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="500" y="150" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">DETERMINISTIC FIRE</text>
+  <text x="500" y="170" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">the reaction fires on the event</text>
 
   <!-- EXECUTE = solid rust (known action) -->
   <rect id="execute" x="90" y="226" width="250" height="70" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="215" y="258" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">EXECUTE</text>
-  <text x="215" y="280" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">known action</text>
+  <text x="215" y="258" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">EXECUTE</text>
+  <text x="215" y="280" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">known action</text>
   <!-- DELEGATE = dashed blue (bounded judgment) -->
   <rect id="delegate" x="375" y="226" width="250" height="70" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2" stroke-dasharray="7 5"/>
-  <text x="500" y="258" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">DELEGATE</text>
-  <text x="500" y="280" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">bounded judgment</text>
+  <text x="500" y="258" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">DELEGATE</text>
+  <text x="500" y="280" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">bounded judgment</text>
   <!-- ESCALATE = dotted dark (human judgment) -->
   <rect id="escalate" x="660" y="226" width="250" height="70" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2" stroke-dasharray="2 4"/>
-  <text x="785" y="258" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ESCALATE</text>
-  <text x="785" y="280" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">human judgment</text>
+  <text x="785" y="258" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ESCALATE</text>
+  <text x="785" y="280" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">human judgment</text>
 
   <!-- next lifecycle state (dark terminal) -->
   <rect id="next" x="360" y="390" width="280" height="62" rx="12" fill="#1c1917" stroke="#1c1917" stroke-width="2"/>
-  <text x="500" y="418" text-anchor="middle" font-size="18" font-weight="700" fill="#fdfcf9">NEXT LIFECYCLE</text>
-  <text x="500" y="438" text-anchor="middle" font-size="18" font-weight="700" fill="#fdfcf9">STATE</text>
+  <text x="500" y="418" text-anchor="middle" font-size="20" font-weight="700" fill="#fdfcf9">NEXT LIFECYCLE</text>
+  <text x="500" y="438" text-anchor="middle" font-size="20" font-weight="700" fill="#fdfcf9">STATE</text>
 
   <!-- ===== edge / annotation labels (on top) ===== -->
-  <text x="512" y="108" text-anchor="start" font-size="18" font-style="italic" fill="#57534e">observable event</text>
-  <text x="652" y="157" text-anchor="start" font-size="18" font-style="italic" fill="#57534e">no actor need notice</text>
-  <text x="787" y="413" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">advances &#8594; the next transition binds again</text>
+  <text x="512" y="108" text-anchor="start" font-size="20" font-style="italic" fill="#57534e">observable event</text>
+  <text x="652" y="157" text-anchor="start" font-size="20" font-style="italic" fill="#57534e">no actor need notice</text>
+  <text x="787" y="413" text-anchor="middle" font-size="20" font-style="italic" fill="#9a3f12">advances &#8594; the next transition binds again</text>
 
   <!-- thesis tagline (two lines) -->
-  <text x="500" y="484" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">The firing is deterministic; the payload still contains judgment.</text>
-  <text x="500" y="504" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Automate the arrival of the decision procedure &#8212; not the decision.</text>
+  <text x="500" y="484" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">The firing is deterministic; the payload still contains judgment.</text>
+  <text x="500" y="504" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Automate the arrival of the decision procedure &#8212; not the decision.</text>
 </svg>

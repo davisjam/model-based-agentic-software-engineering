@@ -46,11 +46,11 @@
 
   <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
   <text x="500" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">The determinization frontier</text>
-  <text x="500" y="62" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Two routes by which repeated judgment becomes machinery</text>
+  <text x="500" y="62" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Two routes by which repeated judgment becomes machinery</text>
 
   <!-- root: REPEATED JUDGMENT -->
   <rect id="repeated-judgment" x="360" y="84" width="280" height="54" rx="9" fill="#f3efe7" stroke="#57534e" stroke-width="2.2"/>
-  <text x="500" y="117" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">REPEATED JUDGMENT</text>
+  <text x="500" y="117" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">REPEATED JUDGMENT</text>
 
   <!-- transparent anchors: the two decidability questions are nodes (the split criterion) -->
   <rect id="left-question" x="178" y="196" width="144" height="34" fill="none" stroke="none"/>
@@ -63,10 +63,10 @@
   <path d="M624,138 L624,166 L694,166 L694,194" fill="none" stroke="#57534e" stroke-width="1.8" marker-end="url(#df-mut)"/>
 
   <!-- decidability judgment labels -->
-  <text x="250" y="207" text-anchor="middle" font-size="16.98" font-style="italic" fill="#57534e">property already</text>
-  <text x="250" y="223" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">decidable</text>
-  <text x="750" y="207" text-anchor="middle" font-size="16.51" font-style="italic" fill="#57534e">property requires</text>
-  <text x="750" y="223" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">reconstruction</text>
+  <text x="250" y="207" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">property already</text>
+  <text x="250" y="223" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">decidable</text>
+  <text x="750" y="207" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">property requires</text>
+  <text x="750" y="223" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">reconstruction</text>
 
   <!-- the route family colors the connector from the answered question onward -->
   <!-- edge: left-question -> alignment -->
@@ -76,12 +76,12 @@
 
   <!-- ALIGNMENT / MODELING -->
   <rect id="alignment" x="145" y="254" width="210" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="250" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">ALIGNMENT</text>
-  <text x="250" y="302" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">encode predicate</text>
+  <text x="250" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">ALIGNMENT</text>
+  <text x="250" y="302" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">encode predicate</text>
 
-  <rect id="modeling" x="645" y="254" width="210" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="750" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">MODELING</text>
-  <text x="750" y="302" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">change representation</text>
+  <rect id="modeling" x="633.82" y="254" width="232.35" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
+  <text x="750" y="282" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">MODELING</text>
+  <text x="750" y="302" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">change representation</text>
 
   <!-- edge: alignment -> align-terminal -->
   <path d="M250,318 L250,340" fill="none" stroke="#9a3f12" stroke-width="2" marker-end="url(#df-rust)"/>
@@ -90,11 +90,11 @@
 
   <!-- terminal boxes: encoded outcome / structured relation -->
   <rect id="align-terminal" x="135" y="342" width="230" height="64" rx="9" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="250" y="370" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">test / validator</text>
-  <text x="250" y="390" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">constraint / gate</text>
+  <text x="250" y="370" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">test / validator</text>
+  <text x="250" y="390" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">constraint / gate</text>
 
   <rect id="model-terminal" x="635" y="342" width="230" height="64" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="750" y="380" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">structured relation</text>
+  <text x="750" y="380" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">structured relation</text>
 
   <!-- transparent anchor: the shared "predicate over model" step is a node both routes converge on -->
   <rect id="predicate-over-model" x="470" y="428" width="60" height="52" fill="none" stroke="none"/>
@@ -105,8 +105,8 @@
   <!-- edge: model-terminal -> predicate-over-model -->
   <path d="M651,406 L651,416 L514,416 L514,426" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#df-green)"/>
 
-  <text x="500" y="454" text-anchor="middle" font-size="11.68" font-style="italic" fill="#57534e">predicate</text>
-  <text x="500" y="470" text-anchor="middle" font-size="10.2" font-style="italic" fill="#57534e">over model</text>
+  <text x="500" y="454" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">predicate</text>
+  <text x="500" y="470" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">over model</text>
 
   <!-- edge: predicate-over-model -> repeatable-decision -->
   <path d="M500,480 L500,500" fill="none" stroke="#9a3f12" stroke-width="2.2" marker-end="url(#df-rust)"/>
@@ -115,5 +115,5 @@
   <rect id="repeatable-decision" x="340" y="502" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="3"/>
   <text x="500" y="542" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">REPEATABLE DECISION</text>
 
-  <text x="500" y="606" text-anchor="middle" font-size="18" font-weight="700" font-style="italic" fill="#9a3f12">←— determinization frontier —→</text>
+  <text x="500" y="606" text-anchor="middle" font-size="20" font-weight="700" font-style="italic" fill="#9a3f12">←— determinization frontier —→</text>
 </svg>

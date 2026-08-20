@@ -828,7 +828,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- machinery boxes (gray) -->
   <rect id="f-claim-choose-the-search-search-inputs" x="45" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
-  <rect id="f-claim-choose-the-search-search-explicit" x="360" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
+  <rect id="f-claim-choose-the-search-search-explicit" x="348.71" y="238" width="302.59" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
   <rect id="f-claim-choose-the-search-search-temporal" x="675" y="238" width="280" height="52" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
 
   <!-- counterexample boxes (rust) -->
@@ -862,26 +862,26 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <line x1="815" y1="290" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#f-claim-choose-the-search-ccs-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
-  <text x="500" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">WHAT CLAIM ARE YOU TRYING TO ESTABLISH?</text>
+  <text x="500" y="60" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">WHAT CLAIM ARE YOU TRYING TO ESTABLISH?</text>
 
-  <text x="185" y="154" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">ONE / MANY INPUTS</text>
-  <text x="185" y="174" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">input &#8594; output</text>
-  <text x="500" y="154" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">REACHABLE STATES</text>
-  <text x="500" y="174" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">sequences / races</text>
-  <text x="815" y="154" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">TEMPORAL BEHAVIOR</text>
-  <text x="815" y="174" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">eventually / always</text>
+  <text x="185" y="154" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">ONE / MANY INPUTS</text>
+  <text x="185" y="174" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">input &#8594; output</text>
+  <text x="500" y="154" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">REACHABLE STATES</text>
+  <text x="500" y="174" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">sequences / races</text>
+  <text x="815" y="154" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">TEMPORAL BEHAVIOR</text>
+  <text x="815" y="174" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">eventually / always</text>
 
-  <text x="185" y="261" text-anchor="middle" font-size="18" fill="#1c1917">examples / property</text>
-  <text x="185" y="279" text-anchor="middle" font-size="18" fill="#1c1917">tests / fuzzing</text>
-  <text x="500" y="270" text-anchor="middle" font-size="18" fill="#1c1917">explicit-state model checking</text>
-  <text x="815" y="270" text-anchor="middle" font-size="18" fill="#1c1917">temporal model checking</text>
+  <text x="185" y="261" text-anchor="middle" font-size="20" fill="#1c1917">examples / property</text>
+  <text x="185" y="279" text-anchor="middle" font-size="20" fill="#1c1917">tests / fuzzing</text>
+  <text x="500" y="270" text-anchor="middle" font-size="20" fill="#1c1917">explicit-state model checking</text>
+  <text x="815" y="270" text-anchor="middle" font-size="20" fill="#1c1917">temporal model checking</text>
 
-  <text x="185" y="361" text-anchor="middle" font-size="18" fill="#9a3f12">counterexample input</text>
-  <text x="500" y="361" text-anchor="middle" font-size="18" fill="#9a3f12">counterexample trace</text>
-  <text x="815" y="361" text-anchor="middle" font-size="18" fill="#9a3f12">counterexample execution</text>
+  <text x="185" y="361" text-anchor="middle" font-size="20" fill="#9a3f12">counterexample input</text>
+  <text x="500" y="361" text-anchor="middle" font-size="20" fill="#9a3f12">counterexample trace</text>
+  <text x="815" y="361" text-anchor="middle" font-size="20" fill="#9a3f12">counterexample execution</text>
 
-  <text x="500" y="449" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Prefer structural prevention before any of these</text>
-  <text x="500" y="470" text-anchor="middle" font-size="18" fill="#57534e">when the invalid state can simply be excluded.</text>
+  <text x="500" y="449" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Prefer structural prevention before any of these</text>
+  <text x="500" y="470" text-anchor="middle" font-size="20" fill="#57534e">when the invalid state can simply be excluded.</text>
 </svg><figcaption data-short="Let the claim choose the search"><span class="fig-label">Figure 4.3-2.</span> <em>Let the claim choose the search.</em> Input/output properties, reachable-state invariants, and temporal properties require different kinds of falsifying evidence. Structural exclusion is preferable when the invalid behavior can be removed from the admissible space entirely.</figcaption></figure>
 <p>Start with prevention. If the forbidden state can be removed structurally, remove it. DocAble's pervasive work-item ownership rule is enforced by a database compare-and-set: an update succeeds only while the row remains in the expected prior state. Concurrent claimants race on the same transition, and only one can win. For that local ownership property, the runtime constraint can enforce the required transition directly; a temporal specification would answer a broader question than the one being asked.</p>
 <p>When the property lives in interleavings, reduce the relevant state until it can be explored. DocAble's in-flight lease has this shape: a worker can appear stale and be reclaimed, another worker can acquire a fresh epoch, and the first can later wake and attempt release. The ownership question does not require the rest of the implementation. A reduced transition model retains only lifecycle state, lease epochs, reclaim, release, and the variables needed to state the invariants.</p>
@@ -1041,36 +1041,36 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- ===== NODES (on top; fills cap the edge ends) ===== -->
   <!-- generator -->
   <rect id="f-generative-loop-generator" x="40" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="145" y="192" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">generator</text>
-  <text x="145" y="220" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">makes inputs</text>
+  <text x="145" y="192" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">generator</text>
+  <text x="145" y="220" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">makes inputs</text>
 
   <!-- system -->
   <rect id="f-generative-loop-system" x="310" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="415" y="192" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">system</text>
-  <text x="415" y="220" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">under test</text>
+  <text x="415" y="192" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">system</text>
+  <text x="415" y="220" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">under test</text>
 
   <!-- independent oracle (accent) -->
-  <rect id="f-generative-loop-oracle" x="580" y="132" width="260" height="132" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="710" y="176" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">independent oracle</text>
-  <text x="710" y="204" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">judges the outcome</text>
-  <text x="710" y="236" text-anchor="middle" font-size="21.24" fill="#57534e">property · contract ·</text>
-  <text x="710" y="256" text-anchor="middle" font-size="16.8" fill="#57534e">reference impl · model · human</text>
+  <rect id="f-generative-loop-oracle" x="521.26" y="132" width="377.49" height="132" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="710" y="176" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">independent oracle</text>
+  <text x="710" y="204" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">judges the outcome</text>
+  <text x="710" y="236" text-anchor="middle" font-size="23.6" fill="#57534e">property · contract ·</text>
+  <text x="710" y="256" text-anchor="middle" font-size="23.6" fill="#57534e">reference impl · model · human</text>
 
   <!-- counterexample (churn) -->
-  <rect id="f-generative-loop-counterexample" x="900" y="132" width="240" height="132" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="1020" y="176" text-anchor="middle" font-size="21.24" font-weight="700" fill="#b23b3b">counterexample</text>
-  <text x="1020" y="206" text-anchor="middle" font-size="21.24" fill="#b23b3b">shrink / diagnose to</text>
-  <text x="1020" y="228" text-anchor="middle" font-size="21.24" fill="#b23b3b">the stable obligation</text>
+  <rect id="f-generative-loop-counterexample" x="892.07" y="132" width="255.85" height="132" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+  <text x="1020" y="176" text-anchor="middle" font-size="23.6" font-weight="700" fill="#b23b3b">counterexample</text>
+  <text x="1020" y="206" text-anchor="middle" font-size="23.6" fill="#b23b3b">shrink / diagnose to</text>
+  <text x="1020" y="228" text-anchor="middle" font-size="23.6" fill="#b23b3b">the stable obligation</text>
 
   <!-- coverage (governed) -->
-  <rect id="f-generative-loop-coverage" x="450" y="400" width="360" height="110" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="630" y="440" text-anchor="middle" font-size="20.44" font-weight="700" fill="#1c1917">coverage: did we reach the claim?</text>
-  <text x="630" y="470" text-anchor="middle" font-size="18.63" fill="#57534e">input-space · line/branch · model-claim</text>
+  <rect id="f-generative-loop-coverage" x="394.18" y="400" width="471.64" height="110" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="630" y="440" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">coverage: did we reach the claim?</text>
+  <text x="630" y="470" text-anchor="middle" font-size="23.6" fill="#57534e">input-space · line/branch · model-claim</text>
 
   <!-- ===== edge labels (on top) ===== -->
-  <text x="250" y="400" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">refine the generator</text>
-  <text x="905" y="392" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">model-claim coverage</text>
-  <text x="905" y="414" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
+  <text x="250" y="400" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">refine the generator</text>
+  <text x="905" y="392" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">model-claim coverage</text>
+  <text x="905" y="414" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
 </svg><figcaption data-short="Generate, Judge, Search Again"><span class="fig-label">Figure 4.3-4.</span> <em>Generate, Judge, Search Again.</em> One loop, whatever the oracle's source: a <strong>generator</strong> makes inputs, the <strong>system</strong> runs them, an <strong>independent oracle</strong> judges each outcome, a <strong>counterexample</strong> feeds back to shrink or diagnose, and <strong>coverage</strong> asks whether the search reached the region the claim is about — refining the generator, and where traceability exists joining model-claim coverage back to the claim. The oracle may be a declared property, a robustness contract, a reference implementation, or a structured model; the loop does not care which.</figcaption></figure>
 <h2><span class="sec-num">4.3.6</span> Give the Verdict the Right Consequence</h2>
 <p>Validation may report or gate. Where a verdict should control admission, place that authority outside the producer's discretion. At consequential boundaries, consider re-deriving evidence whose freshness or independence matters to the admission decision rather than relying automatically on an earlier marker. A fuzz campaign may run nightly and report counterexamples without controlling merge; a cost validator may stay advisory; a security invariant may deserve immediate refusal. <strong>Authority is a separate design decision from evidence quality.</strong></p>

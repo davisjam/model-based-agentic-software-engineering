@@ -842,58 +842,58 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- CALLER -->
-  <rect id="f-llm-as-function-call-caller" x="24" y="150" width="200" height="112" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
+  <rect id="f-llm-as-function-call-caller" x="10.64" y="150" width="226.73" height="112" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
   <text x="124" y="182" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">Deterministic</text>
   <text x="124" y="206" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">caller</text>
-  <text x="124" y="230" text-anchor="middle" font-size="19.8" fill="#2f5169">owns the workflow;</text>
-  <text x="124" y="252" text-anchor="middle" font-size="19.8" fill="#2f5169">decides each step</text>
+  <text x="124" y="230" text-anchor="middle" font-size="22" fill="#2f5169">owns the workflow;</text>
+  <text x="124" y="252" text-anchor="middle" font-size="22" fill="#2f5169">decides each step</text>
 
   <!-- input contract -->
   <!-- edge: caller -> model -->
   <line x1="224" y1="206" x2="332" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#f-llm-as-function-call-lfc-arrow)"/>
-  <text x="279" y="184" text-anchor="middle" font-size="19.8" font-style="italic" fill="#57534e">typed input</text>
-  <text x="279" y="200" text-anchor="middle" font-size="19.8" font-style="italic" fill="#57534e">contract</text>
+  <text x="279" y="184" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">typed input</text>
+  <text x="279" y="200" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">contract</text>
 
   <!-- MODEL (probabilistic — dashed) -->
   <rect id="f-llm-as-function-call-model" x="334" y="150" width="200" height="112" rx="3" fill="#faf1e6" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
   <text x="434" y="184" text-anchor="middle" font-size="24" font-weight="bold" fill="#1c1917">Model</text>
-  <text x="434" y="210" text-anchor="middle" font-size="19.8" fill="#57534e">the probabilistic</text>
-  <text x="434" y="232" text-anchor="middle" font-size="19.8" fill="#57534e">“function” — one</text>
-  <text x="434" y="254" text-anchor="middle" font-size="19.8" fill="#57534e">bounded task</text>
+  <text x="434" y="210" text-anchor="middle" font-size="22" fill="#57534e">the probabilistic</text>
+  <text x="434" y="232" text-anchor="middle" font-size="22" fill="#57534e">“function” — one</text>
+  <text x="434" y="254" text-anchor="middle" font-size="22" fill="#57534e">bounded task</text>
 
   <!-- output contract -->
   <!-- edge: model -> validator -->
   <line x1="534" y1="206" x2="642" y2="206" stroke="#1c1917" stroke-width="1.4" marker-end="url(#f-llm-as-function-call-lfc-arrow)"/>
-  <text x="589" y="184" text-anchor="middle" font-size="19.8" font-style="italic" fill="#57534e">typed output</text>
-  <text x="589" y="200" text-anchor="middle" font-size="19.8" font-style="italic" fill="#57534e">contract</text>
+  <text x="589" y="184" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">typed output</text>
+  <text x="589" y="200" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">contract</text>
 
   <!-- VALIDATOR -->
   <rect id="f-llm-as-function-call-validator" x="644" y="150" width="240" height="112" rx="3" fill="#e7edf3" stroke="#2f5169" stroke-width="1.6"/>
   <text x="764" y="188" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">Deterministic</text>
   <text x="764" y="212" text-anchor="middle" font-size="24" font-weight="bold" fill="#2f5169">validator</text>
-  <text x="764" y="240" text-anchor="middle" font-size="19.8" fill="#2f5169">checks the candidate</text>
+  <text x="764" y="240" text-anchor="middle" font-size="22" fill="#2f5169">checks the candidate</text>
 
   <!-- trust boundary marker under validator; broken around the typed-output-contract label -->
   <line x1="589" y1="116" x2="589" y2="166" stroke="#b23b3b" stroke-width="1" stroke-dasharray="3 3"/>
   <line x1="589" y1="210" x2="589" y2="300" stroke="#b23b3b" stroke-width="1" stroke-dasharray="3 3"/>
-  <text x="589" y="108" text-anchor="middle" font-size="19.8" font-weight="bold" fill="#b23b3b">trust boundary</text>
+  <text x="589" y="108" text-anchor="middle" font-size="22" font-weight="bold" fill="#b23b3b">trust boundary</text>
 
   <!-- PASS out: transparent anchor over the "result incorporated" text so the edge terminates on a named node -->
   <rect id="f-llm-as-function-call-result" x="940" y="168" width="150" height="42" fill="none" stroke="none"/>
   <!-- edge: validator -> result -->
   <line x1="884" y1="189" x2="938" y2="189" stroke="#1c1917" stroke-width="1.4" marker-end="url(#f-llm-as-function-call-lfc-arrow)"/>
-  <text x="910" y="176" text-anchor="middle" font-size="19.8" font-weight="bold" fill="#1f7a4d">pass</text>
-  <text x="946" y="182" text-anchor="start" font-size="19.8" fill="#1f7a4d">result</text>
-  <text x="946" y="202" text-anchor="start" font-size="19.8" fill="#1f7a4d">incorporated</text>
+  <text x="910" y="176" text-anchor="middle" font-size="22" font-weight="bold" fill="#1f7a4d">pass</text>
+  <text x="946" y="182" text-anchor="start" font-size="22" fill="#1f7a4d">result</text>
+  <text x="946" y="202" text-anchor="start" font-size="22" fill="#1f7a4d">incorporated</text>
 
   <!-- FAIL loop back to caller -->
   <!-- edge: validator .. caller -->
   <path d="M764,262 L764,330 L124,330 L124,262" fill="none" stroke="#b23b3b" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#f-llm-as-function-call-lfc-arrow)"/>
-  <text x="444" y="350" text-anchor="middle" font-size="19.8" font-weight="bold" fill="#b23b3b">fail → caller retries or falls back</text>
+  <text x="444" y="350" text-anchor="middle" font-size="22" font-weight="bold" fill="#b23b3b">fail → caller retries or falls back</text>
 
   <!-- caption strip -->
-  <text x="550" y="388" text-anchor="middle" font-size="19.8" font-style="italic" fill="#57534e">The model is called like a function: a typed task in, a typed answer out —</text>
-  <text x="550" y="410" text-anchor="middle" font-size="19.8" font-style="italic" fill="#57534e">never trusted until a deterministic check has passed it.</text>
+  <text x="550" y="388" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">The model is called like a function: a typed task in, a typed answer out —</text>
+  <text x="550" y="410" text-anchor="middle" font-size="22" font-style="italic" fill="#57534e">never trusted until a deterministic check has passed it.</text>
 </svg><figcaption data-short="Model as a Bounded Subroutine"><span class="fig-label">Figure 5.3-2.</span> <em>Model as a Bounded Subroutine.</em> A deterministic caller supplies a typed task; the model returns a candidate; deterministic checks reject covered failures before incorporation. Properties outside those checks remain outside the guarantee.</figcaption></figure>
 <p>The coding agents that built DocAble pose the same trust-boundary problem at a larger grain. There the engineered environment needs richer system representations, authority across several boundaries, independent evidence, and governance conversion. The bounded subroutine applies the same engineering stance inside the product that MAGE applies to the process that builds it.</p>
 <h2><span class="sec-num">5.3.3</span> Two Paths to Durable Structure</h2>
@@ -933,37 +933,37 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- edge: mh_s6 -> mh_s7 -->
   <line x1="500" y1="904" x2="500" y2="958" stroke="#57534e" stroke-width="2.5" marker-end="url(#f-modeling-history-mh-ah-gray)"/>
   <rect id="f-modeling-history-mh_s1" x="230" y="90" width="540" height="74" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="f-modeling-history-mh_s2" x="230" y="220" width="540" height="74" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <rect id="f-modeling-history-mh_s2" x="153.56" y="220" width="692.87" height="74" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
   <rect id="f-modeling-history-mh_s3" x="230" y="350" width="540" height="74" rx="12" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
   <rect id="f-modeling-history-mh_dl" x="150" y="485" width="320" height="160" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <rect id="f-modeling-history-mh_dr" x="530" y="485" width="320" height="160" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <rect id="f-modeling-history-mh_s5" x="230" y="700" width="540" height="74" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="f-modeling-history-mh_s6" x="230" y="830" width="540" height="74" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="f-modeling-history-mh_s6" x="171.58" y="830" width="656.85" height="74" rx="12" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <rect id="f-modeling-history-mh_s7" x="230" y="960" width="540" height="74" rx="12" fill="#f6f4ef" stroke="#57534e" stroke-width="2" stroke-dasharray="8 5"/>
   <text x="500" y="58" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">The modeling history</text>
-  <text x="500" y="122" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Stable computations</text>
-  <text x="500" y="147" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">pass decomposition — the nodes already project</text>
-  <text x="500" y="252" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Composition stays implicit</text>
-  <text x="500" y="277" text-anchor="middle" font-size="16.13" font-weight="400" font-style="italic" fill="#57534e">repeated traversal · shared-state reads · direct mutation · special cases</text>
-  <text x="500" y="382" text-anchor="middle" font-size="18" font-weight="700" fill="#b23b3b">Composition becomes consequential</text>
-  <text x="500" y="407" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">locally reasonable choices accumulate global cost</text>
-  <text x="500" y="447" text-anchor="middle" font-size="18" font-weight="700" fill="#57534e">model the relations</text>
-  <text x="500" y="476" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">two previously implicit dimensions</text>
-  <text x="310" y="517" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Dependency semantics</text>
-  <text x="310" y="552" text-anchor="middle" font-size="18" font-weight="400" fill="#1c1917">DATA_FLOW</text>
-  <text x="310" y="582" text-anchor="middle" font-size="18" font-weight="400" fill="#1c1917">CONTROL_GATE</text>
-  <text x="310" y="612" text-anchor="middle" font-size="18" font-weight="400" fill="#1c1917">CROSS_SERVICE</text>
-  <text x="690" y="517" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">Effect boundedness</text>
-  <text x="690" y="552" text-anchor="middle" font-size="18" font-weight="400" fill="#1c1917">TypedPatchProducer</text>
-  <text x="690" y="582" text-anchor="middle" font-size="18" font-weight="400" fill="#1c1917">DirectEditor</text>
-  <text x="690" y="612" text-anchor="middle" font-size="18" font-weight="400" fill="#1c1917">ReadOnly</text>
-  <text x="500" y="732" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Typed declarations</text>
-  <text x="500" y="757" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">each pass declares its IO facets and its effect kind</text>
-  <text x="500" y="862" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Projected graph + blocking parity</text>
-  <text x="500" y="887" text-anchor="middle" font-size="17.01" font-weight="400" font-style="italic" fill="#9a3f12">edges projected from the declarations; disagreement fails the build</text>
-  <text x="500" y="992" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Residual freedom remains</text>
-  <text x="500" y="1017" text-anchor="middle" font-size="18" font-weight="400" font-style="italic" fill="#57534e">not every choice is determinized</text>
-  <text x="500" y="1120" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">From a partial model to a richer one — not from no model to model.</text>
+  <text x="500" y="122" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Stable computations</text>
+  <text x="500" y="147" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">pass decomposition — the nodes already project</text>
+  <text x="500" y="252" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Composition stays implicit</text>
+  <text x="500" y="277" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">repeated traversal · shared-state reads · direct mutation · special cases</text>
+  <text x="500" y="382" text-anchor="middle" font-size="20" font-weight="700" fill="#b23b3b">Composition becomes consequential</text>
+  <text x="500" y="407" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">locally reasonable choices accumulate global cost</text>
+  <text x="500" y="447" text-anchor="middle" font-size="20" font-weight="700" fill="#57534e">model the relations</text>
+  <text x="500" y="476" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">two previously implicit dimensions</text>
+  <text x="310" y="517" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Dependency semantics</text>
+  <text x="310" y="552" text-anchor="middle" font-size="20" font-weight="400" fill="#1c1917">DATA_FLOW</text>
+  <text x="310" y="582" text-anchor="middle" font-size="20" font-weight="400" fill="#1c1917">CONTROL_GATE</text>
+  <text x="310" y="612" text-anchor="middle" font-size="20" font-weight="400" fill="#1c1917">CROSS_SERVICE</text>
+  <text x="690" y="517" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Effect boundedness</text>
+  <text x="690" y="552" text-anchor="middle" font-size="20" font-weight="400" fill="#1c1917">TypedPatchProducer</text>
+  <text x="690" y="582" text-anchor="middle" font-size="20" font-weight="400" fill="#1c1917">DirectEditor</text>
+  <text x="690" y="612" text-anchor="middle" font-size="20" font-weight="400" fill="#1c1917">ReadOnly</text>
+  <text x="500" y="732" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Typed declarations</text>
+  <text x="500" y="757" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">each pass declares its IO facets and its effect kind</text>
+  <text x="500" y="862" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Projected graph + blocking parity</text>
+  <text x="500" y="887" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#9a3f12">edges projected from the declarations; disagreement fails the build</text>
+  <text x="500" y="992" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Residual freedom remains</text>
+  <text x="500" y="1017" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">not every choice is determinized</text>
+  <text x="500" y="1120" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">From a partial model to a richer one — not from no model to model.</text>
 </svg><figcaption data-short="The modeling history"><span class="fig-label">Figure 5.3-3.</span> <em>The modeling history.</em> DocAble acquired a stable decomposition of remediation computations before it acquired an explicit model of their composition. As locally reasonable choices accumulated consequential variation, modeling the composition exposed two previously implicit dimensions: dependency semantics and effect boundedness. Typed declarations then made those relationships projectable and mechanically checkable. The progression is from a partial model to a richer one, not from no model to model.</figcaption></figure>
 <p>The final move was to stop maintaining those relationships as another hand-written truth. The pass declarations now carry the typed IO, the graph projects its edges from them, and a blocking parity check fails if the declarations and the projected graph disagree.</p>
 <p>The episode changed how I think about degrees of freedom. Leaving a choice open is often economically sensible: if several realizations satisfy every known obligation, pinning one of them spends effort and can make later change harder. But freedom can also be exploratory. Early in a design the engineer may not yet know which choices are consequential enough to constrain, and variation is what supplies the evidence.</p>
@@ -1097,8 +1097,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   </defs>
 
   <!-- ===================== HUMAN FOCUS — the summit the climb points toward ===================== -->
-  <text x="1052" y="30" text-anchor="middle" font-size="21.6" font-weight="700" fill="#57534e" letter-spacing="0.5">HUMAN FOCUS</text>
-  <text x="1052" y="49" text-anchor="middle" font-size="21.6" fill="#57534e">strategy · residual semantics</text>
+  <text x="1052" y="30" text-anchor="middle" font-size="24" font-weight="700" fill="#57534e" letter-spacing="0.5">HUMAN FOCUS</text>
+  <text x="1052" y="49" text-anchor="middle" font-size="24" fill="#57534e">strategy · residual semantics</text>
   <line x1="1052" y1="60" x2="1052" y2="96" stroke="#57534e" stroke-width="1.6" marker-end="url(#f-mage-staircase-ds-up)"/>
 
   <!-- ===================== GREEN environment-accumulation wash (upper-left staircase region) ===================== -->
@@ -1106,66 +1106,66 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
        Wide at the summit (most accumulated), thin at the base. Light backdrop, low visual weight. -->
   <polygon points="40,58 360,58 360,178 280,178 280,316 200,316 200,454 120,454 120,592 40,592"
            fill="#e3f0e7" opacity="0.55"/>
-  <text x="52" y="88" font-size="21.6" font-weight="700" fill="#1f7a4d">environment accumulates</text>
-  <text x="52" y="107" font-size="21.6" fill="#1f7a4d">representation + authority</text>
+  <text x="52" y="88" font-size="24" font-weight="700" fill="#1f7a4d">environment accumulates</text>
+  <text x="52" y="107" font-size="24" fill="#1f7a4d">representation + authority</text>
 
   <!-- ===================== RED residual-human wedge (right edge) — one narrowing trajectory ===================== -->
   <!-- A single wedge: wide at the base (human carries everything), a sliver at the summit. NOT a per-row bar. -->
   <polygon points="930,730 956,730 947,58 945,58" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.1" opacity="0.95"/>
-  <text x="1190" y="762" text-anchor="end" font-size="21.6" font-style="italic" fill="#b23b3b">residual human judgment narrows — never zero</text>
+  <text x="1190" y="762" text-anchor="end" font-size="24" font-style="italic" fill="#b23b3b">residual human judgment narrows — never zero</text>
 
   <!-- ===================== STEP 5 · ARCHITECT (summit) ===================== -->
-  <rect x="360" y="58" width="570" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
+  <rect x="299.71" y="58" width="690.58" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
   <rect x="356" y="58" width="22" height="120" rx="4" fill="#1f7a4d"/>
-  <text x="384" y="88" font-size="21.6" font-weight="700" fill="#1c1917">5 · ARCHITECT</text>
-  <text x="384" y="109" font-size="21.6" font-style="italic" fill="#57534e">explicit models carry system-level knowledge</text>
-  <text x="384" y="134" font-size="21.6" fill="#2f5169" font-weight="600">delegated — model-guided work across the system</text>
-  <text x="384" y="156" font-size="20.49" fill="#1f7a4d" font-weight="600">environment — explicit models · traceability · controls</text>
-  <text x="960" y="124" font-size="21.6" fill="#b23b3b" font-weight="600">residual semantics + strategy</text>
+  <text x="384" y="88" font-size="24" font-weight="700" fill="#1c1917">5 · ARCHITECT</text>
+  <text x="384" y="109" font-size="24" font-style="italic" fill="#57534e">explicit models carry system-level knowledge</text>
+  <text x="384" y="134" font-size="24" fill="#2f5169" font-weight="600">delegated — model-guided work across the system</text>
+  <text x="384" y="156" font-size="24" fill="#1f7a4d" font-weight="600">environment — explicit models · traceability · controls</text>
+  <text x="960" y="124" font-size="24" fill="#b23b3b" font-weight="600">residual semantics + strategy</text>
 
   <!-- ===================== STEP 4 · TECH LEAD ===================== -->
   <rect x="280" y="196" width="650" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
   <rect x="278" y="196" width="18" height="120" rx="4" fill="#1f7a4d"/>
-  <text x="304" y="226" font-size="21.6" font-weight="700" fill="#1c1917">4 · TECH LEAD</text>
-  <text x="304" y="247" font-size="21.6" font-style="italic" fill="#57534e">representation makes reasoning local</text>
-  <text x="304" y="272" font-size="21.6" fill="#2f5169" font-weight="600">delegated — bounded work inside one modeled zone</text>
-  <text x="304" y="294" font-size="21.6" fill="#1f7a4d" font-weight="600">environment — named zones · boundary rules</text>
-  <text x="960" y="262" font-size="21.6" fill="#b23b3b" font-weight="600">system map + strategy</text>
+  <text x="304" y="226" font-size="24" font-weight="700" fill="#1c1917">4 · TECH LEAD</text>
+  <text x="304" y="247" font-size="24" font-style="italic" fill="#57534e">representation makes reasoning local</text>
+  <text x="304" y="272" font-size="24" fill="#2f5169" font-weight="600">delegated — bounded work inside one modeled zone</text>
+  <text x="304" y="294" font-size="24" fill="#1f7a4d" font-weight="600">environment — named zones · boundary rules</text>
+  <text x="960" y="262" font-size="24" fill="#b23b3b" font-weight="600">system map + strategy</text>
 
   <!-- ===================== STEP 3 · REVIEW LEAD ===================== -->
-  <rect x="200" y="334" width="730" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
+  <rect x="167.49" y="334" width="795.02" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
   <rect x="198" y="334" width="14" height="120" rx="4" fill="#1f7a4d"/>
-  <text x="224" y="364" font-size="21.6" font-weight="700" fill="#1c1917">3 · REVIEW LEAD</text>
-  <text x="224" y="385" font-size="21.6" font-style="italic" fill="#57534e">specialized, with the decidable residue determinized</text>
-  <text x="224" y="410" font-size="21.6" fill="#2f5169" font-weight="600">delegated — specialized review, per region</text>
-  <text x="224" y="432" font-size="21.6" fill="#1f7a4d" font-weight="600">environment — deterministic checks for the decidable findings</text>
-  <text x="960" y="400" font-size="21.6" fill="#b23b3b" font-weight="600">semantic review</text>
+  <text x="224" y="364" font-size="24" font-weight="700" fill="#1c1917">3 · REVIEW LEAD</text>
+  <text x="224" y="385" font-size="24" font-style="italic" fill="#57534e">specialized, with the decidable residue determinized</text>
+  <text x="224" y="410" font-size="24" fill="#2f5169" font-weight="600">delegated — specialized review, per region</text>
+  <text x="224" y="432" font-size="24" fill="#1f7a4d" font-weight="600">environment — deterministic checks for the decidable findings</text>
+  <text x="960" y="400" font-size="24" fill="#b23b3b" font-weight="600">semantic review</text>
 
   <!-- ===================== STEP 2 · QA ===================== -->
   <rect x="120" y="472" width="810" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
   <rect x="118" y="472" width="10" height="120" rx="4" fill="#1f7a4d"/>
-  <text x="144" y="502" font-size="21.6" font-weight="700" fill="#1c1917">2 · QA</text>
-  <text x="144" y="523" font-size="21.6" font-style="italic" fill="#57534e">evaluation delegated before authority</text>
-  <text x="144" y="548" font-size="21.6" fill="#2f5169" font-weight="600">delegated — generation + a second agent's audit</text>
-  <text x="144" y="570" font-size="21.6" fill="#1f7a4d" font-weight="600">environment — a probabilistic reviewer (episodic, advisory)</text>
-  <text x="960" y="538" font-size="21.6" fill="#b23b3b" font-weight="600">adjudicate findings</text>
+  <text x="144" y="502" font-size="24" font-weight="700" fill="#1c1917">2 · QA</text>
+  <text x="144" y="523" font-size="24" font-style="italic" fill="#57534e">evaluation delegated before authority</text>
+  <text x="144" y="548" font-size="24" fill="#2f5169" font-weight="600">delegated — generation + a second agent's audit</text>
+  <text x="144" y="570" font-size="24" fill="#1f7a4d" font-weight="600">environment — a probabilistic reviewer (episodic, advisory)</text>
+  <text x="960" y="538" font-size="24" fill="#b23b3b" font-weight="600">adjudicate findings</text>
 
   <!-- ===================== STEP 1 · CO-CODER (base) ===================== -->
   <rect x="40" y="610" width="890" height="120" rx="9" fill="#ffffff" stroke="#2f5169" stroke-width="1.8"/>
   <rect x="38" y="610" width="6" height="120" rx="3" fill="#1f7a4d"/>
-  <text x="64" y="640" font-size="21.6" font-weight="700" fill="#1c1917">1 · CO-CODER</text>
-  <text x="64" y="661" font-size="21.6" font-style="italic" fill="#57534e">direct human inspection carries everything</text>
-  <text x="64" y="686" font-size="21.6" fill="#2f5169" font-weight="600">delegated — code generation</text>
-  <text x="64" y="708" font-size="21.6" fill="#1f7a4d" font-weight="600">environment — nothing durable beyond an ordinary repository</text>
-  <text x="960" y="670" font-size="21.6" fill="#b23b3b" font-weight="600">read every diff · hold the</text>
-  <text x="960" y="688" font-size="21.6" fill="#b23b3b" font-weight="600">map · admit the change</text>
+  <text x="64" y="640" font-size="24" font-weight="700" fill="#1c1917">1 · CO-CODER</text>
+  <text x="64" y="661" font-size="24" font-style="italic" fill="#57534e">direct human inspection carries everything</text>
+  <text x="64" y="686" font-size="24" fill="#2f5169" font-weight="600">delegated — code generation</text>
+  <text x="64" y="708" font-size="24" fill="#1f7a4d" font-weight="600">environment — nothing durable beyond an ordinary repository</text>
+  <text x="960" y="670" font-size="24" fill="#b23b3b" font-weight="600">read every diff · hold the</text>
+  <text x="960" y="688" font-size="24" fill="#b23b3b" font-weight="600">map · admit the change</text>
 
   <!-- ===================== BASE AXIS — more work carried by the engineered environment ===================== -->
   <marker id="f-mage-staircase-ds-right" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
     <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
   </marker>
   <line x1="40" y1="770" x2="928" y2="770" stroke="#2f5169" stroke-width="1.8" marker-end="url(#f-mage-staircase-ds-right)"/>
-  <text x="40" y="794" font-size="21.6" font-weight="600" fill="#57534e">more work carried by the engineered environment</text>
-  <text x="928" y="794" text-anchor="end" font-size="21.6" font-weight="700" fill="#2f5169">delegation climbs</text>
+  <text x="40" y="794" font-size="24" font-weight="600" fill="#57534e">more work carried by the engineered environment</text>
+  <text x="928" y="794" text-anchor="end" font-size="24" font-weight="700" fill="#2f5169">delegation climbs</text>
 </svg><figcaption data-short="The Delegation Staircase"><span class="fig-label">Figure 5.3-5.</span> <em>The Delegation Staircase.</em> As explicit representation and environmental authority accumulated, larger units of engineering work could be delegated. Representation moved system knowledge out of one person's head; authority moved repeatable admission out of direct review. Human work moved from reading every diff toward system-level strategy and the residual semantic judgment the environment could not yet decide. A failure in either representation or authority could move work back down the staircase.</figcaption></figure>
 <p>Delegation increased as the environment took over work I had previously carried in direct review: models carried system knowledge, while mechanisms carried repeatable admission decisions. A weak model pulled me back into reconstructing the map; weak evidence or controls pulled me back into inspecting outcomes. Human judgment stayed at the unresolved edge. Parts II–IV present the clean method that can now be taught directly; this case shows why those pieces exist and why they did not arrive as one package. The next chapter reconstructs the incidents that moved that edge.</p><section class="works-cited" aria-labelledby="wc-5-3-the-road-to-mage-h"><h2 id="wc-5-3-the-road-to-mage-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-5-3-the-road-to-mage-1">Ringer, Talia, Karl Palmskog, Ilya Sergey, Milos Gligoric, and Zachary Tatlock. “QED at Large: A Survey of Engineering of Formally Verified Software.” <em>Foundations and Trends in Programming Languages</em> 5, nos. 2–3 (2019): 102–281. <a href="https://arxiv.org/abs/2003.06458">https://arxiv.org/abs/2003.06458</a>.</li><li id="wc-5-3-the-road-to-mage-2">Gamma, Erich, Richard Helm, Ralph Johnson, and John Vlissides. <em>Design Patterns: Elements of Reusable Object-Oriented Software</em>. Addison-Wesley, 1994.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">« Beginning of part</a><a href="5.2-the-build.html" aria-label="Previous chapter — 24 · Building DocAble">« Previous chapter</a></div><span class="chapnav-here" title="25 · How Delegation Changed">25 · How Delegation Changed</span><div class="chapnav-fwd"><a href="5.4-failures-that-became-infrastructure.html" aria-label="Next chapter — 26 · From Failure to Engineering Capital">Next chapter »</a><a href="part-6-intro.html" aria-label="Next part — Part 6 — The Profession">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

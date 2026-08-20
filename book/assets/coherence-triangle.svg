@@ -28,38 +28,38 @@
 
   <!-- STRUCTURED MODEL (blue) -->
   <rect id="model" x="30" y="96" width="270" height="130" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="165" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">STRUCTURED MODEL</text>
-  <text x="165" y="167" text-anchor="middle" font-size="18" fill="#57534e">records &#183; edges &#183; states</text>
-  <text x="165" y="196" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">a job: free / leased / done</text>
+  <text x="165" y="140" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">STRUCTURED MODEL</text>
+  <text x="165" y="167" text-anchor="middle" font-size="20" fill="#57534e">records &#183; edges &#183; states</text>
+  <text x="165" y="196" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">a job: free / leased / done</text>
 
   <!-- INVARIANTS (rust) -->
-  <rect id="invariants" x="365" y="96" width="270" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="500" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INVARIANTS</text>
-  <text x="500" y="165" text-anchor="middle" font-size="18" fill="#57534e">stable ids + declared domains</text>
+  <rect id="invariants" x="347.26" y="96" width="305.48" height="130" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
+  <text x="500" y="140" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">INVARIANTS</text>
+  <text x="500" y="165" text-anchor="middle" font-size="20" fill="#57534e">stable ids + declared domains</text>
   <rect x="388" y="180" width="224" height="34" rx="6" fill="#fbfdff" stroke="#9a3f12" stroke-width="1.2"/>
-  <text x="500" y="203" text-anchor="middle" font-size="18" fill="#9a3f12">leased &#8660; owner exists</text>
+  <text x="500" y="203" text-anchor="middle" font-size="20" fill="#9a3f12">leased &#8660; owner exists</text>
 
   <!-- CHECKER (green) -->
   <rect id="checker" x="700" y="96" width="270" height="130" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.6"/>
-  <text x="835" y="140" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">CHECKER</text>
-  <text x="835" y="167" text-anchor="middle" font-size="18" fill="#57534e">model check &#183; drift lint</text>
-  <text x="835" y="190" text-anchor="middle" font-size="18" fill="#57534e">&#183; validator</text>
+  <text x="835" y="140" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CHECKER</text>
+  <text x="835" y="167" text-anchor="middle" font-size="20" fill="#57534e">model check &#183; drift lint</text>
+  <text x="835" y="190" text-anchor="middle" font-size="20" fill="#57534e">&#183; validator</text>
 
   <!-- edges -->
   <!-- edge-grammar: keep-angles -->
   <!-- Opts out of orthogonalization: checker <-> invariants is a two-way pair drawn as arcs that bow apart; straightening both collapses them onto one line. -->
   <!-- edge: model -> invariants -->
   <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
-  <text x="332" y="130" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">supports</text>
-  <text x="332" y="146" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">predicates over</text>
+  <text x="332" y="130" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">supports</text>
+  <text x="332" y="146" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">predicates over</text>
   <!-- edge: invariants -> checker -->
   <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
-  <text x="667" y="138" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">evaluated by</text>
+  <text x="667" y="138" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">evaluated by</text>
 
   <!-- side arrow: recurring failure -> new/refined invariant -->
   <!-- edge: checker .. invariants -->
   <path d="M835,226 C835,286 620,296 500,296 C500,296 500,270 500,230" fill="none" stroke="#9a3f12" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#ct-r)"/>
-  <text x="668" y="320" text-anchor="middle" font-size="18" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
+  <text x="668" y="320" text-anchor="middle" font-size="20" font-style="italic" fill="#9a3f12">recurring failure &#8594; new / refined invariant</text>
 
   <!-- footer: protect the point -->
   <!-- summary line removed 260820 (figure-min-font wave): duplicated the md caption and overflowed the viewBox when bumped to floor size — the caption carries it. -->

@@ -54,34 +54,34 @@
   <!-- ===== NODES (on top; fills cap the edge ends) ===== -->
   <!-- generator -->
   <rect id="generator" x="40" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="145" y="192" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">generator</text>
-  <text x="145" y="220" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">makes inputs</text>
+  <text x="145" y="192" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">generator</text>
+  <text x="145" y="220" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">makes inputs</text>
 
   <!-- system -->
   <rect id="system" x="310" y="150" width="210" height="96" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="415" y="192" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">system</text>
-  <text x="415" y="220" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">under test</text>
+  <text x="415" y="192" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">system</text>
+  <text x="415" y="220" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">under test</text>
 
   <!-- independent oracle (accent) -->
-  <rect id="oracle" x="580" y="132" width="260" height="132" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="710" y="176" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">independent oracle</text>
-  <text x="710" y="204" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">judges the outcome</text>
-  <text x="710" y="236" text-anchor="middle" font-size="21.24" fill="#57534e">property · contract ·</text>
-  <text x="710" y="256" text-anchor="middle" font-size="16.8" fill="#57534e">reference impl · model · human</text>
+  <rect id="oracle" x="521.26" y="132" width="377.49" height="132" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="710" y="176" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">independent oracle</text>
+  <text x="710" y="204" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">judges the outcome</text>
+  <text x="710" y="236" text-anchor="middle" font-size="23.6" fill="#57534e">property · contract ·</text>
+  <text x="710" y="256" text-anchor="middle" font-size="23.6" fill="#57534e">reference impl · model · human</text>
 
   <!-- counterexample (churn) -->
-  <rect id="counterexample" x="900" y="132" width="240" height="132" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
-  <text x="1020" y="176" text-anchor="middle" font-size="21.24" font-weight="700" fill="#b23b3b">counterexample</text>
-  <text x="1020" y="206" text-anchor="middle" font-size="21.24" fill="#b23b3b">shrink / diagnose to</text>
-  <text x="1020" y="228" text-anchor="middle" font-size="21.24" fill="#b23b3b">the stable obligation</text>
+  <rect id="counterexample" x="892.07" y="132" width="255.85" height="132" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="2"/>
+  <text x="1020" y="176" text-anchor="middle" font-size="23.6" font-weight="700" fill="#b23b3b">counterexample</text>
+  <text x="1020" y="206" text-anchor="middle" font-size="23.6" fill="#b23b3b">shrink / diagnose to</text>
+  <text x="1020" y="228" text-anchor="middle" font-size="23.6" fill="#b23b3b">the stable obligation</text>
 
   <!-- coverage (governed) -->
-  <rect id="coverage" x="450" y="400" width="360" height="110" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="630" y="440" text-anchor="middle" font-size="20.44" font-weight="700" fill="#1c1917">coverage: did we reach the claim?</text>
-  <text x="630" y="470" text-anchor="middle" font-size="18.63" fill="#57534e">input-space · line/branch · model-claim</text>
+  <rect id="coverage" x="394.18" y="400" width="471.64" height="110" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="630" y="440" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">coverage: did we reach the claim?</text>
+  <text x="630" y="470" text-anchor="middle" font-size="23.6" fill="#57534e">input-space · line/branch · model-claim</text>
 
   <!-- ===== edge labels (on top) ===== -->
-  <text x="250" y="400" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">refine the generator</text>
-  <text x="905" y="392" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">model-claim coverage</text>
-  <text x="905" y="414" text-anchor="middle" font-size="21.24" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
+  <text x="250" y="400" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">refine the generator</text>
+  <text x="905" y="392" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">model-claim coverage</text>
+  <text x="905" y="414" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
 </svg>

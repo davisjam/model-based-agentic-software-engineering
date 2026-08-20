@@ -30,28 +30,28 @@
   </defs>
 
   <!-- 1: dangerous fallback exists (latent hazard) -->
-  <rect id="n1" x="250" y="40" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="400" y="71" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">dangerous fallback exists</text>
-  <text x="400" y="90" text-anchor="middle" font-size="15.6" font-style="italic" fill="#9a3f12">auto-resolve conflicts by taking one side</text>
+  <rect id="n1" x="209.16" y="40" width="381.67" height="62" rx="10" fill="#f6f4ef" stroke="#9a3f12" stroke-width="2.4"/>
+  <text x="400" y="71" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">dangerous fallback exists</text>
+  <text x="400" y="90" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">auto-resolve conflicts by taking one side</text>
   <!-- edge: n1 -> n2 -->
   <line x1="400" y1="102" x2="400" y2="146" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
 
   <!-- 2: sensor / audit detects (sensing works) -->
-  <rect id="n2" x="250" y="148" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="400" y="179" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">sensor / audit detects condition</text>
-  <text x="400" y="198" text-anchor="middle" font-size="15.61" font-style="italic" fill="#57534e">a guard sees the substrate-class conflict</text>
+  <rect id="n2" x="209.29" y="148" width="381.42" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="400" y="179" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">sensor / audit detects condition</text>
+  <text x="400" y="198" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">a guard sees the substrate-class conflict</text>
   <!-- edge: n2 -> n3 -->
   <line x1="400" y1="210" x2="400" y2="254" stroke="#57534e" stroke-width="2.4" marker-end="url(#jc-n)"/>
 
   <!-- 3: validator: unsafe (evaluation correct) — the verdict -->
-  <rect id="n3" x="250" y="256" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="400" y="287" text-anchor="middle" font-size="18.5" font-weight="700" fill="#2f5169">validator: UNSAFE</text>
-  <text x="400" y="306" text-anchor="middle" font-size="13.55" font-style="italic" fill="#57534e">the verdict — correctly identified as dangerous</text>
+  <rect id="n3" x="180.18" y="256" width="439.63" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
+  <text x="400" y="287" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">validator: UNSAFE</text>
+  <text x="400" y="306" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">the verdict — correctly identified as dangerous</text>
 
   <!-- annotation bracket over steps 2-3: evidence existed -->
   <path d="M566 156 h12 v154 h-12" fill="none" stroke="#2f5169" stroke-width="1.8"/>
-  <text x="590" y="228" font-size="17.28" font-weight="700" fill="#2f5169">Evidence existed;</text>
-  <text x="590" y="249" font-size="17.28" font-weight="700" fill="#2f5169">the judgment was correct.</text>
+  <text x="590" y="228" font-size="19.2" font-weight="700" fill="#2f5169">Evidence existed;</text>
+  <text x="590" y="249" font-size="19.2" font-weight="700" fill="#2f5169">the judgment was correct.</text>
 
   <!-- ============ THE SEVERED LINK — centerpiece ============ -->
   <!-- upper stub leaving the verdict, dangling (no arrowhead) -->
@@ -67,29 +67,29 @@
     <line x1="426" y1="392" x2="374" y2="436"/>
   </g>
   <!-- WARNING ONLY — the only thing emitted at the cut (side, dashed rust) -->
-  <rect x="92" y="386" width="168" height="56" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="7 5"/>
-  <text x="176" y="410" text-anchor="middle" font-size="17.28" font-weight="700" fill="#9a3f12">WARNING ONLY</text>
-  <text x="176" y="429" text-anchor="middle" font-size="13.21" font-style="italic" fill="#9a3f12">logged — no consequence</text>
+  <rect x="49.8" y="386" width="252.4" height="56" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="7 5"/>
+  <text x="176" y="410" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">WARNING ONLY</text>
+  <text x="176" y="429" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">logged — no consequence</text>
   <line x1="260" y1="414" x2="366" y2="414" stroke="#9a3f12" stroke-width="1.8" stroke-dasharray="5 4"/>
   <!-- centerpiece label -->
-  <text x="452" y="404" font-size="17.28" font-weight="800" fill="#9a3f12">no authoritative consequence</text>
-  <text x="452" y="426" font-size="17.28" font-style="italic" fill="#9a3f12">the verdict never reaches a consequence</text>
+  <text x="452" y="404" font-size="19.2" font-weight="800" fill="#9a3f12">no authoritative consequence</text>
+  <text x="452" y="426" font-size="19.2" font-style="italic" fill="#9a3f12">the verdict never reaches a consequence</text>
   <!-- lower stub into the operation, arrowed -->
   <line x1="400" y1="440" x2="400" y2="472" stroke="#9a3f12" stroke-width="3.2" marker-end="url(#jc-r)"/>
 
   <!-- 4: operation proceeds anyway -->
   <rect id="n4" x="250" y="476" width="300" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="400" y="513" text-anchor="middle" font-size="18.5" font-weight="700" fill="#1c1917">operation proceeds anyway</text>
+  <text x="400" y="513" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">operation proceeds anyway</text>
   <!-- edge: n4 -> n5 -->
   <line x1="400" y1="538" x2="400" y2="582" stroke="#9a3f12" stroke-width="2.6" marker-end="url(#jc-r)"/>
 
   <!-- 5: content lost (terminal harm) -->
   <rect id="n5" x="250" y="584" width="300" height="62" rx="10" fill="#9a3f12" stroke="#7a3210" stroke-width="2.4"/>
-  <text x="400" y="615" text-anchor="middle" font-size="18.5" font-weight="700" fill="#ffffff">content lost</text>
-  <text x="400" y="634" text-anchor="middle" font-size="17.28" font-style="italic" fill="#f4e3d6">the tree silently loses content</text>
+  <text x="400" y="615" text-anchor="middle" font-size="19.2" font-weight="700" fill="#ffffff">content lost</text>
+  <text x="400" y="634" text-anchor="middle" font-size="19.2" font-style="italic" fill="#f4e3d6">the tree silently loses content</text>
 
   <!-- footer: the durable repair -->
   <line x1="40" y1="668" x2="920" y2="668" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="60" y="694" font-size="17.28" font-weight="700" fill="#155c38">Durable repair &#8212; remove the unsafe capability; escalate an ambiguous merge to a human.</text>
-  <text x="60" y="714" font-size="17.28" font-style="italic" fill="#57534e">The fix removed a capability the environment should never have offered &#8212; not a louder warning.</text>
+  <text x="60" y="694" font-size="19.2" font-weight="700" fill="#155c38">Durable repair &#8212; remove the unsafe capability; escalate an ambiguous merge to a human.</text>
+  <text x="60" y="714" font-size="19.2" font-style="italic" fill="#57534e">The fix removed a capability the environment should never have offered &#8212; not a louder warning.</text>
 </svg>

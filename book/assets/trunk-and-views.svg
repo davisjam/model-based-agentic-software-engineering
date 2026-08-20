@@ -33,24 +33,24 @@
   <g>
     <rect id="logical" x="40"  y="70" width="164" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
     <text x="122" y="102" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Logical</text>
-    <text x="122" y="128" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">what it is</text>
+    <text x="122" y="128" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">what it is</text>
 
     <rect id="process" x="223" y="70" width="164" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
     <text x="305" y="102" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Process</text>
-    <text x="305" y="128" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">runs at once</text>
+    <text x="305" y="128" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">runs at once</text>
 
     <rect id="development" x="406" y="70" width="188" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
     <text x="500" y="102" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Development</text>
-    <text x="500" y="128" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">how it’s packaged</text>
+    <text x="500" y="128" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">how it’s packaged</text>
 
     <rect id="physical" x="613" y="70" width="164" height="74" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
     <text x="695" y="102" text-anchor="middle" font-size="24" font-weight="700" fill="#2f5169">Physical</text>
-    <text x="695" y="128" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">where it runs</text>
+    <text x="695" y="128" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">where it runs</text>
 
-    <rect id="scenarios" x="796" y="70" width="164" height="74" rx="8" fill="#2f5169" stroke="#2f5169" stroke-width="2.5"/>
+    <rect id="scenarios" x="785.27" y="70" width="185.46" height="74" rx="8" fill="#2f5169" stroke="#2f5169" stroke-width="2.5"/>
     <text x="878" y="98"  text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Scenarios</text>
-    <text x="878" y="122" text-anchor="middle" font-size="18" fill="#e7edf3">the +1 —</text>
-    <text x="878" y="140" text-anchor="middle" font-size="18" fill="#e7edf3">validates the four</text>
+    <text x="878" y="122" text-anchor="middle" font-size="20" fill="#e7edf3">the +1 —</text>
+    <text x="878" y="140" text-anchor="middle" font-size="20" fill="#e7edf3">validates the four</text>
   </g>
 
   <!-- branch stems fanning up from the trunk bar (y=300) to each box base (y=144) -->

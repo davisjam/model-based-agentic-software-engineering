@@ -53,32 +53,32 @@
   <!-- source model -->
   <rect id="model" x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="480" y="59" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
-  <text x="480" y="81" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">related measured quantities</text>
+  <text x="480" y="81" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">related measured quantities</text>
 
   <!-- the policy that attaches the obligation to the value -->
   <rect id="policy" x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="480" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">policy attached to the value</text>
+  <text x="480" y="150" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">policy attached to the value</text>
 
   <!-- RESPONSE: observe -->
-  <rect id="observe" x="70" y="216" width="250" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="195" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">OBSERVE</text>
-  <text x="195" y="268" text-anchor="middle" font-size="15.73" font-style="italic" fill="#57534e">report evidence, no consequence</text>
+  <rect id="observe" x="37.27" y="216" width="315.47" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="195" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">OBSERVE</text>
+  <text x="195" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">report evidence, no consequence</text>
 
   <!-- RESPONSE: adapt -> throttle / soft completion -->
   <rect id="adapt" x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="480" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ADAPT</text>
-  <text x="480" y="268" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">change load</text>
+  <text x="480" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">ADAPT</text>
+  <text x="480" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">change load</text>
 
-  <rect id="throttle" x="360" y="316" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="347" text-anchor="middle" font-size="17.28" font-weight="700" fill="#1c1917">throttle · soft completion</text>
+  <rect id="throttle" x="347.45" y="316" width="265.1" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="480" y="347" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">throttle · soft completion</text>
 
   <!-- RESPONSE: gate (with a small dormant annotation, not extra nodes) -->
   <rect id="gate" x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="765" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">GATE</text>
-  <text x="765" y="268" text-anchor="middle" font-size="17.28" font-style="italic" fill="#9a3f12">block admission</text>
-  <text x="765" y="306" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">dormant unless configured</text>
+  <text x="765" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">GATE</text>
+  <text x="765" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">block admission</text>
+  <text x="765" y="306" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">dormant unless configured</text>
 
   <!-- footer: protect the point -->
   <line x1="40" y1="404" x2="920" y2="404" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="434" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement &#8212; not from a maturity sequence.</text>
+  <text x="480" y="434" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement &#8212; not from a maturity sequence.</text>
 </svg>

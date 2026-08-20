@@ -26,8 +26,8 @@
   <g>
     <path d="M 40,145 v 90 a 125,13 0 0 0 250,0 v -90" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
     <ellipse cx="165" cy="145" rx="125" ry="13" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-    <text x="165" y="192" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">fundamental model</text>
-    <text x="165" y="220" text-anchor="middle" font-size="21.24" fill="#57534e">of the domain</text>
+    <text x="165" y="192" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">fundamental model</text>
+    <text x="165" y="220" text-anchor="middle" font-size="23.6" fill="#57534e">of the domain</text>
   </g>
 
   <!-- base -> the orthogonal models (fan out) -->
@@ -40,13 +40,13 @@
   <!-- ===== the orthogonal models ===== -->
   <g>
     <rect id="facet-top" x="450" y="30" width="250" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="575" y="67" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">orthogonal facet</text>
+    <text x="575" y="67" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">orthogonal facet</text>
 
     <rect id="facet-mid" x="450" y="163" width="250" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="575" y="200" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">orthogonal facet</text>
+    <text x="575" y="200" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">orthogonal facet</text>
 
     <rect id="facet-bot" x="450" y="296" width="250" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="575" y="333" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">orthogonal facet</text>
+    <text x="575" y="333" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">orthogonal facet</text>
   </g>
 
   <!-- orthogonal models -> SKILL.md (fan in); src ends seated on each facet's right border -->
@@ -60,34 +60,34 @@
   </g>
 
   <!-- ===== SKILL.md: the principles ===== -->
-  <rect id="skill-md" x="860" y="126" width="250" height="132" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-  <text x="985" y="166" text-anchor="middle" font-size="22" font-weight="700" fill="#1c1917">SKILL.md</text>
-  <text x="985" y="196" text-anchor="middle" font-size="21.24" fill="#57534e">the governing principle</text>
-  <text x="985" y="220" text-anchor="middle" font-size="21.24" fill="#57534e">that ties them together</text>
+  <rect id="skill-md" x="842.34" y="126" width="285.31" height="132" rx="10" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+  <text x="985" y="166" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">SKILL.md</text>
+  <text x="985" y="196" text-anchor="middle" font-size="23.6" fill="#57534e">the governing principle</text>
+  <text x="985" y="220" text-anchor="middle" font-size="23.6" fill="#57534e">that ties them together</text>
 
   <!-- SKILL.md over its models -> a working skill -->
   <!-- edge: skill-md -> working-skill -->
   <line x1="985" y1="258" x2="985" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#sr-ah)"/>
 
   <rect id="working-skill" x="870" y="330" width="230" height="60" rx="30" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <text x="985" y="368" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">a working skill</text>
+  <text x="985" y="368" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">a working skill</text>
 
   <!-- ===== divider ===== -->
   <line x1="40" y1="430" x2="1110" y2="430" stroke="#e4e0d8" stroke-width="2"/>
-  <text x="40" y="462" font-size="21.24" font-style="italic" fill="#57534e">Three instances of one skeleton:</text>
+  <text x="40" y="462" font-size="23.6" font-style="italic" fill="#57534e">Three instances of one skeleton:</text>
 
   <!-- ===== the three shipped skills as instances ===== -->
   <g>
     <rect x="40" y="482" width="330" height="58" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-    <text x="205" y="509" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">self-governance</text>
-    <text x="205" y="530" text-anchor="middle" font-size="21.24" fill="#57534e">engineer the environment</text>
+    <text x="205" y="509" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">self-governance</text>
+    <text x="205" y="530" text-anchor="middle" font-size="23.6" fill="#57534e">engineer the environment</text>
 
     <rect x="410" y="482" width="330" height="58" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-    <text x="575" y="509" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">self-operate</text>
-    <text x="575" y="530" text-anchor="middle" font-size="21.24" fill="#57534e">operate the lifecycles</text>
+    <text x="575" y="509" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">self-operate</text>
+    <text x="575" y="530" text-anchor="middle" font-size="23.6" fill="#57534e">operate the lifecycles</text>
 
-    <rect x="780" y="482" width="330" height="58" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
-    <text x="945" y="509" text-anchor="middle" font-size="21.24" font-weight="700" fill="#1c1917">self-communicate</text>
-    <text x="945" y="530" text-anchor="middle" font-size="20.18" fill="#57534e">govern technical communication</text>
+    <rect x="745.57" y="482" width="398.87" height="58" rx="8" fill="#f6f4ef" stroke="#1c1917" stroke-width="2"/>
+    <text x="945" y="509" text-anchor="middle" font-size="23.6" font-weight="700" fill="#1c1917">self-communicate</text>
+    <text x="945" y="530" text-anchor="middle" font-size="23.6" fill="#57534e">govern technical communication</text>
   </g>
 </svg>

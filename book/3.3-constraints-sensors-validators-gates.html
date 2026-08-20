@@ -750,27 +750,27 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- top: the engineering obligation -->
   <rect id="f-constraint-vs-sensor-obligation" x="320" y="24" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
   <text x="480" y="55" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">ENGINEERING OBLIGATION</text>
-  <text x="480" y="79" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">the property you must hold</text>
+  <text x="480" y="79" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">the property you must hold</text>
 
   <!-- the selection decision -->
-  <rect id="f-constraint-vs-sensor-decision" x="264" y="136" width="432" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="480" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Can the unwanted state be excluded cleanly?</text>
+  <rect id="f-constraint-vs-sensor-decision" x="249.16" y="136" width="461.68" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="172" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">Can the unwanted state be excluded cleanly?</text>
 
   <!-- branch labels (paths drawn under nodes, above) -->
-  <text x="300" y="226" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">YES</text>
-  <text x="662" y="226" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">NO</text>
+  <text x="300" y="226" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">YES</text>
+  <text x="662" y="226" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">NO</text>
 
   <!-- ============ LEFT — CONSTRAINT ============ -->
-  <rect id="f-constraint-vs-sensor-constraint" x="95" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="f-constraint-vs-sensor-constraint" x="82.94" y="256" width="354.12" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="260" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">CONSTRAINT</text>
-  <text x="260" y="326" text-anchor="middle" font-size="19" fill="#1c1917">narrows what may happen</text>
-  <text x="260" y="360" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
+  <text x="260" y="326" text-anchor="middle" font-size="19.2" fill="#1c1917">narrows what may happen</text>
+  <text x="260" y="360" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
 
   <!-- ============ RIGHT — SENSOR ============ -->
-  <rect id="f-constraint-vs-sensor-sensor" x="535" y="256" width="330" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
+  <rect id="f-constraint-vs-sensor-sensor" x="516.37" y="256" width="367.26" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
   <text x="700" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">SENSOR</text>
-  <text x="700" y="326" text-anchor="middle" font-size="18" fill="#1c1917">produces evidence of what happened</text>
-  <text x="700" y="360" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
+  <text x="700" y="326" text-anchor="middle" font-size="19.2" fill="#1c1917">produces evidence of what happened</text>
+  <text x="700" y="360" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
 </svg><figcaption data-short="Constraint or sensor"><span class="fig-label">Figure 3.3-1.</span> <em>Constraint or sensor.</em> Prefer a constraint when the unwanted state can be excluded cheaply and reliably. Otherwise instrument the relevant state and produce evidence for later evaluation.</figcaption></figure>
 <p>An instruction carries authority only when a mechanism in the environment acts on it. If a brief must contain a required section, check for that section before launch and refuse the launch when it is absent.</p>
 <span id="idx-def-sensor"></span><span id="idx-ex-observability-1"></span><p><strong>A sensor observes and produces evidence.</strong> It lets the move happen and reads the evidence back out after the fact — <code>actual = observe(system)</code>. A raw sensor only <em>produces</em> evidence: a log line, a trace, a metric, or a scan of the calls present in the code. It does not decide whether what it saw is good or bad — that judgment belongs to the validator. When observation exposes a correctable violation after the fact, repair costs an additional iteration. That makes prevention attractive where the unwanted state can be excluded cleanly; many important properties, however, can only be observed.</p>
@@ -938,34 +938,34 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- source model -->
   <rect id="f-cost-authority-gradient-model" x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <text x="480" y="59" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
-  <text x="480" y="81" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">related measured quantities</text>
+  <text x="480" y="81" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">related measured quantities</text>
 
   <!-- the policy that attaches the obligation to the value -->
   <rect id="f-cost-authority-gradient-policy" x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="480" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">policy attached to the value</text>
+  <text x="480" y="150" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">policy attached to the value</text>
 
   <!-- RESPONSE: observe -->
-  <rect id="f-cost-authority-gradient-observe" x="70" y="216" width="250" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="195" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">OBSERVE</text>
-  <text x="195" y="268" text-anchor="middle" font-size="15.73" font-style="italic" fill="#57534e">report evidence, no consequence</text>
+  <rect id="f-cost-authority-gradient-observe" x="37.27" y="216" width="315.47" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="195" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">OBSERVE</text>
+  <text x="195" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">report evidence, no consequence</text>
 
   <!-- RESPONSE: adapt -> throttle / soft completion -->
   <rect id="f-cost-authority-gradient-adapt" x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="480" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#2f5169">ADAPT</text>
-  <text x="480" y="268" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">change load</text>
+  <text x="480" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">ADAPT</text>
+  <text x="480" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">change load</text>
 
-  <rect id="f-cost-authority-gradient-throttle" x="360" y="316" width="240" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="347" text-anchor="middle" font-size="17.28" font-weight="700" fill="#1c1917">throttle · soft completion</text>
+  <rect id="f-cost-authority-gradient-throttle" x="347.45" y="316" width="265.1" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="480" y="347" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">throttle · soft completion</text>
 
   <!-- RESPONSE: gate (with a small dormant annotation, not extra nodes) -->
   <rect id="f-cost-authority-gradient-gate" x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="765" y="246" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">GATE</text>
-  <text x="765" y="268" text-anchor="middle" font-size="17.28" font-style="italic" fill="#9a3f12">block admission</text>
-  <text x="765" y="306" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">dormant unless configured</text>
+  <text x="765" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">GATE</text>
+  <text x="765" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">block admission</text>
+  <text x="765" y="306" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">dormant unless configured</text>
 
   <!-- footer: protect the point -->
   <line x1="40" y1="404" x2="920" y2="404" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="434" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement &#8212; not from a maturity sequence.</text>
+  <text x="480" y="434" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement &#8212; not from a maturity sequence.</text>
 </svg><figcaption data-short="One Measurement, Different Authority Decisions"><span class="fig-label">Figure 3.3-3.</span> <em>One Measurement, Different Authority Decisions.</em> The same measured quantity may be observed without consequence, used to adapt behavior, trigger graceful degradation, or control admission. The appropriate response follows from the obligation attached to the measurement, not from a maturity sequence.</figcaption></figure>
 <h2><span class="sec-num">3.3.5</span> Positive and Negative Constraints</h2>
 <p>Constraints are often introduced as prohibitions: this code must not call that library. DocAble's provenance machinery demonstrates the complementary form. Every typed mutation verb is required to emit attribution. A source-time rule checks that the required call is wired into the mutation path. <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-4">Figure&nbsp;3.3-4</a> sets the two forms side by side: one mechanism removes a forbidden action; the other requires evidence-producing behavior.</p>

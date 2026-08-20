@@ -20,9 +20,9 @@
   </defs>
 
   <!-- MODEL COHERENCE -->
-  <rect id="model-coherence" x="320" y="30" width="260" height="78" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <rect id="model-coherence" x="281.37" y="30" width="337.26" height="78" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="450" y="62" text-anchor="middle" font-size="19" font-weight="700" fill="#155c38">MODEL COHERENCE</text>
-  <text x="450" y="86" text-anchor="middle" font-size="14.35" fill="#57534e">representation stays joined to reality</text>
+  <text x="450" y="86" text-anchor="middle" font-size="18" fill="#57534e">representation stays joined to reality</text>
 
   <!-- fork MC -> assurance / auditable (one path per branch; each terminates on its own node) -->
   <g stroke="#57534e" stroke-width="2" fill="none" marker-end="url(#ah)">
@@ -35,13 +35,13 @@
   <!-- ASSURANCE -->
   <rect id="assurance" x="130" y="182" width="250" height="78" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="255" y="214" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">ASSURANCE</text>
-  <text x="255" y="238" text-anchor="middle" font-size="16.2" fill="#57534e">obligations get discharged</text>
+  <text x="255" y="238" text-anchor="middle" font-size="18" fill="#57534e">obligations get discharged</text>
 
   <!-- AUDITABLE TRANSFORMATION -->
   <rect id="auditable" x="520" y="182" width="270" height="78" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="655" y="207" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">AUDITABLE</text>
   <text x="655" y="228" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">TRANSFORMATION</text>
-  <text x="655" y="249" text-anchor="middle" font-size="16.2" fill="#57534e">change is legible</text>
+  <text x="655" y="249" text-anchor="middle" font-size="18" fill="#57534e">change is legible</text>
 
   <!-- converge to observe-react (merge: one path per branch) -->
   <g stroke="#57534e" stroke-width="2" fill="none" marker-end="url(#ah)">
@@ -54,26 +54,26 @@
   <!-- OBSERVE -> REACT -->
   <rect id="observe-react" x="320" y="322" width="260" height="70" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="450" y="352" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">OBSERVE &#8594; REACT</text>
-  <text x="450" y="376" text-anchor="middle" font-size="16.2" fill="#57534e">detect and act</text>
+  <text x="450" y="376" text-anchor="middle" font-size="18" fill="#57534e">detect and act</text>
 
   <!-- edge: observe-react -> governance-conversion -->
   <line x1="450" y1="392" x2="450" y2="430" stroke="#57534e" stroke-width="2" marker-end="url(#ah)"/>
 
   <!-- GOVERNANCE CONVERSION -->
-  <rect id="governance-conversion" x="315" y="432" width="270" height="78" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
+  <rect id="governance-conversion" x="283.69" y="432" width="332.62" height="78" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
   <text x="450" y="464" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">GOVERNANCE CONVERSION</text>
-  <text x="450" y="488" text-anchor="middle" font-size="15.11" fill="#57534e">useful judgment &#8594; durable structure</text>
+  <text x="450" y="488" text-anchor="middle" font-size="18" fill="#57534e">useful judgment &#8594; durable structure</text>
 
   <!-- detached independence label -->
-  <text x="450" y="548" text-anchor="middle" font-size="16.2" font-style="italic" fill="#57534e">Useful independently of the other stacks (no inbound arrow):</text>
+  <text x="450" y="548" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Useful independently of the other stacks (no inbound arrow):</text>
 
   <!-- RESOURCE MEDIATION (detached: full stack, no inbound arrow) -->
   <rect x="110" y="560" width="250" height="70" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="235" y="590" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">RESOURCE MEDIATION</text>
-  <text x="235" y="614" text-anchor="middle" font-size="16.2" fill="#57534e">govern contention</text>
+  <text x="235" y="614" text-anchor="middle" font-size="18" fill="#57534e">govern contention</text>
 
   <!-- CONTEXT DELIVERY (detached: full stack, no inbound arrow) -->
-  <rect x="540" y="560" width="250" height="70" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect x="514.75" y="560" width="300.49" height="70" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
   <text x="665" y="590" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">CONTEXT DELIVERY</text>
-  <text x="665" y="614" text-anchor="middle" font-size="15.48" fill="#57534e">right knowledge at point of work</text>
+  <text x="665" y="614" text-anchor="middle" font-size="18" fill="#57534e">right knowledge at point of work</text>
 </svg>

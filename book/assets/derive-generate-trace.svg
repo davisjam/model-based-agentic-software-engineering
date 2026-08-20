@@ -32,39 +32,39 @@
   <line x1="640" y1="44" x2="640" y2="252" stroke="#d9d3c8" stroke-width="1.6"/>
 
   <!-- ===== Panel 1: DERIVE ===== -->
-  <text x="160" y="40" text-anchor="middle" font-size="17.28" font-weight="700" letter-spacing="1" fill="#2f5169">DERIVE</text>
-  <text x="160" y="64" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">implementation is source of truth</text>
+  <text x="160" y="40" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1" fill="#2f5169">DERIVE</text>
+  <text x="160" y="64" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">implementation is source of truth</text>
   <rect id="impl-derive" x="55" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="160" y="219" text-anchor="middle" font-size="17.28" font-weight="700" fill="#57534e">implementation</text>
+  <text x="160" y="219" text-anchor="middle" font-size="19.2" font-weight="700" fill="#57534e">implementation</text>
   <!-- edge: impl-derive -> model-derive -->
   <line x1="160" y1="188" x2="160" y2="130" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dg-b)"/>
-  <text x="172" y="162" font-size="17.28" font-style="italic" fill="#2f5169">derive</text>
+  <text x="172" y="162" font-size="19.2" font-style="italic" fill="#2f5169">derive</text>
   <rect id="model-derive" x="55" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="160" y="109" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">model</text>
+  <text x="160" y="109" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">model</text>
 
   <!-- ===== Panel 2: GENERATE ===== -->
-  <text x="480" y="40" text-anchor="middle" font-size="17.28" font-weight="700" letter-spacing="1" fill="#2f5169">GENERATE</text>
-  <text x="480" y="64" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">model is source of truth</text>
+  <text x="480" y="40" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1" fill="#2f5169">GENERATE</text>
+  <text x="480" y="64" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">model is source of truth</text>
   <rect id="model-generate" x="375" y="78" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="480" y="109" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">model</text>
+  <text x="480" y="109" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">model</text>
   <!-- edge: model-generate -> impl-generate -->
   <line x1="480" y1="128" x2="480" y2="186" stroke="#2f5169" stroke-width="2.4" marker-end="url(#dg-k)"/>
-  <text x="492" y="162" font-size="17.28" font-style="italic" fill="#2f5169">generate</text>
-  <rect id="impl-generate" x="375" y="188" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="480" y="219" text-anchor="middle" font-size="16.42" font-weight="700" fill="#57534e">implementation / config</text>
+  <text x="492" y="162" font-size="19.2" font-style="italic" fill="#2f5169">generate</text>
+  <rect id="impl-generate" x="353.14" y="188" width="253.71" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="480" y="219" text-anchor="middle" font-size="19.2" font-weight="700" fill="#57534e">implementation / config</text>
 
   <!-- ===== Panel 3: TRACE + CHECK ===== -->
-  <text x="800" y="40" text-anchor="middle" font-size="17.28" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE + CHECK</text>
-  <text x="800" y="64" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">neither fully determines the other</text>
+  <text x="800" y="40" text-anchor="middle" font-size="19.2" font-weight="700" letter-spacing="1" fill="#2f5169">TRACE + CHECK</text>
+  <text x="800" y="64" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">neither fully determines the other</text>
   <rect id="model-trace" x="695" y="86" width="210" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.4"/>
-  <text x="800" y="117" text-anchor="middle" font-size="17.28" font-weight="700" fill="#2f5169">model</text>
+  <text x="800" y="117" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">model</text>
   <!-- two-way link with rust decidable check -->
   <!-- edge: model-trace -> system -->
   <line x1="800" y1="138" x2="800" y2="178" stroke="#9a3f12" stroke-width="2.6" marker-start="url(#dg-r)" marker-end="url(#dg-r)"/>
-  <text x="812" y="163" font-size="17.28" font-weight="700" fill="#9a3f12">check (decidable)</text>
+  <text x="812" y="163" font-size="19.2" font-weight="700" fill="#9a3f12">check (decidable)</text>
   <rect id="system" x="695" y="180" width="210" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="800" y="211" text-anchor="middle" font-size="17.28" font-weight="700" fill="#57534e">system</text>
+  <text x="800" y="211" text-anchor="middle" font-size="19.2" font-weight="700" fill="#57534e">system</text>
 
   <!-- footer: protect the point -->
-  <text x="480" y="284" text-anchor="middle" font-size="17.28" font-style="italic" fill="#1c1917">Three correspondence patterns &#8212; derive where implementation leads, generate where the model leads, trace and check where neither does.</text>
+  <text x="480" y="284" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Three correspondence patterns &#8212; derive where implementation leads, generate where the model leads, trace and check where neither does.</text>
 </svg>

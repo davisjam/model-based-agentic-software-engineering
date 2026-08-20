@@ -44,11 +44,11 @@
 
   <!-- ===================== TOP LANE — REPRESENTATION ===================== -->
   <rect x="96" y="96" width="768" height="104" rx="12" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.2"/>
-  <text x="112" y="88" font-size="17.28" font-weight="700" fill="#1f7a4d">REPRESENTATION &#8594; stronger, more consumable</text>
+  <text x="112" y="88" font-size="19.2" font-weight="700" fill="#1f7a4d">REPRESENTATION &#8594; stronger, more consumable</text>
 
   <!-- ===================== BOTTOM LANE — AUTHORITY ===================== -->
   <rect x="96" y="284" width="768" height="104" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="1.2"/>
-  <text x="112" y="276" font-size="17.28" font-weight="700" fill="#2f5169">CONSEQUENCE &#8594; how represented claims are used</text>
+  <text x="112" y="276" font-size="19.2" font-weight="700" fill="#2f5169">CONSEQUENCE &#8594; how represented claims are used</text>
 
   <!-- Edges drawn UNDER the chips: each source end runs to the node CENTER, so the chip's opaque
        fill caps it; each directed end seats on the target's left/top border, head just outside. -->
@@ -76,37 +76,37 @@
   <!-- rep chip 1: informal -->
   <rect id="informal" x="118" y="112" width="210" height="74" rx="9" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
   <text x="223" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Informal</text>
-  <text x="223" y="170" text-anchor="middle" font-size="17.28" fill="#57534e">prose &#183; wiki &#183; diagram</text>
+  <text x="223" y="170" text-anchor="middle" font-size="19.2" fill="#57534e">prose &#183; wiki &#183; diagram</text>
 
   <!-- rep chip 2: structured -->
-  <rect id="structured" x="384" y="112" width="210" height="74" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
+  <rect id="structured" x="347.45" y="112" width="283.1" height="74" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.2"/>
   <text x="489" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structured</text>
-  <text x="489" y="170" text-anchor="middle" font-size="14.72" fill="#57534e">typed shape a tool can parse</text>
+  <text x="489" y="170" text-anchor="middle" font-size="19.2" fill="#57534e">typed shape a tool can parse</text>
 
   <!-- rep chip 3: executable -->
   <rect id="executable" x="650" y="112" width="210" height="74" rx="9" fill="#cfe6d6" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="755" y="146" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Executable</text>
-  <text x="755" y="170" text-anchor="middle" font-size="17.28" fill="#57534e">consumed by a tool</text>
+  <text x="755" y="170" text-anchor="middle" font-size="19.2" fill="#57534e">consumed by a tool</text>
 
   <!-- auth chip 1: optional context -->
   <rect id="guidance" x="118" y="300" width="210" height="74" rx="9" fill="#f6f4ef" stroke="#2f5169" stroke-width="2.2"/>
   <text x="223" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Guidance</text>
-  <text x="223" y="358" text-anchor="middle" font-size="17.28" fill="#57534e">read if useful</text>
+  <text x="223" y="358" text-anchor="middle" font-size="19.2" fill="#57534e">read if useful</text>
 
   <!-- auth chip 2: audited correspondence -->
-  <rect id="correspondence" x="384" y="300" width="210" height="74" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
+  <rect id="correspondence" x="352.17" y="300" width="273.66" height="74" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="489" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Correspondence</text>
-  <text x="489" y="358" text-anchor="middle" font-size="15.23" fill="#57534e">join checked &#183; drift surfaced</text>
+  <text x="489" y="358" text-anchor="middle" font-size="19.2" fill="#57534e">join checked &#183; drift surfaced</text>
 
   <!-- auth chip 3: under enforcement -->
-  <rect id="under-enforcement" x="650" y="300" width="210" height="74" rx="9" fill="#dbe6ef" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="under-enforcement" x="624" y="300" width="262" height="74" rx="9" fill="#dbe6ef" stroke="#2f5169" stroke-width="2.6"/>
   <text x="755" y="334" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">Under enforcement</text>
-  <text x="755" y="358" text-anchor="middle" font-size="15.9" fill="#57534e">selected obligations gated</text>
-  <text x="772" y="234" font-size="17.28" font-style="italic" fill="#b23b3b">authority attaches</text>
-  <text x="772" y="252" font-size="17.28" font-style="italic" fill="#b23b3b">to selected obligations —</text>
-  <text x="772" y="270" font-size="17.28" font-style="italic" fill="#b23b3b">when trusted and warranted</text>
+  <text x="755" y="358" text-anchor="middle" font-size="19.2" fill="#57534e">selected obligations gated</text>
+  <text x="772" y="234" font-size="19.2" font-style="italic" fill="#b23b3b">authority attaches</text>
+  <text x="772" y="252" font-size="19.2" font-style="italic" fill="#b23b3b">to selected obligations —</text>
+  <text x="772" y="270" font-size="19.2" font-style="italic" fill="#b23b3b">when trusted and warranted</text>
 
   <!-- reading line -->
-  <text x="480" y="430" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">Independent tracks: a representation can strengthen without every claim becoming a gate;</text>
-  <text x="480" y="450" text-anchor="middle" font-size="17.28" font-style="italic" fill="#57534e">only selected obligations acquire authority, and along a separate track.</text>
+  <text x="480" y="430" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">Independent tracks: a representation can strengthen without every claim becoming a gate;</text>
+  <text x="480" y="450" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">only selected obligations acquire authority, and along a separate track.</text>
 </svg>

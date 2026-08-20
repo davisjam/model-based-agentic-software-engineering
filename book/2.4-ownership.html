@@ -810,7 +810,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- trace states (blue) -->
   <rect id="f-lease-interleaving-trace-s1" x="310" y="26" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
   <rect id="f-lease-interleaving-trace-s2" x="310" y="118" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <rect id="f-lease-interleaving-trace-s3" x="310" y="210" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
+  <rect id="f-lease-interleaving-trace-s3" x="297.2" y="210" width="405.6" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
 
   <!-- fork outcomes -->
   <rect id="f-lease-interleaving-trace-fl" x="80" y="330" width="400" height="86" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
@@ -828,20 +828,20 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <path d="M605,262 L605,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
-  <text x="500" y="58" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
-  <text x="500" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">reclaim + issue epoch 8 to worker B</text>
-  <text x="500" y="242" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">worker A attempts late clear(epoch 7)</text>
+  <text x="500" y="58" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
+  <text x="500" y="150" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">reclaim + issue epoch 8 to worker B</text>
+  <text x="500" y="242" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">worker A attempts late clear(epoch 7)</text>
 
   <!-- side labels on the vertical steps (free text, in the gaps) -->
-  <text x="516" y="102" font-size="18" font-style="italic" fill="#57534e">lease appears stale</text>
-  <text x="516" y="194" font-size="18" font-style="italic" fill="#57534e">A is still alive</text>
+  <text x="516" y="102" font-size="20" font-style="italic" fill="#57534e">lease appears stale</text>
+  <text x="516" y="194" font-size="20" font-style="italic" fill="#57534e">A is still alive</text>
 
   <!-- fork branch labels -->
-  <text x="280" y="360" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">without epoch fence</text>
-  <text x="280" y="392" text-anchor="middle" font-size="18" fill="#1c1917">may clear B&#8217;s current lease &#10007;</text>
+  <text x="280" y="360" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">without epoch fence</text>
+  <text x="280" y="392" text-anchor="middle" font-size="20" fill="#1c1917">may clear B&#8217;s current lease &#10007;</text>
 
-  <text x="720" y="360" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">with epoch fence</text>
-  <text x="720" y="392" text-anchor="middle" font-size="18" fill="#1c1917">stale clear is a no-op &#10003;</text>
+  <text x="720" y="360" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">with epoch fence</text>
+  <text x="720" y="392" text-anchor="middle" font-size="20" fill="#1c1917">stale clear is a no-op &#10003;</text>
 </svg><figcaption data-short="Why ownership becomes an interleaving problem"><span class="fig-label">Figure 2.4-2.</span> <em>Why ownership becomes an interleaving problem.</em> Reclaim and reissue can overlap a stale holder's late release. An epoch fence makes the old holder's release inapplicable to the current claim.</figcaption></figure>
 <p><strong>Recovery is not permission.</strong> That distinction will matter in Part III: the same represented state can support different authority decisions.</p>
 <p>The lease also shows that model classes overlap. Active leases can be counted to estimate demand, so the same representation contributes to an ownership question — <em>who controls this work?</em> — and a measurement question — <em>how much work is genuinely in flight?</em> <a class="xref" href="2.4-ownership.html#fig-2-4-3">Figure&nbsp;2.4-3</a> draws that overlap: one represented fact fanning out into ownership, behavioral, and measurement views. The categories in this Part classify engineering questions, not mutually exclusive data structures.</p>
