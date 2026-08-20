@@ -717,111 +717,59 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A finished architecture can make its structures look inevitable. Their histories show which were designed cleanly, which were forced by failure, which required later hardening, and what each allowed the engineer to stop doing by hand.</p>
 <h2><span class="sec-num">5.3.1</span> The Product Path</h2>
 <p>A user uploads a file. The front door authenticates the request, meters quota, and queues the job; a dispatcher divides the document into chunks; the remediation core applies deterministic rules or bounded model calls through structured document representations; the check engine evaluates remaining findings against accessibility standards; a fidelity validator looks for content lost while accessibility improved; and provenance records what changed. The corrected artifact returns with the evidence those mechanisms produced. <a class="xref" href="5.3-the-road-to-mage.html#fig-5-3-1">Figure&nbsp;5.3-1</a> gives the path.</p>
-<figure id="fig-5-3-1" class="book-figure" data-label="system-overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 400" role="group" aria-labelledby="f-system-overview-sysov-title f-system-overview-sysov-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
+<figure id="fig-5-3-1" class="book-figure" data-label="system-overview"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 380" role="group" aria-labelledby="f-system-overview-sysov-title f-system-overview-sysov-desc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-system-overview-sysov-title">What got built — one upload crosses six responsibilities to a stamped result</title>
-  <desc id="f-system-overview-sysov-desc">A left-to-right pipeline. A user uploads a document at the left. It flows through six responsibilities in order: a front door that authenticates the user, meters the quota, and enqueues the job; a dispatcher that splits the document into chunks so a large deck finishes in about a minute; a remediation core, a typed command-line engine that walks the document through a structured model of its format and, for each fix, either applies a deterministic rule or asks a frontier model; a check engine that maps each remaining finding to a specific clause of the accessibility standard; a fidelity validator that catches a file that came out more accessible and less true; and a provenance layer that stamps every insertion. The corrected file, with evidence that the job was done, returns at the right. Frontier models do only the steps that require understanding a slide; deterministic code does everything else and owns the boundaries between the stages.</desc>
+  <desc id="f-system-overview-sysov-desc">A left-to-right pipeline. A user uploads a document at the left. It flows through six responsibilities in order: a front door that authenticates the user, meters the quota, and enqueues the job; a dispatcher that splits the document into work units so a large deck finishes in about a minute; a remediation core that, for each fix, either applies a deterministic rule or asks a bounded model; a check engine that maps each remaining finding to a clause of the accessibility standard; a fidelity validator that catches a file that came out more accessible but less true; and a provenance layer that stamps every insertion. The corrected file, with evidence, returns at the right. The one amber stage uses a bounded model call; every other stage is deterministic code that owns the boundaries.</desc>
   <defs>
-    <marker id="f-system-overview-sysov-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#475569"/>
-    </marker>
+    <marker id="f-system-overview-sysov-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#475569"/></marker>
   </defs>
-  <rect x="0" y="0" width="1120" height="400" fill="#ffffff"/>
+  <rect x="0" y="0" width="1120" height="380" fill="#ffffff"/>
 
-  <!-- upload -->
-  <g>
-    <rect id="f-system-overview-upload" x="18" y="150" width="120" height="100" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
-    <text x="78" y="192" text-anchor="middle" font-size="20.16" font-weight="700" fill="#3730a3">Upload</text>
-    <text x="78" y="214" text-anchor="middle" font-size="16.09" fill="#4338ca">a PPTX, DOCX,</text>
-    <text x="78" y="230" text-anchor="middle" font-size="17.97" fill="#4338ca">XLSX, or PDF</text>
-  </g>
-  <!-- edge: upload -> front-door -->
-  <line x1="138" y1="200" x2="176" y2="200" stroke="#475569" stroke-width="2" marker-end="url(#f-system-overview-sysov-arrow)"/>
+  <!-- input -->
+  <text x="50" y="176" text-anchor="middle" font-size="22.4" font-weight="700" fill="#3730a3">Upload</text>
+  <text x="50" y="200" text-anchor="middle" font-size="22.4" fill="#4338ca">a doc</text>
+  <line x1="90" y1="180" x2="98" y2="180" stroke="#475569" stroke-width="2.4" marker-end="url(#f-system-overview-sysov-arrow)"/>
 
-  <!-- six responsibility boxes -->
-  <!-- box template: width 138, gap to arrow -->
-  <g font-size="20.16">
-    <!-- 1 Front door -->
-    <rect id="f-system-overview-front-door" x="178" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-    <text x="248" y="150" text-anchor="middle" font-size="18.79" font-weight="700" fill="#0f172a">1 · Front door</text>
-    <text x="248" y="178" text-anchor="middle" fill="#334155">authenticate,</text>
-    <text x="248" y="196" text-anchor="middle" fill="#334155">meter quota,</text>
-    <text font-size="16.62" x="248" y="214" text-anchor="middle" fill="#334155">enqueue the job</text>
-    <text x="248" y="256" text-anchor="middle" font-size="20.16" fill="#64748b">deterministic</text>
+  <!-- six responsibility stages: title + one subordinate line; box colour carries the model-vs-deterministic distinction -->
+  <rect id="f-system-overview-front-door" x="100" y="120" width="160" height="120" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+  <text x="180" y="172" text-anchor="middle" font-size="22.4" font-weight="700" fill="#0f172a">Front door</text>
+  <text x="180" y="200" text-anchor="middle" font-size="22.4" fill="#334155">auth · quota</text>
+  <line x1="260" y1="180" x2="266" y2="180" stroke="#475569" stroke-width="2.4" marker-end="url(#f-system-overview-sysov-arrow)"/>
 
-    <!-- 2 Dispatcher -->
-    <rect id="f-system-overview-dispatcher" x="338" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-    <text x="408" y="150" text-anchor="middle" font-size="18.57" font-weight="700" fill="#0f172a">2 · Dispatcher</text>
-    <text x="408" y="178" text-anchor="middle" fill="#334155">split into</text>
-    <text font-size="16.51" x="408" y="196" text-anchor="middle" fill="#334155">chunks — slides,</text>
-    <text font-size="19.7" x="408" y="214" text-anchor="middle" fill="#334155">pages, sheets</text>
-    <text x="408" y="256" text-anchor="middle" font-size="20.16" fill="#64748b">deterministic</text>
+  <rect id="f-system-overview-dispatcher" x="268" y="120" width="160" height="120" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+  <text x="348" y="172" text-anchor="middle" font-size="22.4" font-weight="700" fill="#0f172a">Dispatcher</text>
+  <text x="348" y="200" text-anchor="middle" font-size="22.4" fill="#334155">split units</text>
+  <line x1="428" y1="180" x2="434" y2="180" stroke="#475569" stroke-width="2.4" marker-end="url(#f-system-overview-sysov-arrow)"/>
 
-    <!-- 3 Remediation core -->
-    <rect id="f-system-overview-remediation-core" x="498" y="120" width="140" height="160" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-    <text x="568" y="148" text-anchor="middle" font-size="16.4" font-weight="700" fill="#7c2d12">3 · Remediation</text>
-    <text x="568" y="166" text-anchor="middle" font-size="20.16" font-weight="700" fill="#7c2d12">core</text>
-    <text x="568" y="192" text-anchor="middle" fill="#78350f">rule OR a</text>
-    <text font-size="16.91" x="568" y="210" text-anchor="middle" fill="#78350f">bounded model</text>
-    <text x="568" y="228" text-anchor="middle" fill="#78350f">call, per fix</text>
-    <text x="568" y="256" text-anchor="middle" font-size="19.75" fill="#92400e">model + code</text>
+  <rect id="f-system-overview-remediation-core" x="436" y="120" width="160" height="120" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2.4"/>
+  <text x="516" y="172" text-anchor="middle" font-size="22.4" font-weight="700" fill="#7c2d12">Remediation</text>
+  <text x="516" y="200" text-anchor="middle" font-size="22.4" fill="#78350f">rule / model</text>
+  <line x1="596" y1="180" x2="602" y2="180" stroke="#475569" stroke-width="2.4" marker-end="url(#f-system-overview-sysov-arrow)"/>
 
-    <!-- 4 Check engine -->
-    <rect id="f-system-overview-check-engine" x="658" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-    <text x="728" y="150" text-anchor="middle" font-size="15.96" font-weight="700" fill="#0f172a">4 · Check engine</text>
-    <text font-size="15.71" x="728" y="178" text-anchor="middle" fill="#334155">map each finding</text>
-    <text x="728" y="196" text-anchor="middle" fill="#334155">to a standard</text>
-    <text x="728" y="214" text-anchor="middle" fill="#334155">clause</text>
-    <text x="728" y="256" text-anchor="middle" font-size="20.16" fill="#64748b">deterministic</text>
+  <rect id="f-system-overview-check-engine" x="604" y="120" width="160" height="120" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+  <text x="684" y="172" text-anchor="middle" font-size="22.4" font-weight="700" fill="#0f172a">Check engine</text>
+  <text x="684" y="200" text-anchor="middle" font-size="22.4" fill="#334155">to standard</text>
+  <line x1="764" y1="180" x2="770" y2="180" stroke="#475569" stroke-width="2.4" marker-end="url(#f-system-overview-sysov-arrow)"/>
 
-    <!-- 5 Fidelity validator -->
-    <rect id="f-system-overview-fidelity-validator" x="818" y="120" width="140" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-    <text x="888" y="148" text-anchor="middle" font-size="20.16" font-weight="700" fill="#0f172a">5 · Fidelity</text>
-    <text x="888" y="166" text-anchor="middle" font-size="20.16" font-weight="700" fill="#0f172a">validator</text>
-    <text x="888" y="192" text-anchor="middle" fill="#334155">catch more</text>
-    <text x="888" y="210" text-anchor="middle" fill="#334155">accessible,</text>
-    <text x="888" y="228" text-anchor="middle" fill="#334155">less true</text>
-    <text x="888" y="256" text-anchor="middle" font-size="20.16" fill="#64748b">deterministic</text>
+  <rect id="f-system-overview-fidelity-validator" x="772" y="120" width="160" height="120" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+  <text x="852" y="172" text-anchor="middle" font-size="22.4" font-weight="700" fill="#0f172a">Fidelity</text>
+  <text x="852" y="200" text-anchor="middle" font-size="22.4" fill="#334155">content kept</text>
+  <line x1="932" y1="180" x2="938" y2="180" stroke="#475569" stroke-width="2.4" marker-end="url(#f-system-overview-sysov-arrow)"/>
 
-    <!-- 6 Provenance layer -->
-    <rect id="f-system-overview-provenance-layer" x="978" y="120" width="124" height="160" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-    <text x="1040" y="148" text-anchor="middle" font-size="15.39" font-weight="700" fill="#0f172a">6 · Provenance</text>
-    <text x="1040" y="166" text-anchor="middle" font-size="20.16" font-weight="700" fill="#0f172a">layer</text>
-    <text font-size="19.03" x="1040" y="192" text-anchor="middle" fill="#334155">stamp every</text>
-    <text font-size="19.06" x="1040" y="210" text-anchor="middle" fill="#334155">insertion for</text>
-    <text x="1040" y="228" text-anchor="middle" fill="#334155">audit</text>
-    <text x="1040" y="256" text-anchor="middle" font-size="17.67" fill="#64748b">deterministic</text>
-  </g>
+  <rect id="f-system-overview-provenance-layer" x="940" y="120" width="160" height="120" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+  <text x="1020" y="172" text-anchor="middle" font-size="22.4" font-weight="700" fill="#0f172a">Provenance</text>
+  <text x="1020" y="200" text-anchor="middle" font-size="22.4" fill="#334155">stamp inserts</text>
 
-  <!-- inter-stage arrows -->
-  <g stroke="#475569" stroke-width="2">
-    <!-- edge: front-door -> dispatcher -->
-    <line x1="318" y1="200" x2="336" y2="200" marker-end="url(#f-system-overview-sysov-arrow)"/>
-    <!-- edge: dispatcher -> remediation-core -->
-    <line x1="478" y1="200" x2="496" y2="200" marker-end="url(#f-system-overview-sysov-arrow)"/>
-    <!-- edge: remediation-core -> check-engine -->
-    <line x1="638" y1="200" x2="656" y2="200" marker-end="url(#f-system-overview-sysov-arrow)"/>
-    <!-- edge: check-engine -> fidelity-validator -->
-    <line x1="798" y1="200" x2="816" y2="200" marker-end="url(#f-system-overview-sysov-arrow)"/>
-    <!-- edge: fidelity-validator -> provenance-layer -->
-    <line x1="958" y1="200" x2="976" y2="200" marker-end="url(#f-system-overview-sysov-arrow)"/>
-  </g>
-
-  <!-- output arrow down + result -->
-  <!-- edge: provenance-layer -> result -->
-  <line x1="1040" y1="280" x2="1040" y2="318" stroke="#475569" stroke-width="2" marker-end="url(#f-system-overview-sysov-arrow)"/>
-  <g>
-    <rect id="f-system-overview-result" x="820" y="320" width="290" height="64" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
-    <text x="965" y="348" text-anchor="middle" font-size="20.16" font-weight="700" fill="#065f46">Corrected file + evidence</text>
-    <text x="965" y="368" text-anchor="middle" font-size="14.57" fill="#047857">standards findings · fidelity · provenance</text>
-  </g>
+  <!-- output -->
+  <line x1="1020" y1="240" x2="1020" y2="286" stroke="#475569" stroke-width="2.4" marker-end="url(#f-system-overview-sysov-arrow)"/>
+  <rect id="f-system-overview-result" x="820" y="288" width="288" height="66" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="964" y="328" text-anchor="middle" font-size="22.4" font-weight="700" fill="#065f46">Corrected file + evidence</text>
 
   <!-- legend -->
-  <g font-size="20.16">
-    <rect x="20" y="330" width="20" height="14" rx="3" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
-    <text x="48" y="342" fill="#334155">frontier model does the understanding</text>
-    <rect x="20" y="356" width="20" height="14" rx="3" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
-    <text x="48" y="368" fill="#334155">deterministic code owns the boundaries</text>
-  </g>
+  <rect x="20" y="296" width="22" height="16" rx="3" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+  <text x="50" y="311" font-size="22.4" fill="#334155">amber — bounded model call</text>
+  <rect x="20" y="326" width="22" height="16" rx="3" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+  <text x="50" y="341" font-size="22.4" fill="#334155">rest — deterministic code</text>
 </svg><figcaption data-short="What Got Built"><span class="fig-label">Figure 5.3-1.</span> <em>What Got Built.</em> One upload crosses six product responsibilities and returns with standards findings, fidelity evidence, and provenance. Probabilistic interpretation is bounded inside the remediation core; deterministic machinery owns the surrounding workflow and the checks it can actually decide.</figcaption></figure>
 <p>That is the product path. The larger engineered environment around it — the subject of the previous chapter — contains the models, tests, lints, orchestration, and other machinery that made this degree of delegation possible.</p>
 <p>The architecture narrows probabilistic work into a small action surface. Typed document models own mutation; the lower-level format libraries sit behind those models; deterministic machinery owns workflow and the mechanically decidable checks; fidelity validation covers properties visible only after a transformation has run.</p>
