@@ -1,6 +1,5 @@
-Behavioral models represent state, transition, and time. Ownership represents who may act or hold a
-resource. The two are distinct model classes but often share a representation; together they expose
-which states a change affects and which actors may perform the associated transitions.
+Behavioral models represent state, transition, and time. Ownership models represent who may act on or hold a
+resource. The two are distinct but often joined: behavior constrains possible transitions; ownership constrains who may perform them.
 
 ## Lifecycle
 
@@ -21,14 +20,12 @@ terminal.
 
 **Authority and correspondence.** Transition operations or checks can mediate actual state changes
 against the declared transition relation. Any implemented transition absent from that relation
-becomes a finding. Where two lifecycles interact, compose their state machines explicitly so
-cross-machine transitions are represented rather than left implicit in code.
+becomes a finding. Where two lifecycles interact, represent their cross-machine transitions explicitly rather than leaving those relationships implicit in code.
 
 ## Ownership and Lease
 
-Concurrency adds ownership and lease state to the lifecycle model. Ownership remains a distinct
-model class: it answers who owns a resource and who may act on it, while the behavioral model
-supplies the states and transitions to which that authority applies.
+Concurrency adds ownership and lease state to the lifecycle. The resulting model must represent not
+only which transitions are legal, but which actor may perform them now.
 
 **Engineering question.** Who may act on this work item now, and what stays true if workers overlap,
 fail, or retry?
@@ -41,7 +38,7 @@ fail, or retry?
 **Property.** Representative invariants:
 
 - **A leased item has a valid owner**, and a free item has none.
-- **Ownership changes through the declared acquisition and release mechanism**, not by ad-hoc
+- **Ownership changes through the declared acquisition and release mechanism**, not by ad hoc
   mutation.
 - **Terminal work cannot be reclaimed.**
 - **Where ordering is required, observed acquisition order respects the declared order.**

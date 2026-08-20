@@ -709,7 +709,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · C.4 Measurement — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">Appendix C — Model Reference</a></div><h1>C.4 Measurement</h1></header><p>Measurement models represent quantitative properties of the running system and the bounds against which those properties are evaluated. In review, they expose which measurement obligation changed and what evidence supports the declared bound.</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · C.4 Measurement — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">Appendix C — Model Reference</a></div><h1>C.4 Measurement</h1></header><p>Measurement models represent quantitative properties of the running system and the bounds against which they are evaluated. In review, they expose what is measured, what bound applies, and what evidence supports that bound.</p>
 <p><strong>Engineering question.</strong> What quantity matters, how is it measured, what bound has been declared, and what should happen when the bound is exceeded?</p>
 <p><strong>Representation.</strong></p>
 <pre><code>Measure
@@ -722,8 +722,10 @@ Bound
     measure_id
     threshold
     aggregation
-    authority</code></pre>
-<p>The authority field records whether a bound is descriptive, report-only, warning-producing, or admission-blocking. Measurability alone does not justify enforcement.</p>
+Disposition
+    bound_id
+    mode        # report | warn | gate</code></pre>
+<p>The disposition stays separate from the measured bound; its mode records whether a bound is report-only, warning-producing, or admission-blocking. Measurability alone does not justify enforcement.</p>
 <p><a class="xref" href="appendix-c-measurement.html#fig-C-4-1">Figure&nbsp;C.4-1</a> separates the measurement from the authority that may or may not attach to it.</p>
 <figure id="fig-C-4-1" class="book-figure" data-label="fig-g5-measurement-authority"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520"
      role="img" aria-labelledby="f-appendix-g-5-measurement-authority-g5Title f-appendix-g-5-measurement-authority-g5Desc"
@@ -732,7 +734,7 @@ Bound
   <title id="f-appendix-g-5-measurement-authority-g5Title">Measurement does not imply authority — a number earns a gate only when evidence warrants it</title>
   <desc id="f-appendix-g-5-measurement-authority-g5Desc">A running system is observed along a dashed arrow into a measurement box holding latency, cost,
     and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison
-    branches on whether the evidence is sufficient. A no leads to a plain report-only box: the number is surfaced,
+    branches on whether authority is warranted. A no leads to a plain report-only box: the number is surfaced,
     not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission
     gate — the one place authority sits. The lesson: represent first; grant authority only when the evidence
     warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour.</desc>
@@ -793,7 +795,7 @@ Bound
 
   <!-- decision: transparent anchor over the text label, sized to include the fan-out junction -->
   <rect id="f-appendix-g-5-measurement-authority-decision" x="280" y="328" width="160" height="30" fill="none" stroke="none"/>
-  <text x="360" y="344" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">evidence sufficient?</text>
+  <text x="360" y="344" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">authority warranted?</text>
 
   <!-- REPORT ONLY (plain) -->
   <rect id="f-appendix-g-5-measurement-authority-report" x="80" y="394" width="220" height="54" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
@@ -807,6 +809,6 @@ Bound
 
   <text x="360" y="480" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Represent first; grant authority only when the evidence warrants it.</text>
   <text x="40" y="506" font-size="13" font-style="italic" fill="#57534e">Legend: see Figure C-1.  A quantity does not earn a gate by being measurable.</text>
-</svg><figcaption data-short="Measurement does not imply authority"><span class="fig-label">Figure C.4-1.</span> <em>Measurement does not imply authority.</em> A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence justifies warning or admission authority.</figcaption></figure>
+</svg><figcaption data-short="Measurement does not imply authority"><span class="fig-label">Figure C.4-1.</span> <em>Measurement does not imply authority.</em> A sensor produces an observed measurement, which is compared with a declared bound. The result remains report-only unless the evidence warrants warning or admission authority.</figcaption></figure>
 <p><strong>Property.</strong> A measurement model can state that request latency remains below a declared bound for a defined request class, queue depth below a declared ceiling, or processing cost within a specified envelope. Scope, statistic, and aggregation window are part of the property; a threshold without them is underspecified.</p>
-<p><strong>Authority and correspondence.</strong> Sensors supply observations; the model supplies their scope, interpretation, and declared bounds. Measurements should remain descriptive until the evidence justifies stronger authority.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">« Beginning of part</a><a href="appendix-c-execution-and-placement.html" aria-label="Previous chapter — C.3 Execution and Placement">« Previous chapter</a></div><span class="chapnav-here" title="C.4 Measurement">C.4 Measurement</span><div class="chapnav-fwd"><a href="appendix-c-documentation-and-provenance.html" aria-label="Next chapter — C.5 Documentation and Provenance">Next chapter »</a><a href="appendix-operators-reference.html" aria-label="Next part — Appendix D — Operator&#x27;s Reference">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<p><strong>Authority and correspondence.</strong> Sensors supply observations; the model supplies their scope, interpretation, and declared bounds. Measurements remain observations unless the evidence warrants warning or gate authority.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">« Beginning of part</a><a href="appendix-c-execution-and-placement.html" aria-label="Previous chapter — C.3 Execution and Placement">« Previous chapter</a></div><span class="chapnav-here" title="C.4 Measurement">C.4 Measurement</span><div class="chapnav-fwd"><a href="appendix-c-documentation-and-provenance.html" aria-label="Next chapter — C.5 Documentation and Provenance">Next chapter »</a><a href="appendix-operators-reference.html" aria-label="Next part — Appendix D — Operator&#x27;s Reference">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

@@ -8,7 +8,7 @@
     From the worker a dashed scheduled-under arrow drops to a Host Execution Policy table, the variable overlay.
     The table maps host profile to scheduling: elastic fans out, metered gives a bounded fan, scarce serializes.
     No heavy boundary appears here — the figure is descriptive, and the representative rule is that load rationing
-    lives in the scheduler, not by mutating the deploy graph per host: no deploy edge carries the LOAD intent.
+    belongs to scheduling policy, not to the deployment topology, and no deploy edge is added per host.
     Legend as in Figure C-1; this figure shows a representation that stays advisory, with authority left to Part
     III. Weight and dash carry the meaning without colour.</desc>
 
@@ -70,6 +70,6 @@
   <text x="290" y="332" text-anchor="middle" font-size="15" fill="#1c1917">scarce</text>
   <text x="440" y="332" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">serialize</text>
 
-  <text x="360" y="372" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Load rationing lives in the scheduler — no deploy edge carries the LOAD intent.</text>
+  <text x="360" y="372" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Load rationing belongs to scheduling policy, not deployment topology.</text>
   <text x="40" y="418" font-size="14" font-style="italic" fill="#57534e">Legend: see Figure C-1.  No gate here: the policy is a representation; Part III decides any authority.</text>
 </svg>

@@ -709,7 +709,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · C.5 Documentation and Provenance — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">Appendix C — Model Reference</a></div><h1>C.5 Documentation and Provenance</h1></header><p>Documentation and provenance models represent what happened and which human-facing claims should remain synchronized with those facts. In review, they expose whether required records exist and whether derived documentation still reflects its source.</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · C.5 Documentation and Provenance — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">Appendix C — Model Reference</a></div><h1>C.5 Documentation and Provenance</h1></header><p>Provenance models record what happened. Documentation models represent the human-facing claims that should remain synchronized with those facts. In review, they expose whether required records exist and whether derived documentation still reflects its source.</p>
 <p><strong>Engineering question.</strong> What happened, and which human-facing account of it must remain true?</p>
 <p><strong>Representation.</strong></p>
 <pre><code>Action
@@ -723,7 +723,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 DerivedDocumentation
     source_fact
     rendered_claim</code></pre>
-<p>Where documentation can be derived from structured facts, generate it from those facts rather than maintaining an independent copy. The generated documentation then remains re-derivable from its authoritative source.</p>
+<p>Where documentation can be derived from structured facts, generate it from those facts rather than maintaining an independent copy.</p>
 <p><a class="xref" href="appendix-c-documentation-and-provenance.html#fig-C-5-1">Figure&nbsp;C.5-1</a> puts the fact before the prose.</p>
 <figure id="fig-C-5-1" class="book-figure" data-label="fig-g6-facts-before-prose"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500"
      role="img" aria-labelledby="f-appendix-g-6-facts-before-prose-g6Title f-appendix-g-6-facts-before-prose-g6Desc"
@@ -803,12 +803,12 @@ DerivedDocumentation
   <text x="160" y="366" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">prose maintained</text>
   <text x="160" y="384" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">independently</text>
   <rect id="f-appendix-g-6-facts-before-prose-drift" x="332" y="344" width="150" height="48" rx="8" fill="#fdfcf9" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
-  <text x="407" y="373" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">drift risk</text>
+  <text x="407" y="366" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">no mechanical</text>
+  <text x="407" y="384" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">correspondence</text>
 
   <text x="360" y="432" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Generate from facts the system already knows — do not keep a second hand-maintained copy.</text>
   <text x="40" y="470" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Solid + re-derivable stays faithful; a dashed prose edge may drift.</text>
-</svg><figcaption data-short="Facts before prose"><span class="fig-label">Figure C.5-1.</span> <em>Facts before prose.</em> An engineering action leaves a structured provenance record that supports mechanical validation and re-derivable documentation. Independently maintained prose lacks that mechanical correspondence and therefore carries drift risk.</figcaption></figure>
+</svg><figcaption data-short="Facts before prose"><span class="fig-label">Figure C.5-1.</span> <em>Facts before prose.</em> A structured provenance record supports mechanical validation and re-derivable documentation; independently maintained prose lacks that correspondence.</figcaption></figure>
 <p><strong>Property.</strong> Representative properties:</p>
 <ul><li><strong>Every relevant mutation leaves a provenance record.</strong></li><li><strong>Generated documentation reflects the current structured facts</strong> from which it is derived.</li><li><strong>References in generated documentation resolve to existing identities.</strong></li></ul>
-<p>Independently authored prose remains judgment-dependent: the same machinery cannot establish semantic equivalence between free prose and the implementation.</p>
 <p><strong>Authority and correspondence.</strong> Structured provenance can be validated mechanically, and generated documentation can be re-derived from its source facts. Free prose generally cannot be checked for semantic equivalence by the same machinery and therefore remains subject to human review.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">« Beginning of part</a><a href="appendix-c-measurement.html" aria-label="Previous chapter — C.4 Measurement">« Previous chapter</a></div><span class="chapnav-here" title="C.5 Documentation and Provenance">C.5 Documentation and Provenance</span><div class="chapnav-fwd"><a href="appendix-c-joining-views.html" aria-label="Next chapter — C.6 Joining Views Around a Scenario">Next chapter »</a><a href="appendix-operators-reference.html" aria-label="Next part — Appendix D — Operator&#x27;s Reference">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

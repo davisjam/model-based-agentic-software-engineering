@@ -78,7 +78,8 @@
   <text x="160" y="366" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">prose maintained</text>
   <text x="160" y="384" text-anchor="middle" font-size="14" font-weight="700" fill="#57534e">independently</text>
   <rect id="drift" x="332" y="344" width="150" height="48" rx="8" fill="#fdfcf9" stroke="#b23b3b" stroke-width="1.8" stroke-dasharray="6 4"/>
-  <text x="407" y="373" text-anchor="middle" font-size="15" font-weight="700" fill="#b23b3b">drift risk</text>
+  <text x="407" y="366" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">no mechanical</text>
+  <text x="407" y="384" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">correspondence</text>
 
   <text x="360" y="432" text-anchor="middle" font-size="14" font-style="italic" fill="#57534e">Generate from facts the system already knows — do not keep a second hand-maintained copy.</text>
   <text x="40" y="470" font-size="12" font-style="italic" fill="#57534e">Legend: see Figure C-1.  Solid + re-derivable stays faithful; a dashed prose edge may drift.</text>

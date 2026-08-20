@@ -7,7 +7,7 @@
   <title id="g5Title">Measurement does not imply authority — a number earns a gate only when evidence warrants it</title>
   <desc id="g5Desc">A running system is observed along a dashed arrow into a measurement box holding latency, cost,
     and queue depth. The measurement is compared, along a solid arrow, against a declared bound. The comparison
-    branches on whether the evidence is sufficient. A no leads to a plain report-only box: the number is surfaced,
+    branches on whether authority is warranted. A no leads to a plain report-only box: the number is surfaced,
     not enforced. A yes flows along a heavy bordered arrow, crossed by a gate glyph, into a warning or admission
     gate — the one place authority sits. The lesson: represent first; grant authority only when the evidence
     warrants it. Legend as in Figure C-1; weight, dash, and glyph carry the meaning without colour.</desc>
@@ -68,7 +68,7 @@
 
   <!-- decision: transparent anchor over the text label, sized to include the fan-out junction -->
   <rect id="decision" x="280" y="328" width="160" height="30" fill="none" stroke="none"/>
-  <text x="360" y="344" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">evidence sufficient?</text>
+  <text x="360" y="344" text-anchor="middle" font-size="15" font-weight="700" fill="#1c1917">authority warranted?</text>
 
   <!-- REPORT ONLY (plain) -->
   <rect id="report" x="80" y="394" width="220" height="54" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>

@@ -12,7 +12,7 @@ required test coverage and placement, and execute under the correct host policy?
 
 **Property.** The joined view states cross-model properties that no single view can:
 
-- **Every major journey part has the required test coverage.**
+- **Every declared journey step has the required test coverage.**
 - **Declared journey dependencies agree with the actual call sites.**
 - **Declared endpoints are exercised.**
 - **Test placement reflects journey criticality.**

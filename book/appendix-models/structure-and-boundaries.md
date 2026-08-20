@@ -1,8 +1,6 @@
 Structural models represent what exists and how elements relate. In review, they expose which
-architectural boundaries a change affects. Ownership and decision often share the same representation
-but answer distinct questions: who owns a surface, and which relationships are permitted. This
-section uses the component-and-zone model and service-flow model as the principal examples, then
-treats domain registries and bills of materials briefly.
+architectural boundaries a change affects. Ownership and boundary policy often share the same representation
+but answer distinct questions: who owns a surface, and which relationships are permitted.
 
 ## Component and Zone
 
@@ -33,7 +31,7 @@ Seam
 [ref:fig-g2-structure-boundaries] joins the authored catalog to the observed tree.
 
 <!-- label: fig-g2-structure-boundaries -->
-<!-- figure: assets/appendix-g-2-structure-boundaries.svg | *Structure and boundaries.* Authored ownership and permitted seams are reconciled with the observed repository tree. The model distinguishes descriptive facts, such as directory existence, from normative facts, such as ownership and permitted boundary crossings. Sanctioned crossings pass through declared doors; forbidden direct access raises a finding. -->
+<!-- figure: assets/appendix-g-2-structure-boundaries.svg | *Structure and boundaries.* Authored ownership and permitted seams are reconciled with the observed repository tree. Sanctioned crossings pass through declared doors; forbidden direct access raises a finding. -->
 
 **Property.** Representative properties, each with the source that decides it:
 
@@ -48,7 +46,7 @@ Seam
 Directory existence can be derived from the repository; ownership and permitted boundaries are
 authored architectural decisions.
 
-**Authority and correspondence.** The repository reverse-maps into the component catalog. A
+**Authority and correspondence.** The repository tree is mapped back to the component catalog. A
 directory with no owner, multiple owners, or an observed dependency crossing an undeclared boundary
 becomes a correspondence finding. Where reconciliation depends on source locations, anchor references
 to resolvable symbols rather than line numbers so the correspondence can be re-derived after edits.
@@ -76,17 +74,16 @@ Flow
 ```
 
 The central object is the declared edge. Each permitted service-to-service or service-to-resource
-relation records both reachability and its authentication posture; observed edges with no
-declaration become correspondence findings.
+relation records both reachability and its authentication posture; an observed edge with no
+declaration is a mismatch.
 
 **Property.** Only declared service-to-service and service-to-resource relationships are permitted,
-each with its declared authentication posture. The same graph carries both structural connectivity
-and decision policy.
+each with its declared authentication posture. The same graph carries both connectivity and access policy.
 
 **Authority and correspondence.** The declared graph supplies the *ought*. Static call sites,
 generated configuration, deployment wiring, and runtime observation each supply part of the *is*. A
-correspondence check asks whether observed edges belong to the declared relation, and, where it
-matters, whether declared edges still exist.
+correspondence check asks whether each observed edge is declared and, where it
+matters, whether each declared edge still exists.
 
 The same representation pattern applies to firewall policy, service-mesh authorization, network
 policy, and cloud access control: the representation declares permitted relations while the
@@ -98,6 +95,6 @@ Two simpler forms use the same pattern: reconcile observed facts or edges agains
 
 - **Domain registry.** A registry stores a slowly changing fact under one stable key. Consumers
   query or join through that key rather than maintaining independent copies.
-- **Bill of materials.** A bill of materials declares the third-party dependencies of a build.
-  Structural completeness is checked by reconciling observed dependency edges against that declared
-  set.
+- **Bill of materials.** A bill of materials records the third-party dependencies present in a build.
+  Where an authored dependency set exists, completeness can be checked by reconciling the observed
+  dependency edges against it.
