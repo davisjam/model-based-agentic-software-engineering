@@ -3,8 +3,8 @@
 Software engineering has always relied on abstraction. Large systems exceed what any engineer can
 reason about directly, so we work through architectures, interfaces, schemas, requirements, state
 machines, dependency graphs, and other purposeful reductions. Explicit models have nevertheless
-remained secondary in much code-centric software practice because maintaining another representation of
-a fast-moving system carries a standing cost. Commodity intelligence changes that economics. Deriving,
+remained secondary in much code-centric software practice because keeping another representation
+synchronized with a fast-moving system costs work. Commodity intelligence changes that economics. Deriving,
 reconciling, regenerating, and querying structured representations are repeated tasks an agent fleet
 can often perform cheaply.
 
