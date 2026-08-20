@@ -32,27 +32,27 @@
   <!-- MODEL (representation) -->
   <rect id="model" x="230" y="112" width="260" height="80" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
   <text x="360" y="142" text-anchor="middle" font-size="20" font-weight="700" fill="#8a2f2f">MODEL</text>
-  <text x="360" y="164" text-anchor="middle" font-size="14" fill="#57534e">entities · relations</text>
-  <text x="360" y="182" text-anchor="middle" font-size="14" fill="#57534e">· properties</text>
+  <text x="360" y="164" text-anchor="middle" font-size="14.4" fill="#57534e">entities · relations</text>
+  <text x="360" y="182" text-anchor="middle" font-size="14.4" fill="#57534e">· properties</text>
 
   <!-- AUTHORED intent in (SOLID, from left) -->
   <rect id="authored" x="60" y="136" width="70" height="34" fill="none" stroke="none"/>
   <!-- edge: authored -> model -->
   <line x1="130" y1="153" x2="228" y2="153" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
-  <text x="95" y="147" text-anchor="middle" font-size="10.44" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED</text>
-  <text x="95" y="164" text-anchor="middle" font-size="13" fill="#57534e">intent</text>
+  <text x="95" y="147" text-anchor="middle" font-size="14.4" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED</text>
+  <text x="95" y="164" text-anchor="middle" font-size="14.4" fill="#57534e">intent</text>
 
   <!-- DERIVED facts in (DASHED, from right) -->
   <rect id="derived" x="596" y="136" width="64" height="34" fill="none" stroke="none"/>
   <!-- edge: derived .. model -->
   <line x1="596" y1="153" x2="492" y2="153" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g1-solid)"/>
-  <text x="628" y="147" text-anchor="middle" font-size="11.98" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
-  <text x="628" y="164" text-anchor="middle" font-size="13" fill="#57534e">facts</text>
+  <text x="628" y="147" text-anchor="middle" font-size="14.4" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED</text>
+  <text x="628" y="164" text-anchor="middle" font-size="14.4" fill="#57534e">facts</text>
 
   <!-- declares / generates (SOLID down) -->
   <!-- edge: model -> artifacts -->
   <line x1="360" y1="192" x2="360" y2="226" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
-  <text x="474" y="214" font-size="13" font-style="italic" fill="#57534e">declares / generates</text>
+  <text x="474" y="214" font-size="14.4" font-style="italic" fill="#57534e">declares / generates</text>
 
   <!-- CODE / CONFIG / RUNTIME / ARTIFACTS (observed / implementation) -->
   <rect id="artifacts" x="230" y="228" width="260" height="64" rx="8" fill="#eef2f5" stroke="#2f5169" stroke-width="2"/>
@@ -62,8 +62,8 @@
   <!-- observe / re-derive (DASHED down) -->
   <!-- edge: artifacts .. check -->
   <line x1="360" y1="292" x2="360" y2="328" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g1-solid)"/>
-  <text x="474" y="309" font-size="13" font-style="italic" fill="#57534e">observe / re-derive</text>
-  <text x="474" y="325" font-size="12.96" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED</text>
+  <text x="474" y="309" font-size="14.4" font-style="italic" fill="#57534e">observe / re-derive</text>
+  <text x="474" y="325" font-size="14.4" font-weight="700" fill="#2f5169" letter-spacing="0.5">OBSERVED</text>
 
   <!-- CORRESPONDENCE / INVARIANT CHECK (representation) -->
   <rect id="check" x="230" y="330" width="260" height="64" rx="8" fill="#f6ece9" stroke="#8a2f2f" stroke-width="2"/>
@@ -74,32 +74,32 @@
   <rect id="disagreement" x="305" y="424" width="110" height="24" fill="none" stroke="none"/>
   <!-- edge: check -> disagreement -->
   <line x1="360" y1="394" x2="360" y2="422" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
-  <text x="360" y="438" text-anchor="middle" font-size="13.45" font-weight="700" fill="#1c1917">disagreement?</text>
+  <text x="360" y="438" text-anchor="middle" font-size="14.4" font-weight="700" fill="#1c1917">disagreement?</text>
 
   <!-- NO leg: advisory / report-only (plain, no authority) — hand-routed as an orthogonal elbow (exit the
        disagreement hub left, drop into advisory's top border) so the head seats perpendicular, not skimming. -->
   <path d="M305,436 L185,436 L185,482" fill="none" stroke="#2f5169" stroke-width="2" marker-end="url(#g1-solid)"/>
-  <text x="243" y="430" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">no</text>
+  <text x="243" y="430" text-anchor="middle" font-size="14.4" font-weight="700" fill="#57534e">no</text>
   <rect id="advisory" x="70" y="484" width="230" height="46" rx="8" fill="#fdfcf9" stroke="#2b2825" stroke-width="1.8"/>
-  <text x="185" y="506" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">advisory · report-only</text>
-  <text x="185" y="523" text-anchor="middle" font-size="12.96" font-style="italic" fill="#57534e">informs the engineer</text>
+  <text x="185" y="506" text-anchor="middle" font-size="14.4" font-weight="700" fill="#1c1917">advisory · report-only</text>
+  <text x="185" y="523" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">informs the engineer</text>
 
   <!-- YES leg: finding / gate where warranted (HEAVY authority + gate glyph) — hand-routed as an orthogonal
        elbow (exit the disagreement hub right, drop into finding/gate's top border). Orthogonal routing seats
        the CHECKED gate glyph SQUARE by construction: on the vertical shaft the two bars run horizontal,
        perpendicular to their local segment (matching the legend's CHECKED row), not tilted along a diagonal. -->
   <path d="M415,436 L540,436 L540,482" fill="none" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g1-auth)"/>
-  <text x="478" y="430" text-anchor="middle" font-size="13" font-weight="700" fill="#b23b3b">yes</text>
+  <text x="478" y="430" text-anchor="middle" font-size="14.4" font-weight="700" fill="#b23b3b">yes</text>
   <!-- gate glyph: two heavy bars ACROSS the authority arrow's vertical shaft (horizontal = perpendicular) -->
   <g stroke="#b23b3b" stroke-width="3.4">
     <line x1="531" y1="457" x2="549" y2="457"/>
     <line x1="531" y1="465" x2="549" y2="465"/>
   </g>
   <rect x="420" y="484" width="240" height="52" rx="8" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.2"/>
-  <text x="540" y="507" text-anchor="middle" font-size="14" font-weight="700" fill="#b23b3b">finding / gate</text>
-  <text x="540" y="525" text-anchor="middle" font-size="12.96" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED — where warranted</text>
+  <text x="540" y="507" text-anchor="middle" font-size="14.4" font-weight="700" fill="#b23b3b">finding / gate</text>
+  <text x="540" y="525" text-anchor="middle" font-size="14.4" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED — where warranted</text>
 
-  <text x="360" y="566" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">Not every model traverses every edge — a useful representation may stay advisory.</text>
+  <text x="360" y="566" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">Not every model traverses every edge — a useful representation may stay advisory.</text>
 
   <!-- ===================== SHARED LEGEND (ship once, here in G.1) ===================== -->
   <rect x="60" y="596" width="600" height="176" rx="10" fill="#f7f5f0" stroke="#2b2825" stroke-width="1.4"/>
@@ -107,13 +107,13 @@
 
   <!-- solid = declared -->
   <line x1="90" y1="652" x2="170" y2="652" stroke="#2f5169" stroke-width="2.2" marker-end="url(#g1-solid)"/>
-  <text x="186" y="649" font-size="13.5" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED</text>
-  <text x="186" y="666" font-size="13" fill="#1c1917">solid arrow = a declared relation (authored intent)</text>
+  <text x="186" y="649" font-size="14.4" font-weight="700" fill="#2f5169" letter-spacing="0.5">AUTHORED</text>
+  <text x="186" y="666" font-size="14.4" fill="#1c1917">solid arrow = a declared relation (authored intent)</text>
 
   <!-- dashed = derived/observed -->
   <line x1="90" y1="692" x2="170" y2="692" stroke="#2f5169" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#g1-solid)"/>
-  <text x="186" y="689" font-size="13.5" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED · OBSERVED</text>
-  <text x="186" y="706" font-size="13" fill="#1c1917">dashed arrow = derived / observed correspondence</text>
+  <text x="186" y="689" font-size="14.4" font-weight="700" fill="#2f5169" letter-spacing="0.5">DERIVED · OBSERVED</text>
+  <text x="186" y="706" font-size="14.4" fill="#1c1917">dashed arrow = derived / observed correspondence</text>
 
   <!-- heavy = authority -->
   <line x1="90" y1="732" x2="170" y2="732" stroke="#b23b3b" stroke-width="3.2" marker-end="url(#g1-auth)"/>
@@ -121,8 +121,8 @@
     <line x1="122" y1="724" x2="122" y2="740"/>
     <line x1="132" y1="724" x2="132" y2="740"/>
   </g>
-  <text x="186" y="729" font-size="13.5" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
-  <text x="186" y="746" font-size="13" fill="#1c1917">heavy boundary + gate glyph = real authority (can block)</text>
+  <text x="186" y="729" font-size="14.4" font-weight="700" fill="#b23b3b" letter-spacing="0.5">CHECKED</text>
+  <text x="186" y="746" font-size="14.4" fill="#1c1917">heavy boundary + gate glyph = real authority (can block)</text>
 
-  <text x="80" y="768" font-size="12.32" font-style="italic" fill="#57534e">Rounded boxes denote representations. Meaning is encoded by line style, weight, and glyph — not color.</text>
+  <text x="80" y="768" font-size="14.4" font-style="italic" fill="#57534e">Boxes denote representations. Meaning is encoded by line style, weight, and glyph — not color.</text>
 </svg>

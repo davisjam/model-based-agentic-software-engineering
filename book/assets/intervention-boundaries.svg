@@ -33,48 +33,48 @@
 
   <rect x="0" y="0" width="1000" height="360" fill="#fdfcf9"/>
   <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Where authority can act</text>
-  <text x="500" y="68" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Guidance shapes reasoning input; authority binds actions, units of work, and artifacts.</text>
+  <text x="500" y="68" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Guidance shapes reasoning input; authority binds actions, units of work, and artifacts.</text>
 
   <!-- ===== GUIDANCE zone (reasoning input, set apart) ===== -->
-  <rect x="40" y="92" width="228" height="196" rx="12" fill="#eef2f7" stroke="#2f5169" stroke-width="1.6" stroke-dasharray="6 4"/>
-  <text x="154" y="115" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169" letter-spacing="1">GUIDANCE</text>
+  <rect x="28" y="92" width="252" height="196" rx="12" fill="#eef2f7" stroke="#2f5169" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="154" y="115" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169" letter-spacing="1">GUIDANCE</text>
 
   <!-- ===== AUTHORITY zone (action / work unit / artifact-runtime) ===== -->
   <rect x="292" y="92" width="668" height="196" rx="12" fill="#fbf5ee" stroke="#9a3f12" stroke-width="1.6" stroke-dasharray="6 4"/>
-  <text x="626" y="115" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12" letter-spacing="1">AUTHORITY CAN BIND HERE</text>
+  <text x="626" y="115" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="1">AUTHORITY CAN BIND HERE</text>
 
   <!-- boundary pills -->
   <rect x="56"  y="128" width="196" height="58" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="154" y="163" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">reasoning input</text>
+  <text x="154" y="163" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">reasoning input</text>
 
   <rect x="308" y="128" width="190" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="403" y="163" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">action</text>
+  <text x="403" y="163" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">action</text>
 
   <rect x="518" y="128" width="190" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="613" y="163" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">work unit</text>
+  <text x="613" y="163" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">work unit</text>
 
   <rect x="728" y="128" width="204" height="58" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="830" y="163" text-anchor="middle" font-size="18" font-weight="600" fill="#1c1917">artifact / runtime</text>
+  <text x="830" y="163" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">artifact / runtime</text>
 
   <!-- the mechanisms that act at each boundary -->
-  <text x="154" y="208" text-anchor="middle" font-size="18" fill="#2f5169">prompts &#183; briefs</text>
-  <text x="154" y="226" text-anchor="middle" font-size="14.82" fill="#2f5169">engineering models &#183; examples</text>
+  <text x="154" y="208" text-anchor="middle" font-size="20" fill="#2f5169">prompts &#183; briefs</text>
+  <text x="154" y="226" text-anchor="middle" font-size="20" fill="#2f5169">models &#183; examples</text>
 
-  <text x="403" y="208" text-anchor="middle" font-size="18" fill="#9a3f12">permissions &#183; hooks &#183; tools</text>
+  <text x="403" y="208" text-anchor="middle" font-size="20" fill="#9a3f12">permissions &#183; hooks &#183; tools</text>
 
-  <text x="613" y="208" text-anchor="middle" font-size="18" fill="#9a3f12">task &#183; PR &#183; build</text>
-  <text x="613" y="226" text-anchor="middle" font-size="18" fill="#9a3f12">deployment candidate</text>
+  <text x="613" y="208" text-anchor="middle" font-size="20" fill="#9a3f12">task &#183; PR &#183; build</text>
+  <text x="613" y="226" text-anchor="middle" font-size="20" fill="#9a3f12">deployment candidate</text>
 
-  <text x="830" y="208" text-anchor="middle" font-size="18" fill="#9a3f12">types &#183; API seams</text>
-  <text x="830" y="226" text-anchor="middle" font-size="18" fill="#9a3f12">admission &#183; runtime policy</text>
+  <text x="830" y="208" text-anchor="middle" font-size="20" fill="#9a3f12">types &#183; API seams</text>
+  <text x="830" y="226" text-anchor="middle" font-size="20" fill="#9a3f12">admission &#183; runtime policy</text>
 
   <!-- reasoning input is authoritative only through a consumer -->
-  <text x="154" y="256" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">authoritative only through</text>
-  <text x="154" y="272" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">a consuming mechanism</text>
+  <text x="154" y="256" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">authoritative only through</text>
+  <text x="154" y="272" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">a consuming mechanism</text>
 
   <!-- the grain axis: neutral, plain — spans the four boxes; grain increases, strength does not -->
-  <text x="500" y="308" text-anchor="middle" font-size="18" font-weight="600" fill="#57534e">semantic grain &#8594;</text>
+  <text x="500" y="308" text-anchor="middle" font-size="20" font-weight="600" fill="#57534e">semantic grain &#8594;</text>
   <line x1="56" y1="318" x2="946" y2="318" stroke="#57534e" stroke-width="1.6" marker-end="url(#ib-axis)"/>
-  <text x="56" y="338" font-size="18" font-style="italic" fill="#57534e">one attempted side effect</text>
-  <text x="946" y="338" text-anchor="end" font-size="18" font-style="italic" fill="#57534e">the resulting system / state</text>
+  <text x="56" y="338" font-size="20" font-style="italic" fill="#57534e">one attempted side effect</text>
+  <text x="946" y="338" text-anchor="end" font-size="20" font-style="italic" fill="#57534e">the resulting system / state</text>
 </svg>

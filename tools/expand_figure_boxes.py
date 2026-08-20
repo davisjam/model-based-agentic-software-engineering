@@ -86,6 +86,7 @@ def plan_figure(text: str, vb_w: float, faces: dict) -> tuple[list[tuple[ovf.Rec
             box_need[id(box)] = (box, need_w, t.font_size)
 
     widenings: list[tuple[ovf.Rect, float, float]] = []
+    accepted: list[ovf.Rect] = []   # new boxes already accepted this pass — a later widen must not hit them
     skips: list[str] = []
     for box, need_w, fs in box_need.values():
         cur_inner = max(box.w - 2 * ovf.PAD_EM_PER_SIDE * fs, 1.0)
@@ -111,7 +112,11 @@ def plan_figure(text: str, vb_w: float, faces: dict) -> tuple[list[tuple[ovf.Rec
         if occl is not None:
             skips.append(f"{label}: would cover label '{occl.text[:24]}'")
             continue
+        if any(_overlaps(new_box, nb) for nb in accepted):
+            skips.append(f"{label}: would hit an already-widened neighbor")
+            continue
         widenings.append((box, new_x, need_w))
+        accepted.append(new_box)
     return widenings, skips
 
 
