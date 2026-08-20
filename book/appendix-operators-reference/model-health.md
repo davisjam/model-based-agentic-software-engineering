@@ -32,5 +32,5 @@ Read four things together:
 If the claimed correspondence fails, do not rely on the representation for that reasoning. The finding does not determine whether the representation or the
 represented system should change.
 
-In DocAble, the Missing-Model surface fell from 56% to 7.89% over nine passes. Appendix G
+In DocAble, the Missing-Model surface fell from 56% to 7.89% over nine passes. Appendix H
 records the measurement and its limitations.

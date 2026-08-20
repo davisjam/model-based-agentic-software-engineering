@@ -69,6 +69,7 @@
       "delivers": {
         "concepts": [
           "commodity-intelligence",
+          "degrees-of-freedom",
           "model-classes",
           "compounding"
         ],
@@ -271,6 +272,36 @@
           "capability-ladder"
         ],
         "artifacts": [],
+        "artifact_would_help": false
+      },
+      "exempt": null,
+      "spine_advances": [
+        "modeling-principle"
+      ]
+    },
+    {
+      "slug": "modeling-provenance",
+      "opening": {
+        "failure_question": "explicit",
+        "answer": "explicit",
+        "thesis_link": "explicit",
+        "thesis_target": "modeling"
+      },
+      "closing": {
+        "kind": "transition"
+      },
+      "note": "New PROVENANCE chapter (one-model-class-per-chapter reconstruction; replaces Documentation as the sixth class). Question (what happened to this artifact, which operation did it, what evidence records it?) + answer (a run of operations, each naming target/mutation/pass/evidence; record once, derive the explanations). Narrows the guarantee: the model does not guarantee every operation records attribution — that is an Alignment question for Part III. Closes transitioning to the system-knowledge chapter.",
+      "opening_anchor": "When an autonomous system changes a user's artifact,",
+      "closing_anchor": "how the six fit together",
+      "delivers": {
+        "concepts": [],
+        "artifacts": [
+          {
+            "type": "framework",
+            "name": "the attribution model and the provenance-record-vs-views figure",
+            "anchor": "attribution-model"
+          }
+        ],
         "artifact_would_help": false
       },
       "exempt": null,
@@ -1171,36 +1202,6 @@
             "type": "framework",
             "name": "the GenAI cost-and-capacity model plus the measured-quantity and modeling-perp-authority figures",
             "anchor": "genai-cost-capacity-model"
-          }
-        ],
-        "artifact_would_help": false
-      },
-      "exempt": null,
-      "spine_advances": [
-        "modeling-principle"
-      ]
-    },
-    {
-      "slug": "modeling-provenance",
-      "opening": {
-        "failure_question": "explicit",
-        "answer": "explicit",
-        "thesis_link": "explicit",
-        "thesis_target": "modeling"
-      },
-      "closing": {
-        "kind": "transition"
-      },
-      "note": "New PROVENANCE chapter (one-model-class-per-chapter reconstruction; replaces Documentation as the sixth class). Question (what happened to this artifact, which operation did it, what evidence records it?) + answer (a run of operations, each naming target/mutation/pass/evidence; record once, derive the explanations). Narrows the guarantee: the model does not guarantee every operation records attribution — that is an Alignment question for Part III. Closes transitioning to the system-knowledge chapter.",
-      "opening_anchor": "When an autonomous system changes a user's artifact,",
-      "closing_anchor": "how the six fit together",
-      "delivers": {
-        "concepts": [],
-        "artifacts": [
-          {
-            "type": "framework",
-            "name": "the attribution model and the provenance-record-vs-views figure",
-            "anchor": "attribution-model"
           }
         ],
         "artifact_would_help": false

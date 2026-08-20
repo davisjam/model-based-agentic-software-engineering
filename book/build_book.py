@@ -3612,7 +3612,7 @@ _APPENDIX_FIELD_GUIDE_OPENING_SLUG = "appendix-field-guide"
 _FIELD_GUIDE_TEAMS: list[str] = ["cloudflare", "spotify", "shopify", "docker", "siemens", "zenseact"]
 
 
-def build_field_guide_chapters(part: int, letter: str = "F", locator_figs: bool = False) -> list[dict]:
+def build_field_guide_chapters(part: int, letter: str = "G", locator_figs: bool = False) -> list[dict]:
     """Build the Field Guide appendix: ONE front-door page (chapter 0) whose body is the opening prose plus
     the six team cards concatenated as `### <Team>` H3 sections. The six read as one deck under a single
     opening — the shape the card template authored — rather than as one page per team. Every card leads with
@@ -4758,8 +4758,9 @@ def _brick_grid_html(group: str) -> str:
 def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list[dict]:
     """The value-ordered appendix (build flag ON), in reading order: **A** MAGE Engineering Stacks ·
     **B** Engineering Moves (hand-authored worked examples — problem → move → two realizations) ·
-    **C** Model Reference · **D** Operator's Reference · **E** How to Write a Skill · **F** Field Guide ·
-    **G** Evidence Ledger · **H** Configuring MAGE Across the Product Lifecycle. Each Part is routed through the shared hand-authored appendix scaffold, so its
+    **C** Model Reference · **D** Operator's Reference · **E** How to Write a Skill ·
+    **F** Configuring MAGE Across the Product Lifecycle · **G** Field Guide · **H** Evidence Ledger.
+    A–F use and extend MAGE; G–H inspect the evidence behind it. Each Part is routed through the shared hand-authored appendix scaffold, so its
     TOC/pager/index render with no special-casing; figure numbers derive monotonically off each page's
     `<letter>.<i>` locator (`fig_prefix`, D80). The `[appendix: <slug>]` markers resolve to the letters
     automatically — the letter map reads each page's `part_title`. `_appendix_entries` is still read so the
@@ -4842,38 +4843,40 @@ def _build_appendix_chapters_v2(next_part: int, for_print: bool = False) -> list
     chapters += build_skill_recipe_chapters(
         part=next_part + 4, for_print=for_print, letter="E", locator_figs=True)
 
-    # ── APPENDIX F — Field Guide. The six studied teams as one-page reference cards (a single deck page). A
-    #    team-first reference ("who was that team again?"), distinct from Section 6.6's comparative read.
-    chapters += build_field_guide_chapters(part=next_part + 5, letter="F", locator_figs=True)
+    # ── APPENDIX F — Configuring MAGE Across the Product Lifecycle (re-lettered from H). A conceptual
+    #    appendix: MAGE's DIFFERENTIAL adoption across five recurring engineering activities (Discovery,
+    #    Engineering & Realization, Product Management & Maintenance, Operations & Incidents, Assurance &
+    #    Compliance), each a distinct parameterization of Modeling/Alignment/reasoning/determinization
+    #    (Table F.1-1), then how independent local adoptions compose into the connected product GEE (F.8).
+    #    Closes the A–F "use and extend MAGE" band — the lifecycle extension naturally follows the working
+    #    apparatus in A–E. Front-door _opening.md carries the appendix intro; F.1 "One Product…" is the first
+    #    content page so the overview figure numbers F.1-1.
+    chapters += build_hand_authored_appendix(
+        next_part + 5, letter="F", part_name="Configuring MAGE Across the Product Lifecycle",
+        opening_slug=_APPENDIX_PRODUCT_LIFECYCLE_OPENING_SLUG,
+        opening_prose=_load_opening(_PRODUCT_LIFECYCLE_DIR / "_opening.md"),
+        content_dir=_PRODUCT_LIFECYCLE_DIR, pages_source=_PRODUCT_LIFECYCLE_PAGES,
+        locator_figs=True, locator_heading=True)
 
-    # ── APPENDIX G — Evidence Ledger: The DocAble Case (fork G7; re-lettered from H). The raw count tables
-    #    behind Part V's curves (support-ratio LoC, per-path churn, control-growth counts). Appended LAST so
-    #    it re-letters no earlier appendix. Routed through the shared hand-authored appendix builder in SINGLE_DECK mode:
+    # ── APPENDIX G — Field Guide (re-lettered from F). The six studied teams as one-page reference cards (a
+    #    single deck page). A team-first reference ("who was that team again?"), distinct from Section 6.6's
+    #    comparative read. Opens the G–H "inspect the evidence" band: the external industrial reconstructions.
+    chapters += build_field_guide_chapters(part=next_part + 6, letter="G", locator_figs=True)
+
+    # ── APPENDIX H — Evidence Ledger: The DocAble Case (re-lettered from G). The raw count tables
+    #    behind Part V's curves (support-ratio LoC, per-path churn, control-growth counts). Closes the G–H
+    #    evidence band. Routed through the shared hand-authored appendix builder in SINGLE_DECK mode:
     #    the lone evidence-tables page is inlined under the front-door opening so the appendix reads as
     #    one deck, not a Part with exactly one content chapter (which the only-child heading sensor reds —
     #    a single-page evidence ledger is a legitimate shape, so give it the genuine single-page form
     #    rather than splitting the three tables artificially). The Part-V "The Build" chapter links the
     #    front-door via `[appendix: appendix-evidence-ledger]`, the slug single_deck preserves.
     chapters += build_hand_authored_appendix(
-        next_part + 6, letter="G", part_name="Evidence Ledger: The DocAble Case",
+        next_part + 7, letter="H", part_name="Evidence Ledger: The DocAble Case",
         opening_slug=_APPENDIX_EVIDENCE_LEDGER_OPENING_SLUG,
         opening_prose=_load_opening(_EVIDENCE_LEDGER_DIR / "_opening.md"),
         content_dir=_EVIDENCE_LEDGER_DIR, pages_source=_EVIDENCE_LEDGER_PAGES,
         locator_figs=True, single_deck=True)
-
-    # ── APPENDIX H — Configuring MAGE Across the Product Lifecycle. A conceptual appendix: MAGE's
-    #    DIFFERENTIAL adoption across five recurring engineering activities (Discovery, Engineering &
-    #    Realization, Product Management & Maintenance, Operations & Incidents, Assurance & Compliance),
-    #    each a distinct parameterization of Modeling/Alignment/reasoning/determinization (Table H.1-1),
-    #    then how independent local adoptions compose into the connected product GEE (H.8). Appended LAST so
-    #    it re-letters no earlier appendix (same rule that placed G last). Front-door _opening.md carries the
-    #    appendix intro; H.1 "One Product…" is the first content page so the overview figure numbers H.1-1.
-    chapters += build_hand_authored_appendix(
-        next_part + 7, letter="H", part_name="Configuring MAGE Across the Product Lifecycle",
-        opening_slug=_APPENDIX_PRODUCT_LIFECYCLE_OPENING_SLUG,
-        opening_prose=_load_opening(_PRODUCT_LIFECYCLE_DIR / "_opening.md"),
-        content_dir=_PRODUCT_LIFECYCLE_DIR, pages_source=_PRODUCT_LIFECYCLE_PAGES,
-        locator_figs=True, locator_heading=True)
 
     # ── APPENDIX I — Crazy Ideas. A TEMPORARY holding area for material carved out of Part 6 (the removed
     #    §6.3.5 and §6.5.5) as research-paper seeds outside the book's core argument; expected to be cut

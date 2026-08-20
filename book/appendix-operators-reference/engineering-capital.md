@@ -28,7 +28,7 @@ Read capital through five questions:
 ```
 
 Support ratio and control count measure accumulated apparatus, not capital return. Evaluate
-that apparatus by the future capability it enables net of carrying cost. Appendix G records
+that apparatus by the future capability it enables net of carrying cost. Appendix H records
 DocAble's observed support and control growth.
 
 One way to test for engineering capital is to hold the task and reasoner approximately fixed while changing

@@ -32,5 +32,5 @@ explain movement in the primary readings.
 
 Churn measures code motion, not system health. A migration or architectural rewrite can
 produce high churn in a healthy environment, while a quiet repository can still contain stale
-representations or repeated human adjudication. Appendix G records the churn observed in
+representations or repeated human adjudication. Appendix H records the churn observed in
 DocAble.

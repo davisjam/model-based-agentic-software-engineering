@@ -20,11 +20,11 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 14
           },
           {
-            "file": "book/0.4-preface.html",
+            "file": "book/0.5-preface.html",
             "occ": 3
           },
           {
@@ -168,12 +168,12 @@
             "occ": 7
           },
           {
-            "file": "book/appendix-field-guide.html",
-            "occ": 5
+            "file": "book/appendix-f-product-management-and-maintenance.html",
+            "occ": 4
           },
           {
-            "file": "book/appendix-h-product-management-and-maintenance.html",
-            "occ": 4
+            "file": "book/appendix-field-guide.html",
+            "occ": 5
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -630,11 +630,11 @@
             "occ": 1
           },
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
             "occ": 4
           },
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 1
           },
           {
@@ -692,15 +692,15 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
             "occ": 11
           },
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 6
           },
           {
-            "file": "book/0.4-preface.html",
+            "file": "book/0.5-preface.html",
             "occ": 1
           },
           {
@@ -926,20 +926,20 @@
             "occ": 28
           },
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
+            "file": "book/0.2-how-to-read-this-book.html",
+            "occ": 25
+          },
+          {
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
             "occ": 36
           },
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 62
           },
           {
-            "file": "book/0.4-preface.html",
+            "file": "book/0.5-preface.html",
             "occ": 54
-          },
-          {
-            "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 25
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -1199,7 +1199,7 @@
           },
           {
             "file": "book/appendix-crazy-ideas.html",
-            "occ": 20
+            "occ": 19
           },
           {
             "file": "book/appendix-d-brownfield-progress.html",
@@ -1262,44 +1262,44 @@
             "occ": 23
           },
           {
-            "file": "book/appendix-field-guide.html",
-            "occ": 63
-          },
-          {
-            "file": "book/appendix-h-assurance-and-compliance.html",
+            "file": "book/appendix-f-assurance-and-compliance.html",
             "occ": 22
           },
           {
-            "file": "book/appendix-h-differential-adoption.html",
+            "file": "book/appendix-f-differential-adoption.html",
             "occ": 19
           },
           {
-            "file": "book/appendix-h-engineering-and-realization.html",
+            "file": "book/appendix-f-engineering-and-realization.html",
             "occ": 30
           },
           {
-            "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
+            "file": "book/appendix-f-engineering-capital-across-time-and-space.html",
             "occ": 56
           },
           {
-            "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
+            "file": "book/appendix-f-from-local-mage-to-the-product-gee.html",
             "occ": 28
           },
           {
-            "file": "book/appendix-h-one-product-several-surfaces.html",
+            "file": "book/appendix-f-one-product-several-surfaces.html",
             "occ": 34
           },
           {
-            "file": "book/appendix-h-operations-and-incidents.html",
+            "file": "book/appendix-f-operations-and-incidents.html",
             "occ": 26
           },
           {
-            "file": "book/appendix-h-product-discovery.html",
+            "file": "book/appendix-f-product-discovery.html",
             "occ": 22
           },
           {
-            "file": "book/appendix-h-product-management-and-maintenance.html",
+            "file": "book/appendix-f-product-management-and-maintenance.html",
             "occ": 23
+          },
+          {
+            "file": "book/appendix-field-guide.html",
+            "occ": 64
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -1536,20 +1536,20 @@
             "occ": 4
           },
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
-            "occ": 7
-          },
-          {
-            "file": "book/0.3-the-books-language.html",
-            "occ": 7
-          },
-          {
-            "file": "book/0.4-preface.html",
-            "occ": 6
-          },
-          {
-            "file": "book/0.5-how-to-read-this-book.html",
+            "file": "book/0.2-how-to-read-this-book.html",
             "occ": 3
+          },
+          {
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
+            "occ": 7
+          },
+          {
+            "file": "book/0.4-the-books-language.html",
+            "occ": 7
+          },
+          {
+            "file": "book/0.5-preface.html",
+            "occ": 6
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -1809,7 +1809,7 @@
           },
           {
             "file": "book/appendix-crazy-ideas.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/appendix-d-brownfield-progress.html",
@@ -1872,44 +1872,44 @@
             "occ": 3
           },
           {
-            "file": "book/appendix-field-guide.html",
-            "occ": 10
-          },
-          {
-            "file": "book/appendix-h-assurance-and-compliance.html",
+            "file": "book/appendix-f-assurance-and-compliance.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-differential-adoption.html",
+            "file": "book/appendix-f-differential-adoption.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-engineering-and-realization.html",
+            "file": "book/appendix-f-engineering-and-realization.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
+            "file": "book/appendix-f-engineering-capital-across-time-and-space.html",
             "occ": 19
           },
           {
-            "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
+            "file": "book/appendix-f-from-local-mage-to-the-product-gee.html",
             "occ": 4
           },
           {
-            "file": "book/appendix-h-one-product-several-surfaces.html",
+            "file": "book/appendix-f-one-product-several-surfaces.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-operations-and-incidents.html",
+            "file": "book/appendix-f-operations-and-incidents.html",
             "occ": 5
           },
           {
-            "file": "book/appendix-h-product-discovery.html",
+            "file": "book/appendix-f-product-discovery.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-product-management-and-maintenance.html",
+            "file": "book/appendix-f-product-management-and-maintenance.html",
             "occ": 3
+          },
+          {
+            "file": "book/appendix-field-guide.html",
+            "occ": 11
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -2070,11 +2070,11 @@
       "book": {
         "book-web": [
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
             "occ": 1
           },
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 5
           },
           {
@@ -2168,20 +2168,20 @@
             "occ": 6
           },
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
+            "file": "book/0.2-how-to-read-this-book.html",
+            "occ": 6
+          },
+          {
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
             "occ": 4
           },
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 29
           },
           {
-            "file": "book/0.4-preface.html",
+            "file": "book/0.5-preface.html",
             "occ": 15
-          },
-          {
-            "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 6
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -2504,44 +2504,44 @@
             "occ": 39
           },
           {
-            "file": "book/appendix-field-guide.html",
-            "occ": 16
-          },
-          {
-            "file": "book/appendix-h-assurance-and-compliance.html",
+            "file": "book/appendix-f-assurance-and-compliance.html",
             "occ": 10
           },
           {
-            "file": "book/appendix-h-differential-adoption.html",
+            "file": "book/appendix-f-differential-adoption.html",
             "occ": 6
           },
           {
-            "file": "book/appendix-h-engineering-and-realization.html",
+            "file": "book/appendix-f-engineering-and-realization.html",
             "occ": 8
           },
           {
-            "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
+            "file": "book/appendix-f-engineering-capital-across-time-and-space.html",
             "occ": 10
           },
           {
-            "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
+            "file": "book/appendix-f-from-local-mage-to-the-product-gee.html",
             "occ": 6
           },
           {
-            "file": "book/appendix-h-one-product-several-surfaces.html",
+            "file": "book/appendix-f-one-product-several-surfaces.html",
             "occ": 8
           },
           {
-            "file": "book/appendix-h-operations-and-incidents.html",
+            "file": "book/appendix-f-operations-and-incidents.html",
             "occ": 8
           },
           {
-            "file": "book/appendix-h-product-discovery.html",
+            "file": "book/appendix-f-product-discovery.html",
             "occ": 4
           },
           {
-            "file": "book/appendix-h-product-management-and-maintenance.html",
+            "file": "book/appendix-f-product-management-and-maintenance.html",
             "occ": 9
+          },
+          {
+            "file": "book/appendix-field-guide.html",
+            "occ": 16
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -3140,11 +3140,11 @@
             "occ": 1
           },
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
             "occ": 4
           },
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 1
           },
           {
@@ -3220,19 +3220,19 @@
             "occ": 1
           },
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
+            "file": "book/0.2-how-to-read-this-book.html",
             "occ": 1
           },
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
             "occ": 1
           },
           {
-            "file": "book/0.4-preface.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 1
           },
           {
-            "file": "book/0.5-how-to-read-this-book.html",
+            "file": "book/0.5-preface.html",
             "occ": 1
           },
           {
@@ -3556,43 +3556,43 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-f-assurance-and-compliance.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-differential-adoption.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-engineering-and-realization.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-engineering-capital-across-time-and-space.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-from-local-mage-to-the-product-gee.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-one-product-several-surfaces.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-operations-and-incidents.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-product-discovery.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-product-management-and-maintenance.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-field-guide.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-assurance-and-compliance.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-differential-adoption.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-engineering-and-realization.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-one-product-several-surfaces.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-operations-and-incidents.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-product-discovery.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-product-management-and-maintenance.html",
             "occ": 1
           },
           {
@@ -3714,11 +3714,11 @@
             "occ": 1
           },
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
             "occ": 1
           },
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 5
           },
           {
@@ -3842,20 +3842,20 @@
             "occ": 5
           },
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
+            "file": "book/0.2-how-to-read-this-book.html",
+            "occ": 4
+          },
+          {
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
             "occ": 3
           },
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 5
           },
           {
-            "file": "book/0.4-preface.html",
+            "file": "book/0.5-preface.html",
             "occ": 9
-          },
-          {
-            "file": "book/0.5-how-to-read-this-book.html",
-            "occ": 4
           },
           {
             "file": "book/0.6-acknowledgments.html",
@@ -4178,44 +4178,44 @@
             "occ": 3
           },
           {
-            "file": "book/appendix-field-guide.html",
-            "occ": 4
-          },
-          {
-            "file": "book/appendix-h-assurance-and-compliance.html",
+            "file": "book/appendix-f-assurance-and-compliance.html",
             "occ": 5
           },
           {
-            "file": "book/appendix-h-differential-adoption.html",
+            "file": "book/appendix-f-differential-adoption.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-engineering-and-realization.html",
+            "file": "book/appendix-f-engineering-and-realization.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
+            "file": "book/appendix-f-engineering-capital-across-time-and-space.html",
             "occ": 4
           },
           {
-            "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
+            "file": "book/appendix-f-from-local-mage-to-the-product-gee.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-one-product-several-surfaces.html",
+            "file": "book/appendix-f-one-product-several-surfaces.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-operations-and-incidents.html",
+            "file": "book/appendix-f-operations-and-incidents.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-product-discovery.html",
+            "file": "book/appendix-f-product-discovery.html",
             "occ": 3
           },
           {
-            "file": "book/appendix-h-product-management-and-maintenance.html",
+            "file": "book/appendix-f-product-management-and-maintenance.html",
             "occ": 3
+          },
+          {
+            "file": "book/appendix-field-guide.html",
+            "occ": 4
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -4352,19 +4352,19 @@
             "occ": 1
           },
           {
-            "file": "book/0.2-the-mage-method-at-a-glance.html",
+            "file": "book/0.2-how-to-read-this-book.html",
             "occ": 1
           },
           {
-            "file": "book/0.3-the-books-language.html",
+            "file": "book/0.3-the-mage-method-at-a-glance.html",
             "occ": 1
           },
           {
-            "file": "book/0.4-preface.html",
+            "file": "book/0.4-the-books-language.html",
             "occ": 1
           },
           {
-            "file": "book/0.5-how-to-read-this-book.html",
+            "file": "book/0.5-preface.html",
             "occ": 1
           },
           {
@@ -4688,44 +4688,44 @@
             "occ": 1
           },
           {
+            "file": "book/appendix-f-assurance-and-compliance.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-differential-adoption.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-engineering-and-realization.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-engineering-capital-across-time-and-space.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-from-local-mage-to-the-product-gee.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-one-product-several-surfaces.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-operations-and-incidents.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-product-discovery.html",
+            "occ": 1
+          },
+          {
+            "file": "book/appendix-f-product-management-and-maintenance.html",
+            "occ": 3
+          },
+          {
             "file": "book/appendix-field-guide.html",
             "occ": 5
-          },
-          {
-            "file": "book/appendix-h-assurance-and-compliance.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-differential-adoption.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-engineering-and-realization.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-engineering-capital-across-time-and-space.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-one-product-several-surfaces.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-operations-and-incidents.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-product-discovery.html",
-            "occ": 1
-          },
-          {
-            "file": "book/appendix-h-product-management-and-maintenance.html",
-            "occ": 3
           },
           {
             "file": "book/appendix-i-experimental-substrate.html",
@@ -5106,7 +5106,7 @@
             "occ": 3
           },
           {
-            "file": "book/appendix-h-from-local-mage-to-the-product-gee.html",
+            "file": "book/appendix-f-from-local-mage-to-the-product-gee.html",
             "occ": 1
           },
           {

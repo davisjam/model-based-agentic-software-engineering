@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="citation_title" content="The MAGE Method at a Glance"><meta name="citation_author" content="James C. Davis"><meta name="citation_book_title" content="Model-Based Agentic Software Engineering"><meta name="citation_publication_date" content="2026"><meta name="citation_fulltext_html_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/0.2-the-mage-method-at-a-glance.html"><meta name="citation_pdf_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book.pdf"><title>The MAGE Method at a Glance — MAGE</title><style>@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Regular.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Semibold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Bold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-It.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-SemiboldIt.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-BoldIt.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Regular.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Bold.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-It.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-BoldIt.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}</style><style>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="citation_title" content="F.6 Assurance &amp; Compliance"><meta name="citation_author" content="James C. Davis"><meta name="citation_book_title" content="Model-Based Agentic Software Engineering"><meta name="citation_publication_date" content="2026"><meta name="citation_fulltext_html_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/appendix-f-assurance-and-compliance.html"><meta name="citation_pdf_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book.pdf"><meta name="citation_reference" content="citation_title=Design and Code Inspections to Reduce Errors in Program Development;citation_author=Michael E. Fagan;citation_publication_date=1976"><meta name="citation_reference" content="citation_title=Advances in Software Inspections;citation_author=Michael E. Fagan;citation_publication_date=1986"><title>Appendix · F.6 Assurance &amp; Compliance — MAGE</title><style>@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Regular.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Semibold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Bold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-It.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-SemiboldIt.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-BoldIt.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Regular.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Bold.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-It.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-BoldIt.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}</style><style>
   /* GENERATED by book-models/design_tokens.py from design-tokens.json — do not hand-edit. */
   :root {
     --ink: #1c1917;
@@ -582,11 +582,11 @@ section.eng-note, section.eng-note-panel { break-inside: avoid; }
 main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </style></head><body><nav class="toc" aria-label="Table of contents"><div class="toc-inner"><details><summary>☰&nbsp; Contents</summary><ol><li class="part">Front Matter</li>
 <li><a class="" href="0.1-what-this-book-argues.html">What This Book Argues</a></li>
-<li><a class="current" href="0.2-the-mage-method-at-a-glance.html">The MAGE Method at a Glance</a></li>
-<li><a class="" href="0.3-the-books-language.html">The Book's Language</a></li>
-<li><a class="" href="0.4-preface.html">Preface</a></li>
+<li><a class="" href="0.2-how-to-read-this-book.html">How to Read This Book</a></li>
+<li><a class="" href="0.3-the-mage-method-at-a-glance.html">The MAGE Method at a Glance</a></li>
+<li><a class="" href="0.4-the-books-language.html">The Book's Language</a></li>
+<li><a class="" href="0.5-preface.html">Preface</a></li>
 <li><a class="" href="list-of-figures.html">List of Figures and Tables</a></li>
-<li><a class="" href="0.5-how-to-read-this-book.html">How to read this book</a></li>
 <li><a class="" href="0.6-acknowledgments.html">Acknowledgments</a></li>
 <li class="part">Part 1 — The New Engineering Problem</li>
 <li><a class="" href="part-1-intro.html">The New Engineering Problem</a></li>
@@ -687,21 +687,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-skill-recipe.html">Appendix E — How to Write a Skill</a></li>
 <li><a class="" href="appendix-e-theory.html">Appendix E - 1. Theory</a></li>
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li>
-<li class="part">Appendix F — Field Guide</li>
-<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li>
-<li class="part">Appendix G — Evidence Ledger: The DocAble Case</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix G — Evidence Ledger: The DocAble Case</a></li>
-<li class="part">Appendix H — Configuring MAGE Across the Product Lifecycle</li>
-<li><a class="" href="appendix-product-lifecycle.html">Appendix H — Configuring MAGE Across the Product Lifecycle</a></li>
-<li><a class="" href="appendix-h-one-product-several-surfaces.html">H.1 One Product, Several Engineering Surfaces</a></li>
-<li><a class="" href="appendix-h-product-discovery.html">H.2 Product Discovery</a></li>
-<li><a class="" href="appendix-h-engineering-and-realization.html">H.3 Engineering &amp; Realization</a></li>
-<li><a class="" href="appendix-h-product-management-and-maintenance.html">H.4 Product Management &amp; Maintenance</a></li>
-<li><a class="" href="appendix-h-operations-and-incidents.html">H.5 Operations &amp; Incident Response</a></li>
-<li><a class="" href="appendix-h-assurance-and-compliance.html">H.6 Assurance &amp; Compliance</a></li>
-<li><a class="" href="appendix-h-differential-adoption.html">H.7 Differential Adoption</a></li>
-<li><a class="" href="appendix-h-from-local-mage-to-the-product-gee.html">H.8 From Local MAGE to the Product GEE</a></li>
-<li><a class="" href="appendix-h-engineering-capital-across-time-and-space.html">H.9 Engineering Capital Across Time and Space</a></li>
+<li class="part">Appendix F — Configuring MAGE Across the Product Lifecycle</li>
+<li><a class="" href="appendix-product-lifecycle.html">Appendix F — Configuring MAGE Across the Product Lifecycle</a></li>
+<li><a class="" href="appendix-f-one-product-several-surfaces.html">F.1 One Product, Several Engineering Surfaces</a></li>
+<li><a class="" href="appendix-f-product-discovery.html">F.2 Product Discovery</a></li>
+<li><a class="" href="appendix-f-engineering-and-realization.html">F.3 Engineering &amp; Realization</a></li>
+<li><a class="" href="appendix-f-product-management-and-maintenance.html">F.4 Product Management &amp; Maintenance</a></li>
+<li><a class="" href="appendix-f-operations-and-incidents.html">F.5 Operations &amp; Incident Response</a></li>
+<li><a class="current" href="appendix-f-assurance-and-compliance.html">F.6 Assurance &amp; Compliance</a></li>
+<li><a class="" href="appendix-f-differential-adoption.html">F.7 Differential Adoption</a></li>
+<li><a class="" href="appendix-f-from-local-mage-to-the-product-gee.html">F.8 From Local MAGE to the Product GEE</a></li>
+<li><a class="" href="appendix-f-engineering-capital-across-time-and-space.html">F.9 Engineering Capital Across Time and Space</a></li>
+<li class="part">Appendix G — Field Guide</li>
+<li><a class="" href="appendix-field-guide.html">Appendix G — Field Guide</a></li>
+<li class="part">Appendix H — Evidence Ledger: The DocAble Case</li>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Evidence Ledger: The DocAble Case</a></li>
 <li class="part">Appendix I — Crazy Ideas</li>
 <li><a class="" href="appendix-crazy-ideas.html">Appendix I — Crazy Ideas</a></li>
 <li><a class="" href="appendix-i-experimental-substrate.html">I.1 Commodity Intelligence as an Experimental Instrument for Software Engineering</a></li>
@@ -709,171 +709,97 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="The MAGE Method at a Glance — MAGE"><div class="apparatus-page"><header class="chap"><div class="kicker"><a href="0.1-what-this-book-argues.html" aria-label="Beginning of Front Matter">Front Matter</a></div><h1>The MAGE Method at a Glance</h1></header><p>MAGE has two principles and a conversion loop. <a class="xref" href="0.2-the-mage-method-at-a-glance.html#fig-0-2-1">Figure&nbsp;0.2-1</a> shows the whole argument: scale creates the old problem, commodity intelligence changes its economics, and MAGE turns repeated effort into structure that future work can reuse.</p>
-<figure id="fig-0-2-1" class="book-figure" data-label="mage-method"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1020"
-     role="img" aria-labelledby="f-mage-method-mmTitle f-mage-method-mmDesc"
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · F.6 Assurance &amp; Compliance — MAGE"><header class="chap"><div class="kicker"><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix F — Configuring MAGE Across the Product Lifecycle">Appendix F — Configuring MAGE Across the Product Lifecycle</a></div><h1>F.6 Assurance &amp; Compliance</h1></header><p><strong>Engineering question.</strong> What must we be able to demonstrate about the product?</p>
+<p>Assurance and compliance organize work around claims that must be established, not merely implementations that must be produced. Some claims are naturally evaluated over models; others concern the realized system; many require evidence connecting the two.</p>
+<p>A security claim may be evaluated over a data-flow or access-control model; a memory-safety claim concerns the code that executes. Where implementation is not wholly generated from authoritative models, assurance must span both. Proving a property of an access-control model does not establish that the implementation realizes it, while inspecting implementation alone may obscure the intended policy. Traceability and Alignment connect the modeled claim to evidence from its realization and, where necessary, outward to requirements, operational measurements, and other lifecycle evidence.</p>
+<p><a class="xref" href="appendix-f-assurance-and-compliance.html#fig-F-6-1">Figure&nbsp;F.6-1</a> separates model evidence, realization evidence, and the traceability needed when a claim depends on both.</p>
+<figure id="fig-F-6-1" class="book-figure" data-label="fig-h-assurance"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 660"
+     role="img" aria-labelledby="f-h6-assurance-models-realization-h6Title f-h6-assurance-models-realization-h6Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-mage-method-mmTitle">The MAGE method — scale creates the enduring reasoning problem; commodity intelligence changes its economics; Modeling and Alignment turn engineering effort into capital rather than churn.</title>
-  <desc id="f-mage-method-mmDesc">A single centre spine reads top to bottom: Scale and Finite reasoning combined in one
-    node, a New engineering imbalance, the Modeling Principle, the Alignment Principle, the Governed
-    Engineering Environment, and Engineering Capital. Scale is the enduring source of a finite reasoning
-    horizon: large systems exceed any one reasoner, so relevant state must be abstracted or reconstructed,
-    which makes judgment scarce at scale. Commodity intelligence enters laterally at the New
-    Engineering Imbalance, making implementation abundant while judgment, representation, evidence, and
-    authority stay scarce; it changes the economics of the imbalance but does not cause the reasoning
-    horizon. The Modeling Principle answers the imbalance by making consequential knowledge and intent
-    explicit at useful scales, which expands the semantic surface that governance can act on and reaches
-    the Alignment Principle, where obligations are given authority through constraints, sensors, validators,
-    and gates. Passing through Alignment the spine enters the Governed Engineering Environment — the
-    synthesis of both principles — and effort compounds as Engineering Capital when future value exceeds its
-    carrying cost. A single subordinate governance-conversion loop feeds recurring failures and judgment
-    back to adapt the models and controls, strengthening the environment. Two dashed failure paths lead
-    to Engineering Churn: weak representation is repaid as reconstruction, weak authority as repeated
-    adjudication. A light dotted long-range rail marks capital reopening the reasoning problem as scope
-    grows.</desc>
+  <title id="f-h6-assurance-models-realization-h6Title">Assurance across models and realization</title>
+  <desc id="f-h6-assurance-models-realization-h6Desc">An obligation becomes an assurance claim. Establishing the claim can require evidence about
+    modeled properties — architecture, behavior, data flow, access policy, invariants — about the realization —
+    implementation, tests, static analysis, runtime evidence, memory safety — or about the correspondence between
+    them, which traceability and Alignment supply. The combined evidence and argument establishes the claim.</desc>
 
   <defs>
-    <!-- ONE arrowhead shape, ONE size (8u, userSpaceOnUse); fill only reinforces the line colour. -->
-    <marker id="f-mage-method-mm-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerUnits="userSpaceOnUse"
-            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57534e"/>
-    </marker>
-    <marker id="f-mage-method-mm-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerUnits="userSpaceOnUse"
-            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="f-mage-method-mm-ah-loop" viewBox="0 0 10 10" refX="8.5" refY="5" markerUnits="userSpaceOnUse"
-            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#78716c"/>
-    </marker>
-    <marker id="f-mage-method-mm-ah-churn" viewBox="0 0 10 10" refX="8.5" refY="5" markerUnits="userSpaceOnUse"
-            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#b23b3b"/>
-    </marker>
-    <marker id="f-mage-method-mm-ah-mute" viewBox="0 0 10 10" refX="8.5" refY="5" markerUnits="userSpaceOnUse"
-            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#a8a29e"/>
-    </marker>
+    <marker id="f-h6-assurance-models-realization-h6-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="1020" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="640" height="660" fill="#fdfcf9"/>
 
-  <!-- edge-grammar: keep-angles -->
-  <!-- KEEP-ANGLES (this grammar-establishing overview's non-orthogonal edges are all deliberate):
-       (1) Two feedback rails are intentional curves — the light dotted long-range rail (capital .. finite,
-           "greater scope reopens the reasoning problem") and the Governance-conversion loop
-           (gee -> semantic-surface). Bending them to right angles would clutter the figure they anchor.
-       (2) The two dashed CHURN failure rails (modeling .. churn, alignment .. churn) deliberately SIDE-EXIT
-           the spine. Churn is a LATERAL failure attractor in the bottom-right corner, not a spine child;
-           leaving the box on its right side IS the grammar ("you left the success spine and fell off to the
-           side"), the rail's label rides the horizontal run, and both rails converge on the single drop into
-           Churn's top. A bottom flow-exit detour is impossible cleanly: the spine (Alignment, GEE, Capital,
-           the semantic-surface label) fully occupies the space below Modeling/Alignment, so a bottom route
-           would have to snake around the whole spine and would break the two rails' shared convergence. The
-           straight-vertical spine edges stay orthogonal by hand; opting the figure out only skips edges that
-           are already correct or deliberately not. -->
+  <g text-anchor="middle">
+    <rect id="f-h6-assurance-models-realization-obligation" x="240" y="24" width="160" height="42" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="320" y="51" font-size="14" font-weight="700" fill="#1c1917">OBLIGATION</text>
 
-  <!-- =============== LONG-RANGE RAIL (drawn first, sits beneath everything) =============== -->
-  <!-- edge: capital .. scale-finite -->
-  <path d="M384,828 C150,852 20,806 20,660 L20,140 C20,104 180,108 346,108"
-        fill="none" stroke="#a8a29e" stroke-width="1.6" stroke-dasharray="2 6" marker-end="url(#f-mage-method-mm-ah-mute)"/>
-  <text x="30" y="470" font-size="13" font-style="italic" fill="#78716c">&#8635; greater scope reopens</text>
-  <text x="30" y="486" font-size="13" font-style="italic" fill="#78716c">the reasoning problem</text>
+    <rect id="f-h6-assurance-models-realization-assurance-claim" x="210" y="110" width="220" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="320" y="138" font-size="14" font-weight="700" fill="#1c1917">ASSURANCE CLAIM</text>
+  </g>
 
-  <!-- =============== THE CENTRE SPINE (main argument; x=500) =============== -->
+  <!-- edge: obligation -> assurance-claim -->
+  <line x1="320" y1="66" x2="320" y2="108" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
 
-  <!-- Scale x Finite reasoning (the top two boxes merged: Scale is the enduring source of the finite
-       reasoning horizon, so they now read as ONE node — the problem the method answers) -->
-  <rect id="f-mage-method-scale-finite" x="350" y="56" width="300" height="104" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="500" y="86" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">Scale &#215; finite reasoning</text>
-  <text x="500" y="110" text-anchor="middle" font-size="13" fill="#57534e">large systems exceed any one reasoner;</text>
-  <text x="500" y="127" text-anchor="middle" font-size="13" fill="#57534e">relevant state must be abstracted</text>
-  <text x="500" y="144" text-anchor="middle" font-size="13" fill="#57534e">or reconstructed</text>
-  <!-- edge: scale-finite -> imbalance -->
-  <path d="M500,160 L500,230" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-mage-method-mm-ah)"/>
-  <text x="512" y="197" font-size="13" fill="#57534e">makes judgment scarce at scale</text>
+  <!-- split to the two evidence bodies (one path per branch; each arrives vertically into its box top) -->
+  <!-- edge: assurance-claim -> model-evidence -->
+  <path d="M245,154 L245,206" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
+  <!-- edge: assurance-claim -> realization-evidence -->
+  <path d="M395,154 L395,206" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
 
-  <!-- New engineering imbalance (neutral problem frame; commodity enters here laterally) -->
-  <rect id="f-mage-method-imbalance" x="350" y="232" width="300" height="100" rx="8" fill="#f3efe7" stroke="#57534e" stroke-width="2.4"/>
-  <text x="500" y="260" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">New engineering imbalance</text>
-  <text x="500" y="284" text-anchor="middle" font-size="13" fill="#57534e">implementation abundant while</text>
-  <text x="500" y="301" text-anchor="middle" font-size="13" fill="#57534e">judgment &#183; representation &#183;</text>
-  <text x="500" y="318" text-anchor="middle" font-size="13" fill="#57534e">evidence &#183; authority stay scarce</text>
-  <!-- edge: imbalance -> modeling -->
-  <path d="M500,332 L500,372" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-mage-method-mm-ah)"/>
+  <!-- model evidence -->
+  <rect id="f-h6-assurance-models-realization-model-evidence" x="50" y="208" width="230" height="168" rx="9" fill="#eef2f5" stroke="#2f5169" stroke-width="2.2"/>
+  <text x="165" y="234" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">MODEL EVIDENCE</text>
+  <g text-anchor="middle" font-size="13" fill="#2f5169">
+    <text x="165" y="262">architecture</text>
+    <text x="165" y="284">behavior</text>
+    <text x="165" y="306">data flow</text>
+    <text x="165" y="328">access policy</text>
+    <text x="165" y="350">invariants</text>
+  </g>
 
-  <!-- Modeling Principle -->
-  <rect id="f-mage-method-modeling" x="350" y="374" width="300" height="80" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
-  <text x="500" y="402" text-anchor="middle" font-size="17" font-weight="700" fill="#1f7a4d">Modeling Principle</text>
-  <text x="500" y="425" text-anchor="middle" font-size="13" fill="#57534e">make consequential knowledge + intent</text>
-  <text x="500" y="442" text-anchor="middle" font-size="13" fill="#57534e">explicit at useful scales</text>
+  <!-- realization evidence -->
+  <rect id="f-h6-assurance-models-realization-realization-evidence" x="360" y="208" width="230" height="168" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
+  <text x="475" y="234" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">REALIZATION EVIDENCE</text>
+  <g text-anchor="middle" font-size="13" fill="#1c1917">
+    <text x="475" y="262">implementation</text>
+    <text x="475" y="284">tests</text>
+    <text x="475" y="306">static analysis</text>
+    <text x="475" y="328">runtime evidence</text>
+    <text x="475" y="350">memory safety</text>
+  </g>
 
-  <!-- Modeling -> Alignment: ONE spine edge; its PROMINENT label is the relationship -->
-  <!-- edge: modeling -> alignment -->
-  <path d="M500,454 L500,556" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-mage-method-mm-ah)"/>
-  <!-- the relationship label's background doubles as the node the governance-conversion loop plugs into -->
-  <rect id="f-mage-method-semantic-surface" x="342" y="486" width="316" height="38" fill="#fdfcf9"/>
-  <text x="500" y="502" text-anchor="middle" font-size="13" font-weight="600" fill="#1f7a4d">makes more of the</text>
-  <text x="500" y="519" text-anchor="middle" font-size="13" font-weight="600" fill="#1f7a4d">system governable</text>
+  <!-- TRACEABILITY & ALIGNMENT is a bare-text node: a transparent anchor (fill:none stroke:none) carries the
+       id so the two merge relationships and the onward arrow can plug into it (zero visual change). -->
+  <rect id="f-h6-assurance-models-realization-traceability" x="220" y="396" width="200" height="72" fill="none" stroke="none"/>
 
-  <!-- Alignment Principle -->
-  <rect id="f-mage-method-alignment" x="350" y="558" width="300" height="84" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="500" y="586" text-anchor="middle" font-size="17" font-weight="700" fill="#9a3f12">Alignment Principle</text>
-  <text x="500" y="609" text-anchor="middle" font-size="13" fill="#57534e">give obligations authority</text>
-  <text x="500" y="627" text-anchor="middle" font-size="13" fill="#57534e">constraints &#183; sensors &#183; validators &#183; gates</text>
-  <!-- edge: alignment -> gee -->
-  <path d="M500,642 L500,674" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-mage-method-mm-ah)"/>
+  <!-- merge to traceability & alignment (undirected relationships; both evidence bodies relate to the join) -->
+  <!-- edge: model-evidence -> traceability -->
+  <path d="M250,376 L250,396" fill="none" stroke="#57534e" stroke-width="2"/>
+  <!-- edge: realization-evidence -> traceability -->
+  <path d="M390,376 L390,396" fill="none" stroke="#57534e" stroke-width="2"/>
+  <text x="320" y="430" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">TRACEABILITY &amp; ALIGNMENT</text>
+  <text x="320" y="450" text-anchor="middle" font-size="13" fill="#9a3f12">models ↔ code</text>
 
-  <!-- Governed Engineering Environment (synthesis — teal) -->
-  <rect id="f-mage-method-gee" x="330" y="676" width="340" height="60" rx="8" fill="#e6f1ee" stroke="#1c6b5f" stroke-width="2.8"/>
-  <text x="500" y="702" text-anchor="middle" font-size="17" font-weight="700" fill="#185c52">Governed Engineering Environment</text>
-  <text x="500" y="723" text-anchor="middle" font-size="13" font-style="italic" fill="#185c52">where Modeling and Alignment work together</text>
-  <!-- edge: gee -> capital -->
-  <path d="M500,736 L500,788" fill="none" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-mage-method-mm-ah)"/>
-  <text x="512" y="762" font-size="13" fill="#57534e">when future value exceeds upkeep</text>
+  <!-- edge: traceability -> evidence-argument -->
+  <line x1="320" y1="468" x2="320" y2="496" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
 
-  <!-- Engineering Capital (positive outcome — green) -->
-  <rect id="f-mage-method-capital" x="384" y="790" width="232" height="80" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3.4"/>
-  <text x="500" y="822" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">Engineering Capital</text>
-  <text x="500" y="845" text-anchor="middle" font-size="13" font-style="italic" fill="#155c38">effort compounds over time</text>
-  <text x="500" y="862" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">can depreciate &#183; maintain or retire</text>
+  <g text-anchor="middle">
+    <rect id="f-h6-assurance-models-realization-evidence-argument" x="210" y="498" width="220" height="56" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="320" y="522" font-size="14" font-weight="700" fill="#1c1917">EVIDENCE /</text>
+    <text x="320" y="542" font-size="14" font-weight="700" fill="#1c1917">ARGUMENT</text>
+  </g>
 
-  <!-- =============== LATERAL INPUT: commodity intelligence =============== -->
-  <!-- Enters the imbalance from the side and changes its ECONOMICS; it does NOT cause the reasoning
-       horizon (that is Scale). The short label carries the economics half of the causal distinction;
-       the imbalance box already carries "implementation abundant". -->
-  <rect id="f-mage-method-commodity" x="40" y="242" width="220" height="84" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="150" y="270" text-anchor="middle" font-size="16.5" font-weight="700" fill="#2f5169">Commodity intelligence</text>
-  <text x="150" y="292" text-anchor="middle" font-size="13" fill="#57534e">implementation cheap and</text>
-  <text x="150" y="309" text-anchor="middle" font-size="13" fill="#57534e">abundant relative to judgment</text>
-  <!-- edge: commodity -> imbalance -->
-  <path d="M260,284 L348,284" fill="none" stroke="#2f5169" stroke-width="2.1" marker-end="url(#f-mage-method-mm-ah-blue)"/>
-  <text x="303" y="273" text-anchor="middle" font-size="13" font-weight="600" fill="#2f5169">changes the</text>
-  <text x="303" y="287" text-anchor="middle" font-size="13" font-weight="600" fill="#2f5169">economics</text>
+  <!-- edge: evidence-argument -> claim-established -->
+  <line x1="320" y1="554" x2="320" y2="588" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
 
-  <!-- =============== GOVERNANCE CONVERSION: ONE subordinate feedback loop =============== -->
-  <!-- edge: gee -> semantic-surface -->
-  <path d="M330,706 C180,732 82,704 82,612 L82,506 C82,478 200,500 346,506"
-        fill="none" stroke="#78716c" stroke-width="2" marker-end="url(#f-mage-method-mm-ah-loop)"/>
-  <text x="92" y="600" font-size="13" font-weight="700" fill="#57534e">Governance conversion</text>
-  <text x="92" y="618" font-size="13" fill="#78716c">recurring failures + judgment</text>
-  <text x="92" y="634" font-size="13" fill="#78716c">adapt the models + controls</text>
-
-  <!-- =============== CHURN: the failure attractor, reached by two dashed paths =============== -->
-  <rect id="f-mage-method-churn" x="700" y="846" width="280" height="96" rx="9" fill="#fbeaea" stroke="#b23b3b" stroke-width="3.4"/>
-  <text x="840" y="886" text-anchor="middle" font-size="17" font-weight="700" fill="#b23b3b">Engineering Churn</text>
-  <text x="840" y="910" text-anchor="middle" font-size="13" font-style="italic" fill="#b23b3b">the same work</text>
-  <text x="840" y="927" text-anchor="middle" font-size="13" font-style="italic" fill="#b23b3b">gets paid for again</text>
-
-  <!-- weak representation -> reconstruction (leaves the Modeling side) -->
-  <!-- edge: modeling .. churn -->
-  <path d="M650,414 L840,414 L840,844" fill="none" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#f-mage-method-mm-ah-churn)"/>
-  <text x="658" y="405" font-size="13" font-weight="600" fill="#b23b3b">weak representation &#8594; reconstruction</text>
-
-  <!-- weak authority -> repeated adjudication (leaves the Alignment side) -->
-  <!-- edge: alignment .. churn -->
-  <path d="M650,600 L840,600 L840,844" fill="none" stroke="#b23b3b" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#f-mage-method-mm-ah-churn)"/>
-  <text x="658" y="591" font-size="13" font-weight="600" fill="#b23b3b">weak authority &#8594; repeated adjudication</text>
-</svg><figcaption data-short="The MAGE method"><span class="fig-label">Figure 0.2-1.</span> The MAGE method. Scale creates the enduring reasoning problem; commodity intelligence changes its economics. Modeling makes important engineering knowledge explicit, so Alignment can govern richer properties. Governance conversion turns recurring failures and judgment into models and controls that future work can reuse, so engineering effort can accumulate instead of being paid for again.</figcaption></figure>
-<p>Alignment uses four kinds of governance mechanism, named for what each one does. <a class="xref" href="0.2-the-mage-method-at-a-glance.html#tbl-0-2-1">Table&nbsp;0.2-1</a> names the four and the role that distinguishes each.</p>
-<table id="tbl-0-2-1" class="book-table" data-label="mechanism-archetypes"><caption class="tbl-label-only"><span class="tbl-label">Table 0.2-1.</span></caption><thead><tr><th>Mechanism</th><th>Role</th></tr></thead><tbody><tr><td><strong>Constraint</strong></td><td>restricts actions</td></tr><tr><td><strong>Sensor</strong></td><td>produces evidence</td></tr><tr><td><strong>Validator</strong></td><td>evaluates whether evidence satisfies an obligation</td></tr><tr><td><strong>Gate</strong></td><td>controls admission</td></tr></tbody></table></div><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="0.1-what-this-book-argues.html" aria-label="Beginning of Front Matter">« Beginning of part</a><a href="0.1-what-this-book-argues.html" aria-label="Previous chapter — What This Book Argues">« Previous chapter</a></div><span class="chapnav-here" title="The MAGE Method at a Glance">The MAGE Method at a Glance</span><div class="chapnav-fwd"><a href="0.3-the-books-language.html" aria-label="Next chapter — The Book&#x27;s Language">Next chapter »</a><a href="part-1-intro.html" aria-label="Next part — Part 1 — The New Engineering Problem">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+  <g text-anchor="middle">
+    <rect id="f-h6-assurance-models-realization-claim-established" x="206" y="590" width="228" height="44" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+    <text x="320" y="618" font-size="14" font-weight="700" fill="#9a3f12">CLAIM ESTABLISHED</text>
+  </g>
+</svg><figcaption data-short="Assurance across models and realization"><span class="fig-label">Figure F.6-1.</span> <em>Assurance across models and realization.</em> Claims may depend on modeled properties, realized properties, or correspondence between the two. Traceability and Alignment connect the required evidence.</figcaption></figure>
+<p>Assurance creates pressure to reduce degrees of freedom only where the return justifies it. Authoritative models and trustworthy transformations can move assurance toward the governing model and away from independently authored realization, but eliminating freedom costs modeling effort and may make later changes harder. Other properties are cheaper to establish over the realized system. The same tradeoff governs determinization: mechanize claims that can be decided responsibly; leave statistical, semantic, or normative judgment where it belongs.</p>
+<p>Agentic realization may also shift verification away from lightweight code review toward more formal inspection.<sup class="note-ref"><a href="#note-appendix-f-assurance-and-compliance-fn-fagan" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-appendix-f-assurance-and-compliance-fn-fagan"><span class="cn-mark">*</span> Formal software inspection has a substantial history. Michael Fagan's work at IBM distinguished inspection from informal review by treating it as a systematic verification activity with defined roles, procedures, and recorded results. The analogy here is structural rather than procedural: MAGE does not propose restoring the original inspection process, but predicts renewed pressure to formalize inspection as realization becomes cheaper and more abundant. See Fagan 1976 <sup class="cite-ref"><a href="#wc-appendix-f-assurance-and-compliance-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Michael E. Fagan, “Design and Code Inspections to Reduce Errors in Program Development,” <em>IBM Systems Journal</em> 15, no. 3 (1976): 182–211, <a href="https://doi.org/10.1147/sj.153.0182">https://doi.org/10.1147/sj.153.0182</a>.</span> and Fagan 1986 <sup class="cite-ref"><a href="#wc-appendix-f-assurance-and-compliance-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Michael E. Fagan, “Advances in Software Inspections,” <em>IEEE Transactions on Software Engineering</em> SE-12, no. 7 (1986): 744–51.</span>.</span> Contemporary review assumes changes arrive slowly enough that peers can reconstruct intent, context, and obligations from diffs, comments, tests, and local judgment. Agent-generated changes stress that assumption. Inspection may therefore become a distinct activity organized around explicit obligations, models, traceability, procedures, and evidence rather than an informal second look at code.</p>
+<p>Such inspection could begin from a ticket or assurance claim, traverse to the governing models, inspect their realization where necessary, and judge whether the evidence establishes both correspondence and satisfaction. The analogy to classical software inspection is structural rather than procedural: production and verification separate more clearly as realization becomes cheaper.</p>
+<p>Assurance is therefore cross-cutting rather than a final lifecycle stage: its obligations constrain work elsewhere, and its evidence can originate anywhere in the lifecycle.</p>
+<p><strong>MAGE profile.</strong></p>
+<ul><li><em>Characteristic models.</em> Requirements, policies, threats and hazards, invariants, traceability, assurance cases, claims, and evidence models.</li><li><em>Lifetime.</em> Usually system- or organizational-lived, although individual evidence can be change- or execution-scoped.</li><li><em>Alignment posture.</em> Strong. Assurance may require evidence over models, over their realization, and over the correspondence between them.</li><li><em>Role of autonomous reasoning.</em> Interpreting semantic obligations, reasoning across modeled and realized properties, maintaining traceability, assembling evidence, identifying gaps, and evaluating claims that machinery cannot settle.</li><li><em>Determinization opportunity.</em> High for decidable claims over either models or implementation; limited where interpretation or normative judgment remains necessary.</li><li><em>Degrees of freedom.</em> Realization choices left unconstrained because they are irrelevant to the assurance obligation or cheaper to inspect than to specify in advance.</li><li><em>Smallest useful adoption.</em> Select one consequential obligation, identify what must be established over models and realization, connect those artifacts through traceability, and automate evidence or admission where the claim is decidable.</li><li><em>Lifecycle connections.</em> Assurance carries obligations across the lifecycle and draws evidence from product decisions, engineering models, implementation, change history, and operational behavior.</li></ul><section class="works-cited" aria-labelledby="wc-appendix-f-assurance-and-compliance-h"><h2 id="wc-appendix-f-assurance-and-compliance-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-appendix-f-assurance-and-compliance-1">Fagan, Michael E. “Design and Code Inspections to Reduce Errors in Program Development.” <em>IBM Systems Journal</em> 15, no. 3 (1976): 182–211. <a href="https://doi.org/10.1147/sj.153.0182">https://doi.org/10.1147/sj.153.0182</a>.</li><li id="wc-appendix-f-assurance-and-compliance-2">Fagan, Michael E. “Advances in Software Inspections.” <em>IEEE Transactions on Software Engineering</em> SE-12, no. 7 (1986): 744–51.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix F — Configuring MAGE Across the Product Lifecycle">« Beginning of part</a><a href="appendix-f-operations-and-incidents.html" aria-label="Previous chapter — F.5 Operations &amp; Incident Response">« Previous chapter</a></div><span class="chapnav-here" title="F.6 Assurance &amp; Compliance">F.6 Assurance &amp; Compliance</span><div class="chapnav-fwd"><a href="appendix-f-differential-adoption.html" aria-label="Next chapter — F.7 Differential Adoption">Next chapter »</a><a href="appendix-field-guide.html" aria-label="Next part — Appendix G — Field Guide">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

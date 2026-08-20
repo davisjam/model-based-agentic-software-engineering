@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="citation_title" content="H.6 Assurance &amp; Compliance"><meta name="citation_author" content="James C. Davis"><meta name="citation_book_title" content="Model-Based Agentic Software Engineering"><meta name="citation_publication_date" content="2026"><meta name="citation_fulltext_html_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/appendix-h-assurance-and-compliance.html"><meta name="citation_pdf_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book.pdf"><meta name="citation_reference" content="citation_title=Design and Code Inspections to Reduce Errors in Program Development;citation_author=Michael E. Fagan;citation_publication_date=1976"><meta name="citation_reference" content="citation_title=Advances in Software Inspections;citation_author=Michael E. Fagan;citation_publication_date=1986"><title>Appendix · H.6 Assurance &amp; Compliance — MAGE</title><style>@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Regular.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Semibold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Bold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-It.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-SemiboldIt.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-BoldIt.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Regular.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Bold.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-It.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-BoldIt.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}</style><style>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="citation_title" content="F.1 One Product, Several Engineering Surfaces"><meta name="citation_author" content="James C. Davis"><meta name="citation_book_title" content="Model-Based Agentic Software Engineering"><meta name="citation_publication_date" content="2026"><meta name="citation_fulltext_html_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/appendix-f-one-product-several-surfaces.html"><meta name="citation_pdf_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book.pdf"><title>Appendix · F.1 One Product, Several Engineering Surfaces — MAGE</title><style>@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Regular.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Semibold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Bold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-It.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-SemiboldIt.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-BoldIt.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Regular.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Bold.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-It.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-BoldIt.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}</style><style>
   /* GENERATED by book-models/design_tokens.py from design-tokens.json — do not hand-edit. */
   :root {
     --ink: #1c1917;
@@ -582,11 +582,11 @@ section.eng-note, section.eng-note-panel { break-inside: avoid; }
 main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </style></head><body><nav class="toc" aria-label="Table of contents"><div class="toc-inner"><details><summary>☰&nbsp; Contents</summary><ol><li class="part">Front Matter</li>
 <li><a class="" href="0.1-what-this-book-argues.html">What This Book Argues</a></li>
-<li><a class="" href="0.2-the-mage-method-at-a-glance.html">The MAGE Method at a Glance</a></li>
-<li><a class="" href="0.3-the-books-language.html">The Book's Language</a></li>
-<li><a class="" href="0.4-preface.html">Preface</a></li>
+<li><a class="" href="0.2-how-to-read-this-book.html">How to Read This Book</a></li>
+<li><a class="" href="0.3-the-mage-method-at-a-glance.html">The MAGE Method at a Glance</a></li>
+<li><a class="" href="0.4-the-books-language.html">The Book's Language</a></li>
+<li><a class="" href="0.5-preface.html">Preface</a></li>
 <li><a class="" href="list-of-figures.html">List of Figures and Tables</a></li>
-<li><a class="" href="0.5-how-to-read-this-book.html">How to read this book</a></li>
 <li><a class="" href="0.6-acknowledgments.html">Acknowledgments</a></li>
 <li class="part">Part 1 — The New Engineering Problem</li>
 <li><a class="" href="part-1-intro.html">The New Engineering Problem</a></li>
@@ -687,21 +687,21 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-skill-recipe.html">Appendix E — How to Write a Skill</a></li>
 <li><a class="" href="appendix-e-theory.html">Appendix E - 1. Theory</a></li>
 <li><a class="" href="appendix-e-applying-the-recipe.html">Appendix E - 2. Applying the Recipe</a></li>
-<li class="part">Appendix F — Field Guide</li>
-<li><a class="" href="appendix-field-guide.html">Appendix F — Field Guide</a></li>
-<li class="part">Appendix G — Evidence Ledger: The DocAble Case</li>
-<li><a class="" href="appendix-evidence-ledger.html">Appendix G — Evidence Ledger: The DocAble Case</a></li>
-<li class="part">Appendix H — Configuring MAGE Across the Product Lifecycle</li>
-<li><a class="" href="appendix-product-lifecycle.html">Appendix H — Configuring MAGE Across the Product Lifecycle</a></li>
-<li><a class="" href="appendix-h-one-product-several-surfaces.html">H.1 One Product, Several Engineering Surfaces</a></li>
-<li><a class="" href="appendix-h-product-discovery.html">H.2 Product Discovery</a></li>
-<li><a class="" href="appendix-h-engineering-and-realization.html">H.3 Engineering &amp; Realization</a></li>
-<li><a class="" href="appendix-h-product-management-and-maintenance.html">H.4 Product Management &amp; Maintenance</a></li>
-<li><a class="" href="appendix-h-operations-and-incidents.html">H.5 Operations &amp; Incident Response</a></li>
-<li><a class="current" href="appendix-h-assurance-and-compliance.html">H.6 Assurance &amp; Compliance</a></li>
-<li><a class="" href="appendix-h-differential-adoption.html">H.7 Differential Adoption</a></li>
-<li><a class="" href="appendix-h-from-local-mage-to-the-product-gee.html">H.8 From Local MAGE to the Product GEE</a></li>
-<li><a class="" href="appendix-h-engineering-capital-across-time-and-space.html">H.9 Engineering Capital Across Time and Space</a></li>
+<li class="part">Appendix F — Configuring MAGE Across the Product Lifecycle</li>
+<li><a class="" href="appendix-product-lifecycle.html">Appendix F — Configuring MAGE Across the Product Lifecycle</a></li>
+<li><a class="current" href="appendix-f-one-product-several-surfaces.html">F.1 One Product, Several Engineering Surfaces</a></li>
+<li><a class="" href="appendix-f-product-discovery.html">F.2 Product Discovery</a></li>
+<li><a class="" href="appendix-f-engineering-and-realization.html">F.3 Engineering &amp; Realization</a></li>
+<li><a class="" href="appendix-f-product-management-and-maintenance.html">F.4 Product Management &amp; Maintenance</a></li>
+<li><a class="" href="appendix-f-operations-and-incidents.html">F.5 Operations &amp; Incident Response</a></li>
+<li><a class="" href="appendix-f-assurance-and-compliance.html">F.6 Assurance &amp; Compliance</a></li>
+<li><a class="" href="appendix-f-differential-adoption.html">F.7 Differential Adoption</a></li>
+<li><a class="" href="appendix-f-from-local-mage-to-the-product-gee.html">F.8 From Local MAGE to the Product GEE</a></li>
+<li><a class="" href="appendix-f-engineering-capital-across-time-and-space.html">F.9 Engineering Capital Across Time and Space</a></li>
+<li class="part">Appendix G — Field Guide</li>
+<li><a class="" href="appendix-field-guide.html">Appendix G — Field Guide</a></li>
+<li class="part">Appendix H — Evidence Ledger: The DocAble Case</li>
+<li><a class="" href="appendix-evidence-ledger.html">Appendix H — Evidence Ledger: The DocAble Case</a></li>
 <li class="part">Appendix I — Crazy Ideas</li>
 <li><a class="" href="appendix-crazy-ideas.html">Appendix I — Crazy Ideas</a></li>
 <li><a class="" href="appendix-i-experimental-substrate.html">I.1 Commodity Intelligence as an Experimental Instrument for Software Engineering</a></li>
@@ -709,97 +709,120 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · H.6 Assurance &amp; Compliance — MAGE"><header class="chap"><div class="kicker"><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">Appendix H — Configuring MAGE Across the Product Lifecycle</a></div><h1>H.6 Assurance &amp; Compliance</h1></header><p><strong>Engineering question.</strong> What must we be able to demonstrate about the product?</p>
-<p>Assurance and compliance organize work around claims that must be established, not merely implementations that must be produced. Some claims are naturally evaluated over models; others concern the realized system; many require evidence connecting the two.</p>
-<p>A security claim may be evaluated over a data-flow or access-control model; a memory-safety claim concerns the code that executes. Where implementation is not wholly generated from authoritative models, assurance must span both. Proving a property of an access-control model does not establish that the implementation realizes it, while inspecting implementation alone may obscure the intended policy. Traceability and Alignment connect the modeled claim to evidence from its realization and, where necessary, outward to requirements, operational measurements, and other lifecycle evidence.</p>
-<p><a class="xref" href="appendix-h-assurance-and-compliance.html#fig-H-6-1">Figure&nbsp;H.6-1</a> separates model evidence, realization evidence, and the traceability needed when a claim depends on both.</p>
-<figure id="fig-H-6-1" class="book-figure" data-label="fig-h-assurance"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 660"
-     role="img" aria-labelledby="f-h6-assurance-models-realization-h6Title f-h6-assurance-models-realization-h6Desc"
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · F.1 One Product, Several Engineering Surfaces — MAGE"><header class="chap"><div class="kicker"><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix F — Configuring MAGE Across the Product Lifecycle">Appendix F — Configuring MAGE Across the Product Lifecycle</a></div><h1>F.1 One Product, Several Engineering Surfaces</h1></header><p><a class="xref" href="appendix-f-one-product-several-surfaces.html#fig-F-1-1">Figure&nbsp;F.1-1</a> places the product amid the engineering activities that shape it.</p>
+<figure id="fig-F-1-1" class="book-figure" data-label="fig-h-lifecycle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720"
+     role="img" aria-labelledby="f-h1-product-lifecycle-h1Title f-h1-product-lifecycle-h1Desc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-h6-assurance-models-realization-h6Title">Assurance across models and realization</title>
-  <desc id="f-h6-assurance-models-realization-h6Desc">An obligation becomes an assurance claim. Establishing the claim can require evidence about
-    modeled properties — architecture, behavior, data flow, access policy, invariants — about the realization —
-    implementation, tests, static analysis, runtime evidence, memory safety — or about the correspondence between
-    them, which traceability and Alignment supply. The combined evidence and argument establishes the claim.</desc>
+  <title id="f-h1-product-lifecycle-h1Title">MAGE across the product lifecycle</title>
+  <desc id="f-h1-product-lifecycle-h1Desc">Four recurring engineering activities run left to right as a dominant lifecycle flow: Product
+    Discovery, Engineering and Realization, Product Management and Maintenance, and Operations and Incidents. Each
+    box carries the question it asks and the representations it produces. Assurance and Compliance is drawn below,
+    spanning the row as a cross-cutting activity that feeds up into all four. A wide arrow beneath the lifecycle row
+    shows observations, failures, evidence, and new needs feeding back into earlier activities; the sequence is a
+    lifecycle, not a waterfall.</desc>
 
   <defs>
-    <marker id="f-h6-assurance-models-realization-h6-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <marker id="f-h1-product-lifecycle-h1-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
+    <marker id="f-h1-product-lifecycle-h1-ah-u" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
   </defs>
 
-  <rect x="0" y="0" width="640" height="660" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1000" height="720" fill="#fdfcf9"/>
+  <text x="500" y="40" text-anchor="middle" font-size="19" font-weight="700" letter-spacing="0.1em" fill="#57534e">ENGINEERING A SOFTWARE PRODUCT</text>
 
-  <g text-anchor="middle">
-    <rect id="f-h6-assurance-models-realization-obligation" x="240" y="24" width="160" height="42" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="320" y="51" font-size="14" font-weight="700" fill="#1c1917">OBLIGATION</text>
+  <!-- four lifecycle boxes -->
+  <g>
+    <rect id="f-h1-product-lifecycle-discovery" x="28"  y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="134" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">PRODUCT</text>
+    <text x="134" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">DISCOVERY</text>
 
-    <rect id="f-h6-assurance-models-realization-assurance-claim" x="210" y="110" width="220" height="44" rx="8" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="320" y="138" font-size="14" font-weight="700" fill="#1c1917">ASSURANCE CLAIM</text>
+    <rect id="f-h1-product-lifecycle-engineering" x="274" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="380" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">ENGINEERING &amp;</text>
+    <text x="380" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">REALIZATION</text>
+
+    <rect id="f-h1-product-lifecycle-product-mgmt" x="520" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="626" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">PRODUCT MGMT &amp;</text>
+    <text x="626" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">MAINTENANCE</text>
+
+    <rect id="f-h1-product-lifecycle-operations" x="766" y="64" width="212" height="74" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+    <text x="872" y="98"  text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">OPERATIONS &amp;</text>
+    <text x="872" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1917">INCIDENTS</text>
   </g>
 
-  <!-- edge: obligation -> assurance-claim -->
-  <line x1="320" y1="66" x2="320" y2="108" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
-
-  <!-- split to the two evidence bodies (one path per branch; each arrives vertically into its box top) -->
-  <!-- edge: assurance-claim -> model-evidence -->
-  <path d="M245,154 L245,206" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
-  <!-- edge: assurance-claim -> realization-evidence -->
-  <path d="M395,154 L395,206" fill="none" stroke="#57534e" stroke-width="2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
-
-  <!-- model evidence -->
-  <rect id="f-h6-assurance-models-realization-model-evidence" x="50" y="208" width="230" height="168" rx="9" fill="#eef2f5" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="165" y="234" text-anchor="middle" font-size="14" font-weight="700" fill="#2f5169">MODEL EVIDENCE</text>
-  <g text-anchor="middle" font-size="13" fill="#2f5169">
-    <text x="165" y="262">architecture</text>
-    <text x="165" y="284">behavior</text>
-    <text x="165" y="306">data flow</text>
-    <text x="165" y="328">access policy</text>
-    <text x="165" y="350">invariants</text>
+  <!-- flow arrows between boxes -->
+  <g stroke="#57534e" stroke-width="2.6" marker-end="url(#f-h1-product-lifecycle-h1-ah)">
+    <!-- edge: discovery -> engineering -->
+    <line x1="240" y1="101" x2="272" y2="101"/>
+    <!-- edge: engineering -> product-mgmt -->
+    <line x1="486" y1="101" x2="518" y2="101"/>
+    <!-- edge: product-mgmt -> operations -->
+    <line x1="732" y1="101" x2="764" y2="101"/>
   </g>
 
-  <!-- realization evidence -->
-  <rect id="f-h6-assurance-models-realization-realization-evidence" x="360" y="208" width="230" height="168" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="475" y="234" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1917">REALIZATION EVIDENCE</text>
-  <g text-anchor="middle" font-size="13" fill="#1c1917">
-    <text x="475" y="262">implementation</text>
-    <text x="475" y="284">tests</text>
-    <text x="475" y="306">static analysis</text>
-    <text x="475" y="328">runtime evidence</text>
-    <text x="475" y="350">memory safety</text>
+  <!-- transparent anchors over each question pair, so the down-tick plugs into a named node -->
+  <g fill="none" stroke="none">
+    <rect id="f-h1-product-lifecycle-q-discovery"    x="44"  y="160" width="180" height="46"/>
+    <rect id="f-h1-product-lifecycle-q-engineering"  x="290" y="160" width="180" height="46"/>
+    <rect id="f-h1-product-lifecycle-q-product-mgmt" x="536" y="160" width="180" height="46"/>
+    <rect id="f-h1-product-lifecycle-q-operations"   x="782" y="160" width="180" height="46"/>
   </g>
 
-  <!-- TRACEABILITY & ALIGNMENT is a bare-text node: a transparent anchor (fill:none stroke:none) carries the
-       id so the two merge relationships and the onward arrow can plug into it (zero visual change). -->
-  <rect id="f-h6-assurance-models-realization-traceability" x="220" y="396" width="200" height="72" fill="none" stroke="none"/>
-
-  <!-- merge to traceability & alignment (undirected relationships; both evidence bodies relate to the join) -->
-  <!-- edge: model-evidence -> traceability -->
-  <path d="M250,376 L250,396" fill="none" stroke="#57534e" stroke-width="2"/>
-  <!-- edge: realization-evidence -> traceability -->
-  <path d="M390,376 L390,396" fill="none" stroke="#57534e" stroke-width="2"/>
-  <text x="320" y="430" text-anchor="middle" font-size="14" font-weight="700" fill="#9a3f12">TRACEABILITY &amp; ALIGNMENT</text>
-  <text x="320" y="450" text-anchor="middle" font-size="13" fill="#9a3f12">models ↔ code</text>
-
-  <!-- edge: traceability -> evidence-argument -->
-  <line x1="320" y1="468" x2="320" y2="496" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
-
-  <g text-anchor="middle">
-    <rect id="f-h6-assurance-models-realization-evidence-argument" x="210" y="498" width="220" height="56" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-    <text x="320" y="522" font-size="14" font-weight="700" fill="#1c1917">EVIDENCE /</text>
-    <text x="320" y="542" font-size="14" font-weight="700" fill="#1c1917">ARGUMENT</text>
+  <!-- questions under each box: box -> its question anchor -->
+  <g stroke="#57534e" stroke-width="1.6" marker-end="url(#f-h1-product-lifecycle-h1-ah)">
+    <!-- edge: discovery -> q-discovery -->
+    <line x1="134" y1="138" x2="134" y2="158"/>
+    <!-- edge: engineering -> q-engineering -->
+    <line x1="380" y1="138" x2="380" y2="158"/>
+    <!-- edge: product-mgmt -> q-product-mgmt -->
+    <line x1="626" y1="138" x2="626" y2="158"/>
+    <!-- edge: operations -> q-operations -->
+    <line x1="872" y1="138" x2="872" y2="158"/>
+  </g>
+  <g font-size="16" fill="#57534e" text-anchor="middle" font-style="italic">
+    <text x="134" y="176">What should we build?</text>
+    <text x="134" y="197">Why? What do we know?</text>
+    <text x="380" y="176">How should it</text>
+    <text x="380" y="197">be realized?</text>
+    <text x="626" y="176">What should change?</text>
+    <text x="626" y="197">Why? What changed?</text>
+    <text x="872" y="176">What is happening?</text>
+    <text x="872" y="197">What failed? Why?</text>
   </g>
 
-  <!-- edge: evidence-argument -> claim-established -->
-  <line x1="320" y1="554" x2="320" y2="588" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-h6-assurance-models-realization-h6-ah)"/>
-
-  <g text-anchor="middle">
-    <rect id="f-h6-assurance-models-realization-claim-established" x="206" y="590" width="228" height="44" rx="9" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
-    <text x="320" y="618" font-size="14" font-weight="700" fill="#9a3f12">CLAIM ESTABLISHED</text>
+  <!-- artifacts under each box -->
+  <g font-size="16" fill="#1c1917" text-anchor="middle">
+    <text x="134" y="234">hypotheses</text><text x="134" y="259">needs</text><text x="134" y="284">experiments</text><text x="134" y="309">decisions</text><text x="134" y="334">requirements</text>
+    <text x="380" y="234">architecture</text><text x="380" y="259">behavior</text><text x="380" y="284">interfaces</text><text x="380" y="309">contracts</text><text x="380" y="334">analyses</text>
+    <text x="626" y="234">tickets</text><text x="626" y="259">issues</text><text x="626" y="284">rationale</text><text x="626" y="309">acceptance</text><text x="626" y="334">history</text>
+    <text x="872" y="234">topology</text><text x="872" y="259">telemetry</text><text x="872" y="284">SLOs</text><text x="872" y="309">runbooks</text><text x="872" y="334">RCAs</text>
   </g>
-</svg><figcaption data-short="Assurance across models and realization"><span class="fig-label">Figure H.6-1.</span> <em>Assurance across models and realization.</em> Claims may depend on modeled properties, realized properties, or correspondence between the two. Traceability and Alignment connect the required evidence.</figcaption></figure>
-<p>Assurance creates pressure to reduce degrees of freedom only where the return justifies it. Authoritative models and trustworthy transformations can move assurance toward the governing model and away from independently authored realization, but eliminating freedom costs modeling effort and may make later changes harder. Other properties are cheaper to establish over the realized system. The same tradeoff governs determinization: mechanize claims that can be decided responsibly; leave statistical, semantic, or normative judgment where it belongs.</p>
-<p>Agentic realization may also shift verification away from lightweight code review toward more formal inspection.<sup class="note-ref"><a href="#note-appendix-h-assurance-and-compliance-fn-fagan" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-appendix-h-assurance-and-compliance-fn-fagan"><span class="cn-mark">*</span> Formal software inspection has a substantial history. Michael Fagan's work at IBM distinguished inspection from informal review by treating it as a systematic verification activity with defined roles, procedures, and recorded results. The analogy here is structural rather than procedural: MAGE does not propose restoring the original inspection process, but predicts renewed pressure to formalize inspection as realization becomes cheaper and more abundant. See Fagan 1976 <sup class="cite-ref"><a href="#wc-appendix-h-assurance-and-compliance-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Michael E. Fagan, “Design and Code Inspections to Reduce Errors in Program Development,” <em>IBM Systems Journal</em> 15, no. 3 (1976): 182–211, <a href="https://doi.org/10.1147/sj.153.0182">https://doi.org/10.1147/sj.153.0182</a>.</span> and Fagan 1986 <sup class="cite-ref"><a href="#wc-appendix-h-assurance-and-compliance-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Michael E. Fagan, “Advances in Software Inspections,” <em>IEEE Transactions on Software Engineering</em> SE-12, no. 7 (1986): 744–51.</span>.</span> Contemporary review assumes changes arrive slowly enough that peers can reconstruct intent, context, and obligations from diffs, comments, tests, and local judgment. Agent-generated changes stress that assumption. Inspection may therefore become a distinct activity organized around explicit obligations, models, traceability, procedures, and evidence rather than an informal second look at code.</p>
-<p>Such inspection could begin from a ticket or assurance claim, traverse to the governing models, inspect their realization where necessary, and judge whether the evidence establishes both correspondence and satisfaction. The analogy to classical software inspection is structural rather than procedural: production and verification separate more clearly as realization becomes cheaper.</p>
-<p>Assurance is therefore cross-cutting rather than a final lifecycle stage: its obligations constrain work elsewhere, and its evidence can originate anywhere in the lifecycle.</p>
-<p><strong>MAGE profile.</strong></p>
-<ul><li><em>Characteristic models.</em> Requirements, policies, threats and hazards, invariants, traceability, assurance cases, claims, and evidence models.</li><li><em>Lifetime.</em> Usually system- or organizational-lived, although individual evidence can be change- or execution-scoped.</li><li><em>Alignment posture.</em> Strong. Assurance may require evidence over models, over their realization, and over the correspondence between them.</li><li><em>Role of autonomous reasoning.</em> Interpreting semantic obligations, reasoning across modeled and realized properties, maintaining traceability, assembling evidence, identifying gaps, and evaluating claims that machinery cannot settle.</li><li><em>Determinization opportunity.</em> High for decidable claims over either models or implementation; limited where interpretation or normative judgment remains necessary.</li><li><em>Degrees of freedom.</em> Realization choices left unconstrained because they are irrelevant to the assurance obligation or cheaper to inspect than to specify in advance.</li><li><em>Smallest useful adoption.</em> Select one consequential obligation, identify what must be established over models and realization, connect those artifacts through traceability, and automate evidence or admission where the claim is decidable.</li><li><em>Lifecycle connections.</em> Assurance carries obligations across the lifecycle and draws evidence from product decisions, engineering models, implementation, change history, and operational behavior.</li></ul><section class="works-cited" aria-labelledby="wc-appendix-h-assurance-and-compliance-h"><h2 id="wc-appendix-h-assurance-and-compliance-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-appendix-h-assurance-and-compliance-1">Fagan, Michael E. “Design and Code Inspections to Reduce Errors in Program Development.” <em>IBM Systems Journal</em> 15, no. 3 (1976): 182–211. <a href="https://doi.org/10.1147/sj.153.0182">https://doi.org/10.1147/sj.153.0182</a>.</li><li id="wc-appendix-h-assurance-and-compliance-2">Fagan, Michael E. “Advances in Software Inspections.” <em>IEEE Transactions on Software Engineering</em> SE-12, no. 7 (1986): 744–51.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix H — Configuring MAGE Across the Product Lifecycle">« Beginning of part</a><a href="appendix-h-operations-and-incidents.html" aria-label="Previous chapter — H.5 Operations &amp; Incident Response">« Previous chapter</a></div><span class="chapnav-here" title="H.6 Assurance &amp; Compliance">H.6 Assurance &amp; Compliance</span><div class="chapnav-fwd"><a href="appendix-h-differential-adoption.html" aria-label="Next chapter — H.7 Differential Adoption">Next chapter »</a><a href="appendix-crazy-ideas.html" aria-label="Next part — Appendix I — Crazy Ideas">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+
+  <!-- feedback arrow, pulled up beneath the lifecycle row (leftward return flow) -->
+  <line x1="946" y1="364" x2="54" y2="364" stroke="#57534e" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#f-h1-product-lifecycle-h1-ah)"/>
+  <text x="500" y="388" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">observations, failures, evidence, and new needs feed back into earlier activities</text>
+
+  <!-- single horizontal bracket spanning the four lifecycle surfaces, one centered connection down to Assurance -->
+  <path d="M134,404 L134,428 L872,428 L872,404" fill="none" stroke="#57534e" stroke-width="1.8"/>
+  <line x1="500" y1="428" x2="500" y2="488" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#f-h1-product-lifecycle-h1-ah-u)"/>
+
+  <!-- Assurance & Compliance — drawn below, cross-cutting (umber accent) -->
+  <rect id="f-h1-product-lifecycle-assurance" x="336" y="490" width="328" height="82" rx="11" fill="#f7efe8" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="500" y="526" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">ASSURANCE &amp;</text>
+  <text x="500" y="550" text-anchor="middle" font-size="19" font-weight="700" fill="#9a3f12">COMPLIANCE</text>
+  <text x="712" y="536" font-size="15" font-style="italic" fill="#9a3f12">cross-cutting</text>
+
+  <text x="500" y="608" text-anchor="middle" font-size="16" font-style="italic" fill="#57534e">What must be shown to be true?</text>
+  <g font-size="16" fill="#1c1917" text-anchor="middle">
+    <text x="500" y="638">requirements · policies</text>
+    <text x="500" y="663">threats · traceability</text>
+    <text x="500" y="688">claims · evidence</text>
+  </g>
+</svg><figcaption data-short="MAGE across the product lifecycle"><span class="fig-label">Figure F.1-1.</span> <em>MAGE across the product lifecycle.</em> Different lifecycle surfaces ask different engineering questions and therefore benefit from different representations. The horizontal flow is not a waterfall: experience and evidence feed earlier activities, while Assurance &amp; Compliance spans the lifecycle. Each surface can adopt MAGE independently.</figcaption></figure>
+<p>The representations differ along five dimensions.</p>
+<ol><li><strong>Purpose.</strong> Each representation preserves what a particular engineering question needs. A product hypothesis helps decide what to build; an architectural model exposes system structure; an incident timeline reconstructs what happened. They need not share a form merely because they concern the same product.</li></ol>
+<ol><li><strong>Lifetime.</strong> A model may be episode-scoped, change-scoped, system-lived, or organizational. An experiment may last for one investigation; a ticket may govern one change; an architectural boundary may survive hundreds of changes; a regulatory policy may govern several products.</li></ol>
+<ol><li><strong>Claimed correspondence.</strong> Age alone does not establish model drift. A 2022 ticket can remain a faithful representation of the intent governing a 2022 change without describing the product in 2026. MAGE rejects “keep the model equal to the code” as a universal synchronization rule because different models claim different relations to the realized system.</li></ol>
+<ol><li><strong>Authority.</strong> Representation does not imply authority. A discovery hypothesis may deserve preservation without enforcement; an accepted security invariant may deserve both.</li></ol>
+<ol><li><strong>Reasoning posture.</strong> Some representations support semantic or situational judgment; others expose stable properties that can become deterministic procedures or predicates. The appropriate mix depends on cost and consequence.</li></ol>
+<p>The five surfaces configure these dimensions differently. The sections that follow examine each in turn.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-product-lifecycle.html" aria-label="Beginning of Appendix F — Configuring MAGE Across the Product Lifecycle">« Beginning of part</a><a href="appendix-product-lifecycle.html" aria-label="Previous chapter — Appendix F — Configuring MAGE Across the Product Lifecycle">« Previous chapter</a></div><span class="chapnav-here" title="F.1 One Product, Several Engineering Surfaces">F.1 One Product, Several Engineering Surfaces</span><div class="chapnav-fwd"><a href="appendix-f-product-discovery.html" aria-label="Next chapter — F.2 Product Discovery">Next chapter »</a><a href="appendix-field-guide.html" aria-label="Next part — Appendix G — Field Guide">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

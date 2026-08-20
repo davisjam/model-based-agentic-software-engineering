@@ -67,7 +67,7 @@
       "word_count": 12,
       "statement_hash": "36f4f3b40095",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "1.1-the-printer",
         "1.2-mage-by-example",
         "5.2-the-build",
@@ -99,7 +99,7 @@
       "word_count": 23,
       "statement_hash": "36e742ea3f72",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "1.1-the-printer",
         "5.4-failures-that-became-infrastructure",
         "7.1-the-part-that-stays-yours"
@@ -130,7 +130,7 @@
       "word_count": 19,
       "statement_hash": "cf81b75e7fd6",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "1.2-mage-by-example",
         "5.3-the-road-to-mage",
         "6.4-reorganization-of-se"
@@ -163,7 +163,7 @@
       "word_count": 26,
       "statement_hash": "d1e8982b2cc0",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "1.1-the-printer"
       ],
       "body_depth": 0,
@@ -193,7 +193,7 @@
       "word_count": 22,
       "statement_hash": "0723642b2b10",
       "advanced_by": [
-        "0.4-preface"
+        "0.5-preface"
       ],
       "body_depth": 0,
       "front_loaded": true,
@@ -224,7 +224,7 @@
       "word_count": 26,
       "statement_hash": "78b391707b50",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "1.2-mage-by-example",
         "3.1-where-authority-can-act",
         "3.3-constraints-sensors-validators-gates",
@@ -268,10 +268,11 @@
       "word_count": 32,
       "statement_hash": "727472b9afa0",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "1.3-the-agentic-substrate",
         "1.4-the-new-engineering-problem",
         "2.1-context-is-the-first-modeling-problem",
+        "2.7-provenance",
         "2.8-system-knowledge",
         "3.2-models-and-the-semantic-gap",
         "3.5-when-guardrails-collide",
@@ -284,8 +285,7 @@
         "modeling-behavior-and-execution",
         "modeling-ownership",
         "modeling-decision",
-        "modeling-measurement-and-evidence",
-        "modeling-provenance"
+        "modeling-measurement-and-evidence"
       ],
       "body_depth": 15,
       "front_loaded": false,
@@ -317,7 +317,7 @@
       "word_count": 36,
       "statement_hash": "5a24063f0dc6",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "1.3-the-agentic-substrate",
         "1.4-the-new-engineering-problem",
         "3.1-where-authority-can-act",
@@ -357,7 +357,7 @@
       "word_count": 45,
       "statement_hash": "218601e7dcb9",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "1.4-the-new-engineering-problem"
       ],
       "body_depth": 0,
@@ -389,7 +389,7 @@
       "word_count": 34,
       "statement_hash": "820575f71f58",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "1.2-mage-by-example",
         "3.4-governance-conversion",
         "4.1-the-mage-workflow",
@@ -453,7 +453,7 @@
       "word_count": 23,
       "statement_hash": "09abeb08db9f",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "2.8-system-knowledge",
         "6.4-reorganization-of-se",
         "6.6-education-research-open-problems",
@@ -517,7 +517,7 @@
       "word_count": 20,
       "statement_hash": "d27760687c37",
       "advanced_by": [
-        "0.4-preface",
+        "0.5-preface",
         "1.2-mage-by-example",
         "5.1-the-problem-and-the-bar",
         "5.2-the-build",
@@ -567,12 +567,12 @@
   ],
   "chapters": [
     {
-      "slug": "0.3-the-books-language",
+      "slug": "0.4-the-books-language",
       "advances": [],
       "exempt": "apparatus"
     },
     {
-      "slug": "0.4-preface",
+      "slug": "0.5-preface",
       "advances": [
         "abundant-implementation",
         "fault-lies-in-instructions",
@@ -628,6 +628,13 @@
     },
     {
       "slug": "2.1-context-is-the-first-modeling-problem",
+      "advances": [
+        "modeling-principle"
+      ],
+      "exempt": null
+    },
+    {
+      "slug": "2.7-provenance",
       "advances": [
         "modeling-principle"
       ],
@@ -872,13 +879,6 @@
         "modeling-principle"
       ],
       "exempt": null
-    },
-    {
-      "slug": "modeling-provenance",
-      "advances": [
-        "modeling-principle"
-      ],
-      "exempt": null
     }
   ],
   "flags": {
@@ -937,7 +937,7 @@
         "claim": "govern-the-environment",
         "advanced_by": 11,
         "chapters": [
-          "0.4-preface",
+          "0.5-preface",
           "1.2-mage-by-example",
           "3.1-where-authority-can-act",
           "3.3-constraints-sensors-validators-gates",
@@ -954,10 +954,11 @@
         "claim": "modeling-principle",
         "advanced_by": 18,
         "chapters": [
-          "0.4-preface",
+          "0.5-preface",
           "1.3-the-agentic-substrate",
           "1.4-the-new-engineering-problem",
           "2.1-context-is-the-first-modeling-problem",
+          "2.7-provenance",
           "2.8-system-knowledge",
           "3.2-models-and-the-semantic-gap",
           "3.5-when-guardrails-collide",
@@ -970,15 +971,14 @@
           "modeling-behavior-and-execution",
           "modeling-ownership",
           "modeling-decision",
-          "modeling-measurement-and-evidence",
-          "modeling-provenance"
+          "modeling-measurement-and-evidence"
         ]
       },
       {
         "claim": "alignment-principle",
         "advanced_by": 12,
         "chapters": [
-          "0.4-preface",
+          "0.5-preface",
           "1.3-the-agentic-substrate",
           "1.4-the-new-engineering-problem",
           "3.1-where-authority-can-act",

@@ -13,6 +13,6 @@ when violations still depend on human detection. Address whichever uncovered gap
 
 Apply Audit → Synchronize → Govern → Extend to a selected surface rather than to the organization as a
 whole. The Missing-Model Metric measures representation reach over an exercised surface, not authority
-reach. Appendix G records the observed DocAble measurements.
+reach. Appendix H records the observed DocAble measurements.
 
 See [Chapter 4.2](4.2-brownfield.html) for the full treatment.
