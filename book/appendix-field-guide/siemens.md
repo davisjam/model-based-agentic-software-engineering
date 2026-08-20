@@ -8,7 +8,7 @@
 
 SysML and CAD models, simulation, virtual ECUs, and bill-of-materials structures can serve as engineering surfaces, with code and verification downstream.[^siemens-recon]
 
-**Boundary of the evidence.** The public material examined here does not establish a generalized admission mechanism — one that rejects an agent-generated change whenever a declared model↔implementation correspondence is violated. That is a boundary of *this source corpus*, not a claim about what Siemens can do. No public reconstruction examined here establishes that correspondence tier; source silence does not establish organizational absence.[^siemens-part6]
+**Boundary of the evidence.** The sources examined here do not establish a general admission mechanism that rejects changes when declared model↔implementation correspondence is violated. As throughout this appendix, source silence does not imply organizational absence.[^siemens-part6]
 
 **Portable lesson.** Software need not be the primary surface of engineering reasoning. Mature engineering disciplines routinely place richer representations upstream of realization.
 
@@ -20,6 +20,6 @@ SysML and CAD models, simulation, virtual ECUs, and bill-of-materials structures
 <!-- label: field-guide-siemens -->
 <!-- figure: assets/field-guide-siemens.svg | *Siemens projected onto MAGE.* Strong evidence for rich Modeling; evidence for analysis and verification; no claim from source silence about generalized model↔code admission. -->
 
-**MAGE reading.** Siemens validates the premise behind the strong end of Modeling: engineers can reason through persistent semantic representations and treat implementation as downstream realization. MAGE did not invent model-first engineering; its contribution is to bring that engineering instinct into agentic software engineering and connect representation explicitly to the authority surfaces of the governed environment.
+**MAGE reading.** Siemens shows the strong end of Modeling in established engineering practice: engineers reason through persistent semantic representations and treat implementation as downstream realization. MAGE did not invent model-first engineering; its contribution is to bring that engineering instinct into agentic software engineering and connect representation explicitly to the authority surfaces of the governed environment.
 
-**Interpretive boundary.** The missing model↔code admission gate in the diagram marks an unestablished MAGE relation, not a Siemens deficiency; the mapping withholds that rung rather than inferring its absence.
+**Interpretive boundary.** The missing model↔code admission gate means not established, not absent.

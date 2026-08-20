@@ -8,9 +8,9 @@
 
 Spotify's surrounding engineering estate also matters. Its System Model and Backstage catalog carry service identities, ownership, dependencies, endpoints, and lineage, giving fleet tooling a representation through which migrations can be targeted rather than requiring each agent to rediscover the repository landscape.[^sp-estate]
 
-**Boundary of the evidence.** Reported activity increases — including the 76% PR-frequency figure[^sp-prfreq] — measure implementation activity, not durable throughput. The stronger evidence is the changed allocation of human and agent work: judgment moves upstream to scoping and supervision.
+**Boundary of the evidence.** Reported activity increases — including the 76% PR-frequency figure[^sp-prfreq] — measure implementation activity, not durable throughput. The stronger evidence is how the work changes: agents implement while human judgment moves upstream to scoping and supervision.
 
-**Portable lesson.** Fleet-scale autonomy moves scarce human judgment toward scoping, targeting, supervision, and exception handling.
+**Portable lesson.** Scale implementation; concentrate human judgment on what to change and where.
 
 [^sp-honk]: Max Charas and Marc Bruggmann, "Honk: Autonomous Code Migration at Spotify," Spotify Engineering, 2026. Already in the manuscript bibliography.
 [^sp-estate]: Spotify System Model and Backstage service catalog, as recorded in the §5.5 reconstruction (service identities, ownership, dependencies, endpoints, lineage).
@@ -21,6 +21,6 @@ Spotify's surrounding engineering estate also matters. Its System Model and Back
 <!-- label: field-guide-spotify -->
 <!-- figure: assets/field-guide-spotify.svg | *Spotify projected onto MAGE.* Persistent estate representation feeds targeting, concurrent execution, and fleet-level supervision; the reading is judgment moving upstream, not the PR count. -->
 
-**MAGE reading.** At Spotify, representation and governance compose. A model of the service estate helps determine where work belongs; verification and admission machinery determine whether generated changes can proceed; fleet execution makes one engineer's upstream decisions consequential across many repositories. Implementation scales faster than human judgment; the engineered environment therefore moves scarce judgment upstream and amplifies it across the fleet.
+**MAGE reading.** Spotify shows the model and governed environment working together. A model of the service estate helps determine where work belongs; verification and admission machinery determine whether generated changes can proceed; fleet execution makes one engineer's upstream decisions consequential across many repositories.
 
-**Interpretive boundary.** The mapping does not warrant reading every Spotify migration as model-driven or automatically admitted; it supports the compositional reading only for the mechanisms the public account establishes.
+**Interpretive boundary.** The evidence does not show that every Spotify migration is model-driven or automatically admitted; the reading applies only to the mechanisms described publicly.

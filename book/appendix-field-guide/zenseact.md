@@ -8,7 +8,7 @@
 
 Zenseact also illustrates *selective context*. Routing machinery selects task-relevant expertise instead of loading the whole organizational corpus into every reasoning window. A central runtime and safety envelope coexist with domain expertise captured in reusable skills and surfaced on demand.[^zenseact-context]
 
-**Boundary of the evidence.** This is evidence about organizational architecture, context routing, delegation, and ownership. It does not establish the resulting productivity, safety, or engineering-capital returns of that arrangement.
+**Boundary of the evidence.** The sources show how Zenseact divides the platform, routes context, delegates work, and assigns ownership. They do not establish the resulting productivity, safety, or returns on engineering capital.
 
 **Portable lesson.** Build the common substrate once; distribute the engineering judgment to the teams that possess the knowledge it requires.
 
@@ -22,4 +22,4 @@ Zenseact also illustrates *selective context*. Routing machinery selects task-re
 
 **MAGE reading.** Zenseact combines Modeling and Alignment organizationally. Externalized domain knowledge and selective context help finite reasoners see what a task requires; shared authentication, execution, and safety machinery place common authority in one substrate. The organization does not centralize the judgment itself — domain teams keep the expertise that defines their agents and tools. The result is an organizational realization of the Governed Engineering Environment: common mechanisms without a central knowledge bottleneck.
 
-**Interpretive boundary.** The projection supports reading the platform/domain split as a realization of the Governed Engineering Environment; it does not license inferring that the governance-conversion loop closes or that Modeling and Alignment are fully instantiated.
+**Interpretive boundary.** The platform/domain split illustrates the Governed Engineering Environment; the evidence does not establish a closed governance-conversion loop or complete Modeling and Alignment.
