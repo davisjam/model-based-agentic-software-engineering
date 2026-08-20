@@ -1,7 +1,7 @@
 *Is the environment operating correctly right now?*
 
 Begin with outcomes. Check whether accepted work is landing, governed obligations are
-holding, validators and gates are exercising their intended surfaces, and human intervention
+holding, validators and gates are checking what they are supposed to check, and human intervention
 or rollback has risen unexpectedly. Use churn, coverage, drift, and other local measures only
 to diagnose changes in those outcomes.
 

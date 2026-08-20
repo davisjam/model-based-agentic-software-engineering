@@ -29,8 +29,7 @@ Read four things together:
   Ask first: what correspondence does this model claim?
 ```
 
-A failed correspondence reading means the representation cannot safely support the reasoning
-currently assigned to it. The finding does not determine whether the representation or the
+If the claimed correspondence fails, do not rely on the representation for that reasoning. The finding does not determine whether the representation or the
 represented system should change.
 
 In DocAble, the Missing-Model surface fell from 56% to 7.89% over nine passes. Appendix G

@@ -1,11 +1,12 @@
 Most organizations already possess fragments of a Governed Engineering Environment: documentation, tests,
 review rules, CI checks, ownership files, runbooks, deployment policy, and expert knowledge. Brownfield
-migration identifies which engineering questions need stronger representation, which obligations already
-have effective authority, and where remaining gaps force repeated human reconstruction.
+migration asks three questions: Which engineering knowledge needs stronger representation? Which obligations
+already have effective authority? Where do gaps still force people to reconstruct what the environment
+should know?
 
-Where a wiki carries important system knowledge, link its claims to the implementation and evidence they
-concern, test mechanically decidable claims, and promote only the portions whose future use justifies
-stronger structure. [Chapter 4.2](4.2-brownfield.html) gives the full treatment.
+When a wiki carries important system knowledge, link its claims to the implementation and evidence they
+concern. Check mechanically decidable claims automatically. Give stronger structure only to knowledge whose
+future use justifies the cost. [Chapter 4.2](4.2-brownfield.html) gives the full treatment.
 
 ### Joining the Wiki to the Code
 
@@ -26,8 +27,7 @@ that can drift.
 
 ### The Migration Path
 
-The migration has four stages — Audit, Synchronize, Govern, and Extend — each with an explicit exit
-criterion. Progress is defined by satisfying that criterion rather than by elapsed time.
+The migration has four stages—Audit, Synchronize, Govern, and Extend—and each has an exit criterion. Advance when the criterion is met, not when enough time has passed.
 
 <!-- table: The brownfield migration path. Each stage names its work and exit criterion. [short: Audit, synchronize, govern, extend] -->
 | Stage | Work | Exit criterion |
@@ -43,7 +43,7 @@ Audit → reconcile → trust → govern → extend selectively.
 
 Do not give an inaccurate representation authority. Do not require an explicit model where a local control
 already settles the obligation economically. Do not add structured metadata without a defined consumer.
-Treat each migration step as an investment intended to reduce costly reconstruction or unmanaged obligations.
+Add structure only when it is worth the cost: it should reduce repeated reconstruction or bring an important obligation under control.
 
 ### Orphan Triage
 

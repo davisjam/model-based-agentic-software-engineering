@@ -1,9 +1,8 @@
 *Is accumulated engineering structure producing value for later work?*
 
 Engineering structure becomes capital when later work inherits productive capacity from it.
-Models, validators, procedures, generators, and gates can all serve as capital when their
-future value exceeds their construction, maintenance, reconciliation, execution, and cognitive
-costs.
+Models, validators, procedures, generators, and gates become capital when the value they provide to later
+work exceeds the cost to build, run, understand, reconcile, and maintain them.
 
 Read capital through five questions:
 
@@ -32,7 +31,7 @@ Support ratio and control count measure accumulated apparatus, not capital retur
 that apparatus by the future capability it enables net of carrying cost. Appendix G records
 DocAble's observed support and control growth.
 
-One empirical probe is to hold task family and reasoner approximately fixed while varying the
-environment. If the same intelligence answers larger questions, reconstructs less context,
-requires less intervention, or produces more durable throughput in one environment than
-another, the difference provides evidence of productive capacity stored outside the agent.
+One way to test for engineering capital is to hold the task and reasoner approximately fixed while changing
+the environment. If the same intelligence can answer larger questions, reconstruct less context,
+require less intervention, or produce more durable work in one environment than
+another, the difference is evidence that the environment stores productive capacity.

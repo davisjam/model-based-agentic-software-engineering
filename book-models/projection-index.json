@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 32,
     "slugs_rendered": 22,
-    "total_sites": 1211,
+    "total_sites": 1210,
     "by_projection": {
       "book-pdf": 16,
-      "book-web": 808,
+      "book-web": 807,
       "website-catalogue": 219,
       "website-concepts": 56,
       "website-industry-cases": 46,
@@ -152,10 +152,6 @@
             "occ": 1
           },
           {
-            "file": "book/appendix-d-engineering-capital.html",
-            "occ": 1
-          },
-          {
             "file": "book/appendix-d-from-drifted-wiki-to-trusted-model.html",
             "occ": 3
           },
@@ -223,7 +219,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 50
+            "occ": 49
           }
         ]
       },
@@ -1215,7 +1211,7 @@
           },
           {
             "file": "book/appendix-d-engineering-capital.html",
-            "occ": 27
+            "occ": 28
           },
           {
             "file": "book/appendix-d-evidence-quality.html",
@@ -1231,7 +1227,7 @@
           },
           {
             "file": "book/appendix-d-human-judgment.html",
-            "occ": 20
+            "occ": 19
           },
           {
             "file": "book/appendix-d-model-health.html",
@@ -1239,11 +1235,11 @@
           },
           {
             "file": "book/appendix-d-operating-doctrine.html",
-            "occ": 24
+            "occ": 25
           },
           {
             "file": "book/appendix-d-operators-dashboard.html",
-            "occ": 19
+            "occ": 18
           },
           {
             "file": "book/appendix-d-release-readiness.html",
@@ -1323,7 +1319,7 @@
           },
           {
             "file": "book/appendix-operators-reference.html",
-            "occ": 22
+            "occ": 21
           },
           {
             "file": "book/appendix-product-lifecycle.html",
@@ -1825,7 +1821,7 @@
           },
           {
             "file": "book/appendix-d-engineering-capital.html",
-            "occ": 10
+            "occ": 11
           },
           {
             "file": "book/appendix-d-evidence-quality.html",
@@ -1933,7 +1929,7 @@
           },
           {
             "file": "book/appendix-operators-reference.html",
-            "occ": 4
+            "occ": 3
           },
           {
             "file": "book/appendix-product-lifecycle.html",
@@ -2473,7 +2469,7 @@
           },
           {
             "file": "book/appendix-d-human-judgment.html",
-            "occ": 4
+            "occ": 5
           },
           {
             "file": "book/appendix-d-model-health.html",

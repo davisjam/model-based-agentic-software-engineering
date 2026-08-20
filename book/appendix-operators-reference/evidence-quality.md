@@ -5,7 +5,7 @@ different evidence: a structural invariant may be checked exhaustively, a perfor
 measurement, a semantic-fidelity claim may require generative evaluation and human judgment, and a formal
 proof establishes only the property encoded under its stated model and assumptions.
 
-Evaluate evidence through four questions:
+For each claim, ask four questions:
 
 - **Claim.** What exactly is being asserted, and over what scope?
 - **Evidence.** What observation, measurement, proof, test, or other artifact bears on that claim?
@@ -30,6 +30,6 @@ Evaluate evidence through four questions:
   Strong backing  →  still choose authority deliberately
 ```
 
-The critical failure is a consequential claim whose stated confidence exceeds its evidentiary support.
+The critical failure is claiming more confidence than the evidence supports when the claim matters.
 Preserve evidence provenance, state limitations explicitly, and distinguish what the evidence establishes
 from the authority the organization chooses to attach.

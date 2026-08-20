@@ -1,15 +1,15 @@
 *Where is human attention going, and what do we keep deciding again?*
 
-Human attention is scarce, but some work should remain judgment-dependent. Novel architecture,
-ambiguous evidence, and consequential review may justify direct human reasoning. The operating
-signal is repeated reconstruction or adjudication that could be externalized economically.
+Human attention is scarce, but some work should remain human. Novel architecture,
+ambiguous evidence, and consequential review may require human judgment. Look instead for knowledge people
+repeatedly reconstruct or decisions they repeatedly make that could economically become durable.
 
 Ask two questions:
 
 - **Where is attention being spent?** Distinguish creation of new intent, evidence
   interpretation, reconstruction of known context, routine review, and exception handling.
-- **Which judgments recur with substantially the same structure?** These are candidates for
-  Modeling, Alignment, procedure, or other durable engineering structure.
+- **Which judgments recur in substantially the same form?** Ask whether a model, alignment mechanism,
+  procedure, or other durable structure could keep people from making the same decision again.
 
 ```
   HUMAN JUDGMENT                          "Where is scarce attention going?"
@@ -24,6 +24,5 @@ Ask two questions:
   Ask whether making it durable will repay its carrying cost.
 ```
 
-The desired trend is lower avoidable repeated reasoning per unit of durable output, while
-human attention remains on work whose novelty, ambiguity, consequence, or poor governability
-still requires semantic judgment.
+The goal is less avoidable repeated reasoning per unit of durable output, while people remain responsible
+for work whose novelty, ambiguity, consequence, or poor governability still requires judgment.
