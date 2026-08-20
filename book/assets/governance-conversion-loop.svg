@@ -51,8 +51,8 @@
 
   <!-- 5. the class cannot recur (center 1115) -->
   <rect id="class-cant-recur" x="1010" y="70" width="210" height="104" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.5"/>
-  <text x="1115" y="110" text-anchor="middle" font-size="22.5" font-weight="700" fill="#1f7a4d">The class</text>
-  <text x="1115" y="134" text-anchor="middle" font-size="22.5" font-weight="700" fill="#1f7a4d">can't recur</text>
+  <text x="1115" y="110" text-anchor="middle" font-size="22.5" font-weight="700" fill="#1f7a4d">recurrence</text>
+  <text x="1115" y="134" text-anchor="middle" font-size="22.5" font-weight="700" fill="#1f7a4d">blocked</text>
   <text x="1115" y="158" text-anchor="middle" font-size="16.43" font-style="italic" fill="#57534e">prevented by construction</text>
 
   <!-- forward arrows -->
@@ -71,5 +71,5 @@
   <!-- edge: class-cant-recur .. velocity-rises -->
   <path d="M1115,174 C1115,300 640,330 135,300 L135,178"
         fill="none" stroke="#57534e" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#gc-ah-mut)"/>
-  <text x="625" y="345" text-anchor="middle" font-size="22.5" font-style="italic" fill="#57534e">the environment is now harder to break — and velocity climbs again</text>
+  <text x="625" y="345" text-anchor="middle" font-size="25" font-style="italic" fill="#57534e">stronger environment &#8594; higher safe velocity</text>
 </svg>
