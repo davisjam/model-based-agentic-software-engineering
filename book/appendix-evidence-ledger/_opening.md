@@ -1,10 +1,10 @@
 ## G.1 How to Read This Ledger
 
-Part V presents the DocAble case as a longitudinal engineering narrative. This appendix carries the
-quantitative and repository-level receipts behind the numerical claims in that narrative.
+Part V presents the DocAble case over time. This appendix carries the
+quantitative and repository-level receipts behind its numerical claims.
 
-Each section names five things: the measurement, its source or counting procedure, the observation
-window where one applies, the resulting values, and the principal limitation on interpretation. Unless
+Each section gives the measurement, its source or counting procedure, the observation
+window where one applies, the resulting values, and the main limit on interpretation. Unless
 stated otherwise, these are within-case descriptive measurements. They do not establish causal effects,
 comparative productivity, or portable target values.
 

@@ -6,10 +6,11 @@ Weekly commit volume rose sharply as the agent fleet expanded, exceeded 1,000 co
 sustained high-volume periods, and briefly exceeded 3,000. Volume declined through the interval Part V
 identifies as hardening, then rose again.
 
-Commit classification indicates that a larger share of work during the hardening interval concerned
-models, validation, tests, and control machinery. The commit counts themselves do not establish why
-volume changed, or whether engineering productivity rose or fell. [ref:velocity-curve] plots the weekly
-series.
+During hardening, a larger share of classified commits concerned models, validation, tests, and control
+machinery. Commit counts do not establish why volume changed or whether productivity rose or
+fell.[^g-vacation] [ref:velocity-curve] plots the weekly series.
+
+[^g-vacation]: On some of these weeks, the author purportedly went on vacation.
 
 <!-- label: velocity-curve -->
 <!-- figure: assets/velocity-commits-per-week.svg | *Weekly Commit Volume.* Commits per week across the project history. Bar height measures repository activity, not engineering productivity; interpreting the hardening interval requires classifying the work represented by those commits. -->
@@ -18,9 +19,9 @@ series.
 
 ### G.2.2 Support-Apparatus Ratio {#support-ratio}
 
-Production and support-apparatus source were counted at four dated repository states using a census over
-the seven primary source roots that fails if an expected root is absent. These counts are the source for
-the support-ratio curve in Part V.
+Production and support-apparatus source were counted at four dated repository states across the seven
+primary source roots. The counting procedure fails if an expected root is absent. These counts are the
+source for the support-ratio curve in Part V.
 
 | Window | Production LoC | Support LoC | Support ratio |
 |---|---:|---:|---:|
@@ -84,10 +85,9 @@ failures:
 - **Incident-named lints** — 27 lints name a specific dated incident in their text; spot checks
   confirmed that the sampled cases linked an observed failure to the resulting control.
 
-These counts record the growth of project-specific control machinery and document a subset of
-failure-driven conversions. They do not establish what fraction of all controls originated in failures
-rather than being designed prospectively, and raw control counts do not measure the value of the
-resulting mechanisms.
+These counts show both the growth of project-specific control machinery and a subset of cases where
+failures led to new controls. They do not show what fraction of all controls originated in failures
+rather than being designed prospectively, and raw control counts do not measure their value.
 
 <!-- FUTURE: If practical, add the exact counting rule for fix-and-lint tags and incident-linked lints. A useful later complement would be the number of controls exercised after introduction — inventory and realized use are different quantities. -->
 
@@ -110,16 +110,16 @@ close?
 | Checks were exercised during continuing model-bridge change | `git numstat` over one week for the query/reactor, governance-graph, and frontend-build models | +8,970 / −173 lines across 63 commits | Line motion is a change-load proxy, not a measure of semantic difficulty |
 
 Manual review classified all approximately 27 pre-floor findings as genuine model↔code drift. Because
-classification used human judgment rather than an independently specified criterion, this establishes a
-pre-existing drift class, not detector precision.
+that classification relied on human judgment rather than an independent criterion, the result establishes
+that drift existed before the floor, not the detector's precision.
 
 The six HEAD catches were an unregistered model consumer, a missing component entry, a
 service-call-graph mismatch, and three stale-anchor or stale-test cases. A symbol-anchored drift lint, a
 consumer-registry-freshness check, and a service-call-graph drift lint detected them.
 
 Taken together, these observations establish a bounded within-case sequence: model↔code drift existed
-before the derived checks; the checks caught six fresh instances; and no post-close recurrence of the
-modeled, mechanically decidable class was observed across 56 closes during the measured window. They do
+before the derived checks; the checks caught six fresh instances; and the modeled, mechanically
+decidable class did not recur across 56 closes during the measured window. They do
 not establish that the class was eliminated or that the mechanism prevents model drift.
 
 ### G.3.5 Documentation Drift — Excluded from the Model-Sync Claim {#doc-hygiene-aside}
@@ -149,11 +149,9 @@ proof of model correctness. Three cases stay distinct:
 - **Semantic correspondence** — it may still require judgment.
 - **Unmodeled regions** — no model claim exists for them yet.
 
-The documentation counts remain separate because they exercise a different control layer.
-
 ## G.4 Model Coverage {#missing-model-drain}
 
-The traceability tracer measures the fraction of exercised code that traces back to no model claim.
+The traceability tracer measures the fraction of exercised code with no corresponding model claim.
 Repeated runs identified portions of the exercised surface that stayed outside the explicit model
 structure. Across the recorded sequence, the unmodeled fraction fell from 56% on the first run to 7.89%
 on the ninth.
@@ -172,8 +170,8 @@ Three qualifications matter.
   decline reflects deliberate modeling work, not autonomous convergence.
 - **Not all orphans are debt.** An unmodeled exercised symbol may be a genuinely missing model, a
   missing anchor on an existing model, or implementation detail below the grain the model should
-  represent. Backward traceability from exercised symbols toward expected model edges distinguished these
-  cases; only the first two necessarily call for additional modeling. The unmodeled fraction measures
+  represent. Backward tracing from exercised symbols to expected model edges distinguished these
+  cases; only the first two necessarily call for more modeling. The unmodeled fraction measures
   absence of explicit representation, not engineering deficiency: the remainder may include unknown
   obligations, tacit obligations, and deliberately preserved degrees of freedom. MAGE does not prescribe
   zero as the target.
@@ -186,8 +184,7 @@ A small exploratory pilot tested whether a model-derived navigation surface redu
 consumed while determining where to look in the repository.
 
 Across four tasks, model-guided navigation reduced reconstruction-token cost by a median of roughly 35%
-relative to the from-scratch condition. The existing evaluation recorded no task-level loss of
-correctness.
+relative to the from-scratch condition, with no observed loss of task-level correctness.
 
 | Measure | Baseline | Model-guided | Interpretation |
 |---|---|---|---|
@@ -195,9 +192,9 @@ correctness.
 | Reconstruction-token cost | Full baseline | ~35% lower median | Directional evidence of reduced reconstruction effort |
 | Recorded correctness | Reference condition | No observed loss | The existing pilot does not support a general equivalence claim |
 
-The tasks were not independently sampled, and N=4 is too small to estimate a general effect. The
-result is a directional within-case observation consistent with the proposed mechanism: an explicit
-representation may reduce the lower-level reconstruction an agent performs before acting.
+The tasks were not independently sampled, and N=4 is too small to estimate a general effect. Within this
+small pilot, the result is consistent with the proposed mechanism: an explicit representation may reduce
+how much lower-level structure an agent must reconstruct before acting.
 
 <!-- FUTURE: Supersede this subsection with the larger paired experiment already specified for the orchestrator — do not supplement it with another subsection. When those results exist, report task-level paired observations, tokens, tool/navigation calls, files opened, wall-clock time, and independently judged task success. -->
 
@@ -214,7 +211,7 @@ and cost categories differ; they are not entries in a comparative cost model.
 | Automated processing, one representative deck | ≈ 1 minute; ≈ $1 direct processing cost | Warm-start service near the end of the study period |
 | Direct development cost | ≈ $60,000 | Roughly 20-week study; majority salary |
 
-The manual-remediation estimate and the automated-processing observation describe different units and
+The manual-remediation estimate and automated-processing figure use different units and
 cost categories. One estimates faculty labor across a teaching load; the other records direct processing
 cost for one representative deck. They indicate scale but are not a controlled cost comparison.
 
@@ -229,7 +226,7 @@ A measurement can be useful before it deserves authority.
 
 ### G.7.1 Provisional Cost-and-Time Model
 
-A per-chunk worst-case cost-and-time estimate was externalized as a timestamped provisional model, not
+A per-chunk worst-case cost-and-time estimate was recorded as a timestamped provisional model rather than
 embedded as a permanent code constant.
 
 Current instrumentation can report when an operation would exceed the provisional budget. Production
@@ -238,14 +235,13 @@ justify a blocking threshold.
 
 The provisional bound need not be correct to be useful. The system keeps the stages separate:
 **observation → representation → reporting**. Because the evidence is insufficient, the estimate does not
-cross into **authority**. A measured value can enter the engineering environment without immediately
-becoming a gate.
+become a gate.
 
 <!-- FUTURE: If the exact seed observations become stable enough to publish, add them here. Otherwise retain this subsection as a provenance note, and do not imply quantitative calibration the ledger does not contain. -->
 
 ### G.7.2 Cold-Start Contrast Case
 
-The contrasting case did mature into an engineering decision.
+The contrasting case did justify an engineering decision.
 
 The measured request-level cold-start value was 4,057 ms. That observation fed a topology model
 representing the longest cold-start path and motivated an architectural change. The resulting warm floor
@@ -277,7 +273,5 @@ ecosystem; it did not collect those outcomes under a controlled counterfactual. 
 therefore establish what happened within the case and which mechanisms were exercised, not the effects
 another organization should expect from adopting MAGE.
 
-The ledger provides a narrower result: traceable evidence that the reported pressures occurred, that
-particular engineering responses followed, that selected mechanisms were exercised under continuing
-change, and that the quantitative descriptions can be inspected independently of the narrative built
-around them.
+The ledger's narrower purpose is traceability: the quantitative claims in Part V can be inspected
+independently of the surrounding argument.
