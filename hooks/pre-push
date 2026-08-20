@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""pre-push: BUILD the site, then run the fast deterministic gate — before any push.
+"""pre-push: BUILD the site AND the PDF, then run the fast deterministic gate — before any push.
 
-Two gates, in order, so a change that would fail CI cannot leave the machine:
+Three gates, in order, so a change that would fail CI cannot leave the machine:
 
   1. `catalog.py build` — the actual markdown->HTML + mermaid render. This catches BUILD failures the
      test suite structurally cannot: a notation marker that doesn't head its block, a bad mermaid fence,
@@ -11,7 +11,14 @@ Two gates, in order, so a change that would fail CI cannot leave the machine:
      to CI's "Render markdown -> HTML" step. Now the render runs at pre-push, on `main`, where mmdc is
      installed. (260729 RCA: a mid-block `index-def` aborted CI's build while `--tier1` stayed green.)
 
-  2. `catalog_tests.py --tier1` — the fast, stdlib, deterministic checks: schema, link + anchor
+  2. `book/build_book.py --pdf` — the print-native Typst render + whole-book content-integrity gate
+     (page floor/ceiling, title + chapter/part titles present, tail present, part-opener spread sensor).
+     This is the SAME step CI runs on every push (.github/workflows/pages.yml), so a Typst compile error
+     or a content-integrity regression is caught on the machine, not three minutes into CI — and the
+     gitignored /book/mage-book.pdf refreshes on every push instead of going stale between renders.
+     Typst compiles the whole book in a couple of seconds.
+
+  3. `catalog_tests.py --tier1` — the fast, stdlib, deterministic checks: schema, link + anchor
      resolution, the book/*.html tracking (orphans), the concept-model drift lints (L1/L2/L3), the
      empty-<th> twin, skill bundle integrity. ~seconds.
 
@@ -37,6 +44,14 @@ if _run("catalog.py", "build"):
     sys.stderr.write(
         "\npre-push: catalog.py build FAILED — push refused.\n"
         "The site does not render; fix the build error above (or `git push --no-verify` to override).\n")
+    sys.exit(1)
+
+print("pre-push: book/build_book.py --pdf (Typst PDF render + content-integrity gate CI runs) …", file=sys.stderr)
+if _run("book/build_book.py", "--pdf"):
+    sys.stderr.write(
+        "\npre-push: book/build_book.py --pdf FAILED — push refused.\n"
+        "The PDF does not render or fails the content-integrity gate; fix the error above "
+        "(or `git push --no-verify` to override).\n")
     sys.exit(1)
 
 print("pre-push: catalog_tests.py --tier1 (deterministic gate) …", file=sys.stderr)
