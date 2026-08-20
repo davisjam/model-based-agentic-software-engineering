@@ -1,13 +1,13 @@
 ## The Capability
 
-**Put relevant engineering knowledge and obligations in front of an actor while they can still affect the action.** Deliver the relevant subset into the actor's reasoning horizon before the decision it must inform.
+**Put relevant engineering knowledge and obligations into the actor's context before the decision they must inform.**
 
 ## When This Stack Earns Its Keep
 
 Reach for it when:
 
 - **An actor must reason from engineering knowledge it does not carry** — models, rules, prior decisions.
-- **The whole environment will not fit** in the actor's working horizon, so dumping all of it just relocates
+- **The whole environment will not fit** in the actor's working state, and dumping all of it into context merely relocates
   the navigation problem.
 - **Some obligations are critical and decidable**, and leaning on the actor to remember them is not good
   enough.
@@ -29,13 +29,8 @@ Reach for it when:
 
 ## Why These Travel Together
 
-An actor cannot reason through knowledge it never sees. But loading the entire engineered environment into
-every context only moves the navigation problem downstream — now the actor must find the relevant fact in a
-wall of them.
+An actor cannot reason through knowledge it never sees. But loading the entire engineered environment into every context only moves the navigation problem downstream: now the actor must find the relevant fact in a wall of them. Context delivery therefore combines compact standing policy with task-specific retrieval.
 
-Context delivery pairs a small standing substrate with task-specific retrieval. Point-of-action reminders can reinforce obligations that remain matters of judgment. Critical decidable obligations should instead become deterministic controls. **Context is a reasoning aid, not authority.**
-
-Boot files, dynamic snippets, hooks, and nudges are current implementations. The portable structure is standing knowledge, task-specific retrieval, and deterministic authority where warranted.
+Point-of-action reminders can reinforce obligations that still require judgment. Critical decidable obligations should instead become deterministic controls: context is a reasoning aid, not authority. Boot files, dynamic snippets, hooks, and nudges are current implementations; the portable pattern is standing policy, task-specific retrieval, and deterministic enforcement where warranted.
 
 **Mechanisms:** standing context · dynamic context injection · point-of-action guidance
-**Deep dives:** companion web catalogue — the MAGE Mechanism Catalog.

@@ -709,7 +709,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · A.8 Composing a Stack — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.8 Composing a Stack</h1></header><p>The seven preceding stacks are examples. The reusable skill is composition. Start from the capability, not the mechanisms.</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · A.8 Composing a Stack — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.8 Composing a Stack</h1></header><p>The seven preceding stacks are examples. The reusable method is how to compose one. Start from the capability, not the mechanisms.</p>
 <h2><span class="sec-num">A.8.1</span> 1. Name the Capability</h2>
 <p>Prefer</p>
 <blockquote class="aside-sidenote"><p>Every consequential mutation is reconstructable.</p></blockquote>
@@ -727,7 +727,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">A.8.4</span> 4. Find the Dependency Among Guarantees</h2>
 <p>Some guarantees only become meaningful once another exists.</p>
 <p>MARK  →  EMIT  →  COVER  →  READ</p>
-<p>A completeness check is meaningful only after the population to be accounted for has been defined. Dependencies among guarantees are what turn a list of mechanisms into a stack.</p>
+<p>A completeness check is meaningful only after the population to be accounted for has been defined. A list of mechanisms becomes a stack when their guarantees depend on one another.</p>
 <h2><span class="sec-num">A.8.5</span> 5. Separate the Load-Bearing Path from the Enhancements</h2>
 <p>For each mechanism, ask:</p>
 <blockquote class="aside-sidenote"><p>If I remove this, is the capability claim still valid?</p></blockquote>
@@ -735,7 +735,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">A.8.6</span> 6. Match the Substrate</h2>
 <p>Do not reproduce a reference stack mechanically. A database, an embedded controller, a compiler, a SaaS application, and a research codebase each expose different observable facts and different deterministic seams. Preserve the guarantees; let the substrate decide the mechanisms.</p>
 <h2><span class="sec-num">A.8.7</span> 7. Stop</h2>
-<p>The objective is not maximum governance. It is the smallest composition that makes the capability claim valid for the failure classes that matter.</p>
+<p>The objective is not maximum governance. Stop when the smallest load-bearing stack makes the capability claim true for the failure classes that matter.</p>
 <h2><span class="sec-num">A.8.8</span> The Method in One Picture</h2>
 <figure id="fig-A-8-1" class="book-figure" data-label="appendix-a-composing-a-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 820"
      role="img" aria-labelledby="f-appendix-a-composing-a-stack-csTitle f-appendix-a-composing-a-stack-csDesc"

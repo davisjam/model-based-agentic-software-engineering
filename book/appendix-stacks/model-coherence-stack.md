@@ -1,6 +1,6 @@
 ## The Capability
 
-**Keep explicit engineering representations joined to their consumers and to the implementation they describe.** A model remains useful only when people and agents read the current representation and the implementation continues to correspond to it.
+**Keep explicit engineering models connected to both their consumers and the implementation they describe.** A model remains useful only when people and agents read the current representation and the implementation continues to correspond to it.
 
 ## When This Stack Earns Its Keep
 
@@ -29,13 +29,8 @@ Reach for it when:
 
 ## Why These Travel Together
 
-A model nobody consumes is documentation. A model whose consumers copy its facts becomes one more source of
-drift. And a model consumed but never checked against reality can go confidently wrong — trusted precisely
-while it lies.
+A model nobody consumes is documentation. A model whose consumers copy its facts becomes another source of drift. A model consumed but never checked against reality can go confidently wrong—trusted precisely while it lies.
 
-Direct consumption avoids copied authority. Correspondence checks expose divergence between model and implementation. Generation eliminates duplicate authority where the model can own a fact outright. Gates give consequential disagreements authority.
-
-Not every model needs every rung. A descriptive model may remain advisory. Add stronger mechanisms only when the representation must carry stronger authority.
+Direct consumption avoids copied sources of truth; correspondence checks expose divergence between model and implementation; generation eliminates duplicate authority where the model can own a fact outright; and gates make consequential disagreements blocking. Not every model needs every mechanism: a descriptive model may remain advisory. Add stronger mechanisms only when the representation requires stronger authority.
 
 **Mechanisms:** executable source-of-truth model · meta-model consumption · drift/parity gate · derived traceability · model-derived generation
-**Deep dives:** companion web catalogue — the MAGE Mechanism Catalog.

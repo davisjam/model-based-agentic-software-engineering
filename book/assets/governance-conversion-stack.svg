@@ -30,9 +30,9 @@
 
   <!-- GAP / IMPACT -->
   <rect id="gap-impact" x="180" y="158" width="250" height="80" rx="8" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="305" y="188" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">GAP / IMPACT</text>
+  <text x="305" y="188" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">GAPS / COUPLING</text>
   <text x="305" y="210" text-anchor="middle" font-size="14" fill="#57534e">where is control</text>
-  <text x="305" y="228" text-anchor="middle" font-size="14" fill="#57534e">weak or coupled?</text>
+  <text x="305" y="228" text-anchor="middle" font-size="14" fill="#57534e">weak, stale, or entangled?</text>
 
   <text x="322" y="272" font-size="14" font-style="italic" fill="#7a5c12">recurring failure?</text>
   <!-- edge: gap-impact -> interpret -->

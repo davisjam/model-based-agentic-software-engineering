@@ -1,6 +1,6 @@
 ## The Capability
 
-**Turn recurring failure and judgment into durable engineering structure while keeping the control estate legible.** As controls accumulate, model their relationships and convert recurring gaps into an appropriate durable response.
+**Turn recurring failures and judgments into durable engineering structure while keeping the control estate legible.** Model how controls relate, expose gaps and coupling, and convert recurring failures into new or stronger controls.
 
 ## When This Stack Earns Its Keep
 
@@ -15,7 +15,7 @@ Reach for it when:
 ## The Composition
 
 <!-- label: governance-conversion-stack -->
-<!-- figure: assets/governance-conversion-stack.svg | The governance-conversion composition, a loop. The CONTROL ESTATE — rules, gates, models, sensors — is inspected and queried to expose GAP / IMPACT: where control is weak or coupled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE ESTATE folds it in; a solid feedback edge returns to the estate for the next iteration. The four moves form the load-bearing loop. -->
+<!-- figure: assets/governance-conversion-stack.svg | The governance-conversion composition, a loop. The CONTROL ESTATE — rules, gates, models, sensors — is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE ESTATE folds it in; a solid feedback edge returns to the estate for the next iteration. The four moves form the load-bearing loop. -->
 
 ## Constituent Moves
 
@@ -28,14 +28,8 @@ Reach for it when:
 
 ## Why These Travel Together
 
-As a governed environment grows, its controls overlap, depend on one another, go stale, and acquire blast radius. Eventually the control estate itself becomes difficult to reason about.
+As a governed environment grows, its controls overlap, depend on one another, go stale, and acquire blast radius. Eventually the control estate itself becomes difficult to reason about. When that happens, model it explicitly.
 
-The answer is the move applied everywhere else in this material: model the thing that has become hard to
-reason about. Once the control estate is explicit, a recurring failure can be interpreted against it — a
-failure worth converting becomes a new or strengthened mechanism, and the model of the estate updates to
-match.
-
-This stack is most directly tied to engineering capital: once a recurring lesson changes the environment itself, future work no longer depends on someone remembering it. Rule registries, dependency graphs, indexes, and metadata are possible implementations of these moves.
+Once the estate is explicit, interpret recurring failures against it. A failure worth converting becomes a new or stronger mechanism, and the estate model updates with it. This creates engineering capital: the environment changes so future work no longer depends on someone remembering the lesson. Rule registries, dependency graphs, indexes, and metadata are possible implementations.
 
 **Mechanisms:** control census · control-dependency graph · governance conversion
-**Deep dives:** companion web catalogue — the MAGE Mechanism Catalog.

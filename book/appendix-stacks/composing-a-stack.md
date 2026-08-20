@@ -1,4 +1,4 @@
-The seven preceding stacks are examples. The reusable skill is composition. Start from the capability, not the mechanisms.
+The seven preceding stacks are examples. The reusable method is how to compose one. Start from the capability, not the mechanisms.
 
 ## 1. Name the Capability
 
@@ -46,7 +46,7 @@ Some guarantees only become meaningful once another exists.
 
     MARK  →  EMIT  →  COVER  →  READ
 
-A completeness check is meaningful only after the population to be accounted for has been defined. Dependencies among guarantees are what turn a list of mechanisms into a stack.
+A completeness check is meaningful only after the population to be accounted for has been defined. A list of mechanisms becomes a stack when their guarantees depend on one another.
 
 ## 5. Separate the Load-Bearing Path from the Enhancements
 
@@ -64,7 +64,7 @@ deterministic seams. Preserve the guarantees; let the substrate decide the mecha
 
 ## 7. Stop
 
-The objective is not maximum governance. It is the smallest composition that makes the capability claim valid for the failure classes that matter.
+The objective is not maximum governance. Stop when the smallest load-bearing stack makes the capability claim true for the failure classes that matter.
 
 ## The Method in One Picture
 

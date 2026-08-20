@@ -1,6 +1,6 @@
 ## The Capability
 
-**Make consequential transformations reconstructable and detect silent loss.** Preserve both who changed what and whether the transformed artifact retained its required semantics.
+**Make consequential transformations reconstructable and detect silent loss.** Record who changed what, then verify that the transformed artifact retained the required semantics.
 
 ## When This Stack Earns Its Keep
 
@@ -30,11 +30,8 @@ Reach for it where:
 
 ## Why These Travel Together
 
-Attribution without completeness produces a persuasive but partial history — convincing exactly where it is
-silent. Completeness without readable provenance proves only that records exist. And provenance of any kind
-cannot, on its own, establish that a transformation preserved the product.
+Attribution without completeness produces a persuasive but partial history—convincing exactly where it is silent. Completeness without readable provenance proves only that records exist. And provenance alone cannot establish that a transformation preserved the product.
 
-The composition joins causal legibility to product fidelity. Together they answer two questions: how did this artifact reach its current state, and did the transformation preserve its required semantics? Event logs alone cannot establish either completeness or fidelity.
+The stack must therefore establish both causal history and product fidelity: How did this artifact reach its current state, and did the transformation preserve its required semantics?
 
 **Mechanisms:** provenance stamping · attribution coverage · fidelity gate
-**Deep dives:** companion web catalogue — the MAGE Mechanism Catalog.

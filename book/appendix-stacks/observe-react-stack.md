@@ -1,6 +1,6 @@
 ## The Capability
 
-**Detect operational divergence and connect it to a bounded response.** An operating model states expected behavior; observation detects divergence from that model and triggers an appropriate response.
+**Detect when the running system diverges from its operating model and trigger a bounded response.**
 
 ## When This Stack Earns Its Keep
 
@@ -30,7 +30,6 @@ Reach for it when:
 Observation without response is a dashboard. Response without observation is a runbook waiting for someone to
 notice the fault.
 
-WATCH and RESPOND close the load-bearing loop from expected state through observed divergence to bounded action. Add a heartbeat when silence must be distinguished from slow progress; add blocking authority when continuing is more dangerous than stopping.
+WATCH and RESPOND form the load-bearing loop: observe divergence from the expected state, then trigger a bounded response. Add a heartbeat when silence must be distinguished from slow progress; add blocking authority when continuing is more dangerous than stopping.
 
 **Mechanisms:** watchdog · heartbeat · bounded recovery · fail-closed gate
-**Deep dives:** companion web catalogue — the MAGE Mechanism Catalog.

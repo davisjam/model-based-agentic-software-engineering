@@ -1,6 +1,6 @@
 ## The Capability
 
-**Turn engineering obligations into evidence that the required population has been checked at the level of rigor each property deserves.**
+**State the engineering obligations, identify the population they apply to, and produce evidence strong enough for each property.**
 
 ## When This Stack Earns Its Keep
 
@@ -32,15 +32,8 @@ config field, every seam — and a green suite on a handful of examples no longe
 
 ## Why These Travel Together
 
-A checker establishes a property only for what it checks. A proof says nothing about obligations left out of
-its population. A census with no evidence attached merely enumerates debt.
+A checker establishes a property only for what it checks. A proof says nothing about obligations left out of its population; a census with no evidence attached merely enumerates debt. Assurance therefore requires both evidence for each obligation and confidence that the relevant population is covered. Use evidence suited to the property—an example test where an example suffices, a structural lint where structure is decisive, a bounded proof where semantics demand it—and map that evidence back to the full population so omissions remain visible.
 
-Assurance requires both discharge and completeness. Establish what must be shown, apply evidence suited to each obligation—an example test where an example suffices, a structural lint where structure is decisive, a bounded proof where semantics demand it—and map that evidence back to the full population so unchecked obligations remain visible.
-
-One rule runs throughout, and it is worth stating plainly: **discharge an obligation at the semantic level
-where the property becomes legible.** A property about a document's structure belongs to a check that reads
-structure, not one that scans bytes for it. That is a placement principle for where a check lives — not
-another mechanism in the stack.
+One rule runs throughout: check an obligation at the semantic level where the property becomes legible. A property about a document's structure belongs in a check that reads structure, not one that scans bytes for it. This determines where the check belongs; it is not another mechanism in the stack.
 
 **Mechanisms:** census-derived obligations · semantic validator · bounded proof · coverage gate
-**Deep dives:** companion web catalogue — the MAGE Mechanism Catalog.
