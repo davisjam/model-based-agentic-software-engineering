@@ -68,6 +68,11 @@ def plan_figure(text: str, vb_w: float, faces: dict) -> tuple[list[tuple[ovf.Rec
     """Return (widenings, skips). Each widening is (box, new_x, new_w). skips are human-readable reasons."""
     texts, rects = _parse(text)
 
+    # texts keyed by their owning box (so a widen never swallows a label that belongs to a DIFFERENT box or
+    # to no box — an edge annotation): a widened box may cover only the labels it already contained.
+    def owner(t: ovf.TextEl) -> ovf.Rect | None:
+        return ovf.find_box(t, rects)
+
     # widest label per box + that label's font size (for the strain-ratio gate)
     box_need: dict[int, tuple[ovf.Rect, float, float]] = {}
     for t in texts:
@@ -100,6 +105,11 @@ def plan_figure(text: str, vb_w: float, faces: dict) -> tuple[list[tuple[ovf.Rec
                       and r.w < _PANEL_FRAC * vb_w), None)
         if clash is not None:
             skips.append(f"{label}: would hit sibling @({clash.x:.0f},{clash.y:.0f})")
+            continue
+        occl = next((t for t in texts if owner(t) is not box
+                     and new_box.contains(t.x, t.y) and not box.contains(t.x, t.y)), None)
+        if occl is not None:
+            skips.append(f"{label}: would cover label '{occl.text[:24]}'")
             continue
         widenings.append((box, new_x, need_w))
     return widenings, skips
