@@ -40,9 +40,9 @@
 
   <!-- registry -> the three consumers -->
   <g stroke="#1c1917" stroke-width="2" fill="none">
-    <path d="M305,90 C420,80 529,67.8 559,68" marker-end="url(#cm-ah)"/>
+    <path d="M305,78 C420,70 529,67.8 559,68" marker-end="url(#cm-ah)"/>
     <path d="M305,120 C420,130 529,157.8 559,158" marker-end="url(#cm-ah)"/>
-    <path d="M305,145 C420,180 529,246.6 559,247" marker-end="url(#cm-ah)"/>
+    <path d="M305,152 C420,188 529,246.6 559,247" marker-end="url(#cm-ah)"/>
   </g>
 
   <!-- ===== reality: the real directory tree (cylinder) ===== -->
