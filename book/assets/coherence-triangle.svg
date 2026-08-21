@@ -50,11 +50,11 @@
   <!-- Opts out of orthogonalization: checker <-> invariants is a two-way pair drawn as arcs that bow apart; straightening both collapses them onto one line. -->
   <!-- edge: model -> invariants -->
   <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
-  <text x="332" y="130" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">supports</text>
-  <text x="332" y="146" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">predicates over</text>
+  <text x="332" y="70" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">supports</text>
+  <text x="332" y="86" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">predicates over</text>
   <!-- edge: invariants -> checker -->
   <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#ct-k)"/>
-  <text x="667" y="138" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">evaluated by</text>
+  <text x="667" y="78" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">evaluated by</text>
 
   <!-- side arrow: recurring failure -> new/refined invariant -->
   <!-- edge: checker .. invariants -->

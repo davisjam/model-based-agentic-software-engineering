@@ -1464,7 +1464,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- arrow labels (paths themselves drawn under nodes, above) -->
   <text x="319" y="233" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">upload</text>
-  <text x="600" y="233" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">remediated file</text>
+  <text x="644" y="222" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">remediated</text>
+  <text x="644" y="242" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">file</text>
 
   <!-- ================= OUTPUT: an accessible document + evidence ================= -->
   <rect id="fig-1-2-1-f-docable-glimpse-output" x="696.82" y="140" width="196.37" height="170" rx="6" fill="#ffffff" stroke="#1f7a4d" stroke-width="2.5"/>
@@ -3320,11 +3321,11 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- Opts out of orthogonalization: checker <-> invariants is a two-way pair drawn as arcs that bow apart; straightening both collapses them onto one line. -->
   <!-- edge: model -> invariants -->
   <line x1="300" y1="161" x2="363" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-5-f-coherence-triangle-ct-k)"/>
-  <text x="332" y="130" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">supports</text>
-  <text x="332" y="146" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">predicates over</text>
+  <text x="332" y="70" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">supports</text>
+  <text x="332" y="86" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">predicates over</text>
   <!-- edge: invariants -> checker -->
   <line x1="635" y1="161" x2="698" y2="161" stroke="#57534e" stroke-width="2.2" marker-end="url(#fig-2-8-5-f-coherence-triangle-ct-k)"/>
-  <text x="667" y="138" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">evaluated by</text>
+  <text x="667" y="78" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">evaluated by</text>
 
   <!-- side arrow: recurring failure -> new/refined invariant -->
   <!-- edge: checker .. invariants -->
@@ -3853,9 +3854,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="283" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">VALIDATOR</text>
   <text x="815" y="283" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">VALIDATOR</text>
 
-  <text x="185" y="358" text-anchor="middle" font-size="20" fill="#1c1917">structural prevention</text>
-  <text x="185" y="380" text-anchor="middle" font-size="20" fill="#57534e">DB compare-and-set /</text>
-  <text x="185" y="402" text-anchor="middle" font-size="20" fill="#57534e">closed transition</text>
+  <text x="185" y="352" text-anchor="middle" font-size="20" fill="#1c1917">structural prevention</text>
+  <text x="185" y="370" text-anchor="middle" font-size="20" fill="#57534e">DB compare-and-set /</text>
+  <text x="185" y="386" text-anchor="middle" font-size="20" fill="#57534e">closed transition</text>
   <text x="500" y="352" text-anchor="middle" font-size="20" fill="#1c1917">state-space search</text>
   <text x="500" y="370" text-anchor="middle" font-size="20" fill="#57534e">purpose-built model checker</text>
   <text x="500" y="386" text-anchor="middle" font-size="20" fill="#57534e">(bounded explicit-state)</text>
@@ -5480,8 +5481,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- ===== edge labels (on top) ===== -->
   <text x="250" y="400" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">refine the generator</text>
-  <text x="905" y="392" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">model-claim coverage</text>
-  <text x="905" y="414" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
+  <text x="905" y="364" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">model-claim coverage</text>
+  <text x="905" y="386" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
 </svg><figcaption data-short="Generate, Judge, Search Again"><span class="fig-label">Figure 4.3-4.</span> <em>Generate, Judge, Search Again.</em> One loop, whatever the oracle's source: a <strong>generator</strong> makes inputs, the <strong>system</strong> runs them, an <strong>independent oracle</strong> judges each outcome, a <strong>counterexample</strong> feeds back to shrink or diagnose, and <strong>coverage</strong> asks whether the search reached the region the claim is about — refining the generator, and where traceability exists joining model-claim coverage back to the claim. The oracle may be a declared property, a robustness contract, a reference implementation, or a structured model; the loop does not care which.</figcaption></figure><p class="gallery-source">From <a href="4.3-validating-change.html#fig-4-3-4">20 · Validating Change</a></p></section><hr><section class="gallery-item"><figure id="fig-4-3-5-fig-4-3-5" class="book-figure" data-label="two-evidence-boundaries"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340"
      role="img" aria-labelledby="fig-4-3-5-f-two-evidence-boundaries-tbTitle fig-4-3-5-f-two-evidence-boundaries-tbDesc"
      font-family="'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
@@ -12471,12 +12472,12 @@ z
   <text x="114" y="851" text-anchor="middle" font-size="19.2" font-weight="700" fill="#155c38">reasons through</text>
   <text x="114" y="874" text-anchor="middle" font-size="19.2" font-weight="700" fill="#155c38">the concept</text>
   <!-- rail method annotations (in the gaps between stages) -->
-  <text x="114" y="355" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">weak detectors,</text>
-  <text x="114" y="377" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">retrieval, clustering</text>
-  <text x="114" y="491" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">contextual</text>
-  <text x="114" y="513" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">comparison</text>
-  <text x="114" y="627" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">engineering judgment</text>
-  <text x="114" y="649" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">adopts / names</text>
+  <text x="114" y="360" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">weak detectors,</text>
+  <text x="114" y="382" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">retrieval, clustering</text>
+  <text x="114" y="496" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">contextual</text>
+  <text x="114" y="518" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">comparison</text>
+  <text x="114" y="632" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">engineering judgment</text>
+  <text x="114" y="654" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">adopts / names</text>
 
   <!-- ===== COL: SOFTWARE ===== -->
   <rect id="fig-I-2-1-f-model-induction-general-sw-realized" x="218" y="116" width="228" height="92" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.0"/>

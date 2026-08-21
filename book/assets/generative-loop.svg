@@ -82,6 +82,6 @@
 
   <!-- ===== edge labels (on top) ===== -->
   <text x="250" y="400" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">refine the generator</text>
-  <text x="905" y="392" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">model-claim coverage</text>
-  <text x="905" y="414" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
+  <text x="905" y="364" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">model-claim coverage</text>
+  <text x="905" y="386" text-anchor="middle" font-size="23.6" font-style="italic" fill="#57534e">joins back — where a trace exists</text>
 </svg>

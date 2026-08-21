@@ -86,8 +86,10 @@
 
   <!-- edge: sj-impl -> structured-model -->
   <path d="M284,399 L348,399" fill="none" stroke="#1f7a4d" stroke-width="2" marker-end="url(#dtp-green)"/>
-  <text x="311" y="385" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">externalize</text>
-  <text x="311" y="415" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">state / relations</text>
+  <!-- the too-wide "externalize / state / relations" label cannot fit the 66px arrow gap without
+       flowing into the sj-impl box; drop it into the clear band just below the Path 2 row -->
+  <text x="316" y="458" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">externalize</text>
+  <text x="316" y="478" text-anchor="middle" font-size="14" font-style="italic" fill="#1f7a4d">state / relations</text>
 
   <rect id="structured-model" x="350" y="366" width="190" height="66" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2.6"/>
   <text x="445" y="404" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">structured model</text>

@@ -66,7 +66,8 @@
 
   <!-- arrow labels (paths themselves drawn under nodes, above) -->
   <text x="319" y="233" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">upload</text>
-  <text x="600" y="233" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">remediated file</text>
+  <text x="644" y="222" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">remediated</text>
+  <text x="644" y="242" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">file</text>
 
   <!-- ================= OUTPUT: an accessible document + evidence ================= -->
   <rect id="output" x="696.82" y="140" width="196.37" height="170" rx="6" fill="#ffffff" stroke="#1f7a4d" stroke-width="2.5"/>

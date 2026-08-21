@@ -84,6 +84,6 @@
   <text x="470" y="327" text-anchor="middle" font-size="16.64" font-weight="700" fill="#b23b3b">FAILED</text>
   <!-- edge: active-rail -> failed -->
   <line x1="311" y1="320" x2="393" y2="320" stroke="#b23b3b" stroke-width="2" marker-end="url(#jl-arR)"/>
-  <text x="330" y="308" font-size="16" fill="#b23b3b">any active state</text>
+  <text x="330" y="288" font-size="16" fill="#b23b3b">any active state</text>
   <text x="470" y="364" text-anchor="middle" font-size="16" fill="#b23b3b">terminal — no re-entry into processing</text>
 </svg>
