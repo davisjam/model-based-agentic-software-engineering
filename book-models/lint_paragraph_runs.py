@@ -68,17 +68,38 @@ def _blocks(md: str) -> list[str]:
     return out
 
 
+def _strip_comments(text: str) -> str:
+    """Remove every <!-- … --> span (single- or multi-line). What remains is what RENDERS, so a metadata
+    comment glued to a paragraph/bold-lead with no blank line no longer hides the visible content behind it."""
+    out, i = [], 0
+    while i < len(text):
+        j = text.find("<!--", i)
+        if j < 0:
+            out.append(text[i:])
+            break
+        out.append(text[i:j])
+        k = text.find("-->", j)
+        if k < 0:
+            break                 # unclosed comment — drop the rest
+        i = k + 3
+    return "".join(out)
+
+
 def _kind(block: str) -> str:
-    first = block.lstrip().splitlines()[0] if block.strip() else ""
+    low = block.lower()
+    if "<!-- figure:" in low or "<!-- table:" in low:
+        return "figure"           # renders -> breaks a run (checked before stripping)
+    visible = _strip_comments(block).strip()
+    if not visible:
+        return "meta"             # pure invisible metadata -> transparent
+    first = visible.splitlines()[0].lstrip()
     if first.startswith("#"):
         return "heading"
-    if first.startswith("<!--"):
-        low = block.lower()
-        if "<!-- figure:" in low or "<!-- table:" in low:
-            return "figure"     # renders -> breaks a run
-        return "meta"           # invisible metadata -> transparent
     if first.startswith(("- ", "* ", "> ", "|")):
         return "list"
+    num, dot, rest = first.partition(". ")
+    if dot and num.isdigit() and rest:
+        return "list"             # numbered list item — not a paragraph
     if first.startswith("[^"):
         return "footnote"
     if first.startswith("**"):
