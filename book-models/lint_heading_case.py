@@ -1,9 +1,11 @@
 """LINT `heading-case` — the headings-are-Title-Case SENSOR over the book's two heading sources.
 
-The author has ratified a book-wide heading convention: every heading uses **Title Case** — first word,
-last word, and every "major" word capitalized; the short "minor" words (articles, coordinating
-conjunctions, short prepositions) lowercased unless they fall first or last. This lint is the SENSOR that
-CHECKS that convention and, for each heading that violates it, emits the SUGGESTED Title-Case form
+The author has ratified a heading convention for DISPLAY headings — `#` chapter titles and `##` sections
+(x.y.z): they use **Title Case** — first word, last word, and every "major" word capitalized; the short
+"minor" words (articles, coordinating conjunctions, short prepositions) lowercased unless they fall first or
+last. A `###`+ fourth-level heading is a RUN-IN naming an expository subtopic; run-ins read as sentence-case
+inline lead-ins, not Title Case, and are EXEMPT (author-ratified 260821). This lint is the SENSOR that
+CHECKS the Title-Case convention on display headings, and for each violation emits the SUGGESTED Title-Case form
 (`current → suggested`). It is the constraint/sensor thesis applied to prose: the convention is the rule an
 author aims for, this is the smoke detector that catches the heading that drifted.
 
@@ -216,6 +218,12 @@ def _markdown_findings(overrides: set[str]) -> list[Finding]:
         for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
             m = _HEADING_RE.match(line)
             if not m:
+                continue
+            # The Title-Case convention governs DISPLAY headings — `#` chapter title and `##` section
+            # (x.y.z). A `###`+ heading is a fourth-level RUN-IN naming an expository subtopic; run-ins read
+            # as sentence-case inline lead-ins ("The productivity answer is incomplete"), not Title Case, so
+            # they are exempt. (Author-ratified 260821: level-4 run-ins are sentence-case.)
+            if len(m.group(1)) >= 3:
                 continue
             current = clean_heading(m.group(2))
             if not current or current in overrides:

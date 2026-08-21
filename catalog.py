@@ -1180,6 +1180,19 @@ def cmd_validate(_args) -> int:
         print(f"  [intrusion] {lfti.summary_line(intrusions)} — "
               f"run `python3 book-models/lint_figure_text_intrusion.py`")
         n_issues += len(intrusions)
+    # PARAGRAPH-RUNS — the wall-of-text sensor: unbroken runs of body paragraphs within one x.y.z section
+    # (the place a fourth-level `###` run-in heading belongs). Two tiers: a run >= 6 paragraphs WARNS
+    # (audit-only, printed so the author sees the wall); a run >= 11 is not readable and BLOCKS — except the
+    # Conclusion, whose closing peroration earns its unbroken short-paragraph cadence. Only the BLOCK tier
+    # increments n_issues. See book-models/lint_paragraph_runs.py.
+    import lint_paragraph_runs as lpr  # noqa: E402 — wall-of-text sensor (WARN audit-only; BLOCK gates, Conclusion-exempt)
+    pruns = lpr.findings()
+    if pruns:
+        blocking = [f for f in pruns if f.block]
+        note = f" ({len(blocking)} BLOCKING)" if blocking else " (all audit-only)"
+        print(f"  [paragraph-runs] {lpr.summary_line(pruns)}{note} — "
+              f"run `python3 book-models/lint_paragraph_runs.py`")
+        n_issues += len(blocking)
     # FIGURE FONT-BAND — the figure-text-inside-a-legibility-band sensor over book/assets/*.svg (the
     # legibility complement to the overflow sensor above). It flags BOTH ends of one scale-inconsistency
     # defect: text below the band floor (too small to read against body) AND text above the ceiling (a
