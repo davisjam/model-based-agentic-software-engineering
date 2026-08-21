@@ -135,6 +135,36 @@ needs it.
   the actual SVG/PDF/book path (or install matching system fonts for previews), and drive *visible* preview
   hierarchy with font-size + colour too. (This is why a PNG can look flatter than the shipped figure.)
 
+### d2 0.8 layout idioms (learned across the figure migration)
+
+Tested recipes that recur — reach for these before fighting the layout engine:
+
+- **Forbidden / absent edge — draw it arrowhead-free.** d2 has no mid-edge strike glyph, and an arrowhead
+  *asserts* the crossing (the opposite of "forbidden"). Draw the forbidden relation with **no arrowhead**
+  (`x -- y` / `target-arrowhead: {shape: none}`), red + dashed, and a `✕` in the label — so the negation
+  rides **redundant carriers** (heading word "forbidden/must-not" + colour + dash + ✕), never the strike
+  alone. This migrated several forbidden-edge figures that first looked like keep-hand-SVG. It is
+  keep-hand-SVG **only when the struck glyph is the *sole* carrier** and the surrounding text can't restate
+  the negation.
+- **Bind two panels against the two-islands failure with an inter-container edge.** A contrast figure whose
+  panels drift into two unrelated islands is fixed by an edge drawn *between the two containers* (or a shared
+  bordered frame + a name-echo + one bridge line) — that inter-container edge is the native binding device.
+- **Tables-with-arrows: one flat grid + sibling edges — never nested grids with cross-cell edges.** A
+  `grid` whose cells are themselves grids **breaks** when edges cross between them (dagre re-ranks the board
+  and spawns phantom nodes). Lay the table as one flat `grid-columns:N` and draw the arrows as ordinary
+  sibling edges within it.
+- **Grid boards can't be edge-crossed.** An edge may cross *into* a grid child but not *out of* one
+  ("cannot create edges between boards"). Bind or connect at the container level, not cell-to-cell across
+  two boards.
+- **A container's `direction` is overridden by a non-default root `direction`.** To hold a side-by-side pair
+  under a `direction: down`/grid root, wrap the pair in its own `grid` rather than relying on an inner
+  `direction: right`.
+- **Keep self-loop / feedback labels short.** A long label on a short back-edge inflates dagre's rank
+  spacing (seen: 10:1 aspect blowups) and can strike the loop's own glyphs. Keep the loop label to a few
+  words; push the sentence to a bottom annotation line.
+- **`label.near: outside-top-left`** on a container matches a left-aligned source title *and* keeps a
+  centered trunk edge from striking the container label.
+
 ### Render and look — the same loop as SVG
 
 d2 gets the layout close, but **rasterize and look** (the render-and-look step below is not optional):
