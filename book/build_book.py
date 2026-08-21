@@ -6510,6 +6510,25 @@ def verify_pdf(pdf_path: pathlib.Path) -> int:
         print(f"PDF PART-OPENER SPREAD SENSOR: BLOCKING PASS — all 6 Part opener spreads clean"
               f"{' (incl. facing parity)' if _facing else ''}.")
 
+    # CONTENTS ONE-PAGE sensor — the in-document Contents (table of contents) MUST fit ONE page (author
+    # guarantee, 260821). The custom outline (book_typst) is tuned to one page via a tighter Contents-page
+    # margin + calibrated entry spacing; a later chapter/spacing change that overflows must fail the build, not
+    # silently push the Contents to a second page. Identify the Contents page by its two division headers
+    # ("THE BOOK" + "APPENDICES", uppercase, unique to the TOC) and assert the LAST entry ("Bibliography") lands
+    # on that SAME page — if the TOC spilled, the last entry falls on the next page. BLOCKING. Skips a
+    # section-split / front-matter-less build (no Contents). pdftotext extracts these tokens cleanly (verified).
+    _toc_pages = _pdf_per_page_text(pdf_path)
+    _toc_idx = next((i for i, t in enumerate(_toc_pages, 1) if "THE BOOK" in t and "APPENDICES" in t), None)
+    if _toc_idx is None:
+        print("PDF CONTENTS ONE-PAGE SENSOR: SKIP — no Contents page (section-split / front-matter-less build).")
+    elif "Bibliography" in _toc_pages[_toc_idx - 1]:
+        print(f"PDF CONTENTS ONE-PAGE SENSOR: BLOCKING PASS — Contents fits one page (p{_toc_idx}).")
+    else:
+        print("PDF CONTENTS ONE-PAGE SENSOR: BLOCKING FAIL — the Contents spilled past one page "
+              f"(the last entry is not on the Contents page p{_toc_idx}). Tighten entry spacing or the "
+              "Contents-page margin in book_typst so it fits one page.", file=sys.stderr)
+        problems.append("Contents table of contents spilled past one page")
+
     if problems:
         print(f"PDF CONTENT-INTEGRITY FAILURES ({len(problems)}):", file=sys.stderr)
         for p in problems:

@@ -573,7 +573,7 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
             "inset: (y: 14pt))[\n"
             "    #set text(font: dt.font-display, style: \"italic\", weight: 600, "
             "size: dt.fs-thesis-title, fill: dt.ink)\n"
-            "    #set par(justify: false, leading: 0.62em)\n"
+            "    #set par(justify: false, leading: 0.57em)\n"
             f"{_indent(inner, 4)}\n"
             "  ]\n"
             "]"
@@ -2058,18 +2058,21 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
         # the marker stream reproduces the book's structure. Page number via `counter(page).at(loc)`; the entry
         # markers sit on their own page (emitted after the leading pagebreak), so the folio is exact.
         parts.append(
-            "#pagebreak()\n"
-            "#align(center)[#text(font: dt.font-display, size: 20pt, weight: 700, fill: dt.ink)[Contents]]\n"
-            "#v(0.9em)\n"
+            # The Contents gets its OWN page with a tighter y-margin (0.72in vs the 1in body margin) so the
+            # ~50 entries + 3 dividers fit ONE page WITH comfortable inter-entry spacing. The one-page guarantee
+            # is asserted at build time by the CONTENTS ONE-PAGE sensor in build_book.verify_pdf.
+            "#page(margin: (x: 1.125in, y: 0.72in))[\n"
+            "#align(center)[#text(font: dt.font-display, size: 15pt, weight: 700, fill: dt.ink)[Contents]]\n"
+            "#v(0.5em)\n"
             "#context {\n"
             "  let marks = query(<tocmark>)\n"
             "  set text(font: dt.font-body, size: 10pt, fill: dt.ink)\n"
-            "  set par(justify: false, leading: 0.48em)\n"
+            "  set par(justify: false, leading: 0.57em)\n"
             "  for m in marks {\n"
             "    let d = m.value\n"
             "    let loc = m.location()\n"
             "    if d.kind == \"division\" {\n"
-            "      block(width: 100%, above: 1.15em, below: 0.55em, breakable: false)[\n"
+            "      block(width: 100%, above: 1.2em, below: 0.5em, breakable: false)[\n"
             "        #grid(columns: (auto, 1fr), align: horizon, column-gutter: 0.75em,\n"
             "          text(font: dt.font-display, weight: \"bold\", size: 10.5pt, tracking: 0.16em, fill: dt.ink)[#upper(d.text)],\n"
             "          line(length: 100%, stroke: 0.6pt + dt.rule),\n"
@@ -2081,20 +2084,20 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             "      let indent = if is-part { 0pt } else { 1.4em }\n"
             "      let wt = if is-part { \"bold\" } else { \"regular\" }\n"
             "      let sz = if is-part { 11pt } else { 10pt }\n"
-            "      let above = if is-part { 0.5em } else { 0.1em }\n"
+            "      let above = if is-part { 0.62em } else { 0.2em }\n"
             "      block(width: 100%, above: above, below: 0pt, breakable: false)[\n"
             "        #pad(left: indent)[\n"
             "          #link(loc)[\n"
             "            #text(font: dt.font-display, weight: wt, size: sz, fill: dt.ink)[#d.text]\n"
             "            #box(width: 1fr, inset: (x: 0.4em), align(bottom, repeat(gap: 3pt, justify: false)[#text(fill: dt.muted)[.]]))\n"
-            "            #text(font: dt.font-body, weight: wt, size: sz, fill: dt.ink)[#pg]\n"
+            "            #text(font: dt.font-body, weight: \"regular\", size: sz, fill: dt.ink)[#pg]\n"
             "          ]\n"
             "        ]\n"
             "      ]\n"
             "    }\n"
             "  }\n"
             "}\n"
-            "#pagebreak()"
+            "]"
         )
     seen_parts: set[int] = set()
     current_division: str | None = None
