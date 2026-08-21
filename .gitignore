@@ -83,3 +83,6 @@ book-models/gap-report-*
 /_reference/
 book/_design/visual-aids.html
 book/_design/drafts/
+
+# d2-pilot review HTMLs are local artifacts, not served pages
+book/d2-pilot/*.html

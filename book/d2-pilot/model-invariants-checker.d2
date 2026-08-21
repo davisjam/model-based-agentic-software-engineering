@@ -1,0 +1,15 @@
+...@_house-style
+
+# Genre: linear pipeline with a feedback branch (cf. coherence-triangle.svg).
+# Tests d2 forward edges + a dashed back-edge with a multi-line label.
+
+style.fill: "#fdfcf9"
+direction: right
+
+model: "STRUCTURED MODEL\nrecords · edges · states\na job: free / leased / done" { class: fleet }
+inv:   "INVARIANTS\nstable ids + declared domains\nleased ⇔ owner exists"        { class: rust }
+check: "CHECKER\nmodel check · drift lint\n· validator"                          { class: modeling }
+
+model -> inv: "supports\npredicates over" { class: flow }
+inv -> check: "evaluated by"              { class: flow }
+check -> inv: "recurring failure →\nnew / refined invariant" { class: conjedge }

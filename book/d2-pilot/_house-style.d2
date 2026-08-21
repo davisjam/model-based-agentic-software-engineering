@@ -1,0 +1,47 @@
+# House-style include for the D2 figure pilot.
+# Maps the "Umber Monograph" design tokens (book-models/design-tokens.json) to d2 classes,
+# so a .d2 figure reads `...@_house-style` and then just tags shapes with a class.
+# Compile every figure with the vendored Source Sans 3 faces:
+#   d2 --font-regular book/fonts/SourceSans3/SourceSans3-Regular.ttf \
+#      --font-bold    book/fonts/SourceSans3/SourceSans3-Bold.ttf \
+#      --font-italic  book/fonts/SourceSans3/SourceSans3-It.ttf  <fig>.d2 <fig>.svg
+# NOTE: d2 0.8 wants integer stroke-width (0-15) and font-size (8-100).
+
+vars: {
+  d2-config: {
+    layout-engine: dagre
+    pad: 26
+    sketch: false
+    center: true
+  }
+}
+
+classes: {
+  # --- body boxes: role fill + role stroke (the diagram-* token families) ---
+  fleet:    { style: { fill: "#e7edf3"; stroke: "#2f5169"; stroke-width: 2; border-radius: 8; font-color: "#1c1917"; font-size: 15 } }
+  modeling: { style: { fill: "#e3f0e7"; stroke: "#1f7a4d"; stroke-width: 2; border-radius: 8; font-color: "#1c1917"; font-size: 15 } }
+  rust:     { style: { fill: "#faf1e6"; stroke: "#9a3f12"; stroke-width: 2; border-radius: 8; font-color: "#1c1917"; font-size: 15 } }
+  trust:    { style: { fill: "#eef7f0"; stroke: "#155c38"; stroke-width: 2; border-radius: 8; font-color: "#1c1917"; font-size: 15 } }
+  churn:    { style: { fill: "#fbeaea"; stroke: "#b23b3b"; stroke-width: 2; border-radius: 8; font-color: "#1c1917"; font-size: 15 } }
+  panel:    { style: { fill: "#f6f4ef"; stroke: "#57534e"; stroke-width: 2; border-radius: 8; font-color: "#1c1917"; font-size: 15 } }
+  paperbox: { style: { fill: "#fdfcf9"; stroke: "#e4e0d8"; stroke-width: 1; border-radius: 6; font-color: "#1c1917"; font-size: 15 } }
+
+  # --- program/section header chips: bold, tinted, heavier role stroke ---
+  fleet-head:    { style: { fill: "#dbe6f0"; stroke: "#2f5169"; stroke-width: 3; border-radius: 8; font-color: "#22384a"; bold: true; font-size: 21 } }
+  modeling-head: { style: { fill: "#d6ecdd"; stroke: "#1f7a4d"; stroke-width: 3; border-radius: 8; font-color: "#17402a"; bold: true; font-size: 21 } }
+  rust-head:     { style: { fill: "#f6e6d4"; stroke: "#9a3f12"; stroke-width: 3; border-radius: 8; font-color: "#6b2f10"; bold: true; font-size: 21 } }
+  # conjectural (dashed) — the speculative program / relationship
+  conj-head:     { style: { fill: "#fdfcf9"; stroke: "#57534e"; stroke-width: 2; stroke-dash: 4; border-radius: 8; font-color: "#3a3632"; bold: true; font-size: 21 } }
+  conj:          { style: { fill: "#fdfcf9"; stroke: "#57534e"; stroke-width: 2; stroke-dash: 4; border-radius: 8; font-color: "#1c1917"; font-size: 15 } }
+
+  # --- the "research question" cell: one step down from the header, sentence case ---
+  question: { style: { fill: "#fbfaf7"; stroke: "#cfc9bf"; stroke-width: 1; border-radius: 6; font-color: "#1c1917"; font-size: 17 } }
+
+  # --- cross-cutting band cells (neutral) ---
+  bandcell: { style: { fill: "#fbfaf7"; stroke: "#cfc9bf"; stroke-width: 1; border-radius: 6; font-color: "#1c1917"; font-size: 15 } }
+  hypcell:  { style: { fill: "#fbfaf7"; stroke: "#d8cdbd"; stroke-width: 1; border-radius: 6; font-color: "#3a3632"; font-size: 14 } }
+
+  # --- edges ---
+  flow:     { style: { stroke: "#57534e"; stroke-width: 2; font-color: "#57534e"; font-size: 14; italic: true } }
+  conjedge: { style: { stroke: "#9a3f12"; stroke-width: 2; stroke-dash: 5; font-color: "#9a3f12"; font-size: 14; italic: true } }
+}

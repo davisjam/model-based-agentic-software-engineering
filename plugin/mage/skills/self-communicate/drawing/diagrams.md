@@ -46,6 +46,83 @@ and justify the escape.**
 
 ---
 
+## d2 — the house-styled declarative path (between Mermaid and hand-SVG)
+
+[d2](https://d2lang.com) is a third realization: declarative text like Mermaid, but it renders to a
+**styled SVG you control** — classes, a color palette, grid/container layout, embedded custom fonts. It
+sits *between* Mermaid and hand-SVG, and for a book figure it is usually the right middle:
+
+- **Mermaid** is for a diagram that lives **inline in a Markdown file** and must render on GitHub. Its
+  plain default styling is a feature (low chartjunk); it cannot wear a bespoke house style.
+- **d2** is for a **book figure** that must wear the house style (the Umber palette, Source Sans 3,
+  rounded role-colored boxes) and would otherwise be **hand-authored SVG**. You write each box's content
+  and its *class*; d2 lays it out, styles it, and sizes it.
+- **Hand-SVG** is the last resort, for a **bespoke geometry** no auto-layout can express — a staircase, a
+  frontier plot, an infographic whose meaning lives in hand-tuned spatial encoding.
+
+**The decisive win over hand-SVG: d2 auto-sizes every box to its text.** The whole failure class hand-SVG
+fights — a label overflowing its box, sub-floor fonts, the overflow / occlusion / label-collision checks,
+manual box-widening and two-line wrapping — *does not exist* in d2. You set a font size; the box grows to
+fit. So for a **structured** figure (a grid, a pipeline, a container map, a comparison table) d2 is now the
+default over hand-SVG; reserve hand-SVG for the geometry-bearing figures.
+
+### The house-style include — one style source for the whole set
+
+Map the design tokens (`book-models/design-tokens.json`) to d2 **classes** once, in a shared include, and
+every figure reads `...@_house-style` then tags each box with a class. The repo's instance is
+`book/d2-pilot/_house-style.d2`; the mapping:
+
+| token family | class(es) | fill / stroke |
+|---|---|---|
+| fleet (agent, blue) | `fleet` / `fleet-head` | `#e7edf3` / `#2f5169` |
+| governed (modeling, green) | `modeling` / `modeling-head` | `#e3f0e7` / `#1f7a4d` |
+| accent (governance, rust) | `rust` / `rust-head` | `#faf1e6` / `#9a3f12` |
+| trust (deep green) | `trust` | `#eef7f0` / `#155c38` |
+| churn (failure, red) | `churn` | `#fbeaea` / `#b23b3b` |
+| neutral | `panel` / `paperbox` | `#f6f4ef` / `#fdfcf9` |
+| conjectural (dashed) | `conj` / `conj-head` / `conjedge` | dashed `#57534e` / `#9a3f12` |
+
+Header chips are bold + tinted; edge labels italic muted. This is the d2 form of the "one style source for
+a figure-set" rule below — the include *is* that source. Restyle the set by editing the include.
+
+### Compile — pass the vendored fonts so the type matches the book
+
+```
+d2 --font-regular book/fonts/SourceSans3/SourceSans3-Regular.ttf \
+   --font-bold    book/fonts/SourceSans3/SourceSans3-Bold.ttf \
+   --font-italic  book/fonts/SourceSans3/SourceSans3-It.ttf  <fig>.d2 <fig>.svg
+```
+
+d2 embeds the faces in the SVG, so the output renders with the house type anywhere. d2 is a **dev-only**
+dependency (`brew install d2`, ≥ 0.8.1) — the compiled SVG is what the book embeds, so a fresh clone never
+needs it.
+
+### The three layout constructs
+
+- **Flow** — `direction: right` (or `down`) plus `a -> b: label` edges. Pipelines, cycles (a back-edge
+  routes automatically), feedback branches.
+- **Grid** — a container with `grid-columns: N` (or `grid-rows: N`) lays its children in a deterministic
+  table, bypassing the layout engine. Nest grids for a columns-over-bands figure. **Force a vertical page
+  stack with a root `grid-columns: 1`** — unconnected top-level blocks otherwise spread *horizontally*.
+- **Nested containers** — `group: { child; child }` draws a labeled box around its children; tag the group
+  with a class for a tinted zone (the agent / models-bridge / product target map).
+
+### d2 0.8 gotchas (found in the pilot)
+
+- `stroke-width` and `font-size` must be **integers** (0–15 and 8–100); a decimal is rejected outright.
+- Put font styling (`font-size`, `bold`) on **cells / classes**, not on a grid **container's** own style.
+- Multi-line labels: a literal `\n` inside a quoted label works.
+
+### Render and look — the same loop as SVG
+
+d2 gets the layout close, but **rasterize and look** (the render-and-look step below is not optional):
+`rsvg-convert -w 1200 <fig>.svg -o <fig>.png`, then read the PNG. To migrate an existing figure, render the
+original and the d2 version side by side and compare — iterate the source until it reads *substantially
+equivalent*, not pixel-identical. The accessibility and annotation rules below apply unchanged: a d2 SVG
+still needs a `<title>` / `<desc>` equivalent and legible size tiers.
+
+---
+
 ## Use the native construct, not stitched primitives
 
 The drawing leg of the second governing stance (SKILL.md, §"The second stance: name the concept, then use

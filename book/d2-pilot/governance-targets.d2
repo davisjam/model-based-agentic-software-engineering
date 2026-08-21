@@ -1,0 +1,37 @@
+...@_house-style
+
+# Genre: nested containers — the three governance control targets, each holding example
+# mechanisms (cf. the agent / models-bridge / product split). Tests d2 container nesting + styling.
+
+style.fill: "#fdfcf9"
+direction: right
+
+agent: AGENT {
+  class: fleet
+  style.font-size: 20
+  a1: "briefs + brief-linting"   { class: paperbox }
+  a2: "worktree isolation"       { class: paperbox }
+  a3: "merge-train gate staircase" { class: paperbox }
+  a4: "lifecycle + observability" { class: paperbox }
+}
+
+bridge: MODELS-BRIDGE {
+  class: modeling
+  style.font-size: 20
+  b1: "typed component + zone model" { class: paperbox }
+  b2: "mediator / sync contracts"    { class: paperbox }
+  b3: "drift + parity gates"         { class: paperbox }
+  b4: "query surface over the models" { class: paperbox }
+}
+
+product: PRODUCT {
+  class: rust
+  style.font-size: 20
+  p1: "canonical typed models + sole seams" { class: paperbox }
+  p2: "content-fidelity validation"          { class: paperbox }
+  p3: "provenance + attribution stamps"       { class: paperbox }
+  p4: "bounded repair vocabulary"             { class: paperbox }
+}
+
+agent -> bridge: "reasons through" { class: flow }
+bridge -> product: "governs" { class: flow }

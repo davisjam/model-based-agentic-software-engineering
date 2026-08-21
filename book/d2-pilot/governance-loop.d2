@@ -1,0 +1,19 @@
+...@_house-style
+
+# Genre: cycle with a labelled return edge (cf. governance-conversion-loop.svg).
+# Tests d2 back-edge routing + edge labels.
+
+style.fill: "#fdfcf9"
+direction: right
+
+vel:  "Velocity rises\nthe fleet accelerates"      { class: fleet }
+fail: "A failure recurs\nthe same wall, twice"      { class: churn }
+diag: "Diagnose\nthe class, not the instance"       { class: fleet }
+enc:  "Encode a mechanism\ntype · lint · gate · sensor" { class: modeling }
+blk:  "Recurrence blocked\nprevented by construction" { class: trust }
+
+vel -> fail: "" { class: flow }
+fail -> diag: "" { class: flow }
+diag -> enc: "" { class: flow }
+enc -> blk: "" { class: flow }
+blk -> vel: "stronger environment →\nhigher safe velocity" { class: conjedge }

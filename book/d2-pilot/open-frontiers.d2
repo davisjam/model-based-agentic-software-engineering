@@ -1,0 +1,79 @@
+...@_house-style
+
+style.fill: "#fdfcf9"
+grid-columns: 1
+grid-gap: 26
+
+title: |md
+# Where the frontier goes next
+Four open research programs, with testable hypotheses.
+|
+
+programs: "" {
+  grid-columns: 4
+  grid-gap: 20
+  style: { fill: transparent; stroke: transparent }
+
+  determ: "" {
+    grid-rows: 4; grid-gap: 12
+    style: { fill: transparent; stroke: transparent }
+    h: DETERMINIZATION { class: fleet-head }
+    q: "What judgment can\nbecome mechanism?" { class: question }
+    t1: "Governance census\ngoverned · under-governed · debt" { class: fleet }
+    t2: "Determinization frontier\nwhat judgment remains\nper-instance?" { class: fleet }
+  }
+
+  modeling: "" {
+    grid-rows: 4; grid-gap: 12
+    style: { fill: transparent; stroke: transparent }
+    h: MODELING { class: modeling-head }
+    q: "How does representation\nexpand what can be mechanized?" { class: question }
+    t1: "Representation leverage\ndoes richer representation make\nmore obligations decidable?" { class: modeling }
+    t2: "Frontier movement\nmeasure what shifts from\njudgment to mechanism" { class: modeling }
+  }
+
+  assurance: "" {
+    grid-rows: 4; grid-gap: 12
+    style: { fill: transparent; stroke: transparent }
+    h: ASSURANCE { class: rust-head }
+    q: "How much autonomous work can\ngoverned evidence support?" { class: question }
+    t1: "Development completeness\nwhat evidence justifies\nautonomous completion?" { class: rust }
+    t2: "Supply-chain assurance\nhow far can evidence propagate\nacross dependencies?" { class: rust }
+  }
+
+  generalization: "" {
+    grid-rows: 4; grid-gap: 12
+    style: { fill: transparent; stroke: transparent }
+    h: GENERALIZATION { class: conj-head }
+    q: "Which results survive\nbeyond software engineering?" { class: question }
+    t1: "Beyond software\ndo Modeling and\nAlignment transfer?" { class: conj }
+    t2: "MBAE\ntest the framework in\nother engineering domains" { class: conj }
+  }
+}
+
+dynamics: "CROSS-CUTTING DYNAMICS" {
+  grid-columns: 3
+  grid-gap: 16
+  style: { fill: "#f6f4ef"; stroke: "#57534e"; stroke-width: 2; border-radius: 10; font-color: "#57534e"; bold: true }
+  conv: "Conversion\nhow quickly does recurring judgment\nbecome durable structure?" { class: bandcell }
+  prop: "Propagation\nhow quickly does new structure\nreach later work?" { class: bandcell }
+  scal: "Scaling\nwhat changes as teams, agents,\nand governed surfaces grow?" { class: bandcell }
+}
+
+hypotheses: "TESTABLE HYPOTHESES · H1–H8" {
+  grid-columns: 4
+  grid-gap: 10
+  style: { fill: "#f3efe7"; stroke: "#9a3f12"; stroke-width: 2; border-radius: 10; font-color: "#6b2f10"; bold: true }
+  h1: "H1 Representation leverage" { class: hypcell }
+  h2: "H2 Representation integrity" { class: hypcell }
+  h3: "H3 Determinization frontier" { class: hypcell }
+  h4: "H4 Mechanized assurance" { class: hypcell }
+  h5: "H5 Governance conversion" { class: hypcell }
+  h6: "H6 Learning propagation" { class: hypcell }
+  h7: "H7 Environment moderation" { class: hypcell }
+  h8: "H8 Capital return / depreciation" { class: hypcell }
+}
+
+footer: "Dashed = a conjectured program the book states but does not settle." {
+  style: { fill: transparent; stroke: transparent; font-color: "#57534e"; font-size: 13; italic: true }
+}

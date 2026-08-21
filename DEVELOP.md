@@ -103,9 +103,10 @@ is absent — so a browser-less CI enforces the Tier-1 stdlib checks and skips a
 | Catalogue tool + Tier-1 tests | **Python 3 stdlib only** | zero install; `git clone` and go |
 | Tier-2 axe (a11y) | Node.js + `@axe-core/cli` + a Chrome/Chromium browser | `./setup.sh` runs `npm ci` — the exact tree pinned in `package-lock.json`; `node_modules/` is gitignored |
 | Tier-2 manifest validation | the `claude` CLI | ships with Claude Code |
+| Figure authoring — d2 pilot (dev-only) | **`d2` ≥ 0.8.1** (`brew install d2`) | Compiles `book/d2-pilot/*.d2` → SVG. **Dev-only**: the committed SVG is what the book embeds, so a fresh clone / the Pages build never needs `d2`. Compile with the vendored Source Sans 3 faces — see `book/d2-pilot/NOTES.md`. |
 
-The core tool stays dependency-free on purpose; the Node dep exists **only** for the optional a11y tier
-and never blocks a fresh clone.
+The core tool stays dependency-free on purpose; the Node dep exists **only** for the optional a11y tier,
+and **`d2` is a dev-only figure-authoring tool** (the compiled SVG ships) — neither blocks a fresh clone.
 
 ## Deploy & serving
 

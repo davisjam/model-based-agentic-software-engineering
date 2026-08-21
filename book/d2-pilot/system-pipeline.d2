@@ -1,0 +1,24 @@
+...@_house-style
+
+# Genre: left-to-right pipeline (cf. system-overview.svg). Tests d2 edges + direction:right.
+# The one amber (rust) stage is the bounded-model call; every other stage is deterministic.
+
+style.fill: "#fdfcf9"
+direction: right
+
+upload:  "Upload\na doc"            { class: paperbox }
+front:   "Front door\nauth · quota"  { class: fleet }
+disp:    "Dispatcher\nsplit units"   { class: fleet }
+rem:     "Remediation\nrule / model" { class: rust }
+check:   "Check engine\nto standard" { class: fleet }
+fid:     "Fidelity\ncontent kept"    { class: fleet }
+prov:    "Provenance\nstamp inserts" { class: fleet }
+result:  "Corrected file\n+ evidence" { class: trust }
+
+upload -> front: "" { class: flow }
+front -> disp: "" { class: flow }
+disp -> rem: "" { class: flow }
+rem -> check: "" { class: flow }
+check -> fid: "" { class: flow }
+fid -> prov: "" { class: flow }
+prov -> result: "" { class: flow }
