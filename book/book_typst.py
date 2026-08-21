@@ -2062,7 +2062,7 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             # ~50 entries + 3 dividers fit ONE page WITH comfortable inter-entry spacing. The one-page guarantee
             # is asserted at build time by the CONTENTS ONE-PAGE sensor in build_book.verify_pdf.
             "#page(margin: (x: 1.125in, y: 0.72in))[\n"
-            "#align(center)[#text(font: dt.font-display, size: 15pt, weight: 700, fill: dt.ink)[Contents]]\n"
+            "#align(center)[#text(font: dt.font-display, size: 15pt, weight: 700, fill: dt.ink)[Table of Contents]]\n"
             "#v(0.5em)\n"
             "#context {\n"
             "  let marks = query(<tocmark>)\n"
