@@ -225,6 +225,30 @@ def _typst_str(s: str) -> str:
     return '"' + s.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
+def _toc_marker(kind: str, text: str) -> str:
+    """A metadata marker the custom Contents outline consumes (see the `#context` outline in `emit_document`).
+    `kind` is `"division"` | `"part"` | `"chapter"`; `text` is the flattened label the Contents prints. The
+    marker is INVISIBLE in the body flow — it only records a `(kind, text)` pair at a document position, so the
+    outline can (a) order the three top-level divisions + their part/chapter entries by `location().position()`
+    and (b) read each entry's page via `counter(page).at(loc)` and link to it via `link(loc)`. All three kinds
+    share the one `<tocmark>` label so the outline queries a single selector. Emitted AFTER the entry's leading
+    `#pagebreak()` (so a part/chapter marker lands on the entry's own page); a division marker carries no page
+    number, so only its ORDER (before its first entry) matters."""
+    return f"#metadata((kind: {_typst_str(kind)}, text: {_typst_str(text)})) <tocmark>"
+
+
+def _division_for(ch: "ir.Chapter") -> str:
+    """The Contents top-level DIVISION a chapter belongs to. Three divisions, in book order: FRONT MATTER (the
+    pre-Part-1 chapters, part 0), THE BOOK (Parts 1-6 + the Conclusion, parts 1-7), APPENDICES (the appendix
+    Parts + their appendices, and the trailing back matter / bibliography, part ≥ 8). These are the only
+    book-level dividers the Contents draws."""
+    if ch.part == 0:
+        return "FRONT MATTER"
+    if ch.part <= 7:
+        return "THE BOOK"
+    return "APPENDICES"
+
+
 # Heading anchors promoted to a Typst label (see `_render_heading`) — the intra-document `#link` targets.
 # Two families: the Appendix-A legend's constituent parts (`a-<idx>-<slug>`), and a numbered Part's landing
 # anchor (`part-<N>`) so the Part-nav strip can `#link(<part-N>)` to any Part. Scoped so no other heading grows
@@ -1127,7 +1151,19 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
     # intro paragraph + the Part-nav strip only.
     # The Part landing page and the appendices mode-marker render NO H1 in the body: the divider page ahead
     # already carries the title, so a heading here would duplicate it. Each contributes its prose only.
-    out: list[str] = [] if (is_part_page or is_appendix_divider) else [title_line, ""]
+    # Contents marker for the chapter's level-2 title. Emitted ONCE, as the first thing on the chapter's page
+    # (the preceding pagebreak already fired in the assembly loop / part divider), so `counter(page).at(loc)`
+    # reads the chapter's own page. SKIPPED for: the Part landing / appendices mode-marker (no H1 here — their
+    # entry comes from the divider) and EVERY appendix content page (an appendix's A/B letter divider is the
+    # Contents entry; its front-door duplicate title and its A.1/A.2 sections are the "sections" the Contents
+    # deliberately omits — depth = parts + chapters only).
+    if is_part_page or is_appendix_divider:
+        out: list[str] = []
+    elif is_appendix:
+        out = [title_line, ""]
+    else:
+        _toc_text = f"{chap_num} {chapter.title}" if chap_num else chapter.title
+        out = [_toc_marker("chapter", _toc_text) + "\n" + title_line, ""]
     blocks = chapter.blocks
     # Footnote pre-pass: pull `[^label]: …` DEFINITION lines out of the flow (they must not render as body
     # paragraphs) and collect them for `_inline`'s `[^label]` handler — the Typst twin of md_to_html's
@@ -1397,12 +1433,9 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 // inline ems and blow the divider titles up past their intended scale. It DOES get the bold WEIGHT (a weight
 // rule doesn't compound), so a Part title is the one bold thing in the ladder.
 #show heading.where(level: 1): set text(weight: "bold", size: 1.9em)  // Part divider — big bold "Part N: Title" opener (size lives here, not in the body, so the Contents entry stays compact)
-// Table-of-contents entry sizing (applies only when the Contents outline is present): Parts (level 1) render
-// largest — display-face bold with a little air above; chapters (level 2) render one medium step down. Set
-// HERE, independent of the on-page heading display size, so the printed Contents is compact and one line per
-// entry (the Part display size is 1.9em on the page but 13pt in the TOC).
-#show outline.entry.where(level: 1): it => { v(0.5em, weak: true); set text(font: dt.font-display, weight: "bold", size: 13pt); it }
-#show outline.entry.where(level: 2): set text(size: 10.5pt)
+// The Contents is rendered by a CUSTOM `#context` outline (see `emit_document`) driven by `<tocmark>` metadata,
+// NOT Typst's built-in `#outline`, so there are no `#show outline.entry` rules — the custom outline styles each
+// division / part / chapter entry itself.
 #show heading.where(level: 2): set text(size: 1.4em)    // chapter title (semibold via the general rule; nudged down)
 #show heading.where(level: 3): set text(size: 1.15em)   // `## ` section (semibold via the general rule; nudged down)
 // `### ` (H3) subheadings — now Typst level-4 after the shift — render ITALIC regular, not semibold: a quieter
@@ -1733,13 +1766,17 @@ def _appendices_divider_typst(ch: "ir.Chapter") -> str:
     opener = "#pagebreak(to: \"odd\")\n" if OUTPUT_TYPE == "print" else "#pagebreak()\n"
     title = inline_typst(title_s)
     sub = inline_typst(sub_s)
+    # The heading BODY is PLAIN semantic text ("Appendix Part I — Practice") — the big on-page display size
+    # comes from the level-1 heading show-rule (like the numbered Parts), NOT an inline `#text(size: 2.4em)`
+    # baked into the body. A plain body keeps the PDF bookmark clean and lets the custom Contents outline print
+    # this as an ordinary part-level entry rather than reproducing a display size (the old giant-TOC bug).
     heading = (
-        f"  = #text(size: 2.4em, weight: \"bold\")[{title}]\n"
+        f"  = {title}\n"
         f"  #v(0.35em)\n"
         f"  #text(size: 1.35em, fill: dt.accent, style: \"italic\")[{sub}]\n"
     )
     return (
-        opener +
+        opener + _toc_marker("part", title_s) + "\n"
         "#block(breakable: false)[\n"
         f"  #v(2.4in)\n"
         + heading +
@@ -1886,13 +1923,19 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     # two-line-per-Part Contents bug.
     heading_text = f"{kicker}: {title}" if kicker else title
     heading = f"  = {inline_typst(heading_text)}\n"
+    # Contents division class: numbered Parts, the top-level Conclusion (7), and the synthetic Back Matter are
+    # PART-level entries; an appendix-LETTER divider ("Appendix A: …") is a level-1 heading on the page but
+    # reads as a CHAPTER entry in the Contents (the two "Appendix Part I/II" dividers are the appendix PART
+    # entries; the letters sit one level below them).
+    toc_kind = "part" if (is_numbered or part == 7 or getattr(ch, "is_matter", False)) else "chapter"
+    toc_mark = _toc_marker(toc_kind, heading_text)
 
     if not is_numbered:
         # Back-matter / appendix divider: the simple single-page opener (no orientation apparatus). Screen
         # opens on a plain break; print forces a recto per the bound-edition convention.
         opener = "#pagebreak(to: \"odd\")\n" if OUTPUT_TYPE == "print" else "#pagebreak()\n"
         return (
-            opener +
+            opener + toc_mark + "\n"
             "#block(breakable: false)[\n"
             f"  #v(0.7in)\n"
             + heading +
@@ -1942,7 +1985,7 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
         + ("  #v(1.2em)\n" + vocab if vocab else "")
         + "]" + label
     )
-    return opener + verso + "\n#pagebreak()"
+    return opener + toc_mark + "\n" + verso + "\n#pagebreak()"
 
 
 def _book_label_text(doc: "ir.Document") -> "dict[str, str]":
@@ -2007,19 +2050,68 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
         # tree; this prints the in-document Contents (Parts + chapters, depth 2), whose entries are hyperlinks
         # to their targets. The "Contents" title is plain styled text (not a heading) so the level-1 part-opener
         # show-rule in the preamble doesn't fire on it, and it doesn't recurse into the outline itself.
+        # A CUSTOM Contents outline (not Typst's `#outline`) driven by the `<tocmark>` metadata the dividers +
+        # chapters emit. It renders THREE top-level divisions (FRONT MATTER / THE BOOK / APPENDICES) at identical
+        # typography — bold small-caps at ordinary TOC size, air above, a thin rule extending right, no page
+        # number — then the part entries (bold, a step larger, extra air) and chapter entries (medium, indented)
+        # under them, each with a dotted leader + page number + a live link. Ordering is by document position, so
+        # the marker stream reproduces the book's structure. Page number via `counter(page).at(loc)`; the entry
+        # markers sit on their own page (emitted after the leading pagebreak), so the folio is exact.
         parts.append(
             "#pagebreak()\n"
             "#align(center)[#text(font: dt.font-display, size: 20pt, weight: 700, fill: dt.ink)[Contents]]\n"
-            "#v(1.2em)\n"
-            "#outline(title: none, depth: 2, indent: auto)"
+            "#v(0.9em)\n"
+            "#context {\n"
+            "  let marks = query(<tocmark>)\n"
+            "  set text(font: dt.font-body, size: 10pt, fill: dt.ink)\n"
+            "  set par(justify: false, leading: 0.48em)\n"
+            "  for m in marks {\n"
+            "    let d = m.value\n"
+            "    let loc = m.location()\n"
+            "    if d.kind == \"division\" {\n"
+            "      block(width: 100%, above: 1.15em, below: 0.55em, breakable: false)[\n"
+            "        #grid(columns: (auto, 1fr), align: horizon, column-gutter: 0.75em,\n"
+            "          text(font: dt.font-display, weight: \"bold\", size: 10.5pt, tracking: 0.16em, fill: dt.ink)[#upper(d.text)],\n"
+            "          line(length: 100%, stroke: 0.6pt + dt.rule),\n"
+            "        )\n"
+            "      ]\n"
+            "    } else {\n"
+            "      let is-part = d.kind == \"part\"\n"
+            "      let pg = counter(page).at(loc).first()\n"
+            "      let indent = if is-part { 0pt } else { 1.4em }\n"
+            "      let wt = if is-part { \"bold\" } else { \"regular\" }\n"
+            "      let sz = if is-part { 11pt } else { 10pt }\n"
+            "      let above = if is-part { 0.5em } else { 0.1em }\n"
+            "      block(width: 100%, above: above, below: 0pt, breakable: false)[\n"
+            "        #pad(left: indent)[\n"
+            "          #link(loc)[\n"
+            "            #text(font: dt.font-display, weight: wt, size: sz, fill: dt.ink)[#d.text]\n"
+            "            #box(width: 1fr, inset: (x: 0.4em), align(bottom, repeat(gap: 3pt, justify: false)[#text(fill: dt.muted)[.]]))\n"
+            "            #text(font: dt.font-body, weight: wt, size: sz, fill: dt.ink)[#pg]\n"
+            "          ]\n"
+            "        ]\n"
+            "      ]\n"
+            "    }\n"
+            "  }\n"
+            "}\n"
+            "#pagebreak()"
         )
     seen_parts: set[int] = set()
+    current_division: str | None = None
     for n, slug in enumerate(slugs):
         if slug not in by_slug:
             raise SystemExit(f"unknown chapter slug: {slug} (have {sorted(by_slug)[:5]}…)")
         ch = by_slug[slug]
         if with_frontmatter and ack_chapter is not None and ch.slug == ack_chapter.slug:
             continue  # acknowledgments were relocated to the copyright page — do not also render the chapter
+        # Contents DIVISION boundary: emit the division marker just before this chapter's divider/body, so it
+        # sorts ahead of the division's first part/chapter marker (position-ordered). Divisions carry no page
+        # number, so their marker's own page does not matter.
+        if with_frontmatter:
+            div = _division_for(ch)
+            if div != current_division:
+                current_division = div
+                parts.append(_toc_marker("division", div))
         _title_norm = ch.title.strip().lower()
         # A landscape apparatus is wrapped in `#page(flipped: true)[…]`, which starts its own fresh page, so
         # the usual preceding `#pagebreak()` would strand a blank portrait page — suppress it for that case.
@@ -2055,6 +2147,8 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
     if _any_cites(doc):
         bib_rel = _root_rel(bb.HERE / "references.bib", root)
         parts.append("#pagebreak()")
+        if with_frontmatter:
+            parts.append(_toc_marker("part", "Bibliography"))  # a part-level Contents entry, on the bib page
         parts.append(f'#bibliography({_typst_str(bib_rel)}, style: "nature", title: "Bibliography")')
     result = "\n\n".join(parts) + "\n"
     # Clear the split-section context so a later whole-book emission (or the next section) starts clean. An
