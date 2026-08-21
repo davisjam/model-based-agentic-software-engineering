@@ -72,7 +72,9 @@
   <!-- Modeling EXPANDS (not enables) Alignment -->
   <!-- edge: modeling -> alignment -->
   <path d="M390,337 L588,337" fill="none" stroke="#1f7a4d" stroke-width="2.6" marker-end="url(#ci-green)"/>
-  <text x="488" y="322" text-anchor="middle" font-size="19.6" font-weight="700" fill="#1f7a4d">expands the semantic surface for</text>
+  <text x="490" y="312" text-anchor="middle" font-size="19.6" font-weight="700" fill="#1f7a4d">expands the</text>
+  <text x="490" y="334" text-anchor="middle" font-size="19.6" font-weight="700" fill="#1f7a4d">semantic</text>
+  <text x="490" y="356" text-anchor="middle" font-size="19.6" font-weight="700" fill="#1f7a4d">surface for</text>
 
   <!-- lessons -> Governance Conversion. The lessons carried forward are the two principles'; a single
        connector must seat on one node, so it plugs into Modeling (the left principle) and keeps the label. -->
@@ -92,7 +94,7 @@
   <rect id="capital" x="512.07" y="452" width="375.86" height="70" rx="9" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
   <text x="700" y="484" text-anchor="middle" font-size="19.6" font-weight="800" fill="#155c38">Engineering Capital</text>
   <!-- edge label drawn AFTER the capital box so it paints on top (no z-order occlusion at floor size) -->
-  <text x="498" y="478" text-anchor="middle" font-size="19.6" font-weight="700" fill="#155c38">compounds into</text>
+  <text x="502" y="556" text-anchor="middle" font-size="19.6" font-weight="700" fill="#155c38">compounds into</text>
   <text x="700" y="506" text-anchor="middle" font-size="19.6" font-style="italic" fill="#155c38">durable models &amp; controls accumulate</text>
 
   <!-- footer -->
