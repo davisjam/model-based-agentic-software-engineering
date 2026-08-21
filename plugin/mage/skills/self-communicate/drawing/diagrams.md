@@ -119,19 +119,21 @@ needs it.
   across, so list cells in column order (or set `grid-rows` and list row-major). Check the render.
 - **Reserved ids/keywords:** `left`, `right`, `constraint`, `no`, `yes` (and other keywords) can't be bare
   node ids or edge labels — rename the id or quote the label.
-- **No orthogonal edge routing (0.8).** d2 renders every *offset* edge as a **curved spline** — there is
-  no orthogonal/elbow router, and this holds under both dagre and elk. Only **axis-aligned** edges (a
-  straight vertical or horizontal run between aligned nodes) come out straight. So a genuine linear chain
-  can be crisp, but a **fan-out / converge** structural figure's edges will *curve* whether you want it or
-  not. They still read as fan/convergence (topology survives), but the source's crisp orthogonal elbows are
-  only approximated. **If crisp orthogonal structural edges are load-bearing for a figure, that is a
-  keep-hand-SVG signal** — record it in `d2_limitations`. (Aligning nodes so structural edges are
-  axis-aligned is the mitigation where it's possible.)
-- **The rasterizer hides weights; the book shows them.** `rsvg-convert` cannot decode d2's embedded WOFF
-  faces, so **bold / italic do not appear in the PNG preview** even though they render correctly in the
-  browser and in Typst (the book). Do not judge the *weight* hierarchy from the PNG — set bold/italic per
-  the typography rule and verify the split renders in the actual book build, and drive *visible* preview
-  hierarchy with font-size + colour as well. (This is why a PNG can look flatter than the shipped figure.)
+- **No practical control over edge routing (0.8).** d2 0.8.1 gives no house-style knob to *force*
+  orthogonal routing. Dagre documents that it **curves** multi-segment routes; in our tests **elk also
+  produced curved offset routes** on this build (elk supports orthogonal internally, but 0.8.1's config
+  surface exposes no edge-routing mode). **Axis-aligned** edges (a straight vertical/horizontal run between
+  aligned nodes) stay straight. So "prefer straight/orthogonal structural edges" is a layout *goal*, not an
+  invariant d2 can always realize: **align nodes so structural edges are axis-aligned where it matters, and
+  otherwise accept d2's spline for an offset route when it stays unambiguous** — change topology/layout
+  rather than hand-tuning geometry to manufacture right angles. Reach for keep-hand-SVG only when a crisp
+  orthogonal composition is genuinely load-bearing *and* unreachable — record it in `d2_limitations`.
+- **Don't use `rsvg-convert` PNGs as typography ground truth.** librsvg does not support embedded
+  `@font-face` / WOFF fonts, so preview rasterization substitutes system fonts and can **lose intended
+  weight/style differences** — bold/italic may vanish in the PNG though they render correctly in the browser
+  and in Typst (the book). Set bold/italic per the typography rule regardless; judge the weight hierarchy in
+  the actual SVG/PDF/book path (or install matching system fonts for previews), and drive *visible* preview
+  hierarchy with font-size + colour too. (This is why a PNG can look flatter than the shipped figure.)
 
 ### Render and look — the same loop as SVG
 
@@ -207,9 +209,12 @@ Before writing any d2, write this down (work notes; and emit it as the receipt b
   huge canvas joined by long, meaningless edges. Target **~70–85% utilization of both dimensions**;
   whitespace separates *conceptual groups*, not every node. Related structures stay visually close;
   unrelated regions get deliberate gap. (Shorten edges; group related nodes in a container.)
-- **Straight / orthogonal for structure; curves only for feedback.** Prefer straight or orthogonal edges
-  for decomposition, pipelines, derivation, layered DAGs. Reserve curves for **feedback, return paths,
-  bypasses, or relations whose geometry would otherwise collide** — so curvature *carries meaning*.
+- **Prefer direct, visually simple structural edges; curvature carries meaning where you control it.** Keep
+  axis-aligned edges straight where the layout permits; reserve *deliberate* curves for feedback, return,
+  bypass, or collision-avoidance. But d2 0.8 will spline an *offset* route whether you want it or not (see
+  gotchas) — **accept that spline when it stays unambiguous, and change topology/layout rather than
+  hand-tuning geometry merely to manufacture right angles.** Recreating the hand-SVG coordinate-fiddling
+  problem inside d2 is exactly what to avoid.
 - **Typography hierarchy, not universal bold.** Three levels: **heading** (bold/semibold, uppercase where
   the book already is) · **detail** (regular, sentence case) · **annotation / edge label** (regular or
   italic, visibly subordinate). Do not bold everything — bolding flattens the hierarchy the originals carry.
