@@ -8,7 +8,7 @@ When a wiki carries important system knowledge, link its claims to the implement
 concern. Check mechanically decidable claims automatically. Give stronger structure only to knowledge whose
 future use justifies the cost. [Chapter 4.2](4.2-brownfield.html) gives the full treatment.
 
-### Joining the Wiki to the Code
+### Joining the wiki to the code
 
 Four additions can make a wiki a more trustworthy engineering entry point. Add them only where future use
 justifies the added maintenance burden.
@@ -25,7 +25,7 @@ Add metadata only when a defined consumer uses it. Tags, backlinks, ownership fi
 mirrors should feed an audit, brief, retrieval step, analysis, or gate; otherwise they add another surface
 that can drift.
 
-### The Migration Path
+### The migration path
 
 The migration has four stages—Audit, Synchronize, Govern, and Extend—and each has an exit criterion. Advance when the criterion is met, not when enough time has passed.
 
@@ -37,7 +37,7 @@ The migration has four stages—Audit, Synchronize, Govern, and Extend—and eac
 | **Govern** | Give selected obligations authority at the earliest boundary where the required property is decidable. Some obligations can be checked directly over artifacts or actions; others depend on the representations strengthened in earlier stages. | The high-value obligations selected for governance no longer depend primarily on someone remembering to inspect them. |
 | **Extend** | Add richer representations, broader evidence, stronger mechanization, or additional authority only where expected return exceeds carrying cost. | Every addition has a named consumer or engineering question and a stated reason to exist. |
 
-### The Promotion Rule
+### The promotion rule
 
 Audit → reconcile → trust → govern → extend selectively.
 
@@ -45,7 +45,7 @@ Do not give an inaccurate representation authority. Do not require an explicit m
 already settles the obligation economically. Do not add structured metadata without a defined consumer.
 Add structure only when it is worth the cost: it should reduce repeated reconstruction or bring an important obligation under control.
 
-### Orphan Triage
+### Orphan triage
 
 Classify each unlinked region into one of three states so coverage reflects the intended model grain rather
 than raw implementation count.

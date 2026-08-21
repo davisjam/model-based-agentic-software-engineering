@@ -10,7 +10,7 @@ Read the diagrams as mappings, not ratings. A strongly marked relation is direct
 
 The six organizations enter from different directions: Cloudflare from institutional policy; Spotify from fleet-scale change; Shopify from organizational knowledge; Docker from delegated runtime authority; Siemens from model-first engineering; and Zenseact from distributed autonomous work. The question is which engineering moves survive those differences.
 
-### How to Read the Recto Diagrams
+### How to read the recto diagrams
 
 Every recto uses a simplified Figure 0.1-1: an observed engineering pressure enters from the left and passes through the mechanisms supported by the evidence to the part of MAGE it most directly illuminates.
 
