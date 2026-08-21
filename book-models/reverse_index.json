@@ -5,10 +5,10 @@
     "reverse_edges": 1909,
     "by_symbol_kind": {
       "book": 1,
-      "chapter": 28,
+      "chapter": 29,
       "part": 6,
       "point": 540,
-      "section-id": 186,
+      "section-id": 185,
       "term": 172
     },
     "universe": {
@@ -310,6 +310,16 @@
         {
           "view": "claims",
           "element": "single-case-humility",
+          "role": "claim-home"
+        }
+      ]
+    },
+    "chapter:software-rejoins-engineering": {
+      "kind": "chapter",
+      "dependents": [
+        {
+          "view": "claims",
+          "element": "models-are-universal-language",
           "role": "claim-home"
         }
       ]
@@ -6591,16 +6601,6 @@
           "view": "outline",
           "element": "2.8-system-knowledge::modeling-makes-properties-available-to-alignment",
           "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:models-are-the-language-of-engineering": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "claims",
-          "element": "models-are-universal-language",
-          "role": "claim-home"
         }
       ]
     },
