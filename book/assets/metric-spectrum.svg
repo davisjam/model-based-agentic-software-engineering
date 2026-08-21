@@ -31,34 +31,41 @@
   <line x1="935" y1="66" x2="1195" y2="66" stroke="#57534e" stroke-width="1.5"/>
 
   <!-- machine-decidable card 1: cold-start latency -->
-  <rect x="25" y="110" width="272" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="161" y="148" text-anchor="middle" font-size="21.6" font-weight="700" fill="#1c1917">cold-start latency</text>
-  <text x="161" y="180" text-anchor="middle" font-size="17.96" fill="#57534e">ms per service · longest-path Σ</text>
-  <text x="161" y="228" text-anchor="middle" font-size="18.6" font-style="italic" fill="#2f5169">→ evidence for a perf validator</text>
+  <rect x="25" y="110" width="272" height="185" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="161" y="150" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">cold-start latency</text>
+  <text x="161" y="190" text-anchor="middle" font-size="24" fill="#57534e">ms per service ·</text>
+  <text x="161" y="216" text-anchor="middle" font-size="24" fill="#57534e">longest-path Σ</text>
+  <text x="161" y="258" text-anchor="middle" font-size="24" font-style="italic" fill="#2f5169">→ evidence for</text>
+  <text x="161" y="284" text-anchor="middle" font-size="24" font-style="italic" fill="#2f5169">a perf validator</text>
 
   <!-- machine-decidable card 2: component-distance grade -->
-  <rect x="312" y="110" width="272" height="150" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="448" y="148" text-anchor="middle" font-size="19.14" font-weight="700" fill="#1c1917">component-distance grade</text>
-  <text x="448" y="180" text-anchor="middle" font-size="21.6" fill="#57534e">block / report / suppress</text>
-  <text x="448" y="228" text-anchor="middle" font-size="21.6" font-style="italic" fill="#2f5169">→ evidence a gate acts on</text>
+  <rect x="312" y="110" width="272" height="185" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="448" y="146" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">component-distance</text>
+  <text x="448" y="172" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">grade</text>
+  <text x="448" y="212" text-anchor="middle" font-size="24" fill="#57534e">block / report /</text>
+  <text x="448" y="238" text-anchor="middle" font-size="24" fill="#57534e">suppress</text>
+  <text x="448" y="280" text-anchor="middle" font-size="24" font-style="italic" fill="#2f5169">→ evidence a gate acts on</text>
 
   <!-- flagship card: model-claim coverage -->
-  <rect x="600" y="95" width="320" height="180" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
-  <text x="760" y="136" text-anchor="middle" font-size="21.6" font-weight="700" fill="#1c1917">model-claim coverage</text>
-  <text x="760" y="172" text-anchor="middle" font-size="21.6" fill="#57534e">is the model claim exercised?</text>
-  <text x="760" y="238" text-anchor="middle" font-size="21.04" font-style="italic" fill="#9a3f12">→ names the untested invariant</text>
+  <rect x="600" y="95" width="320" height="200" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
+  <text x="760" y="140" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">model-claim coverage</text>
+  <text x="760" y="185" text-anchor="middle" font-size="24" fill="#57534e">is the model claim</text>
+  <text x="760" y="211" text-anchor="middle" font-size="24" fill="#57534e">exercised?</text>
+  <text x="760" y="255" text-anchor="middle" font-size="24" font-style="italic" fill="#9a3f12">→ names the</text>
+  <text x="760" y="281" text-anchor="middle" font-size="24" font-style="italic" fill="#9a3f12">untested invariant</text>
 
   <!-- judgment-dependent card: doc-derived-test pinning -->
-  <rect x="935" y="110" width="260" height="150" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="1065" y="148" text-anchor="middle" font-size="19.8" font-weight="700" fill="#1c1917">doc-derived-test pinning</text>
-  <text x="1065" y="176" text-anchor="middle" font-size="21.6" fill="#57534e">is this doc-claim</text>
-  <text x="1065" y="196" text-anchor="middle" font-size="21.6" fill="#57534e">pinned by a test?</text>
-  <text x="1065" y="234" text-anchor="middle" font-size="17.64" font-style="italic" fill="#57534e">→ aims a reader, cannot admit</text>
+  <rect x="935" y="110" width="260" height="185" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="1065" y="148" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">doc-derived-test</text>
+  <text x="1065" y="174" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">pinning</text>
+  <text x="1065" y="212" text-anchor="middle" font-size="24" fill="#57534e">is this doc-claim</text>
+  <text x="1065" y="238" text-anchor="middle" font-size="24" fill="#57534e">pinned by a test?</text>
+  <text x="1065" y="280" text-anchor="middle" font-size="24" font-style="italic" fill="#57534e">→ aims a reader</text>
 
   <!-- the spine: machine-decidable to judgment-dependent -->
   <line x1="40" y1="320" x2="1160" y2="320" stroke="#1c1917" stroke-width="3" marker-end="url(#ms-ah)"/>
-  <text x="40" y="356" font-size="21.6" font-style="italic" fill="#57534e">a validator evaluates it the same way every time</text>
-  <text x="1160" y="356" text-anchor="end" font-size="21.6" font-style="italic" fill="#57534e">a person must still interpret it</text>
+  <text x="40" y="356" font-size="24" font-style="italic" fill="#57534e">a validator evaluates it the same way every time</text>
+  <text x="1160" y="356" text-anchor="end" font-size="24" font-style="italic" fill="#57534e">a person must still interpret it</text>
 
   <!-- the axis rule banner -->
   <text x="600" y="398" text-anchor="middle" font-size="21.6" font-weight="700" fill="#9a3f12">Authority belongs to the validator or gate that consumes the evidence — not to the number.</text>
