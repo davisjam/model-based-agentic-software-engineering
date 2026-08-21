@@ -56,6 +56,10 @@ book/_design/*-brief*.md
 # `build_book.py --pdf` alongside the full book, same gitignore posture as mage-book.pdf (created,
 # never committed; not rendered in CI).
 /book/mage-book-*.pdf
+# The MAGE "full writing stack" export — a concatenation of the writing-stack source files, emitted by
+# book/build_writing_style.py on every build (see build_book.py). A derived build artifact, same posture
+# as mage-book.pdf: created, never committed.
+/book/mage-writing-style.md
 
 # Node build tooling for the PDF render (Puppeteer). package.json + package-lock.json ARE tracked (CI
 # runs `npm ci`); the installed tree is not.

@@ -6588,6 +6588,10 @@ def build_pdf() -> int:
     import shutil
     import subprocess
 
+    # Regenerate the writing-stack export alongside the PDF (the web build does the same in `build()`), so
+    # `build_book.py --pdf` refreshes book/mage-writing-style.md — a gitignored artifact like the PDF.
+    _emit_writing_style_export()
+
     # book_typst imports build_book at module scope; import it here (function-local, matching this
     # function's existing shutil/subprocess pattern) so importing build_book as a library never pulls
     # the emitter and its transitive book_ir graph.
@@ -6829,7 +6833,19 @@ def _pdf_split_enabled(args: "list[str]") -> bool:
     return True
 
 
+def _emit_writing_style_export() -> None:
+    """Regenerate book/mage-writing-style.md — the MAGE "full writing stack" export (the self-communicate
+    skill + writing/ resources + house style), concatenated from source. A gitignored build artifact, so
+    it is refreshed on every build/PDF run and never committed. Kept out of the chapter hierarchy by its
+    name (no `N.M-` prefix), so it is not discovered as a chapter."""
+    import build_writing_style
+    out = build_writing_style.build_writing_style()
+    print(f"writing-stack export: {out.name} ({out.stat().st_size:,} bytes, "
+          f"{len(build_writing_style.SOURCES)} sources)")
+
+
 def build() -> int:
+    _emit_writing_style_export()
     metrics = _load_metrics()
     _load_citations()  # the committed Chicago render of references.bib — read once, consumed per chapter
     chapters = _discover_chapters(metrics)
