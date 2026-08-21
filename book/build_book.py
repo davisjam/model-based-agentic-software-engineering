@@ -6120,7 +6120,7 @@ def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
     normed_upper = [t.upper() for t in normed]           # for the uppercase apparatus-marker match
     results: list[dict] = []
     for part in range(1, 7):
-        div = norm(f"Part {part} {part_titles[part]}")   # divider heading, title-case
+        div = norm(f"Part {part}: {part_titles[part]}")  # divider heading, title-case ("Part N: Title" — renderer SSOT)
         # The verso carries the title heading AND the orientation apparatus; disambiguate on the apparatus so a
         # stray TOC/outline line echoing the heading is never mistaken for the orientation page.
         candidates = [i for i, t in enumerate(normed, 1)

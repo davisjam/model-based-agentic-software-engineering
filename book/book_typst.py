@@ -1396,7 +1396,13 @@ _PREAMBLE = _TYPST_PREAMBLE + """\
 // title (1.1em / 2em) against the body em, so a level-1 `set text(size: …)` here would COMPOUND with those
 // inline ems and blow the divider titles up past their intended scale. It DOES get the bold WEIGHT (a weight
 // rule doesn't compound), so a Part title is the one bold thing in the ladder.
-#show heading.where(level: 1): set text(weight: "bold")     // Part divider — the only bold heading
+#show heading.where(level: 1): set text(weight: "bold", size: 1.9em)  // Part divider — big bold "Part N: Title" opener (size lives here, not in the body, so the Contents entry stays compact)
+// Table-of-contents entry sizing (applies only when the Contents outline is present): Parts (level 1) render
+// largest — display-face bold with a little air above; chapters (level 2) render one medium step down. Set
+// HERE, independent of the on-page heading display size, so the printed Contents is compact and one line per
+// entry (the Part display size is 1.9em on the page but 13pt in the TOC).
+#show outline.entry.where(level: 1): it => { v(0.5em, weak: true); set text(font: dt.font-display, weight: "bold", size: 13pt); it }
+#show outline.entry.where(level: 2): set text(size: 10.5pt)
 #show heading.where(level: 2): set text(size: 1.4em)    // chapter title (semibold via the general rule; nudged down)
 #show heading.where(level: 3): set text(size: 1.15em)   // `## ` section (semibold via the general rule; nudged down)
 // `### ` (H3) subheadings — now Typst level-4 after the shift — render ITALIC regular, not semibold: a quieter
@@ -1873,11 +1879,13 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     # under. A kicker renders on its own muted line above the big title (the two-tier divider look), with a
     # non-breaking space closing the kicker line so the flattened OUTLINE text keeps a separator ("Part 1 The
     # Mindset", not "Part 1The Mindset").
-    if kicker:
-        heading = (f"  = #text(size: 1.1em, fill: dt.muted)[{inline_typst(kicker)}~]"
-                   f"#linebreak()#text(size: 2em, weight: \"bold\")[{inline_typst(title)}]\n")
-    else:
-        heading = f"  = #text(size: 2em, weight: \"bold\")[{inline_typst(title)}]\n"
+    # The heading BODY is PLAIN semantic text ("Part N: Title") so the flattened outline entry and the PDF
+    # bookmark read as one clean line. The big on-page display size is applied by the level-1 heading show-rule
+    # (part page) and the outline-entry show-rules (Contents), NOT baked into the body — a body with an inline
+    # `#text(size: 2em)` + `#linebreak()` is reproduced verbatim in the outline, which was the oversized,
+    # two-line-per-Part Contents bug.
+    heading_text = f"{kicker}: {title}" if kicker else title
+    heading = f"  = {inline_typst(heading_text)}\n"
 
     if not is_numbered:
         # Back-matter / appendix divider: the simple single-page opener (no orientation apparatus). Screen
