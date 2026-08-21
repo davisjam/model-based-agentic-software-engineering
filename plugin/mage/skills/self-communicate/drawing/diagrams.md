@@ -152,6 +152,29 @@ Semantic fidelity **without** topological fidelity loses the rhetoric — and th
 failure mode. A figure that keeps every box and edge but flattens a metaphorical triangle into a chain has
 *mistranslated* it.
 
+### Read the figure in context first — the manuscript argument is authoritative
+
+**Never reimplement a figure from the visual artifact alone.** The source SVG is an *implementation* to be
+replaced, not the specification — it carries the old author's choices and may itself be imperfect. The
+*specification* is the argument the manuscript makes jointly through **prose + caption + figure**. So before
+you analyze or draw anything, locate the figure in the book and read its local context:
+
+- the figure **caption**;
+- the **paragraph that introduces** the figure;
+- the paragraphs immediately **after** it that interpret or refer to it;
+- any nearby **definitions / terminology** the figure depends on.
+
+Treat that prose as evidence of the figure's intended semantics and rhetorical purpose: it tells you what
+the figure *must* preserve, which terms must **match the prose exactly**, what the old figure may express
+poorly, and what explanatory material belongs in the prose rather than the drawing. **When the visual and
+the prose disagree, do not blindly reproduce the visual** — realize the manuscript's intended argument and
+flag the discrepancy in the receipt. This is permission to *improve* a figure during migration: if the prose
+says "two independent axes," rendering two named axes is load-bearing even if dropping them would yield a
+superficially cleaner 2×2.
+
+The abstraction is **manuscript argument → communication model → d2 realization**, not *SVG → d2 imitation*
+— which is, not coincidentally, exactly the modeling discipline this book advocates.
+
 ### Recover the intent first — the pre-layout plan
 
 Before writing any d2, write this down (work notes; and emit it as the receipt below):
@@ -201,17 +224,47 @@ Before writing any d2, write this down (work notes; and emit it as the receipt b
   alone** — a label, line style, or topology must also carry the distinction (colour-blind readers, grey
   print).
 
+### Inventory the information — classify every item, not just nodes and edges
+
+A figure is a **visual argument** whose vocabulary includes nodes, edges, **axes, spatial relationships,
+annotations, and rhetorical conclusions** — not merely nodes + edges. The next failure mode after
+"preserve topology" is *over-applying* "remove prose from the diagram": the agent correctly learns to drop
+a redundant sentence, then over-generalizes it into stripping *peripheral* text that was load-bearing — a
+title, an axis name, a takeaway. Guard against it with an explicit inventory **before you draw**. List every
+information item — **title · axes · axis values / endpoints · node headings · node details · relationships ·
+legend · annotations · takeaway** — and classify each as **preserve-in-figure / move-to-caption / omit**.
+**Never omit an item merely because it is not a graph node or edge.** Figure titles, axis names, axis values,
+legends, and short takeaway/conclusion statements are commonly load-bearing; the thing that moves to the
+caption is a long explanatory sentence that merely *restates the prose*. (d2 discards a title unless you
+draw one — do not let that silently drop a load-bearing title.)
+
+**Cartesian / matrix figures — preserve the complete axis grammar.** An axis carries up to four levels:
+(1) an **axis name**, (2) a **direction** where meaningful, (3) **categorical values / endpoints**, and
+optionally (4) **definitions** of those values. Do not collapse these levels or substitute an endpoint's
+*definition* for its *name*. **Position axis information on the axis it describes** — the axis name along/
+beside its axis (rotate the vertical one), the values centered over their columns or beside their rows —
+not pooled in a corner or a header. The target grammar is **axis name → axis values → definitions →
+quadrants**; a matrix that renders only *definitions → quadrants* has dropped two levels of the hierarchy.
+Some green-vs-blue (or other) encoding that makes the two axes' independence *perceptible* is load-bearing,
+not decoration.
+
 ### The conversion receipt — the authored artifact is the *visual model*
 
 Every migrated figure gets a tiny sidecar `<fig>.receipt.yaml` recording its visual model — engineering
-provenance, not for publication:
+provenance, not for publication. It comes from reading the figure **in context** (prose + caption), so its
+first fields are about the argument, not the picture:
 
 ```
-visual_proposition:   <what the composition says at a glance>
-topology:             <the spatial relations that carry meaning>
+prose_claim:            <the claim the surrounding text makes>
+figure_job:             <what the figure contributes that the prose does not>
+visual_proposition:     <what the composition says at a glance>
+required_vocabulary:    <terms that must match the prose exactly>
+topology:               <the spatial relations that carry meaning>
 forbidden_implications: <orderings / deps / hierarchies the layout must NOT imply>
-intentional_changes:  <where the d2 deliberately differs from the source>
-d2_limitations:       <what d2 could not preserve without excessive hacks — or "none">
+redundant_visual_copy:  <in-figure text that merely repeats prose/caption — removed>
+source_figure_defects:  <where the old SVG contradicts / obscures the prose — or none>
+intentional_changes:    <where the d2 deliberately differs from the source>
+d2_limitations:         <what d2 could not preserve without excessive hacks — or none>
 ```
 
 The receipt makes the *communication design* the authored artifact and d2 the realization mechanism, and

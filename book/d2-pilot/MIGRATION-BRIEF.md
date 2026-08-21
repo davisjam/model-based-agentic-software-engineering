@@ -3,10 +3,16 @@
 You reimplement a handful of named figures from hand-authored SVG into **d2** source, in the book's house
 style. Work in `/Users/davisjam/Projects/ada-tool/talks-and-notes/governance-catalog`.
 
-**Reimplement, do not trace.** Do not copy coordinates or imitate accidental SVG geometry. Recover the
-figure's *intended visual argument* and rebuild it with d2's structural primitives. **The objective is not
-a valid d2 translation; it is a better-maintained implementation of the same communication design.** Do NOT
-accept a diagram merely because it compiles.
+**Reimplement, do not trace.** Do not copy coordinates or imitate accidental SVG geometry. A figure is a
+**visual argument** — its vocabulary is nodes, edges, **axes, spatial relationships, annotations, and
+rhetorical conclusions**, not just nodes + edges. Recover that argument and rebuild it with d2's primitives.
+**The objective is not a valid d2 translation; it is a better-maintained implementation of the same
+communication design.** Do NOT accept a diagram merely because it compiles.
+
+**The manuscript is authoritative, not the SVG.** The source SVG is an implementation to be replaced and
+may itself be imperfect. The spec is the argument made jointly by **prose + caption + figure**. So your
+FIRST move on each figure — before analysis, before any d2 — is to find the figure in the book and read its
+local context (see step 0).
 
 ## Read first (once, up front) — the house rules live in the skill
 - `plugin/mage/skills/self-communicate/drawing/diagrams.md` §"d2 — the house-styled declarative path" AND
@@ -19,20 +25,39 @@ accept a diagram merely because it compiles.
 
 ## Per figure `<fig>` — the protocol
 
-**1. Study + analyze the source in five dimensions.** `rsvg-convert -w 1200 book/assets/<fig>.svg -o
-/tmp/<fig>-orig.png` and Read it. Then write down (you will emit these as the receipt in step 4):
-   1. **Visual proposition** — what the reader should understand from the *composition* before reading small text.
-   2. **Semantic structure** — the load-bearing entities, relations, distinctions, annotations.
-   3. **Topological structure** — which spatial relations carry meaning (peer / hierarchy / sequence /
+**0. Read the figure IN CONTEXT first — before analysis, before any d2.** Find where the figure is used in
+the manuscript: `grep -rn "<fig>" book/*/*.md book/**/*.md` (figures are embedded/referenced by name). Read
+the figure's **caption**, the **paragraph that introduces** it, the **paragraphs after** it that interpret
+or refer to it, and any **nearby definitions** it depends on. This prose is the authoritative spec — it
+tells you what the figure must preserve, which terms must match the prose *exactly*, what the old SVG
+expresses poorly, and what belongs in the caption vs the drawing. If the visual and the prose disagree,
+realize the *prose's* intent and note the discrepancy (`source_figure_defects`).
+
+**1. Analyze + inventory.** `rsvg-convert -w 1200 book/assets/<fig>.svg -o /tmp/<fig>-orig.png` and Read it
+against the prose you just read. Write down (→ the receipt in step 4):
+   1. **Prose claim** — what the surrounding text claims; **Figure's job** — what the figure adds beyond it.
+   2. **Visual proposition** — what the reader should grasp from the *composition* before reading small text.
+   3. **Required vocabulary** — terms that must match the prose exactly.
+   4. **Semantic structure** — load-bearing entities, relations, distinctions, annotations.
+   5. **Topological structure** — which spatial relations carry meaning (peer / hierarchy / sequence /
       fan-out / convergence / cycle / containment / correspondence / contrast).
-   4. **Forbidden implications** — what ordering / dependency / hierarchy / equivalence the new layout must
-      NOT accidentally imply. (Write this line even if it feels obvious — it catches the worst errors.)
-   5. **Rhetorical hierarchy** — what the eye should hit first, second, third.
+   6. **Forbidden implications** — what ordering / dependency / hierarchy / equivalence the layout must NOT
+      imply. (Write it even if obvious — it catches the worst errors.)
+   7. **Rhetorical hierarchy** — what the eye should hit first, second, third.
+   **Then inventory every information item** — title · axes · axis values/endpoints · node headings · node
+   details · relationships · legend · annotations · takeaway — and mark each **preserve-in-figure /
+   move-to-caption / omit**. **Never omit an item just because it isn't a node or edge:** titles, axis
+   names, axis *values* (distinct from their definitions), legends, and takeaway/conclusion lines are
+   usually load-bearing. Only a sentence that merely *restates the prose* moves to the caption.
 
 **2. Author `book/d2-pilot/<fig>.d2`** — start `...@_house-style`; realize the analysis. Optimize for
 semantic + topological + rhetorical fidelity, NOT geometric similarity. Obey every house rule in the skill:
    - Preserve meaningful topology (a triangle of peers must not become a vertical process; parallel
      alternatives must not become sequential stages).
+   - **Matrix/Cartesian figures: preserve the full axis grammar** — axis name → axis values → (definitions)
+     → quadrants, with axis names/values positioned ON their axis (rotate the vertical one), not pooled in a
+     corner. Don't substitute an endpoint's definition for its name; keep an axis-independence colour cue if
+     the source has one. Restore a dropped title/takeaway — d2 draws neither unless you do.
    - Compact — use ~70–85% of the frame, short edges, related nodes close, deliberate whitespace only
      between conceptual regions.
    - Straight/orthogonal structural edges; curves only for feedback/return/bypass/collision-avoidance.
@@ -69,11 +94,16 @@ semantic + topological + rhetorical fidelity, NOT geometric similarity. Obey eve
 
 **4. Emit the receipt** `book/d2-pilot/<fig>.receipt.yaml`:
    ```
-   visual_proposition:   ...
-   topology:             ...
+   prose_claim:            ...
+   figure_job:             ...
+   visual_proposition:     ...
+   required_vocabulary:    ...
+   topology:               ...
    forbidden_implications: ...
-   intentional_changes:  ...
-   d2_limitations:       none            # or: what d2 couldn't preserve without excessive hacks
+   redundant_visual_copy:  ...          # in-figure text that merely repeats prose/caption — removed
+   source_figure_defects:  none         # or: where the old SVG contradicts/obscures the prose
+   intentional_changes:    ...
+   d2_limitations:         none         # or: what d2 couldn't preserve without excessive hacks
    ```
 
 **5. Leave uncommitted.** `book/d2-pilot/<fig>.{d2,svg,receipt.yaml}` in the working tree. Do NOT commit, do
