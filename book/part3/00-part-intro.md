@@ -24,7 +24,7 @@ Part II also distinguished tolerances from degrees of freedom. Where a tolerance
 Five questions organize the Part; [ref:part3-nav-arc] shows their progression.
 
 <!-- label: part3-nav-arc -->
-<!-- figure: assets/part3-nav-arc.svg | *Five questions organize Alignment.* The Part locates where authority can act, determines what obligation is legitimate, decomposes how mechanisms carry authority, shows how experience adds durable obligations and controls, and finally treats the resulting control estate as an engineering object. -->
+<!-- figure: assets/part3-nav-arc.svg | *Five questions organize Alignment.* The Part locates where authority can act, determines what obligation is legitimate, decomposes how mechanisms carry authority, shows how experience adds durable obligations and controls, and finally treats the GEE's accumulated controls as an engineering system. -->
 
 Alignment gives selected engineering judgments durable authority in the environment. Constraints narrow what work
 can do; sensors produce evidence of what it did; validators judge that evidence against an obligation;
