@@ -158,6 +158,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: commodity-intelligence | Commodity intelligence
 - concept: model-classes | Model classes
 - concept: degrees-of-freedom | Degrees of freedom
+- concept: tolerance | Tolerance
 - concept: system-knowledge | System knowledge
 - concept: modeling-substrate | Modeling substrate
 - concept: representation-form | Representation form

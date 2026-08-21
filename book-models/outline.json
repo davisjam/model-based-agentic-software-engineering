@@ -6,8 +6,8 @@
     "explicit_ids": 14,
     "derived_ids": 144,
     "missing_topic_sentence": 1,
-    "sections_drained": 111,
-    "paragraph_points": 488
+    "sections_drained": 112,
+    "paragraph_points": 497
   },
   "chapters": [
     {
@@ -15,10 +15,10 @@
       "part": 0,
       "sections": [
         {
-          "section_id": "the-core-ideas",
+          "section_id": "software-engineering-vocabulary",
           "level": 2,
-          "heading_text": "The core ideas",
-          "topic_sentence": "The ideas the rest of the book builds on.",
+          "heading_text": "Software engineering vocabulary",
+          "topic_sentence": "The book uses a small engineering vocabulary deliberately.",
           "id_source": "derived",
           "block_index": 2,
           "points": []
@@ -29,7 +29,7 @@
           "heading_text": "Software agents",
           "topic_sentence": "The agents, foundation models, harnesses, and operating limits involved in autonomous software work.",
           "id_source": "derived",
-          "block_index": 19,
+          "block_index": 20,
           "points": []
         },
         {
@@ -38,7 +38,7 @@
           "heading_text": "The Governed Engineering Environment",
           "topic_sentence": "The environment that gives engineering obligations durable authority.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 31,
           "points": []
         }
       ],
@@ -595,38 +595,48 @@
             },
             {
               "slug": "reduction-preserves-degrees-of-freedom",
-              "text": "Unconstrained realization choices are degrees of freedom; reduction preserves them.",
+              "text": "Obligations rarely fix one realization; a tolerance bounds permitted variation, a degree of freedom is a choice left open.",
               "block_index": 16
             },
             {
-              "slug": "unmodeled-freedom-has-an-exploratory-role",
-              "text": "Early unmodeled freedom is exploratory, not only economy.",
+              "slug": "software-tolerance-is-often-qualitative",
+              "text": "In software a tolerance can be numeric but is often qualitative, because code owes more to discrete mathematics than to continuous media.",
               "block_index": 18
             },
             {
-              "slug": "modeling-can-be-an-instrument-of-discovery",
-              "text": "Complexity can make a model an instrument of discovery.",
+              "slug": "the-realization-space-can-be-vast",
+              "text": "Software's medium permits an enormous acceptable realization set; obligations bound it without selecting a point.",
               "block_index": 20
             },
             {
-              "slug": "unknown-tacit-free-are-a-present-state-not-a-ladder",
-              "text": "Unknown, tacit, and free are present states, not a ladder.",
-              "block_index": 23
+              "slug": "tacit-obligation-vs-genuinely-free",
+              "text": "A tacit obligation can look free; the \"not that\" test reveals a boundary that was never written down.",
+              "block_index": 25
+            },
+            {
+              "slug": "unknown-tacit-explicit-free-are-states",
+              "text": "Unknown, tacit, explicit, and free are present states of a choice, and they change as the system changes.",
+              "block_index": 27
+            },
+            {
+              "slug": "modeling-can-precede-complete-specification",
+              "text": "Modeling can begin before specification is complete; a reduction can make variation tractable so distinctions can be discovered.",
+              "block_index": 29
             },
             {
               "slug": "the-question-decides-what-to-keep",
               "text": "Hold the system constant, change the question, and the model changes; there is no single model of the system.",
-              "block_index": 25
+              "block_index": 31
             },
             {
               "slug": "there-is-no-model-of-the-system",
               "text": "There is no model of the system, only purposeful reductions that each answer one question.",
-              "block_index": 28
+              "block_index": 34
             },
             {
               "slug": "a-reduction-first-even-when-executable",
               "text": "A model is a reduction first, even when it runs; executability changes what you can DO with it, not whether it abstracts.",
-              "block_index": 30
+              "block_index": 36
             }
           ]
         },
@@ -636,27 +646,27 @@
           "heading_text": "Structure Makes Representations Machine-Operable",
           "topic_sentence": "Externalizing knowledge saves reconstruction only if a machine can read it back.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 38,
           "points": [
             {
               "slug": "structured-is-the-word-doing-the-work",
               "text": "Structure — an explicit declared shape a machine can read — is what lets a representation be traversed, checked, and joined.",
-              "block_index": 34
+              "block_index": 40
             },
             {
               "slug": "the-simplest-useful-form-is-a-graph",
               "text": "The simplest useful form of externalized knowledge is a graph of engineering entities and their relations; graph names the structure, not the storage.",
-              "block_index": 37
+              "block_index": 43
             },
             {
               "slug": "shape-does-not-distinguish-a-model-semantics-do",
               "text": "A knowledge graph exposes what exists; an engineering model carries the semantics a question needs. Shape does not distinguish them.",
-              "block_index": 40
+              "block_index": 46
             },
             {
               "slug": "industry-already-lives-here",
               "text": "Externalized knowledge representation is the lightest form of Modeling, and most of industry already stands on it.",
-              "block_index": 42
+              "block_index": 48
             }
           ]
         },
@@ -666,27 +676,27 @@
           "heading_text": "Representations Support Accumulating Capabilities",
           "topic_sentence": "Structured representations can support progressively different capabilities: externalized knowledge, typed relationships, explicit semantics, stated properties, derivation, generation, traceability, and checking.",
           "id_source": "derived",
-          "block_index": 44,
+          "block_index": 50,
           "points": [
             {
               "slug": "capability-comes-in-rungs",
               "text": "A representation gains capability one property at a time: externalize, structure, add semantics and obligation, derive or check. Each capability answers more questions.",
-              "block_index": 46
+              "block_index": 52
             },
             {
               "slug": "capability-is-not-maturity-authority-is-a-separate-axis",
               "text": "Capability is a separate dimension from authority; strong local controls can exist with little modeling, and a rich model may remain advisory.",
-              "block_index": 49
+              "block_index": 55
             },
             {
               "slug": "the-consequence-is-selective-modeling",
               "text": "The consequence is not \"model everything\" but selective modeling: model facts repeatedly reconstructed and properties repeatedly adjudicated.",
-              "block_index": 51
+              "block_index": 57
             },
             {
               "slug": "modeling-expands-the-surface-authority-can-operate-over",
               "text": "Modeling does not create authority and authority does not require modeling; modeling expands the semantic surface over which authority can operate.",
-              "block_index": 53
+              "block_index": 59
             }
           ]
         },
@@ -696,22 +706,27 @@
           "heading_text": "Six Classes of Engineering Question",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 55,
+          "block_index": 61,
           "points": [
             {
               "slug": "the-six-class-ontology-is-useful-not-exhaustive",
               "text": "The classification caveat: six classes organized by the engineering question a model answers, useful rather than exhaustive, and able to overlap.",
-              "block_index": 57
+              "block_index": 63
             },
             {
               "slug": "the-classes-are-views-not-boxes",
               "text": "The classes classify questions, not data structures; one represented fact can answer several. The lease is Ownership, Behavioral, and Measurement at once.",
-              "block_index": 61
+              "block_index": 67
             },
             {
               "slug": "system-knowledge-is-substrate-not-a-seventh-class",
               "text": "System knowledge is the connected substrate where the six classes meet, not a seventh peer class.",
-              "block_index": 64
+              "block_index": 70
+            },
+            {
+              "slug": "tolerance-is-not-a-seventh-class",
+              "text": "The classes name the engineering question; tolerance names the variation that question permits, not a seventh class.",
+              "block_index": 72
             }
           ]
         },
@@ -721,17 +736,17 @@
           "heading_text": "Purpose Comes First; Representation Follows",
           "topic_sentence": "The class names a model's purpose.",
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 74,
           "points": [
             {
               "slug": "purpose-and-shape-are-different-axes",
               "text": "A model's class (its purpose) is a different axis from its representation shape (graph, state machine, table); the same purpose admits several forms.",
-              "block_index": 68
+              "block_index": 76
             },
             {
               "slug": "several-forms-can-serve-one-purpose",
               "text": "The engineering question fixes the purpose; several forms may serve it, and one form may serve several purposes.",
-              "block_index": 70
+              "block_index": 78
             }
           ]
         },
@@ -741,22 +756,22 @@
           "heading_text": "The Six Model Classes",
           "topic_sentence": "Each of the next six chapters takes one class through one production model from DocAble:",
           "id_source": "derived",
-          "block_index": 72,
+          "block_index": 80,
           "points": [
             {
               "slug": "one-class-per-chapter-then-the-substrate",
               "text": "Each of the next six chapters takes one class through one DocAble model; the final chapter treats the connected substrate.",
-              "block_index": 74
+              "block_index": 82
             },
             {
               "slug": "the-substrate-and-the-forward-boundary",
               "text": "The final chapter treats the models as a connected substrate; Part III gives selected properties consequence.",
-              "block_index": 77
+              "block_index": 85
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment gives selected properties consequence.",
-              "block_index": 79
+              "block_index": 87
             }
           ]
         }
@@ -990,19 +1005,24 @@
               "block_index": 62
             },
             {
+              "slug": "modeling-makes-tolerance-explicit-not-authoritative",
+              "text": "Modeling can make a tolerance explicit and leave choices visibly open; neither gives the model authority. Part III asks which obligations the environment should hold.",
+              "block_index": 64
+            },
+            {
               "slug": "alignment-does-not-require-a-separately-represented-model-its-limit-is-what-the-environment-can-state-and-observe",
               "text": "Alignment does not require a separately represented model — a sandbox, compiler, and test already carry real authority over observable behavior.",
-              "block_index": 64
+              "block_index": 66
             },
             {
               "slug": "models-change-the-scale-of-the-questions-we-can-reason-about",
               "text": "Models expand the semantic reach of authority: making architecture, behavior, ownership, decisions, measurements, and provenance explicit makes properties available that would otherwise be reconstructed each time.",
-              "block_index": 66
+              "block_index": 68
             },
             {
               "slug": "part-2-ends-where-part-3-begins-the-models-already-pay-authority-is-a-separate-question",
               "text": "Models can provide value before enforcement — reasoning, analysis, composition, traceability — and Part III asks the separate question of authority.",
-              "block_index": 68
+              "block_index": 70
             }
           ]
         }
@@ -1143,27 +1163,27 @@
           "heading_text": "Agreement Is Not Correctness",
           "topic_sentence": "A drift check can establish a declared correspondence between two artifacts.",
           "id_source": "derived",
-          "block_index": 7,
+          "block_index": 9,
           "points": [
             {
               "slug": "a-drift-check-establishes-agreement-not-that-the-correspondence-is-right",
               "text": "A drift check establishes agreement between two artifacts, not that the correspondence expresses the right intent.",
-              "block_index": 9
+              "block_index": 11
             },
             {
               "slug": "the-distinction-is-description-versus-independent-obligation",
               "text": "The distinction is not derived versus authored; it is description versus independent obligation.",
-              "block_index": 14
+              "block_index": 16
             },
             {
               "slug": "drift-checking-has-a-precise-job-preserve-the-correspondence-the-model-claims",
               "text": "Drift checking has a precise job: preserve a declared correspondence between model and implementation; correctness needs another claim.",
-              "block_index": 17
+              "block_index": 19
             },
             {
               "slug": "an-obligation-can-test-one-of-three-relations",
               "text": "Three different relations matter — correspondence, conformance, or acceptance — and they are not interchangeable.",
-              "block_index": 19
+              "block_index": 21
             }
           ]
         },
@@ -1173,22 +1193,22 @@
           "heading_text": "The Semantic Gap",
           "topic_sentence": "A second problem is placement.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 40,
           "points": [
             {
               "slug": "an-obligation-can-be-perfectly-stated-and-unenforceable-at-the-boundary-you-check",
               "text": "An obligation can be stated clearly and still be unenforceable at the boundary where you try to check it.",
-              "block_index": 40
+              "block_index": 42
             },
             {
               "slug": "a-deployment-can-pass-every-check-and-still-serve-a-blank-page",
               "text": "A deployment can pass every earlier check and still serve a blank page; the property is legible only once the pieces compose in the served system.",
-              "block_index": 44
+              "block_index": 46
             },
             {
               "slug": "model-drift-at-the-commit-is-the-wrong-granularity",
               "text": "Checking model drift at the commit is the wrong granularity; the property belongs to the completed unit of work.",
-              "block_index": 46
+              "block_index": 48
             }
           ]
         },
@@ -1198,27 +1218,27 @@
           "heading_text": "The Earliest Decidable Boundary",
           "topic_sentence": "The agent-return check is one instance of a rule that runs under the whole of this Part:",
           "id_source": "derived",
-          "block_index": 52,
+          "block_index": 54,
           "points": [
             {
               "slug": "place-authority-at-the-earliest-boundary-where-the-obligation-is-legible-and-enforceable",
               "text": "The design rule: place authority at the earliest boundary where the obligation is both legible and enforceable.",
-              "block_index": 54
+              "block_index": 56
             },
             {
               "slug": "the-part-two-rhyme-coarsest-representation-earliest-boundary",
               "text": "The rhyme: Modeling chooses the reduction that answers the question without carrying unnecessary detail; Alignment chooses the earliest boundary where the obligation is legible.",
-              "block_index": 61
+              "block_index": 63
             },
             {
               "slug": "real-boundaries-are-sometimes-approximate-a-roughly-right-hook-beats-the-perfect-one",
               "text": "Real boundaries are sometimes approximate: semantic placement is an engineering trade-off, not a demand for a theoretically perfect hook.",
-              "block_index": 67
+              "block_index": 69
             },
             {
               "slug": "the-chapter-supplied-both-requirements-next-question-is-what-the-mechanism-does",
               "text": "The chapter has supplied both requirements for authority; the next question is what the mechanism at that boundary actually does.",
-              "block_index": 69
+              "block_index": 71
             }
           ]
         }
@@ -1235,9 +1255,14 @@
           "block_index": 3
         },
         {
+          "slug": "tolerance-independence-comes-from-intent-not-realization",
+          "text": "Where an obligation permits variation, the acceptable region must come from governing intent, not from the realization being judged.",
+          "block_index": 5
+        },
+        {
           "slug": "those-requirements-produce-the-two-lessons-agreement-not-correctness-and-placement-follows-semantics",
           "text": "Those requirements produce two lessons: agreement is not correctness, and placement follows semantics.",
-          "block_index": 5
+          "block_index": 7
         }
       ]
     },
@@ -1377,6 +1402,16 @@
               "slug": "the-four-roles-are-not-stages-of-maturity",
               "text": "The four roles are not stages of maturity: one quantitative model can support observation, adaptation, graceful degradation, or hard admission control.",
               "block_index": 66
+            },
+            {
+              "slug": "a-quantitative-tolerance-can-expose-margin",
+              "text": "A quantitative tolerance can expose margin — the room between the realized value and its bound; two conforming realizations can differ in how much room they keep.",
+              "block_index": 69
+            },
+            {
+              "slug": "margin-needs-a-meaningful-distance",
+              "text": "Margin is computable only where the model supplies a meaningful distance; many software obligations are qualitative and admit none.",
+              "block_index": 71
             }
           ]
         },
@@ -1386,12 +1421,12 @@
           "heading_text": "Positive and Negative Constraints",
           "topic_sentence": "Constraints are often introduced as prohibitions: this code must not call that library.",
           "id_source": "derived",
-          "block_index": 69,
+          "block_index": 73,
           "points": [
             {
               "slug": "a-constraint-can-forbid-an-action-or-require-an-evidence-producing-one",
               "text": "A constraint can forbid an action or require an evidence-producing one; provenance shows the positive form.",
-              "block_index": 71
+              "block_index": 75
             }
           ]
         },
@@ -1401,27 +1436,27 @@
           "heading_text": "What Counts as a Mechanism",
           "topic_sentence": "Keep **policy**, **guidance**, and **governance mechanism** separate.",
           "id_source": "derived",
-          "block_index": 74,
+          "block_index": 78,
           "points": [
             {
               "slug": "keep-policy-guidance-and-governance-mechanism-separate",
               "text": "Keep policy, guidance, and governance mechanism separate; authority begins when something acts.",
-              "block_index": 76
+              "block_index": 80
             },
             {
               "slug": "the-same-artifact-can-play-several-roles",
               "text": "The same artifact can play several roles; the model is the representation, the machinery the authority.",
-              "block_index": 78
+              "block_index": 82
             },
             {
               "slug": "implementations-bundle-roles-name-them-do-not-stretch-the-terms",
               "text": "Implementations bundle roles; name them, don't stretch the terms.",
-              "block_index": 80
+              "block_index": 84
             },
             {
               "slug": "represented-intent-becomes-authoritative-through-one-of-four-roles",
               "text": "Leave-with: intent becomes authority through one of four roles; next, where the mechanisms come from.",
-              "block_index": 85
+              "block_index": 89
             }
           ]
         }
@@ -1567,19 +1602,24 @@
               "block_index": 56
             },
             {
+              "slug": "stronger-alignment-is-not-narrower-tolerance",
+              "text": "Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable authority over the obligation engineering chose, not a narrower acceptable set.",
+              "block_index": 58
+            },
+            {
               "slug": "three-different-reasons-non-enforcement-is-sometimes-the-engineered-result",
               "text": "An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result.",
-              "block_index": 58
+              "block_index": 60
             },
             {
               "slug": "the-mechanism-that-discovers-need-not-carry-the-authority",
               "text": "The mechanism that discovers an obligation need not be the one that carries its authority; Part IV follows that migration.",
-              "block_index": 60
+              "block_index": 62
             },
             {
               "slug": "the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why",
               "text": "The point is not to drive every obligation to the rightmost leaf; it is to know where each sits and why — and conversion has now created an estate to govern.",
-              "block_index": 62
+              "block_index": 64
             }
           ]
         }
@@ -3839,7 +3879,13 @@
           "topic_sentence": "The amortization prediction depends on what durable structure gives later work.",
           "id_source": "derived",
           "block_index": 34,
-          "points": []
+          "points": [
+            {
+              "slug": "engineering-margin-is-the-room-capital-preserves",
+              "text": "Margin is the room between a realized system and its boundary; capital can preserve or enlarge it, debt can consume it — but debt is not simply lost margin, and MAGE has no general measure.",
+              "block_index": 38
+            }
+          ]
         },
         {
           "section_id": "modeling-expands-the-surface-of-alignment",
@@ -3847,17 +3893,17 @@
           "heading_text": "Modeling Expands the Surface of Alignment",
           "topic_sentence": "Modeling and Alignment are distinct engineering activities.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 40,
           "points": [
             {
               "slug": "frontier-concerns-obligations-degrees-of-freedom-concern-realization",
               "text": "The frontier concerns obligations; degrees of freedom concern realization.",
-              "block_index": 46
+              "block_index": 48
             },
             {
               "slug": "degrees-of-freedom-can-carry-exploratory-value",
               "text": "Degrees of freedom can also carry exploratory value.",
-              "block_index": 49
+              "block_index": 51
             }
           ]
         }
@@ -4094,9 +4140,9 @@
           "points": []
         },
         {
-          "section_id": "models-are-the-language-of-engineering",
+          "section_id": "the-language-of-engineering",
           "level": 2,
-          "heading_text": "Models Are the Language of Engineering",
+          "heading_text": "The Language of Engineering",
           "topic_sentence": "Models are the language of engineering because engineers rarely reason about every relevant property directly from the realized artifact.",
           "id_source": "derived",
           "block_index": 16,
@@ -4104,7 +4150,7 @@
             {
               "slug": "explicit-representation-is-the-common-inheritance",
               "text": "Engineering long used models; AI externalized memory and structure; MAGE brings them together, and its stronger claim is centrality — representations and authority become primary engineering surfaces.",
-              "block_index": 20
+              "block_index": 21
             }
           ]
         },
@@ -4114,7 +4160,7 @@
           "heading_text": "The Expanding Economics of Explicit Engineering",
           "topic_sentence": "Models already earn value by helping engineers and agents reason about a system and by organizing claims and evidence for assurance.",
           "id_source": "derived",
-          "block_index": 27,
+          "block_index": 28,
           "points": []
         },
         {
@@ -4123,7 +4169,7 @@
           "heading_text": "What Happened to the Cost?",
           "topic_sentence": "Part V left an economic question hanging.",
           "id_source": "derived",
-          "block_index": 43,
+          "block_index": 44,
           "points": []
         },
         {
@@ -4132,12 +4178,12 @@
           "heading_text": "What MAGE Claims Is New",
           "topic_sentence": "MAGE does not claim to have discovered models, constraints, verification, external memory, structured reasoning, or autonomous software agents.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 58,
           "points": [
             {
               "slug": "what-mage-claims-is-new",
               "text": "MAGE does not claim to have discovered the components; its claim is architectural and disciplinary — redesign the environment when autonomous implementation becomes a primary productive substrate.",
-              "block_index": 58
+              "block_index": 59
             }
           ]
         }

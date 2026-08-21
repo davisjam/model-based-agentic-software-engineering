@@ -19,6 +19,8 @@ that an agent or human would otherwise have to reconstruct from lower-level deta
 >
 > An obligation becomes authoritative when the environment can act on it.
 
+Part II also distinguished tolerances from degrees of freedom. Where a tolerance is explicit, the engineering environment may be able to constrain work to remain within it, observe the realized state, evaluate that state against the obligation, or control whether the result is admitted. How far the environment can go depends on what it can make legible and evaluate before the relevant decision or action becomes irreversible. The choice of mechanism then depends on the property, the evidence available there, and the authority the obligation warrants. Degrees of freedom require no such machinery merely because engineering has left them open.
+
 Five questions organize the Part; [ref:part3-nav-arc] shows their progression.
 
 <!-- label: part3-nav-arc -->
