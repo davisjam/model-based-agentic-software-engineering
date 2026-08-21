@@ -29,8 +29,10 @@ How it measures (reuses the occlusion sibling's vetted machinery — unify, don'
     when the label quad's centre is outside a box AND >= `MIN_COVER` of its samples fall inside that box's
     real polygon. Sampling the true shapes keeps a diamond's bbox from misfiring, exactly as in the sibling.
 
-LANDING: AUDIT-ONLY first (rule: a new sensor that finds > 0 on the current tree lands non-gating; a fix
-wave drains it to 0; a follow-up promotes it to BLOCKING alongside the overflow / occlusion siblings). Run:
+LANDING: BLOCKING. Landed audit-only, then a figure fix-wave drained the corpus to 0 (8 figures fixed; two
+confirmed false positives — a label over a soft cluster FIELD, and a cylinder's own 2nd caption line whose
+path+arc polygon under-covers — resolved by the backdrop-field and caption-cohesion refinements below), so
+this gate now holds the tree at 0 alongside the overflow / occlusion siblings. Run:
 
     python3 book-models/lint_figure_text_intrusion.py            # print intrusions (audit view, exits 0)
     python3 book-models/lint_figure_text_intrusion.py --strict   # exit 1 on any intrusion (the future gate)
@@ -59,10 +61,18 @@ ASSETS = HERE.parent / "book" / "assets"
 # node boxes (UNION, so a label straddling two boxes at <12% each still trips) is intruding. Reuses the
 # occlusion sibling's floor: real intrusions clear it; a hairline edge graze does not.
 MIN_COVER = lfto.MIN_COVER
-# A backdrop / container rect (page background, a grouping frame like a Governed-Environment box) is NOT a
-# node a label can "intrude" into — a label legibly inside its own small box that merely straddles a
-# container edge is not a defect. Exclude any occluder whose area exceeds this fraction of the page.
+# A backdrop / container rect (page background, a grouping frame like a Governed-Environment box, a soft
+# "galaxy" cluster field) is NOT a node a label can "intrude" into — a label legibly inside its own node
+# that merely straddles a field edge is not a defect. Two independent backdrop tests: an occluder is a
+# backdrop if its area exceeds this fraction of the page, OR if it geometrically contains the centroids of
+# >= FIELD_MIN_CONTAINED other occluders (a region that holds several nodes is a grouping field, not a node).
 MAX_NODE_AREA_FRAC = 0.40
+FIELD_MIN_CONTAINED = 2
+# A label counts as "at home" in a node (so its glyphs there are its own caption, not an intrusion) when its
+# centre lies inside the node polygon — OR, for shapes whose flattened polygon under-covers (a cylinder body
+# drawn as a path+arc), when its centre lies inside the node's bounding box AND at least this fraction of its
+# quad sits in the node. A gap/edge label never satisfies this: its centre falls outside every node's bbox.
+HOME_BBOX_COVER = 0.35
 
 # Out of scope: decorative cover art + data charts — the set the sibling sensors skip.
 EXCLUDE_PREFIXES = lfto.EXCLUDE_PREFIXES
@@ -78,10 +88,16 @@ class Violation:
     cover: float
 
 
-def _centre(quad: list[tuple[float, float]]) -> tuple[float, float]:
-    xs = sum(p[0] for p in quad) / len(quad)
-    ys = sum(p[1] for p in quad) / len(quad)
+def _centre(poly: list[tuple[float, float]]) -> tuple[float, float]:
+    xs = sum(p[0] for p in poly) / len(poly)
+    ys = sum(p[1] for p in poly) / len(poly)
     return xs, ys
+
+
+def _bbox(poly: list[tuple[float, float]]) -> tuple[float, float, float, float]:
+    xs = [p[0] for p in poly]
+    ys = [p[1] for p in poly]
+    return min(xs), min(ys), max(xs), max(ys)
 
 
 def _poly_area(poly: list[tuple[float, float]]) -> float:
@@ -153,21 +169,69 @@ def _union_intrusion(quad: list[tuple[float, float]], boxes: list[lfto.Occluder]
     return inside_any / total, best_box, best_frac
 
 
+def _is_field(box: lfto.Occluder, all_occ: list[lfto.Occluder]) -> bool:
+    """A grouping field/backdrop: it geometrically contains the centroids of >= FIELD_MIN_CONTAINED OTHER
+    occluders (a region that holds several nodes is not itself a node a label can intrude into)."""
+    held = 0
+    for other in all_occ:
+        if other is box:
+            continue
+        ox, oy = _centre(other.poly)
+        if lfto._point_in_poly(ox, oy, box.poly):
+            held += 1
+            if held >= FIELD_MIN_CONTAINED:
+                return True
+    return False
+
+
+def _at_home(cx: float, cy: float, quad: list[tuple[float, float]], nodes: list[lfto.Occluder]) -> bool:
+    """A label is at home in a node (its glyphs there are its own caption, not an intrusion) when its centre
+    is inside the node polygon, or — for shapes whose flattened polygon under-covers (cylinder body path) —
+    inside the node's bbox with >= HOME_BBOX_COVER of its quad in the node. A gap/edge label satisfies
+    neither: its centre falls outside every node's bounding box."""
+    for b in nodes:
+        if lfto._point_in_poly(cx, cy, b.poly):
+            return True
+        x0, y0, x1, y1 = _bbox(b.poly)
+        if x0 <= cx <= x1 and y0 <= cy <= y1 and lfto._cover_fraction(quad, b.poly) >= HOME_BBOX_COVER:
+            return True
+    return False
+
+
 def analyze(path: pathlib.Path, faces: dict[str, "lfo.Face"]) -> list[Violation]:
     raw = path.read_bytes()
     walker = lfto._Walker(faces)
     walker.parser.Parse(raw, True)
     page = _page_area(raw)
-    # Node boxes only: drop the page background + any large grouping container (a label inside its own box
-    # that merely straddles a container edge is not intruding into the container).
+    # Node boxes only: drop the page background, any large grouping container, and any cluster FIELD (an
+    # occluder holding several other nodes' centroids). A label inside its own node that merely straddles a
+    # field/container edge is not intruding into the field.
     nodes = [b for b in walker.occluders
-             if page <= 0 or _poly_area(b.poly) <= MAX_NODE_AREA_FRAC * page]
-    out: list[Violation] = []
+             if (page <= 0 or _poly_area(b.poly) <= MAX_NODE_AREA_FRAC * page)
+             and not _is_field(b, walker.occluders)]
+    # First pass: which labels are DIRECTLY at home in a node. Their centres + heights anchor the
+    # caption-cohesion test below (a stacked caption line inherits home from the line it sits under).
+    homes: list[tuple[float, float, float]] = []  # (centre-x, centre-y, quad-height)
+    directly: list[bool] = []
     for t in walker.texts:
         cx, cy = _centre(t.quad)
-        # A label with a HOME node (its centre inside some node box) is that box's caption — its spill is the
-        # overflow sibling's concern, not an intrusion. Only a label anchored OUTSIDE every node can intrude.
-        if any(lfto._point_in_poly(cx, cy, b.poly) for b in nodes):
+        home = _at_home(cx, cy, t.quad, nodes)
+        directly.append(home)
+        if home:
+            _, y0, _, y1 = _bbox(t.quad)
+            homes.append((cx, cy, abs(y1 - y0)))
+    out: list[Violation] = []
+    for t, is_home in zip(walker.texts, directly):
+        if is_home:
+            continue  # the label's own caption (overflow sibling's concern), not a foreign-box intrusion
+        cx, cy = _centre(t.quad)
+        _, ty0, _, ty1 = _bbox(t.quad)
+        th = abs(ty1 - ty0)
+        # Caption cohesion: a stacked caption line shares its x-centre (±8px) with a home line and sits within
+        # ~1.5 line-heights of it. A gap/edge label never does — it is offset into the gap, not column-aligned
+        # under a box's caption. This rescues e.g. a cylinder's 2nd label line whose own-shape polygon (a
+        # path+arc) under-covers so point-in-poly misplaces it just below its box.
+        if any(abs(cx - hx) <= 8.0 and abs(cy - hy) <= 1.5 * max(th, hh) for hx, hy, hh in homes):
             continue
         union, best, best_frac = _union_intrusion(t.quad, nodes)
         if union >= MIN_COVER and best is not None:

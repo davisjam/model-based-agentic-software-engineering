@@ -1170,14 +1170,16 @@ def cmd_validate(_args) -> int:
     # FIGURE TEXT-INTRUSION — the inverse of the overflow sensor: an edge label whose readable quad flows
     # INTO a node box that is not its own (centre outside every node, union-cover >= floor across the boxes
     # it bleeds into). Distinct from occlusion above (a GEOMETRY question, not a paint-order one) — a legible
-    # label painted on top is still a defect if it lies across the wrong box. AUDIT-ONLY first (rule: a new
-    # sensor finding > 0 lands non-gating; a figure fix-wave drains it, a follow-up flips it blocking beside
-    # the overflow / occlusion gates). See book-models/lint_figure_text_intrusion.py.
-    import lint_figure_text_intrusion as lfti  # noqa: E402 — audit-only text-into-foreign-box sensor
+    # label painted on top is still a defect if it lies across the wrong box. BLOCKING: landed audit-only,
+    # a figure fix-wave drained the corpus to 0 (8 figures fixed; 2 confirmed false positives resolved by
+    # backdrop-field + caption-cohesion refinements), so any regression increments n_issues and reddens
+    # validate, beside the overflow / occlusion gates. See book-models/lint_figure_text_intrusion.py.
+    import lint_figure_text_intrusion as lfti  # noqa: E402 — blocking text-into-foreign-box sensor
     intrusions = lfti.findings()
     if intrusions:
-        print(f"  [intrusion] AUDIT-ONLY: {lfti.summary_line(intrusions)} — "
-              f"run `python3 book-models/lint_figure_text_intrusion.py` (does not gate)")
+        print(f"  [intrusion] {lfti.summary_line(intrusions)} — "
+              f"run `python3 book-models/lint_figure_text_intrusion.py`")
+        n_issues += len(intrusions)
     # FIGURE FONT-BAND — the figure-text-inside-a-legibility-band sensor over book/assets/*.svg (the
     # legibility complement to the overflow sensor above). It flags BOTH ends of one scale-inconsistency
     # defect: text below the band floor (too small to read against body) AND text above the ceiling (a
