@@ -167,6 +167,43 @@ Semantic fidelity **without** topological fidelity loses the rhetoric — and th
 failure mode. A figure that keeps every box and edge but flattens a metaphorical triangle into a chain has
 *mistranslated* it.
 
+### Is this figure a d2 fit? — classify before you convert
+
+The migration rule is **not** "all figures use d2." It is **"all *graph-structured* figures use d2."** d2 is
+strongest when the semantics are graph-like and weakest when they depend on bespoke *spatial rhetoric* — and
+an agent that converts a 2×2 matrix into a technically-valid graph has produced something **plainly worse**
+while congratulating itself for a valid translation. So classify the figure first:
+
+- **d2 is the right tool — migrate:** **chain** (linear pipeline / sequence) · **hierarchy** (tree,
+  containment levels) · **fan-out / convergence** (one→many, many→one) · **nested architecture** (containers
+  of components) · **dependency graph** · **provenance graph**.
+- **d2 is the wrong tool — keep hand-SVG** (unless someone builds a specialized d2 template for the genre):
+  **Cartesian matrix / 2×2** (a spatial *table*, not a graph — in d2 the axes go weak and labels divorce
+  from their cells) · **conceptual continuum** (a spectrum/gradient axis) · **bespoke annotation** (an
+  infographic whose callouts carry the meaning) · **visual analogy** (a metaphorical shape — a staircase, an
+  islands-as-drift metaphor) · **unusual many-to-one semantic edges** (a relation d2's arrow vocabulary
+  misreads — e.g. "*each* of these has an edge to X", which spatial enclosure renders as *containment*, not
+  the intended distributed relation).
+
+When a figure is the second kind, **keeping the hand-SVG is the correct outcome, not a failure** — say so in
+`d2_limitations` and move on. Do not force a matrix or a metaphor through a graph layout.
+
+### Preserve semantic geometry, not literal geometry
+
+A d2 reimplementation need not match the source's dimensions — it must match what the source's geometry
+*means*. Two rules from the same examples:
+- A provenance figure came out **much taller** in d2 than the hand-SVG, and **better** — the vertical extent
+  *encodes* hierarchy, so the taller layout makes the hierarchy more legible. **Taller-but-meaningful wins.**
+- A deployment figure came out **cleaner** in d2 and **worse** — its two relationships drifted into two
+  unrelated islands, because the spatial *separation* destroyed the composition the original geometry
+  communicated. **A relationship the source binds spatially must stay bound.**
+
+So neither trace literal coordinates nor optimize for a pretty graph layout. Preserve the **semantic
+geometry**: keep bound what the source binds, keep separated what it separates, keep vertical what encodes
+hierarchy. When d2's auto-layout would break a semantic spatial relationship, compose it deliberately (a
+shared band, a container, an explicit device for a distributed edge) — or, if d2 can't, that is a
+keep-hand-SVG signal.
+
 ### Read the figure in context first — the manuscript argument is authoritative
 
 **Never reimplement a figure from the visual artifact alone.** The source SVG is an *implementation* to be
