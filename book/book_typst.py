@@ -1994,6 +1994,17 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
         parts.append(_cover_typst())
         if ack_chapter is not None:
             parts.append(_copyright_page_typst(ack_chapter, default_mod))
+        # Clickable table of contents. Every Part is a level-1 heading and every chapter a level-2 heading
+        # (see `_part_divider_typst` / `_render_heading`), so Typst already emits PDF bookmarks for the whole
+        # tree; this prints the in-document Contents (Parts + chapters, depth 2), whose entries are hyperlinks
+        # to their targets. The "Contents" title is plain styled text (not a heading) so the level-1 part-opener
+        # show-rule in the preamble doesn't fire on it, and it doesn't recurse into the outline itself.
+        parts.append(
+            "#pagebreak()\n"
+            "#align(center)[#text(font: dt.font-display, size: 20pt, weight: 700, fill: dt.ink)[Contents]]\n"
+            "#v(1.2em)\n"
+            "#outline(title: none, depth: 2, indent: auto)"
+        )
     seen_parts: set[int] = set()
     for n, slug in enumerate(slugs):
         if slug not in by_slug:
