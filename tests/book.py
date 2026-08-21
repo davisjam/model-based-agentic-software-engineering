@@ -1011,11 +1011,13 @@ _PAIR_LABEL = {
 
 
 def check_only_child_headings() -> "tuple[str, list[str]]":
-    """BLOCKING gate (rule-#55 audit-only-first): FAIL if any heading has EXACTLY ONE immediate child
-    heading of the next level down — an "only child" (DESIGN §1). At every level: a part with a single
-    content chapter, a chapter (page H1) with a single section (H2), a section (H2) with a single subsection
-    (H3), a subsection (H3) with a single sub-subsection (H4). 0 children = a leaf (fine); 2+ = fine. The fix
-    is to promote the lone child (drop the wrapper heading, fold its content up) or give it a sibling. Walks
+    """BLOCKING gate (rule-#55 audit-only-first): FAIL if any DISPLAY heading has EXACTLY ONE immediate
+    child heading of the next level down — an "only child" (DESIGN §1): a part with a single content
+    chapter, or a chapter (page H1) with a single section (H2). 0 children = a leaf (fine); 2+ = fine. The
+    fix is to promote the lone child (drop the wrapper heading, fold its content up) or give it a sibling.
+    EXEMPT: run-in children (H3+ `###` run-ins) — a section may name ONE distinct subtopic with a single
+    sentence-case run-in after an unheaded intro (author-ratified 260821); run-ins are not display-heading
+    subsections. Walks
     the two typed trees `_build_only_child_forest` derives from the book IR (the volume part→chapter tree and
     the per-page H1→H2→H3→H4 tree). Landed audit-only, drained to 0, then promoted."""
     volume_roots, page_roots = _build_only_child_forest()
@@ -1029,6 +1031,12 @@ def check_only_child_headings() -> "tuple[str, list[str]]":
                           f"chapter under {parent.label!r} ({pair})")
     for root in page_roots:
         for parent, child in _only_child_pairs(root):
+            if child.level >= 3:
+                # A fourth-level `###` run-in is a sentence-case inline lead-in naming ONE distinct
+                # expository subtopic; a section legitimately carries a single run-in after an unheaded
+                # intro (the "intro + one named turn" shape, author-ratified 260821). The only-child rule
+                # governs DISPLAY heading hierarchy — part->chapter and chapter->section — not run-ins.
+                continue
             pair = _PAIR_LABEL.get((parent.level, child.level), f"L{parent.level}→L{child.level}")
             anchor = f" {{#{child.anchor}}}" if child.anchor else ""
             issues.append(f"{root.anchor} — [H{parent.level}] {parent.label!r} has exactly one child: "
