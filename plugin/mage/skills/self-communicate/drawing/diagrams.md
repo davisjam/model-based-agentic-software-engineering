@@ -107,11 +107,18 @@ needs it.
 - **Nested containers** — `group: { child; child }` draws a labeled box around its children; tag the group
   with a class for a tinted zone (the agent / models-bridge / product target map).
 
-### d2 0.8 gotchas (found in the pilot)
+### d2 0.8 gotchas (found in the pilot + first migration wave)
 
 - `stroke-width` and `font-size` must be **integers** (0–15 and 8–100); a decimal is rejected outright.
 - Put font styling (`font-size`, `bold`) on **cells / classes**, not on a grid **container's** own style.
-- Multi-line labels: a literal `\n` inside a quoted label works.
+- Multi-line labels: a literal `\n` inside a quoted label works — **use this, not a `|md … |` block.** A
+  markdown block compiles to a `foreignObject` that is *invisible under the rasterizer* (`rsvg-convert`) and
+  carries no `class:` fill/stroke, so it renders as a zero-size ghost. Plain `"Heading\ndetail"` text is the
+  reliable form; get the heading/detail weight split with a header *cell* over a detail *cell*, not one md block.
+- **Grids fill column-major** — a `grid-columns: N` container lays its children *down each column* before
+  across, so list cells in column order (or set `grid-rows` and list row-major). Check the render.
+- **Reserved ids/keywords:** `left`, `right`, `constraint`, `no`, `yes` (and other keywords) can't be bare
+  node ids or edge labels — rename the id or quote the label.
 
 ### Render and look — the same loop as SVG
 
@@ -120,6 +127,97 @@ d2 gets the layout close, but **rasterize and look** (the render-and-look step b
 original and the d2 version side by side and compare — iterate the source until it reads *substantially
 equivalent*, not pixel-identical. The accessibility and annotation rules below apply unchanged: a d2 SVG
 still needs a `<title>` / `<desc>` equivalent and legible size tiers.
+
+---
+
+## Reimplementing an existing figure in d2 — three fidelities, not coordinate tracing
+
+A figure's composition carries information beyond its node-and-edge list. Auto-layout reproduces the
+*graph* faithfully and silently discards the *visual rhetoric* — the thing that made the original
+communicate. **Do not accept a diagram merely because it compiles.** Do not trace coordinates or imitate
+accidental SVG geometry either. Instead recover and preserve three kinds of fidelity, in order:
+
+- **Semantic fidelity** — every load-bearing entity, relation, distinction, and annotation survives.
+  (Auto-layout usually gets this on its own.)
+- **Topological fidelity** — the *spatial arrangement itself* carries meaning: hierarchy, peer status,
+  sequence, fan-out, convergence, cycle, containment, correspondence, contrast. Preserve that structure
+  **deliberately**. Never let auto-layout imply an ordering or dependency the source does not assert —
+  three peer artifacts in a triangle must **not** become a vertical chain (a chain reads as *process*);
+  parallel alternatives must **not** become sequential stages.
+- **Rhetorical fidelity** — the visual proposition the reader perceives *before* reading any label
+  ("two disconnected islands on the left; one structured layer binding three artifacts on the right").
+  Preserve the proposition even where the d2 geometry differs from the source.
+
+Semantic fidelity **without** topological fidelity loses the rhetoric — and that is the migration's main
+failure mode. A figure that keeps every box and edge but flattens a metaphorical triangle into a chain has
+*mistranslated* it.
+
+### Recover the intent first — the pre-layout plan
+
+Before writing any d2, write this down (work notes; and emit it as the receipt below):
+
+- **Visual proposition** — what the composition says at a glance.
+- **Semantic structure** — the load-bearing entities, relations, distinctions, annotations.
+- **Topology** — which spatial relation each region encodes (peer / hierarchy / sequence / fan-out /
+  convergence / cycle / containment / correspondence / contrast).
+- **Forbidden inference** — the ordering, dependency, hierarchy, or equivalence the layout must **not**
+  accidentally imply (e.g. "QUERY / JOIN / GENERATE are alternative operations over one source of truth,
+  *not* pipeline stages"). This single line catches the most damage.
+- **Rhetorical hierarchy** — what the eye should encounter first, second, third.
+
+### d2 house rules — the composition, not the topology
+
+- **Occupy the frame — compact, not sparse.** d2 treats whitespace as free and drifts tiny nodes into a
+  huge canvas joined by long, meaningless edges. Target **~70–85% utilization of both dimensions**;
+  whitespace separates *conceptual groups*, not every node. Related structures stay visually close;
+  unrelated regions get deliberate gap. (Shorten edges; group related nodes in a container.)
+- **Straight / orthogonal for structure; curves only for feedback.** Prefer straight or orthogonal edges
+  for decomposition, pipelines, derivation, layered DAGs. Reserve curves for **feedback, return paths,
+  bypasses, or relations whose geometry would otherwise collide** — so curvature *carries meaning*.
+- **Typography hierarchy, not universal bold.** Three levels: **heading** (bold/semibold, uppercase where
+  the book already is) · **detail** (regular, sentence case) · **annotation / edge label** (regular or
+  italic, visibly subordinate). Do not bold everything — bolding flattens the hierarchy the originals carry.
+  In d2, split a heading cell over a detail cell rather than relying on a single styled label.
+- **Hard type floor — never shrink to fit.** No meaningful text below the book figure floor (~8.5 pt at
+  placement; headings ~10–12, node body ~9–10, annotations ≥8.5–9). Solve crowding by shortening copy,
+  changing orientation, increasing figure height, or restructuring — **never** by shrinking type.
+- **Captions live in the book caption, not the figure.** Strip long explanatory sentences from the drawing
+  (they add a fourth type level and eat space). Keep an in-figure legend only when line/colour semantics
+  can't be inferred from the picture.
+- **Preserve peer symmetry AND meaningful asymmetry.** Peer nodes with equivalent semantic roles
+  (intent/structure/behavior; docs/code/tests; the peer alternatives in a fan-out) get equal dimensions,
+  alignment, spacing, and edge treatment. But where the original is *intentionally* asymmetric
+  (disconnected islands vs. a structured layer projecting downward), preserve that contrast — do not let
+  auto-layout symmetrize it away.
+- **Edge kind ≠ generic arrow.** A dashed peer correspondence is not a directed process arrow. Distinguish
+  and draw differently: **directed dependency** (arrowhead), **correspondence** (plain/dashed, no
+  direction), **bidirectional parity** (double-ended), **containment** (nesting, not an edge),
+  **projection**, **feedback** (curved back-edge), **association**. Use an arrowhead only where direction
+  exists.
+- **Semantic colour vocabulary (frozen).** blue = engineered structure / required mechanism / governed
+  path · green = model, knowledge, correspondence, desired output · orange/red = failure, mismatch, gate,
+  warning · neutral/grey = territory, ordinary artifact, context · **dashed** = optional / weak / inferred /
+  correspondence / feedback (defined per figure). **Colour reinforces meaning; it never carries meaning
+  alone** — a label, line style, or topology must also carry the distinction (colour-blind readers, grey
+  print).
+
+### The conversion receipt — the authored artifact is the *visual model*
+
+Every migrated figure gets a tiny sidecar `<fig>.receipt.yaml` recording its visual model — engineering
+provenance, not for publication:
+
+```
+visual_proposition:   <what the composition says at a glance>
+topology:             <the spatial relations that carry meaning>
+forbidden_implications: <orderings / deps / hierarchies the layout must NOT imply>
+intentional_changes:  <where the d2 deliberately differs from the source>
+d2_limitations:       <what d2 could not preserve without excessive hacks — or "none">
+```
+
+The receipt makes the *communication design* the authored artifact and d2 the realization mechanism, and
+lets a reviewer tell whether a bad result was a **misread figure** or a **d2-defeated layout**. Where d2
+cannot preserve an important visual property without excessive hacks, **record it in `d2_limitations` and
+leave the figure hand-composed** rather than degrading it silently — a valid keep-hand-SVG outcome.
 
 ---
 
