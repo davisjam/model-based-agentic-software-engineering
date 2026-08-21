@@ -2,8 +2,8 @@
 
 Part 2 made engineering knowledge and intent explicit. Those models already provide value: they let
 engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from
-lower-level detail. This Part asks a different question. **Which of those properties should the environment
-itself hold as obligations, and how should it hold them?**
+lower-level detail. This Part asks a different question. **Which of those properties express engineering
+obligations the environment should hold, and how should it hold them?**
 
 Alignment is the move from guidance to authority. Some obligations require no rich system model: a
 permission can forbid network access, a type can rule out an illegal value, a sandbox can make an action
@@ -19,7 +19,7 @@ that an agent or human would otherwise have to reconstruct from lower-level deta
 >
 > An obligation becomes authoritative when the environment can act on it.
 
-Part II also distinguished tolerances from degrees of freedom. Where a tolerance is explicit, the engineering environment may be able to constrain work to remain within it, observe the realized state, evaluate that state against the obligation, or control whether the result is admitted. How far the environment can go depends on what it can make legible and evaluate before the relevant decision or action becomes irreversible. The choice of mechanism then depends on the property, the evidence available there, and the authority the obligation warrants. Degrees of freedom require no such machinery merely because engineering has left them open.
+Part II also distinguished tolerances from degrees of freedom. Where a tolerance is explicit, the engineering environment may be able to constrain work to remain within it, observe the realized state, evaluate that state against the obligation, or control whether the result is admitted. The extent to which it can do so depends on what the environment can make legible and evaluate before substantial resources are committed. As engineers, we want to perform cheap analysis before committing resources to realizations that may violate an obligation. The choice of mechanism then depends on the property, the evidence available there, and the authority the obligation warrants. Degrees of freedom require no such machinery merely because engineering has left them open.
 
 Five questions organize the Part; [ref:part3-nav-arc] shows their progression.
 
