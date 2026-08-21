@@ -119,6 +119,19 @@ needs it.
   across, so list cells in column order (or set `grid-rows` and list row-major). Check the render.
 - **Reserved ids/keywords:** `left`, `right`, `constraint`, `no`, `yes` (and other keywords) can't be bare
   node ids or edge labels — rename the id or quote the label.
+- **No orthogonal edge routing (0.8).** d2 renders every *offset* edge as a **curved spline** — there is
+  no orthogonal/elbow router, and this holds under both dagre and elk. Only **axis-aligned** edges (a
+  straight vertical or horizontal run between aligned nodes) come out straight. So a genuine linear chain
+  can be crisp, but a **fan-out / converge** structural figure's edges will *curve* whether you want it or
+  not. They still read as fan/convergence (topology survives), but the source's crisp orthogonal elbows are
+  only approximated. **If crisp orthogonal structural edges are load-bearing for a figure, that is a
+  keep-hand-SVG signal** — record it in `d2_limitations`. (Aligning nodes so structural edges are
+  axis-aligned is the mitigation where it's possible.)
+- **The rasterizer hides weights; the book shows them.** `rsvg-convert` cannot decode d2's embedded WOFF
+  faces, so **bold / italic do not appear in the PNG preview** even though they render correctly in the
+  browser and in Typst (the book). Do not judge the *weight* hierarchy from the PNG — set bold/italic per
+  the typography rule and verify the split renders in the actual book build, and drive *visible* preview
+  hierarchy with font-size + colour as well. (This is why a PNG can look flatter than the shipped figure.)
 
 ### Render and look — the same loop as SVG
 
