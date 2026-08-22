@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>31</b> chapters · <b>171</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>31</b> chapters · <b>181</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -211,6 +211,10 @@
 <div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Tolerance and degrees of freedom</a></div>
 <p class="topic">The suppressed detail has a realization-side consequence.</p>
 </div>
+<div class="section s3" id="sec-2-1-context-is-the-first-modeling-problem--not-every-unmodeled-choice-is-free">
+<div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Not every unmodeled choice is free</a></div>
+<p class="topic">This distinction also separates a tacit obligation from a genuinely free choice.</p>
+</div>
 <div class="section s2" id="sec-2-1-context-is-the-first-modeling-problem--structure-makes-representations-machine-operable">
 <div class="sec-h"><a href="../book/2.1-context-is-the-first-modeling-problem.html">Structure Makes Representations Machine-Operable</a></div>
 <p class="topic">Externalizing knowledge saves reconstruction only if a machine can read it back.</p>
@@ -252,6 +256,14 @@
 <div class="section s2" id="sec-2-8-system-knowledge--maintain-explicit-correspondence">
 <div class="sec-h"><a href="../book/2.8-system-knowledge.html">Maintain Explicit Correspondence</a></div>
 <p class="topic">Multiple models create a correspondence problem: represented facts can diverge from the system or from one another.</p>
+</div>
+<div class="section s3" id="sec-2-8-system-knowledge--derive-when-implementation-owns-the-truth">
+<div class="sec-h"><a href="../book/2.8-system-knowledge.html">Derive when implementation owns the truth</a></div>
+<p class="topic">The model is a projection of the code, reconciled at build time.</p>
+</div>
+<div class="section s3" id="sec-2-8-system-knowledge--some-correspondence-remains-semantic">
+<div class="sec-h"><a href="../book/2.8-system-knowledge.html">Some correspondence remains semantic</a></div>
+<p class="topic">Mechanical correspondence has a declared surface.</p>
 </div>
 <div class="section s2" id="sec-2-8-system-knowledge--modeling-makes-properties-available-to-alignment">
 <div class="sec-h"><a href="../book/2.8-system-knowledge.html">Modeling Makes Properties Available to Alignment</a></div>
@@ -415,6 +427,10 @@
 <div class="sec-h"><a href="../book/4.2-brownfield.html">Finding the Model in the Code</a></div>
 <p class="topic">Brownfield modeling has a bootstrapping problem.</p>
 </div>
+<div class="section s3" id="sec-4-2-brownfield--the-detector-finds-the-problem-it-does-not-choose-the-model">
+<div class="sec-h"><a href="../book/4.2-brownfield.html">The detector finds the problem; it does not choose the model</a></div>
+<p class="topic">The same method could conclude that no new model was warranted.</p>
+</div>
 <div class="section s2" id="sec-4-2-brownfield--measure-what-the-map-still-cannot-explain">
 <div class="sec-h"><a href="../book/4.2-brownfield.html">Measure What the Map Still Cannot Explain</a></div>
 <p class="topic">Models expose what they contain more readily than what they omit.</p>
@@ -512,6 +528,10 @@
 <div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Self-Governance: Engineering the Environment</a></div>
 <p class="topic">Self-governance packages Modeling and Alignment as a procedure the agent can apply to its own engineering work.</p>
 </div>
+<div class="section s3" id="sec-4-5-packaging-the-method-as-skills--governance-must-earn-its-carrying-cost">
+<div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Governance must earn its carrying cost</a></div>
+<p class="topic">Governance mechanisms and other durable engineering assets can become capital when their continuing value exceeds their carrying cost; they can also depreciate.</p>
+</div>
 <div class="section s2" id="sec-4-5-packaging-the-method-as-skills--self-operate-running-the-environment">
 <div class="sec-h"><a href="../book/4.5-packaging-the-method-as-skills.html">Self-Operate: Running the Environment</a></div>
 <p class="topic">Self-operate packages the previous chapter&#x27;s lifecycles, recovery paths, runbook step types, and operating heuristics.</p>
@@ -576,6 +596,22 @@
 <div class="section s2" id="sec-5-3-the-road-to-mage--two-paths-to-durable-structure">
 <div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">Two Paths to Durable Structure</a></div>
 <p class="topic">Not every consequential structure was born from failure.</p>
+</div>
+<div class="section s3" id="sec-5-3-the-road-to-mage--the-computations-stabilized-before-their-composition">
+<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">The computations stabilized before their composition</a></div>
+<p class="topic">**Field note — I modeled the computations before I modeled their composition.** I made one useful decision about DocAble early, and I came to a second one only much later.</p>
+</div>
+<div class="section s3" id="sec-5-3-the-road-to-mage--composition-eventually-became-consequential">
+<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">Composition eventually became consequential</a></div>
+<p class="topic">The balance changed as the pipeline grew.</p>
+</div>
+<div class="section s3" id="sec-5-3-the-road-to-mage--the-model-exposed-the-distinctions-that-mattered">
+<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">The model exposed the distinctions that mattered</a></div>
+<p class="topic">By then the way the passes composed had become too complicated to understand comfortably from the implementation alone, and the computation graph gave us a way to reduce it.</p>
+</div>
+<div class="section s3" id="sec-5-3-the-road-to-mage--freedom-can-be-exploratory">
+<div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">Freedom can be exploratory</a></div>
+<p class="topic">The episode changed how I think about degrees of freedom.</p>
 </div>
 <div class="section s2" id="sec-5-3-the-road-to-mage--the-delegation-staircase">
 <div class="sec-h"><a href="../book/5.3-the-road-to-mage.html">The Delegation Staircase</a></div>
@@ -694,8 +730,8 @@
 <div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Modeling Expands the Surface of Alignment</a></div>
 <p class="topic">Modeling and Alignment are distinct engineering activities.</p>
 </div>
-<div class="section s3" id="sec-6-1-toward-a-theory-of-mage--degrees-of-freedom">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Degrees of freedom</a></div>
+<div class="section s3" id="sec-6-1-toward-a-theory-of-mage--determinization-need-not-eliminate-freedom">
+<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Determinization need not eliminate freedom</a></div>
 <p class="topic">Not every unmodeled choice is a degree of freedom.</p>
 </div>
 </div>
@@ -814,6 +850,10 @@
 <div class="sec-h"><a href="../book/6.5-software-rejoins-engineering.html">The Expanding Economics of Explicit Engineering</a></div>
 <p class="topic">Models already earn value by helping engineers and agents reason about a system and by organizing claims and evidence for assurance.</p>
 </div>
+<div class="section s3" id="sec-6-5-software-rejoins-engineering--the-frontier-is-not-a-destination">
+<div class="sec-h"><a href="../book/6.5-software-rejoins-engineering.html">The frontier is not a destination</a></div>
+<p class="topic">Neither frontier should be confused with a destination for software engineering as a whole.</p>
+</div>
 <div class="section s2" id="sec-6-5-software-rejoins-engineering--what-happened-to-the-cost">
 <div class="sec-h"><a href="../book/6.5-software-rejoins-engineering.html">What Happened to the Cost?</a></div>
 <p class="topic">Part V left an economic question hanging.</p>
@@ -834,8 +874,8 @@
 <div class="sec-h"><a href="../book/6.5-software-rejoins-engineering.html">The environment has a carrying cost</a></div>
 <p class="topic">MAGE adds a cost category that source-centric measures make easy to miss: the governed engineering environment itself.</p>
 </div>
-<div class="section s3" id="sec-6-5-software-rejoins-engineering--the-paradox-reframed-and-what-to-measure">
-<div class="sec-h"><a href="../book/6.5-software-rejoins-engineering.html">The paradox reframed—and what to measure</a></div>
+<div class="section s3" id="sec-6-5-software-rejoins-engineering--the-paradox-changes-what-we-should-measure">
+<div class="sec-h"><a href="../book/6.5-software-rejoins-engineering.html">The paradox changes what we should measure</a></div>
 <p class="topic">This reframes the apparent DocAble paradox.</p>
 </div>
 <div class="section s2" id="sec-6-5-software-rejoins-engineering--what-mage-claims-is-new">
