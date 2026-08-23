@@ -11,7 +11,7 @@
       "tier": "B",
       "kind": "comparison",
       "location": "part2",
-      "rationale": "two-panel worked example — the sparse as-built structural model beside the derived typed graph; supporting caption on projecting nodes vs typing the composition relations"
+      "rationale": "two-panel worked example — computations without composition (113 registered, 2 authored relations) beside composition made explicit (11 payload-bearing + 22 control gates); supporting caption on typing the derived relations"
     },
     "assets/two-reductions-static-realized.svg": {
       "tier": "B",
@@ -1156,8 +1156,8 @@
     "assets/question-to-authority-progression.svg": {
       "tier": "B",
       "kind": "progression-diagram",
-      "location": "part6",
-      "rationale": "engineering question to representation to evidence to authority — supporting caption on the education progression"
+      "location": "part2",
+      "rationale": "engineering question to representation to analysis to evidence to authority — worked mini-example of representation selection before the six-class ontology (§2.1)"
     },
     "assets/changing-object-of-engineering.svg": {
       "tier": "A",

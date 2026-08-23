@@ -726,27 +726,27 @@
           "heading_text": "Six Classes of Engineering Question",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 66,
+          "block_index": 68,
           "points": [
             {
               "slug": "the-six-class-ontology-is-useful-not-exhaustive",
               "text": "The classification caveat: six classes organized by the engineering question a model answers, useful rather than exhaustive, and able to overlap.",
-              "block_index": 68
+              "block_index": 70
             },
             {
               "slug": "the-classes-are-views-not-boxes",
               "text": "The classes classify questions, not data structures; one represented fact can answer several. The lease is Ownership, Behavioral, and Measurement at once.",
-              "block_index": 72
+              "block_index": 74
             },
             {
               "slug": "system-knowledge-is-substrate-not-a-seventh-class",
               "text": "System knowledge is the connected substrate where the six classes meet, not a seventh peer class.",
-              "block_index": 75
+              "block_index": 77
             },
             {
               "slug": "tolerance-is-not-a-seventh-class",
               "text": "The classes name the engineering question; tolerance names the variation that question permits, not a seventh class.",
-              "block_index": 77
+              "block_index": 79
             }
           ]
         },
@@ -756,17 +756,17 @@
           "heading_text": "Purpose Comes First; Representation Follows",
           "topic_sentence": "The class names a model's purpose.",
           "id_source": "derived",
-          "block_index": 79,
+          "block_index": 81,
           "points": [
             {
               "slug": "purpose-and-shape-are-different-axes",
               "text": "A model's class (its purpose) is a different axis from its representation shape (graph, state machine, table); the same purpose admits several forms.",
-              "block_index": 81
+              "block_index": 83
             },
             {
               "slug": "several-forms-can-serve-one-purpose",
               "text": "The engineering question fixes the purpose; several forms may serve it, and one form may serve several purposes.",
-              "block_index": 83
+              "block_index": 85
             }
           ]
         },
@@ -776,22 +776,22 @@
           "heading_text": "The Six Model Classes",
           "topic_sentence": "Each of the next six chapters takes one class through one production model from DocAble:",
           "id_source": "derived",
-          "block_index": 85,
+          "block_index": 87,
           "points": [
             {
               "slug": "one-class-per-chapter-then-the-substrate",
               "text": "Each of the next six chapters takes one class through one DocAble model; the final chapter treats the connected substrate.",
-              "block_index": 87
+              "block_index": 89
             },
             {
               "slug": "the-substrate-and-the-forward-boundary",
               "text": "The final chapter treats the models as a connected substrate; Part III gives selected properties consequence.",
-              "block_index": 90
+              "block_index": 92
             },
             {
               "slug": "modeling-creates-surfaces-for-alignment",
               "text": "A model does not govern by existing; modeling makes a property explicit, and Alignment gives selected properties consequence.",
-              "block_index": 92
+              "block_index": 94
             }
           ]
         }

@@ -1,168 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- graph-example figure — from-nodes-to-composition.svg. Fold to book/assets/. -->
+<!-- graph-example figure — from-nodes-to-composition.svg. Fold to book/assets/. Regenerated
+     260823: before/after of the DocAble pass-graph — computations WITHOUT composition (113 registered,
+     only 2 authored relations) -> derive + type -> COMPOSITION made explicit (33 typed relations, a
+     payload-bearing partition of 11 = 10 DATA_FLOW + 1 CROSS_SERVICE, vs 22 CONTROL_GATE). The
+     representation exposed a distinction the implementation already contained; the mutation-kind
+     dimension is deliberately NOT drawn (the prose discovers it next). -->
 <!-- semantic-families: modeling, governance, agent, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 570" width="1000" height="570"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 606" width="1000" height="606"
      role="img" aria-labelledby="fncTitle fncDesc" font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="fncTitle">From nodes to composition</title>
-  <desc id="fncDesc">Two panels. Left: a structural model as first built — a dense cloud of 113 computation nodes crossed by only two hand-authored edges, so the parts are modeled but their composition is not. Right: the derived typed graph — named passes joined by three visibly distinct relations, ten data-flow edges, twenty-two control gates, and one cross-service payload edge, over the Produces / Consumes / ConsumesForControl vocabulary.</desc>
+  <title id="fncTitle">From computations to composition</title>
+  <desc id="fncDesc">Two panels. Left, computations without composition: a field of faint computation nodes crossed by only two conspicuous hand-authored relations — 113 computations were registered but only two relations were authored. Center: derive and type the relations. Right, composition made explicit: the derived relations split into two semantics — a payload-bearing group of eleven (ten DATA_FLOW and one CROSS_SERVICE) bracketed together, and twenty-two CONTROL_GATE relations. The transformation is two authored edges to thirty-three derived, typed relations to eleven payload plus twenty-two control.</desc>
   <defs>
     <marker id="fnc-ah-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#1f7a4d"/></marker>
     <marker id="fnc-ah-rust" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/></marker>
     <marker id="fnc-ah-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/></marker>
-    <marker id="fnc-ah-gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10 z" fill="#57534e"/></marker>
   </defs>
-  <rect x="40" y="96" width="430" height="458" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <rect x="512" y="96" width="448" height="458" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
-  <!-- left: two hand-authored edges among the cloud -->
-  <!-- edge: la1 -> la2 -->
-  <path fill="none" stroke="#155c38" stroke-width="3" marker-end="url(#fnc-ah-green)" d="M160,250 L270,250 L270,328"/>
-  <!-- edge: la2 -> la3 -->
-  <path fill="none" stroke="#155c38" stroke-width="3" marker-end="url(#fnc-ah-green)" d="M280,340 L390,340 L390,262"/>
-  <!-- center: derive+type transition -->
-  <rect id="fnc-lout" x="452" y="296" width="8" height="8" fill="none" stroke="none"/>
-  <rect id="fnc-rin" x="520" y="296" width="8" height="8" fill="none" stroke="none"/>
-  <!-- edge: fnc-lout -> fnc-rin -->
-  <line x1="460" y1="300" x2="518" y2="300" stroke="#57534e" stroke-width="3" marker-end="url(#fnc-ah-gray)"/>
-  <!-- edge: nb_pa -> nb_da -->
-  <line x1="620" y1="175" x2="843" y2="175" stroke="#1f7a4d" stroke-width="3" marker-end="url(#fnc-ah-green)"/>
-  <!-- edge: nb_pb -> nb_db -->
-  <line x1="620" y1="300" x2="843" y2="300" stroke="#9a3f12" stroke-width="2.5" stroke-dasharray="9 5" marker-end="url(#fnc-ah-rust)"/>
-  <!-- edge: nb_pc -> nb_dc -->
-  <line x1="620" y1="425" x2="843" y2="425" stroke="#2f5169" stroke-width="3" marker-end="url(#fnc-ah-blue)"/>
-  <circle cx="69.8" cy="150.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="110.2" cy="146.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="144.4" cy="153.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="181.8" cy="141.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="215.1" cy="155.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="260.9" cy="146.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="303.6" cy="141.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="343.9" cy="157.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="370.0" cy="148.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="406.5" cy="141.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="455.5" cy="146.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="70.7" cy="185.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="110.6" cy="196.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="139.3" cy="187.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="186.1" cy="188.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="219.6" cy="193.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="259.1" cy="194.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="299.1" cy="181.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="331.1" cy="180.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="380.2" cy="192.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="412.9" cy="194.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="453.9" cy="193.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="73.4" cy="224.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="105.8" cy="234.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="193.0" cy="227.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="215.2" cy="232.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="252.5" cy="219.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="291.6" cy="228.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="332.3" cy="222.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="441.2" cy="229.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="62.4" cy="258.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="101.7" cy="258.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="191.7" cy="258.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="213.6" cy="259.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="255.5" cy="262.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="299.1" cy="259.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="342.1" cy="263.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="444.8" cy="263.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="74.9" cy="302.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="103.9" cy="302.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="151.4" cy="306.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="190.8" cy="311.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="222.5" cy="306.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="305.5" cy="296.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="341.6" cy="304.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="375.7" cy="302.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="421.0" cy="300.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="446.4" cy="297.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="73.1" cy="352.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="108.3" cy="336.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="137.6" cy="337.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="175.7" cy="339.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="225.4" cy="353.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="344.9" cy="346.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="369.8" cy="345.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="414.2" cy="336.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="444.1" cy="337.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="66.9" cy="380.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="104.1" cy="390.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="153.1" cy="375.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="192.8" cy="386.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="213.9" cy="389.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="268.9" cy="380.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="298.9" cy="376.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="335.6" cy="378.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="376.1" cy="380.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="406.2" cy="380.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="448.5" cy="387.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="73.1" cy="428.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="104.9" cy="423.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="142.0" cy="426.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="184.9" cy="417.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="224.2" cy="421.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="265.6" cy="423.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="302.8" cy="422.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="340.3" cy="422.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="368.6" cy="426.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="418.1" cy="427.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="445.3" cy="426.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="61.7" cy="461.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="101.5" cy="457.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="144.6" cy="453.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="187.9" cy="464.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="215.5" cy="466.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="257.5" cy="467.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="305.1" cy="455.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="332.9" cy="452.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="365.3" cy="458.1" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="406.8" cy="465.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="453.4" cy="462.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="67.1" cy="493.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="107.8" cy="491.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="138.6" cy="502.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="185.4" cy="499.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="227.2" cy="491.4" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="260.8" cy="499.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="291.9" cy="494.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="330.8" cy="503.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="369.7" cy="508.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="411.1" cy="492.5" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="454.2" cy="498.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="251.4" cy="427.3" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="182.8" cy="169.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="208.9" cy="319.6" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="165.4" cy="164.0" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="162.9" cy="367.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="205.3" cy="337.8" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="330.7" cy="275.9" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="275.2" cy="157.2" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle cx="114.8" cy="167.7" r="4.5" fill="#e4e0d8" stroke="#57534e" stroke-width="0.8"/>
-  <circle id="la1" cx="150" cy="250" r="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
-  <circle id="la2" cx="270" cy="340" r="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
-  <circle id="la3" cx="390" cy="250" r="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.5"/>
-  <rect id="nb_pa" x="530" y="150" width="90" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="nb_da" x="845" y="150" width="90" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="nb_pb" x="530" y="275" width="90" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="nb_db" x="845" y="275" width="90" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="nb_pc" x="530" y="400" width="90" height="50" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
-  <rect id="nb_dc" x="845" y="400" width="90" height="50" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
-  <text x="255" y="132" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Structural model, as first built</text>
-  <text x="736" y="132" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Derived typed graph</text>
-  <text x="575.0" y="181.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Pass A</text>
-  <text x="890.0" y="181.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Pass B</text>
-  <text x="575.0" y="306.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Pass A</text>
-  <text x="890.0" y="306.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Pass C</text>
-  <text x="575.0" y="431.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Pass B</text>
-  <text x="890.0" y="431.0" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Service</text>
-  <text x="732" y="166" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">DATA_FLOW  ×10</text>
-  <text x="732" y="192" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">Produces → Consumes</text>
-  <text x="732" y="291" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">CONTROL_GATE  ×22</text>
-  <text x="732" y="317" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">ConsumesForControl</text>
-  <text x="732" y="416" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">CROSS_SERVICE  ×1</text>
-  <text x="732" y="442" text-anchor="middle" font-size="20" font-weight="400" font-style="italic" fill="#57534e">cross-boundary payload</text>
-  <text x="488" y="286" text-anchor="middle" font-size="20" font-weight="600" fill="#57534e">derive edges</text>
-  <text x="255" y="540" text-anchor="middle" font-size="20" font-weight="600" fill="#155c38">113 nodes · 2 edges</text>
-  <text x="736" y="540" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">11 payload edges · 22 control gates</text>
+  <rect x="0" y="0" width="1000" height="606" fill="#fdfcf9"/>
+  <rect x="40" y="96" width="405" height="456" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <rect x="545" y="96" width="415" height="456" rx="14" fill="none" stroke="#e4e0d8" stroke-width="1.5"/>
+  <circle cx="59.4" cy="277.3" r="4.5" fill="#e4e0d8"/>
+  <circle cx="60.3" cy="198.9" r="4.5" fill="#e4e0d8"/>
+  <circle cx="68.3" cy="387.0" r="4.5" fill="#e4e0d8"/>
+  <circle cx="79.2" cy="421.2" r="4.5" fill="#e4e0d8"/>
+  <circle cx="104.9" cy="226.0" r="4.5" fill="#e4e0d8"/>
+  <circle cx="110.2" cy="345.7" r="4.5" fill="#e4e0d8"/>
+  <circle cx="116.9" cy="270.8" r="4.5" fill="#e4e0d8"/>
+  <circle cx="124.2" cy="388.3" r="4.5" fill="#e4e0d8"/>
+  <circle cx="163.4" cy="193.3" r="4.5" fill="#e4e0d8"/>
+  <circle cx="164.6" cy="431.8" r="4.5" fill="#e4e0d8"/>
+  <circle cx="194.3" cy="437.6" r="4.5" fill="#e4e0d8"/>
+  <circle cx="195.6" cy="147.6" r="4.5" fill="#e4e0d8"/>
+  <circle cx="196.6" cy="465.3" r="4.5" fill="#e4e0d8"/>
+  <circle cx="242.1" cy="463.3" r="4.5" fill="#e4e0d8"/>
+  <circle cx="243.8" cy="427.8" r="4.5" fill="#e4e0d8"/>
+  <circle cx="253.6" cy="196.0" r="4.5" fill="#e4e0d8"/>
+  <circle cx="258.0" cy="222.6" r="4.5" fill="#e4e0d8"/>
+  <circle cx="258.8" cy="380.9" r="4.5" fill="#e4e0d8"/>
+  <circle cx="294.1" cy="192.9" r="4.5" fill="#e4e0d8"/>
+  <circle cx="295.8" cy="144.5" r="4.5" fill="#e4e0d8"/>
+  <circle cx="297.4" cy="465.7" r="4.5" fill="#e4e0d8"/>
+  <circle cx="304.3" cy="383.7" r="4.5" fill="#e4e0d8"/>
+  <circle cx="334.7" cy="383.1" r="4.5" fill="#e4e0d8"/>
+  <circle cx="341.1" cy="192.9" r="4.5" fill="#e4e0d8"/>
+  <circle cx="345.4" cy="436.4" r="4.5" fill="#e4e0d8"/>
+  <circle cx="374.9" cy="387.8" r="4.5" fill="#e4e0d8"/>
+  <circle cx="392.0" cy="152.4" r="4.5" fill="#e4e0d8"/>
+  <circle cx="392.5" cy="196.8" r="4.5" fill="#e4e0d8"/>
+  <circle cx="422.7" cy="436.9" r="4.5" fill="#e4e0d8"/>
+  <circle cx="423.3" cy="340.2" r="4.5" fill="#e4e0d8"/>
+  <circle cx="427.9" cy="388.6" r="4.5" fill="#e4e0d8"/>
+  <circle cx="434.7" cy="304.9" r="4.5" fill="#e4e0d8"/>
+  <circle cx="437.3" cy="271.3" r="4.5" fill="#e4e0d8"/>
+  <circle cx="437.6" cy="468.4" r="4.5" fill="#e4e0d8"/>
+  <path fill="none" stroke="#155c38" stroke-width="4" marker-end="url(#fnc-ah-green)" d="M162,250 L258,318"/>
+  <path fill="none" stroke="#155c38" stroke-width="4" marker-end="url(#fnc-ah-green)" d="M282,332 L380,258"/>
+  <circle cx="150" cy="250" r="11" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
+  <circle cx="270" cy="335" r="11" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
+  <circle cx="392" cy="250" r="11" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
+  <text x="495" y="278" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">derive +</text>
+  <text x="495" y="296" text-anchor="middle" font-size="13" font-weight="700" fill="#57534e">type relations</text>
+  <line x1="455" y1="318" x2="537" y2="318" stroke="#57534e" stroke-width="3" marker-end="url(#fnc-ah-green)"/>
+  <text x="242" y="128" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#1c1917">COMPUTATIONS WITHOUT COMPOSITION</text>
+  <text x="752" y="128" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="0.04em" fill="#1c1917">COMPOSITION MADE EXPLICIT</text>
+  <text x="752" y="154" text-anchor="middle" font-size="12.5" font-weight="700" letter-spacing="0.1em" fill="#57534e">RELATION TYPES</text>
+  <text x="562" y="182" text-anchor="start" font-size="14" font-weight="700" fill="#155c38">PAYLOAD-BEARING  ×11</text>
+  <path fill="none" stroke="#155c38" stroke-width="2" d="M556,202 L550,202 L550,382 L556,382"/>
+  <text x="748" y="214" text-anchor="middle" font-size="18" font-weight="700" fill="#1f7a4d">DATA_FLOW  ×10</text>
+  <rect x="560" y="226" width="82" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect x="852" y="226" width="96" height="40" rx="9" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
+  <text x="601.0" y="251" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass A</text>
+  <text x="900.0" y="251" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass B</text>
+  <line x1="642" y1="246" x2="852" y2="246" stroke="#1f7a4d" stroke-width="2.6" marker-end="url(#fnc-ah-green)"/>
+  <text x="748" y="282" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">Produces → Consumes</text>
+  <text x="748" y="308" text-anchor="middle" font-size="18" font-weight="700" fill="#2f5169">CROSS_SERVICE  ×1</text>
+  <rect x="560" y="320" width="82" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect x="852" y="320" width="96" height="40" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
+  <text x="601.0" y="345" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass B</text>
+  <text x="900.0" y="345" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Service</text>
+  <line x1="642" y1="340" x2="852" y2="340" stroke="#2f5169" stroke-width="2.6" marker-end="url(#fnc-ah-blue)"/>
+  <text x="748" y="376" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">cross-boundary payload</text>
+  <text x="562" y="410" text-anchor="start" font-size="14" font-weight="700" fill="#9a3f12">CONTROL  ×22</text>
+  <path fill="none" stroke="#9a3f12" stroke-width="2" d="M556,428 L550,428 L550,512 L556,512"/>
+  <text x="748" y="440" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL_GATE  ×22</text>
+  <rect x="560" y="452" width="82" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <rect x="852" y="452" width="96" height="40" rx="9" fill="#e7edf3" stroke="#2f5169" stroke-width="2"/>
+  <text x="601.0" y="477" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass A</text>
+  <text x="900.0" y="477" text-anchor="middle" font-size="15" font-weight="600" fill="#1c1917">Pass C</text>
+  <line x1="642" y1="472" x2="852" y2="472" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="9 5" marker-end="url(#fnc-ah-rust)"/>
+  <text x="748" y="508" text-anchor="middle" font-size="13" font-style="italic" fill="#57534e">ConsumesForControl</text>
+  <text x="242" y="524" text-anchor="middle" font-size="17" font-weight="700" fill="#1c1917">113 computations</text>
+  <text x="242" y="546" text-anchor="middle" font-size="17" font-weight="700" fill="#155c38">2 authored relations</text>
+  <text x="500" y="580" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1917">2 authored edges  →  33 derived, typed relations  →  11 payload + 22 control</text>
 </svg>
