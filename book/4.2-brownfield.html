@@ -319,6 +319,70 @@ blockquote.concept-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
 blockquote.concept-inset p:last-child { margin-bottom: 0; }
 blockquote.concept-inset strong { color: var(--inset-header); }
 blockquote.concept-inset em { font-style: italic; }  /* inline emphasis still italicizes inside roman body */
+/* ── FOUR-FAMILY BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
+   Four visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
+   The palette is composed from EXISTING role tokens — no new design tokens. Governing contrast: canonical
+   (rust) = remember-this doctrine; inset (neutral + badge) = optional enrichment; model-card (monochrome)
+   = a schematic; evidence (cool blue) = the author's observation, not doctrine. */
+/* CANONICAL — MAGE doctrine, the strongest house treatment: warm rust panel, thick left rule, a centered
+   UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
+blockquote.box-canonical { background: var(--accent-tint); border: 1px solid var(--rule);
+  border-left: 5px solid var(--accent); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-canonical p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-canonical p:last-child { margin-bottom: 0; }
+blockquote.box-canonical strong { color: var(--accent); }
+blockquote.box-canonical em { font-style: italic; }
+blockquote.box-canonical .inset-title {
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent); background: var(--accent-tint); font-family: var(--font-display);
+  font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 5px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--accent); border-radius: 5px 5px 0 0; }
+blockquote.box-canonical .inset-title::before { content: none; }
+/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
+   idea's genealogy (ENGINEERING, FORMAL METHODS, …); the §6.5 conjecture box carries a CAVEAT badge. */
+blockquote.box-inset { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--muted); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
+blockquote.box-inset p:last-child { margin-bottom: 0; }
+blockquote.box-inset strong { color: var(--ink); }
+blockquote.box-inset em { font-style: italic; }
+blockquote.box-inset .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 8rem; }
+blockquote.box-inset .inset-title::before { content: none; }
+.box-badge { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 0.12rem 0.4rem; }
+.box-badge-caveat { color: var(--accent); border-color: var(--accent); }
+/* MODEL CARD — a schematic, monochrome; identical field order per card; a tiny MODEL CARD corner label. */
+blockquote.box-model-card { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--rule); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-model-card p { margin: 0 0 0.6rem; line-height: 1.55; }
+blockquote.box-model-card p:last-child { margin-bottom: 0; }
+blockquote.box-model-card ul { margin: 0.3rem 0; }
+blockquote.box-model-card strong { color: var(--ink); }
+blockquote.box-model-card em { font-style: italic; }
+blockquote.box-model-card .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 6rem; }
+blockquote.box-model-card .inset-title::before { content: none; }
+.box-corner { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); }
+/* EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: cool blue-gray. */
+blockquote.box-evidence { background: var(--diagram-fleet-fill); border: 1px solid var(--rule);
+  border-left: 4px solid var(--diagram-fleet); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-evidence p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-evidence p:last-child { margin-bottom: 0; }
+blockquote.box-evidence strong { color: var(--diagram-fleet); }
+blockquote.box-evidence em { font-style: italic; }
+blockquote.box-evidence .inset-title { font-style: normal; font-weight: 700; color: var(--diagram-fleet);
+  font-size: 1rem; margin: 0 0 0.5rem; }
+blockquote.box-evidence .inset-title::before { content: none; }
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header
@@ -712,7 +776,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 19 · Migrating to MAGE — MAGE"><header class="chap"><div class="kicker"><a href="part-4-intro.html" aria-label="Beginning of Part 4 — The MAGE Method">Part 4 — The MAGE Method</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 19</a></div><h1><span class="chap-num">4.2</span> Migrating to MAGE</h1></header><span id="idx-def-greenfield"></span><span id="idx-def-brownfield-migration"></span><p>Most readers do not begin on a blank page. You inherit some combination of code, tests, schemas, architectural documents, CI rules, operational lore, permissions, dashboards, and conventions. That estate carries liabilities and assets: technical debt, certainly, but also useful engineering structures that nobody has connected well enough to reuse. Migration is partly <strong>asset recovery</strong> — find the useful representations and controls already present, reconnect them to their territory, retire what has rotted, and invest where recurring costs justify stronger structure.</p>
-<blockquote class="concept-inset"><p class="inset-title" id="inset-software-evolution">Inset — Software evolves; its engineering structure must evolve with it</p>
+<blockquote class="box-inset"><span class="box-badge">SOFTWARE ENGINEERING</span><p class="inset-title" id="inset-software-evolution">Inset — Software evolves; its engineering structure must evolve with it</p>
 <p>Software engineering has long treated change as a normal property of successful systems rather than an exceptional maintenance phase. Lehman's work on software evolution observed that systems embedded in a changing real-world environment must continually adapt, while their complexity tends to increase unless engineers act to control it <sup class="cite-ref"><a href="#wc-4-2-brownfield-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Meir M. Lehman and L. A. Belady, <em>Program Evolution: Processes of Software Change</em> (Academic Press, 1985).</span>.</p>
 <p>MAGE extends that maintenance obligation beyond implementation. Models, validators, gates, runbooks, and other governance mechanisms describe or constrain a system that continues to change. They can therefore drift, preserve assumptions that no longer hold, or impose costs that no longer earn their keep. A governed engineering environment is not a finished artifact. Its engineering structure must evolve with the system it governs.</p></blockquote>
 <p>Two axes fix the starting move. The first is <strong>how much system already exists</strong>. A mature estate gives you implementation, history, and latent models to recover; a new system does not. The second is <strong>how settled the relevant intent is</strong>. A detailed contract can justify substantial modeling and authority before implementation; an exploratory product question cannot. These axes are independent. Greenfield does not imply uncertainty, and brownfield does not imply settled intent: a blank-page regulated system can carry highly settled obligations, while a mature product may still be exploring what its users need.</p>
@@ -1020,14 +1084,14 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A live estate rarely tolerates a wholesale cutover. Choose a bounded surface — a subsystem, service, policy family, or recurring workflow — and let old and new coexist while the replacement earns trust. A <strong>strangler</strong> migration and a <strong>pilot cell</strong> are two versions of the same operational principle: <em>bound the experiment, preserve reversibility, and generalize only what the slice supports.</em> DocAble's serverless re-platforming ran this shape — a stateful job pipeline moved off long-lived polling workers onto instances that scale to zero behind a managed push queue; the push plane grew beside the poll plane behind a default-off toggle, proved green on a staging namespace running identical code, took the traffic, then the old cluster was deleted and preserved on an archive branch.</p>
 <span id="idx-def-top-down-refinement"></span><span id="idx-def-lint-cover-induce"></span><span id="idx-def-bottom-up-induction"></span><p>Within that slice, recover the representation using whichever direction the evidence supports. <strong>Top-down</strong> work starts from intended architecture or requirements and refines toward implementation. <strong>Bottom-up</strong> work induces stable abstractions from the code and rises toward a model. Removing accidental complexity — under tests — first can make either direction easier. The directions should meet at the grain where the relevant property becomes answerable.</p>
 <p>A disagreement then has the familiar three-way diagnosis — the representation is wrong, the grain is wrong, or the implementation is wrong. Do not decide which in advance; shifting a legacy codebase from "the tests pass" to "these properties hold across all behaviors" surfaces disagreements by design.</p>
-<blockquote class="concept-inset"><p class="inset-title" id="inset-three-outcomes">Inset — When the model and the code disagree</p>
+<blockquote class="box-inset"><span class="box-badge">SOFTWARE ENGINEERING</span><p class="inset-title" id="inset-three-outcomes">Inset — When the model and the code disagree</p>
 <p>Tighten a model against real code and it will, sooner or later, contradict the code. The disagreement usually points to one of three questions:</p>
 <ul><li><strong>Is the model wrong?</strong> It may claim something the code never promised. Refine the model.</li><li><strong>Is the model at the wrong grain?</strong> It may be asking a question at a level of abstraction that cannot see the answer. Build a different model at the grain the property lives at.</li><li><strong>Is the implementation wrong?</strong> The model may be right, the code disagrees, and the disagreement may expose an implementation defect.</li></ul>
 <p>The discipline is to decide <em>which</em> before you act. Fixing code when the model was wrong bakes in a false claim; refining the model when the code had a bug hides the bug behind an adjusted spec.</p></blockquote>
 <p id="idx-def-control-substrate-dependency">For consequential substrate changes, represent important dependencies strongly enough to query the migration blast radius before cutover; the <a href="../models-bridge/system-models/control-substrate-dependency.html">control↔substrate dependency model</a> gives the operator pattern.</p>
 <h2><span class="sec-num">4.2.5</span> Audit → Drain → Promote</h2>
 <p>A valid future invariant is not always a valid present admission rule. A legacy tree may violate the rule everywhere on the day you first decide the rule is worth having. Turning it blocking immediately does not improve the estate; it merely breaks all work already in flight. So introduce a new obligation over an inherited estate in three beats — and the order is the safety.</p>
-<blockquote class="concept-inset"><p class="inset-title" id="audit-drain-promote">The move — Audit → Drain → Promote</p>
+<blockquote class="box-canonical"><p class="inset-title" id="audit-drain-promote">The move — Audit → Drain → Promote</p>
 <ul><li><strong>Audit.</strong> Install the proposed rule as evidence only. It reports every detected violation and blocks no commit, so it never breaks an in-flight agent.</li><li><strong>Drain.</strong> A fix wave repairs the existing findings under sufficient tests and other evidence to preserve intended behavior, converting the legacy code to the new convention behavior-for-behavior.</li><li><strong>Promote.</strong> Once the estate satisfies the obligation, grant the mechanism blocking authority so detected violations cannot re-enter through the governed boundary.</li></ul></blockquote>
 <p>Cloudflare's public account describes a similar <strong>approved → enforced</strong> sequence, landing each policy control advisory and flipping it to enforced once the tree is clean, so the promotion never breaks work in flight <sup class="cite-ref"><a href="#wc-4-2-brownfield-3" aria-label="citation 3">3</a></sup><span class="cite-note"><span class="cn-mark">3.</span> Timo Reimann, “How Cloudflare Enforces Engineering Standards Using Ai,” Cloudflare, August 4, 2026, <a href="https://blog.cloudflare.com/engineering-standards-enforcement/">https://blog.cloudflare.com/engineering-standards-enforcement/</a>.</span>. <a class="xref" href="4.2-brownfield.html#fig-4-2-4">Figure&nbsp;4.2-4</a> draws the three beats as one lint is worn into a legacy tree.</p>
 <figure id="fig-4-2-4" class="book-figure" data-label="squash-zero-promote"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420"
@@ -1247,7 +1311,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="480" y="894" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">Weak signals locate the work; they do not dictate the remedy.</text>
   <text x="480" y="917" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">Only repeated structure that earns a name becomes a model &#8212; the rest is accepted or mechanically cleaned.</text>
 </svg><figcaption data-short="Discovering models during migration — weak signals → partition {legitimate shape · mechanical debt · latent concept} → name the model → migrate consumers → narrower enforcement → stronger substrate"><span class="fig-label">Figure 4.2-5.</span> <em>Discovering models during a brownfield migration.</em> Weak signals — primitive density, repeated shapes, the component and boundary view — identify places worth inspecting; they do not dictate the remedy. Partitioning separates legitimate primitive-heavy code and mechanical debt from repeated shapes that reveal missing engineering concepts. Naming those concepts as typed vocabulary and explicit relations changes the substrate on which later migration and enforcement operate.</figcaption></figure>
-<blockquote class="concept-inset"><p class="inset-title" id="inset-primitive-density-field-record">Field record — Primitive-density migration</p>
+<blockquote class="box-evidence"><p class="inset-title" id="inset-primitive-density-field-record">Field record — Primitive-density migration</p>
 <p>The primitive-density backlog fell from 698 file-level findings on June 8 to 472 on June 9 and 299 on June 10. The declining count is not the important result. What matters is that the remaining population was repeatedly reclassified as it shrank:</p>
 <ul><li><strong>June 8 — 698 findings</strong>, partitioned into cluster-uniform, mechanical, per-site-judgment, boundary, and test-fixture-or-exempt buckets.</li><li><strong>June 9 — 472 findings.</strong></li><li><strong>June 10 — 299 findings</strong>, dispositioned as annotate, exempt, extract-a-model, redesign, retire, or defer-for-judgment.</li></ul>
 <p>Some findings disappeared through mechanical work, some exposed missing shared types, some warranted exemptions or lint changes, and some required design judgment. The chronology records those observations; it makes no claim that a single planned wave caused each step of the decline.</p></blockquote>

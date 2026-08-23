@@ -6,7 +6,8 @@ made explicit, places authority where stable obligations become legible, and con
 judgment into durable engineering structure.
 
 <!-- principlebox -->
-> ### THE MAGE CYCLE
+<!-- box-family: canonical -->
+> ### The MAGE cycle
 >
 > Model the intent. Give stable obligations authority. Convert recurring judgment into durable engineering structure.
 >

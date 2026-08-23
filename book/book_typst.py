@@ -527,7 +527,8 @@ _MARGIN_NOTE_MAX_WORDS = 85
 _DEFN_ITALIC_PRELUDE = '#show strong: set text(style: "normal")\n  #set text(style: "italic")\n  '
 
 def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = False,
-                       is_principlebox: bool = False) -> str:
+                       is_principlebox: bool = False, box_family: str | None = None,
+                       inset_domain: str | None = None) -> str:
     """A `>`-prefixed blockquote → a Typst block. An explicit `<!-- pullquote -->` marker (`is_pullquote`)
     becomes a label-less pull-quote — large centered italic display type, a thin accent rule above and below,
     NO fill (checked first, since an author declaration outranks lead-text-shape inference). An explicit
@@ -542,9 +543,10 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
     inner_md = "\n".join(bb._strip_blockquote_prefix(ln) for ln in raw.splitlines())
     inner = _render_markdown_body(inner_md, _EmitCtx.inert())
     stripped = inner_md.strip()
-    if is_principlebox:
-        # A part-opener thesis box: full 4-side green frame. A leading `### TITLE` line becomes a centered
-        # ALLCAPS title-bar (green rule/ink); the rest renders as the box body. Mirrors the web title-bar.
+    if is_principlebox or box_family == "canonical":
+        # CANONICAL (box-grammar-IMPL-260823) — MAGE doctrine: a full 4-side RUST frame. A leading `### TITLE`
+        # line becomes a centered UPPERCASE title-bar (source keeps natural case; the renderer applies caps).
+        # Every part-opener principlebox is canonical, so they share this treatment (green→rust recolor).
         lines = inner_md.splitlines()
         title = None
         body_md = inner_md
@@ -556,12 +558,49 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
         if title:
             title_bar = (
                 "#align(center)[#text(font: dt.font-display, weight: 700, size: dt.fs-card-title, "
-                "fill: dt.box-thesis-rule, tracking: 0.08em)[#upper[" + inline_typst(title) + "]]]\n"
-                "  #v(2pt)\n  #line(length: 100%, stroke: dt.border-hairline + dt.box-thesis-rule)\n"
+                "fill: dt.accent, tracking: 0.08em)[#upper[" + inline_typst(title) + "]]]\n"
+                "  #v(2pt)\n  #line(length: 100%, stroke: dt.border-hairline + dt.accent)\n"
                 "  #v(8pt)\n  "
             )
-        return (f'#block(fill: dt.box-thesis-fill, stroke: dt.border-hairline + dt.box-thesis-rule, '
+        return (f'#block(fill: dt.accent-tint, stroke: dt.border-hairline + dt.accent, '
                 f"inset: 12pt, radius: 4pt, width: 100%)[\n  {title_bar}{_indent(body).lstrip()}\n]")
+    if box_family in ("inset", "model-card"):
+        # INSET / MODEL CARD — a titled sidecar. Extract the leading heading into a header row: the title at
+        # left; at right a small provenance badge (inset genealogy / CAVEAT) or a MODEL CARD label. Body below.
+        lines = inner_md.splitlines()
+        title = None
+        body_md = inner_md
+        if lines and lines[0].lstrip().startswith("#"):
+            title = re.sub(r"^\s*#+\s*", "", lines[0]).strip()
+            body_md = "\n".join(lines[1:]).strip()
+        body = _render_markdown_body(body_md, _EmitCtx.inert())
+        if box_family == "model-card":
+            fill, rule = "dt.panel", "dt.rule"
+            corner = ('#text(font: dt.font-body, size: dt.fs-micro, weight: 700, tracking: 0.1em, '
+                      'fill: dt.muted)[MODEL CARD]')
+        else:
+            fill, rule, corner = "dt.panel", "dt.muted", ""
+            if inset_domain:
+                col = "dt.accent" if inset_domain == "CAVEAT" else "dt.muted"
+                corner = (f'#box(fill: dt.paper, stroke: dt.border-hairline + {col}, inset: (x: 4pt, y: 1.5pt), '
+                          f'radius: 2pt)[#text(font: dt.font-body, size: dt.fs-micro, weight: 700, '
+                          f'tracking: 0.08em, fill: {col})[#upper[{inline_typst(inset_domain)}]]]')
+        header = ""
+        if title:
+            title_txt = f'#text(font: dt.font-body, weight: 700, fill: dt.ink)[{inline_typst(title)}]'
+            if corner:
+                header = (f'#grid(columns: (1fr, auto), align: (left + horizon, right + horizon), '
+                          f'column-gutter: 8pt)[{title_txt}][{corner}]\n  #v(5pt)\n  ')
+            else:
+                header = f'{title_txt}\n  #v(5pt)\n  '
+        elif corner:
+            header = f'#align(right)[{corner}]\n  #v(3pt)\n  '
+        return (f'#block(fill: {fill}, stroke: (left: dt.border-box-rule + {rule}), '
+                f"inset: 12pt, radius: 4pt, width: 100%)[\n  {header}{_indent(body).lstrip()}\n]")
+    if box_family == "evidence":
+        # EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: a cool blue box.
+        return (f'#block(fill: dt.diagram-fleet-fill, stroke: (left: dt.border-box-rule + dt.diagram-fleet), '
+                f"inset: 12pt, radius: 4pt, width: 100%)[\n{_indent(inner)}\n]")
     if is_pullquote:
         # An explicit-marker pull-quote — mirrors the web `.pull-quote` CSS token-for-token: display serif,
         # italic, thesis-title size, umber hairline rule top+bottom, centered, NO fill (absence of a fill is
@@ -762,6 +801,8 @@ class _EmitCtx:
         self.pending_def: list[str] = []   # a core-term index-def armed for the next block (→ blue def-box)
         self.pending_pullquote = False     # a `<!-- pullquote -->` marker armed for the next block
         self.pending_principlebox = False     # a `<!-- principlebox -->` marker armed for the next block (part-opener box)
+        self.pending_boxfamily: str | None = None   # a `<!-- box-family: X -->` marker armed for the next block
+        self.pending_insetdomain: str | None = None  # a `<!-- inset-domain: TAG -->` marker armed for the next inset
 
     @classmethod
     def inert(cls) -> "_EmitCtx":
@@ -772,6 +813,8 @@ class _EmitCtx:
         c.pending_def = []
         c.pending_pullquote = False
         c.pending_principlebox = False
+        c.pending_boxfamily = None
+        c.pending_insetdomain = None
         return c
 
 
@@ -790,7 +833,8 @@ _POINT_RE = re.compile(r"^<!--\s*point:\s*(?P<slug>[a-z0-9-]+)\s*\|\s*(?P<text>.
 
 def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = False,
                  is_pullquote: bool = False, is_principlebox: bool = False,
-                 section_no: str | None = None) -> str:
+                 section_no: str | None = None, box_family: str | None = None,
+                 inset_domain: str | None = None) -> str:
     """Render ONE IR block to Typst markup — the sibling to `Block.render_html()`, reusing the SAME
     `book_ir.BlockKind` taxonomy and `classify_render_block` classification (the blocks arrive already
     classified from the IR parse). `caption_md` is the folded mermaid caption when the driving walk detects a
@@ -812,7 +856,8 @@ def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = F
         return _render_inset(block.raw)
     if k is K.BLOCKQUOTE:
         return _render_blockquote(block.raw, is_def=is_def, is_pullquote=is_pullquote,
-                                  is_principlebox=is_principlebox)
+                                  is_principlebox=is_principlebox, box_family=box_family,
+                                  inset_domain=inset_domain)
     if k is K.TABLE:
         return _render_table(block)
     if k is K.FIGURE:
@@ -882,6 +927,10 @@ def _peel_metadata_marker(line: str, ctx: _EmitCtx) -> "str | None":
             ctx.pending_pullquote = True   # arm the pull-quote render for the block this marker heads
         if mline.group(1).lower() == "principlebox":
             ctx.pending_principlebox = True   # arm the part-opener thesis-box render for the next block
+        if mline.group(1).lower() == "box-family":
+            ctx.pending_boxfamily = (mline.group(2) or "").strip()   # arm the four-family treatment
+        if mline.group(1).lower() == "inset-domain":
+            ctx.pending_insetdomain = (mline.group(2) or "").strip()  # arm the inset provenance badge
         return ""                                        # a consumed notation marker with no print output
     return None
 
@@ -1232,8 +1281,15 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
             if is_part_page:
                 _tbm = ir._MARKER_LINE.match(b.raw.strip())
                 if _tbm and _tbm.group(1).lower() == "principlebox":
-                    if i + 1 < len(blocks) and blocks[i + 1].kind is ir.BlockKind.BLOCKQUOTE:
-                        skip.add(i + 1)
+                    # Skip the marker AND (past any interposed directive, e.g. `<!-- box-family: canonical -->`)
+                    # its blockquote — the box prints once on the verso, not again in the recto reading flow.
+                    for j in range(i + 1, len(blocks)):
+                        if blocks[j].kind is ir.BlockKind.DIRECTIVE:
+                            skip.add(j)
+                            continue
+                        if blocks[j].kind is ir.BlockKind.BLOCKQUOTE:
+                            skip.add(j)
+                        break
                     continue
             if b.directive == "table-landscape":
                 pending_landscape = True   # arm the flipped-page wrap for the next TABLE block (inert in HTML)
@@ -1354,6 +1410,10 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         ctx.pending_pullquote = False
         is_principlebox = ctx.pending_principlebox
         ctx.pending_principlebox = False
+        box_family = ctx.pending_boxfamily
+        ctx.pending_boxfamily = None
+        inset_domain = ctx.pending_insetdomain
+        ctx.pending_insetdomain = None
         # A top-level `## ` section heading advances the per-chapter counter → `part.chapter.N` (mirrors the
         # web build's `section_no`; `###`/`####` subsections do not advance it). Only when the chapter is numbered.
         sec = None
@@ -1367,7 +1427,8 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
             frag = _render_argues_claims(b.raw)
         else:
             frag = render_typst(b, caption_md, is_def=is_def, is_pullquote=is_pullquote,
-                                is_principlebox=is_principlebox, section_no=sec)
+                                is_principlebox=is_principlebox, section_no=sec,
+                                box_family=box_family, inset_domain=inset_domain)
         # D71(a) keep-with-next: a paragraph that immediately introduces a figure/table/diagram sticks to it,
         # so the introducing sentence ("… in Table 4.2-1.", "… shown below.") is never split from its float
         # across a page break. Systematic — every paragraph that directly precedes a float, not one-off.
@@ -1861,9 +1922,11 @@ def _extract_principlebox_raw(ch: "ir.Chapter") -> "str | None":
         if b.kind is ir.BlockKind.DIRECTIVE:
             m = ir._MARKER_LINE.match(b.raw.strip())
             if m and m.group(1).lower() == "principlebox":
-                nxt = blocks[i + 1] if i + 1 < len(blocks) else None
-                if nxt is not None and nxt.kind is ir.BlockKind.BLOCKQUOTE:
-                    return nxt.raw
+                # Scan forward past any interposed DIRECTIVE (e.g. `<!-- box-family: canonical -->`) to the box.
+                for nxt in blocks[i + 1:]:
+                    if nxt.kind is ir.BlockKind.DIRECTIVE:
+                        continue
+                    return nxt.raw if nxt.kind is ir.BlockKind.BLOCKQUOTE else None
                 return None
     return None
 

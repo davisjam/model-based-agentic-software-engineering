@@ -319,6 +319,70 @@ blockquote.concept-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
 blockquote.concept-inset p:last-child { margin-bottom: 0; }
 blockquote.concept-inset strong { color: var(--inset-header); }
 blockquote.concept-inset em { font-style: italic; }  /* inline emphasis still italicizes inside roman body */
+/* ── FOUR-FAMILY BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
+   Four visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
+   The palette is composed from EXISTING role tokens — no new design tokens. Governing contrast: canonical
+   (rust) = remember-this doctrine; inset (neutral + badge) = optional enrichment; model-card (monochrome)
+   = a schematic; evidence (cool blue) = the author's observation, not doctrine. */
+/* CANONICAL — MAGE doctrine, the strongest house treatment: warm rust panel, thick left rule, a centered
+   UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
+blockquote.box-canonical { background: var(--accent-tint); border: 1px solid var(--rule);
+  border-left: 5px solid var(--accent); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-canonical p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-canonical p:last-child { margin-bottom: 0; }
+blockquote.box-canonical strong { color: var(--accent); }
+blockquote.box-canonical em { font-style: italic; }
+blockquote.box-canonical .inset-title {
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent); background: var(--accent-tint); font-family: var(--font-display);
+  font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 5px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--accent); border-radius: 5px 5px 0 0; }
+blockquote.box-canonical .inset-title::before { content: none; }
+/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
+   idea's genealogy (ENGINEERING, FORMAL METHODS, …); the §6.5 conjecture box carries a CAVEAT badge. */
+blockquote.box-inset { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--muted); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
+blockquote.box-inset p:last-child { margin-bottom: 0; }
+blockquote.box-inset strong { color: var(--ink); }
+blockquote.box-inset em { font-style: italic; }
+blockquote.box-inset .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 8rem; }
+blockquote.box-inset .inset-title::before { content: none; }
+.box-badge { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 0.12rem 0.4rem; }
+.box-badge-caveat { color: var(--accent); border-color: var(--accent); }
+/* MODEL CARD — a schematic, monochrome; identical field order per card; a tiny MODEL CARD corner label. */
+blockquote.box-model-card { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--rule); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-model-card p { margin: 0 0 0.6rem; line-height: 1.55; }
+blockquote.box-model-card p:last-child { margin-bottom: 0; }
+blockquote.box-model-card ul { margin: 0.3rem 0; }
+blockquote.box-model-card strong { color: var(--ink); }
+blockquote.box-model-card em { font-style: italic; }
+blockquote.box-model-card .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 6rem; }
+blockquote.box-model-card .inset-title::before { content: none; }
+.box-corner { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); }
+/* EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: cool blue-gray. */
+blockquote.box-evidence { background: var(--diagram-fleet-fill); border: 1px solid var(--rule);
+  border-left: 4px solid var(--diagram-fleet); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-evidence p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-evidence p:last-child { margin-bottom: 0; }
+blockquote.box-evidence strong { color: var(--diagram-fleet); }
+blockquote.box-evidence em { font-style: italic; }
+blockquote.box-evidence .inset-title { font-style: normal; font-weight: 700; color: var(--diagram-fleet);
+  font-size: 1rem; margin: 0 0 0.5rem; }
+blockquote.box-evidence .inset-title::before { content: none; }
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header
@@ -719,7 +783,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>That evidence can come from several sources. A model may expose a system-level invariant. A test may exercise a behavior. A compiler or type system may reject an illegal state. A reference implementation may supply a differential oracle. A metric may reveal degradation. A human reviewer may decide a property that remains judgment-laden. MAGE does not require that all validation route through one kind of representation. It requires that the obligation and the evidence be adequate to the claim.</p>
 <h2><span class="sec-num">4.3.2</span> Build the Oracle</h2>
 <p id="idx-def-oracle">An <strong>oracle</strong> is whatever supplies the judgment against which the observed result is evaluated. An oracle is stronger when its judgment is sufficiently independent of the implementation being judged and explicit enough that its verdict has a stable meaning. Sometimes that oracle is a simple property: the output is an ordered permutation of the input. Sometimes it is a type or schema. Sometimes it is a reference implementation. Sometimes it is a human rubric.</p>
-<blockquote class="concept-inset"><p class="inset-title" id="inset-oracle-problem">Inset — The oracle problem</p>
+<blockquote class="box-inset"><span class="box-badge">SOFTWARE ENGINEERING</span><p class="inset-title" id="inset-oracle-problem">Inset — The oracle problem</p>
 <p>Software testing has a longstanding asymmetry: executing a program can be much easier than deciding whether the result is correct. Testing research calls this the oracle problem <sup class="cite-ref"><a href="#wc-4-3-validating-change-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Earl T. Barr et al., “The Oracle Problem in Software Testing: A Survey,” <em>IEEE Transactions on Software Engineering</em> 41, no. 5 (2015): 507–25.</span>. An expected output supplies an easy oracle for some cases; complex behavior may instead require properties, reference implementations, metamorphic relations, models, runtime evidence, or human judgment.</p>
 <p>Commodity implementation widens the asymmetry. Agents can cheaply produce implementations, variants, and test inputs, but producing more candidates does not supply an independent basis for judging them. As generation becomes cheaper, the engineering bottleneck moves toward stating what must hold and constructing evidence capable of distinguishing acceptable realizations from unacceptable ones.</p></blockquote>
 <p>Existing behavior can stand in for a surprising amount of written specification. In a compatibility port or a structure-preserving migration, a reference implementation supplies an executable oracle: challenge a new realization with the same inputs and compare it against known behavior. Tests, benchmarks, compatibility suites, and production traces close the target further. The implementation problem may stay enormous, but much less of the engineering question remains open.</p>
@@ -792,7 +856,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="A Point and a Space"><span class="fig-label">Figure 4.3-1.</span> <em>A Point and a Space.</em> An example pins one chosen case; a generative test states a property over a domain and searches for a counterexample. Use the broader claim when the obligation itself is broad enough to support it.</figcaption></figure>
 <p>A failing example invites a local repair, because the evidence names one point: patch the branch that makes <em>that</em> input pass and the example goes green. A broader property makes that repair easier to falsify if the underlying class remains open — the generator keeps drawing neighbours that still exercise the law, so a branch-cut that satisfied one input fails the next. <em>When the defect exposes a general law, preserve the law rather than only the example that revealed it.</em></p>
 <p>The techniques that generate evidence this way share one loop — <strong>generate, execute, judge, shrink or diagnose</strong> — and differ in the generator that makes the inputs and the oracle that judges them. <strong>None is a maturity rung.</strong> Choose the generator and oracle that match the property you are trying to falsify (<a href="#inset-technique-comparison">Inset 1</a> lays them side by side).</p>
-<blockquote class="concept-inset"><p class="inset-title" id="inset-technique-comparison">Inset — Example, property, fuzzing, model-based: what changes?</p>
+<blockquote class="box-inset"><span class="box-badge">SOFTWARE ENGINEERING</span><p class="inset-title" id="inset-technique-comparison">Inset — Example, property, fuzzing, model-based: what changes?</p>
 <p>Four ways to produce evidence, one shared loop — <strong>generate → execute → judge</strong>. They differ in where the inputs come from, where the verdict comes from, and what each is best at.</p>
 <table id="tbl-4-3-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table 4.3-1.</span></caption><thead><tr><th>Technique</th><th>Inputs come from</th><th>Oracle comes from</th><th>Best at</th></tr></thead><tbody><tr><td><strong>Example test</strong></td><td>engineer-chosen examples</td><td>the expected output, written down</td><td>known cases, regressions</td></tr><tr><td><strong>Property test</strong></td><td>an authored input domain</td><td>an invariant the output must obey</td><td>laws over many valid cases</td></tr><tr><td><strong>Fuzzing</strong></td><td>mutation and adversarial generation</td><td>a robustness contract, plus richer auxiliary oracles</td><td>malformed and edge inputs</td></tr><tr><td><strong>Model-based / stateful</strong></td><td>model-generated actions and states</td><td>an explicit behavioral model</td><td>sequences, protocols, state</td></tr></tbody></table>
 <p>Read each row left to right: the oracle defines what counts as success; the generator determines how the technique searches for evidence. The boundary is not even sharp: some systems combine an explicit input-language grammar with semantic constraints, generating high-diversity inputs while keeping tight control over what each one <em>means</em> <sup class="cite-ref"><a href="#wc-4-3-validating-change-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> José Antonio Zamudio Amaya et al., “FANDANGO: Evolving Language-Based Testing,” in “Proceedings of the ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA 2025),” special issue, <em>Proceedings of the ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA 2025)</em> (New York, NY), 2025, <a href="https://doi.org/10.1145/3728915">https://doi.org/10.1145/3728915</a>.</span> — a hybrid that sits between the property and fuzzing rows.</p>
@@ -893,7 +957,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The three cases make the rule concrete: make violation impossible when the action space can be closed; exhaustively search a bounded model when the risk lives in finite interleavings; use temporal model checking when the obligation ranges over executions. None is automatically stronger engineering. Strength means adequate evidence for the claim that matters.</p>
 <p>When a generated input exposes a defect, fix the <strong>stable obligation</strong> rather than merely the seed. The durable repair should close the class of behavior exposed by the counterexample whenever that class can be stated. A one-byte crash may reveal a parser invariant; a bad transition may reveal a missing state rule; a valid-but-unusual producer may reveal that the authored input grammar was incomplete.</p>
 <p>Where available, real producers are valuable sources of dialects and edge cases that a synthetic generator may miss. Build richer synthetic generation when the engineering claim justifies the additional model and upkeep.</p>
-<blockquote class="concept-inset"><p class="inset-title">Three properties, three mechanisms</p>
+<blockquote class="box-evidence"><p class="inset-title">Three properties, three mechanisms</p>
 <ul><li><strong>Single ownership.</strong> The property is local enough to encode structurally. A PostgreSQL compare-and-set admits the ownership transition only while the row remains in its expected prior state. Concurrent claimants cannot both win.</li><li><strong>Lease fencing.</strong> The property lives in interleavings. DocAble maintains a reduced executable transition model and exhaustively explores its bounded reachable state space; selected runtime paths are separately checked against that model. Turning off the epoch fence produces counterexamples; the production configuration produces none within the explored bound.</li><li><strong>Eventual termination.</strong> The property is temporal. A serverless job must eventually reach a terminal state even when individual pushes are lost. A TLA+ model states that liveness obligation and can expose the stranded-job execution when the recovery sweep is removed.</li></ul>
 <p>The important difference is not the tool. It is the shape of the property.</p></blockquote>
 <h2 id="derive-obligations"><span class="sec-num">4.3.4</span> Name the Obligation Set Before Claiming Coverage</h2>

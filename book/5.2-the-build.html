@@ -319,6 +319,70 @@ blockquote.concept-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
 blockquote.concept-inset p:last-child { margin-bottom: 0; }
 blockquote.concept-inset strong { color: var(--inset-header); }
 blockquote.concept-inset em { font-style: italic; }  /* inline emphasis still italicizes inside roman body */
+/* ── FOUR-FAMILY BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
+   Four visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
+   The palette is composed from EXISTING role tokens — no new design tokens. Governing contrast: canonical
+   (rust) = remember-this doctrine; inset (neutral + badge) = optional enrichment; model-card (monochrome)
+   = a schematic; evidence (cool blue) = the author's observation, not doctrine. */
+/* CANONICAL — MAGE doctrine, the strongest house treatment: warm rust panel, thick left rule, a centered
+   UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
+blockquote.box-canonical { background: var(--accent-tint); border: 1px solid var(--rule);
+  border-left: 5px solid var(--accent); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-canonical p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-canonical p:last-child { margin-bottom: 0; }
+blockquote.box-canonical strong { color: var(--accent); }
+blockquote.box-canonical em { font-style: italic; }
+blockquote.box-canonical .inset-title {
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent); background: var(--accent-tint); font-family: var(--font-display);
+  font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 5px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--accent); border-radius: 5px 5px 0 0; }
+blockquote.box-canonical .inset-title::before { content: none; }
+/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
+   idea's genealogy (ENGINEERING, FORMAL METHODS, …); the §6.5 conjecture box carries a CAVEAT badge. */
+blockquote.box-inset { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--muted); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
+blockquote.box-inset p:last-child { margin-bottom: 0; }
+blockquote.box-inset strong { color: var(--ink); }
+blockquote.box-inset em { font-style: italic; }
+blockquote.box-inset .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 8rem; }
+blockquote.box-inset .inset-title::before { content: none; }
+.box-badge { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 0.12rem 0.4rem; }
+.box-badge-caveat { color: var(--accent); border-color: var(--accent); }
+/* MODEL CARD — a schematic, monochrome; identical field order per card; a tiny MODEL CARD corner label. */
+blockquote.box-model-card { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--rule); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-model-card p { margin: 0 0 0.6rem; line-height: 1.55; }
+blockquote.box-model-card p:last-child { margin-bottom: 0; }
+blockquote.box-model-card ul { margin: 0.3rem 0; }
+blockquote.box-model-card strong { color: var(--ink); }
+blockquote.box-model-card em { font-style: italic; }
+blockquote.box-model-card .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 6rem; }
+blockquote.box-model-card .inset-title::before { content: none; }
+.box-corner { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); }
+/* EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: cool blue-gray. */
+blockquote.box-evidence { background: var(--diagram-fleet-fill); border: 1px solid var(--rule);
+  border-left: 4px solid var(--diagram-fleet); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-evidence p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-evidence p:last-child { margin-bottom: 0; }
+blockquote.box-evidence strong { color: var(--diagram-fleet); }
+blockquote.box-evidence em { font-style: italic; }
+blockquote.box-evidence .inset-title { font-style: normal; font-weight: 700; color: var(--diagram-fleet);
+  font-size: 1rem; margin: 0 0 0.5rem; }
+blockquote.box-evidence .inset-title::before { content: none; }
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header
@@ -711,7 +775,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 24 · Building DocAble — MAGE"><header class="chap"><div class="kicker"><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">Part 5 — The Evidence</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 24</a></div><h1><span class="chap-num">5.2</span> Building DocAble</h1></header><blockquote class="concept-inset"><p class="inset-title" id="illustrates">This chapter illustrates</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 24 · Building DocAble — MAGE"><header class="chap"><div class="kicker"><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">Part 5 — The Evidence</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 24</a></div><h1><span class="chap-num">5.2</span> Building DocAble</h1></header><blockquote class="box-evidence"><p class="inset-title" id="illustrates">This chapter illustrates</p>
 <p>✓ The Printer · ✓ The Governed Engineering Environment</p></blockquote>
 <p>The next evidentiary question is chronology and scale: how a five-minute feasibility experiment became a production system developed faster than one reviewer could follow line by line. Later chapters reconstruct what particular events taught. Here the purpose is simpler: establish <strong>what changed, when it changed, and how much engineering structure accumulated around the product</strong>.</p>
 <p>Over roughly 20 weeks, one primary engineer directing a coding-agent fleet produced the application, its tests and tooling, its infrastructure, and the system models used to reason about it. <a class="xref" href="5.2-the-build.html#tbl-5-2-1">Table&nbsp;5.2-1</a> gives one late-study snapshot (2026-08-03). The counts are descriptive, not a productivity claim. The condition that matters is scale: implementation volume had moved beyond anything one person could inspect by reading every diff.</p>
@@ -824,7 +888,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <!-- footer note -->
   <text x="60" y="752" font-size="20" font-style="italic" fill="#57534e">Stages are labels drawn afterward, not a plan followed at the time.</text>
 </svg><figcaption data-short="The Seven Build Stages"><span class="fig-label">Figure 5.2-1.</span> <em>The Seven Build Stages.</em> Retrospective sequence from feasibility probe through serverless migration, showing the pressure and major engineering consequence at each stage.</figcaption></figure>
-<blockquote class="thesis-box"><p class="inset-title">NONE OF THIS LOOKED LIKE MAGE</p>
+<blockquote class="box-canonical"><p class="inset-title">None of this looked like MAGE</p>
 <p>Hindsight gives the stages names and boundaries. At the time, the work arrived as ordinary engineering pressure: an exhausted context window, an unattended agent that could not be located, a cloud bill exposing an assumption, a deployment failure crossing a coupling no static check represented.</p>
 <p><strong>MAGE is the compression recovered afterward, not the roadmap followed at the time.</strong></p></blockquote>
 <p>Commit volume rose rapidly as the fleet expanded and remained far above a rate one human could review conventionally. During hardening, the work record shifted toward models, validation, tests, and control machinery before feature work accelerated again. <a href="appendix-evidence-ledger.html">Appendix H</a> gives the weekly curve. The important fact for the case is not the precise shape of that curve but the operating condition it records: human attention could no longer be allocated one diff at a time.</p>
@@ -963,7 +1027,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The feature list is less revealing than where engineering judgment went: defining what <em>accessible</em> meant operationally; discovering abstractions for unfamiliar formats and workflows; distinguishing local defects from missing representation or authority; building independent evidence; coordinating the fleet; and operating failures that crossed code, infrastructure, and deployment boundaries.</p>
 <p>By the end of the study period, DocAble could process Office and PDF documents and pass or substantially improve the institutional accessibility checks used during development. That is narrower than proving that a blind student will find every remediated artifact usable, and the case should keep the distinction explicit. The product was not the only thing that had grown. The engineering environment around it had become larger than the production source and had absorbed much of the repeatable work direct review could no longer carry.</p>
 <blockquote class="aside-sidenote def-inset"><p><strong>Receipt.</strong> By the end of the study period, a representative graduate deck processed in about a minute for about a dollar on a warm-start service. A separate model estimated manual remediation of one teaching load's materials at roughly $20,000 in faculty labor. Direct development cost was about sixty thousand dollars, mostly salary. These quantities have different scopes and are not a comparative cost model; the evidence ledger gives their assumptions and provenance: <a href="appendix-evidence-ledger.html">Appendix H</a>.</p></blockquote>
-<blockquote class="concept-inset"><p class="inset-title" id="fieldnote-counterfactual">Field note — The counterfactual</p>
+<blockquote class="box-evidence"><p class="inset-title" id="fieldnote-counterfactual">Field note — The counterfactual</p>
 <p>One counterfactual rests on direct engineering judgment rather than repository data. <strong>Within the actual constraints of this project—one primary engineer, an academic budget, and the development interval reported here—DocAble was not feasible for me without generative AI.</strong> That is not a claim that a conventional engineering organization could not have built the system. The relevant counterfactual is the project that actually existed: under those constraints, I would not have attempted a production system at this scope without commodity implementation capacity.</p>
 <p>The leverage was not merely faster typing. The fleet implemented features, debugged failures, constructed tests and validators, refactored large regions, rewired architectures, migrated deployment platforms, and repeatedly realized alternatives that could be exercised and discarded. Cheap implementation changed the <strong>exploration budget</strong>. An architecture that once would have been too expensive to build merely to discover that it was wrong could now be tried, measured, and abandoned.</p>
 <p>A second counterfactual concerns sustained delegation: <strong>GenAI made DocAble feasible; the machinery that became MAGE made delegation at this rate feasible.</strong> Once autonomous change volume exceeded anything I could inspect conventionally, raw model capability was no longer enough. Continuing at that rate required increasingly explicit representations of the system, independent evidence, constraints, validators, gates, and operating machinery through which the work could be understood and governed.</p>

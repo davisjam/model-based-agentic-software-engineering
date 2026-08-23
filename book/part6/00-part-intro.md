@@ -14,7 +14,8 @@ representation, evidence, authority, and judgment. Engineers increasingly reason
 analyses, delegate realization, and remain answerable for the result.
 
 <!-- principlebox -->
-> ### THE PROFESSIONAL CONSEQUENCE
+<!-- box-family: canonical -->
+> ### The professional consequence
 >
 > As implementation capacity becomes abundant, the engineered environment becomes a first-class object of
 > software engineering.

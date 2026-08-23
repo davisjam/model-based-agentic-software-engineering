@@ -12,7 +12,8 @@ policy is represented at the level where the property exists, the environment ca
 that an agent or human would otherwise have to reconstruct from lower-level detail.
 
 <!-- principlebox -->
-> ### ALIGNMENT PRINCIPLE
+<!-- box-family: canonical -->
+> ### Alignment principle
 >
 > Give engineering obligations authority by encoding them into mechanisms that
 > constrain actions, produce evidence, evaluate that evidence, and control admission.

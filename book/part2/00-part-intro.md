@@ -17,7 +17,8 @@ per fresh reasoning state. MAGE uses models to make reusable engineering knowled
 preserving the relationships relevant to a question and suppressing the rest.
 
 <!-- principlebox -->
-> ### MODELING PRINCIPLE
+<!-- box-family: canonical -->
+> ### Modeling principle
 >
 > Externalize engineering knowledge and intent into explicit, structured models that both engineers
 > and agents can reason through.
@@ -63,6 +64,7 @@ These six classes organize recurring engineering questions rather than partition
 overlap, and they are not exhaustive. There is no single "model of the system": each model is a
 purposeful reduction chosen for a question.
 
+<!-- box-family: inset -->
 > #### Four questions for every model
 >
 > Every model section ahead opens on the same four lines:

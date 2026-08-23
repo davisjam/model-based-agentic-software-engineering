@@ -14,7 +14,8 @@ through recurrence. Part V preserves those differences rather than forcing every
 finished theory.
 
 <!-- principlebox -->
-> ### DEPTH AND BREADTH
+<!-- box-family: canonical -->
+> ### Depth and breadth
 >
 > MAGE emerged from one deeply observed production build. That case supplies chronology, mechanism, and
 > within-case recurrence.

@@ -319,6 +319,70 @@ blockquote.concept-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
 blockquote.concept-inset p:last-child { margin-bottom: 0; }
 blockquote.concept-inset strong { color: var(--inset-header); }
 blockquote.concept-inset em { font-style: italic; }  /* inline emphasis still italicizes inside roman body */
+/* ── FOUR-FAMILY BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
+   Four visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
+   The palette is composed from EXISTING role tokens — no new design tokens. Governing contrast: canonical
+   (rust) = remember-this doctrine; inset (neutral + badge) = optional enrichment; model-card (monochrome)
+   = a schematic; evidence (cool blue) = the author's observation, not doctrine. */
+/* CANONICAL — MAGE doctrine, the strongest house treatment: warm rust panel, thick left rule, a centered
+   UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
+blockquote.box-canonical { background: var(--accent-tint); border: 1px solid var(--rule);
+  border-left: 5px solid var(--accent); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-canonical p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-canonical p:last-child { margin-bottom: 0; }
+blockquote.box-canonical strong { color: var(--accent); }
+blockquote.box-canonical em { font-style: italic; }
+blockquote.box-canonical .inset-title {
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent); background: var(--accent-tint); font-family: var(--font-display);
+  font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 5px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--accent); border-radius: 5px 5px 0 0; }
+blockquote.box-canonical .inset-title::before { content: none; }
+/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
+   idea's genealogy (ENGINEERING, FORMAL METHODS, …); the §6.5 conjecture box carries a CAVEAT badge. */
+blockquote.box-inset { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--muted); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
+blockquote.box-inset p:last-child { margin-bottom: 0; }
+blockquote.box-inset strong { color: var(--ink); }
+blockquote.box-inset em { font-style: italic; }
+blockquote.box-inset .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 8rem; }
+blockquote.box-inset .inset-title::before { content: none; }
+.box-badge { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 0.12rem 0.4rem; }
+.box-badge-caveat { color: var(--accent); border-color: var(--accent); }
+/* MODEL CARD — a schematic, monochrome; identical field order per card; a tiny MODEL CARD corner label. */
+blockquote.box-model-card { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--rule); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-model-card p { margin: 0 0 0.6rem; line-height: 1.55; }
+blockquote.box-model-card p:last-child { margin-bottom: 0; }
+blockquote.box-model-card ul { margin: 0.3rem 0; }
+blockquote.box-model-card strong { color: var(--ink); }
+blockquote.box-model-card em { font-style: italic; }
+blockquote.box-model-card .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 6rem; }
+blockquote.box-model-card .inset-title::before { content: none; }
+.box-corner { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); }
+/* EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: cool blue-gray. */
+blockquote.box-evidence { background: var(--diagram-fleet-fill); border: 1px solid var(--rule);
+  border-left: 4px solid var(--diagram-fleet); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-evidence p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-evidence p:last-child { margin-bottom: 0; }
+blockquote.box-evidence strong { color: var(--diagram-fleet); }
+blockquote.box-evidence em { font-style: italic; }
+blockquote.box-evidence .inset-title { font-style: normal; font-weight: 700; color: var(--diagram-fleet);
+  font-size: 1rem; margin: 0 0 0.5rem; }
+blockquote.box-evidence .inset-title::before { content: none; }
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header
@@ -807,7 +871,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="Lifecycle event → deterministic fire → execute / delegate / escalate → next state"><span class="fig-label">Figure 4.4-1.</span> <em>Binding a Reaction to a Lifecycle Event.</em> A lifecycle transition emits an observable event that fires the reaction deterministically, though its payload still splits three ways — execute a known action, delegate a bounded judgment, or escalate to a human. The firing is mechanical; the procedure it delivers may still hold judgment.</figcaption></figure>
 <h2><span class="sec-num">4.4.3</span> Externalize Operational Judgment</h2>
 <p id="idx-def-runbook">A runbook preserves how an experienced engineer reasons through a recurring situation, including which steps are mechanical and which require judgment.</p>
-<blockquote class="concept-inset"><p class="inset-title">Inset — Runbooks</p>
+<blockquote class="box-inset"><span class="box-badge">PRACTICE</span><p class="inset-title">Inset — Runbooks</p>
 <p>A runbook is a prepared procedure for a recurring operational task or failure. Site reliability engineering uses runbooks and incident playbooks to preserve diagnostic and recovery knowledge before an outage requires it <sup class="cite-ref"><a href="#wc-4-4-operating-mage-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> B. Beyer et al., <em>Site Reliability Engineering: How Google Runs Production Systems</em> (O'Reilly Media, 2016).</span>. An empirical study of real incidents shows how variable that recovery work is <sup class="cite-ref"><a href="#wc-4-4-operating-mage-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Jonathan Sillito and Esdras Kutomi, “Failures and Fixes: A Study of Software System Incident Response,” in “2020 IEEE International Conference on Software Maintenance and Evolution (Icsme),” special issue, <em>2020 IEEE International Conference on Software Maintenance and Evolution (ICSME)</em>, 2020, 185–95, <a href="https://doi.org/10.1109/ICSME46990.2020.00027">https://doi.org/10.1109/ICSME46990.2020.00027</a>.</span>. Executable runbooks can combine commands, scripts, API calls, and manual steps into a repeatable workflow <sup class="cite-ref"><a href="#wc-4-4-operating-mage-3" aria-label="citation 3">3</a></sup><span class="cite-note"><span class="cn-mark">3.</span> PagerDuty, “Supercharging Incident Response with Runbook Automation,” PagerDuty, 2021, <a href="https://www.pagerduty.com/blog/supercharging-incident-response-runbook-automation/">https://www.pagerduty.com/blog/supercharging-incident-response-runbook-automation/</a>.</span>.</p>
 <p>For agentic operation, one useful addition is to record who or what can decide each step. Deterministic steps can execute directly; bounded judgments can be delegated with prepared context; irreducible judgments stay with the operator.</p>
 <p>Runbooks can drift. Their procedures therefore need the same maintenance discipline as other engineering models.</p></blockquote>
@@ -963,7 +1027,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p id="idx-def-resource-mediation">The general rule: observe and govern the state that actually constrains the system, not merely the state that is convenient to count. Sometimes the answer is a better sensor. Sometimes it is an explicit registry. Sometimes it is mediation — when many actors share a resource whose capacity matters, route access through a control that knows the capacity, rather than asking each actor to infer whether proceeding is safe.</p>
 <p>Use the simplest direct signal available.</p>
 <ul><li><strong>Govern the pressure, not the proxy.</strong> Read memory pressure rather than assuming job count predicts it.</li><li><strong>Mediate the shared resource.</strong> Route a contended test resource through a mediator rather than assuming process isolation provides resource isolation.</li><li><strong>Record the state, don't reconstruct it.</strong> Write lifecycle state to a registry rather than inferring liveness from incidental side effects.</li></ul>
-<blockquote class="concept-inset"><p class="inset-title" id="inset-goodhart">Inset — When a measure becomes a target</p>
+<blockquote class="box-inset"><span class="box-badge">ECONOMICS</span><p class="inset-title" id="inset-goodhart">Inset — When a measure becomes a target</p>
 <p>Engineering metrics are representations of properties, not the properties themselves. Line coverage represents something about test execution; defect counts represent something about observed quality; lead time represents something about delivery. Each is useful only while its relationship to the engineering concern remains adequate for the decision being made.</p>
 <p>A principle commonly associated with Goodhart's law is that a measure can become unreliable once it is made a target <sup class="cite-ref"><a href="#wc-4-4-operating-mage-4" aria-label="citation 4">4</a></sup><span class="cite-note"><span class="cn-mark">4.</span> Charles A. E. Goodhart, “Problems of Monetary Management: The U.K. Experience,” in <em>Papers in Monetary Economics</em>, vol. 1, <em>Papers in Monetary Economics</em> (Reserve Bank of Australia, 1975).</span>. The reformulation familiar in practice—that a measure ceases to be a good measure once it becomes a target—comes from later audit-culture critique <sup class="cite-ref"><a href="#wc-4-4-operating-mage-5" aria-label="citation 5">5</a></sup><span class="cite-note"><span class="cn-mark">5.</span> Marilyn Strathern, “`improving Ratings': Audit in the British University System,” <em>European Review</em> 5, no. 3 (1997): 305–21.</span>. The danger becomes greater when a proxy acquires consequences: people, processes, and agents can improve the measured number without improving the property it was meant to represent.</p>
 <p>The engineering response is not to avoid measurement. Measure the consequential state as directly as practical, use multiple signals when one proxy is inadequate, and keep measurement distinct from authority. A metric supplies evidence; giving its interpretation consequences is a separate engineering decision.</p></blockquote>
@@ -984,7 +1048,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The grade is evidence read from the model at check time; the gate carries the authority. Read the number one level below the surface, where it names a target instead of a total.</p>
 <h2><span class="sec-num">4.4.5</span> The Operating Rhythm</h2>
 <p>Put the pieces together and operation becomes a recurring rhythm. The lifecycle tells you what healthy progress and important failure look like. Events bind the reaction to the transition, so the right procedure arrives when it matters. The runbook gives each state a sanctioned next move and separates deterministic execution from judgment. Metrics expose enough state to tell whether the loop is improving or merely busy. When a break recurs, governance conversion asks what later work should inherit from the lesson.</p>
-<blockquote class="concept-inset"><p class="inset-title" id="inset-when-work-stalls">Inset — When work stalls, diagnose before adding machinery</p>
+<blockquote class="box-inset"><span class="box-badge">PRACTICE</span><p class="inset-title" id="inset-when-work-stalls">Inset — When work stalls, diagnose before adding machinery</p>
 <p>Repeated failure does not always call for another control. Before you build one, ask which part of the loop is limiting the work.</p>
 <table id="tbl-4-4-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table 4.4-1.</span></caption><thead><tr><th>What may be limiting</th><th>The question</th><th>If that is the gap</th></tr></thead><tbody><tr><td><strong>Searcher</strong></td><td>Can the available intelligence find a good candidate?</td><td>Change the model, tools, decomposition, or search strategy.</td></tr><tr><td><strong>Model</strong></td><td>Is consequential structure missing from the representation?</td><td>Make it explicit.</td></tr><tr><td><strong>Oracle</strong></td><td>Can the environment tell good candidates from bad?</td><td>Strengthen the evidence, validation, or simulation.</td></tr><tr><td><strong>Target</strong></td><td>Do we know what "good" even means?</td><td>Stop building and learn.</td></tr></tbody></table>
 <p>A stronger reasoner does not settle an unknown requirement; another validator does not supply a missing abstraction; more modeling cannot answer a product question whose answer must come from users or deployment. Diagnose what is limiting the work before adding machinery — the same distinction governance conversion already draws between failures of knowledge, obligation, evidence, evaluation, and consequence.</p></blockquote>

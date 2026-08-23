@@ -319,6 +319,70 @@ blockquote.concept-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
 blockquote.concept-inset p:last-child { margin-bottom: 0; }
 blockquote.concept-inset strong { color: var(--inset-header); }
 blockquote.concept-inset em { font-style: italic; }  /* inline emphasis still italicizes inside roman body */
+/* ── FOUR-FAMILY BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
+   Four visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
+   The palette is composed from EXISTING role tokens — no new design tokens. Governing contrast: canonical
+   (rust) = remember-this doctrine; inset (neutral + badge) = optional enrichment; model-card (monochrome)
+   = a schematic; evidence (cool blue) = the author's observation, not doctrine. */
+/* CANONICAL — MAGE doctrine, the strongest house treatment: warm rust panel, thick left rule, a centered
+   UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
+blockquote.box-canonical { background: var(--accent-tint); border: 1px solid var(--rule);
+  border-left: 5px solid var(--accent); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-canonical p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-canonical p:last-child { margin-bottom: 0; }
+blockquote.box-canonical strong { color: var(--accent); }
+blockquote.box-canonical em { font-style: italic; }
+blockquote.box-canonical .inset-title {
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent); background: var(--accent-tint); font-family: var(--font-display);
+  font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 5px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--accent); border-radius: 5px 5px 0 0; }
+blockquote.box-canonical .inset-title::before { content: none; }
+/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
+   idea's genealogy (ENGINEERING, FORMAL METHODS, …); the §6.5 conjecture box carries a CAVEAT badge. */
+blockquote.box-inset { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--muted); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
+blockquote.box-inset p:last-child { margin-bottom: 0; }
+blockquote.box-inset strong { color: var(--ink); }
+blockquote.box-inset em { font-style: italic; }
+blockquote.box-inset .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 8rem; }
+blockquote.box-inset .inset-title::before { content: none; }
+.box-badge { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 0.12rem 0.4rem; }
+.box-badge-caveat { color: var(--accent); border-color: var(--accent); }
+/* MODEL CARD — a schematic, monochrome; identical field order per card; a tiny MODEL CARD corner label. */
+blockquote.box-model-card { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--rule); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-model-card p { margin: 0 0 0.6rem; line-height: 1.55; }
+blockquote.box-model-card p:last-child { margin-bottom: 0; }
+blockquote.box-model-card ul { margin: 0.3rem 0; }
+blockquote.box-model-card strong { color: var(--ink); }
+blockquote.box-model-card em { font-style: italic; }
+blockquote.box-model-card .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 6rem; }
+blockquote.box-model-card .inset-title::before { content: none; }
+.box-corner { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); }
+/* EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: cool blue-gray. */
+blockquote.box-evidence { background: var(--diagram-fleet-fill); border: 1px solid var(--rule);
+  border-left: 4px solid var(--diagram-fleet); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-evidence p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-evidence p:last-child { margin-bottom: 0; }
+blockquote.box-evidence strong { color: var(--diagram-fleet); }
+blockquote.box-evidence em { font-style: italic; }
+blockquote.box-evidence .inset-title { font-style: normal; font-weight: 700; color: var(--diagram-fleet);
+  font-size: 1rem; margin: 0 0 0.5rem; }
+blockquote.box-evidence .inset-title::before { content: none; }
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header
@@ -713,7 +777,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 16 · Growing the Governed Environment — MAGE"><header class="chap"><div class="kicker"><a href="part-3-intro.html" aria-label="Beginning of Part 3 — Alignment">Part 3 — Alignment</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 16</a></div><h1><span class="chap-num">3.4</span> Growing the Governed Environment</h1></header><p id="idx-def-governed-environment">No engineered environment begins with every obligation it will eventually need already represented and mechanized. Some obligations are known in advance: an API must require authentication, a state transition is forbidden, a format mutation must cross a particular seam. Others become visible only when the work exposes a failure nobody represented or controlled. A governed environment acquires durable structure in two ways: <strong>ex ante from obligations already known, and ex post from failures and surprises.</strong></p>
 <p id="idx-def-governance-conversion">The ex post route is <strong>governance conversion</strong>. A failure occurs; engineering judgment identifies the recurring class behind it; the environment then represents what was missing, states the obligation, exposes the evidence, strengthens the evaluation, or gives the verdict consequence. Later work inherits the result. The repair fixes this instance. Conversion changes the environment.</p>
-<blockquote class="concept-inset"><p class="inset-title" id="inset-failure-modes">Inset — Failure modes before and after failure</p>
+<blockquote class="box-inset"><span class="box-badge">ENGINEERING</span><p class="inset-title" id="inset-failure-modes">Inset — Failure modes before and after failure</p>
 <p>Engineering need not wait for a failure to learn how a system can fail. Techniques such as Failure Modes and Effects Analysis (FMEA) work ex ante: engineers identify possible failure modes, consider their effects, and use that analysis to decide where prevention, detection, mitigation, or other controls are warranted. Known obligations can therefore produce durable engineering structure before experience forces the issue.</p>
 <p>Governance conversion works in the complementary direction. A failure or consequential surprise supplies evidence that something was missing. Engineering identifies the failure mode behind the instance and asks what durable structure should address the class: a model, obligation, sensor, validator, constraint, gate, or other mechanism. The repair fixes the instance; conversion changes what future work inherits.</p>
 <p>The distinction is about how the need became known, not about the resulting mechanism. Ex-ante analysis and ex-post learning may lead to the same control. Governance conversion names the ex-post route; it does not imply that engineers should wait for failures they can reasonably anticipate.</p></blockquote>

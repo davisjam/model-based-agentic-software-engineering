@@ -10,7 +10,8 @@ well enough to reason about it, producing evidence that a change is acceptable, 
 consequential engineering decisions authority across many changes.
 
 <!-- principlebox -->
-> ### FOUNDING PREMISE
+<!-- box-family: canonical -->
+> ### Founding premise
 >
 > Commodity intelligence makes implementation abundant relative to engineering judgment.
 >

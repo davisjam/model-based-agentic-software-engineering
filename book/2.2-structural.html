@@ -319,6 +319,70 @@ blockquote.concept-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
 blockquote.concept-inset p:last-child { margin-bottom: 0; }
 blockquote.concept-inset strong { color: var(--inset-header); }
 blockquote.concept-inset em { font-style: italic; }  /* inline emphasis still italicizes inside roman body */
+/* ── FOUR-FAMILY BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
+   Four visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
+   The palette is composed from EXISTING role tokens — no new design tokens. Governing contrast: canonical
+   (rust) = remember-this doctrine; inset (neutral + badge) = optional enrichment; model-card (monochrome)
+   = a schematic; evidence (cool blue) = the author's observation, not doctrine. */
+/* CANONICAL — MAGE doctrine, the strongest house treatment: warm rust panel, thick left rule, a centered
+   UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
+blockquote.box-canonical { background: var(--accent-tint); border: 1px solid var(--rule);
+  border-left: 5px solid var(--accent); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-canonical p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-canonical p:last-child { margin-bottom: 0; }
+blockquote.box-canonical strong { color: var(--accent); }
+blockquote.box-canonical em { font-style: italic; }
+blockquote.box-canonical .inset-title {
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent); background: var(--accent-tint); font-family: var(--font-display);
+  font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 5px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--accent); border-radius: 5px 5px 0 0; }
+blockquote.box-canonical .inset-title::before { content: none; }
+/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
+   idea's genealogy (ENGINEERING, FORMAL METHODS, …); the §6.5 conjecture box carries a CAVEAT badge. */
+blockquote.box-inset { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--muted); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
+blockquote.box-inset p:last-child { margin-bottom: 0; }
+blockquote.box-inset strong { color: var(--ink); }
+blockquote.box-inset em { font-style: italic; }
+blockquote.box-inset .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 8rem; }
+blockquote.box-inset .inset-title::before { content: none; }
+.box-badge { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 0.12rem 0.4rem; }
+.box-badge-caveat { color: var(--accent); border-color: var(--accent); }
+/* MODEL CARD — a schematic, monochrome; identical field order per card; a tiny MODEL CARD corner label. */
+blockquote.box-model-card { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--rule); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-model-card p { margin: 0 0 0.6rem; line-height: 1.55; }
+blockquote.box-model-card p:last-child { margin-bottom: 0; }
+blockquote.box-model-card ul { margin: 0.3rem 0; }
+blockquote.box-model-card strong { color: var(--ink); }
+blockquote.box-model-card em { font-style: italic; }
+blockquote.box-model-card .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 6rem; }
+blockquote.box-model-card .inset-title::before { content: none; }
+.box-corner { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); }
+/* EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: cool blue-gray. */
+blockquote.box-evidence { background: var(--diagram-fleet-fill); border: 1px solid var(--rule);
+  border-left: 4px solid var(--diagram-fleet); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-evidence p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-evidence p:last-child { margin-bottom: 0; }
+blockquote.box-evidence strong { color: var(--diagram-fleet); }
+blockquote.box-evidence em { font-style: italic; }
+blockquote.box-evidence .inset-title { font-style: normal; font-weight: 700; color: var(--diagram-fleet);
+  font-size: 1rem; margin: 0 0 0.5rem; }
+blockquote.box-evidence .inset-title::before { content: none; }
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header
@@ -713,7 +777,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 6 · Structural Models: What Is Connected to What? — MAGE"><header class="chap"><div class="kicker"><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">Part 2 — Modeling</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 6</a></div><h1><span class="chap-num">2.2</span> Structural Models: What Is Connected to What?</h1></header><p>A structural model suppresses behavior to expose components, boundaries, and relationships. It says what parts exist and which may depend on which, and it leaves time out. Consider document mutation in DocAble — the running accessibility service — as the first example.</p>
 <p>DocAble supports several structured document formats through libraries powerful enough to alter their underlying object structures. Those libraries are necessary, but they sit behind a deliberate architectural boundary. Most remediation logic works through DocAble's structured document abstractions rather than reaching directly into the format-specific implementation.</p>
-<blockquote class="concept-inset"><p class="inset-title">Document-mutation model · Structural</p>
+<blockquote class="box-model-card"><span class="box-corner">MODEL CARD</span><p class="inset-title">Document-mutation model · Structural</p>
 <ul><li><strong>Engineering question</strong> — Where is document mutation supposed to occur?</li><li><strong>Model</strong> — a layered structural relation: remediation logic operates through a structured document model, which is realized through a format-specific implementation over DOCX, PPTX, XLSX, and PDF.</li><li><strong>Property</strong> — the intended architecture places format-specific mutation behind one sanctioned seam; ordinary remediation logic is not intended to bypass it.</li><li><strong>Quality attribute</strong> — architectural integrity and modifiability.</li></ul></blockquote>
 <p>The useful model is small. <a class="xref" href="2.2-structural.html#fig-2-2-1">Figure&nbsp;2.2-1</a> draws it: remediation logic operates <em>through</em> a structured document model, which is <em>realized through</em> a format-specific implementation, which finally touches the concrete DOCX, PPTX, XLSX, and PDF formats.</p>
 <figure id="fig-2-2-1" class="book-figure" data-label="document-mutation-model"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 438"
@@ -854,7 +918,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="Purposeful reduction"><span class="fig-label">Figure 2.2-2.</span> <em>Purposeful reduction.</em> The structural model suppresses unrelated runtime and implementation detail while preserving the architectural seam needed to answer where document mutation belongs.</figcaption></figure>
 <p>The engineering question — <em>where may document mutation occur?</em> — is preserved; everything the question does not need is gone.</p>
 <p>The document-mutation model asked where one kind of change belongs. A second structural question reaches further inside the system: what computations make up remediation, and how do they depend on one another? DocAble runs a document through a collection of registered remediation passes. A pass may detect a condition, produce information a later pass uses, decide whether remediation should proceed, apply a bounded change to the intermediate representation, or edit a larger region directly. That structure exists in the implementation whether or not a model names it. The first reduction is the obvious one: treat each registered pass as a node, and suppress the statements, library calls, and loops inside it.</p>
-<blockquote class="concept-inset"><p class="inset-title">Remediation-computation model · Structural</p>
+<blockquote class="box-model-card"><span class="box-corner">MODEL CARD</span><p class="inset-title">Remediation-computation model · Structural</p>
 <ul><li><strong>Engineering question</strong> — What consequential computations make up remediation, and how does information move among them?</li><li><strong>Model</strong> — a static directed graph whose nodes are registered computations and whose typed edges represent declared composition among them.</li><li><strong>Property</strong> — declared data dependencies and control dependencies are distinguishable and consistent with pipeline ordering; each modeled computation also states whether its effect is bounded as a typed patch, unbounded as a direct edit, or read-only.</li><li><strong>Quality attribute</strong> — analyzability, modifiability, and architectural integrity.</li></ul></blockquote>
 <p>An early version of the graph held 113 nodes and two edges. The nodes were already meaningful, because the pass registry gave DocAble a stable decomposition into computations; the two edges were relationships someone had written down by hand. That asymmetry looks obvious once stated, but it was not obvious in the running system, which had a good answer to <em>what computations exist</em> and almost none to <em>how they compose</em>. The implementation knew more than the model. Data moved between passes, signals gated them, and passes mutated shared state, but that knowledge lived heterogeneously in code rather than in one explicit model of composition.</p>
 <p>The mismatch does not establish that the model should have existed from the start. The pass decomposition itself emerged while the remediation system was being built, and some implementation freedom was useful while that structure was still shifting. By this point, though, composition had grown hard to reason about informally. The sparse graph was not evidence of missing documentation. It showed that the system had reached a point where a stronger representation could help us understand the territory.</p>

@@ -319,6 +319,70 @@ blockquote.concept-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
 blockquote.concept-inset p:last-child { margin-bottom: 0; }
 blockquote.concept-inset strong { color: var(--inset-header); }
 blockquote.concept-inset em { font-style: italic; }  /* inline emphasis still italicizes inside roman body */
+/* ── FOUR-FAMILY BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
+   Four visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
+   The palette is composed from EXISTING role tokens — no new design tokens. Governing contrast: canonical
+   (rust) = remember-this doctrine; inset (neutral + badge) = optional enrichment; model-card (monochrome)
+   = a schematic; evidence (cool blue) = the author's observation, not doctrine. */
+/* CANONICAL — MAGE doctrine, the strongest house treatment: warm rust panel, thick left rule, a centered
+   UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
+blockquote.box-canonical { background: var(--accent-tint); border: 1px solid var(--rule);
+  border-left: 5px solid var(--accent); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-canonical p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-canonical p:last-child { margin-bottom: 0; }
+blockquote.box-canonical strong { color: var(--accent); }
+blockquote.box-canonical em { font-style: italic; }
+blockquote.box-canonical .inset-title {
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent); background: var(--accent-tint); font-family: var(--font-display);
+  font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 5px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--accent); border-radius: 5px 5px 0 0; }
+blockquote.box-canonical .inset-title::before { content: none; }
+/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
+   idea's genealogy (ENGINEERING, FORMAL METHODS, …); the §6.5 conjecture box carries a CAVEAT badge. */
+blockquote.box-inset { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--muted); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-inset p { margin: 0 0 0.7rem; line-height: 1.6; }
+blockquote.box-inset p:last-child { margin-bottom: 0; }
+blockquote.box-inset strong { color: var(--ink); }
+blockquote.box-inset em { font-style: italic; }
+blockquote.box-inset .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 8rem; }
+blockquote.box-inset .inset-title::before { content: none; }
+.box-badge { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 0.12rem 0.4rem; }
+.box-badge-caveat { color: var(--accent); border-color: var(--accent); }
+/* MODEL CARD — a schematic, monochrome; identical field order per card; a tiny MODEL CARD corner label. */
+blockquote.box-model-card { position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--rule); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }
+blockquote.box-model-card p { margin: 0 0 0.6rem; line-height: 1.55; }
+blockquote.box-model-card p:last-child { margin-bottom: 0; }
+blockquote.box-model-card ul { margin: 0.3rem 0; }
+blockquote.box-model-card strong { color: var(--ink); }
+blockquote.box-model-card em { font-style: italic; }
+blockquote.box-model-card .inset-title { font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 6rem; }
+blockquote.box-model-card .inset-title::before { content: none; }
+.box-corner { position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); }
+/* EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: cool blue-gray. */
+blockquote.box-evidence { background: var(--diagram-fleet-fill); border: 1px solid var(--rule);
+  border-left: 4px solid var(--diagram-fleet); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }
+blockquote.box-evidence p { margin: 0 0 0.6rem; line-height: 1.6; }
+blockquote.box-evidence p:last-child { margin-bottom: 0; }
+blockquote.box-evidence strong { color: var(--diagram-fleet); }
+blockquote.box-evidence em { font-style: italic; }
+blockquote.box-evidence .inset-title { font-style: normal; font-weight: 700; color: var(--diagram-fleet);
+  font-size: 1rem; margin: 0 0 0.5rem; }
+blockquote.box-evidence .inset-title::before { content: none; }
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header
@@ -733,101 +797,16 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>The models themselves remain objects of engineering. Their fidelity is not assumed; the environment must maintain whatever correspondence each model claims to the realized system. Traceability, re-derivation, comparison, and drift detection are ways to produce that evidence. MAGE does not replace testing and inspection with models; it relates that evidence to explicit engineering claims.</p>
 <h2><span class="sec-num">6.6.3</span> What Should We Teach?</h2>
 <p>If engineers increasingly review systems through representations and evidence rather than reconstructing every property from implementation, education should shift accordingly. This book is not an education study, so the argument is a professional hypothesis rather than a curricular finding.</p>
-<p>Most of the foundations remain. Algorithms still matter. Operating systems still matter. Security arguably matters more. Programming does not disappear, nor does software engineering. What changes is the allocation of attention: somewhat less to producing routine implementation by hand; more to selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing automation. Modeling, programming languages, and formal methods deserve more room—not because every engineer should become a language theorist, systems modeler, or verification specialist, but because these fields teach durable ways to choose abstractions, make invalid states harder to express, state properties precisely, and separate a claim from the evidence that establishes it. Students should also learn to distinguish improving a reasoner's context from improving the representation of the engineering problem itself.</p>
-<p>Engineers increasingly need fluency in the moves these disciplines teach. DocAble provides the practical spectrum. A local ownership invariant is best carried by a database compare-and-set that makes competing claims mutually exclusive. A concurrency protocol whose failures live in interleavings is checked by exhaustive exploration of a bounded behavioral model. An eventual-termination requirement needs a temporal model because no finite collection of successful executions can establish that a job cannot remain stranded forever. The tools differ; the underlying engineering skill is recognizing the property, choosing a representation in which it becomes tractable, and selecting evidence adequate to the claim.</p>
-<p>A modern software-engineering curriculum should therefore teach state machines, invariants, types, model checking, temporal reasoning, and correspondence not merely as specialist techniques, but as examples of a more general competence: turning consequential engineering questions into representations and evidence that machines can help carry. <a class="xref" href="6.6-education-research-open-problems.html#fig-6-6-1">Figure&nbsp;6.6-1</a> draws that progression.</p>
-<figure id="fig-6-6-1" class="book-figure" data-label="question-to-authority-progression"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640"
-     role="img" aria-labelledby="f-question-to-authority-progression-qapTitle f-question-to-authority-progression-qapDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-question-to-authority-progression-qapTitle">From engineering question to authority</title>
-  <desc id="f-question-to-authority-progression-qapDesc">A vertical progression. An engineering question leads to choosing a representation. The
-    representation forks the path: a closed state or action space leads to a structural constraint; a finite
-    transition system leads to exhaustive state exploration; temporal behavior leads to temporal model
-    checking. The branches re-converge to interpret the evidence and then to decide what deserves authority.
-    The general competence is turning a consequential question into a representation and evidence that
-    machines can help carry, not any one tool.</desc>
-
-  <defs>
-    <marker id="f-question-to-authority-progression-qap-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- ===== boxes (drawn first) ===== -->
-  <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
-
-  <!-- question (gray) -->
-  <rect id="f-question-to-authority-progression-question" x="340" y="26" width="320" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-
-  <!-- choose the representation (blue) -->
-  <rect id="f-question-to-authority-progression-choose-representation" x="330" y="110" width="340" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.8"/>
-
-  <!-- representation boxes (blue) -->
-  <rect id="f-question-to-authority-progression-rep-closed" x="45" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
-  <rect id="f-question-to-authority-progression-rep-finite" x="360" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
-  <rect id="f-question-to-authority-progression-rep-temporal" x="675" y="210" width="280" height="66" rx="9" fill="#eef2f6" stroke="#2f5169" stroke-width="2.2"/>
-
-  <!-- mechanism boxes (gray) -->
-  <rect id="f-question-to-authority-progression-mech-constraint" x="45" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
-  <rect id="f-question-to-authority-progression-mech-explicit" x="360" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
-  <rect id="f-question-to-authority-progression-mech-temporal" x="675" y="316" width="280" height="60" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.2"/>
-
-  <!-- interpret the evidence (gray) -->
-  <rect id="f-question-to-authority-progression-interpret" x="330" y="446" width="340" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.4"/>
-
-  <!-- decide authority (green) -->
-  <rect id="f-question-to-authority-progression-authority" x="310" y="536" width="380" height="58" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
-
-  <!-- ===== arrows ===== -->
-  <!-- edge: question -> choose-representation -->
-  <line x1="500" y1="78" x2="500" y2="108" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-
-  <!-- edge: choose-representation -> rep-closed -->
-  <path d="M346,162 L346,185 L309,185 L309,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-  <!-- edge: choose-representation -> rep-finite -->
-  <path d="M500,162 L500,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-  <!-- edge: choose-representation -> rep-temporal -->
-  <path d="M654,162 L654,185 L691,185 L691,208" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-
-  <!-- edge: rep-closed -> mech-constraint -->
-  <line x1="185" y1="276" x2="185" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-  <!-- edge: rep-finite -> mech-explicit -->
-  <line x1="500" y1="276" x2="500" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-  <!-- edge: rep-temporal -> mech-temporal -->
-  <line x1="815" y1="276" x2="815" y2="314" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-
-  <!-- edge: mech-constraint -> interpret -->
-  <path d="M309,376 L309,410 L346,410 L346,444" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-  <!-- edge: mech-explicit -> interpret -->
-  <path d="M500,376 L500,444" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-  <!-- edge: mech-temporal -> interpret -->
-  <path d="M691,376 L691,410 L654,410 L654,444" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-
-  <!-- edge: interpret -> authority -->
-  <line x1="500" y1="498" x2="500" y2="534" stroke="#1c1917" stroke-width="2" marker-end="url(#f-question-to-authority-progression-qap-k)"/>
-
-  <!-- ===== labels (drawn last, on top) ===== -->
-  <text x="500" y="58" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">engineering question</text>
-  <text x="500" y="142" text-anchor="middle" font-size="20" font-weight="700" fill="#2f5169">choose the representation</text>
-
-  <text x="185" y="240" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">closed state /</text>
-  <text x="185" y="260" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">action space</text>
-  <text x="500" y="240" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">finite transition</text>
-  <text x="500" y="260" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">system</text>
-  <text x="815" y="250" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">temporal behavior</text>
-
-  <text x="185" y="352" text-anchor="middle" font-size="20" fill="#1c1917">structural constraint</text>
-  <text x="500" y="345" text-anchor="middle" font-size="20" fill="#1c1917">exhaustive state</text>
-  <text x="500" y="365" text-anchor="middle" font-size="20" fill="#1c1917">exploration</text>
-  <text x="815" y="345" text-anchor="middle" font-size="20" fill="#1c1917">temporal model</text>
-  <text x="815" y="365" text-anchor="middle" font-size="20" fill="#1c1917">checking</text>
-
-  <text x="500" y="478" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">interpret the evidence</text>
-  <text x="500" y="571" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">decide what deserves authority</text>
-</svg><figcaption data-short="From engineering question to authority"><span class="fig-label">Figure 6.6-1.</span> <em>From engineering question to authority.</em> Choosing a representation for the property makes different assurance machinery available: a closed state or action space invites a structural constraint, a finite transition system exhaustive state exploration, and temporal behavior a temporal model checker. Interpret the evidence, then decide what deserves authority.</figcaption></figure>
-<p>A capstone should therefore demonstrate more than a working artifact. Ask students to bring the <strong>engineering case</strong>.<sup class="note-ref"><a href="#note-6-6-education-research-open-problems-fn-abet-capstone" role="doc-noteref" aria-label="note 2">†</a></sup><span class="editorial-note" id="note-6-6-education-research-open-problems-fn-abet-capstone"><span class="cn-mark">†</span> Existing accreditation already asks for a culminating design experience that integrates standards and multiple constraints and builds on earlier coursework, with software-specific criteria adding requirements analysis, security, verification and validation, and processes for complex software systems <sup class="cite-ref"><a href="#wc-6-6-education-research-open-problems-4" aria-label="citation 4">4</a></sup><span class="cite-note"><span class="cn-mark">4.</span> ABET Engineering Accreditation Commission, “Criteria for Accrediting Engineering Programs, 2025–2026,” 2025, <a href="https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-engineering-programs-2025-2026/">https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-engineering-programs-2025-2026/</a>.</span>. Computing-accredited programs likewise require a major integrative project <sup class="cite-ref"><a href="#wc-6-6-education-research-open-problems-5" aria-label="citation 5">5</a></sup><span class="cite-note"><span class="cn-mark">5.</span> ABET Computing Accreditation Commission, “Criteria for Accrediting Computing Programs, 2025–2026,” 2025, <a href="https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-computing-programs-2025-2026/">https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-computing-programs-2025-2026/</a>.</span>. The open question is not whether students should integrate their knowledge but what should count as evidence that they have — which is why the capstone should carry the engineering case, not only the demo.</span> The artifact should be one component of that case, alongside requirements, models, tradeoffs, measurements, validation evidence, and an explicit argument for acceptance.</p>
-<p>The implication for program objectives is smaller than the change in daily work. In my view, most engineering programs need little change in <strong>what they claim an engineer should become</strong>. The larger change is in how students practice and demonstrate those capabilities. A substantial change in engineering work may require only a small change in the definition of an engineer.</p>
+<h3>The curriculum remains recognizable</h3>
+<p>Most of the foundations remain. Algorithms still matter. Operating systems still matter. Security arguably matters more. Programming does not disappear, nor does software engineering. The educational consequence of commodity intelligence is not a wholesale replacement of the curriculum. Engineers still need enough implementation fluency to understand the systems they build, diagnose failures, evaluate generated work, and descend through abstractions when necessary. They still need the disciplinary foundations that make those judgments possible.</p>
+<p>What changes is the allocation of attention. If routine implementation becomes cheaper while specification, validation, coordination, and judgment remain scarce, education should reflect that shift. The question is therefore less what subjects disappear than which competencies deserve more or less practice.</p>
+<h3>Shift the emphasis</h3>
+<p>Less educational effort may need to go toward producing routine implementation by hand, and more toward selecting abstractions, specifying properties, measuring systems, validating claims, reasoning about quality attributes, and governing autonomous work. Modeling, specification, architecture, measurement, programming languages, and formal methods deserve more room—not because every engineer should become a language theorist, systems modeler, or verification specialist, but because these fields teach durable ways to choose abstractions, state properties precisely, make invalid states harder to express, and separate a claim from the evidence that establishes it. Students should also learn to distinguish improving a reasoner's context from improving the representation of the engineering problem itself.</p>
+<p>Coordination deserves greater emphasis as well. An engineer directing several autonomous workstreams must decompose a larger objective into work that can proceed independently, identify dependencies and integration points, sequence work where necessary, monitor progress and risk, and reconcile independently produced results into a coherent whole. These are familiar competencies from project management, but agentic capacity changes the scale at which they matter: an individual engineer may command enough parallel implementation capacity to face coordination problems that previously arose mainly at team scale. Project management could therefore move from a specialization—often developed through experience or graduate management training—toward a core competency of the undergraduate software engineer.</p>
+<p>This is not an argument that software engineers should become project managers. Parallel agents create useful leverage only when work can be partitioned without losing architectural coherence, shared assumptions remain stable enough for independent work to compose, and integration occurs before divergence becomes expensive. Decomposition, dependency management, sequencing, and integration therefore become part of the technical problem of converting agentic capacity into durable engineering progress. As with modeling and validation, an old engineering competence becomes more valuable because the bottleneck has moved.</p>
+<h3>Change what students demonstrate</h3>
+<p>A capstone should therefore demonstrate more than a working artifact. Ask students to bring the <strong>engineering case</strong>.<sup class="note-ref"><a href="#note-6-6-education-research-open-problems-fn-abet-capstone" role="doc-noteref" aria-label="note 2">†</a></sup><span class="editorial-note" id="note-6-6-education-research-open-problems-fn-abet-capstone"><span class="cn-mark">†</span> Existing accreditation already asks for a culminating design experience that integrates standards and multiple constraints and builds on earlier coursework, with software-specific criteria adding requirements analysis, security, verification and validation, and processes for complex software systems <sup class="cite-ref"><a href="#wc-6-6-education-research-open-problems-4" aria-label="citation 4">4</a></sup><span class="cite-note"><span class="cn-mark">4.</span> ABET Engineering Accreditation Commission, “Criteria for Accrediting Engineering Programs, 2025–2026,” 2025, <a href="https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-engineering-programs-2025-2026/">https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-engineering-programs-2025-2026/</a>.</span>. Computing-accredited programs likewise require a major integrative project <sup class="cite-ref"><a href="#wc-6-6-education-research-open-problems-5" aria-label="citation 5">5</a></sup><span class="cite-note"><span class="cn-mark">5.</span> ABET Computing Accreditation Commission, “Criteria for Accrediting Computing Programs, 2025–2026,” 2025, <a href="https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-computing-programs-2025-2026/">https://www.abet.org/accreditation/accreditation-criteria/criteria-for-accrediting-computing-programs-2025-2026/</a>.</span>. The open question is not whether students should integrate their knowledge but what should count as evidence that they have — which is why the capstone should carry the engineering case, not only the demo.</span> The artifact should be one component of that case, alongside requirements, models, tradeoffs, measurements, validation evidence, and an explicit argument for acceptance. Students should also demonstrate that they can organize substantial work: decompose an objective, manage dependencies and integration, coordinate parallel realization, and adapt the plan as engineering evidence arrives. This extends rather than replaces the integrative purpose of the capstone: the question is not merely whether students can produce a system, but whether they can organize and justify the engineering work that makes the resulting system worthy of acceptance.</p>
+<p>The implication for program objectives is smaller than the change in daily work. In my view, most engineering programs need little change in <strong>what they claim an engineer should become</strong>. The larger change is in how students practice and demonstrate those capabilities.</p>
 <p>The durable curriculum should not be organized around the current agent interface. Prompt conventions, harness architectures, model APIs, and context-management techniques matter in practice and students should use them, but they change too quickly to define the intellectual core. Teach the principles beneath them—finite reasoning and abstraction, representation and fidelity, action boundaries and authority, independent evidence, security, measurement, and the design of environments in which uncertain components can be used safely—and let students encounter current agents throughout the curriculum.</p>
 <h2><span class="sec-num">6.6.4</span> The Entry-Rung Problem</h2>
 <p>A harder workforce implication is best stated as a risk rather than a forecast. Routine implementation has historically provided an accessible first rung into software work: learn a language and a framework, become useful at construction, then acquire deeper architecture and systems knowledge through practice. If demand for routine implementation contracts, that rung may narrow. Requirements discovery, modeling, security, systems reasoning, validation, and engineering judgment are harder to compress into a short framework-oriented path.</p>

@@ -340,6 +340,12 @@ MARKER_KEYWORDS = (
     #   (author declaration; classified BEFORE the concept-inset title check so a TITLED box is never
     #   mis-read as a concept-inset). In-prose `> **The … Thesis.**` boxes keep the lead-text path.
     "principlebox",
+    # `<!-- box-family: <canonical|inset|model-card|evidence> -->` — the explicit box-visual-grammar family
+    #   selector (four-family grammar, box-grammar-IMPL-260823). Armed for the NEXT blockquote; OUTRANKS the
+    #   content-based klass inference (concept-inset/thesis) and picks the family's visual treatment (palette +
+    #   badge/corner). `<!-- inset-domain: <TAG> -->` (inset family only) carries the upper-right provenance
+    #   badge. Both consumed + stripped so they never leak into reader-visible output.
+    "box-family", "inset-domain",
     # `<!-- table-landscape -->` — a Typst-only per-table directive: the Typst emitter drops the NEXT table
     #   onto a flipped/landscape page (a wide matrix that cramps in portrait). INERT in HTML (the pipe table
     #   renders through the ordinary table path; web width relies on CSS overflow), like note-spread: consumed
@@ -1389,6 +1395,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
     pending_def: list[str] = []             # a core-term `index-def` armed for the next block (→ def-box)
     pending_pullquote: list[bool] = []      # a `<!-- pullquote -->` marker armed for the next blockquote
     pending_principlebox: list[bool] = []      # a `<!-- principlebox -->` marker armed for the next blockquote (part-opener box)
+    pending_boxfamily: list[str] = []       # a `<!-- box-family: X -->` marker armed for the next blockquote (four-family grammar)
+    pending_insetdomain: list[str] = []     # a `<!-- inset-domain: TAG -->` marker armed for the next inset (provenance badge)
     pending_onepager: list[bool] = []       # a `<!-- case-onepager -->` marker armed for the next table (card)
     pending_convergence_key: list[bool] = []  # a `<!-- convergence-spread-key -->` marker → next table is the slim key
     spread_state: list[dict] = []           # open convergence spread(s): {start, split} indices into `out`
@@ -1514,6 +1522,17 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
                 # here so the marker never reaches reader-visible output (mirrors the `pullquote` arming
                 # just above, same dispatch family). Full-string match — the bare no-arg idiom.
                 pending_principlebox.append(True)
+                return True
+            if inner.startswith("box-family:"):
+                # `<!-- box-family: X -->` — arms the four-family visual treatment for the NEXT blockquote.
+                # Consumed here so the marker never reaches reader-visible output (mirrors the arming family
+                # above). The family value outranks the content-based klass inference in `_render_blockquote`.
+                pending_boxfamily.append(inner[len("box-family:"):-len("-->")].strip())
+                return True
+            if inner.startswith("inset-domain:"):
+                # `<!-- inset-domain: TAG -->` — the inset provenance badge (upper-right). Armed for the NEXT
+                # blockquote; rendered only when the box is an inset. Consumed + stripped like its siblings.
+                pending_insetdomain.append(inner[len("inset-domain:"):-len("-->")].strip())
                 return True
             if inner.startswith("case-onepager"):
                 # `<!-- case-onepager -->` — arms the NEXT table as a per-case one-pager CARD (a light
@@ -1652,6 +1671,10 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         pending_pullquote.clear()
         principlebox_armed = bool(pending_principlebox)
         pending_principlebox.clear()
+        boxfamily_armed = pending_boxfamily[0] if pending_boxfamily else None
+        pending_boxfamily.clear()
+        insetdomain_armed = pending_insetdomain[0] if pending_insetdomain else None
+        pending_insetdomain.clear()
         stripped = block.strip()
         # ── The A-flip: one classifier, one renderer per node kind. ────────────────────────────────
         # Classification is single-sourced through the typed IR (`book_ir.classify_render_block`, which
@@ -1687,7 +1710,8 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
         # diagram) is deleted as if it were a stray authoring comment, silently dropping the figure.
         if kind is _ir.BlockKind.BLOCKQUOTE:
             _emit(_render_blockquote(block, is_def=def_armed, is_pullquote=pullquote_armed,
-                                     is_principlebox=principlebox_armed))
+                                     is_principlebox=principlebox_armed,
+                                     box_family=boxfamily_armed, inset_domain=insetdomain_armed))
             continue
         # Gap-marker callouts (`[FILL IN: …]` / `[MORE CHAPTERS FOLLOW: …]`) — the IR classifies these as
         # PARA (they are prose-shaped), so the renderer keeps the shape test for them just ahead of prose.
@@ -1944,13 +1968,18 @@ def _render_heading(block: str, section_no: str | None = None) -> str:
 
 
 def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = False,
-                       is_principlebox: bool = False) -> str:
+                       is_principlebox: bool = False, box_family: "str | None" = None,
+                       inset_domain: "str | None" = None) -> str:
     """A blockquote (every line starts with `>`) → a classified `<blockquote>`. Its inner content is itself
     markdown (heading + prose + a `> ```mermaid ``` fence), rendered recursively; an inner heading is demoted
-    to a styled `inset-title` paragraph (no document-outline break). The class is picked by shape: an explicit
-    `<!-- pullquote -->` marker (`is_pullquote`) → the label-less `pull-quote` (checked first — an author
-    declaration outranks lead-text inference); an explicit `<!-- principlebox -->` marker (`is_principlebox`) → the
-    green `thesis-box` panel, checked BEFORE the concept-inset title test so a TITLED part-opener box (whose
+    to a styled `inset-title` paragraph (no document-outline break). An explicit `<!-- box-family: X -->`
+    marker (`box_family` ∈ {canonical, inset, model-card, evidence}) OUTRANKS all shape inference: it forces
+    the `box-<family>` class of the four-family visual grammar (box-grammar-IMPL-260823), with an
+    `inset-domain` provenance badge on insets (a `CAVEAT` badge for the §6.5 conjecture box) and a MODEL CARD
+    corner on model cards. Absent a family marker, the class is picked by shape: an explicit `<!-- pullquote -->`
+    marker (`is_pullquote`) → the label-less `pull-quote` (checked first — an author declaration outranks
+    lead-text inference); an explicit `<!-- principlebox -->` marker (`is_principlebox`) → the green
+    `thesis-box` panel, checked BEFORE the concept-inset title test so a TITLED part-opener box (whose
     `### TITLE` demotes to an `inset-title`) is not mis-read as a concept-inset; a demoted label →
     `concept-inset`; a `**The … Thesis.**` lead → `thesis-box`; a `**Term.**` lead armed by a core-term
     `index-def` (`is_def`) → the blue `def-box`; else a light `aside-sidenote`."""
@@ -1962,6 +1991,15 @@ def _render_blockquote(block: str, is_def: bool = False, is_pullquote: bool = Fa
     # the rendered label (the id/anchor on the <p> is untouched, so intra-book links still resolve). This
     # also moots any "insets out of numeric order" reading — the reader never sees a number.
     inner_html = re.sub(r'(<p class="inset-title"[^>]*>)\s*Inset\s+I\d+\s*—\s*', r'\1', inner_html)
+    if box_family:
+        # The explicit four-family grammar (box-grammar-IMPL-260823) — outranks the shape inference below.
+        furniture = ""
+        if box_family == "inset" and inset_domain:
+            _cav = " box-badge-caveat" if inset_domain == "CAVEAT" else ""
+            furniture = f'<span class="box-badge{_cav}">{html.escape(inset_domain)}</span>'
+        elif box_family == "model-card":
+            furniture = '<span class="box-corner">MODEL CARD</span>'
+        return f'<blockquote class="box-{box_family}">{furniture}{inner_html}</blockquote>'
     if is_pullquote:
         klass = "pull-quote"
     elif is_principlebox:
@@ -2281,6 +2319,70 @@ blockquote.concept-inset p {{ margin: 0 0 0.7rem; line-height: 1.6; }}
 blockquote.concept-inset p:last-child {{ margin-bottom: 0; }}
 blockquote.concept-inset strong {{ color: var(--inset-header); }}
 blockquote.concept-inset em {{ font-style: italic; }}  /* inline emphasis still italicizes inside roman body */
+/* ── FOUR-FAMILY BOX GRAMMAR (box-grammar-IMPL-260823) ──────────────────────────────────────────────
+   Four visual families keyed off an explicit box-family source marker (→ blockquote.box-<family>).
+   The palette is composed from EXISTING role tokens — no new design tokens. Governing contrast: canonical
+   (rust) = remember-this doctrine; inset (neutral + badge) = optional enrichment; model-card (monochrome)
+   = a schematic; evidence (cool blue) = the author's observation, not doctrine. */
+/* CANONICAL — MAGE doctrine, the strongest house treatment: warm rust panel, thick left rule, a centered
+   UPPERCASE title-bar (source keeps natural case; the renderer applies the caps). */
+blockquote.box-canonical {{ background: var(--accent-tint); border: 1px solid var(--rule);
+  border-left: 5px solid var(--accent); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }}
+blockquote.box-canonical p {{ margin: 0 0 0.6rem; line-height: 1.6; }}
+blockquote.box-canonical p:last-child {{ margin-bottom: 0; }}
+blockquote.box-canonical strong {{ color: var(--accent); }}
+blockquote.box-canonical em {{ font-style: italic; }}
+blockquote.box-canonical .inset-title {{
+  text-align: center; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent); background: var(--accent-tint); font-family: var(--font-display);
+  font-size: 0.95rem; line-height: 1.35;
+  margin: -1rem -1.3rem 0.9rem calc(-1.3rem - 5px);
+  padding: 0.55rem 1.3rem; border-bottom: 1px solid var(--accent); border-radius: 5px 5px 0 0; }}
+blockquote.box-canonical .inset-title::before {{ content: none; }}
+/* INSET — a removable pedagogical sidecar: neutral panel + a small upper-right provenance badge naming the
+   idea's genealogy (ENGINEERING, FORMAL METHODS, …); the §6.5 conjecture box carries a CAVEAT badge. */
+blockquote.box-inset {{ position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--muted); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }}
+blockquote.box-inset p {{ margin: 0 0 0.7rem; line-height: 1.6; }}
+blockquote.box-inset p:last-child {{ margin-bottom: 0; }}
+blockquote.box-inset strong {{ color: var(--ink); }}
+blockquote.box-inset em {{ font-style: italic; }}
+blockquote.box-inset .inset-title {{ font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 8rem; }}
+blockquote.box-inset .inset-title::before {{ content: none; }}
+.box-badge {{ position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 0.12rem 0.4rem; }}
+.box-badge-caveat {{ color: var(--accent); border-color: var(--accent); }}
+/* MODEL CARD — a schematic, monochrome; identical field order per card; a tiny MODEL CARD corner label. */
+blockquote.box-model-card {{ position: relative; background: var(--panel); border: 1px solid var(--rule);
+  border-left: 4px solid var(--rule); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 6px; }}
+blockquote.box-model-card p {{ margin: 0 0 0.6rem; line-height: 1.55; }}
+blockquote.box-model-card p:last-child {{ margin-bottom: 0; }}
+blockquote.box-model-card ul {{ margin: 0.3rem 0; }}
+blockquote.box-model-card strong {{ color: var(--ink); }}
+blockquote.box-model-card em {{ font-style: italic; }}
+blockquote.box-model-card .inset-title {{ font-style: normal; font-weight: 700; color: var(--ink);
+  font-size: 1rem; margin: 0 0 0.5rem; padding-right: 6rem; }}
+blockquote.box-model-card .inset-title::before {{ content: none; }}
+.box-corner {{ position: absolute; top: 0.75rem; right: 0.9rem;
+  font-family: var(--font-body); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); }}
+/* EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: cool blue-gray. */
+blockquote.box-evidence {{ background: var(--diagram-fleet-fill); border: 1px solid var(--rule);
+  border-left: 4px solid var(--diagram-fleet); color: var(--ink); font-style: normal;
+  padding: 1rem 1.3rem; margin: 1.7rem 0; border-radius: 5px; }}
+blockquote.box-evidence p {{ margin: 0 0 0.6rem; line-height: 1.6; }}
+blockquote.box-evidence p:last-child {{ margin-bottom: 0; }}
+blockquote.box-evidence strong {{ color: var(--diagram-fleet); }}
+blockquote.box-evidence em {{ font-style: italic; }}
+blockquote.box-evidence .inset-title {{ font-style: normal; font-weight: 700; color: var(--diagram-fleet);
+  font-size: 1rem; margin: 0 0 0.5rem; }}
+blockquote.box-evidence .inset-title::before {{ content: none; }}
 /* CODE INSET — a fenced code listing lifted into a titled box: "here is a real artifact from the system."
    It shares the concept-inset's amber header-band label typography (the sidebar HEADER, `p.inset-title`,
    demoted so no heading-order break), but its body is a monospace listing, not roman prose. The header
