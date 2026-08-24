@@ -552,6 +552,7 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
         body_md = inner_md
         if lines and lines[0].lstrip().startswith("#"):
             title = re.sub(r"^\s*#+\s*", "", lines[0]).strip()
+            title = bb._HEADING_ANCHOR_RE.sub("", title)  # strip a trailing {#anchor} so it never prints in the box title
             body_md = "\n".join(lines[1:]).strip()
         body = _render_markdown_body(body_md, _EmitCtx.inert())
         title_bar = ""
@@ -572,6 +573,7 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
         body_md = inner_md
         if lines and lines[0].lstrip().startswith("#"):
             title = re.sub(r"^\s*#+\s*", "", lines[0]).strip()
+            title = bb._HEADING_ANCHOR_RE.sub("", title)  # strip a trailing {#anchor} so it never prints in the box title
             body_md = "\n".join(lines[1:]).strip()
         body = _render_markdown_body(body_md, _EmitCtx.inert())
         if box_family == "model-card":
