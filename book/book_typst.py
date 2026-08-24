@@ -1083,8 +1083,12 @@ def _render_worked_examples_typst(we) -> str:
         prose = inline_typst(" ".join(c.prose_md.split()))
         parts.append(f"#block(breakable: false, above: 0.65em, below: 0.2em)[#strong[{src}.] {prose}]")
     if we.takeaway_md:
+        # The Takeaway is CONTENT within the single WORKED EXAMPLES container — a hairline top divider (mirrors
+        # the web `.wex-takeaway` border-top), NOT a nested left-ruled card, so the block has ONE visual
+        # container (no box-in-box). Author-ratified 260823.
         tk = inline_typst(" ".join(we.takeaway_md.split()))
-        parts.append(_onepager_card_typst(f"#strong[Takeaway.] {tk}"))
+        parts.append("#v(0.35em)\n  #line(length: 100%, stroke: dt.border-hairline + dt.rule)\n  #v(0.45em)")
+        parts.append(f"#block(breakable: false)[#strong[Takeaway.] {tk}]")
     body = "\n".join(parts)
     return ("#block(stroke: (left: 3pt + dt.accent), inset: (left: 12pt, top: 6pt, bottom: 6pt), "
             f"width: 100%, above: 1em, below: 1em, breakable: true)[\n{_indent(body)}\n]")
