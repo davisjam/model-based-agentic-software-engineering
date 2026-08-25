@@ -869,13 +869,16 @@ def check_big_ideas() -> list[str]:
         if not bh or not os.path.exists(os.path.join(ROOT, bh)):
             problems.append(f"big-ideas: {slug!r} book_home {rec.get('book_home')!r} does not resolve "
                             f"to a real chapter/page on disk")
-        fig = rec.get("figure", "")
-        if not fig or not os.path.exists(os.path.join(ROOT, "book", "assets", fig)):
-            problems.append(f"big-ideas: {slug!r} figure {fig!r} not found under book/assets/")
+        # website-v3: claims carry no per-claim figure (the single canonical mage-method.svg figure is
+        # shared). The kept invariant is that any `explore` link resolves to real book material (book ⊇ site).
+        ex = rec.get("explore") or {}
+        exh = (ex.get("href") or "").split("#")[0]
+        if exh and not os.path.exists(os.path.join(ROOT, exh)):
+            problems.append(f"claims: {slug!r} explore.href {ex.get('href')!r} does not resolve to real book material")
         n = len((rec.get("claim") or "").split())
         if n > cap:
-            problems.append(f"big-ideas: {slug!r} claim is {n} words (cap {cap}): {rec.get('claim')!r}")
-    # (d) MODEL→SITE via the shared helper — the six ideas only (gateway excluded, see docstring).
+            problems.append(f"claims: {slug!r} claim heading is {n} words (cap {cap}): {rec.get('claim')!r}")
+    # (d) MODEL→SITE via the shared helper — every claim id must project onto the built landing.
     projected = {k: v for k, v in recs.items() if k != "gateway"}
     for slug, rid in projection_drift(projected, _landing_id_scan(), lambda s, r: r.get("id", "")):
         problems.append(f"big-ideas: {slug!r} id {rid!r} does not resolve on the landing "
@@ -884,32 +887,10 @@ def check_big_ideas() -> list[str]:
 
 
 def _big_ideas_palette_audit() -> list[str]:
-    """AUDIT-ONLY companion to check_big_ideas: which referenced figures carry a hex outside the SVG
-    palette allow-list. Reported (never gated) so a committer sees palette state without reddening
-    validate on pre-existing, audit-only design-token drift."""
-    path = os.path.join(ROOT, "book-models", "landing-big-ideas.json")
-    if not os.path.isfile(path):
-        return []
-    bm = os.path.join(ROOT, "book-models")
-    if bm not in sys.path:
-        sys.path.insert(0, bm)
-    try:
-        import design_tokens as dtk  # noqa: E402 — palette source of truth
-        palette = dtk.svg_palette()
-    except Exception:
-        return []
-    raw = json.load(open(path, encoding="utf-8"))
-    hex_re = re.compile(r'#[0-9a-fA-F]{3,8}\b')
-    out: list[str] = []
-    for slug, rec in ((k, v) for k, v in raw.items() if not k.startswith("_")):
-        fp = os.path.join(ROOT, "book", "assets", rec.get("figure", ""))
-        if not os.path.isfile(fp):
-            continue
-        bad = sorted({h.lower() for h in hex_re.findall(open(fp, encoding="utf-8").read())
-                      if h.lower() not in palette})
-        if bad:
-            out.append(f"{rec.get('figure')}: {len(bad)} hex outside palette ({', '.join(bad[:4])}…)")
-    return out
+    """RETIRED (website-v3, 260825): the landing no longer references per-claim figures — the single
+    canonical figure (book/assets/mage-method.svg) is palette-checked by the design-token drift lint. Kept
+    as a no-op so the call site + its AUDIT-ONLY reporting stay stable."""
+    return []
 
 
 def _core_question_audit() -> list[str]:
@@ -957,20 +938,8 @@ def _core_question_audit() -> list[str]:
         if question not in open(idx, encoding="utf-8").read():
             out.append(f"CQ4 the core question does not resolve on the built landing (index.html) — the "
                        f"hero lead should render it verbatim (rebuild, or fix the hero)")
-    # CQ5/CQ6 — the standalone Big Question page projects the core_question node. CQ5: the question resolves
-    # verbatim on big-question.html (the page leads on it). CQ6: each `answered_by` concept's entry page is
-    # linked from big-question.html (the answer-constituent join the page must project). Best-effort: skip
-    # when the page is not built yet (mirrors the CQ4 landing best-effort).
-    bq = os.path.join(ROOT, "big-question.html")
-    if os.path.isfile(bq):
-        bq_html = open(bq, encoding="utf-8").read()
-        if question and question not in bq_html:
-            out.append("CQ5 the core question does not resolve on big-question.html (the page should lead on "
-                       "it verbatim — rebuild, or fix _big_question_body)")
-        for slug in cq.get("answered_by", []):
-            if f'href="concept-{slug}.html"' not in bq_html:
-                out.append(f"CQ6 big-question.html does not link the answer-constituent concept "
-                           f"{slug!r} (concept-{slug}.html) — the answered_by join is not projected")
+    # CQ5/CQ6 RETIRED (website-v3, 260825): the standalone big-question.html page is gone; the hero carries
+    # the core question (CQ4) and the book is authoritative for the answer.
     return out
 
 
@@ -1039,27 +1008,8 @@ def cmd_validate(_args) -> int:
               f"(does not gate):")
         for msg in cq_findings:
             print(f"            {msg}")
-    # CONCEPT-CARD DRIFT GATE — AUDIT-ONLY. The Concepts section's per-idea pages (concept-<slug>.html) are
-    # a projection of the same landing-big-ideas.json model: landing_big_ideas_model.py renders the card body
-    # and reports CC1-CC4 — the two new-field schema, the hand-declared Concept->mechanism edge resolution,
-    # the related-idea resolution, and concept-page existence + landing linkage. Non-overlapping with
-    # check_big_ideas (which keeps band drift). Lands AUDIT-ONLY-first (repo blocking-lint discipline): it
-    # PRINTS its findings so a committer sees any card<->model drift, but does NOT increment n_issues. A
-    # follow-up flips it BLOCKING once a clean session confirms the drain. See
-    # book-models/landing_big_ideas_model.py.
-    bm_concepts = os.path.join(ROOT, "book-models")
-    if bm_concepts not in sys.path:
-        sys.path.insert(0, bm_concepts)
-    import landing_big_ideas_model as lbi  # noqa: E402 — audit-only concept-card drift model
-    cc_findings = lbi.all_findings()
-    if cc_findings:
-        print(f"  [concept] AUDIT-ONLY: {len(cc_findings)} concept-card finding(s) — "
-              f"run `python3 book-models/landing_big_ideas_model.py verify` (does not gate):")
-        for msg in cc_findings:
-            print(f"            {msg}")
-    else:
-        print("  [concept] AUDIT-ONLY: six Concept Cards match the model "
-              "(schema clean; every mechanism edge resolves; pages reachable)")
+    # CONCEPT-CARD DRIFT GATE RETIRED (website-v3, 260825): the nine concept-<slug>.html pages + their
+    # two-tier model (landing_big_ideas_model.py) are gone — the book is authoritative for concepts.
     for msg in check_banned_terms():
         print(f"  [banned] {msg}")
         n_issues += 1
@@ -2343,6 +2293,81 @@ LANDING_CSS = """
     ul.oc-list li.oc-row { grid-template-columns:1fr; gap:3px; }
     .close-ways { grid-template-columns:1fr; }
   }
+
+  /* ── website-v3 landing (260825): grouped nav · hero · one-page figure · six claims · sections ── */
+  .v3-nav { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
+            padding:14px 0; border-bottom:1px solid var(--line); margin-bottom:8px; }
+  .v3-nav-home { font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--ink);
+                 text-decoration:none; letter-spacing:0.02em; }
+  .v3-nav-groups { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .v3-nav-item { color:var(--muted); text-decoration:none; font-weight:600; font-size:0.95rem; }
+  .v3-nav-item:hover, .v3-nav-item:focus { color:var(--accent); }
+  .v3-nav-gh { display:inline-flex; color:var(--muted); }
+  .v3-nav-gh:hover { color:var(--accent); }
+  .v3-nav-gh svg { width:1.2em; height:1.2em; }
+
+  .v3-hero { max-width:44rem; margin:2.6rem auto 1rem; text-align:center; }
+  .v3-eyebrow { color:var(--accent); font-weight:700; font-size:1rem; margin:0 0 0.6rem; }
+  .v3-title { font-family:var(--font-display); font-size:2.4rem; line-height:1.1; margin:0 0 1rem;
+              color:var(--ink); text-wrap:balance; }
+  .v3-lead { font-size:1.08rem; line-height:1.6; color:var(--ink); margin:0 auto 1rem; text-align:left;
+             max-width:40rem; }
+  .v3-hero-btns, .v3-btn-row { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:1.4rem 0; }
+  .v3-btn { display:inline-block; padding:0.6rem 1.2rem; border-radius:6px; font-weight:600;
+            text-decoration:none; font-size:0.98rem; border:1px solid transparent; }
+  .v3-btn-primary { background:var(--accent); color:var(--paper); }
+  .v3-btn-primary:hover { filter:brightness(0.94); }
+  .v3-btn-secondary { background:transparent; color:var(--accent); border-color:var(--accent); }
+  .v3-btn-secondary:hover { background:var(--accent-tint); }
+  .v3-btn-text { background:transparent; color:var(--accent); padding:0.6rem 0.4rem; }
+  .v3-btn-text:hover { text-decoration:underline; }
+
+  .sec-h { font-family:var(--font-display); font-size:1.5rem; color:var(--ink); margin:0 0 0.5rem; }
+  .sec-lead { font-size:1.02rem; line-height:1.55; color:var(--muted); max-width:44rem; margin:0 0 1.2rem; }
+
+  .onepage { max-width:56rem; margin:2.8rem auto; text-align:center; }
+  .onepage .sec-lead { margin-left:auto; margin-right:auto; text-align:left; }
+  .onepage-fig { margin:1.4rem 0 0; }
+  .onepage-fig svg { width:100%; height:auto; max-width:900px; display:block; margin:0 auto; }
+
+  .claims { max-width:44rem; margin:2.8rem auto; }
+  .claim { border-top:1px solid var(--line); padding:1.8rem 0 0.4rem; }
+  .claim-kick { color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
+                font-size:0.82rem; margin:0 0 0.4rem; }
+  .claim-h { font-family:var(--font-display); font-size:1.35rem; line-height:1.25; color:var(--ink);
+             margin:0 0 0.7rem; text-wrap:balance; }
+  .claim-body p { font-size:1.03rem; line-height:1.62; color:var(--ink); margin:0 0 0.7rem; }
+  .claim-region { font-size:0.88rem; color:var(--muted); font-style:italic; }
+  .claim-explore a { color:var(--accent); font-weight:600; text-decoration:none; }
+  .claim-explore a:hover { text-decoration:underline; }
+  .claims-summary { margin:2rem 0 0; padding:1.2rem 1.4rem; background:var(--accent-tint); border-radius:6px;
+                    font-weight:600; color:var(--ink); font-size:1.05rem; line-height:1.5; }
+
+  .v3-sec { max-width:52rem; margin:3rem auto; }
+  .v3-cards { display:grid; gap:18px; margin-top:1rem; }
+  .v3-cards-3 { grid-template-columns:repeat(3,1fr); }
+  .v3-cards-2 { grid-template-columns:repeat(2,1fr); }
+  .v3-card { border:1px solid var(--line); border-radius:8px; padding:1.2rem; background:var(--panel); }
+  .v3-cards-sm .v3-card { background:transparent; }
+  .v3-card-kick { color:var(--muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.05em;
+                  font-weight:700; margin:0 0 0.3rem; }
+  .v3-card-h { font-family:var(--font-display); font-size:1.15rem; color:var(--ink); margin:0 0 0.5rem; }
+  .v3-card-body { font-size:0.96rem; line-height:1.5; color:var(--ink); margin:0 0 0.8rem; }
+  .v3-card-links a { color:var(--accent); font-weight:600; text-decoration:none; font-size:0.92rem; }
+  .v3-card-links a:hover { text-decoration:underline; }
+
+  .v3-cta { max-width:44rem; margin:3.4rem auto 2rem; text-align:center; padding-top:2rem;
+            border-top:1px solid var(--line); }
+  .v3-cta .sec-lead { margin-left:auto; margin-right:auto; }
+
+  @media (max-width:820px){
+    .v3-cards-3, .v3-cards-2 { grid-template-columns:1fr; }
+    .v3-title { font-size:2rem; }
+  }
+  @media (max-width:520px){
+    .v3-nav { flex-direction:column; align-items:flex-start; }
+    .v3-hero-btns, .v3-btn-row { justify-content:flex-start; }
+  }
 """
 
 def _inline_svg_figure(rel_path: str, caption: str, cls: str = "lfig") -> str:
@@ -2564,126 +2589,196 @@ def _load_big_ideas() -> dict:
 
 
 def _big_ideas_ordered() -> list[dict]:
-    """The six Big-Idea records in `_order`, each tagged with its slug (`_slug`). The gateway is NOT in
-    `_order` — it renders separately as the census gateway, so it is excluded here."""
+    """The six CLAIM records in `_order`, each tagged with its slug (`_slug`)."""
     raw = _load_big_ideas()
-    order = raw.get("_order", [])
-    return [raw[k] | {"_slug": k} for k in order if k in raw]
+    return [raw[k] | {"_slug": k} for k in raw.get("_order", []) if k in raw]
 
 
-def _concept_link(slug: str) -> str:
-    """The brick's single link into the idea's rich Concept ENTRY page (root-level `concept-<slug>.html`).
-    In the two-tier split the brick carries ONLY this link — figure · title · claim · '→ read the concept'
-    — so the entry is reached in one click. This is the inbound link the orphan gate requires and the
-    concept model's CC4 reachability join checks (href unchanged under the relabel, so CC4's grep holds)."""
-    return f'<a class="s-concept" href="concept-{_attr(slug)}.html">→ read the concept</a>'
-
-
-def _big_idea_rec(slug: str) -> "dict | None":
-    """Fetch a Big-Idea record by slug from the raw model, tagged with its `_slug`. The landing renderer
-    reaches new-problem / independent-convergence / research-agenda through here rather than the
-    `_big_ideas_ordered()` sequence because they render in bespoke band shapes (the lead hero, the
-    Independent-Convergence band, the enlarged Research-Agenda band) — all three are now in `_order` with a
-    concept-<slug>.html ENTRY, so they carry a '→ read the concept' link like the rest."""
-    raw = _load_big_ideas()
-    rec = raw.get(slug)
-    return (rec | {"_slug": slug}) if isinstance(rec, dict) else None
-
-
-def _idea_figure(rec: dict) -> str:
-    """The slot's figure, spliced inline with its internal ids namespaced per-slot (so no two figures — or
-    a figure reused — collide on element ids). Falls back to empty if the asset is missing."""
-    svg = _inline_svg("assets/" + rec.get("figure", ""))
-    return namespace_svg_ids(svg, "bi-" + rec.get("_slug", rec.get("id", "x")))
-
-
-def _big_idea_band(rec: dict, figright: bool = False, bigfig: bool = False,
-                   link_html: "str | None" = None) -> str:
-    """One Big Idea as a full-width band: figure beside words (sides alternate for rhythm), one clean
-    block — no card, no thumbnail, no peek. Divider handled by the caller. `bigfig` renders the band
-    stacked full-width (figure above centred words) for ideas whose figure needs the whole column to
-    stay legible; it supersedes `figright` (side is moot when the figure spans the column). `link_html`
-    overrides the default '→ read the concept' link when a caller resolves the concept link itself (the
-    bands fetched via `_big_idea_rec` pass their own `_concept_link` so the brick still reads the entry)."""
-    cls = "slot slot-bigfig" if bigfig else ("slot figright" if figright else "slot")
+def _v3_onepage_figure() -> str:
+    """The 'MAGE in One Page' section — the book's canonical figure (book/assets/mage-method.svg, embedded
+    as a responsive inline SVG, NOT rasterized) with a short web-visitor intro. The landing's one figure."""
+    svg = namespace_svg_ids(_inline_svg("assets/mage-method.svg"), "mage-one-page")
     return (
-        f'<div class="{cls}" id="{_attr(rec.get("id", ""))}">\n'
-        f'  <figure class="s-fig">{_idea_figure(rec)}</figure>\n'
-        f'  <div class="s-words">\n'
-        f'    <p class="s-kick">{_esc(rec.get("kicker", ""))}</p>\n'
-        f'    <h2 class="s-title">{_esc(rec.get("title", ""))}</h2>\n'
-        f'    <p class="s-claim">{_esc(rec.get("claim", ""))}</p>\n'
-        f'    {link_html if link_html is not None else _concept_link(rec.get("_slug", ""))}\n'
-        f'  </div>\n'
-        f'</div>')
-
-
-def _thesis_cell(rec: dict, concept_id: str) -> str:
-    """One half of the matched thesis PAIR. Carries `id="<concept_id>"` (card-modeling-principle /
-    card-alignment-principle) so the thesis concepts' `site_home` resolves on the landing — the slot IS the
-    concept's site realization (the concept drift check joins on this id)."""
-    return (
-        f'<div class="p-cell" id="{_attr(concept_id)}">\n'
-        f'  <figure class="s-fig" id="{_attr(rec.get("id", ""))}">{_idea_figure(rec)}</figure>\n'
-        f'  <p class="s-kick">{_esc(rec.get("kicker", ""))}</p>\n'
-        f'  <h2 class="s-title">{_esc(rec.get("title", ""))}</h2>\n'
-        f'  <p class="s-claim">{_esc(rec.get("claim", ""))}</p>\n'
-        f'  {_concept_link(rec.get("_slug", ""))}\n'
-        f'</div>')
+        '<section class="onepage" id="onepage" aria-labelledby="onepage-h">\n'
+        '  <h2 id="onepage-h" class="sec-h">MAGE in One Page</h2>\n'
+        '  <p class="sec-lead">MAGE begins with an old software-engineering problem and a new economic '
+        'condition. Large systems exceed the reasoning horizon of any one reasoner; commodity intelligence '
+        'makes implementation cheap and abundant relative to engineering judgment. The result is a new '
+        'imbalance—and an opportunity to move recurring engineering work into durable structure.</p>\n'
+        '  <p class="sec-lead">The six claims below walk through the figure and summarize the argument.</p>\n'
+        f'  <figure class="onepage-fig">{svg}</figure>\n'
+        '</section>')
 
 
 def _landing_big_ideas() -> str:
-    """The Big Ideas of the website argument, rendered from problem to research frontier: idea 1
-    (the New Engineering Problem) as the full-width lead band under the hero; Engineering Capital as one
-    band; the Two Theses as a CAUSAL pair — Modeling *creates surfaces for* Alignment (the labeled connector
-    is the new intellectual content); Governance-Conversion as its own band (the third named move, promoted
-    onto the main spine so the landing reads Modeling → Alignment → Governance-Conversion); the Engineered
-    Environment as a band; then Independent Convergence and the Research Agenda. new-problem / independent-convergence /
-    research-agenda render in bespoke band shapes fetched via `_big_idea_rec`; all nine ideas are now in
-    `_order` with a concept-<slug>.html ENTRY, so every band — these three, churn, the Engineered
-    Environment, and both thesis cells — links '→ read the concept'. The thesis pair cells carry the thesis
-    concepts' site ids (`card-modeling-principle` / `card-alignment-principle`)."""
-    by_slug = {r["_slug"]: r for r in _big_ideas_ordered()}
-    np = _big_idea_rec("new-problem") or {}
-    ic = _big_idea_rec("independent-convergence") or {}
-    ra = _big_idea_rec("research-agenda") or {}
-    parts: list[str] = []
-    # Idea 1 — the problem — the full-width lead band directly under the hero (folded into _order → concept).
-    parts.append(
-        f'<div class="idea-hero" id="{_attr(np.get("id", ""))}">\n'
-        f'  <figure class="ih-fig">{_idea_figure(np)}</figure>\n'
-        '  <div class="ih-words">\n'
-        f'    <p class="s-kick">{_esc(np.get("kicker", ""))}</p>\n'
-        f'    <h2 class="s-title">{_esc(np.get("title", ""))}</h2>\n'
-        f'    <p class="s-claim">{_esc(np.get("claim", ""))}</p>\n'
-        f'    {_concept_link(np.get("_slug", ""))}\n'
+    """The six CLAIMS as a vertically flowing NUMBERED sequence (not equal cards) — each an eyebrow
+    ('Claim N'), the book's exact claim heading, 1–2 explanatory paragraphs, a light figure-region cue, and
+    an optional 'Explore … →' link INTO book material (the book is authoritative for concepts). Each carries
+    its model `id` (check_big_ideas asserts it projects). Ends on the compact summary line. website-v3."""
+    raw = _load_big_ideas()
+    parts: list[str] = ['<section class="claims" aria-label="The six claims of MAGE">']
+    for rec in _big_ideas_ordered():
+        body = "\n".join(f'      <p>{_esc(p)}</p>' for p in rec.get("body", []))
+        region = rec.get("figure_region", "")
+        region_html = (f'\n      <p class="claim-region">In the figure: {_esc(region)}</p>'
+                       if region else "")
+        ex = rec.get("explore") or {}
+        explore = ""
+        if ex.get("href") and ex.get("label"):
+            explore = (f'\n      <p class="claim-explore"><a href="{_attr(ex["href"])}">'
+                       f'{_esc(ex["label"])} &#8594;</a></p>')
+        parts.append(
+            f'  <article class="claim" id="{_attr(rec.get("id", ""))}">\n'
+            f'    <p class="claim-kick">{_esc(rec.get("kicker", ""))}</p>\n'
+            f'    <div class="claim-body">\n'
+            f'      <h2 class="claim-h">{_esc(rec.get("claim", ""))}</h2>\n'
+            f'{body}{region_html}{explore}\n'
+            f'    </div>\n'
+            f'  </article>')
+    summ = raw.get("_summary_line", "")
+    if summ:
+        parts.append(f'  <p class="claims-summary">{_esc(summ)}</p>')
+    parts.append('</section>')
+    return "\n".join(parts)
+
+
+# ── website-v3 landing sections (260825): nav · hero · Learn · Use · Evidence · Research · CTA ──────
+def _v3_nav() -> str:
+    """Grouped conceptual nav: MAGE · Learn · Use · Evidence · Research + a GitHub utility icon. Each group
+    is a plain link to its landing SECTION anchor (the user's 'or go to section pages' option) — fully
+    keyboard-accessible, no dropdown focus trap. The sub-resources live in those sections."""
+    def cell(label, href):
+        return f'<a class="v3-nav-item" href="{_attr(href)}">{_esc(label)}</a>'
+    return (
+        '<nav class="v3-nav" aria-label="Primary">\n'
+        '  <a class="v3-nav-home" href="index.html">MAGE</a>\n'
+        '  <div class="v3-nav-groups">\n'
+        f'    {cell("Learn", "#learn")}\n'
+        f'    {cell("Use", "#use")}\n'
+        f'    {cell("Evidence", "#evidence")}\n'
+        f'    {cell("Research", "#research")}\n'
+        f'    <a class="v3-nav-gh" href="{_attr(_REPO_URL)}" aria-label="GitHub repository">{GITHUB_SVG}</a>\n'
         '  </div>\n'
-        '</div>')
-    parts.append('<hr class="i-sep" />')
-    # Idea 2 — Engineering Capital (churn vs compounding) — one band.
-    parts.append(_big_idea_band(by_slug["churn"]))
-    parts.append('<hr class="i-sep" />')
-    # Idea 3 — the Two Theses — a matched pair (the thesis concepts' site homes; both kickered "Big idea 3").
-    parts.append(
-        '<div class="pair pair-causal">\n'
-        + _thesis_cell(by_slug["modeling-principle"], "card-modeling-principle") + "\n"
-        + '  <div class="pair-arrow" aria-hidden="true">creates surfaces for &#8594;</div>\n'
-        + _thesis_cell(by_slug["alignment-principle"], "card-alignment-principle") + "\n"
-        + '</div>')
-    parts.append('<hr class="i-sep" />')
-    # Idea 4 — Governance-Conversion (convert recurring failures into controls) — the third named move,
-    # promoted onto the main spine so the landing reads Modeling → Alignment → Governance-Conversion.
-    parts.append(_big_idea_band(by_slug["convert-failures"]))
-    parts.append('<hr class="i-sep" />')
-    # Idea 5 — the Engineered Environment (the environment is the object of engineering) — one band.
-    parts.append(_big_idea_band(by_slug["governance-centric"], figright=True))
-    parts.append('<hr class="i-sep" />')
-    # Idea 6 — Independent Convergence — one band (folded into _order → concept).
-    parts.append(_big_idea_band(ic, link_html=_concept_link(ic.get("_slug", ""))))
-    parts.append('<hr class="i-sep" />')
-    # Idea 7 — the Research Agenda — enlarged full-width figure (folded into _order → concept).
-    parts.append(_big_idea_band(ra, bigfig=True, link_html=_concept_link(ra.get("_slug", ""))))
-    return "\n\n  ".join(parts)
+        '</nav>')
+
+
+def _v3_hero() -> str:
+    """The hero: the eyebrow question (core_question), the title, a descriptive lead (two paragraphs that
+    DEFINE MAGE without arguing), and three buttons. Evidence is deliberately not in the definition."""
+    q = (_load_big_ideas().get("core_question") or {}).get("question", "")
+    return (
+        '<header class="v3-hero">\n'
+        f'  <p class="v3-eyebrow">{_esc(q)}</p>\n'
+        '  <h1 class="v3-title">Model-Based Agentic Software Engineering</h1>\n'
+        '  <p class="v3-lead">Model-Based Agentic Software Engineering (MAGE) is an approach to software '
+        'engineering for environments in which AI agents perform substantial implementation work. It asks '
+        'what engineering knowledge should be made explicit, which obligations should have authority over '
+        'autonomous work, and how recurring failures and judgment can be converted into durable engineering '
+        'structure.</p>\n'
+        '  <p class="v3-lead">MAGE has two principles and a conversion loop: Modeling makes consequential '
+        'knowledge and intent explicit; Alignment gives important engineering obligations authority; '
+        'governance conversion turns recurring failures and judgment into structure that future work can '
+        'inherit.</p>\n'
+        '  <div class="v3-hero-btns">\n'
+        '    <a class="v3-btn v3-btn-primary" href="book/index.html">Read the book</a>\n'
+        '    <a class="v3-btn v3-btn-secondary" href="#onepage">Learn MAGE</a>\n'
+        '    <a class="v3-btn v3-btn-text" href="quick-start.html">Try MAGE &#8594;</a>\n'
+        '  </div>\n'
+        '</header>')
+
+
+def _v3_card(title: str, kicker: str, body: str, links: "list[tuple[str, str]]") -> str:
+    """A section card: optional kicker, title, one paragraph, and one-or-more action links."""
+    ls = " · ".join(f'<a href="{_attr(h)}">{_esc(t)} &#8594;</a>' for t, h in links)
+    return (
+        '    <article class="v3-card">\n'
+        + (f'      <p class="v3-card-kick">{_esc(kicker)}</p>\n' if kicker else "")
+        + f'      <h3 class="v3-card-h">{_esc(title)}</h3>\n'
+        f'      <p class="v3-card-body">{_esc(body)}</p>\n'
+        f'      <p class="v3-card-links">{ls}</p>\n'
+        '    </article>')
+
+
+def _v3_learn() -> str:
+    return (
+        '<section class="v3-sec" id="learn" aria-labelledby="learn-h">\n'
+        '  <h2 id="learn-h" class="sec-h">Learning MAGE</h2>\n'
+        '  <p class="sec-lead">MAGE can be approached at several levels, from a short introduction to a '
+        'complete course.</p>\n'
+        '  <div class="v3-cards v3-cards-3">\n'
+        + _v3_card("Blog", "Start with the short version",
+                   "A concise introduction to the problem that motivated MAGE and the central ideas behind the method.",
+                   [("Read the introduction", _BLOG_URL)]) + "\n"
+        + _v3_card("The MAGE Method", "Read the full treatment",
+                   "The book develops the argument from the changed economics of software engineering through Modeling, Alignment, the working method, empirical evidence, and implications for the profession.",
+                   [("Read the book", "book/index.html"), ("Download PDF", _PDF_HREF)]) + "\n"
+        + _v3_card("Course Materials", "Teach or study MAGE",
+                   "A reference software-engineering course and modular teaching materials for instructors and students, including readings, slides, exercises, project materials, and learning objectives.",
+                   [("Explore course materials", "teach/index.html")]) + "\n"
+        '  </div>\n</section>')
+
+
+def _v3_use() -> str:
+    return (
+        '<section class="v3-sec" id="use" aria-labelledby="use-h">\n'
+        '  <h2 id="use-h" class="sec-h">Using MAGE</h2>\n'
+        '  <p class="sec-lead">MAGE is a method rather than a prescribed toolchain. The site provides '
+        'practical resources for applying its ideas to an existing engineering environment.</p>\n'
+        '  <div class="v3-cards v3-cards-3 v3-cards-sm">\n'
+        + _v3_card("QuickStart", "",
+                   "Install the MAGE skills and begin identifying recurring reconstruction, judgment, and governance gaps in an existing repository.",
+                   [("Start with MAGE", "quick-start.html")]) + "\n"
+        + _v3_card("The Method", "",
+                   "Work through the practical cycle: model consequential knowledge, give obligations authority, do the governed work, and convert recurring failures.",
+                   [("Apply the method", "constructing-the-gee.html")]) + "\n"
+        + _v3_card("Mechanism Catalogue", "",
+                   "Browse concrete models, constraints, sensors, validators, gates, and compositions that can be adapted to different engineering systems.",
+                   [("Browse mechanisms", "catalogue-views.html")]) + "\n"
+        '  </div>\n</section>')
+
+
+def _v3_evidence() -> str:
+    return (
+        '<section class="v3-sec" id="evidence" aria-labelledby="evidence-h">\n'
+        '  <h2 id="evidence-h" class="sec-h">Evidence</h2>\n'
+        '  <p class="sec-lead">MAGE began with one production system observed in longitudinal depth and was '
+        'then compared with independently described industrial systems. The originating case provides '
+        'evidence about mechanism and sequence; the industrial cases provide variation and alternative '
+        'realizations. These sources motivate and test the theory, but they do not establish universal laws.</p>\n'
+        '  <div class="v3-cards v3-cards-2">\n'
+        + _v3_card("DocAble — depth", "",
+                   "The originating production system. Its development provides the longitudinal record from which the early MAGE concepts emerged.",
+                   [("Explore the originating case", "book/5.1-the-problem-and-the-bar.html")]) + "\n"
+        + _v3_card("Industrial cases — breadth", "",
+                   "Independent accounts from Cloudflare, Docker, Shopify, Spotify, Siemens, and Zenseact, reconstructed through the MAGE vocabulary to examine recurring moves, variation, and limits.",
+                   [("Explore the industrial cases", "industry-case-studies.html")]) + "\n"
+        '  </div>\n</section>')
+
+
+def _v3_research() -> str:
+    return (
+        '<section class="v3-sec" id="research" aria-labelledby="research-h">\n'
+        '  <h2 id="research-h" class="sec-h">Research</h2>\n'
+        '  <p class="sec-lead">MAGE is also a research program. Its claims raise empirical and technical '
+        'questions about what engineering knowledge should be externalized, which obligations can be made '
+        'authoritative, how governed environments evolve, and where human judgment remains necessary.</p>\n'
+        '  <p class="v3-btn-row">\n'
+        '    <a class="v3-btn v3-btn-secondary" href="theory.html">Read the theory &#8594;</a>\n'
+        '    <a class="v3-btn v3-btn-secondary" href="book/6.6-education-research-open-problems.html">Explore the research agenda &#8594;</a>\n'
+        '  </p>\n</section>')
+
+
+def _v3_cta() -> str:
+    return (
+        '<section class="v3-cta" aria-labelledby="cta-h">\n'
+        '  <h2 id="cta-h" class="sec-h">Go deeper</h2>\n'
+        '  <p class="sec-lead">Read the complete argument, apply the method, or use the teaching materials '
+        'to study MAGE in a software-engineering course.</p>\n'
+        '  <div class="v3-hero-btns">\n'
+        '    <a class="v3-btn v3-btn-primary" href="book/index.html">Read the book</a>\n'
+        '    <a class="v3-btn v3-btn-secondary" href="quick-start.html">Try MAGE</a>\n'
+        '    <a class="v3-btn v3-btn-secondary" href="teach/index.html">Course materials</a>\n'
+        '  </div>\n</section>')
 
 
 def _landing_closing() -> str:
@@ -3117,9 +3212,7 @@ def _theory_body() -> str:
                "intelligence writes the code, quality stops belonging to any single change and becomes a "
                "property of the environment every change passes through. The theory says how to build that "
                "environment, and why the building compounds instead of dissipating.")
-    md1.append("It all answers one question: *how do we safely grant autonomy to commodity intelligence?* "
-               "The [Big Question page](big-question.html) traces the through-line from that question to the "
-               "ideas that answer it.")
+    md1.append("It all answers one question: *how do we safely grant autonomy to commodity intelligence?*")
     md1.append("## One circulation, two arcs")
     md1.append("One circulation runs through a single shared hub, the governed engineering environment, read "
                "as two complementary arcs. Along the **modeling arc**, the environment provides structured "
@@ -4169,37 +4262,10 @@ def cmd_build(_args) -> int:
     n_concept = 0
     md_files = sorted(catalogue_md_files())
     by_path = {e.path: e for e in entries}
-    # Two-tier Concept ENTRIES: root-level `concept-<slug>.md`, hand-authored (Option B), rendered here with
-    # the model PROJECTED IN — the `<!-- more -->` directive fills from the concept's `more` (so the
-    # reasoning-horizon reframe of `more` flows straight into the entry), and each positional
-    # `<!-- fig: N -->` directive resolves against the model's figure list (fig[0] = the shared brick
-    # `figure`, fig[1..] = `entry_figures`), so the entry stays the model's projection for its figures + lead
-    # while the prose is hand-authored. The landing brick's "→ read the concept" link is the inbound edge
-    # the orphan gate needs; CC6 pins the entry's card + title + claim against the model.
-    bm_dir = os.path.join(ROOT, "book-models")
-    if bm_dir not in sys.path:
-        sys.path.insert(0, bm_dir)
-    import landing_big_ideas_model as lbi  # noqa: E402 — the two-tier Concept model + projectors
-    _concepts_by_slug = {c.slug: c for c in lbi.derive_model().concepts}
-
-    def _project_concept_entry(slug: str, raw_md: str) -> "str | None":
-        """Project the model into a concept entry's markdown before render_md: fill `<!-- more -->` from the
-        model `more`, and rewrite each positional `<!-- fig: N -->` to the asset-form directive render_md
-        splices (0 = the brick figure). Returns None if the slug is not a modeled concept."""
-        c = _concepts_by_slug.get(slug)
-        if c is None:
-            return None
-        figs = lbi.concept_figures(c)
-        out_md = raw_md.replace("<!-- more -->", c.intuition)
-
-        def _fig(m):
-            k = int(m.group(1))
-            if 0 <= k < len(figs):
-                asset, cap = figs[k]
-                return f"<!-- fig: {asset} | {cap} -->"
-            return ""  # out-of-range positional → consume, never leak
-        return re.sub(r"<!--\s*fig:\s*(\d+)\s*-->", _fig, out_md)
-
+    # website-v3 (route a, 260825): the nine standalone concept-<slug>.html pages + their two-tier model
+    # (landing_big_ideas_model.py) are RETIRED — the BOOK is authoritative for concepts; the landing is a
+    # concise map that links into book material for depth. The concept-<slug>.md sources are skipped below
+    # (never rendered; nothing links them, so rendering would orphan them).
     for f in md_files:
         rel = os.path.relpath(f, ROOT)
         depth = rel.count(os.sep)
@@ -4209,14 +4275,7 @@ def cmd_build(_args) -> int:
         e = by_path.get(rel)
         title = (re.search(r"^# (.+)$", md, re.M) or [None, rel])[1]
         if os.sep not in rel and rel.startswith("concept-") and rel.endswith(".md"):
-            slug = rel[len("concept-"):-3]
-            entry_md = _project_concept_entry(slug, md)
-            if entry_md is not None:  # a modeled concept entry — render with figures + `more` projected in
-                crumb = _crumb("", [("Concepts", "index.html#concepts"), (title, "")])
-                html = _page(title, crumb, render_md(entry_md), rel_root="")
-                open(f[:-3] + ".html", "w", encoding="utf-8").write(html)
-                n_concept += 1
-                continue
+            continue  # retired concept page — skip its source (nothing links it; the book is authoritative)
         if rel == ABBR_SRC:  # the glossary — id-anchored sections so `#slug` targets resolve
             body = build_abstractions_body(md, _ABBR_MAP)
             html = _page(title, _crumb(rel_root, [(title, "")]), body, rel_root=rel_root)
@@ -4248,12 +4307,13 @@ def cmd_build(_args) -> int:
     # enumeration and no back-matter reference strip. The entries' inbound links (for the reachability gate)
     # come from catalogue-views.html (the "Full catalogue" card target), which enumerates every entry.
     # The hero carries NO cover figure — the Big Idea 1 churn flowchart is the landing's lead visual now.
-    landing_body = (NAV_GRID + "\n" + LANDING_INTRO.format(
-        book_title_block=_book_title_block(),
-        theory_glance=_landing_theory_glance(),
-        big_ideas=_landing_big_ideas(),
-        closing=_landing_closing(),
-    ) + '\n  <hr class="sep" />\n  ' + _landing_demoted_ideas())
+    # website-v3 (260825): the landing is a concise map of the book's argument — grouped nav, a descriptive
+    # hero, the canonical MAGE-on-one-page figure, the six claims, then Learn / Use / Evidence / Research and
+    # a go-deeper CTA. The book is authoritative for concepts; claims link into book material for depth.
+    landing_body = "\n".join([
+        _v3_nav(), _v3_hero(), _v3_onepage_figure(), _landing_big_ideas(),
+        _v3_learn(), _v3_use(), _v3_evidence(), _v3_research(), _v3_cta(),
+    ])
     landing = (f"<!doctype html>\n<html lang=\"en\">\n{GENERATED_BANNER}\n<head>\n"
                f'<meta charset="utf-8" />\n<meta name="viewport" content="width=device-width, initial-scale=1" />\n'
                f"<title>MAGE — Model-Based Agentic Software Engineering</title>\n{FONTS_LINK}\n"
@@ -4290,13 +4350,8 @@ def cmd_build(_args) -> int:
                    _crumb("", [("The theory of MAGE", "")]),
                    _theory_body(), rel_root="")
     open(os.path.join(ROOT, _THEORY_PAGE), "w", encoding="utf-8").write(theory)
-    # The standalone Big Question page — projects the Big-Ideas model's core_question node (the question, its
-    # software specialization, the three-step through-line, and the answer-constituent ideas). Reachable from
-    # the landing hero's 'why this question →' link and the Theory page (its orphan-gate inbound edges).
-    big_question = _page("The Big Question",
-                         _crumb("", [("The Big Question", "")]),
-                         _big_question_body(), rel_root="")
-    open(os.path.join(ROOT, _BIG_QUESTION_PAGE), "w", encoding="utf-8").write(big_question)
+    # website-v3 (260825): the standalone Big Question page is RETIRED with the concept machinery — the
+    # landing hero now carries the core question directly, and the book is authoritative for the answer.
     n_ic = 0
     for rec in ic_authored:
         cid = rec.get("id", "")
