@@ -1105,17 +1105,17 @@
             {
               "slug": "the-second-boundary-is-the-action-one-attempted-side-effect",
               "text": "The first authority-bearing boundary is the action: one attempted side effect the harness can inspect or refuse.",
-              "block_index": 20
+              "block_index": 23
             },
             {
               "slug": "the-third-boundary-is-the-work-unit-a-meaningful-unit-of-many-actions",
               "text": "The second authority-bearing boundary is the work unit, where whole-work obligations become legible.",
-              "block_index": 23
+              "block_index": 26
             },
             {
               "slug": "the-fourth-boundary-is-the-artifact-or-runtime-forbidden-state-made-unexpressible",
               "text": "The third authority-bearing boundary is the artifact or runtime: forbidden state made impossible to express or accept.",
-              "block_index": 26
+              "block_index": 29
             }
           ]
         },
@@ -1125,17 +1125,17 @@
           "heading_text": "Placement and Strength Are Different Decisions",
           "topic_sentence": "The four boundaries do not form a monotonic scale from weak to strong.",
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 32,
           "points": [
             {
               "slug": "the-four-boundaries-do-not-form-a-monotonic-scale",
               "text": "The four boundaries do not form a monotonic weak-to-strong scale.",
-              "block_index": 31
+              "block_index": 34
             },
             {
               "slug": "guidance-belongs-on-the-map-but-not-on-the-same-axis-docker-matters",
               "text": "Guidance can be placed alongside these boundaries but not confused with authority; this is why substantial Alignment can exist with little modeling.",
-              "block_index": 33
+              "block_index": 36
             }
           ]
         },
@@ -1145,27 +1145,27 @@
           "heading_text": "Return Evidence at the Earliest Useful Boundary",
           "topic_sentence": "The boundaries also decide where feedback can return.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 38,
           "points": [
             {
               "slug": "every-boundary-determines-where-feedback-can-return",
               "text": "Every boundary also determines where feedback can return; earlier evidence means less to reconstruct.",
-              "block_index": 37
+              "block_index": 40
             },
             {
               "slug": "these-mechanisms-do-not-act-independently-deferred-to-3-5",
               "text": "These mechanisms do not act independently; the interplay is its own problem, deferred to §3.5.",
-              "block_index": 41
+              "block_index": 44
             },
             {
               "slug": "the-alignment-principle-stated-whole",
               "text": "The Alignment Principle, stated whole: give engineering obligations authority by encoding them into mechanisms — constrain, sense, evaluate, admit — which can act directly, models enlarging their reach.",
-              "block_index": 43
+              "block_index": 46
             },
             {
               "slug": "alignment-installed-at-a-boundary-is-easiest-to-see-in-systems-already-running-it",
               "text": "Authority installed at a boundary is easiest to see in systems already running it.",
-              "block_index": 47
+              "block_index": 50
             }
           ]
         }
@@ -4258,7 +4258,7 @@
           "heading_text": "Where Engineering Effort Moves",
           "topic_sentence": "Implementation shifts; responsibility does not.",
           "id_source": "derived",
-          "block_index": 45,
+          "block_index": 47,
           "points": []
         },
         {
@@ -4267,7 +4267,7 @@
           "heading_text": "Review When Implementation Is Abundant",
           "topic_sentence": "Code review does not disappear when agents produce the code.",
           "id_source": "derived",
-          "block_index": 51,
+          "block_index": 53,
           "points": []
         }
       ],
