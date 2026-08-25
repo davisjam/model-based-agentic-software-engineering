@@ -1,0 +1,5 @@
+# Teach-with-MAGE site toolchain (SEPARATE from catalog.py, which stays stdlib-only).
+# Pinned for reproducible local + CI builds. Local: python3 -m venv .venv && .venv/bin/pip install -r site/requirements.txt
+mkdocs==1.6.1
+mkdocs-material==9.7.7
+mkdocs-awesome-pages-plugin==2.10.1

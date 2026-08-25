@@ -1,0 +1,63 @@
+# Teach with MAGE — course companion site (MkDocs Material).
+# Builds the authoritative Markdown in ../course into a static site served at the /teach/ subpath of the
+# repository's single GitHub Pages deployment (the catalogue + book occupy the root). Source is NOT
+# duplicated: MkDocs reads course/ directly. Local preview:  python3 -m mkdocs serve -f site/mkdocs.yml
+site_name: Teach with MAGE
+site_description: A course companion for teaching software engineering with MAGE (Model-based Agentic Engineering).
+# The Pages base path (no custom domain) + the /teach/ subpath. use_directory_urls keeps internal links
+# relative, so they resolve both locally and under this hosted base.
+site_url: https://davisjam.github.io/model-based-agentic-software-engineering/teach/
+repo_url: https://github.com/davisjam/model-based-agentic-software-engineering
+edit_uri: edit/main/course/
+copyright: >
+  Teaching materials © James C. Davis and Steve France, licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+
+docs_dir: ../course
+use_directory_urls: true
+strict: true  # fail the build on a bad internal link or nav reference (link-integrity gate)
+
+# README.md + LICENSE under course/ are repo-facing, not site pages.
+exclude_docs: |
+  README.md
+  LICENSE
+
+theme:
+  name: material
+  features:
+    - navigation.sections   # top-level views as sections, not a deep tree
+    - navigation.top        # back-to-top
+    - navigation.indexes    # a section's index.md is its landing page
+    - content.action.edit   # "edit this page" → the source under course/
+    - toc.follow
+  palette:
+    # Restrained, single accessible accent; light/dark toggle for reader preference.
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: indigo
+      toggle: { icon: material/weather-night, name: Switch to dark mode }
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: indigo
+      toggle: { icon: material/weather-sunny, name: Switch to light mode }
+  font: false  # no webfont fetch; use the system stack (privacy + no external request)
+
+plugins:
+  - search
+  - awesome-pages   # nav follows the course/ tree + .pages titles; add a lecture, it appears (no config edit)
+
+hooks:
+  - hooks/schedule.py    # generate the 16-week at-a-glance table from lecture front matter
+  - hooks/materials.py   # render a "Materials" section (links to pptx / typst / pdf) from `materials:` front matter
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc: { permalink: true }
+  - pymdownx.superfences
+
+extra:
+  social: []

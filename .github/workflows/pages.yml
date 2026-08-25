@@ -117,12 +117,22 @@ jobs:
       # book/ Puppeteer + bundled Chromium already installed above.
       - name: Console-error gate (no pageerror / console.error on any served page)
         run: python3 catalog.py check-console
-      - name: Assemble site artifact (exclude .git / node_modules / .github; KEEP book/mage-book.pdf)
+      # ── Teach-with-MAGE course companion (MkDocs Material → /teach) ─────────────────────────────
+      # The teaching site is a SEPARATE, pinned toolchain (course/ Markdown is the source; catalog.py stays
+      # stdlib-only). It builds into _site/teach so it serves at the /teach/ subpath of this repo's single
+      # Pages deployment (the catalogue + book own the root). `strict` in mkdocs.yml fails the build on any
+      # broken internal link (the teach-site link-integrity gate). The raw course/ + site/ sources are
+      # excluded from the served artifact below (only the rendered /teach/ ships).
+      - name: Build Teach-with-MAGE course site (MkDocs → _site/teach)
+        run: |
+          python3 -m pip install --require-hashes=false -r site/requirements.txt
+          python3 -m mkdocs build --strict -f site/mkdocs.yml -d _site/teach
+      - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site sources; KEEP book/mage-book.pdf + _site/teach)
         run: |
           mkdir -p _site
           rsync -a --exclude='.git' --exclude='node_modules' --exclude='.github' \
                 --exclude='__pycache__' --exclude='_site' --exclude='book/_print' \
-                --exclude='book/_typst' ./ _site/
+                --exclude='book/_typst' --exclude='course' --exclude='site' ./ _site/
           PDF="book/$(python3 -c "import json; print(json.load(open('book/book-manifest.json'))['pdf_filename'])")"
           test -f "_site/$PDF" || { echo "ERROR: $PDF missing from site artifact"; exit 1; }
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5

@@ -2698,6 +2698,7 @@ def _landing_closing() -> str:
          "six industrial systems, read through MAGE"),
         ("Full catalogue", "catalogue-views.html", "every mechanism, by role · model · enforcement"),
         ("Book", "book/index.html", "the full treatment of the method"),
+        ("Teach with MAGE", "teach/index.html", "learning materials — a course companion for instructors"),
         ("Claude quickstart", "quick-start.html", "install the skills in your repo"),
         ("Read the MAGE blog post", _BLOG_URL, "the short version, on Medium"),
     ]
@@ -2711,7 +2712,7 @@ def _landing_closing() -> str:
         'under which fast code can be trusted — the machine can search faster than any of us, but it cannot '
         'tell us what is worth searching for. So start with one recurring failure your agents keep handing '
         'you, and convert it: one type, one lint, one gate. The theory and methodology grow from there; below '
-        'are six ways in.</p>\n'
+        'are seven ways in.</p>\n'
         f'  <div class="close-ways">\n    {buttons}\n  </div>\n'
         '</section>')
 
