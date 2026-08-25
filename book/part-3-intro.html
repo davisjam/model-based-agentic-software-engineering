@@ -89,11 +89,6 @@ nav.toc a { color: var(--ink); text-decoration: none; display: block; padding: 2
 nav.toc a:hover { color: var(--accent); }
 nav.toc a.current { color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
                      padding-left: calc(1rem - 2px); }
-/* The blog-post link rides the top nav's flex row opposite the ☰ Contents summary — an inline accent link,
-   overriding the block/indent the chapter `<a>` rule sets. */
-nav.toc a.toc-blog { display: inline; color: var(--accent); font-weight: 600; padding: 0;
-                      white-space: nowrap; }
-nav.toc a.toc-blog:hover { text-decoration: underline; }
 header.chap { padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }
 header.chap .kicker { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
                        text-transform: uppercase; }
@@ -775,7 +770,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap part-page" aria-label="Part 3 · Alignment — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 3</a></div><h1>Alignment</h1></header><p>Part 2 made engineering knowledge and intent explicit. Those models already provide value: they let engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from lower-level detail. This Part asks a different question. <strong>Which of those properties express engineering obligations the environment should hold, and how should it hold them?</strong></p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap part-page" aria-label="Part 3 · Alignment — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 3</a></div><h1>Alignment</h1></header><p>Part 2 made engineering knowledge and intent explicit. Those models already provide value: they let engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from lower-level detail. This Part asks a different question. <strong>Which of those properties express engineering obligations the environment should hold, and how should it hold them?</strong></p>
 <p>Alignment is the move from guidance to authority. Some obligations require no rich system model: a permission can forbid network access, a type can rule out an illegal value, a sandbox can make an action unavailable. Explicit models extend that reach. Once architecture, ownership, behavior, measurement, or policy is represented at the level where the property exists, the environment can govern questions that an agent or human would otherwise have to reconstruct from lower-level detail.</p>
 <blockquote class="box-canonical"><p class="inset-title">Alignment principle</p>
 <p>Give engineering obligations authority by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.</p>

@@ -89,11 +89,6 @@ nav.toc a { color: var(--ink); text-decoration: none; display: block; padding: 2
 nav.toc a:hover { color: var(--accent); }
 nav.toc a.current { color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
                      padding-left: calc(1rem - 2px); }
-/* The blog-post link rides the top nav's flex row opposite the ☰ Contents summary — an inline accent link,
-   overriding the block/indent the chapter `<a>` rule sets. */
-nav.toc a.toc-blog { display: inline; color: var(--accent); font-weight: 600; padding: 0;
-                      white-space: nowrap; }
-nav.toc a.toc-blog:hover { text-decoration: underline; }
 header.chap { padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }
 header.chap .kicker { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
                        text-transform: uppercase; }
@@ -775,7 +770,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="current" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Colophon — Dogfooding MAGE — MAGE"><header class="chap"><div class="kicker"><a href="colophon.html" aria-label="Beginning of Back Matter">Back Matter</a></div><h1>Colophon — Dogfooding MAGE</h1></header><blockquote class="aside-sidenote"><p><em>A colophon is the note a book keeps about its own making — traditionally set near the end, where the typeface, the press, and the hands that set the type are recorded.</em></p></blockquote>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Colophon — Dogfooding MAGE — MAGE"><header class="chap"><div class="kicker"><a href="colophon.html" aria-label="Beginning of Back Matter">Back Matter</a></div><h1>Colophon — Dogfooding MAGE</h1></header><blockquote class="aside-sidenote"><p><em>A colophon is the note a book keeps about its own making — traditionally set near the end, where the typeface, the press, and the hands that set the type are recorded.</em></p></blockquote>
 <p>In a typical colophon, I would tell you about the font. The book was set in Source Serif, with Source Sans for headings. Tradition satisfied.</p>
 <p>This book was built and revised using some of the same engineering ideas it describes.</p>
 <p>During editing, important properties of the manuscript were represented explicitly rather than left entirely in prose or editorial memory. Models tracked properties and obligations such as chapter identity, the argument spine, claims, terminology, evidence relationships, and book structure. Generated projections and consistency checks helped keep those representations synchronized as the manuscript changed.</p>

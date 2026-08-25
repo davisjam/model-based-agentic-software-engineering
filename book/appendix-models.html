@@ -89,11 +89,6 @@ nav.toc a { color: var(--ink); text-decoration: none; display: block; padding: 2
 nav.toc a:hover { color: var(--accent); }
 nav.toc a.current { color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
                      padding-left: calc(1rem - 2px); }
-/* The blog-post link rides the top nav's flex row opposite the ☰ Contents summary — an inline accent link,
-   overriding the block/indent the chapter `<a>` rule sets. */
-nav.toc a.toc-blog { display: inline; color: var(--accent); font-weight: 600; padding: 0;
-                      white-space: nowrap; }
-nav.toc a.toc-blog:hover { text-decoration: underline; }
 header.chap { padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }
 header.chap .kicker { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
                        text-transform: uppercase; }
@@ -775,7 +770,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix C — Model Reference — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">Appendix C — Model Reference</a></div><h1>Appendix C — Model Reference</h1></header><p>Parts II–IV introduce only the model detail needed for the engineering argument. This appendix collects the principal schemas, invariants, derivation directions, and correspondence machinery for those models.</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · Appendix C — Model Reference — MAGE"><header class="chap"><div class="kicker"><a href="appendix-models.html" aria-label="Beginning of Appendix C — Model Reference">Appendix C — Model Reference</a></div><h1>Appendix C — Model Reference</h1></header><p>Parts II–IV introduce only the model detail needed for the engineering argument. This appendix collects the principal schemas, invariants, derivation directions, and correspondence machinery for those models.</p>
 <p>Each model begins with an engineering question and uses the smallest representation that makes the relevant property explicit. The forms here are reference patterns, not a required inventory.</p>
 <p>The appendix serves as both a reference and a pattern book: the representations are specific enough to expose their engineering properties but general enough to adapt to other systems. Each section also separates what the model represents from the machinery that may later give selected declarations authority.</p>
 <p><strong>Each section answers the same four questions:</strong></p>

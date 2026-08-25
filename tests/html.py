@@ -111,6 +111,37 @@ def check_book_html_tracking():
     return (FAIL if issues else PASS), issues
 
 
+#: The MAGE companion blog post (Medium). It is a deliberate LANDING/site link (the front-page learning
+#: materials organize the ways in), but the HTML BOOK must not send an in-book reader back out to it — the
+#: book is the authoritative long form. This host substring is the join key the gate below forbids inside
+#: any book/*.html page.
+_BLOG_HOST_IN_BOOK_FORBIDDEN = "davisjam.medium.com"
+
+
+def check_book_no_blogpost_link():
+    """No page of the HTML book links to the companion blog post. The book is the authoritative long form;
+    once a reader is inside it, a call-to-action back to the Medium post is confusing (the front-page
+    learning-materials section owns that hand-off now). Scans every built book/*.html for the blog host —
+    a cheap, deterministic substring gate that keeps the link from creeping back into a book template or a
+    chapter. The blog link elsewhere on the site (the landing 'Learn' section) is intentionally NOT in
+    scope here — this gate is book-only."""
+    import glob
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    book_glob = os.path.join(root, "book", "*.html")
+    issues = []
+    for f in sorted(glob.glob(book_glob)):
+        try:
+            text = open(f, encoding="utf-8").read()
+        except OSError:
+            continue
+        if _BLOG_HOST_IN_BOOK_FORBIDDEN in text:
+            issues.append(
+                f"book/{os.path.basename(f)}: links to the blog post ({_BLOG_HOST_IN_BOOK_FORBIDDEN}) — "
+                f"the HTML book must not send readers to it (fix the source in book/build_book.py, not the "
+                f"generated HTML)")
+    return (FAIL if issues else PASS), issues
+
+
 class _IdCollector(HTMLParser):
     """Collects every element id (WITH repeats) so within-page duplicates can be found."""
 

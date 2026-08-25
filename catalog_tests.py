@@ -86,6 +86,7 @@ from tests.deploy import check_deploy_publishable
 from tests.external import check_axe, check_axe_coverage_set, check_claude_validate, check_html_valid
 from tests.html import (
     check_book_html_tracking,
+    check_book_no_blogpost_link,
     check_concepts_book_home,
     check_concepts_drift,
     check_concepts_hierarchy,
@@ -192,6 +193,7 @@ CHECKS = [
     Check("book: Part-opener foreshadow claims trace to spine + argument anchor + Part chapters (part-opener-traceability)", 1,
           lambda strict: check_part_opener_traceability()),
     Check("html: book/*.html <-> build outputs (no orphans, present + non-empty)", 1, lambda strict: check_book_html_tracking()),
+    Check("html: no HTML-book page links to the companion blog post (book-only; landing link kept)", 1, lambda strict: check_book_no_blogpost_link()),
     Check("book: every float introduced by a [ref:] cross-ref (book-float-ref)", 1, lambda strict: check_float_ref_gate()),
     # BLOCKING (green at landing): no table caption stranded on a page while its body flows to the next (the
     # 260805 Table 7.2-1 report). Runs the rendered-PDF caption-orphan sensor against book/mage-book.pdf when

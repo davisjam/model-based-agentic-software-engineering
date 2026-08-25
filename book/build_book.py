@@ -46,8 +46,6 @@ HERE = pathlib.Path(__file__).resolve().parent
 # Single source of truth for the book's cover identity — book-manifest.json (also read by catalog.py).
 _BOOK_MANIFEST = json.loads((HERE / "book-manifest.json").read_text(encoding="utf-8"))
 _PDF_FILENAME = _BOOK_MANIFEST["pdf_filename"]  # single source: the manifest
-# The book's companion Medium post — a site-only nav link beside the PDF download (no book-body counterpart).
-_BLOG_POST_URL = "https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45"
 
 
 def _cover_sub(cls: str) -> str:
@@ -2089,11 +2087,6 @@ nav.toc a {{ color: var(--ink); text-decoration: none; display: block; padding: 
 nav.toc a:hover {{ color: var(--accent); }}
 nav.toc a.current {{ color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
                      padding-left: calc(1rem - 2px); }}
-/* The blog-post link rides the top nav's flex row opposite the ☰ Contents summary — an inline accent link,
-   overriding the block/indent the chapter `<a>` rule sets. */
-nav.toc a.toc-blog {{ display: inline; color: var(--accent); font-weight: 600; padding: 0;
-                      white-space: nowrap; }}
-nav.toc a.toc-blog:hover {{ text-decoration: underline; }}
 header.chap {{ padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }}
 header.chap .kicker {{ color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
                        text-transform: uppercase; }}
@@ -2821,8 +2814,6 @@ def toc_html(chapters: list[dict], current_slug: str | None) -> str:
         '<nav class="toc" aria-label="Table of contents"><div class="toc-inner"><details>'
         "<summary>☰&nbsp; Contents</summary>"
         f'<ol>{inner}</ol></details>'
-        f'<a class="toc-blog" href="{_BLOG_POST_URL}" target="_blank" rel="noopener">'
-        'Read the MAGE blog post ↗</a>'
         '</div></nav>'
     )
 
@@ -7158,8 +7149,7 @@ def build() -> int:
         f'{_cover_sub("sub")}'
         # PDF edition — a CI-published artifact at book/mage-book.pdf on the deployed site (a purely-local
         # checkout without the CI render will 404 this; that is expected).
-        f'<div class="book-download"><a href="{_PDF_FILENAME}">Download the PDF edition ↓</a>'
-        f'<a href="{_BLOG_POST_URL}" target="_blank" rel="noopener">Read the blog post ↗</a></div>'
+        f'<div class="book-download"><a href="{_PDF_FILENAME}">Download the PDF edition ↓</a></div>'
         '</div>'
     )
     foot = f'<div class="book-foot">{html.escape(COPYRIGHT)}</div>'

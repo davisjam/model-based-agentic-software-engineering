@@ -89,11 +89,6 @@ nav.toc a { color: var(--ink); text-decoration: none; display: block; padding: 2
 nav.toc a:hover { color: var(--accent); }
 nav.toc a.current { color: var(--accent); font-weight: 600; border-left: 2px solid var(--accent);
                      padding-left: calc(1rem - 2px); }
-/* The blog-post link rides the top nav's flex row opposite the ☰ Contents summary — an inline accent link,
-   overriding the block/indent the chapter `<a>` rule sets. */
-nav.toc a.toc-blog { display: inline; color: var(--accent); font-weight: 600; padding: 0;
-                      white-space: nowrap; }
-nav.toc a.toc-blog:hover { text-decoration: underline; }
 header.chap { padding: 2.6rem 0 1.2rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.6rem; }
 header.chap .kicker { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
                        text-transform: uppercase; }
@@ -775,7 +770,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details><a class="toc-blog" href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45" target="_blank" rel="noopener">Read the MAGE blog post ↗</a></div></nav><main class="wrap" aria-label="Chapter 24 · Building DocAble — MAGE"><header class="chap"><div class="kicker"><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">Part 5 — The Evidence</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 24</a></div><h1><span class="chap-num">5.2</span> Building DocAble</h1></header><blockquote class="box-evidence"><p class="inset-title" id="illustrates">This chapter illustrates</p>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 24 · Building DocAble — MAGE"><header class="chap"><div class="kicker"><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">Part 5 — The Evidence</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 24</a></div><h1><span class="chap-num">5.2</span> Building DocAble</h1></header><blockquote class="box-evidence"><p class="inset-title" id="illustrates">This chapter illustrates</p>
 <p>✓ The Printer · ✓ The Governed Engineering Environment</p></blockquote>
 <p>The next evidentiary question is chronology and scale: how a five-minute feasibility experiment became a production system developed faster than one reviewer could follow line by line. Later chapters reconstruct what particular events taught. Here the purpose is simpler: establish <strong>what changed, when it changed, and how much engineering structure accumulated around the product</strong>.</p>
 <p>Over roughly 20 weeks, one primary engineer directing a coding-agent fleet produced the application, its tests and tooling, its infrastructure, and the system models used to reason about it. <a class="xref" href="5.2-the-build.html#tbl-5-2-1">Table&nbsp;5.2-1</a> gives one late-study snapshot (2026-08-03). The counts are descriptive, not a productivity claim. The condition that matters is scale: implementation volume had moved beyond anything one person could inspect by reading every diff.</p>
