@@ -7,7 +7,7 @@
     "derived_ids": 171,
     "missing_topic_sentence": 1,
     "sections_drained": 124,
-    "paragraph_points": 497
+    "paragraph_points": 498
   },
   "chapters": [
     {
@@ -2879,29 +2879,34 @@
               "block_index": 23
             },
             {
+              "slug": "dci-is-one-realization-observe-select-inject",
+              "text": "Dynamic context injection is one realization: observe properties of the task, work surface, or lifecycle state; select the relevant engineering knowledge; and inject it into the agent's working context.",
+              "block_index": 25
+            },
+            {
               "slug": "keep-standing-context-small-enough-to-genuinely-remain-standing",
               "text": "Keep standing context small enough that it can genuinely remain standing; retrieve richer slices according to the work.",
-              "block_index": 26
+              "block_index": 28
             },
             {
               "slug": "context-has-a-cost-more-guidance-is-not-automatically-better",
               "text": "Context has a cost: it consumes tokens, attention, and reasoning capacity, and stale guidance can actively misdirect work.",
-              "block_index": 29
+              "block_index": 31
             },
             {
               "slug": "treat-context-delivery-as-an-engineering-intervention-and-measure-its-effect",
               "text": "Treat context delivery as an engineering intervention and measure its effect: compare with and without, task success first, then diagnostics.",
-              "block_index": 31
+              "block_index": 33
             },
             {
               "slug": "the-model-based-pilot-is-one-example-of-testing-whether-engineered-context-does-what-we-claim",
               "text": "The model-based engineering pilot is one example of testing whether engineered context does what we claim, not the point itself.",
-              "block_index": 33
+              "block_index": 35
             },
             {
               "slug": "context-delivery-changes-what-the-reasoner-can-see-not-what-the-environment-permits",
               "text": "Context delivery changes what the reasoner can see; it does not, by itself, change what the environment will permit — the bridge back to Part III.",
-              "block_index": 35
+              "block_index": 37
             }
           ]
         },
@@ -2911,32 +2916,32 @@
           "heading_text": "Self-Governance: Engineering the Environment",
           "topic_sentence": "Self-governance packages Modeling and Alignment as a procedure the agent can apply to its own engineering work.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 39,
           "points": [
             {
               "slug": "recurrence-is-evidence-the-environment-may-be-missing-something-durable",
               "text": "Recurrence is evidence the environment may be missing something durable — not always a new control.",
-              "block_index": 39
+              "block_index": 41
             },
             {
               "slug": "the-skill-carries-a-catalogue-and-a-procedure-for-fitting-it",
               "text": "The skill carries a model of the method, not a catalogue of preferred controls.",
-              "block_index": 42
+              "block_index": 44
             },
             {
               "slug": "rules-bind-only-where-a-mechanism-gives-them-consequence",
               "text": "Rules in boot context bind only where a mechanism gives them consequence.",
-              "block_index": 45
+              "block_index": 47
             },
             {
               "slug": "a-passive-skill-needs-a-hook-and-surfaces-the-design-forks",
               "text": "A passive skill needs a hook to fire it; it resolves the classifiable cases and surfaces the design forks.",
-              "block_index": 50
+              "block_index": 52
             },
             {
               "slug": "avoid-a-teetering-tower-capital-can-depreciate",
               "text": "Durable engineering assets can become capital and can depreciate: watch for the teetering tower.",
-              "block_index": 52
+              "block_index": 54
             }
           ]
         },
@@ -2946,7 +2951,7 @@
           "heading_text": "Governance must earn its carrying cost",
           "topic_sentence": "Governance mechanisms and other durable engineering assets can become capital when their continuing value exceeds their carrying cost; they can also depreciate.",
           "id_source": "derived",
-          "block_index": 54,
+          "block_index": 56,
           "points": []
         },
         {
@@ -2955,17 +2960,17 @@
           "heading_text": "Self-Operate: Running the Environment",
           "topic_sentence": "Self-operate packages the previous chapter's lifecycles, recovery paths, runbook step types, and operating heuristics.",
           "id_source": "derived",
-          "block_index": 57,
+          "block_index": 59,
           "points": [
             {
               "slug": "self-operate-packages-the-previous-chapters-operating-discipline",
               "text": "Self-operate packages the previous chapter's lifecycles, recovery paths, and runbook step types.",
-              "block_index": 59
+              "block_index": 61
             },
             {
               "slug": "the-skill-makes-operating-procedure-repeatable-not-authoritative",
               "text": "The skill makes operating procedure repeatable; it does not replace the underlying tools or gates.",
-              "block_index": 62
+              "block_index": 64
             }
           ]
         },
@@ -2975,17 +2980,17 @@
           "heading_text": "Self-Communicate: a Boundary Test",
           "topic_sentence": "Self-communicate packages a different craft: engineer-facing prose and technical drawing.",
           "id_source": "derived",
-          "block_index": 68,
+          "block_index": 70,
           "points": [
             {
               "slug": "self-communicate-packages-a-farther-craft-through-the-same-skeleton",
               "text": "Self-communicate packages a farther craft — prose and drawing — through the same skeleton.",
-              "block_index": 70
+              "block_index": 72
             },
             {
               "slug": "the-third-skill-is-a-boundary-test-not-a-third-pillar",
               "text": "The third skill is a boundary test for the architecture, not a third pillar of MAGE.",
-              "block_index": 73
+              "block_index": 75
             }
           ]
         }
@@ -4247,7 +4252,7 @@
           "section_id": "reasoning-compiled-into-the-environment",
           "level": 3,
           "heading_text": "Reasoning compiled into the environment",
-          "topic_sentence": "Portions of recurring reasoning can be moved into the environment itself.",
+          "topic_sentence": "Part IV's dynamic context injection provides a concrete example.",
           "id_source": "derived",
           "block_index": 42,
           "points": []
@@ -4258,7 +4263,7 @@
           "heading_text": "Where Engineering Effort Moves",
           "topic_sentence": "Implementation shifts; responsibility does not.",
           "id_source": "derived",
-          "block_index": 47,
+          "block_index": 45,
           "points": []
         },
         {
@@ -4267,7 +4272,7 @@
           "heading_text": "Review When Implementation Is Abundant",
           "topic_sentence": "Code review does not disappear when agents produce the code.",
           "id_source": "derived",
-          "block_index": 53,
+          "block_index": 51,
           "points": []
         }
       ],
