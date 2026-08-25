@@ -125,8 +125,11 @@ jobs:
       # excluded from the served artifact below (only the rendered /teach/ ships).
       - name: Build Teach-with-MAGE course site (MkDocs → _site/teach)
         run: |
-          python3 -m pip install --require-hashes=false -r site/requirements.txt
-          python3 -m mkdocs build --strict -f site/mkdocs.yml -d _site/teach
+          python3 -m pip install -r site/requirements.txt
+          # -d must be ABSOLUTE: mkdocs resolves a relative --site-dir against the CONFIG dir (site/), so a
+          # bare `_site/teach` would land in site/_site/teach — which the assemble step's --exclude='site'
+          # then drops. $GITHUB_WORKSPACE is the repo root, so /teach ships at _site/teach.
+          python3 -m mkdocs build --strict -f site/mkdocs.yml -d "$GITHUB_WORKSPACE/_site/teach"
       - name: Assemble site artifact (exclude .git / node_modules / .github / raw course+site sources; KEEP book/mage-book.pdf + _site/teach)
         run: |
           mkdir -p _site
