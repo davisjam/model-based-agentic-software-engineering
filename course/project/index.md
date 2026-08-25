@@ -8,6 +8,9 @@ student_materials: []
 assignments: []
 instructor_notes: ""
 status: draft
+materials:
+  - title: Project overview slides (ECE 30861)
+    src: materials/Purdue-ECE-30861-Project_Overview.pptx
 ---
 
 The flagship project (initial instance: **ECE 30861**) walks a team through the full educational arc of engineering under an external obligation:
@@ -16,4 +19,4 @@ The flagship project (initial instance: **ECE 30861**) walks a team through the 
 
 Teams work in **pods**: teams assigned the same regulation share one specification, implement it independently, and **cross-test** one another's systems. See **[Pods & cross-testing](pod-cross-testing.md)**.
 
-> **TODO** — placeholder. Populate from the source materials (slide decks, project handouts) as they land. See `course/README.md` for the metadata + contribution conventions.
+The **project overview slides** (the first-day framing for the ECE 30861 instance) are attached below — the editable PowerPoint source, offered as a download. The written phase guides (Phases 0–6, candidate projects, pods) still populate from here as they land.
