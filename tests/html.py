@@ -34,6 +34,11 @@ class _Refs(HTMLParser):
 # Artifacts built by the Pages CI (gitignored locally, present on the deployed site) — a link to one
 # is valid on the live site, but its target does not exist at check-time, so don't flag it as missing.
 _CI_BUILT_ARTIFACTS = ("mage-book.pdf",)
+#: Path PREFIXES for subtrees built by a SEPARATE CI step and assembled into the deployed site, absent from
+#: the stdlib `catalog.py build` on disk. `teach/` is the MkDocs-rendered Teach-with-MAGE course companion
+#: (built into `_site/teach` by the Pages workflow's mkdocs step). A link into such a subtree is live on the
+#: deployed site but has no on-disk target during this build, so the link gate skips it by prefix.
+_CI_BUILT_PREFIXES = ("teach/",)
 
 
 def check_html_links():
@@ -55,6 +60,8 @@ def check_html_links():
             tgt_rel, _, anchor = ref.partition("#")
             if tgt_rel and os.path.basename(tgt_rel) in _CI_BUILT_ARTIFACTS:
                 continue  # CI-built download artifact — present on the deployed site, not on disk here
+            if tgt_rel and tgt_rel.lstrip("./").startswith(_CI_BUILT_PREFIXES):
+                continue  # CI-built subtree (e.g. MkDocs /teach) — live on the deployed site, absent here
             if not tgt_rel:  # in-page anchor
                 if anchor and anchor not in parsed[ap].ids:
                     issues.append(f"{rel(f)} -> #{anchor} (no such id in page)")

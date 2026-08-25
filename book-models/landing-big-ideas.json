@@ -4,6 +4,9 @@
   "_word_cap": 14,
   "_order": ["claim-1", "claim-2", "claim-3", "claim-4", "claim-5", "claim-6"],
 
+  "_argument_big_ideas_note": "The book's INTERNAL argument-vocabulary slugs — a decoupled join registry, NOT rendered on the landing. website-v3 (260825) retired the nine-concept LANDING model (rich records + standalone concept-<slug>.html pages), but these nine slugs remain the book's argument-spine / claims join keys: argument_spine_model.py (AS3/AS4 reconciliation), claims_model.py (`big-idea:` relates_to resolution), and lint_part_opener_traceability.py all resolve big-idea references against THIS list (not `_order`, which is the six landing claims). The book is authoritative for its own concept vocabulary; the landing is a separate six-claim projection. Keep this set exactly equal to the slugs the argument spine reconciles against (AS4 reverse-completeness requires each to be covered by a spine claim).",
+  "_argument_big_ideas": ["new-problem", "churn", "modeling-principle", "alignment-principle", "convert-failures", "governance-centric", "seat-moves", "independent-convergence", "research-agenda"],
+
   "claim-1": {
     "id": "claim-1",
     "order": 1,

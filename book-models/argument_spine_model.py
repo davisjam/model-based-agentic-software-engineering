@@ -281,9 +281,11 @@ def _sibling_sets() -> "tuple[set[str], set[str], set[str]]":
     claims = _load_json(os.path.join(_HERE, "claims_declared.json")) or {}
     claim_ids = {c["id"] for c in claims.get("claims", [])}
     big = _load_json(os.path.join(_HERE, "landing-big-ideas.json")) or {}
-    # The argument ideas are the `_order` six; the file also carries non-argument slots (the catalogue
-    # gateway), which are not reconciliation targets.
-    idea_slugs = set(big.get("_order", [])) or {k for k in big if not k.startswith("_")}
+    # The argument ideas are the book's INTERNAL argument-vocabulary slugs (`_argument_big_ideas`), a
+    # decoupled join registry — NOT `_order`, which website-v3 (260825) repurposed for the six LANDING
+    # claims. The nine argument slugs stay the spine's reconciliation targets after the nine-concept
+    # landing model was retired.
+    idea_slugs = set(big.get("_argument_big_ideas", []))
     # The What-This-Book-Argues claim slugs are the `_order` six on the WTBA registry (the same set the
     # part-opener-traceability lint resolves against).
     argues = _load_json(os.path.join(_HERE, "argues_claims_declared.json")) or {}

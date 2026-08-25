@@ -295,15 +295,15 @@
   ],
   "modeling-principle": {
     "kind": "thesis",
-    "site_home": "card-modeling-principle",
-    "status": "both",
-    "note": "Modeling Principle (I of II): documentation, at its limit, is a typed model. Site card exists; registered here + in index-terms.md; book index-def tagged at the preface 'two principles' blockquote. Clean both-resolve."
+    "site_home": "N/A",
+    "status": "book-only",
+    "note": "Modeling Principle (I of II): documentation, at its limit, is a typed model. website-v3 (260825) retired the standalone per-concept landing card; the book is authoritative for this thesis and the six-claim landing surfaces it as Claim 3 (Modeling) with an Explore-into-book link. Registered in index-terms.md; book index-def tagged at the preface 'two principles' blockquote."
   },
   "alignment-principle": {
     "kind": "thesis",
-    "site_home": "card-alignment-principle",
-    "status": "both",
-    "note": "Alignment Principle (II of II): give engineering intent authority over autonomous work by encoding obligations into deterministic mechanisms that constrain action, observe violations, evaluate evidence, and control admission — the four verbs mapping 1:1 onto the four mechanism archetypes Constraint · Sensor · Validator · Gate. Where the Modeling Principle makes intent explicit, the Alignment Principle makes that intent binding on what the fleet can do and what the environment will accept: represented intent becomes authority. Site card exists; registered in index-terms.md; book index-def tagged at the preface 'two principles' blockquote. Clean both-resolve."
+    "site_home": "N/A",
+    "status": "book-only",
+    "note": "Alignment Principle (II of II): give engineering intent authority over autonomous work by encoding obligations into deterministic mechanisms that constrain action, observe violations, evaluate evidence, and control admission — the four verbs mapping 1:1 onto the four mechanism archetypes Constraint · Sensor · Validator · Gate. Where the Modeling Principle makes intent explicit, the Alignment Principle makes that intent binding on what the fleet can do and what the environment will accept: represented intent becomes authority. website-v3 (260825) retired the standalone per-concept landing card; the book is authoritative for this thesis and the six-claim landing surfaces it as Claim 4 (Alignment) with an Explore-into-book link. Registered in index-terms.md; book index-def tagged at the preface 'two principles' blockquote."
   },
   "universal-language": {
     "kind": "thesis",

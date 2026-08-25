@@ -104,7 +104,9 @@ def findings() -> "list[str]":
     spine_model = _load("argument_spine_declared.json")
     spine_by_id = {n["id"]: n for n in spine_model["spine"]}
     big_ideas = _load("landing-big-ideas.json")
-    big_idea_slugs = set(big_ideas.get("_order", []))
+    # The book's argument-vocabulary slugs (`_argument_big_ideas`), decoupled from the six LANDING claims
+    # in `_order` (website-v3, 260825). A spine node may reconcile to one of these nine.
+    big_idea_slugs = set(big_ideas.get("_argument_big_ideas", []))
     argues_claims = _load("argues_claims_declared.json")
     argues_claim_slugs = set(argues_claims.get("_order", []))
 

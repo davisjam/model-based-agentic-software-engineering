@@ -220,8 +220,10 @@ def _relates_target_sets() -> "dict[str, set[str]]":
 
 
 def _big_idea_keys(big_ideas: "dict") -> "set[str]":
-    """The landing big-ideas' idea keys — the record dict is keyed by idea slug (skip `_meta`-style keys)."""
-    return {k for k in big_ideas if not k.startswith("_")}
+    """The book's argument-vocabulary slugs — the decoupled `_argument_big_ideas` registry, NOT the
+    top-level record keys (website-v3, 260825, repurposed the file's top level for the six LANDING claims).
+    A `big-idea:` relates_to link resolves against this nine-slug book-internal set."""
+    return set(big_ideas.get("_argument_big_ideas", []))
 
 
 # ---- invariants (C1–C6; walked by the drift check in tests/book_models.py) ---------------------------
