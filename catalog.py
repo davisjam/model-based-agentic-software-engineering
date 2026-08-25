@@ -943,6 +943,31 @@ def _core_question_audit() -> list[str]:
     return out
 
 
+def check_resources() -> list[str]:
+    """The RESOURCES projection drift catch. book-models/resources.json is the SSOT for the landing
+    Resources section and the projected talks.html + writings.html pages. Holds the model faithful the way
+    check_big_ideas holds the landing: every record has a title; every asset path (`pdf`/`slides`) resolves
+    on disk (book ⊇ site — a card pointing at a missing deck/paper is a broken download); every external
+    link (`url`) is absolute. Sparse-by-design: a record needs only a title, so optional fields never gate."""
+    path = os.path.join(ROOT, "book-models", "resources.json")
+    if not os.path.isfile(path):
+        return ["resources: book-models/resources.json missing"]
+    data = json.load(open(path, encoding="utf-8"))
+    problems: list[str] = []
+    for section in ("writings", "talks"):
+        for i, rec in enumerate(data.get(section, [])):
+            where = f"{section}[{i}]"
+            if not str(rec.get("title") or "").strip():
+                problems.append(f"resources: {where} has no title")
+            for field in ("pdf", "slides"):
+                if rec.get(field) and not os.path.isfile(os.path.join(ROOT, str(rec[field]))):
+                    problems.append(f"resources: {where} {field} {rec[field]!r} does not resolve on disk "
+                                    f"(the linked download is missing)")
+            if rec.get("url") and not str(rec["url"]).startswith(("http://", "https://")):
+                problems.append(f"resources: {where} url {rec['url']!r} is not an absolute link")
+    return problems
+
+
 def cmd_validate(_args) -> int:
     entries = all_entries()
     n_issues = 0
@@ -983,6 +1008,9 @@ def cmd_validate(_args) -> int:
         n_issues += 1
     for msg in check_big_ideas():
         print(f"  [bigidea] {msg}")
+        n_issues += 1
+    for msg in check_resources():
+        print(f"  [resources] {msg}")
         n_issues += 1
     # INDUSTRY-CASE-STUDIES pillar drift gate — BLOCKING. The pillar's index + six per-case pages are a
     # projection of book-models/industry_cases_declared.json; this holds the projection faithful the way
@@ -1855,6 +1883,15 @@ PAGE_CSS = """
   a.cq-ans b { display:block; font-size:var(--fs-card-body); margin-bottom:2px; }
   a.cq-ans span { display:block; font-size:var(--fs-meta); color:var(--muted); }
   @media (min-width:760px){ .cq-answers { grid-template-columns:repeat(3,1fr); } }
+  /* Resource pages (talks.html / writings.html) — a sparse list: title, muted meta line, links. */
+  .res-lead { color:var(--muted); max-width:60ch; }
+  .res-list { display:flex; flex-direction:column; gap:1.4rem; margin-top:1.6rem; }
+  .res-item { border-top:1px solid var(--rule); padding-top:1.1rem; }
+  .res-item .res-title { font-size:var(--fs-card-body); margin:0 0 .2rem; line-height:1.3; }
+  .res-meta { color:var(--muted); font-size:var(--fs-meta); margin:0 0 .35rem; }
+  .res-links { margin:0; }
+  .res-links a { color:var(--accent); text-decoration:none; font-weight:600; }
+  .res-links a:hover { text-decoration:underline; }
 """
 
 ROLE_DISPLAY = {"agent": "Agent", "models-bridge": "Models-bridge", "product": "Product"}
@@ -2653,7 +2690,7 @@ def _v3_nav() -> str:
         '<nav class="v3-nav" aria-label="Primary">\n'
         '  <a class="v3-nav-home" href="index.html">MAGE</a>\n'
         '  <div class="v3-nav-groups">\n'
-        f'    {cell("Learn", "#learn")}\n'
+        f'    {cell("Resources", "#resources")}\n'
         f'    {cell("Use", "#use")}\n'
         f'    {cell("Evidence", "#evidence")}\n'
         f'    {cell("Research", "#research")}\n'
@@ -2699,22 +2736,87 @@ def _v3_card(title: str, kicker: str, body: str, links: "list[tuple[str, str]]")
         '    </article>')
 
 
+def _load_resources() -> dict:
+    """Read book-models/resources.json → the raw dict (`writings`, `talks`). The SSOT for the landing
+    Resources section and the projected talks.html + writings.html pages."""
+    path = os.path.join(ROOT, "book-models", "resources.json")
+    if not os.path.isfile(path):
+        return {}
+    return json.load(open(path, encoding="utf-8"))
+
+
+def _resource_links(rec: dict, order: "list[tuple[str, str]]") -> str:
+    """Join the present links of a record, in a fixed order — each `(field, label)`. A `url` field is an
+    external link; a file path (`pdf`/`slides`) is emitted verbatim (relative to the page = repo root).
+    Only fields that exist render, so a record with no link renders no link line."""
+    parts = [f'<a href="{_attr(str(rec[field]))}">{_esc(label)}</a>'
+             for field, label in order if rec.get(field)]
+    return " · ".join(parts)
+
+
+def _resource_list(records: "list[dict]", link_order: "list[tuple[str, str]]") -> str:
+    """A sparse list of resource records: each is a title heading, an optional 'meta · meta' line (the
+    present ones of kind / venue / date), and the present links. No cards, thumbnails, or abstracts —
+    three entries read as a clean list, not an empty database."""
+    items = ['<div class="res-list">']
+    for rec in records:
+        title = str(rec.get("title") or "").strip()
+        if not title:
+            continue
+        meta = " · ".join(str(rec[k]).strip() for k in ("kind", "venue", "date") if rec.get(k))
+        links = _resource_links(rec, link_order)
+        items.append(
+            '  <article class="res-item">\n'
+            f'    <h2 class="res-title">{_esc(title)}</h2>\n'
+            + (f'    <p class="res-meta">{_esc(meta)}</p>\n' if meta else "")
+            + (f'    <p class="res-links">{links}</p>\n' if links else "")
+            + '  </article>')
+    items.append('</div>')
+    return "\n".join(items)
+
+
+def _talks_body() -> str:
+    """The standalone Talks page — presentations of MAGE, projected from resources.json `talks`. Sparse:
+    title / venue · date / Slides. Reachable via the landing Resources 'Browse talks' card."""
+    talks = _load_resources().get("talks", [])
+    intro = ('<p class="res-lead">Slides and supporting materials from presentations about MAGE. '
+             'Recordings and event pages are linked when available.</p>')
+    return (f'<h1>Talks</h1>\n{intro}\n'
+            + _resource_list(talks, [("slides", "Slides"), ("event_url", "Event"), ("video_url", "Video")]))
+
+
+def _writings_body() -> str:
+    """The standalone Writings page — papers and shorter articles about MAGE, projected from resources.json
+    `writings`. Sparse: title / kind · venue · date / link. Reachable via the Resources 'Browse writings' card."""
+    writings = _load_resources().get("writings", [])
+    intro = ('<p class="res-lead">Papers and shorter articles developing, motivating, and evaluating MAGE. '
+             'The homepage is the short introduction; these are the longer and scholarly treatments.</p>')
+    return (f'<h1>Writings</h1>\n{intro}\n'
+            + _resource_list(writings, [("pdf", "PDF"), ("url", "Read"), ("doi", "DOI")]))
+
+
 def _v3_learn() -> str:
+    """The landing Resources section — four PEER artifact classes (Book · Writings · Curriculum · Talks),
+    describing what each resource IS rather than how deeply to consume it. Book and Curriculum link to their
+    existing surfaces; Writings and Talks link to their projected index pages."""
     return (
-        '<section class="v3-sec" id="learn" aria-labelledby="learn-h">\n'
-        '  <h2 id="learn-h" class="sec-h">Learning MAGE</h2>\n'
-        '  <p class="sec-lead">MAGE can be approached at several levels, from a short introduction to a '
-        'complete course.</p>\n'
-        '  <div class="v3-cards v3-cards-3">\n'
-        + _v3_card("Blog", "Start with the short version",
-                   "A concise introduction to the problem that motivated MAGE and the central ideas behind the method.",
-                   [("Read the introduction", _BLOG_URL)]) + "\n"
-        + _v3_card("The MAGE Method", "Read the full treatment",
-                   "The book develops the argument from the changed economics of software engineering through Modeling, Alignment, the working method, empirical evidence, and implications for the profession.",
+        '<section class="v3-sec" id="resources" aria-labelledby="resources-h">\n'
+        '  <h2 id="resources-h" class="sec-h">Resources</h2>\n'
+        '  <p class="sec-lead">MAGE is available as a book, a body of writing, a curriculum, and a series '
+        'of talks.</p>\n'
+        '  <div class="v3-cards v3-cards-2">\n'
+        + _v3_card("Book", "",
+                   "The complete treatment of MAGE, from its motivation and principles through practice, evidence, and implications.",
                    [("Read the book", "book/index.html"), ("Download PDF", _PDF_HREF)]) + "\n"
-        + _v3_card("Course Materials", "Teach or study MAGE",
-                   "A reference software-engineering course and modular teaching materials for instructors and students, including readings, slides, exercises, project materials, and learning objectives.",
-                   [("Explore course materials", "teach/index.html")]) + "\n"
+        + _v3_card("Writings", "",
+                   "Papers and shorter articles developing, motivating, and evaluating MAGE.",
+                   [("Browse writings", "writings.html")]) + "\n"
+        + _v3_card("Curriculum", "",
+                   "Course and modular teaching materials for instructors and students.",
+                   [("Explore curriculum", "teach/index.html")]) + "\n"
+        + _v3_card("Talks", "",
+                   "Slides and supporting materials from presentations about MAGE.",
+                   [("Browse talks", "talks.html")]) + "\n"
         '  </div>\n</section>')
 
 
@@ -2766,19 +2868,6 @@ def _v3_research() -> str:
         '    <a class="v3-btn v3-btn-secondary" href="theory.html">Read the theory &#8594;</a>\n'
         '    <a class="v3-btn v3-btn-secondary" href="book/6.6-education-research-open-problems.html">Explore the research agenda &#8594;</a>\n'
         '  </p>\n</section>')
-
-
-def _v3_cta() -> str:
-    return (
-        '<section class="v3-cta" aria-labelledby="cta-h">\n'
-        '  <h2 id="cta-h" class="sec-h">Go deeper</h2>\n'
-        '  <p class="sec-lead">Read the complete argument, apply the method, or use the teaching materials '
-        'to study MAGE in a software-engineering course.</p>\n'
-        '  <div class="v3-hero-btns">\n'
-        '    <a class="v3-btn v3-btn-primary" href="book/index.html">Read the book</a>\n'
-        '    <a class="v3-btn v3-btn-secondary" href="quick-start.html">Try MAGE</a>\n'
-        '    <a class="v3-btn v3-btn-secondary" href="teach/index.html">Course materials</a>\n'
-        '  </div>\n</section>')
 
 
 def _landing_closing() -> str:
@@ -4310,9 +4399,11 @@ def cmd_build(_args) -> int:
     # website-v3 (260825): the landing is a concise map of the book's argument — grouped nav, a descriptive
     # hero, the canonical MAGE-on-one-page figure, the six claims, then Learn / Use / Evidence / Research and
     # a go-deeper CTA. The book is authoritative for concepts; claims link into book material for depth.
+    # website-v3 (260825): the landing ends Evidence → Research → footer. The former 'Go deeper' CTA
+    # (_v3_cta) was DROPPED — it merely repeated the Resources/Use destinations already presented above.
     landing_body = "\n".join([
         _v3_nav(), _v3_hero(), _v3_onepage_figure(), _landing_big_ideas(),
-        _v3_learn(), _v3_use(), _v3_evidence(), _v3_research(), _v3_cta(),
+        _v3_learn(), _v3_use(), _v3_evidence(), _v3_research(),
     ])
     landing = (f"<!doctype html>\n<html lang=\"en\">\n{GENERATED_BANNER}\n<head>\n"
                f'<meta charset="utf-8" />\n<meta name="viewport" content="width=device-width, initial-scale=1" />\n'
@@ -4350,6 +4441,13 @@ def cmd_build(_args) -> int:
                    _crumb("", [("The theory of MAGE", "")]),
                    _theory_body(), rel_root="")
     open(os.path.join(ROOT, _THEORY_PAGE), "w", encoding="utf-8").write(theory)
+    # The two projected Resource pages — Talks + Writings (book-models/resources.json). Each is reachable
+    # from the landing Resources section's 'Browse talks' / 'Browse writings' card (the orphan-gate inbound
+    # edge); each links its assets under resources/. Book + Curriculum are existing surfaces, not projected.
+    talks_page = _page("Talks", _crumb("", [("Talks", "")]), _talks_body(), rel_root="")
+    open(os.path.join(ROOT, "talks.html"), "w", encoding="utf-8").write(talks_page)
+    writings_page = _page("Writings", _crumb("", [("Writings", "")]), _writings_body(), rel_root="")
+    open(os.path.join(ROOT, "writings.html"), "w", encoding="utf-8").write(writings_page)
     # website-v3 (260825): the standalone Big Question page is RETIRED with the concept machinery — the
     # landing hero now carries the core question directly, and the book is authoritative for the answer.
     n_ic = 0

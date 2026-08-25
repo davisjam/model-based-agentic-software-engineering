@@ -135,6 +135,15 @@
   a.cq-ans b { display:block; font-size:var(--fs-card-body); margin-bottom:2px; }
   a.cq-ans span { display:block; font-size:var(--fs-meta); color:var(--muted); }
   @media (min-width:760px){ .cq-answers { grid-template-columns:repeat(3,1fr); } }
+  /* Resource pages (talks.html / writings.html) — a sparse list: title, muted meta line, links. */
+  .res-lead { color:var(--muted); max-width:60ch; }
+  .res-list { display:flex; flex-direction:column; gap:1.4rem; margin-top:1.6rem; }
+  .res-item { border-top:1px solid var(--rule); padding-top:1.1rem; }
+  .res-item .res-title { font-size:var(--fs-card-body); margin:0 0 .2rem; line-height:1.3; }
+  .res-meta { color:var(--muted); font-size:var(--fs-meta); margin:0 0 .35rem; }
+  .res-links { margin:0; }
+  .res-links a { color:var(--accent); text-decoration:none; font-weight:600; }
+  .res-links a:hover { text-decoration:underline; }
 
   /* ============================================================================================
      THE BIG-IDEAS LANDING — a projection of book-models/landing-big-ideas.json (Option 3, "the
@@ -454,7 +463,7 @@
 <nav class="v3-nav" aria-label="Primary">
   <a class="v3-nav-home" href="index.html">MAGE</a>
   <div class="v3-nav-groups">
-    <a class="v3-nav-item" href="#learn">Learn</a>
+    <a class="v3-nav-item" href="#resources">Resources</a>
     <a class="v3-nav-item" href="#use">Use</a>
     <a class="v3-nav-item" href="#evidence">Evidence</a>
     <a class="v3-nav-item" href="#research">Research</a>
@@ -708,27 +717,29 @@
   </article>
   <p class="claims-summary">Model what matters. Give obligations authority. Do the governed work. Convert what you learn into structure the next task inherits.</p>
 </section>
-<section class="v3-sec" id="learn" aria-labelledby="learn-h">
-  <h2 id="learn-h" class="sec-h">Learning MAGE</h2>
-  <p class="sec-lead">MAGE can be approached at several levels, from a short introduction to a complete course.</p>
-  <div class="v3-cards v3-cards-3">
+<section class="v3-sec" id="resources" aria-labelledby="resources-h">
+  <h2 id="resources-h" class="sec-h">Resources</h2>
+  <p class="sec-lead">MAGE is available as a book, a body of writing, a curriculum, and a series of talks.</p>
+  <div class="v3-cards v3-cards-2">
     <article class="v3-card">
-      <p class="v3-card-kick">Start with the short version</p>
-      <h3 class="v3-card-h">Blog</h3>
-      <p class="v3-card-body">A concise introduction to the problem that motivated MAGE and the central ideas behind the method.</p>
-      <p class="v3-card-links"><a href="https://davisjam.medium.com/model-based-agentic-software-engineering-mage-856c2bf22e45">Read the introduction &#8594;</a></p>
-    </article>
-    <article class="v3-card">
-      <p class="v3-card-kick">Read the full treatment</p>
-      <h3 class="v3-card-h">The MAGE Method</h3>
-      <p class="v3-card-body">The book develops the argument from the changed economics of software engineering through Modeling, Alignment, the working method, empirical evidence, and implications for the profession.</p>
+      <h3 class="v3-card-h">Book</h3>
+      <p class="v3-card-body">The complete treatment of MAGE, from its motivation and principles through practice, evidence, and implications.</p>
       <p class="v3-card-links"><a href="book/index.html">Read the book &#8594;</a> · <a href="book/mage-book.pdf">Download PDF &#8594;</a></p>
     </article>
     <article class="v3-card">
-      <p class="v3-card-kick">Teach or study MAGE</p>
-      <h3 class="v3-card-h">Course Materials</h3>
-      <p class="v3-card-body">A reference software-engineering course and modular teaching materials for instructors and students, including readings, slides, exercises, project materials, and learning objectives.</p>
-      <p class="v3-card-links"><a href="teach/index.html">Explore course materials &#8594;</a></p>
+      <h3 class="v3-card-h">Writings</h3>
+      <p class="v3-card-body">Papers and shorter articles developing, motivating, and evaluating MAGE.</p>
+      <p class="v3-card-links"><a href="writings.html">Browse writings &#8594;</a></p>
+    </article>
+    <article class="v3-card">
+      <h3 class="v3-card-h">Curriculum</h3>
+      <p class="v3-card-body">Course and modular teaching materials for instructors and students.</p>
+      <p class="v3-card-links"><a href="teach/index.html">Explore curriculum &#8594;</a></p>
+    </article>
+    <article class="v3-card">
+      <h3 class="v3-card-h">Talks</h3>
+      <p class="v3-card-body">Slides and supporting materials from presentations about MAGE.</p>
+      <p class="v3-card-links"><a href="talks.html">Browse talks &#8594;</a></p>
     </article>
   </div>
 </section>
@@ -776,15 +787,6 @@
     <a class="v3-btn v3-btn-secondary" href="theory.html">Read the theory &#8594;</a>
     <a class="v3-btn v3-btn-secondary" href="book/6.6-education-research-open-problems.html">Explore the research agenda &#8594;</a>
   </p>
-</section>
-<section class="v3-cta" aria-labelledby="cta-h">
-  <h2 id="cta-h" class="sec-h">Go deeper</h2>
-  <p class="sec-lead">Read the complete argument, apply the method, or use the teaching materials to study MAGE in a software-engineering course.</p>
-  <div class="v3-hero-btns">
-    <a class="v3-btn v3-btn-primary" href="book/index.html">Read the book</a>
-    <a class="v3-btn v3-btn-secondary" href="quick-start.html">Try MAGE</a>
-    <a class="v3-btn v3-btn-secondary" href="teach/index.html">Course materials</a>
-  </div>
 </section>
 <footer class="site-foot"><span class="foot-line foot-copy">© <a href="https://davisjam.github.io">James C. Davis</a>, 2026–present &nbsp;·&nbsp; Assistant Professor, ECE @ Purdue</span><span class="foot-line foot-links"><a class="gh" href="https://github.com/davisjam/model-based-agentic-software-engineering"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" style="vertical-align:-2px;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> model-based-agentic-software-engineering</a>&nbsp;·&nbsp; <a class="book-foot" href="book/index.html">Read the book →</a>&nbsp;·&nbsp; <a class="book-foot" href="book/mage-book.pdf"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:currentColor"><path d="M4 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V4.5L9.5 0H4zm5 1.5L12.5 5H9V1.5zM4.9 8.2h1c.5 0 .9.4.9.9s-.4.9-.9.9h-.4v1.1h-.6V8.2zm.6.5v.8h.3c.2 0 .3-.1.3-.4s-.1-.4-.3-.4h-.3zm2 .0h.9c.6 0 1 .5 1 1.4s-.4 1.5-1 1.5h-.9V8.7zm.6.5v1.8h.2c.3 0 .5-.3.5-.9s-.2-.9-.5-.9h-.2zm2.3-.5h1.7v.5h-1.1v.6h1v.5h-1v1.2h-.6V8.7z"></path></svg> PDF</a></span><span class="foot-line foot-nsf">This work was supported by the U.S. National Science Foundation under grants #2541917 and #2452533.</span></footer>
 </main>

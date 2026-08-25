@@ -3,7 +3,7 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1127,
+    "total_sites": 1133,
     "by_projection": {
       "book-pdf": 14,
       "book-web": 792,
@@ -11,6 +11,7 @@
       "website-industry-cases": 43,
       "website-landing": 13,
       "website-misc": 38,
+      "website-resources": 6,
       "website-theory": 8
     }
   },
@@ -1290,7 +1291,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 52
+            "occ": 51
           }
         ],
         "website-catalogue": [
@@ -1345,6 +1346,16 @@
           {
             "file": "theory.html",
             "occ": 6
+          }
+        ],
+        "website-resources": [
+          {
+            "file": "talks.html",
+            "occ": 4
+          },
+          {
+            "file": "writings.html",
+            "occ": 3
           }
         ],
         "website-industry-cases": [
@@ -2849,6 +2860,16 @@
             "occ": 4
           }
         ],
+        "website-resources": [
+          {
+            "file": "talks.html",
+            "occ": 1
+          },
+          {
+            "file": "writings.html",
+            "occ": 1
+          }
+        ],
         "website-industry-cases": [
           {
             "file": "comparative-analysis.html",
@@ -3970,7 +3991,7 @@
         "website-landing": [
           {
             "file": "index.html",
-            "occ": 7
+            "occ": 6
           }
         ],
         "website-misc": [
@@ -3995,6 +4016,16 @@
           {
             "file": "theory.html",
             "occ": 1
+          }
+        ],
+        "website-resources": [
+          {
+            "file": "talks.html",
+            "occ": 2
+          },
+          {
+            "file": "writings.html",
+            "occ": 3
           }
         ]
       }

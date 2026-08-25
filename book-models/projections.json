@@ -67,6 +67,13 @@
       "note": "The standalone theory page — the site-side preview of the book's theory-of-MAGE material (its book projection lives in the Part 6 theory chapters)."
     },
     {
+      "id": "website-resources",
+      "kind": "website",
+      "builder": "catalog.py",
+      "globs": ["talks.html", "writings.html"],
+      "note": "The two projected Resource pages — Talks and Writings — from book-models/resources.json. The landing Resources section's four peers are Book (book/) + Curriculum (teach/) + these two; each lists its records with links to the decks/papers under resources/."
+    },
+    {
       "id": "website-industry-cases",
       "kind": "website",
       "builder": "catalog.py",
