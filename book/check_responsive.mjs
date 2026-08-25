@@ -16,11 +16,12 @@
 // backwards: the gate should fail a NON-RESPONSIVE landing, not a RENAMED one.
 //
 // The fix: assert the SUCCESS METRIC across a family of the landing's responsive containers, and degrade
-// gracefully per selector. The family (enumerated from the built landing CSS):
-//   - `.slot`      — grid, 2 cols (Big-Idea prose | figure) → 1 col at max-width:900px   [PRIMARY]
-//   - `.pair`      — grid, 2 cols (two-up cells)   → 1 col
-//   - `.nav-grid`  — flex-wrap, many cells wide    → fewer per row on phone (reduces, need not reach 1)
-// (The hero itself is now a single-column prose lead — no grid to collapse — so it is not a member.)
+// gracefully per selector. The family (enumerated from the built landing CSS — website-v3, 260825):
+//   - `.v3-cards-3` — grid, 3 cols (Learn / Use resource cards) → 1 col at max-width:820px   [PRIMARY]
+//   - `.v3-cards-2` — grid, 2 cols (Evidence cards)             → 1 col at max-width:820px
+// (The six-claim sequence `.claims` is a single stacked column by design — no grid to collapse — and the
+// `.v3-nav-groups` flex nav is a handful of small links that need not wrap at phone width, so neither is a
+// member. The card grids are the deterministic responsive demonstrators.)
 //
 // The contract (aggregate, not per-selector):
 //   PASS  when the landing demonstrates responsive collapse — at least one present grid member goes
@@ -71,9 +72,8 @@ const PHONE_VIEWPORT = 390;
 //   reachSingle — whether a full collapse for this member means exactly 1 column on phone. Grids that
 //                 flip to `grid-template-columns:1fr` reach single; flex-wrap only needs to REDUCE.
 const FAMILY = [
-  { sel: ".slot",      mode: "grid", primary: true,  reachSingle: true,  desc: "Big-Idea prose | figure slots" },
-  { sel: ".pair",      mode: "grid", primary: false, reachSingle: true,  desc: "two-up comparison cells" },
-  { sel: ".nav-grid",  mode: "flex", primary: false, reachSingle: false, desc: "primary nav cells (flex-wrap)" },
+  { sel: ".v3-cards-3", mode: "grid", primary: true,  reachSingle: true, desc: "Learn / Use resource cards (3-up)" },
+  { sel: ".v3-cards-2", mode: "grid", primary: false, reachSingle: true, desc: "Evidence cards (2-up)" },
 ];
 
 const executablePath =
