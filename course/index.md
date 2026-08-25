@@ -7,16 +7,18 @@ instructor_materials: []
 student_materials: []
 assignments: []
 instructor_notes: ""
-status: draft
+status: ready
 ---
 
-One idea: **teach software engineering as the discipline of governing capable, autonomous agents** — using MAGE (Model-based Agentic Engineering) as the through-line.
+Teach software engineering as the discipline of governing capable, autonomous agents.
 
-This companion gives instructors two ways in:
+This companion provides materials for teaching software engineering using MAGE (Model-Based Agentic Software Engineering).
 
-- **[Reference Course](reference-course/index.md)** — a full 16-week course with readings, objectives, lectures, exercises, and a semester-long project.
-- **[Modules](modules/index.md)** — self-contained units organized by MAGE concept, for adopting only the parts you need.
+There are two ways to use the materials:
 
-See the **[Semester Project](project/index.md)** for the flagship pod-based regulatory-engineering arc, **[Instructor Resources](instructor/index.md)** for teaching notes and rubrics, and **[Downloads](downloads/index.md)** for the course bundle.
+- **[Reference Course](reference-course/index.md)** — a complete 16-week software engineering course with learning objectives, lectures, readings, exercises, assessments, and a semester-long project. The reference course is ECE 30861 — Software Engineering, Purdue University, Fall 2026.
+- **[Modules](modules/index.md)** — self-contained units organized around MAGE concepts, suitable for incorporation into an existing course.
 
-The materials draw on the MAGE book and the governance-mechanism catalogue published on this site.
+The **[Semester Project](project/index.md)** gives student teams a substantial regulatory-engineering problem through which to practice the concepts across the software lifecycle.
+
+**[Instructor Resources](instructor/index.md)** includes teaching notes, rubrics, oral-exam guidance, and advice for adapting the materials. **[Downloads](downloads/index.md)** collects the course materials for reuse.
