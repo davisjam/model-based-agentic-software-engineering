@@ -1,0 +1,51 @@
+/* Purdue color scheme for the Teach-with-MAGE course site.
+ *
+ * Two goals: (1) look like Purdue — Boilermaker Gold + black; (2) harmonize with the main MAGE landing,
+ * which is a warm palette (paper #fdfcf9, ink #1c1917, accent burnt-umber #9a3f12). The result: a black
+ * header with a Boilermaker-Gold brand rule, warm-cream pages, near-black text, and the landing's warm
+ * accent for links so the two surfaces read as one site. Overrides Material's default blue-grey/indigo. */
+
+:root {
+  --purdue-gold: #ceb888;       /* Boilermaker Gold — the brand signal */
+  --purdue-gold-deep: #8e6f3e;  /* "Aged" — an accessible gold-bronze for hover */
+  --mage-accent: #9a3f12;       /* the main landing's burnt-umber accent (shared for consistency) */
+  --mage-paper: #fdfcf9;        /* warm cream — the landing's page color */
+  --mage-ink: #1c1917;          /* warm near-black — the landing's text color */
+}
+
+/* ── Light scheme (default) ─────────────────────────────────────────────── */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: var(--mage-ink);        /* header background: Purdue black */
+  --md-primary-fg-color--light: #57534e;
+  --md-primary-fg-color--dark: #0b0a08;
+  --md-primary-bg-color: var(--mage-paper);      /* header text/icons: cream */
+  --md-primary-bg-color--light: #faf1e6;
+  --md-accent-fg-color: var(--mage-accent);      /* interactive accent (search, active) */
+  --md-default-bg-color: var(--mage-paper);      /* page background: warm cream */
+  --md-typeset-color: var(--mage-ink);
+  --md-typeset-a-color: var(--mage-accent);      /* links: match the landing */
+}
+
+/* Boilermaker-Gold brand rule under the black header. */
+.md-header { border-bottom: 3px solid var(--purdue-gold); }
+
+/* Active / hovered nav and links lean toward the gold-bronze. */
+.md-nav__link--active,
+.md-nav__link:focus,
+.md-nav__link:hover { color: var(--mage-accent); }
+.md-typeset a:hover { color: var(--purdue-gold-deep); }
+
+/* The section-index / tabs active marker in gold. */
+.md-tabs__link--active,
+.md-typeset .headerlink:hover { color: var(--purdue-gold-deep); }
+
+/* ── Dark scheme (slate) — Purdue black + gold on warm-dark ──────────────── */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0b0a08;                /* header: deep black */
+  --md-primary-bg-color: var(--purdue-gold);     /* header text/icons: gold */
+  --md-accent-fg-color: var(--purdue-gold);
+  --md-default-bg-color: #17130f;                /* warm near-black page */
+  --md-typeset-color: #ece7df;
+  --md-typeset-a-color: #d9c39a;                 /* links: light gold */
+}
+[data-md-color-scheme="slate"] .md-typeset a:hover { color: var(--purdue-gold); }

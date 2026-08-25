@@ -31,18 +31,23 @@ theme:
     - content.action.edit   # "edit this page" → the source under course/
     - toc.follow
   palette:
-    # Restrained, single accessible accent; light/dark toggle for reader preference.
+    # Purdue scheme (black + Boilermaker Gold on warm cream), harmonized with the main MAGE landing.
+    # The exact colors are set in course/stylesheets/purdue.css (extra_css below); the named `black`
+    # primary is a neutral base the stylesheet overrides. Light/dark toggle for reader preference.
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: blue grey
-      accent: indigo
+      primary: black
+      accent: brown
       toggle: { icon: material/weather-night, name: Switch to dark mode }
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: blue grey
-      accent: indigo
+      primary: black
+      accent: brown
       toggle: { icon: material/weather-sunny, name: Switch to light mode }
   font: false  # no webfont fetch; use the system stack (privacy + no external request)
+
+extra_css:
+  - stylesheets/purdue.css   # Purdue black + Boilermaker Gold palette (overrides Material's defaults)
 
 plugins:
   - search
