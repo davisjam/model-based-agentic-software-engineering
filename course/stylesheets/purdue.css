@@ -49,3 +49,12 @@
   --md-typeset-a-color: #d9c39a;                 /* links: light gold */
 }
 [data-md-color-scheme="slate"] .md-typeset a:hover { color: var(--purdue-gold); }
+
+/* ── Quiet the sidebar ───────────────────────────────────────────────────
+ * The sidebar is a navigation instrument. Material renders a page-status icon
+ * (from each page's `status:` front matter) next to nearly every nav item — on
+ * so many items it stops signalling and becomes visual noise. Hide it in the
+ * nav (the `status:` metadata stays for the bundle tooling). Hierarchy is
+ * carried by the three signals that already work: bold section headings, the
+ * accent current-page state, and indentation. */
+.md-nav .md-status { display: none; }

@@ -1,5 +1,5 @@
 ---
-title: Module — Requirements & Specification
+title: "Requirements & Specification"
 week:
 mage_readings: []
 objectives: []

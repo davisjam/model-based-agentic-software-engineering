@@ -1,5 +1,5 @@
 ---
-title: Phases 3–5: Delivery
+title: "Phases 3–5"
 week:
 mage_readings: []
 objectives: []

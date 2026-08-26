@@ -1,5 +1,5 @@
 ---
-title: Module — Modeling
+title: "Modeling"
 week:
 mage_readings: []
 objectives: []

@@ -1,5 +1,5 @@
 ---
-title: Module — Alignment
+title: "Alignment"
 week:
 mage_readings: []
 objectives: []

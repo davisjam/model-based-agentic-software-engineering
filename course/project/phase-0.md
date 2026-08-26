@@ -1,5 +1,5 @@
 ---
-title: Phase 0: Team Formation
+title: "Phase 0"
 week:
 mage_readings: []
 objectives: []

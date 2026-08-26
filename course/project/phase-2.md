@@ -1,5 +1,5 @@
 ---
-title: Phase 2: Specification & Planning
+title: "Phase 2"
 week:
 mage_readings: []
 objectives: []

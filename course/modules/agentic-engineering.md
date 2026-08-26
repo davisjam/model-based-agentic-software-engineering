@@ -1,5 +1,5 @@
 ---
-title: Module — Agentic Engineering
+title: "Agentic Engineering"
 week:
 mage_readings: []
 objectives: []

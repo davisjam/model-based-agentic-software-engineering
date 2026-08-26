@@ -1,5 +1,5 @@
 ---
-title: Phase 6: Final Delivery
+title: "Phase 6"
 week:
 mage_readings: []
 objectives: []

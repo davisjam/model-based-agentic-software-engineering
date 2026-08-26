@@ -1,5 +1,5 @@
 ---
-title: Phase 1: Regulatory Analysis
+title: "Phase 1"
 week:
 mage_readings: []
 objectives: []

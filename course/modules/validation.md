@@ -1,5 +1,5 @@
 ---
-title: Module — Validation
+title: "Validation"
 week:
 mage_readings: []
 objectives: []

@@ -1,5 +1,5 @@
 ---
-title: Module — Governance Conversion
+title: "Governance Conversion"
 week:
 mage_readings: []
 objectives: []

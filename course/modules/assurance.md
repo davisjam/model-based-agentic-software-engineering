@@ -1,5 +1,5 @@
 ---
-title: Module — Assurance
+title: "Assurance"
 week:
 mage_readings: []
 objectives: []

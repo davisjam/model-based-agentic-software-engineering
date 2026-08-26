@@ -22,6 +22,11 @@ exclude_docs: |
   README.md
   LICENSE
 
+# The home page is reachable via the navbar title/logo; it does not need a second
+# redundant entry at the top of the sidebar. Keep it built + served, just out of the nav.
+not_in_nav: |
+  /index.md
+
 theme:
   name: material
   features:
