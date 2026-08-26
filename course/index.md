@@ -16,7 +16,7 @@ This companion provides materials for teaching software engineering using MAGE (
 
 There are two ways to use the materials:
 
-- **[Reference Course](reference-course/index.md)** — a complete 16-week software engineering course with learning objectives, lectures, readings, exercises, assessments, and a semester-long project. The reference course is ECE 30861 — Software Engineering, Purdue University, Fall 2026.
+- **[Reference Course](reference-course/index.md)** — materials from a complete 16-week software engineering course, including the syllabus, lectures, oral exams, and semester project. The reference course is ECE 30861 — Software Engineering, Purdue University, Fall 2026.
 - **[Modules](modules/index.md)** — self-contained units organized around MAGE concepts, suitable for incorporation into an existing course.
 
 The **[Semester Project](project/index.md)** gives student teams a substantial regulatory-engineering problem through which to practice the concepts across the software lifecycle.
