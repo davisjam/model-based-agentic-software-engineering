@@ -25,30 +25,37 @@
     }
   ],
 
+  "_talks_note": "Ordered newest → oldest by month. Dates are the month each deck was presented (pinned from the deck's embedded modified date, corroborated by known venue dates).",
   "talks": [
     {
-      "title": "Getting a Job and the Future of SE",
-      "venue": "Purdue Engineering — Elmore Family School of ECE",
-      "date": "Summer 2026",
-      "slides": "resources/talks/Davis-SE-in-2026.pptx"
-    },
-    {
-      "title": "3-D Printing Production Software: Architecture, Validation, and Control for Agentic Software Engineering",
-      "venue": "Argonne National Laboratory",
-      "date": "Summer 2026",
-      "slides": "resources/talks/Davis-ANL-Summer2026.pptx"
+      "title": "Model-Based Agentic Software Engineering: Making GenAI More Trustworthy for Consequential Work",
+      "venue": "US Space Force, SYD 85, Brain Day",
+      "date": "August 2026",
+      "slides": "resources/talks/Davis-USSpaceForce-Brainday-Fall2026.pptx"
     },
     {
       "title": "MAGE — Model-Based Agentic Software Engineering: A Case Study in Document Accessibility",
       "venue": "IBM Research",
-      "date": "Summer 2026",
+      "date": "August 2026",
       "slides": "resources/talks/Davis-IBM-Summer2026.pptx"
+    },
+    {
+      "title": "3-D Printing Production Software: Architecture, Validation, and Control for Agentic Software Engineering",
+      "venue": "Argonne National Laboratory",
+      "date": "July 2026",
+      "slides": "resources/talks/Davis-ANL-Summer2026.pptx"
     },
     {
       "title": "The “Do More With Less” Cookbook: Using Generative AI to Accelerate Your Day-to-Day Work as an Engineering Educator",
       "venue": "ASEE Annual Conference",
-      "date": "2026",
+      "date": "June 2026",
       "slides": "resources/talks/Davis-MoreWithLess-GenAI-ASEE2026.pptx"
+    },
+    {
+      "title": "Getting a Job and the Future of SE",
+      "venue": "Purdue Engineering — Elmore Family School of ECE",
+      "date": "May 2026",
+      "slides": "resources/talks/Davis-SE-in-2026.pptx"
     }
   ]
 }
