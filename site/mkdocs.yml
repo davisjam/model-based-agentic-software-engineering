@@ -55,7 +55,9 @@ extra_css:
   - stylesheets/purdue.css   # Purdue black + Boilermaker Gold palette (overrides Material's defaults)
 
 plugins:
-  - search
+  # Search intentionally omitted: at this site's scale the sidebar already exposes the full IA and users
+  # browse rather than search, so the header search box only consumed prime space. Re-add `- search` if the
+  # companion grows large enough to need full-text retrieval.
   - awesome-pages   # nav follows the course/ tree + .pages titles; add a lecture, it appears (no config edit)
 
 hooks:
