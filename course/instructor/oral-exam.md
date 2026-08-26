@@ -1,5 +1,5 @@
 ---
-title: Oral-Exam Guidance
+title: Oral Exam Guidance
 week:
 mage_readings: []
 objectives: []
