@@ -344,6 +344,10 @@ MARKER_KEYWORDS = (
     #   badge/corner). `<!-- inset-domain: <TAG> -->` (inset family only) carries the upper-right provenance
     #   badge. Both consumed + stripped so they never leak into reader-visible output.
     "box-family", "inset-domain",
+    # `<!-- inset-size: small -->` — a Typst-only directive: render the NEXT inset at a smaller body font,
+    #   held to one page (non-breakable), for a long deep-dive box. INERT in HTML (no pagination), consumed +
+    #   stripped like inset-domain so it never leaks. Applied by the print emitter (book_typst.py).
+    "inset-size",
     # `<!-- table-landscape -->` — a Typst-only per-table directive: the Typst emitter drops the NEXT table
     #   onto a flipped/landscape page (a wide matrix that cramps in portrait). INERT in HTML (the pipe table
     #   renders through the ordinary table path; web width relies on CSS overflow), like note-spread: consumed
@@ -1538,6 +1542,10 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
                 # `<!-- inset-domain: TAG -->` — the inset provenance badge (upper-right). Armed for the NEXT
                 # blockquote; rendered only when the box is an inset. Consumed + stripped like its siblings.
                 pending_insetdomain.append(inner[len("inset-domain:"):-len("-->")].strip())
+                return True
+            if inner.startswith("inset-size:"):
+                # `<!-- inset-size: small -->` — a Typst-only directive (small-font, one-page inset). Consumed +
+                # stripped here so it never leaks into HTML; the print emitter (book_typst.py) applies it.
                 return True
             if inner.startswith("case-onepager"):
                 # `<!-- case-onepager -->` — arms the NEXT table as a per-case one-pager CARD (a light

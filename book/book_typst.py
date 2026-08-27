@@ -528,7 +528,7 @@ _DEFN_ITALIC_PRELUDE = '#show strong: set text(style: "normal")\n  #set text(sty
 
 def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = False,
                        is_principlebox: bool = False, box_family: str | None = None,
-                       inset_domain: str | None = None) -> str:
+                       inset_domain: str | None = None, inset_size: str | None = None) -> str:
     """A `>`-prefixed blockquote → a Typst block. An explicit `<!-- pullquote -->` marker (`is_pullquote`)
     becomes a label-less pull-quote — large centered italic display type, a thin accent rule above and below,
     NO fill (checked first, since an author declaration outranks lead-text-shape inference). An explicit
@@ -597,8 +597,17 @@ def _render_blockquote(raw: str, is_def: bool = False, is_pullquote: bool = Fals
                 header = f'{title_txt}\n  #v(5pt)\n  '
         elif corner:
             header = f'#align(right)[{corner}]\n  #v(3pt)\n  '
+        if inset_size == "small":
+            # A long deep-dive inset held to ONE page: shrink the body font + tighten leading, and make the
+            # whole box non-breakable so Typst floats it to a page where it fits. The header/title keep normal
+            # size (the `#set` applies only to the body that follows it inside the block scope).
+            body_wrapped = f"#set text(size: 8.5pt)\n  #set par(leading: 0.5em)\n  {_indent(body).lstrip()}"
+            brk = ", breakable: false"
+        else:
+            body_wrapped = _indent(body).lstrip()
+            brk = ""
         return (f'#block(fill: {fill}, stroke: (left: dt.border-box-rule + {rule}), '
-                f"inset: 12pt, radius: 4pt, width: 100%)[\n  {header}{_indent(body).lstrip()}\n]")
+                f"inset: 12pt, radius: 4pt, width: 100%{brk})[\n  {header}{body_wrapped}\n]")
     if box_family == "evidence":
         # EVIDENCE / navigation — the author's observation or a coverage device, not doctrine: a cool blue box.
         return (f'#block(fill: dt.diagram-fleet-fill, stroke: (left: dt.border-box-rule + dt.diagram-fleet), '
@@ -805,6 +814,7 @@ class _EmitCtx:
         self.pending_principlebox = False     # a `<!-- principlebox -->` marker armed for the next block (part-opener box)
         self.pending_boxfamily: str | None = None   # a `<!-- box-family: X -->` marker armed for the next block
         self.pending_insetdomain: str | None = None  # a `<!-- inset-domain: TAG -->` marker armed for the next inset
+        self.pending_insetsize: str | None = None    # a `<!-- inset-size: small -->` marker (Typst-only: small font + keep-together)
 
     @classmethod
     def inert(cls) -> "_EmitCtx":
@@ -817,6 +827,7 @@ class _EmitCtx:
         c.pending_principlebox = False
         c.pending_boxfamily = None
         c.pending_insetdomain = None
+        c.pending_insetsize = None
         return c
 
 
@@ -836,7 +847,7 @@ _POINT_RE = re.compile(r"^<!--\s*point:\s*(?P<slug>[a-z0-9-]+)\s*\|\s*(?P<text>.
 def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = False,
                  is_pullquote: bool = False, is_principlebox: bool = False,
                  section_no: str | None = None, box_family: str | None = None,
-                 inset_domain: str | None = None) -> str:
+                 inset_domain: str | None = None, inset_size: str | None = None) -> str:
     """Render ONE IR block to Typst markup — the sibling to `Block.render_html()`, reusing the SAME
     `book_ir.BlockKind` taxonomy and `classify_render_block` classification (the blocks arrive already
     classified from the IR parse). `caption_md` is the folded mermaid caption when the driving walk detects a
@@ -859,7 +870,7 @@ def render_typst(block: Block_t, caption_md: str | None = None, is_def: bool = F
     if k is K.BLOCKQUOTE:
         return _render_blockquote(block.raw, is_def=is_def, is_pullquote=is_pullquote,
                                   is_principlebox=is_principlebox, box_family=box_family,
-                                  inset_domain=inset_domain)
+                                  inset_domain=inset_domain, inset_size=inset_size)
     if k is K.TABLE:
         return _render_table(block)
     if k is K.FIGURE:
@@ -933,6 +944,8 @@ def _peel_metadata_marker(line: str, ctx: _EmitCtx) -> "str | None":
             ctx.pending_boxfamily = (mline.group(2) or "").strip()   # arm the four-family treatment
         if mline.group(1).lower() == "inset-domain":
             ctx.pending_insetdomain = (mline.group(2) or "").strip()  # arm the inset provenance badge
+        if mline.group(1).lower() == "inset-size":
+            ctx.pending_insetsize = (mline.group(2) or "").strip()   # arm the small-font keep-together inset
         return ""                                        # a consumed notation marker with no print output
     return None
 
@@ -1420,6 +1433,8 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         ctx.pending_boxfamily = None
         inset_domain = ctx.pending_insetdomain
         ctx.pending_insetdomain = None
+        inset_size = ctx.pending_insetsize
+        ctx.pending_insetsize = None
         # A top-level `## ` section heading advances the per-chapter counter → `part.chapter.N` (mirrors the
         # web build's `section_no`; `###`/`####` subsections do not advance it). Only when the chapter is numbered.
         sec = None
@@ -1434,7 +1449,7 @@ def render_chapter(chapter: ir.Chapter, ctx: _EmitCtx) -> str:
         else:
             frag = render_typst(b, caption_md, is_def=is_def, is_pullquote=is_pullquote,
                                 is_principlebox=is_principlebox, section_no=sec,
-                                box_family=box_family, inset_domain=inset_domain)
+                                box_family=box_family, inset_domain=inset_domain, inset_size=inset_size)
         # D71(a) keep-with-next: a paragraph that immediately introduces a figure/table/diagram sticks to it,
         # so the introducing sentence ("… in Table 4.2-1.", "… shown below.") is never split from its float
         # across a page break. Systematic — every paragraph that directly precedes a float, not one-off.
