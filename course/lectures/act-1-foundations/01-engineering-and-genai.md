@@ -1,7 +1,8 @@
 ---
 title: Engineering & GenAI
-mage_readings:
-  - "Part 1 — the new engineering problem"
+readings:
+  before:
+    - "[MAGE — Part 1: The new engineering problem](https://davisjam.github.io/model-based-agentic-software-engineering/book/)"
 instructor_materials: []
 student_materials: []
 assignments: []
@@ -12,6 +13,6 @@ materials:
     src: materials/1-1-GenAIAsEngineeringTool.pptx
 ---
 
-**Topic.** Software engineering as the discipline of governing capable, autonomous agents: what changes when implementation capacity becomes abundant, and why generative AI is an engineering tool rather than a replacement for engineering judgment.
+**Concepts.** Commodity intelligence · the new engineering imbalance · GenAI as an engineering tool.
 
-**Readings.** [Part 1 of the MAGE textbook](https://davisjam.github.io/model-based-agentic-software-engineering/book/) — the new engineering problem.
+Software engineering as the discipline of governing capable, autonomous agents: what changes when implementation capacity becomes abundant, and why generative AI is an engineering tool rather than a replacement for engineering judgment.

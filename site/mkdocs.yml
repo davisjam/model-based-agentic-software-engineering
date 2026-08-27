@@ -68,8 +68,8 @@ plugins:
   - awesome-pages   # nav follows the course/ tree + .pages titles; add a lecture, it appears (no config edit)
 
 hooks:
-  - hooks/schedule.py    # generate the 16-week at-a-glance table from lecture front matter
   - hooks/materials.py   # render a "Materials" section (links to pptx / typst / pdf) from `materials:` front matter
+  - hooks/readings.py    # render per-module "Readings" from `readings:` front matter + the auto-gen Reading Guide
 
 markdown_extensions:
   - admonition

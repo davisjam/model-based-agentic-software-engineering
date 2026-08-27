@@ -11,4 +11,6 @@ materials:
     src: materials/1-2-SEProcessesAndMethodologies.pptx
 ---
 
+**Concepts.** Software process · methodologies · feedback and iteration · cost of change.
+
 **Topic.** How software is actually built: development processes and methodologies, and where they hold up — or break down — when much of the implementation is delegated to agents.

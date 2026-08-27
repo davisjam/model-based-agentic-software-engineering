@@ -24,3 +24,10 @@ One demonstrated schedule: how the reusable curriculum maps onto a 16-week semes
 | Week 16 | Oral exam ([Oral Exams](../oral-exams.md)) |
 
 The topic sequence follows the curriculum's intellectual structure (Acts → modules); the week numbers are specific to this Purdue instantiation and will differ for other adoptions.
+
+## Reading Guide
+
+What to assign from the book if you teach this curriculum. Generated from each module's readings — a reading is a property of the module it supports, so this table stays in sync as modules gain readings.
+
+<!-- READING-GUIDE -->
+
