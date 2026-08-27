@@ -29,6 +29,10 @@ not_in_nav: |
 
 theme:
   name: material
+  # Wizard-hat identity (restrained, monochrome; the header icon adapts to light/dark).
+  icon:
+    logo: material/wizard-hat
+  favicon: assets/wizard-hat.svg
   features:
     - navigation.sections   # top-level views as sections, not a deep tree
     - navigation.top        # back-to-top
@@ -53,6 +57,9 @@ theme:
 
 extra_css:
   - stylesheets/purdue.css   # Purdue black + Boilermaker Gold palette (overrides Material's defaults)
+
+extra_javascript:
+  - js/header-title-link.js  # make the header "Teach with MAGE" title link home (logo already does)
 
 plugins:
   # Search intentionally omitted: at this site's scale the sidebar already exposes the full IA and users
