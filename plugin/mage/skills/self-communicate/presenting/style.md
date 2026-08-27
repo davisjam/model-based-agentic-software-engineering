@@ -30,7 +30,11 @@ like isolated pages of a report.
 -   Prefer concrete cases before or alongside abstraction. Return from
     the case to the principle explicitly.
 
-# Three presentation modes
+# Presentation modes
+
+The supported presentation types are **lecture** and **research talk** (with lecture free to
+blend tutorial). Storytelling is not a third type; it is a narrative sequence a lecture or
+research talk may use locally.
 
 ## Lecture
 
@@ -71,10 +75,11 @@ The supplied Amusuo research talks exhibit this mode: they move from a
 consequential problem through evidence and a research gap to a mechanism
 and evaluation.
 
-## Storytelling / keynote-style
+## Storytelling / narrative sequence
 
-Goal: control audience attention and narrative pacing rather than expose
-the full information structure on every slide.
+Some sequences within a lecture or research talk may primarily control
+audience attention and narrative pacing rather than expose the full
+information structure on every slide.
 
 -   A single sparse slide may support an elaborate spoken story.
 -   Speaker notes may carry substantially more content than the visible
@@ -203,11 +208,11 @@ structure should preserve the talk, not force every talk into recital.
 
 # Agent instructions
 
-When generating or revising slides, first classify the local sequence as
-lecture, research talk, or storytelling. Then identify the argumentative
-or pedagogical role of each slide. Preserve continuity across the
-sequence. Do not mechanically normalize slides toward one density,
-layout, or amount of text.
+When generating or revising slides, first classify the presentation as
+lecture, research talk, or a deliberate blend. Then identify the role of
+the local sequence; some sequences may use storytelling and sparse visual
+pacing. Preserve continuity across the sequence. Do not mechanically
+normalize slides toward one density, layout, or amount of text.
 
 -   For lecture material, optimize for concept formation and reasoning.
 -   For research talks, optimize for argumentative compression and

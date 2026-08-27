@@ -1,0 +1,60 @@
+...@_house-style
+
+# Genre: linear chain (bottom-up induction) partitioned into three ZONES by a side bracket.
+# Realized code rises through weak mechanical steps (ZONE 1: mechanical discovery) to a representation
+# that engineering judgment proposes, compares, and revises (ZONE 2), yielding an explicit model reused
+# by later work (ZONE 3).
+# The zones are the rhetorical device: they mark WHERE mechanical discovery ends and judgment begins.
+# d2 has no side-bracket, so each zone is a bordered container (transparent fill, coloured stroke +
+# bold label) wrapping its stage(s) -- the container IS the bracket, its label the zone name.
+# Forbidden implication: the chain stays a top-to-bottom SEQUENCE; the zones group stages, they are
+# not parallel tracks. Flow edges cross the zone borders to preserve the single ascending chain.
+# Colour: neutral = mechanical evidence · rust = the proposed representation · blue+green = the reusable surface.
+
+style.fill: "#fdfcf9"
+grid-columns: 1
+grid-gap: 16
+
+title: "Brownfield model induction" {
+  shape: text
+  style: { font-size: 22; bold: true; font-color: "#1c1917" }
+}
+
+bf: "" {
+  direction: down
+  style: { fill: transparent; stroke: transparent }
+
+  discovery: "MECHANICAL DISCOVERY\nweak machinery surfaces evidence" {
+    label.near: outside-top-left
+    direction: down
+    style: { fill: transparent; stroke: "#57534e"; stroke-width: 2; border-radius: 10; font-color: "#57534e"; bold: true; font-size: 16 }
+    realized: "realized code\nrepos · diffs · existing implementation" { class: paperbox }
+    forms:    "repeated low-level forms\nraw strings · tuples · repeated loops · ad hoc structures" { class: paperbox }
+    cands:    "candidate regularities\nweak detectors · retrieval · clustering" { class: paperbox }
+    realized -> forms { class: flow }
+    forms -> cands { class: flow }
+  }
+
+  judgment: "ENGINEERING JUDGMENT\npropose · compare · revise" {
+    label.near: outside-top-left
+    direction: down
+    style: { fill: transparent; stroke: "#9a3f12"; stroke-width: 2; border-radius: 10; font-color: "#9a3f12"; bold: true; font-size: 16 }
+    compare: "contextual comparison\nwhich repetitions carry the same engineering meaning?" { class: paperbox }
+    candrep: "candidate representation\nwhat entities, relations, states, or distinctions explain the consequential regularity?" { class: rust-head; style: { font-size: 15 } }
+    against: "compare against instances\nwhat does the representation preserve? where does it break?" { class: paperbox }
+    compare -> candrep { class: flow }
+    candrep -> against { class: flow }
+  }
+
+  reusable: "REUSABLE SURFACE\nlater work reasons through the model" {
+    label.near: outside-top-left
+    direction: down
+    style: { fill: transparent; stroke: "#2f5169"; stroke-width: 2; border-radius: 10; font-color: "#2f5169"; bold: true; font-size: 16 }
+    model:  "explicit model / typed vocabulary\nJobId · MutationSpec · PdfModel · relations" { class: fleet }
+    future: "future work reasons through the model\ntools search and check it · agents reuse rather than re-derive" { class: modeling }
+    model -> future { class: flow }
+  }
+
+  discovery.cands -> judgment.compare { class: flow }
+  judgment.against -> reusable.model { class: flow }
+}

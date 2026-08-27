@@ -2033,9 +2033,9 @@
           ]
         },
         {
-          "section_id": "recover-latent-models-from-the-implementation",
+          "section_id": "induce-models-from-the-implementation",
           "level": 2,
-          "heading_text": "Recover Latent Models from the Implementation",
+          "heading_text": "Induce Models from the Implementation",
           "topic_sentence": "Brownfield models need not begin with an engineer inventing the right abstraction in advance.",
           "id_source": "derived",
           "block_index": 40,
@@ -2047,17 +2047,17 @@
           "heading_text": "Reconcile the Map, Then Promote Obligations",
           "topic_sentence": "Begin with audit.",
           "id_source": "derived",
-          "block_index": 44,
+          "block_index": 49,
           "points": [
             {
               "slug": "begin-with-audit-then-reconcile-through-ordinary-work",
               "text": "Begin with audit; reconcile nearby claims through ordinary feature and maintenance work.",
-              "block_index": 46
+              "block_index": 51
             },
             {
               "slug": "promote-selected-obligations-only-once-trustworthy-then-extend",
               "text": "Promote selected obligations once the representation is trustworthy; extend the model only where a consumer reads it.",
-              "block_index": 48
+              "block_index": 53
             }
           ]
         },
@@ -2067,32 +2067,32 @@
           "heading_text": "Migrate One Bounded Surface at a Time",
           "topic_sentence": "The immediate goal is a **trusted map** over the parts that matter now: important claims have known anchors, important implementation regions have explanatory homes, and agents can navigate the join without rediscovering it.",
           "id_source": "derived",
-          "block_index": 50,
+          "block_index": 55,
           "points": [
             {
               "slug": "the-destination-is-a-trusted-map-then-adequate-evidence-for-the-quality-case",
               "text": "The near destination is a trusted map over what matters now; the farther one is adequate evidence for the quality case.",
-              "block_index": 52
+              "block_index": 57
             },
             {
               "slug": "choose-a-bounded-surface-and-keep-old-and-new-coexisting",
               "text": "Choose a bounded surface; let old and new coexist while the replacement earns trust.",
-              "block_index": 56
+              "block_index": 61
             },
             {
               "slug": "recover-the-representation-in-whichever-direction-the-evidence-supports",
               "text": "Recover the representation top-down or bottom-up; removing accidental complexity can ease either.",
-              "block_index": 58
+              "block_index": 63
             },
             {
               "slug": "a-disagreement-has-the-familiar-three-way-diagnosis",
               "text": "A model-code disagreement has a three-way diagnosis: model, grain, or code.",
-              "block_index": 63
+              "block_index": 68
             },
             {
               "slug": "query-the-migration-blast-radius-before-cutover",
               "text": "For consequential substrate changes, query the migration blast radius before cutover.",
-              "block_index": 69
+              "block_index": 74
             }
           ]
         },
@@ -2102,17 +2102,17 @@
           "heading_text": "Audit → Drain → Promote",
           "topic_sentence": "A valid future invariant is not always a valid present admission rule.",
           "id_source": "derived",
-          "block_index": 71,
+          "block_index": 76,
           "points": [
             {
               "slug": "a-valid-future-invariant-is-not-always-a-valid-present-admission-rule",
               "text": "A valid future invariant may not be a valid present admission rule.",
-              "block_index": 73
+              "block_index": 78
             },
             {
               "slug": "cloudflare-reached-the-same-approved-enforced-order",
               "text": "Cloudflare's public account describes a similar approved→enforced order.",
-              "block_index": 77
+              "block_index": 82
             }
           ]
         },
@@ -2122,47 +2122,47 @@
           "heading_text": "Finding the Model in the Code",
           "topic_sentence": "Brownfield modeling has a bootstrapping problem.",
           "id_source": "derived",
-          "block_index": 80,
+          "block_index": 85,
           "points": [
             {
               "slug": "brownfield-modeling-has-a-bootstrapping-problem",
               "text": "Brownfield modeling has a bootstrapping problem.",
-              "block_index": 82
+              "block_index": 87
             },
             {
               "slug": "an-audit-only-primitive-density-lint-directs-attention",
               "text": "An audit-only primitive-density lint directs attention, not judgment.",
-              "block_index": 84
+              "block_index": 89
             },
             {
               "slug": "the-first-audit-was-heterogeneous-so-the-backlog-was-partitioned",
               "text": "The first audit was heterogeneous, so the backlog had to be partitioned before draining.",
-              "block_index": 86
+              "block_index": 91
             },
             {
               "slug": "recurring-parameter-shapes-were-unnamed-domain-concepts",
               "text": "Recurring parameter shapes were unnamed domain concepts, not duplicated bugs.",
-              "block_index": 88
+              "block_index": 93
             },
             {
               "slug": "a-boundary-classification-reads-primitive-density-in-context",
               "text": "A boundary classification lets primitive density be read in architectural context.",
-              "block_index": 90
+              "block_index": 95
             },
             {
               "slug": "the-two-views-composed-to-reveal-cross-file-concepts",
               "text": "The two views composed to reveal cross-file concepts.",
-              "block_index": 92
+              "block_index": 97
             },
             {
               "slug": "weak-signals-partition-then-name-the-model",
               "text": "Weak signals partition into legitimate shape, mechanical debt, and latent concept, then name the model.",
-              "block_index": 94
+              "block_index": 99
             },
             {
               "slug": "the-same-method-can-conclude-no-model-is-warranted",
               "text": "The same method can conclude that no new model is warranted.",
-              "block_index": 99
+              "block_index": 104
             }
           ]
         },
@@ -2172,37 +2172,37 @@
           "heading_text": "The detector finds the problem; it does not choose the model",
           "topic_sentence": "The same method could conclude that no new model was warranted.",
           "id_source": "derived",
-          "block_index": 100,
+          "block_index": 105,
           "points": [
             {
               "slug": "the-brownfield-pattern-weak-signal-partition-extract",
               "text": "Use weak signals to locate work, partition before repair, extract only earned models.",
-              "block_index": 102
+              "block_index": 107
             },
             {
               "slug": "naming-a-concept-lets-the-migration-compound",
               "text": "Once a concept has a name, the migration compounds.",
-              "block_index": 104
+              "block_index": 109
             },
             {
               "slug": "the-smell-stayed-audit-only-a-drift-guard-polices",
               "text": "The smell stayed audit-only; a narrower drift guard did the forward-policing.",
-              "block_index": 106
+              "block_index": 111
             },
             {
               "slug": "sometimes-you-promote-the-obligation-not-the-instrument",
               "text": "Sometimes you promote the obligation, not the instrument that discovered it.",
-              "block_index": 108
+              "block_index": 113
             },
             {
               "slug": "the-generalized-move-partitions-findings-then-chooses-the-mechanism",
               "text": "The generalized move partitions findings, then chooses the final mechanism.",
-              "block_index": 110
+              "block_index": 115
             },
             {
               "slug": "audit-drain-promote-is-the-common-case-not-a-requirement",
               "text": "Audit → Drain → Promote does not require the discovering mechanism itself to become blocking.",
-              "block_index": 113
+              "block_index": 118
             }
           ]
         },
@@ -2212,12 +2212,12 @@
           "heading_text": "Measure What the Map Still Cannot Explain",
           "topic_sentence": "Models expose what they contain more readily than what they omit.",
           "id_source": "derived",
-          "block_index": 115,
+          "block_index": 120,
           "points": [
             {
               "slug": "reverse-traceability-surfaces-candidate-gaps",
               "text": "Reverse traceability surfaces candidate gaps to investigate; treat them as candidates, not defects.",
-              "block_index": 118
+              "block_index": 123
             }
           ]
         },
@@ -2227,32 +2227,32 @@
           "heading_text": "Derive, Don't Copy",
           "topic_sentence": "Recovering a model is only the first step.",
           "id_source": "explicit",
-          "block_index": 120,
+          "block_index": 125,
           "points": [
             {
               "slug": "recovering-a-model-is-only-the-first-step-the-next-question-is-what-happens-to-its-facts",
               "text": "Recovering a model is only the first step; the next question is what happens to the facts it owns.",
-              "block_index": 122
+              "block_index": 127
             },
             {
               "slug": "a-representation-authoritative-in-name-while-its-contents-are-copied-elsewhere-decays-into-maintenance",
               "text": "A representation named as the source of truth while its contents are copied elsewhere decays into maintenance work the day after the copies are written.",
-              "block_index": 124
+              "block_index": 129
             },
             {
               "slug": "if-a-fact-has-a-queryable-authority-derive-it-rather-than-copy-it",
               "text": "The stronger rule: if a fact already has a queryable source of truth, consume or derive it rather than copying it.",
-              "block_index": 126
+              "block_index": 131
             },
             {
               "slug": "where-two-representations-must-remain-independent-make-their-correspondence-observable",
               "text": "Where neither representation fully determines the other, make their correspondence observable and checkable.",
-              "block_index": 128
+              "block_index": 133
             },
             {
               "slug": "hidden-assumptions-deserve-the-same-treatment-make-consequential-ones-queryable",
               "text": "Hidden substrate assumptions deserve the same treatment: represent the consequential ones strongly enough that the blast radius can be queried before the change.",
-              "block_index": 132
+              "block_index": 137
             }
           ]
         },
@@ -2262,22 +2262,22 @@
           "heading_text": "Price the Investment",
           "topic_sentence": "A recurring gap does not automatically deserve machinery.",
           "id_source": "derived",
-          "block_index": 134,
+          "block_index": 139,
           "points": [
             {
               "slug": "price-the-expected-loss-against-the-cost-of-building-and-carrying-the-response",
               "text": "Price the expected future loss against the cost of building and carrying the response.",
-              "block_index": 136
+              "block_index": 141
             },
             {
               "slug": "draw-the-two-factors-as-axes-and-the-judgment-gets-a-shape",
               "text": "Draw cost against frequency and the sizing judgment gets a shape.",
-              "block_index": 138
+              "block_index": 143
             },
             {
               "slug": "price-the-upkeep-capital-depreciates-and-can-be-retired",
               "text": "Price the upkeep — engineering capital depreciates and can be retired.",
-              "block_index": 141
+              "block_index": 146
             }
           ]
         }
