@@ -128,6 +128,26 @@ the full information structure on every slide.
 -   Do not mistake density for poor design. Dense evidence can be
     appropriate when the audience is being directed through it.
 
+# Use native semantics without adopting generic infographic style
+
+Prefer PowerPoint's native semantic constructs when they faithfully
+represent the idea. SmartArt, charts, tables, equations, placeholders,
+and other structured objects are generally preferable to recreating the
+same semantics from disconnected primitives.
+
+This does **not** mean that a MAGE deck should look like a gallery of
+stock SmartArt templates. Use SmartArt only when the relationship it
+encodes is actually the relationship being communicated.
+
+Preserve the house preference for literal technical representations.
+When a native construct cannot faithfully express the technical model,
+use an appropriate custom representation rather than forcing the model
+into a generic infographic.
+
+Do not use Microsoft's decorative 3D/bevel/extrusion aesthetic.
+Representations are flat by default. Use three-dimensional depiction
+only when three-dimensional structure is itself part of the subject.
+
 # Establish orientation immediately
 
 MAGE presentations begin with a stable two-slide opening whose second slide depends on presentation type:

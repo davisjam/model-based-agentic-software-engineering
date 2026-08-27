@@ -157,6 +157,35 @@ doing.
 -   Ensure important distinctions remain understandable under weak
     projection and, where practical, grayscale.
 
+### Do not use decorative 3D effects
+
+Do not use PowerPoint's decorative 3D rendering features, including:
+
+- 3D rotation or perspective applied for visual effect;
+- bevels and extruded shapes;
+- faux depth on charts or diagrams;
+- 3D pie, bar, column, or area charts; and
+- other dimensional effects that make a fundamentally two-dimensional
+  representation appear three-dimensional.
+
+These effects add visual noise, can distort quantitative or spatial
+relationships, and are inconsistent with the deck's preference for
+literal, inspectable representations.
+
+This rule does not prohibit genuinely three-dimensional technical
+content. When the third spatial dimension is part of the information
+being communicated — for example, a physical structure, geometry, or
+spatial model — represent it as necessary to communicate that
+information.
+
+Audit:
+
+- Is any 3D treatment merely decorative?
+- Does perspective, extrusion, or depth distort the represented
+  relationship or quantity?
+- If a representation is three-dimensional, does the third dimension
+  carry actual information?
+
 # Builds and animation
 
 -   Use builds to control reasoning, not to add motion.
@@ -232,6 +261,70 @@ descriptions of visuals.
 -   Avoid using tables solely as a layout mechanism.
 -   Avoid merged or unnecessarily complex table structures when a
     simpler structure communicates the same information.
+
+## Prefer native semantic constructs
+
+Do not reconstruct a named PowerPoint concept from generic primitives
+when PowerPoint already provides an appropriate semantic construct.
+
+When the intended representation maps cleanly onto a native object,
+prefer constructs such as:
+
+- slide layouts and placeholders;
+- SmartArt;
+- charts;
+- tables;
+- equations;
+- media objects; and
+- other native structured objects
+
+over manually assembled collections of text boxes, shapes, lines, and
+arrows.
+
+Use **SmartArt when its semantic model fits the content**. Appropriate
+uses include simple processes, cycles, hierarchies, relationships, and
+other structures directly represented by an available SmartArt type.
+
+Do not distort a technical model merely to fit an available SmartArt
+template. Native does not automatically mean appropriate; the
+representation must still carry the intended intellectual structure.
+
+Use this general precedence when realizing a slide:
+
+1. **Existing deck layout/type** — reuse the deck's established visual
+   and structural vocabulary where it fits.
+2. **Native semantic object** — use SmartArt, chart, table, equation,
+   media object, or another native construct when its semantics match
+   the content.
+3. **Reusable custom type** — when a recurring slide structure is not
+   represented, add it to the slide master/layout vocabulary rather
+   than repeatedly constructing it locally.
+4. **Hand-built one-off** — use generic shapes/text boxes only when the
+   representation is genuinely exceptional or native/reusable
+   constructs cannot express it adequately.
+
+The goal is not to maximize use of PowerPoint features. The goal is to
+preserve semantics, editability, accessibility, theme integration, and
+maintainability while using a representation appropriate to the idea.
+
+Native objects do not remove accessibility obligations. SmartArt,
+charts, tables, and other structured objects must still have appropriate
+alt text or accessible equivalents, sensible reading order, sufficient
+contrast, and any other metadata or structure required for the content.
+
+Audit:
+
+- Is a named PowerPoint construct being unnecessarily reconstructed
+  from generic shapes or text boxes?
+- Would SmartArt express this process, cycle, hierarchy, or relationship
+  faithfully?
+- Is SmartArt being used merely because it is available, despite a poor
+  semantic fit?
+- Could a native chart, table, equation, or media object replace a
+  hand-built approximation?
+- Does the chosen native object remain editable and theme-aware?
+- Has the native object still been given the required accessibility
+  metadata and checked for sensible reading order?
 
 ## Reuse and extend the deck's native slide vocabulary
 
