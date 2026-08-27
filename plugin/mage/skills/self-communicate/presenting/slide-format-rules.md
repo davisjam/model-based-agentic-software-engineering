@@ -233,6 +233,75 @@ descriptions of visuals.
 -   Avoid merged or unnecessarily complex table structures when a
     simpler structure communicates the same information.
 
+## Reuse and extend the deck's native slide vocabulary
+
+Treat the deck's theme, slide masters, layouts, placeholders, and established slide types as reusable
+presentation infrastructure.
+
+When constructing a slide, use this precedence:
+
+1. **Reuse an existing suitable slide layout/type.**
+2. **If a recurring need is not represented, add a new reusable layout/type to the slide master and use it
+   from there.**
+3. **Use one-off hand-positioned construction only when the slide is genuinely exceptional and cannot
+   reasonably be represented as a reusable type.**
+
+Do not create a new recurring slide pattern by copying coordinates, formatting, text boxes, or shapes onto
+individual slides. If the pattern constitutes a new kind of slide, make it part of the deck's
+slide-master/layout vocabulary.
+
+Prefer placeholders and theme-derived formatting over independently styled text boxes and shapes. Preserve
+native PowerPoint semantics wherever practical.
+
+This is an engineering rule, not merely a visual-style preference. Reusable master/layout types improve:
+
+- accessibility and predictable structure;
+- semantic reading order;
+- editability;
+- theme-wide consistency;
+- maintainability;
+- reliable agentic generation; and
+- later global changes to typography, spacing, and layout.
+
+Before adding a new master/layout type, verify that an existing type cannot express the intended
+relationship cleanly. Do not proliferate nearly identical layouts.
+
+Audit:
+
+- Does this slide use an existing suitable deck layout/type?
+- If it introduces a recurring visual structure, was that structure added to the slide master rather than
+  implemented locally?
+- Are placeholders and theme styles used instead of hand-rolled equivalents?
+- Has the change unnecessarily duplicated an existing layout?
+- Would a future theme/master edit correctly propagate to this slide?
+
+## Native deck structure
+
+For PowerPoint/O365 decks:
+
+- Use native **Sections** for major module/talk movements.
+- Give every section a meaningful label.
+- Keep section names consistent with the visible module outline and the movement vocabulary.
+- Do not substitute divider slides for native Sections.
+- Do not require a divider slide merely because a Section begins.
+
+Opening (the first two slides):
+
+- **Lecture/module** — Slide 1 is the cover; Slide 2 is the module outline. The outline describes the
+  module's intellectual movements, not slide ranges or administrative agenda items.
+- **Research talk** — Slide 1 is the cover; Slide 2 is the contributions slide. All principal contributions
+  fit on that single slide, and state substantive knowledge/capability rather than sections of the
+  presentation. Do not put a generic outline/agenda on slide 2.
+
+Audit:
+
+- Does slide 2 provide the correct orientation for the presentation type — for a lecture, where the
+  reasoning is going; for a research talk, what the work contributes?
+- Does the outline (lecture) accurately represent the talk's movements?
+- Are major movements represented with native, meaningfully-named PowerPoint Sections?
+- Do outline labels, Section names, and movement terminology agree?
+- Are visible section dividers used only where they help the audience perceive a meaningful transition?
+
 ## Slide titles
 
 -   Give every slide a meaningful, unique **structural title**.
@@ -366,6 +435,20 @@ whole.
 -   Does the deck remain usable after PDF export?
 -   Did structural titles, alt text, links, reading order, and other
     accessibility semantics survive the distributed format?
+
+## Speaker notes
+
+When speaker notes are authored:
+
+-   Does the first line use `<estimated time> — *<purpose/message>*`?
+-   Is the time estimate plausible for the actual delivery or activity?
+-   Does the italicized statement describe what the slide accomplishes rather than merely name its contents?
+-   Are key presenter points captured above the `=====` delimiter?
+-   If a transcript is present, is it below the delimiter?
+-   Are meaningful speaking beats separated readably?
+-   Does each `ANIMATE` marker correspond to an actual build and occur at the intended point in the spoken
+    sequence?
+-   Is any audience-essential information incorrectly available only in speaker notes?
 
 Treat failures as defects unless there is a deliberate reason for the
 exception. If an exception is necessary, preserve the underlying

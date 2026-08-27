@@ -22,6 +22,36 @@ Design around the desired learning state:
 
 Coverage is not a learning objective.
 
+### Opening convention
+
+A MAGE lecture/module deck begins:
+
+    Slide 1 — Cover
+    Slide 2 — Module outline
+
+The cover identifies the module and establishes its identity. The outline shows the intellectual structure
+of the module — its meaningful movements, not a generic agenda or administrative details.
+
+Prefer:
+
+    What changed?
+    Engineering under abundant implementation
+    Modeling
+    Alignment
+    What this means for software engineering
+
+over:
+
+    Introduction
+    Part 1
+    Part 2
+    Activity
+    Conclusion
+
+The outline is an orientation model for the audience. Its vocabulary should agree with the deck's native
+Sections and with the movement names used throughout the talk. Return to the outline later only when doing
+so provides useful orientation; do not mechanically redisplay it between every section.
+
 ### Design around a learning progression
 
 Prefer a sequence in which students acquire conceptual handles before being asked to compose them.
@@ -156,6 +186,39 @@ By the end, the audience should understand:
 - why the result matters.
 
 The objective is not to reproduce the paper.
+
+### Put the contributions on slide 2
+
+A MAGE research-talk deck begins:
+
+    Slide 1 — Cover
+    Slide 2 — Contributions
+
+Slide 2 should convey, on a single slide, the knowledge or capability the work contributes. This is not an
+outline of the talk. It tells the audience what this work brings before asking them to invest attention in
+the argument and evidence that follow.
+
+Prefer contributions stated as substantive advances:
+
+    We show that ...
+    We introduce ...
+    We establish ...
+    We find ...
+
+over paper-structure descriptions:
+
+    Background
+    System design
+    Evaluation
+    Discussion
+
+The contributions slide should answer: *what do we know, have, or know how to do because of this work that
+we did not before?* Keep the complete contribution set on one slide — compress the wording, not the
+contribution set, to make it fit.
+
+The remainder of the talk should earn these claims through problem framing, mechanism, method, evidence,
+qualifications, and consequences. The contributions slide is therefore an early contract with the audience:
+these are the claims the talk will substantiate.
 
 ### Establish the problem at useful resolution
 

@@ -128,6 +128,59 @@ the full information structure on every slide.
 -   Do not mistake density for poor design. Dense evidence can be
     appropriate when the audience is being directed through it.
 
+# Establish orientation immediately
+
+MAGE presentations begin with a stable two-slide opening whose second slide depends on presentation type:
+
+    Lecture/module:
+        cover → module outline
+
+    Research talk:
+        cover → contributions
+
+For a lecture, orient the audience to the intellectual journey — keep the module outline compact and
+meaningful; it is not an administrative agenda. For a research talk, orient the audience to the
+intellectual payload — state what the work contributes, not the sections of the presentation. Do not
+substitute a generic agenda for either.
+
+Use the same vocabulary across the outline, the PowerPoint/O365 Sections, any meaningful section-divider
+slides, and the references to the movements in speaker notes — one stable representation of the module's
+structure rather than several competing outlines.
+
+# Preserve the talk in speaker notes
+
+MAGE decks use speaker notes as part of the authored presentation, not as an afterthought.
+
+Use the standard notes form:
+
+    <estimated time> — *<one-line purpose/message>*
+
+    - presenter crib
+    - key points / evidence / qualifications
+
+    =====
+
+    transcript or detailed speaking notes
+
+    ANIMATE
+
+    continuation after the build
+
+Keep the opening purpose line intellectual rather than descriptive:
+
+    2 minutes — *Show that process can arrange for judgment without being judgment itself.*
+
+is stronger than:
+
+    2 minutes — *Discuss process and judgment.*
+
+Use the transcript to preserve useful phrasing, sequencing, explanation, and transitions, especially for
+storytelling or carefully staged reasoning. Sparse visible slides may legitimately carry elaborate speaker
+notes.
+
+Do not require a fully scripted transcript when the slide is better delivered conversationally. The notes
+structure should preserve the talk, not force every talk into recital.
+
 # Agent instructions
 
 When generating or revising slides, first classify the local sequence as

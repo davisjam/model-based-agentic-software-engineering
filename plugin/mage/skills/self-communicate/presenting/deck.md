@@ -144,6 +144,38 @@ A repeated slide can:
 
 Prefer intentional recurrence over a near-duplicate slide that forces needless reorientation.
 
+## Represent the talk's movements using native deck structure
+
+When the presentation format provides native structural organization, use it rather than representing the
+outline only visually.
+
+In PowerPoint / Microsoft 365, use **Sections** to represent the major movements of the talk or module.
+Give each section a short, meaningful name that describes its intellectual role or subject.
+
+The section structure should correspond to the actual organization of the talk. Do not create sections
+merely to partition an arbitrary number of slides.
+
+For example:
+
+    Opening
+    What changed?
+    Engineering under abundant implementation
+    Modeling
+    Alignment
+    Synthesis
+
+Prefer meaningful names over mechanical labels such as:
+
+    Section 1
+    Part 2
+    Slides 12–24
+
+Native sections complement visible movement boundaries; they do not require a section-divider slide at
+every boundary. Add a visible divider only when the audience benefits from perceiving the transition.
+
+Native structure improves navigation, editing, reuse, presenter orientation, and machine interpretation of
+the deck.
+
 ## Speaker notes have a different audience
 
 Notes are presenter-facing.
@@ -160,6 +192,70 @@ Use them for:
 
 Do not hide audience-essential content in notes.
 Do not copy the entire visible slide into notes merely to have notes.
+
+### Use a consistent speaker-notes structure
+
+Speaker notes should preserve the intended performance of the slide without turning the visible slide into
+a document.
+
+Use this default structure:
+
+    <estimated time> — *<one-line purpose/message of the slide>*
+
+    - Key point.
+    - Key point.
+    - Important evidence, qualification, or delivery instruction.
+
+    =====
+
+    Transcript or detailed speaking notes.
+
+    ANIMATE
+
+    Continue after the build.
+
+The first line combines a pacing estimate with the slide's intellectual purpose. Write the time naturally
+for humans in Presenter View:
+
+    30 seconds — *Transition from diagnosis to construction.*
+
+    2 minutes — *Establish that cheap fabrication does not eliminate engineering judgment.*
+
+    8 minutes — *Students derive the representations an autonomous coding agent would need.*
+
+The italicized statement is not merely a description of the slide's contents. It states what the slide is
+intended to accomplish in the talk. This makes the notes useful for auditing whether the slide earns its
+place.
+
+The bullets are the presenter's crib. They should capture the points that must survive delivery: important
+claims, evidence, qualifications, transitions, activity instructions, or other reminders. They need not
+reproduce the transcript.
+
+The `=====` delimiter separates presenter-facing summary material from the fuller performance script.
+
+Below the delimiter, preserve a transcript or sufficiently detailed speaking notes when doing so is useful.
+Use paragraph breaks to mark meaningful speaking beats rather than storing the script as one wall of text.
+
+Place `ANIMATE` on its own line at the exact point where the presenter should advance a build:
+
+    Explain the established state.
+
+    ANIMATE
+
+    Explain the newly revealed element.
+
+This makes the relationship between speech and progressive disclosure explicit and recoverable. Do not add
+`ANIMATE` markers for transitions between ordinary slides — they represent builds within the current slide.
+
+The transcript may be lighter for slides whose delivery is naturally variable, interactive, or already
+obvious from the crib. Do not invent verbatim prose merely to fill the structure.
+
+For activities, the estimated time should include the activity rather than only the instructor's setup. Use
+the crib to preserve instructions, expected responses or failure modes, and the intended synthesis where
+those are important to successful delivery.
+
+Speaker notes remain presenter-facing. Audience-essential information must still appear in the visible or
+otherwise accessible presentation artifact rather than existing only below the `=====` delimiter.
 
 ## Citations and provenance
 
