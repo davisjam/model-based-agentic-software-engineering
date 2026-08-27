@@ -101,3 +101,5 @@ book/d2-pilot/*.html
 /site/site/
 # local site toolchain venv (site/requirements.txt)
 /site/.venv/
+~$*
+Reference-GITIGNORE/

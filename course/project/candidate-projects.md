@@ -1,5 +1,5 @@
 ---
-title: Candidate Regulatory Projects
+title: Regulations and Candidate Projects
 week:
 mage_readings: []
 objectives: []

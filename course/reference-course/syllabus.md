@@ -8,6 +8,9 @@ student_materials: []
 assignments: []
 instructor_notes: ""
 status: ready
+materials:
+  - title: Syllabus slides (first-day framing)
+    src: lectures/materials/Act-0-SyllabusSlides/0-1-Syllabus.pptx
 ---
 
 # Software Engineering — ECE (WL) 30861

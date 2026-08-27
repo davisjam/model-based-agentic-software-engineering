@@ -11,8 +11,6 @@ status: draft
 schedule_generated: true
 ---
 
-A 16-week reference course. The week-by-week table below is generated from the front matter of the lecture pages under **Lectures** — add a lecture and it appears here automatically (no site edits).
+A 16-week reference course. The authoritative week-by-week outline lives in the **[Syllabus](syllabus.md)**; the at-a-glance table below is generated from the lecture pages under **Lectures** and fills in as lecture materials land.
 
 <!-- SCHEDULE-TABLE -->
-
-> **TODO** — placeholder. Populate from the source materials (slide decks, project handouts) as they land. See `course/README.md` for the metadata + contribution conventions.
