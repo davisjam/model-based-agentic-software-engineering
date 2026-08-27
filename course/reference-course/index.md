@@ -1,5 +1,5 @@
 ---
-title: Course at a Glance
+title: Reference Course
 week:
 mage_readings: []
 objectives: []
@@ -7,10 +7,14 @@ instructor_materials: []
 student_materials: []
 assignments: []
 instructor_notes: ""
-status: draft
-schedule_generated: true
+status: ready
 ---
 
-A 16-week reference course. The authoritative week-by-week outline lives in the **[Syllabus](syllabus.md)**; the at-a-glance table below is generated from the lecture pages under **Lectures** and fills in as lecture materials land.
+# ECE 30861 — Purdue, Fall 2026
 
-<!-- SCHEDULE-TABLE -->
+The reference course is **one demonstrated way** to schedule and teach the MAGE curriculum: the specific instantiation taught as ECE 30861 (Software Engineering) at Purdue University in Fall 2026.
+
+The reusable materials — the [Lectures](../lectures/index.md), the [Semester Project](../project/index.md), and the [Oral Exams](../oral-exams.md) — are organized by their intellectual structure, independent of any calendar. This page maps them onto an actual 16-week semester.
+
+- **[Syllabus](syllabus.md)** — the authoritative course document: outcomes, policies, grading, and the full outline.
+- **[Calendar](calendar.md)** — the week-by-week mapping of the curriculum onto the Purdue Fall 2026 schedule.
