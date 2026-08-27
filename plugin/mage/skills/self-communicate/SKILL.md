@@ -7,19 +7,19 @@ description: >-
   design doc, a runbook, a handoff, a README, a tutorial, an ADR, an API reference)
   AND the operator's own reports to the human (a status report, explaining a
   tradeoff, surfacing a decision — the orchestrator's prose to the user is prose
-  too). Use when authoring or auditing any of it. Two legs. PROSE — the rhetoric
+  too). It also governs talks and slide decks. Use when authoring or auditing any of it. Three legs. PROSE — the rhetoric
   toolkit (classical figures, used with
   variety so the prose doesn't read as machine-uniform), the Diátaxis engineering
   register (tutorial / how-to / reference / explanation), a house lexicon that
   names concepts consistently, the target voice, and an audit procedure that grades
   a passage and emits concrete fixes. VISUALIZATION — technical-diagram types,
-  Mermaid-first, with a narrow hand-authored-SVG escape hatch. Also bootstraps a
+  Mermaid-first, with a narrow hand-authored-SVG escape hatch. PRESENTING — talk, deck, slide, presentation-type specialization, house style, and mechanical/accessibility rules. Also bootstraps a
   house vocabulary by walking a codebase and keeps it living. Use whenever prose
   quality, doc structure, term consistency, LLM-tell density, or a technical diagram
   is in hand.
 ---
 
-# self-communicate — write and diagram engineer-facing docs well
+# self-communicate — write, draw, and present engineer-facing material well
 
 You are communicating **the way the work is explained** in this repository — the prose and diagrams an
 engineer or a coding agent reads to understand it. This is the *communicate* leg of a trio: **govern /
@@ -38,7 +38,7 @@ None of this is invented per document — you reach into a toolkit and apply it.
 
 ## The governing stance: less is more — the representation must not distract from the idea
 
-One principle governs every resource below, prose and drawing alike: **the representation is a carrier for
+One principle governs every resource below — across all three legs: **the representation is a carrier for
 the idea; strip anything that does not carry it.** Three touchstones name the discipline:
 
 - **Hemingway** — economy of words. Plain, concrete, load-bearing prose. No fluffy adjective, no ornamental
@@ -59,17 +59,21 @@ being restated here:
 - **In drawing** — the simplest representation that carries the idea. Do not elaborate a diagram if a
   simpler one would read; strip ornament. See [`drawing/diagrams.md`](drawing/diagrams.md) (§"Less is more —
   the simplest form that carries the idea").
+- **In presenting** — one idea per slide; strip the decorative template, the clip-art, the bullet wall that
+  competes with the point. See [`presenting/slide.md`](presenting/slide.md) and
+  [`presenting/slide-format-rules.md`](presenting/slide-format-rules.md).
 
-The [`writing/audit.md`](writing/audit.md) procedure flags violations of this stance in both legs — a fluffy
-adjective in prose, ornament in a diagram.
+The [`writing/audit.md`](writing/audit.md) procedure flags violations of this stance in prose and drawing —
+a fluffy adjective, ornament in a diagram; the presenting leg carries its own construction/audit pass in
+[`presenting/slide-format-rules.md`](presenting/slide-format-rules.md).
 
 ## The second stance: name the concept, then use the name
 
-A second principle governs both legs: **name the concept, then use the name — reach for the established,
+A second principle governs all three legs: **name the concept, then use the name — reach for the established,
 native construct rather than re-deriving it from parts.** A name is a handle. It carries the concept's
 meaning, its constraints, and its correct behavior in a single token, so using the name is shorter,
 clearer, and less error-prone than re-describing or re-assembling the concept each time it appears. The
-failure it prevents is the same in both legs: a concept re-derived from scratch on every appearance drifts,
+failure it prevents is the same across the legs: a concept re-derived from scratch on every appearance drifts,
 and a construct hand-stitched from primitives is fragile in ways the native, named form is not.
 
 The stance specializes per representation, and each specialization lives in its own resource:
@@ -83,11 +87,16 @@ The stance specializes per representation, and each specialization lives in its 
   so it cannot land rotated or off-target the way a hand-placed triangle `<path>` can. Reach for the
   format's own named shape before composing one. See [`drawing/diagrams.md`](drawing/diagrams.md)
   (§"Use the native construct, not stitched primitives").
+- **In presenting** — use the native slide object, not a picture of one: a real table, a real chart, a
+  structural slide title, semantic objects in reading order — not text boxes faking structure or an image
+  of a diagram. This is also what makes a deck accessible by construction. See
+  [`presenting/slide-format-rules.md`](presenting/slide-format-rules.md).
 
-## The two legs
+## The three legs
 
 - **Prose** — the argument, carried in sentences. Five resources, applied in order.
 - **Visualization** — the shape, carried in a diagram. One resource, Mermaid-first.
+- **Presenting** — the argument or learning experience, carried through speech and a visual sequence.
 
 ### Prose — the five resources, in order
 
@@ -128,6 +137,20 @@ the book — a figure is a model for teaching the reader, never a rendering of t
 Apply it before picking a diagram type — it decides what the figure says; `diagrams.md` decides how to
 draw it.
 
+
+### Presenting — design the talk, then realize it
+
+Do **not** begin presentation work by manufacturing slides. Design the intellectual object first, then its visual realization.
+
+1. **Talk.** [`presenting/talk.md`](presenting/talk.md) — the audience transformation, governing question or claim, movements, presentation moves, activities, and pacing.
+2. **Presentation type.** [`presenting/presentation-types.md`](presenting/presentation-types.md) — specialize the talk for a **lecture** (including tutorial-like guided practice), a **research talk**, or a deliberate blend.
+3. **Deck.** [`presenting/deck.md`](presenting/deck.md) — realize the talk as a visual sequence; preserve continuity, progressive disclosure, vocabulary, provenance, and the distinction between live and distributed artifacts.
+4. **Slide.** [`presenting/slide.md`](presenting/slide.md) — design the atomic visual unit; give it one primary job, default to assertion → evidence for technical claims, and choose the representation by the relationship being communicated.
+5. **Style.** [`presenting/style.md`](presenting/style.md) — apply the house choices that specialize the portable presentation discipline.
+6. **Format rules.** [`presenting/slide-format-rules.md`](presenting/slide-format-rules.md) — enforce mechanically auditable realization constraints, including the 20 pt audience-text floor, one-line idea-bearing titles, alt text, structural slide titles, and semantic object/reading order.
+
+The dependency is **talk → type → deck → slide → style/rules**. Do not treat these as unrelated checklists. For an existing deck, enter at the level implicated by the request: repair a slide locally when the talk is sound; repair the sequence when continuity is broken; return to the talk when the argument or learning progression itself is wrong.
+
 ## How to use this skill
 
 1. **Name the genre and the mode first.** What kind of doc is this — tutorial, how-to, reference,
@@ -142,6 +165,19 @@ draw it.
    figure teaches a concept rather than documenting the system's own model, apply
    [`drawing/figures.md`](drawing/figures.md) first — what to show, how much, one job per figure.
 5. **Audit before you ship.** Run [`writing/audit.md`](writing/audit.md) over the draft and apply its fixes.
+
+
+### Presentation workflow
+
+For presentation work:
+
+1. Read [`presenting/talk.md`](presenting/talk.md) and state or recover the audience transformation before polishing slides.
+2. Read the relevant section of [`presenting/presentation-types.md`](presenting/presentation-types.md).
+3. Apply [`presenting/deck.md`](presenting/deck.md) to the sequence.
+4. Apply [`presenting/slide.md`](presenting/slide.md) to individual slides.
+5. Apply [`presenting/style.md`](presenting/style.md) and any local overlay.
+6. Run [`presenting/slide-format-rules.md`](presenting/slide-format-rules.md) as the final construction/audit pass.
+7. Re-check the distributed artifact after export; source-deck accessibility metadata is not guaranteed to survive conversion.
 
 ## Bootstrap the lexicon from a codebase walk — then keep it living
 
@@ -187,6 +223,7 @@ never looks. Two adopter-owned surfaces, disjoint from the upstream set by namin
   is a fork, out of scope for the adapter. Declared overlays:
   - `writing/lexicon.md` → `writing/lexicon.local.md` — your **house vocabulary** rows, appended to the
     lexicon's portable base. This catalogue ships its own DocAble house dialect here as the worked example.
+  - `presenting/style.md` → `presenting/style.local.md` — adopter-specific presentation house style, appended to the portable basis.
 - **Directory drop-in** — any file you place under `local/` is adopter-owned: the agent reads it on the
   topic it names, and upstream never ships into `local/`. Use it for a standalone house style note this
   skill does not already carry.

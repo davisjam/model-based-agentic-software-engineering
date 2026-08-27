@@ -115,6 +115,7 @@ from tests.skill import (
     check_skill_drift,
     check_skill_local_adapter,
     check_skill_structure,
+    check_self_communicate_manifest,
 )
 from tests.svg_fit import (
     check_svg_drawing_hygiene,
@@ -509,6 +510,7 @@ CHECKS = [
     Check("skill: bundle link integrity", 1, lambda strict: check_bundle_links()),
     Check("skill: local-adapter plug wiring (INV-5 — declared overlays resolve, no orphan *.local.md)", 1,
           lambda strict: check_skill_local_adapter()),
+    Check("skill: self-communicate manifest structural integrity + router/export drift", 1, lambda strict: check_self_communicate_manifest()),
     Check("skill: refresh preserves adopter overlays (INV-6 — install/refresh failure-injection)", 1,
           lambda strict: check_refresh_preserves_local()),
     # BLOCKING Tier-1 stdlib twin of the axe pass: the deterministic, model-derived a11y coverage set is

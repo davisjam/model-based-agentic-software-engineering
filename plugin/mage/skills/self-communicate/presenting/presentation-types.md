@@ -67,6 +67,10 @@ For each activity specify:
 - what the instructor does with the answers;
 - the concept the activity establishes or tests.
 
+When students are actively working from a question, classification, design problem, example, or set of
+constraints, keep the relevant prompt and necessary reference material visible unless removing it is
+itself part of the exercise.
+
 Do not add interaction merely for engagement.
 
 ### Use examples as working objects

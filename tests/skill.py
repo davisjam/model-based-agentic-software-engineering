@@ -174,3 +174,45 @@ def check_refresh_preserves_local():
         if "principles.local.md" not in r["preserved"] or "local/adopter-note.md" not in r["preserved"]:
             issues.append(f"refresh result under-reported preserved files: {r['preserved']}")
     return (FAIL if issues else PASS), issues
+
+
+def check_self_communicate_manifest():
+    """The self-communicate skill's `manifest.json` is the SSOT for its composition; the per-leg AGENTS.md
+    routers and the mage-*-style.md exports are GENERATED views. This runs the manifest's OWN bidirectional
+    structural validation (manifest -> filesystem: every declared source / router / input / overlay base
+    exists; filesystem -> manifest: every substantive leg resource is accounted for; dependency + overlay
+    checks) and fails on DRIFT — a committed AGENTS.md that no longer equals the manifest render, or a
+    non-reproducible export. Derived from the manifest, so no second copy of the skill inventory lives here
+    (boring + mandatory: it catches file deletion, rename, or partial integration immediately)."""
+    import importlib.util
+    import pathlib
+    skill = os.path.join(ROOT, "plugin", "mage", "skills", "self-communicate")
+    root = pathlib.Path(skill)
+    issues: list[str] = []
+
+    def _load(name, path):
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+
+    man = _load("_sc_manifest", os.path.join(skill, "manifest.py"))
+    # (1-7) structural validation, bidirectional
+    issues += man.validate(root)
+    m = man.load(root)
+    # (8) router drift — a committed AGENTS.md must equal the manifest render
+    for leg_key, leg in m["legs"].items():
+        dest = root / leg["router"]["path"]
+        want = man.render_router(leg_key, leg)
+        have = dest.read_text(encoding="utf-8") if dest.is_file() else "<missing>"
+        if have != want:
+            issues.append(f"{leg['router']['path']}: drifted from the manifest render — regenerate with "
+                          f"`python3 manifest.py build`")
+    # (9) export reproducibility — rendering a distribution export twice is byte-identical
+    sty = _load("_sc_style", os.path.join(ROOT, "book", "build_writing_style.py"))
+    entry = m["skill"]["entrypoint"]
+    for leg_key, leg in m["legs"].items():
+        legd = {**leg, "_entrypoint": entry}
+        if sty.render(leg_key, legd) != sty.render(leg_key, legd):
+            issues.append(f"{leg['distribution']['path']}: export render is not reproducible")
+    return (FAIL if issues else PASS), issues

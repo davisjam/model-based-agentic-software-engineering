@@ -1,0 +1,173 @@
+{
+  "_note": "The machine-readable STRUCTURAL MODEL of the self-communicate skill — the single source of truth for its composition. Ownership: the Markdown/py resources are the substantive guidance; this manifest models their composition and relationships; SKILL.md orchestrates the skill for an agent; each leg's AGENTS.md is a GENERATED view over this manifest (do not hand-edit); the mage-*-style.md exports are generated distribution artifacts. Paths are relative to the skill root. Do not move substantive guidance into this file — it carries only structure (leg purpose, conceptual layers, resources, ordering, overlays, generated outputs). Validated + rendered by manifest.py; the drift test regenerates routers/exports and fails on any divergence.",
+  "schema_version": 1,
+  "skill": {
+    "name": "self-communicate",
+    "description": "Write, draw, and present engineer-facing material well.",
+    "entrypoint": "SKILL.md"
+  },
+  "support": [
+    "SKILL.md",
+    "manifest.json",
+    "manifest.py"
+  ],
+  "legs": {
+    "writing": {
+      "title": "Writing",
+      "description": "Engineer-facing prose: choose the document form, write in the target register, use stable terminology, and audit the result.",
+      "router_intro": "Use these resources as a stack. Choose the document form before drafting, then apply vocabulary and voice, and audit before shipping. Route visual structures to ../drawing/ rather than forcing them into prose.",
+      "layers": [
+        {
+          "id": "shape",
+          "title": "Document shape",
+          "description": "Determine what kind of document is being written and how that form should be structured.",
+          "resources": ["writing/engineering.md", "writing/document-types.md"]
+        },
+        {
+          "id": "expression",
+          "title": "Expression",
+          "description": "Control sentence-level rhetoric, terminology, and register.",
+          "resources": ["writing/rhetoric.md", "writing/lexicon.md", "writing/voice.md"]
+        },
+        {
+          "id": "verification",
+          "title": "Audit",
+          "description": "Inspect the finished prose against the writing discipline.",
+          "resources": ["writing/audit.md"]
+        }
+      ],
+      "overlays": [
+        {
+          "base": "writing/lexicon.md",
+          "local": "writing/lexicon.local.md",
+          "mode": "append",
+          "optional": true,
+          "description": "Adopter-specific house vocabulary."
+        }
+      ],
+      "router": { "path": "writing/AGENTS.md", "generated": true },
+      "distribution": {
+        "path": "mage-writing-style.md",
+        "generated": true,
+        "generator": "build_writing_style",
+        "inputs": [
+          "SKILL.md",
+          "writing/voice.md",
+          "writing/rhetoric.md",
+          "writing/engineering.md",
+          "writing/lexicon.md",
+          "writing/lexicon.local.md",
+          "writing/document-types.md",
+          "writing/audit.md"
+        ]
+      }
+    },
+    "drawing": {
+      "title": "Drawing",
+      "description": "Visual representations for structures, relationships, teaching figures, measurements, and tabular comparisons.",
+      "router_intro": "Choose the representation according to the information being communicated. Use the editorial figure guidance before the realization resource when the visual is teaching a concept. Do not create a diagram merely because prose seems visually plain.",
+      "layers": [
+        {
+          "id": "editorial",
+          "title": "Editorial judgment",
+          "description": "Decide what a teaching figure should communicate and how much it should show.",
+          "resources": ["drawing/figures.md"]
+        },
+        {
+          "id": "realization",
+          "title": "Representation",
+          "description": "Choose and realize the appropriate visual form.",
+          "resources": ["drawing/diagrams.md", "drawing/charts.md", "drawing/tables.md"]
+        },
+        {
+          "id": "verification",
+          "title": "Format audit",
+          "description": "Validate hand-authored drawing artifacts where applicable.",
+          "resources": ["drawing/svg-audit.py"]
+        }
+      ],
+      "overlays": [],
+      "router": { "path": "drawing/AGENTS.md", "generated": true },
+      "distribution": {
+        "path": "mage-drawing-style.md",
+        "generated": true,
+        "generator": "build_drawing_style",
+        "inputs": [
+          "SKILL.md",
+          "drawing/figures.md",
+          "drawing/diagrams.md",
+          "drawing/charts.md",
+          "drawing/tables.md"
+        ]
+      }
+    },
+    "presenting": {
+      "title": "Presenting",
+      "description": "Design the talk as an intellectual and temporal object, realize it as a deck, then construct accessible slides.",
+      "router_intro": "Work from the highest abstraction implicated by the task. Do not polish slides when the talk is wrong, and do not redesign the talk when only a slide needs repair.",
+      "layers": [
+        {
+          "id": "talk",
+          "title": "Talk",
+          "description": "Design the audience transformation, argument or learning progression, presentation moves, activities, and pacing.",
+          "resources": ["presenting/talk.md"]
+        },
+        {
+          "id": "type",
+          "title": "Presentation type",
+          "description": "Specialize the talk for the communication setting (lecture, research talk, or a deliberate blend).",
+          "resources": ["presenting/presentation-types.md"]
+        },
+        {
+          "id": "deck",
+          "title": "Deck",
+          "description": "Realize the talk as a coherent visual sequence.",
+          "resources": ["presenting/deck.md"]
+        },
+        {
+          "id": "slide",
+          "title": "Slide",
+          "description": "Design each atomic visual unit.",
+          "resources": ["presenting/slide.md"]
+        },
+        {
+          "id": "specialization",
+          "title": "House style",
+          "description": "Apply adopter-specific presentation choices over the portable basis.",
+          "resources": ["presenting/style.md"]
+        },
+        {
+          "id": "verification",
+          "title": "Realization rules",
+          "description": "Apply mechanically auditable typography, layout, projection, and accessibility constraints.",
+          "resources": ["presenting/slide-format-rules.md"]
+        }
+      ],
+      "dependencies": ["talk", "type", "deck", "slide", "specialization", "verification"],
+      "overlays": [
+        {
+          "base": "presenting/style.md",
+          "local": "presenting/style.local.md",
+          "mode": "append",
+          "optional": true,
+          "description": "Adopter-specific presentation house style."
+        }
+      ],
+      "router": { "path": "presenting/AGENTS.md", "generated": true },
+      "distribution": {
+        "path": "mage-presenting-style.md",
+        "generated": true,
+        "generator": "build_presenting_style",
+        "inputs": [
+          "SKILL.md",
+          "presenting/talk.md",
+          "presenting/presentation-types.md",
+          "presenting/deck.md",
+          "presenting/slide.md",
+          "presenting/style.md",
+          "presenting/slide-format-rules.md"
+        ]
+      }
+    }
+  }
+}

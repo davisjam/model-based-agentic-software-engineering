@@ -61,7 +61,7 @@ book/_design/*-brief*.md
 # The MAGE "full writing stack" export — a concatenation of the writing-stack source files, emitted by
 # book/build_writing_style.py on every build (see build_book.py). A derived build artifact, same posture
 # as mage-book.pdf: created, never committed.
-/book/mage-writing-style.md
+/book/mage-*-style.md
 
 # Node build tooling for the PDF render (Puppeteer). package.json + package-lock.json ARE tracked (CI
 # runs `npm ci`); the installed tree is not.

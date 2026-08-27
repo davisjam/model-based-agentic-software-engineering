@@ -6953,14 +6953,21 @@ def _pdf_split_enabled(args: "list[str]") -> bool:
 
 
 def _emit_writing_style_export() -> None:
-    """Regenerate book/mage-writing-style.md — the MAGE "full writing stack" export (the self-communicate
-    skill + writing/ resources + house style), concatenated from source. A gitignored build artifact, so
-    it is refreshed on every build/PDF run and never committed. Kept out of the chapter hierarchy by its
-    name (no `N.M-` prefix), so it is not discovered as a chapter."""
+    """Regenerate the self-communicate skill's generated views from its manifest.json: the per-leg
+    AGENTS.md routers (committed, drift-gated) and the mage-*-style.md distribution exports (gitignored,
+    like book/mage-book.pdf). Both are derived, never hand-maintained; the manifest structural test fails
+    on any drift. The exports are kept out of the chapter hierarchy by name (no `N.M-` prefix)."""
     import build_writing_style
-    out = build_writing_style.build_writing_style()
-    print(f"writing-stack export: {out.name} ({out.stat().st_size:,} bytes, "
-          f"{len(build_writing_style.SOURCES)} sources)")
+    for out in build_writing_style.build_all():
+        print(f"style export: {out.name} ({out.stat().st_size:,} bytes)")
+    # Regenerate the AGENTS.md routers from the skill manifest (a view over manifest.json).
+    import importlib.util
+    skill_root = ROOT / "plugin" / "mage" / "skills" / "self-communicate"
+    spec = importlib.util.spec_from_file_location("_sc_manifest", skill_root / "manifest.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    for p in mod.build_routers():
+        print(f"router: {p.relative_to(skill_root)}")
 
 
 def build() -> int:
