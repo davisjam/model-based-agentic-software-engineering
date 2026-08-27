@@ -153,6 +153,53 @@ Do not use Microsoft's decorative 3D/bevel/extrusion aesthetic.
 Representations are flat by default. Use three-dimensional depiction
 only when three-dimensional structure is itself part of the subject.
 
+# Animation and progressive disclosure
+
+Animation controls attention and reveals structure; it is not decoration.
+Prefer a small vocabulary of simple builds whose meaning is predictable
+across the deck.
+
+Common house patterns:
+
+-   **Appear.** Introduce a new object when it becomes relevant.
+-   **Appear + de-emphasize.** On the same click, introduce the new material
+    while making previously discussed material substantially more
+    transparent. Use this when the old material remains useful as context but
+    should no longer compete for attention.
+-   **Replace.** Remove or disappear existing material as the next material
+    appears. Use this when retaining the old material would add clutter
+    rather than useful context.
+
+Choose between de-emphasis and disappearance deliberately. Keep earlier
+material visible when relationships, accumulation, comparison, or history
+matter; remove it when the audience no longer needs it to understand the
+current point.
+
+When several objects accumulate on a slide, a thin, restrained border around
+the active or newly introduced object can clarify grouping and focus. Borders
+should be structural, not ornamental.
+
+Make simultaneous changes occur on the same click when they represent one
+conceptual transition — the new object appears while the previous object
+becomes transparent, for example. Do not force the speaker through multiple
+clicks for what the audience should perceive as one move.
+
+Avoid gratuitous motion: elaborate transitions, spins, zooms, bouncing,
+3-D effects, and animation whose only purpose is novelty. Movement should
+correspond to a change in the audience's attentional or conceptual state.
+Preserve the deck's visual grammar — reuse an established build pattern
+before inventing another.
+
+**Reveal by masking.** For a complex figure, diagram, or table revealed in
+stages, prefer reveal-by-masking when practical: begin with the complete
+artifact, place opaque background-colored boxes over the portions not yet
+being discussed, and make those masks disappear as the explanation
+progresses. This preserves the full artifact underneath while controlling
+what the audience can see, and is especially useful when the final state
+should be the complete figure or table. Prefer it to reconstructing the
+artifact piece-by-piece when reconstruction would make the final composition
+harder to edit, align, or reuse.
+
 # Establish orientation immediately
 
 MAGE presentations begin with a stable two-slide opening whose second slide depends on presentation type:

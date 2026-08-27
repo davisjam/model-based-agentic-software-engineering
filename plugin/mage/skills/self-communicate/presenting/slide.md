@@ -169,6 +169,12 @@ Mayer's **temporal contiguity** principle favors presenting corresponding visual
 
 When a figure is too complex to process at once, use a sequence or build that preserves the frame while adding structure.
 
+Progressive disclosure is a relationship between the slide's realized state sequence and the speaker's delivery. A proposed sequence is not an animation until it has actually been encoded in the presentation.
+
+Use animation when successive states help the audience understand the idea: revealing successive elements of a process, shifting attention among parts of a model, or accumulating evidence. Do not animate merely because content can be revealed one bullet at a time.
+
+An earlier state may remain visible but de-emphasized when the audience still needs it for context, and may disappear when it has completed its job. When several states or examples remain visible together, restrained borders can make the grouping and current focus legible.
+
 ## Choose the representation by the relation
 
 Use the representation that naturally carries the content.

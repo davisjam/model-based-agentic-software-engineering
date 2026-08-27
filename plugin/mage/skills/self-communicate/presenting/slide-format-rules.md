@@ -204,6 +204,79 @@ Audit:
     provide a static representation or equivalent that survives
     distribution.
 
+## Speaker-note realization
+
+When the output format supports rich text in speaker notes, realize emphasis
+as actual formatting:
+
+-   the opening `TIME — message` line uses native italics for the message;
+-   bold and italics elsewhere use native rich-text runs;
+-   do not leave Markdown `*`, `**`, or similar formatting markers in the
+    rendered notes.
+
+The conceptual source `2 minutes — *Technology shifts the bottleneck.*` must
+appear in PowerPoint as `2 minutes — Technology shifts the bottleneck.` with
+the message actually italicized.
+
+## Animation-note consistency
+
+`ANIMATE` is an executable delivery cue, not a rhetorical placeholder. Before
+emitting `ANIMATE`:
+
+1.  inspect the slide's actual animation sequence;
+2.  verify that an animation occurs at that point;
+3.  verify that the marker corresponds to the correct click/build;
+4.  omit the marker if no such animation exists.
+
+When generating a new slide, do not write notes that promise an animation
+that has not been implemented. Either implement the intended animation and
+then add the cue, or leave both absent.
+
+As an audit invariant:
+
+    ANIMATE in notes  =>  corresponding animation/build exists
+
+The converse need not be absolute — trivial or automatically timed animation
+may not require a speaking cue — but every click-driven conceptual build that
+affects delivery should normally carry a corresponding cue in detailed notes.
+
+## Animation realization
+
+Prefer simple entrance, exit, and emphasis behavior. For progressive
+sequences:
+
+-   use **Appear** for straightforward introduction;
+-   where previous material should remain as context, make the new material
+    appear while the previous material becomes transparent on the same click;
+-   where previous material is no longer useful, make it disappear as the new
+    material appears;
+-   when multiple objects remain visible and grouping becomes ambiguous, use
+    a thin border to distinguish the active or newly introduced object.
+
+Do not substitute unsupported animation behavior with prose in the notes. If
+the authoring library cannot reliably create the intended PowerPoint
+animation, preserve the static slide and omit `ANIMATE` rather than claiming
+the build exists. When editing an existing presentation, preserve its
+established animation vocabulary unless there is a concrete reason to change
+it.
+
+### Reveal by masking
+
+For staged revelation of a large figure, diagram, or table, the preferred
+house technique is often:
+
+1.  place the complete final artifact on the slide;
+2.  overlay opaque boxes matching the slide background over content that
+    should initially be hidden;
+3.  order the masks according to the intended reveal sequence;
+4.  apply **Disappear** animations to the masks;
+5.  remove each mask on the click corresponding to that conceptual reveal.
+
+Treat the masks as presentation controls, not as parts of the underlying
+figure; keep the complete artifact intact beneath them. Speaker-note
+`ANIMATE` markers should correspond to the disappearance of these masks just
+as they do to other click-driven conceptual builds.
+
 # Citations and provenance
 
 -   Cite external figures, quotations, data, and consequential sourced

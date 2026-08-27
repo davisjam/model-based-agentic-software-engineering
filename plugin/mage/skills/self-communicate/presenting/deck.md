@@ -227,6 +227,11 @@ The italicized statement is not merely a description of the slide's contents. It
 intended to accomplish in the talk. This makes the notes useful for auditing whether the slide earns its
 place.
 
+The `*…*` marks native italics in the delivered notes, not literal characters. Realize the emphasis using
+the presentation format's rich-text support; the Markdown markers are a source convention, not text to
+place in PowerPoint speaker notes. Use native bold or italics elsewhere in notes the same way rather than
+emitting Markdown markers as text.
+
 The bullets are the presenter's crib. They should capture the points that must survive delivery: important
 claims, evidence, qualifications, transitions, activity instructions, or other reminders. They need not
 reproduce the transcript.
@@ -246,6 +251,16 @@ Place `ANIMATE` on its own line at the exact point where the presenter should ad
 
 This makes the relationship between speech and progressive disclosure explicit and recoverable. Do not add
 `ANIMATE` markers for transitions between ordinary slides — they represent builds within the current slide.
+
+`ANIMATE` has a precise meaning: it marks the speaking point where an animation actually present on the
+slide should advance. Do not emit an `ANIMATE` marker merely because a staged reveal would be
+rhetorically useful — if the slide contains no corresponding animation, the notes contain no `ANIMATE`
+marker.
+
+Animation and notes should agree by construction. When authoring both, add an `ANIMATE` marker only after
+the corresponding build exists, placed where that build should fire. When writing notes for an existing
+deck without changing its animation, inspect the actual animation sequence first and mark only builds that
+really exist.
 
 The transcript may be lighter for slides whose delivery is naturally variable, interactive, or already
 obvious from the crib. Do not invent verbatim prose merely to fill the structure.
