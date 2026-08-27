@@ -100,6 +100,42 @@ doing.
 -   Do not compress wording until a technical claim becomes less
     precise.
 
+## Compress prose into speaking structure
+
+Slides are not speaker notes. When audience-facing text becomes prose-like,
+preserve the argument while separating what the audience needs to SEE from
+what the speaker needs to SAY.
+
+Prefer:
+
+    idea-bearing title
+    short labels / phrases / compact bullets
+    visual evidence or structure
+
+and move explanation, qualification, examples, transitions, and supporting
+prose into speaker notes.
+
+Do not "fix" excessive prose merely by placing each sentence behind a bullet.
+A bullet that is still a sentence-sized unit of exposition is usually prose
+with a bullet attached.
+
+As a diagnostic, revise when:
+
+-   the audience must read paragraphs or several complete sentences while
+    listening to the speaker;
+-   bullets encode the speaker's explanation rather than the structure the
+    audience needs to retain;
+-   the slide duplicates substantial portions of the speaker notes;
+-   explanatory qualifications crowd out the slide's main relationships or
+    evidence.
+
+Compress toward memorable words, phrases, relationships, and evidence. Put
+the connective argument in the notes.
+
+This is a semantic rule, not a word-count rule. A quotation, definition,
+requirement, or other text that the audience must inspect verbatim may
+appropriately remain on the slide.
+
 # Figures, diagrams, and evidence
 
 -   A visual must explain, demonstrate, compare, orient, or provide
