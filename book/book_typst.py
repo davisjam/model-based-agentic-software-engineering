@@ -1784,6 +1784,9 @@ def _copyright_page_typst(ack_chapter: ir.Chapter, default_mod: str) -> str:
     duplicated and the two projections read from one source."""
     m = bb._BOOK_MANIFEST
     copyright_txt = _esc(f'© {m["author"]}, {m["copyright_years"]}')
+    first_pub = _esc(m.get("first_published", ""))
+    edition_line = (f"Edition — first published {first_pub} · last modified #last_modified"
+                    if first_pub else "Edition — last modified #last_modified")
     # Acknowledgments body: the PARA blocks of the front-matter acknowledgments chapter, rendered inline with
     # a little air between them. The heading is provided below (we skip the chapter's own H1).
     ack_paras = [render_typst(b) for b in ack_chapter.blocks if b.kind is ir.BlockKind.PARA]
@@ -1797,7 +1800,7 @@ def _copyright_page_typst(ack_chapter: ir.Chapter, default_mod: str) -> str:
         "  #set par(justify: false, leading: 0.6em)\n"
         f"  #text(size: 11pt, fill: dt.ink)[{copyright_txt}]\n"
         "  #v(0.35em)\n"
-        "  #text(size: 9.5pt, fill: dt.muted)[Edition — last modified #last_modified]\n"
+        f"  #text(size: 9.5pt, fill: dt.muted)[{edition_line}]\n"
         "  #v(2.0em)\n"
         "  #text(font: dt.font-display, weight: \"bold\", size: 13pt, fill: dt.ink)[Acknowledgments]\n"
         "  #v(0.8em)\n"
