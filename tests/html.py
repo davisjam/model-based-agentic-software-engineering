@@ -142,6 +142,33 @@ def check_book_no_blogpost_link():
     return (FAIL if issues else PASS), issues
 
 
+def check_no_stash_placeholder_leak():
+    """No served page ships a NUL byte. The inline renderer stashes citation / code / emphasis / editorial-note
+    spans behind `\\x00CITE0\\x00`-style NUL-delimited placeholders while it runs the markdown passes, then
+    restores them. A restore that misses a NESTED placeholder (a `[cite:]` inside a `[note:]`) leaves the NUL
+    bytes in the output; the browser drops them and ships literal `CITE0` / `CODE0` text (the 260827
+    cite-in-note bibliography-render bug). A NUL byte is never legitimate in served HTML, so its presence is a
+    precise, false-positive-free signal that a stash leaked. Scans every built page."""
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    prune = set()
+    issues = []
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if d not in (".git", "node_modules", ".venv", "_print", "_typst")]
+        for fn in sorted(filenames):
+            if not fn.endswith(".html"):
+                continue
+            path = os.path.join(dirpath, fn)
+            try:
+                text = open(path, encoding="utf-8").read()
+            except OSError:
+                continue
+            if "\x00" in text:
+                n = text.count("\x00")
+                issues.append(f"{os.path.relpath(path, root)}: {n} NUL byte(s) — a stashed inline span "
+                              f"(citation/code/emphasis/note) leaked its placeholder (rebuild the book)")
+    return (FAIL if issues else PASS), issues
+
+
 class _IdCollector(HTMLParser):
     """Collects every element id (WITH repeats) so within-page duplicates can be found."""
 

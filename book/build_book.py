@@ -1149,12 +1149,19 @@ def inline(s: str) -> str:
     # bold span wrapped an italic one, leaking a literal `**` into the page.)
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"(?<![\w*])\*(?!\s)([^*]+?)(?<!\s)\*(?![\w*])", r"<em>\1</em>", s)
-    # Restore the stashed code spans as <code> (their content is already HTML-escaped).
-    s = re.sub(r"\x00CODE(\d+)\x00", lambda m: f"<code>{code_spans[int(m.group(1))]}</code>", s)
-    # Restore the stashed intra-word emphasis spans (content already HTML-escaped).
-    s = re.sub(r"\x00EM(\d+)\x00", lambda m: f"<em>{em_spans[int(m.group(1))]}</em>", s)
-    # Restore the stashed citation / editorial-note HTML (raw superscript + gutter note, shielded above).
-    s = re.sub(r"\x00CITE(\d+)\x00", lambda m: cite_spans[int(m.group(1))], s)
+    # Restore the stashed spans. A `[note:]` body can ITSELF contain stashed citation / code / emphasis
+    # spans — they are all stashed BEFORE the note pass, so the note's own restored HTML re-introduces
+    # their placeholders one level deep. A single restore pass leaves those nested placeholders in place;
+    # the null-byte delimiters then vanish in the browser and ship as literal `CITE0` / `CODE0` text (the
+    # cite-in-note leak: a `[cite:]` inside a `[note:]` rendered as "…the work that remains CITE0"). Loop
+    # until no placeholder remains so nested spans restore fully. Bounded and convergent: nesting is
+    # shallow (a note wraps cite/code/em, which wrap nothing further) and `\x00` is used ONLY here.
+    for _ in range(8):
+        if "\x00" not in s:
+            break
+        s = re.sub(r"\x00CITE(\d+)\x00", lambda m: cite_spans[int(m.group(1))], s)
+        s = re.sub(r"\x00CODE(\d+)\x00", lambda m: f"<code>{code_spans[int(m.group(1))]}</code>", s)
+        s = re.sub(r"\x00EM(\d+)\x00", lambda m: f"<em>{em_spans[int(m.group(1))]}</em>", s)
     return s
 
 
