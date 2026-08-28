@@ -6,8 +6,8 @@
     "explicit_ids": 14,
     "derived_ids": 187,
     "missing_topic_sentence": 2,
-    "sections_drained": 124,
-    "paragraph_points": 497
+    "sections_drained": 121,
+    "paragraph_points": 494
   },
   "chapters": [
     {
@@ -4031,9 +4031,9 @@
           "section_id": "what-makes-an-environment-effective",
           "level": 2,
           "heading_text": "What Makes an Environment Effective",
-          "topic_sentence": "Apparatus quantity is not a proxy for environment quality.",
+          "topic_sentence": "More machinery does not mean a better environment.",
           "id_source": "derived",
-          "block_index": 16,
+          "block_index": 17,
           "points": []
         },
         {
@@ -4042,7 +4042,7 @@
           "heading_text": "Outcomes and Observables",
           "topic_sentence": "A theory of agentic engineering should distinguish activity from progress.",
           "id_source": "derived",
-          "block_index": 22,
+          "block_index": 24,
           "points": []
         },
         {
@@ -4051,7 +4051,7 @@
           "heading_text": "Three Core Predictions",
           "topic_sentence": "Three predictions form the core of the theory.",
           "id_source": "derived",
-          "block_index": 28,
+          "block_index": 30,
           "points": []
         },
         {
@@ -4060,25 +4060,7 @@
           "heading_text": "The reasoning-horizon proposition",
           "topic_sentence": "The Representation-Leverage prediction rests on the scale problem introduced in Part I.",
           "id_source": "derived",
-          "block_index": 34,
-          "points": []
-        },
-        {
-          "section_id": "training-for-engineering-representations",
-          "level": 3,
-          "heading_text": "Training for engineering representations",
-          "topic_sentence": "Part II argued that reasoning capability depends partly on representation: a problem expressed through an appropriate abstraction can expose structure that is difficult to recover from an undifferentiated context.",
-          "id_source": "derived",
-          "block_index": 38,
-          "points": []
-        },
-        {
-          "section_id": "representation-sufficiency-and-economy",
-          "level": 3,
-          "heading_text": "Representation sufficiency and economy",
-          "topic_sentence": "MAGE's working ontology raises a further question.",
-          "id_source": "derived",
-          "block_index": 43,
+          "block_index": 36,
           "points": []
         },
         {
@@ -4087,14 +4069,8 @@
           "heading_text": "The engineering-capital proposition",
           "topic_sentence": "The amortization prediction depends on what durable structure gives later work.",
           "id_source": "derived",
-          "block_index": 52,
-          "points": [
-            {
-              "slug": "engineering-margin-is-the-room-capital-preserves",
-              "text": "Margin is the room between a realized system and its boundary; capital can preserve or enlarge it, debt can consume it — but debt is not simply lost margin, and MAGE has no general measure.",
-              "block_index": 58
-            }
-          ]
+          "block_index": 42,
+          "points": []
         },
         {
           "section_id": "modeling-and-alignment-are-distinct-and-compound",
@@ -4102,7 +4078,16 @@
           "heading_text": "Modeling and Alignment Are Distinct—and Compound",
           "topic_sentence": "Modeling and Alignment are distinct engineering activities.",
           "id_source": "derived",
-          "block_index": 60,
+          "block_index": 48,
+          "points": []
+        },
+        {
+          "section_id": "sustained-work-creates-dependence",
+          "level": 3,
+          "heading_text": "Sustained work creates dependence",
+          "topic_sentence": "The probability models above deliberately simplify one important feature of sustained engineering: successive realizations are likely not independent.",
+          "id_source": "derived",
+          "block_index": 66,
           "points": []
         },
         {
@@ -4111,29 +4096,8 @@
           "heading_text": "Modeling can also enable Alignment",
           "topic_sentence": "The two principles interact in a second way.",
           "id_source": "derived",
-          "block_index": 78,
-          "points": [
-            {
-              "slug": "frontier-concerns-obligations-degrees-of-freedom-concern-realization",
-              "text": "The frontier concerns obligations; degrees of freedom concern realization.",
-              "block_index": 87
-            }
-          ]
-        },
-        {
-          "section_id": "determinization-need-not-eliminate-freedom",
-          "level": 3,
-          "heading_text": "Determinization need not eliminate freedom",
-          "topic_sentence": "Not every unmodeled choice is a degree of freedom.",
-          "id_source": "derived",
-          "block_index": 89,
-          "points": [
-            {
-              "slug": "degrees-of-freedom-can-carry-exploratory-value",
-              "text": "Degrees of freedom can also carry exploratory value.",
-              "block_index": 93
-            }
-          ]
+          "block_index": 74,
+          "points": []
         },
         {
           "section_id": "the-joint-objective",
@@ -4141,7 +4105,7 @@
           "heading_text": "The joint objective",
           "topic_sentence": "Modeling and Alignment enter one engineering problem together.",
           "id_source": "derived",
-          "block_index": 97,
+          "block_index": 82,
           "points": []
         }
       ],
@@ -4189,7 +4153,7 @@
           "section_id": "return-governability-and-authority",
           "level": 2,
           "heading_text": "Return, Governability, and Authority",
-          "topic_sentence": "**Does the investment earn a return?** Recurrence is the usual source of return.",
+          "topic_sentence": "Whether MAGE applies to a given engineering surface comes down to three questions:",
           "id_source": "derived",
           "block_index": 2,
           "points": []
@@ -4200,7 +4164,7 @@
           "heading_text": "Typical Profiles",
           "topic_sentence": "MAGE's return varies by engineering surface within a system.",
           "id_source": "derived",
-          "block_index": 8,
+          "block_index": 10,
           "points": []
         },
         {
@@ -4209,7 +4173,7 @@
           "heading_text": "Two Ways an Investment Fails",
           "topic_sentence": "MAGE becomes a bad bargain in two broad ways.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 15,
           "points": []
         }
       ],
@@ -4229,12 +4193,30 @@
           "points": []
         },
         {
+          "section_id": "what-experiments-would-estimate",
+          "level": 3,
+          "heading_text": "What experiments would estimate",
+          "topic_sentence": "The empirical question is therefore not whether agents have one characteristic reliability or cost.",
+          "id_source": "derived",
+          "block_index": 16,
+          "points": []
+        },
+        {
           "section_id": "engineering-routing",
           "level": 2,
           "heading_text": "Engineering Routing",
           "topic_sentence": "This parameterization suggests a further implication for automated software engineering.",
           "id_source": "derived",
-          "block_index": 17,
+          "block_index": 22,
+          "points": []
+        },
+        {
+          "section_id": "representation-selection-and-learning",
+          "level": 2,
+          "heading_text": "Representation Selection and Learning",
+          "topic_sentence": "Part II offered six useful classes of engineering model, not a proof that those classes are necessary, sufficient, or minimal.",
+          "id_source": "derived",
+          "block_index": 34,
           "points": []
         },
         {
@@ -4243,7 +4225,7 @@
           "heading_text": "Experimental Designs",
           "topic_sentence": null,
           "id_source": "derived",
-          "block_index": 29,
+          "block_index": 39,
           "points": []
         },
         {
@@ -4252,7 +4234,7 @@
           "heading_text": "Separating Modeling from Alignment",
           "topic_sentence": "One particularly clean factorial design can separate Modeling from Alignment.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 40,
           "points": []
         },
         {
@@ -4261,7 +4243,7 @@
           "heading_text": "Multi-project longitudinal design",
           "topic_sentence": "This design should vary or observe engineered-environment quality while tracking durable throughput, defect escape, and human-attention burden over weeks or months.",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 42,
           "points": []
         },
         {
@@ -4270,7 +4252,7 @@
           "heading_text": "Subsystem-level design",
           "topic_sentence": "It should compare engineering surfaces that differ in representation and governance while holding as much surrounding repository context constant as possible.",
           "id_source": "derived",
-          "block_index": 35,
+          "block_index": 45,
           "points": []
         },
         {
@@ -4279,7 +4261,7 @@
           "heading_text": "Event-centered longitudinal design",
           "topic_sentence": "It should follow one failure class through its whole life: first occurrence, repeat exposure, structural recognition, local repair, any durable conversion, propagation to later work, later recurrence, and eventual maintenance or retirement of the resulting asset.",
           "id_source": "derived",
-          "block_index": 37,
+          "block_index": 47,
           "points": []
         },
         {
@@ -4288,7 +4270,7 @@
           "heading_text": "What the designs still need",
           "topic_sentence": "All three designs require credible measures of durable throughput, human-attention burden, environment quality, and engineering-capital return.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 49,
           "points": []
         }
       ],
