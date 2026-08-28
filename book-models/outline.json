@@ -490,17 +490,17 @@
           "heading_text": "Agentic Work Has Observable Seams",
           "topic_sentence": "Agentic work occurs through observable interfaces.",
           "id_source": "derived",
-          "block_index": 58,
+          "block_index": 59,
           "points": [
             {
               "slug": "agentic-work-occurs-through-observable-interfaces",
               "text": "Agentic work occurs through observable interfaces; whatever internal computation produces a proposed action, consequential work reaches the engineering system through inputs, tool calls, edits, outputs, and lifecycle transitions — boundaries the environment can observe, constrain, validate, or stop.",
-              "block_index": 60
+              "block_index": 61
             },
             {
               "slug": "representation-determines-what-the-control-points-can-know",
               "text": "Local controls already operate at these seams without a system model; explicit engineering models can extend the semantic reach of those same control points, so an action can be judged not only by what it does but by what it means for architecture, policy, behavior, ownership, measurements, or other represented obligations.",
-              "block_index": 62
+              "block_index": 63
             }
           ]
         }

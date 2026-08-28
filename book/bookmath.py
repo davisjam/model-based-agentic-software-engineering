@@ -244,6 +244,10 @@ class _P:
             return {"k": "bigop", "ml": ml, "ty": ty, "named": name in ("min", "max", "lim")}
         if name in _NAMEDOPS:
             return {"k": "op", "v": name, "named": True}
+        if name == "%":
+            # `\%` → a literal percent sign. In Typst math a bare `%` starts a comment, so emit it as
+            # upright text; in MathML it is an ordinary operator glyph.
+            return {"k": "sym", "ml": "%", "ty": '"%"'}
         if name in _SYMBOLS:
             ml, ty = _SYMBOLS[name]
             return {"k": "sym", "ml": ml, "ty": ty}
@@ -284,7 +288,10 @@ def _ml(node: dict) -> str:
     if k == "sym":
         return f'<mo>{node["ml"]}</mo>'
     if k == "text":
-        return f'<mtext>{html.escape(node["v"])}</mtext>'
+        # Preserve spaces: MathML <mtext> is subject to HTML whitespace collapsing, so leading/trailing/
+        # inter-word spaces vanish in the browser ("all n judgments" → "allnjudgments"). Emit non-breaking
+        # spaces so every space survives.
+        return f'<mtext>{html.escape(node["v"]).replace(" ", chr(0xA0))}</mtext>'
     if k == "space":
         return f'<mspace width="{node["ml"]}em"></mspace>'
     if k == "bigop":
