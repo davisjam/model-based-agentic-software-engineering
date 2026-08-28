@@ -244,12 +244,12 @@ def _toc_marker(kind: str, text: str) -> str:
 
 def _division_for(ch: "ir.Chapter") -> str:
     """The Contents top-level DIVISION a chapter belongs to. Three divisions, in book order: FRONT MATTER (the
-    pre-Part-1 chapters, part 0), THE BOOK (Parts 1-6 + the Conclusion, parts 1-7), APPENDICES (the appendix
-    Parts + their appendices, and the trailing back matter / bibliography, part ≥ 8). These are the only
+    pre-Part-1 chapters, part 0), THE BOOK (Parts 1-7 + the Conclusion, parts 1-8), APPENDICES (the appendix
+    Parts + their appendices, and the trailing back matter / bibliography, part ≥ 9). These are the only
     book-level dividers the Contents draws."""
     if ch.part == 0:
         return "FRONT MATTER"
-    if ch.part <= 7:
+    if ch.part <= 8:
         return "THE BOOK"
     return "APPENDICES"
 
@@ -1985,11 +1985,11 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
         return _appendices_divider_typst(ch)
     part_titles = bb._PART_TITLES
     label = ""
-    is_numbered = part in part_titles and part <= 6
-    if part == 7:
+    is_numbered = part in part_titles and part <= 7
+    if part == 8:
         # The top-level Conclusion (matter). A bare title heading (no "Part N" kicker, no nav label) — the
         # bookmark PARENT under which "The Part That Stays Yours" (level-2) nests.
-        kicker, title = "", part_titles.get(7, "Conclusion")
+        kicker, title = "", part_titles.get(8, "Conclusion")
     elif getattr(ch, "is_matter", False):
         # The synthetic post-appendix back matter (Colophon, then About-the-Author). One bare "Back Matter"
         # divider heads both — the terminal book-object bookmark parent, after the appendices.
@@ -2022,7 +2022,7 @@ def _part_divider_typst(part: int, ch: ir.Chapter) -> "str | None":
     # PART-level entries; an appendix-LETTER divider ("Appendix A: …") is a level-1 heading on the page but
     # reads as a CHAPTER entry in the Contents (the two "Appendix Part I/II" dividers are the appendix PART
     # entries; the letters sit one level below them).
-    toc_kind = "part" if (is_numbered or part == 7 or getattr(ch, "is_matter", False)) else "chapter"
+    toc_kind = "part" if (is_numbered or part == 8 or getattr(ch, "is_matter", False)) else "chapter"
     toc_mark = _toc_marker(toc_kind, heading_text)
 
     if not is_numbered:
@@ -2156,9 +2156,9 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             # The Contents gets its OWN page with a tighter y-margin (0.72in vs the 1in body margin) so the
             # ~50 entries + 3 dividers fit ONE page WITH comfortable inter-entry spacing. The one-page guarantee
             # is asserted at build time by the CONTENTS ONE-PAGE sensor in build_book.verify_pdf.
-            "#page(margin: (x: 1.125in, y: 0.72in))[\n"
+            "#page(margin: (x: 1.125in, y: 0.62in))[\n"
             "#align(center)[#text(font: dt.font-display, size: 15pt, weight: 700, fill: dt.ink)[Table of Contents]]\n"
-            "#v(0.5em)\n"
+            "#v(0.4em)\n"
             "#context {\n"
             "  let marks = query(<tocmark>)\n"
             "  set text(font: dt.font-body, size: 10pt, fill: dt.ink)\n"
@@ -2167,7 +2167,7 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             "    let d = m.value\n"
             "    let loc = m.location()\n"
             "    if d.kind == \"division\" {\n"
-            "      block(width: 100%, above: 1.2em, below: 0.5em, breakable: false)[\n"
+            "      block(width: 100%, above: 1.0em, below: 0.4em, breakable: false)[\n"
             "        #grid(columns: (auto, 1fr), align: horizon, column-gutter: 0.75em,\n"
             "          text(font: dt.font-display, weight: \"bold\", size: 10.5pt, tracking: 0.16em, fill: dt.ink)[#upper(d.text)],\n"
             "          line(length: 100%, stroke: 0.6pt + dt.rule),\n"
@@ -2179,7 +2179,7 @@ def emit_document(slugs: list[str], root: pathlib.Path | None = None, *, with_fr
             "      let indent = if is-part { 0pt } else { 1.4em }\n"
             "      let wt = if is-part { \"bold\" } else { \"regular\" }\n"
             "      let sz = if is-part { 11pt } else { 10pt }\n"
-            "      let above = if is-part { 0.62em } else { 0.2em }\n"
+            "      let above = if is-part { 0.5em } else { 0.16em }\n"
             "      block(width: 100%, above: above, below: 0pt, breakable: false)[\n"
             "        #pad(left: indent)[\n"
             "          #link(loc)[\n"

@@ -533,7 +533,7 @@ a.gloss-site:hover, a.gloss-site:focus { color: var(--accent); border-bottom-col
   .chapnav-here { flex: 0 0 auto; max-width: 22rem; overflow: hidden; text-overflow: ellipsis;
                    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 }
-/* Part-nav footer on a Part landing page — a pill bar over the six numbered Parts (current = filled, non-link).
+/* Part-nav footer on a Part landing page — a pill bar over the seven numbered Parts (current = filled, non-link).
    Mirrors the .chapnav pill look. */
 /* Interactive book-roadmap nav on a Part landing page (web only). The SVG reuses assets/book-map.svg;
    each numbered Part is an <a> or the highlighted current node. Tokens only (theme + print safe). */
@@ -690,16 +690,19 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="5.3-the-road-to-mage.html">25&nbsp; How Delegation Changed</a></li>
 <li><a class="" href="5.4-failures-that-became-infrastructure.html">26&nbsp; From Failure to Engineering Capital</a></li>
 <li><a class="" href="5.5-mage-in-the-wild.html">27&nbsp; MAGE in the Wild</a></li>
-<li class="part">Part 6 — The Profession</li>
-<li><a class="" href="part-6-intro.html">The Profession</a></li>
+<li class="part">Part 6 — The Theory</li>
+<li><a class="" href="part-6-intro.html">The Theory</a></li>
 <li><a class="" href="6.1-toward-a-theory-of-mage.html">28&nbsp; A Theory of MAGE</a></li>
-<li><a class="" href="6.2-scope-conditions.html">29&nbsp; Scope Conditions</a></li>
-<li><a class="" href="6.3-what-the-theory-predicts.html">30&nbsp; What the Theory Predicts</a></li>
-<li><a class="" href="6.4-reorganization-of-se.html">31&nbsp; The Reorganization of Software Work</a></li>
-<li><a class="" href="6.5-software-rejoins-engineering.html">32&nbsp; MAGE in the Engineering Tradition</a></li>
-<li><a class="" href="6.6-education-research-open-problems.html">33&nbsp; The Engineer</a></li>
+<li><a class="" href="6.2-what-the-theory-predicts.html">29&nbsp; What the Theory Predicts</a></li>
+<li><a class="" href="6.3-scope-conditions.html">30&nbsp; Scope Conditions</a></li>
+<li><a class="" href="6.4-research-agenda.html">31&nbsp; Research Agenda</a></li>
+<li class="part">Part 7 — The Profession</li>
+<li><a class="" href="part-7-intro.html">The Profession</a></li>
+<li><a class="" href="7.1-reorganization-of-se.html">32&nbsp; The Reorganization of Software Work</a></li>
+<li><a class="" href="7.2-software-rejoins-engineering.html">33&nbsp; MAGE in the Engineering Tradition</a></li>
+<li><a class="" href="7.3-education-research-open-problems.html">34&nbsp; The Engineer</a></li>
 <li class="part">Conclusion</li>
-<li><a class="" href="7.1-the-part-that-stays-yours.html">The Part That Stays Yours</a></li>
+<li><a class="" href="8.1-the-part-that-stays-yours.html">The Part That Stays Yours</a></li>
 <li class="part">Appendix Part I — Practice</li>
 <li><a class="" href="appendix-part-1-practice.html">Appendix Part I — Practice</a></li>
 <li class="part">Appendix A — MAGE Engineering Stacks</li>
@@ -789,4 +792,4 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>A document is a visual and semantic artifact: text, figures, tables, reading order, hierarchy, emphasis — the small tricks by which humans convey meaning to other humans. To make it accessible, a machine has to recover enough of that meaning to present it through another channel: to a screen reader, to a keyboard, to a student who cannot see the figure the lecturer drew.</p>
 <p>Earlier systems could automate pieces of the problem: extract text, flag a missing title, detect structural defects, generate limited descriptions. Frontier vision-language models changed the feasible boundary. A model could look at a rendered instructional slide, recover text and visual relationships, and often describe what the figure was trying to communicate. That capability made a new class of automation plausible. It did not make a production accessibility system.</p>
 <p>The missing work was engineering. A model that can interpret a slide does not thereby know which parts of an output may change, how accessibility findings map to standards, which transformations preserve document semantics, what evidence should justify admission, or when a decision still requires human judgment. Those obligations live in the system around the model. Commodity intelligence supplied a powerful new component; modeling and alignment made that component usable inside a consequential system.</p>
-<p>DocAble also crossed an uneven capability surface. The agents handled ordinary web and cloud infrastructure fluently and struggled much more with PDF and OpenXML internals. Whatever portion of that difference came from training-data fit, implementation complexity, or both, the engineering consequence was observable: in unfamiliar and consequential regions the project needed more explicit representation, stronger evidence, and more deliberate human judgment. The remainder of Part V reconstructs how the system responded to that uneven capability surface.</p><section class="works-cited" aria-labelledby="wc-5-1-the-problem-and-the-bar-h"><h2 id="wc-5-1-the-problem-and-the-bar-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-5-1-the-problem-and-the-bar-1">Carlson, Laura. “Higher Ed Accessibility Lawsuits, Complaints, And Settlements.” 2026. <a href="https://www.d.umn.edu/~lcarlson/atteam/lawsuits.html">https://www.d.umn.edu/~lcarlson/atteam/lawsuits.html</a>.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">« Beginning of part</a><a href="part-5-intro.html" aria-label="Previous chapter — The Evidence">« Previous chapter</a></div><span class="chapnav-here" title="23 · The Accessibility Problem">23 · The Accessibility Problem</span><div class="chapnav-fwd"><a href="5.2-the-build.html" aria-label="Next chapter — 24 · Building DocAble">Next chapter »</a><a href="part-6-intro.html" aria-label="Next part — Part 6 — The Profession">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<p>DocAble also crossed an uneven capability surface. The agents handled ordinary web and cloud infrastructure fluently and struggled much more with PDF and OpenXML internals. Whatever portion of that difference came from training-data fit, implementation complexity, or both, the engineering consequence was observable: in unfamiliar and consequential regions the project needed more explicit representation, stronger evidence, and more deliberate human judgment. The remainder of Part V reconstructs how the system responded to that uneven capability surface.</p><section class="works-cited" aria-labelledby="wc-5-1-the-problem-and-the-bar-h"><h2 id="wc-5-1-the-problem-and-the-bar-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-5-1-the-problem-and-the-bar-1">Carlson, Laura. “Higher Ed Accessibility Lawsuits, Complaints, And Settlements.” 2026. <a href="https://www.d.umn.edu/~lcarlson/atteam/lawsuits.html">https://www.d.umn.edu/~lcarlson/atteam/lawsuits.html</a>.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-5-intro.html" aria-label="Beginning of Part 5 — The Evidence">« Beginning of part</a><a href="part-5-intro.html" aria-label="Previous chapter — The Evidence">« Previous chapter</a></div><span class="chapnav-here" title="23 · The Accessibility Problem">23 · The Accessibility Problem</span><div class="chapnav-fwd"><a href="5.2-the-build.html" aria-label="Next chapter — 24 · Building DocAble">Next chapter »</a><a href="part-6-intro.html" aria-label="Next part — Part 6 — The Theory">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

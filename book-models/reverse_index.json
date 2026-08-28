@@ -16,8 +16,8 @@
       "concepts": 105,
       "labels": 95,
       "refs": 95,
-      "chapters": 72,
-      "parts": 8,
+      "chapters": 74,
+      "parts": 9,
       "points": 541,
       "terms": 336,
       "claims": 22
@@ -69,7 +69,7 @@
         },
         {
           "view": "outcomes",
-          "element": "part-6::evaluate-what-the-method-changes-for-how-software",
+          "element": "part-7::evaluate-what-the-method-changes-for-how-software",
           "role": "secondary-unit"
         }
       ]
@@ -159,7 +159,7 @@
         },
         {
           "view": "outcomes",
-          "element": "part-6::evaluate-what-the-method-changes-for-how-software",
+          "element": "part-7::evaluate-what-the-method-changes-for-how-software",
           "role": "secondary-unit"
         }
       ]
@@ -534,12 +534,12 @@
         }
       ]
     },
-    "part:part-6": {
+    "part:part-7": {
       "kind": "part",
       "dependents": [
         {
           "view": "outcomes",
-          "element": "part-6::evaluate-what-the-method-changes-for-how-software",
+          "element": "part-7::evaluate-what-the-method-changes-for-how-software",
           "role": "primary-unit"
         }
       ]
@@ -1169,7 +1169,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::block-12",
+          "element": "7.1-reorganization-of-se::block-12",
           "role": "paragraph-point"
         }
       ]
@@ -2329,7 +2329,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::block-21",
+          "element": "7.2-software-rejoins-engineering::block-21",
           "role": "paragraph-point"
         }
       ]
@@ -2819,7 +2819,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::block-16",
+          "element": "7.1-reorganization-of-se::block-16",
           "role": "paragraph-point"
         }
       ]
@@ -3839,7 +3839,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::block-14",
+          "element": "7.1-reorganization-of-se::block-14",
           "role": "paragraph-point"
         }
       ]
@@ -3869,7 +3869,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::block-32",
+          "element": "7.1-reorganization-of-se::block-32",
           "role": "paragraph-point"
         }
       ]
@@ -4649,7 +4649,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::block-18",
+          "element": "7.1-reorganization-of-se::block-18",
           "role": "paragraph-point"
         }
       ]
@@ -5069,7 +5069,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::block-23",
+          "element": "7.1-reorganization-of-se::block-23",
           "role": "paragraph-point"
         }
       ]
@@ -5879,7 +5879,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::block-76",
+          "element": "7.2-software-rejoins-engineering::block-76",
           "role": "paragraph-point"
         }
       ]
@@ -5999,7 +5999,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::a-model-maintains-the-correspondence-it-claims",
+          "element": "7.2-software-rejoins-engineering::a-model-maintains-the-correspondence-it-claims",
           "role": "section-anchor"
         }
       ]
@@ -6039,7 +6039,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.3-what-the-theory-predicts::adaptive-governance",
+          "element": "6.2-what-the-theory-predicts::adaptive-governance",
           "role": "section-anchor"
         }
       ]
@@ -6069,7 +6069,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::agents-entered-an-implementation-centered-discipline",
+          "element": "7.1-reorganization-of-se::agents-entered-an-implementation-centered-discipline",
           "role": "section-anchor"
         }
       ]
@@ -6114,7 +6114,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.6-education-research-open-problems::authority-follows-competence",
+          "element": "7.3-education-research-open-problems::authority-follows-competence",
           "role": "section-anchor"
         }
       ]
@@ -6144,7 +6144,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.6-education-research-open-problems::change-what-students-demonstrate",
+          "element": "7.3-education-research-open-problems::change-what-students-demonstrate",
           "role": "section-anchor"
         }
       ]
@@ -6274,7 +6274,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::engineering-capability-can-become-a-stock",
+          "element": "7.2-software-rejoins-engineering::engineering-capability-can-become-a-stock",
           "role": "section-anchor"
         }
       ]
@@ -6304,7 +6304,17 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.3-what-the-theory-predicts::engineering-economics",
+          "element": "6.2-what-the-theory-predicts::engineering-economics",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:engineering-routing": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.4-research-agenda::engineering-routing",
           "role": "section-anchor"
         }
       ]
@@ -6314,7 +6324,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.3-what-the-theory-predicts::event-centered-longitudinal-design",
+          "element": "6.4-research-agenda::event-centered-longitudinal-design",
           "role": "section-anchor"
         }
       ]
@@ -6360,6 +6370,16 @@
         {
           "view": "outline",
           "element": "3.4-governance-conversion::ex-post-convert-what-the-work-teaches",
+          "role": "section-anchor"
+        }
+      ]
+    },
+    "section-id:experimental-designs": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.4-research-agenda::experimental-designs",
           "role": "section-anchor"
         }
       ]
@@ -6421,16 +6441,6 @@
           "view": "outcomes",
           "element": "from-appearance-to-specification::explain-why-an-agent-needs-a-model-of-how-to-bui",
           "role": "primary-unit"
-        }
-      ]
-    },
-    "section-id:from-model-routing-to-engineering-routing": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.3-what-the-theory-predicts::from-model-routing-to-engineering-routing",
-          "role": "section-anchor"
         }
       ]
     },
@@ -6504,16 +6514,6 @@
         }
       ]
     },
-    "section-id:how-could-we-test-this": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.3-what-the-theory-predicts::how-could-we-test-this",
-          "role": "section-anchor"
-        }
-      ]
-    },
     "section-id:how-often-we-roll-the-dice": {
       "kind": "section-id",
       "dependents": [
@@ -6579,7 +6579,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::keeping-meaning-synchronized",
+          "element": "7.1-reorganization-of-se::keeping-meaning-synchronized",
           "role": "section-anchor"
         }
       ]
@@ -6719,7 +6719,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::model-first-engineering",
+          "element": "7.2-software-rejoins-engineering::model-first-engineering",
           "role": "section-anchor"
         }
       ]
@@ -6779,7 +6779,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.3-what-the-theory-predicts::multi-project-longitudinal-design",
+          "element": "6.4-research-agenda::multi-project-longitudinal-design",
           "role": "section-anchor"
         }
       ]
@@ -6909,7 +6909,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.3-what-the-theory-predicts::parameterizing-the-model",
+          "element": "6.4-research-agenda::parameterizing-the-model",
           "role": "section-anchor"
         }
       ]
@@ -7024,7 +7024,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::reasoning-compiled-into-the-environment",
+          "element": "7.1-reorganization-of-se::reasoning-compiled-into-the-environment",
           "role": "section-anchor"
         }
       ]
@@ -7064,7 +7064,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::representation-engineering",
+          "element": "7.1-reorganization-of-se::representation-engineering",
           "role": "section-anchor"
         }
       ]
@@ -7104,7 +7104,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.2-scope-conditions::return-governability-and-authority",
+          "element": "6.3-scope-conditions::return-governability-and-authority",
           "role": "section-anchor"
         }
       ]
@@ -7114,7 +7114,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::review-when-implementation-is-abundant",
+          "element": "7.1-reorganization-of-se::review-when-implementation-is-abundant",
           "role": "section-anchor"
         }
       ]
@@ -7174,7 +7174,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.3-what-the-theory-predicts::separating-modeling-from-alignment",
+          "element": "6.4-research-agenda::separating-modeling-from-alignment",
           "role": "section-anchor"
         }
       ]
@@ -7194,7 +7194,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.6-education-research-open-problems::shift-the-emphasis",
+          "element": "7.3-education-research-open-problems::shift-the-emphasis",
           "role": "section-anchor"
         }
       ]
@@ -7214,7 +7214,7 @@
         },
         {
           "view": "outline",
-          "element": "6.6-education-research-open-problems::sign-off-moves-toward-models-and-evidence",
+          "element": "7.3-education-research-open-problems::sign-off-moves-toward-models-and-evidence",
           "role": "section-anchor"
         }
       ]
@@ -7264,7 +7264,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::software-engineering-has-priced-this-before",
+          "element": "7.2-software-rejoins-engineering::software-engineering-has-priced-this-before",
           "role": "section-anchor"
         }
       ]
@@ -7324,7 +7324,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.3-what-the-theory-predicts::subsystem-level-design",
+          "element": "6.4-research-agenda::subsystem-level-design",
           "role": "section-anchor"
         }
       ]
@@ -7354,7 +7354,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "7.1-the-part-that-stays-yours::the-answer-in-three-moves",
+          "element": "8.1-the-part-that-stays-yours::the-answer-in-three-moves",
           "role": "section-anchor"
         }
       ]
@@ -7394,7 +7394,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::the-conjecture-stated-plainly",
+          "element": "7.2-software-rejoins-engineering::the-conjecture-stated-plainly",
           "role": "section-anchor"
         }
       ]
@@ -7414,7 +7414,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.6-education-research-open-problems::the-curriculum-remains-recognizable",
+          "element": "7.3-education-research-open-problems::the-curriculum-remains-recognizable",
           "role": "section-anchor"
         }
       ]
@@ -7454,7 +7454,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::the-disciplines-that-got-there-first",
+          "element": "7.2-software-rejoins-engineering::the-disciplines-that-got-there-first",
           "role": "section-anchor"
         }
       ]
@@ -7504,7 +7504,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.6-education-research-open-problems::the-entry-rung-problem",
+          "element": "7.3-education-research-open-problems::the-entry-rung-problem",
           "role": "section-anchor"
         }
       ]
@@ -7514,7 +7514,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::the-environment-has-a-carrying-cost",
+          "element": "7.2-software-rejoins-engineering::the-environment-has-a-carrying-cost",
           "role": "section-anchor"
         }
       ]
@@ -7534,7 +7534,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::the-expanding-economics-of-explicit-engineering",
+          "element": "7.2-software-rejoins-engineering::the-expanding-economics-of-explicit-engineering",
           "role": "section-anchor"
         }
       ]
@@ -7569,7 +7569,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::the-frontier-is-not-a-destination",
+          "element": "7.2-software-rejoins-engineering::the-frontier-is-not-a-destination",
           "role": "section-anchor"
         }
       ]
@@ -7639,7 +7639,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::the-language-of-engineering",
+          "element": "7.2-software-rejoins-engineering::the-language-of-engineering",
           "role": "section-anchor"
         }
       ]
@@ -7714,7 +7714,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::the-old-dream-with-a-new-substrate",
+          "element": "7.1-reorganization-of-se::the-old-dream-with-a-new-substrate",
           "role": "section-anchor"
         }
       ]
@@ -7749,7 +7749,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::the-paradox-changes-what-we-should-measure",
+          "element": "7.2-software-rejoins-engineering::the-paradox-changes-what-we-should-measure",
           "role": "section-anchor"
         }
       ]
@@ -7759,7 +7759,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "7.1-the-part-that-stays-yours::the-part-that-stays-yours",
+          "element": "8.1-the-part-that-stays-yours::the-part-that-stays-yours",
           "role": "section-anchor"
         }
       ]
@@ -7779,7 +7779,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::the-productivity-answer-is-incomplete",
+          "element": "7.2-software-rejoins-engineering::the-productivity-answer-is-incomplete",
           "role": "section-anchor"
         }
       ]
@@ -7789,7 +7789,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "7.1-the-part-that-stays-yours::the-question-we-asked",
+          "element": "8.1-the-part-that-stays-yours::the-question-we-asked",
           "role": "section-anchor"
         }
       ]
@@ -7984,7 +7984,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.3-what-the-theory-predicts::trustworthy-representations",
+          "element": "6.2-what-the-theory-predicts::trustworthy-representations",
           "role": "section-anchor"
         }
       ]
@@ -8024,7 +8024,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.2-scope-conditions::two-ways-an-investment-fails",
+          "element": "6.3-scope-conditions::two-ways-an-investment-fails",
           "role": "section-anchor"
         }
       ]
@@ -8034,7 +8034,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.2-scope-conditions::typical-profiles",
+          "element": "6.3-scope-conditions::typical-profiles",
           "role": "section-anchor"
         }
       ]
@@ -8064,7 +8064,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::was-implementation-ever-the-bottleneck",
+          "element": "7.1-reorganization-of-se::was-implementation-ever-the-bottleneck",
           "role": "section-anchor"
         }
       ]
@@ -8099,7 +8099,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::what-happened-to-the-cost",
+          "element": "7.2-software-rejoins-engineering::what-happened-to-the-cost",
           "role": "section-anchor"
         }
       ]
@@ -8109,7 +8109,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::what-mage-claims-is-new",
+          "element": "7.2-software-rejoins-engineering::what-mage-claims-is-new",
           "role": "section-anchor"
         }
       ]
@@ -8129,7 +8129,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.6-education-research-open-problems::what-should-we-teach",
+          "element": "7.3-education-research-open-problems::what-should-we-teach",
           "role": "section-anchor"
         }
       ]
@@ -8139,7 +8139,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.3-what-the-theory-predicts::what-the-designs-still-need",
+          "element": "6.4-research-agenda::what-the-designs-still-need",
           "role": "section-anchor"
         }
       ]
@@ -8229,7 +8229,7 @@
         },
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::where-engineering-effort-moves",
+          "element": "7.1-reorganization-of-se::where-engineering-effort-moves",
           "role": "section-anchor"
         }
       ]
@@ -8339,7 +8339,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.5-software-rejoins-engineering::why-software-came-late-to-model-first-engineering",
+          "element": "7.2-software-rejoins-engineering::why-software-came-late-to-model-first-engineering",
           "role": "section-anchor"
         }
       ]
@@ -8349,7 +8349,7 @@
       "dependents": [
         {
           "view": "outline",
-          "element": "6.4-reorganization-of-se::working-at-the-model-level",
+          "element": "7.1-reorganization-of-se::working-at-the-model-level",
           "role": "section-anchor"
         }
       ]

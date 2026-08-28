@@ -8,17 +8,18 @@
      PDF column; the canvas is kept short (660) so the whole section still fits one page. Palette: Umber
      Monograph tokens per Part; appendix destinations muted #78716c with a dashed border. -->
 <!-- semantic-families: agent, governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 660" width="920" height="660"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 730" width="920" height="730"
      role="group" aria-labelledby="bmTitle bmDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="bmTitle">The book's argument — a question posed in the Preface, answered in the Conclusion, across six Parts, with the two appendix Parts branching off</title>
+  <title id="bmTitle">The book's argument — a question posed in the Preface, answered in the Conclusion, across seven Parts, with the two appendix Parts branching off</title>
   <desc id="bmDesc">A single descent through the book's argument. The Preface poses the opening question: how
     do we safely grant autonomy to commodity intelligence? It leads to Part I, The New Engineering Problem —
     changed economics. Then Part II, Modeling — make knowledge and intent explicit. Then Part III, Alignment —
     give obligations authority. Then Part IV, The MAGE Method — model, align, work, convert; a dotted branch
     runs to Appendix Part I, Practice (use and extend). Then Part V, The Evidence — depth and breadth; a
     dotted branch runs to Appendix Part II, Evidence (inspect the empirical record). Then Part VI, The
-    Profession — theory, implications, engineer. The descent ends at the Conclusion, which returns to the
+    Theory — theory, predictions, scope conditions, and a research agenda. Then Part VII, The Profession —
+    how software work reorganizes, MAGE in the engineering tradition, and what remains the engineer's. The descent ends at the Conclusion, which returns to the
     Preface's question and asks its converse: what cannot be delegated? Responsibility. The dotted appendix
     branches are related destinations, not steps in the argument.</desc>
 
@@ -31,7 +32,7 @@
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="920" height="660" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="920" height="730" fill="#fdfcf9"/>
 
   <!-- top framing kicker -->
   <text x="244" y="26" text-anchor="middle" font-size="18.4" font-style="italic" fill="#57534e"
@@ -86,15 +87,21 @@
   <text x="740" y="433" text-anchor="middle" font-size="18.4" font-weight="700" fill="#44403c">Appendix Part II · Evidence</text>
   <text x="740" y="453" text-anchor="middle" font-size="18.4" font-style="italic" fill="#78716c">inspect the empirical record</text>
 
-  <!-- PART VI — The Profession (purple) -->
+  <!-- PART VI — The Theory (purple) -->
   <rect id="part-6" x="24" y="478" width="440" height="56" rx="8" fill="#efeaf4" stroke="#5b4a72" stroke-width="2.4"/>
-  <text x="244" y="503" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part VI · The Profession</text>
-  <text x="244" y="523" text-anchor="middle" font-size="18.4" font-style="italic" fill="#5b4a72">theory · implications · engineer</text>
+  <text x="244" y="503" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part VI · The Theory</text>
+  <text x="244" y="523" text-anchor="middle" font-size="18.4" font-style="italic" fill="#5b4a72">theory · predictions · scope · agenda</text>
   <line x1="244" y1="534" x2="244" y2="548" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
 
+  <!-- PART VII — The Profession (deeper purple) -->
+  <rect id="part-7" x="24" y="548" width="440" height="56" rx="8" fill="#e8e0f2" stroke="#4a3d5e" stroke-width="2.4"/>
+  <text x="244" y="573" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">Part VII · The Profession</text>
+  <text x="244" y="593" text-anchor="middle" font-size="18.4" font-style="italic" fill="#4a3d5e">software work · tradition · engineer</text>
+  <line x1="244" y1="604" x2="244" y2="618" stroke="#1c1917" stroke-width="2.2" marker-end="url(#bm-ah)"/>
+
   <!-- CONCLUSION — the answer + its converse (unnumbered matter); the argument ends here -->
-  <rect id="conclusion" x="24" y="548" width="440" height="76" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
-  <text x="244" y="576" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
-  <text x="244" y="598" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
-  <text x="244" y="617" text-anchor="middle" font-size="18.4" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
+  <rect id="conclusion" x="24" y="618" width="440" height="76" rx="8" fill="#f4efe6" stroke="#1c1917" stroke-width="2.4"/>
+  <text x="244" y="646" text-anchor="middle" font-size="21" font-weight="700" fill="#1c1917">Conclusion</text>
+  <text x="244" y="668" text-anchor="middle" font-size="18.4" font-style="italic" fill="#9a3f12">returns to the question, and asks its converse:</text>
+  <text x="244" y="687" text-anchor="middle" font-size="18.4" fill="#1c1917">&#8220;What cannot be delegated?&#8221; — <tspan font-weight="700" fill="#9a3f12">RESPONSIBILITY</tspan></text>
 </svg>

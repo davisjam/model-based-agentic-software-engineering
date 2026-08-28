@@ -2866,7 +2866,7 @@ def _v3_research() -> str:
         'authoritative, how governed environments evolve, and where human judgment remains necessary.</p>\n'
         '  <p class="v3-btn-row">\n'
         '    <a class="v3-btn v3-btn-secondary" href="theory.html">Read the theory &#8594;</a>\n'
-        '    <a class="v3-btn v3-btn-secondary" href="book/6.6-education-research-open-problems.html">Explore the research agenda &#8594;</a>\n'
+        '    <a class="v3-btn v3-btn-secondary" href="book/6.4-research-agenda.html">Explore the research agenda &#8594;</a>\n'
         '  </p>\n</section>')
 
 

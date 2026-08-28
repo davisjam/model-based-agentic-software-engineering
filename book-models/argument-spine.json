@@ -9,7 +9,7 @@
     "feeds_edges": 1,
     "reconciled_claims": 20,
     "reconciled_big_ideas": 6,
-    "zero_claim_suspects": 3,
+    "zero_claim_suspects": 4,
     "over_cap_unfocused": 3,
     "thin_claim_gaps": 0,
     "thin_claims_front_loaded": 0,
@@ -102,7 +102,7 @@
         "0.5-preface",
         "1.1-the-printer",
         "5.4-failures-that-became-infrastructure",
-        "7.1-the-part-that-stays-yours"
+        "8.1-the-part-that-stays-yours"
       ],
       "body_depth": 2,
       "front_loaded": false,
@@ -133,7 +133,7 @@
         "0.5-preface",
         "1.2-mage-by-example",
         "5.3-the-road-to-mage",
-        "6.4-reorganization-of-se"
+        "7.1-reorganization-of-se"
       ],
       "body_depth": 2,
       "front_loaded": false,
@@ -233,7 +233,7 @@
         "4.1-the-mage-workflow",
         "4.2-brownfield",
         "5.4-failures-that-became-infrastructure",
-        "6.4-reorganization-of-se",
+        "7.1-reorganization-of-se",
         "lifecycles-and-runbooks"
       ],
       "body_depth": 9,
@@ -455,9 +455,9 @@
       "advanced_by": [
         "0.5-preface",
         "2.8-system-knowledge",
-        "6.4-reorganization-of-se",
-        "6.6-education-research-open-problems",
-        "7.1-the-part-that-stays-yours"
+        "7.1-reorganization-of-se",
+        "7.3-education-research-open-problems",
+        "8.1-the-part-that-stays-yours"
       ],
       "body_depth": 4,
       "front_loaded": false,
@@ -487,8 +487,8 @@
       "advanced_by": [
         "5.3-the-road-to-mage",
         "5.4-failures-that-became-infrastructure",
-        "6.4-reorganization-of-se",
-        "7.1-the-part-that-stays-yours"
+        "7.1-reorganization-of-se",
+        "8.1-the-part-that-stays-yours"
       ],
       "body_depth": 4,
       "front_loaded": false,
@@ -522,8 +522,8 @@
         "5.1-the-problem-and-the-bar",
         "5.2-the-build",
         "5.3-the-road-to-mage",
-        "6.2-scope-conditions",
-        "6.6-education-research-open-problems"
+        "6.3-scope-conditions",
+        "7.3-education-research-open-problems"
       ],
       "body_depth": 5,
       "front_loaded": false,
@@ -556,8 +556,8 @@
       "statement_hash": "3d5cdcd1963c",
       "advanced_by": [
         "6.1-toward-a-theory-of-mage",
-        "6.4-reorganization-of-se",
-        "7.1-the-part-that-stays-yours"
+        "7.1-reorganization-of-se",
+        "8.1-the-part-that-stays-yours"
       ],
       "body_depth": 3,
       "front_loaded": false,
@@ -780,19 +780,24 @@
       "exempt": null
     },
     {
-      "slug": "6.2-scope-conditions",
+      "slug": "6.2-what-the-theory-predicts",
+      "advances": [],
+      "exempt": null
+    },
+    {
+      "slug": "6.3-scope-conditions",
       "advances": [
         "grounded-in-one-case"
       ],
       "exempt": "discussion"
     },
     {
-      "slug": "6.3-what-the-theory-predicts",
+      "slug": "6.4-research-agenda",
       "advances": [],
       "exempt": null
     },
     {
-      "slug": "6.4-reorganization-of-se",
+      "slug": "7.1-reorganization-of-se",
       "advances": [
         "oversight-does-not-scale",
         "govern-the-environment",
@@ -803,12 +808,12 @@
       "exempt": "discussion"
     },
     {
-      "slug": "6.5-software-rejoins-engineering",
+      "slug": "7.2-software-rejoins-engineering",
       "advances": [],
       "exempt": null
     },
     {
-      "slug": "6.6-education-research-open-problems",
+      "slug": "7.3-education-research-open-problems",
       "advances": [
         "grounded-in-one-case",
         "mage-becomes-practical"
@@ -816,7 +821,7 @@
       "exempt": "discussion"
     },
     {
-      "slug": "7.1-the-part-that-stays-yours",
+      "slug": "8.1-the-part-that-stays-yours",
       "advances": [
         "fault-lies-in-instructions",
         "mage-becomes-practical",
@@ -888,11 +893,15 @@
         "advances": 0
       },
       {
-        "chapter": "6.3-what-the-theory-predicts",
+        "chapter": "6.2-what-the-theory-predicts",
         "advances": 0
       },
       {
-        "chapter": "6.5-software-rejoins-engineering",
+        "chapter": "6.4-research-agenda",
+        "advances": 0
+      },
+      {
+        "chapter": "7.2-software-rejoins-engineering",
         "advances": 0
       }
     ],
@@ -946,7 +955,7 @@
           "4.1-the-mage-workflow",
           "4.2-brownfield",
           "5.4-failures-that-became-infrastructure",
-          "6.4-reorganization-of-se",
+          "7.1-reorganization-of-se",
           "lifecycles-and-runbooks"
         ]
       },

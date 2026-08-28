@@ -34,7 +34,7 @@ Each model made one aspect of the manuscript explicit, and checks kept it synchr
 
 Two edits during the final pass show what the models could do — and where they stopped.
 
-The first was structural. During the final edit, three Part VI chapters changed order. Their reader-facing locations changed, but their stable identities did not. Because other manuscript models referred to those identities rather than to transient filenames, the reorganization propagated without manually repairing every dependent representation.
+The first was structural. During the final edit, Part VI was split into a theory Part and a professional-synthesis Part, and chapters moved between them. Their reader-facing locations changed, but their stable identities did not. Because other manuscript models referred to those identities rather than to transient filenames, the reorganization propagated without manually repairing every dependent representation.
 
 The harder edits were semantic. During the final theory pass, the relationship between Modeling and Alignment changed. The old account made them causally dependent; the final theory treats them as independent activities addressing different problems, with Modeling as the principled route to greater semantic reach. The role of a sensor changed too: instead of deciding that a violation occurred, it observes and produces evidence for a validator. Existing references still resolved; nothing was mechanically "broken." But some declared statements now represented an obsolete theory.
 

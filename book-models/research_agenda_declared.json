@@ -1,21 +1,42 @@
 {
   "_provenance": "HAND-AUTHORED declared source for the Part-6 research-agenda index — the book's forward program as a mechanically-checkable model rather than prose scattered across finished chapters with no index over it. This file IS edited by hand; it is the single source of truth for the open work MAGE hands to a later program: the two closed taxonomies (kinds / statuses) and the seven agenda items, each naming its home section and the falsifiable hypotheses that make it testable. Sibling in the book-models declared->generated idiom (see theory_of_mage_declared.json / industry_cases_declared.json). WIRED: research_agenda_model.py derives a typed model, projects the 'Where the frontier goes next' coda index (render_frontier_prose_md) AND the figure node manifest (render_agenda_nodes), and checks the joins RA1-RA5. related_hypotheses[] JOINS into theory_of_mage_declared.json (referenced by id, IC4-style — the hypotheses are single-sourced in the theory model, never copied here). Lands AUDIT-ONLY-first in catalog.py validate (rule-#55 blocking-lint landing discipline); a later follow-up flips RA1-RA4 to BLOCKING after a clean session confirms the drain. Regen discipline: edit HERE; the coda index + node manifest compute at CLI time (no materialized json).",
-
   "_intent": "Encode the open work of MAGE as a queryable INDEX so the coda cannot drift as items accrue. One record per agenda item; the coda is append-a-row per item, and every item welds to the hypothesis (H1-H8) a study would test. The map/index frames; the home sections (6.5 / 6.1 / 6.2) expand — coverage of the index over the homes, never a second exposition.",
-
   "kinds": [
-    {"id": "frontier",       "label": "Frontier",       "gloss": "A moving line the book names and hands to a later program."},
-    {"id": "measurement",    "label": "Measurement",    "gloss": "An operationalization of governance into measurable quantities."},
-    {"id": "dynamics",       "label": "Dynamics",       "gloss": "A learning / organizational feedback the book models but does not test at population scale."},
-    {"id": "generalization", "label": "Generalization", "gloss": "Whether the theory holds beyond the software case it was built on."}
+    {
+      "id": "frontier",
+      "label": "Frontier",
+      "gloss": "A moving line the book names and hands to a later program."
+    },
+    {
+      "id": "measurement",
+      "label": "Measurement",
+      "gloss": "An operationalization of governance into measurable quantities."
+    },
+    {
+      "id": "dynamics",
+      "label": "Dynamics",
+      "gloss": "A learning / organizational feedback the book models but does not test at population scale."
+    },
+    {
+      "id": "generalization",
+      "label": "Generalization",
+      "gloss": "Whether the theory holds beyond the software case it was built on."
+    }
   ],
-
   "statuses": [
-    {"id": "established",  "gloss": "Named and operationalized in the book; the open part is extension, not existence."},
-    {"id": "open",         "gloss": "Argued as a direction with a stated question; not yet answered."},
-    {"id": "conjectured",  "gloss": "Stated explicitly as a conjecture the book does not prove (dashed in the figure)."}
+    {
+      "id": "established",
+      "gloss": "Named and operationalized in the book; the open part is extension, not existence."
+    },
+    {
+      "id": "open",
+      "gloss": "Argued as a direction with a stated question; not yet answered."
+    },
+    {
+      "id": "conjectured",
+      "gloss": "Stated explicitly as a conjecture the book does not prove (dashed in the figure)."
+    }
   ],
-
   "agenda": [
     {
       "id": "determinization-frontier",
@@ -24,7 +45,10 @@
       "status": "open",
       "one_line": "How far judgment compiles into deterministic machinery — and how far it can be pushed by conjecturing the rungs not yet discovered.",
       "source_section": "6.1-toward-a-theory-of-mage",
-      "related_hypotheses": ["H3-mechanized-assurance", "H4-representation-leverage"]
+      "related_hypotheses": [
+        "H3-mechanized-assurance",
+        "H4-representation-leverage"
+      ]
     },
     {
       "id": "modeling-moves-frontier",
@@ -33,7 +57,9 @@
       "status": "open",
       "one_line": "Richer representation expands what Alignment can determinize — Modeling and Alignment are causally interdependent, not parallel.",
       "source_section": "6.1-toward-a-theory-of-mage",
-      "related_hypotheses": ["H4-representation-leverage"]
+      "related_hypotheses": [
+        "H4-representation-leverage"
+      ]
     },
     {
       "id": "assurance-frontier",
@@ -41,8 +67,10 @@
       "kind": "frontier",
       "status": "conjectured",
       "one_line": "How much assurance emerges as a by-product of a model-rich governed environment (the MAGE-II conjecture); proximity to NIST AI RMF and UL 4600.",
-      "source_section": "6.3-what-the-theory-predicts",
-      "related_hypotheses": ["H3-mechanized-assurance"]
+      "source_section": "6.2-what-the-theory-predicts",
+      "related_hypotheses": [
+        "H3-mechanized-assurance"
+      ]
     },
     {
       "id": "development-completeness",
@@ -50,8 +78,10 @@
       "kind": "frontier",
       "status": "open",
       "one_line": "What must be shared for an outsider to reproduce not the artifact but the capacity to evolve it; which environment artifacts join the supply chain.",
-      "source_section": "6.3-what-the-theory-predicts",
-      "related_hypotheses": ["H7-conversion-conditions"]
+      "source_section": "6.4-research-agenda",
+      "related_hypotheses": [
+        "H7-conversion-conditions"
+      ]
     },
     {
       "id": "governance-census",
@@ -60,7 +90,11 @@
       "status": "established",
       "one_line": "Inventory obligations against mechanisms; measure Coverage, Under-governance, and Governance-debt — with propagation-latency proposed as a future fourth metric.",
       "source_section": "5.5-mage-in-the-wild",
-      "related_hypotheses": ["H3-mechanized-assurance", "H6-oversight-amortization", "H8-learning-propagation"]
+      "related_hypotheses": [
+        "H3-mechanized-assurance",
+        "H6-oversight-amortization",
+        "H8-learning-propagation"
+      ]
     },
     {
       "id": "learning-propagation",
@@ -69,7 +103,11 @@
       "status": "open",
       "one_line": "How a lesson, once encoded into shared machine-actionable structure, propagates to later work; how the organization changes shape as agent throughput rises.",
       "source_section": "6.1-toward-a-theory-of-mage",
-      "related_hypotheses": ["H1-failure-class-exposure", "H7-conversion-conditions", "H8-learning-propagation"]
+      "related_hypotheses": [
+        "H1-failure-class-exposure",
+        "H7-conversion-conditions",
+        "H8-learning-propagation"
+      ]
     },
     {
       "id": "generalization-beyond-software",
@@ -78,7 +116,9 @@
       "status": "conjectured",
       "one_line": "Whether the answer generalizes to model-based engineering at large (Siemens, Zenseact) — the widened core question of MBAE.",
       "source_section": "5.5-mage-in-the-wild",
-      "related_hypotheses": ["H4-representation-leverage"]
+      "related_hypotheses": [
+        "H4-representation-leverage"
+      ]
     }
   ]
 }

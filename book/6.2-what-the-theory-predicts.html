@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="citation_title" content="Constraints, Sensors, Validators, and Gates"><meta name="citation_author" content="James C. Davis"><meta name="citation_book_title" content="Model-Based Agentic Software Engineering"><meta name="citation_publication_date" content="2026"><meta name="citation_fulltext_html_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/3.3-constraints-sensors-validators-gates.html"><meta name="citation_pdf_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book.pdf"><meta name="citation_reference" content="citation_title=Types and Programming Languages;citation_author=Benjamin C. Pierce;citation_publication_date=2002"><meta name="citation_reference" content="citation_title=Engineering a Safer World: Systems Thinking Applied to Safety;citation_author=Nancy G. Leveson;citation_publication_date=2011"><title>Chapter 15 · Constraints, Sensors, Validators, and Gates — MAGE</title><style>@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Regular.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Semibold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Bold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-It.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-SemiboldIt.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-BoldIt.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Regular.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Bold.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-It.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-BoldIt.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}</style><style>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="citation_title" content="What the Theory Predicts"><meta name="citation_author" content="James C. Davis"><meta name="citation_book_title" content="Model-Based Agentic Software Engineering"><meta name="citation_publication_date" content="2026"><meta name="citation_fulltext_html_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/6.2-what-the-theory-predicts.html"><meta name="citation_pdf_url" content="https://davisjam.github.io/model-based-agentic-software-engineering/book/mage-book.pdf"><meta name="citation_reference" content="citation_title=Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities;citation_author=OpenAI;citation_publication_date=2026"><meta name="citation_reference" content="citation_title=Is the Cure Worse Than the Disease? Overfitting in Automated Program Repair;citation_author=Edward K. Smith;citation_author=Earl T. Barr;citation_author=Claire Le Goues;citation_author=Yuriy Brun;citation_publication_date=2015"><title>Chapter 29 · What the Theory Predicts — MAGE</title><style>@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Regular.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Semibold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-Bold.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-It.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:600;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-SemiboldIt.ttf') format('truetype');}@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSerif4/SourceSerif4-BoldIt.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Regular.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-Bold.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-It.ttf') format('truetype');}@font-face{font-family:'Source Sans 3';font-style:italic;font-weight:700;font-stretch:normal;font-display:swap;src:url('../book/fonts/SourceSans3/SourceSans3-BoldIt.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-stretch:normal;font-display:swap;src:url('../book/fonts/IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');}</style><style>
   /* GENERATED by book-models/design_tokens.py from design-tokens.json — do not hand-edit. */
   :root {
     --ink: #1c1917;
@@ -672,7 +672,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="part-3-intro.html">Alignment</a></li>
 <li><a class="" href="3.1-where-authority-can-act.html">13&nbsp; Where Authority Can Act</a></li>
 <li><a class="" href="3.2-models-and-the-semantic-gap.html">14&nbsp; From Engineering Intent to Enforceable Obligation</a></li>
-<li><a class="current" href="3.3-constraints-sensors-validators-gates.html">15&nbsp; Constraints, Sensors, Validators, and Gates</a></li>
+<li><a class="" href="3.3-constraints-sensors-validators-gates.html">15&nbsp; Constraints, Sensors, Validators, and Gates</a></li>
 <li><a class="" href="3.4-governance-conversion.html">16&nbsp; Growing the Governed Environment</a></li>
 <li><a class="" href="3.5-when-guardrails-collide.html">17&nbsp; Governing the Control Estate</a></li>
 <li class="part">Part 4 — The MAGE Method</li>
@@ -693,7 +693,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Part 6 — The Theory</li>
 <li><a class="" href="part-6-intro.html">The Theory</a></li>
 <li><a class="" href="6.1-toward-a-theory-of-mage.html">28&nbsp; A Theory of MAGE</a></li>
-<li><a class="" href="6.2-what-the-theory-predicts.html">29&nbsp; What the Theory Predicts</a></li>
+<li><a class="current" href="6.2-what-the-theory-predicts.html">29&nbsp; What the Theory Predicts</a></li>
 <li><a class="" href="6.3-scope-conditions.html">30&nbsp; Scope Conditions</a></li>
 <li><a class="" href="6.4-research-agenda.html">31&nbsp; Research Agenda</a></li>
 <li class="part">Part 7 — The Profession</li>
@@ -778,328 +778,31 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="appendix-i-model-based-agentic-engineering-beyond-software.html">I.3 Model-Based Agentic Engineering Beyond Software</a></li>
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
-<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 15 · Constraints, Sensors, Validators, and Gates — MAGE"><header class="chap"><div class="kicker"><a href="part-3-intro.html" aria-label="Beginning of Part 3 — Alignment">Part 3 — Alignment</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 15</a></div><h1><span class="chap-num">3.3</span> Constraints, Sensors, Validators, and Gates</h1></header><p>MAGE uses four roles to describe how environmental authority operates. A mechanism may <strong>constrain</strong> an action, <strong>sense</strong> the state or result of work, <strong>validate</strong> the resulting evidence against an obligation, or <strong>gate</strong> whether the work may advance. One artifact often plays several at once; the four remain useful because they separate four moves that one tool may blur together: prevention, observation, judgment, and admission.</p>
-<blockquote id="idx-def-governance-mechanism" class="aside-sidenote def-inset"><p><strong>Governance mechanism.</strong> A repeatable structure in the engineered environment through which Alignment constrains work, produces evidence, evaluates evidence, or controls admission.</p></blockquote>
-<p>The four roles are:</p>
-<ul><li><strong>Constraint</strong> — removes or narrows an action or state the system is allowed to express.</li><li><strong>Sensor</strong> — observes the work or system and produces evidence.</li><li><strong>Validator</strong> — evaluates evidence against an obligation.</li><li><strong>Gate</strong> — controls whether work may cross a boundary.</li></ul>
-<p>Implementations often bundle several roles.</p>
-<p>The four split into two pairs. Constraints and sensors concern the work or system state: one restricts what may occur, the other observes what did occur. Validators and gates concern decisions over evidence: one evaluates the evidence, the other gives the verdict consequence.</p>
-<h2><span class="sec-num">3.3.1</span> Prevention and Observation</h2>
-<p id="idx-def-constraints-and-sensors">On the work-facing side of the loop, the two complementary moves are prevention and observation; <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-1">Figure&nbsp;3.3-1</a> draws the split. A constraint restricts what may occur; a sensor observes what did occur. Prefer a constraint where the unwanted action or state can be excluded cheaply and reliably. Otherwise, expose enough evidence for the obligation to be evaluated at an appropriate boundary.</p>
-<figure id="fig-3-3-1" class="book-figure" data-label="constraint-vs-sensor"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420"
-     role="group" aria-labelledby="f-constraint-vs-sensor-caTitle f-constraint-vs-sensor-caDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-constraint-vs-sensor-caTitle">Constraint or sensor: a selection rule for the engineering obligation</title>
-  <desc id="f-constraint-vs-sensor-caDesc">An engineering obligation you must hold leads to one decision: can the unwanted state be
-    excluded cleanly? If yes, use a constraint, which narrows what may happen — a typed enumeration, a
-    permission, a narrow API. If no, use a sensor, which produces evidence of what happened — a metric, a
-    trace, a call scan, a log — for later evaluation. A constraint prevents the unwanted state; a sensor
-    reports it after the fact.</desc>
-
-  <defs>
-    <marker id="f-constraint-vs-sensor-caArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.2"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L8,3.2 L0,6.4 Z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- edges drawn UNDER nodes; the branch labels YES/NO ride the diagonals, so heads keep their angles -->
-  <!-- edge-grammar: keep-angles -->
-  <!-- edge: obligation -> decision -->
-  <line x1="480" y1="87" x2="480" y2="132" stroke="#1c1917" stroke-width="2" marker-end="url(#f-constraint-vs-sensor-caArrow)"/>
-  <g fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-constraint-vs-sensor-caArrow)">
-    <!-- edge: decision -> constraint -->
-    <path d="M380,192 C320,222 290,232 262,254"/>
-    <!-- edge: decision -> sensor -->
-    <path d="M580,192 C640,222 670,232 698,254"/>
-  </g>
-
-  <!-- top: the engineering obligation -->
-  <rect id="f-constraint-vs-sensor-obligation" x="320" y="24" width="320" height="66" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="480" y="55" text-anchor="middle" font-size="21" font-weight="700" fill="#9a3f12">ENGINEERING OBLIGATION</text>
-  <text x="480" y="79" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">the property you must hold</text>
-
-  <!-- the selection decision -->
-  <rect id="f-constraint-vs-sensor-decision" x="249.16" y="136" width="461.68" height="58" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="480" y="172" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">Can the unwanted state be excluded cleanly?</text>
-
-  <!-- branch labels (paths drawn under nodes, above) -->
-  <text x="300" y="226" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">YES</text>
-  <text x="662" y="226" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">NO</text>
-
-  <!-- ============ LEFT — CONSTRAINT ============ -->
-  <rect id="f-constraint-vs-sensor-constraint" x="82.94" y="256" width="354.12" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="260" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">CONSTRAINT</text>
-  <text x="260" y="326" text-anchor="middle" font-size="19.2" fill="#1c1917">narrows what may happen</text>
-  <text x="260" y="360" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">typed enum · permission · narrow API</text>
-
-  <!-- ============ RIGHT — SENSOR ============ -->
-  <rect id="f-constraint-vs-sensor-sensor" x="516.37" y="256" width="367.26" height="128" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.5"/>
-  <text x="700" y="296" text-anchor="middle" font-size="22" font-weight="700" fill="#2f5169">SENSOR</text>
-  <text x="700" y="326" text-anchor="middle" font-size="19.2" fill="#1c1917">produces evidence of what happened</text>
-  <text x="700" y="360" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">metric · trace · call scan · log</text>
-</svg><figcaption data-short="Constraint or sensor"><span class="fig-label">Figure 3.3-1.</span> <em>Constraint or sensor.</em> Prefer a constraint when the unwanted state can be excluded cheaply and reliably. Otherwise instrument the relevant state and produce evidence for later evaluation.</figcaption></figure>
-<p>An instruction carries authority only when a mechanism in the environment acts on it. If a brief must contain a required section, check for that section before launch and refuse the launch when it is absent.</p>
-<span id="idx-def-sensor"></span><span id="idx-ex-observability-1"></span><p><strong>A sensor observes what happened and produces evidence:</strong> <code>actual = observe(system)</code>. It does not judge; a validator decides whether that evidence satisfies the obligation. When observation exposes a correctable violation after the fact, repair costs an additional iteration. That makes prevention attractive where the unwanted state can be excluded cleanly; many important properties, however, can only be observed.</p>
-<p>A CI test suite often bundles three roles: executing the code produces evidence, checking the result validates it, and failing the build gates progress. One artifact can perform several roles without collapsing the distinction among them.</p>
-<p id="idx-def-observability">A sensor is only as good as the signal it can read. <strong>Observability</strong> means that a running system exposes enough signal to explain what it did and what went wrong. Observability supplies the loop's evidence path: the relevant state or event must be exposed in a form a sensor can read. A gate can act only on evidence available at its boundary, whether produced earlier or derived there. That may be the event a gate fires on, the log a checker reads, or the trace that turns "the build failed" into "the build failed <em>here, for this reason.</em>" If the evidence an obligation requires does not exist, downstream authority cannot recover it; the environment must first instrument the relevant state or event.</p>
-<p id="idx-def-constraint"><strong>A constraint removes an unwanted action or state from the admissible space.</strong> Unlike a sensor, which observes the resulting state after the fact, a constraint makes the prohibited move unavailable through that mechanism. Closed representations are the cleanest example. A lifecycle encoded as arbitrary strings admits values the design never intended, and a mismatch surfaces only an iteration later, when the test suite crashes. Encode it as a closed enumeration instead and the compiler rejects any value outside the declared set on the spot. The enum does not watch for the illegal state later — it removes that representation from well-typed code, and no iteration is spent catching it. Where the valid action or representation space is naturally closed, MAGE prefers representations that exclude invalid members structurally.</p>
-<p>Programming-language theory made this move systematic: choose a representation or type discipline in which some invalid programs cannot be written as well-typed terms.<sup class="note-ref"><a href="#note-3-3-constraints-sensors-validators-gates-1" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-3-3-constraints-sensors-validators-gates-1"><span class="cn-mark">*</span> Benjamin C. Pierce characterizes type systems as syntactic methods for classifying program phrases so that classes of erroneous behaviors can be ruled out automatically <sup class="cite-ref"><a href="#wc-3-3-constraints-sensors-validators-gates-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> Benjamin C. Pierce, <em>Types and Programming Languages</em> (MIT Press, 2002).</span>.</span> MAGE generalizes the engineering preference rather than the formalism: where practical, restrict the action or representation space so the bad state cannot be produced, instead of detecting it again on every later iteration.</p>
-<blockquote class="aside-sidenote"><p><em>A footnote on control engineering.</em> The vocabulary deliberately echoes control engineering: constrain admissible behavior, observe state through sensors, compare evidence against a desired condition, and act on the result. The inheritance is an analogy, not an identity — an agent fleet is not a linear control system. What carries over is the closed-loop engineering posture. Leveson's systems-theoretic safety work provides a nearby precedent <sup class="cite-ref"><a href="#wc-3-3-constraints-sensors-validators-gates-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Nancy G. Leveson, <em>Engineering a Safer World: Systems Thinking Applied to Safety</em> (MIT Press, 2011).</span>.</p></blockquote>
-<p>Human processes can play the same roles: logging senses, review validates, and approval gates. Human judgment remains necessary. Repeated, mechanically decidable judgments are candidates for durable structure.</p>
-<p>The sharpest instance of the pair is ownership of a unit of work. DocAble's in-flight lease makes active ownership visible and lets apparently abandoned work become recoverable. The lease does not itself grant final authority to perform the consequential side effect. A durable compare-and-set supplies that constraint: competing claimants cannot both acquire it, so at most one performs the effect. The lease may expire because a worker is merely slow, so redelivery cannot imply permission to repeat the effect. <strong>Recovery is not permission.</strong></p>
-<h2><span class="sec-num">3.3.2</span> One Obligation, Several Ways to Hold It</h2>
-<p>A modeled obligation does not imply one particular enforcement technology. Ask first what kind of property it is and where the environment can act on it.</p>
-<p>If an invalid state can be removed from the action space, prefer the constraint. DocAble's work-item claim is the simple case: a database compare-and-set updates the row only while it remains in the expected prior state. Two competing claimants cannot both win the same transition. The ownership obligation is therefore carried by the runtime primitive itself rather than by a later checker.</p>
-<p>Other properties live across sequences of otherwise legal actions. The in-flight lease is one example. Reclaiming a stale lease, issuing a new epoch, and receiving a late release from the previous holder are each individually plausible events; their interleaving can still violate the ownership invariant. Here the environment needs a validator that can reason over the composed state space. DocAble uses a small, purpose-built model checker: an executable transition model enumerates the reachable interleavings within explicit bounds and searches them for violations of the ownership invariants.<sup class="note-ref"><a href="#note-3-3-constraints-sensors-validators-gates-2" role="doc-noteref" aria-label="note 2">†</a></sup><span class="editorial-note" id="note-3-3-constraints-sensors-validators-gates-2"><span class="cn-mark">†</span> More precisely, this is bounded explicit-state model checking. "Bounded model checking" conventionally refers to bounded executions encoded for SAT/SMT solving; DocAble's checker exhaustively explores an explicitly bounded state space instead.</span> The checker is deliberately specialized to the protocol. For this small protocol, a purpose-built checker keeps the method close to the model and avoids unnecessary tooling.</p>
-<p>Temporal obligations require another shape of evidence. "No two workers own the same claim" is violated by one reachable bad state. "Every submitted job eventually terminates" is not. A finite trace can show progress, but it cannot establish that every fair execution eventually reaches a terminal state. A temporal model checker can reason about that stronger claim.</p>
-<p>These are not levels of sophistication. They are different matches between property and mechanism. The engineering preference remains the same throughout MAGE: make the bad state impossible when you can; otherwise produce proportionate evidence that an appropriate evaluator can use to decide the obligation. <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-2">Figure&nbsp;3.3-2</a> sets the three matches out.</p>
-<figure id="fig-3-3-2" class="book-figure" data-label="match-mechanism-to-property"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640"
-     role="img" aria-labelledby="f-match-mechanism-to-property-mmpTitle f-match-mechanism-to-property-mmpDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-match-mechanism-to-property-mmpTitle">Match the mechanism to the property</title>
-  <desc id="f-match-mechanism-to-property-mmpDesc">An engineering obligation forks on what kind of property it is. If the invalid state can
-    be excluded, a constraint gives structural prevention, such as a database compare-and-set or a closed
-    transition. If the risk is a reachable bad state or trace, a validator explores the state space through
-    bounded explicit-state exploration. If the obligation is an eventuality or fairness property, a validator
-    does temporal model checking with TLA-plus and TLC where warranted. These are alternatives selected by the
-    property, not stages on a maturity ladder. Whichever mechanism supplies the verdict, a separate gate gives
-    it consequence if the verdict should control admission.</desc>
-
-  <defs>
-    <marker id="f-match-mechanism-to-property-mmp-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- ===== boxes (drawn first) ===== -->
-  <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
-
-  <!-- top: engineering obligation (rust) -->
-  <rect id="f-match-mechanism-to-property-obligation" x="320" y="26" width="360" height="58" rx="12" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
-
-  <!-- property-question boxes (gray) -->
-  <rect id="f-match-mechanism-to-property-q-exclude" x="45" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <rect id="f-match-mechanism-to-property-q-badstate" x="360" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <rect id="f-match-mechanism-to-property-q-eventuality" x="675" y="140" width="280" height="54" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-
-  <!-- mechanism boxes (gray, the Move) -->
-  <rect id="f-match-mechanism-to-property-m-constraint" x="45" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
-  <rect id="f-match-mechanism-to-property-m-explicit" x="360" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
-  <rect id="f-match-mechanism-to-property-m-temporal" x="675" y="252" width="280" height="50" rx="9" fill="#f3f1ee" stroke="#57534e" stroke-width="2.4"/>
-
-  <!-- method sub-boxes (gray) -->
-  <rect id="f-match-mechanism-to-property-s-constraint" x="45" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
-  <rect id="f-match-mechanism-to-property-s-explicit" x="350.98" y="330" width="298.05" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
-  <rect id="f-match-mechanism-to-property-s-temporal" x="675" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
-
-  <!-- gate (green) -->
-  <rect id="f-match-mechanism-to-property-gate" x="280" y="500" width="440" height="72" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
-
-  <!-- ===== arrows ===== -->
-  <!-- edge: obligation -> q-exclude -->
-  <path d="M500,84 L500,106 L185,106 L185,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-  <!-- edge: obligation -> q-badstate -->
-  <path d="M500,84 L500,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-  <!-- edge: obligation -> q-eventuality -->
-  <path d="M500,84 L500,106 L815,106 L815,138" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-
-  <!-- edge: q-exclude -> m-constraint -->
-  <line x1="185" y1="194" x2="185" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-  <!-- edge: q-badstate -> m-explicit -->
-  <line x1="500" y1="194" x2="500" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-  <!-- edge: q-eventuality -> m-temporal -->
-  <line x1="815" y1="194" x2="815" y2="250" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-
-  <!-- edge: m-constraint -> s-constraint -->
-  <line x1="185" y1="302" x2="185" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-  <!-- edge: m-explicit -> s-explicit -->
-  <line x1="500" y1="302" x2="500" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-  <!-- edge: m-temporal -> s-temporal -->
-  <line x1="815" y1="302" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-
-  <!-- edge: s-constraint -> gate -->
-  <path d="M302.5,396 L302.5,498" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-  <!-- edge: s-explicit -> gate -->
-  <path d="M500,396 L500,498" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-  <!-- edge: s-temporal -> gate -->
-  <path d="M697.5,396 L697.5,498" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-match-mechanism-to-property-mmp-k)"/>
-
-  <!-- ===== labels (drawn last, on top) ===== -->
-  <text x="500" y="61" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="0.5" fill="#9a3f12">ENGINEERING OBLIGATION</text>
-
-  <text x="500" y="126" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">What kind of property is it?</text>
-
-  <text x="185" y="164" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CAN EXCLUDE IT?</text>
-  <text x="500" y="164" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">BAD STATE / TRACE?</text>
-  <text x="815" y="164" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">EVENTUALITY / FAIRNESS?</text>
-  <text x="185" y="185" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">yes</text>
-  <text x="500" y="185" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">yes</text>
-  <text x="815" y="185" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">yes</text>
-
-  <text x="185" y="283" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">CONSTRAINT</text>
-  <text x="500" y="283" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">VALIDATOR</text>
-  <text x="815" y="283" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">VALIDATOR</text>
-
-  <text x="185" y="352" text-anchor="middle" font-size="20" fill="#1c1917">structural prevention</text>
-  <text x="185" y="370" text-anchor="middle" font-size="20" fill="#57534e">DB compare-and-set /</text>
-  <text x="185" y="386" text-anchor="middle" font-size="20" fill="#57534e">closed transition</text>
-  <text x="500" y="360" text-anchor="middle" font-size="20" fill="#1c1917">state-space search</text>
-  <text x="500" y="380" text-anchor="middle" font-size="20" fill="#57534e">bounded state-space checker</text>
-  <text x="815" y="360" text-anchor="middle" font-size="20" fill="#1c1917">temporal model checker</text>
-
-  <text x="500" y="532" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">GATE, IF THE VERDICT</text>
-  <text x="500" y="555" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">SHOULD CONTROL ADMISSION</text>
-
-  <text x="500" y="606" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Alternatives selected by the property &#8212; not stages on a maturity ladder.</text>
-</svg><figcaption data-short="Match the mechanism to the property"><span class="fig-label">Figure 3.3-2.</span> <em>Match the mechanism to the property.</em> An obligation may be held structurally by excluding the invalid state, evaluated by exploring reachable states, or checked as a temporal property over executions (for example with TLA+/TLC). These are alternatives selected by the engineering claim, not stages on a maturity ladder. A gate is a separate decision that gives the resulting verdict consequence.</figcaption></figure>
-<p>Whichever validator supplies the judgment, authority still depends on what the environment does with its verdict.</p>
-<h2><span class="sec-num">3.3.3</span> Validators and Gates</h2>
-<p id="idx-def-validator">The other two roles act on evidence and admission. A <strong>validator</strong> turns evidence into a judgment: does the observed call graph contain only permitted edges, did this journey establish its post-condition, does the provenance record account for every mutation? It reads the evidence a sensor produced — or derives it straight from the artifact — and asks whether it satisfies the obligation. A validator may be deterministic, probabilistic, or human; its authority comes not from itself but from what the environment does with its verdict. A correspondence validator can enforce agreement without making either representation authoritative for execution. DocAble's remediation-graph parity check blocks drift between the projected graph and typed pass declarations even though the executable declarations remain upstream.</p>
-<p id="idx-def-gate">A <strong>gate</strong> supplies that consequence. It decides whether the work may cross a boundary: commit, merge, deploy, execute, close, or draw on a scarce resource. Validation and gating are separate design decisions. A cost ceiling can be measured and evaluated without blocking production; a security invariant may deserve immediate refusal. <strong>Giving a validator's verdict gating authority is a commitment.</strong> Giving an uncertain validator blocking authority converts its false positives into rejected work or outages.</p>
-<blockquote class="box-inset"><span class="box-badge box-badge-caveat">CAVEAT</span><p class="inset-title" id="inset-authority-conditional">Authority is conditional</p>
-<p>A mechanism can guarantee only the property it actually governs, under the assumptions on which its evidence and implementation depend. A validator can faithfully enforce the wrong obligation; a model can omit a consequential distinction; a sensor can fail to observe the relevant state. Hard control therefore does not mean "the system is correct." It means that, within a stated scope, acceptance no longer depends on the agent voluntarily satisfying that obligation.</p></blockquote>
-<p>A loop may re-derive evidence at a later admission boundary rather than rely on the producing agent's self-report or on an earlier marker.<sup class="note-ref"><a href="#note-3-3-constraints-sensors-validators-gates-3" role="doc-noteref" aria-label="note 3">‡</a></sup><span class="editorial-note" id="note-3-3-constraints-sensors-validators-gates-3"><span class="cn-mark">‡</span> Re-derivation trades additional computation and latency for stronger assurance that the evidence corresponds to the artifact or state being admitted. Reusing or caching an earlier result can be a sound optimization when the system can establish that the relevant inputs have not changed; the optimization should preserve that correspondence rather than merely assume it.</span> Re-derivation can strengthen independence and freshness: the later mechanism evaluates the artifact or state that is actually being admitted. DocAble's definition-of-done audit takes this approach, recomputing its evidence at close rather than relying on evidence produced earlier in the task. The principle is simpler than the implementation choice: the thing asking to pass does not get to define what counts as having passed.</p>
-<h2><span class="sec-num">3.3.4</span> One Measurement, Different Authority Decisions</h2>
-<p>The four roles are not stages of maturity. DocAble's GenAI cost-and-usage model makes the point. Related measurements from the same model can support different authority decisions, and <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-3">Figure&nbsp;3.3-3</a> fans them across the roles. Usage is continuously sensed. Capacity signals can adapt request behavior. Exhausting a per-job budget can produce soft completion rather than outright rejection. A hard daily-budget gate exists but is dormant unless configured. One quantitative model can support observation, adaptation, graceful degradation, or hard admission control. The appropriate consequence depends on the obligation attached to the quantity, not on the supposed maturity of the environment.</p>
-<figure id="fig-3-3-3" class="book-figure" data-label="cost-authority-gradient"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470"
-     role="img" aria-labelledby="f-cost-authority-gradient-cgTitle f-cost-authority-gradient-cgDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-cost-authority-gradient-cgTitle">One measurement, different authority decisions: a policy attached to the value selects observe, adapt, or gate</title>
-  <desc id="f-cost-authority-gradient-cgDesc">A single cost and usage model is read through a policy attached to the value. That policy
-    selects one response. Observe reports evidence without consequence. Adapt changes load, throttling and
-    then producing soft completion rather than outright rejection. Gate blocks admission and is dormant
-    unless configured. The appropriate response follows from the obligation attached to the measurement, not
-    from a maturity sequence.</desc>
-
-  <defs>
-    <marker id="f-cost-authority-gradient-cg-n" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-    <marker id="f-cost-authority-gradient-cg-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="f-cost-authority-gradient-cg-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <!-- Edges drawn before the nodes they enter so the node fills cap the ends. -->
-
-  <!-- edge: model -> policy -->
-  <line x1="480" y1="92" x2="480" y2="116" stroke="#9a3f12" stroke-width="2.4" marker-end="url(#f-cost-authority-gradient-cg-r)"/>
-
-  <!-- fan-out edges to the three responses (one path per branch) -->
-  <g fill="none" stroke-width="2.4">
-    <!-- edge: policy -> observe -->
-    <path d="M356,170 L356,192 L304,192 L304,214" stroke="#57534e" marker-end="url(#f-cost-authority-gradient-cg-n)"/>
-    <!-- edge: policy -> adapt -->
-    <path d="M480,170 L480,214" stroke="#2f5169" marker-end="url(#f-cost-authority-gradient-cg-b)"/>
-    <!-- edge: policy -> gate -->
-    <path d="M604,170 L604,192 L656,192 L656,214" stroke="#9a3f12" marker-end="url(#f-cost-authority-gradient-cg-r)"/>
-  </g>
-
-  <!-- edge: adapt -> throttle -->
-  <line x1="480" y1="280" x2="480" y2="314" stroke="#57534e" stroke-width="2.4" marker-end="url(#f-cost-authority-gradient-cg-n)"/>
-
-  <!-- source model -->
-  <rect id="f-cost-authority-gradient-model" x="330" y="30" width="300" height="62" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="480" y="59" text-anchor="middle" font-size="21" font-weight="700" fill="#2f5169">COST / USAGE MODEL</text>
-  <text x="480" y="81" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">related measured quantities</text>
-
-  <!-- the policy that attaches the obligation to the value -->
-  <rect id="f-cost-authority-gradient-policy" x="340" y="118" width="280" height="52" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="480" y="150" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">policy attached to the value</text>
-
-  <!-- RESPONSE: observe -->
-  <rect id="f-cost-authority-gradient-observe" x="37.27" y="216" width="315.47" height="64" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="195" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">OBSERVE</text>
-  <text x="195" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">report evidence, no consequence</text>
-
-  <!-- RESPONSE: adapt -> throttle / soft completion -->
-  <rect id="f-cost-authority-gradient-adapt" x="355" y="216" width="250" height="64" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
-  <text x="480" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#2f5169">ADAPT</text>
-  <text x="480" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">change load</text>
-
-  <rect id="f-cost-authority-gradient-throttle" x="347.45" y="316" width="265.1" height="50" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2"/>
-  <text x="480" y="347" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">throttle · soft completion</text>
-
-  <!-- RESPONSE: gate (with a small dormant annotation, not extra nodes) -->
-  <rect id="f-cost-authority-gradient-gate" x="640" y="216" width="250" height="64" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.4"/>
-  <text x="765" y="246" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">GATE</text>
-  <text x="765" y="268" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">block admission</text>
-  <text x="765" y="306" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">dormant unless configured</text>
-
-  <!-- footer: protect the point -->
-  <line x1="40" y1="404" x2="920" y2="404" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="434" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">The appropriate response follows from the obligation attached to the measurement &#8212; not from a maturity sequence.</text>
-</svg><figcaption data-short="One Measurement, Different Authority Decisions"><span class="fig-label">Figure 3.3-3.</span> <em>One Measurement, Different Authority Decisions.</em> The same measured quantity may be observed without consequence, used to adapt behavior, trigger graceful degradation, or control admission. The appropriate response follows from the obligation attached to the measurement, not from a maturity sequence.</figcaption></figure>
-<p>A quantitative tolerance can also expose margin. If a value remains inside its acceptable bound, margin describes the room between the realized value and that boundary. A request completing in 120 ms against a 200 ms ceiling has 80 ms of margin. That information can matter before conformance fails: two realizations may both satisfy the same obligation while one operates much closer to its boundary and therefore has less room to absorb variation or future change.</p>
-<p>That calculation is easy only when the model supplies a meaningful distance to the boundary. Quantitative obligations often do: latency, memory use, throughput, or cost can be compared directly with a declared bound. Many software obligations are qualitative instead. A dependency may cross a forbidden architectural boundary or remain within the permitted graph; a transition may be legal or illegal. Some such obligations admit useful notions of distance from failure, while others do not. MAGE therefore uses margin where the model provides a meaningful measure; it does not assume that every tolerance does.</p>
-<h2><span class="sec-num">3.3.5</span> Positive and Negative Constraints</h2>
-<p>Constraints are often introduced as prohibitions: this code must not call that library. DocAble's provenance machinery demonstrates the complementary form. Every typed mutation verb is required to emit attribution. A source-time rule checks that the required call is wired into the mutation path. <a class="xref" href="3.3-constraints-sensors-validators-gates.html#fig-3-3-4">Figure&nbsp;3.3-4</a> sets the two forms side by side: one mechanism removes a forbidden action; the other requires evidence-producing behavior.</p>
-<figure id="fig-3-3-4" class="book-figure" data-label="positive-negative-obligation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440"
-     role="img" aria-labelledby="f-positive-negative-obligation-poTitle f-positive-negative-obligation-poDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-positive-negative-obligation-poTitle">Negative and positive constraints: a negative constraint removes a forbidden action; a positive constraint requires specified evidence-producing behavior</title>
-  <desc id="f-positive-negative-obligation-poDesc">Two columns. On the left, a negative constraint: ordinary code must not call a raw library, so the edge
-    between them is forbidden. On the right, a positive constraint: a mutation verb must call a stamping action that
-    produces attribution evidence. Both are checked at source time; both restrict the admissible implementation space,
-    from opposite directions.</desc>
-
-  <defs>
-    <marker id="f-positive-negative-obligation-po-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <!-- divider between the two columns -->
-  <line x1="480" y1="44" x2="480" y2="360" stroke="#e7e2da" stroke-width="1.6"/>
-
-  <!-- ============ NEGATIVE ============ -->
-  <text x="250" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">NEGATIVE CONSTRAINT</text>
-  <text x="250" y="94" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">removes a forbidden action</text>
-
-  <rect id="f-positive-negative-obligation-po-ordinary" x="120" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="250" y="166" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">ordinary code</text>
-
-  <!-- forbidden edge: barred, crossed (absent relation — endpoints still plug into both boxes) -->
-  <!-- edge: po-ordinary .. po-rawlib -->
-  <line x1="250" y1="190" x2="250" y2="274" stroke="#9a3f12" stroke-width="2.6" stroke-dasharray="7 5"/>
-  <!-- the bar / prohibition mark -->
-  <g stroke="#9a3f12" stroke-width="3.4" stroke-linecap="round">
-    <line x1="228" y1="220" x2="272" y2="242"/>
-    <line x1="272" y1="220" x2="228" y2="242"/>
-  </g>
-  <text x="298" y="236" font-size="19.2" font-weight="700" font-style="italic" fill="#9a3f12">must not call</text>
-
-  <rect id="f-positive-negative-obligation-po-rawlib" x="120" y="274" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2" stroke-dasharray="7 5"/>
-  <text x="250" y="312" text-anchor="middle" font-size="19.2" font-weight="700" fill="#57534e">raw library</text>
-
-  <!-- ============ POSITIVE ============ -->
-  <text x="710" y="70" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12" letter-spacing="0.5">POSITIVE CONSTRAINT</text>
-  <text x="710" y="94" text-anchor="middle" font-size="19.2" font-style="italic" fill="#57534e">requires evidence-producing behavior</text>
-
-  <rect id="f-positive-negative-obligation-po-verb" x="580" y="128" width="260" height="62" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="710" y="166" text-anchor="middle" font-size="19.2" font-weight="700" fill="#1c1917">mutation verb</text>
-
-  <text x="758" y="236" font-size="19.2" font-weight="700" font-style="italic" fill="#9a3f12">must call</text>
-
-  <rect id="f-positive-negative-obligation-po-stamp" x="580" y="274" width="260" height="62" rx="10" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.6"/>
-  <text x="710" y="305" text-anchor="middle" font-size="19.2" font-weight="700" fill="#9a3f12">MUST stamp</text>
-  <text x="710" y="325" text-anchor="middle" font-size="19.2" font-style="italic" fill="#9a3f12">emit attribution evidence</text>
-
-  <!-- required edge: solid rust arrow, drawn ON TOP of its target box so the arrowhead is not capped -->
-  <!-- edge: po-verb -> po-stamp -->
-  <line x1="710" y1="190" x2="710" y2="272" stroke="#9a3f12" stroke-width="2.8" marker-end="url(#f-positive-negative-obligation-po-r)"/>
-
-  <!-- footer: protect the point -->
-  <line x1="40" y1="376" x2="920" y2="376" stroke="#e7e2da" stroke-width="1.4"/>
-  <text x="480" y="408" text-anchor="middle" font-size="19.2" font-style="italic" fill="#1c1917">Both are source-time rules &#8212; they restrict the admissible implementation space from opposite directions.</text>
-</svg><figcaption data-short="Negative and positive constraints"><span class="fig-label">Figure 3.3-4.</span> <em>Negative and positive constraints.</em> A negative constraint removes a forbidden action; a positive constraint requires a specified action or evidence-producing behavior. Both restrict the admissible implementation space.</figcaption></figure>
-<h2><span class="sec-num">3.3.6</span> What Counts as a Mechanism</h2>
-<p>Keep <strong>policy</strong>, <strong>guidance</strong>, and <strong>governance mechanism</strong> separate. A model file can state policy; a playbook can guide an agent; neither becomes an authoritative mechanism merely by existing or by appearing in an agent's context. Authority begins when something in the environment actually constrains the work, produces evidence, evaluates that evidence, or controls admission. The model states the obligation; the consuming mechanism gives it authority.</p>
-<p>The same artifact can play several roles. A structured model injected into context guides reasoning. A validator reading that same model uses it as the obligation against which observed code is judged. A generated permission table turns the same modeled relation into a constraint. The model is the representation; the consuming machinery supplies the authority.</p>
-<p id="idx-def-governance-package">Implementations routinely bundle roles. A test runner may sense, validate, and gate; a narrow interface may constrain while emitting provenance. Name the functions inside the bundle rather than stretching every influence into a "soft constraint" or "soft sensor."</p>
-<p>Some mechanisms can be designed before the first autonomous change; others become visible only after the environment fails. The next chapter shows how those failures become durable structure.</p><section class="works-cited" aria-labelledby="wc-3-3-constraints-sensors-validators-gates-h"><h2 id="wc-3-3-constraints-sensors-validators-gates-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-3-3-constraints-sensors-validators-gates-1">Pierce, Benjamin C. <em>Types and Programming Languages</em>. MIT Press, 2002.</li><li id="wc-3-3-constraints-sensors-validators-gates-2">Leveson, Nancy G. <em>Engineering a Safer World: Systems Thinking Applied to Safety</em>. MIT Press, 2011.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-3-intro.html" aria-label="Beginning of Part 3 — Alignment">« Beginning of part</a><a href="3.2-models-and-the-semantic-gap.html" aria-label="Previous chapter — 14 · From Engineering Intent to Enforceable Obligation">« Previous chapter</a></div><span class="chapnav-here" title="15 · Constraints, Sensors, Validators, and Gates">15 · Constraints, Sensors, Validators, and Gates</span><div class="chapnav-fwd"><a href="3.4-governance-conversion.html" aria-label="Next chapter — 16 · Growing the Governed Environment">Next chapter »</a><a href="part-4-intro.html" aria-label="Next part — Part 4 — The MAGE Method">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
+<li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 29 · What the Theory Predicts — MAGE"><header class="chap"><div class="kicker"><a href="part-6-intro.html" aria-label="Beginning of Part 6 — The Theory">Part 6 — The Theory</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 29</a></div><h1><span class="chap-num">6.2</span> What the Theory Predicts</h1></header><p>If the theory is right, certain consequences should follow. This chapter states them generally—what we should expect to observe wherever MAGE applies. It states the predictions first; the next chapter asks where they should be expected to hold.</p>
+<p>The predictions fall into three families: trustworthy representations, adaptive governance, and engineering economics. They are consequences derived from the theory, not findings of this book. Each is stated here as a named hypothesis; the research agenda that closes this Part turns those hypotheses into experimental designs.</p>
+<h2><span class="sec-num">6.2.1</span> Trustworthy Representations</h2>
+<p>Brownfield software raises the first problem immediately: can a useful engineering model be recovered from a system that was never built around one? An agent can extract structure from implementation, but description is not obligation. A model that perfectly mirrors defective behavior can simply canonize the defect. Useful induction must therefore distinguish what the system <strong>does</strong> from what an independently justified engineering claim says it <strong>should</strong> do.</p>
+<p>Once a model exists, maintenance becomes a second problem. "Keep the model equal to the code" is too crude. A model of permitted dependencies should disagree with code that violates them. A requirements model may intentionally describe an intended state the current implementation has not reached. The engineering problem is to state and maintain the <strong>correspondence each model claims</strong>—for architecture, behavior, process, invariants, lineage, or other views—cheaply enough to expose meaningful divergence near the change that created it.</p>
+<p>The third problem is quality. A model can be synchronized and still be useless. Test suites provide the familiar warning: an oracle can faithfully encode the implementation rather than the requirement, or cover one narrow realization while missing the property that matters.<sup class="note-ref"><a href="#note-6-2-what-the-theory-predicts-fn-oracle-overfit" role="doc-noteref" aria-label="note 1">*</a></sup><span class="editorial-note" id="note-6-2-what-the-theory-predicts-fn-oracle-overfit"><span class="cn-mark">*</span> Oracle overfitting is well established. A steward of a widely watched coding benchmark audited the problems a strong model kept failing and found many carried flawed tests — too narrow, or checking behavior the task never described — alongside contamination that let exposure substitute for reasoning <sup class="cite-ref"><a href="#wc-6-2-what-the-theory-predicts-1" aria-label="citation 1">1</a></sup><span class="cite-note"><span class="cn-mark">1.</span> OpenAI, “Why SWE-Bench Verified No Longer Measures Frontier Coding Capabilities,” OpenAI, February 2026, <a href="https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/">https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/</a>.</span>. The lesson predates the current era: automation that optimizes against a visible oracle satisfies the oracle while silently breaking what it does not check <sup class="cite-ref"><a href="#wc-6-2-what-the-theory-predicts-2" aria-label="citation 2">2</a></sup><span class="cite-note"><span class="cn-mark">2.</span> Edward K. Smith et al., “Is the Cure Worse Than the Disease? Overfitting in Automated Program Repair,” in “Proceedings of the 2015 10th Joint Meeting on Foundations of Software Engineering (Esec/fse),” special issue, <em>Proceedings of the 2015 10th Joint Meeting on Foundations of Software Engineering (ESEC/FSE)</em>, 2015, 532–43, <a href="https://doi.org/10.1145/2786805.2786825">https://doi.org/10.1145/2786805.2786825</a>.</span>.</span> Models need analogous evaluation. The field must measure not only fidelity to artifacts, but whether the representation captures the obligations and relations required by the engineering decisions made through it.</p>
+<p><strong>H1 — Representation leverage.</strong> For tasks whose required reasoning state exceeds comfortable implementation-level inspection, a task-relevant and trustworthy model will reduce reasoning and reconstruction cost per acceptable realization, or increase task scale at matched quality, relative to reasoning from lower-level artifacts alone. The advantage should increase as the required reasoning state grows.</p>
+<p><strong>H2 — Representation integrity.</strong> Stale, irrelevant, or poorly chosen models will reduce or reverse the benefit in H1; measures of model correspondence and obligation coverage should therefore predict later churn or defect escape beyond conventional implementation-level metrics. The same measure has an economy edge: for a fixed set of engineering questions and obligations, a representation family that preserves the task-relevant distinctions while eliminating non-contributing state or redundant views should lower the combined human-attention, agent-reasoning, and maintenance cost without increasing defect escape — and the optimum should depend on which consumers (human, agent, or mechanism) must reason over the representation.</p>
+<p><strong>H3 — Representation-induced determinization.</strong> For some system-level obligations, replacing raw implementation as the reasoning surface with an explicit representation of the relevant state or relation will make a repeatable predicate feasible where per-change evaluation over the implementation otherwise requires semantic reconstruction.</p>
+<h2><span class="sec-num">6.2.2</span> Adaptive Governance</h2>
+<p>Governance conversion remains primarily an act of judgment. A failure occurs; someone decides whether it is local or structural; someone decides whether future work should inherit a model, constraint, validator, architectural change, procedure—or nothing at all. Agents can already implement many of those responses. The research frontier is deciding <strong>which investment is warranted, what its cheapest adequate form is, and when judgment should remain where it is</strong>.</p>
+<p>An adaptive environment also has to subtract. A system that automatically responds to every anomaly with another lint or gate will manufacture bureaucracy faster than capital. Useful adaptation must add, strengthen, reconcile, and retire. The obligation/mechanism census from Part III provides one observable surface: important obligations with inadequate coverage are gaps; mechanisms that no longer trace to a purpose are candidate orphans. A useful adaptive system would reduce consequential gaps without simply increasing the number of mechanisms.</p>
+<p>Organizations make the problem harder. The person who recognizes a failure may not own the shared infrastructure capable of retiring the class. A good diagnosis can therefore die as a local patch. The relevant organizational variable is not whether authority resides in one architect, but whether a functioning path connects <strong>diagnosis to shared environmental change</strong>.</p>
+<p><strong>H4 — Mechanized assurance.</strong> For obligations that are sufficiently decidable and adequately covered, repeatable independent mechanisms will reduce defect escape at matched realized throughput relative to assurance that depends on producer compliance or proportional per-change human attention. For sound admission mechanisms over mechanically decidable obligations, the covered failure class should be excluded from admitted work even when producer reliability varies.</p>
+<p><strong>H5 — Governance conversion.</strong> For recurring failure classes, structural interventions targeted at the class will reduce subsequent recurrence or repeated human attention relative to local repair alone, net of the intervention's carrying cost. The relationship will become non-monotonic when controls accumulate beyond their useful fit.</p>
+<p><strong>H6 — Learning propagation.</strong> Engineering lessons will reach later relevant work faster and more consistently, and will be less dependent on continued access to the people who first supplied them, when diagnosis is connected to authority over shared, machine-actionable environmental structure than when the lesson remains local or must propagate primarily through interpersonal communication. Personnel turnover provides one natural test: where consequential judgment has become trustworthy shared structure, later work should lose less effective engineering capability when the originating engineer is absent.</p>
+<h2><span class="sec-num">6.2.3</span> Engineering Economics</h2>
+<p>The economic predictions are the least settled of the three families. Representation leverage and governance conversion can be observed directly within an engineered environment; estimating their economic return requires a counterfactual—what the same work would have cost without the asset, under comparable intelligence, quality, and task conditions. Model capability is changing at the same time, token prices are moving, organizations value human attention differently, and engineering assets depreciate. The hypotheses below therefore define quantities worth measuring, not coefficients MAGE claims to know.</p>
+<p>The strongest economic claim in MAGE is easy to state and difficult to price: durable engineering structure can make later work cheaper or safer. The DocAble support ratio shows where source accumulated, not whether that stock was valuable. Nor will removing one artifact necessarily reveal its contribution when the same knowledge survives across models, tests, code, and documentation. The environment's return may not decompose artifact by artifact.</p>
+<p>The quantities that matter are therefore returns and carrying costs. How much reconstruction, review, rework, defect risk, or recovery cost does an asset retire? How much compute, latency, maintenance, context, false-positive burden, and coordination does it impose? How does that balance change as the system moves and the asset depreciates?</p>
+<p>One implication is that effective engineering capability may partly belong to the <strong>environment</strong>, not only to the foundation model or the people currently operating it. A weaker model operating over a richly represented, well-instrumented environment may outperform a stronger model over an opaque repository because the environment has performed some of the reasoning before the interaction begins. Whether environment quality substitutes for model capability, complements it, or does neither is an empirical question.</p>
+<p>This suggests another way to operationalize engineering capital. Instead of trying to price each model, validator, or procedure separately, treat a commodity agent as a standardized consumer of the environment. Hold the reasoning engine and task family fixed, vary the engineered environment, and measure how much productive capability the environment contributes: task scale reached at matched quality, reconstruction cost, intervention burden, defect escape, and durable throughput. The measured difference is not a complete valuation of engineering capital, but it makes otherwise intangible engineering structure empirically visible.</p>
+<p><strong>H7 — Environment moderation.</strong> The effect of increasing agentic capacity on durable throughput, defect escape, and human-attention burden will depend on environment quality. Modeling and Alignment should exhibit partially separable effects: improved representation should reduce realization and reconstruction cost, while stronger independent authority should reduce defect escape. Where both address the same engineering surface, their combination should permit stronger assurance at lower realization cost than Alignment over an equivalently opaque reasoning surface. These effects should vary systematically by task family, model capability, representation, harness, and assurance strategy; estimating those interactions would make environment quality a routing variable rather than merely a post hoc explanation of performance.</p>
+<p><strong>Outer-loop corollary.</strong> If commodity intelligence primarily accelerates source-code production, its benefits should remain concentrated in the coding slice of software work and increasingly encounter downstream limits in review, testing, integration, and coordination. If MAGE's account is right, stronger governed engineering environments should allow the same intelligence to assume increasing portions of the surrounding realization loop—debugging, test construction, refactoring, integration, migration, and other bounded engineering activities—while preserving durable throughput without proportionate growth in human-attention burden.</p>
+<p><strong>H8 — Engineering-capital return and depreciation.</strong> Useful models, mechanisms, architectures, and procedures will produce measurable reductions in future reconstruction, human attention, rework, or risk over the surfaces they cover; those returns will decline as the assets lose fit, and environments that reconcile or retire depreciated assets will outperform otherwise comparable environments that merely accumulate machinery.</p>
+<p>The eight hypotheses divide across the three families, each paired with the core quantity a study would have to measure. <a class="xref" href="6.2-what-the-theory-predicts.html#tbl-6-2-1">Table&nbsp;6.2-1</a> collects them.</p>
+<table id="tbl-6-2-1" class="book-table" data-label="mage-hypotheses"><caption data-short="MAGE&#x27;s eight hypotheses in three families"><span class="tbl-label">Table 6.2-1.</span> <em>The eight hypotheses.</em> MAGE's research program comprises eight named hypotheses in three families — trustworthy representations, adaptive governance, and engineering economics — each with the core quantity a study would measure.</caption><thead><tr><th>Family</th><th>Hypothesis</th><th>Core quantity</th></tr></thead><tbody><tr><td>Representation</td><td>H1 Representation leverage</td><td>reasoning/context cost at matched quality</td></tr><tr><td>Representation</td><td>H2 Representation integrity</td><td>drift/coverage → churn or escape</td></tr><tr><td>Representation</td><td>H3 Determinization frontier</td><td>semantic judgment → repeatable predicate</td></tr><tr><td>Governance</td><td>H4 Mechanized assurance</td><td>defect escape vs throughput</td></tr><tr><td>Governance</td><td>H5 Governance conversion</td><td>class recurrence + carrying cost</td></tr><tr><td>Governance</td><td>H6 Learning propagation</td><td>propagation latency/consistency</td></tr><tr><td>Economics</td><td>H7 Environment moderation</td><td>capacity × environment interaction</td></tr><tr><td>Economics</td><td>H8 Capital return/depreciation</td><td>return and carrying cost over time</td></tr></tbody></table>
+<p>The three families state what the theory predicts. The next chapter bounds where those predictions should hold; the research agenda that follows turns them into studies that could confirm or refute the account.</p><section class="works-cited" aria-labelledby="wc-6-2-what-the-theory-predicts-h"><h2 id="wc-6-2-what-the-theory-predicts-h" class="wc-h">Works Cited</h2><ol class="wc-list"><li id="wc-6-2-what-the-theory-predicts-1">OpenAI. “Why SWE-Bench Verified No Longer Measures Frontier Coding Capabilities.” OpenAI, February 2026. <a href="https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/">https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/</a>.</li><li id="wc-6-2-what-the-theory-predicts-2">Smith, Edward K., Earl T. Barr, Claire Le Goues, and Yuriy Brun. “Is the Cure Worse Than the Disease? Overfitting in Automated Program Repair.” In “Proceedings of the 2015 10th Joint Meeting on Foundations of Software Engineering (Esec/fse).” Special issue, <em>Proceedings of the 2015 10th Joint Meeting on Foundations of Software Engineering (ESEC/FSE)</em>, 2015, 532–43. <a href="https://doi.org/10.1145/2786805.2786825">https://doi.org/10.1145/2786805.2786825</a>.</li></ol></section><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-6-intro.html" aria-label="Beginning of Part 6 — The Theory">« Beginning of part</a><a href="6.1-toward-a-theory-of-mage.html" aria-label="Previous chapter — 28 · A Theory of MAGE">« Previous chapter</a></div><span class="chapnav-here" title="29 · What the Theory Predicts">29 · What the Theory Predicts</span><div class="chapnav-fwd"><a href="6.3-scope-conditions.html" aria-label="Next chapter — 30 · Scope Conditions">Next chapter »</a><a href="part-7-intro.html" aria-label="Next part — Part 7 — The Profession">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

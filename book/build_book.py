@@ -439,9 +439,10 @@ def _collect_glossary(chapters: list[dict]) -> None:
                 _GLOSSARY[term] = m.group("def").strip()
 
 # Part number → the source subdirectory that holds its chapters. Front matter is part 0, the
-# six numbered parts are 1–6 (Part 2 is Modeling, Part 3 is Alignment, Part 4 is The MAGE Method,
-# Part 5 is The Evidence, Part 6 is The Profession — the substantive argument + case + closing
-# chapters), true back matter (apparatus: about-the-author, colophon) is part 7. Appendix parts follow.
+# seven numbered parts are 1–7 (Part 2 is Modeling, Part 3 is Alignment, Part 4 is The MAGE Method,
+# Part 5 is The Evidence, Part 6 is The Theory, Part 7 is The Profession — the substantive argument +
+# case + theory + closing chapters), true back matter (the top-level Conclusion) is part 8. Appendix
+# parts follow.
 _PART_DIRS = {
     0: "frontmatter",
     1: "part1",
@@ -450,15 +451,16 @@ _PART_DIRS = {
     4: "part4",
     5: "part5",
     6: "part6",
-    7: "conclusion",   # the top-level Conclusion — an unnumbered MATTER part, parallel to the Preface
+    7: "part7",
+    8: "conclusion",   # the top-level Conclusion — an unnumbered MATTER part, parallel to the Preface
     # The back-matter apparatus (Colophon, About-the-Author) is NOT discovered here: it is a synthetic
     # post-appendix tail assembled by `build_backmatter_chapters` (mirrors `build_appendix_chapters`).
 }
 
 # The parts rendered as UNNUMBERED matter (no "Chapter N" kicker, own TOC/bookmark group): front matter (0)
-# and the top-level Conclusion (7). The synthetic post-appendix back matter sets `is_matter` on its own
+# and the top-level Conclusion (8). The synthetic post-appendix back matter sets `is_matter` on its own
 # records (its part number is dynamic — above the appendices), so it need not be listed here.
-_MATTER_PARTS = frozenset({0, 7})
+_MATTER_PARTS = frozenset({0, 8})
 
 # Part number → its display title (mirrors the `part-title` metadata; kept here so a part with no
 # chapters still names correctly, and so the TOC/index label is authoritative from one place).
@@ -469,8 +471,9 @@ _PART_TITLES = {
     3: "Alignment",
     4: "The MAGE Method",
     5: "The Evidence",
-    6: "The Profession",
-    7: "Conclusion",   # the top-level Conclusion's part title — the divider/kicker line above "The Part That Stays Yours"
+    6: "The Theory",
+    7: "The Profession",
+    8: "Conclusion",   # the top-level Conclusion's part title — the divider/kicker line above "The Part That Stays Yours"
 }
 
 # The DO-ladder question each numbered Part answers — printed on the Part-opener orientation verso (the
@@ -488,7 +491,8 @@ _PART_OPENER_QUESTIONS = {
     3: "How do I give engineering obligations authority in my environment?",
     4: "How do I practice MAGE?",
     5: "What evidence supports MAGE?",
-    6: "What follows from MAGE?",
+    6: "How does MAGE work, what should follow if the account is right, and where should we expect it to apply?",
+    7: "What follows for software engineering—and for the engineer?",
 }
 
 # Per-Part epigraph rendered at the opener of the first chapter in each numbered Part. Each is a
@@ -1065,7 +1069,7 @@ def _discover_chapters(metrics: dict[str, str]) -> list[dict]:
             continue
         for p in sorted(d.glob("*.md")):
             if p.stem == _PART_INTRO_STEM:
-                # A numbered Part's landing page. Front matter (0) and the top-level Conclusion (7 — matter)
+                # A numbered Part's landing page. Front matter (0) and the top-level Conclusion (8 — matter)
                 # are not numbered Parts, so they carry no landing page even if a stray intro file appears.
                 if part not in _MATTER_PARTS:
                     found.append(_parse_part_intro(p, part, metrics))
@@ -2562,7 +2566,7 @@ a.gloss-site:hover, a.gloss-site:focus {{ color: var(--accent); border-bottom-co
   .chapnav-here {{ flex: 0 0 auto; max-width: 22rem; overflow: hidden; text-overflow: ellipsis;
                    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }}
 }}
-/* Part-nav footer on a Part landing page — a pill bar over the six numbered Parts (current = filled, non-link).
+/* Part-nav footer on a Part landing page — a pill bar over the seven numbered Parts (current = filled, non-link).
    Mirrors the .chapnav pill look. */
 /* Interactive book-roadmap nav on a Part landing page (web only). The SVG reuses assets/book-map.svg;
    each numbered Part is an <a> or the highlighted current node. Tokens only (theme + print safe). */
@@ -2816,10 +2820,10 @@ def _roadmap_nav_html(current_part: int) -> str:
                 f'aria-label="{html.escape(label, quote=True)}">'
                 f'<g id="bm-part-{n}" class="bm-part">{inner}</g></a>')
 
-    svg = re.sub(r'<g id="bm-part-(?P<n>[1-6])" class="bm-part">(?P<inner>.*?)</g>', decorate, svg, flags=re.S)
+    svg = re.sub(r'<g id="bm-part-(?P<n>[1-7])" class="bm-part">(?P<inner>.*?)</g>', decorate, svg, flags=re.S)
 
     items: list[str] = []
-    for n in range(1, 7):
+    for n in range(1, 8):
         label = html.escape(f'Part {n} — {_PART_TITLES.get(n, "")}')
         if n == current_part:
             items.append(f'<li aria-current="page">{label} (current part)</li>')
@@ -6248,7 +6252,7 @@ def _pdf_part_opener_spread(pdf_path: pathlib.Path, part_titles: dict[int, str],
     normed = [norm(t) for t in per_page]                 # title-case, for the divider-heading match
     normed_upper = [t.upper() for t in normed]           # for the uppercase apparatus-marker match
     results: list[dict] = []
-    for part in range(1, 7):
+    for part in range(1, 8):
         div = norm(f"Part {part}: {part_titles[part]}")  # divider heading, title-case ("Part N: Title" — renderer SSOT)
         # The verso carries the title heading AND the orientation apparatus; disambiguate on the apparatus so a
         # stray TOC/outline line echoing the heading is never mistaken for the orientation page.
@@ -6868,10 +6872,10 @@ def _pdf_split_sections(doc: "object") -> "list[tuple[str, list[str]]]":
         part = ch.part  # type: ignore[attr-defined]
         if part == 0:
             return "FrontMatter"
-        if 1 <= part <= 6:
+        if 1 <= part <= 7:
             return f"Part{part}"
-        if part == 7:
-            return "Conclusion"   # the top-level Conclusion (matter part 7)
+        if part == 8:
+            return "Conclusion"   # the top-level Conclusion (matter part 8)
         if getattr(ch, "is_matter", False):
             return "BackMatter"   # the synthetic post-appendix apparatus (Colophon, About-the-Author)
         return "Appendices"

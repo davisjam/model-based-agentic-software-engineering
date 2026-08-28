@@ -9,14 +9,16 @@
   <line x1="95.0" y1="100" x2="905.0" y2="100" stroke="#cfcabf" stroke-width="3"/>
   <circle cx="95.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
   <text x="95.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">The Problem</text>
-  <circle cx="257.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="257.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Modeling</text>
-  <circle cx="419.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="419.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Alignment</text>
-  <circle cx="581.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
-  <text x="581.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Method</text>
-  <circle cx="743.0" cy="100" r="15" fill="#1c1917" stroke="#1c1917" stroke-width="3"/>
-  <text x="743.0" y="145.0" text-anchor="middle" font-size="24" font-weight="bold" fill="#1c1917">Evidence</text>
+  <circle cx="230.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="230.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Modeling</text>
+  <circle cx="365.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="365.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Alignment</text>
+  <circle cx="500.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="500.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Method</text>
+  <circle cx="635.0" cy="100" r="15" fill="#1c1917" stroke="#1c1917" stroke-width="3"/>
+  <text x="635.0" y="145.0" text-anchor="middle" font-size="24" font-weight="bold" fill="#1c1917">Evidence</text>
+  <circle cx="770.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
+  <text x="770.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Theory</text>
   <circle cx="905.0" cy="100" r="9" fill="#fdfcf9" stroke="#57534e" stroke-width="3"/>
   <text x="905.0" y="134.0" text-anchor="middle" font-size="19" font-weight="normal" fill="#57534e">Profession</text>
 </svg>

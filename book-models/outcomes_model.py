@@ -103,7 +103,9 @@ PART_TITLES = {
     3: "Alignment",
     4: "The MAGE Method",
     5: "The Evidence",
-    6: "The Profession",
+    6: "The Theory",
+    7: "The Profession",
+    8: "Conclusion",
 }
 
 #: Renumber-safe PART key surrogate. The outcomes DECLARED source keys each part record by a stable LABEL

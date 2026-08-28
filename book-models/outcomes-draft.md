@@ -115,29 +115,35 @@ The DECLARED + GAP-REC sets are the rearrange/fill worklist. The DERIVED set is 
 ### Lesson 5.5-mage-in-the-wild
 
 
-## Module 6 — The Profession
+## Module 6 — The Theory
 
-- **[DECLARED]** (evaluate) After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become a common language of mature engineering. _(primary: Module 6 · elaborated by: conclusion, mage-in-the-wild)_ — _anchor: reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours._
 
 ### Lesson 6.1-toward-a-theory-of-mage
 
 
-### Lesson 6.2-scope-conditions
+### Lesson 6.2-what-the-theory-predicts
 
 
-### Lesson 6.3-what-the-theory-predicts
+### Lesson 6.3-scope-conditions
 
 
-### Lesson 6.4-reorganization-of-se
+### Lesson 6.4-research-agenda
 
 
-### Lesson 6.5-software-rejoins-engineering
+## Module 7 — The Profession
+
+- **[DECLARED]** (evaluate) After this Part, the reader can evaluate the method's implications for the discipline — where the judgment moved, what stays human, and where models become a common language of mature engineering. _(primary: Module 7 · elaborated by: conclusion, mage-in-the-wild)_ — _anchor: reorganization-of-se sections (where-engineering-effort-moves, what-stays-with-the-engineer, consequences-for-software-engineering) + the-part-that-stays-yours._
+
+### Lesson 7.1-reorganization-of-se
 
 
-### Lesson 6.6-education-research-open-problems
+### Lesson 7.2-software-rejoins-engineering
 
 
-## Module 7 — Part 7
+### Lesson 7.3-education-research-open-problems
 
 
-### Lesson 7.1-the-part-that-stays-yours
+## Module 8 — Conclusion
+
+
+### Lesson 8.1-the-part-that-stays-yours

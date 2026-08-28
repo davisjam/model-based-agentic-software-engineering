@@ -32,8 +32,8 @@
     "units_serving_as_elaborative": 17,
     "sections_total": 201,
     "sections_primary_of_an_outcome": 26,
-    "modules": 7,
-    "lessons": 29
+    "modules": 8,
+    "lessons": 30
   },
   "taxonomy": {
     "know": [
@@ -278,10 +278,8 @@
       {
         "module": "part-6",
         "number": 6,
-        "title": "The Profession",
-        "own_outcomes": [
-          "part-6::evaluate-what-the-method-changes-for-how-software"
-        ],
+        "title": "The Theory",
+        "own_outcomes": [],
         "lessons": [
           {
             "lesson": "6.1-toward-a-theory-of-mage",
@@ -289,27 +287,17 @@
             "section_outcomes": []
           },
           {
-            "lesson": "6.2-scope-conditions",
+            "lesson": "6.2-what-the-theory-predicts",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.3-what-the-theory-predicts",
+            "lesson": "6.3-scope-conditions",
             "own_outcomes": [],
             "section_outcomes": []
           },
           {
-            "lesson": "6.4-reorganization-of-se",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "6.5-software-rejoins-engineering",
-            "own_outcomes": [],
-            "section_outcomes": []
-          },
-          {
-            "lesson": "6.6-education-research-open-problems",
+            "lesson": "6.4-research-agenda",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -318,11 +306,36 @@
       {
         "module": "part-7",
         "number": 7,
-        "title": "Part 7",
+        "title": "The Profession",
+        "own_outcomes": [
+          "part-7::evaluate-what-the-method-changes-for-how-software"
+        ],
+        "lessons": [
+          {
+            "lesson": "7.1-reorganization-of-se",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "7.2-software-rejoins-engineering",
+            "own_outcomes": [],
+            "section_outcomes": []
+          },
+          {
+            "lesson": "7.3-education-research-open-problems",
+            "own_outcomes": [],
+            "section_outcomes": []
+          }
+        ]
+      },
+      {
+        "module": "part-8",
+        "number": 8,
+        "title": "Conclusion",
         "own_outcomes": [],
         "lessons": [
           {
-            "lesson": "7.1-the-part-that-stays-yours",
+            "lesson": "8.1-the-part-that-stays-yours",
             "own_outcomes": [],
             "section_outcomes": []
           }
@@ -447,9 +460,9 @@
       "gap_note": null
     },
     {
-      "outcome_id": "part-6::evaluate-what-the-method-changes-for-how-software",
+      "outcome_id": "part-7::evaluate-what-the-method-changes-for-how-software",
       "granularity": "part",
-      "primary_unit": "part-6",
+      "primary_unit": "part-7",
       "secondary_units": [
         "conclusion",
         "mage-in-the-wild"
