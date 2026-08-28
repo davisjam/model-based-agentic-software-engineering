@@ -695,8 +695,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="6.1-toward-a-theory-of-mage.html">28&nbsp; A Theory of MAGE</a></li>
 <li><a class="" href="6.2-scope-conditions.html">29&nbsp; Scope Conditions</a></li>
 <li><a class="" href="6.3-what-the-theory-predicts.html">30&nbsp; What the Theory Predicts</a></li>
-<li><a class="" href="6.4-reorganization-of-se.html">31&nbsp; Software Engineering, Reorganized</a></li>
-<li><a class="" href="6.5-software-rejoins-engineering.html">32&nbsp; Software Rejoins Engineering</a></li>
+<li><a class="" href="6.4-reorganization-of-se.html">31&nbsp; The Reorganization of Software Work</a></li>
+<li><a class="" href="6.5-software-rejoins-engineering.html">32&nbsp; MAGE in the Engineering Tradition</a></li>
 <li><a class="" href="6.6-education-research-open-problems.html">33&nbsp; The Engineer</a></li>
 <li class="part">Conclusion</li>
 <li><a class="" href="7.1-the-part-that-stays-yours.html">The Part That Stays Yours</a></li>
@@ -777,7 +777,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap part-page" aria-label="Part 3 · Alignment — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 3</a></div><h1>Alignment</h1></header><p>Part 2 made engineering knowledge and intent explicit. Those models already provide value: they let engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from lower-level detail. This Part asks a different question. <strong>Which of those properties express engineering obligations the environment should hold, and how should it hold them?</strong></p>
 <p>Alignment is the move from guidance to authority. Some obligations require no rich system model: a permission can forbid network access, a type can rule out an illegal value, a sandbox can make an action unavailable. Explicit models extend that reach. Once architecture, ownership, behavior, measurement, or policy is represented at the level where the property exists, the environment can govern questions that an agent or human would otherwise have to reconstruct from lower-level detail.</p>
-<p>Part I described consequential judgments that remain on the probabilistic surface of realization. Modeling can make some of those judgments easier by externalizing the state or relation they require. Alignment asks the next question: must the reasoner still get this judgment right, or can the environment carry the obligation independently?</p>
+<p>Part I described consequential judgments that remain on the probabilistic surface of realization. Modeling can make some of those judgments easier and cheaper by externalizing the state or relation they require. Alignment addresses a different problem: not how efficiently the reasoner reaches an acceptable result, but whether an unacceptable result can acquire consequence.</p>
 <p>The distinction is not between probabilistic agents and deterministic software. It is between relying on a reasoner to honor an obligation and giving that obligation an independent path to consequence. A prompt may remind an agent not to cross an architectural boundary. A validator may reject any change that crosses it. Both can improve outcomes; only the second makes admission independent of whether the agent remembered the rule.</p>
 <blockquote class="box-canonical"><p class="inset-title">Alignment principle</p>
 <p>Give engineering obligations authority by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.</p>

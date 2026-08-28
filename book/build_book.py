@@ -488,7 +488,7 @@ _PART_OPENER_QUESTIONS = {
     3: "How do I give engineering obligations authority in my environment?",
     4: "How do I practice MAGE?",
     5: "What evidence supports MAGE?",
-    6: "Where is the profession going?",
+    6: "What follows from MAGE?",
 }
 
 # Per-Part epigraph rendered at the opener of the first chapter in each numbered Part. Each is a

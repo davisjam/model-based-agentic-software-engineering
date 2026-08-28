@@ -66,7 +66,7 @@
 <nav class="crumb" aria-label="Breadcrumb"><a href="../index.html">← Catalogue landing</a> · <a href="../book/index.html">The book</a></nav>
 <h1>The book models — a reading view</h1>
 <p class="subtitle">The book's outline and learning-outcome models, rendered as an alternative way to read the spine. Every heading, topic sentence, and outcome below is projected straight from <code>book-models/outline.json</code> and <code>outcomes.json</code> — regenerated on every commit, so it never goes stale.</p>
-<p class="counts"><b>31</b> chapters · <b>193</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
+<p class="counts"><b>31</b> chapters · <b>201</b> sections · <b>68</b> learning outcomes (? declared · ? derived · ? gap-recommended)</p>
 <section class="book-outcomes">
 <h2>The program — what you'll be able to do after the whole book</h2>
 <div class="outcomes"><div class="oc-h">After the program — the reader can</div><ul class="oc-list"><li class="oc"><span class="bloom bloom-understand">understand</span><span class="oc-text">After the book, the reader can situate any governance move on the two thesis axes — constraint-vs-sensor and soft-vs-hard — and reach for the one the failure calls for. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can design a governed engineering environment in which a fleet of coding agents produces correct work at bounded risk — choosing the right mechanism, the right model, and the right transformation for each failure class. <span class="prov">declared</span></span></li><li class="oc"><span class="bloom bloom-create">create</span><span class="oc-text">After the book, the reader can model a system as structured, drift-checked views an agent reasons through, rather than leaving the structure in a human&#x27;s head. <span class="prov">declared</span></span></li></ul></div>
@@ -707,17 +707,29 @@
 <div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">One Obligation Across Many Exposures</a></div>
 <p class="topic">Part I introduced a deliberately simple model for consequential probabilistic judgment.</p>
 </div>
-<div class="section s3" id="sec-5-5-mage-in-the-wild--different-interventions-act-differently">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">Different Interventions Act Differently</a></div>
-<p class="topic">The industrial approaches above do not all improve reliability in the same way.</p>
+<div class="section s3" id="sec-5-5-mage-in-the-wild--loops-can-buy-reliability">
+<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">Loops Can Buy Reliability</a></div>
+<p class="topic">The preceding model treats each exposure as one judgment.</p>
 </div>
-<div class="section s3" id="sec-5-5-mage-in-the-wild--improve-the-odds-catch-failures-or-stop-rolling">
-<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">Improve the Odds, Catch Failures, or Stop Rolling</a></div>
-<p class="topic">MAGE uses capable foundation models, good context, decomposition, specifications, and independent evidence.</p>
+<div class="section s3" id="sec-5-5-mage-in-the-wild--different-interventions-act-on-different-terms">
+<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">Different Interventions Act on Different Terms</a></div>
+<p class="topic">The industrial approaches above can now be read more precisely.</p>
+</div>
+<div class="section s3" id="sec-5-5-mage-in-the-wild--reliability-and-cost-are-separate-axes">
+<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">Reliability and Cost Are Separate Axes</a></div>
+<p class="topic">Suppose, purely for illustration, that an obligation is resolved acceptably with probability 0.99 on each of 100 independent exposures:</p>
+</div>
+<div class="section s3" id="sec-5-5-mage-in-the-wild--improve-the-odds-spend-another-attempt-catch-failure-or-stop-rolling">
+<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">Improve the Odds, Spend Another Attempt, Catch Failure, or Stop Rolling</a></div>
+<p class="topic">MAGE uses capable foundation models, good context, decomposition, iterative correction, specifications, and independent evidence.</p>
 </div>
 <div class="section s3" id="sec-5-5-mage-in-the-wild--one-judgment-durable-reach">
 <div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">One Judgment, Durable Reach</a></div>
 <p class="topic">This reframes the originating case as well.</p>
+</div>
+<div class="section s3" id="sec-5-5-mage-in-the-wild--one-mathematical-note">
+<div class="sec-h"><a href="../book/5.5-mage-in-the-wild.html">One Mathematical Note</a></div>
+<p class="topic">The truncated-geometric equations above are worth keeping, but they rely on the stated toy assumptions: roughly independent attempts with stable \(p\) and an acceptance condition capable of recognizing success.</p>
 </div>
 </div>
 </section>
@@ -758,13 +770,21 @@
 <div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">The engineering-capital proposition</a></div>
 <p class="topic">The amortization prediction depends on what durable structure gives later work.</p>
 </div>
-<div class="section s2" id="sec-6-1-toward-a-theory-of-mage--modeling-expands-the-surface-of-alignment">
-<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Modeling Expands the Surface of Alignment</a></div>
+<div class="section s2" id="sec-6-1-toward-a-theory-of-mage--modeling-and-alignment-are-distinct-and-compound">
+<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Modeling and Alignment Are Distinct—and Compound</a></div>
 <p class="topic">Modeling and Alignment are distinct engineering activities.</p>
+</div>
+<div class="section s3" id="sec-6-1-toward-a-theory-of-mage--modeling-can-also-enable-alignment">
+<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Modeling can also enable Alignment</a></div>
+<p class="topic">The two principles interact in a second way.</p>
 </div>
 <div class="section s3" id="sec-6-1-toward-a-theory-of-mage--determinization-need-not-eliminate-freedom">
 <div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">Determinization need not eliminate freedom</a></div>
 <p class="topic">Not every unmodeled choice is a degree of freedom.</p>
+</div>
+<div class="section s3" id="sec-6-1-toward-a-theory-of-mage--the-joint-objective">
+<div class="sec-h"><a href="../book/6.1-toward-a-theory-of-mage.html">The joint objective</a></div>
+<p class="topic">Modeling and Alignment enter one engineering problem together.</p>
 </div>
 </div>
 <div class="chapter">
@@ -799,6 +819,18 @@
 <div class="section s2" id="sec-6-3-what-the-theory-predicts--how-could-we-test-this">
 <div class="sec-h"><a href="../book/6.3-what-the-theory-predicts.html">How Could We Test This?</a></div>
 <p class="topic">The hypotheses do not require eight unrelated studies.</p>
+</div>
+<div class="section s3" id="sec-6-3-what-the-theory-predicts--parameterizing-the-model">
+<div class="sec-h"><a href="../book/6.3-what-the-theory-predicts.html">Parameterizing the Model</a></div>
+<p class="topic">The simple models above deliberately leave their parameters abstract.</p>
+</div>
+<div class="section s3" id="sec-6-3-what-the-theory-predicts--from-model-routing-to-engineering-routing">
+<div class="sec-h"><a href="../book/6.3-what-the-theory-predicts.html">From Model Routing to Engineering Routing</a></div>
+<p class="topic">This parameterization suggests a further implication for automated software engineering.</p>
+</div>
+<div class="section s3" id="sec-6-3-what-the-theory-predicts--separating-modeling-from-alignment">
+<div class="sec-h"><a href="../book/6.3-what-the-theory-predicts.html">Separating Modeling from Alignment</a></div>
+<p class="topic">One particularly clean factorial design can separate Modeling from Alignment.</p>
 </div>
 <div class="section s3" id="sec-6-3-what-the-theory-predicts--multi-project-longitudinal-design">
 <div class="sec-h"><a href="../book/6.3-what-the-theory-predicts.html">Multi-project longitudinal design</a></div>

@@ -20,7 +20,8 @@ This also begins the answer to the probabilistic problem from Part I. A reasoner
 consequential relation from raw implementation must infer it. A representation can make the relation
 explicit. That does not yet guarantee that the resulting system respects it, but it changes the
 engineering question from *can the agent reconstruct this correctly?* toward *can this property now be
-stated, analyzed, or checked directly?*
+stated, analyzed, or checked directly?* A better representation can therefore improve a consequential
+judgment while also reducing how much reasoning and repeated reconstruction must be purchased to reach it.
 
 <!-- principlebox -->
 <!-- box-family: canonical -->
@@ -29,7 +30,7 @@ stated, analyzed, or checked directly?*
 > Externalize engineering knowledge and intent into explicit, structured models that both engineers
 > and agents can reason through.
 >
-> Richer representations make broader engineering questions tractable and make richer properties
+> Appropriate representations make broader engineering questions tractable and make additional properties
 > available for Alignment.
 
 <!-- point: part-2-asks-what-to-model-and-what-it-reveals | Part II asks one question of every system: what should I model, and what will the model let me know? | terms: modeling-principle, model-as-map, scope-of-modeling -->

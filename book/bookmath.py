@@ -51,6 +51,9 @@ _SYMBOLS: dict[str, tuple[str, str]] = {
     "approx": ("≈", "approx"),
     "cup": ("∪", "union"),
     "cap": ("∩", "sect"),
+    "varepsilon": ("ε", "epsilon.alt"),
+    "epsilon": ("ε", "epsilon"),
+    "mapsto": ("↦", "arrow.r.bar"),
 }
 
 # Big operators that take under/over limits in display style.
@@ -225,6 +228,10 @@ class _P:
 
     def parse_cmd(self) -> dict:
         _, name = self.next()
+        if name == "frac":
+            num = self.parse_atom()
+            den = self.parse_atom()
+            return {"k": "frac", "num": num, "den": den}
         if name == "boxed":
             if self.peek() is None or self.peek()[0] != "lbrace":
                 raise MathError("\\boxed must be followed by {…}")
@@ -305,6 +312,8 @@ def _ml(node: dict) -> str:
         if b["k"] == "bigop":
             return f"<munderover>{_ml(b)}{_ml(node['sub'])}{_ml(node['sup'])}</munderover>"
         return f"<msubsup>{_ml(b)}{_ml(node['sub'])}{_ml(node['sup'])}</msubsup>"
+    if k == "frac":
+        return f"<mfrac>{_ml(node['num'])}{_ml(node['den'])}</mfrac>"
     if k == "boxed":
         return _ml(node["kid"])  # the border is applied by the HTML wrapper, not menclose
     raise MathError(f"cannot emit MathML for node {k}")
@@ -365,6 +374,8 @@ def _ty(node: dict) -> str:
         return f"{_grp(node['base'])}^({_ty(node['sup'])})"
     if k == "subsup":
         return f"{_grp(node['base'])}_({_ty(node['sub'])})^({_ty(node['sup'])})"
+    if k == "frac":
+        return f"frac({_ty(node['num'])}, {_ty(node['den'])})"
     if k == "boxed":
         return _ty(node["kid"])  # the border is applied by the Typst wrapper
     raise MathError(f"cannot emit Typst for node {k}")

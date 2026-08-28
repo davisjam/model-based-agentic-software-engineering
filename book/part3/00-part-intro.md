@@ -12,9 +12,9 @@ policy is represented at the level where the property exists, the environment ca
 that an agent or human would otherwise have to reconstruct from lower-level detail.
 
 Part I described consequential judgments that remain on the probabilistic surface of realization. Modeling
-can make some of those judgments easier by externalizing the state or relation they require. Alignment asks
-the next question: must the reasoner still get this judgment right, or can the environment carry the
-obligation independently?
+can make some of those judgments easier and cheaper by externalizing the state or relation they require.
+Alignment addresses a different problem: not how efficiently the reasoner reaches an acceptable result, but
+whether an unacceptable result can acquire consequence.
 
 The distinction is not between probabilistic agents and deterministic software. It is between relying on a
 reasoner to honor an obligation and giving that obligation an independent path to consequence. A prompt may
