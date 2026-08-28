@@ -11,7 +11,7 @@
 | Model | — |
 | Enforcement | **Soft·Hard** — the skill *aims* (it recommends and scaffolds the control, it cannot install or block); the hook that fires it is a hard, deterministic runtime binding (the reflection runs whether or not anyone remembers) |
 
-*Its place in the environment — the generative engine behind **Encoded Operational Judgment** and the **Governed Knowledge Base**, under **GOVERN · Govern the control estate itself**; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-govern) shows how it folds.*
+*Its place in the environment — the generative engine behind **Encoded Operational Judgment** and the **Governed Knowledge Base**, under **GOVERN · Govern the control machinery itself**; the [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-govern) shows how it folds.*
 
 ## Motivation — the failure it kills
 
@@ -27,7 +27,7 @@ The cost is a fleet whose velocity never converts into durable trust: it keeps r
 ## Why it's not just "a lint"
 
 - **Not just a lint.** A lint is the *output* of one conversion; self-governance is the meta-process that *manufactures* lints — and gates, and typed seams — from observed failures. A catalogue of lints answers "what do we check?"; this answers "how does that catalogue grow correctly, and stay proportionate?"
-- **Not just a runbook.** A runbook responds to a **known** situation with pre-reasoned steps. Self-governance creates a **new** control for a novel recurring failure no runbook yet covers — it closes the loop back into the control estate rather than executing within it.
+- **Not just a runbook.** A runbook responds to a **known** situation with pre-reasoned steps. Self-governance creates a **new** control for a novel recurring failure no runbook yet covers — it closes the loop back into the control machinery rather than executing within it.
 - **Not just "write good tests."** The trigger is the recurrence signal plus the periodic hook, not test-writing diligence. And the preferred output is a **constraint** that prevents the class, not merely a **sensor** that detects it — a distinction test-writing never reaches for. The word *tasteful* is load-bearing: the loop is disciplined to add the smallest guardrail that closes the class, so governing the system does not calcify it.
 
 ## Mechanism

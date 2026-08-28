@@ -463,11 +463,11 @@
       "engineering_obligation": "Every control declares the substrate assumption it bakes in as a typed fact, so 'what breaks when I change this substrate' is a computed query before the change, not an archaeology after it.",
       "solution_structure": "A closed stance enum added to each control's existing metadata block (assumes-plane-A-only / plane-B-only / branches-per-plane / agnostic); a query joins the declarations against the substrate model and emits the blast-radius table per target substrate; a declaration lint requires the stance on every substrate-reading control (audit-only → blocking); the deploy realization gate refuses to ship undeclared consumers.",
       "guarantee": "The migration blast radius is computed from declarations, not hand-maintained or grepped. Boundary: only as expressive as the stance enum — a stance it can't express forces an enum change (the honest signal the substrate grew a dimension).",
-      "semantic_level": "control → substrate assumption — the governance fleet's own dependency edges made typed and queryable (the control estate becomes a modeled element).",
+      "semantic_level": "control → substrate assumption — the governance fleet's own dependency edges made typed and queryable (the control machinery becomes a modeled element).",
       "forces_tradeoffs": "One declaration per substrate-reading control (the intended tax). Pays off only at a substrate change — a design-time-on-the-predictive-smell control, over-built if added to a substrate you'll never change.",
       "dependencies": "deployment-topology-model (the substrate model joined against); the existing control-metadata convention (adopt the schema you already lint); query-surface; extends meta-model-consumption from values to dependency edges.",
       "known_uses": "DocAble's typed plane-assumption on every topology-reading lint; the plane-deps query printing which lints a GKE↔Cloud-Run migration puts in scope; the declaration lint + deploy-gate fold-in.",
-      "likely_parent_family": "Governance-of-governance (modeling the control estate; typed-edge kin of invariant-dag-execution-policy)"
+      "likely_parent_family": "Governance-of-governance (modeling the control machinery; typed-edge kin of invariant-dag-execution-policy)"
     },
     "models-bridge/system-models/symbol-anchored-traceability-graph": {
       "failure_class": "Silent traceability rot: the cross-references an agent walks between abstraction levels (model → enforcing lint → code root → proof → registry) go stale on every refactor — the model still looks authoritative while pointing at a ghost, and the blow-up lands days later in a downstream gate; plus the pointer-drift class (a built replacement never repointed-to, so the system defaults to the retired implementation).",
@@ -513,7 +513,7 @@
       "forces_tradeoffs": "Honest partial coverage is the feature — a stated zero drives the next work. A target the taxonomy can't express forces a taxonomy change (the doctrine grew a dimension). Balance ≠ strength.",
       "dependencies": "governance-graph (supplies the typed control node-set this rolls up); the closed targets taxonomy; stable per-control anchors; counterpart reflection-facet-substrate (the reactive supply whose failure-driven bias this proactive audit corrects).",
       "known_uses": "DocAble's control-target axis over the agent/models-bridge/product node-set; the roll-up that read one target populated and two at zero, driving a fix-wave from zero to a dozen controls; the census's own anchor-drift guard (it censuses its own governor).",
-      "likely_parent_family": "Governance-of-governance (the coverage view of the control estate)"
+      "likely_parent_family": "Governance-of-governance (the coverage view of the control machinery)"
     },
     "models-bridge/system-models/service-flow-model": {
       "failure_class": "SOA facts (inter-service auth, URLs, NetworkPolicy, the deploy table, API contracts, frontend trees) restated across code + YAML + deploy scripts drift apart — an endpoint the NetworkPolicy doesn't allow, a handler diverged from its spec, a tree with no entity — each a production-shaped bug across many surfaces.",

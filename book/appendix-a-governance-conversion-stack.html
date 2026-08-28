@@ -779,7 +779,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap appendix" aria-label="Appendix · A.6 Governance Conversion — MAGE"><header class="chap"><div class="kicker"><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">Appendix A — MAGE Engineering Stacks</a></div><h1>A.6 Governance Conversion</h1></header><h2><span class="sec-num">A.6.1</span> The Capability</h2>
-<p><strong>Turn recurring failures and judgments into durable engineering structure while keeping the control estate legible.</strong> Model how controls relate, expose gaps and coupling, and convert recurring failures into new or stronger controls.</p>
+<p><strong>Turn recurring failures and judgments into durable engineering structure while keeping the control machinery legible.</strong> Model how controls relate, expose gaps and coupling, and convert recurring failures into new or stronger controls.</p>
 <h2><span class="sec-num">A.6.2</span> When This Stack Earns Its Keep</h2>
 <p>Reach for it when:</p>
 <ul><li><strong>The controls have grown their own complexity</strong> — they overlap, depend on one another, go stale, and carry blast radius nobody has mapped.</li><li><strong>The same failure keeps recurring</strong>, and each fix is a one-off patch rather than a durable control.</li><li><strong>Lessons live in institutional memory</strong> instead of in the environment, so they leave when the person who learned them does.</li></ul>
@@ -787,12 +787,12 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <figure id="fig-A-6-1" class="book-figure" data-label="governance-conversion-stack"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 660"
      role="img" aria-labelledby="f-governance-conversion-stack-gcTitle f-governance-conversion-stack-gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-governance-conversion-stack-gcTitle">The Governance-Conversion stack: model the control estate, find its gaps, interpret a
+  <title id="f-governance-conversion-stack-gcTitle">The Governance-Conversion stack: model the control machinery, find its gaps, interpret a
     recurring failure into a durable control, update the estate, iterate</title>
-  <desc id="f-governance-conversion-stack-gcDesc">A solid four-move loop. CONTROL ESTATE is the explicit model of rules, gates, models,
+  <desc id="f-governance-conversion-stack-gcDesc">A solid four-move loop. CONTROL MACHINERY is the explicit model of rules, gates, models,
     and sensors. Inspecting or querying it exposes GAP or IMPACT — where control is weak or coupled. When a
     failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that
-    control back in, and a curved solid feedback returns to the control estate for the next iteration. This
+    control back in, and a curved solid feedback returns to the control machinery for the next iteration. This
     is a four-move loop, not six mandatory stages: rule registries, dependency graphs, and indexes are
     possible implementations, not required steps.</desc>
 
@@ -802,9 +802,9 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
     </marker>
   </defs>
 
-  <!-- CONTROL ESTATE -->
+  <!-- CONTROL MACHINERY -->
   <rect id="f-governance-conversion-stack-control-estate" x="180" y="30" width="250" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="305" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL ESTATE</text>
+  <text x="305" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL MACHINERY</text>
   <text x="305" y="82" text-anchor="middle" font-size="14.4" fill="#57534e">rules &#183; gates &#183;</text>
   <text x="305" y="100" text-anchor="middle" font-size="14.4" fill="#57534e">models &#183; sensors</text>
 
@@ -835,7 +835,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <rect id="f-governance-conversion-stack-update-estate" x="195" y="426" width="220" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="305" y="464" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">UPDATE ESTATE</text>
 
-  <!-- curved solid feedback UPDATE ESTATE -> CONTROL ESTATE (next iteration) -->
+  <!-- curved solid feedback UPDATE ESTATE -> CONTROL MACHINERY (next iteration) -->
   <!-- edge: update-estate -> control-estate -->
   <path d="M415,458 C560,458 580,200 580,140 C580,90 500,72 432,70"
         stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#f-governance-conversion-stack-ah)"/>
@@ -848,10 +848,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- caption -->
   <text x="360" y="622" text-anchor="middle" font-size="14.4" font-style="italic" fill="#57534e">Solid loop: the load-bearing composition. Four moves, not six mandatory stages.</text>
-</svg><figcaption data-short="The governance-conversion composition, a loop"><span class="fig-label">Figure A.6-1.</span> The governance-conversion composition, a loop. The CONTROL ESTATE — rules, gates, models, sensors — is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE ESTATE folds it in; a solid feedback edge returns to the estate for the next iteration. The four moves form the load-bearing loop.</figcaption></figure>
+</svg><figcaption data-short="The governance-conversion composition, a loop"><span class="fig-label">Figure A.6-1.</span> The governance-conversion composition, a loop. The CONTROL MACHINERY — rules, gates, models, sensors — is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the load-bearing loop.</figcaption></figure>
 <h2><span class="sec-num">A.6.4</span> Constituent Moves</h2>
-<table id="tbl-A-6-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table A.6-1.</span></caption><thead><tr><th>Move</th><th>Role</th></tr></thead><tbody><tr><td><strong>MODEL</strong></td><td>Make the control estate explicit — rules, gates, models, sensors.</td></tr><tr><td><strong>EXPOSE</strong></td><td>Query the estate for gaps, staleness, and coupling.</td></tr><tr><td><strong>CONVERT</strong></td><td>Interpret a recurring failure class into a new or strengthened control.</td></tr><tr><td><strong>UPDATE</strong></td><td>Fold the control back into the estate; the model changes with it.</td></tr></tbody></table>
+<table id="tbl-A-6-1" class="book-table"><caption class="tbl-label-only"><span class="tbl-label">Table A.6-1.</span></caption><thead><tr><th>Move</th><th>Role</th></tr></thead><tbody><tr><td><strong>MODEL</strong></td><td>Make the control machinery explicit — rules, gates, models, sensors.</td></tr><tr><td><strong>EXPOSE</strong></td><td>Query the machinery for gaps, staleness, and coupling.</td></tr><tr><td><strong>CONVERT</strong></td><td>Interpret a recurring failure class into a new or strengthened control.</td></tr><tr><td><strong>UPDATE</strong></td><td>Fold the control back into the machinery; the model changes with it.</td></tr></tbody></table>
 <h2><span class="sec-num">A.6.5</span> Why These Travel Together</h2>
-<p>As a governed environment grows, its controls overlap, depend on one another, go stale, and acquire blast radius. Eventually the control estate itself becomes difficult to reason about. When that happens, model it explicitly.</p>
-<p>Once the estate is explicit, interpret recurring failures against it. A failure worth converting becomes a new or stronger mechanism, and the estate model updates with it. This creates engineering capital: the environment changes so future work no longer depends on someone remembering the lesson. Rule registries, dependency graphs, indexes, and metadata are possible implementations.</p>
+<p>As a governed environment grows, its controls overlap, depend on one another, go stale, and acquire blast radius. Eventually the control machinery itself becomes difficult to reason about. When that happens, model it explicitly.</p>
+<p>Once the machinery is explicit, interpret recurring failures against it. A failure worth converting becomes a new or stronger mechanism, and the machinery model updates with it. This creates engineering capital: the environment changes so future work no longer depends on someone remembering the lesson. Rule registries, dependency graphs, indexes, and metadata are possible implementations.</p>
 <p><strong>Mechanisms:</strong> control census · control-dependency graph · governance conversion</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="appendix-stacks.html" aria-label="Beginning of Appendix A — MAGE Engineering Stacks">« Beginning of part</a><a href="appendix-a-resource-mediation-stack.html" aria-label="Previous chapter — A.5 Resource Mediation">« Previous chapter</a></div><span class="chapnav-here" title="A.6 Governance Conversion">A.6 Governance Conversion</span><div class="chapnav-fwd"><a href="appendix-a-context-delivery-stack.html" aria-label="Next chapter — A.7 Context Delivery">Next chapter »</a><a href="appendix-b-engineering-moves.html" aria-label="Next part — Appendix B — Engineering Moves">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

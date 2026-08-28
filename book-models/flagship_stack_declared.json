@@ -195,7 +195,7 @@
       "goal": "Make the fleet's live state legible and every bad state actionable, so an operator — human or agent — drives from typed signals plus written responses instead of scraping logs and reasoning from memory. Turn a running-but-wrong pipeline, the worst failure because it is invisible, into a named signal and a procedure that answers it.",
       "capabilities": [
         "Manage work, state, and resources",
-        "Govern the control estate itself"
+        "Govern the control machinery itself"
       ],
       "overview_figure": "book/assets/observe-react-stack.svg",
       "page_source": "book/appendix-stacks/observe-react-stack.md",
@@ -299,7 +299,7 @@
       "name": "Governance Conversion",
       "goal": "Treat the governance system as its own subject of governance: model the controls as a graph so two guardrails cannot silently collide, census which targets are covered and which are blind, compute the blast radius of a substrate change before making it, convert each recurring failure into a proportionate new control so the estate grows by design, and hold the governing document itself as enforced, queryable infrastructure rather than prose that rots.",
       "capabilities": [
-        "Govern the control estate itself"
+        "Govern the control machinery itself"
       ],
       "overview_figure": "book/assets/governance-conversion-stack.svg",
       "page_source": "book/appendix-stacks/governance-conversion-stack.md",

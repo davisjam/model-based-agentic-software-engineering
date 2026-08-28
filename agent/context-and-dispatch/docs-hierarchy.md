@@ -13,7 +13,7 @@ map instead of re-deriving invariants from scattered files.
 | Model | — |
 | Enforcement | **Soft·Hard** — the index *content* is advisory to the agent (soft, booted into every context); its cap + conformance lints are *blocking* (the hard counterpart) |
 
-*Its place in the environment — **merged into Governed Knowledge Base** (the boot-context lens; two lenses on one artifact), under **GOVERN · Govern the control estate itself**. See the [construction kit](../../constructing-the-gee.md#cap-govern).*
+*Its place in the environment — **merged into Governed Knowledge Base** (the boot-context lens; two lenses on one artifact), under **GOVERN · Govern the control machinery itself**. See the [construction kit](../../constructing-the-gee.md#cap-govern).*
 
 ## Motivation — the failure it kills
 

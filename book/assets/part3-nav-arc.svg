@@ -3,13 +3,13 @@
      arc as five questions on one descending spine, each answered by the chapter beside it, and each
      raising the next. WHERE authority can act (3.1) -> WHAT it may enforce (3.2) -> HOW a mechanism
      carries authority (3.3) -> how the environment LEARNs new obligations and controls (3.4) -> how the
-     control estate itself is governed (3.5). Distinct from the whole-book subway nav; this one walks
+     control machinery itself is governed (3.5). Distinct from the whole-book subway nav; this one walks
      Part III only. Palette: Umber Monograph tokens — governance #9a3f12 + tint #faf1e6 for the station
      nodes and spine (the Part's subject is authority), ink #1c1917 questions, muted #57534e chapter
      titles + spine. Fonts in the 16-28 band at the 1000px reference.
      v7 (part3-v7-260814): GROW -> LEARN; 3.3 question -> "How does a mechanism carry authority?";
-     3.5 question -> "How is the control estate itself governed?"; 3.5 chapter title -> "Governing the
-     Control Estate"; 3.2 "can" -> "may"; subtitle tightened. -->
+     3.5 question -> "How are accumulated controls governed as a system?"; 3.5 chapter title -> "Governing the
+     control machinery"; 3.2 "can" -> "may"; subtitle tightened. -->
 <!-- semantic-families: governance, neutral -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840" width="1000" height="840"
      role="group" aria-labelledby="naTitle naDesc"
@@ -20,7 +20,7 @@
     can act. Station 3.2, From Intent to Obligation, asks what it may legitimately enforce. Station 3.3,
     The Four Mechanism Roles, asks how a mechanism carries authority. Station 3.4, Growing the Governed
     Environment, asks how the environment acquires new obligations and controls. Station 3.5, Governing the
-    Control Estate, asks how the control estate itself is governed. The arc runs from where authority can
+    control machinery, asks how accumulated controls are governed as a system. The arc runs from where authority can
     act down to governing the controls that result.</desc>
 
   <defs>
@@ -77,6 +77,6 @@
   <circle id="s35" cx="150" cy="765" r="30" fill="#faf1e6" stroke="#9a3f12" stroke-width="2.5"/>
   <text x="150" y="773" text-anchor="middle" font-size="22" font-weight="700" fill="#9a3f12">3.5</text>
   <text x="205" y="743" font-size="20" font-weight="700" fill="#9a3f12" letter-spacing="2">GOVERN</text>
-  <text x="205" y="769" font-size="21" font-weight="700" fill="#1c1917">How is the control estate itself governed?</text>
-  <text x="205" y="795" font-size="20" fill="#57534e">3.5 · Governing the Control Estate</text>
+  <text x="205" y="769" font-size="21" font-weight="700" fill="#1c1917">How are accumulated controls governed as a system?</text>
+  <text x="205" y="795" font-size="20" fill="#57534e">3.5 · When Controls Become a System</text>
 </svg>

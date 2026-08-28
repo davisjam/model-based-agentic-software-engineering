@@ -603,7 +603,7 @@ Two more transformations from the author's own edits, same conservative posture 
     book; that is desirable, not a defect. The rule is narrower:
     - **Keep nouns that establish a theoretical object.** *environment quality, governance pressure, durable
       throughput, defect escape, representation leverage, engineering capital, determinization frontier,
-      degrees of freedom, governability, representation engineering, synthesis frontier, control estate* —
+      degrees of freedom, governability, representation engineering, synthesis frontier, control machinery* —
       these earn their nominal form because the theory forms claims about them and puts them in tables.
       Established technical vocabulary (*defect escape*) is not "simplified" merely for being a noun phrase.
     - **Prefer verbs *after* the definition.** The target pattern is *define the noun, then make it act*:

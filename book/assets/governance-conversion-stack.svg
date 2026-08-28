@@ -3,12 +3,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 660" width="720" height="660"
      role="img" aria-labelledby="gcTitle gcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="gcTitle">The Governance-Conversion stack: model the control estate, find its gaps, interpret a
+  <title id="gcTitle">The Governance-Conversion stack: model the control machinery, find its gaps, interpret a
     recurring failure into a durable control, update the estate, iterate</title>
-  <desc id="gcDesc">A solid four-move loop. CONTROL ESTATE is the explicit model of rules, gates, models,
+  <desc id="gcDesc">A solid four-move loop. CONTROL MACHINERY is the explicit model of rules, gates, models,
     and sensors. Inspecting or querying it exposes GAP or IMPACT — where control is weak or coupled. When a
     failure recurs, INTERPRET converts the failure class into a durable control. UPDATE ESTATE folds that
-    control back in, and a curved solid feedback returns to the control estate for the next iteration. This
+    control back in, and a curved solid feedback returns to the control machinery for the next iteration. This
     is a four-move loop, not six mandatory stages: rule registries, dependency graphs, and indexes are
     possible implementations, not required steps.</desc>
 
@@ -18,9 +18,9 @@
     </marker>
   </defs>
 
-  <!-- CONTROL ESTATE -->
+  <!-- CONTROL MACHINERY -->
   <rect id="control-estate" x="180" y="30" width="250" height="80" rx="8" fill="#faf1e6" stroke="#9a3f12" stroke-width="2"/>
-  <text x="305" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL ESTATE</text>
+  <text x="305" y="60" text-anchor="middle" font-size="18" font-weight="700" fill="#9a3f12">CONTROL MACHINERY</text>
   <text x="305" y="82" text-anchor="middle" font-size="14.4" fill="#57534e">rules &#183; gates &#183;</text>
   <text x="305" y="100" text-anchor="middle" font-size="14.4" fill="#57534e">models &#183; sensors</text>
 
@@ -51,7 +51,7 @@
   <rect id="update-estate" x="195" y="426" width="220" height="64" rx="8" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="2"/>
   <text x="305" y="464" text-anchor="middle" font-size="18" font-weight="700" fill="#155c38">UPDATE ESTATE</text>
 
-  <!-- curved solid feedback UPDATE ESTATE -> CONTROL ESTATE (next iteration) -->
+  <!-- curved solid feedback UPDATE ESTATE -> CONTROL MACHINERY (next iteration) -->
   <!-- edge: update-estate -> control-estate -->
   <path d="M415,458 C560,458 580,200 580,140 C580,90 500,72 432,70"
         stroke="#2f5169" stroke-width="2.4" fill="none" marker-end="url(#ah)"/>

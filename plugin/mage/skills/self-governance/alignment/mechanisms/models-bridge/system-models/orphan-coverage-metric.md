@@ -18,7 +18,7 @@ subsystem's code and ranks the orphan clusters that should be modeled or control
 | Governs | `all-models` — walks the code estate against whichever models and controls declare a governing reach |
 
 *Its place in the environment — a **variant / known-use** of **Governance Graph**, under **GOVERN · Govern
-the control estate itself**: the inverse-direction counterpart to the
+the control machinery itself**: the inverse-direction counterpart to the
 [control-coverage census](control-coverage-census.md). Preserved here for its technical texture; the
 [construction kit](https://davisjam.github.io/model-based-agentic-software-engineering/constructing-the-gee.html#cap-govern) shows how it folds.*
 

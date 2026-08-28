@@ -67,7 +67,7 @@
     {
       "id": "P7",
       "name": "Model the governance environment itself",
-      "claim": "Once controls proliferate, the control estate becomes a system in its own right and must itself be modeled, covered, and reasoned over — governance-of-governance.",
+      "claim": "Once controls proliferate, the control machinery becomes a system in its own right and must itself be modeled, covered, and reasoned over — governance-of-governance.",
       "expressed_by": [
         "models-bridge/system-models/governance-graph",
         "the CAP-GOVERN capability"
@@ -235,7 +235,7 @@
         "wow": 2,
         "total": 17
       },
-      "override": "Coverage — the governance-of-governance class (once controls proliferate the control estate needs modeling); Awesome facet: detecting control collisions.",
+      "override": "Coverage — the governance-of-governance class (once controls proliferate the control machinery needs modeling); Awesome facet: detecting control collisions.",
       "canonical_card": "models-bridge/system-models/governance-graph",
       "vivid_failure": "two controls claimed the same slot with no ordering, colliding only when both fired in production",
       "concrete_impl": "a typed interaction model; mechanically-decidable conflict classes (same-slot no-order, lock cycles) caught by construction",

@@ -16,7 +16,7 @@ agent-fleet substrate, rendered from two typed YAML sources: a pointer catalog a
 | Model | — |
 | Enforcement | **Soft·Hard** — the skill *routes*, it cannot execute or block; its correctness is a hard reference-validity lint that resolves every pointer's file *and* heading anchor against disk (a non-executable index earns trust from a ref-check, not tests) |
 
-*Its place in the environment — a **variant / known-use** of **Encoded Operational Judgment**, under **GOVERN · Govern the control estate itself**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-govern) shows how it folds.*
+*Its place in the environment — a **variant / known-use** of **Encoded Operational Judgment**, under **GOVERN · Govern the control machinery itself**. Preserved here for its technical texture; the [construction kit](../../constructing-the-gee.md#cap-govern) shows how it folds.*
 
 ## Motivation — the failure it kills
 

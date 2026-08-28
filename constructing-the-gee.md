@@ -95,9 +95,9 @@ the mechanism set to sit here as a principle in its own right.
   carries a durable, machine-checkable trace back to its cause, so a change can be explained, audited, and
   reversed. *Expressed by [Track provenance and trace causes](#cap-provenance).*
 
-- **P7 · Model the governance environment itself.** Once controls proliferate, the control estate is a
+- **P7 · Model the governance environment itself.** Once controls proliferate, the control machinery is a
   system in its own right, and it must be modeled, covered, and reasoned over. Governance of governance.
-  *Expressed by [Govern the control estate itself](#cap-govern).*
+  *Expressed by [Govern the control machinery itself](#cap-govern).*
 
 - **P8 · Enforce at the right semantic level.** A control must fire where the property actually lives — a
   structural property gets a deterministic check, a semantic one gets a model or a judge — and it must be
@@ -879,7 +879,7 @@ pushes the rules governing an action to the actor at the moment of action (dynam
 delivering the knowledge through the environment rather than hoping the prompt carried it.
 
 <a id="cap-govern"></a>
-## GOVERN · Govern the control estate itself
+## GOVERN · Govern the control machinery itself
 
 *Model, cover, and encode the governance system as its own subject.*
 
@@ -900,7 +900,7 @@ can fire against a sibling. The boundary: it decides the conflict classes the vo
 collision outside the modeled resource set is not seen.
 
 **Forces &amp; limits.** The shared-resource vocabulary must be closed and maintained, or a new resource
-type opens an unmodeled collision channel. Modeling the control estate is worth it only once controls
+type opens an unmodeled collision channel. Modeling the control machinery is worth it only once controls
 proliferate — for a handful, the graph is ceremony.
 
 *Flagship member (short):*
@@ -1025,7 +1025,7 @@ one-offs and the estate bloats — right-sizing is the taste the intent names. T
 the whole catalogue is an output of: every entry here is, in effect, one conversion's output.
 
 *Deep dive:* [the governance-conversion stack](book/appendix-a-governance-conversion-stack.html) (alt
-appendix) — its INTERPRET member, the beating heart of governing the control estate.
+appendix) — its INTERPRET member, the beating heart of governing the control machinery.
 *Related:* Sibling — [the operator runbook skill](agent/governance-doc-controls/operator-runbook-skill.md)
 (executes *within* the estate; self-governance *grows* it) · Enabler —
 [Governed Knowledge Base](#cap-govern) (where each converted control lands).

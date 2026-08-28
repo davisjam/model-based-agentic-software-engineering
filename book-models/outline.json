@@ -1756,12 +1756,12 @@
             },
             {
               "slug": "coverage-is-a-requirements-traceability-problem-gap-vs-orphan",
-              "text": "Coverage is a small requirements-traceability problem: an obligation with no adequate mechanism is under-governance; a mechanism with no obligation is an orphan.",
+              "text": "Coverage is a small requirements-traceability problem: an obligation with no adequate mechanism is a coverage gap; a mechanism with no obligation is an orphan.",
               "block_index": 31
             },
             {
               "slug": "gap-is-under-governance-orphan-is-governance-debt-neither-automatically-bad",
-              "text": "A gap is under-governance; an orphan is candidate governance debt. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete.",
+              "text": "A coverage gap is an uncovered obligation; an orphan is a mechanism with no current purpose. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete.",
               "block_index": 34
             }
           ]
@@ -1770,7 +1770,7 @@
           "section_id": "add-reconcile-and-retire-controls",
           "level": 2,
           "heading_text": "Add, Reconcile, and Retire Controls",
-          "topic_sentence": "Governance conversion and coverage auditing work in opposite directions.",
+          "topic_sentence": "Governance conversion and coverage auditing provide complementary pressures.",
           "id_source": "derived",
           "block_index": 37,
           "points": [

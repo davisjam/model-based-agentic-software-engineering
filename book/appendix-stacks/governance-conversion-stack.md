@@ -1,6 +1,6 @@
 ## The Capability
 
-**Turn recurring failures and judgments into durable engineering structure while keeping the control estate legible.** Model how controls relate, expose gaps and coupling, and convert recurring failures into new or stronger controls.
+**Turn recurring failures and judgments into durable engineering structure while keeping the control machinery legible.** Model how controls relate, expose gaps and coupling, and convert recurring failures into new or stronger controls.
 
 ## When This Stack Earns Its Keep
 
@@ -15,21 +15,21 @@ Reach for it when:
 ## The Composition
 
 <!-- label: governance-conversion-stack -->
-<!-- figure: assets/governance-conversion-stack.svg | The governance-conversion composition, a loop. The CONTROL ESTATE — rules, gates, models, sensors — is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE ESTATE folds it in; a solid feedback edge returns to the estate for the next iteration. The four moves form the load-bearing loop. -->
+<!-- figure: assets/governance-conversion-stack.svg | The governance-conversion composition, a loop. The CONTROL MACHINERY — rules, gates, models, sensors — is inspected and queried to expose GAPS / COUPLING: where control is weak, stale, or entangled. When a failure recurs there, INTERPRET converts the failure class into a durable control, and UPDATE MACHINERY folds it in; a solid feedback edge returns to the machinery for the next iteration. The four moves form the load-bearing loop. -->
 
 ## Constituent Moves
 
 | Move | Role |
 |---|---|
-| **MODEL** | Make the control estate explicit — rules, gates, models, sensors. |
-| **EXPOSE** | Query the estate for gaps, staleness, and coupling. |
+| **MODEL** | Make the control machinery explicit — rules, gates, models, sensors. |
+| **EXPOSE** | Query the machinery for gaps, staleness, and coupling. |
 | **CONVERT** | Interpret a recurring failure class into a new or strengthened control. |
-| **UPDATE** | Fold the control back into the estate; the model changes with it. |
+| **UPDATE** | Fold the control back into the machinery; the model changes with it. |
 
 ## Why These Travel Together
 
-As a governed environment grows, its controls overlap, depend on one another, go stale, and acquire blast radius. Eventually the control estate itself becomes difficult to reason about. When that happens, model it explicitly.
+As a governed environment grows, its controls overlap, depend on one another, go stale, and acquire blast radius. Eventually the control machinery itself becomes difficult to reason about. When that happens, model it explicitly.
 
-Once the estate is explicit, interpret recurring failures against it. A failure worth converting becomes a new or stronger mechanism, and the estate model updates with it. This creates engineering capital: the environment changes so future work no longer depends on someone remembering the lesson. Rule registries, dependency graphs, indexes, and metadata are possible implementations.
+Once the machinery is explicit, interpret recurring failures against it. A failure worth converting becomes a new or stronger mechanism, and the machinery model updates with it. This creates engineering capital: the environment changes so future work no longer depends on someone remembering the lesson. Rule registries, dependency graphs, indexes, and metadata are possible implementations.
 
 **Mechanisms:** control census · control-dependency graph · governance conversion
