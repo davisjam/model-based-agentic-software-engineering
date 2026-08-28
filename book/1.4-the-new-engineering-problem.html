@@ -465,8 +465,13 @@ blockquote.pull-quote {
 }
 blockquote.pull-quote p { margin: 0; }
 blockquote.pull-quote strong { font-style: normal; }
-.book-eq { text-align: center; font-family: Georgia, "Times New Roman", serif; font-style: italic;
-           font-size: 1.2em; color: var(--ink); margin: 1.3rem 0; letter-spacing: 0.02em; }
+.book-eq { text-align: center; color: var(--ink); margin: 1.3rem 0; }
+.book-eq math { font-size: 1.18em; }
+.book-eq-boxed math { font-size: 1.06em; }
+.book-eq-boxed { border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+           display: inline-block; margin: 0.5rem auto; }
+.book-eq-boxed-wrap { text-align: center; margin: 1.3rem 0; }
+math.book-math-inline { font-size: 1.05em; }
 figure.book-figure { margin: 1.8rem 0; text-align: center; }
 figure.book-figure svg,
 figure.book-figure img { max-width: 100%; height: auto; }
@@ -771,6 +776,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li class="part">Back Matter</li>
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap" aria-label="Chapter 4 · Two Problems the Method Must Solve — MAGE"><header class="chap"><div class="kicker"><a href="part-1-intro.html" aria-label="Beginning of Part 1 — The New Engineering Problem">Part 1 — The New Engineering Problem</a> &nbsp;::&nbsp; <a href="index.html" aria-label="Book contents — jump to the chapter list">Chapter 4</a></div><h1><span class="chap-num">1.4</span> Two Problems the Method Must Solve</h1></header><p>The preceding substrate properties leave two engineering problems that MAGE addresses directly. A finite reasoner needs representations that keep relevant state tractable as systems and tasks grow. Probabilistic autonomous work needs authority outside the producing run so that important obligations do not depend on memory, confidence, or repeated human inspection.</p>
+<p>Put differently, commodity intelligence exposes two related limits. A finite reasoner cannot keep arbitrarily much consequential state usefully active, and a fallible reasoner cannot by inference alone guarantee every consequential judgment it makes. The first is a problem of reasoning reach; the second is a problem of assurance. MAGE addresses them differently: Part II changes the representation over which reasoning occurs, and Part III gives selected obligations authority independent of the producing run.</p>
 <h2><span class="sec-num">1.4.1</span> The Representation Problem</h2>
 <p>A broad reasoner can operate on abstractions, but its active reasoning state is finite and large systems contain far more detail than any one engineering question needs. <strong>How should a large, evolving system be represented so that a finite reasoner can work coherently over the properties that matter without continually reconstructing them from implementation?</strong></p>
 <p>Part II develops MAGE's answer: Modeling.</p>

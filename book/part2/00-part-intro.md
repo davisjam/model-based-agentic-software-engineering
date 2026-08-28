@@ -16,6 +16,12 @@ institutional memory; an agent fleet can spend that same effort over and over, o
 per fresh reasoning state. MAGE uses models to make reusable engineering knowledge durable by
 preserving the relationships relevant to a question and suppressing the rest.
 
+This also begins the answer to the probabilistic problem from Part I. A reasoner asked to recover a
+consequential relation from raw implementation must infer it. A representation can make the relation
+explicit. That does not yet guarantee that the resulting system respects it, but it changes the
+engineering question from *can the agent reconstruct this correctly?* toward *can this property now be
+stated, analyzed, or checked directly?*
+
 <!-- principlebox -->
 <!-- box-family: canonical -->
 > ### Modeling principle

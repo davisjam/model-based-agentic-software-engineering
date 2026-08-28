@@ -11,6 +11,17 @@ unavailable. Explicit models extend that reach. Once architecture, ownership, be
 policy is represented at the level where the property exists, the environment can govern questions
 that an agent or human would otherwise have to reconstruct from lower-level detail.
 
+Part I described consequential judgments that remain on the probabilistic surface of realization. Modeling
+can make some of those judgments easier by externalizing the state or relation they require. Alignment asks
+the next question: must the reasoner still get this judgment right, or can the environment carry the
+obligation independently?
+
+The distinction is not between probabilistic agents and deterministic software. It is between relying on a
+reasoner to honor an obligation and giving that obligation an independent path to consequence. A prompt may
+remind an agent not to cross an architectural boundary. A validator may reject any change that crosses it.
+Both can improve outcomes; only the second makes admission independent of whether the agent remembered the
+rule.
+
 <!-- principlebox -->
 <!-- box-family: canonical -->
 > ### Alignment principle

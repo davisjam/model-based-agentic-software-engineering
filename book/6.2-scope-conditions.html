@@ -465,8 +465,13 @@ blockquote.pull-quote {
 }
 blockquote.pull-quote p { margin: 0; }
 blockquote.pull-quote strong { font-style: normal; }
-.book-eq { text-align: center; font-family: Georgia, "Times New Roman", serif; font-style: italic;
-           font-size: 1.2em; color: var(--ink); margin: 1.3rem 0; letter-spacing: 0.02em; }
+.book-eq { text-align: center; color: var(--ink); margin: 1.3rem 0; }
+.book-eq math { font-size: 1.18em; }
+.book-eq-boxed math { font-size: 1.06em; }
+.book-eq-boxed { border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+           display: inline-block; margin: 0.5rem auto; }
+.book-eq-boxed-wrap { text-align: center; margin: 1.3rem 0; }
+math.book-math-inline { font-size: 1.05em; }
 figure.book-figure { margin: 1.8rem 0; text-align: center; }
 figure.book-figure svg,
 figure.book-figure img { max-width: 100%; height: auto; }
@@ -775,6 +780,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <h2><span class="sec-num">6.2.1</span> Return, Governability, and Authority</h2>
 <p><strong>Does the investment earn a return?</strong> Recurrence is the usual source of return. If the same architectural knowledge, review judgment, or failure class will be encountered hundreds of times, externalizing it once can avoid purchasing the same reasoning repeatedly. But recurrence is not the only justification. A rare obligation with catastrophic consequences may warrant extensive modeling and assurance because preventing a single failure can repay the investment. The economic question is therefore broader: <strong>does the expected reduction in future reasoning, risk, or recovery cost justify the construction and carrying cost of the asset?</strong></p>
 <p><strong>Can the obligation be governed adequately?</strong> Some properties can be represented precisely and settled mechanically: a schema conforms, a dependency is permitted, an invariant holds. Others admit statistical evidence but not a definitive predicate. Still others depend substantially on aesthetic, scientific, organizational, or social judgment. Governability is the degree to which an important obligation can be made explicit, supplied with relevant evidence, and evaluated with adequate reliability and acceptable cost. Deterministic checking is its strongest region, not its definition.</p>
+<p>The residual probabilistic surface is therefore not necessarily technical debt. Some judgment belongs there. The objective is not to minimize it blindly, but to stop repeatedly purchasing probabilistic judgment where a cheaper, adequate, and trustworthy representation or mechanism can carry the obligation instead.</p>
 <p>One organizational condition determines whether lessons become shared assets: <strong>authority</strong>. Someone who discovers a structural problem must have a functioning path to the architecture, models, controls, or shared infrastructure that could address it. Authority need not reside in one person. It has to connect diagnosis to the environment. Without that path, the organization can understand a failure perfectly and still patch it locally forever.</p>
 <p>These are theoretical scope conditions informed by the observations in Part V, not population estimates.</p>
 <h2><span class="sec-num">6.2.2</span> Typical Profiles</h2>

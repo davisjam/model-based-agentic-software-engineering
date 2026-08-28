@@ -465,8 +465,13 @@ blockquote.pull-quote {
 }
 blockquote.pull-quote p { margin: 0; }
 blockquote.pull-quote strong { font-style: normal; }
-.book-eq { text-align: center; font-family: Georgia, "Times New Roman", serif; font-style: italic;
-           font-size: 1.2em; color: var(--ink); margin: 1.3rem 0; letter-spacing: 0.02em; }
+.book-eq { text-align: center; color: var(--ink); margin: 1.3rem 0; }
+.book-eq math { font-size: 1.18em; }
+.book-eq-boxed math { font-size: 1.06em; }
+.book-eq-boxed { border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+           display: inline-block; margin: 0.5rem auto; }
+.book-eq-boxed-wrap { text-align: center; margin: 1.3rem 0; }
+math.book-math-inline { font-size: 1.05em; }
 figure.book-figure { margin: 1.8rem 0; text-align: center; }
 figure.book-figure svg,
 figure.book-figure img { max-width: 100%; height: auto; }
@@ -783,6 +788,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p id="idx-def-ex-post-governance">The harder half begins when the system surprises you. A failure may reveal a recurring failure mode: the environment lacks a representation, an obligation was never stated, the relevant evidence is not observable, a validator is too weak, or a judgment exists but carries no authority. <strong>Do not assume every failure calls for another gate. Diagnose what was missing.</strong></p>
 <p>The conversion can therefore land in several places:</p>
 <ol><li><strong>Missing representation / semantics → improve the model.</strong> Make the fact or relation durable at the abstraction where the question becomes answerable.</li><li><strong>Missing obligation or tolerance → state the governing boundary.</strong> A failure may show that variation treated as free was not actually acceptable. Make the invariant, policy, bound, or permitted set explicit enough for future work to reason against it.</li><li><strong>Missing evidence → add a sensor or trace.</strong> Make the relevant state observable.</li><li><strong>Missing evaluation → strengthen the validator.</strong> Turn evidence into a repeatable judgment.</li><li><strong>Missing consequence → add or strengthen a constraint or gate.</strong> Make the verdict matter.</li></ol>
+<p>Viewed from Part I, these interventions do different things to the probabilistic surface. Better representation can reduce the inference needed to recover a property. Better evidence can make its realized state more legible. A repeatable validator can retire a recurring evaluation. A constraint or gate can make the resulting verdict consequential. Governance conversion is therefore not simply the accumulation of checks; it is the selective transfer of recurring engineering judgment from per-instance reasoning into durable structure.</p>
 <p>This is why Modeling and Alignment form a feedback loop in practice. A failure can expose knowledge that remained implicit, or reveal that a choice treated as a degree of freedom actually carried a tacit obligation or tolerance. Modeling can make that distinction explicit; Alignment can then give the resulting obligation appropriate evidence and authority. The environment improves when recurring reconstruction or judgment moves into durable structure that later work can inherit. <a class="xref" href="3.4-governance-conversion.html#fig-3-4-1">Figure&nbsp;3.4-1</a> draws the diagnosis.</p>
 <figure id="fig-3-4-1" class="book-figure" data-label="governance-conversion-fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740"
      role="img" aria-labelledby="f-governance-conversion-gcTitle f-governance-conversion-gcDesc"

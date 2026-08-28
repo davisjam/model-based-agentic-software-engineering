@@ -465,8 +465,13 @@ blockquote.pull-quote {
 }
 blockquote.pull-quote p { margin: 0; }
 blockquote.pull-quote strong { font-style: normal; }
-.book-eq { text-align: center; font-family: Georgia, "Times New Roman", serif; font-style: italic;
-           font-size: 1.2em; color: var(--ink); margin: 1.3rem 0; letter-spacing: 0.02em; }
+.book-eq { text-align: center; color: var(--ink); margin: 1.3rem 0; }
+.book-eq math { font-size: 1.18em; }
+.book-eq-boxed math { font-size: 1.06em; }
+.book-eq-boxed { border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+           display: inline-block; margin: 0.5rem auto; }
+.book-eq-boxed-wrap { text-align: center; margin: 1.3rem 0; }
+math.book-math-inline { font-size: 1.05em; }
 figure.book-figure { margin: 1.8rem 0; text-align: center; }
 figure.book-figure svg,
 figure.book-figure img { max-width: 100%; height: auto; }
@@ -1080,7 +1085,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <p>Scale and assurance strength are separate choices. One engineer may use formal verification for a consequential protocol while a large organization relies mostly on design documents, tests, runtime evidence, and human judgment. Organization-wide adoption does not imply maximal formalization, nor does strong assurance require organization-wide adoption. MAGE can range from lightweight represented intent and selective checks to formal specifications and trustworthy derivation. What remains constant is the engineering problem: deciding what must be represented, what evidence is sufficient, which obligations should acquire authority, and which decisions still require judgment.</p>
 <h3>The frontier is not a destination</h3>
 <p>Neither frontier should be confused with a destination for software engineering as a whole. Search works when we know enough about what counts as success. Many consequential engineering questions remain open because the correct shape of the system is itself being discovered: which abstraction matters, which tradeoff users will accept, which failure will dominate in operation, or which requirement the organization actually intends. In those cases, implementation is not merely realization. It is an experiment that produces information about the specification. And even a question that is closed today may reopen as users, dependencies, organizations, regulations, workloads, or adversaries change. Software evolution therefore remains an outer loop around increasingly powerful episodes of automated realization <sup class="cite-ref"><a href="#wc-6-5-software-rejoins-engineering-3" aria-label="citation 3">3</a></sup><span class="cite-note"><span class="cn-mark">3.</span> M. M. Lehman and J. F. Ramil, “Software Evolution—Background, Theory, Practice,” <em>Information Processing Letters</em> 88 (2003): 33–44.</span>. MAGE can turn sufficiently closed engineering questions into search problems when their consequential shape is knowable. It should not get there by pretending that unresolved uncertainty has disappeared.</p>
-<p>The corresponding failure mode is premature closure. Explicit does not mean correct. If the organization does not yet know what users need or which tradeoff is acceptable, formalizing one conjecture merely makes the wrong target easier to optimize, and commodity intelligence can make the failure more consequential because it can elaborate the mistaken premise cheaply and at scale.</p>
+<p>The corresponding failure mode is premature closure. Explicit does not mean correct. A small probabilistic surface is therefore not itself evidence of good engineering: the environment can determinize the wrong problem. If the organization does not yet know what users need or which tradeoff is acceptable, formalizing one conjecture merely makes the wrong target easier to optimize, and commodity intelligence can make the failure more consequential because it can elaborate the mistaken premise cheaply and at scale.</p>
 <p>Engineering capital can also move the frontier within one system. A model built for today's migration can make tomorrow's change searchable; a differential harness can turn a future rewrite into cheap comparison; a validator can convert repeated judgment into evaluation. Engineering capital can therefore enlarge the region of work that later can be delegated safely to search.</p>
 <p>MAGE predicts a moving boundary, not complete specification. Requirements emerge through use, organizations change, adversaries adapt, and systems alter the environments that generate their next requirements. Commodity intelligence can move both economic frontiers; it does not eliminate the world beyond them.</p>
 <h2><span class="sec-num">6.5.6</span> What Happened to the Cost?</h2>

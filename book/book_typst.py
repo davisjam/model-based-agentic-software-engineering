@@ -44,6 +44,7 @@ import pathlib
 import re
 
 import build_book as bb
+import bookmath  # LaTeX-subset → Typst math (print twin of the MathML web projection)
 import book_ir as ir
 import design_tokens as _dtokens  # bb already put book-models on sys.path — the design-token projector
 
@@ -160,6 +161,10 @@ def _inline(s: str, stash: list[str]) -> str:
             return _hold(_esc(_SPLIT_LABEL_TEXT.get(key, f"Figure {key}")))
         return _hold(f"@{key}")
     s = _XREF_RE.sub(_ref, s)
+    # 1a. Inline math `\( … \)` → Typst INLINE math `$…$` (no surrounding spaces — in Typst `$ x $` with
+    #     spaces is DISPLAY/block, `$x$` is inline). The print twin of the web inline MathML. Held so the
+    #     escaping below leaves the math markup untouched.
+    s = re.sub(r"\\\((.+?)\\\)", lambda m: _hold(f"${bookmath.to_typst(m.group(1))}$"), s)
     # 1b. Citations `[cite: key(, loc); key2]` → Typst `#cite(<key>)` (chicago-notes → a numbered footnote
     #     citation). Multiple keys emit multiple #cite; a locator becomes the citation supplement. The
     #     #bibliography emit_document appends renders these — Typst's own engine, the SAME references.bib
@@ -752,12 +757,15 @@ def _render_mermaid(block: Block_t, caption_md: str | None) -> str:
 
 
 def _render_eq(raw: str) -> str:
-    """An `<!-- eq: … -->` display equation → a Typst block math `$ … $`. The body is math-ish plain text
-    (our equations are simple: `P(wrong) = 1 − (1 − p)ⁿ`); we pass it through as Typst math, mapping a few
-    unicode operators. Awkward by design — see the mapping report; a real migration would author math in
-    Typst's own math language."""
+    """An `<!-- eq: … -->` display equation → Typst block math `$ … $` (LaTeX subset via bookmath — the
+    print twin of the web MathML projection). A top-level `\\boxed{…}` renders in a hairline bordered box,
+    centered, mirroring the web `.book-eq-boxed`."""
     body = raw[len("<!--"):-len("-->")].strip()[len("eq:"):].strip()
-    return f"$ {_math_ish(body)} $"
+    if bookmath.is_boxed(body):
+        inner = bookmath.to_typst(bookmath.strip_boxed(body))
+        return (f'#align(center)[#box(stroke: 0.5pt + dt.rule, inset: (x: 8pt, y: 6pt), radius: 3pt)'
+                f'[$ {inner} $]]')
+    return f"$ {bookmath.to_typst(body)} $"
 
 
 def _math_ish(s: str) -> str:

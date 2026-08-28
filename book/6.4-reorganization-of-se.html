@@ -465,8 +465,13 @@ blockquote.pull-quote {
 }
 blockquote.pull-quote p { margin: 0; }
 blockquote.pull-quote strong { font-style: normal; }
-.book-eq { text-align: center; font-family: Georgia, "Times New Roman", serif; font-style: italic;
-           font-size: 1.2em; color: var(--ink); margin: 1.3rem 0; letter-spacing: 0.02em; }
+.book-eq { text-align: center; color: var(--ink); margin: 1.3rem 0; }
+.book-eq math { font-size: 1.18em; }
+.book-eq-boxed math { font-size: 1.06em; }
+.book-eq-boxed { border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+           display: inline-block; margin: 0.5rem auto; }
+.book-eq-boxed-wrap { text-align: center; margin: 1.3rem 0; }
+math.book-math-inline { font-size: 1.05em; }
 figure.book-figure { margin: 1.8rem 0; text-align: center; }
 figure.book-figure svg,
 figure.book-figure img { max-width: 100%; height: auto; }

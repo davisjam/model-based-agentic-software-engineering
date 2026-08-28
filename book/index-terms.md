@@ -193,6 +193,7 @@ display name. A tag whose slug is absent here fails the build. Display names are
 - concept: engineered-agent-loop | The engineered agent loop
 - concept: success-metric | The success metric
 - concept: probabilistic-reasoning-machine | Probabilistic reasoning machine
+- concept: probabilistic-surface | Probabilistic surface
 - concept: conditioning-the-search | Conditioning the search
 - concept: search-space | The search space
 - concept: engineering | Engineering

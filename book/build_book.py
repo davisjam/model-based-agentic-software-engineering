@@ -60,6 +60,7 @@ ROOT = HERE.parent  # the catalogue root — the appendix reads the entry .md fi
 sys.path.insert(0, str(ROOT / "book-models"))
 import design_tokens as _dtokens  # noqa: E402 — the design-token projector (stdlib-only)
 from svg_id_namespace import namespace_svg_ids  # noqa: E402 — shared inlined-SVG id-namespacer
+import bookmath  # noqa: E402 — LaTeX-subset → MathML (web) / Typst (print); stdlib-only, fail-loud
 
 _TOKENS = _dtokens.load()
 CSS_ROOT_BLOCK = _dtokens.css_root_block(_TOKENS)
@@ -1118,6 +1119,15 @@ def inline(s: str) -> str:
         return f"\x00EM{len(em_spans) - 1}\x00"
 
     s = re.sub(r"\[\+(.+?)\+\]", _stash_em, s)
+    # Inline math: `\( … \)` → server-rendered MathML (native browser math, no JS). Stashed BEFORE
+    # html.escape so the emitted `<math>` markup survives, and restored with the other spans below.
+    math_spans: list[str] = []
+
+    def _stash_math(m: "re.Match[str]") -> str:
+        math_spans.append(bookmath.to_mathml(m.group(1), display=False))
+        return f"\x00MATH{len(math_spans) - 1}\x00"
+
+    s = re.sub(r"\\\((.+?)\\\)", _stash_math, s)
     s = html.escape(s, quote=False)
     # Inline code spans (`text`) first — their content is code, so no bold/italic/link pass should
     # run inside them. Stash each span behind a placeholder, run the markdown passes, then restore.
@@ -1166,6 +1176,7 @@ def inline(s: str) -> str:
         s = re.sub(r"\x00CITE(\d+)\x00", lambda m: cite_spans[int(m.group(1))], s)
         s = re.sub(r"\x00CODE(\d+)\x00", lambda m: f"<code>{code_spans[int(m.group(1))]}</code>", s)
         s = re.sub(r"\x00EM(\d+)\x00", lambda m: f"<em>{em_spans[int(m.group(1))]}</em>", s)
+        s = re.sub(r"\x00MATH(\d+)\x00", lambda m: math_spans[int(m.group(1))], s)
     return s
 
 
@@ -1178,6 +1189,7 @@ def _plain(s: str) -> str:
     the result for its attribute."""
     s = re.sub(r"`([^`]+)`", r"\1", s)
     s = re.sub(r"\[\+(.+?)\+\]", r"\1", s)
+    s = re.sub(r"\\\((.+?)\\\)", lambda m: re.sub(r"[\\{}]|\\text", "", m.group(1)), s)  # inline math → bare symbols
     s = re.sub(r"\[\[([^\]|]+?)(?:\|([^\]]*))?\]\]", lambda m: m.group(2) or m.group(1), s)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r"\1", s)
     s = re.sub(r"\*\*(.+?)\*\*", r"\1", s)
@@ -1592,7 +1604,11 @@ def md_to_html(md: str, anchor_map: dict[tuple[str, str, int], str] | None = Non
                     s[len("<!--"):-len("-->")].strip()[len("table:"):].strip())
                 return True
             if inner.startswith("eq:"):
-                _emit(f'<p class="book-eq">{inline(s[len("<!--"):-len("-->")].strip()[len("eq:"):].strip())}</p>')
+                latex = s[len("<!--"):-len("-->")].strip()[len("eq:"):].strip()
+                if bookmath.is_boxed(latex):
+                    _emit(f'<div class="book-eq-boxed-wrap"><span class="book-eq-boxed">{bookmath.to_mathml(bookmath.strip_boxed(latex), display=True)}</span></div>')
+                else:
+                    _emit(f'<div class="book-eq">{bookmath.to_mathml(latex, display=True)}</div>')
                 return True
             if inner.startswith("point:"):
                 # `<!-- point: <slug> | <claim> [| terms: …] -->` — the induced canonical point of the
@@ -2478,8 +2494,13 @@ blockquote.pull-quote {{
 }}
 blockquote.pull-quote p {{ margin: 0; }}
 blockquote.pull-quote strong {{ font-style: normal; }}
-.book-eq {{ text-align: center; font-family: Georgia, "Times New Roman", serif; font-style: italic;
-           font-size: 1.2em; color: var(--ink); margin: 1.3rem 0; letter-spacing: 0.02em; }}
+.book-eq {{ text-align: center; color: var(--ink); margin: 1.3rem 0; }}
+.book-eq math {{ font-size: 1.18em; }}
+.book-eq-boxed math {{ font-size: 1.06em; }}
+.book-eq-boxed {{ border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+           display: inline-block; margin: 0.5rem auto; }}
+.book-eq-boxed-wrap {{ text-align: center; margin: 1.3rem 0; }}
+math.book-math-inline {{ font-size: 1.05em; }}
 figure.book-figure {{ margin: 1.8rem 0; text-align: center; }}
 figure.book-figure svg,
 figure.book-figure img {{ max-width: 100%; height: auto; }}

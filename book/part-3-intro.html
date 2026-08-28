@@ -465,8 +465,13 @@ blockquote.pull-quote {
 }
 blockquote.pull-quote p { margin: 0; }
 blockquote.pull-quote strong { font-style: normal; }
-.book-eq { text-align: center; font-family: Georgia, "Times New Roman", serif; font-style: italic;
-           font-size: 1.2em; color: var(--ink); margin: 1.3rem 0; letter-spacing: 0.02em; }
+.book-eq { text-align: center; color: var(--ink); margin: 1.3rem 0; }
+.book-eq math { font-size: 1.18em; }
+.book-eq-boxed math { font-size: 1.06em; }
+.book-eq-boxed { border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+           display: inline-block; margin: 0.5rem auto; }
+.book-eq-boxed-wrap { text-align: center; margin: 1.3rem 0; }
+math.book-math-inline { font-size: 1.05em; }
 figure.book-figure { margin: 1.8rem 0; text-align: center; }
 figure.book-figure svg,
 figure.book-figure img { max-width: 100%; height: auto; }
@@ -772,6 +777,8 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap part-page" aria-label="Part 3 · Alignment — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 3</a></div><h1>Alignment</h1></header><p>Part 2 made engineering knowledge and intent explicit. Those models already provide value: they let engineers, agents, and tools reason over properties that would otherwise have to be reconstructed from lower-level detail. This Part asks a different question. <strong>Which of those properties express engineering obligations the environment should hold, and how should it hold them?</strong></p>
 <p>Alignment is the move from guidance to authority. Some obligations require no rich system model: a permission can forbid network access, a type can rule out an illegal value, a sandbox can make an action unavailable. Explicit models extend that reach. Once architecture, ownership, behavior, measurement, or policy is represented at the level where the property exists, the environment can govern questions that an agent or human would otherwise have to reconstruct from lower-level detail.</p>
+<p>Part I described consequential judgments that remain on the probabilistic surface of realization. Modeling can make some of those judgments easier by externalizing the state or relation they require. Alignment asks the next question: must the reasoner still get this judgment right, or can the environment carry the obligation independently?</p>
+<p>The distinction is not between probabilistic agents and deterministic software. It is between relying on a reasoner to honor an obligation and giving that obligation an independent path to consequence. A prompt may remind an agent not to cross an architectural boundary. A validator may reject any change that crosses it. Both can improve outcomes; only the second makes admission independent of whether the agent remembered the rule.</p>
 <blockquote class="box-canonical"><p class="inset-title">Alignment principle</p>
 <p>Give engineering obligations authority by encoding them into mechanisms that constrain actions, produce evidence, evaluate that evidence, and control admission.</p>
 <p>An obligation becomes authoritative when the environment can act on it.</p></blockquote>

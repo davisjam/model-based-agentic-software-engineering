@@ -465,8 +465,13 @@ blockquote.pull-quote {
 }
 blockquote.pull-quote p { margin: 0; }
 blockquote.pull-quote strong { font-style: normal; }
-.book-eq { text-align: center; font-family: Georgia, "Times New Roman", serif; font-style: italic;
-           font-size: 1.2em; color: var(--ink); margin: 1.3rem 0; letter-spacing: 0.02em; }
+.book-eq { text-align: center; color: var(--ink); margin: 1.3rem 0; }
+.book-eq math { font-size: 1.18em; }
+.book-eq-boxed math { font-size: 1.06em; }
+.book-eq-boxed { border: 1px solid var(--rule, #d8d2c4); border-radius: 4px; padding: 0.5rem 0.9rem;
+           display: inline-block; margin: 0.5rem auto; }
+.book-eq-boxed-wrap { text-align: center; margin: 1.3rem 0; }
+math.book-math-inline { font-size: 1.05em; }
 figure.book-figure { margin: 1.8rem 0; text-align: center; }
 figure.book-figure svg,
 figure.book-figure img { max-width: 100%; height: auto; }
@@ -772,6 +777,7 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 <li><a class="" href="colophon.html">Colophon — Dogfooding MAGE</a></li>
 <li><a class="" href="about-the-author.html">About the Author</a></li></ol></details></div></nav><main class="wrap part-page" aria-label="Part 2 · Modeling — MAGE"><header class="chap"><div class="kicker"><a href="index.html" aria-label="Book contents — jump to the chapter list">Part 2</a></div><h1>Modeling</h1></header><p>Software engineering has always relied on abstraction. Large systems exceed what any engineer can reason about directly, so we work through architectures, interfaces, schemas, requirements, state machines, dependency graphs, and other purposeful reductions. Explicit models have nevertheless remained secondary in much code-centric software practice because keeping another representation synchronized with a fast-moving system costs work. Commodity intelligence changes that economics. Deriving, reconciling, regenerating, and querying structured representations are repeated tasks an agent fleet can often perform cheaply.</p>
 <p>Agents did not create software engineering's reasoning problem. Scale did. The change is that implementation can now move much faster than the knowledge required to direct it. A human team can spend substantial effort reconstructing architecture, ownership, policy, and lifecycle from code and institutional memory; an agent fleet can spend that same effort over and over, once per task and once per fresh reasoning state. MAGE uses models to make reusable engineering knowledge durable by preserving the relationships relevant to a question and suppressing the rest.</p>
+<p>This also begins the answer to the probabilistic problem from Part I. A reasoner asked to recover a consequential relation from raw implementation must infer it. A representation can make the relation explicit. That does not yet guarantee that the resulting system respects it, but it changes the engineering question from <em>can the agent reconstruct this correctly?</em> toward <em>can this property now be stated, analyzed, or checked directly?</em></p>
 <blockquote class="box-canonical"><p class="inset-title">Modeling principle</p>
 <p>Externalize engineering knowledge and intent into explicit, structured models that both engineers and agents can reason through.</p>
 <p>Richer representations make broader engineering questions tractable and make richer properties available for Alignment.</p></blockquote>

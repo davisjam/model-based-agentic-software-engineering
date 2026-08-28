@@ -68,11 +68,11 @@
       "closing_anchor": "from model provenance, which tracks what a derived model was generated from.)",
       "delivers": {
         "concepts": [
-          "commodity-intelligence",
+          "model-classes",
           "tolerance",
           "degrees-of-freedom",
-          "model-classes",
-          "compounding"
+          "compounding",
+          "commodity-intelligence"
         ],
         "artifacts": [],
         "artifact_would_help": false
@@ -207,7 +207,8 @@
         "concepts": [
           "engineering-substrate",
           "long-horizon-task",
-          "reasoning-horizon"
+          "reasoning-horizon",
+          "probabilistic-surface"
         ],
         "artifacts": [
           {
