@@ -52,7 +52,7 @@
           "section_id": "why-mage-why-models",
           "level": 2,
           "heading_text": "Why MAGE? Why Models?",
-          "topic_sentence": "This book—Model-Based Agentic Software Engineering (MAGE)—argues that modeling becomes central when implementation becomes abundant.",
+          "topic_sentence": "One way to understand MAGE—Model-Based Agentic Software Engineering—is as a classical software-engineering move: **add a level of indirection.**[^indirection]",
           "id_source": "derived",
           "block_index": 9,
           "points": []
@@ -63,7 +63,7 @@
           "heading_text": "Where the theory came from",
           "topic_sentence": "This book began with one hard engineering problem that emerged over months of building a real production system.",
           "id_source": "derived",
-          "block_index": 15,
+          "block_index": 17,
           "points": []
         },
         {
@@ -72,7 +72,7 @@
           "heading_text": "The new bottleneck",
           "topic_sentence": "Agents can produce changes much faster than the surrounding environment can understand or govern them.",
           "id_source": "derived",
-          "block_index": 18,
+          "block_index": 20,
           "points": []
         },
         {
@@ -81,7 +81,7 @@
           "heading_text": "The originating system",
           "topic_sentence": "This book began with DocAble, a production service for remediating inaccessible documents.",
           "id_source": "derived",
-          "block_index": 25,
+          "block_index": 27,
           "points": []
         },
         {
@@ -90,7 +90,7 @@
           "heading_text": "Evidence and scope",
           "topic_sentence": "MAGE draws on two kinds of evidence.",
           "id_source": "derived",
-          "block_index": 30,
+          "block_index": 32,
           "points": []
         },
         {
@@ -99,7 +99,7 @@
           "heading_text": "What the method turned out to be",
           "topic_sentence": "Two principles organize MAGE:",
           "id_source": "derived",
-          "block_index": 32,
+          "block_index": 34,
           "points": []
         },
         {
@@ -108,7 +108,7 @@
           "heading_text": "Who this book is for",
           "topic_sentence": "This book is for software engineers who suspect the ground has moved and want to know where to stand.",
           "id_source": "derived",
-          "block_index": 39,
+          "block_index": 41,
           "points": []
         }
       ],
