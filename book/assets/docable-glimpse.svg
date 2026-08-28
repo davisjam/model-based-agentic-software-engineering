@@ -8,7 +8,7 @@
      Palette: Umber Monograph tokens — churn-red #b23b3b the inaccessible input, fleet #2f5169 DocAble the
      production system, governed green #1f7a4d the accessible output + evidence, ink #1c1917 statements,
      muted #57534e captions, neutral #cfc9c0 the illegible/legible text bars, page #fdfcf9. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 430" width="980" height="430"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-45 0 1070 430" width="1070" height="430"
      role="group" aria-labelledby="dgTitle dgDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="dgTitle">A running glimpse of DocAble — one object in, one object back</title>
@@ -26,20 +26,20 @@
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="980" height="430" fill="#fdfcf9"/>
+  <rect x="-45" y="0" width="1070" height="430" fill="#fdfcf9"/>
 
   <!-- edges drawn UNDER nodes: tails run inside source (fill caps), directed heads seat on target perimeter -->
   <!-- edge: input -> docable -->
-  <path d="M260,243 L378,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
+  <path d="M288,243 L378,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
   <!-- edge: docable -> output -->
   <path d="M580,243 L718,243" fill="none" stroke="#1c1917" stroke-width="2.4" marker-end="url(#dg-ah)"/>
 
   <text x="490" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">A running glimpse of DocAble</text>
-  <text x="490" y="70" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">One object in, one object back — the kind of production system these ideas govern.</text>
+  <text x="490" y="70" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">One object in, one object back.</text>
 
   <!-- ================= INPUT: an inaccessible document ================= -->
-  <rect id="input" x="110" y="140" width="150" height="170" rx="6" fill="#ffffff" stroke="#b23b3b" stroke-width="2.5"/>
-  <path d="M244,140 L260,156 L244,156 Z" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
+  <rect id="input" x="82" y="140" width="206" height="170" rx="6" fill="#ffffff" stroke="#b23b3b" stroke-width="2.5"/>
+  <path d="M272,140 L288,156 L272,156 Z" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.5"/>
   <!-- illegible text bars -->
   <rect x="126" y="166" width="92" height="7" rx="2" fill="#cfc9c0"/>
   <rect x="126" y="182" width="118" height="7" rx="2" fill="#cfc9c0"/>
@@ -48,13 +48,13 @@
   <rect x="87.51" y="214" width="194.99" height="46" rx="3" fill="#f6f4ef" stroke="#b23b3b" stroke-width="1.4" stroke-dasharray="4 3"/>
   <text x="185" y="242" text-anchor="middle" font-size="19.6" font-style="italic" fill="#b23b3b">image — no alt text</text>
   <!-- status pill -->
-  <rect x="126" y="278" width="118" height="20" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.4"/>
+  <rect x="120" y="278" width="130" height="20" rx="10" fill="#fbeaea" stroke="#b23b3b" stroke-width="1.4"/>
   <text x="185" y="292" text-anchor="middle" font-size="19.6" font-weight="700" fill="#b23b3b">not accessible</text>
   <!-- warning badge -->
-  <circle cx="250" cy="140" r="13" fill="#b23b3b"/>
-  <text x="250" y="145" text-anchor="middle" font-size="19.6" font-weight="700" fill="#ffffff">!</text>
+  <circle cx="272" cy="153" r="13" fill="#b23b3b"/>
+  <text x="272" y="158" text-anchor="middle" font-size="19.6" font-weight="700" fill="#ffffff">!</text>
   <!-- label -->
-  <text x="185" y="336" text-anchor="middle" font-size="19.6" font-weight="700" fill="#b23b3b">an inaccessible document</text>
+  <text x="185" y="336" text-anchor="middle" font-size="19.6" font-weight="700" fill="#b23b3b">inaccessible document</text>
   <text x="185" y="357" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">unlabeled images · untagged · no reading order</text>
 
   <!-- ================= DocAble: the closed box ================= -->
@@ -62,7 +62,6 @@
   <text x="480" y="235" text-anchor="middle" font-size="26" font-weight="700" fill="#2f5169">DocAble</text>
   <text x="480" y="260" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">the production system</text>
   <text x="480" y="279" text-anchor="middle" font-size="19.6" fill="#57534e">scholaccess.com</text>
-  <text x="480" y="312" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">what it does — not yet how</text>
 
   <!-- arrow labels (paths themselves drawn under nodes, above) -->
   <text x="319" y="233" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">upload</text>
@@ -80,15 +79,13 @@
   <rect x="698.96" y="214" width="192.08" height="46" rx="3" fill="#eef7ee" stroke="#1f7a4d" stroke-width="1.4"/>
   <text x="795" y="242" text-anchor="middle" font-size="19.6" font-style="italic" fill="#1f7a4d">image — described</text>
   <!-- evidence pill -->
-  <rect x="736" y="278" width="118" height="20" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.4"/>
+  <rect x="708" y="278" width="174" height="20" rx="10" fill="#e3f0e7" stroke="#1f7a4d" stroke-width="1.4"/>
   <text x="795" y="292" text-anchor="middle" font-size="19.6" font-weight="700" fill="#1f7a4d">✓ evidence record</text>
   <!-- check badge -->
-  <circle cx="860" cy="140" r="13" fill="#1f7a4d"/>
-  <path d="M853,140 l4,4 l7,-8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="866" cy="153" r="13" fill="#1f7a4d"/>
+  <path d="M859,153 l4,4 l7,-8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
   <!-- label -->
-  <text x="795" y="336" text-anchor="middle" font-size="19.6" font-weight="700" fill="#1f7a4d">an accessible document + evidence</text>
+  <text x="795" y="336" text-anchor="middle" font-size="19.6" font-weight="700" fill="#1f7a4d">accessible document + evidence</text>
   <text x="795" y="357" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">tagged · reading order · every fix explained</text>
 
-  <!-- caption -->
-  <text x="490" y="400" text-anchor="middle" font-size="19.6" font-style="italic" fill="#57534e">Here is the kind of production system these ideas govern — what it does, not yet how.</text>
 </svg>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Fig 1.3-1 NEW (part1-copyedit-260815; folds to book/assets/agentic-substrate.svg).
-     "The agentic substrate." Two supplying columns converge on the agent, which in turn acts on the
+     "Agentic machinery and environment." Two supplying columns converge on the agent, which in turn acts on the
      engineered environment.
        FOUNDATION MODEL (blue = model palette) — semantic reasoning, probabilistic output, bounded
                         working state, cheap repeated reasoning.
@@ -12,7 +12,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600"
      role="img" aria-labelledby="asTitle asDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="asTitle">The agentic substrate</title>
+  <title id="asTitle">Agentic machinery and environment</title>
   <desc id="asDesc">Two columns supply the agent. The foundation model contributes semantic reasoning,
     probabilistic output, a bounded working state, and cheap repeated reasoning. The agentic harness
     contributes tool-mediated action, interposition, lifecycle visibility, and parallel execution. Both
@@ -27,7 +27,7 @@
   </defs>
 
   <rect x="0" y="0" width="1000" height="600" fill="#fdfcf9"/>
-  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">The agentic substrate</text>
+  <text x="500" y="38" text-anchor="middle" font-size="24" font-weight="700" fill="#1c1917">Agentic machinery and environment</text>
 
   <!-- ===== LEFT column: foundation model (blue) ===== -->
   <rect id="foundation-model" x="60" y="72" width="400" height="242" rx="12" fill="#eef2f6" stroke="#2f5169" stroke-width="2.6"/>

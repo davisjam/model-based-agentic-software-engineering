@@ -1,6 +1,6 @@
 <!-- part-foreshadows: abundant-implementation, govern-the-environment -->
-Engineering reorganizes when a constraint moves.[note: The intuition is familiar from Amdahl's law: accelerating one part of a computation increases the relative importance of the work that remains [cite: amdahl1967]. Goldratt's Theory of Constraints states the broader operational version: system performance is governed by a constraint, and improving that constraint eventually moves attention to another [cite: goldratt1984]. The same constraint logic applies to software-engineering economics.] Steam radically reduced the cost of mechanical power;
-integrated circuits did the same for computation. Coding agents are now reducing the cost of software
+Engineering reorganizes when a constraint moves.[note: The intuition is familiar from Amdahl's law: accelerating one part of a computation increases the relative importance of the work that remains [cite: amdahl1967]. Goldratt's Theory of Constraints states the broader operational version: system performance is governed by a constraint, and improving that constraint eventually moves attention to another [cite: goldratt1984]. The same constraint logic applies to software-engineering economics.] Steam radically reduced the cost of mechanical power.
+Integrated circuits did the same for computation. Coding agents are now reducing the cost of software
 implementation. A scarce factor constrains
 output, so it draws investment and attention. Implementation was never the only scarce input to
 software engineering, but for most of the field's history it consumed enough expert effort to
@@ -21,7 +21,7 @@ consequential engineering decisions authority across many changes.
 
 Abundance does not make implementation unimportant; it changes where additional engineering effort
 earns the greatest return. A factory with unlimited machine capacity and one inspector has not
-stopped manufacturing; inspection has become the throughput constraint. In software, agents can now
+stopped manufacturing. Inspection has become the throughput constraint. In software, agents can now
 produce changes faster than engineers can specify, understand, validate, and govern them. Models
 let later work reuse representations and judgments across many acts of implementation; validators and gates can
 likewise carry selected acceptance judgments forward. Engineering effort therefore moves toward deciding

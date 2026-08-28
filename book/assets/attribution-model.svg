@@ -54,7 +54,7 @@
   </g>
 
   <!-- secondary derived-uses tail label (line drawn under nodes, above) -->
-  <text x="362" y="266" font-size="14" font-style="italic" fill="#57534e">derived uses (secondary)</text>
+  <text x="362" y="266" font-size="14" font-style="italic" fill="#57534e">derived views</text>
   <rect id="derived-uses" x="215" y="280" width="270" height="42" rx="9" fill="#f6f4ef" stroke="#57534e" stroke-width="1.8"/>
   <text x="350" y="306" text-anchor="middle" font-size="14.5" fill="#1c1917">audit &#183; debugging &#183; changelog</text>
 

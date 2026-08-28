@@ -10,7 +10,7 @@
        all -> GATE, IF THE VERDICT SHOULD CONTROL ADMISSION
      Grayscale-survivable: every node labelled; the parallel three-way fork carries the calculus; hue only
      reinforces obligation (rust) vs machinery (gray) vs gate (green). Boxes first, labels last. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 610" width="1000" height="610"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640"
      role="img" aria-labelledby="mmpTitle mmpDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="mmpTitle">Match the mechanism to the property</title>
@@ -30,7 +30,7 @@
   </defs>
 
   <!-- ===== boxes (drawn first) ===== -->
-  <rect x="0" y="0" width="1000" height="610" fill="#fdfcf9"/>
+  <rect x="0" y="0" width="1000" height="640" fill="#fdfcf9"/>
 
   <!-- top: engineering obligation (rust) -->
   <rect id="obligation" x="320" y="26" width="360" height="58" rx="12" fill="#fbeee6" stroke="#9a3f12" stroke-width="3"/>
@@ -51,7 +51,7 @@
   <rect id="s-temporal" x="675" y="330" width="280" height="66" rx="9" fill="#faf9f6" stroke="#57534e" stroke-width="1.6"/>
 
   <!-- gate (green) -->
-  <rect id="gate" x="280" y="470" width="440" height="72" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
+  <rect id="gate" x="280" y="500" width="440" height="72" rx="12" fill="#e3f0e7" stroke="#155c38" stroke-width="3"/>
 
   <!-- ===== arrows ===== -->
   <!-- edge: obligation -> q-exclude -->
@@ -76,11 +76,11 @@
   <line x1="815" y1="302" x2="815" y2="328" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
 
   <!-- edge: s-constraint -> gate -->
-  <path d="M302.5,396 L302.5,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M302.5,396 L302.5,498" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
   <!-- edge: s-explicit -> gate -->
-  <path d="M500,396 L500,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M500,396 L500,498" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
   <!-- edge: s-temporal -> gate -->
-  <path d="M697.5,396 L697.5,468" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
+  <path d="M697.5,396 L697.5,498" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#mmp-k)"/>
 
   <!-- ===== labels (drawn last, on top) ===== -->
   <text x="500" y="61" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="0.5" fill="#9a3f12">ENGINEERING OBLIGATION</text>
@@ -101,14 +101,12 @@
   <text x="185" y="352" text-anchor="middle" font-size="20" fill="#1c1917">structural prevention</text>
   <text x="185" y="370" text-anchor="middle" font-size="20" fill="#57534e">DB compare-and-set /</text>
   <text x="185" y="386" text-anchor="middle" font-size="20" fill="#57534e">closed transition</text>
-  <text x="500" y="352" text-anchor="middle" font-size="20" fill="#1c1917">state-space search</text>
-  <text x="500" y="370" text-anchor="middle" font-size="20" fill="#57534e">purpose-built model checker</text>
-  <text x="500" y="386" text-anchor="middle" font-size="20" fill="#57534e">(bounded explicit-state)</text>
-  <text x="815" y="358" text-anchor="middle" font-size="20" fill="#1c1917">temporal model checking</text>
-  <text x="815" y="380" text-anchor="middle" font-size="20" fill="#57534e">TLA+ / TLC where warranted</text>
+  <text x="500" y="360" text-anchor="middle" font-size="20" fill="#1c1917">state-space search</text>
+  <text x="500" y="380" text-anchor="middle" font-size="20" fill="#57534e">bounded state-space checker</text>
+  <text x="815" y="360" text-anchor="middle" font-size="20" fill="#1c1917">temporal model checker</text>
 
-  <text x="500" y="502" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">GATE, IF THE VERDICT</text>
-  <text x="500" y="525" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">SHOULD CONTROL ADMISSION</text>
+  <text x="500" y="532" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">GATE, IF THE VERDICT</text>
+  <text x="500" y="555" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">SHOULD CONTROL ADMISSION</text>
 
-  <text x="500" y="576" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Alternatives selected by the property &#8212; not stages on a maturity ladder.</text>
+  <text x="500" y="606" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Alternatives selected by the property &#8212; not stages on a maturity ladder.</text>
 </svg>

@@ -7,7 +7,7 @@
      Grammar: blue #2f5169 = declared edges and the services they connect (the decision model); the Internet
      node is gray #57534e as an external entity, not part of the declared internal flow. Hand-authored (a
      declared directed graph, not an auto-laid flowchart). -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" width="720" height="470"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="720" height="400"
      role="img" aria-labelledby="sfTitle sfDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="sfTitle">DocAble's service-flow model: which services may communicate</title>
@@ -75,7 +75,4 @@
   <rect id="ocr" x="245" y="332" width="110" height="46" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.2"/>
   <text x="300" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#2f5169">OCR</text>
 
-  <!-- footer: protect the point -->
-  <text x="360" y="418" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">An edge means the relationship belongs to the declared policy.</text>
-  <text x="360" y="442" text-anchor="middle" font-size="15" font-style="italic" fill="#57534e">An absent edge means the declared policy excludes the relationship; enforcement is separate.</text>
 </svg>

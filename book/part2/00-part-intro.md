@@ -10,17 +10,16 @@ can often perform cheaply.
 
 Agents did not create
 software engineering's reasoning problem. Scale did. The change is that
-implementation can now move much faster than the knowledge required to direct it. A human team can spend
-substantial effort reconstructing architecture, ownership, policy, and lifecycle from code and
-institutional memory; an agent fleet can spend that same effort over and over, once per task and once
-per fresh reasoning state. MAGE uses models to make reusable engineering knowledge durable by
+implementation can now move much faster than engineers can direct it. A human team may reconstruct
+architecture, ownership, policy, and lifecycle once. An agent fleet may reconstruct them again for every
+task and fresh reasoning state. MAGE uses models to make reusable engineering knowledge durable by
 preserving the relationships relevant to a question and suppressing the rest.
 
 This also begins the answer to the probabilistic problem from Part I. A reasoner asked to recover a
 consequential relation from raw implementation must infer it. A representation can make the relation
-explicit. That does not yet guarantee that the resulting system respects it, but it changes the
-engineering question from *can the agent reconstruct this correctly?* toward *can this property now be
-stated, analyzed, or checked directly?* A better representation can therefore improve a consequential
+explicit. That does not guarantee the system respects the relation. But it changes the question from
+*can the agent reconstruct this correctly?* to *can we state, analyze, or check this property directly?*
+A better representation can therefore improve a consequential
 judgment while also reducing how much reasoning and repeated reconstruction must be purchased to reach it.
 
 <!-- principlebox -->
@@ -85,8 +84,7 @@ Part III adds a fifth question: **what gives the property authority?** Modeling 
 explicit; Alignment gives selected properties consequence.
 
 <!-- point: part-2-hands-you-a-reusable-mental-toolbox | By the Part's end you hold a mental toolbox you can rebuild for your own system. | terms: model-zoo, scope-of-modeling, modeling-principle -->
-By the Part's end, the recurring pattern should be familiar: identify the concern, choose the model that
-exposes it, state the property, and connect that property to the quality attribute it serves. The final
-chapter, [System Knowledge: Connecting the Models](2.8-system-knowledge.html), steps back to show how the
-six connect as one substrate rather than a seventh model. By the end, you should be able to choose useful
-representations for a system of your own.
+The recurring pattern is: identify the concern, choose the model that exposes it, state the property, and
+connect it to the quality attribute it serves. The final chapter,
+[System Knowledge](2.8-system-knowledge.html), shows how the six models connect without becoming a seventh
+model. By the end, you should be able to choose useful representations for a system of your own.
