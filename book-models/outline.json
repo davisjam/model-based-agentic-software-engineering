@@ -1599,17 +1599,17 @@
             {
               "slug": "capital-earns-a-return-lower-marginal-engineering-cost",
               "text": "Capital earns a return: lower marginal engineering cost. Conversion is capital formation.",
-              "block_index": 41
+              "block_index": 40
             },
             {
               "slug": "capital-depreciates-so-accumulation-cannot-be-the-objective",
               "text": "Capital depreciates; maintenance, reconciliation, and retirement manage it, so accumulation cannot be the objective.",
-              "block_index": 43
+              "block_index": 42
             },
             {
               "slug": "debt-and-capital-are-symmetric-stocks-that-compound",
               "text": "Technical debt and engineering capital are symmetric stocks — both accumulate, both change the economics of later change, both compound.",
-              "block_index": 46
+              "block_index": 45
             }
           ]
         },
@@ -1619,52 +1619,52 @@
           "heading_text": "Where Authority Stops",
           "topic_sentence": "Not every quality goal should end in authoritative enforcement.",
           "id_source": "derived",
-          "block_index": 48,
+          "block_index": 47,
           "points": [
             {
               "slug": "where-a-goal-lands-turns-on-three-questions-starting-with-explicit-in-usable-form",
               "text": "Where a goal lands turns on three questions; the first is whether the obligation is explicit in a form the environment can use.",
-              "block_index": 50
+              "block_index": 49
             },
             {
               "slug": "the-residual-is-an-obligation-nobody-made-explicit-enough-for-the-environment-to-use",
               "text": "The residual is an obligation nobody made explicit enough for the environment to use.",
-              "block_index": 53
+              "block_index": 52
             },
             {
               "slug": "an-explicit-obligation-may-still-resist-cheap-mechanical-evaluation",
               "text": "An explicit obligation may still resist cheap mechanical evaluation — an honest boundary, not failed Alignment.",
-              "block_index": 56
+              "block_index": 55
             },
             {
               "slug": "observed-only-is-explicit-and-evaluated-but-un-gated-because-a-gate-is-a-commitment",
               "text": "Evaluated only: explicit and evaluated, yet un-gated — because a gate is a commitment.",
-              "block_index": 58
+              "block_index": 57
             },
             {
               "slug": "a-governed-obligation-carries-an-authoritative-consequence-appropriate-to-its-risk",
               "text": "A governed obligation carries an authoritative consequence appropriate to the engineering decision; the four states are a design space, not a ladder.",
-              "block_index": 60
+              "block_index": 59
             },
             {
               "slug": "stronger-alignment-is-not-narrower-tolerance",
               "text": "Making a tolerance explicit does not mean tightening it; stronger Alignment means dependable authority over the obligation engineering chose, not a narrower acceptable set.",
-              "block_index": 62
+              "block_index": 61
             },
             {
               "slug": "three-different-reasons-non-enforcement-is-sometimes-the-engineered-result",
               "text": "An obligation can stop short of a gate for three different reasons; non-enforcement is sometimes the engineered result.",
-              "block_index": 64
+              "block_index": 63
             },
             {
               "slug": "the-mechanism-that-discovers-need-not-carry-the-authority",
               "text": "The mechanism that discovers an obligation need not be the one that carries its authority; Part IV follows that migration.",
-              "block_index": 66
+              "block_index": 65
             },
             {
               "slug": "the-point-is-not-the-rightmost-leaf-it-is-knowing-where-each-obligation-sits-and-why",
               "text": "The point is not to drive every obligation to the rightmost leaf; it is to know where each sits and why — and conversion has now created an estate to govern.",
-              "block_index": 68
+              "block_index": 67
             }
           ]
         }
