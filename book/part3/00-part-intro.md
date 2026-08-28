@@ -43,5 +43,5 @@ can do; sensors produce evidence of what it did; validators judge that evidence 
 gates decide what may advance. Some mechanisms can be designed before work begins. Others emerge when a
 failure exposes something the environment did not represent, observe, evaluate, or control. Those lessons
 can become durable engineering structure. When later work benefits from that structure, it
-becomes engineering capital. Once the control estate becomes consequential, it too becomes an engineering
+becomes engineering capital. Once the control machinery becomes consequential, it too becomes an engineering
 object.

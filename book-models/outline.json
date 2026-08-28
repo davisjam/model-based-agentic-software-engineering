@@ -1687,17 +1687,17 @@
           "heading_text": "Catalogue the Controls",
           "topic_sentence": "Start by giving each control a stable identity: the event or boundary at which it acts, the resources it reads or changes, the obligation or failure class that justifies it, and its authority role or roles.",
           "id_source": "derived",
-          "block_index": 7,
+          "block_index": 6,
           "points": [
             {
               "slug": "the-catalogue-gives-each-control-a-stable-identity",
               "text": "Catalogue each control: a stable identity, the boundary it acts at, the resources it touches, the obligation it serves, and its authority role.",
-              "block_index": 9
+              "block_index": 8
             },
             {
               "slug": "a-catalogue-alone-cannot-show-conflict-or-a-missing-control",
               "text": "A catalogue alone cannot tell you whether two sensible controls conflict, nor whether an important obligation has no control; those are relational questions.",
-              "block_index": 11
+              "block_index": 10
             }
           ]
         },
@@ -1707,37 +1707,37 @@
           "heading_text": "Model Interactions Between Controls",
           "topic_sentence": "Two collisions from the case study make it concrete.",
           "id_source": "derived",
-          "block_index": 13,
+          "block_index": 12,
           "points": [
             {
               "slug": "each-collision-lives-in-the-space-between-two-controls-drawn-nowhere",
               "text": "A collision lives between two controls, drawn nowhere until the graph draws it.",
-              "block_index": 15
+              "block_index": 14
             },
             {
               "slug": "the-interaction-graph-joins-controls-by-shared-resource",
               "text": "The interaction graph uses controls as nodes and shared resources as the principal join key; controls need not call one another to collide.",
-              "block_index": 18
+              "block_index": 17
             },
             {
               "slug": "docable-implemented-governance-graph-is-intentionally-partial",
-              "text": "DocAble's implemented governance graph is intentionally partial — a small high-value slice of a larger estate, not comprehensive coverage.",
-              "block_index": 20
+              "text": "DocAble's implemented governance graph is intentionally partial — a small high-value slice of the larger machinery, not comprehensive coverage.",
+              "block_index": 19
             },
             {
               "slug": "shared-resource-is-a-useful-conservative-relation-not-a-proof-of-completeness",
               "text": "Shared resource is a useful conservative relation, not a proof that the graph captured every interaction.",
-              "block_index": 22
+              "block_index": 21
             },
             {
               "slug": "decidable-edges-a-lint-settles-semantic-ones-a-validator-or-human-judges",
               "text": "Some candidate conflicts are mechanically decidable; others are semantic — a sensor produces evidence of the interaction, a validator or human judges whether it is a conflict.",
-              "block_index": 24
+              "block_index": 23
             },
             {
               "slug": "the-graph-makes-mechanisms-compose-explicit-and-checkable",
               "text": "A governed environment is a claim that its mechanisms compose; the graph makes that claim explicit and checkable at authoring time.",
-              "block_index": 26
+              "block_index": 25
             }
           ]
         },
@@ -1745,24 +1745,24 @@
           "section_id": "trace-obligations-to-mechanisms",
           "level": 2,
           "heading_text": "Trace Obligations to Mechanisms",
-          "topic_sentence": "Interactions are only half of governing the control estate.",
+          "topic_sentence": "Interactions are only half of governing the control machinery.",
           "id_source": "derived",
-          "block_index": 28,
+          "block_index": 27,
           "points": [
             {
               "slug": "a-catalogue-and-a-graph-do-not-say-what-should-be-governed-but-is-not",
               "text": "A catalogue says what exists and a graph says where controls collide; neither says what should be governed but is not.",
-              "block_index": 30
+              "block_index": 29
             },
             {
               "slug": "coverage-is-a-requirements-traceability-problem-gap-vs-orphan",
               "text": "Coverage is a small requirements-traceability problem: an obligation with no adequate mechanism is under-governance; a mechanism with no obligation is an orphan.",
-              "block_index": 32
+              "block_index": 31
             },
             {
               "slug": "gap-is-under-governance-orphan-is-governance-debt-neither-automatically-bad",
               "text": "A gap is under-governance; an orphan is candidate governance debt. Neither is automatically bad — an orphan is a finding to reconcile, not proof to delete.",
-              "block_index": 35
+              "block_index": 34
             }
           ]
         },
@@ -1772,27 +1772,27 @@
           "heading_text": "Add, Reconcile, and Retire Controls",
           "topic_sentence": "Governance conversion and coverage auditing work in opposite directions.",
           "id_source": "derived",
-          "block_index": 38,
+          "block_index": 37,
           "points": [
             {
               "slug": "conversion-is-reactive-coverage-is-proactive-a-healthy-environment-needs-both",
               "text": "Governance conversion is reactive and coverage auditing is proactive; a healthy environment needs both.",
-              "block_index": 40
+              "block_index": 39
             },
             {
               "slug": "the-same-audit-pushes-against-permanent-accumulation-capital-is-not-the-number-of-controls",
               "text": "The same audit pushes against permanent accumulation: engineering capital is not the number of controls.",
-              "block_index": 42
+              "block_index": 41
             },
             {
               "slug": "the-meta-model-stays-connected-where-controls-are-modeled-explicitly",
               "text": "Where DocAble models controls explicitly, entries can be anchored to their implementations and drift-checked, so a mis-placed control fails loud.",
-              "block_index": 44
+              "block_index": 43
             },
             {
               "slug": "stop-the-recursion-unless-experience-earns-more-model-the-estate-that-exists",
               "text": "Stop the recursion unless experience earns more: a governance model can itself become bureaucracy.",
-              "block_index": 46
+              "block_index": 45
             }
           ]
         }
@@ -1800,18 +1800,18 @@
       "preamble_points": [
         {
           "slug": "every-control-reasonable-alone-the-system-of-controls-still-wrong",
-          "text": "Every control can be reasonable in isolation while the control estate as a whole remains inconsistent, incomplete, or obsolete.",
+          "text": "Every control can be reasonable in isolation while the control machinery as a whole remains inconsistent, incomplete, or obsolete.",
           "block_index": 1
         },
         {
           "slug": "successful-environments-accumulate-machinery-so-the-estate-is-a-portfolio-to-manage",
-          "text": "Governance conversion and ex ante design accumulate machinery; that estate becomes an engineering object — a portfolio of capital assets to manage.",
+          "text": "Governance conversion and ex ante design accumulate control machinery; that machinery becomes an engineering object to maintain, reconcile, and sometimes retire.",
           "block_index": 3
         },
         {
           "slug": "alignment-turned-on-itself-a-model-of-the-controls-made-binding-on-the-controls",
           "text": "Alignment turned on itself: a model of the controls, made binding on the controls.",
-          "block_index": 5
+          "block_index": 4
         }
       ]
     },
