@@ -233,7 +233,7 @@
     },
     {
       "id": "H1-failure-class-exposure",
-      "name": "Determinization frontier",
+      "name": "Representation-induced determinization",
       "family": "Representation",
       "core_quantity": "semantic judgment → repeatable predicate",
       "statement": "For some system-level obligations, changing from raw implementation to an explicit representation of the relevant state or relation will make a repeatable predicate feasible where per-change evaluation over the implementation otherwise requires semantic reconstruction.",
