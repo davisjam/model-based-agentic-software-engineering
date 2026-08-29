@@ -3,7 +3,7 @@
   "_note": "The chapter-identity model is the book's surrogate-key dimension table — one frozen number-free `label` per chapter file, plus the mutable `filename`. `number` derives from the filename's N.M- prefix; `title` derives from the file's <!-- chapter-title: --> comment. Every other book-model joins on `label`, never a filename or number, so a reorg edits one field here and all downstream refs stay valid. The bijection check (verify) holds label uniqueness, filename-on-disk, asymmetric outline coverage, and number/title derivability; the conformance sensor (check) holds each chapter's template shape + a dangling-label backstop over the migrated downstream models.",
   "_counts": {
     "chapters": 42,
-    "outline_chapters": 37
+    "outline_chapters": 36
   },
   "chapters": [
     {
