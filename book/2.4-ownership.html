@@ -853,66 +853,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 </svg><figcaption data-short="In-flight ownership model"><span class="fig-label">Figure 2.4-1.</span> <em>In-flight ownership model.</em> A current claim records owner, epoch, and lifetime. Merge releases the claim; expiry makes it reclaimable. The model distinguishes a live claim from a stale one without representing the storage machinery that implements the lease.</figcaption></figure>
 <p>The model also exposes an important distinction. The lease helps the system represent active ownership and recover work whose apparent owner has disappeared. It is <em>not</em> the final authority for performing a consequential side effect. Durable compare-and-set logic underneath the lease prevents a stale claimant from repeating an already-authorized effect. A slow worker may therefore lose its lease and cause the work to be redelivered without allowing the new claimant to repeat an already-authorized effect.</p>
 <p>The difficult ownership failures do not necessarily appear in any one transition. They emerge from interleavings. Suppose one worker holds epoch 7, appears stale, and is reclaimed. Another receives epoch 8. The original worker then wakes and attempts a late release using its old claim. Every individual action may be locally reasonable. The engineering question is whether their composition can destroy the current owner's lease or otherwise leave the system in an invalid state.</p>
-<p>The ownership model reduces that question to a finite state space: owner, epoch, lifecycle state, reclaim, and release are the relevant variables and moves. The implementation may involve databases, queues, Lua, workers, and timers, but those details need not all enter the model. The reduction lets us explore directly the interleavings that can preserve or violate the ownership property. <a class="xref" href="2.4-ownership.html#fig-2-4-2">Figure&nbsp;2.4-2</a> follows one such sequence to the fork an epoch fence closes.</p>
-<figure id="fig-2-4-2" class="book-figure" data-label="lease-interleaving-trace"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470"
-     role="img" aria-labelledby="f-lease-interleaving-trace-litTitle f-lease-interleaving-trace-litDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-lease-interleaving-trace-litTitle">Why ownership becomes an interleaving problem</title>
-  <desc id="f-lease-interleaving-trace-litDesc">A vertical state trace. Worker A owns epoch 7. Its lease appears stale, so the system
-    reclaims it and issues epoch 8 to worker B. Worker A is still alive and wakes to attempt a late clear
-    with its old epoch 7. Without an epoch fence, that stale clear may clear worker B's current lease, a
-    forbidden outcome. With an epoch fence, the stale clear is inapplicable to the current claim and
-    becomes a no-op.</desc>
-
-  <defs>
-    <marker id="f-lease-interleaving-trace-lit-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8"
-            orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#1c1917"/>
-    </marker>
-  </defs>
-
-  <!-- ===== boxes (drawn first) ===== -->
-  <rect x="0" y="0" width="1000" height="470" fill="#fdfcf9"/>
-
-  <!-- trace states (blue) -->
-  <rect id="f-lease-interleaving-trace-s1" x="310" y="26" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <rect id="f-lease-interleaving-trace-s2" x="310" y="118" width="380" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <rect id="f-lease-interleaving-trace-s3" x="297.2" y="210" width="405.6" height="52" rx="10" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-
-  <!-- fork outcomes -->
-  <rect id="f-lease-interleaving-trace-fl" x="80" y="330" width="400" height="86" rx="10" fill="#fbeee6" stroke="#9a3f12" stroke-width="2.8"/>
-  <rect id="f-lease-interleaving-trace-fr" x="520" y="330" width="400" height="86" rx="10" fill="#e3f0e7" stroke="#155c38" stroke-width="2.8"/>
-
-  <!-- ===== arrows ===== -->
-  <!-- edge: s1 -> s2 -->
-  <line x1="500" y1="78" x2="500" y2="116" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
-  <!-- edge: s2 -> s3 -->
-  <line x1="500" y1="170" x2="500" y2="208" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
-  <!-- fork from s3 to two outcomes: one path per branch, sharing the trunk pixels -->
-  <!-- edge: s3 -> fl -->
-  <path d="M395,262 L395,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
-  <!-- edge: s3 -> fr -->
-  <path d="M605,262 L605,328" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#f-lease-interleaving-trace-lit-k)"/>
-
-  <!-- ===== labels (drawn last, on top) ===== -->
-  <text x="500" y="58" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">worker A owns epoch 7</text>
-  <text x="500" y="150" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">reclaim + issue epoch 8 to worker B</text>
-  <text x="500" y="242" text-anchor="middle" font-size="20" font-weight="700" fill="#1c1917">worker A attempts late clear(epoch 7)</text>
-
-  <!-- side labels on the vertical steps (free text, in the gaps) -->
-  <text x="516" y="102" font-size="20" font-style="italic" fill="#57534e">lease appears stale</text>
-  <text x="516" y="194" font-size="20" font-style="italic" fill="#57534e">A is still alive</text>
-
-  <!-- fork branch labels -->
-  <text x="280" y="360" text-anchor="middle" font-size="20" font-weight="700" fill="#9a3f12">without epoch fence</text>
-  <text x="280" y="392" text-anchor="middle" font-size="20" fill="#1c1917">may clear B&#8217;s current lease &#10007;</text>
-
-  <text x="720" y="360" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">with epoch fence</text>
-  <text x="720" y="392" text-anchor="middle" font-size="20" fill="#1c1917">stale clear is a no-op &#10003;</text>
-</svg><figcaption data-short="Why ownership becomes an interleaving problem"><span class="fig-label">Figure 2.4-2.</span> <em>Why ownership becomes an interleaving problem.</em> Reclaim and reissue can overlap a stale holder's late release. An epoch fence makes the old holder's release inapplicable to the current claim.</figcaption></figure>
+<p>The ownership model reduces that question to a finite state space: owner, epoch, lifecycle state, reclaim, and release are the relevant variables and moves. The implementation may involve databases, queues, Lua, workers, and timers, but those details need not all enter the model. The reduction lets us explore directly the interleavings that can preserve or violate the ownership property. If the stale worker wakes and attempts a late release using epoch 7, that release must not clear the current owner's epoch-8 claim. The epoch makes the distinction mechanically visible: a release from an old claim is inapplicable to the current one.</p>
 <p><strong>Recovery is not permission.</strong> That distinction will matter in Part III: the same represented state can support different authority decisions.</p>
-<p>The lease also shows that model classes overlap. Active leases can be counted to estimate demand, so the same representation contributes to an ownership question — <em>who controls this work?</em> — and a measurement question — <em>how much work is genuinely in flight?</em> <a class="xref" href="2.4-ownership.html#fig-2-4-3">Figure&nbsp;2.4-3</a> draws that overlap: one represented fact fanning out into ownership, behavioral, and measurement views. The categories in this Part classify engineering questions, not mutually exclusive data structures.</p>
-<figure id="fig-2-4-3" class="book-figure" data-label="in-flight-lease-overlap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350"
+<p>The lease also shows that model classes overlap. Active leases can be counted to estimate demand, so the same representation contributes to an ownership question — <em>who controls this work?</em> — and a measurement question — <em>how much work is genuinely in flight?</em> <a class="xref" href="2.4-ownership.html#fig-2-4-2">Figure&nbsp;2.4-2</a> draws that overlap: one represented fact fanning out into ownership, behavioral, and measurement views. The categories in this Part classify engineering questions, not mutually exclusive data structures.</p>
+<figure id="fig-2-4-2" class="book-figure" data-label="in-flight-lease-overlap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350"
      role="img" aria-labelledby="f-in-flight-lease-overlap-ilTitle f-in-flight-lease-overlap-ilDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-in-flight-lease-overlap-ilTitle">One shared lease state answers ownership, behavioral, and measurement questions</title>
@@ -961,5 +905,5 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
 
   <!-- footer: protect the overlap point -->
   <text x="360" y="322" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">One represented state, several engineering questions.</text>
-</svg><figcaption data-short="Model classes overlap"><span class="fig-label">Figure 2.4-3.</span> <em>Model classes overlap.</em> The same lease state supports ownership, behavioral, and measurement questions. The classes distinguish purpose, not storage objects.</figcaption></figure>
+</svg><figcaption data-short="Model classes overlap"><span class="fig-label">Figure 2.4-2.</span> <em>Model classes overlap.</em> The same lease state supports ownership, behavioral, and measurement questions. The classes distinguish purpose, not storage objects.</figcaption></figure>
 <p>The next chapter turns from <em>who holds the work</em> to <em>who is permitted to act</em> — the declared decisions a system makes about which of its parts may reach which.</p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">« Beginning of part</a><a href="2.3-behavioral.html" aria-label="Previous chapter — 7 · Behavioral Models: What May Happen?">« Previous chapter</a></div><span class="chapnav-here" title="8 · Ownership Models: Who Controls What, and When?">8 · Ownership Models: Who Controls What, and When?</span><div class="chapnav-fwd"><a href="2.5-decision.html" aria-label="Next chapter — 9 · Decision Models: What Is Allowed?">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — Alignment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>

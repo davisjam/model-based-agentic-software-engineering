@@ -840,85 +840,10 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="340" y="408" text-anchor="middle" font-size="15" font-style="italic" fill="#9a3f12">The fallback artifact must become durable before database state may refer to it.</text>
 </svg><figcaption data-short="Recovery-ordering model"><span class="fig-label">Figure 2.3-1.</span> <em>Recovery-ordering model.</em> The fallback artifact must become durable before database state may refer to it. The load-bearing fact is the absent transition from FALLBACK_STAGED directly to DB_UPDATED.</figcaption></figure>
 <p>The production implementation encodes this model as an explicit transition relation. That encoding can be executed, tested, and checked. But the model is not the transition-table syntax. The implementation contains uploads, exceptions, retries, logging, persistence, and other concerns. The model removes them to preserve one property: <strong>the fallback artifact becomes durable before database state may refer to it.</strong></p>
-<p>Executability does not change the underlying abstraction. It lets machines run, test, and check the representation without changing the reduction it expresses. <a class="xref" href="2.3-behavioral.html#fig-2-3-2">Figure&nbsp;2.3-2</a> reads top to bottom: the engineering question yields the reduced model, the model is realized as an explicit legal-transition relation, and only beneath that sits the implementation of uploads, persistence, retries, and error handling.</p>
-<figure id="fig-2-3-2" class="book-figure" data-label="model-first-encoding-second"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560"
-     role="img" aria-labelledby="f-model-first-encoding-second-mfTitle f-model-first-encoding-second-mfDesc"
-     font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="f-model-first-encoding-second-mfTitle">Model first, encoding second: the model is the legal-transition relation, not its syntax</title>
-  <desc id="f-model-first-encoding-second-mfDesc">A vertical ladder of four layers. The engineering question: can durable state name an
-    artifact recovery has not yet published? The model: a legal chain from STAGED to UPLOADED to DB_UPDATED,
-    with a forbidden bypass edge from STAGED directly to DB_UPDATED. The encoding: an explicit
-    legal-transition relation. The implementation: upload, persistence, retry, logging, error handling. The
-    model is the reduced relation, distinct from the syntax and code that encode it.</desc>
-
-  <defs>
-    <marker id="f-model-first-encoding-second-mf-b" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2f5169"/>
-    </marker>
-    <marker id="f-model-first-encoding-second-mf-k" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8.5" markerHeight="8.5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#57534e"/>
-    </marker>
-    <marker id="f-model-first-encoding-second-mf-r" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#9a3f12"/>
-    </marker>
-  </defs>
-
-  <!-- layer 1: engineering question (ink) -->
-  <!-- transparent anchor: the engineering question is the source node of the ladder -->
-  <rect id="f-model-first-encoding-second-question" x="110" y="16" width="460" height="48" fill="none" stroke="none"/>
-  <text x="340" y="30" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#1c1917">ENGINEERING QUESTION</text>
-  <text x="340" y="52" text-anchor="middle" font-size="14.5" font-style="italic" fill="#1c1917">Can durable state name an artifact recovery has not yet published?</text>
-  <!-- edge: question -> model -->
-  <line x1="340" y1="64" x2="340" y2="88" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
-
-  <!-- layer 2: MODEL (blue) -->
-  <rect id="f-model-first-encoding-second-model" x="70" y="90" width="540" height="150" rx="12" fill="#e7edf3" stroke="#2f5169" stroke-width="2.6"/>
-  <text x="94" y="116" font-size="14" font-weight="700" letter-spacing="1.2" fill="#2f5169">MODEL</text>
-  <!-- legal chain -->
-  <g font-size="15" font-weight="700" fill="#2f5169" text-anchor="middle">
-    <rect id="f-model-first-encoding-second-staged" x="92" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
-    <text x="152" y="157">STAGED</text>
-    <rect id="f-model-first-encoding-second-uploaded" x="280" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
-    <text x="340" y="157">UPLOADED</text>
-    <rect id="f-model-first-encoding-second-db-updated" x="468" y="132" width="120" height="40" rx="9" fill="#dae4ec" stroke="#2f5169" stroke-width="2"/>
-    <text x="528" y="157">DB_UPDATED</text>
-  </g>
-  <!-- edge: staged -> uploaded -->
-  <line x1="212" y1="152" x2="278" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
-  <!-- edge: uploaded -> db-updated -->
-  <line x1="400" y1="152" x2="466" y2="152" stroke="#2f5169" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-b)"/>
-  <!-- forbidden bypass STAGED -> DB_UPDATED (rust, struck-but-spanning) -->
-  <!-- edge-grammar: keep-angles -->
-  <!-- edge: staged .. db-updated -->
-  <path d="M152,172 C152,214 528,214 528,174" fill="none" stroke="#9a3f12" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#f-model-first-encoding-second-mf-r)"/>
-  <g stroke="#9a3f12" stroke-width="3.2" stroke-linecap="round">
-    <line x1="329" y1="200" x2="351" y2="222"/>
-    <line x1="351" y1="200" x2="329" y2="222"/>
-  </g>
-  <text x="340" y="234" text-anchor="middle" font-size="13.6" font-style="italic" fill="#9a3f12">may not skip publication</text>
-  <!-- edge: model -> encoding -->
-  <line x1="340" y1="240" x2="340" y2="268" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
-
-  <!-- layer 3: ONE EXECUTABLE REPRESENTATION (gray) -->
-  <rect id="f-model-first-encoding-second-encoding" x="150" y="270" width="380" height="52" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="340" y="294" text-anchor="middle" font-size="13.6" font-weight="700" letter-spacing="0.8" fill="#57534e">ONE EXECUTABLE REPRESENTATION</text>
-  <text x="340" y="313" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">explicit legal-transition relation</text>
-  <!-- edge: encoding -> implementation -->
-  <line x1="340" y1="322" x2="340" y2="350" stroke="#57534e" stroke-width="2.2" marker-end="url(#f-model-first-encoding-second-mf-k)"/>
-
-  <!-- layer 4: IMPLEMENTATION (gray) -->
-  <rect id="f-model-first-encoding-second-implementation" x="110" y="352" width="460" height="66" rx="10" fill="#f6f4ef" stroke="#57534e" stroke-width="2.2"/>
-  <text x="340" y="376" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.2" fill="#57534e">IMPLEMENTATION</text>
-  <text x="340" y="399" text-anchor="middle" font-size="14.5" font-style="italic" fill="#57534e">upload + persistence + retry + logging + error handling + &#8230;</text>
-
-  <!-- footer: protect the point -->
-  <text x="340" y="470" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">The behavioral model is the reduced legal-transition relation &#8212;</text>
-  <text x="340" y="492" text-anchor="middle" font-size="15.5" font-style="italic" fill="#1c1917">not the syntax used to encode it. Its value: making one temporal obligation explicit.</text>
-</svg><figcaption data-short="Model, representation, implementation"><span class="fig-label">Figure 2.3-2.</span> <em>Model, representation, implementation.</em> The engineering question determines a reduced temporal model. An explicit transition relation is one executable representation. The implementation adds the operational machinery omitted by the reduction.</figcaption></figure>
 <p>An explicit behavioral model does more than name legal transitions. It gives a checker an object over which larger behavioral claims can be stated. The simplest question is local: is this transition permitted? A transition primitive can answer that directly. A stronger question ranges over reachable states: can any legal sequence leave the system with two owners, a stale lease, or some other forbidden combination? Once the states and transitions are explicit, a checker can explore those sequences rather than waiting for a test author to guess the right one.</p>
 <p>Some properties are different again. "This state never occurs" is a safety claim: one counterexample trace is enough to refute it. "Every submitted job eventually terminates" is a liveness claim: no finite successful trace establishes that the system cannot remain stuck forever. Those questions may require different checkers, but the modeling move is the same: first define the behavioral model over which the property can be stated.</p>
-<p>A state machine can also support formal reasoning. The engineering objective is to make the relevant property explicit in a defined behavioral model so that an appropriate checker can evaluate it. <a class="xref" href="2.3-behavioral.html#fig-2-3-3">Figure&nbsp;2.3-3</a> places the three question classes side by side.</p>
-<figure id="fig-2-3-3" class="book-figure" data-label="behavioral-property-classes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
+<p>A state machine can also support formal reasoning. The engineering objective is to make the relevant property explicit in a defined behavioral model so that an appropriate checker can evaluate it. <a class="xref" href="2.3-behavioral.html#fig-2-3-2">Figure&nbsp;2.3-2</a> places the three question classes side by side.</p>
+<figure id="fig-2-3-2" class="book-figure" data-label="behavioral-property-classes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560"
      role="img" aria-labelledby="f-behavioral-property-classes-bpcTitle f-behavioral-property-classes-bpcDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="f-behavioral-property-classes-bpcTitle">Behavioral models expose different classes of properties</title>
@@ -1010,6 +935,6 @@ main.wrap.appendix h1 { text-transform: uppercase; letter-spacing: 0.015em; }
   <text x="500" y="431" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">EVIDENCE ABOUT BEHAVIOR</text>
 
   <text x="500" y="512" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">Same model family; different property, different checker.</text>
-</svg><figcaption data-short="Behavioral models expose different classes of properties"><span class="fig-label">Figure 2.3-3.</span> <em>Behavioral models expose different classes of properties.</em> A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question.</figcaption></figure>
+</svg><figcaption data-short="Behavioral models expose different classes of properties"><span class="fig-label">Figure 2.3-2.</span> <em>Behavioral models expose different classes of properties.</em> A transition relation can support local legality checks, reasoning over reachable states, or temporal claims over executions. The appropriate checker follows from the property; richer machinery is not automatically stronger for every question.</figcaption></figure>
 <p>The recovery ordering is a sharp slice of a larger behavioral model. A DocAble job also carries a full lifecycle — queued, leased, remediating, awaiting-merge, completed or failed — with its own legal transitions and its own invariants. The full lifecycle answers broader workflow questions; the three-state recovery ordering is the sharper reduction for crash-safe publication.</p>
 <p>The next chapter turns from <em>what may happen, and in what order</em>, to ownership: <em>who may hold the work while it happens, and for how long.</em></p><nav class="chapnav" aria-label="Chapter navigation"><div class="chapnav-back"><a href="index.html" aria-label="Table of contents">« Table of contents</a><a href="part-2-intro.html" aria-label="Beginning of Part 2 — Modeling">« Beginning of part</a><a href="2.2-structural.html" aria-label="Previous chapter — 6 · Structural Models: What Is Connected to What?">« Previous chapter</a></div><span class="chapnav-here" title="7 · Behavioral Models: What May Happen?">7 · Behavioral Models: What May Happen?</span><div class="chapnav-fwd"><a href="2.4-ownership.html" aria-label="Next chapter — 8 · Ownership Models: Who Controls What, and When?">Next chapter »</a><a href="part-3-intro.html" aria-label="Next part — Part 3 — Alignment">Next part »</a><a href="book-index.html" aria-label="Index of terms">Index »</a></div></nav><div class="book-foot">© James C. Davis, 2026–present</div></main></body></html>
