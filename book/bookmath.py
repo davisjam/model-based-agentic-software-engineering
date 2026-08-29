@@ -51,6 +51,8 @@ _SYMBOLS: dict[str, tuple[str, str]] = {
     "approx": ("≈", "approx"),
     "cup": ("∪", "union"),
     "cap": ("∩", "sect"),
+    "subset": ("⊂", "subset"),
+    "subseteq": ("⊆", "subset.eq"),
     "varepsilon": ("ε", "epsilon.alt"),
     "epsilon": ("ε", "epsilon"),
     "mapsto": ("↦", "arrow.r.bar"),

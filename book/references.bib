@@ -1098,6 +1098,32 @@
   urldate   = {2026-08-07},
 }
 
+% Uber's software-factory economics (Part V §5.5 reconstruction): >70% of PRs by local/cloud agents,
+% 3,600+ agent skills, 30K+ skill executions/day; Pareto model selection (cost/completed-task, quality,
+% reliability) against benchmarks from real workloads; subagents routed to cheaper models; outcome-
+% denominated cost (per merged PR/review/alert) + quality signals; code-mode subprocess token savings.
+@online{medisetty2026factory,
+  author    = {Medisetty, Uday Kiran},
+  title     = {Running a Software Factory Efficiently at Uber Scale},
+  year      = {2026},
+  publisher = {Uber Engineering},
+  url       = {https://www.uber.com/us/en/blog/efficient-software-factory/},
+  urldate   = {2026-08-29},
+}
+
+% GitLab "When Code Is Abundant" (Part V §5.5 reconstruction): as code becomes abundant the scarce problem
+% is trusting it; a durable layer of context/verification/governance around replaceable models and agents;
+% the Orbit context graph over code, work items, pipelines, deployments, and production signals; governance
+% around (not inside) the agent; up to 50x faster task execution.
+@online{staples2026abundant,
+  author    = {Staples, Bill},
+  title     = {When Code Is Abundant},
+  year      = {2026},
+  publisher = {GitLab},
+  url       = {https://about.gitlab.com/blog/when-code-is-abundant/},
+  urldate   = {2026-08-29},
+}
+
 % GitHub Applied Science — agent-driven development in Copilot (+28,858/-2,884 across 345 files in <3 days; "blame process, not agents").
 % Author surname per the citation key (best-effort; given name unverified).
 @online{mcgoffin2026appliedscience,
@@ -1507,6 +1533,20 @@
   year    = {2026},
   doi     = {10.1145/3807963},
   url     = {https://doi.org/10.1145/3807963},
+}
+
+% Storey's Triple Debt: implementation technical debt is one of three interacting debts (cognitive,
+% intent); GenAI accelerates all three. Cited in Part VI §6.1 (engineering-capital vs debt analogy).
+% Published ACM Queue 24(3), 2026. DOI 10.1145/3807966.
+@article{storey2026,
+  author  = {Storey, Margaret-Anne},
+  title   = {From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of {AI}},
+  journal = {Queue},
+  volume  = {24},
+  number  = {3},
+  year    = {2026},
+  doi     = {10.1145/3807966},
+  url     = {https://doi.org/10.1145/3807966},
 }
 
 % Contemporary developer-activity decomposition: sixteen activity classes; ~11% of the actual week in

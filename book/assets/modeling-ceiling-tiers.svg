@@ -18,7 +18,7 @@
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
   <title id="mctTitle">The modeling ceiling in three tiers: where the source evidence concentrates</title>
   <desc id="mctDesc">Three stacked tiers of modeling, drawn bottom to top. Tier 1, Engineering knowledge,
-    is green and holds topology, ownership, policy, infrastructure, lineage, and context; the five
+    is green and holds topology, ownership, policy, infrastructure, lineage, context, and skills; the seven
     software-first sources concentrate here. Tier 2, Executable system models, is a warm neutral and holds
     behavior, process, scenarios, invariants, and traceability; Siemens clearly reaches this tier from a
     model-first engineering tradition. Tier 3, Checked correspondence, is rust and holds mechanical checks
@@ -59,7 +59,7 @@
   <text x="94" y="402" font-size="20" font-weight="700" letter-spacing="1" fill="#155c38">TIER 1</text>
   <text x="176" y="402" font-size="20" font-weight="700" fill="#1c1917">Engineering knowledge</text>
   <text x="94" y="432" font-size="20" fill="#57534e">topology · ownership · policy · infrastructure ·</text>
-  <text x="94" y="454" font-size="20" fill="#57534e">lineage · context</text>
+  <text x="94" y="454" font-size="20" fill="#57534e">lineage · context · skills</text>
   <rect x="706" y="364" width="244" height="112" rx="10" fill="#eef7f0" stroke="#1f7a4d" stroke-width="1.8"/>
   <text x="828" y="406" text-anchor="middle" font-size="20" font-weight="700" fill="#155c38">Software-first sources</text>
   <text x="828" y="430" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">concentrate here —</text>

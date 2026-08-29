@@ -5,20 +5,22 @@
      organization begins with a different problem and invests in a different part of the agentic engineering
      environment. Presented as a four-column table: Organization | Starting problem | Investment | Emphasis,
      one row per source, badge-coloured by the house semantic language: rust for governance/alignment
-     emphasis, green for modeling/knowledge emphasis. A final synthesis band reads "MAGE — the vocabulary
+     emphasis, green for modeling/knowledge emphasis. Uber and GitLab (added this pass) span both poles, so
+     their badges use the green->rust synthesis gradient. A final synthesis band reads "MAGE — the vocabulary
      used here to compare", NOT "the whole landscape": the bottom band is the measuring vocabulary, not a
-     seventh, superior case. Caption says the figure locates emphasis and does NOT rank maturity or claim any
-     source implements the complete method.
+     ninth, superior case. Caption says the figure locates emphasis and does NOT rank maturity or claim any
+     source implements the complete method. (File name kept as six-entry-points.svg though the figure now
+     shows eight rows — the label/ref key is stable; the reader-facing title + caption say "Eight".)
      Palette: Umber Monograph tokens (ink #1c1917 names, muted #57534e cells + captions, governed green
      #1f7a4d/#155c38 modeling/knowledge badges + tints #e3f0e7/#eef7f0, accent #9a3f12 governance/alignment
      badges + tint #faf1e6, rule #e4e0d8, page #fdfcf9). Cell + header fonts at the 20-26 band at the 1000px
      reference so every cell label and column header sits at or above the 8pt print floor. -->
 <!-- semantic-families: governance, modeling, neutral -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 820" width="1000" height="820"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 988" width="1000" height="988"
      role="group" aria-labelledby="sepTitle sepDesc"
      font-family="'Source Sans 3', -apple-system, 'Segoe UI', sans-serif">
-  <title id="sepTitle">Six entry points into a shared design space: where each organization begins and where it invests</title>
-  <desc id="sepDesc">A table of six industrial systems, each entering the agentic engineering design space
+  <title id="sepTitle">Eight entry points into a shared design space: where each organization begins and where it invests</title>
+  <desc id="sepDesc">A table of eight industrial systems, each entering the agentic engineering design space
     through a different problem and investing in a different part of the environment. Cloudflare begins from
     institutional policy and invests in machine-readable requirements and review mechanisms — a governance
     emphasis. Spotify begins from fleet-scale change and invests in targeting, verification, and admission —
@@ -27,10 +29,15 @@
     invests in scoped roles, tools, and evaluation — a governance emphasis. Siemens begins from model-first
     engineering and invests in persistent executable engineering representations — a modeling emphasis.
     Zenseact begins from distributed autonomous work and invests in platform boundaries, context, and
-    delegation — a knowledge emphasis. A closing band reads: MAGE is the vocabulary used here to compare the
-    observed structures, not a seventh case. Badge colour keys emphasis to the house semantic language: rust
-    for governance and alignment, green for modeling and knowledge. The figure locates emphasis; it does not
-    rank maturity or claim any source implements the complete method.</desc>
+    delegation — a knowledge emphasis. Uber begins from software-factory economics at scale and invests in
+    benchmarks, model routing, reusable skills, and outcome measurement — a combined knowledge and governance
+    emphasis. GitLab begins from trusting abundant code at machine-scale development and invests in a durable
+    layer of context, provenance, verification, and governance around replaceable models and agents — a
+    combined knowledge and governance emphasis. A closing band reads: MAGE is the vocabulary used here to
+    compare the observed structures, not a ninth case. Badge colour keys emphasis to the house semantic
+    language: rust for governance and alignment, green for modeling and knowledge, and the green-to-rust
+    gradient for an emphasis that spans both. The figure locates emphasis; it does not rank maturity or claim
+    any source implements the complete method.</desc>
 
   <defs>
     <linearGradient id="sepSynth" x1="0" y1="0" x2="1" y2="0">
@@ -39,8 +46,8 @@
     </linearGradient>
   </defs>
 
-  <rect x="0" y="0" width="1000" height="820" fill="#fdfcf9"/>
-  <text x="500" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Six entry points into a shared design space</text>
+  <rect x="0" y="0" width="1000" height="988" fill="#fdfcf9"/>
+  <text x="500" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#1c1917">Eight entry points into a shared design space</text>
   <text x="500" y="78" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">Each organization begins with a different problem and invests in a different part of the environment.</text>
 
   <!-- legend: badge colour keys emphasis to the house semantic language -->
@@ -66,6 +73,8 @@
     <line x1="40" y1="504" x2="960" y2="504"/>
     <line x1="40" y1="588" x2="960" y2="588"/>
     <line x1="40" y1="672" x2="960" y2="672"/>
+    <line x1="40" y1="756" x2="960" y2="756"/>
+    <line x1="40" y1="840" x2="960" y2="840"/>
   </g>
 
   <!-- Cloudflare -> governance (rust) -->
@@ -122,11 +131,31 @@
   <rect x="778" y="609" width="182" height="42" rx="8" fill="#eef7f0" stroke="#1f7a4d" stroke-width="2.2"/>
   <text x="869" y="637" text-anchor="middle" font-size="20" font-weight="700" fill="#1f7a4d">Knowledge</text>
 
-  <!-- synthesis band: MAGE is the comparing vocabulary, not a seventh case -->
-  <line x1="40" y1="684" x2="960" y2="684" stroke="#57534e" stroke-width="2"/>
-  <rect x="40" y="692" width="920" height="60" rx="9" fill="url(#sepSynth)" stroke="#e4e0d8" stroke-width="1.2"/>
-  <text x="64"  y="730" font-size="22" font-weight="700" fill="#1c1917">MAGE</text>
-  <text x="214" y="730" font-size="20" fill="#57534e">the vocabulary used here to compare the observed structures</text>
+  <!-- Uber -> knowledge + governance (spans both: synthesis gradient badge) -->
+  <text x="48"  y="720" font-size="22" font-weight="700" fill="#1c1917">Uber</text>
+  <text x="214" y="708" font-size="20" fill="#57534e">Software-factory</text>
+  <text x="214" y="734" font-size="20" fill="#57534e">economics at scale</text>
+  <text x="452" y="708" font-size="20" font-weight="600" fill="#1c1917">Benchmarks, routing, reusable</text>
+  <text x="452" y="734" font-size="20" font-weight="600" fill="#1c1917">skills, outcome measurement</text>
+  <rect x="778" y="693" width="182" height="42" rx="8" fill="url(#sepSynth)" stroke="#57534e" stroke-width="2.2"/>
+  <text x="869" y="711" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Knowledge +</text>
+  <text x="869" y="730" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">governance</text>
 
-  <text x="500" y="792" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">The figure locates emphasis; it does not rank maturity or claim any source implements the whole method.</text>
+  <!-- GitLab -> knowledge + governance (spans both: synthesis gradient badge) -->
+  <text x="48"  y="804" font-size="22" font-weight="700" fill="#1c1917">GitLab</text>
+  <text x="214" y="792" font-size="20" fill="#57534e">Trust at machine-scale</text>
+  <text x="214" y="818" font-size="20" fill="#57534e">development</text>
+  <text x="452" y="792" font-size="20" font-weight="600" fill="#1c1917">Durable context, provenance,</text>
+  <text x="452" y="818" font-size="20" font-weight="600" fill="#1c1917">verification + governance</text>
+  <rect x="778" y="777" width="182" height="42" rx="8" fill="url(#sepSynth)" stroke="#57534e" stroke-width="2.2"/>
+  <text x="869" y="795" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">Knowledge +</text>
+  <text x="869" y="814" text-anchor="middle" font-size="18" font-weight="700" fill="#1c1917">governance</text>
+
+  <!-- synthesis band: MAGE is the comparing vocabulary, not a ninth case -->
+  <line x1="40" y1="852" x2="960" y2="852" stroke="#57534e" stroke-width="2"/>
+  <rect x="40" y="860" width="920" height="60" rx="9" fill="url(#sepSynth)" stroke="#e4e0d8" stroke-width="1.2"/>
+  <text x="64"  y="898" font-size="22" font-weight="700" fill="#1c1917">MAGE</text>
+  <text x="214" y="898" font-size="20" fill="#57534e">the vocabulary used here to compare the observed structures</text>
+
+  <text x="500" y="960" text-anchor="middle" font-size="18" font-style="italic" fill="#57534e">The figure locates emphasis; it does not rank maturity or claim any source implements the whole method.</text>
 </svg>
