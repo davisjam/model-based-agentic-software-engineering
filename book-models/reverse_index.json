@@ -6829,6 +6829,16 @@
         }
       ]
     },
+    "section-id:software-engineering-changes-the-problem": {
+      "kind": "section-id",
+      "dependents": [
+        {
+          "view": "outline",
+          "element": "6.1-toward-a-theory-of-mage::software-engineering-changes-the-problem",
+          "role": "section-anchor"
+        }
+      ]
+    },
     "section-id:software-engineering-has-priced-this-before": {
       "kind": "section-id",
       "dependents": [
@@ -6905,16 +6915,6 @@
         {
           "view": "outline",
           "element": "5.2-the-build::support-ratio-curve",
-          "role": "section-anchor"
-        }
-      ]
-    },
-    "section-id:sustained-work-changes-the-problem": {
-      "kind": "section-id",
-      "dependents": [
-        {
-          "view": "outline",
-          "element": "6.1-toward-a-theory-of-mage::sustained-work-changes-the-problem",
           "role": "section-anchor"
         }
       ]
