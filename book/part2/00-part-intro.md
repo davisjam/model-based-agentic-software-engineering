@@ -70,17 +70,13 @@ These six classes organize recurring engineering questions rather than partition
 overlap, and they are not exhaustive. There is no single "model of the system": each model is a
 purposeful reduction chosen for a question.
 
-<!-- point: each-family-chapter-runs-canonical-move-then-docable-specialization | Each family chapter runs the same progression — the canonical engineering move outside DocAble, then how DocAble specializes it — so the reader recognizes an established representation before meeting its production instance. | terms: model-classes -->
-Each of the six chapters ahead runs the same progression: the canonical engineering move as software
-engineering already knows it — the representation, the properties it makes expressible, the analyses it
-supports — and then how DocAble specializes that move in the running system. The aim is to recognize an
-established representation first, and meet its production instance second.
-
-<!-- point: keep-property-invariant-analysis-and-authority-distinct | A property is a claim expressible over a model; an invariant a property required to hold over a declared domain; an analysis a method producing evidence about a property; authority the consequence attached to that evidence — Part II owns the first three, Part III owns authority. | terms: modeling-principle, alignment-principle -->
-Four terms stay distinct through the Part. A **property** is a claim that can be expressed over a model.
-An **invariant** is a property required to hold over a declared domain. An **analysis** or check produces
-evidence about a property. Whether that evidence gets to constrain an action or block a consequence is a
-separate question of **authority**, and it belongs to Part III.
+<!-- point: each-chapter-begins-with-a-representation-then-specializes-it-and-four-terms-stay-distinct | Each chapter begins with a familiar representation, its properties and analyses, then specializes it to DocAble; four terms stay distinct — property, invariant, analysis, authority — with authority reserved for Part III. | terms: model-classes, modeling-principle, alignment-principle -->
+Each chapter begins with a familiar engineering representation, the properties it makes expressible, and
+the analyses it supports, then specializes that representation to DocAble. Four terms stay distinct
+throughout the Part. A **property** is a claim that can be expressed over a model. An **invariant** is a
+property required to hold over a declared domain. An **analysis** or check produces evidence about a
+property. Whether that evidence constrains an action or blocks a consequence is a separate question of
+**authority**, taken up in Part III.
 
 <!-- box-family: inset -->
 > #### Four questions for every model
@@ -95,8 +91,6 @@ separate question of **authority**, and it belongs to Part III.
 Part III adds a fifth question: **what gives the property authority?** Modeling makes properties
 explicit; Alignment gives selected properties consequence.
 
-<!-- point: part-2-hands-you-a-reusable-mental-toolbox | By the Part's end you hold a mental toolbox you can rebuild for your own system. | terms: model-zoo, scope-of-modeling, modeling-principle -->
-The recurring pattern is: identify the concern, choose the model that exposes it, state the property, and
-connect it to the quality attribute it serves. The final chapter,
-[System Knowledge](2.8-system-knowledge.html), shows how the six models connect without becoming a seventh
-model. By the end, you should be able to choose useful representations for a system of your own.
+<!-- point: the-final-chapter-connects-the-six-without-a-seventh-model | The final chapter shows how the six models connect through shared identity without becoming a seventh model. | terms: model-zoo, scope-of-modeling, modeling-principle -->
+The final chapter, [System Knowledge](2.8-system-knowledge.html), shows how the six models connect
+without becoming a seventh model.
