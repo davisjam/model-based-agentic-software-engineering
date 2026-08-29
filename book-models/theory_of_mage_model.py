@@ -49,7 +49,7 @@ _PAGE_REL = chapter_identity.filename("what-the-theory-predicts")
 
 #: The ratified counts — encode the author's set so a silent add/drop/reclassify reddens (the dashboard
 #: model's C5-analogue: the count guard is the backstop against silent H-table drift).
-EXPECT_HYPOTHESES = 8
+EXPECT_HYPOTHESES = 9
 EXPECT_SUBHYP = 2
 
 #: The hypotheses-table columns (the header the projection emits and the page carries; parity is exact).

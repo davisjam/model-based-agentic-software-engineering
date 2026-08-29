@@ -243,6 +243,17 @@
       ]
     },
     {
+      "id": "H9-representation-innovation",
+      "name": "Representation induction and innovation",
+      "family": "Representation",
+      "core_quantity": "reasoning reach / newly tractable questions",
+      "statement": "Commodity intelligence can contribute useful engineering representations, first by inducing latent structure from existing systems and, more strongly, by proposing representations that make consequential engineering questions tractable in ways the existing representational repertoire does not. Where those representations can be independently validated and economically maintained, they should extend the effective reasoning horizon of later agents and human engineers.",
+      "falsifier": "Machine-proposed representations recover no consequential structure a simpler baseline misses and propose none the existing repertoire lacks, or the representations they add cannot be independently validated or economically maintained, so later agents and engineers gain no reasoning reach from them.",
+      "loops": [
+        "L3-governance-adaptation"
+      ]
+    },
+    {
       "id": "H3-mechanized-assurance",
       "name": "Mechanized assurance",
       "family": "Governance",

@@ -3,10 +3,10 @@
   "_counts": {
     "tracked_slugs": 30,
     "slugs_rendered": 23,
-    "total_sites": 1148,
+    "total_sites": 1149,
     "by_projection": {
       "book-pdf": 14,
-      "book-web": 807,
+      "book-web": 808,
       "website-catalogue": 219,
       "website-industry-cases": 43,
       "website-landing": 13,
@@ -969,7 +969,7 @@
           },
           {
             "file": "book/6.2-what-the-theory-predicts.html",
-            "occ": 40
+            "occ": 42
           },
           {
             "file": "book/6.3-scope-conditions.html",
@@ -3482,6 +3482,10 @@
             "occ": 2
           },
           {
+            "file": "book/6.2-what-the-theory-predicts.html",
+            "occ": 1
+          },
+          {
             "file": "book/appendix-a-context-delivery-stack.html",
             "occ": 1
           },
@@ -3501,7 +3505,7 @@
         "book-pdf": [
           {
             "file": "book/mage-book.pdf",
-            "occ": 10
+            "occ": 11
           }
         ]
       },
